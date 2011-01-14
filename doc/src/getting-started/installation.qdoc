@@ -980,6 +980,31 @@ We hope you will enjoy using Qt.
         \l{http://www.microsoft.com/downloads/details.aspx?FamilyID=0baf2b35-c656-4969-ace8-e4c0c0716adb&amp;DisplayLang=en}{here}.
     \endlist
 
+    \section1 QtWebKit Dependencies
+
+    QtWebKit depends on some extra development tools in addition to those required for the rest of Qt.
+
+    \note These dependencies are only needed if you use a source version of Qt.
+          They are not required when using a prebuilt library.
+
+    \list
+        \o Install \l{http://www.activestate.com/Products/ActivePerl/}{ActiveState Perl}
+        \o Install \l{http://www.python.org/download/}{Python 2.x}
+           (and add the installation location to your PATH)
+        \o In addition, you need these external GNU tools from the
+           \l{http://gnuwin32.sourceforge.net/packages.html}{GnuWin32 Project}:
+        \list
+            \o \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
+            \o \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
+            \o \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
+            \o \l{http://gnuwin32.sourceforge.net/downlinks/libiconv.php}{LibIconv} (needed for bison)
+        \endlist
+    \endlist
+
+    Please make sure that you install all the tools in a path without spaces in it.
+
+    For the most up to date information about QtWebKit dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{QtWebKit wiki for Windows}
+
     \sa {Known Issues}
 */
 
@@ -1166,6 +1191,27 @@ We hope you will enjoy using Qt.
     files for your system. The package names for GStreamer vary between Linux
     distributions; try searching for \c gstreamer or \c libgstreamer in your
     distribution's package repository to find suitable packages.
+
+    \section1 QtWebKit Dependencies
+
+    QtWebKit depends on some extra development tools in addition to those required for the rest of Qt.
+
+    \note These dependencies are only needed if you use a source version of Qt.
+          They are not required when using a prebuilt library.
+
+    \list
+        \o gperf
+        \o bison
+        \o flex (v2.5.33 or later)
+        \o sqlite (development version)
+        \o fontconfig (development version)
+        \o xrender (development version)
+        \o phonon (development version)
+    \endlist
+
+    These should be available in most major Linux distributions, but the exact install instructions will vary.
+
+    For the most up to date information about QtWebKit dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnLinux}{QtWebKit wiki for Linux}
 
     \sa {Known Issues}
 */
@@ -1362,6 +1408,20 @@ We hope you will enjoy using Qt.
 
     We recommend you to take a look at \l{http://developer.symbian.org/wiki/index.php/Qt_Quick_Start}{Symbian Foundation - Qt Quick Start}
     to get more information about how to setup the development environment.
+
+    \section1 QtWebKit Dependencies
+
+    QtWebKit depends on some extra development tools in addition to those required for the rest of Qt.
+
+    \note These dependencies are only needed if you use a source version of Qt.
+          They are not required when using a prebuilt library.
+
+    The dependencies are the same for Symbian as the host platform you are building on. Therefore, please
+    refer to the Requirements page for your build platform, either
+    \l{Qt for Windows Requirements#qtwebkit-dependencies}{Qt for Windows Requirements} or
+    \l{Qt for X11 Requirements#qtwebkit-dependencies}{Qt for X11 Requirements}.
+
+    For the most up to date information about QtWebKit dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnSymbian}{QtWebKit wiki for Symbian}
 
     \sa {Known Issues}
 */
