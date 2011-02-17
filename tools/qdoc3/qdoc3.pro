@@ -86,9 +86,9 @@ SOURCES += atom.cpp \
 	   tree.cpp \
 	   yyindent.cpp
 
-INCLUDEPATH += $$QT_BUILD_TREE/include/QtDeclarative
+INCLUDEPATH += $$QT.declarative.private_includes $$QT.declarative.includes
 
-include(declarativeparser/parser.pri)
+include($$QT.declarative.sources/qml/parser/parser.pri)
 
 ### Documentation for qdoc3 ###
 
