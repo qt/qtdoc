@@ -86,7 +86,9 @@ SOURCES += atom.cpp \
 	   tree.cpp \
 	   yyindent.cpp
 
-INCLUDEPATH += $$QT.declarative.private_includes $$QT.declarative.includes
+INCLUDEPATH += $$QT.declarative.private_includes \
+               $$QT.declarative.private_includes/$$QT.declarative.name \
+               $$QT.declarative.includes
 
 include($$QT.declarative.sources/qml/parser/parser.pri)
 
