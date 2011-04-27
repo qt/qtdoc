@@ -1,0 +1,113 @@
+/****************************************************************************
+**
+** Copyright (C) 2011 Nokia Corporation and/or its subsidiary(-ies).
+** All rights reserved.
+** Contact: Nokia Corporation (qt-info@nokia.com)
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** No Commercial Usage
+** This file contains pre-release code and may not be distributed.
+** You may use this file in accordance with the terms and conditions
+** contained in the Technology Preview License Agreement accompanying
+** this package.
+**
+** GNU Free Documentation License
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of this
+** file.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page developing-with-qt.html
+    
+    \title Cross-Platform and Platform-Specific Development
+	Qt allows you to write advanced applications and UIs once, and deploy them
+	across desktop and embedded operating systems without rewriting the source
+	code. The top section of this page provides an overview of the tools and
+	techniques used in Qt application development. Still, you might want to add
+	platform-specific features to your code. The bottom section of the page
+	links to documents that describe platform-specific features provided by Qt,
+	and discuss issues related to particular platforms and environments.
+
+    \section1 Cross-Platform Development with Qt
+
+    Qt is provided with a set of build tools to help developers automate
+    the process of building and installing Qt applications.
+
+    \table
+    \header \o Development \o Cross-Platform Issues \o Specific Tools
+    \row
+    \o
+     \list
+        \o \l {Debugging Techniques}
+        \o \l {Qt's Tools}
+        \o \l {The Qt Resource System}
+        \o \l {Using Precompiled Headers}
+    \endlist
+    \o
+    \list
+        \o \l {Cross Compiling Qt for Embedded Linux Applications}
+        \o \l {Deploying Qt Applications}
+        \o \l {Installation}{Installing Qt}
+        \o \l {Window System Specific Notes}
+    \endlist
+    \o
+    \list
+        \o \l lupdate and \l lrelease
+        \o \l {moc}{Meta-Object Compiler (moc)}
+        \o \l {User Interface Compiler (uic)}
+        \o \l {Resource Compiler (rcc)}
+    \endlist
+    \endtable
+	
+	\section1 Platform-Specific Development with Qt
+	
+    These documents describe platform-specific features provided by Qt, and
+    discuss issues related to particular platforms and environments.
+	
+    \table
+    \row
+    \o
+     \list
+        \o \l {Calling Qt Functions From Unix Signal Handlers}
+        \o \l {Compiler Notes}
+        \o \l {Developing Qt Applications for Mac OS X}
+        \o \l {Known Issues}
+        \o \l {Platform and Compiler Notes}
+        \o \l {Platform and Compiler Notes - Symbian}
+        \o \l {ActiveX in Qt}
+        \o \l {Qt for Embedded Linux Classes}
+        \o \l {Qt for Embedded Platforms}
+        \o \l {Qt for Mac OS X - Specific Issues}
+        \o \l {Qt is Mac OS X Native}
+        \o \l {Supported Platforms}
+        \o \l {The qtmain Library}
+        \o \l {Window System Specific Notes}
+     \endlist
+    \o
+    \list
+        \o  Workaround to make it work.
+        \o  Information about the C++ compilers and tools used to build Qt.
+        \o  Information for developing Qt applications for Mac OS X
+        \o  A summary of known issues in this Qt version at the time of release.
+        \o  Information about the platforms on which Qt can be used.
+        \o  Information about the state of support for the Symbian platform.
+        \o  Qt API's for using ActiveX controls, servers, and COM.
+        \o  Classes that are specific to Qt for Embedded Linux.
+        \o  Documents related to Qt for Embedded Platforms.
+        \o  A description of issues with Qt that are specific to Mac OS X.
+        \o  An explanation of Qt's native features on Mac OS X.
+        \o  The platforms supported by Nokia for Qt.
+        \o  Describes the use and license of the qtmain helper library.
+        \o  Collections of notes about Qt implementations on different window systems.
+    \endlist
+    \endtable
+*/
