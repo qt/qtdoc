@@ -325,7 +325,7 @@ void MenuManager::launchExample(const QString &name)
     bool success = QDesktopServices::openUrl(QUrl::fromLocalFile(executable));
     if (!success){
         QMessageBox::critical(0, tr("Failed to launch the example"),
-                          tr("Could not launch the example. Ensure that it has been built."),
+                          tr("Could not launch the example. Ensure that it has been built and installed."),
                           QMessageBox::Cancel);
     }
 #else // Not mac. To not break anything regarding dll's etc, keep it the way it was before:

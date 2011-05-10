@@ -15,6 +15,8 @@ contains(QT_CONFIG, opengl) {
 
 contains(QT_CONFIG, declarative) {
     QT += declarative
+} else {
+    DEFINES *= QT_NO_DECLARATIVE
 }
 
 build_all:!build_pass {
