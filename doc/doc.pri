@@ -48,7 +48,7 @@ win32-g++*:isEmpty(QMAKE_SH) {
 }
 
 # Build rules:
-adp_docs.commands = ($$QDOC $$ADP_DOCS_QDOCCONF_FILE && $$QMAKE_COPY_DIR $$QT_BUILD_TREE/doc/html)
+adp_docs.commands = ($$QDOC $$ADP_DOCS_QDOCCONF_FILE)
 adp_docs.depends += sub-qdoc3 # qdoc3
 qch_docs.commands = $$QT_DOCUMENTATION
 qch_docs.depends += sub-qdoc3
