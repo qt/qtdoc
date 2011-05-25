@@ -49,7 +49,7 @@ online_docs.depends += sub-qdoc3 # qdoc3
 qch_docs.commands = $$QT_DOCUMENTATION
 qch_docs.depends += sub-qdoc3
 
-docs.depends = sub-qdoc3 adp_docs qch_docs
+docs.depends = sub-qdoc3 online_docs qch_docs
 
 #docs_zh_CN.depends = docs
 #docs_zh_CN.commands = $$QT_ZH_CN_DOCUMENTATION
