@@ -21,9 +21,9 @@ $$unixstyle {
     QDOC = $$replace(QDOC, "/", "\\")
 }
 
-QT_ONLINE_DOCUMENTATION = ($$QDOC $$MODULE-online.qdocconf)
+QT_ONLINE_DOCUMENTATION = ($$QDOC $${MODULE}-online.qdocconf)
 
-QT_DOCUMENTATION = ($$QDOC $$MODULE.qdocconf) && \
+QT_DOCUMENTATION = ($$QDOC $${MODULE}.qdocconf) && \
                (cd $$QT_BUILD_TREE && \
                 $$GENERATOR doc/html/qt.qhp -o doc/qch/qt.qch)
 
