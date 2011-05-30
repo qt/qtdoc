@@ -1,3 +1,9 @@
+%modules = ( # path to module name map
+    "QtDoc" => "$basedir/modules",  # point to an invalid directory in this case
+);
+%modulepris = (
+    "QtDoc" => "$basedir/modules/qt_doc.pri",
+);
 # Modules and programs, and their dependencies.
 # Each of the module version specifiers can take one of the following values:
 #   - A specific Git revision.
