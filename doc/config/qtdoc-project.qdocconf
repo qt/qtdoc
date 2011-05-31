@@ -87,7 +87,7 @@ imagedirs               = $MODULE_SOURCE_TREE/doc/src/images \
                           $MODULE_SOURCE_TREE/doc/src/declarative/pics \
                           $MODULE_SOURCE_TREE/doc/src/template/images
 
-outputdir               = ../html
-tagfile                 = ../html/qtdoc.tags
+outputdir               = $MODULE_BUILD_TREE/doc/html
+tagfile                 = $MODULE_BUILD_TREE/doc/html/qtdoc.tags
 
 HTML.generatemacrefs    = "true"
