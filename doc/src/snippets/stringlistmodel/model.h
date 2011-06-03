@@ -4,7 +4,7 @@
 ** All rights reserved.
 ** Contact: Nokia Corporation (qt-info@nokia.com)
 **
-** This file is part of the Qt WebKit module of the Qt Toolkit.
+** This file is part of the documentation of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** You may use this file under the terms of the BSD license as follows:
@@ -37,67 +37,46 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-/*!
-\page qtwebkit-guide.html
 
-\title QtWebKit Guide
+#ifndef MODEL_H
+#define MODEL_H
 
-\section1 Introduction to QtWebKit
+#include <QAbstractListModel>
+#include <QObject>
+#include <QStringList>
 
-Qt WebKit is a web content rendering engine based on the open source
-WebKit project, featuring broad support for standard web technologies.
-QtWebKit is developed as a part of the WebKit community,
-which enables every new release of Qt WebKit
-to include the latest developments from the WebKit project.
+//! [0]
+class StringListModel : public QAbstractListModel
+{
+    Q_OBJECT
 
-Qt SDK 1.1 supports the following Qt WebKit releases:
+public:
+    StringListModel(const QStringList &strings, QObject *parent = 0)
+        : QAbstractListModel(parent), stringList(strings) {}
 
-\list
-\o QtWebKit 2.1 for Symbian^3 when using Qt 4.7.
-\o QtWebKit 2.0, as a standard part of Qt 4.7,
-for all other platforms when using Qt 4.7.
-\o When using Qt 4.6,
-the QtWebKit version of Qt 4.6 is used on all platforms.
-\endlist
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation,
+//! [0] //! [1]
+                        int role = Qt::DisplayRole) const;
+//! [1]
 
-\section1 QtWebKit 2.1 for Web Developers
+//! [2]
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    bool setData(const QModelIndex &index, const QVariant &value,
+//! [2] //! [3]
+                 int role = Qt::EditRole);
+//! [3]
 
-The highlights of the QtWebKit 2.1 release for web developers
-are listed below.
-Please note that HTML5 and CSS3 features are based on draft
-specifications that are subject to change.
+//! [4]
+    bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
+    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
+//! [4]
 
-\list
-\o HTML5 progress and meter elements
-\o HTML5 canvas element
-\o Web SQL Database
-\o Web Storage
-\o CSS Animations
-\o CSS Transitions
-\o CSS 2D Transforms
-\o CSS Text
-\o CSS Masks
-\o CSS Scrollbar Styles
-\o Native JSON parser
-\endlist
+//! [5]
+private:
+    QStringList stringList;
+};
+//! [5]
 
-\section1 Qt WebKit Module
-
-Information regarding the classes and API introduced in the Qt WebKit module
-are found in the \l{WebKit in Qt} page.
-
-\section1 Mobile HTML5 Developer's Guide for QtWebKit (BETA)
-
-This is a beta release of a guide for mobile web development with
-QtWebKit 2.1. It discusses how to use several standard web
-technologies to create mobile applications with QtWebKit.
-
-Contents:
-\list
-\o \l{QtWebKit Guide - Level 3 CSS}{Level 3 CSS: media queries, selectors, visual
-effects, transforms, transitions, and animations}
-\o \l{Canvas Graphics}{HTML5 canvas element}
-\o \l{QtWebKit Guide - Client Storage}{Client Storage}
-\endlist
-*/
-
+#endif
