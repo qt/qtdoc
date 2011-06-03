@@ -1,0 +1,16 @@
+# Declarations for the qttools module.
+
+headerdirs  += $QT_CLUCENE_SOURCES/../../..
+
+sourcedirs  += $QT_CLUCENE_SOURCES/../../.. \
+               $QT_CLUCENE_SOURCES/../../../../doc/src
+
+exampledirs += $QT_CLUCENE_SOURCES/../../../.. \
+               $QT_CLUCENE_SOURCES/../../../../demos \
+               $QT_CLUCENE_SOURCES/../../../../doc/src \
+               $QT_CLUCENE_SOURCES/../../../../examples
+
+imagedirs   += $QT_CLUCENE_SOURCES/../../../../doc/src/images \
+               $QT_CLUCENE_SOURCES/../../../../examples
+
+excludedirs += 

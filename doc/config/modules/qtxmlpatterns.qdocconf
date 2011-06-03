@@ -1,0 +1,15 @@
+headerdirs  += $QT_XMLPATTERNS_SOURCES/.. \
+               $QT_XMLPATTERNS_SOURCES/../tools
+
+sourcedirs  += $QT_XMLPATTERNS_SOURCES/.. \
+               $QT_XMLPATTERNS_SOURCES/../../doc/src \
+               $QT_XMLPATTERNS_SOURCES/../../tools
+
+exampledirs += $QT_XMLPATTERNS_SOURCES/../.. \
+               $QT_XMLPATTERNS_SOURCES/../../doc/src \
+               $QT_XMLPATTERNS_SOURCES/../../examples
+
+imagedirs   += $QT_XMLPATTERNS_SOURCES/../../doc/src/images \
+               $QT_XMLPATTERNS_SOURCES/../../examples
+
+excludedirs += 

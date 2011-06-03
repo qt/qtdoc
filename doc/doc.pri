@@ -34,7 +34,8 @@ MODULES = activeqt \
           script \ # scripttools
           svg \
           webkit-examples-and-demos \
-          xmlpatterns
+          xmlpatterns \
+          qt3support
 
 LOCATIONS =
 INCLUDES =

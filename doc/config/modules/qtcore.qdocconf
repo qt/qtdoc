@@ -1,0 +1,38 @@
+headerdirs  += $QT_CORE_SOURCES/.. \
+               $QT_CORE_SOURCES/../../tools
+
+sourcedirs  += $QT_CORE_SOURCES/.. \
+               $QT_CORE_SOURCES/../../doc/src \
+               $QT_CORE_SOURCES/../../tools
+
+exampledirs += $QT_CORE_SOURCES/../.. \
+               $QT_CORE_SOURCES/../../demos \
+               $QT_CORE_SOURCES/../../doc/src \
+               $QT_CORE_SOURCES/../../examples
+
+imagedirs   += $QT_CORE_SOURCES/../../doc/src/images \
+               $QT_CORE_SOURCES/../../examples
+
+excludedirs += $QT_CORE_SOURCES/../3rdparty/ce-compat \
+               $QT_CORE_SOURCES/../3rdparty/des \
+               $QT_CORE_SOURCES/../3rdparty/easing \
+               $QT_CORE_SOURCES/../3rdparty/fonts \
+               $QT_CORE_SOURCES/../3rdparty/freetype \
+               $QT_CORE_SOURCES/../3rdparty/harfbuzz \
+               $QT_CORE_SOURCES/../3rdparty/libjpeg \
+               $QT_CORE_SOURCES/../3rdparty/libmng \
+               $QT_CORE_SOURCES/../3rdparty/libpng \
+               $QT_CORE_SOURCES/../3rdparty/libtiff \
+               $QT_CORE_SOURCES/../3rdparty/md4 \
+               $QT_CORE_SOURCES/../3rdparty/md5 \
+               $QT_CORE_SOURCES/../3rdparty/patches \
+               $QT_CORE_SOURCES/../3rdparty/pixman \
+               $QT_CORE_SOURCES/../3rdparty/powervr \
+               $QT_CORE_SOURCES/../3rdparty/ptmalloc \
+               $QT_CORE_SOURCES/../3rdparty/s60 \
+               $QT_CORE_SOURCES/../3rdparty/sha1 \
+               $QT_CORE_SOURCES/../3rdparty/sqlite \
+               $QT_CORE_SOURCES/../3rdparty/wintab \
+               $QT_CORE_SOURCES/../3rdparty/xorg \
+               $QT_CORE_SOURCES/../3rdparty/zlib \
+               $QT_CORE_SOURCES/../../doc/src/snippets

@@ -1,0 +1,16 @@
+headerdirs  += $QT_DECLARATIVE_SOURCES/.. \
+               $QT_DECLARATIVE_SOURCES/../tools
+
+sourcedirs  += $QT_DECLARATIVE_SOURCES/.. \
+               $QT_DECLARATIVE_SOURCES/../../doc/src \
+               $QT_DECLARATIVE_SOURCES/../../tools
+
+exampledirs += $QT_DECLARATIVE_SOURCES/../.. \
+               $QT_DECLARATIVE_SOURCES/../../demos \
+               $QT_DECLARATIVE_SOURCES/../../doc/src \
+               $QT_DECLARATIVE_SOURCES/../../examples
+
+imagedirs   += $QT_DECLARATIVE_SOURCES/../../doc/src/images \
+               $QT_DECLARATIVE_SOURCES/../../examples
+
+excludedirs += $QT_DECLARATIVE_SOURCES/doc/src/snippets
