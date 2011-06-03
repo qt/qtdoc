@@ -3,7 +3,9 @@
 #####################################################################
 
 DOCS_GENERATION_DEFINES =
-GENERATOR = $$QT_BUILD_TREE/bin/qhelpgenerator
+GENERATOR = $${QT.help.bins}/qhelpgenerator
+MODULE = qtdoc
+MODULE_BUILD_DIR = $$(PWD)
 
 win32:!win32-g++* {
     unixstyle = false
@@ -13,72 +15,124 @@ win32:!win32-g++* {
     unixstyle = true
 }
 
-COPYWEBKITGUIDE = $$QT_SOURCE_TREE/examples/webkit/webkit-guide
+$$unixstyle {
+    SET =
+    SEP = 
+} else {
+    SET = set
+    SEP = &&
+}
+
+MODULES = activeqt \
+          core \ # dbus gui network opengl openvg sql testlib uilib uitools xml
+          declarative \
+          doc \
+          clucene \ # help designer
+          location \
+          multimedia \
+          phonon \
+          script \ # scripttools
+          svg \
+          webkit-examples-and-demos \
+          xmlpatterns \
+          qt3support
+
+LOCATIONS =
+INCLUDES =
+
+for(module, MODULES) {
+
+    INCLUDES += $$SET
+
+    module_name = $$upper($$module)
+    module_name = $$replace(module_name, "-", "_")
+    module_value = $$eval(QT.$$replace(module, "-", "_").sources)
+    !isEmpty(module_value) {
+        LOCATIONS += $$SET
+        LOCATIONS += QT_$${module_name}_SOURCES=$$module_value
+        LOCATIONS += $$SEP
+
+        INCLUDES += QT_$${module_name}_QDOCCONF=modules/qt$${module}.qdocconf
+        debug : message($$module : $$module_value)
+    } else {
+        INCLUDES += QT_$${module_name}_QDOCCONF=modules/missing.qdocconf
+        debug : message($$module not found.)
+    }
+
+    INCLUDES += $$SEP
+}
+
+message($$LOCATIONS)
+message($$INCLUDES)
+
+# Input files in the source tree
+ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs-online.qdocconf
+ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+
+OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs.qdocconf
+OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+
+MODULE_ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/$${MODULE}-online.qdocconf
+MODULE_ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+
+MODULE_OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/$${MODULE}.qdocconf
+MODULE_OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+
+# Output files in the build tree
+QHP_FILE = doc/html/qt.qhp
+QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
+QCH_FILE = doc/qch/qt.qch
+QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
+
+INDEX_FILE = doc/html/qt.index
+INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
+INDEX_DEST = $$INDEX_DESTDIR/qt.index
+INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
+
+MODULE_QHP_FILE = doc/html/$${MODULE}.qhp
+MODULE_QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
+MODULE_QCH_FILE = doc/qch/$${MODULE}.qch
+MODULE_QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
+
+MODULE_INDEX_FILE = doc/html/$${MODULE}.index
+MODULE_INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
+MODULE_INDEX_DEST = $$INDEX_DESTDIR/$${MODULE}.index
+MODULE_INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
 
 $$unixstyle {
-    QDOC = cd $$QT_SOURCE_TREE/tools/qdoc3/test && QT_BUILD_TREE=$$QT_BUILD_TREE QT_SOURCE_TREE=$$QT_SOURCE_TREE $$QT_BUILD_TREE/bin/qdoc3 $$DOCS_GENERATION_DEFINES
+    QDOC = $$LOCATIONS $$INCLUDES MODULE_SOURCE_TREE=$${QT.doc.sources} MODULE_BUILD_TREE=$$MODULE_BUILD_DIR $${QT.doc.bins}/qdoc3 $$DOCS_GENERATION_DEFINES
 } else {
-    QDOC = cd $$QT_SOURCE_TREE/tools/qdoc3/test && set QT_BUILD_TREE=$$QT_BUILD_TREE&& set QT_SOURCE_TREE=$$QT_SOURCE_TREE&& $$QT_BUILD_TREE/bin/qdoc3.exe $$DOCS_GENERATION_DEFINES
-    QDOC = $$replace(QDOC, "/", "\\")
-    COPYWEBKITGUIDE = $$replace(COPYWEBKITGUIDE, "/", "\\")
-}
-ADP_DOCS_QDOCCONF_FILE = qt-build-docs-online.qdocconf
-QT_DOCUMENTATION = ($$QDOC qt-api-only.qdocconf assistant.qdocconf designer.qdocconf \
-                    linguist.qdocconf qmake.qdocconf qdeclarative.qdocconf) && \
-               (cd $$QT_BUILD_TREE && \
-                    $$QMAKE_COPY_DIR $$COPYWEBKITGUIDE $$QT_BUILD_TREE/doc-build/html-qt && \
-                    $$GENERATOR doc-build/html-qt/qt.qhp -o doc/qch/qt.qch && \
-                    $$GENERATOR doc-build/html-assistant/assistant.qhp -o doc/qch/assistant.qch && \
-                    $$GENERATOR doc-build/html-designer/designer.qhp -o doc/qch/designer.qch && \
-                    $$GENERATOR doc-build/html-linguist/linguist.qhp -o doc/qch/linguist.qch && \
-                    $$GENERATOR doc-build/html-qmake/qmake.qhp -o doc/qch/qmake.qch && \
-                    $$GENERATOR doc-build/html-qml/qml.qhp -o doc/qch/qml.qch \
-               )
-
-QT_ZH_CN_DOCUMENTATION = ($$QDOC qt-api-only_zh_CN.qdocconf) && \
-               (cd $$QT_BUILD_TREE && \
-                    $$GENERATOR doc-build/html-qt_zh_CN/qt.qhp -o doc/qch/qt_zh_CN.qch \
-               )
-
-QT_JA_JP_DOCUMENTATION = ($$QDOC qt-api-only_ja_JP.qdocconf) && \
-               (cd $$QT_BUILD_TREE && \
-                    $$GENERATOR doc-build/html-qt_ja_JP/qt.qhp -o doc/qch/qt_ja_JP.qch \
-               )
-
-win32-g++*:isEmpty(QMAKE_SH) {
-	QT_DOCUMENTATION = $$replace(QT_DOCUMENTATION, "/", "\\\\")
-	QT_ZH_CN_DOCUMENTATION = $$replace(QT_ZH_CN_DOCUMENTATION, "/", "\\\\")
-	QT_JA_JP_DOCUMENTATION = $$replace(QT_JA_JP_DOCUMENTATION, "/", "\\\\")
+    QDOC = $$LOCATIONS $$INCLUDES set MODULE_SOURCE_TREE=$${QT.doc.sources} && set MODULE_BUILD_TREE=$$MODULE_BUILD_DIR && $${QT.doc.bins}/qdoc3.exe $$DOCS_GENERATION_DEFINES
+    QDOC = $$replace(QDOC, "/", $$QMAKE_DIR_SEP)
 }
 
 # Build rules:
-adp_docs.commands = ($$QDOC $$ADP_DOCS_QDOCCONF_FILE && $$QMAKE_COPY_DIR $$COPYWEBKITGUIDE $$QT_BUILD_TREE/doc/html)
-adp_docs.depends += sub-qdoc3 # qdoc3
-qch_docs.commands = $$QT_DOCUMENTATION
+# docs -> sub-qdoc3 online_docs qch_docs
+
+online_docs.commands = ($$QDOC $$ONLINE_QDOCCONF)
+online_docs.depends += sub-qdoc3
+
+qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
+                     $$GENERATOR $$QHP_FILE -o $$QCH_FILE)
 qch_docs.depends += sub-qdoc3
 
-docs.depends = sub-qdoc3 adp_docs qch_docs
-
-docs_zh_CN.depends = docs
-docs_zh_CN.commands = $$QT_ZH_CN_DOCUMENTATION
-
-docs_ja_JP.depends = docs
-docs_ja_JP.commands = $$QT_JA_JP_DOCUMENTATION
+docs.depends = sub-qdoc3 online_docs qch_docs
 
 # Install rules
-htmldocs.files = $$QT_BUILD_TREE/doc/html
+
+htmldocs.files = html
 htmldocs.path = $$[QT_INSTALL_DOCS]
 htmldocs.CONFIG += no_check_exist directory
 
-qchdocs.files= $$QT_BUILD_TREE/doc/qch
+qchdocs.files= qch
 qchdocs.path = $$[QT_INSTALL_DOCS]
 qchdocs.CONFIG += no_check_exist directory
 
-docimages.files = $$QT_BUILD_TREE/doc/src/images
+docimages.files = src/images
 docimages.path = $$[QT_INSTALL_DOCS]/src
 
-sub-qdoc3.depends = sub-corelib sub-xml
+#sub-qdoc3.depends = sub-corelib sub-xml
 sub-qdoc3.commands += (cd tools/qdoc3 && $(MAKE))
 
-QMAKE_EXTRA_TARGETS += sub-qdoc3 adp_docs qch_docs docs docs_zh_CN docs_ja_JP
+QMAKE_EXTRA_TARGETS += sub-qdoc3 online_docs qch_docs docs
 INSTALLS += htmldocs qchdocs docimages

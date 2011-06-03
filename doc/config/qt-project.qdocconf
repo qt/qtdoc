@@ -1,0 +1,71 @@
+include(compat.qdocconf)
+include(macros.qdocconf)
+include(qt-cpp-ignore.qdocconf)
+include(qt-defines.qdocconf)
+
+project                 = Qt
+description             = Qt Reference Documentation
+url                     = qthelp://com.nokia.qt.500
+version                 = 5.0.0
+
+sourceencoding          = UTF-8
+outputencoding          = UTF-8
+naturallanguage         = en_US
+qhp.projects            = Qt
+
+qhp.Qt.file                = qt.qhp
+qhp.Qt.namespace           = com.trolltech.qt.500
+qhp.Qt.virtualFolder       = qdoc
+qhp.Qt.indexTitle          = Qt Reference Documentation
+qhp.Qt.indexRoot           =
+
+qhp.Qt.filterAttributes    = qt 5.0.0 qtrefdoc
+qhp.Qt.customFilters.Qt.name = Qt 5.0.0
+qhp.Qt.customFilters.Qt.filterAttributes = qt 5.0.0
+qhp.Qt.subprojects         = classes overviews examples
+qhp.Qt.subprojects.classes.title = Classes
+qhp.Qt.subprojects.classes.indexTitle = Qt's Classes
+qhp.Qt.subprojects.classes.selectors = class fake:headerfile
+qhp.Qt.subprojects.classes.sortPages = true
+qhp.Qt.subprojects.overviews.title = Overviews
+qhp.Qt.subprojects.overviews.indexTitle = All Overviews and HOWTOs
+qhp.Qt.subprojects.overviews.selectors = fake:page,group,module
+qhp.Qt.subprojects.examples.title = Tutorials and Examples
+qhp.Qt.subprojects.examples.indexTitle = Qt Examples
+qhp.Qt.subprojects.examples.selectors = fake:example
+
+dita.metadata.default.author      = Qt Development Frameworks
+dita.metadata.default.permissions = all
+dita.metadata.default.publisher   = Nokia
+dita.metadata.default.copyryear = 2011
+dita.metadata.default.copyrholder = Nokia
+dita.metadata.default.audience = programmer
+
+sources.fileextensions  = "*.c++ *.cc *.cpp *.cxx *.mm *.qml *.qdoc"
+headers.fileextensions  = "*.ch *.h *.h++ *.hh *.hpp *.hxx"
+
+examples.fileextensions = "*.cpp *.h *.js *.xq *.svg *.xml *.ui *.qhp *.qhcp *.qml *.css"
+examples.imageextensions = "*.png"
+
+# Qt base submodule
+
+include($QT_ACTIVEQT_QDOCCONF)
+include($QT_CORE_QDOCCONF)
+include($QT_DECLARATIVE_QDOCCONF)
+include($QT_DOC_QDOCCONF)
+include($QT_CLUCENE_QDOCCONF)
+# include($QT_LOCATION_QDOCCONF)
+include($QT_MULTIMEDIA_QDOCCONF)
+include($QT_PHONON_QDOCCONF)
+include($QT_SCRIPT_QDOCCONF)
+include($QT_SVG_QDOCCONF)
+include($QT_WEBKIT_EXAMPLES_AND_DEMOS_QDOCCONF)
+include($QT_XMLPATTERNS_QDOCCONF)
+include($QT_QT3SUPPORT_QDOCCONF)
+
+imagedirs += images
+
+outputdir               = $MODULE_BUILD_TREE/doc/html
+tagfile                 = $MODULE_BUILD_TREE/doc/html/qt.tags
+
+HTML.generatemacrefs    = "true"

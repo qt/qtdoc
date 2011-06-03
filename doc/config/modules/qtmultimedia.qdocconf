@@ -1,0 +1,14 @@
+headerdirs  += $QT_MULTIMEDIA_SOURCES/..
+
+sourcedirs  += $QT_MULTIMEDIA_SOURCES/.. \
+               $QT_MULTIMEDIA_SOURCES/../../doc/src
+
+exampledirs += $QT_MULTIMEDIA_SOURCES/../.. \
+               $QT_MULTIMEDIA_SOURCES/../../demos \
+               $QT_MULTIMEDIA_SOURCES/../../doc/src \
+               $QT_MULTIMEDIA_SOURCES/../../examples
+
+imagedirs   += $QT_MULTIMEDIA_SOURCES/../../doc/src/images \
+               $QT_MULTIMEDIA_SOURCES/../../examples
+
+excludedirs += 

@@ -1,0 +1,13 @@
+headerdirs  += $QT_SCRIPT_SOURCES/..
+
+sourcedirs  += $QT_SCRIPT_SOURCES/.. \
+               $QT_SCRIPT_SOURCES/../../doc/src
+
+exampledirs += $QT_SCRIPT_SOURCES/../.. \
+               $QT_SCRIPT_SOURCES/../../doc/src \
+               $QT_SCRIPT_SOURCES/../../examples
+
+imagedirs   += $QT_SCRIPT_SOURCES/../../doc/src/images \
+               $QT_SCRIPT_SOURCES/../../examples
+
+excludedirs += $QT_SCRIPT_SOURCES/../../doc/src/snippets
