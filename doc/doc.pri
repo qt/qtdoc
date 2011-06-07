@@ -32,6 +32,7 @@ MODULES = activeqt \
           multimedia \
           phonon \
           script \ # scripttools
+          sensors \
           svg \
           webkit-examples-and-demos \
           xmlpatterns \
