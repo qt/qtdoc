@@ -1,3 +1,3 @@
 TEMPLATE = subdirs 
-SUBDIRS = tools demos
+SUBDIRS = tools # demos
 include(doc/doc.pri)
