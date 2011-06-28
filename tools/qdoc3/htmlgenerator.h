@@ -49,17 +49,14 @@
 #include <qmap.h>
 #include <qregexp.h>
 #include <QXmlStreamWriter>
-
 #include "codemarker.h"
 #include "config.h"
 #include "pagegenerator.h"
 
 QT_BEGIN_NAMESPACE
 
-typedef QMultiMap<QString, Node*> NodeMultiMap;
 typedef QMap<QString, NodeMultiMap> NewSinceMaps;
 typedef QMap<Node*, NodeMultiMap> ParentMaps;
-typedef QMap<QString, const Node*> NodeMap;
 typedef QMap<QString, NodeMap> NewClassMaps;
 
 class HelpProjectWriter;

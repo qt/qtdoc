@@ -207,6 +207,8 @@ QString PageGenerator::fileBase(const Node *node) const
             (p->subType() == Node::QmlBasicType)) {
             if (!base.startsWith(QLatin1String("QML:")))
                 base.prepend(outputPrefix(QLatin1String("QML")));
+            if (p->subType() == Node::QmlClass)
+                base.prepend(p->qmlClassFileNamePrefix()+QChar('-'));
         }
 #endif
         if (!pp || pp->name().isEmpty() || pp->type() == Node::Fake)

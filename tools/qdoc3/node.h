@@ -97,7 +97,8 @@ class Node
         ExternalPage,
         QmlClass,
         QmlPropertyGroup,
-        QmlBasicType
+        QmlBasicType,
+        QmlModule
 #else
         ExternalPage
 #endif
@@ -194,6 +195,9 @@ class Node
     QString guid() const;
     QString ditaXmlHref();
     QString extractClassName(const QString &string) const;
+    virtual const QString qmlModuleName() const { return QString(); }
+    virtual QString qmlClassFileNamePrefix() const { return QString(); }
+    virtual void setQmlModuleName(const QString& ) { }
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -230,6 +234,8 @@ class FunctionNode;
 class EnumNode;
 
 typedef QList<Node*> NodeList;
+typedef QMap<QString, const Node*> NodeMap;
+typedef QMultiMap<QString, Node*> NodeMultiMap;
 
 class InnerNode : public Node
 {
@@ -374,20 +380,22 @@ class FakeNode : public InnerNode
 
     void setTitle(const QString &title) { tle = title; }
     void setSubTitle(const QString &subTitle) { stle = subTitle; }
-    void addGroupMember(Node* node) { gr.append(node); }
+    void addGroupMember(Node* node) { nodeList.append(node); }
+    void addQmlModuleMember(Node* node) { nodeList.append(node); }
 
     SubType subType() const { return sub; }
     virtual QString title() const;
     virtual QString fullTitle() const;
     virtual QString subTitle() const;
-    const NodeList &groupMembers() const { return gr; }
+    const NodeList& groupMembers() const { return nodeList; }
+    const NodeList& qmlModuleMembers() const { return nodeList; }
     virtual QString nameForLists() const { return title(); }
 
  private:
     SubType sub;
     QString tle;
     QString stle;
-    NodeList gr;
+    NodeList nodeList;
 };
 
 #ifdef QDOC_QML
@@ -399,6 +407,9 @@ class QmlClassNode : public FakeNode
                  const ClassNode* cn);
     virtual ~QmlClassNode();
     virtual bool isQmlNode() const { return true; }
+    virtual const QString qmlModuleName() const { return qmlModuleName_; }
+    virtual QString qmlClassFileNamePrefix() const { return qmlModuleName_; }
+    virtual void setQmlModuleName(const QString& arg);
 
     const ClassNode* classNode() const { return cnode; }
     virtual QString fileBase() const;
@@ -409,9 +420,11 @@ class QmlClassNode : public FakeNode
  public:
     static bool qmlOnly;
     static QMultiMap<QString,Node*> inheritedBy;
+    static QMap<QString, QmlClassNode*> moduleMap;
 
  private:
     const ClassNode*    cnode;
+    QString             qmlModuleName_;
 };
 
 class QmlBasicTypeNode : public FakeNode

@@ -44,15 +44,14 @@
 */
 
 #include <qfile.h>
-
 #include <stdio.h>
 #include <errno.h>
-
 #include "codechunk.h"
 #include "config.h"
 #include "cppcodeparser.h"
 #include "tokenizer.h"
 #include "tree.h"
+#include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -83,8 +82,6 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_STARTPAGE               Doc::alias("startpage")
 #define COMMAND_TYPEDEF                 Doc::alias("typedef")
 #define COMMAND_VARIABLE                Doc::alias("variable")
-
-#ifdef QDOC_QML
 #define COMMAND_QMLCLASS                Doc::alias("qmlclass")
 #define COMMAND_QMLPROPERTY             Doc::alias("qmlproperty")
 #define COMMAND_QMLATTACHEDPROPERTY     Doc::alias("qmlattachedproperty")
@@ -95,8 +92,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_QMLATTACHEDMETHOD       Doc::alias("qmlattachedmethod")
 #define COMMAND_QMLDEFAULT              Doc::alias("default")
 #define COMMAND_QMLBASICTYPE            Doc::alias("qmlbasictype")
-#endif
-
+#define COMMAND_QMLMODULE               Doc::alias("qmlmodule")
 #define COMMAND_AUDIENCE                Doc::alias("audience")
 #define COMMAND_CATEGORY                Doc::alias("category")
 #define COMMAND_PRODNAME                Doc::alias("prodname")
@@ -544,7 +540,6 @@ QSet<QString> CppCodeParser::topicCommands()
                            << COMMAND_PROPERTY
                            << COMMAND_SERVICE
                            << COMMAND_TYPEDEF
-#ifdef QDOC_QML
                            << COMMAND_VARIABLE
                            << COMMAND_QMLCLASS
                            << COMMAND_QMLPROPERTY
@@ -553,16 +548,14 @@ QSet<QString> CppCodeParser::topicCommands()
                            << COMMAND_QMLATTACHEDSIGNAL
                            << COMMAND_QMLMETHOD
                            << COMMAND_QMLATTACHEDMETHOD
-                           << COMMAND_QMLBASICTYPE;
-#else
-                           << COMMAND_VARIABLE;
-#endif
+                           << COMMAND_QMLBASICTYPE
+                           << COMMAND_QMLMODULE;
 }
 
 /*!
   Process the topic \a command in context \a doc with argument \a arg.
  */
-Node *CppCodeParser::processTopicCommand(const Doc& doc,
+Node* CppCodeParser::processTopicCommand(const Doc& doc,
                                          const QString& command,
                                          const QString& arg)
 {
@@ -573,8 +566,7 @@ Node *CppCodeParser::processTopicCommand(const Doc& doc,
 
         if (!makeFunctionNode(arg, &parentPath, &clone) &&
              !makeFunctionNode("void " + arg, &parentPath, &clone)) {
-            doc.location().warning(tr("Invalid syntax in '\\%1'")
-                                    .arg(COMMAND_FN));
+            doc.location().warning(tr("Invalid syntax in '\\%1'").arg(COMMAND_FN));
         }
         else {
             if (!usedNamespaces.isEmpty()) {
@@ -731,10 +723,12 @@ Node *CppCodeParser::processTopicCommand(const Doc& doc,
     else if (command == COMMAND_MODULE) {
         return new FakeNode(tre->root(), arg, Node::Module);
     }
+    else if (command == COMMAND_QMLMODULE) {
+        return new FakeNode(tre->root(), arg, Node::QmlModule);
+    }
     else if (command == COMMAND_PAGE) {
         return new FakeNode(tre->root(), arg, Node::Page);
     }
-#ifdef QDOC_QML
     else if (command == COMMAND_QMLCLASS) {
         const ClassNode* classNode = 0;
         QStringList names = arg.split(" ");
@@ -755,14 +749,15 @@ Node *CppCodeParser::processTopicCommand(const Doc& doc,
              (command == COMMAND_QMLMETHOD) ||
              (command == COMMAND_QMLATTACHEDSIGNAL) ||
              (command == COMMAND_QMLATTACHEDMETHOD)) {
+        QString module;
         QString element;
         QString type;
         QmlClassNode* qmlClass = 0;
-        if (splitQmlMethodArg(doc,arg,type,element)) {
+        if (splitQmlMethodArg(doc,arg,type,module,element)) {
             if (element.startsWith(QLatin1String("Qt")))
                 element = QLatin1String("QML:") + element;
-            Node* n = tre->findNode(QStringList(element),Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
+            Node* n = tre->findQmlClassNode(module,element);
+            if (n) {
                 qmlClass = static_cast<QmlClassNode*>(n);
                 if (command == COMMAND_QMLSIGNAL)
                     return makeFunctionNode(doc,arg,qmlClass,Node::QmlSignal,false,COMMAND_QMLSIGNAL);
@@ -777,42 +772,60 @@ Node *CppCodeParser::processTopicCommand(const Doc& doc,
             }
         }
     }
-#endif
     return 0;
 }
-
-#ifdef QDOC_QML
 
 /*!
   A QML property argument has the form...
 
   <type> <element>::<name>
+  <type> <QML-module>::<element>::<name>
 
-  This function splits the argument into those three
-  parts, sets \a type, \a element, and \a name,
-  and returns true. If any of the parts isn't found,
-  a qdoc warning is output and false is returned.
+  This function splits the argument into one of those
+  two forms. The three part form is the old form, which
+  was used before QtQuick 2 and the appearance of Qt
+  Components. A <QML-module> is the QML equivalent of a
+  C++ namespace. So this function splits \a arg on "::"
+  and stores the parts in \a type, \a module, \a element,
+  and \a name, and returns true. If any part other than
+  \a module is not found, a qdoc warning is emitted and
+  false is returned.
  */
 bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
                                         const QString& arg,
                                         QString& type,
+                                        QString& module,
                                         QString& element,
                                         QString& name)
 {
+    QString msg;
     QStringList blankSplit = arg.split(" ");
     if (blankSplit.size() > 1) {
         type = blankSplit[0];
         QStringList colonSplit(blankSplit[1].split("::"));
-        if (colonSplit.size() > 1) {
-            element = colonSplit[0];
-            name = colonSplit[1];
+        if (colonSplit.size() > 2) {
+            module = colonSplit[0];
+            element = colonSplit[1];
+            name = colonSplit[2];
             return true;
         }
-        else
-            doc.location().warning(tr("Missing parent QML element name"));
+        if (colonSplit.size() > 1) {
+            module.clear();
+            element = colonSplit[0];
+            name = colonSplit[1];
+            msg = "Missing QML module qualifier for " + arg;
+            doc.location().warning(tr(msg.toLatin1().data()));
+            return true;
+        }
+        else {
+            msg = "Missing QML module and element qualifiers for " + arg;
+            doc.location().warning(tr(msg.toLatin1().data()));
+        }
     }
-    else
-        doc.location().warning(tr("Missing property type"));
+    else {
+        msg = "Missing property type for " + arg;
+        doc.location().warning(tr(msg.toLatin1().data()));
+    }
     return false;
 }
 
@@ -820,32 +833,55 @@ bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
   A QML signal or method argument has the form...
 
   <type> <element>::<name>(<param>, <param>, ...)
+  <type> <QML-module>::<element>::<name>(<param>, <param>, ...)
 
-  This function splits the argument into those two
-  parts, sets \a element, and \a name, and returns
-  true. If either of the parts isn't found, a debug
-  message is output and false is returned.
+  This function splits the argument into one of those two
+  forms, sets \a module, \a element, and \a name, and returns
+  true. If the argument doesn't match either form, an error
+  message is emitted and false is returned.
  */
 bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
                                       const QString& arg,
                                       QString& type,
+                                      QString& module,
                                       QString& element)
 {
+    QString msg;
     QStringList colonSplit(arg.split("::"));
     if (colonSplit.size() > 1) {
         QStringList blankSplit = colonSplit[0].split(" ");
         if (blankSplit.size() > 1) {
             type = blankSplit[0];
-            element = blankSplit[1];
+            if (colonSplit.size() > 2) {
+                module = blankSplit[1];
+                element = colonSplit[1];
+            }
+            else {
+                module = "";
+                element = blankSplit[1];
+                msg = "Missing QML module qualifier for " + arg;
+                doc.location().warning(tr(msg.toLatin1().data()));
+            }
         }
         else {
             type = QString("");
-            element = colonSplit[0];
+            if (colonSplit.size() > 2) {
+                module = colonSplit[0];
+                element = colonSplit[1];
+            }
+            else {
+                module = "";
+                element = colonSplit[0];
+                msg = "Missing QML module qualifier for " + arg;
+                doc.location().warning(tr(msg.toLatin1().data()));
+            }
         }
         return true;
     }
-    else
-        doc.location().warning(tr("Missing parent QML element or method signature"));
+    else {
+        msg = "Missing QML module and/or element qualifiers for " + arg;
+        doc.location().warning(tr(msg.toLatin1().data()));
+    }
     return false;
 }
 
@@ -863,13 +899,14 @@ Node *CppCodeParser::processTopicCommandGroup(const Doc& doc,
     if ((command == COMMAND_QMLPROPERTY) ||
         (command == COMMAND_QMLATTACHEDPROPERTY)) {
         QString type;
+        QString module;
         QString element;
         QString property;
         bool attached = (command == COMMAND_QMLATTACHEDPROPERTY);
         QStringList::ConstIterator arg = args.begin();
-        if (splitQmlPropertyArg(doc,(*arg),type,element,property)) {
-            Node* n = tre->findNode(QStringList(element),Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
+        if (splitQmlPropertyArg(doc,(*arg),type,module,element,property)) {
+            Node* n = tre->findQmlClassNode(module,element);
+            if (n) {
                 QmlClassNode* qmlClass = static_cast<QmlClassNode*>(n);
                 if (qmlClass)
                     qmlPropGroup = new QmlPropGroupNode(qmlClass,
@@ -891,7 +928,7 @@ Node *CppCodeParser::processTopicCommandGroup(const Doc& doc,
             }
             ++arg;
             while (arg != args.end()) {
-                if (splitQmlPropertyArg(doc,(*arg),type,element,property)) {
+                if (splitQmlPropertyArg(doc,(*arg),type,module,element,property)) {
                     QmlPropertyNode* qmlPropNode = new QmlPropertyNode(qmlPropGroup,
                                                                        property,
                                                                        type,
@@ -907,7 +944,6 @@ Node *CppCodeParser::processTopicCommandGroup(const Doc& doc,
     }
     return qmlPropGroup;
 }
-#endif
 
 /*!
   Returns the set of strings representing the common metacommands
@@ -923,13 +959,9 @@ QSet<QString> CppCodeParser::otherMetaCommands()
                                 << COMMAND_NEXTPAGE
                                 << COMMAND_PREVIOUSPAGE
                                 << COMMAND_INDEXPAGE
-#ifdef QDOC_QML
                                 << COMMAND_STARTPAGE
                                 << COMMAND_QMLINHERITS
                                 << COMMAND_QMLDEFAULT;
-#else
-                                << COMMAND_STARTPAGE;
-#endif
 }
 
 /*!
@@ -1031,18 +1063,16 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
     else if (command == COMMAND_STARTPAGE) {
         setLink(node, Node::StartLink, arg);
     }
-#ifdef QDOC_QML
     else if (command == COMMAND_QMLINHERITS) {
         setLink(node, Node::InheritsLink, arg);
         if (node->subType() == Node::QmlClass) {
             QmlClassNode::addInheritedBy(arg,node);
         }
-   }
+    }
     else if (command == COMMAND_QMLDEFAULT) {
         QmlPropGroupNode* qpgn = static_cast<QmlPropGroupNode*>(node);
         qpgn->setDefault();
     }
-#endif
     else {
         processCommonMetaCommand(doc.location(),command,arg,node,tre);
     }
@@ -2140,7 +2170,6 @@ bool CppCodeParser::matchDocsAndStuff()
                 /*
                   There is a topic command. Process it.
                  */
-#ifdef QDOC_QML
                 if ((topic == COMMAND_QMLPROPERTY) ||
                     (topic == COMMAND_QMLATTACHEDPROPERTY)) {
                     Doc nodeDoc = doc;
@@ -2162,18 +2191,6 @@ bool CppCodeParser::matchDocsAndStuff()
                         ++a;
                     }
                 }
-#else
-                QStringList::ConstIterator a = args.begin();
-                while (a != args.end()) {
-                    Doc nodeDoc = doc;
-                    Node *node = processTopicCommand(nodeDoc, topic, *a);
-                    if (node != 0) {
-                        nodes.append(node);
-                        docs.append(nodeDoc);
-                    }
-                    ++a;
-                }
-#endif
             }
 
             NodeList::Iterator n = nodes.begin();
@@ -2227,18 +2244,24 @@ bool CppCodeParser::matchDocsAndStuff()
     return true;
 }
 
-bool CppCodeParser::makeFunctionNode(const QString& synopsis,
-                                     QStringList *parentPathPtr,
-                                     FunctionNode **funcPtr,
-                                     InnerNode *root,
+/*!
+  This function uses a Tokenizer to parse the function \a signature
+  in an attempt to match it to the signature of a child node of \a root.
+  If a match is found, \a funcPtr is set to point to the matching node
+  and true is returned.
+ */
+bool CppCodeParser::makeFunctionNode(const QString& signature,
+                                     QStringList* parentPathPtr,
+                                     FunctionNode** funcPtr,
+                                     InnerNode* root,
                                      Node::Type type,
                                      bool attached)
 {
-    Tokenizer *outerTokenizer = tokenizer;
+    Tokenizer* outerTokenizer = tokenizer;
     int outerTok = tok;
 
     Location loc;
-    QByteArray latin1 = synopsis.toLatin1();
+    QByteArray latin1 = signature.toLatin1();
     Tokenizer stringTokenizer(loc, latin1);
     stringTokenizer.setParsingFnOrMacro(true);
     tokenizer = &stringTokenizer;
@@ -2258,6 +2281,11 @@ bool CppCodeParser::makeFunctionNode(const QString& synopsis,
   the complete signature, and if \a attached is true, the
   method or signal is "attached". \a qdoctag is the text of
   the \a type.
+
+  \a parent is the QML class node. The QML module and QML
+  element names have already been consumed to find \a parent.
+  What remains in \a sig is the method signature. The method
+  must be a child of \a parent.
  */
 FunctionNode* CppCodeParser::makeFunctionNode(const Doc& doc,
                                               const QString& sig,
@@ -2272,9 +2300,7 @@ FunctionNode* CppCodeParser::makeFunctionNode(const Doc& doc,
         !makeFunctionNode("void "+sig,&pp,&fn,parent,type,attached)) {
         doc.location().warning(tr("Invalid syntax in '\\%1'").arg(qdoctag));
     }
-    if (fn)
-        return fn;
-    return 0;
+    return fn;
 }
 
 void CppCodeParser::parseQiteratorDotH(const Location &location,

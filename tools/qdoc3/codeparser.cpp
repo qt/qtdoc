@@ -47,6 +47,7 @@
 #include "node.h"
 #include "tree.h"
 #include "config.h"
+#include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -54,6 +55,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_DEPRECATED              Doc::alias(QLatin1String("deprecated")) // ### don't document
 #define COMMAND_INGROUP                 Doc::alias(QLatin1String("ingroup"))
 #define COMMAND_INMODULE                Doc::alias(QLatin1String("inmodule"))  // ### don't document
+#define COMMAND_INQMLMODULE             Doc::alias(QLatin1String("inqmlmodule"))
 #define COMMAND_INTERNAL                Doc::alias(QLatin1String("internal"))
 #define COMMAND_MAINCLASS               Doc::alias(QLatin1String("mainclass"))
 #define COMMAND_NONREENTRANT            Doc::alias(QLatin1String("nonreentrant"))
@@ -130,8 +132,8 @@ void CodeParser::initialize(const Config& config)
 {
     QList<CodeParser *>::ConstIterator p = parsers.begin();
     while (p != parsers.end()) {
-	(*p)->initializeParser(config);
-	++p;
+        (*p)->initializeParser(config);
+        ++p;
     }
 }
 
@@ -142,8 +144,8 @@ void CodeParser::terminate()
 {
     QList<CodeParser *>::ConstIterator p = parsers.begin();
     while (p != parsers.end()) {
-	(*p)->terminateParser();
-	++p;
+        (*p)->terminateParser();
+        ++p;
     }
 }
 
@@ -151,9 +153,9 @@ CodeParser *CodeParser::parserForLanguage(const QString& language)
 {
     QList<CodeParser *>::ConstIterator p = parsers.begin();
     while (p != parsers.end()) {
-	if ((*p)->language() == language)
-	    return *p;
-	++p;
+        if ((*p)->language() == language)
+            return *p;
+        ++p;
     }
     return 0;
 }
@@ -165,13 +167,13 @@ CodeParser *CodeParser::parserForHeaderFile(const QString &filePath)
     QList<CodeParser *>::ConstIterator p = parsers.begin();
     while (p != parsers.end()) {
 
-	QStringList headerPatterns = (*p)->headerFileNameFilter();
-	foreach (QString pattern, headerPatterns) {
+        QStringList headerPatterns = (*p)->headerFileNameFilter();
+        foreach (QString pattern, headerPatterns) {
             QRegExp re(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
             if (re.exactMatch(fileName))
                 return *p;
         }
-	++p;
+        ++p;
     }
     return 0;
 }
@@ -183,13 +185,13 @@ CodeParser *CodeParser::parserForSourceFile(const QString &filePath)
     QList<CodeParser *>::ConstIterator p = parsers.begin();
     while (p != parsers.end()) {
 
-	QStringList sourcePatterns = (*p)->sourceFileNameFilter();
-	foreach (QString pattern, sourcePatterns) {
+        QStringList sourcePatterns = (*p)->sourceFileNameFilter();
+        foreach (QString pattern, sourcePatterns) {
             QRegExp re(pattern, Qt::CaseInsensitive, QRegExp::Wildcard);
             if (re.exactMatch(fileName))
                 return *p;
         }
-	++p;
+        ++p;
     }
     return 0;
 }
@@ -203,6 +205,7 @@ QSet<QString> CodeParser::commonMetaCommands()
                            << COMMAND_DEPRECATED
                            << COMMAND_INGROUP
                            << COMMAND_INMODULE
+                           << COMMAND_INQMLMODULE
                            << COMMAND_INTERNAL
                            << COMMAND_MAINCLASS
                            << COMMAND_NONREENTRANT
@@ -222,39 +225,47 @@ QSet<QString> CodeParser::commonMetaCommands()
   metacommands that were found. These are not the text markup
   commands. 
  */
-void CodeParser::processCommonMetaCommand(const Location &location,
-                                          const QString &command,
-					  const QString &arg,
-                                          Node *node,
-                                          Tree *tree)
+void CodeParser::processCommonMetaCommand(const Location& location,
+                                          const QString& command,
+                                          const QString& arg,
+                                          Node* node,
+                                          Tree* tree)
 {
     if (command == COMMAND_COMPAT) {
         node->setStatus(Node::Compat);
     }
     else if (command == COMMAND_DEPRECATED) {
-	node->setStatus(Node::Deprecated);
+        node->setStatus(Node::Deprecated);
     }
     else if (command == COMMAND_INGROUP) {
-	tree->addToGroup(node, arg);
+        tree->addToGroup(node, arg);
     }
     else if (command == COMMAND_INPUBLICGROUP) {
         tree->addToPublicGroup(node, arg);
     }
     else if (command == COMMAND_INMODULE) {
-	node->setModuleName(arg);
+        node->setModuleName(arg);
+    }
+    else if (command == COMMAND_INQMLMODULE) {
+        node->setQmlModuleName(arg);
+        tree->addToQmlModule(node,arg);
+        QString qmn = node->qmlModuleName(); // + "::" + node->name();
+        qDebug() << "ADDING TO MODULE MAP:" << qmn << node->name();
+        QmlClassNode* qcn = static_cast<QmlClassNode*>(node);
+        QmlClassNode::moduleMap.insert(qmn + "::" + node->name(), qcn);
     }
     else if (command == COMMAND_MAINCLASS) {
-	node->setStatus(Node::Main);
+        node->setStatus(Node::Main);
     }
     else if (command == COMMAND_OBSOLETE) {
         if (node->status() != Node::Compat)
             node->setStatus(Node::Obsolete);
     }
     else if (command == COMMAND_NONREENTRANT) {
-	node->setThreadSafeness(Node::NonReentrant);
+        node->setThreadSafeness(Node::NonReentrant);
     }
     else if (command == COMMAND_PRELIMINARY) {
-	node->setStatus(Node::Preliminary);
+        node->setStatus(Node::Preliminary);
     }
     else if (command == COMMAND_INTERNAL) {
         if (!showInternal) {
@@ -263,7 +274,7 @@ void CodeParser::processCommonMetaCommand(const Location &location,
         }
     }
     else if (command == COMMAND_REENTRANT) {
-	node->setThreadSafeness(Node::Reentrant);
+        node->setThreadSafeness(Node::Reentrant);
     }
     else if (command == COMMAND_SINCE) {
         node->setSince(arg);
@@ -272,24 +283,24 @@ void CodeParser::processCommonMetaCommand(const Location &location,
         node->addPageKeywords(arg);
     }
     else if (command == COMMAND_SUBTITLE) {
-	if (node->type() == Node::Fake) {
-	    FakeNode *fake = static_cast<FakeNode *>(node);
+        if (node->type() == Node::Fake) {
+            FakeNode *fake = static_cast<FakeNode *>(node);
             fake->setSubTitle(arg);
         }
         else
             location.warning(tr("Ignored '\\%1'").arg(COMMAND_SUBTITLE));
     }
     else if (command == COMMAND_THREADSAFE) {
-	node->setThreadSafeness(Node::ThreadSafe);
+        node->setThreadSafeness(Node::ThreadSafe);
     }
     else if (command == COMMAND_TITLE) {
-	if (node->type() == Node::Fake) {
-	    FakeNode *fake = static_cast<FakeNode *>(node);
+        if (node->type() == Node::Fake) {
+            FakeNode *fake = static_cast<FakeNode *>(node);
             fake->setTitle(arg);
             nameToTitle.insert(fake->name(),arg);
         }
         else
-	    location.warning(tr("Ignored '\\%1'").arg(COMMAND_TITLE));
+            location.warning(tr("Ignored '\\%1'").arg(COMMAND_TITLE));
     }
 }
 

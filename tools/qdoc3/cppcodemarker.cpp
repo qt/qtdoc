@@ -48,7 +48,7 @@
 #include "node.h"
 #include "text.h"
 #include "tree.h"
-
+#include <qdebug.h>
 #include <ctype.h>
 
 QT_BEGIN_NAMESPACE

@@ -73,6 +73,7 @@ class Tree
                    Node::Type type, 
                    Node* relative = 0,
                    int findFlags = 0);
+    QmlClassNode* findQmlClassNode(const QString& module, const QString& element);
     FunctionNode *findFunctionNode(const QStringList &path, 
                                    Node *relative = 0,
                                    int findFlags = 0);
@@ -83,18 +84,21 @@ class Tree
     void addBaseClass(ClassNode *subclass, 
                       Node::Access access, 
                       const QStringList &basePath,
-		      const QString &dataTypeWithTemplateArgs,
+                      const QString &dataTypeWithTemplateArgs,
                       InnerNode *parent = 0);
     void addPropertyFunction(PropertyNode *property, 
                              const QString &funcName,
-			     PropertyNode::FunctionRole funcRole);
+                             PropertyNode::FunctionRole funcRole);
     void addToGroup(Node *node, const QString &group);
     void addToPublicGroup(Node *node, const QString &group);
-    QMultiMap<QString, Node *> groups() const;
-    QMultiMap<QString, QString> publicGroups() const;
+    void addToQmlModule(Node* node, const QString& module);
+    NodeMultiMap groups() const;
+    NodeMultiMap qmlModules() const;
+    QMultiMap<QString,QString> publicGroups() const;
     void resolveInheritance(NamespaceNode *rootNode = 0);
     void resolveProperties();
     void resolveGroups();
+    void resolveQmlModules();
     void resolveTargets();
     void fixInheritance(NamespaceNode *rootNode = 0);
     void setVersion(const QString &version) { vers = version; }
@@ -109,6 +113,7 @@ class Tree
                          Node::Type type, const 
                          Node* relative = 0,
                          int findFlags = 0) const;
+    const QmlClassNode* findQmlClassNode(const QString& module, const QString& element) const;
     const FunctionNode *findFunctionNode(const QStringList &path, 
                                          const Node *relative = 0,
                                          int findFlags = 0) const;

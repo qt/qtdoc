@@ -379,20 +379,20 @@ FunctionNode *InnerNode::findFunctionNode(const QString& name)
 FunctionNode *InnerNode::findFunctionNode(const FunctionNode *clone)
 {
     QMap<QString, Node *>::ConstIterator c =
-	    primaryFunctionMap.find(clone->name());
+            primaryFunctionMap.find(clone->name());
     if (c != primaryFunctionMap.end()) {
-	if (isSameSignature(clone, (FunctionNode *) *c)) {
-	    return (FunctionNode *) *c;
-	}
+        if (isSameSignature(clone, (FunctionNode *) *c)) {
+            return (FunctionNode *) *c;
+        }
         else if (secondaryFunctionMap.contains(clone->name())) {
-	    const NodeList& secs = secondaryFunctionMap[clone->name()];
-	    NodeList::ConstIterator s = secs.begin();
-	    while (s != secs.end()) {
-		if (isSameSignature(clone, (FunctionNode *) *s))
-		    return (FunctionNode *) *s;
-		++s;
-	    }
-	}
+            const NodeList& secs = secondaryFunctionMap[clone->name()];
+            NodeList::ConstIterator s = secs.begin();
+            while (s != secs.end()) {
+                if (isSameSignature(clone, (FunctionNode *) *s))
+                    return (FunctionNode *) *s;
+                ++s;
+            }
+        }
     }
     return 0;
 }
@@ -433,25 +433,25 @@ void InnerNode::setOverload(const FunctionNode *func, bool overlode)
     Node *&primary = primaryFunctionMap[func->name()];
 
     if (secondaryFunctionMap.contains(func->name())) {
-	NodeList& secs = secondaryFunctionMap[func->name()];
-	if (overlode) {
-	    if (primary == node) {
-		primary = secs.first();
-		secs.erase(secs.begin());
-		secs.append(node);
-	    }
-            else {
-		secs.removeAll(node);
+        NodeList& secs = secondaryFunctionMap[func->name()];
+        if (overlode) {
+            if (primary == node) {
+                primary = secs.first();
+                secs.erase(secs.begin());
                 secs.append(node);
             }
-	}
+            else {
+                secs.removeAll(node);
+                secs.append(node);
+            }
+        }
         else {
-	    if (primary != node) {
-		secs.removeAll(node);
-		secs.prepend(primary);
-		primary = node;
-	    }
-	}
+            if (primary != node) {
+                secs.removeAll(node);
+                secs.prepend(primary);
+                primary = node;
+            }
+        }
     }
 }
 
@@ -481,10 +481,10 @@ void InnerNode::normalizeOverloads()
             (primaryFunc->status() != Commendable ||
              primaryFunc->access() == Private)) {
 
-	    NodeList& secs = secondaryFunctionMap[primaryFunc->name()];
-	    NodeList::ConstIterator s = secs.begin();
-	    while (s != secs.end()) {
-		FunctionNode *secondaryFunc = (FunctionNode *) *s;
+            NodeList& secs = secondaryFunctionMap[primaryFunc->name()];
+            NodeList::ConstIterator s = secs.begin();
+            while (s != secs.end()) {
+                FunctionNode *secondaryFunc = (FunctionNode *) *s;
 
                 // Any non-obsolete, non-compatibility, non-private functions
                 // (i.e, visible functions) are preferable to the primary
@@ -506,27 +506,27 @@ void InnerNode::normalizeOverloads()
 
     QMap<QString, Node *>::ConstIterator p = primaryFunctionMap.begin();
     while (p != primaryFunctionMap.end()) {
-	FunctionNode *primaryFunc = (FunctionNode *) *p;
-	if (primaryFunc->isOverload())
-	    primaryFunc->ove = false;
-	if (secondaryFunctionMap.contains(primaryFunc->name())) {
-	    NodeList& secs = secondaryFunctionMap[primaryFunc->name()];
-	    NodeList::ConstIterator s = secs.begin();
-	    while (s != secs.end()) {
-		FunctionNode *secondaryFunc = (FunctionNode *) *s;
-		if (!secondaryFunc->isOverload())
-		    secondaryFunc->ove = true;
-		++s;
-	    }
-	}
-	++p;
+        FunctionNode *primaryFunc = (FunctionNode *) *p;
+        if (primaryFunc->isOverload())
+            primaryFunc->ove = false;
+        if (secondaryFunctionMap.contains(primaryFunc->name())) {
+            NodeList& secs = secondaryFunctionMap[primaryFunc->name()];
+            NodeList::ConstIterator s = secs.begin();
+            while (s != secs.end()) {
+                FunctionNode *secondaryFunc = (FunctionNode *) *s;
+                if (!secondaryFunc->isOverload())
+                    secondaryFunc->ove = true;
+                ++s;
+            }
+        }
+        ++p;
     }
 
     NodeList::ConstIterator c = childNodes().begin();
     while (c != childNodes().end()) {
-	if ((*c)->isInnerNode())
-	    ((InnerNode *) *c)->normalizeOverloads();
-	++c;
+        if ((*c)->isInnerNode())
+            ((InnerNode *) *c)->normalizeOverloads();
+        ++c;
     }
 }
 
@@ -693,7 +693,7 @@ bool InnerNode::isSameSignature(const FunctionNode *f1, const FunctionNode *f2)
     QList<Parameter>::ConstIterator p1 = f1->parameters().begin();
     QList<Parameter>::ConstIterator p2 = f2->parameters().begin();
     while (p2 != f2->parameters().end()) {
-	if ((*p1).hasType() && (*p2).hasType()) {
+        if ((*p1).hasType() && (*p2).hasType()) {
             if ((*p1).rightType() != (*p2).rightType())
                 return false;
 
@@ -726,11 +726,11 @@ void InnerNode::addChild(Node *child)
         FunctionNode *func = (FunctionNode *) child;
         if (!primaryFunctionMap.contains(func->name())) {
             primaryFunctionMap.insert(func->name(), func);
-	}
+        }
         else {
-	    NodeList &secs = secondaryFunctionMap[func->name()];
-	    secs.append(func);
-	}
+            NodeList &secs = secondaryFunctionMap[func->name()];
+            secs.append(func);
+        }
     }
     else {
         if (child->type() == Enum)
@@ -746,28 +746,28 @@ void InnerNode::removeChild(Node *child)
     children.removeAll(child);
     enumChildren.removeAll(child);
     if (child->type() == Function) {
-	QMap<QString, Node *>::Iterator prim =
-		primaryFunctionMap.find(child->name());
-	NodeList& secs = secondaryFunctionMap[child->name()];
-	if (prim != primaryFunctionMap.end() && *prim == child) {
-	    if (secs.isEmpty()) {
-		primaryFunctionMap.remove(child->name());
-	    }
+        QMap<QString, Node *>::Iterator prim =
+                primaryFunctionMap.find(child->name());
+        NodeList& secs = secondaryFunctionMap[child->name()];
+        if (prim != primaryFunctionMap.end() && *prim == child) {
+            if (secs.isEmpty()) {
+                primaryFunctionMap.remove(child->name());
+            }
             else {
-		primaryFunctionMap.insert(child->name(), secs.takeFirst());
-	    }
-	}
+                primaryFunctionMap.insert(child->name(), secs.takeFirst());
+            }
+        }
         else {
-	    secs.removeAll(child);
-	}
+            secs.removeAll(child);
+        }
         QMap<QString, Node *>::Iterator ent = childMap.find( child->name() );
         if (ent != childMap.end() && *ent == child)
             childMap.erase( ent );
     }
     else {
-	QMap<QString, Node *>::Iterator ent = childMap.find(child->name());
-	if (ent != childMap.end() && *ent == child)
-	    childMap.erase(ent);
+        QMap<QString, Node *>::Iterator ent = childMap.find(child->name());
+        if (ent != childMap.end() && *ent == child)
+            childMap.erase(ent);
     }
 }
 
@@ -992,6 +992,7 @@ FakeNode::FakeNode(InnerNode *parent, const QString& name, SubType subtype)
 {
     switch (subtype) {
     case Module:
+    case QmlModule:
     case Page:
     case Group:
         setPageType(ArticlePage);
@@ -1141,7 +1142,7 @@ void TypedefNode::setAssociatedEnum(const EnumNode *enume)
  */
 Parameter::Parameter(const QString& leftType,
                      const QString& rightType,
-		     const QString& name,
+                     const QString& name,
                      const QString& defaultValue)
     : lef(leftType), rig(rightType), nam(name), def(defaultValue)
 {
@@ -1273,10 +1274,10 @@ void FunctionNode::borrowParameterNames(const FunctionNode *source)
     QList<Parameter>::Iterator t = params.begin();
     QList<Parameter>::ConstIterator s = source->params.begin();
     while (s != source->params.end() && t != params.end()) {
-	if (!(*s).name().isEmpty())
-	    (*t).setName((*s).name());
-	++s;
-	++t;
+        if (!(*s).name().isEmpty())
+            (*t).setName((*s).name());
+        ++s;
+        ++t;
     }
 }
 
@@ -1542,6 +1543,7 @@ bool TargetNode::isInnerNode() const
 #ifdef QDOC_QML
 bool QmlClassNode::qmlOnly = false;
 QMultiMap<QString,Node*> QmlClassNode::inheritedBy;
+QMap<QString, QmlClassNode*> QmlClassNode::moduleMap;
 
 /*!
   Constructs a Qml class node (i.e. a Fake node with the
@@ -1616,6 +1618,27 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
                  << "subs:" << subs.size() << "total size:" << inheritedBy.size();
 #endif
     }
+}
+
+/*! \fn QString QmlClassNode::qmlClassFileNamePrefix() const
+  This function is called to get a prefix for the file name
+  to use in a link to something on the QML reference page.
+ */
+
+/*!
+  This function massages \a arg to get a QML module name,
+  which contains a name and a version number concatenated
+  together. e.g., "QtQuick 1" becomes "QtQuick1". The
+  name is stored in this object.
+ */
+void QmlClassNode::setQmlModuleName(const QString& arg)
+{
+    QStringList blankSplit = arg.split(" ");
+    qmlModuleName_ = blankSplit[0];
+    if (blankSplit.size() > 1)
+        qmlModuleName_ += blankSplit[1];
+    else
+        qmlModuleName_ += "1";
 }
 
 /*!

@@ -98,11 +98,13 @@ class CppCodeParser : public CodeParser
     bool splitQmlPropertyArg(const Doc& doc,
                              const QString& arg,
                              QString& type,
+                             QString& module,
                              QString& element,
                              QString& name);
     bool splitQmlMethodArg(const Doc& doc,
                            const QString& arg,
                            QString& type,
+                           QString& module,
                            QString& element);
 #endif
     virtual QSet<QString> otherMetaCommands();

@@ -51,7 +51,6 @@
 #include "separator.h"
 #include "tree.h"
 #include <ctype.h>
-
 #include <qdebug.h>
 #include <qlist.h>
 #include <qiterator.h>

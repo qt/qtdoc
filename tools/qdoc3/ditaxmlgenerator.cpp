@@ -3140,7 +3140,7 @@ void DitaXmlGenerator::generateQmlItem(const Node* node,
 }
 
 /*!
-  Writher the XML for the overview list to the current XML stream.
+  Write the XML for the overview list to the current XML stream.
  */
 void DitaXmlGenerator::generateOverviewList(const Node* relative, CodeMarker* /* marker */)
 {

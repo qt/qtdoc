@@ -143,9 +143,9 @@ static void processQdocconfFile(const QString &fileName)
     Config config(tr("qdoc"));
     int i = 0;
     while (defaults[i].key) {
-	config.setStringList(defaults[i].key,
+        config.setStringList(defaults[i].key,
                              QStringList() << defaults[i].value);
-	++i;
+        ++i;
     }
     config.setStringList(CONFIG_SYNTAXHIGHLIGHTING, QStringList(slow ? "true" : "false"));
     config.setStringList(CONFIG_SHOWINTERNAL,
@@ -175,7 +175,7 @@ static void processQdocconfFile(const QString &fileName)
     QString prevCurrentDir = QDir::currentPath();
     QString dir = QFileInfo(fileName).path();
     if (!dir.isEmpty())
-	QDir::setCurrent(dir);
+        QDir::setCurrent(dir);
 
     /*
       Initialize all the classes and data structures with the
@@ -195,13 +195,13 @@ static void processQdocconfFile(const QString &fileName)
     QStringList fileNames = config.getStringList(CONFIG_TRANSLATORS);
     QStringList::Iterator fn = fileNames.begin();
     while (fn != fileNames.end()) {
-	QTranslator *translator = new QTranslator(0);
-	if (!translator->load(*fn))
-	    config.lastLocation().error(tr("Cannot load translator '%1'")
-					 .arg(*fn));
-	QCoreApplication::instance()->installTranslator(translator);
-	translators.append(translator);
-	++fn;
+        QTranslator *translator = new QTranslator(0);
+        if (!translator->load(*fn))
+            config.lastLocation().error(tr("Cannot load translator '%1'")
+                                         .arg(*fn));
+        QCoreApplication::instance()->installTranslator(translator);
+        translators.append(translator);
+        ++fn;
     }
 #endif
 
@@ -287,10 +287,10 @@ static void processQdocconfFile(const QString &fileName)
     while (h != headers.end()) {
         CodeParser *codeParser = CodeParser::parserForHeaderFile(*h);
         if (codeParser) {
-	    codeParser->parseHeaderFile(config.location(), *h, tree);
+            codeParser->parseHeaderFile(config.location(), *h, tree);
             usedParsers.insert(codeParser);
         }
-	++h;
+        ++h;
     }
 
     foreach (CodeParser *codeParser, usedParsers)
@@ -305,10 +305,10 @@ static void processQdocconfFile(const QString &fileName)
     while (s != sources.end()) {
         CodeParser *codeParser = CodeParser::parserForSourceFile(*s);
         if (codeParser) {
-	    codeParser->parseSourceFile(config.location(), *s, tree);
+            codeParser->parseSourceFile(config.location(), *s, tree);
             usedParsers.insert(codeParser);
         }
-	++s;
+        ++s;
     }
 
     foreach (CodeParser *codeParser, usedParsers)
@@ -320,19 +320,20 @@ static void processQdocconfFile(const QString &fileName)
       targets, URLs, links, and other stuff that needs resolving.
      */
     tree->resolveGroups();
+    tree->resolveQmlModules();
     tree->resolveTargets();
 
     /*
-      Now the tree has been built, and all the stuff that needed
-      resolving has been resolved. Now it is time to traverse
-      the big tree and generate the documentation output.
+      The tree is built and all the stuff that needed resolving
+      has been resolved. Now traverse the tree and generate the
+      documentation output. More than one output format can be
+      requested. The tree is traversed for each one.
      */
     QSet<QString>::ConstIterator of = outputFormats.begin();
     while (of != outputFormats.end()) {
-        Generator *generator = Generator::generatorForFormat(*of);
+        Generator* generator = Generator::generatorForFormat(*of);
         if (generator == 0)
-            outputFormatsLocation.fatal(tr("Unknown output format '%1'")
-                                        .arg(*of));
+            outputFormatsLocation.fatal(tr("Unknown output format '%1'").arg(*of));
         generator->generateTree(tree);
         ++of;
     }
@@ -402,17 +403,17 @@ int main(int argc, char **argv)
     while (i < argc) {
         opt = argv[i++];
 
-	if (opt == "-help") {
-	    printHelp();
-	    return EXIT_SUCCESS;
-	}
+        if (opt == "-help") {
+            printHelp();
+            return EXIT_SUCCESS;
+        }
         else if (opt == "-version") {
-	    printVersion();
-	    return EXIT_SUCCESS;
-	}
+            printVersion();
+            return EXIT_SUCCESS;
+        }
         else if (opt == "--") {
-	    while (i < argc)
-		qdocFiles.append(argv[i++]);
+            while (i < argc)
+                qdocFiles.append(argv[i++]);
         }
         else if (opt.startsWith("-D")) {
             QString define = opt.mid(2);
@@ -420,7 +421,7 @@ int main(int argc, char **argv)
         }
         else if (opt == "-slow") {
             slow = true;
-	}
+        }
         else if (opt == "-showinternal") {
             showInternal = true;
         }
@@ -428,11 +429,11 @@ int main(int argc, char **argv)
             obsoleteLinks = true;
         }
         else {
-	    qdocFiles.append(opt);
-	}
+            qdocFiles.append(opt);
+        }
     }
 
-	if (qdocFiles.isEmpty()) {
+        if (qdocFiles.isEmpty()) {
         printHelp();
         return EXIT_FAILURE;
     }
@@ -442,7 +443,7 @@ int main(int argc, char **argv)
      */
     foreach (QString qf, qdocFiles) {
         //qDebug() << "PROCESSING:" << qf;
-	processQdocconfFile(qf);
+        processQdocconfFile(qf);
     }
 
     qDeleteAll(trees);
