@@ -266,6 +266,7 @@
     \o \l{graphicsview/simpleanchorlayout}{Simple Anchor Layout}
     \o \l{graphicsview/weatheranchorlayout}{Weather Anchor Layout}
     \o \l{graphicsview/basicgraphicslayouts}{Basic Graphics Layouts}
+    \o \l{graphicsview/embeddeddialogs}{Embedded Dialogs}
     \endlist
 
     Some examples demonstrate the use of graphics effects with canvas items.
@@ -296,10 +297,12 @@
     transformations.
 
     \list
-    \o \l{demos/composition}{Composition Modes}
+    \o \l{painting/composition}{Composition Modes}
     \o \l{painting/basicdrawing}{Basic Drawing}\raisedaster
     \o \l{painting/concentriccircles}{Concentric Circles}\raisedaster
+    \o \l{painting/deform}{Vector Deformation}
     \o \l{painting/fontsampler}{Font Sampler}
+    \o \l{painting/gradients}{Gradients}
     \o \l{painting/imagecomposition}{Image Composition}\raisedaster
     \o \l{painting/painterpaths}{Painter Paths}\raisedaster
     \o \l{painting/svggenerator}{SVG Generator}\raisedaster
@@ -932,6 +935,27 @@
     \o \l{qws/dbscreen}{Double Buffered Graphics Driver}\raisedaster
     \o \l{qws/mousecalibration}{Mouse Calibration}\raisedaster
     \o \l{qws/simpledecoration}{Simple Decoration}\raisedaster
+    \endlist
+*/
+
+/*!
+    \page examples\embedded.html
+    \ingroup all-examples
+    \title Embedded Platform Examples
+    \brief Using Qt on small screens.
+
+    \list
+    \o \l{embedded/anomaly}{Anomaly}
+    \o \l{embedded/desktopservices}{Embedded Desktop Services}
+    \o \l{embedded/digiflip}{Digiflip}
+    \o \l{embedded/embeddedsvgviewer}{Embedded SVG Viewer}
+    \o \l{embedded/flickable}{Flickable List}
+    \o \l{embedded/flightinfo}{Flight Info}
+    \o \l{embedded/fluidlauncher}{Fluid Launcher}
+    \o \l{embedded/lightmaps}{Light Maps}
+    \o \l{embedded/raycasting}{Ray Casting}
+    \o \l{embedded/styledemo}{Embedded Styles}
+    \o \l{embedded/weatherinfo}{Weather Info}
     \endlist
 */
 
