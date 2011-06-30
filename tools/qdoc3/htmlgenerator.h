@@ -218,7 +218,6 @@ class HtmlGenerator : public PageGenerator
     void findAllFunctions(const InnerNode *node);
     void findAllLegaleseTexts(const InnerNode *node);
     void findAllNamespaces(const InnerNode *node);
-    void findAllSince(const InnerNode *node);
     static int hOffset(const Node *node);
     static bool isThreeColumnEnumValueTable(const Atom *atom);
     virtual QString getLink(const Atom *atom, 
@@ -287,10 +286,6 @@ class HtmlGenerator : public PageGenerator
     NodeMap qmlClasses;
     QMap<QString, NodeMap > funcIndex;
     QMap<Text, const Node *> legaleseTexts;
-    NewSinceMaps newSinceMaps;
-    static QString sinceTitles[];
-    NewClassMaps newClassMaps;
-    NewClassMaps newQmlClassMaps;
     static int id;
  public:
     static bool debugging_on;
