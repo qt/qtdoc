@@ -57,9 +57,8 @@
     \section1 Painting
 
     \list
-    \o \l{demos/pathstroke}{Path Stroking} shows Qt's built-in dash patterns
-       and shows how custom patterns can be used to extend the range of
-       available patterns.
+    \o \l{demos/affine}{Affine Transformations} demonstrates the different
+       affine transformations that can be used to influence painting operations.
     \o \l{demos/arthurplugin}{Arthur Plugin} shows the widgets from the
        other painting demos packaged as a custom widget plugin for \QD.
     \endlist
@@ -67,35 +66,21 @@
     \section1 Item Views
 
     \list
-    \o \l{demos/interview}{Interview} shows the same model and selection being
-       shared between three different views.
-    \o \l{demos/spreadsheet}{Spreadsheet} demonstrates the use of a table view
-       as a spreadsheet, using custom delegates to render each item according to
-       the type of data it contains.
     \endlist
 
     \section1 SQL
 
     \list
-    \o \l{demos/sqlbrowser}{SQL Browser} demonstrates a console for executing SQL
-       statements on a live database and provides a data browser for interactively
-       visualizing the results.
     \endlist
 
     \section1 Rich Text
 
     \list
-    \o \l{demos/textedit}{Text Edit} shows Qt's rich text editing features and provides
-       an environment for experimenting with them.
     \endlist
 
     \section1 Main Window
 
     \list
-    \o \l{demos/mainwindow}{Main Window} shows Qt's extensive support for main window
-       features, such as tool bars, dock windows, and menus.
-    \o \l{demos/macmainwindow}{Mac Main Window} shows how to create main window applications that has
-      the same appearance as other Mac OS X applications.
     \endlist
 
     \section1 Graphics View
@@ -106,9 +91,6 @@
     \section1 Tools
 
     \list
-    \o \l{demos/undo}{Undo Framework} demonstrates how Qt's
-        \l{Overview of Qt's Undo Framework}{undo framework} is used to
-        provide advanced undo/redo functionality.
     \endlist
 
     \section1 QtWebKit
@@ -147,10 +129,6 @@
     \section1 Animation
 
     \list
-    \o \l{demos/sub-attaq}{Sub-Attaq} demonstrates the features of the
-       \l{The Animation Framework}{animation framework} and
-       \l{The State Machine Framework}{state machine framework} in the production of
-       a simple game.
     \endlist
 
 */

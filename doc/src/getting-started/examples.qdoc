@@ -162,6 +162,8 @@
     \list
     \o \l{mainwindows/application}{Application}\raisedaster
     \o \l{mainwindows/dockwidgets}{Dock Widgets}\raisedaster
+    \o \l{mainwindows/macmainwindow}{Mac Main Window}
+    \o \l{mainwindows/mainwindow}{Main Window}
     \o \l{mainwindows/mdi}{MDI}
     \o \l{mainwindows/menus}{Menus}\raisedaster
     \o \l{mainwindows/recentfiles}{Recent Files}
@@ -220,12 +222,14 @@
     \o \l{itemviews/editabletreemodel}{Editable Tree Model}\raisedaster
     \o \l{itemviews/fetchmore}{Fetch More}\raisedaster
     \o \l{itemviews/frozencolumn}{Frozen Column}\raisedaster
+    \o \l{itemviews/interview}{Interview}
     \o \l{itemviews/pixelator}{Pixelator}\raisedaster
     \o \l{itemviews/puzzle}{Puzzle}
     \o \l{itemviews/simpledommodel}{Simple DOM Model}\raisedaster
     \o \l{itemviews/simpletreemodel}{Simple Tree Model}\raisedaster
     \o \l{itemviews/simplewidgetmapper}{Simple Widget Mapper}\raisedaster
     \o \l{itemviews/spinboxdelegate}{Spin Box Delegate}\raisedaster
+    \o \l{itemviews/spreadsheet}{Spreadsheet}
     \o \l{itemviews/stardelegate}{Star Delegate}\raisedaster
     \endlist
 
@@ -305,6 +309,7 @@
     \o \l{painting/gradients}{Gradients}
     \o \l{painting/imagecomposition}{Image Composition}\raisedaster
     \o \l{painting/painterpaths}{Painter Paths}\raisedaster
+    \o \l{painting/pathstroke}{Path Stroking}
     \o \l{painting/svggenerator}{SVG Generator}\raisedaster
     \o \l{painting/svgviewer}{SVG Viewer}
     \o \l{painting/transformations}{Transformations}\raisedaster
@@ -330,9 +335,12 @@
     \o \l{richtext/calendar}{Calendar}\raisedaster
     \o \l{richtext/orderform}{Order Form}\raisedaster
     \o \l{richtext/syntaxhighlighter}{Syntax Highlighter}\raisedaster
+    \o \l{richtext/textedit}{Text Edit}
     \o \l{richtext/textobject}{Text Object}\raisedaster
     \endlist
-*/
+
+    Examples marked with an asterisk (*) are fully documented.
+ */
 
 /*!
     \page examples-desktop.html
@@ -449,6 +457,7 @@
     \o \l{tools/settingseditor}{Settings Editor}
     \o \l{tools/styleplugin}{Style Plugin}\raisedaster
     \o \l{tools/treemodelcompleter}{Tree Model Completer}\raisedaster
+    \o \l{tools/undo}{Undo and Redo}
     \o \l{tools/undoframework}{Undo Framework}\raisedaster
     \endlist
 
@@ -629,6 +638,7 @@
     \o \l{sql/drilldown}{Drill Down}\raisedaster
     \o \l{sql/querymodel}{Query Model}
     \o \l{sql/relationaltablemodel}{Relational Table Model}
+    \o \l{sql/sqlbrowser}{SQL Browser}
     \o \l{sql/tablemodel}{Table Model}
     \o \l{sql/masterdetail}{Master Detail}
     \o \l{sql/sqlwidgetmapper}{SQL Widget Mapper}\raisedaster
@@ -859,12 +869,13 @@
     \image animation-examples.png Animation
 
     \list
-        \o \l{animation/animatedtiles}{Animated Tiles}
-        \o \l{animation/appchooser}{Application Chooser}
-        \o \l{animation/easing}{Easing Curves}
+    \o \l{animation/animatedtiles}{Animated Tiles}
+    \o \l{animation/appchooser}{Application Chooser}
+    \o \l{animation/easing}{Easing Curves}
     \o \l{animation/moveblocks}{Move Blocks}\raisedaster
-        \o \l{animation/states}{States}
+    \o \l{animation/states}{States}
     \o \l{animation/stickman}{Stick man}\raisedaster
+    \o \l{animation/sub-attaq}{Sub-Attaq}
     \endlist
 
     Examples marked with an asterisk (*) are fully documented.
