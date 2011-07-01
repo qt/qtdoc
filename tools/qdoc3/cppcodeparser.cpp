@@ -756,8 +756,12 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         if (splitQmlMethodArg(doc,arg,type,module,element)) {
             if (element.startsWith(QLatin1String("Qt")))
                 element = QLatin1String("QML:") + element;
-            Node* n = tre->findQmlClassNode(module,element);
-            if (n) {
+            Node* n = 0;
+            if (!module.isEmpty())
+                n = tre->findQmlClassNode(module,element);
+            else
+                n = tre->findNode(QStringList(element),Node::Fake);
+            if (n && n->subType() == Node::QmlClass) {
                 qmlClass = static_cast<QmlClassNode*>(n);
                 if (command == COMMAND_QMLSIGNAL)
                     return makeFunctionNode(doc,arg,qmlClass,Node::QmlSignal,false,COMMAND_QMLSIGNAL);
@@ -790,6 +794,9 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
   and \a name, and returns true. If any part other than
   \a module is not found, a qdoc warning is emitted and
   false is returned.
+
+  \note The two elements \e{Component} and \e{QtObject} never
+  have a module qualifier.
  */
 bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
                                         const QString& arg,
@@ -813,9 +820,12 @@ bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
             module.clear();
             element = colonSplit[0];
             name = colonSplit[1];
+            if ((element == QString("Component")) ||
+                (element == QString("QtObject"))) {
+                return true;
+            }
             msg = "Missing QML module qualifier for " + arg;
             doc.location().warning(tr(msg.toLatin1().data()));
-            return true;
         }
         else {
             msg = "Missing QML module and element qualifiers for " + arg;
@@ -839,6 +849,9 @@ bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
   forms, sets \a module, \a element, and \a name, and returns
   true. If the argument doesn't match either form, an error
   message is emitted and false is returned.
+
+  \note The two elements \e{Component} and \e{QtObject} never
+  have a module qualifier.
  */
 bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
                                       const QString& arg,
@@ -855,28 +868,31 @@ bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
             if (colonSplit.size() > 2) {
                 module = blankSplit[1];
                 element = colonSplit[1];
+                return true;
             }
-            else {
-                module = "";
-                element = blankSplit[1];
-                msg = "Missing QML module qualifier for " + arg;
-                doc.location().warning(tr(msg.toLatin1().data()));
-            }
+            module.clear();
+            element = blankSplit[1];
+            if ((element == QString("Component")) ||
+                (element == QString("QtObject")))
+                return true;
+            msg = "Missing QML module qualifier for " + arg;
+            doc.location().warning(tr(msg.toLatin1().data()));
         }
         else {
             type = QString("");
             if (colonSplit.size() > 2) {
                 module = colonSplit[0];
                 element = colonSplit[1];
+                return true;
             }
-            else {
-                module = "";
-                element = colonSplit[0];
-                msg = "Missing QML module qualifier for " + arg;
-                doc.location().warning(tr(msg.toLatin1().data()));
-            }
+            module.clear();
+            element = colonSplit[0];
+            if ((element == QString("Component")) ||
+                (element == QString("QtObject")))
+                return true;
+            msg = "Missing QML module qualifier for " + arg;
+            doc.location().warning(tr(msg.toLatin1().data()));
         }
-        return true;
     }
     else {
         msg = "Missing QML module and/or element qualifiers for " + arg;
@@ -905,8 +921,12 @@ Node *CppCodeParser::processTopicCommandGroup(const Doc& doc,
         bool attached = (command == COMMAND_QMLATTACHEDPROPERTY);
         QStringList::ConstIterator arg = args.begin();
         if (splitQmlPropertyArg(doc,(*arg),type,module,element,property)) {
-            Node* n = tre->findQmlClassNode(module,element);
-            if (n) {
+            Node* n = 0;
+            if (!module.isEmpty())
+                n = tre->findQmlClassNode(module,element);
+            else
+                n = tre->findNode(QStringList(element),Node::Fake);
+            if (n && n->subType() == Node::QmlClass) {
                 QmlClassNode* qmlClass = static_cast<QmlClassNode*>(n);
                 if (qmlClass)
                     qmlPropGroup = new QmlPropGroupNode(qmlClass,

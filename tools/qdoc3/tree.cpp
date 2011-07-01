@@ -156,15 +156,17 @@ const Node* Tree::findNode(const QStringList& path,
         int start_idx = 0;
 
         /*
-          If the path contains two of these: "::" check first to
-          see if it is a reference to a QML method. If it is a
-          reference to a QML method, it will look like this:
-          QtQuick1::Item::something
+          If the path contains one or two double colons ("::"),
+          check first to see if the first two path strings refer
+          to a QML element. If yes, that reference identifies a
+          QML class node.
         */
-        if (path.size() == 3) {
+        if (path.size() >= 2) {
             QmlClassNode* qcn = QmlClassNode::moduleMap.value(path[0]+ "::" +path[1]);
             if (qcn) {
                 node = qcn;
+                if (path.size() == 2)
+                    return node;
                 start_idx = 2;
             }
         }
@@ -287,10 +289,10 @@ const FunctionNode* Tree::findFunctionNode(const QStringList& path,
         relative = root();
 
     /*
-      If the path contains two of these: "::" check first to
-      see if it is a reference to a QML method. If it is a
-      reference to a QML method, it will look like this:
-      QtQuick1::Item::someMethod()
+      If the path contains two double colons ("::"), check
+      first to see if it is a reference to a QML method. If
+      it is a reference to a QML method, first look up the
+      QML class node in the QML module map.
      */
     if (path.size() == 3) {
         QmlClassNode* qcn = QmlClassNode::moduleMap.value(path[0]+ "::" +path[1]);
@@ -697,7 +699,7 @@ void Tree::resolveGroups()
 
 /*!
   For each node in the QML module map, add the node to the
-  QML module node.
+  appropriate QML module node.
  */
 void Tree::resolveQmlModules()
 {

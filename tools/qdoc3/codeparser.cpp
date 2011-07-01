@@ -250,7 +250,6 @@ void CodeParser::processCommonMetaCommand(const Location& location,
         node->setQmlModuleName(arg);
         tree->addToQmlModule(node,arg);
         QString qmn = node->qmlModuleName(); // + "::" + node->name();
-        qDebug() << "ADDING TO MODULE MAP:" << qmn << node->name();
         QmlClassNode* qcn = static_cast<QmlClassNode*>(node);
         QmlClassNode::moduleMap.insert(qmn + "::" + node->name(), qcn);
     }

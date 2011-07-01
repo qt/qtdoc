@@ -1463,13 +1463,21 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
     generateAlsoList(fake, marker);
     generateExtractionMark(fake, EndMark);
 
-    if (!fake->groupMembers().isEmpty()) {
+    if ((fake->subType() == Node::Group) && !fake->groupMembers().isEmpty()) {
         NodeMap groupMembersMap;
         foreach (const Node *node, fake->groupMembers()) {
             if (node->type() == Node::Class || node->type() == Node::Namespace)
                 groupMembersMap[node->name()] = node;
         }
         generateAnnotatedList(fake, marker, groupMembersMap);
+    }
+    else if ((fake->subType() == Node::QmlModule) && !fake->qmlModuleMembers().isEmpty()) {
+        NodeMap qmlModuleMembersMap;
+        foreach (const Node* node, fake->qmlModuleMembers()) {
+            if (node->type() == Node::Fake && node->subType() == Node::QmlClass)
+                qmlModuleMembersMap[node->name()] = node;
+        }
+        generateAnnotatedList(fake, marker, qmlModuleMembersMap);
     }
 
     sections = marker->sections(fake, CodeMarker::Detailed, CodeMarker::Okay);
