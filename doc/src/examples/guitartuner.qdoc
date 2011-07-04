@@ -26,14 +26,20 @@
 ****************************************************************************/
 
 /*!
-    \page demos-browser.html
-    \title Web Browser
+    \page guitartuner_example.html
+    \title Guitar Tuner Example
+    \example mobile/guitartuner
 
-    The Web Browser demonstration shows Qt's WebKit module in action,
-    providing a little Web browser application.
+The Guitar Tuner application can be used to tune guitar strings by analyzing the
+audio recorded by the device microphone. Guitar Tuner can be also used in the
+listening mode. It will then play the audio by the corresponding frequency, and
+the user can tune the guitar by ear. The application demonstrates the audio-in
+and the audio-out interfaces of
+\l{external: Mobility Multimedia}{Qt Mobility Multimedia} and integrating Qt
+code to the Qt Quick UI.
 
-    \image browser-demo.png
+    The example is hosted in Projects Forum Nokia: https://projects.forum.nokia.com/guitartuner
 
-    This browser is the foundation for the \l{Arora Browser}, a simple cross-platform
-    Web browser.
+\note This example requires QtMobility libraries.
+    \image qml-guitartuner-example.png
 */

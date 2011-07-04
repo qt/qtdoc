@@ -26,17 +26,17 @@
 ****************************************************************************/
 
 /*!
-    \example demos/spectrum
+    \example multimedia/spectrum
     \title Spectrum Analyzer
 
-    The Spectrum Analyzer demo shows how the \l{QtMultimedia Module} can be
+    The Spectrum Analyzer example shows how the \l{QtMultimedia Module} can be
     used in Qt applications to capture and then play back an audio stream.
 
     \image spectrum-demo.png
 
     Because QtMultimedia allows the application to access the raw audio
     stream, the data can either be inspected or modified by the application.
-    The Spectrum Analyzer demo displays three pieces of information while
+    The Spectrum Analyzer example displays three pieces of information while
     audio is being either captured or played back:
 
     \list

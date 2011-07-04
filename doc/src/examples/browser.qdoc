@@ -26,17 +26,14 @@
 ****************************************************************************/
 
 /*!
-    \example demos/arthurplugin
-    \title Arthur Plugin
+    \page examples-browser.html
+    \title Web Browser
 
-    In this demo we demonstrate the abilities of Qt's painting system
-    in combination with \QD's custom widget plugin facilities.
+    The Web Browser example shows Qt's WebKit module in action,
+    providing a little Web browser application.
 
-    \image arthurplugin-demo.png
+    \image browser-demo.png
 
-    The specialized widgets used in the other demonstrations of the Arthur
-    painting system are provided as custom widgets to be used with \QD.
-    Since each of the widgets provides a set of signals and slots, the
-    effects they show can be controlled by connecting them up to standard
-    input widgets.
+    This browser is the foundation for the \l{Arora Browser}, a simple cross-platform
+    Web browser.
 */
