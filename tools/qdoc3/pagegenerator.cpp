@@ -205,10 +205,14 @@ QString PageGenerator::fileBase(const Node *node) const
          */
         if ((p->subType() == Node::QmlClass) ||
             (p->subType() == Node::QmlBasicType)) {
+#ifdef QML_COLON_QUALIFER
             if (!base.startsWith(QLatin1String("QML:")))
                 base.prepend(outputPrefix(QLatin1String("QML")));
-            if (p->subType() == Node::QmlClass)
-                base.prepend(p->qmlClassFileNamePrefix()+QChar('-'));
+#else
+            if ((p->subType() == Node::QmlClass) && !p->qmlModuleQualifier().isEmpty())
+                base.prepend(p->qmlModuleQualifier()+QChar('-'));
+            base.prepend(outputPrefix(QLatin1String("QML")));
+#endif
         }
 #endif
         if (!pp || pp->name().isEmpty() || pp->type() == Node::Fake)

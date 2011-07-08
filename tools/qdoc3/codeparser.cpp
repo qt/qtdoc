@@ -249,9 +249,9 @@ void CodeParser::processCommonMetaCommand(const Location& location,
     else if (command == COMMAND_INQMLMODULE) {
         node->setQmlModuleName(arg);
         tree->addToQmlModule(node,arg);
-        QString qmn = node->qmlModuleName(); // + "::" + node->name();
+        QString qmq = node->qmlModuleQualifier();
         QmlClassNode* qcn = static_cast<QmlClassNode*>(node);
-        QmlClassNode::moduleMap.insert(qmn + "::" + node->name(), qcn);
+        QmlClassNode::moduleMap.insert(qmq + "::" + node->name(), qcn);
     }
     else if (command == COMMAND_MAINCLASS) {
         node->setStatus(Node::Main);

@@ -73,6 +73,11 @@ class Tree
                    Node::Type type, 
                    Node* relative = 0,
                    int findFlags = 0);
+    const Node* findNode(const QStringList& path,
+                         const Node* start,
+                         int findFlags,
+                         const Node* self,
+                         bool qml) const;
     QmlClassNode* findQmlClassNode(const QString& module, const QString& element);
     FunctionNode *findFunctionNode(const QStringList &path, 
                                    Node *relative = 0,

@@ -3349,7 +3349,10 @@ void HtmlGenerator::findAllClasses(const InnerNode *node)
                      (*c)->subType() == Node::QmlClass &&
                      !(*c)->doc().isEmpty()) {
                 QString qmlClassName = (*c)->name();
-                // Remove the "QML:" prefix if present.
+                /*
+                  Remove the "QML:" prefix, if present.
+                  It shouldn't be present anymore.
+                */
                 if (qmlClassName.startsWith(QLatin1String("QML:")))
                     qmlClasses.insert(qmlClassName.mid(4),*c);
                 else
@@ -3965,6 +3968,10 @@ void HtmlGenerator::generateQmlInstantiates(const QmlClassNode* qcn,
         text << Atom(Atom::LinkNode,CodeMarker::stringForNode(qcn));
         text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
         QString name = qcn->name();
+        /*
+          Remove the "QML:" prefix, if present.
+          It shouldn't be present anymore.
+        */
         if (name.startsWith(QLatin1String("QML:")))
             name = name.mid(4); // remove the "QML:" prefix
         text << Atom(Atom::String, name);

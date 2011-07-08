@@ -343,6 +343,94 @@ Node *InnerNode::findNode(const QString& name)
     }
     return primaryFunctionMap.value(name);
 }
+void InnerNode::findNodes(const QString& name, QList<Node*>& n)
+{
+    n.clear();
+    Node* node = 0;
+    QList<Node*> nodes = childMap.values(name);
+    /*
+      <sigh> If this node's child map contains no nodes named
+      name, then if this node is a QML class, seach each of its
+      property group nodes for a node named name. If a match is
+      found, append it to the output list and return immediately.
+     */
+    if (nodes.isEmpty()) {
+        if ((type() == Fake) && (subType() == QmlClass)) {
+            for (int i=0; i<children.size(); ++i) {
+                node = children.at(i);
+                if (node->subType() == QmlPropertyGroup) {
+                    node = static_cast<InnerNode*>(node)->findNode(name);
+                    if (node) {
+                        n.append(node);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        /*
+          If the childMap does contain one or more nodes named
+          name, traverse the list of matching nodes. Append each
+          matching node that is not a property group node to the
+          output list. Search each property group node for a node
+          named name and append that node to the output list.
+          This is overkill, I think, but should produce a useful
+          list.
+         */
+        for (int i=0; i<nodes.size(); ++i) {
+            node = nodes.at(i);
+            if (node->subType() != QmlPropertyGroup)
+                n.append(node);
+            else {
+                node = static_cast<InnerNode*>(node)->findNode(name);
+                if (node)
+                    n.append(node);
+            }
+        }
+    }
+    if (!n.isEmpty())
+        return;
+    node = primaryFunctionMap.value(name);
+    if (node)
+        n.append(node);
+}
+
+/*!
+  Find the node in this node's children that has the given \a name. If
+  this node is a QML class node, be sure to also look in the children
+  of its property group nodes. Return the matching node or 0.
+
+  If \a qml is true, only match a node for which node->isQmlNode()
+  returns true. If \a qml is false, only match a node for which
+  node->isQmlNode() returns false.
+ */
+Node* InnerNode::findNode(const QString& name, bool qml)
+{
+    QList<Node*> nodes = childMap.values(name);
+    if (!nodes.isEmpty()) {
+        for (int i=0; i<nodes.size(); ++i) {
+            Node* node = nodes.at(i);
+            if (!qml) {
+                if (!node->isQmlNode())
+                    return node;
+            }
+            else if (node->isQmlNode() && (node->subType() != QmlPropertyGroup))
+                return node;
+        }
+    }
+    if (qml && (type() == Fake) && (subType() == QmlClass)) {
+        for (int i=0; i<children.size(); ++i) {
+            Node* node = children.at(i);
+            if (node->subType() == QmlPropertyGroup) {
+                node = static_cast<InnerNode*>(node)->findNode(name);
+                if (node)
+                    return node;
+            }
+        }
+    }
+    return primaryFunctionMap.value(name);
+}
 
 /*!
   Same as the other findNode(), but if the node with the
@@ -565,6 +653,17 @@ const Node *InnerNode::findNode(const QString& name) const
 }
 
 /*!
+  If \a qml is true, only match a node for which node->isQmlNode()
+  returns true. If \a qml is false, only match a node for which
+  node->isQmlNode() returns false.
+ */
+const Node* InnerNode::findNode(const QString& name, bool qml) const
+{
+    InnerNode*that = (InnerNode*) this;
+    return that->findNode(name, qml);
+}
+
+/*!
  */
 const Node *InnerNode::findNode(const QString& name, Type type) const
 {
@@ -735,7 +834,7 @@ void InnerNode::addChild(Node *child)
     else {
         if (child->type() == Enum)
             enumChildren.append(child);
-        childMap.insert(child->name(), child);
+        childMap.insertMulti(child->name(), child);
     }
 }
 
@@ -1557,10 +1656,16 @@ QmlClassNode::QmlClassNode(InnerNode *parent,
                            const ClassNode* cn)
     : FakeNode(parent, name, QmlClass), cnode(cn)
 {
+#ifdef QML_COLON_QUALIFER
     if (name.startsWith(QLatin1String("QML:")))
         setTitle((qmlOnly ? QLatin1String("") : QLatin1String("QML ")) + name.mid(4) + QLatin1String(" Element"));
     else
         setTitle((qmlOnly ? QLatin1String("") : QLatin1String("QML ")) + name + QLatin1String(" Element"));
+#else
+    if (name.startsWith("QML:"))
+        qDebug() << "BOGUS:" << name;
+    setTitle(name + QLatin1String(" Reference"));
+#endif
 }
 
 /*!
@@ -1620,25 +1725,37 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
     }
 }
 
-/*! \fn QString QmlClassNode::qmlClassFileNamePrefix() const
-  This function is called to get a prefix for the file name
-  to use in a link to something on the QML reference page.
+/*! \fn QString QmlClassNode::qmlModuleQualifier() const
+  This function is called to get a string that is used either
+  as a prefix for the file name to use for QML element or
+  component reference page, or as a qualifier to prefix a
+  reference to a QML element or comnponent. The string that
+  is returned is the concatenation of the QML module name
+  and its version number. e.g., if an element or component
+  is defined to be in the QML module QtQuick 1, its module
+  qualifier is "QtQuick1". See setQmlModuleName().
+ */
+
+/*! \fn QString QmlClassNode::qmlModuleIdentifier() const
+  This function is the same as qmlModuleQualifier() except
+  that this one returns a string with the module name and
+  the version number separated by a single blank. e.g., if
+  an element or component is defined to be in QML module
+  QtQuick 1, its module identifier is "QtQuick 1". See
+  qmlModuleQualifier().
  */
 
 /*!
-  This function massages \a arg to get a QML module name,
-  which contains a name and a version number concatenated
-  together. e.g., "QtQuick 1" becomes "QtQuick1". The
-  name is stored in this object.
+  This function splits \a arg on the blank character to get a
+  QML module name and version number. It stores these separately.
+  The version number is not required.
  */
 void QmlClassNode::setQmlModuleName(const QString& arg)
 {
     QStringList blankSplit = arg.split(" ");
     qmlModuleName_ = blankSplit[0];
     if (blankSplit.size() > 1)
-        qmlModuleName_ += blankSplit[1];
-    else
-        qmlModuleName_ += "1";
+        qmlModuleVersion_ = blankSplit[1];
 }
 
 /*!

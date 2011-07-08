@@ -150,6 +150,34 @@ const Node* Tree::findNode(const QStringList& path,
     if (!current)
         current = root();
 
+    /*
+      First, search for a node assuming we don't want a QML node.
+      If that search fails, search again assuming we do want a
+      QML node.
+     */
+    const Node* n = findNode(path,current,findFlags,self,false);
+    if (!n) {
+        n = findNode(path,current,findFlags,self,true);
+    }
+    return n;
+}
+
+/*!
+  This code in this function was extracted from the other
+  version of findNode() that has the same signature without
+  the last bool parameter \a qml. This function is called
+  only by that other findNode(). It can be called a second
+  time if the first call returns null. If \a qml is false,
+  the search will only match a node that is not a QML node.
+  If \a qml is true, the search will only match a node that
+  is a QML node.
+ */
+const Node* Tree::findNode(const QStringList& path,
+                           const Node* current,
+                           int findFlags,
+                           const Node* self,
+                           bool qml) const
+{
     do {
         const Node* node = current;
         int i;
@@ -161,7 +189,7 @@ const Node* Tree::findNode(const QStringList& path,
           to a QML element. If yes, that reference identifies a
           QML class node.
         */
-        if (path.size() >= 2) {
+        if (qml && path.size() >= 2) {
             QmlClassNode* qcn = QmlClassNode::moduleMap.value(path[0]+ "::" +path[1]);
             if (qcn) {
                 node = qcn;
@@ -175,13 +203,12 @@ const Node* Tree::findNode(const QStringList& path,
             if (node == 0 || !node->isInnerNode())
                 break;
 
-            const Node* next =
-                static_cast<const InnerNode*>(node)->findNode(path.at(i));
+            const Node* next = static_cast<const InnerNode*>(node)->findNode(path.at(i), qml);
             
             if (!next && (findFlags & SearchEnumValues) && i == path.size()-1)
                 next = static_cast<const InnerNode*>(node)->findEnumNodeForValue(path.at(i));
 
-            if (!next && node->type() == Node::Class && (findFlags & SearchBaseClasses)) {
+            if (!next && !qml && node->type() == Node::Class && (findFlags & SearchBaseClasses)) {
                 NodeList baseClasses = allBaseClasses(static_cast<const ClassNode*>(node));
                 foreach (const Node* baseClass, baseClasses) {
                     next = static_cast<const InnerNode*>(baseClass)->findNode(path.at(i));

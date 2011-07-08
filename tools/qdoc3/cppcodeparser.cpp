@@ -737,10 +737,14 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
             if (n)
                 classNode = static_cast<const ClassNode*>(n);
         }
+#ifdef QML_COLON_QUALIFER
         if (names[0].startsWith("Qt"))
             return new QmlClassNode(tre->root(), QLatin1String("QML:")+names[0], classNode);
         else
             return new QmlClassNode(tre->root(), names[0], classNode);
+#else
+        return new QmlClassNode(tre->root(), names[0], classNode);
+#endif
     }
     else if (command == COMMAND_QMLBASICTYPE) {
         return new QmlBasicTypeNode(tre->root(), arg);
@@ -754,8 +758,10 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         QString type;
         QmlClassNode* qmlClass = 0;
         if (splitQmlMethodArg(doc,arg,type,module,element)) {
+#ifdef QML_COLON_QUALIFER
             if (element.startsWith(QLatin1String("Qt")))
                 element = QLatin1String("QML:") + element;
+#endif
             Node* n = 0;
             if (!module.isEmpty())
                 n = tre->findQmlClassNode(module,element);

@@ -275,9 +275,17 @@ QString CodeMarker::taggedNode(const Node* node)
         break;
 #ifdef QDOC_QML
     case Node::Fake:
+        /*
+          Remove the "QML:" prefix, if present.
+          There shouldn't be any of these "QML:"
+          prefixes in the documentation sources
+          after the switch to using QML module
+          qualifiers, but this code is kept to
+          be backward compatible.
+        */
         if (node->subType() == Node::QmlClass) {
             if (node->name().startsWith(QLatin1String("QML:")))
-                name = name.mid(4);                 // remove the "QML:" prefix
+                name = name.mid(4);
         }
         tag = QLatin1String("@property");
         break;

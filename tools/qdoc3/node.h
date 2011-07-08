@@ -59,6 +59,7 @@
 QT_BEGIN_NAMESPACE
 
 class InnerNode;
+class ClassNode;
 
 class Node
 {
@@ -196,8 +197,10 @@ class Node
     QString ditaXmlHref();
     QString extractClassName(const QString &string) const;
     virtual const QString qmlModuleName() const { return QString(); }
-    virtual QString qmlClassFileNamePrefix() const { return QString(); }
+    virtual QString qmlModuleQualifier() const { return QString(); }
+    virtual QString qmlModuleIdentifier() const { return QString(); }
     virtual void setQmlModuleName(const QString& ) { }
+    virtual const ClassNode* classNode() const { return 0; }
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -243,7 +246,9 @@ class InnerNode : public Node
     virtual ~InnerNode();
 
     Node* findNode(const QString& name);
+    Node* findNode(const QString& name, bool qml);
     Node* findNode(const QString& name, Type type);
+    void findNodes(const QString& name, QList<Node*>& n);
     FunctionNode* findFunctionNode(const QString& name);
     FunctionNode* findFunctionNode(const FunctionNode* clone);
     void addInclude(const QString &include);
@@ -256,6 +261,7 @@ class InnerNode : public Node
 
     virtual bool isInnerNode() const;
     const Node* findNode(const QString& name) const;
+    const Node* findNode(const QString& name, bool qml) const;
     const Node* findNode(const QString& name, Type type) const;
     const FunctionNode* findFunctionNode(const QString& name) const;
     const FunctionNode* findFunctionNode(const FunctionNode* clone) const;
@@ -408,10 +414,10 @@ class QmlClassNode : public FakeNode
     virtual ~QmlClassNode();
     virtual bool isQmlNode() const { return true; }
     virtual const QString qmlModuleName() const { return qmlModuleName_; }
-    virtual QString qmlClassFileNamePrefix() const { return qmlModuleName_; }
+    virtual QString qmlModuleIdentifier() const { return qmlModuleName_ + " " + qmlModuleVersion_; }
+    virtual QString qmlModuleQualifier() const { return qmlModuleName_ + qmlModuleVersion_; }
     virtual void setQmlModuleName(const QString& arg);
-
-    const ClassNode* classNode() const { return cnode; }
+    virtual const ClassNode* classNode() const { return cnode; }
     virtual QString fileBase() const;
     static void addInheritedBy(const QString& base, Node* sub);
     static void subclasses(const QString& base, NodeList& subs);
@@ -425,6 +431,7 @@ class QmlClassNode : public FakeNode
  private:
     const ClassNode*    cnode;
     QString             qmlModuleName_;
+    QString             qmlModuleVersion_;
 };
 
 class QmlBasicTypeNode : public FakeNode
