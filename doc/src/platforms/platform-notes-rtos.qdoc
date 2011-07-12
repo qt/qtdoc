@@ -235,7 +235,7 @@
        with a newer version, or disable the TIFF plugin entierly by appending
        \c{QT_CONFIG += no-tiff} to \c{.qmake.cache} after configuring Qt.
 
-    \o Some of the tools, examples and demos do not compile due to dependencies on QProcess
+    \o Some of the tools and examples do not compile due to dependencies on QProcess
        or other classes that are not available on QNX.
     \endlist
 
@@ -346,7 +346,7 @@
     \o Default .int files are generated. You may want to modify the amount of heap assigned
        to each example by modifying the HeapSize declaration in the specific example .int file.
 
-    \o Some of the tools, examples and demos do not compile due to dependencies on QProcess
+    \o Some of the tools and examples do not compile due to dependencies on QProcess
        or other classes that are not available on INTEGRITY.
 
     \endlist

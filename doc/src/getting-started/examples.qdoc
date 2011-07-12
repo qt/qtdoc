@@ -49,13 +49,13 @@
    the \l{Tutorials}, and then begin with the
    \l{mainwindows/application} {Application} example.
 
-   In addition to these examples and the \l{Tutorials}{tutorials}, Qt
-   includes a \l{Qt Demonstrations}{selection of demos} that
-   deliberately show off Qt's features. You might want to look at
-   these as well.
+   The \l{Qt Widget Gallery} also provides overviews of selected Qt
+   widgets in each of the styles used on various supported platforms.
 
-   These examples are provided under the terms of the
-   \l{New and Modified BSD Licenses}{Modified BSD License}.
+   Most examples are provided under the terms of the
+   \l{New and Modified BSD Licenses}{Modified BSD License}. Some examples
+   are however provided under the terms of the
+   \l{GNU Lesser General Public License (LGPL)}{GNU LGPL version 2.1}.
 
    \section1 Qt Quick Example Code
    The \l{QML Examples and Demos} site has a dedicated page for QML examples.
@@ -595,6 +595,7 @@
     \o \l{multimedia/audiodevices}{Audio Devices}
     \o \l{multimedia/audiooutput}{Audio Output}
     \o \l{multimedia/audioinput}{Audio Input}
+    \o \l{multimedia/spectrum}{Spectrum Analyser}
     \endlist
 
     \section1 Video Output
@@ -613,6 +614,7 @@
 
     \list
     \o \l{phonon/capabilities}{Capabilities}\raisedaster
+    \o \l{phonon/qmediaplayer}{Media Player}
     \o \l{phonon/qmusicplayer}{Music Player}\raisedaster
     \endlist
 
@@ -697,6 +699,7 @@
     Qt Designer can be compiled into an application or created at run-time.
 
     \list
+    \o \l{designer/arthurplugin}{Arthur Plugin}
     \o \l{designer/calculatorbuilder}{Calculator Builder}\raisedaster
     \o \l{designer/calculatorform}{Calculator Form}\raisedaster
     \o \l{designer/customwidgetplugin}{Custom Widget Plugin}\raisedaster
@@ -786,8 +789,10 @@
     \header \o Example \o Description
     \row \o \l{webkit/domtraversal}{DOM Traversal}\raisedaster
     \o Shows how to use QWebElement to inspect the document structure of a Web page.
+    \row \o \l{webkit/browser}{Tab Browser}
+    \o A browser example, showing a browser with support for tabs.
     \row \o \l{webkit/fancybrowser}{Fancy Browser}
-    \o A more advanced browser example, showing the use of jQuery to perform effects.
+    \o A browser example, showing the use of jQuery to perform effects.
     \row \o \l{webkit/formextractor}{Form Extractor}
     \o How to use JavaScript and C++ together to read page content.
     \row \o \l{webkit/framecapture}{Frame Capture}

@@ -181,9 +181,6 @@ make debug-winscw
 cd examples
 qmake
 make
-cd ..\demos
-qmake
-make 
 //! [25]
 
 //! [27]
@@ -202,7 +199,7 @@ make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<cer
 //! [29]
 
 //! [30]
-cd demos\embedded\fluidlauncher
+cd examples\embedded\fluidlauncher
 make sis QT_SIS_OPTIONS=-i
 //! [30]
 
@@ -306,7 +303,7 @@ runonphone -s lib/Qt.sis -p /dev/ttyUSB1
 //! [runonphone with device file path]
 
 //! [48]
-cd demos/embedded/fluidlauncher
+cd examples/embedded/fluidlauncher
 runonphone -s fluidlauncher.sis fluidlauncher.exe
 //! [48]
 

@@ -82,13 +82,13 @@ for your platform from the following list.
     The \l{Configuration Options for Qt} page gives a brief overview
     of these.
 
-    To create the library and compile all the demos, examples, tools,
+    To create the library and compile all the examples, tools,
     and tutorials, type:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 2
 
     If \c{-prefix} is outside the build directory, you need to install
-    the library, demos, examples, tools, and tutorials in the appropriate
+    the library, examples, tools, and tutorials in the appropriate
     place. To do this (as root if necessary), type:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 3
@@ -132,8 +132,8 @@ for your platform from the following list.
 
 \section1 Qt Demos and Examples
 
-    If you are new to Qt, we suggest that you take a look at the demos
-    and examples to see Qt in action. Run the Qt Examples and Demos
+    If you are new to Qt, we suggest that you take a look at the
+    examples to see Qt in action. Run the Qt Examples
     either by typing \c qtdemo on the command line or through the
     desktop's Main menu.
 
@@ -240,7 +240,7 @@ for your platform from the following list.
 
     The actual commands needed to build Qt depends on your development
     system. For Microsoft Visual Studio to create the library and
-    compile all the demos, examples, tools and tutorials type:
+    compile all the examples, tools and tutorials type:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 10
 
@@ -253,8 +253,8 @@ for your platform from the following list.
 
 \section1 Qt Demos and Examples
 
-    If you are new to Qt, we suggest that you take a look at the demos
-    and examples to see Qt in action. Run the Qt Examples and Demos
+    If you are new to Qt, we suggest that you take a look at the
+    examples to see Qt in action. Run the Qt Examples
     either by typing \c qtdemo on the command line or through the
     desktop's Start menu.
 
@@ -331,13 +331,13 @@ must be run as root.
     process is described in detail in the \l{Debugging Techniques}
     document.
 
-    To create the library and compile all the demos, examples, tools,
+    To create the library and compile all the examples, tools,
     and tutorials, type:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 13
 
     If \c{-prefix} is outside the build directory, you need to install
-    the library, demos, examples, tools, and tutorials in the appropriate
+    the library, examples, tools, and tutorials in the appropriate
     place. To do this, type:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 14
@@ -376,8 +376,8 @@ must be run as root.
 \bold {That's all. Qt is now installed.}
 
 \section1 Qt Demos and Examples
-    If you are new to Qt, we suggest that you take a look at the demos
-    and examples to see Qt in action. Run the Qt Examples and Demos
+    If you are new to Qt, we suggest that you take a look at the
+    examples to see Qt in action. Run the Qt Examples
     either by typing \c qtdemo on the command line or through the
     desktop's Start menu.
 
@@ -527,22 +527,22 @@ in the \l{Qt for the Symbian platform Requirements} document.
         on the \c{qt_installer.sis} file, select "Install with Nokia Application
         Installer" and follow the instructions.
 
-\section1 Running Qt demos
+\section1 Running Qt examples
 
-        We've included a subset of the Qt demos in this package for you
+        We've included a subset of the Qt examples in this package for you
         to try out. An excellent starting point is the "fluidlauncher"
-        demo.
+        example.
 
-        To run the demo on a real device, install \c{fluidlauncher.sis}
+        To run the example on a real device, install \c{fluidlauncher.sis}
         found in the Qt installation directory to a device that already has Qt installed.
         After installation, you can find fluidlauncher in the applications folder of the device.
 
-        To run the demos and examples on the emulator, you need to build them first.
+        To run the examples on the emulator, you need to build them first.
         Open the "Qt for the Symbian platform Command Prompt" from the Start menu and type:
 
         \snippet doc/src/snippets/code/doc_src_installation.qdoc 25
 
-        To run the demos on the emulator simply navigate to the directory of the demo
+        To run the examples on the emulator simply navigate to the directory of the example
         you want to see and run:
 
         \snippet doc/src/snippets/code/doc_src_installation.qdoc 27
@@ -670,11 +670,11 @@ Binary Package} document.
     capabilities you can sign for, for example:
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 35
 
-\section1 Running Qt demos
+\section1 Running Qt examples
 
-    We've included a subset of the Qt demos in this package for you
+    We've included a subset of the Qt examples in this package for you
     to try out. An excellent starting point is the "fluidlauncher"
-    demo.
+    example.
 
     Similarly, install fluidlauncher to the device:
 
@@ -683,7 +683,7 @@ Binary Package} document.
     This will create a self-signed \c fluidlauncher.sis and
     install it to your device.
 
-    To run the demos on the emulator simply navigate to the directory of the demo
+    To run the examples on the emulator simply navigate to the directory of the example
     you want to see and run:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 27
@@ -912,11 +912,11 @@ error-prone.
 
 \section1 Running Qt Demos
 
-We've included a subset of the Qt demos in this package for you
+We've included a subset of the Qt examples in this package for you
 to try out. An excellent starting point is the "fluidlauncher"
-demo.
+example.
 
-Install and run the demo by using the following commands:
+Install and run the example by using the following commands:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 48
 
