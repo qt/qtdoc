@@ -39,10 +39,6 @@
 **
 ****************************************************************************/
 
-/*
-  node.cpp
-*/
-
 #include "node.h"
 #include "tree.h"
 #include "codemarker.h"
@@ -50,6 +46,8 @@
 #include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
+
+ExampleNodeMap ExampleNode::exampleNodeMap;
 
 /*!
   \class Node
@@ -1166,6 +1164,16 @@ QString FakeNode::subTitle() const
 }
 
 /*!
+  The constructor calls the FakeNode constructor with
+  \a parent, \a name, and Node::Example.
+ */
+ExampleNode::ExampleNode(InnerNode* parent, const QString& name)
+    : FakeNode(parent, name, Node::Example)
+{
+    // nothing
+}
+
+/*!
   \class EnumNode
  */
 
@@ -1827,6 +1835,7 @@ bool QmlPropertyNode::fromTrool(Trool troolean, bool defaultValue)
     }
 }
 
+#if 0
 static QString valueType(const QString &n)
 {
     if (n == "QPoint")
@@ -1857,6 +1866,7 @@ static QString valueType(const QString &n)
         return "QDeclarativeFontValueType";
     return QString();
 }
+#endif
 
 /*!
   Returns true if a QML property or attached property is

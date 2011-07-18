@@ -55,10 +55,6 @@
 
 QT_BEGIN_NAMESPACE
 
-typedef QMap<QString, NodeMultiMap> NewSinceMaps;
-typedef QMap<Node*, NodeMultiMap> ParentMaps;
-typedef QMap<QString, NodeMap> NewClassMaps;
-
 class HelpProjectWriter;
 
 class HtmlGenerator : public PageGenerator
@@ -90,6 +86,7 @@ class HtmlGenerator : public PageGenerator
     virtual void terminateGenerator();
     virtual QString format();
     virtual void generateTree(const Tree *tree);
+    void generateManifestFile();
 
     QString protectEnc(const QString &string);
     static QString protect(const QString &string, const QString &encoding = "ISO-8859-1");
