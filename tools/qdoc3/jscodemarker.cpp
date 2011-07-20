@@ -89,16 +89,16 @@ bool JsCodeMarker::recognizeCode(const QString &code)
  */
 bool JsCodeMarker::recognizeExtension(const QString &ext)
 {
-    return ext == "js";
+    return ext == "js" || ext == "json";
 }
 
 /*!
-  Returns true if the \a language is recognized. Only "QML" is
-  recognized by this marker.
+  Returns true if the \a language is recognized. We recognize JavaScript,
+  ECMAScript and JSON.
  */
 bool JsCodeMarker::recognizeLanguage(const QString &language)
 {
-    return language == "JavaScript" || language == "ECMAScript";
+    return language == "JavaScript" || language == "ECMAScript" || language == "JSON";
 }
 
 /*!
