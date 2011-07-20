@@ -23,6 +23,10 @@ $$unixstyle {
     SEP = &&
 }
 
+# The module names correspond to the names of files in qtbase/mkspecs/modules
+# that take the form qt_<module>.pri. This is why we see clucene, not qttools,
+# and systeminfo, not systems.
+
 MODULES = activeqt \
           core \ # dbus gui network opengl openvg sql testlib uilib uitools xml
           declarative \
@@ -35,9 +39,13 @@ MODULES = activeqt \
           sensors \
           systeminfo \
           svg \
+          webkit \
           webkit-examples-and-demos \
           xmlpatterns \
           qt3support
+
+# Compile a list of location definitions for each of the modules and a list of
+# qdocconf files to include.
 
 LOCATIONS =
 INCLUDES =
@@ -46,9 +54,13 @@ for(module, MODULES) {
 
     INCLUDES += $$SET
 
+    # Take the module name and convert it to the name of the variable that
+    # contains the sources path, which takes the form, QT.<module name>.sources.
+    
     module_name = $$upper($$module)
     module_name = $$replace(module_name, "-", "_")
     module_value = $$eval(QT.$$replace(module, "-", "_").sources)
+
     !isEmpty(module_value) {
         LOCATIONS += $$SET
         LOCATIONS += QT_$${module_name}_SOURCES=$$module_value
@@ -63,6 +75,9 @@ for(module, MODULES) {
 
     INCLUDES += $$SEP
 }
+
+# Output the locations and includes as build messages. This helps the user to
+# see which modules have been installed and diagnose any problems.
 
 message($$LOCATIONS)
 message($$INCLUDES)
