@@ -1012,9 +1012,12 @@ void ClassNode::fixBaseClasses()
 {
     int i;
     i = 0;
+    QSet<ClassNode *> found;
+
+    // Remove private and duplicate base classes.
     while (i < bases.size()) {
         ClassNode* bc = bases.at(i).node;
-        if (bc->access() == Node::Private) {
+        if (bc->access() == Node::Private || found.contains(bc)) {
             RelatedClass rc = bases.at(i);
             bases.removeAt(i);
             ignoredBases.append(rc);
@@ -1025,6 +1028,7 @@ void ClassNode::fixBaseClasses()
         else {
             ++i;
         }
+        found.insert(bc);
     }
 
     i = 0;
