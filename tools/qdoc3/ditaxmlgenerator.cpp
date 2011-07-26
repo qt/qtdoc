@@ -2251,7 +2251,15 @@ void DitaXmlGenerator::generateFakeNode(const FakeNode* fake, CodeMarker* marker
             generateBody(fake, marker);
         generateAlsoList(fake, marker);
 
-        if (!fake->groupMembers().isEmpty()) {
+        if ((fake->subType() == Node::QmlModule) && !fake->qmlModuleMembers().isEmpty()) {
+            NodeMap qmlModuleMembersMap;
+            foreach (const Node* node, fake->qmlModuleMembers()) {
+                if (node->type() == Node::Fake && node->subType() == Node::QmlClass)
+                    qmlModuleMembersMap[node->name()] = node;
+            }
+            generateAnnotatedList(fake, marker, qmlModuleMembersMap);
+        }
+        else if (!fake->groupMembers().isEmpty()) {
             NodeMap groupMembersMap;
             foreach (const Node *node, fake->groupMembers()) {
                 if (node->type() == Node::Class || node->type() == Node::Namespace)
