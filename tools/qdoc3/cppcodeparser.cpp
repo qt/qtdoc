@@ -709,25 +709,42 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         return en;
     }
     else if (command == COMMAND_EXTERNALPAGE) {
-        return new FakeNode(tre->root(), arg, Node::ExternalPage);
+        return new FakeNode(tre->root(), arg, Node::ExternalPage, Node::ArticlePage);
     }
     else if (command == COMMAND_FILE) {
-        return new FakeNode(tre->root(), arg, Node::File);
+        return new FakeNode(tre->root(), arg, Node::File, Node::NoPageType);
     }
     else if (command == COMMAND_GROUP) {
-        return new FakeNode(tre->root(), arg, Node::Group);
+        return new FakeNode(tre->root(), arg, Node::Group, Node::OverviewPage);
     }
     else if (command == COMMAND_HEADERFILE) {
-        return new FakeNode(tre->root(), arg, Node::HeaderFile);
+        return new FakeNode(tre->root(), arg, Node::HeaderFile, Node::ApiPage);
     }
     else if (command == COMMAND_MODULE) {
-        return new FakeNode(tre->root(), arg, Node::Module);
+        return new FakeNode(tre->root(), arg, Node::Module, Node::OverviewPage);
     }
     else if (command == COMMAND_QMLMODULE) {
-        return new FakeNode(tre->root(), arg, Node::QmlModule);
+        return new FakeNode(tre->root(), arg, Node::QmlModule, Node::OverviewPage);
     }
     else if (command == COMMAND_PAGE) {
-        return new FakeNode(tre->root(), arg, Node::Page);
+        Node::PageType ptype = Node::ArticlePage;
+        QStringList args = arg.split(" ");
+        if (args.size() > 1) {
+            QString t = args[1].toLower();
+            if (t == "howto")
+                ptype = Node::HowToPage;
+            else if (t == "api")
+                ptype = Node::ApiPage;
+            else if (t == "example")
+                ptype = Node::ExamplePage;
+            else if (t == "overview")
+                ptype = Node::OverviewPage;
+            else if (t == "tutorial")
+                ptype = Node::TutorialPage;
+            else if (t == "faq")
+                ptype = Node::FAQPage;
+        }
+        return new FakeNode(tre->root(), args[0], Node::Page, ptype);
     }
     else if (command == COMMAND_QMLCLASS) {
         const ClassNode* classNode = 0;
@@ -2440,11 +2457,13 @@ void CppCodeParser::createExampleFileNodes(FakeNode *fake)
     foreach (const QString &exampleFile, exampleFiles)
         (void) new FakeNode(fake,
                             exampleFile.mid(sizeOfBoringPartOfName),
-                            Node::File);
+                            Node::File,
+                            Node::NoPageType);
     foreach (const QString &imageFile, imageFiles) {
         new FakeNode(fake,
                      imageFile.mid(sizeOfBoringPartOfName),
-                     Node::Image);
+                     Node::Image,
+                     Node::NoPageType);
     }
 }
 

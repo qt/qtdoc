@@ -4071,19 +4071,33 @@ bool HtmlGenerator::generatePageElement(QXmlStreamWriter& writer,
     writer.writeCharacters(url);
     writer.writeEndElement();
     writer.writeStartElement("pageType");
+    QString ptype = "Article";
     switch (node->pageType()) {
     case Node::ApiPage:
-        writer.writeCharacters("APIPage");
+        ptype = "APIPage";
         break;
     case Node::ArticlePage:
-        writer.writeCharacters("Article");
+        ptype = "Article";
         break;
     case Node::ExamplePage:
-        writer.writeCharacters("Example");
+        ptype = "Example";
+        break;
+    case Node::HowToPage:
+        ptype = "HowTo";
+        break;
+    case Node::OverviewPage:
+        ptype = "Overview";
+        break;
+    case Node::TutorialPage:
+        ptype = "Tutorial";
+        break;
+    case Node::FAQPage:
+        ptype = "FAQ";
         break;
     default:
         break;
     }
+    writer.writeCharacters(ptype);
     writer.writeEndElement();
     writer.writeEndElement();
 

@@ -149,7 +149,11 @@ class Node
         NoPageType,
         ApiPage,
         ArticlePage,
-        ExamplePage
+        ExamplePage,
+        HowToPage,
+        OverviewPage,
+        TutorialPage,
+        FAQPage
     };
 
     virtual ~Node();
@@ -194,6 +198,7 @@ class Node
     QString since() const { return sinc; }
     QString templateStuff() const { return tpl; }
     PageType pageType() const { return pageTyp; }
+    QString pageTypeString() const;
     virtual void addPageKeywords(const QString& ) { }
 
     void clearRelated() { rel = 0; }
@@ -387,7 +392,10 @@ class FakeNode : public InnerNode
 {
  public:
 
-    FakeNode(InnerNode* parent, const QString& name, SubType subType);
+    FakeNode(InnerNode* parent,
+             const QString& name,
+             SubType subType,
+             PageType ptype);
     virtual ~FakeNode() { }
 
     void setTitle(const QString &title) { tle = title; }

@@ -120,10 +120,45 @@ void Node::setUrl(const QString &url)
     u = url;
 }
 
+/*!
+  Returns the page type as a string for use as an
+  attribute value in XML or HTML.
+ */
+QString Node::pageTypeString() const
+{
+    switch (pageTyp) {
+        case Node::ApiPage:
+            return "api";
+        case Node::ArticlePage:
+            return "article";
+        case Node::ExamplePage:
+            return "example";
+        case Node::HowToPage:
+            return "howto";
+        case Node::OverviewPage:
+            return "overview";
+        case Node::TutorialPage:
+            return "tutorial";
+        case Node::FAQPage:
+            return "faq";
+        default:
+            return "article";
+    }
+}
+
+
 void Node::setPageType(const QString& t)
 {
     if ((t == "API") || (t == "api"))
         pageTyp = ApiPage;
+    else if (t == "howto")
+        pageTyp = HowToPage;
+    else if (t == "overview")
+        pageTyp = OverviewPage;
+    else if (t == "tutorial")
+        pageTyp = TutorialPage;
+    else if (t == "howto")
+        pageTyp = HowToPage;
     else if (t == "article")
         pageTyp = ArticlePage;
     else if (t == "example")
@@ -1098,15 +1133,17 @@ const PropertyNode *ClassNode::findPropertyNode(const QString &name) const
   which specifies the type of FakeNode. The page type for
   the page index is set here.
  */
-FakeNode::FakeNode(InnerNode *parent, const QString& name, SubType subtype)
+FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node::PageType ptype)
     : InnerNode(Fake, parent, name), sub(subtype)
 {
     switch (subtype) {
+    case Page:
+        setPageType(ptype);
+        break;
     case Module:
     case QmlModule:
-    case Page:
     case Group:
-        setPageType(ArticlePage);
+        setPageType(OverviewPage);
         break;
     case QmlClass:
     case QmlBasicType:
@@ -1178,7 +1215,7 @@ QString FakeNode::subTitle() const
   \a parent, \a name, and Node::Example.
  */
 ExampleNode::ExampleNode(InnerNode* parent, const QString& name)
-    : FakeNode(parent, name, Node::Example)
+    : FakeNode(parent, name, Node::Example, Node::ExamplePage)
 {
     // nothing
 }
@@ -1676,7 +1713,7 @@ QMap<QString, QmlClassNode*> QmlClassNode::moduleMap;
 QmlClassNode::QmlClassNode(InnerNode *parent,
                            const QString& name,
                            const ClassNode* cn)
-    : FakeNode(parent, name, QmlClass), cnode(cn)
+    : FakeNode(parent, name, QmlClass, Node::ApiPage), cnode(cn)
 {
 #ifdef QML_COLON_QUALIFER
     if (name.startsWith(QLatin1String("QML:")))
@@ -1787,7 +1824,7 @@ void QmlClassNode::setQmlModuleName(const QString& arg)
  */
 QmlBasicTypeNode::QmlBasicTypeNode(InnerNode *parent,
                                    const QString& name)
-    : FakeNode(parent, name, QmlBasicType)
+    : FakeNode(parent, name, QmlBasicType, Node::ApiPage)
 {
     setTitle(name);
 }
@@ -1799,7 +1836,7 @@ QmlBasicTypeNode::QmlBasicTypeNode(InnerNode *parent,
 QmlPropGroupNode::QmlPropGroupNode(QmlClassNode* parent,
                                    const QString& name,
                                    bool attached)
-    : FakeNode(parent, name, QmlPropertyGroup),
+    : FakeNode(parent, name, QmlPropertyGroup, Node::ApiPage),
       isdefault(false),
       att(attached)
 {

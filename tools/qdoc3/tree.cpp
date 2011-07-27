@@ -934,30 +934,51 @@ void Tree::readIndexSection(const QDomElement& element,
     }
     else if (element.nodeName() == "page") {
         Node::SubType subtype;
-        if (element.attribute("subtype") == "example")
+        Node::PageType ptype = Node::NoPageType;
+        if (element.attribute("subtype") == "example") {
             subtype = Node::Example;
-        else if (element.attribute("subtype") == "header")
+            ptype = Node::ExamplePage;
+        }
+        else if (element.attribute("subtype") == "header") {
             subtype = Node::HeaderFile;
-        else if (element.attribute("subtype") == "file")
+            ptype = Node::ApiPage;
+        }
+        else if (element.attribute("subtype") == "file") {
             subtype = Node::File;
-        else if (element.attribute("subtype") == "group")
+            ptype = Node::NoPageType;
+        }
+        else if (element.attribute("subtype") == "group") {
             subtype = Node::Group;
-        else if (element.attribute("subtype") == "module")
+            ptype = Node::OverviewPage;
+        }
+        else if (element.attribute("subtype") == "module") {
             subtype = Node::Module;
-        else if (element.attribute("subtype") == "page")
+            ptype = Node::OverviewPage;
+        }
+        else if (element.attribute("subtype") == "page") {
             subtype = Node::Page;
-        else if (element.attribute("subtype") == "externalpage")
+            ptype = Node::ArticlePage;
+        }
+        else if (element.attribute("subtype") == "externalpage") {
             subtype = Node::ExternalPage;
-        else if (element.attribute("subtype") == "qmlclass")
+            ptype = Node::ArticlePage;
+        }
+        else if (element.attribute("subtype") == "qmlclass") {
             subtype = Node::QmlClass;
-        else if (element.attribute("subtype") == "qmlpropertygroup")
+            ptype = Node::ApiPage;
+        }
+        else if (element.attribute("subtype") == "qmlpropertygroup") {
             subtype = Node::QmlPropertyGroup;
-        else if (element.attribute("subtype") == "qmlbasictype")
+            ptype = Node::ApiPage;
+        }
+        else if (element.attribute("subtype") == "qmlbasictype") {
             subtype = Node::QmlBasicType;
+            ptype = Node::ApiPage;
+        }
         else
             return;
 
-        FakeNode* fakeNode = new FakeNode(parent, name, subtype);
+        FakeNode* fakeNode = new FakeNode(parent, name, subtype, ptype);
         fakeNode->setTitle(element.attribute("title"));
 
         if (element.hasAttribute("location"))
@@ -2135,7 +2156,7 @@ void Tree::generateTagFile(const QString& fileName) const
  */
 void Tree::addExternalLink(const QString& url, const Node* relative)
 {
-    FakeNode *fakeNode = new FakeNode(root(), url, Node::ExternalPage);
+    FakeNode* fakeNode = new FakeNode(root(), url, Node::ExternalPage, Node::ArticlePage);
     fakeNode->setAccess(Node::Public);
 
     // Create some content for the node.

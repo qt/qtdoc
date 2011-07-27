@@ -2387,7 +2387,7 @@ void DitaXmlGenerator::generateHeader(const Node* node,
                 " PUBLIC \"-//OASIS//DTD DITA Topic//EN\" \"" + dtd + "\">";
             switch (node->subType()) {
             case Node::Page:
-                outputclass = "page";
+                outputclass = node->pageTypeString();
                 break;
             case Node::Group:
                 outputclass = "group";
