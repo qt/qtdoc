@@ -1107,9 +1107,13 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
         setLink(node, Node::StartLink, arg);
     }
     else if (command == COMMAND_QMLINHERITS) {
-        setLink(node, Node::InheritsLink, arg);
-        if (node->subType() == Node::QmlClass) {
-            QmlClassNode::addInheritedBy(arg,node);
+        if (node->name() == arg)
+            doc.location().warning(tr("%1 tries to inherit itself").arg(arg));
+        else {
+            setLink(node, Node::InheritsLink, arg);
+            if (node->subType() == Node::QmlClass) {
+                QmlClassNode::addInheritedBy(arg,node);
+            }
         }
     }
     else if (command == COMMAND_QMLDEFAULT) {
