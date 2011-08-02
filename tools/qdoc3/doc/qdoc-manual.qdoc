@@ -127,7 +127,7 @@
     \endcode
 
     From the qdoc comment above, QDoc generates the now famous HTML
-    page \l {http://doc.trolltech.com/4.7/qobject.html#details}
+    page \l {http://doc.qt.nokia.com/qobject.html#details}
     {QObject Class Reference}.
     
     This manual explains how to use the QDoc commands in qdoc comments
@@ -2138,7 +2138,7 @@
     \o \c {\l network.html} - The file name used in a \l
     {page-command} {\\page} command.
 
-    \o \c {\l http://www.trolltech.com/} - A URL.
+    \o \c {\l http://qt.nokia.com/} - A URL.
 
     \endlist
 
@@ -2267,7 +2267,7 @@
     From other documents, the target name can be linked this way:
 
     \list
-      \o \c {\l http://www.trolltech.com/4.0/doc/html/qregexp.html#capturing-parentheses}
+      \o \c {\l http://doc.qt.nokia.com/4.0/qregexp.html#capturing-parentheses}
     \endlist
 
     See also \l {l-command} {\\l}, \l {sa-command} {\\sa} and \l
@@ -2368,8 +2368,7 @@
 
     \code
     / *!
-        Qt by Trolltech is a C++ toolkit for cross-platform GUI
-        application development.
+        Qt is a C++ toolkit for cross-platform GUI application development.
 
         \image happyguy.jpg "Happy guy"
 
@@ -2382,8 +2381,7 @@
     QDoc renders this as:
 
     \quotation
-        Qt by Trolltech is a C++ toolkit for cross-platform GUI
-        application development.
+        Qt is a C++ toolkit for cross-platform GUI application development.
 
         \image happyguy.jpg image "Happy guy"
 
@@ -2428,14 +2426,14 @@
       \o \inlineimage happy.gif Oh so happy!
     \endlist
 
-    Her eis an example of including inline images in a table:
+    Here is an example of including inline images in a table:
 
     \code
     / *!
         \table
         \header
-            \o Trolltech
-            \o Trolltech
+            \o Qt
+            \o Qt Creator
         \row
             \o \inlineimage happy.gif Oh so happy!
             \o \inlineimage happy.gif Oh so happy!
@@ -2452,8 +2450,8 @@
         <table align="center" cellpadding="2"
             cellspacing="1" border="0">
         <tr valign="top" bgcolor="#a2c511">
-            <th>Trolltech</th>
-            <th>Trolltech</th>
+            <th>Qt</th>
+            <th>Qt Creator</th>
         </tr>
         <tr valign="top" bgcolor="#f0f0f0">
             <td><img src="images/happy.gif" alt="Oh so happy!" />
@@ -2475,10 +2473,10 @@
 
     \code
     / *!
-        \inlineimage training.jpg Training by Trolltech
+        \inlineimage training.jpg Qt Training
         The Qt Programming course is offered as a
         five day Open Enrollment Course. The classes
-        are open to the public.While the course is open
+        are open to the public. While the course is open
         to anyone who wants to learn, attendees should
         have significant experience in C++ development
         to derive maximum benefit from the course.
@@ -2488,10 +2486,10 @@
     QDoc renders this as:
 
     \quotation
-       \inlineimage training.jpg Training by Trolltech
+       \inlineimage training.jpg Qt Training
         The Qt Programming course is offered as a
         five day Open Enrollment Course. The classes
-        are open to the public.While the course is open
+        are open to the public. While the course is open
         to anyone who wants to learn, attendees should
         have significant experience in C++ development
         to derive maximum benefit from the course.
@@ -4681,8 +4679,8 @@
 
     \code
     / *!
-        \externalpage http://doc.trolltech.com/4.3/qtopiacore.html
-        \title Qtopia Core
+        \externalpage http://doc.qt.nokia.com/index.html
+        \title Qt Documentation Site
     * /
     \endcode
 
@@ -4691,35 +4689,33 @@
 
     \code
     / *!
-        The broad scope of the \l {Qtopia Core} API enables it to
-        be used across a wide variety of development projects.
+        At the \l {Qt Documentation Site} you can find the latest
+        documentation for Qt, Qt Creator, the Qt SDK and much more.
     * /
     \endcode
 
     QDoc renders this as:
 
     \quotation
-        The broad scope of the \l
-        {http://doc.trolltech.com/4.3/qtopiacore.html} {Qtopia
-        Core} API enables it to be used across a wide variety
-        of development projects.
+        At the \l {http://doc.qt.nokia.com/index.html}{Qt Documentation Site}
+        you can find the latest documentation for Qt, Qt Creator, the Qt SDK
+        and much more.
     \endquotation
 
     To achieve the same result without using the \\externalpage
-    command, you would have to hard code the adress into your
+    command, you would have to hard code the address into your
     documentation:
 
     \code
     / *!
-        The broad scope of the \l
-        {http://doc.trolltech.com/4.3/qtopiacore.html} {Qtopia
-        Core} API enables it to be used across a wide variety
-        of development projects.
+        At the \l {http://doc.qt.nokia.com/index.html}{Qt Documentation Site}
+        you can find the latest documentation for Qt, Qt Creator, the Qt SDK
+        and much more.
     * /
     \endcode
 
     The \\externalpage command makes it easier to maintain the
-    documentation. If the adress changes, you only need to change the
+    documentation. If the address changes, you only need to change the
     argument of the \\externalpage command.
 
     \target fn-command
@@ -5191,12 +5187,10 @@
 
                \title About Qt
 
-               Qt by Trolltech is a C++ toolkit for cross-platform GUI
+               Qt is a C++ toolkit for cross-platform GUI
                application development. Qt provides single-source
                portability across Microsoft Windows, Mac OS X, Linux,
-               and all major commercial Unix variants. (A version of
-               Qt 4 for embedded Linux will be available in
-               August/September 2005.)
+               and all major commercial Unix variants.
 
                Qt provides application developers with all the
                functionality needed to build applications with
@@ -5329,7 +5323,7 @@
 
     The \\qmlattachedproperty command is for documenting a QML
     property that will be attached to some QML element type. See
-    \l{http://doc.trolltech.com/4.7/qdeclarativeintroduction.html#attached-properties}
+    \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#attached-properties}
     {Attached Properties}. The argument is the rest of the line. The 
     argument text should be the property type, followed by the QML 
     element name where the property is being declared, the \c{::}
@@ -5354,14 +5348,14 @@
     \endcode
 
     QDoc includes this attached property on the QML reference page for the
-    \l{http://doc.trolltech.com/4.7/qml-listview.html#isCurrentItem-prop} 
+    \l{http://doc.qt.nokia.com/4.7/qml-listview.html#isCurrentItem-prop}
     {ListView} element.
 
     \target qmlattachedsignal-command
     \section1 \\qmlattachedsignal  \span {class="newStuff"} {(new)}
 
     The \\qmlattachedsignal command is for documenting an attachable 
-    \l{http://doc.trolltech.com/4.7/qdeclarativeintroduction.html#signal-handlers}
+    \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
     {signal handler}. The \\qmlattachedsignal command is used just like 
     the \l{qmlsignal-command} {\\qmlsignal} command. 
 
@@ -5380,7 +5374,7 @@
     \endcode
 
     QDoc includes this documentation on the QML reference page for the
-    \l{http://doc.trolltech.com/4.7/qml-gridview.html#onAdd-signal}
+    \l{http://doc.qt.nokia.com/4.7/qml-gridview.html#onAdd-signal}
     {GridView} element.
 
     \target qmlbasictype-command
@@ -5391,10 +5385,10 @@
     QML basic types group using the \l{ingroup-command}{\\ingroup}
     command as shown below. This will cause QDoc to include the 
     documentation for the type on the
-    \l{http://doc.trolltech.com/4.7/qdeclarativebasictypes.html}
+    \l{http://doc.qt.nokia.com/4.7/qdeclarativebasictypes.html}
     {QML Basic Types} page. The \l{brief-command} {\\brief} command
     is also required, because it appears on the 
-    \l{http://doc.trolltech.com/4.7/qdeclarativebasictypes.html}
+    \l{http://doc.qt.nokia.com/4.7/qdeclarativebasictypes.html}
     {QML Basic Types} page as well.
 
     \code
@@ -5418,7 +5412,7 @@
     * /
     \endcode
 
-    QDoc outputs this as \l{http://doc.trolltech.com/4.7/qml-int.html}
+    QDoc outputs this as \l{http://doc.qt.nokia.com/4.7/qml-int.html}
     {qml-int.html}.
 
     \target qmlclass-command
@@ -5458,7 +5452,7 @@
     \endcode
 
     This example generates the 
-    \l {http://doc.trolltech.com/4.7/qml-transform.html} {QML Trasform
+    \l {http://doc.qt.nokia.com/4.7/qml-transform.html} {QML Transform
     Element} page. The \\qmlclass comment should include the \l
     {since-command} {\\since} command, because all QML elements are
     new. It should also include the \l{brief-command} {\\brief}
@@ -5490,7 +5484,7 @@
     \endcode
 
     QDoc includes this documentation on the element refence page for the 
-    \l{http://doc.trolltech.com/4.7/qml-textinput.html#select-method}
+    \l{http://doc.qt.nokia.com/4.7/qml-textinput.html#select-method}
     {TextInput} element.
 
     \target qmlproperty-command
@@ -5512,14 +5506,14 @@
     \endcode
 
     QDoc includes this QML property on the QML reference page for the
-    \l {http://doc.trolltech.com/4.7/qml-translate.html} {Translate}
+    \l {http://doc.qt.nokia.com/4.7/qml-translate.html} {Translate}
     element.
 
     \target qmlsignal-command
     \section1 \\qmlsignal  \span {class="newStuff"} {(new)}
 
     The \\qmlsignal command is for documenting a  
-    \l{http://doc.trolltech.com/4.7/qdeclarativeintroduction.html#signal-handlers}
+    \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
     {signal handler}.
     The argument is the rest of the line. It should be the QML element where the
     signal handler is declared, the \c{::} qualifier, and finally the signal 
@@ -5541,7 +5535,7 @@
     \endcode
 
     QDoc includes this documentation on the QML reference page for the
-    \l{http://doc.trolltech.com/4.7/qml-mousearea.html#onEntered-signal}
+    \l{http://doc.qt.nokia.com/4.7/qml-mousearea.html#onEntered-signal}
     {MouseArea} element.
 
     \target typedef-command
@@ -6063,7 +6057,7 @@
     \section1 \\default  \span {class="newStuff"} {(new)}
 
     The \\default command is for marking a QML property as the 
-    \l {http://doc.trolltech.com/4.7/qdeclarativeintroduction.html#default-properties}
+    \l {http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#default-properties}
     {default property}. The word \span {class="newStuff"} {default} is shown in red in
     the documentation of the property.
 
@@ -6080,7 +6074,7 @@
     \endcode
 
     See how QDoc renders this property on the reference page for the
-    \l {http://doc.trolltech.com/4.7/qml-state.html#changes-prop} {State}
+    \l {http://doc.qt.nokia.com/4.7/qml-state.html#changes-prop} {State}
     element.
 
     \target obsolete-command
@@ -6502,11 +6496,11 @@
     \endcode
 
     QDoc includes this line on the reference page for the
-    \l{http://doc.trolltech.com/4.7/qml-pauseanimation.html} {PauseAnimation}
+    \l{http://doc.qt.nokia.com/4.7/qml-pauseanimation.html} {PauseAnimation}
     element:
 
     \quotation
-        Inherits \l{http://doc.trolltech.com/4.7/qml-animation.html} {Animation}
+        Inherits \l{http://doc.qt.nokia.com/4.7/qml-animation.html} {Animation}
     \endquotation
 
     \target overload-command
@@ -8155,7 +8149,7 @@
     \code
      HTML.postheader = "<table border=\"0\"..." \
                        ...
-                       "<img src=\"images/trolltech-logo.png\" \
+                       "<img src=\"images/qt-logo.png\" \
                        "align=\"right\" width=\"203\" height=\"32\""\
                       "border=\"0\" />" \
                        "</td></tr>" \
@@ -8163,7 +8157,7 @@
     \endcode
 
     The complete variable entry in \l qt.qdocconf provides the
-    standard header of the \l {http://qt.nokia.com/doc/4.0/index.html}
+    standard header of the \l {http://doc.qt.nokia.com/}
     {Qt Reference Documentation}.
 
     \target HTML.style-variable
@@ -8262,10 +8256,10 @@
     project's \e index file.
 
     \code
-        project = QtMotif
+        project = QtCreator
     \endcode
 
-    This will cause an index file called \c qtmotif.index to be
+    This will cause an index file called \c qtcreator.index to be
     created.
 
     See also \l description and \l indexes.
@@ -8284,14 +8278,14 @@
     \code
     project     = Qt
     description = Qt Reference Documentation
-    url         = http://qt.nokia.com/doc/4.0
+    url         = http://doc.qt.nokia.com/4.7
 
          ...
     \endcode
 
     This makes sure that whenever \c qt.index is used to generate
     references to for example Qt classes, the base URL is \c
-    http://qt.nokia.com/doc/4.0.
+    http://doc.qt.nokia.com/4.7.
 
     See also \l indexes.
 
@@ -8307,7 +8301,7 @@
     \code
         project     = Qt
         description = Qt Reference Documentation
-        url         = http://qt.nokia.com/doc/4.0
+        url         = http://doc.qt.nokia.com/4.7
 
         ...
     \endcode
@@ -8321,15 +8315,15 @@
     In a mini-project, you can use an index file by defining an \l
     indexes configuration variable in your \c .qdocconf file.
 
-    For example, you can create a \c qtmotif.qdocconf file to help you
-    check the QtMotif documentation (which is part of Qt Solutions):
+    For example, you can create a \c qtcreator.qdocconf file to help you
+    check the Qt Creator documentation:
 
     \code
         include($QTDIR/tools/qdoc3/test/compat.qdocconf)
 
-        project                 = QtMotif
-        description             = QtMotif Class Documentation
-        url                     = http://www.trolltech.com/products/solutions/catalog/4/Migration/qtmotifextension
+        project                 = QtCreator
+        description             = Qt Creator Class Documentation
+        url                     = http://doc.qt.nokia.com/qtcreator-2.2
 
         indexes                 = $QTDIR/doc/html/qt.index
 
