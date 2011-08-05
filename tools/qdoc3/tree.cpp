@@ -932,6 +932,28 @@ void Tree::readIndexSection(const QDomElement& element,
             location = Location(name.toLower() + ".html");
 
     }
+    else if (element.nodeName() == "qmlclass") {
+        FakeNode* fakeNode = new FakeNode(parent, name, Node::QmlClass, Node::ApiPage);
+        fakeNode->setTitle(element.attribute("title"));
+        if (element.hasAttribute("location"))
+            name = element.attribute("location", "");
+        if (!indexUrl.isEmpty())
+            location = Location(indexUrl + "/" + name);
+        else if (!indexUrl.isNull())
+            location = Location(name);
+        section = fakeNode;
+    }
+    else if (element.nodeName() == "qmlbasictype") {
+        FakeNode* fakeNode = new FakeNode(parent, name, Node::QmlBasicType, Node::ApiPage);
+        fakeNode->setTitle(element.attribute("title"));
+        if (element.hasAttribute("location"))
+            name = element.attribute("location", "");
+        if (!indexUrl.isEmpty())
+            location = Location(indexUrl + "/" + name);
+        else if (!indexUrl.isNull())
+            location = Location(name);
+        section = fakeNode;
+    }
     else if (element.nodeName() == "page") {
         Node::SubType subtype;
         Node::PageType ptype = Node::NoPageType;
@@ -1145,7 +1167,9 @@ void Tree::readIndexSection(const QDomElement& element,
     else
         section->setAccess(Node::Public);
 
-    if (element.nodeName() != "page") {
+    if ((element.nodeName() != "page") &&
+        (element.nodeName() != "qmlclass") &&
+        (element.nodeName() != "qmlbasictype")) {
         QString threadSafety = element.attribute("threadsafety");
         if (threadSafety == "non-reentrant")
             section->setThreadSafeness(Node::NonReentrant);
@@ -1198,6 +1222,8 @@ void Tree::readIndexSection(const QDomElement& element,
 
             while (!child.isNull()) {
                 if (element.nodeName() == "class")
+                    readIndexSection(child, inner, indexUrl);
+                else if (element.nodeName() == "qmlclass")
                     readIndexSection(child, inner, indexUrl);
                 else if (element.nodeName() == "page")
                     readIndexSection(child, inner, indexUrl);
@@ -1274,6 +1300,10 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
             break;
         case Node::Fake:
             nodeName = "page";
+            if (node->subType() == Node::QmlClass)
+                nodeName = "qmlclass";
+            else if (node->subType() == Node::QmlBasicType)
+                nodeName = "qmlbasictype";
             break;
         case Node::Enum:
             nodeName = "enum";
@@ -1447,10 +1477,10 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
                     writer.writeAttribute("subtype", "externalpage");
                     break;
                 case Node::QmlClass:
-                    writer.writeAttribute("subtype", "qmlclass");
+                    //writer.writeAttribute("subtype", "qmlclass");
                     break;
                 case Node::QmlBasicType:
-                    writer.writeAttribute("subtype", "qmlbasictype");
+                    //writer.writeAttribute("subtype", "qmlbasictype");
                     break;
                 default:
                     break;
@@ -2183,8 +2213,11 @@ QString Tree::fullDocumentName(const Node* node) const
             ((n->type() != Node::Fake) || (n->subType() != Node::QmlPropertyGroup)))
             pieces.insert(0, n->name());
 
-        if ((n->type() == Node::Fake) && (n->subType() != Node::QmlPropertyGroup))
+        if ((n->type() == Node::Fake) && (n->subType() != Node::QmlPropertyGroup)) {
+            if ((n->subType() == Node::QmlClass) && !n->qmlModuleName().isEmpty())
+                pieces.insert(0, n->qmlModuleQualifier());
             break;
+        }
 
         // Examine the parent node if one exists.
         if (n->parent())
@@ -2194,10 +2227,11 @@ QString Tree::fullDocumentName(const Node* node) const
     } while (true);
 
     // Create a name based on the type of the ancestor node.
-    if (n->type() == Node::Fake)
-        return pieces.join("#");
-    else
-        return pieces.join("::");
+    QString concatenator = "::";
+    if ((n->type() == Node::Fake) && (n->subType() != Node::QmlClass))
+        concatenator = "#";
+
+    return pieces.join(concatenator);
 }
 
 QT_END_NAMESPACE

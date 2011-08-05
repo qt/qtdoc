@@ -4240,8 +4240,15 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
             QString fb = node->fileBase();
             if (fb.startsWith(Generator::outputPrefix(QLatin1String("QML"))))
                 return fb + ".html";
-            else
-                return Generator::outputPrefix(QLatin1String("QML")) + node->fileBase() + QLatin1String(".html");
+            else {
+                QString mq = "";
+                if (!node->qmlModuleName().isEmpty()) {
+                    mq = node->qmlModuleQualifier().replace(QChar('.'),QChar('-'));
+                    mq = mq.toLower() + "-";
+                }
+                return Generator::outputPrefix(QLatin1String("QML")) + mq +
+                    node->fileBase() + QLatin1String(".html");
+            }
         }
         else
             parentName = node->fileBase() + ".html";
