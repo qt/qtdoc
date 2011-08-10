@@ -2435,7 +2435,6 @@ void CppCodeParser::createExampleFileNodes(FakeNode *fake)
     QStringList exampleFiles = Config::getFilesHere(fullPath,exampleNameFilter);
     QString imagesPath = fullPath + "/images";
     QStringList imageFiles = Config::getFilesHere(imagesPath,exampleImageFilter);
-
     if (!exampleFiles.isEmpty()) {
         // move main.cpp and to the end, if it exists
         QString mainCpp;
@@ -2455,7 +2454,7 @@ void CppCodeParser::createExampleFileNodes(FakeNode *fake)
             exampleFiles.append(mainCpp);
 
         // add any qmake Qt resource files and qmake project files
-        exampleFiles += Config::getFilesHere(fullPath, "*.qrc *.pro qmldir");
+        exampleFiles += Config::getFilesHere(fullPath, "*.qrc *.pro *.qmlproject qmldir");
     }
 
     foreach (const QString &exampleFile, exampleFiles)
