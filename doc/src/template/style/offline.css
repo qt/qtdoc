@@ -74,8 +74,7 @@
 
     body
     {
-        margin-left: 0.5em;
-        margin-right: 0.5em;
+        margin: 0px;
         font-family: sans-serif;
         line-height: normal
     }
@@ -238,6 +237,8 @@
 
     .header .content
     {
+        margin-left: 5px;
+        margin-top: 5px;
         margin-bottom: 0.5em
     }
 
@@ -411,6 +412,11 @@
     }
 
     .flowList dd a{
+    }
+
+    .mainContent
+    {
+        padding-left: 5px;
     }
 
     .content .flowList p{
