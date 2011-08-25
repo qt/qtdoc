@@ -623,7 +623,7 @@ bool Config::isMetaKeyChar(QChar ch)
   Load, parse, and process a qdoc configuration file. This
   function is only called by the other load() function, but
   this one is recursive, i.e., it calls itself when it sees
-  an \c{include} statement in the qdog configuration file.
+  an \c{include} statement in the qdoc configuration file.
  */
 void Config::load(Location location, const QString& fileName)
 {

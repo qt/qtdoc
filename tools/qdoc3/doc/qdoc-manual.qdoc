@@ -4314,9 +4314,10 @@
 
     \target topic argument
 
-    The name of the thing being documented is the unique argument for
-    each topic command. The naming convention is to use the complete
-    name.
+    The name of the entity being documented is usually the only
+    argument for a topic command. Use the complete name. Sometimes
+    there can be a second parameter in the argument. See e.g. \l
+    {page-command} {\\page}.
 
     \code
         \enum QComboBox::InsertPolicy
@@ -4331,12 +4332,12 @@
     \endcode
 
     A topic command can appear anywhere in a comment but must stand
-    alone on its own line. Best practice is to put the topic commend
-    at the top of the comment. If the argument spans several lines,
-    make sure that each line (except the last one) is ended with a
-    backslash. In addition QDoc counts parentheses, which means that
-    if it encounters a '(' it considers everything until the closing
-    ')' as its argument.
+    alone on its own line. Best practice is to let the topic commend
+    be the first line of the comment. If the argument spans several
+    lines, make sure that each line (except the last one) is ended
+    with a backslash. In addition QDoc counts parentheses, which means
+    that if it encounters a '(' it considers everything until the
+    closing ')' as its argument.
 
     If a topic command is repeated with different arguments, the
     same documentation will appear for both the units.
@@ -5177,9 +5178,34 @@
     \section1 \\page 
 
     The \\page command is for creating a stand-alone documentation
-    page.  The argument is the name of the file where QDoc should
-    store the page. The page title is set using the \l {title-command}
-    {\\title} command.
+    page.  The argument can consist of two parts separated by a
+    space. The first part is the name of the file where QDoc should
+    store the page. The second part, if present, is a word that
+    specifies the page type. Currently, the second part can be one of
+    the following list of words:
+
+    \list
+
+    \o faq - A frequently asked question.
+
+    \o howto - A user guide for how to use some component of the
+    software.
+
+    \o example - A page that describes a working example.
+
+    \o overview - For text pages that provide an overview of some
+    important subject.
+
+    \o tutorial - For text pages that are part of a tutorial.
+
+    \o api - This is the type of page used for C++ class references
+    and QML element references, etc. You should never use this one for
+    the pages you write, because this one is reserved for qdoc.
+
+    \endlist
+
+    The page title is set using the \l {title-command} {\\title}
+    command.
 
            \code
            / *!

@@ -165,6 +165,27 @@ static void processQdocconfFile(const QString &fileName)
     Location::initialize(config);
     config.load(fileName);
 
+    QStringList sourceModules;
+    sourceModules = config.getStringList(CONFIG_SOURCEMODULES);
+    Location sourceModulesLocation = config.lastLocation();
+
+    if (!sourceModules.isEmpty()) {
+        Location::information(tr("qdoc will generate documentation for the modules found in the sourcemodules variable."));
+        foreach (const QString& sourceModule, sourceModules) {
+            QString qdocconf = sourceModule;
+            if (!qdocconf.endsWith(".qdocconf"))
+                qdocconf += "/doc/config/module.qdocconf";
+            QFile f(qdocconf);
+            if (!f.exists()) {
+                sourceModulesLocation.warning(tr("Can't find module's qdoc config file '%1'").arg(qdocconf));
+            }
+            else {
+                Location::information(tr("  Including: %1").arg(qdocconf));
+                config.load(qdocconf);
+            }
+        }
+    }
+
     /*
       Add the defines to the configuration variables.
      */
@@ -255,27 +276,22 @@ static void processQdocconfFile(const QString &fileName)
     }
 #endif
 
-    /*
-      Read the list of excluded directories.
-     */
     QSet<QString> excludedDirs;
-    QStringList excludedDirsList = config.getStringList(CONFIG_EXCLUDEDIRS);
+    QSet<QString> headers;
+    QSet<QString> sources;
+    QStringList headerList;
+    QStringList sourceList;
+    QStringList excludedDirsList;
+
+    excludedDirsList = config.getStringList(CONFIG_EXCLUDEDIRS);
     foreach (const QString &excludeDir, excludedDirsList)
         excludedDirs.insert(QDir::fromNativeSeparators(excludeDir));
 
-    /*
-      Get all the header files: "*.ch *.h *.h++ *.hh *.hpp *.hxx"
-      Put them in a set.
-     */
-    QSet<QString> headers = QSet<QString>::fromList(
-        config.getAllFiles(CONFIG_HEADERS, CONFIG_HEADERDIRS, excludedDirs));
+    headerList = config.getAllFiles(CONFIG_HEADERS,CONFIG_HEADERDIRS,excludedDirs);
+    headers = QSet<QString>::fromList(headerList);
 
-    /*
-      Get all the source text files: "*.cpp *.qdoc *.mm"
-      Put them in a set.
-     */
-    QSet<QString> sources = QSet<QString>::fromList(
-        config.getAllFiles(CONFIG_SOURCES, CONFIG_SOURCEDIRS, excludedDirs));
+    sourceList = config.getAllFiles(CONFIG_SOURCES,CONFIG_SOURCEDIRS,excludedDirs);
+    sources = QSet<QString>::fromList(sourceList);
 
     /*
       Parse each header file in the set using the appropriate parser and add it

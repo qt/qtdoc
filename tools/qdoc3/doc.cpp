@@ -3167,12 +3167,12 @@ CodeMarker *Doc::quoteFromFile(const Location &location,
                                         DocParser::exampleDirs,
                                         fileName, userFriendlyFilePath);
     if (filePath.isEmpty()) {
-        location.warning(tr("Cannot find example file '%1'").arg(fileName));
+        location.warning(tr("Cannot find file to quote from: '%1'").arg(fileName));
     }
     else {
         QFile inFile(filePath);
         if (!inFile.open(QFile::ReadOnly)) {
-            location.warning(tr("Cannot open example file '%1'").arg(userFriendlyFilePath));
+            location.warning(tr("Cannot open file to quote from: '%1'").arg(userFriendlyFilePath));
         }
         else {
             QTextStream inStream(&inFile);
