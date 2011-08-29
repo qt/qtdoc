@@ -1237,6 +1237,18 @@ bool CppCodeParser::matchCompat()
     }
 }
 
+bool CppCodeParser::matchModuleQualifier(QString& name)
+{
+    bool matches = (lexeme() == QString('.'));
+    if (matches) {
+        do {
+            name += lexeme();
+            readToken();
+        } while ((tok == Tok_Ident) || (lexeme() == QString('.')));
+    }
+    return matches;
+}
+
 bool CppCodeParser::matchTemplateAngles(CodeChunk *dataType)
 {
     bool matches = (tok == Tok_LeftAngle);
@@ -1436,7 +1448,6 @@ bool CppCodeParser::matchFunctionDecl(InnerNode *parent,
     QString name;
 
     bool compat = false;
-
     if (match(Tok_friend))
         return false;
     match(Tok_explicit);
@@ -1509,6 +1520,12 @@ bool CppCodeParser::matchFunctionDecl(InnerNode *parent,
     else {
         while (match(Tok_Ident)) {
             name = previousLexeme();
+
+            /*
+              This is a hack to let QML module identifiers through.
+             */
+            matchModuleQualifier(name);
+
             matchTemplateAngles();
 
             if (match(Tok_Gulbrandsen))

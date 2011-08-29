@@ -123,6 +123,7 @@ class CppCodeParser : public CodeParser
     bool match(int target);
     bool skipTo(int target);
     bool matchCompat();
+    bool matchModuleQualifier(QString& name);
     bool matchTemplateAngles(CodeChunk *type = 0);
     bool matchTemplateHeader();
     bool matchDataType(CodeChunk *type, QString *var = 0);
