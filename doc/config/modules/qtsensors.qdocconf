@@ -1,9 +1,15 @@
+# QT_SENSORS_SOURCES points to qtsensors/src/sensors
+# We need to point to qtsensors/src so we can pick
+# up the QML plugin
+
 headerdirs  += $QT_SENSORS_SOURCES/..
 
-sourcedirs  += $QT_SENSORS_SOURCES/..
+sourcedirs  += $QT_SENSORS_SOURCES/.. \
+               $QT_SENSORS_SOURCES/../../doc/src
 
-exampledirs += 
+exampledirs += $QT_SENSORS_SOURCES/../../examples \
+               $QT_SENSORS_SOURCES/../../doc/src
 
-imagedirs   += 
+imagedirs   += $QT_SENSORS_SOURCES/../../doc/src/images
 
 excludedirs += 
