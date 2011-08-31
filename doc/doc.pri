@@ -49,7 +49,6 @@ MODULES = activeqt \
 
 LOCATIONS =
 INCLUDES =
-
 for(module, MODULES) {
 
     INCLUDES += $$SET
@@ -60,7 +59,6 @@ for(module, MODULES) {
     module_name = $$upper($$module)
     module_name = $$replace(module_name, "-", "_")
     module_value = $$eval(QT.$$replace(module, "-", "_").sources)
-
     !isEmpty(module_value) {
         LOCATIONS += $$SET
         LOCATIONS += QT_$${module_name}_SOURCES=$$module_value
@@ -72,8 +70,13 @@ for(module, MODULES) {
         INCLUDES += QT_$${module_name}_QDOCCONF=modules/missing.qdocconf
         debug : message($$module not found.)
     }
-
     INCLUDES += $$SEP
+}
+
+#MAKE_QMAKE will perform a 'make qmake' to run syncqt
+coresources = $$eval(QT.core.sources)
+!isEmpty(coresources) {
+    MAKE_QMAKE = make $$QT.core.sources/../../Makefile qmake &&
 }
 
 # Output the locations and includes as build messages. This helps the user to
@@ -126,7 +129,7 @@ $$unixstyle {
 # Build rules:
 # docs -> sub-qdoc3 online_docs qch_docs
 
-online_docs.commands = ($$QDOC $$ONLINE_QDOCCONF)
+online_docs.commands = ($$MAKE_QMAKE $$QDOC $$ONLINE_QDOCCONF)
 online_docs.depends += sub-qdoc3
 
 qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
@@ -149,7 +152,7 @@ docimages.files = src/images
 docimages.path = $$[QT_INSTALL_DOCS]/src
 
 #sub-qdoc3.depends = sub-corelib sub-xml
-sub-qdoc3.commands += (cd tools/qdoc3 && $(MAKE))
+sub-qdoc3.commands += (cd tools/qdoc3 && $$QT.core.bins/qmake && $(MAKE))
 
 QMAKE_EXTRA_TARGETS += sub-qdoc3 online_docs qch_docs docs
 INSTALLS += htmldocs qchdocs docimages

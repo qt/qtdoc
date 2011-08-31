@@ -1,0 +1,10 @@
+To Generate Qt Documentation:
+
+Prerequisites:
+    * qtbase exists and qmake built
+    * qtbase's Makefile exists
+    * other modules exists as needed
+
+Instructions:
+    $> <path_to_Qt_5_qmake>/qmake
+    $> make online_docs
