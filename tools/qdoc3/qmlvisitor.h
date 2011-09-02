@@ -67,6 +67,12 @@ public:
 
     bool visit(QDeclarativeJS::AST::IdentifierPropertyName *idproperty);
 
+    bool visit(QDeclarativeJS::AST::UiSignature *signature);
+    void endVisit(QDeclarativeJS::AST::UiSignature *signature);
+
+    bool visit(QDeclarativeJS::AST::FunctionDeclaration *);
+    void endVisit(QDeclarativeJS::AST::FunctionDeclaration *);
+
 private:
     QDeclarativeJS::AST::SourceLocation precedingComment(quint32 offset) const;
     void applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node *node);

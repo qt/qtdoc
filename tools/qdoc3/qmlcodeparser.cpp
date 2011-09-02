@@ -78,7 +78,10 @@ QmlCodeParser::~QmlCodeParser()
 }
 
 /*!
-  Initialize the code parser base class.
+  Initializes the code parser base class. The \a config argument
+  is passed to the initialization functions in the base class.
+
+  Also creates a lexer and parser from QDeclarativeJS.
  */
 void QmlCodeParser::initializeParser(const Config &config)
 {
@@ -88,22 +91,39 @@ void QmlCodeParser::initializeParser(const Config &config)
     parser = new QDeclarativeJS::Parser(&engine);
 }
 
+/*!
+  Deletes the lexer and parser created by the constructor.
+ */
 void QmlCodeParser::terminateParser()
 {
     delete lexer;
     delete parser;
 }
 
+/*!
+  Returns "QML".
+ */
 QString QmlCodeParser::language()
 {
     return "QML";
 }
 
+/*!
+  Returns a filter string of "*.qml".
+ */
 QStringList QmlCodeParser::sourceFileNameFilter()
 {
     return QStringList("*.qml");
 }
 
+/*!
+  Parses the source file at \a filePath, creating nodes as
+  needed and inserting them into the \a tree. \a location is
+  used for error reporting.
+
+  If it can't open the file at \a filePath, it reports an
+  error and returns without doing anything.
+ */
 void QmlCodeParser::parseSourceFile(const Location& location,
                                     const QString& filePath,
                                     Tree *tree)
@@ -137,6 +157,10 @@ void QmlCodeParser::parseSourceFile(const Location& location,
     }
 }
 
+/*!
+  This function is called when the parser finishes parsing
+  the file, but in this case the function does nothing.
+ */
 void QmlCodeParser::doneParsingSourceFiles(Tree *tree)
 {
 }
@@ -168,8 +192,10 @@ QSet<QString> QmlCodeParser::otherMetaCommands()
                                 << COMMAND_QMLDEFAULT;
 }
 
-/*
-Copied and pasted from src/declarative/qml/qdeclarativescriptparser.cpp.
+/*!
+  Copy and paste from src/declarative/qml/qdeclarativescriptparser.cpp.
+  This function blanks out the section of the \a str beginning at \a idx
+  and running for \a n characters.
 */
 static void replaceWithSpace(QString &str, int idx, int n) 
 {
@@ -179,13 +205,12 @@ static void replaceWithSpace(QString &str, int idx, int n)
         *data++ = space;
 }
 
-/*
-Copied and pasted from src/declarative/qml/qdeclarativescriptparser.cpp then
-modified to return no values.
+/*!
+  Copy & paste from src/declarative/qml/qdeclarativescriptparser.cpp,
+  then modified to return no values.
 
-Searches for ".pragma <value>" declarations within \a script.  Currently supported pragmas
-are:
-    library
+  Searches for ".pragma <value>" declarations within \a script.
+  Currently supported pragmas are: library
 */
 void QmlCodeParser::extractPragmas(QString &script)
 {

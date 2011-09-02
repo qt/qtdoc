@@ -45,7 +45,7 @@
 #include "declarativeparser/qdeclarativejsast_p.h"
 #include "declarativeparser/qdeclarativejsastfwd_p.h"
 #include "declarativeparser/qdeclarativejsengine_p.h"
-
+#include <qdebug.h>
 #include "node.h"
 #include "qmlvisitor.h"
 
@@ -230,6 +230,63 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiPublicMember *definition)
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::IdentifierPropertyName *idproperty)
 {
     return true;
+}
+
+/*!
+ */
+bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiSignature *signature)
+{
+    qDebug() << "SIGNATURE";
+    if (current->type() == Node::Fake) {
+        QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
+        if (qmlClass) {
+            qDebug() << "GOT HEAH:" << qmlClass->name();
+            QDeclarativeJS::AST::UiFormalList *formals = signature->formals;
+            if (formals) {
+                QDeclarativeJS::AST::UiFormalList *fl = formals;
+                do {
+                    QDeclarativeJS::AST::UiFormal *f = fl->formal;
+                    fl = fl->next;
+                } while (fl != formals);
+            }
+        }
+    }
+    return true;
+}
+
+/*!
+ */
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiSignature *definition)
+{
+    lastEndOffset = definition->lastSourceLocation().end();
+}
+
+bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
+{
+    if (current->type() == Node::Fake) {
+        QmlClassNode* qmlClass = static_cast<QmlClassNode*>(current);
+        if (qmlClass) {
+            QString name = fd->name->asString();
+            FunctionNode* qmlMethod = new FunctionNode(Node::QmlMethod, current, name, false);
+            QList<Parameter> parameters;
+            QDeclarativeJS::AST::FormalParameterList* formals = fd->formals;
+            if (formals) {
+                QDeclarativeJS::AST::FormalParameterList* fpl = formals;
+                do {
+                    parameters.append(Parameter(QString(""), QString(""), fpl->name->asString()));
+                    fpl = fpl->next;
+                } while (fpl && fpl != formals);
+                qmlMethod->setParameters(parameters);
+                applyDocumentation(fd->firstSourceLocation(), qmlMethod);
+            }
+        }
+    }
+    return true;
+}
+
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::FunctionDeclaration* definition)
+{
+    lastEndOffset = definition->lastSourceLocation().end();
 }
 
 QT_END_NAMESPACE
