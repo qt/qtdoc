@@ -51,8 +51,12 @@
 
 QT_BEGIN_NAMESPACE
 
-QmlDocVisitor::QmlDocVisitor(const QString &filePath, const QString &code,
-                       QDeclarativeJS::Engine *engine, Tree *tree, QSet<QString> &commands)
+QmlDocVisitor::QmlDocVisitor(const QString &filePath,
+                             const QString &code,
+                             QDeclarativeJS::Engine *engine,
+                             Tree *tree,
+                             QSet<QString> &commands)
+    : nestingLevel(0)
 {
     this->filePath = filePath;
     this->name = QFileInfo(filePath).baseName();
@@ -121,11 +125,16 @@ void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
 }
 
 /*!
-    Visits element definitions, recording them in a tree structure.
+
+  Begin the visit of the object \a definition, recording it in a tree
+  structure.  Increment the object nesting level, which is used to
+  test whether we are at the public API level. The public level is
+  level 1.
 */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
 {
     QString type = definition->qualifiedTypeNameId->name->asString();
+    nestingLevel++;
 
     if (current->type() == Node::Namespace) {
         QmlClassNode *component = new QmlClassNode(current, name, 0);
@@ -142,17 +151,28 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
     return true;
 }
 
+/*!
+  End the visit of the object \a definition. In particular,
+  decrement the object nesting level, which is used to test
+  whether we are at the public API level. The public API
+  level is level 1. It won't decrement below 0.
+ */
 void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiObjectDefinition *definition)
 {
+    if (nestingLevel > 0)
+        --nestingLevel;
     lastEndOffset = definition->lastSourceLocation().end();
 }
 
+/*!
+  Note that the imports list can be traversed by iteration to obtain
+  all the imports in the document at once, having found just one:
+
+  *it = imports; it; it = it->next
+
+ */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiImportList *imports)
 {
-    // Note that the imports list can be traversed by iteration to obtain
-    // all the imports in the document at once, having found just one:
-    // *it = imports; it; it = it->next
-
     QString module = document.mid(imports->import->fileNameToken.offset,
                                   imports->import->fileNameToken.length);
     QString version = document.mid(imports->import->versionToken.offset,
@@ -162,17 +182,23 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiImportList *imports)
     return true;
 }
 
+/*!
+  End the visit of the imports list.
+ */
 void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiImportList *definition)
 {
     lastEndOffset = definition->lastSourceLocation().end();
 }
 
 /*!
-    Visits public member declarations, such as signals and properties.
-    These only include custom signals and properties.
+    Visits the public \a member declaration, which can be a
+    signal or a property. It is a custom signal or property.
+    Only visit the \a member if the nestingLevel is 1.
 */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
 {
+    if (nestingLevel > 1)
+        return true;
     switch (member->type) {
     case QDeclarativeJS::AST::UiPublicMember::Signal:
     {
@@ -222,9 +248,12 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
     return true;
 }
 
-void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiPublicMember *definition)
+/*!
+  End the visit of the \a member.
+ */
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiPublicMember* member)
 {
-    lastEndOffset = definition->lastSourceLocation().end();
+    lastEndOffset = member->lastSourceLocation().end();
 }
 
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::IdentifierPropertyName *idproperty)
@@ -261,8 +290,14 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiSignature *definition)
     lastEndOffset = definition->lastSourceLocation().end();
 }
 
+/*!
+  Begin the visit of the function declaration \a fd, but only
+  if the nesting level is 1.
+ */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
 {
+    if (nestingLevel > 1)
+        return true;
     if (current->type() == Node::Fake) {
         QmlClassNode* qmlClass = static_cast<QmlClassNode*>(current);
         if (qmlClass) {
@@ -284,9 +319,12 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
     return true;
 }
 
-void QmlDocVisitor::endVisit(QDeclarativeJS::AST::FunctionDeclaration* definition)
+/*!
+  End the visit of the function declaration, \a fd.
+ */
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::FunctionDeclaration* fd)
 {
-    lastEndOffset = definition->lastSourceLocation().end();
+    lastEndOffset = fd->lastSourceLocation().end();
 }
 
 QT_END_NAMESPACE

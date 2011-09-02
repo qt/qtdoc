@@ -79,6 +79,7 @@ private:
 
     QDeclarativeJS::Engine *engine;
     quint32 lastEndOffset;
+    quint32 nestingLevel;
     QString filePath;
     QString name;
     QString document;
