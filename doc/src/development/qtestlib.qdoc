@@ -174,27 +174,62 @@
 
     \section3 Options
 
-    The following command line arguments are understood:
+    \section4 Logging Options
+
+    The following command line options determine how test results are reported:
 
     \list
-    \o \c -help \BR
-    outputs the possible command line arguments and give some useful help.
-    \o \c -functions \BR
-    outputs all test functions available in the test.
+    \o \c -o \e{filename,format} \BR
+    write output to the specified file, in the specified format (one of
+    \c txt, \c xml, \c lightxml or \c xunitxml).  The special filename \c -
+    may be used to log to standard output.
     \o \c -o \e filename \BR
-    write output to the specified file, rather than to standard output
+    write output to the specified file.
+    \o \c -txt \BR
+    outputs results in plain text.
+    \o \c -xml \BR
+    outputs results as an XML document.
+    \o \c -lightxml \BR
+    outputs results as a stream of XML tags.
+    \o \c -xunitxml \BR
+    outputs results as an Xunit XML document.
+    \endlist
+
+    The first version of the \c -o option may be repeated in order to log
+    test results in multiple formats, but no more than one instance of this
+    option can log test results to standard output.
+
+    If the first version of the \c -o option is used, neither the second version
+    of the \c -o option nor the \c -txt, \c -xml, \c -lightxml or \c -xunitxml
+    options should be used.
+
+    If neither version of the \c -o option is used, test results will be logged to
+    standard output.  If no format option is used, test results will be logged in
+    plain text.
+
+    \section4 Detail Options
+
+    The following command line options control how much detail is reported
+    in test logs:
+
+    \list
     \o \c -silent \BR
-    silent output, only shows warnings, failures and minimal status messages
+    silent output, only shows warnings, failures and minimal status messages.
     \o \c -v1 \BR
     verbose output; outputs information on entering and exiting test functions.
     \o \c -v2 \BR
-    extended verbose output; also outputs each \l QCOMPARE() and \l QVERIFY()
+    extended verbose output; also outputs each \l QCOMPARE() and \l QVERIFY().
     \o \c -vs \BR
-    outputs every signal that gets emitted
-    \o \c -xml \BR
-    outputs XML formatted results instead of plain text
-    \o \c -lightxml \BR
-    outputs results as a stream of XML tags
+    outputs every signal that gets emitted.
+    \endlist
+
+    \section4 Testing Options
+
+    The following command-line options influence how tests are run:
+
+    \list
+    \o \c -functions \BR
+    outputs all test functions available in the test, then quits.
     \o \c -eventdelay \e ms \BR
     if no delay is specified for keyboard or mouse simulation
     (\l QTest::keyClick(),
@@ -207,9 +242,39 @@
     like -eventdelay, but only influences mouse simulation and not keyboard
     simulation.
     \o \c -keyevent-verbose \BR
-    output more verbose output for keyboard simulation
+    output more verbose output for keyboard simulation.
     \o \c -maxwarnings \e number\BR
     sets the maximum number of warnings to output. 0 for unlimited, defaults to 2000.
+    \o \c -nocrashhandler \BR
+    disables the crash handler on Unix platforms.
+    \endlist
+
+    \section4 Benchmarking Options
+
+    The following command line options control benchmark testing:
+
+    \list
+    \o \c -callgrind \BR
+    use callgrind to time benchmarks (Linux only).
+    \o \c -tickcounter \BR
+    use CPU tick counters to time benchmarks.
+    \o \c -eventcounter \BR
+    counts events received during benchmarks.
+    \o \c -minimumvalue \e n \BR
+    sets the minimum acceptable measurement value.
+    \o \c -iterations \e n \BR
+    sets the number of accumulation iterations.
+    \o \c -median \e n \BR
+    sets the number of median iterations.
+    \o \c -vb \BR
+    output verbose benchmarking information.
+    \endlist
+
+    \section4 Miscellaneous Options
+
+    \list
+    \o \c -help \BR
+    outputs the possible command line arguments and give some useful help.
     \endlist
 
     \section2 Creating a Benchmark
