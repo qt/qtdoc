@@ -1,9 +1,17 @@
-headerdirs  += $QT_SYSTEMS_SOURCES/..
+headerdirs  += $QT_SYSTEMINFO_SOURCES \
+               $QT_SYSTEMINFO_SOURCES/../../plugins/declarative/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
-sourcedirs  += $QT_SYSTEMS_SOURCES/..
+sourcedirs  += $QT_SYSTEMINFO_SOURCES \
+               $QT_SYSTEMINFO_SOURCES/../../plugins/declarative/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../../doc/src/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
-exampledirs += 
+exampledirs += $QT_SYSTEMINFO_SOURCES/../.. \
+               $QT_SYSTEMINFO_SOURCES/../../doc/src/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
-imagedirs   += 
+imagedirs   += $QT_SYSTEMINFO_SOURCES/../../doc/src/systeminfo/images \
+               $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
-excludedirs += 
+excludedirs += $QT_SYSTEMINFO_SOURCES/../imports

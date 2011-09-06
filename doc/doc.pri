@@ -35,8 +35,10 @@ MODULES = activeqt \
           location \
           multimedia \
           phonon \
+          publishsubscribe \
           script \ # scripttools
           sensors \
+          serviceframework \
           systeminfo \
           svg \
           webkit \
