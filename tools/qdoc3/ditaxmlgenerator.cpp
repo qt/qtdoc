@@ -4343,6 +4343,26 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
         }
         writeEndTag(); // </ul>
     }
+    else if (node->type() == Node::QmlProperty) {
+        qpn = static_cast<const QmlPropertyNode*>(node);
+        writeStartTag(DT_ul);
+        writeStartTag(DT_li);
+        writeGuidAttribute((Node*)qpn);
+        QString attr;
+        const ClassNode* cn = qpn->declarativeCppNode();
+        if (cn && !qpn->isWritable(myTree))
+            attr = "read-only";
+        if (qpn->isDefault()) {
+            if (!attr.isEmpty())
+                attr += " ";
+            attr += "default";
+        }
+        if (!attr.isEmpty())
+            xmlWriter().writeAttribute("outputclass",attr);
+        generateQmlItem(qpn, relative, marker, false);
+        writeEndTag(); // </li>
+        writeEndTag(); // </ul>
+    }
     else if (node->type() == Node::QmlSignal) {
         Node* n = const_cast<Node*>(node);
         writeStartTag(DT_ul);

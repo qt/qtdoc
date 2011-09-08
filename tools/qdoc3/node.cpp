@@ -1886,6 +1886,24 @@ QmlPropertyNode::QmlPropertyNode(QmlPropGroupNode *parent,
       dt(type),
       sto(Trool_Default),
       des(Trool_Default),
+      isdefault(false),
+      att(attached)
+{
+    setPageType(ApiPage);
+}
+
+/*!
+  Constructor for the QML property node.
+ */
+QmlPropertyNode::QmlPropertyNode(QmlClassNode *parent,
+                                 const QString& name,
+                                 const QString& type,
+                                 bool attached)
+    : LeafNode(QmlProperty, parent, name),
+      dt(type),
+      sto(Trool_Default),
+      des(Trool_Default),
+      isdefault(false),
       att(attached)
 {
     setPageType(ApiPage);

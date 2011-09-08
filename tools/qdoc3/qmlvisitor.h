@@ -52,8 +52,12 @@ QT_BEGIN_NAMESPACE
 class QmlDocVisitor : public QDeclarativeJS::AST::Visitor
 {
 public:
-    QmlDocVisitor(const QString &filePath, const QString &code,
-               QDeclarativeJS::Engine *engine, Tree *tree, QSet<QString> &commands);
+    QmlDocVisitor(const QString &filePath,
+                  const QString &code,
+                  QDeclarativeJS::Engine *engine,
+                  Tree *tree,
+                  QSet<QString> &commands,
+                  QSet<QString> &topics);
     virtual ~QmlDocVisitor();
 
     bool visit(QDeclarativeJS::AST::UiImportList *imports);
@@ -85,6 +89,7 @@ private:
     QString document;
     QList<QPair<QString, QString> > importList;
     QSet<QString> commands;
+    QSet<QString> topics;
     QSet<quint32> usedComments;
     Tree *tree;
     InnerNode *current;

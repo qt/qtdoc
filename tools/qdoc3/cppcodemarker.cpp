@@ -1173,6 +1173,13 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                         ++p;
                     }
                 }
+                else if ((*c)->type() == Node::QmlProperty) {
+                    const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*c);
+                    if (pn->isAttached())
+                        insert(qmlattachedproperties,*c,style,Okay);
+                    else
+                        insert(qmlproperties,*c,style,Okay);
+                }
                 else if ((*c)->type() == Node::QmlSignal) {
                     const FunctionNode* sn = static_cast<const FunctionNode*>(*c);
                     if (sn->isAttached())
@@ -1215,6 +1222,13 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                     else
                         insert(qmlproperties,*c,style,Okay);
 	        }
+                else if ((*c)->type() == Node::QmlProperty) {
+                    const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*c);
+                    if (pn->isAttached())
+                        insert(qmlattachedproperties,*c,style,Okay);
+                    else
+                        insert(qmlproperties,*c,style,Okay);
+                }
                 else if ((*c)->type() == Node::QmlSignal) {
                     const FunctionNode* sn = static_cast<const FunctionNode*>(*c);
                     if (sn->isAttached())

@@ -501,6 +501,10 @@ class Tree;
 class QmlPropertyNode : public LeafNode
 {
  public:
+    QmlPropertyNode(QmlClassNode *parent,
+                    const QString& name,
+                    const QString& type,
+                    bool attached);
     QmlPropertyNode(QmlPropGroupNode* parent, 
                     const QString& name,
                     const QString& type,
@@ -514,6 +518,8 @@ class QmlPropertyNode : public LeafNode
 
     const QString &dataType() const { return dt; }
     QString qualifiedDataType() const { return dt; }
+    void setDefault() { isdefault = true; }
+    bool isDefault() const { return isdefault; }
     bool isStored() const { return fromTrool(sto,true); }
     bool isDesignable() const { return fromTrool(des,false); }
     bool isWritable(const Tree* tree) const;
@@ -534,6 +540,7 @@ class QmlPropertyNode : public LeafNode
     Trool   sto;
     Trool   des;
     Trool   wri;
+    bool    isdefault;
     bool    att;
 };
 

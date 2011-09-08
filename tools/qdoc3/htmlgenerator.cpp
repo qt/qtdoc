@@ -3802,6 +3802,27 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         out() << "</table>";
         out() << "</div>";
     }
+    else if (node->type() == Node::QmlProperty) {
+        qpn = static_cast<const QmlPropertyNode*>(node);
+        out() << "<div class=\"qmlproto\">";
+        out() << "<table class=\"qmlname\">";
+        if (++numTableRows % 2 == 1)
+            out() << "<tr valign=\"top\" class=\"odd\">";
+        else
+            out() << "<tr valign=\"top\" class=\"even\">";
+        out() << "<td class=\"tblQmlPropNode\"><p>";
+        out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
+        const ClassNode* cn = qpn->declarativeCppNode();
+        if (cn && !qpn->isWritable(myTree)) {
+            out() << "<span class=\"qmlreadonly\">read-only</span>";
+        }
+        if (qpn->isDefault())
+            out() << "<span class=\"qmldefault\">default</span>";
+        generateQmlItem(qpn, relative, marker, false);
+        out() << "</p></td></tr>";
+        out() << "</table>";
+        out() << "</div>";
+    }
     else if (node->type() == Node::QmlSignal) {
         const FunctionNode* qsn = static_cast<const FunctionNode*>(node);
         out() << "<div class=\"qmlproto\">";

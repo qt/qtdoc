@@ -152,7 +152,12 @@ void QmlCodeParser::parseSourceFile(const Location& location,
 
     if (parser->parse()) {
         QDeclarativeJS::AST::UiProgram *ast = parser->ast();
-        QmlDocVisitor visitor(filePath, newCode, &engine, tree, metacommandsAllowed);
+        QmlDocVisitor visitor(filePath,
+                              newCode,
+                              &engine,
+                              tree,
+                              metacommandsAllowed,
+                              topicCommandsAllowed);
         QDeclarativeJS::AST::Node::accept(ast, &visitor);
     }
 }

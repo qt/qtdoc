@@ -51,11 +51,14 @@
 
 QT_BEGIN_NAMESPACE
 
+static bool debug = false;
+
 QmlDocVisitor::QmlDocVisitor(const QString &filePath,
                              const QString &code,
                              QDeclarativeJS::Engine *engine,
                              Tree *tree,
-                             QSet<QString> &commands)
+                             QSet<QString> &commands,
+                             QSet<QString> &topics)
     : nestingLevel(0)
 {
     this->filePath = filePath;
@@ -64,6 +67,7 @@ QmlDocVisitor::QmlDocVisitor(const QString &filePath,
     this->engine = engine;
     this->tree = tree;
     this->commands = commands;
+    this->topics = topics;
     current = tree->root();
 }
 
@@ -102,14 +106,12 @@ QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offs
     return QDeclarativeJS::AST::SourceLocation();
 }
 
-void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location,
-                                    Node *node)
+void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node *node)
 {
     QDeclarativeJS::AST::SourceLocation loc = precedingComment(location.begin());
 
     if (loc.isValid()) {
         QString source = document.mid(loc.offset, loc.length);
-
         Location start(filePath);
         start.setLineNo(loc.startLine);
         start.setColumnNo(loc.startColumn);
@@ -119,7 +121,31 @@ void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
 
         Doc doc(start, finish, source.mid(1), commands);
         node->setDoc(doc);
-
+        QSet<QString> metacommands = doc.metaCommandsUsed();
+        if (metacommands.count() > 0) {
+            QString topic;
+            QStringList args;
+            QSet<QString>::iterator i = metacommands.begin();
+            while (i != metacommands.end()) {
+                if (topics.contains(*i)) {
+                    topic = *i;
+                    break;
+                }
+                ++i;
+            }
+            if (!topic.isEmpty()) {
+                args = doc.metaCommandArgs(topic);
+                // process the topic command here.
+            }
+            metacommands.subtract(topics);
+            i = metacommands.begin();
+            while (i != metacommands.end()) {
+                QString command = *i;
+                args = doc.metaCommandArgs(command);
+                // process the metacommand here.
+                ++i;
+            }
+        }
         usedComments.insert(loc.offset);
     }
 }
@@ -190,6 +216,31 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiImportList *definition)
     lastEndOffset = definition->lastSourceLocation().end();
 }
 
+typedef QDeclarativeJS::AST::ExpressionNode EN;
+typedef QDeclarativeJS::AST::IdentifierExpression IE;
+typedef QDeclarativeJS::AST::FieldMemberExpression FME;
+
+static QString reconstituteFieldMemberExpression(EN* en)
+{
+    QString s;
+    if (en) {
+        qDebug() << "  There is an expression" << en->kind;
+        if (en->kind == QDeclarativeJS::AST::Node::Kind_FieldMemberExpression) {
+            FME* fme = (FME*) en;
+            s = reconstituteFieldMemberExpression(fme->base);
+            s += "." + fme->name->asString();
+        }
+        else if (en->kind == QDeclarativeJS::AST::Node::Kind_IdentifierExpression) {
+            IE* ie = (IE*) en;
+            s = ie->name->asString();
+        }
+        else {
+            qDebug() << "    But it wasn't a recognized expression kind";
+        }
+    }
+    return s;
+}
+
 /*!
     Visits the public \a member declaration, which can be a
     signal or a property. It is a custom signal or property.
@@ -229,7 +280,15 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
         if (current->type() == Node::Fake) {
             QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
             if (qmlClass) {
-
+                QString name = member->name->asString();
+                QmlPropertyNode *qmlPropNode = new QmlPropertyNode(qmlClass, name, type, false);
+                qmlPropNode->setWritable(!member->isReadonlyMember);
+                if (member->isDefaultMember)
+                    qmlPropNode->setDefault();
+                applyDocumentation(member->firstSourceLocation(), qmlPropNode);
+            }
+#if 0
+            if (qmlClass) {
                 QString name = member->name->asString();
                 QmlPropGroupNode *qmlPropGroup = new QmlPropGroupNode(qmlClass, name, false);
                 if (member->isDefaultMember)
@@ -238,6 +297,7 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
                 qmlPropNode->setWritable(!member->isReadonlyMember);
                 applyDocumentation(member->firstSourceLocation(), qmlPropGroup);
             }
+#endif
         }
         break;
     }
