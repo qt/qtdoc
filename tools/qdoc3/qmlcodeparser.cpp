@@ -52,6 +52,7 @@
 #include "tree.h"
 #include "config.h"
 #include "qmlvisitor.h"
+#include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
 

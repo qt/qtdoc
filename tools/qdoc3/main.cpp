@@ -256,26 +256,6 @@ static void processQdocconfFile(const QString &fileName)
     QStringList indexFiles = config.getStringList(CONFIG_INDEXES);
     tree->readIndexes(indexFiles);
 
-#if 0
-    /*
-      I think we won't beusing this...
-
-      Read the list of DITA excluded directories.
-     */
-    QSet<QString> ditaExcludedDirs;
-    QStringList ditaExcludedDirsList = config.getStringList("dita.metadata.excludedirs");
-    foreach (const QString &t, ditaExcludedDirsList)
-        ditaExcludedDirs.insert(QDir::fromNativeSeparators(t));
-
-    if (!ditaExcludedDirs.isEmpty()) {
-        QSet<QString>::iterator i = ditaExcludedDirs.begin();
-        while (i != ditaExcludedDirs.end()) {
-            qDebug() << "DITA EXCLUDED DIR:" << (*i);
-            ++i;
-        }
-    }
-#endif
-
     QSet<QString> excludedDirs;
     QSet<QString> headers;
     QSet<QString> sources;

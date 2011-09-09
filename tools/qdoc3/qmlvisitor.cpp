@@ -106,7 +106,7 @@ QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offs
     return QDeclarativeJS::AST::SourceLocation();
 }
 
-void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node *node)
+void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node* node)
 {
     QDeclarativeJS::AST::SourceLocation loc = precedingComment(location.begin());
 
@@ -121,32 +121,61 @@ void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
 
         Doc doc(start, finish, source.mid(1), commands);
         node->setDoc(doc);
-        QSet<QString> metacommands = doc.metaCommandsUsed();
-        if (metacommands.count() > 0) {
-            QString topic;
-            QStringList args;
-            QSet<QString>::iterator i = metacommands.begin();
-            while (i != metacommands.end()) {
-                if (topics.contains(*i)) {
-                    topic = *i;
-                    break;
+        applyMetacommands(loc, node, doc);
+        usedComments.insert(loc.offset);
+    }
+}
+
+void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation location,
+                                      Node* node,
+                                      Doc& doc)
+{
+    QSet<QString> metacommands = doc.metaCommandsUsed();
+    if (metacommands.count() > 0) {
+        QString topic;
+        QStringList args;
+        QSet<QString>::iterator i = metacommands.begin();
+        while (i != metacommands.end()) {
+            if (topics.contains(*i)) {
+                topic = *i;
+                break;
+            }
+            ++i;
+        }
+        if (!topic.isEmpty()) {
+            args = doc.metaCommandArgs(topic);
+            if (topic == "qmlclass") {
+            }
+            else if (topic == "qmlproperty") {
+                if (node->type() == Node::QmlProperty) {
+                    QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+                    if (qpn->dataType() == "alias") {
+                        QStringList part = args[0].split(" ");
+                        qpn->setDataType(part[0]);
+                    }
                 }
-                ++i;
             }
-            if (!topic.isEmpty()) {
-                args = doc.metaCommandArgs(topic);
-                // process the topic command here.
+            else if (topic == "qmlattachedproperty") {
             }
-            metacommands.subtract(topics);
-            i = metacommands.begin();
-            while (i != metacommands.end()) {
-                QString command = *i;
-                args = doc.metaCommandArgs(command);
-                // process the metacommand here.
-                ++i;
+            else if (topic == "qmlsignal") {
+            }
+            else if (topic == "qmlattachedsignal") {
+            }
+            else if (topic == "qmlmethod") {
+            }
+            else if (topic == "qmlattachedmethod") {
+            }
+            else if (topic == "qmlbasictype") {
             }
         }
-        usedComments.insert(loc.offset);
+        metacommands.subtract(topics);
+        i = metacommands.begin();
+        while (i != metacommands.end()) {
+            QString command = *i;
+            args = doc.metaCommandArgs(command);
+            // process the metacommand here.
+            ++i;
+        }
     }
 }
 

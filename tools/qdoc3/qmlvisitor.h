@@ -80,6 +80,7 @@ public:
 private:
     QDeclarativeJS::AST::SourceLocation precedingComment(quint32 offset) const;
     void applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node *node);
+    void applyMetacommands(QDeclarativeJS::AST::SourceLocation location, Node* node, Doc& doc);
 
     QDeclarativeJS::Engine *engine;
     quint32 lastEndOffset;
