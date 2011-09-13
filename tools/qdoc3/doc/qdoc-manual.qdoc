@@ -33,6 +33,7 @@
 
     \list
       \o \l {Introduction to QDoc}
+      \o \l {Getting Started with QDoc}
       \o \l {Command Index}
       \o \l {Topic Commands}
       \o \l {Context Commands}
@@ -88,8 +89,8 @@
     comments in \c {.h} files. A qdoc comment always begins with an
     exclamation mark \bold{!} e.g.:
 
-    \code 
-        / *! 
+    \code
+        / *!
             \class QObject
             \brief The QObject class is the base class of all Qt objects.
 
@@ -122,14 +123,14 @@
             object's class inherits another class in the QObject
             inheritance hierarchy by using the inherits() function.
 
-	    ....
-	* /
+        ....
+    * /
     \endcode
 
     From the qdoc comment above, QDoc generates the now famous HTML
     page \l {http://doc.qt.nokia.com/qobject.html#details}
     {QObject Class Reference}.
-    
+
     This manual explains how to use the QDoc commands in qdoc comments
     to embed good documentation in your source files. It also explains
     how to make a \l {The QDoc Configuration File} {QDoc configuration
@@ -173,7 +174,7 @@
     {headers} variable to find and parse all the header files for your
     project. QDoc does \e not scan header files for qdoc comments. It
     parses the header files to build a master tree of all the items
-    that should be documented (i.e. the items that QDoc should find 
+    that should be documented (i.e. the items that QDoc should find
     qdoc comments for).
 
     After parsing all the header files and building the master tree of
@@ -183,13 +184,13 @@
     {22-qdoc-configuration-generalvariables.html#sources-variable}
     {sources} variable to find and parse all the \c {.cpp} and \c
     {.qdoc} files for your project. These are the files QDoc scans for
-    \e {qdoc comments}. Remember that a qdoc comment begins with 
+    \e {qdoc comments}. Remember that a qdoc comment begins with
     an exclamation mark, i.e. \bold {/*!} .
 
     For each qdoc comment it finds, it searches the master tree for
     the item where the documentation belongs. The it interprets the
     qdoc commands in the comment and stores the interpreted commands
-    and the comment text in the tree node for the item. 
+    and the comment text in the tree node for the item.
 
     Finally, QDoc traverses the master tree. For each node, if the
     node has stored documentation, QDoc calls the output generator
@@ -201,10 +202,10 @@
 
     \section1 Command Types
 
-    QDoc interprets three types of commands: 
+    QDoc interprets three types of commands:
 
     \list
-    \o \l {Topic Commands} 
+    \o \l {Topic Commands}
     \o \l {Context Commands}
     \o \l {Markup Commands}
     \endlist
@@ -223,7 +224,7 @@
 
     Markup commands tell QDoc how text and image elements in the
     document should be rendered, or about the document's outline
-    structure.  
+    structure.
 */
 
 /*!
@@ -327,7 +328,7 @@
     \code
       / *!
          Constructs a line edit containing the text
-         \a contents. The \a parent parameter is sent 
+         \a contents. The \a parent parameter is sent
          to the QWidget constructor.
       * /
 
@@ -353,7 +354,7 @@
 
     \target c-command
     \section1 \\c (code font)
-    
+
     The \\c command is used for rendering variable names, user-defined
     class names, and C++ keywords (e.g. \c int and \c for) in the code
     font.
@@ -396,10 +397,10 @@
     (\\tt)} command instead.
 
     See also \l {tt-command} {\\tt} and \l {code-command} {\\code}.
- 
+
     \target div-command
-    \section1 \\div \span {class="newStuff"} {(new)}  
- 
+    \section1 \\div \span {class="newStuff"} {(new)}
+
     The \\div and \\enddiv commands delimit a large or small block of
     text (which may include other QDoc commands) to which special
     formatting attributes should be applied.
@@ -429,7 +430,7 @@
     For HTML, the attribute value \e {float-right} then will refer to
     a clause in the style.css file. which in this case could be:
 
-    \code	   
+    \code
        div.float-right
        {
           float: right; margin-left: 2em
@@ -451,16 +452,16 @@
     Your DITA XML publishing program must then recognize the \e
     {outputclass} attribute value.
 
-    \note The \bold {\\div} command can be nested. 
-	   
+    \note The \bold {\\div} command can be nested.
+
     Below is an example taken from the index.qdoc file used to
     generate index.html for Qt 4.7:
 
     \code
         \div {class="indexbox guide"}
             \div {class="heading"}
-                Qt Developer Guide 
-	    \enddiv
+                Qt Developer Guide
+        \enddiv
             \div {class="indexboxcont indexboxbar"}
                 \div {class="section indexIcon"} \emptyspan
                 \enddiv
@@ -486,13 +487,13 @@
     \endcode
 
     When all the class attribute values are defined as they are in the
-    style.css file that is used for rendering the Qt 4.7 documentation, 
+    style.css file that is used for rendering the Qt 4.7 documentation,
     the above example is rendered as:
 
           \div {class="indexbox guide"}
             \div {class="heading"}
-              Qt Developer Guide 
-	    \enddiv
+              Qt Developer Guide
+        \enddiv
             \div {class="indexboxcont indexboxbar"}
               \div {class="section indexIcon"} \emptyspan
               \enddiv
@@ -562,12 +563,12 @@
 
     Your DITA XML publishing program must recognize the values of the
     \e {outputclass} attribute.
-           
+
     See also \l {span-command} {\\span}.
 
     \target span -command
-    \section1 \\span \span {class="newStuff"} {(new)} 
-    
+    \section1 \\span \span {class="newStuff"} {(new)}
+
     The \\span command is for applying special formatting
     attributes to a small block of text.
 
@@ -576,14 +577,14 @@
     interpreted but is used as the formatting attribute(s) of the tag
     that is ultimately output by qdoc. The second argument is the text
     to be rendered with the special formatting attributes.
-	   
+
     For example, we might want to render the first word of each
     element in a numeric list in blue.
 
     \code
         / *!
             Global variables with complex types:
-	    \list 1
+        \list 1
                 \o \span {class="variableName"} {mutableComplex1} in globals.cpp at line 14
                 \o \span {class="variableName"} {mutableComplex2} in globals.cpp at line 15
                 \o \span {class="variableName"} {constComplex1} in globals.cpp at line 16
@@ -592,13 +593,13 @@
         * /
     \endcode
 
-    Class \e {variableName} refers to a clause in your style.css. 
+    Class \e {variableName} refers to a clause in your style.css.
 
     \code
         .variableName
         {
             font-family: courier;
-	    color: blue
+        color: blue
         }
     \endcode
 
@@ -616,7 +617,7 @@
     started.
 
     See also \l {div-command} {\\div}.
-           
+
     \target tt-command
     \section1 \\tt (teletype font)
 
@@ -660,7 +661,7 @@
     See also \l {c-command} {\\c}.
 
     \target bold-command
-    \section1 \\bold 
+    \section1 \\bold
 
     The \\bold command renders its argument in bold font.
 
@@ -778,7 +779,7 @@
     \endraw
 
     \target sub-command
-    \section1 \\sub 
+    \section1 \\sub
 
     The \\sub command renders its argument lower than the baseline of
     the regular text, using a smaller font.
@@ -809,7 +810,7 @@
     argument in curly brackets.
 
     \target sup-command
-    \section1 \\sup 
+    \section1 \\sup
 
     The \\sup command renders its argument higher than
     the baseline of the regular text, using a smaller font.
@@ -862,7 +863,7 @@
     argument in curly brackets.
 
     \target backslash-command
-    \section1 \\\\ (double backslash) 
+    \section1 \\\\ (double backslash)
 
     The \\\\ command expands to a single backslash.
 
@@ -928,7 +929,7 @@
     outlining.
 
     \target part-command
-    \section1 \\part 
+    \section1 \\part
 
     The \\part command is intended for use in a large document, like a
     book.
@@ -1091,9 +1092,9 @@
     heading appears in the automatically generated table of contents
     that normally appears in the upper righthand corner of the page.
 
-    \target chapter-command	
-    \section1 \\chapter 
-    
+    \target chapter-command
+    \section1 \\chapter
+
     The \\chapter command is intended for use in
     larger documents, and divides the document into chapters.
 
@@ -1101,7 +1102,7 @@
     section units, command argument and rendering.
 
     \target sectionOne-command
-    \section1 \\section1 
+    \section1 \\section1
 
     The \\section1 command starts a new section.
 
@@ -1109,7 +1110,7 @@
     section units, command argument and rendering.
 
     \target sectionTwo-command
-    \section1 \\section2 
+    \section1 \\section2
 
     The \\section2 command starts a new section.
 
@@ -1117,7 +1118,7 @@
     section units, command argument and rendering.
 
     \target sectionThree-command
-    \section1 \\section3 
+    \section1 \\section3
 
     The \\section3 command starts a new section.
 
@@ -1125,7 +1126,7 @@
     section units, command argument and rendering.
 
     \target sectionFour-command
-    \section1 \\section4 
+    \section1 \\section4
 
     The \\section4 command starts a new section.
 
@@ -1157,7 +1158,7 @@
     documentation.
 
     \target code-command
-    \section1 \\code 
+    \section1 \\code
 
     The \\code and \\endcode commands enclose a snippet of source code.
 
@@ -1172,7 +1173,7 @@
     indentation that is common for the verbatim code blocks within a
     \c{/}\c{*!} ...  \c{*}\c{/} comment before it adds the standard
     indentation. For that reason the recommended style is to use 8
-    spaces for the verbatim code contained within these commands 
+    spaces for the verbatim code contained within these commands
 
     \note This doesn't apply to externally quoted code using the \l
     {quotefromfile-command} {\\quotefromfile} or \l
@@ -1221,7 +1222,7 @@
     {\\oldcode}.
 
     \target badcode-command
-    \section1 \\badcode 
+    \section1 \\badcode
 
     The \\badcode and \\endcode commands delimit a snippet of code
     that doesn't compile or is wrong for some other reason.
@@ -1278,7 +1279,7 @@
     {\\newcode} and \l {oldcode-command} {\\oldcode}.
 
     \target newcode-command
-    \section1 \\newcode 
+    \section1 \\newcode
 
     The \\newcode, \\oldcode, and \\endcode commands enable you to
     show how to port a snippet of code to a new version of an API.
@@ -1324,7 +1325,7 @@
     and the '\\' character doesn't need to be escaped.
 
     \target oldcode-command
-    \section1 \\oldcode 
+    \section1 \\oldcode
 
     The \\oldcode command requires a corresponding
     \\newcode statement; otherwise QDoc fails to parse the command
@@ -1405,7 +1406,7 @@
     documentation.
 
     \target quotefile-command
-    \section1 \\quotefile 
+    \section1 \\quotefile
 
     The \\quotefile command expands to the complete contents of the
     file given as argument.
@@ -1444,7 +1445,7 @@
 
 
     \target quotefromfile-command
-    \section1 \\quotefromfile 
+    \section1 \\quotefromfile
 
     The \\quotefromfile command opens the file given as argument for
     quoting.
@@ -1521,7 +1522,7 @@
     {\\code} and \l {dots} {\\dots}.
 
     \target printline-command
-    \section1 \\printline 
+    \section1 \\printline
 
     The \\printline command expands to the line from the current
     position to the next non-blank line of the current souce file.
@@ -1649,7 +1650,7 @@
     {printuntil-command} {\\printuntil}.
 
     \target printto-command
-    \section1 \\printto 
+    \section1 \\printto
 
     The \\printto command expands to all the lines from the current
     position up to and \e excluding the next line containing a given
@@ -1698,7 +1699,7 @@
     {printuntil-command} {\\printuntil}.
 
     \target printuntil-command
-    \section1 \\printuntil 
+    \section1 \\printuntil
 
     The \\printuntil command expands to all the lines from the current
     position up to and \e including the next line containing a given
@@ -1752,7 +1753,7 @@
     {printto-command} {\\printto}.
 
     \target skipline-command
-    \section1 \\skipline 
+    \section1 \\skipline
 
     The \\skipline command ignores the next non-blank line in the
     current source file.
@@ -1808,7 +1809,7 @@
     {\\skipuntil} and \l {dots} {\\dots}.
 
     \target skipto-command
-    \section1 \\skipto 
+    \section1 \\skipto
 
     The \\skipto command ignores all the lines from the current
     position up to and \e excluding the next line containing a given
@@ -1866,7 +1867,7 @@
     {skipuntil-command} {\\skipuntil} and \l {dots} {\\dots}.
 
     \target skipuntil-command
-    \section1 \\skipuntil 
+    \section1 \\skipuntil
 
     The \\skipuntil command ignores all the lines from the current
     position up to and \e including the next line containing a given
@@ -1923,7 +1924,7 @@
     {\\skipto} and \l {dots} {\\dots}.
 
     \target dots-command
-    \section1 \\dots 
+    \section1 \\dots
 
     The \\dots command indicates that parts of the source file have
     been omitted when quoting a file.
@@ -1980,8 +1981,8 @@
     {\\skipto} and \l {skipuntil-command} {\\skipuntil}.
 
     \target snippet-command
-    \section1 \\snippet 
-    
+    \section1 \\snippet
+
     The \\snippet command causes a code snippet to be included
     verbatim as preformatted text, which may be syntax highlighted.
 
@@ -1992,16 +1993,16 @@
 
     For example, the following documentation references a snippet in a
     file residing in a subdirectory of the documentation directory:
-           
+
            \code
            \snippet snippets/textdocument-resources/main.cpp Adding a resource
            \endcode
-           
+
     The text following the file name is the unique identifier for the
     snippet. This is used to delimit the quoted code in the relevant
     snippet file as shown in the following example that corresponds to
     the above \c{\\snippet} command:
-           
+
            \dots
            \code
                QImage image(64, 64, QImage::Format_RGB32);
@@ -2015,7 +2016,7 @@
            \dots
 
     \target codeline-command
-    \section1 \\codeline 
+    \section1 \\codeline
 
     The \\codeline command inserts a blank line of preformatted
     text. It is used to insert gaps between snippets without closing
@@ -2042,7 +2043,7 @@
     \title Creating Links
 
     These commands are for creating hyperlinks to classes, functions,
-    examples, and other targets. 
+    examples, and other targets.
 
     \target l-command
     \section1 \\l (link)
@@ -2157,7 +2158,7 @@
     QDoc renders this as:
 
     \quotation
-    \l {QWidget::} {sizeHint()}   
+    \l {QWidget::} {sizeHint()}
     \endquotation
 
     See also \l {sa-command} {\\sa}, \l {target-command} {\\target}
@@ -2230,7 +2231,7 @@
 
 
     \target target-command
-    \section1 \\target 
+    \section1 \\target
 
     The \\target command names a place in the documentation that you
     can link to using the \l {l-command} {\\l (link)} and \l
@@ -2274,7 +2275,7 @@
     {keyword-command} {\\keyword}.
 
     \target keyword-command
-    \section1 \\keyword 
+    \section1 \\keyword
 
     The \\keyword command names a place in the documentation that you
     can link to using the \l {l-command} {\\l (link)} and \l
@@ -2345,7 +2346,7 @@
     or within running text.
 
     \target image-command
-    \section1 \\image 
+    \section1 \\image
 
     The \\image command expands to the image specified by its first
     argument, and renders it centered as a separate paragraph.
@@ -2394,7 +2395,7 @@
     {caption-command} {\\caption}.
 
     \target inlineimage-command
-    \section1 \\inlineimage 
+    \section1 \\inlineimage
 
     The \\inlineimage command expands to the image specified by its
     argument. The image is rendered inline with the rest of the text.
@@ -2498,7 +2499,7 @@
     See also \l {image-command} {\\image} and \l {caption-command} {\\caption}.
 
     \target caption-command
-    \section1 \\caption 
+    \section1 \\caption
 
     The \\caption command provides a caption for an image.
 
@@ -2509,7 +2510,7 @@
     / *!
       \table 100%
         \row
-          \o \image windowsvista-pushbutton.png 
+          \o \image windowsvista-pushbutton.png
              \caption The QPushButton widget provides a command button.
           \o \image windowsvista-toolbutton.png
              \caption The QToolButton class provides a quick-access button to commands
@@ -2522,7 +2523,7 @@
 
     \table 100%
       \row
-        \o \image windowsvista-pushbutton.png 
+        \o \image windowsvista-pushbutton.png
            \caption The QPushButton widget provides a command button.
         \o \image windowsvista-toolbutton.png
            \caption The QToolButton class provides a quick-access button to commands
@@ -2530,7 +2531,7 @@
     \endtable
 
     See also \l {image-command} {\\image} and \l {inlineimage-command}
-    {\\inlineimage} 
+    {\\inlineimage}
 */
 
 /*!
@@ -2547,7 +2548,7 @@
     width of its contents.
 
     \target table-command
-    \section1 \\table 
+    \section1 \\table
 
     The \\table and \\endtable commands delimit the contents of a
     table.
@@ -2692,7 +2693,7 @@
     See also \l {header-command} {\\header}, \l {row-command} {\\row} and \l {o-command} {\\o}.
 
     \target header-command
-    \section1 \\header 
+    \section1 \\header
 
     The \\header command indicates that the following table cells are
     the current table's column headers.
@@ -2742,7 +2743,7 @@
     See also \l {table-command} {\\table}, \l {row-command} {\\row} and \l {o-command} {\\o}.
 
     \target row-command
-    \section1 \\row 
+    \section1 \\row
 
     The \\row command begins a new row in a table. The \l {o-command}
     {\\o items} that belong in the new row will immediately follow the
@@ -2824,7 +2825,7 @@
     {\\header} and \l {o-command} {\\o}.
 
     \target value-command
-    \section1 \\value 
+    \section1 \\value
 
     The \\value command starts the documentation of a C++ enum item.
 
@@ -2839,7 +2840,7 @@
     See also \l {enum-command} {\\enum} and \l {omitvalue-command} {\\omitvalue}.
 
     \target omitvalue-command
-    \section1 \\omitvalue 
+    \section1 \\omitvalue
 
     The \\omitvalue command excludes a C++ enum item from the
     documentation.
@@ -2852,7 +2853,7 @@
     {\\value}.
 
     \target list-command
-    \section1 \\list 
+    \section1 \\list
 
     The \\list and \\endlist commands delimit a list of items.
 
@@ -3073,7 +3074,7 @@
     function.
 
     \target abstract-command
-    \section1 \\abstract 
+    \section1 \\abstract
 
     The \\abstract and \\endabstract commands delimit a
     document's abstract section.
@@ -3086,7 +3087,7 @@
     regular HTML paragraph.
 
     \target quotation-command
-    \section1 \\quotation 
+    \section1 \\quotation
 
     The \\quotation and \\endquotation commands delimit a long quotation.
 
@@ -3112,13 +3113,13 @@
 
     The text in the \bold{\\quotation} block will appear in the generated HTML as:
 
-	\code
-	<blockquote>
-	  <p>As our solutions were being adopted into new environments, 
-	  we saw an escalating need for easier integration with a wider 
-	  range of enterprise applications.</p> 
-        </blockquote> 
-	\endcode
+    \code
+    <blockquote>
+      <p>As our solutions were being adopted into new environments,
+      we saw an escalating need for easier integration with a wider
+      range of enterprise applications.</p>
+        </blockquote>
+    \endcode
 
     The built-in style sheet for most browsers will render the
     contents of the <blockquote> tag with left and right
@@ -3139,7 +3140,7 @@
     {compatibility} section.
 
     \target footnote-command
-    \section1 \\footnote 
+    \section1 \\footnote
 
     The \\footnote and \\endfootnote commands delimit a footnote.
 
@@ -3150,16 +3151,16 @@
     HTML paragraph.
 
     \target tableofcontents-command
-    \section1 \\tableofcontents 
+    \section1 \\tableofcontents
 
-    The \\tableofcontents command has been disabled because QDoc 
+    The \\tableofcontents command has been disabled because QDoc
     now generates a table of contents automatically.
 
     The automatically generated table of contents appears in the upper
     righthand corner of the page.
 
     \target brief-command
-    \section1 \\brief 
+    \section1 \\brief
 
     The \\brief command introduces a one-sentence description of a
     class, namespace, header file, property or variable.
@@ -3332,7 +3333,7 @@
                    <hr />
                    <h2>Detailed Description</h2>
                \endraw
-       
+
                The PreviewWindow class is a custom widget displaying
                the names of its currently set window flags in a
                read-only text editor.
@@ -3402,7 +3403,7 @@
     \l{headerfile-command} {\\headerfile}.
 
     \target legalese-command
-    \section1 \\legalese 
+    \section1 \\legalese
 
     The \\legalese and \\endlegalese commands delimit a licence agreement.
 
@@ -3413,8 +3414,8 @@
     and \\endlegalese:
 
         \code
-	/ *!
-	  \legalese
+    / *!
+      \legalese
           Copyright 1996 Daniel Dardailler.
 
           Permission to use, copy, modify, distribute, and sell this
@@ -3429,17 +3430,17 @@
           this software for any purpose. It is provided "as is"
           without express or implied warranty.
 
-	  Modifications Copyright 1999 Matt Koss, under the same
+      Modifications Copyright 1999 Matt Koss, under the same
           license as above.
           \endlegalese
-        * / 
+        * /
         \endcode
 
         It will appear in the generated HTML as:
 
        \code
-	 <div class="LegaleseLeft">
-	   <p>Copyright 1996 Daniel Dardailler.</p>
+     <div class="LegaleseLeft">
+       <p>Copyright 1996 Daniel Dardailler.</p>
            <p>Permission to use, copy, modify, distribute, and sell
            this software for any purpose is hereby granted without fee,
            provided that the above copyright notice appear in all
@@ -3451,10 +3452,10 @@
            Dardailler makes no representations about the suitability of
            this software for any purpose. It is provided "as is"
            without express or implied warranty.</p>
-	  
-	   <p>Modifications Copyright 1999 Matt Koss, under the same
+
+       <p>Modifications Copyright 1999 Matt Koss, under the same
            license as above.</p>
-	 </div>
+     </div>
        \endcode
 
     If the \\endlegalese command is omitted, QDoc will process the
@@ -3470,7 +3471,7 @@
    the source code.
 
     \target warning-command
-    \section1 \\warning 
+    \section1 \\warning
 
     The \\warning command prepends "Warning:" to the command's
     argument, in bold font.
@@ -3512,7 +3513,7 @@
     generating the documentation.
 
     \target expire-command
-    \section1 \\expire 
+    \section1 \\expire
 
     The \\expire command allows you to define an expiration
     date for your documentation.
@@ -3581,10 +3582,10 @@
     \table
       \row
         \o QDial
-	\o Rounded range control (like a speedometer or potentiometer)
+    \o Rounded range control (like a speedometer or potentiometer)
       \row
         \o QDialog
-	\o The base class of dialog windows
+    \o The base class of dialog windows
       \row
         \o QDir
         \o Access to directory structures and their contents
@@ -3643,7 +3644,7 @@
 
           \generatelist{classesbymodule Phonon}
 
-	  ...
+      ...
 
       * /
     \endcode
@@ -3807,7 +3808,7 @@
     command are not used in the Qt documentation.
 
     \target if-command
-    \section1 \\if 
+    \section1 \\if
 
     The \\if command and the corresponding \\endif command
     enclose parts of a QDoc comment that only will be included if
@@ -3846,7 +3847,7 @@
     {falsehoods}.
 
     \target endif-command
-    \section1 \\endif 
+    \section1 \\endif
 
     The \\endif command and the corresponding \\if command
     enclose parts of a QDoc comment that will be included if
@@ -3861,7 +3862,7 @@
     {falsehoods}.
 
     \target else-command
-    \section1 \\else 
+    \section1 \\else
 
     The \\else command specifies an alternative if the
     condition in the \l {if-command} {\\if} command is false.
@@ -3960,7 +3961,7 @@
            {falsehoods}.
 
     \target include-command
-    \section1 \\include 
+    \section1 \\include
 
     The \\include command sends all or part of the file specified by
     its first argument to the QDoc input stream to be processed as a
@@ -3998,7 +3999,7 @@
 
     Here are links to the \c .qdocinc files used above:
     \l{signalandslots.qdocinc}, \l{objectmodel.qdocinc},
-    \l{layoutmanagement.qdocinc}. QDoc renders this page 
+    \l{layoutmanagement.qdocinc}. QDoc renders this page
     \l{corefeatures.html} {as shown here}.
 
     \target 2-argument-form}
@@ -4015,13 +4016,13 @@
 
            QDoc commands and text...
 
-	//! [snippet-id1]
+    //! [snippet-id1]
 
         //! [snippet-id2]
 
            More QDoc commands and text...
 
-	//! [snippet-id2]
+    //! [snippet-id2]
     \endcode
 
     Then you can use the two-argument form of the command:
@@ -4036,15 +4037,15 @@
     sent to the QDoc input stream. You can even nest these snippets,
     although it's not clear why you would want to do that.
 
-    \target meta-command 
-    \section1 \\meta 
+    \target meta-command
+    \section1 \\meta
 
     The \\meta command is mainly used for including metadata in DITA
     XML files. It is also used when generating HTML output for specifying
     the \e maintainer(s) of a C++ class.
 
     The command has two arguments: The first argument is the name of the
-    metadata attribute you wish to set, and the second argument is the 
+    metadata attribute you wish to set, and the second argument is the
     value for the attribute. Each argument should be enclosed in curly
     brackets, as shown in this example:
 
@@ -4109,7 +4110,7 @@
     {Generating DITA XML Output} for details.
 
     \target omit-command
-    \section1 \\omit 
+    \section1 \\omit
 
     The \\omit command and the correspondning \\endomit command
     delimit parts of the documentation that you want QDoc to skip. For
@@ -4157,7 +4158,7 @@
             \endraw
 
     \target raw-command
-    \section1 \\raw \span {class="newStuff"} {(avoid)} 
+    \section1 \\raw \span {class="newStuff"} {(avoid)}
 
     The \\raw command and the corresponding
     \\endraw command delimit a block of raw mark-up language code.
@@ -4168,7 +4169,7 @@
     using the \l {span-command} {\\span} and \l {div-command} {\\div}
     commands in your \l {table-command} {\\table} or \l {list-command}
     {\\list}.
- 
+
     The command takes an argument specifying the code's format;
     currently the only supported format is HTML.
 
@@ -4190,7 +4191,7 @@
                <tt id="color-blue">Blue(#0000ff)</tt>,
                <tt id="color-darkBlue">dark blue(#000080)</tt> and
                <tt id="color-cyan">cyan(#00ffff)</tt>.
-	       </p>
+           </p>
                \endraw
            * /
            \endcode
@@ -4211,7 +4212,7 @@
                <tt id="color-blue">Blue(#0000ff)</tt>,
                <tt id="color-darkBlue">dark blue(#000080)</tt> and
                <tt id="color-cyan">cyan(#00ffff)</tt>.
-	       </p>
+           </p>
                \endraw
            \endquotation
 
@@ -4219,20 +4220,20 @@
     commands. In this case, all you have to do is include the color
     styles in your style.css file. Then you can write:
 
-	   \code
+       \code
            \tt {\span {id="color-blue"} {Blue(#0000ff)}},
            \tt {\span {id="color-darkBlue"} {dark blue(#000080)}} and
            \tt {\span {id="color-cyan"} {cyan(#00ffff)}}.
-	   \endcode
+       \endcode
 
-	   ...which is rendered again as:
+       ...which is rendered again as:
 
            \tt {\span {id="color-blue"} {Blue(#0000ff)}},
            \tt {\span {id="color-darkBlue"} {dark blue(#000080)}} and
            \tt {\span {id="color-cyan"} {cyan(#00ffff)}}.
 
     \target unicode-command
-    \section1 \\unicode 
+    \section1 \\unicode
 
     The \\unicode command allows you to insert an arbitrary Unicode
     character in the document.
@@ -4361,7 +4362,7 @@
     documentation.
 
     \target class-command
-    \section1 \\class 
+    \section1 \\class
 
     The \\class command is for documenting a C++ class. The argument
     is the complete name of the class. The command tells QDoc that a
@@ -4523,7 +4524,7 @@
     \endquotation
 
     \target enum-command
-    \section1 \\enum 
+    \section1 \\enum
 
     The \\enum command is for documenting a C++ enum type. The
     argument is the full name of the enum type.
@@ -4623,15 +4624,15 @@
     See also \l {value-command} {\\value} and \l {omitvalue-command} {\\omitvalue}.
 
     \target example-command
-    \section1 \\example 
+    \section1 \\example
 
     The \\example command is for documenting an example. The argument
     is the example's path relative to omne of the paths listed in the
     \l {exampledirs-variable} {exampledirs} variable in the QDoc
     configuration file.
 
-    The documentation page will be output to \c {path-to-example}.html.  
-    QDoc will add a list of all the example's source files at the top 
+    The documentation page will be output to \c {path-to-example}.html.
+    QDoc will add a list of all the example's source files at the top
     of the page.
 
     For example, if \l {exampledirs-variable} {exampledirs} contains
@@ -4674,7 +4675,7 @@
     \endquotation
 
     \target externalpage-command
-    \section1 \\externalpage 
+    \section1 \\externalpage
 
     The \\externalpage command assigns a title to an external URL.
 
@@ -4761,10 +4762,10 @@
     See also \l {overload-command} {\\overload}.
 
     \target group-command
-    \section1 \\group 
+    \section1 \\group
 
     The \\group command creates a separate page that lists the classes
-    belonging to the group. The argument is the group name. 
+    belonging to the group. The argument is the group name.
 
     A class is included in a group by using the \l {ingroup-command}
     {\\ingroup} command. Overview pages can also be related to a group
@@ -4856,12 +4857,12 @@
     {generatelist-command} {\\generatelist}.
 
     \target headerfile-command
-    \section1 \\headerfile 
+    \section1 \\headerfile
 
     The \\headerfile command is for documenting the global functions,
     types and macros that are declared in a header file but not in a
     namespace. The argument is the name of the header file.  The HTML
-    page is written to a \c {.html} file constructed from the header 
+    page is written to a \c {.html} file constructed from the header
     file aregument.
 
     The documentation for a function, type, or macro that is declared
@@ -4924,7 +4925,7 @@
            \endquotation
 
     \target macro-command
-    \section1 \\macro 
+    \section1 \\macro
 
     The \\macro command is for documententin a C++ macro. The argument
     is the macro in one of three styles: function-like macros like
@@ -4962,7 +4963,7 @@
         ...
 
         See also Q_ASSERT_X(), qFatal() and \l {Debugging Techniques}.
- 
+
    \endquotation
 
     \code
@@ -5024,7 +5025,7 @@
     \endquotation
 
     \target module-command
-    \section1 \\module 
+    \section1 \\module
 
     The \\module creates a page that lists the classes belonging to
     the module specified by the command's argument.  A class included
@@ -5121,7 +5122,7 @@
     See also \l {inmodule-command} {\\inmodule}
 
     \target namespace-command
-    \section1 \\namespace 
+    \section1 \\namespace
 
     The \\namespace command is for documenting the contents of the C++
     namespace named as its argument. The documentation outline QDoc
@@ -5175,7 +5176,7 @@
            \endquotation
 
     \target page-command
-    \section1 \\page 
+    \section1 \\page
 
     The \\page command is for creating a stand-alone documentation
     page.  The argument can consist of two parts separated by a
@@ -5231,7 +5232,7 @@
     QDoc renders this page in \c {aboutqt.html}.
 
     \target property-command
-    \section1 \\property 
+    \section1 \\property
 
     The \\property command is for documenting a Qt property. The
     argument is the full property name.
@@ -5323,11 +5324,11 @@
     \endquotation
 
     \target service-command
-    \section1 \\service 
+    \section1 \\service
 
     The \\service command tells QDoc that a class is a service class
     and names the service. The command takes two arguments, the name
-    of the class and the name of the service. Currently, this command 
+    of the class and the name of the service. Currently, this command
     is not used in the Qt documentation.
 
      \code
@@ -5350,24 +5351,24 @@
     The \\qmlattachedproperty command is for documenting a QML
     property that will be attached to some QML element type. See
     \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#attached-properties}
-    {Attached Properties}. The argument is the rest of the line. The 
-    argument text should be the property type, followed by the QML 
+    {Attached Properties}. The argument is the rest of the line. The
+    argument text should be the property type, followed by the QML
     element name where the property is being declared, the \c{::}
     qualifier, and finally the property name. If we have a QML
     attached property named \c isCurrentItem in QML element \c ListView,
-    and the property has type \c {bool}, the \\qmlattachedproperty for 
+    and the property has type \c {bool}, the \\qmlattachedproperty for
     it would look like this:
 
     \code
     / *!
         \qmlattachedproperty bool ListView::isCurrentItem
-        This attached property is true if this delegate is the current 
-	item; otherwise false.
+        This attached property is true if this delegate is the current
+    item; otherwise false.
 
         It is attached to each instance of the delegate.
 
-        This property may be used to adjust the appearance of the current 
-	item, for example:
+        This property may be used to adjust the appearance of the current
+    item, for example:
 
         \snippet doc/src/snippets/declarative/listview/listview.qml isCurrentItem
     * /
@@ -5380,10 +5381,10 @@
     \target qmlattachedsignal-command
     \section1 \\qmlattachedsignal  \span {class="newStuff"} {(new)}
 
-    The \\qmlattachedsignal command is for documenting an attachable 
+    The \\qmlattachedsignal command is for documenting an attachable
     \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
-    {signal handler}. The \\qmlattachedsignal command is used just like 
-    the \l{qmlsignal-command} {\\qmlsignal} command. 
+    {signal handler}. The \\qmlattachedsignal command is used just like
+    the \l{qmlsignal-command} {\\qmlsignal} command.
 
     The argument is the rest of the line. It should be the name of the
     QML element where the signal handler is declared, the \c{::}
@@ -5394,8 +5395,8 @@
     \code
     / *!
         \qmlattachedsignal GridView::onAdd()
-        This attached handler is called immediately after an item is 
-	added to the view.
+        This attached handler is called immediately after an item is
+    added to the view.
     * /
     \endcode
 
@@ -5407,13 +5408,13 @@
     \section1 \\qmlbasictype  \span {class="newStuff"} {(new)}
 
     The \\qmlbasictype command is for documenting a basic type for QML.
-    The argument is the type name. The type must be included in the 
+    The argument is the type name. The type must be included in the
     QML basic types group using the \l{ingroup-command}{\\ingroup}
-    command as shown below. This will cause QDoc to include the 
+    command as shown below. This will cause QDoc to include the
     documentation for the type on the
     \l{http://doc.qt.nokia.com/4.7/qdeclarativebasictypes.html}
     {QML Basic Types} page. The \l{brief-command} {\\brief} command
-    is also required, because it appears on the 
+    is also required, because it appears on the
     \l{http://doc.qt.nokia.com/4.7/qdeclarativebasictypes.html}
     {QML Basic Types} page as well.
 
@@ -5447,7 +5448,7 @@
     The \\qmlclass command is for documenting a QML element that is
     instantiated by a C++ class. The command has two arguments. The
     first argument is the name of the QML element. The second argument
-    is the name of the C++ class that instantiates the QML element. 
+    is the name of the C++ class that instantiates the QML element.
 
     \code
     / *!
@@ -5477,7 +5478,7 @@
     * /
     \endcode
 
-    This example generates the 
+    This example generates the
     \l {http://doc.qt.nokia.com/4.7/qml-transform.html} {QML Transform
     Element} page. The \\qmlclass comment should include the \l
     {since-command} {\\since} command, because all QML elements are
@@ -5506,10 +5507,10 @@
         passed to this method).
 
        \sa selectionStart, selectionEnd
-    * / 
+    * /
     \endcode
 
-    QDoc includes this documentation on the element refence page for the 
+    QDoc includes this documentation on the element refence page for the
     \l{http://doc.qt.nokia.com/4.7/qml-textinput.html#select-method}
     {TextInput} element.
 
@@ -5538,12 +5539,12 @@
     \target qmlsignal-command
     \section1 \\qmlsignal  \span {class="newStuff"} {(new)}
 
-    The \\qmlsignal command is for documenting a  
+    The \\qmlsignal command is for documenting a
     \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
     {signal handler}.
     The argument is the rest of the line. It should be the QML element where the
-    signal handler is declared, the \c{::} qualifier, and finally the signal 
-    handler name. If we have a QML signal handler named \c onAdd() in QML 
+    signal handler is declared, the \c{::} qualifier, and finally the signal
+    handler name. If we have a QML signal handler named \c onAdd() in QML
     element \c MouseArea, the \\qmlsignal for it would look like this:
 
     \code
@@ -5565,13 +5566,13 @@
     {MouseArea} element.
 
     \target typedef-command
-    \section1 \\typedef 
+    \section1 \\typedef
 
     The \\typedef command is for documenting a C++ typedef. The
-    argument is the name of the typedef. The documentation for 
-    the typedef will be included in the refernece documentation 
-    for the class, namespace, or header file in which the typedef 
-    is declared. To relat the \\typedef to a class, namespace, or 
+    argument is the name of the typedef. The documentation for
+    the typedef will be included in the refernece documentation
+    for the class, namespace, or header file in which the typedef
+    is declared. To relat the \\typedef to a class, namespace, or
     header file, the \\typedef comment must contain a
      \l {relates-command} {\\relates} command.
 
@@ -5653,13 +5654,13 @@
     \endquotation
 
     \target variable-command
-    \section1 \\variable 
+    \section1 \\variable
 
     The \\variable command is for documenting a class member variable
     or a constant. The argument is the variable or constant name. The
     \\variable command comment includes a \l {brief-command} {\\brief}
     command. QDoc generates the documentation based on the text from
-    \\brief command. 
+    \\brief command.
 
     The documentation will be located in the in the associated class,
     header file or namespace documentation.
@@ -5933,7 +5934,7 @@
     \section1 Commands
 
     \target previouspage-command
-    \section2 \\previouspage 
+    \section2 \\previouspage
 
     The \\previouspage command links the current page to the previous
     page in a sequence.a The command has two arguments, each enclosed
@@ -5945,7 +5946,7 @@
     The command must stand alone on its own line.
 
     \target nextpage-command
-    \section2 \\nextpage 
+    \section2 \\nextpage
 
     The \\nextpage command links the current page to the next page in
     a sequence. The command follows the same syntax and argument
@@ -5953,7 +5954,7 @@
     command.
 
     \target startpage-command
-    \section2 \\startpage 
+    \section2 \\startpage
 
     The \\startpage command specifies the first page of a sequence of
     pages. The command must stand alone on its own line, and its
@@ -5974,7 +5975,7 @@
     command.
 
     \target indexpage-command
-    \section2 \\indexpage 
+    \section2 \\indexpage
 
     The \\indexpage command specifies an index page for the current
     document. The command must stand alone on its own line, and its
@@ -6003,7 +6004,7 @@
     first appeared.
 
     \target compat-command
-    \section1 \\compat 
+    \section1 \\compat
 
     The \\compat command is for indicating that a class or function is
     part of the support library provided to keep old source code
@@ -6082,7 +6083,7 @@
     \target default-command
     \section1 \\default  \span {class="newStuff"} {(new)}
 
-    The \\default command is for marking a QML property as the 
+    The \\default command is for marking a QML property as the
     \l {http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#default-properties}
     {default property}. The word \span {class="newStuff"} {default} is shown in red in
     the documentation of the property.
@@ -6104,7 +6105,7 @@
     element.
 
     \target obsolete-command
-    \section1 \\obsolete 
+    \section1 \\obsolete
 
     The \\obsolete command is for indicating that a function is being
     deprecated, and it should no longer be used in new code. There is
@@ -6154,7 +6155,7 @@
     \endquotation
 
     \target internal-command
-    \section1 \\internal 
+    \section1 \\internal
 
     The \\internal command indicates that the referenced
     function is not part of the public interface.
@@ -6185,7 +6186,7 @@
     This function will not be included in the documentation.
 
     \target preliminary-command
-    \section1 \\preliminary 
+    \section1 \\preliminary
 
     The \\preliminary command is for indicating that a referenced
     function is still under development.
@@ -6220,7 +6221,7 @@
         \endraw
 
         \bold {This function is under development and
-    	subject to change.}
+        subject to change.}
 
         Returns information about the joining properties of the
         character (needed for certain languages such as
@@ -6242,7 +6243,7 @@
     \endquotation
 
     \target since-command
-    \section1 \\since 
+    \section1 \\since
 
     The \\since command tells in which minor release
     the associated functionality was added.
@@ -6316,7 +6317,7 @@
     When a class is marked \l {reentrant-command} {\\reentrant} or \l
     {threadsafe-command} {\\threadsafe}, functions in that class can
     be marked \c nonreentrant using the \l {nonreentrant-command}
-    {\\nonreentrant} command. 
+    {\\nonreentrant} command.
 
     \section1 Example
 
@@ -6424,7 +6425,7 @@
     \section1 Commands
 
     \target threadsafe-command
-    \section2 \\threadsafe 
+    \section2 \\threadsafe
 
     The \\threadsafe command includes a line in the documentation to
     indicate that the associated class or function is \e threadsafe
@@ -6442,7 +6443,7 @@
     \l{nonreentrant-command} {\\nonreentrant}.
 
     \target reentrant-command
-    \section2 \\reentrant 
+    \section2 \\reentrant
 
     The \\reentrant command indicates that the associated class or
     function can be called simultaneously by multiple threads,
@@ -6455,11 +6456,11 @@
     \l{threadsafe-command} {\\threadsafe}.
 
     \target nonreentrant-command
-    \section2 \\nonreentrant 
+    \section2 \\nonreentrant
 
     The \\nonreentrant command indicates that the associated class or
     function cannot be called by multiple threads. Nonreentrant is the
-    default case. 
+    default case.
 
     The command must stand on its own line.
 
@@ -6485,7 +6486,7 @@
     is an overload of another function, or this function is a
     reimplementation of another function, or this typedef is \e
     related to some class or header file. There is also a command
-    for documenting that a QML element inherits some other QML 
+    for documenting that a QML element inherits some other QML
     element.
 
     \section1 Commands
@@ -6493,10 +6494,10 @@
     \target inherits-command
     \section2 \\inherits  \span {class="newStuff"} {(new)}
 
-    The \\inherits command is for documenting that one QML element 
-    inherits some other QML element. It must be included in the 
+    The \\inherits command is for documenting that one QML element
+    inherits some other QML element. It must be included in the
     inheriting element's \l{qmlclass-command}{\\qmlclass} comment.
-    The argument is the name of the inherited QML element. 
+    The argument is the name of the inherited QML element.
 
     \code
     / *!
@@ -6530,7 +6531,7 @@
     \endquotation
 
     \target overload-command
-    \section2 \\overload 
+    \section2 \\overload
 
     The \\overload command is for indicating that a function is a
     secondary overload of its name.
@@ -6577,7 +6578,7 @@
         </h3>
         \endraw
 
-	This function overloads \l {http://qt.nokia.com/doc/4.0/qwidget.html#addAction} {addAction()}
+    This function overloads \l {http://qt.nokia.com/doc/4.0/qwidget.html#addAction} {addAction()}
 
         This convenience function creates a new action with an
         \e icon and some \e text. The function adds the newly
@@ -6596,11 +6597,11 @@
 
     \quotation
         This is an overloaded member function, provided for
-        convenience. 
+        convenience.
     \endquotation.
 
     \target reimp-command
-    \section2 \\reimp 
+    \section2 \\reimp
 
     The \\reimp command is for indicating that a function is a
     reimplementation of a virtual function.
@@ -6629,7 +6630,7 @@
     appear in the documentation.
 
     \target relates-command
-    \section2 \\relates 
+    \section2 \\relates
 
     The \\relates command is for including the documentation of a
     global element to some class or header file. The argument is a
@@ -6651,8 +6652,8 @@
         return in;
     }
     \endcode
- 
-    The documentation for this function will be included on the reference page 
+
+    The documentation for this function will be included on the reference page
     for class QChra.
 */
 
@@ -6672,7 +6673,7 @@
     \section1 Commands
 
     \target mainclass-command
-    \section2 \\mainclass 
+    \section2 \\mainclass
 
     The \\mainclass command relates the documented class to
     a group called mainclasses.
@@ -6704,7 +6705,7 @@
     See also \l {generatelist-command} {\\generatelist}.
 
     \target ingroup-command
-    \section2 \\ingroup 
+    \section2 \\ingroup
 
     The \\ingroup command indicates that the given
     overview or documented class belongs to a certain group of
@@ -6739,7 +6740,7 @@
     See also \l {group-command} {\\group}.
 
     \target inmodule-command
-    \section2 \\inmodule 
+    \section2 \\inmodule
 
     The \\inmodule command relates a class to the module specified by
     the command's argument.
@@ -6786,7 +6787,7 @@
     \section1 Commands
 
     \target title-command
-    \section2 \\title 
+    \section2 \\title
 
     The \\title command sets the title for a documentation page, or
     allows you to override it.
@@ -6822,7 +6823,7 @@
     See also \l {subtitle-command} {\\subtitle}.
 
     \target subtitle-command
-    \section2 \\subtitle 
+    \section2 \\subtitle
 
     The \\subtitle command sets a subtitle for a documentation page.
 
@@ -6888,17 +6889,17 @@
     \l{Supporting Derived Projects} {derived projects}, i.e QDoc can
     generate links in your project's documentation to elements in the
     Qt online documentation. See the \l {Supporting Derived projects}
-    section. 
+    section.
 
     The value of a configuration variable can be set using either '='
     or '+='. The difference is that '=' overrides the previous value,
     while '+=' adds a new value to the current one.
 
     Some configuration variables accept a list of strings as their
-    value, e.g. 
+    value, e.g.
     \l {22-qdoc-configuration-generalvariables.html#sourcedirs-variable}
     {\c{sourcedirs}}, while others accept only a single string. Double
-    quotes around a value string are optional, but including them allows 
+    quotes around a value string are optional, but including them allows
     you to use special characters like '=' and ' \" ' within the valuem
     string, e.g.:
 
@@ -6999,7 +7000,7 @@
 
     \title Generating DITA XML Output
 
-    QDoc can generate \l {http://dita.xml.org} {DITA XML output}. 
+    QDoc can generate \l {http://dita.xml.org} {DITA XML output}.
 
     In your confifiguration file, set your \c {outputformats} variable
     to \c {DITAXML}, and send the output to an appropriate directory:
@@ -7065,7 +7066,7 @@
     itself, controlling its output and processing behavior.
 
     \target alias-variable
-    \section1 alias 
+    \section1 alias
 
     The \c alias variable renames a QDoc command.
 
@@ -7084,7 +7085,7 @@
     See also \l {macro-variable} {macro}.
 
     \target codeindent-variable
-    \section1 codeindent 
+    \section1 codeindent
 
     The \c codeindent variable specifies the level of indentation that
     QDoc uses when writing code snippets.
@@ -7097,7 +7098,7 @@
     level of indentation is not always required.
 
     \target defines-variable
-    \section1 defines 
+    \section1 defines
 
     The \c defines variable specifies the C++ preprocessor symbols
     that QDoc will recognize and respond to.
@@ -7151,7 +7152,7 @@
     See also \l {falsehoods-variable} {falsehoods} and \l {if-command} {\\if}.
 
     \target edition-variable
-    \section1 edition 
+    \section1 edition
 
     The \c edition variable specifies which modules are included in
     each edition of a package, and provides QDoc with information to
@@ -7182,7 +7183,7 @@
     \endcode
 
     \target exampledirs-variable
-    \section1 exampledirs 
+    \section1 exampledirs
 
     The \c exampledirs variable specifies the directories containing
     the source code of the example files.
@@ -7235,7 +7236,7 @@
     See also \l examples.
 
     \target examples-variable
-    \section1 examples 
+    \section1 examples
 
     The \c examples variable allows you to specify individual example
     files in addition to those located in the directories specified by
@@ -7264,7 +7265,7 @@
     See also \l {exampledirs-variable} {exampledirs}.
 
     \target examples.fileextensions-variable
-    \section1 examples.fileextensions 
+    \section1 examples.fileextensions
 
     The \c examples.fileextensions variable specifies the file
     extensions that qdoc will look for when collecting example files
@@ -7283,7 +7284,7 @@
     See also \l{headers.fileextensions}.
 
     \target extraimages-variable
-    \section1 extraimages 
+    \section1 extraimages
 
     The \c extraimages variable tells QDoc to incorporate specific
     images in the generated documentation.
@@ -7310,7 +7311,7 @@
     See also \l images and \l imagedirs.
 
     \target falsehoods-variable
-    \section1 falsehoods 
+    \section1 falsehoods
 
     The \c falsehoods variable defines the truth value of specified
     preprocessor symbols as false.
@@ -7351,7 +7352,7 @@
     See also \l defines.
 
     \target generateindex-variable
-    \section1 generateindex 
+    \section1 generateindex
 
     The \c generateindex variable contains a boolean value that
     specifies whether to generate an index file when HTML
@@ -7364,7 +7365,7 @@
     value to \c true).
 
     \target headerdirs-variable
-    \section1 headerdirs 
+    \section1 headerdirs
 
     The \c headerdirs variable specifies the directories containing
     the header files associated with the \c .cpp source files used in
@@ -7406,7 +7407,7 @@
     See also \l headers and \l headers.fileextensions.
 
     \target headers-variable
-    \section1 headers 
+    \section1 headers
 
     The \c headers variable allows you to specify individual header
     files in addition to those located in the directories specified by
@@ -7425,7 +7426,7 @@
     See also \l headerdirs.
 
     \target headers.fileextensions-variable
-    \section1 headers.fileextensions 
+    \section1 headers.fileextensions
 
     The \c headers.fileextensions variable specify the extension used
     by the headers.
@@ -7451,7 +7452,7 @@
     See also \l headerdirs.
 
     \target imagedirs-variable
-    \section1 imagedirs 
+    \section1 imagedirs
 
     The \c imagedirs variable specifies the directories containing the
     images used in the documentation.
@@ -7496,7 +7497,7 @@
 
     You can filter the images in an image directory using the \l
     {images.fileextensions} {\c images.fileextensions} variable.  The
-    general idea behind the \l {images.fileextensions} {\c images.fileextensions} 
+    general idea behind the \l {images.fileextensions} {\c images.fileextensions}
     variable is to enable different image format for different output format.
 
     \warning The \l {images.fileextensions} {\c images.fileextensions}
@@ -7506,7 +7507,7 @@
     See also \l images and \l images.fileextensions.
 
     \target images-variable
-    \section1 images 
+    \section1 images
 
     The \c images variable allows you to specify individual image
     files in addition to those located in the directories specified by
@@ -7524,7 +7525,7 @@
     See also \l imagedirs and \l images.fileextensions.
 
     \target images.fileextensions-variable
-    \section1 images.fileextensions 
+    \section1 images.fileextensions
 
     The images.fileextensions variable filters the files within an
     image directory.
@@ -7562,7 +7563,7 @@
     See also \l imagedirs and \l images.
 
     \target language-variable
-    \section1 language 
+    \section1 language
 
     The \c language variable specifies the language of the source code
     that is used in the documentation.
@@ -7578,7 +7579,7 @@
     identifies the language of the Qt source code as C++.
 
     \target macro-variable
-    \section1 macro 
+    \section1 macro
 
     The \c macro variable is used to create your own simple QDoc
     commands. The syntax is \tt {macro.\e{command} = \e{definition}},
@@ -7603,7 +7604,7 @@
     See also \l {alias-variable} {alias}.
 
     \target naturallanguage-variable
-    \section1 naturallanguage 
+    \section1 naturallanguage
 
     The \c naturallanguage variable specifies the natural language
     used for the documentation generated by qdoc.
@@ -7618,15 +7619,15 @@
     qdoc will add the natural language information to the HTML it
     generates, using the \c lang and \c xml:lang attributes.
 
-    See also \l {sourceencoding-variable} {sourceencoding}, 
+    See also \l {sourceencoding-variable} {sourceencoding},
     \l {outputencoding-variable} {outputencoding},
-    \l{http://www.w3.org/TR/xhtml1/#C_7} 
+    \l{http://www.w3.org/TR/xhtml1/#C_7}
     {C.7. The lang and xml:lang Attributes} and
     \l{http://www.w3.org/TR/i18n-html-tech-lang/#ri20040429.113217290}
     {Best Practice 13: Using Hans and Hant codes}.
 
     \target outputdir-variable
-    \section1 outputdir 
+    \section1 outputdir
 
     The \c outputdir variable specifies the directory where QDoc will
     put the generated documentation.
@@ -7651,7 +7652,7 @@
     directory, all files from the previous run will be lost.
 
     \target outputencoding-variable
-    \section1 outputencoding 
+    \section1 outputencoding
 
     The \c outputencoding variable specifies the encoding used for the
     documentation generated by qdoc.
@@ -7675,7 +7676,7 @@
     See also \l outputencoding and \l naturallanguage.
 
     \target outputformats-variable
-    \section1 outputformats 
+    \section1 outputformats
 
     The \c outputformats variable specifies the format of
     the generated documentation.
@@ -7700,7 +7701,7 @@
     prefix "qt-components-" is used instead.
 
     \target qhp-variable
-    \section1 qhp 
+    \section1 qhp
 
     The \c qhp variable is used to define the information to be
     written out to Qt Help Project (\c{qhp}) files.
@@ -7710,7 +7711,7 @@
 
 
     \target slow-variable
-    \section1 slow 
+    \section1 slow
 
     The \c slow variable specifies whether QDoc should do
     time-consuming processing, such as syntax highlighting.  The
@@ -7722,7 +7723,7 @@
     retained. This has the effect of enabling syntax highlighting.
 
     \target sourcedirs-variable
-    \section1 sourcedirs 
+    \section1 sourcedirs
 
     The \c sourcedirs variable specifies the directories containing
     the \c .cpp or \c .qdoc files used in the documentation.
@@ -7761,11 +7762,11 @@
     *.c++, *.cc, *.cpp and *.cxx. The files specified by \l {sources}
     {\c sources} will be read independent of their fileextensions.
 
-    See also \l {sources-variable} {sources} and 
+    See also \l {sources-variable} {sources} and
     \l {sources.fileextensions-variable} {sources.fileextensions}.
 
     \target sourceencoding-variable
-    \section1 sourceencoding 
+    \section1 sourceencoding
 
     The \c sourceencoding variable specifies the encoding used for the
     source code and documentation.
@@ -7785,11 +7786,11 @@
     like these, it is possible to write API documentation completely
     in documentation files.
 
-    See also \l {naturallanguage-variable} {naturallanguage} and 
+    See also \l {naturallanguage-variable} {naturallanguage} and
     \l {outputencoding-variable} {outputencoding}.
 
     \target sources-variable
-    \section1 sources 
+    \section1 sources
 
     The \c sources variable allows you to specify individual source
     files in addition to those located in the directories specified by
@@ -7808,7 +7809,7 @@
     See also \l {sourcedirs-variable} {sourcedirs}.
 
     \target sources.fileextensions-variable
-    \section1 sources.fileextensions 
+    \section1 sources.fileextensions
 
     The \c sources.fileextensions variable filters the files within a
     source directory.
@@ -7835,7 +7836,7 @@
 
 
     \target spurious-variable
-    \section1 spurious 
+    \section1 spurious
 
     The \c spurious variable excludes specified QDoc warnings from the
     output.  The warnings are specified using standard wildcard
@@ -7869,7 +7870,7 @@
     languages.
 
     \target tabsize-variable
-    \section1 tabsize 
+    \section1 tabsize
 
     The \c tabsize variable defines the size of a tab character.
 
@@ -7881,13 +7882,13 @@
     value of the variable is 8, and doesn't need to be specified.
 
     \target tagfile-variable
-    \section1 tagfile 
- 
+    \section1 tagfile
+
     The \c tagfile variable specifies the Doxygen tag file to be
     written when HTML is generated.
 
     \target version-variable
-    \section1 version 
+    \section1 version
 
     The \c version variable specifies the version number of the
     documented software.
@@ -7907,7 +7908,7 @@
     See also \l versionsym.
 
     \target versionsym-variable
-    \section1 versionsym 
+    \section1 versionsym
 
     The \c versionsym variable specifies a C++ preprocessor symbol
     that defines the version number of the documented software.
@@ -7944,7 +7945,7 @@
     \title Creating Help Project Files
 
     \section1 Overview
-    
+
     Starting with Qt 4.4, Qt Assistant uses a different system for managing
     Qt documentation that requires QDoc to generate inventories of files in a
     format that is similar to the old style DCF format, but with additional
@@ -7965,7 +7966,7 @@
     qhp.Qt.namespace           = com.trolltech.qt.440
     qhp.Qt.virtualFolder       = qdoc
     qhp.Qt.indexTitle          = Qt Reference Documentation
-    qhp.Qt.indexRoot           = 
+    qhp.Qt.indexRoot           =
     qhp.Qt.extraFiles          = classic.css images/qt-logo.png
     qhp.Qt.filterAttributes    = qt 4.4.0 qtrefdoc
     qhp.Qt.customFilters.Qt.name = Qt 4.4.0
@@ -8016,7 +8017,7 @@
     erroneous documentation due to non-standard C++ constructs.
 
     \target Cpp.ignoredirectives-variable
-    \section1  Cpp.ignoredirectives 
+    \section1  Cpp.ignoredirectives
 
     The \c Cpp.ignoredirectives variable makes QDoc ignore the
     specified non-standard constructs, within C++ source code.
@@ -8070,7 +8071,7 @@
     See also \l Cpp.ignoretokens.
 
     \target Cpp.ignoretokens-variable
-    \section1  Cpp.ignoretokens 
+    \section1  Cpp.ignoretokens
 
     The \c Cpp.ignoretokens variable makes QDoc ignore the specified
     non-standard constructs, within C++ source code.
@@ -8133,7 +8134,7 @@
     values are raw HTML.
 
     \target HTML.footer-variable
-    \section1 HTML.footer 
+    \section1 HTML.footer
 
     The \c HTML.footer variable defines the content of the generated
     HTML documentation's footer.
@@ -8158,7 +8159,7 @@
     {Qt Reference Documentation}.
 
     \target HTML.postheader-variable
-    \section1 HTML.postheader 
+    \section1 HTML.postheader
 
     The \c HTML.postheader variable defines the content of the
     generated HTML documentation's postheader.
@@ -8187,7 +8188,7 @@
     {Qt Reference Documentation}.
 
     \target HTML.style-variable
-    \section1 HTML.style 
+    \section1 HTML.style
 
     The HTML.style variable defines the style for
     the generated HTML documentation.
@@ -8214,7 +8215,7 @@
     Documentation}.
 
     \target HTML.stylesheets-variable
-    \section1 HTML.stylesheets 
+    \section1 HTML.stylesheets
 
     The HTML.stylesheets variable defines a list of stylesheets
     to use for the generated HTML documentation.
@@ -8249,7 +8250,7 @@
     explicit linking command.
 
     \target description-variable
-    \section1 description 
+    \section1 description
 
     The description variable holds a short description of the
     associated project.
@@ -8257,7 +8258,7 @@
     See also \l project.
 
     \target indexes-variable
-    \section1 indexes 
+    \section1 indexes
 
     The \c indexes variable lists the index files that will be used to
     generate references.
@@ -8273,7 +8274,7 @@
     See also \l project and \l url.
 
     \target project-variable
-    \section1 project 
+    \section1 project
 
     The \c project variable provides a name for the project associated
     with the \c .qdocconf file.
@@ -8291,7 +8292,7 @@
     See also \l description and \l indexes.
 
     \target url-variable
-    \section1 url 
+    \section1 url
 
     The \c url variable holds the base URL for the reference
     documentation associated with the current project.
@@ -8402,8 +8403,8 @@
 
     A \c {compat.qdocconf} file is a separate configuration file,
     which you include in your main configuration file. It typically
-    contains the mappings from old qdoc commands to new ones using 
-    \l {alias} and 
+    contains the mappings from old qdoc commands to new ones using
+    \l {alias} and
     \l {22-qdoc-configuration-generalvariables.html#macro-variable}
     {macro} configuration variables.
 
