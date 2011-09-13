@@ -112,39 +112,6 @@ QT_BEGIN_NAMESPACE
 QStringList CppCodeParser::exampleFiles;
 QStringList CppCodeParser::exampleDirs;
 
-static void extractPageLinkAndDesc(const QString &arg,
-                                   QString *link,
-                                   QString *desc)
-{
-    QRegExp bracedRegExp("\\{([^{}]*)\\}(?:\\{([^{}]*)\\})?");
-
-    if (bracedRegExp.exactMatch(arg)) {
-        *link = bracedRegExp.cap(1);
-        *desc = bracedRegExp.cap(2);
-        if (desc->isEmpty())
-            *desc = *link;
-    }
-    else {
-        int spaceAt = arg.indexOf(" ");
-        if (arg.contains(".html") && spaceAt != -1) {
-            *link = arg.left(spaceAt).trimmed();
-            *desc = arg.mid(spaceAt).trimmed();
-        }
-        else {
-            *link = arg;
-            *desc = arg;
-        }
-    }
-}
-
-static void setLink(Node *node, Node::LinkType linkType, const QString &arg)
-{
-    QString link;
-    QString desc;
-    extractPageLinkAndDesc(arg, &link, &desc);
-    node->setLink(linkType, link, desc);
-}
-
 /*
     This is used for fuzzy matching only, which in turn is only used
     for Qt Jambi.

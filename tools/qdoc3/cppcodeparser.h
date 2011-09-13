@@ -49,7 +49,6 @@
 #include <qregexp.h>
 
 #include "codeparser.h"
-#include "node.h"
 
 QT_BEGIN_NAMESPACE
 

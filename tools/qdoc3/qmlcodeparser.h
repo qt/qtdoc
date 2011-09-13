@@ -52,7 +52,6 @@
 #include "declarativeparser/qdeclarativejsparser_p.h"
 
 #include "codeparser.h"
-#include "location.h"
 
 QT_BEGIN_NAMESPACE
 

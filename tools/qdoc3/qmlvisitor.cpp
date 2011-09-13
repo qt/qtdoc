@@ -47,12 +47,35 @@
 #include "declarativeparser/qdeclarativejsengine_p.h"
 #include <qdebug.h>
 #include "node.h"
+#include "codeparser.h"
 #include "qmlvisitor.h"
 
 QT_BEGIN_NAMESPACE
 
-static bool debug = false;
+#define COMMAND_DEPRECATED              Doc::alias(QLatin1String("deprecated")) // ### don't document
+#define COMMAND_INTERNAL                Doc::alias(QLatin1String("internal"))
+#define COMMAND_OBSOLETE                Doc::alias(QLatin1String("obsolete"))
+#define COMMAND_PAGEKEYWORDS            Doc::alias(QLatin1String("pagekeywords"))
+#define COMMAND_PRELIMINARY             Doc::alias(QLatin1String("preliminary"))
+#define COMMAND_SINCE                   Doc::alias(QLatin1String("since"))
 
+#define COMMAND_QMLCLASS                Doc::alias(QLatin1String("qmlclass"))
+#define COMMAND_QMLMODULE               Doc::alias(QLatin1String("qmlmodule"))
+#define COMMAND_QMLPROPERTY             Doc::alias(QLatin1String("qmlproperty"))
+#define COMMAND_QMLATTACHEDPROPERTY     Doc::alias(QLatin1String("qmlattachedproperty"))
+#define COMMAND_QMLINHERITS             Doc::alias(QLatin1String("inherits"))
+#define COMMAND_INQMLMODULE             Doc::alias(QLatin1String("inqmlmodule"))
+#define COMMAND_QMLSIGNAL               Doc::alias(QLatin1String("qmlsignal"))
+#define COMMAND_QMLATTACHEDSIGNAL       Doc::alias(QLatin1String("qmlattachedsignal"))
+#define COMMAND_QMLMETHOD               Doc::alias(QLatin1String("qmlmethod"))
+#define COMMAND_QMLATTACHEDMETHOD       Doc::alias(QLatin1String("qmlattachedmethod"))
+#define COMMAND_QMLDEFAULT              Doc::alias(QLatin1String("default"))
+#define COMMAND_QMLBASICTYPE            Doc::alias(QLatin1String("qmlbasictype"))
+#define COMMAND_QMLMODULE               Doc::alias(QLatin1String("qmlmodule"))
+
+/*!
+  The constructor stores all the parameters in local data members.
+ */
 QmlDocVisitor::QmlDocVisitor(const QString &filePath,
                              const QString &code,
                              QDeclarativeJS::Engine *engine,
@@ -71,10 +94,17 @@ QmlDocVisitor::QmlDocVisitor(const QString &filePath,
     current = tree->root();
 }
 
+/*!
+  The destructor does nothing.
+ */
 QmlDocVisitor::~QmlDocVisitor()
 {
+    // nothing.
 }
 
+/*!
+  Returns the location of thre nearest comment above the \a offset.
+ */
 QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offset) const
 {
     QListIterator<QDeclarativeJS::AST::SourceLocation> it(engine->comments());
@@ -106,6 +136,12 @@ QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offs
     return QDeclarativeJS::AST::SourceLocation();
 }
 
+/*!
+  Finds the nearest unused qdoc comment above the QML entity
+  represented by the \a node and processes the qdoc commands
+  in that comment. The proceesed documentation is stored in
+  the \a node.
+ */
 void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node* node)
 {
     QDeclarativeJS::AST::SourceLocation loc = precedingComment(location.begin());
@@ -126,6 +162,9 @@ void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
     }
 }
 
+/*!
+  Applies the metacommands found in the comment.
+ */
 void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation location,
                                       Node* node,
                                       Doc& doc)
@@ -144,9 +183,9 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
         }
         if (!topic.isEmpty()) {
             args = doc.metaCommandArgs(topic);
-            if (topic == "qmlclass") {
+            if (topic == COMMAND_QMLCLASS) {
             }
-            else if (topic == "qmlproperty") {
+            else if (topic == COMMAND_QMLPROPERTY) {
                 if (node->type() == Node::QmlProperty) {
                     QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
                     if (qpn->dataType() == "alias") {
@@ -155,17 +194,19 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                     }
                 }
             }
-            else if (topic == "qmlattachedproperty") {
+            else if (topic == COMMAND_QMLMODULE) {
             }
-            else if (topic == "qmlsignal") {
+            else if (topic == COMMAND_QMLATTACHEDPROPERTY) {
             }
-            else if (topic == "qmlattachedsignal") {
+            else if (topic == COMMAND_QMLSIGNAL) {
             }
-            else if (topic == "qmlmethod") {
+            else if (topic == COMMAND_QMLATTACHEDSIGNAL) {
             }
-            else if (topic == "qmlattachedmethod") {
+            else if (topic == COMMAND_QMLMETHOD) {
             }
-            else if (topic == "qmlbasictype") {
+            else if (topic == COMMAND_QMLATTACHEDMETHOD) {
+            }
+            else if (topic == COMMAND_QMLBASICTYPE) {
             }
         }
         metacommands.subtract(topics);
@@ -173,7 +214,50 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
         while (i != metacommands.end()) {
             QString command = *i;
             args = doc.metaCommandArgs(command);
-            // process the metacommand here.
+            if (command == COMMAND_DEPRECATED) {
+                node->setStatus(Node::Deprecated);
+            }
+            else if (command == COMMAND_INQMLMODULE) {
+                node->setQmlModuleName(args[0]);
+                tree->addToQmlModule(node,args[0]);
+                QString qmq = node->qmlModuleQualifier();
+                QmlClassNode* qcn = static_cast<QmlClassNode*>(node);
+                QmlClassNode::moduleMap.insert(qmq + "::" + node->name(), qcn);
+            }
+            else if (command == COMMAND_QMLINHERITS) {
+                if (node->name() == args[0])
+                    doc.location().warning(tr("%1 tries to inherit itself").arg(args[0]));
+                else {
+                    CodeParser::setLink(node, Node::InheritsLink, args[0]);
+                    if (node->subType() == Node::QmlClass) {
+                        QmlClassNode::addInheritedBy(args[0],node);
+                    }
+                }
+            }
+            else if (command == COMMAND_QMLDEFAULT) {
+                if (node->type() == Node::QmlProperty) {
+                    QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+                    qpn->setDefault();
+                }
+            }
+            else if (command == COMMAND_INTERNAL) {
+                node->setAccess(Node::Private);
+                node->setStatus(Node::Internal);
+            }
+            else if (command == COMMAND_OBSOLETE) {
+                if (node->status() != Node::Compat)
+                    node->setStatus(Node::Obsolete);
+            }
+            else if (command == COMMAND_PAGEKEYWORDS) {
+                // Not done yet. Do we need this?
+            }
+            else if (command == COMMAND_PRELIMINARY) {
+                node->setStatus(Node::Preliminary);
+            }
+            else if (command == COMMAND_SINCE) {
+                QString arg = args.join(" ");
+                node->setSince(arg);
+            }
             ++i;
         }
     }

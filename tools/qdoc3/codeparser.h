@@ -48,7 +48,7 @@
 
 #include <QSet>
 
-#include "location.h"
+#include "node.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -81,12 +81,16 @@ class CodeParser
     static CodeParser *parserForHeaderFile(const QString &filePath);
     static CodeParser *parserForSourceFile(const QString &filePath);
     static const QString titleFromName(const QString& name);
+    static void setLink(Node* node, Node::LinkType linkType, const QString& arg);
 
  protected:
     QSet<QString> commonMetaCommands();
     void processCommonMetaCommand(const Location& location,
 				  const QString& command, const QString& arg,
 				  Node *node, Tree *tree);
+    static void extractPageLinkAndDesc(const QString& arg,
+                                       QString* link,
+                                       QString* desc);
 
  private:
     static QList<CodeParser *> parsers;

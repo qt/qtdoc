@@ -312,4 +312,43 @@ const QString CodeParser::titleFromName(const QString& name)
     return t;
 }
 
+/*!
+  \internal
+ */
+void CodeParser::extractPageLinkAndDesc(const QString& arg,
+                                        QString* link,
+                                        QString* desc)
+{
+    QRegExp bracedRegExp("\\{([^{}]*)\\}(?:\\{([^{}]*)\\})?");
+
+    if (bracedRegExp.exactMatch(arg)) {
+        *link = bracedRegExp.cap(1);
+        *desc = bracedRegExp.cap(2);
+        if (desc->isEmpty())
+            *desc = *link;
+    }
+    else {
+        int spaceAt = arg.indexOf(" ");
+        if (arg.contains(".html") && spaceAt != -1) {
+            *link = arg.left(spaceAt).trimmed();
+            *desc = arg.mid(spaceAt).trimmed();
+        }
+        else {
+            *link = arg;
+            *desc = arg;
+        }
+    }
+}
+
+/*!
+  \internal
+ */
+void CodeParser::setLink(Node* node, Node::LinkType linkType, const QString& arg)
+{
+    QString link;
+    QString desc;
+    extractPageLinkAndDesc(arg, &link, &desc);
+    node->setLink(linkType, link, desc);
+}
+
 QT_END_NAMESPACE
