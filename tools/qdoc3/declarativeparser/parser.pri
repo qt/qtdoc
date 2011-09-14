@@ -1,3 +1,5 @@
+QT += widgets
+
 INCLUDEPATH += $$PWD
 
 HEADERS += \
