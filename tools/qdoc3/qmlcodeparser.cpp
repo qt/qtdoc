@@ -149,8 +149,6 @@ void QmlCodeParser::parseSourceFile(const Location& location,
     QSet<QString> metacommandsAllowed = topicCommandsAllowed +
         otherMetacommandsAllowed;
 
-    QDeclarativeJS::NodePool m_nodePool(filePath, &engine);
-
     if (parser->parse()) {
         QDeclarativeJS::AST::UiProgram *ast = parser->ast();
         QmlDocVisitor visitor(filePath,

@@ -47,7 +47,6 @@
 #include "declarativeparser/qdeclarativejsastfwd_p.h"
 #include "declarativeparser/qdeclarativejsengine_p.h"
 #include "declarativeparser/qdeclarativejslexer_p.h"
-#include "declarativeparser/qdeclarativejsnodepool_p.h"
 #include "declarativeparser/qdeclarativejsparser_p.h"
 
 #include "atom.h"
@@ -75,7 +74,6 @@ bool QmlCodeMarker::recognizeCode(const QString &code)
     QDeclarativeJS::Engine engine;
     QDeclarativeJS::Lexer lexer(&engine);
     QDeclarativeJS::Parser parser(&engine);
-    QDeclarativeJS::NodePool m_nodePool("<QmlCodeMarker::recognizeCode>", &engine);
 
     QString newCode = code;
     extractPragmas(newCode);
@@ -209,7 +207,6 @@ QString QmlCodeMarker::addMarkUp(const QString &code,
     lexer.setCode(newCode, 1);
 
     QDeclarativeJS::Parser parser(&engine);
-    QDeclarativeJS::NodePool m_nodePool("<QmlCodeMarker::addMarkUp>", &engine);
     QString output;
 
     if (parser.parse()) {
