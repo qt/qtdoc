@@ -13,6 +13,10 @@ qdoc_bootstrapped {
     DEFINES += QT_NO_TRANSLATION
 } else {
     QT = core xml
+    contains(QT_CONFIG, declarative) {
+        QT += declarative-private
+        DEFINES += HAVE_DECLARATIVE
+    }
     CONFIG += console
     CONFIG -= debug_and_release_target
 }
@@ -39,17 +43,12 @@ HEADERS += atom.h \
 	   generator.h \
            helpprojectwriter.h \
 	   htmlgenerator.h \
-           jscodemarker.h \
            location.h \
            node.h \
            openedlist.h \
 	   pagegenerator.h \
 	   plaincodemarker.h \
            puredocparser.h \
-           qmlcodemarker.h \
-           qmlcodeparser.h \
-           qmlmarkupvisitor.h \
-           qmlvisitor.h \
            quoter.h \
 	   separator.h \
 	   text.h \
@@ -69,7 +68,6 @@ SOURCES += atom.cpp \
 	   generator.cpp \
            helpprojectwriter.cpp \
 	   htmlgenerator.cpp \
-           jscodemarker.cpp \
            location.cpp \
            main.cpp \
            node.cpp \
@@ -77,10 +75,6 @@ SOURCES += atom.cpp \
 	   pagegenerator.cpp \
 	   plaincodemarker.cpp \
            puredocparser.cpp \
-           qmlcodemarker.cpp \
-           qmlcodeparser.cpp \
-           qmlmarkupvisitor.cpp \
-           qmlvisitor.cpp \
            quoter.cpp \
 	   separator.cpp \
 	   text.cpp \
@@ -88,7 +82,21 @@ SOURCES += atom.cpp \
 	   tree.cpp \
 	   yyindent.cpp
 
-include(declarativeparser/parser.pri)
+### QML/JS Parser ###
+
+contains(QT_CONFIG, declarative) {
+    HEADERS += jscodemarker.h \
+        qmlcodemarker.h \
+        qmlcodeparser.h \
+        qmlmarkupvisitor.h \
+        qmlvisitor.h
+
+    SOURCES += jscodemarker.cpp \
+        qmlcodemarker.cpp \
+        qmlcodeparser.cpp \
+        qmlmarkupvisitor.cpp \
+        qmlvisitor.cpp
+}
 
 ### Documentation for qdoc3 ###
 

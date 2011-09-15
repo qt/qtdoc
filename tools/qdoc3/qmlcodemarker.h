@@ -46,7 +46,7 @@
 #ifndef QMLCODEMARKER_H
 #define QMLCODEMARKER_H
 
-#include "declarativeparser/qdeclarativejsastfwd_p.h"
+#include <private/qdeclarativejsastfwd_p.h>
 #include "cppcodemarker.h"
 
 QT_BEGIN_NAMESPACE

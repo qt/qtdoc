@@ -43,11 +43,10 @@
   jscodemarker.cpp
 */
 
-#include "declarativeparser/qdeclarativejsast_p.h"
-#include "declarativeparser/qdeclarativejsengine_p.h"
-#include "declarativeparser/qdeclarativejslexer_p.h"
-#include "declarativeparser/qdeclarativejsnodepool_p.h"
-#include "declarativeparser/qdeclarativejsparser_p.h"
+#include <private/qdeclarativejsast_p.h>
+#include <private/qdeclarativejsengine_p.h>
+#include <private/qdeclarativejslexer_p.h>
+#include <private/qdeclarativejsparser_p.h>
 
 #include "atom.h"
 #include "node.h"
@@ -74,7 +73,6 @@ bool JsCodeMarker::recognizeCode(const QString &code)
     QDeclarativeJS::Engine engine;
     QDeclarativeJS::Lexer lexer(&engine);
     QDeclarativeJS::Parser parser(&engine);
-    QDeclarativeJS::NodePool m_nodePool("<JsCodeMarker::recognizeCode>", &engine);
 
     QString newCode = code;
     QList<QDeclarativeJS::AST::SourceLocation> pragmas = extractPragmas(newCode);
@@ -128,7 +126,6 @@ QString JsCodeMarker::addMarkUp(const QString &code,
     lexer.setCode(newCode, 1);
 
     QDeclarativeJS::Parser parser(&engine);
-    QDeclarativeJS::NodePool m_nodePool("<JsCodeMarker::addMarkUp>", &engine);
     QString output;
 
     if (parser.parseProgram()) {

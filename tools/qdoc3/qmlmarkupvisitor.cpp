@@ -41,9 +41,9 @@
 
 #include <QStringList>
 #include <QtGlobal>
-#include "declarativeparser/qdeclarativejsast_p.h"
-#include "declarativeparser/qdeclarativejsastfwd_p.h"
-#include "declarativeparser/qdeclarativejsengine_p.h"
+#include <private/qdeclarativejsast_p.h>
+#include <private/qdeclarativejsastfwd_p.h>
+#include <private/qdeclarativejsengine_p.h>
 
 #include "qmlmarkupvisitor.h"
 
@@ -257,8 +257,8 @@ bool QmlMarkupVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
         addVerbatim(member->colonToken);
         if (member->binding)
             QDeclarativeJS::AST::Node::accept(member->binding, this);
-        else if (member->expression)
-            QDeclarativeJS::AST::Node::accept(member->expression, this);
+        else if (member->statement)
+            QDeclarativeJS::AST::Node::accept(member->statement, this);
     } else {
         addVerbatim(member->propertyToken);
         addVerbatim(member->typeModifierToken);

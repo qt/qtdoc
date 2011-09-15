@@ -43,9 +43,8 @@
   qmlcodeparser.cpp
 */
 
-#include "declarativeparser/qdeclarativejsast_p.h"
-#include "declarativeparser/qdeclarativejsastvisitor_p.h"
-#include "declarativeparser/qdeclarativejsnodepool_p.h"
+#include <private/qdeclarativejsast_p.h>
+#include <private/qdeclarativejsastvisitor_p.h>
 
 #include "qmlcodeparser.h"
 #include "node.h"

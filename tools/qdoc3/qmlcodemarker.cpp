@@ -43,11 +43,11 @@
   qmlcodemarker.cpp
 */
 
-#include "declarativeparser/qdeclarativejsast_p.h"
-#include "declarativeparser/qdeclarativejsastfwd_p.h"
-#include "declarativeparser/qdeclarativejsengine_p.h"
-#include "declarativeparser/qdeclarativejslexer_p.h"
-#include "declarativeparser/qdeclarativejsparser_p.h"
+#include <private/qdeclarativejsast_p.h>
+#include <private/qdeclarativejsastfwd_p.h>
+#include <private/qdeclarativejsengine_p.h>
+#include <private/qdeclarativejslexer_p.h>
+#include <private/qdeclarativejsparser_p.h>
 
 #include "atom.h"
 #include "node.h"

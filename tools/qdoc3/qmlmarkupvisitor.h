@@ -43,7 +43,7 @@
 #define QMLVISITOR_H
 
 #include <QString>
-#include "declarativeparser/qdeclarativejsastvisitor_p.h"
+#include <private/qdeclarativejsastvisitor_p.h>
 #include "node.h"
 #include "tree.h"
 

@@ -42,9 +42,9 @@
 #include <QFileInfo>
 #include <QStringList>
 #include <QtGlobal>
-#include "declarativeparser/qdeclarativejsast_p.h"
-#include "declarativeparser/qdeclarativejsastfwd_p.h"
-#include "declarativeparser/qdeclarativejsengine_p.h"
+#include <private/qdeclarativejsast_p.h>
+#include <private/qdeclarativejsastfwd_p.h>
+#include <private/qdeclarativejsengine_p.h>
 #include <qdebug.h>
 #include "node.h"
 #include "codeparser.h"
@@ -272,7 +272,7 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
 */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
 {
-    QString type = definition->qualifiedTypeNameId->name->asString();
+    QString type = definition->qualifiedTypeNameId->name.toString();
     nestingLevel++;
 
     if (current->type() == Node::Namespace) {
@@ -341,11 +341,11 @@ static QString reconstituteFieldMemberExpression(EN* en)
         if (en->kind == QDeclarativeJS::AST::Node::Kind_FieldMemberExpression) {
             FME* fme = (FME*) en;
             s = reconstituteFieldMemberExpression(fme->base);
-            s += "." + fme->name->asString();
+            s += "." + fme->name.toString();
         }
         else if (en->kind == QDeclarativeJS::AST::Node::Kind_IdentifierExpression) {
             IE* ie = (IE*) en;
-            s = ie->name->asString();
+            s = ie->name.toString();
         }
         else {
             qDebug() << "    But it wasn't a recognized expression kind";
@@ -370,13 +370,13 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
             QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
             if (qmlClass) {
 
-                QString name = member->name->asString();
+                QString name = member->name.toString();
                 FunctionNode *qmlSignal = new FunctionNode(Node::QmlSignal, current, name, false);
 
                 QList<Parameter> parameters;
                 for (QDeclarativeJS::AST::UiParameterList *it = member->parameters; it; it = it->next) {
-                    if (it->type && it->name)
-                        parameters.append(Parameter(it->type->asString(), "", it->name->asString()));
+                    if (!it->type.isEmpty() && !it->name.isEmpty())
+                        parameters.append(Parameter(it->type.toString(), "", it->name.toString()));
                 }
 
                 qmlSignal->setParameters(parameters);
@@ -387,13 +387,13 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
     }
     case QDeclarativeJS::AST::UiPublicMember::Property:
     {
-        QString type = member->memberType->asString();
-        QString name = member->name->asString();
+        QString type = member->memberType.toString();
+        QString name = member->name.toString();
 
         if (current->type() == Node::Fake) {
             QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
             if (qmlClass) {
-                QString name = member->name->asString();
+                QString name = member->name.toString();
                 QmlPropertyNode *qmlPropNode = new QmlPropertyNode(qmlClass, name, type, false);
                 qmlPropNode->setWritable(!member->isReadonlyMember);
                 if (member->isDefaultMember)
@@ -474,14 +474,14 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
     if (current->type() == Node::Fake) {
         QmlClassNode* qmlClass = static_cast<QmlClassNode*>(current);
         if (qmlClass) {
-            QString name = fd->name->asString();
+            QString name = fd->name.toString();
             FunctionNode* qmlMethod = new FunctionNode(Node::QmlMethod, current, name, false);
             QList<Parameter> parameters;
             QDeclarativeJS::AST::FormalParameterList* formals = fd->formals;
             if (formals) {
                 QDeclarativeJS::AST::FormalParameterList* fpl = formals;
                 do {
-                    parameters.append(Parameter(QString(""), QString(""), fpl->name->asString()));
+                    parameters.append(Parameter(QString(""), QString(""), fpl->name.toString()));
                     fpl = fpl->next;
                 } while (fpl && fpl != formals);
                 qmlMethod->setParameters(parameters);
