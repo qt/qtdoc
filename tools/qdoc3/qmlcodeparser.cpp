@@ -231,26 +231,26 @@ void QmlCodeParser::extractPragmas(QString &script)
             return;
 
         int startOffset = l.tokenOffset();
-        int startLine = l.currentLineNo();
+        int startLine = l.tokenStartLine();
 
         token = l.lex();
 
         if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
-            l.currentLineNo() != startLine ||
+            l.tokenStartLine() != startLine ||
             script.mid(l.tokenOffset(), l.tokenLength()) != pragma)
             return;
 
         token = l.lex();
 
         if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
-            l.currentLineNo() != startLine)
+            l.tokenStartLine() != startLine)
             return;
 
         QString pragmaValue = script.mid(l.tokenOffset(), l.tokenLength());
         int endOffset = l.tokenLength() + l.tokenOffset();
 
         token = l.lex();
-        if (l.currentLineNo() == startLine)
+        if (l.tokenStartLine() == startLine)
             return;
 
         if (pragmaValue == QLatin1String("library"))

@@ -73,7 +73,9 @@ public:
     void setCode(const QString &c, int lineno);
     int lex();
 
+    int tokenStartLine() const { return yylineno; }
     int currentLineNo() const { return yylineno; }
+    int tokenStartColumn() const { return yycolumn; }
     int currentColumnNo() const { return yycolumn; }
 
     int tokenOffset() const { return startpos; }

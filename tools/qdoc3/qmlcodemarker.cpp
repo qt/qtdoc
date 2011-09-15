@@ -227,7 +227,8 @@ QString QmlCodeMarker::addMarkUp(const QString &code,
 }
 
 /*
-Copied and pasted from src/declarative/qml/qdeclarativescriptparser.cpp.
+  Copied and pasted from
+  src/declarative/qml/qdeclarativescriptparser.cpp.
 */
 static void replaceWithSpace(QString &str, int idx, int n)
 {
@@ -238,12 +239,12 @@ static void replaceWithSpace(QString &str, int idx, int n)
 }
 
 /*
-Copied and pasted from src/declarative/qml/qdeclarativescriptparser.cpp then
-modified to return a list of removed pragmas.
+  Copied and pasted from
+  src/declarative/qml/qdeclarativescriptparser.cpp then modified to
+  return a list of removed pragmas.
 
-Searches for ".pragma <value>" declarations within \a script.  Currently supported pragmas
-are:
-    library
+  Searches for ".pragma <value>" declarations within \a script.
+  Currently supported pragmas are: library
 */
 QList<QDeclarativeJS::AST::SourceLocation> QmlCodeMarker::extractPragmas(QString &script)
 {
@@ -261,27 +262,27 @@ QList<QDeclarativeJS::AST::SourceLocation> QmlCodeMarker::extractPragmas(QString
             return removed;
 
         int startOffset = l.tokenOffset();
-        int startLine = l.currentLineNo();
-        int startColumn = l.currentColumnNo();
+        int startLine = l.tokenStartLine();
+        int startColumn = l.tokenStartColumn();
 
         token = l.lex();
 
         if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
-            l.currentLineNo() != startLine ||
+            l.tokenStartLine() != startLine ||
             script.mid(l.tokenOffset(), l.tokenLength()) != pragma)
             return removed;
 
         token = l.lex();
 
         if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
-            l.currentLineNo() != startLine)
+            l.tokenStartLine() != startLine)
             return removed;
 
         QString pragmaValue = script.mid(l.tokenOffset(), l.tokenLength());
         int endOffset = l.tokenLength() + l.tokenOffset();
 
         token = l.lex();
-        if (l.currentLineNo() == startLine)
+        if (l.tokenStartLine() == startLine)
             return removed;
 
         if (pragmaValue == QLatin1String("library")) {
