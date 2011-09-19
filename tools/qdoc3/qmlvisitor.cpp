@@ -258,6 +258,9 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                 QString arg = args.join(" ");
                 node->setSince(arg);
             }
+            else {
+                doc.location().warning(tr("The \%1 command is ignored in QML files").arg(command));
+            }
             ++i;
         }
     }
@@ -442,7 +445,6 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiSignature *signature)
     if (current->type() == Node::Fake) {
         QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
         if (qmlClass) {
-            qDebug() << "GOT HEAH:" << qmlClass->name();
             QDeclarativeJS::AST::UiFormalList *formals = signature->formals;
             if (formals) {
                 QDeclarativeJS::AST::UiFormalList *fl = formals;
@@ -485,8 +487,8 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
                     fpl = fpl->next;
                 } while (fpl && fpl != formals);
                 qmlMethod->setParameters(parameters);
-                applyDocumentation(fd->firstSourceLocation(), qmlMethod);
             }
+            applyDocumentation(fd->firstSourceLocation(), qmlMethod);
         }
     }
     return true;
