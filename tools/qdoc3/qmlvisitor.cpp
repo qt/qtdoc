@@ -141,8 +141,11 @@ QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offs
   represented by the \a node and processes the qdoc commands
   in that comment. The proceesed documentation is stored in
   the \a node.
+
+  If a qdoc comment is found about \a location, true is returned.
+  If a comment is not found there, false is returned.
  */
-void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node* node)
+bool QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node* node)
 {
     QDeclarativeJS::AST::SourceLocation loc = precedingComment(location.begin());
 
@@ -159,7 +162,12 @@ void QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
         node->setDoc(doc);
         applyMetacommands(loc, node, doc);
         usedComments.insert(loc.offset);
+        return true;
     }
+    Location codeLoc(filePath);
+    codeLoc.setLineNo(location.startLine);
+    node->setLocation(codeLoc);
+    return false;
 }
 
 /*!
