@@ -1,11 +1,8 @@
 include(qt-project.qdocconf)
 
-imagedirs               = $QTDIR/doc/src/images \
-                          $QTDIR/examples \
-                          $QTDIR/doc/src/declarative/pics \
-                          $QTDIR/doc/src/template/images
+imagedirs += images
 
-outputdir               = $QTDIR/doc/ditaxml
+outputdir               = $MODULE_BUILD_TREE/doc/ditaxml
 outputformats           = DITAXML
 
 generateindex           = true

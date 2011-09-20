@@ -17,7 +17,7 @@ win32:!win32-g++* {
 
 $$unixstyle {
     SET =
-    SEP = 
+    SEP =
 } else {
     SET = set
     SEP = &&
@@ -57,7 +57,7 @@ for(module, MODULES) {
 
     # Take the module name and convert it to the name of the variable that
     # contains the sources path, which takes the form, QT.<module name>.sources.
-    
+
     module_name = $$upper($$module)
     module_name = $$replace(module_name, "-", "_")
     module_value = $$eval(QT.$$replace(module, "-", "_").sources)
@@ -90,6 +90,9 @@ message($$INCLUDES)
 # Input files in the source tree
 ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs-online.qdocconf
 ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+
+DITA_QDOCCONF = $${QT.doc.sources}/doc/config/qt-ditaxml.qdocconf
+ONLINE_QDOCCONF = $$replace(DITA_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs.qdocconf
 OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
@@ -134,6 +137,9 @@ $$unixstyle {
 online_docs.commands = ($$MAKE_QMAKE $$QDOC $$ONLINE_QDOCCONF)
 online_docs.depends += sub-qdoc3
 
+dita_docs.commands = ($$MAKE_QMAKE $$QDOC $$DITA_QDOCCONF)
+dita_docs.depends += sub-qdoc3
+
 qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
                      $$GENERATOR $$QHP_FILE -o $$QCH_FILE)
 qch_docs.depends += sub-qdoc3
@@ -156,5 +162,5 @@ docimages.path = $$[QT_INSTALL_DOCS]/src
 #sub-qdoc3.depends = sub-corelib sub-xml
 sub-qdoc3.commands += (cd tools/qdoc3 && $$QT.core.bins/qmake && $(MAKE))
 
-QMAKE_EXTRA_TARGETS += sub-qdoc3 online_docs qch_docs docs
+QMAKE_EXTRA_TARGETS += sub-qdoc3 online_docs qch_docs docs dita_docs
 INSTALLS += htmldocs qchdocs docimages
