@@ -84,7 +84,10 @@ SOURCES += atom.cpp \
 
 ### QML/JS Parser ###
 
-contains(QT_CONFIG, declarative) {
+contains(QT_CONFIG, declarative):exists($$QT.declarative.sources/qml/parser/parser.pri) {
+    include($$QT.declarative.sources/qml/parser/parser.pri)
+    INCLUDEPATH += $$QT.declarative.sources/qml $$QT.declarative.includes
+
     HEADERS += jscodemarker.h \
         qmlcodemarker.h \
         qmlcodeparser.h \
@@ -96,6 +99,9 @@ contains(QT_CONFIG, declarative) {
         qmlcodeparser.cpp \
         qmlmarkupvisitor.cpp \
         qmlvisitor.cpp
+}
+else {
+    warning(QtDeclarative sources not available - qdoc QML support is limited)
 }
 
 ### Documentation for qdoc3 ###
