@@ -13,10 +13,6 @@ qdoc_bootstrapped {
     DEFINES += QT_NO_TRANSLATION
 } else {
     QT = core xml
-    contains(QT_CONFIG, declarative) {
-        QT += declarative-private
-        DEFINES += HAVE_DECLARATIVE
-    }
     CONFIG += console
     CONFIG -= debug_and_release_target
 }
@@ -85,6 +81,10 @@ SOURCES += atom.cpp \
 ### QML/JS Parser ###
 
 contains(QT_CONFIG, declarative):exists($$QT.declarative.sources/qml/parser/parser.pri) {
+
+    QT += declarative-private
+    DEFINES += HAVE_DECLARATIVE
+
     include($$QT.declarative.sources/qml/parser/parser.pri)
     INCLUDEPATH += $$QT.declarative.sources/qml $$QT.declarative.includes
 
