@@ -1137,15 +1137,15 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                                               "property",
                                               "properties");
 	    FastSection qmlsignals(qmlClassNode,
-                                   "Signal Handlers",
+                                   "Signals",
                                    "",
-                                   "signal handler",
-                                   "signal handlers");
+                                   "signal",
+                                   "signals");
 	    FastSection qmlattachedsignals(qmlClassNode,
-                                           "Attached Signal Handlers",
+                                           "Attached Signals",
                                            "",
-                                           "signal handler",
-                                           "signal handlers");
+                                           "signal",
+                                           "signals");
 	    FastSection qmlmethods(qmlClassNode,
                                    "Methods",
                                    "",
@@ -1207,9 +1207,9 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
             FastSection qmlproperties(qmlClassNode, "Property Documentation","qmlprop","member","members");
 	    FastSection qmlattachedproperties(qmlClassNode,"Attached Property Documentation","qmlattprop",
                                               "member","members");
-            FastSection qmlsignals(qmlClassNode,"Signal Handler Documentation","qmlsig","handler","handlers");
-            FastSection qmlattachedsignals(qmlClassNode,"Attached Signal Handler Documentation","qmlattsig",
-                                           "handler","handlers");
+            FastSection qmlsignals(qmlClassNode,"Signal Documentation","qmlsig","signal","signals");
+            FastSection qmlattachedsignals(qmlClassNode,"Attached Signal Documentation","qmlattsig",
+                                           "signal","signals");
             FastSection qmlmethods(qmlClassNode,"Method Documentation","qmlmeth","member","members");
 	    FastSection qmlattachedmethods(qmlClassNode,"Attached Method Documentation","qmlattmeth",
                                            "member","members");
