@@ -74,6 +74,7 @@ class HtmlGenerator : public PageGenerator
         QmlClass,
         QmlProperty,
         QmlSignal,
+        QmlSignalHandler,
         QmlMethod,
         LastSinceType
     };

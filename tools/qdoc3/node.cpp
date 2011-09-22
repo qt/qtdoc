@@ -1035,6 +1035,7 @@ LeafNode::LeafNode(Type type, InnerNode *parent, const QString& name)
     case Variable:
     case QmlProperty:
     case QmlSignal:
+    case QmlSignalHandler:
     case QmlMethod:
         setPageType(ApiPage);
         break;
@@ -1392,6 +1393,7 @@ FunctionNode::FunctionNode(InnerNode *parent, const QString& name)
       con(false),
       sta(false),
       ove(false),
+      reimp(false),
       att(false),
       rf(0),
       ap(0)
@@ -1411,6 +1413,7 @@ FunctionNode::FunctionNode(Type type, InnerNode *parent, const QString& name, bo
       con(false),
       sta(false),
       ove(false),
+      reimp(false),
       att(attached),
       rf(0),
       ap(0)

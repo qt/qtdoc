@@ -658,6 +658,9 @@ int HtmlGenerator::generateAtom(const Atom *atom,
                       case Node::QmlSignal:
                           sections[QmlSignal].appendMember((Node*)node);
                           break;
+                      case Node::QmlSignalHandler:
+                          sections[QmlSignalHandler].appendMember((Node*)node);
+                          break;
                       case Node::QmlMethod:
                           sections[QmlMethod].appendMember((Node*)node);
                           break;
@@ -3156,6 +3159,9 @@ QString HtmlGenerator::refForNode(const Node *node)
     case Node::QmlSignal:
         ref = node->name() + "-signal";
         break;
+    case Node::QmlSignalHandler:
+        ref = node->name() + "-signal-handler";
+        break;
     case Node::QmlMethod:
         ref = node->name() + "-method";
         break;
@@ -3779,13 +3785,8 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         while (p != qpgn->childNodes().end()) {
             if ((*p)->type() == Node::QmlProperty) {
                 qpn = static_cast<const QmlPropertyNode*>(*p);
-                if (++numTableRows % 2 == 1)
-                    out() << "<tr valign=\"top\" class=\"odd\">";
-                else
-                    out() << "<tr valign=\"top\" class=\"even\">";
-
+                out() << "<tr valign=\"top\" class=\"odd\">";
                 out() << "<td class=\"tblQmlPropNode\"><p>";
-
                 out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
 
                 const ClassNode* cn = qpn->declarativeCppNode();
@@ -3806,10 +3807,7 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         qpn = static_cast<const QmlPropertyNode*>(node);
         out() << "<div class=\"qmlproto\">";
         out() << "<table class=\"qmlname\">";
-        if (++numTableRows % 2 == 1)
-            out() << "<tr valign=\"top\" class=\"odd\">";
-        else
-            out() << "<tr valign=\"top\" class=\"even\">";
+        out() << "<tr valign=\"top\" class=\"odd\">";
         out() << "<td class=\"tblQmlPropNode\"><p>";
         out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
         const ClassNode* cn = qpn->declarativeCppNode();
@@ -3827,15 +3825,22 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         const FunctionNode* qsn = static_cast<const FunctionNode*>(node);
         out() << "<div class=\"qmlproto\">";
         out() << "<table class=\"qmlname\">";
-        //out() << "<tr>";
-        if (++numTableRows % 2 == 1)
-            out() << "<tr valign=\"top\" class=\"odd\">";
-        else
-            out() << "<tr valign=\"top\" class=\"even\">";
+        out() << "<tr valign=\"top\" class=\"odd\">";
         out() << "<td class=\"tblQmlFuncNode\"><p>";
         out() << "<a name=\"" + refForNode(qsn) + "\"></a>";
         generateSynopsis(qsn,relative,marker,CodeMarker::Detailed,false);
-        //generateQmlItem(qsn,relative,marker,false);
+        out() << "</p></td></tr>";
+        out() << "</table>";
+        out() << "</div>";
+    }
+    else if (node->type() == Node::QmlSignalHandler) {
+        const FunctionNode* qshn = static_cast<const FunctionNode*>(node);
+        out() << "<div class=\"qmlproto\">";
+        out() << "<table class=\"qmlname\">";
+        out() << "<tr valign=\"top\" class=\"odd\">";
+        out() << "<td class=\"tblQmlFuncNode\"><p>";
+        out() << "<a name=\"" + refForNode(qshn) + "\"></a>";
+        generateSynopsis(qshn,relative,marker,CodeMarker::Detailed,false);
         out() << "</p></td></tr>";
         out() << "</table>";
         out() << "</div>";
@@ -3844,11 +3849,7 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         const FunctionNode* qmn = static_cast<const FunctionNode*>(node);
         out() << "<div class=\"qmlproto\">";
         out() << "<table class=\"qmlname\">";
-        //out() << "<tr>";
-        if (++numTableRows % 2 == 1)
-            out() << "<tr valign=\"top\" class=\"odd\">";
-        else
-            out() << "<tr valign=\"top\" class=\"even\">";
+        out() << "<tr valign=\"top\" class=\"odd\">";
         out() << "<td class=\"tblQmlFuncNode\"><p>";
         out() << "<a name=\"" + refForNode(qmn) + "\"></a>";
         generateSynopsis(qmn,relative,marker,CodeMarker::Detailed,false);
@@ -4342,6 +4343,9 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
             break;
         case Node::QmlSignal:
             anchorRef = "#" + node->name() + "-signal";
+            break;
+        case Node::QmlSignalHandler:
+            anchorRef = "#" + node->name() + "-signal-handler";
             break;
         case Node::QmlMethod:
             anchorRef = "#" + node->name() + "-method";

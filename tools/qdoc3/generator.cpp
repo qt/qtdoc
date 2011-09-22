@@ -46,6 +46,7 @@
 #ifdef DEBUG_MULTIPLE_QDOCCONF_FILES
 #include <qdebug.h>
 #endif
+#include <qdebug.h>
 #include "codemarker.h"
 #include "config.h"
 #include "doc.h"
@@ -92,6 +93,7 @@ QString Generator::sinceTitles[] =
         "    New QML Elements",
         "    New QML Properties",
         "    New QML Signals",
+        "    New QML Signal Handlers",
         "    New QML Methods",
         ""
     };
@@ -426,7 +428,6 @@ void Generator::generateBody(const Node *node, CodeMarker *marker)
             quiet = true;
         }
     }
-
     if (node->doc().isEmpty()) {
         if (!quiet && !node->isReimp()) { // ### might be unnecessary
             node->location().warning(tr("No documentation for '%1'")

@@ -71,6 +71,7 @@ class DitaXmlGenerator : public PageGenerator
         QmlClass,
         QmlProperty,
         QmlSignal,
+        QmlSignalHandler,
         QmlMethod,
         LastSinceType
     };

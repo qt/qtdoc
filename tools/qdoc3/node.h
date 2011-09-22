@@ -85,6 +85,7 @@ class Node
         Target,
         QmlProperty,
         QmlSignal,
+        QmlSignalHandler,
         QmlMethod,
         LastType
 #else
@@ -697,7 +698,9 @@ class FunctionNode : public LeafNode
     const QString& element() const { return parent()->name(); }
     bool isAttached() const { return att; }
     virtual bool isQmlNode() const { 
-        return ((type() == QmlSignal) || (type() == QmlMethod)); 
+        return ((type() == QmlSignal) ||
+                (type() == QmlMethod) ||
+                (type() == QmlSignalHandler));
     }
     virtual bool isInternal() const;
 

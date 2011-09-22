@@ -309,6 +309,9 @@ QString CodeMarker::taggedQmlNode(const Node* node)
     case Node::QmlSignal:
         tag = QLatin1String("@signal");
         break;
+    case Node::QmlSignalHandler:
+        tag = QLatin1String("@signalhandler");
+        break;
     case Node::QmlMethod:
         tag = QLatin1String("@method");
         break;

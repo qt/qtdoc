@@ -1329,6 +1329,9 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
         case Node::QmlSignal:
             nodeName = "qmlsignal";
             break;
+        case Node::QmlSignalHandler:
+            nodeName = "qmlsignalhandler";
+            break;
         case Node::QmlMethod:
             nodeName = "qmlmethod";
             break;

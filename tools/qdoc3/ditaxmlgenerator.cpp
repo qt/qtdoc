@@ -1091,6 +1091,9 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                       case Node::QmlSignal:
                           sections[QmlSignal].appendMember((Node*)node);
                           break;
+                      case Node::QmlSignalHandler:
+                          sections[QmlSignalHandler].appendMember((Node*)node);
+                          break;
                       case Node::QmlMethod:
                           sections[QmlMethod].appendMember((Node*)node);
                           break;
@@ -3767,6 +3770,9 @@ QString DitaXmlGenerator::refForNode(const Node* node)
     case Node::QmlSignal:
         ref = node->name() + "-signal";
         break;
+    case Node::QmlSignalHandler:
+        ref = node->name() + "-signal-handler";
+        break;
     case Node::QmlMethod:
         ref = node->name() + "-method";
         break;
@@ -3816,6 +3822,8 @@ QString DitaXmlGenerator::guidForNode(const Node* node)
     case Node::Property:
         return node->guid();
     case Node::QmlSignal:
+        return node->guid();
+    case Node::QmlSignalHandler:
         return node->guid();
     case Node::QmlMethod:
         return node->guid();
@@ -4364,6 +4372,16 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
         writeEndTag(); // </ul>
     }
     else if (node->type() == Node::QmlSignal) {
+        Node* n = const_cast<Node*>(node);
+        writeStartTag(DT_ul);
+        writeStartTag(DT_li);
+        writeGuidAttribute(n);
+        marked = getMarkedUpSynopsis(n, relative, marker, CodeMarker::Detailed);
+        writeText(marked, marker, relative);
+        writeEndTag(); // </li>
+        writeEndTag(); // </ul>
+    }
+    else if (node->type() == Node::QmlSignalHandler) {
         Node* n = const_cast<Node*>(node);
         writeStartTag(DT_ul);
         writeStartTag(DT_li);

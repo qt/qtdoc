@@ -71,11 +71,14 @@ public:
 
     bool visit(QDeclarativeJS::AST::IdentifierPropertyName *idproperty);
 
-    bool visit(QDeclarativeJS::AST::UiSignature *signature);
-    void endVisit(QDeclarativeJS::AST::UiSignature *signature);
-
     bool visit(QDeclarativeJS::AST::FunctionDeclaration *);
     void endVisit(QDeclarativeJS::AST::FunctionDeclaration *);
+
+    bool visit(QDeclarativeJS::AST::UiScriptBinding *);
+    void endVisit(QDeclarativeJS::AST::UiScriptBinding *);
+
+    bool visit(QDeclarativeJS::AST::UiQualifiedId *);
+    void endVisit(QDeclarativeJS::AST::UiQualifiedId *);
 
 private:
     QDeclarativeJS::AST::SourceLocation precedingComment(quint32 offset) const;

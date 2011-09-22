@@ -446,34 +446,6 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::IdentifierPropertyName *idpropert
 }
 
 /*!
- */
-bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiSignature *signature)
-{
-    qDebug() << "SIGNATURE";
-    if (current->type() == Node::Fake) {
-        QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
-        if (qmlClass) {
-            QDeclarativeJS::AST::UiFormalList *formals = signature->formals;
-            if (formals) {
-                QDeclarativeJS::AST::UiFormalList *fl = formals;
-                do {
-                    QDeclarativeJS::AST::UiFormal *f = fl->formal;
-                    fl = fl->next;
-                } while (fl != formals);
-            }
-        }
-    }
-    return true;
-}
-
-/*!
- */
-void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiSignature *definition)
-{
-    lastEndOffset = definition->lastSourceLocation().end();
-}
-
-/*!
   Begin the visit of the function declaration \a fd, but only
   if the nesting level is 1.
  */
@@ -508,6 +480,36 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::FunctionDeclaration* fd)
 void QmlDocVisitor::endVisit(QDeclarativeJS::AST::FunctionDeclaration* fd)
 {
     lastEndOffset = fd->lastSourceLocation().end();
+}
+
+bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiScriptBinding* sb)
+{
+    if (current->type() == Node::Fake) {
+        QString handler = sb->qualifiedId->name.toString();
+        if (handler.length() > 2 && handler.startsWith("on") && handler.at(2).isUpper()) {
+            QmlClassNode* qmlClass = static_cast<QmlClassNode*>(current);
+            if (qmlClass) {
+                FunctionNode* qmlSH = new FunctionNode(Node::QmlSignalHandler,current,handler,false);
+                applyDocumentation(sb->firstSourceLocation(), qmlSH);
+            }
+        }
+    }
+    return true;
+}
+
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiScriptBinding* sb)
+{
+    lastEndOffset = sb->lastSourceLocation().end();
+}
+
+bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiQualifiedId* )
+{
+    return true;
+}
+
+void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiQualifiedId* )
+{
+    // nothing.
 }
 
 QT_END_NAMESPACE

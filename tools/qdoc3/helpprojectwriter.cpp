@@ -121,6 +121,7 @@ void HelpProjectWriter::readSelectors(SubProject &subproject, const QStringList 
 #ifdef QDOC_QML
     typeHash["qmlproperty"] = Node::QmlProperty;
     typeHash["qmlsignal"] = Node::QmlSignal;
+    typeHash["qmlsignalhandler"] = Node::QmlSignalHandler;
     typeHash["qmlmethod"] = Node::QmlMethod;
 #endif
 
@@ -309,6 +310,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project,
         case Node::Property:
         case Node::QmlProperty:
         case Node::QmlSignal:
+        case Node::QmlSignalHandler:
         case Node::QmlMethod:
             project.keywords.append(keywordDetails(node));
             break;
