@@ -55,6 +55,9 @@
     \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
     \row \o \l{Phonon Module}{Phonon} \o Multimedia framework classes
     \row \o \l{Qt3Support} \o Qt 3 compatibility classes
+    \row \o \l{QtContacts} \o Classes for managing your contacts.
+    \row \o \l{QtOrganizer} \o Classes for managing your calendar events.
+    \row \o \l{QtVersit} \o Classes to manage Versit.
     \header \o {2,1} \bold{Modules for working with Qt's tools}
     \row \o \l{QtDesigner} \o Classes for extending \QD
     \row \o \l{QtUiTools} \o Classes for handling \QD forms in applications
@@ -511,6 +514,76 @@
     \sa {Porting to Qt 4}
 */
 
+/*!
+    \module QtContacts
+    \title QtContacts Module
+    \ingroup modules
+
+    To include the definitions of the module's classes, use the
+    following directive:
+
+    \snippet doc/src/snippets/code/doc_src_qtcontacts.cpp 0
+
+    To link against the module, add this line to your \l qmake \c
+    .pro file:
+
+    \snippet doc/src/snippets/code/doc_src_qtcontacts.pro 0
+
+    See the \l{Contacts Programming} guide for information about using this
+    module in your applications.
+
+    \generatelist{classesbymodule Contacts}
+
+*/
+
+/*!
+    \module QtOrganizer
+    \title QtOrganizer Module
+    \ingroup modules
+
+    To include the definitions of the module's classes, use the
+    following directive:
+
+    \snippet doc/src/snippets/code/doc_src_qtorganizer.cpp 0
+
+    To link against the module, add this line to your \l qmake \c
+    .pro file:
+
+    \snippet doc/src/snippets/code/doc_src_qtorganizer.pro 0
+
+    See the \l{Organizer Programming} guide for information about using this
+    module in your applications.
+
+    \generatelist{classesbymodule Organizer}
+*/
+
+/*!
+    \module QtVersit
+    \title QtVersit Module
+    \ingroup modules
+
+    To include the definitions of the module's classes, use the
+    following directive:
+
+    \snippet doc/src/snippets/code/doc_src_qtversit.cpp 0
+
+    To link against the module, add this line to your \l qmake \c
+    .pro file:
+
+    \snippet doc/src/snippets/code/doc_src_qtversit.pro 0
+
+    See the \l{Versit Programming} guide for information about using this
+    module in your applications.
+
+    \generatelist{classesbymodule Versit}
+*/
+
+/*!
+        \module QtSvg
+/*!
+        \module QtSvg
+/*!
+        \module QtSvg
 /*!
     \module QtDesigner
     \title QtDesigner Module

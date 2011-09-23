@@ -44,7 +44,10 @@ MODULES = activeqt \
           webkit \
           webkit-examples-and-demos \
           xmlpatterns \
-          qt3support
+          qt3support \
+          contacts \
+          organizer \
+          versit
 
 # Compile a list of location definitions for each of the modules and a list of
 # qdocconf files to include.

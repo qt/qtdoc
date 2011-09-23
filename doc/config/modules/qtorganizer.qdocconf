@@ -1,0 +1,13 @@
+headerdirs  += $QT_ORGANIZER_SOURCES/..
+
+sourcedirs  += $QT_ORGANIZER_SOURCES/.. \
+               $QT_ORGANIZER_SOURCES/../../doc/src
+
+exampledirs += $QT_ORGANIZER_SOURCES/../.. \
+               $QT_ORGANIZER_SOURCES/../../doc/src \
+               $QT_ORGANIZER_SOURCES/../../examples
+
+imagedirs   += $QT_ORGANIZER_SOURCES/../../doc/src/images \
+               $QT_ORGANIZER_SOURCES/../../examples
+
+excludedirs +=
