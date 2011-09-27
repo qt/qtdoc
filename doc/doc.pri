@@ -95,7 +95,7 @@ ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs-online.qdocconf
 ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 DITA_QDOCCONF = $${QT.doc.sources}/doc/config/qt-ditaxml.qdocconf
-ONLINE_QDOCCONF = $$replace(DITA_QDOCCONF, "/", $$QMAKE_DIR_SEP)
+DITA_QDOCCONF = $$replace(DITA_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs.qdocconf
 OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
