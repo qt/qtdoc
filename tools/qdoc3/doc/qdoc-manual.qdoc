@@ -5565,6 +5565,56 @@
     \l{http://doc.qt.nokia.com/4.7/qml-mousearea.html#onEntered-signal}
     {MouseArea} element.
 
+    \target qmlmodule-command
+    \section1 \\qmlmodule \span {class="newStuff"} {(new)}
+
+    Insert the \c{\\qmlmodule} command to create a \c QML module page. A QML
+    module is a collection of QML components or any related material. This
+    command is similar to the \l{group-command}.
+
+    A QML class may belong to a module by inserting the
+    \l{inqmlmodule-command}{\\inqmlmodule} command as a topic command.
+    Every member of a group must be linked to using the module name and two
+    colons (\c{::}).
+
+    \code
+        A link to the UI Component's TabWidget is \l {UIComponent::TabWidget}.
+    \endcode
+
+    QDoc will generate a page for the module with a listing of the members
+    of the module.
+
+    \code
+        \qmlmodule ClickableComponents
+
+        This is a list of the Clickable Components set. A Clickable component
+        responds to a \c clicked() event.
+    \endcode
+
+    The \l{componentset}{UIComponents} example demonstrates proper usage of
+    QDoc commands to document QML components and QML modules.
+
+    \target inqmlmodule-command
+    \section1 \\inqmlmodule \span {class="newStuff"} {(new)}
+
+    A QML class may belong to a \l{qmlmodule-command}{QML module} by inserting
+    the \l{inqmlmodule-command}{\\inqmlmodule} command as a topic command.
+    Every member of a group must be linked to using the module name and two
+    colons (\c{::}).
+
+    \code
+        \qmlclass ClickableButton
+        \inqmlmodule ClickableComponents
+
+        A clickable button that responds to the \c click() event.
+    \endcode
+
+    To link to the \c ClickableButton, use the
+    \c{\l ClickableComponents::ClickableButton} format.
+
+    The \l{componentset}{UIComponents} example demonstrates proper usage of
+    QDoc commands to document QML components and QML modules.
+
     \target typedef-command
     \section1 \\typedef
 
@@ -8592,6 +8642,8 @@
     \o \l {13-qdoc-commands-topics.html#qmlmethod-command} {\\qmlmethod} \span {class="newStuff"} {(new)}
     \o \l {13-qdoc-commands-topics.html#qmlproperty-command} {\\qmlproperty} \span {class="newStuff"} {(new)}
     \o \l {13-qdoc-commands-topics.html#qmlsignal-command} {\\qmlsignal} \span {class="newStuff"} {(new)}
+    \o \l {13-qdoc-commands-topics.html#qmlmodule-command} {\\qmlmodule} \span {class="newStuff"} {(new)}
+    \o \l {13-qdoc-commands-topics.html#inqmlmodule-command} {\\inqmlmodule} \span {class="newStuff"} {(new)}
     \o \l {11-qdoc-commands-specialcontent.html#quotation-command} {\\quotation}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefile-command} {\\quotefile}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefromfile-command} {\\quotefromfile}

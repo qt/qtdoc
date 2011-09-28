@@ -30,9 +30,12 @@
     \nextpage Creating QDoc Configuration Files
 
     Qt uses QDoc to generate its documentation set into HTML and DITA XML
-    formats. QDoc uses a set of configuration to generate documentation from
-    QDoc comments. The comments have topics and may have mark up to enhance
-    the layout and formatting of the final output.
+    formats. QDoc uses a set of configuration files to generate documentation
+    from QDoc comments. The comments have types called
+    \l{writing-topic-commands}{topics} that determine whether a comment is a
+    class documentation or a property documentation. A comment may also have
+    \l{writing-markup}{mark up} to enhance the layout and formatting of the
+    final output.
 
     There are three essential materials for generating documentation with qdoc:
     \list
@@ -41,11 +44,11 @@
         \o \c Documentation in \c C++, \c QML, and \c .qdoc files
     \endlist
 
-    This guide intends to cover the basic necessities needed for a project
-    to package a set of documentation set. Additionally, the guide presents
-    special considerations and options to documenting non-C++ API documentation
-    as well as QML documentation. Finally, the guide will provide documentation
-    on a simple project using a basic QDoc template.
+    This section intends to cover the basic necessities for creating a
+    documentation set. Additionally, the guide presents special considerations
+    and options to documenting non-C++ API documentation as well as QML
+    documentation. Finally, the guide will provide a sample project
+    documentation and a QML component documentation.
 
     For specific QDoc information, consult the
     \l{Table of Contents}{QDoc Manual}.
@@ -56,8 +59,8 @@
     \o \l{Writing Documentation}
     \o \l{Categories of Documentation}
     \o \l{Configuration File Example}
+    \o \l{QML Documentation Example}
     \endlist
-
 
 */
 
@@ -151,7 +154,7 @@
     QDoc will also export a \l{Qt Help Project} file, in a \c qhp file.
     The qhp file is then used by the \c qhelpgenerator to package the
     documentation into a \c qch file. Qt Creator and Qt Assistant reads the qch
-    file to display the documentation within Creator.
+    file to display the documentation.
 
     The \l {Creating Help Project Files} article covers the configuration
     options.
@@ -315,11 +318,12 @@
     The \l{Topic Commands} page has information on all of the available topic
     commands.
 
+    \target writing-context
     \section2 Topic Contexts
 
     Context commands give QDoc a hint about the \e context of the topic. For
     example, if a C++ function is obsolete, then it should be marked obsolete
-    with the \l{obsolete-command}{\\obsolete} command. Lkewise,
+    with the \l{obsolete-command}{\\obsolete} command. Likewise,
     \l{nextpage-command}{page navigation} and \l{title-command}{page title} 
     give extra page information to QDoc.
 
@@ -331,6 +335,7 @@
     The \l{Context Commands} page has a listing of all the available context
     commands.
 
+    \target writing-markup
     \section2 Documentation Markup
 
     QDoc can provide \e markup to content similar to other markup or
@@ -383,7 +388,7 @@
     argument is the HTML file that QDoc will create. The topic is supplemented
     with context commands, the \l{title-command}{\\title} and
     \l{nextpage-command}{\\nextpage} commands. There are several other
-    QDoc commands such as the \l{list-command}{\\list}.
+    QDoc commands such as the \l{list-command}{\\list} command.
     \snippet examples/samples.qdocinc sample-page
 
     The section on \l{QDoc Topics}{topic commands} gives an overview on several
@@ -437,10 +442,11 @@
     \note QDoc uses the header files to inform itself about the class and will
     not properly process QDoc comments in header files.
 
+    \keyword qml-documentation
     \section2 Documenting QML Components
 
     In the world of \l{Qt Quick}{QML}, there are additional entities we need to
-    document, such as QML signals, attached properties, and QML methods.
+    document such as QML signals, attached properties, and QML methods.
     Internally, they use Qt technologies, however, QML API documentation
     requires different layout and naming conventions from the Qt C++ API
     documentation.
@@ -455,14 +461,56 @@
     \o \l{qmlproperty-command}{\\qmlproperty}
     \o \l{qmlsignal-command}{\\qmlsignal}
     \o \l{inherits-command}{\\inherits}
-    \o \l{module-command}{\\module}
-    \o \l{inmodule-command}{\\inmodule}
+    \o \l{qmlmodule-command}{\\qmlmodule}
+    \o \l{inqmlmodule-command}{\\inqmlmodule}
+
     \endlist
+
+    \note Remember to enable QML parsing by including the \c{*.qml} filetype in
+    the \l{qdoc-input-output-dir}{fileextension} variable.
 
     Essentially, to create an API documentation of a QML component, create
     a QDoc comment with a \l{qmlclass-command}{\\qmlclass} command. Similar to
     C++ API documentation, QML API are documented using their corresponding QDoc
     commands.
+
+    \section3 QML Parser
+
+    You may either document a QML component rom a C++ class or from a QML file.
+    QDoc supports both types and can parse both C++ and QML files.
+
+    In a QML file, you may simply place the QDoc comment above the property,
+    signal, handler, or method. QDoc will collect the comments and form the API
+    documentation. Additionally, QDoc can detect
+    \l{qml-property-aliases}{property-aliases}, but the property type must be
+    manually declared using the \l{qmlproperty-command}{\\qmlproperty} command.
+
+    QML components in C++ classes have their documentation above their property
+    or method documentation. However, the QML commands must be used instead of
+    the C++ documentation topic commands. Instead of the \c {\\class}
+    command, use the \l{qmlclass-command}{\\qmlclass} command.
+
+    \section3 QML Modules
+
+    A component belongs to a component \e set or a \e module. The module
+    may include all the related components for a platform or contain a certain
+    version of \l{Qt Quick}. For example, the Qt Quick 2 \l{QML Elements} belong
+    to the QtQuick2 module while there is also a QtQuick1 module for the older
+    elements introduced in Qt 4.
+
+    Modules affect the way Qdoc link and relate the components. The
+    \l{qmlclass-command}{\\qmlclass} topic command must have an
+    \l{inqmlmodule-command}{\\inqmlmodule} context command to relate the
+    component to a module. Similarly, a \l{qmlmodule-command}{\\qmlmodule} topic
+    command must exist in a separate \c .qdoc file to create the overview page
+    for the module. The overview page will list the related components.
+
+    The links to the components, must therefore, also contain the module name.
+    For example, if a component called \c TabWidget is in the \c UIComponents
+    module, it must be linked as \c {UIComponents::TabWidget}.
+
+    The \l{componentset}{UIComponents} example demonstrates proper usage of
+    QDoc commands to document QML components and QML modules.
 
     \section1 Articles & Overviews
     Articles and overviews are a style of writing best used for providing
@@ -474,7 +522,7 @@
     overview might be a product page, such as a top level discussion of
     QtQuick, individual modules, design principles, or tools.
 
-    To signify a document is the type of article, you append the article keyword
+    To signify that a document is an article, you append the article keyword
     to the \\page command:
 
     \snippet examples/samples.qdocinc sample-overview
