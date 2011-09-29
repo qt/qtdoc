@@ -5,7 +5,6 @@
 DOCS_GENERATION_DEFINES =
 GENERATOR = $${QT.help.bins}/qhelpgenerator
 MODULE = qtdoc
-MODULE_BUILD_DIR = $$(PWD)
 
 win32:!win32-g++* {
     unixstyle = false
@@ -78,12 +77,6 @@ for(module, MODULES) {
     INCLUDES += $$SEP
 }
 
-#MAKE_QMAKE will perform a 'make qmake' to run syncqt
-coresources = $$eval(QT.core.sources)
-!isEmpty(coresources) {
-    MAKE_QMAKE = make $$QT.core.sources/../../Makefile qmake &&
-}
-
 # Output the locations and includes as build messages. This helps the user to
 # see which modules have been installed and diagnose any problems.
 
@@ -135,19 +128,17 @@ $$unixstyle {
 }
 
 # Build rules:
-# docs -> sub-qdoc3 online_docs qch_docs
 
-online_docs.commands = ($$MAKE_QMAKE $$QDOC $$ONLINE_QDOCCONF)
-online_docs.depends += sub-qdoc3
+online_docs.commands = ($$QDOC $$ONLINE_QDOCCONF)
 
-dita_docs.commands = ($$MAKE_QMAKE $$QDOC $$DITA_QDOCCONF)
-dita_docs.depends += sub-qdoc3
+dita_docs.commands = ($$QDOC $$DITA_QDOCCONF)
 
 qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
                      $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE)
-qch_docs.depends += sub-qdoc3
 
-docs.depends = sub-qdoc3 online_docs qch_docs
+docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
+                 $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE && \
+                 $$QDOC $$ONLINE_QDOCCONF)
 
 # Install rules
 
@@ -162,8 +153,6 @@ qchdocs.CONFIG += no_check_exist directory
 docimages.files = src/images
 docimages.path = $$[QT_INSTALL_DOCS]/src
 
-#sub-qdoc3.depends = sub-corelib sub-xml
-sub-qdoc3.commands += (cd tools/qdoc3 && $$QT.core.bins/qmake && $(MAKE))
-
-QMAKE_EXTRA_TARGETS += sub-qdoc3 online_docs qch_docs docs dita_docs
+QMAKE_EXTRA_TARGETS += online_docs qch_docs docs dita_docs
 INSTALLS += htmldocs qchdocs docimages
+
