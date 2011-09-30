@@ -144,7 +144,7 @@ dita_docs.commands = ($$MAKE_QMAKE $$QDOC $$DITA_QDOCCONF)
 dita_docs.depends += sub-qdoc3
 
 qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
-                     $$GENERATOR $$QHP_FILE -o $$QCH_FILE)
+                     $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE)
 qch_docs.depends += sub-qdoc3
 
 docs.depends = sub-qdoc3 online_docs qch_docs
