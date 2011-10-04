@@ -43,7 +43,7 @@
 #define DEMO_ITEM_ANIMATION_H
 
 #include <QtCore>
-#include <QtGui>
+#include <QtWidgets>
 
 class DemoItem;
 

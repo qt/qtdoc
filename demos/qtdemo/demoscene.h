@@ -42,12 +42,12 @@
 #ifndef MAIN_VIEW_H
 #define MAIN_VIEW_H
 
-#include <QtGui>
+#include <QtWidgets>
 
 class DemoScene : public QGraphicsScene
 {
 public:
-    DemoScene(QObject *parent) : QGraphicsScene(parent){};
+    DemoScene(QObject *parent) : QGraphicsScene(parent){}
 
 protected:
     void drawItems(QPainter *painter, int numItems, QGraphicsItem *items[], const QStyleOptionGraphicsItem options[], QWidget *widget);

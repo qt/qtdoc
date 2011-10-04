@@ -41,6 +41,8 @@
 
 #include "colors.h"
 
+#include <QMessageBox>
+
 #ifndef QT_NO_OPENGL
     #include <QGLWidget>
 #endif

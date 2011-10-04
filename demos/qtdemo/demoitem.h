@@ -42,7 +42,7 @@
 #ifndef DEMO_ITEM_H
 #define DEMO_ITEM_H
 
-#include <QtGui>
+#include <QtWidgets>
 
 class DemoItemAnimation;
 class Guide;
@@ -50,7 +50,7 @@ class Guide;
 class SharedImage
 {
 public:
-    SharedImage() : refCount(0), image(0), pixmap(0){};
+    SharedImage() : refCount(0), image(0), pixmap(0){}
     ~SharedImage()
     {
         delete image;

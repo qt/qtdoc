@@ -6,7 +6,7 @@ DESTDIR = $$DEMO_DESTDIR/bin
 INSTALLS += target sources
 
 
-QT += xml network
+QT += widgets xml network
 
 contains(QT_CONFIG, opengl) {
     DEFINES += QT_OPENGL_SUPPORT
@@ -14,7 +14,7 @@ contains(QT_CONFIG, opengl) {
 }
 
 contains(QT_CONFIG, declarative) {
-    QT += declarative
+    QT += declarative qtquick1
 } else {
     DEFINES *= QT_NO_DECLARATIVE
 }

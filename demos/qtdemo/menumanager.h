@@ -45,9 +45,6 @@
 #include <QtGui>
 #include <QtXml>
 #include <QtHelp/QHelpEngineCore>
-#ifndef QT_NO_DECLARATIVE
-#include <QtDeclarative>
-#endif
 
 #include "score.h"
 #include "textbutton.h"
@@ -58,6 +55,7 @@ typedef QHash<QString, QString> StringHash;
 typedef QHash<QString, StringHash> HashHash;
 
 class TextButton;
+class QDeclarativeEngine;
 
 class MenuManager : public QObject
 {

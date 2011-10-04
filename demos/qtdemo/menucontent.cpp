@@ -53,11 +53,11 @@ MenuContentItem::MenuContentItem(const QDomElement &el, QGraphicsScene *scene, Q
     this->description1 = 0;
     this->description2 = 0;
 
-    if (el.tagName() == "demos")
-        this->readmePath = QLibraryInfo::location(QLibraryInfo::DemosPath) + "/README";
-    else
-        this->readmePath = QLibraryInfo::location(QLibraryInfo::ExamplesPath) + "/" + el.attribute("dirname") + "/README";
-
+    if (el.tagName() == "demos") {
+        qWarning("MenuContentItem: category '%s' no longer supported.", qPrintable(el.tagName()));
+        // this->readmePath = QLibraryInfo::location(QLibraryInfo::DemosPath) + "/README";
+    }
+    this->readmePath = QLibraryInfo::location(QLibraryInfo::ExamplesPath) + "/" + el.attribute("dirname") + "/README";
 }
 
 void MenuContentItem::prepare()

@@ -44,6 +44,11 @@
 #include "menucontent.h"
 #include "examplecontent.h"
 
+#ifndef QT_NO_DECLARATIVE
+#include <QtQuick1>
+#include <QDeclarativeEngine>
+#endif
+
 MenuManager *MenuManager::pInstance = 0;
 
 MenuManager * MenuManager::instance()
@@ -366,10 +371,11 @@ void MenuManager::launchQmlExample(const QString &name)
     QString category = this->info[name]["category"];
     QString fileName = this->info[name]["filename"];
     QDir dir;
-    if (category == "demos")
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
-    else
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
+    if (category == "demos") {
+         qWarning("MenuContentItem: category '%s' no longer supported.", qPrintable(category));
+        // dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
+    }
+    dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
     QFile file(dir.path() + "/" + dirName + "/" + fileName + "/" + "main.qml");
     if(!file.exists()){
         //try dirname.qml as well
@@ -493,11 +499,11 @@ QString MenuManager::resolveDataDir(const QString &name)
     QString fileName = this->info[name]["filename"];
 
     QDir dir;
-    if (category == "demos")
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
-    else
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
-
+    if (category == "demos") {
+        qWarning("MenuManager: category '%s' no longer supported.", qPrintable(category));
+        // dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
+    }
+    dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
     dir.cd(dirName);
     dir.cd(fileName);
     return dir.absolutePath();
@@ -510,11 +516,12 @@ QString MenuManager::resolveExeFile(const QString &name)
     QString fileName = this->info[name]["filename"];
 
     QDir dir;
-    if (category == "demos")
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
-    else
-        dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
+    if (category == "demos") {
+        qWarning("MenuManager: category '%s' no longer supported.", qPrintable(category));
+        // dir = QDir(QLibraryInfo::location(QLibraryInfo::DemosPath));
+    }
 
+    dir = QDir(QLibraryInfo::location(QLibraryInfo::ExamplesPath));
     dir.cd(dirName);
     dir.cd(fileName);
 
