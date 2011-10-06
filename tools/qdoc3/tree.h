@@ -78,7 +78,9 @@ class Tree
                          int findFlags,
                          const Node* self,
                          bool qml) const;
-    QmlClassNode* findQmlClassNode(const QString& module, const QString& element);
+    QmlClassNode* findQmlClassNode(const QString& module, const QString& name);
+    NameCollisionNode* checkForCollision(const QString& name, Node::Type t) const;
+    NameCollisionNode* findCollisionNode(const QString& name, Node::Type t) const;
     FunctionNode *findFunctionNode(const QStringList &path, 
                                    Node *relative = 0,
                                    int findFlags = 0);

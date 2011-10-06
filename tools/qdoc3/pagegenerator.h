@@ -57,6 +57,7 @@ class QTextCodec;
 class ClassNode;
 class InnerNode;
 class NamespaceNode;
+class NameCollisionNode;
 
 class PageGenerator : public Generator
 {
@@ -65,6 +66,7 @@ class PageGenerator : public Generator
     ~PageGenerator();
 
     virtual void generateTree(const Tree *tree);
+    virtual void generateDisambiguationPages() { }
 
  protected:
     virtual QString fileBase(const Node* node) const;
@@ -89,6 +91,7 @@ class PageGenerator : public Generator
 
  protected:
     QStack<QTextStream*> outStreamStack;
+    QList<NameCollisionNode*> collisionNodes;
 };
 
 QT_END_NAMESPACE

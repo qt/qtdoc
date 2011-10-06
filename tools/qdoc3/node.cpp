@@ -146,7 +146,9 @@ QString Node::pageTypeString() const
     }
 }
 
-
+/*!
+  Set the page type according to the string \a t.
+ */
 void Node::setPageType(const QString& t)
 {
     if ((t == "API") || (t == "api"))
@@ -170,8 +172,9 @@ void Node::setPageType(const QString& t)
  */
 void Node::setRelates(InnerNode *pseudoParent)
 {
-    if (rel)
-            rel->removeRelated(this);
+    if (rel) {
+        rel->removeRelated(this);
+    }
     rel = pseudoParent;
     pseudoParent->related.append(this);
 }
@@ -622,13 +625,31 @@ void InnerNode::setOverload(const FunctionNode *func, bool overlode)
   Mark all child nodes that have no documentation as having
   private access and internal status. qdoc will then ignore
   them for documentation purposes.
+
+  \note Exception: Name collision nodes are not marked
+  private/internal.
  */
 void InnerNode::makeUndocumentedChildrenInternal()
 {
     foreach (Node *child, childNodes()) {
         if (child->doc().isEmpty()) {
-            child->setAccess(Node::Private);
-            child->setStatus(Node::Internal);
+            if (child->subType() != Node::Collision) {
+                child->setAccess(Node::Private);
+                child->setStatus(Node::Internal);
+            }
+        }
+    }
+}
+
+/*!
+  In each child node that is a collision node,
+  clear the current child pointer.
+ */
+void InnerNode::clearCurrentChildPointers()
+{
+    foreach (Node* child, childNodes()) {
+        if (child->subType() == Collision) {
+            child->clearCurrentChild();
         }
     }
 }
@@ -705,6 +726,7 @@ void InnerNode::removeFromRelated()
 }
 
 /*!
+  Deletes all this node's children.
  */
 void InnerNode::deleteChildren()
 {
@@ -712,13 +734,9 @@ void InnerNode::deleteChildren()
     qDeleteAll(childrenCopy);
 }
 
-/*!
+/*! \fn bool InnerNode::isInnerNode() const
   Returns true because this is an inner node.
  */
-bool InnerNode::isInnerNode() const
-{
-    return true;
-}
 
 /*!
  */
@@ -935,14 +953,14 @@ void InnerNode::removeChild(Node *child)
         else {
             secs.removeAll(child);
         }
-        QMap<QString, Node *>::Iterator ent = childMap.find( child->name() );
-        if (ent != childMap.end() && *ent == child)
-            childMap.erase( ent );
     }
-    else {
-        QMap<QString, Node *>::Iterator ent = childMap.find(child->name());
-        if (ent != childMap.end() && *ent == child)
+    QMap<QString, Node *>::Iterator ent = childMap.find(child->name());
+    while (ent != childMap.end() && ent.key() == child->name()) {
+        if (*ent == child) {
             childMap.erase(ent);
+            break;
+        }
+        ++ent;
     }
 }
 
@@ -1186,6 +1204,9 @@ FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node
     case Example:
         setPageType(ExamplePage);
         break;
+    case Collision:
+        setPageType(ptype);
+        break;
     default:
         break;
     }
@@ -1218,7 +1239,7 @@ QString FakeNode::fullTitle() const
         else
             return title();
     }
-    else if (sub == HeaderFile) {
+    else if ((sub == HeaderFile) || (sub == Collision)) {
         if (title().isEmpty())
             return name();
         else
@@ -1734,7 +1755,6 @@ bool TargetNode::isInnerNode() const
     return false;
 }
 
-#ifdef QDOC_QML
 bool QmlClassNode::qmlOnly = false;
 QMultiMap<QString,Node*> QmlClassNode::inheritedBy;
 QMap<QString, QmlClassNode*> QmlClassNode::moduleMap;
@@ -1751,16 +1771,12 @@ QmlClassNode::QmlClassNode(InnerNode *parent,
                            const ClassNode* cn)
     : FakeNode(parent, name, QmlClass, Node::ApiPage), cnode(cn)
 {
-#ifdef QML_COLON_QUALIFER
-    if (name.startsWith(QLatin1String("QML:")))
-        setTitle((qmlOnly ? QLatin1String("") : QLatin1String("QML ")) + name.mid(4) + QLatin1String(" Element"));
-    else
-        setTitle((qmlOnly ? QLatin1String("") : QLatin1String("QML ")) + name + QLatin1String(" Element"));
-#else
-    if (name.startsWith("QML:"))
+    int i = 0;
+    if (name.startsWith("QML:")) {
         qDebug() << "BOGUS:" << name;
-    setTitle(name + QLatin1String(" Reference"));
-#endif
+        i = 4;
+    }
+    setTitle(name.mid(i) + QLatin1String(" Reference"));
 }
 
 /*!
@@ -1851,6 +1867,38 @@ void QmlClassNode::setQmlModuleName(const QString& arg)
     qmlModuleName_ = blankSplit[0];
     if (blankSplit.size() > 1)
         qmlModuleVersion_ = blankSplit[1];
+}
+
+/*!
+  The name of this QML class node might be the same as the
+  name of some other QML class node. If so, then this node's
+  parent will be a NameCollisionNode.This function sets the
+  NameCollisionNode's current child to this node. This is
+  important when outputing the documentation for this node,
+  when, for example, the documentation contains a link to
+  the page being output. We don't want to generate a link
+  to the disambiguation page if we can avoid it, and to be
+  able to avoid it, the NameCollisionNode must maintain the
+  current child pointer. That's the purpose of this function.
+ */
+void QmlClassNode::setCurrentChild()
+{
+    if (parent()) {
+        InnerNode* n = parent();
+        if (n->subType() == Node::Collision)
+            n->setCurrentChild(this);
+    }
+}
+
+/*!
+ */
+void QmlClassNode::clearCurrentChild()
+{
+    if (parent()) {
+        InnerNode* n = parent();
+        if (n->subType() == Node::Collision)
+            n->clearCurrentChild();
+    }
 }
 
 /*!
@@ -2000,6 +2048,93 @@ const PropertyNode *QmlPropertyNode::correspondingProperty(const Tree *tree) con
     return 0;
 }
 
-#endif
+/*! \class NameCollisionNode
+
+  An instance of this node is inserted in the tree
+  whenever qdoc discovers that two nodes have the
+  same name.
+ */
+
+/*!
+  Constructs a name collision node containing \a child
+  as its first child. The parent of \a child becomes
+  this node's parent.
+ */
+NameCollisionNode::NameCollisionNode(InnerNode* child)
+    : FakeNode(child->parent(), child->name(), Collision, Node::NoPageType)
+{
+    addCollision(child);
+    current = 0;
+}
+
+/*!
+  Add a collision to this collision node. \a child has
+  the same name as the other children in this collision
+  node. \a child becomes the current child.
+ */
+void NameCollisionNode::addCollision(InnerNode* child)
+{
+    if (child) {
+        if (child->parent())
+            child->parent()->removeChild(child);
+        child->setParent((InnerNode*)this);
+        children.append(child);
+    }
+}
+
+/*!
+  The destructor does nothing.
+ */
+NameCollisionNode::~NameCollisionNode()
+{
+    // nothing.
+}
+
+/*! \fn const InnerNode* NameCollisionNode::currentChild() const
+  Returns a pointer to the current child, which may be 0.
+ */
+
+/*! \fn void NameCollisionNode::setCurrentChild(InnerNode* child)
+  Sets the current child to \a child. The current child is
+  valid only within the file where it is defined.
+ */
+
+/*! \fn void NameCollisionNode::clearCurrentChild()
+  Sets the current child to 0. This should be called at the
+  end of each file, because the current child is only valid
+  within the file where the child is defined.
+ */
+
+/*!
+  Returns true if this collision node's current node is a QML node.
+ */
+bool NameCollisionNode::isQmlNode() const
+{
+    if (current)
+        return current->isQmlNode();
+    return false;
+}
+
+/*!
+  Find any of this collision node's children that has type \a t
+  and subtype \a st. Normally, it will be the current child, but
+  the return value might be null. It never should be null, but
+  at this point, I'm not sure what will happen.
+*/
+const InnerNode* NameCollisionNode::findAny(Node::Type t, Node::SubType st) const
+{
+    if (current) {
+        if (current->type() == t && current->subType() == st)
+            return current;
+    }
+    const NodeList& cn = childNodes();
+    NodeList::ConstIterator i = cn.begin();
+    while (i != cn.end()) {
+        if ((*i)->type() == t && (*i)->subType() == st)
+            return static_cast<const InnerNode*>(*i);
+        ++i;
+    }
+    return 0;
+}
 
 QT_END_NAMESPACE

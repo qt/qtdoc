@@ -81,17 +81,12 @@ class Node
         Function, 
         Property,
         Variable, 
-#ifdef QDOC_QML
         Target,
         QmlProperty,
         QmlSignal,
         QmlSignalHandler,
         QmlMethod,
         LastType
-#else
-        Target,
-        LastType
-#endif
     };
 
     enum SubType { 
@@ -103,15 +98,12 @@ class Node
         Group,
         Module,
         Page,
-#ifdef QDOC_QML
         ExternalPage,
         QmlClass,
         QmlPropertyGroup,
         QmlBasicType,
-        QmlModule
-#else
-        ExternalPage
-#endif
+        QmlModule,
+        Collision
     };
     
     enum Access { Public, Protected, Private };
@@ -174,6 +166,7 @@ class Node
     void setTemplateStuff(const QString &templateStuff) { tpl = templateStuff; }
     void setPageType(PageType t) { pageTyp = t; }
     void setPageType(const QString& t);
+    void setParent(InnerNode* n) { par = n; }
 
     virtual bool isInnerNode() const = 0;
     virtual bool isReimp() const { return false; }
@@ -215,6 +208,7 @@ class Node
     virtual QString qmlModuleIdentifier() const { return QString(); }
     virtual void setQmlModuleName(const QString& ) { }
     virtual const ClassNode* classNode() const { return 0; }
+    virtual void clearCurrentChild() { }
     const QmlClassNode* qmlClassNode() const;
     const ClassNode* declarativeCppNode() const;
 
@@ -251,6 +245,7 @@ class Node
 
 class FunctionNode;
 class EnumNode;
+class NameCollisionNode;
 
 typedef QList<Node*> NodeList;
 typedef QMap<QString, const Node*> NodeMap;
@@ -272,10 +267,11 @@ class InnerNode : public Node
     void setOverload(const FunctionNode* func, bool overlode);
     void normalizeOverloads();
     void makeUndocumentedChildrenInternal();
+    void clearCurrentChildPointers();
     void deleteChildren();
     void removeFromRelated();
 
-    virtual bool isInnerNode() const;
+    virtual bool isInnerNode() const { return true; }
     const Node* findNode(const QString& name) const;
     const Node* findNode(const QString& name, bool qml) const;
     const Node* findNode(const QString& name, Type type) const;
@@ -296,17 +292,20 @@ class InnerNode : public Node
     virtual void addPageKeywords(const QString& t) { pageKeywds << t; }
     virtual bool isAbstract() const { return false; }
     virtual void setAbstract(bool ) { }
+    virtual void setCurrentChild() { }
+    virtual void setCurrentChild(InnerNode* ) { }
 
  protected:
     InnerNode(Type type, InnerNode* parent, const QString& name);
 
  private:
     friend class Node;
+    friend class NameCollisionNode;
 
     static bool isSameSignature(const FunctionNode* f1, const FunctionNode* f2);
     void addChild(Node* child);
-    void removeChild(Node* child);
     void removeRelated(Node* pseudoChild);
+    void removeChild(Node* child);
 
     QStringList pageKeywds;
     QStringList inc;
@@ -418,11 +417,30 @@ class FakeNode : public InnerNode
     virtual QString nameForLists() const { return title(); }
     virtual void setImageFileName(const QString& ) { }
 
- private:
+  protected:
     SubType sub;
     QString tle;
     QString stle;
     NodeList nodeList;
+};
+
+class NameCollisionNode : public FakeNode
+{
+ public:
+    NameCollisionNode(InnerNode* child);
+    ~NameCollisionNode();
+    const InnerNode* currentChild() const { return current; }
+    virtual void setCurrentChild(InnerNode* child) { current = child; }
+    virtual void clearCurrentChild() { current = 0; }
+    virtual bool isQmlNode() const;
+    const InnerNode* findAny(Node::Type t, Node::SubType st) const;
+    void addCollision(InnerNode* child);
+    const QMap<QString,QString>& linkTargets() const { return targets; }
+    void addLinkTarget(const QString& t, const QString& v) { targets.insert(t,v); }
+
+ private:
+    InnerNode* current;
+    QMap<QString,QString> targets;
 };
 
 class ExampleNode : public FakeNode
@@ -454,6 +472,8 @@ class QmlClassNode : public FakeNode
     virtual void setQmlModuleName(const QString& arg);
     virtual const ClassNode* classNode() const { return cnode; }
     virtual QString fileBase() const;
+    virtual void setCurrentChild();
+    virtual void clearCurrentChild();
     static void addInheritedBy(const QString& base, Node* sub);
     static void subclasses(const QString& base, NodeList& subs);
     static void clear();

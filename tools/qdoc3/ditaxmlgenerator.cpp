@@ -2189,6 +2189,9 @@ void DitaXmlGenerator::generateFakeNode(const FakeNode* fake, CodeMarker* marker
     if (fake->subType() == Node::QmlBasicType) {
         fullTitle = "QML Basic Type: " + fullTitle;
     }
+    else if (fake->subType() == Node::Collision) {
+        fullTitle = "Name Collision: " + fullTitle;
+    }
 
     generateHeader(fake, fullTitle);
     generateBrief(fake, marker); // <shortdesc>
@@ -4199,6 +4202,16 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
         link.prepend(outFileName());
         qDebug() << "LOCAL LINK:" << link;
     }
+    return link;
+}
+
+/*!
+  This function can be called if getLink() returns an empty
+  string.
+ */
+QString DitaXmlGenerator::getDisambiguationLink(const Atom* atom, CodeMarker* marker)
+{
+    QString link;
     return link;
 }
 

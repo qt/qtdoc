@@ -182,11 +182,9 @@ QString PageGenerator::fileBase(const Node *node) const
 	node = node->relates();
     else if (!node->isInnerNode())
 	node = node->parent();
-#ifdef QDOC_QML
     if (node->subType() == Node::QmlPropertyGroup) {
         node = node->parent();
     }
-#endif        
 
     QString base = node->doc().baseName();
     if (!base.isEmpty())
@@ -197,7 +195,6 @@ QString PageGenerator::fileBase(const Node *node) const
     forever {
         const Node *pp = p->parent();
         base.prepend(p->name());
-#ifdef QDOC_QML
         /*
           To avoid file name conflicts in the html directory,
           we prepend a prefix (by default, "qml-") to the file name of QML
@@ -205,23 +202,22 @@ QString PageGenerator::fileBase(const Node *node) const
          */
         if ((p->subType() == Node::QmlClass) ||
             (p->subType() == Node::QmlBasicType)) {
-#ifdef QML_COLON_QUALIFER
-            if (!base.startsWith(QLatin1String("QML:")))
-                base.prepend(outputPrefix(QLatin1String("QML")));
-#else
             if ((p->subType() == Node::QmlClass) && !p->qmlModuleQualifier().isEmpty())
                 base.prepend(p->qmlModuleQualifier()+QChar('-'));
             base.prepend(outputPrefix(QLatin1String("QML")));
-#endif
         }
-#endif
         if (!pp || pp->name().isEmpty() || pp->type() == Node::Fake)
             break;
         base.prepend(QLatin1Char('-'));
         p = pp;
     }
-    
     if (node->type() == Node::Fake) {
+        if (node->subType() == Node::Collision) {
+            const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(node);
+            if (ncn->currentChild())
+                return fileBase(ncn->currentChild());
+            base.prepend("collision-");
+        }
 #ifdef QDOC2_COMPAT
         if (base.endsWith(".html"))
             base.truncate(base.length() - 5);
@@ -325,6 +321,10 @@ QTextStream &PageGenerator::out()
 
 /*!
   Recursive writing of HTML files from the root \a node.
+
+  \note NameCollisionNodes are skipped here and processed
+  later. See HtmlGenerator::generateDisambiguationPages()
+  for more on this.
  */
 void
 PageGenerator::generateInnerNode(const InnerNode* node)
@@ -352,20 +352,32 @@ PageGenerator::generateInnerNode(const InnerNode* node)
     CodeMarker *marker = CodeMarker::markerForFileName(node->location().filePath());
 
     if (node->parent() != 0) {
-	beginSubPage(node->location(), fileName(node));
-	if (node->type() == Node::Namespace || node->type() == Node::Class) {
-	    generateClassLikeNode(node, marker);
-	}
-        else if (node->type() == Node::Fake) {
-	    generateFakeNode(static_cast<const FakeNode *>(node), marker);
-	}
-	endSubPage();
+        /*
+          Skip name collision nodes here and process them
+          later in generateDisambiguationPages(). Each one
+          is appended to a list for later.
+         */
+        if ((node->type() == Node::Fake) && (node->subType() == Node::Collision)) {
+            const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(node);
+            collisionNodes.append(const_cast<NameCollisionNode*>(ncn));
+        }
+        else {
+            beginSubPage(node->location(), fileName(node));
+            if (node->type() == Node::Namespace || node->type() == Node::Class) {
+                generateClassLikeNode(node, marker);
+            }
+            else if (node->type() == Node::Fake) {
+                generateFakeNode(static_cast<const FakeNode *>(node), marker);
+            }
+            endSubPage();
+        }
     }
 
     NodeList::ConstIterator c = node->childNodes().begin();
     while (c != node->childNodes().end()) {
-	if ((*c)->isInnerNode() && (*c)->access() != Node::Private)
+        if ((*c)->isInnerNode() && (*c)->access() != Node::Private) {
 	    generateInnerNode((const InnerNode *) *c);
+        }
 	++c;
     }
 }

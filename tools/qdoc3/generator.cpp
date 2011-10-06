@@ -1337,8 +1337,12 @@ QString Generator::fullName(const Node *node,
                             const Node *relative,
                             CodeMarker *marker) const
 {
-    if (node->type() == Node::Fake)
-        return static_cast<const FakeNode *>(node)->title();
+    if (node->type() == Node::Fake) {
+        const FakeNode* fn = static_cast<const FakeNode *>(node);
+        if (!fn->qmlModuleIdentifier().isEmpty())
+            return fn->qmlModuleIdentifier() + " " + fn->title();
+        return fn->title();
+    }
     else if (node->type() == Node::Class &&
         !(static_cast<const ClassNode *>(node))->serviceName().isEmpty())
         return (static_cast<const ClassNode *>(node))->serviceName();

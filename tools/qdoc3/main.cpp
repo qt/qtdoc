@@ -388,7 +388,8 @@ int main(int argc, char **argv)
     PureDocParser docParser;
 
     /*
-      Create code markers for plain text and C++.
+      Create code markers for plain text, C++,
+      javascript, and QML.
      */
     PlainCodeMarker plainMarker;
     CppCodeMarker cppMarker;

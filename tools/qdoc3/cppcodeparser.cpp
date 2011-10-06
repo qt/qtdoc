@@ -367,6 +367,7 @@ void CppCodeParser::doneParsingHeaderFiles(Tree *tree)
 void CppCodeParser::doneParsingSourceFiles(Tree *tree)
 {
     tree->root()->makeUndocumentedChildrenInternal();
+    tree->root()->clearCurrentChildPointers();
     tree->root()->normalizeOverloads();
     tree->fixInheritance();
     tree->resolveProperties();
@@ -721,14 +722,24 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
             if (n)
                 classNode = static_cast<const ClassNode*>(n);
         }
-#ifdef QML_COLON_QUALIFER
-        if (names[0].startsWith("Qt"))
-            return new QmlClassNode(tre->root(), QLatin1String("QML:")+names[0], classNode);
-        else
-            return new QmlClassNode(tre->root(), names[0], classNode);
-#else
-        return new QmlClassNode(tre->root(), names[0], classNode);
-#endif
+        /*
+          Search for a node with the same name. If there is one,
+          then there is a collision, so create a collision node
+          and make the existing node a child of the collision
+          node, and then create the new QML class node and make
+          it a child of the collision node as well. The new QML
+          class node becomes the current child of the collision
+          node. Return the collision node.
+
+          If there is no collision, just create a new QML class
+          node and return that one.
+         */
+        NameCollisionNode* ncn = tre->checkForCollision(names[0],Node::Fake);
+        QmlClassNode* qcn = new QmlClassNode(tre->root(), names[0], classNode);
+        if (ncn) {
+            ncn->addCollision(qcn);
+        }
+        return qcn;
     }
     else if (command == COMMAND_QMLBASICTYPE) {
         return new QmlBasicTypeNode(tre->root(), arg);
@@ -740,19 +751,9 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         QString module;
         QString element;
         QString type;
-        QmlClassNode* qmlClass = 0;
         if (splitQmlMethodArg(doc,arg,type,module,element)) {
-#ifdef QML_COLON_QUALIFER
-            if (element.startsWith(QLatin1String("Qt")))
-                element = QLatin1String("QML:") + element;
-#endif
-            Node* n = 0;
-            if (!module.isEmpty())
-                n = tre->findQmlClassNode(module,element);
-            else
-                n = tre->findNode(QStringList(element),Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
-                qmlClass = static_cast<QmlClassNode*>(n);
+            QmlClassNode* qmlClass = tre->findQmlClassNode(module,element);
+            if (qmlClass) {
                 if (command == COMMAND_QMLSIGNAL)
                     return makeFunctionNode(doc,arg,qmlClass,Node::QmlSignal,false,COMMAND_QMLSIGNAL);
                 else if (command == COMMAND_QMLATTACHEDSIGNAL)
@@ -777,7 +778,7 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
 
   This function splits the argument into one of those
   two forms. The three part form is the old form, which
-  was used before QtQuick 2 and the appearance of Qt
+  was used before the creation of QtQuick 2 and Qt
   Components. A <QML-module> is the QML equivalent of a
   C++ namespace. So this function splits \a arg on "::"
   and stores the parts in \a type, \a module, \a element,
@@ -795,35 +796,27 @@ bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
                                         QString& element,
                                         QString& name)
 {
-    QString msg;
     QStringList blankSplit = arg.split(" ");
     if (blankSplit.size() > 1) {
         type = blankSplit[0];
         QStringList colonSplit(blankSplit[1].split("::"));
-        if (colonSplit.size() > 2) {
+        if (colonSplit.size() == 3) {
             module = colonSplit[0];
             element = colonSplit[1];
             name = colonSplit[2];
             return true;
         }
-        if (colonSplit.size() > 1) {
+        if (colonSplit.size() == 2) {
             module.clear();
             element = colonSplit[0];
             name = colonSplit[1];
-            if ((element == QString("Component")) ||
-                (element == QString("QtObject"))) {
-                return true;
-            }
-            msg = "Missing QML module qualifier for " + arg;
-            doc.location().warning(tr(msg.toLatin1().data()));
+            return true;
         }
-        else {
-            msg = "Missing QML module and element qualifiers for " + arg;
-            doc.location().warning(tr(msg.toLatin1().data()));
-        }
+        QString msg = "Unrecognizable QML module/component qualifier for " + arg;
+        doc.location().warning(tr(msg.toLatin1().data()));
     }
     else {
-        msg = "Missing property type for " + arg;
+        QString msg = "Missing property type for " + arg;
         doc.location().warning(tr(msg.toLatin1().data()));
     }
     return false;
@@ -849,7 +842,6 @@ bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
                                       QString& module,
                                       QString& element)
 {
-    QString msg;
     QStringList colonSplit(arg.split("::"));
     if (colonSplit.size() > 1) {
         QStringList blankSplit = colonSplit[0].split(" ");
@@ -858,36 +850,27 @@ bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
             if (colonSplit.size() > 2) {
                 module = blankSplit[1];
                 element = colonSplit[1];
-                return true;
             }
-            module.clear();
-            element = blankSplit[1];
-            if ((element == QString("Component")) ||
-                (element == QString("QtObject")))
-                return true;
-            msg = "Missing QML module qualifier for " + arg;
-            doc.location().warning(tr(msg.toLatin1().data()));
+            else {
+                module.clear();
+                element = blankSplit[1];
+            }
         }
         else {
             type = QString("");
             if (colonSplit.size() > 2) {
                 module = colonSplit[0];
                 element = colonSplit[1];
-                return true;
             }
-            module.clear();
-            element = colonSplit[0];
-            if ((element == QString("Component")) ||
-                (element == QString("QtObject")))
-                return true;
-            msg = "Missing QML module qualifier for " + arg;
-            doc.location().warning(tr(msg.toLatin1().data()));
+            else {
+                module.clear();
+                element = colonSplit[0];
+            }
         }
+        return true;
     }
-    else {
-        msg = "Missing QML module and/or element qualifiers for " + arg;
-        doc.location().warning(tr(msg.toLatin1().data()));
-    }
+    QString msg = "Unrecognizable QML module/component qualifier for " + arg;
+    doc.location().warning(tr(msg.toLatin1().data()));
     return false;
 }
 
@@ -911,17 +894,9 @@ Node *CppCodeParser::processTopicCommandGroup(const Doc& doc,
         bool attached = (command == COMMAND_QMLATTACHEDPROPERTY);
         QStringList::ConstIterator arg = args.begin();
         if (splitQmlPropertyArg(doc,(*arg),type,module,element,property)) {
-            Node* n = 0;
-            if (!module.isEmpty())
-                n = tre->findQmlClassNode(module,element);
-            else
-                n = tre->findNode(QStringList(element),Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
-                QmlClassNode* qmlClass = static_cast<QmlClassNode*>(n);
-                if (qmlClass)
-                    qmlPropGroup = new QmlPropGroupNode(qmlClass,
-                                                        property,
-                                                        attached);
+            QmlClassNode* qmlClass = tre->findQmlClassNode(module,element);
+            if (qmlClass) {
+                qmlPropGroup = new QmlPropGroupNode(qmlClass,property,attached);
             }
         }
         if (qmlPropGroup) {

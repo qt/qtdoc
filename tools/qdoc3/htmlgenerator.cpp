@@ -253,6 +253,7 @@ void HtmlGenerator::generateTree(const Tree *tree)
     findAllSince(tree->root());
 
     PageGenerator::generateTree(tree);
+    generateDisambiguationPages();
 
     QString fileBase = project.toLower().simplified().replace(" ", "-");
     generateIndex(fileBase, projectUrl, projectDescription);
@@ -788,9 +789,13 @@ int HtmlGenerator::generateAtom(const Atom *atom,
             const Node *node = 0;
             QString myLink = getLink(atom, relative, marker, &node);
             if (myLink.isEmpty()) {
-                relative->doc().location().warning(tr("Cannot link to '%1' in %2")
-                        .arg(atom->string())
-                        .arg(marker->plainFullName(relative)));
+                myLink = getDisambiguationLink(atom, marker);
+                if (myLink.isEmpty()) {
+                    relative->doc().location().warning(tr("Can't create link to '%1'")
+                                                       .arg(atom->string()));
+                }
+                else
+                    node = 0;
             }
             beginLink(myLink, node, relative, marker);
             skipAhead = 1;
@@ -1296,18 +1301,93 @@ void HtmlGenerator::generateClassLikeNode(const InnerNode *inner,
 }
 
 /*!
-  Generate the HTML page for a qdoc file that doesn't map
-  to an underlying C++ file.
+  We delayed generation of the disambiguation pages until now, after
+  all the other pages have been generated. We do this because we might
+  encounter a link command that tries to link to a target on a QML
+  component page, but the link doesn't specify the module identifer
+  for the component, and the component name without a module
+  identifier is ambiguous. When such a link is found, qdoc can't find
+  the target, so it appends the target to the NameCollisionNode. After
+  the tree has been traversed and all these ambiguous links have been
+  added to the name collision nodes, this function is called. The list
+  of collision nodes is traversed here, and the disambiguation page for
+  each collision is generated. The disambiguation page will not only
+  disambiguate links to the component pages, but it will also disambiguate
+  links to properties, section headers, etc.
+ */
+void HtmlGenerator::generateDisambiguationPages()
+{
+    if (collisionNodes.isEmpty())
+        return;
+    for (int i=0; i<collisionNodes.size(); ++i) {
+        NameCollisionNode* ncn = collisionNodes.at(i);
+        ncn->clearCurrentChild();
+        beginSubPage(ncn->location(), PageGenerator::fileName(ncn));
+        QString fullTitle = "Name Collision: " + ncn->fullTitle();
+        QString htmlTitle = fullTitle;
+        CodeMarker* marker = CodeMarker::markerForFileName(ncn->location().filePath());
+        if (ncn->isQmlNode()) {
+            // Replace the marker with a QML code marker.
+            if (ncn->isQmlNode())
+                marker = CodeMarker::markerForLanguage(QLatin1String("QML"));
+        }
+
+        generateHeader(htmlTitle, ncn, marker);
+        if (!fullTitle.isEmpty())
+            out() << "<h1 class=\"title\">" << protectEnc(fullTitle) << "</h1>\n";
+        const NodeList& nl = ncn->childNodes();
+        NodeMap nm;
+        NodeList::ConstIterator i = nl.begin();
+        while (i != nl.end()) {
+            QString t = (*i)->qmlModuleIdentifier() + " " + protectEnc(fullTitle);
+            nm.insertMulti(t,(*i));
+            ++i;
+        }
+        generateAnnotatedList(ncn, marker, nm, true);
+
+        const QMap<QString,QString>& targets = ncn->linkTargets();
+        if (!targets.isEmpty()) {
+            QMap<QString,QString>::ConstIterator t = targets.begin();
+            while (t != targets.end()) {
+                out() << "<a name=\"" << Doc::canonicalTitle(t.key()) << "\"></a>";
+                out() << "<h2 class=\"title\">" << protectEnc(t.key()) << "</h2>\n";
+                out() << "<ul>\n";
+                i = nl.begin();
+                while (i != nl.end()) {
+                    InnerNode* n = static_cast<InnerNode*>(*i);
+                    Node* p = n->findNode(t.key());
+                    if (p) {
+                        QString link = linkForNode(p,0);
+                        QString label = n->qmlModuleIdentifier() + "::" + n->name() + "::" + p->name();
+                        out() << "<li>";
+                        out() << "<a href=\"" << link << "\">";
+                        out() << protectEnc(label) << "</a>";
+                        out() << "</li>\n";
+                    }
+                    ++i;
+                }
+                out() << "</ul>\n";
+                ++t;
+            }
+        }
+
+        generateFooter(ncn);
+        endSubPage();
+    }
+}
+
+/*!
+  Generate the HTML page for an entity that doesn't map
+  to any underlying parsable C++ class or QML component.
  */
 void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
 {
     SubTitleSize subTitleSize = LargeSubTitle;
-
     QList<Section> sections;
     QList<Section>::const_iterator s;
-
     QString fullTitle = fake->fullTitle();
     QString htmlTitle = fullTitle;
+
     if (fake->subType() == Node::File && !fake->subTitle().isEmpty()) {
         subTitleSize = SmallSubTitle;
         htmlTitle += " (" + fake->subTitle() + ")";
@@ -1321,7 +1401,6 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
     }
 
     generateHeader(htmlTitle, fake, marker);
-        
     /*
       Generate the TOC for the new doc format.
       Don't generate a TOC for the home page.
@@ -1335,7 +1414,7 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
         // Replace the marker with a QML code marker.
         marker = CodeMarker::markerForLanguage(QLatin1String("QML"));
     }
-    else if (fake->name() != QString("index.html"))
+    else if (fake->subType() != Node::Collision && fake->name() != QString("index.html"))
         generateTableOfContents(fake,marker,0);
 
     generateTitle(fullTitle,
@@ -1390,8 +1469,8 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
 
         out() << "</ul>\n";
     }
-#ifdef QDOC_QML
     else if (fake->subType() == Node::QmlClass) {
+        const_cast<FakeNode*>(fake)->setCurrentChild();
         const ClassNode* cn = qml_cn->classNode();
         generateBrief(qml_cn, marker);
         generateQmlInherits(qml_cn, marker);
@@ -1439,9 +1518,9 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
             ++s;
         }
         generateFooter(fake);
+        const_cast<FakeNode*>(fake)->clearCurrentChild();
         return;
     }
-#endif
 
     sections = marker->sections(fake, CodeMarker::Summary, CodeMarker::Okay);
     s = sections.begin();
@@ -2093,7 +2172,8 @@ void HtmlGenerator::generateClassHierarchy(const Node *relative,
 
 void HtmlGenerator::generateAnnotatedList(const Node *relative,
                                           CodeMarker *marker,
-                                          const NodeMap &nodeMap)
+                                          const NodeMap &nodeMap,
+                                          bool allOdd)
 {
     out() << "<table class=\"annotated\">\n";
 
@@ -2104,7 +2184,7 @@ void HtmlGenerator::generateAnnotatedList(const Node *relative,
         if (node->status() == Node::Obsolete)
             continue;
 
-        if (++row % 2 == 1)
+        if (allOdd || (++row % 2 == 1))
             out() << "<tr class=\"odd topAlign\">";
         else
             out() << "<tr class=\"even topAlign\">";
@@ -3175,6 +3255,13 @@ QString HtmlGenerator::refForNode(const Node *node)
     return registerRef(ref);
 }
 
+/*!
+  Construct the link string for the \a node and return it.
+  The \a relative node is use to decide the link we are
+  generating is in the same file as the target. Note the
+  relative node can be 0, which pretty much guarantees
+  that the link and the target aren't in the same file.
+  */
 QString HtmlGenerator::linkForNode(const Node *node, const Node *relative)
 {
     QString link;
@@ -3191,9 +3278,10 @@ QString HtmlGenerator::linkForNode(const Node *node, const Node *relative)
         return QString();
  
     fn = fileName(node);
-/*    if (!node->url().isEmpty())
-        return fn;*/
-
+    /*
+    if (!node->url().isEmpty())
+        return fn;
+    */
     link += fn;
 
     if (!node->isInnerNode() || node->subType() == Node::QmlPropertyGroup) {
@@ -3541,7 +3629,6 @@ QString HtmlGenerator::getLink(const Atom *atom,
         }
 
         Atom *targetAtom = 0;
-
         QString first = path.first().trimmed();
         if (first.isEmpty()) {
             *node = relative;
@@ -3558,7 +3645,6 @@ QString HtmlGenerator::getLink(const Atom *atom,
                 *node = myTree->findUnambiguousTarget(first, targetAtom);
             }
         }
-
         if (*node) {
             if (!(*node)->url().isEmpty())
                 return (*node)->url();
@@ -3613,6 +3699,39 @@ QString HtmlGenerator::getLink(const Atom *atom,
             if (targetAtom)
                 link += "#" + refForAtom(targetAtom, *node);
         }
+    }
+    return link;
+}
+
+/*!
+  This function can be called if getLink() returns an empty
+  string. It tests the \a atom string to see if it is a link
+  of the form <element> :: <name>, where <element> is a QML
+  element or component without a module qualifier. If so, it
+  constructs a link to the <name> clause on the disambiguation
+  page for <element> and returns that link string. It also
+  adds the <name> as a target in the NameCollisionNode for
+  <element>. These clauses are then constructed when the
+  disambiguation page is actually generated.
+ */
+QString HtmlGenerator::getDisambiguationLink(const Atom* atom, CodeMarker* marker)
+{
+    QString link;
+    if (!atom->string().contains("::"))
+        return link;
+    QStringList path = atom->string().split("::");
+    NameCollisionNode* ncn = myTree->findCollisionNode(path[0],Node::Fake);
+    if (ncn) {
+        QString label;
+        if (atom->next() && atom->next()->next()) {
+            if (atom->next()->type() == Atom::FormattingLeft &&
+                atom->next()->next()->type() == Atom::String)
+                label = atom->next()->next()->string();
+        }
+        ncn->addLinkTarget(path[1],label);
+        link = fileName(ncn);
+        link += "#";
+        link += Doc::canonicalTitle(path[1]);
     }
     return link;
 }
@@ -3701,8 +3820,8 @@ void HtmlGenerator::beginLink(const QString &link,
         if (showBrokenLinks)
             out() << "<i>";
     }
-    else if (node == 0 || (relative != 0 &&
-                           node->status() == relative->status())) {
+    else if (node == 0 ||
+             (relative != 0 && node->status() == relative->status())) {
         out() << "<a href=\"" << link << "\">";
     }
     else {

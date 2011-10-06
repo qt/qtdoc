@@ -274,18 +274,72 @@ const Node* Tree::findNode(const QStringList& path,
 }
 
 /*!
-  Find the QML class node for the specified \a module and \a element
-  identifiers.
-
-  \note At the moment, qdoc does not parse QML files (.qml) before
-  parsing the qdoc comments, so the QML class node might not yet
-  exist in the tree. i.e., if the \e {qmlclass} topic command has
-  been seen for \a module and \element, the node will exist, but
-  if that command has not been seen, the node will not yet exist.
+  Find the QML class node for the specified \a module and \a name
+  identifiers. The \a module identifier may be empty. If the module
+  identifier is empty, then begin by finding the FakeNode that has
+  the specified \a name. If that FakeNode is a QML class, return it.
+  If it is a collision node, return its current child, if the current
+  child is a QML class. If the collision node does not have a child
+  that is a QML class node, return 0.
  */
-const QmlClassNode* Tree::findQmlClassNode(const QString& module, const QString& element) const
+const QmlClassNode* Tree::findQmlClassNode(const QString& module, const QString& name) const
 {
-    return QmlClassNode::moduleMap.value(module + "::" + element);
+    if (module.isEmpty()) {
+        const Node* n = findNode(QStringList(name), Node::Fake);
+        if (n) {
+            if (n->subType() == Node::QmlClass)
+                return static_cast<const QmlClassNode*>(n);
+            else if (n->subType() == Node::Collision) {
+                const NameCollisionNode* ncn;
+                ncn = static_cast<const NameCollisionNode*>(n);
+                return static_cast<const QmlClassNode*>(ncn->findAny(Node::Fake,Node::QmlClass));
+            }
+        }
+        return 0;
+    }
+    return QmlClassNode::moduleMap.value(module + "::" + name);
+}
+
+/*!
+  First, search for a node of the specified type \a t with
+  the specified \a name. If a matching node is found, if it
+  is a collision node, another collision with this name has
+  been found, so return the collision node. If the matching
+  node is not a collision node, the first collision for this
+  name has been found, so create a NameCollisionNode with the
+  matching node as its first child, and return a pointer to
+  the new NameCollisionNode. Otherwise return 0.
+ */
+NameCollisionNode* Tree::checkForCollision(const QString& name, Node::Type t) const
+{
+    Node* n = const_cast<Node*>(findNode(QStringList(name), t));
+    if (n) {
+        if (n->subType() == Node::Collision) {
+            NameCollisionNode* ncn = static_cast<NameCollisionNode*>(n);
+            return ncn;
+        }
+        if (n->isInnerNode())
+            return new NameCollisionNode(static_cast<InnerNode*>(n));
+    }
+    return 0;
+}
+
+/*!
+  This function is like checkForCollision() in that it searches
+  for a collision node with the specified \a name of the specified
+  \a type. But it doesn't create anything. If it finds a match,
+  it returns the pointer. Otherwise it returns 0.
+ */
+NameCollisionNode* Tree::findCollisionNode(const QString& name, Node::Type t) const
+{
+    Node* n = const_cast<Node*>(findNode(QStringList(name), t));
+    if (n) {
+        if (n->subType() == Node::Collision) {
+            NameCollisionNode* ncn = static_cast<NameCollisionNode*>(n);
+            return ncn;
+        }
+    }
+    return 0;
 }
 
 /*!

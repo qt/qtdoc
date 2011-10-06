@@ -87,6 +87,7 @@ class HtmlGenerator : public PageGenerator
     virtual void terminateGenerator();
     virtual QString format();
     virtual void generateTree(const Tree *tree);
+    virtual void generateDisambiguationPages();
     void generateManifestFiles();
 
     QString protectEnc(const QString &string);
@@ -154,7 +155,8 @@ class HtmlGenerator : public PageGenerator
 				const NodeMap &classMap);
     void generateAnnotatedList(const Node *relative, 
                                CodeMarker *marker,
-			       const NodeMap &nodeMap);
+                               const NodeMap &nodeMap,
+                               bool allOdd = false);
     void generateCompactList(const Node *relative, 
                              CodeMarker *marker,
 			     const NodeMap &classMap,
@@ -223,10 +225,11 @@ class HtmlGenerator : public PageGenerator
     void findAllNamespaces(const InnerNode *node);
     static int hOffset(const Node *node);
     static bool isThreeColumnEnumValueTable(const Atom *atom);
-    virtual QString getLink(const Atom *atom, 
-                            const Node *relative, 
-                            CodeMarker *marker, 
-                            const Node** node);
+    QString getLink(const Atom *atom,
+                    const Node *relative,
+                    CodeMarker *marker,
+                    const Node** node);
+    QString getDisambiguationLink(const Atom* atom, CodeMarker* marker);
     virtual void generateIndex(const QString &fileBase, 
                                const QString &url,
                                const QString &title);

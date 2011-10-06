@@ -262,6 +262,7 @@ class DitaXmlGenerator : public PageGenerator
     virtual QString format();
     virtual bool canHandleFormat(const QString& format);
     virtual void generateTree(const Tree *tree);
+    virtual void generateDisambiguationPages() { }
 
     QString protectEnc(const QString& string);
     static QString protect(const QString& string, const QString& encoding = "ISO-8859-1");
@@ -407,7 +408,7 @@ class DitaXmlGenerator : public PageGenerator
     void generateStatus(const Node* node, CodeMarker* marker);
     
     QString registerRef(const QString& ref);
-    QString fileBase(const Node *node) const;
+    virtual QString fileBase(const Node *node) const;
     QString fileName(const Node *node);
     void findAllClasses(const InnerNode *node);
     void findAllFunctions(const InnerNode *node);
@@ -415,10 +416,11 @@ class DitaXmlGenerator : public PageGenerator
     void findAllNamespaces(const InnerNode *node);
     static int hOffset(const Node *node);
     static bool isThreeColumnEnumValueTable(const Atom *atom);
-    virtual QString getLink(const Atom *atom, 
-                            const Node *relative, 
-                            CodeMarker *marker, 
-                            const Node **node);
+    QString getLink(const Atom *atom,
+                    const Node *relative,
+                    CodeMarker *marker,
+                    const Node **node);
+    QString getDisambiguationLink(const Atom* atom, CodeMarker* marker);
     virtual void generateIndex(const QString& fileBase, 
                                const QString& url,
                                const QString& title);
