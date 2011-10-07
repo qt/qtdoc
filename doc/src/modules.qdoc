@@ -522,6 +522,10 @@
     \title QtContacts Module
     \ingroup modules
 
+    The Contacts API enables a client to request contact
+    data from local or remote backends. You can
+    add, remove, search , or filter for your contacts information.
+
     To include the definitions of the module's classes, use the
     following directive:
 
@@ -532,8 +536,17 @@
 
     \snippet doc/src/snippets/code/doc_src_qtcontacts.pro 0
 
-    See the \l{Contacts Programming} guide for information about using this
-    module in your applications.
+    \table 80%
+    \header \o {1,1} \bold{ Contacts API Quick Links }
+    \row \o \l{contacts.html}{ Contacts main overview }
+    \row \o \l{qml-contacts.html}{ QML Contacts API  }
+    \row \o \l{contactsasync.html}{ Contacts Asynchronous c++ API  }
+    \row \o \l{contactssync.html}{ Contacts Synchronous c++ API  }
+    \row \o \l{contactsengines.html}{ Creating Contacts dedicated engines  }
+    \row \o \l{contactsusage.html}{ Using Contacts }
+    \row \o \l{contactsactions.html}{  Contacts Actions  }
+    \row \o \l{contactsschema.html}{  Contacts schema  }
+    \endtable
 
     \generatelist{classesbymodule Contacts}
 
@@ -543,6 +556,9 @@
     \module QtOrganizer
     \title QtOrganizer Module
     \ingroup modules
+
+    The Organizer API enables a client to request calendar, schedule and
+    personal data from local or remote backends.
 
     To include the definitions of the module's classes, use the
     following directive:
@@ -554,8 +570,15 @@
 
     \snippet doc/src/snippets/code/doc_src_qtorganizer.pro 0
 
-    See the \l{Organizer Programming} guide for information about using this
-    module in your applications.
+    \table 80%
+    \header \o {1,1} \bold{ Organizer API Quick Links }
+    \row \o \l{organizer.html}{ Organizer main overview }
+    \row \o \l{qml-organizer.html}{ QML Organizer API  }
+    \row \o \l{organizerasync.html}{ Organizer Asynchronous c++ API  }
+    \row \o \l{organizersync.html}{ Organizer Synchronous c++ API  }
+    \row \o \l{organizerengines.html}{ Creating Organizer dedicated engines  }
+    \row \o \l{organizeradvanced.html}{ Advanced Organizer functionality  }
+    \endtable
 
     \generatelist{classesbymodule Organizer}
 */
@@ -564,6 +587,14 @@
     \module QtVersit
     \title QtVersit Module
     \ingroup modules
+
+    The Versit API allows you to take standard VCard and VCal formatted
+    test files and import your Calendar or Contact informaiton into
+    the Organizer and Contact API's resepectively. And hence store the information
+    on the platform you are on. Alternatively you can take your Organizer and
+    contacts information and export to VCal or VCard files which you can then
+    import into other calendars and contacts, or easily share this with others
+    across for example bluetooth or email.
 
     To include the definitions of the module's classes, use the
     following directive:
@@ -575,18 +606,15 @@
 
     \snippet doc/src/snippets/code/doc_src_qtversit.pro 0
 
-    See the \l{Versit Programming} guide for information about using this
-    module in your applications.
+    \table 80%
+    \header \o {1,1} \bold{ Versit API Quick Links }
+    \row \o \l{versit.html}{ Versit Overview }
+    \row \o \l{versitplugins.html}{ Versit plugins  }
+    \endtable
 
     \generatelist{classesbymodule Versit}
 */
 
-/*!
-        \module QtSvg
-/*!
-        \module QtSvg
-/*!
-        \module QtSvg
 /*!
     \module QtDesigner
     \title QtDesigner Module
