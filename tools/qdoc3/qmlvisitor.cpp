@@ -162,6 +162,8 @@ bool QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
         node->setDoc(doc);
         applyMetacommands(loc, node, doc);
         usedComments.insert(loc.offset);
+        if (doc.isEmpty())
+            return false;
         return true;
     }
     Location codeLoc(filePath);
@@ -275,7 +277,6 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
 }
 
 /*!
-
   Begin the visit of the object \a definition, recording it in a tree
   structure.  Increment the object nesting level, which is used to
   test whether we are at the public API level. The public level is
@@ -290,11 +291,10 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
         QmlClassNode *component = new QmlClassNode(current, name, 0);
         component->setTitle(QLatin1String("QML ") + name + QLatin1String(" Component"));
 
-        QmlClassNode::addInheritedBy(type, component);
-        component->setLink(Node::InheritsLink, type, type);
-
-        applyDocumentation(definition->firstSourceLocation(), component);
-
+        if (applyDocumentation(definition->firstSourceLocation(), component)) {
+            QmlClassNode::addInheritedBy(type, component);
+            component->setLink(Node::InheritsLink, type, type);
+        }
         current = component;
     }
 

@@ -451,6 +451,8 @@ class ExampleNode : public FakeNode
     virtual QString imageFileName() const { return imageFileName_; }
     virtual void setImageFileName(const QString& ifn) { imageFileName_ = ifn; }
 
+    static void terminate() { exampleNodeMap.clear(); }
+
  public:
     static ExampleNodeMap exampleNodeMap;
 
@@ -476,7 +478,7 @@ class QmlClassNode : public FakeNode
     virtual void clearCurrentChild();
     static void addInheritedBy(const QString& base, Node* sub);
     static void subclasses(const QString& base, NodeList& subs);
-    static void clear();
+    static void terminate();
 
  public:
     static bool qmlOnly;

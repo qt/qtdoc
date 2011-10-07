@@ -1790,12 +1790,13 @@ QmlClassNode::~QmlClassNode()
 }
 
 /*!
-  Clear the multimap so that subsequent runs don't try to use
-  nodes from a previous run.
+  Clear the static maps so that subsequent runs don't try to use
+  contents from a previous run.
  */
-void QmlClassNode::clear()
+void QmlClassNode::terminate()
 {
     inheritedBy.clear();
+    moduleMap.clear();
 }
 
 /*!
@@ -1815,7 +1816,9 @@ QString QmlClassNode::fileBase() const
  */
 void QmlClassNode::addInheritedBy(const QString& base, Node* sub)
 {
-    inheritedBy.insert(base,sub);
+    if (inheritedBy.find(base,sub) == inheritedBy.end()) {
+        inheritedBy.insert(base,sub);
+     }
 #ifdef DEBUG_MULTIPLE_QDOCCONF_FILES
     qDebug() << "QmlClassNode::addInheritedBy(): insert" << base << sub->name() << inheritedBy.size();
 #endif

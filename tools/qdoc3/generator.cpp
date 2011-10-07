@@ -321,7 +321,8 @@ void Generator::terminate()
     imageFiles.clear();
     imageDirs.clear();
     outDir = "";
-    QmlClassNode::clear();
+    QmlClassNode::terminate();
+    ExampleNode::terminate();
 }
 
 Generator *Generator::generatorForFormat(const QString& format)
