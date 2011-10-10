@@ -232,6 +232,7 @@ void CodeParser::processCommonMetaCommand(const Location& location,
                                           Tree* tree)
 {
     if (command == COMMAND_COMPAT) {
+        location.warning(tr("\\compat command used, but Qt3 compatibility is no longer supported"));
         node->setStatus(Node::Compat);
     }
     else if (command == COMMAND_DEPRECATED) {
