@@ -173,6 +173,7 @@ class Node
     virtual bool isFunction() const { return false; }
     virtual bool isQmlNode() const { return false; }
     virtual bool isInternal() const { return false; }
+    virtual bool isQtQuickNode() const { return false; }
     Type type() const { return typ; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return par; }
@@ -203,7 +204,8 @@ class Node
     QString guid() const;
     QString ditaXmlHref();
     QString extractClassName(const QString &string) const;
-    virtual const QString qmlModuleName() const { return QString(); }
+    virtual QString qmlModuleName() const { return QString(); }
+    virtual QString qmlModuleVersion() const { return QString(); }
     virtual QString qmlModuleQualifier() const { return QString(); }
     virtual QString qmlModuleIdentifier() const { return QString(); }
     virtual void setQmlModuleName(const QString& ) { }
@@ -468,7 +470,9 @@ class QmlClassNode : public FakeNode
                  const ClassNode* cn);
     virtual ~QmlClassNode();
     virtual bool isQmlNode() const { return true; }
-    virtual const QString qmlModuleName() const { return qmlModuleName_; }
+    virtual bool isQtQuickNode() const { return (qmlModuleName_ == "QtQuick"); }
+    virtual QString qmlModuleName() const { return qmlModuleName_; }
+    virtual QString qmlModuleVersion() const { return qmlModuleVersion_; }
     virtual QString qmlModuleIdentifier() const { return qmlModuleName_ + " " + qmlModuleVersion_; }
     virtual QString qmlModuleQualifier() const { return qmlModuleName_ + qmlModuleVersion_; }
     virtual void setQmlModuleName(const QString& arg);
@@ -508,6 +512,11 @@ class QmlPropGroupNode : public FakeNode
                      bool attached);
     virtual ~QmlPropGroupNode() { }
     virtual bool isQmlNode() const { return true; }
+    virtual bool isQtQuickNode() const { return parent()->isQtQuickNode(); }
+    virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
+    virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
+    virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
+    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     const QString& element() const { return parent()->name(); }
     void setDefault() { isdefault = true; }
@@ -548,6 +557,11 @@ class QmlPropertyNode : public LeafNode
     bool isWritable(const Tree* tree) const;
     bool isAttached() const { return att; }
     virtual bool isQmlNode() const { return true; }
+    virtual bool isQtQuickNode() const { return parent()->isQtQuickNode(); }
+    virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
+    virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
+    virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
+    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     const PropertyNode *correspondingProperty(const Tree *tree) const;
 
@@ -719,12 +733,17 @@ class FunctionNode : public LeafNode
     QString signature(bool values = false) const;
     const QString& element() const { return parent()->name(); }
     bool isAttached() const { return att; }
+    virtual bool isInternal() const;
     virtual bool isQmlNode() const { 
         return ((type() == QmlSignal) ||
                 (type() == QmlMethod) ||
                 (type() == QmlSignalHandler));
     }
-    virtual bool isInternal() const;
+    virtual bool isQtQuickNode() const { return parent()->isQtQuickNode(); }
+    virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
+    virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
+    virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
+    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     void debug() const;
 

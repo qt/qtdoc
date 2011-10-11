@@ -1302,16 +1302,13 @@ void Generator::appendSortedQmlNames(Text& text,
     QMap<QString,Text> classMap;
     int index = 0;
 
-#ifdef DEBUG_MULTIPLE_QDOCCONF_FILES
-    qDebug() << "Generator::appendSortedQmlNames():" << base->name() << "is inherited by...";
-#endif
     for (int i = 0; i < subs.size(); ++i) {
         Text t;
-#ifdef DEBUG_MULTIPLE_QDOCCONF_FILES
-        qDebug() << "    " << subs[i]->name();
-#endif
-        appendFullName(t, subs[i], base, marker);
-        classMap[t.toString().toLower()] = t;
+        if (!base->isQtQuickNode() || !subs[i]->isQtQuickNode() ||
+            (base->qmlModuleQualifier() == subs[i]->qmlModuleQualifier())) {
+            appendFullName(t, subs[i], base, marker);
+            classMap[t.toString().toLower()] = t;
+        }
     }
 
     QStringList names = classMap.keys();
