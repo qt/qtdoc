@@ -4211,6 +4211,8 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
  */
 QString DitaXmlGenerator::getDisambiguationLink(const Atom* atom, CodeMarker* marker)
 {
+    qDebug() << "Unimplemented function called: "
+             << "QString DitaXmlGenerator::getDisambiguationLink()";
     QString link;
     return link;
 }
@@ -4425,30 +4427,23 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
   Output the "Inherits" line for the QML element,
   if there should be one.
  */
-void DitaXmlGenerator::generateQmlInherits(const QmlClassNode* cn,
-                                           CodeMarker* marker)
+void DitaXmlGenerator::generateQmlInherits(const QmlClassNode* qcn, CodeMarker* marker)
 {
-    if (cn && !cn->links().empty()) {
-        if (cn->links().contains(Node::InheritsLink)) {
-            QPair<QString,QString> linkPair;
-            linkPair = cn->links()[Node::InheritsLink];
-            QStringList strList(linkPair.first);
-            const Node* n = myTree->findNode(strList,Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
-                const QmlClassNode* qcn = static_cast<const QmlClassNode*>(n);
-                writeStartTag(DT_p);
-                xmlWriter().writeAttribute("outputclass","inherits");
-                Text text;
-                text << "[Inherits ";
-                text << Atom(Atom::LinkNode,CodeMarker::stringForNode(qcn));
-                text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-                text << Atom(Atom::String, linkPair.second);
-                text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-                text << "]";
-                generateText(text, cn, marker);
-                writeEndTag(); // </p>
-            }
-        }
+    if (!qcn)
+        return;
+    const FakeNode* base = qcn->qmlBase();
+    if (base) {
+        writeStartTag(DT_p);
+        xmlWriter().writeAttribute("outputclass","inherits");
+        Text text;
+        text << "[Inherits ";
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(base));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, base->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << "]";
+        generateText(text, qcn, marker);
+        writeEndTag(); // </p>
     }
 }
 
@@ -4456,18 +4451,18 @@ void DitaXmlGenerator::generateQmlInherits(const QmlClassNode* cn,
   Output the "Inherit by" list for the QML element,
   if it is inherited by any other elements.
  */
-void DitaXmlGenerator::generateQmlInheritedBy(const QmlClassNode* cn,
+void DitaXmlGenerator::generateQmlInheritedBy(const QmlClassNode* qcn,
                                               CodeMarker* marker)
 {
-    if (cn) {
+    if (qcn) {
         NodeList subs;
-        QmlClassNode::subclasses(cn->name(),subs);
+        QmlClassNode::subclasses(qcn->name(),subs);
         if (!subs.isEmpty()) {
             Text text;
             text << Atom::ParaLeft << "Inherited by ";
-            appendSortedQmlNames(text,cn,subs,marker);
+            appendSortedQmlNames(text,qcn,subs,marker);
             text << Atom::ParaRight;
-            generateText(text, cn, marker);
+            generateText(text, qcn, marker);
         }
     }
 }
@@ -4513,26 +4508,24 @@ void DitaXmlGenerator::generateQmlInstantiates(const QmlClassNode* qcn,
 void DitaXmlGenerator::generateInstantiatedBy(const ClassNode* cn,
                                               CodeMarker* marker)
 {
-    if (cn &&  cn->status() != Node::Internal && !cn->qmlElement().isEmpty()) {
-        const Node* n = myTree->root()->findNode(cn->qmlElement(),Node::Fake);
-        if (n && n->subType() == Node::QmlClass) {
-            writeStartTag(DT_p);
-            xmlWriter().writeAttribute("outputclass","instantiated-by");
-            Text text;
-            text << "[";
-            text << Atom(Atom::LinkNode,CodeMarker::stringForNode(cn));
-            text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-            text << Atom(Atom::String, cn->name());
-            text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-            text << " is instantiated by QML element ";
-            text << Atom(Atom::LinkNode,CodeMarker::stringForNode(n));
-            text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-            text << Atom(Atom::String, n->name());
-            text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-            text << "]";
-            generateText(text, cn, marker);
-            writeEndTag(); // </p>
-        }
+    if (cn &&  cn->status() != Node::Internal && cn->qmlElement() != 0) {
+        const QmlClassNode* qcn = cn->qmlElement();
+        writeStartTag(DT_p);
+        xmlWriter().writeAttribute("outputclass","instantiated-by");
+        Text text;
+        text << "[";
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(cn));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, cn->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << " is instantiated by QML element ";
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(qcn));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, qcn->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << "]";
+        generateText(text, cn, marker);
+        writeEndTag(); // </p>
     }
 }
 

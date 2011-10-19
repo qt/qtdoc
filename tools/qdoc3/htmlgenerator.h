@@ -180,8 +180,8 @@ class HtmlGenerator : public PageGenerator
     void generateDetailedQmlMember(const Node *node,
                                    const InnerNode *relative,
                                    CodeMarker *marker);
-    void generateQmlInherits(const QmlClassNode* cn, CodeMarker* marker);
-    void generateQmlInheritedBy(const QmlClassNode* cn, CodeMarker* marker);
+    void generateQmlInherits(const QmlClassNode* qcn, CodeMarker* marker);
+    void generateQmlInheritedBy(const QmlClassNode* qcn, CodeMarker* marker);
     void generateQmlInstantiates(const QmlClassNode* qcn, CodeMarker* marker);
     void generateInstantiatedBy(const ClassNode* cn, CodeMarker* marker);
 #endif

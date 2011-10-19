@@ -1277,7 +1277,6 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
 
 	    while (!stack.isEmpty()) {
 	        const QmlClassNode* ancestorClass = stack.pop();
-
 	        NodeList::ConstIterator c = ancestorClass->childNodes().begin();
 	        while (c != ancestorClass->childNodes().end()) {
                     //		    if ((*c)->access() != Node::Private)

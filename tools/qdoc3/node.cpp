@@ -1088,6 +1088,7 @@ ClassNode::ClassNode(InnerNode *parent, const QString& name)
 {
     hidden = false;
     abstract = false;
+    qmlelement = 0;
     setPageType(ApiPage);
 }
 
@@ -1174,6 +1175,37 @@ const PropertyNode *ClassNode::findPropertyNode(const QString &name) const
     }
 
     return pn;
+}
+
+/*!
+  This function does a recursive search of this class node's
+  base classes looking for one that has a QML element. If it
+  finds one, it returns the pointer to that QML element. If
+  it doesn't find one, it returns null.
+ */
+const QmlClassNode* ClassNode::findQmlBaseNode() const
+{
+    const QmlClassNode* result = 0;
+    const QList<RelatedClass>& bases = baseClasses();
+
+    if (!bases.isEmpty()) {
+        for (int i = 0; i < bases.size(); ++i) {
+            const ClassNode* cn = bases[i].node;
+            if (cn && cn->qmlElement()) {
+                return cn->qmlElement();
+            }
+        }
+        for (int i = 0; i < bases.size(); ++i) {
+            const ClassNode* cn = bases[i].node;
+            if (cn) {
+                result = cn->findQmlBaseNode();
+                if (result != 0) {
+                    return result;
+                }
+            }
+        }
+    }
+    return result;
 }
 
 /*!
@@ -1769,7 +1801,9 @@ QMap<QString, QmlClassNode*> QmlClassNode::moduleMap;
 QmlClassNode::QmlClassNode(InnerNode *parent,
                            const QString& name,
                            const ClassNode* cn)
-    : FakeNode(parent, name, QmlClass, Node::ApiPage), cnode(cn)
+    : FakeNode(parent, name, QmlClass, Node::ApiPage),
+      cnode(cn),
+      base_(0)
 {
     int i = 0;
     if (name.startsWith("QML:")) {
@@ -1902,6 +1936,88 @@ void QmlClassNode::clearCurrentChild()
         if (n->subType() == Node::Collision)
             n->clearCurrentChild();
     }
+}
+
+/*!
+  Most QML elements don't have an \\inherits command in their
+  \\qmlclass command. This leaves qdoc bereft, when it tries
+  to output the line in the documentation that specifies the
+  QML element that a QML element inherits.
+
+ */
+void QmlClassNode::resolveInheritance(const Tree* tree)
+{
+    bool debug = false;
+    if (!links().empty() && links().contains(Node::InheritsLink)) {
+        QPair<QString,QString> linkPair;
+        linkPair = links()[Node::InheritsLink];
+        QStringList strList = linkPair.first.split("::");
+        const Node* n = tree->findNode(strList,Node::Fake);
+        if (n && (n->subType() == Node::QmlClass || n->subType() == Node::Collision)) {
+            base_ = static_cast<const FakeNode*>(n);
+            if (base_ && base_->subType() == Node::QmlClass) {
+                if (debug)
+                    qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
+                             << base_->qmlModuleIdentifier() << base_->name();
+                return;
+            }
+        }
+        if (base_ && base_->subType() == Node::Collision) {
+            const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(base_);
+            const NodeList& children = ncn->childNodes();
+            for (int i=0; i<importList_.size(); ++i) {
+                QString qmq = importList_.at(i).first + importList_.at(i).second;
+                for (int j=0; j<children.size(); ++j) {
+                    if (qmq == children.at(j)->qmlModuleQualifier()) {
+                        base_ = static_cast<const FakeNode*>(children.at(j));
+                        if (debug)
+                            qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
+                                     << base_->qmlModuleIdentifier() << base_->name();
+                        return;
+                    }
+                }
+            }
+            QString qmid = qmlModuleIdentifier();
+            for (int k=0; k<children.size(); ++k) {
+                if (qmid == children.at(k)->qmlModuleIdentifier()) {
+                    base_ = static_cast<const QmlClassNode*>(children.at(k));
+                    if (debug)
+                        qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
+                                 << base_->qmlModuleIdentifier() << base_->name();
+                    return;
+                }
+            }
+        }
+        if (base_) {
+            if (base_->subType() == Node::Collision) {
+                const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(base_);
+                const NodeList& children = ncn->childNodes();
+                if (debug) {
+                    qDebug() << "QML CLASS:" << qmlModuleQualifier() << name();
+                    qDebug() << "  COLLISION:" << base_->name();
+                    for (int j=0; j<children.size(); ++j) {
+                        qDebug() << "    " << children.at(j)->qmlModuleQualifier()
+                                 << children.at(j)->name();
+                    }
+                }
+            }
+            return;
+        }
+    }
+    if (cnode) {
+        const QmlClassNode* qcn = cnode->findQmlBaseNode();
+        if (qcn != 0) {
+            base_ = qcn;
+            if (debug)
+                qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
+                         << base_->qmlModuleIdentifier() << base_->name();
+        }
+        else {
+            if (debug)
+                qDebug() << qmlModuleIdentifier() << name() << "doesn't inherit anything";
+        }
+    }
+    return;
 }
 
 /*!

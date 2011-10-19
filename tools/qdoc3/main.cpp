@@ -322,6 +322,8 @@ static void processQdocconfFile(const QString &fileName)
     tree->resolveGroups();
     tree->resolveQmlModules();
     tree->resolveTargets();
+    tree->resolveCppToQmlLinks();
+    tree->resolveQmlInheritance();
 
     /*
       The tree is built and all the stuff that needed resolving

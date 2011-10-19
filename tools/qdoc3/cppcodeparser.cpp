@@ -660,7 +660,12 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
                 usedNamespaces.insert(path.join("::"));
             }
         }
-
+#if 0
+        /*
+          This code apparently does nothing. After further
+          investigation to verify it is useless, it will
+          be removed.
+         */
         if (command == COMMAND_CLASS) {
             if (paths.size() > 1) {
                 if (!paths[1].endsWith(".h")) {
@@ -669,6 +674,7 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
                 }
             }
         }
+#endif
         return node;
     }
     else if (command == COMMAND_EXAMPLE) {
@@ -719,8 +725,9 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         QStringList names = arg.split(" ");
         if (names.size() > 1) {
             Node* n = tre->findNode(names[1].split("::"),Node::Class);
-            if (n)
+            if (n) {
                 classNode = static_cast<const ClassNode*>(n);
+            }
         }
         /*
           Search for a node with the same name. If there is one,

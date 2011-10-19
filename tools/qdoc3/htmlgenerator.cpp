@@ -1142,11 +1142,8 @@ void HtmlGenerator::generateClassLikeNode(const InnerNode *inner,
     if (classe) {
         generateInherits(classe, marker);
         generateInheritedBy(classe, marker);
-#ifdef QDOC_QML
-        if (!classe->qmlElement().isEmpty()) {
+        if (classe->qmlElement() != 0)
             generateInstantiatedBy(classe,marker);
-        }
-#endif
     }
     generateThreadSafeness(inner, marker);
     generateSince(inner, marker);
@@ -3991,27 +3988,20 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
   Output the "Inherits" line for the QML element,
   if there should be one.
  */
-void HtmlGenerator::generateQmlInherits(const QmlClassNode* cn,
-                                        CodeMarker* marker)
+void HtmlGenerator::generateQmlInherits(const QmlClassNode* qcn, CodeMarker* marker)
 {
-    if (cn && !cn->links().empty()) {
-        if (cn->links().contains(Node::InheritsLink)) {
-            QPair<QString,QString> linkPair;
-            linkPair = cn->links()[Node::InheritsLink];
-            QStringList strList(linkPair.first);
-            const Node* n = myTree->findNode(strList,Node::Fake);
-            if (n && n->subType() == Node::QmlClass) {
-                const QmlClassNode* qcn = static_cast<const QmlClassNode*>(n);
-                Text text;
-                text << Atom::ParaLeft << "Inherits ";
-                text << Atom(Atom::LinkNode,CodeMarker::stringForNode(qcn));
-                text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-                text << Atom(Atom::String, linkPair.second);
-                text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-                text << Atom::ParaRight;
-                generateText(text, cn, marker);
-            }
-        }
+    if (!qcn)
+        return;
+    const FakeNode* base = qcn->qmlBase();
+    if (base) {
+        Text text;
+        text << Atom::ParaLeft << "Inherits ";
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(base));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, base->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << Atom::ParaRight;
+        generateText(text, qcn, marker);
     }
 }
 
@@ -4019,18 +4009,17 @@ void HtmlGenerator::generateQmlInherits(const QmlClassNode* cn,
   Output the "Inherit by" list for the QML element,
   if it is inherited by any other elements.
  */
-void HtmlGenerator::generateQmlInheritedBy(const QmlClassNode* cn,
-                                           CodeMarker* marker)
+void HtmlGenerator::generateQmlInheritedBy(const QmlClassNode* qcn, CodeMarker* marker)
 {
-    if (cn) {
+    if (qcn) {
         NodeList subs;
-        QmlClassNode::subclasses(cn->name(),subs);
+        QmlClassNode::subclasses(qcn->name(),subs);
         if (!subs.isEmpty()) {
             Text text;
             text << Atom::ParaLeft << "Inherited by ";
-            appendSortedQmlNames(text,cn,subs,marker);
+            appendSortedQmlNames(text,qcn,subs,marker);
             text << Atom::ParaRight;
-            generateText(text, cn, marker);
+            generateText(text, qcn, marker);
         }
     }
 }
@@ -4042,8 +4031,7 @@ void HtmlGenerator::generateQmlInheritedBy(const QmlClassNode* cn,
   If there is no class node, or if the class node status
   is set to Node::Internal, do nothing. 
  */
-void HtmlGenerator::generateQmlInstantiates(const QmlClassNode* qcn,
-                                            CodeMarker* marker)
+void HtmlGenerator::generateQmlInstantiates(const QmlClassNode* qcn, CodeMarker* marker)
 {
     const ClassNode* cn = qcn->classNode();
     if (cn && (cn->status() != Node::Internal)) {
@@ -4077,26 +4065,23 @@ void HtmlGenerator::generateQmlInstantiates(const QmlClassNode* qcn,
   If there is no QML element, or if the class node status
   is set to Node::Internal, do nothing. 
  */
-void HtmlGenerator::generateInstantiatedBy(const ClassNode* cn,
-                                           CodeMarker* marker)
+void HtmlGenerator::generateInstantiatedBy(const ClassNode* cn, CodeMarker* marker)
 {
-    if (cn &&  cn->status() != Node::Internal && !cn->qmlElement().isEmpty()) {
-        const Node* n = myTree->root()->findNode(cn->qmlElement(),Node::Fake);
-        if (n && n->subType() == Node::QmlClass) {
-            Text text;
-            text << Atom::ParaLeft;
-            text << Atom(Atom::LinkNode,CodeMarker::stringForNode(cn));
-            text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-            text << Atom(Atom::String, cn->name());
-            text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-            text << " is instantiated by QML element ";
-            text << Atom(Atom::LinkNode,CodeMarker::stringForNode(n));
-            text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
-            text << Atom(Atom::String, n->name());
-            text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
-            text << Atom::ParaRight;
-            generateText(text, cn, marker);
-        }
+    if (cn &&  cn->status() != Node::Internal && cn->qmlElement() != 0) {
+        const QmlClassNode* qcn = cn->qmlElement();
+        Text text;
+        text << Atom::ParaLeft;
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(cn));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, cn->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << " is instantiated by QML element ";
+        text << Atom(Atom::LinkNode,CodeMarker::stringForNode(qcn));
+        text << Atom(Atom::FormattingLeft, ATOM_FORMATTING_LINK);
+        text << Atom(Atom::String, qcn->name());
+        text << Atom(Atom::FormattingRight, ATOM_FORMATTING_LINK);
+        text << Atom::ParaRight;
+        generateText(text, cn, marker);
     }
 }
 

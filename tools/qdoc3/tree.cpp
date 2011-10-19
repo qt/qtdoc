@@ -845,6 +845,53 @@ void Tree::resolveTargets()
 }
 
 /*!
+  For each QML class node that points to a C++ class node,
+  follow its C++ class node pointer and set the C++ class
+  node's QML class node pointer back to the QML class node.
+ */
+void Tree::resolveCppToQmlLinks()
+{
+
+    foreach (Node* child, roo.childNodes()) {
+        if (child->type() == Node::Fake && child->subType() == Node::QmlClass) {
+            QmlClassNode* qcn = static_cast<QmlClassNode*>(child);
+            ClassNode* cn = const_cast<ClassNode*>(qcn->classNode());
+            if (cn)
+                cn->setQmlElement(qcn);
+        }
+    }
+}
+
+/*!
+  For each QML class node in the tree, determine whether
+  it inherits a QML base class and, if so, which one, and
+  store that pointer in the QML class node's state.
+ */
+void Tree::resolveQmlInheritance()
+{
+
+    foreach (Node* child, roo.childNodes()) {
+        if (child->type() == Node::Fake) {
+            if (child->subType() == Node::QmlClass) {
+                QmlClassNode* qcn = static_cast<QmlClassNode*>(child);
+                qcn->resolveInheritance(this);
+            }
+            else if (child->subType() == Node::Collision) {
+                NameCollisionNode* ncn = static_cast<NameCollisionNode*>(child);
+                foreach (Node* child, ncn->childNodes()) {
+                    if (child->type() == Node::Fake) {
+                        if (child->subType() == Node::QmlClass) {
+                            QmlClassNode* qcn = static_cast<QmlClassNode*>(child);
+                            qcn->resolveInheritance(this);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*!
  */
 void Tree::fixInheritance(NamespaceNode* rootNode)
 {

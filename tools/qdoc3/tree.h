@@ -107,6 +107,7 @@ class Tree
     void resolveGroups();
     void resolveQmlModules();
     void resolveTargets();
+    void resolveCppToQmlLinks();
     void fixInheritance(NamespaceNode *rootNode = 0);
     void setVersion(const QString &version) { vers = version; }
     NamespaceNode *root() { return &roo; }
@@ -149,6 +150,7 @@ class Tree
     void addExternalLink(const QString &url, const Node *relative);
     QString fullDocumentName(const Node *node) const;
     QString fullDocumentLocation(const Node *node) const;
+    void resolveQmlInheritance();
 
  private:
     void resolveInheritance(int pass, ClassNode *classe);

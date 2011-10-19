@@ -238,6 +238,7 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                 if (node->name() == args[0])
                     doc.location().warning(tr("%1 tries to inherit itself").arg(args[0]));
                 else {
+                    qDebug() << "QML Component:" << node->name() << "inherits:" << args[0];
                     CodeParser::setLink(node, Node::InheritsLink, args[0]);
                     if (node->subType() == Node::QmlClass) {
                         QmlClassNode::addInheritedBy(args[0],node);
@@ -290,10 +291,12 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
     if (current->type() == Node::Namespace) {
         QmlClassNode *component = new QmlClassNode(current, name, 0);
         component->setTitle(QLatin1String("QML ") + name + QLatin1String(" Component"));
+        component->setImportList(importList);
 
         if (applyDocumentation(definition->firstSourceLocation(), component)) {
             QmlClassNode::addInheritedBy(type, component);
-            component->setLink(Node::InheritsLink, type, type);
+            if (!component->links().contains(Node::InheritsLink))
+                component->setLink(Node::InheritsLink, type, type);
         }
         current = component;
     }
@@ -323,10 +326,15 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiObjectDefinition *definition
  */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiImportList *imports)
 {
-    QString module = document.mid(imports->import->fileNameToken.offset,
-                                  imports->import->fileNameToken.length);
-    QString version = document.mid(imports->import->versionToken.offset,
-                                   imports->import->versionToken.length);
+    QDeclarativeJS::AST::UiImport* imp = imports->import;
+    quint32 length =  imp->versionToken.offset - imp->fileNameToken.offset - 1;
+    QString module = document.mid(imp->fileNameToken.offset,length);
+    QString version = document.mid(imp->versionToken.offset, imp->versionToken.length);
+    if (version.size() > 1) {
+        int dot = version.lastIndexOf(QChar('.'));
+        if (dot > 0)
+            version = version.left(dot);
+    }
     importList.append(QPair<QString, QString>(module, version));
 
     return true;

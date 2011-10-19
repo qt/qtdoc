@@ -102,14 +102,11 @@ class Generator
     virtual bool generateText(const Text& text, 
                               const Node *relative,
                               CodeMarker *marker);
-#ifdef QDOC_QML
     virtual bool generateQmlText(const Text& text, 
                                  const Node *relative,
                                  CodeMarker *marker,
                                  const QString& qmlName);
-    virtual void generateQmlInherits(const QmlClassNode* cn, 
-                                     CodeMarker* marker);
-#endif
+    virtual void generateQmlInherits(const QmlClassNode* qcn, CodeMarker* marker);
     virtual void generateBody(const Node *node, CodeMarker *marker);
     virtual void generateAlsoList(const Node *node, CodeMarker *marker);
     virtual void generateMaintainerList(const InnerNode* node, CodeMarker* marker);

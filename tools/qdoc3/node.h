@@ -64,10 +64,12 @@ class InnerNode;
 class ClassNode;
 class ExampleNode;
 class QmlClassNode;
+class Tree;
 
 typedef QMap<QString, const Node*> NodeMap;
 typedef QMultiMap<QString, Node*> NodeMultiMap;
 typedef QMap<QString, const ExampleNode*> ExampleNodeMap;
+typedef QList<QPair<QString,QString> > ImportList;
 
 class Node
 {
@@ -211,6 +213,8 @@ class Node
     virtual void setQmlModuleName(const QString& ) { }
     virtual const ClassNode* classNode() const { return 0; }
     virtual void clearCurrentChild() { }
+    virtual const ImportList* importList() const { return 0; }
+    virtual void setImportList(const ImportList& ) { }
     const QmlClassNode* qmlClassNode() const;
     const ClassNode* declarativeCppNode() const;
 
@@ -378,11 +382,12 @@ class ClassNode : public InnerNode
 
     QString serviceName() const { return sname; }
     void setServiceName(const QString& value) { sname = value; }
-    QString qmlElement() const { return qmlelement; }
-    void setQmlElement(const QString& value) { qmlelement = value; }
+    const QmlClassNode* qmlElement() const { return qmlelement; }
+    void setQmlElement(QmlClassNode* qcn) { qmlelement = qcn; }
     virtual bool isAbstract() const { return abstract; }
     virtual void setAbstract(bool b) { abstract = b; }
     const PropertyNode* findPropertyNode(const QString& name) const;
+    const QmlClassNode* findQmlBaseNode() const;
 
  private:
     QList<RelatedClass> bases;
@@ -391,7 +396,7 @@ class ClassNode : public InnerNode
     bool hidden;
     bool abstract;
     QString sname;
-    QString qmlelement;
+    QmlClassNode* qmlelement;
 };
 
 class FakeNode : public InnerNode
@@ -480,6 +485,10 @@ class QmlClassNode : public FakeNode
     virtual QString fileBase() const;
     virtual void setCurrentChild();
     virtual void clearCurrentChild();
+    virtual const ImportList* importList() const { return &importList_; }
+    virtual void setImportList(const ImportList& il) { importList_ = il; }
+    const FakeNode* qmlBase() const { return base_; }
+    void resolveInheritance(const Tree* tree);
     static void addInheritedBy(const QString& base, Node* sub);
     static void subclasses(const QString& base, NodeList& subs);
     static void terminate();
@@ -491,8 +500,10 @@ class QmlClassNode : public FakeNode
 
  private:
     const ClassNode*    cnode;
+    const FakeNode*     base_;
     QString             qmlModuleName_;
     QString             qmlModuleVersion_;
+    ImportList          importList_;
 };
 
 class QmlBasicTypeNode : public FakeNode
@@ -527,8 +538,6 @@ class QmlPropGroupNode : public FakeNode
     bool    isdefault;
     bool    att;
 };
-
-class Tree;
 
 class QmlPropertyNode : public LeafNode
 {
