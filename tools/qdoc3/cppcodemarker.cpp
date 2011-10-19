@@ -1114,7 +1114,6 @@ QString CppCodeMarker::addMarkUp(const QString &in,
     return out;
 }
 
-#ifdef QDOC_QML
 /*!
   This function is for documenting QML properties. It returns
   the list of documentation sections for the children of the
@@ -1272,14 +1271,10 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
         else {
 	    FastSection all(qmlClassNode,"","","member","members");
 
-	    QStack<const QmlClassNode*> stack;
-	    stack.push(qmlClassNode);
-
-	    while (!stack.isEmpty()) {
-	        const QmlClassNode* ancestorClass = stack.pop();
-	        NodeList::ConstIterator c = ancestorClass->childNodes().begin();
-	        while (c != ancestorClass->childNodes().end()) {
-                    //		    if ((*c)->access() != Node::Private)
+            const QmlClassNode* current = qmlClassNode;
+            while (current != 0) {
+                NodeList::ConstIterator c = current->childNodes().begin();
+                while (c != current->childNodes().end()) {
                     if ((*c)->subType() == Node::QmlPropertyGroup) {
                         const QmlPropGroupNode* qpgn = static_cast<const QmlPropGroupNode*>(*c);
                         NodeList::ConstIterator p = qpgn->childNodes().begin();
@@ -1294,26 +1289,24 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                         insert(all,*c,style,Okay);
                     ++c;
                 }
-
-                if (!ancestorClass->links().empty()) {
-                    if (ancestorClass->links().contains(Node::InheritsLink)) {
-                        QPair<QString,QString> linkPair;
-                        linkPair = ancestorClass->links()[Node::InheritsLink];
-                        QStringList strList(linkPair.first);
-                        const Node* n = tree->findNode(strList,Node::Fake);
-                        if (n && n->subType() == Node::QmlClass) {
-                            const QmlClassNode* qcn = static_cast<const QmlClassNode*>(n);
-                            stack.prepend(qcn);
-                        }
+                const FakeNode* fn = current->qmlBase();
+                if (fn) {
+                    if (fn->subType() == Node::QmlClass)
+                        current = static_cast<const QmlClassNode*>(fn);
+                    else {
+                        fn->doc().location().warning(tr("Base class of QML class '%1' is ambgiguous")
+                                                     .arg(current->name()));
+                        current = 0;
                     }
                 }
-	    }
+                else
+                    current = 0;
+            }
 	    append(sections, all);
         }
     }
 
     return sections;
 }
-#endif
 
 QT_END_NAMESPACE
