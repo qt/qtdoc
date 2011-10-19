@@ -273,7 +273,6 @@ QString CodeMarker::taggedNode(const Node* node)
     case Node::Property:
         tag = QLatin1String("@property");
         break;
-#ifdef QDOC_QML
     case Node::Fake:
         /*
           Remove the "QML:" prefix, if present.
@@ -289,7 +288,6 @@ QString CodeMarker::taggedNode(const Node* node)
         }
         tag = QLatin1String("@property");
         break;
-#endif
     default:
         tag = QLatin1String("@unknown");
         break;
@@ -298,7 +296,6 @@ QString CodeMarker::taggedNode(const Node* node)
         + QLatin1String("</") + tag + QLatin1Char('>');
 }
 
-#ifdef QDOC_QML
 QString CodeMarker::taggedQmlNode(const Node* node)
 {
     QString tag;
@@ -322,7 +319,6 @@ QString CodeMarker::taggedQmlNode(const Node* node)
     return QLatin1Char('<') + tag + QLatin1Char('>') + protect(node->name())
         + QLatin1String("</") + tag + QLatin1Char('>');
 }
-#endif
 
 QString CodeMarker::linkTag(const Node *node, const QString& body)
 {
@@ -625,18 +621,15 @@ QString CodeMarker::macName(const Node *node, const QString &name)
     }
 }
 
-#ifdef QDOC_QML
 /*!
   Get the list of documentation sections for the children of
   the specified QmlClassNode.
  */
 QList<Section> CodeMarker::qmlSections(const QmlClassNode* ,
-                                       SynopsisStyle ,
-                                       const Tree* )
+                                       SynopsisStyle )
 {
     return QList<Section>();
 }
-#endif
 
 const Node* CodeMarker::resolveTarget(const QString& , 
                                       const Tree* ,

@@ -132,9 +132,7 @@ class CodeMarker
     virtual QString markedUpSynopsis(const Node *node, 
                                      const Node *relative,
                                      SynopsisStyle style) = 0;
-#ifdef QDOC_QML
     virtual QString markedUpQmlItem(const Node* , bool) { return QString(); }
-#endif
     virtual QString markedUpName(const Node *node) = 0;
     virtual QString markedUpFullName(const Node *node,
                                      const Node *relative = 0) = 0;
@@ -146,11 +144,8 @@ class CodeMarker
     virtual QList<Section> sections(const InnerNode *inner, 
                                     SynopsisStyle style, 
                                     Status status) = 0;
-#ifdef QDOC_QML
     virtual QList<Section> qmlSections(const QmlClassNode* qmlClassNode,
-                                       SynopsisStyle style,
-                                       const Tree* tree);
-#endif
+                                       SynopsisStyle style);
     virtual const Node* resolveTarget(const QString& target, 
                                       const Tree* tree,
 		                      const Node* relative,
@@ -171,9 +166,7 @@ class CodeMarker
     virtual QString sortName(const Node *node);
     QString protect(const QString &string);
     QString taggedNode(const Node* node);
-#ifdef QDOC_QML
     QString taggedQmlNode(const Node* node);
-#endif
     QString linkTag(const Node *node, const QString& body);
     void insert(FastSection &fastSection, 
                 Node *node, 

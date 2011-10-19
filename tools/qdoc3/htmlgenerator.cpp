@@ -1405,7 +1405,7 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
     const QmlClassNode* qml_cn = 0;
     if (fake->subType() == Node::QmlClass) {
         qml_cn = static_cast<const QmlClassNode*>(fake);
-        sections = marker->qmlSections(qml_cn,CodeMarker::Summary,0);
+        sections = marker->qmlSections(qml_cn,CodeMarker::Summary);
         generateTableOfContents(fake,marker,&sections);
 
         // Replace the marker with a QML code marker.
@@ -1502,7 +1502,7 @@ void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
         generateExtractionMark(fake, EndMark);
         //out() << "<hr />\n";
 
-        sections = marker->qmlSections(qml_cn,CodeMarker::Detailed,0);
+        sections = marker->qmlSections(qml_cn,CodeMarker::Detailed);
         s = sections.begin();
         while (s != sections.end()) {
             out() << "<h2>" << protectEnc((*s).name) << "</h2>\n";
@@ -2027,7 +2027,7 @@ QString HtmlGenerator::generateAllQmlMembersFile(const QmlClassNode* qml_cn,
     QList<Section> sections;
     QList<Section>::ConstIterator s;
 
-    sections = marker->qmlSections(qml_cn,CodeMarker::SeparateList,myTree);
+    sections = marker->qmlSections(qml_cn,CodeMarker::SeparateList);
     if (sections.isEmpty())
         return QString();
 

@@ -2112,7 +2112,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
         leaveSection(); // </apiDesc>
 
         QList<Section> summarySections;
-        summarySections = marker->qmlSections(qcn,CodeMarker::Summary,0);
+        summarySections = marker->qmlSections(qcn,CodeMarker::Summary);
         if (!summarySections.isEmpty()) {
             enterSection("redundant",QString());
             s = summarySections.begin();
@@ -2134,7 +2134,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
         }
 
         QList<Section> detailSections;
-        detailSections = marker->qmlSections(qcn,CodeMarker::Detailed,0);
+        detailSections = marker->qmlSections(qcn,CodeMarker::Detailed);
         if (!detailSections.isEmpty()) {
             enterSection("details",QString());
             s = detailSections.begin();

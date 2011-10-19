@@ -336,7 +336,6 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
     return synopsis + extra;
 }
 
-#ifdef QDOC_QML
 /*!
  */
 QString CppCodeMarker::markedUpQmlItem(const Node* node, bool summary)
@@ -375,7 +374,6 @@ QString CppCodeMarker::markedUpQmlItem(const Node* node, bool summary)
     }
     return synopsis + extra;
 }
-#endif
 
 QString CppCodeMarker::markedUpName(const Node *node)
 {
@@ -1122,8 +1120,7 @@ QString CppCodeMarker::addMarkUp(const QString &in,
   Currently, it only handles QML property groups.
  */
 QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
-                                          SynopsisStyle style,
-                                          const Tree* tree)
+                                          SynopsisStyle style)
 {
     QList<Section> sections;
     if (qmlClassNode) {

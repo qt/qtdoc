@@ -68,9 +68,7 @@ class CppCodeMarker : public CodeMarker
     virtual QString markedUpSynopsis(const Node *node, 
                                      const Node *relative,
                                      SynopsisStyle style);
-#ifdef QDOC_QML
     virtual QString markedUpQmlItem(const Node *node, bool summary);
-#endif
     virtual QString markedUpName(const Node *node);
     virtual QString markedUpFullName(const Node *node, const Node *relative);
     virtual QString markedUpEnumValue(const QString &enumValue, const Node *relative);
@@ -81,8 +79,7 @@ class CppCodeMarker : public CodeMarker
                                     SynopsisStyle style, 
                                     Status status);
     virtual QList<Section> qmlSections(const QmlClassNode* qmlClassNode,
-                                       SynopsisStyle style,
-                                       const Tree* tree);
+                                       SynopsisStyle style);
     virtual const Node* resolveTarget(const QString& target, 
                                       const Tree* tree, 
                                       const Node* relative,
