@@ -169,7 +169,6 @@ class HtmlGenerator : public PageGenerator
                              const Node *relative,
 			     CodeMarker *marker, 
                              CodeMarker::SynopsisStyle style);
-#ifdef QDOC_QML
     void generateQmlSummary(const Section& section,
                             const Node *relative,
                             CodeMarker *marker);
@@ -184,7 +183,6 @@ class HtmlGenerator : public PageGenerator
     void generateQmlInheritedBy(const QmlClassNode* qcn, CodeMarker* marker);
     void generateQmlInstantiates(const QmlClassNode* qcn, CodeMarker* marker);
     void generateInstantiatedBy(const ClassNode* cn, CodeMarker* marker);
-#endif
 
     void generateSection(const NodeList& nl,
                          const Node *relative,
@@ -194,7 +192,8 @@ class HtmlGenerator : public PageGenerator
                           const Node *relative, 
                           CodeMarker *marker,
 			  CodeMarker::SynopsisStyle style,
-                          bool alignNames = false);
+                          bool alignNames = false,
+                          const QString* prefix = 0);
     void generateSectionInheritedList(const Section& section, 
                                       const Node *relative,
                                       CodeMarker *marker);

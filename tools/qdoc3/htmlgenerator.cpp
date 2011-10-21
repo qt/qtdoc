@@ -1994,7 +1994,7 @@ QString HtmlGenerator::generateListOfAllMemberFile(const InnerNode *inner,
     QList<Section>::ConstIterator s;
 
     sections = marker->sections(inner,
-                                CodeMarker::SeparateList,
+                                CodeMarker::Subpage,
                                 CodeMarker::Okay);
     if (sections.isEmpty())
         return QString();
@@ -2009,7 +2009,7 @@ QString HtmlGenerator::generateListOfAllMemberFile(const InnerNode *inner,
     out() << ", including inherited members.</p>\n";
 
     Section section = sections.first();
-    generateSectionList(section, 0, marker, CodeMarker::SeparateList);
+    generateSectionList(section, 0, marker, CodeMarker::Subpage);
 
     generateFooter();
     endSubPage();
@@ -2027,7 +2027,7 @@ QString HtmlGenerator::generateAllQmlMembersFile(const QmlClassNode* qml_cn,
     QList<Section> sections;
     QList<Section>::ConstIterator s;
 
-    sections = marker->qmlSections(qml_cn,CodeMarker::SeparateList);
+    sections = marker->qmlSections(qml_cn,CodeMarker::Subpage);
     if (sections.isEmpty())
         return QString();
 
@@ -2041,7 +2041,7 @@ QString HtmlGenerator::generateAllQmlMembersFile(const QmlClassNode* qml_cn,
     out() << ", including inherited members.</p>\n";
 
     Section section = sections.first();
-    generateSectionList(section, 0, marker, CodeMarker::SeparateList);
+    generateSectionList(section, 0, marker, CodeMarker::Subpage);
 
     generateFooter();
     endSubPage();
@@ -2646,7 +2646,7 @@ void HtmlGenerator::generateSection(const NodeList& nl,
     bool alignNames = true;
     if (!nl.isEmpty()) {
         bool twoColumn = false;
-        if (style == CodeMarker::SeparateList) {
+        if (style == CodeMarker::Subpage) {
             alignNames = false;
             twoColumn = (nl.count() >= 16);
         }
@@ -2707,7 +2707,7 @@ void HtmlGenerator::generateSectionList(const Section& section,
     bool alignNames = true;
     if (!section.members.isEmpty()) {
         bool twoColumn = false;
-        if (style == CodeMarker::SeparateList) {
+        if (style == CodeMarker::Subpage) {
             alignNames = false;
             twoColumn = (section.members.count() >= 16);
         }
@@ -2742,7 +2742,12 @@ void HtmlGenerator::generateSectionList(const Section& section,
                 out() << "<li class=\"fn\">";
             }
 
-            generateSynopsis(*m, relative, marker, style, alignNames);
+            QString prefix;
+            if (!section.keys.isEmpty()) {
+                prefix = section.keys.at(i).mid(1);
+                prefix = prefix.left(section.keys.at(i).indexOf("::")+1);
+            }
+            generateSynopsis(*m, relative, marker, style, alignNames, &prefix);
             if (alignNames)
                 out() << "</td></tr>\n";
             else
@@ -2770,7 +2775,7 @@ void HtmlGenerator::generateSectionInheritedList(const Section& section,
                                                  const Node *relative,
                                                  CodeMarker *marker)
 {
-    QList<QPair<ClassNode *, int> >::ConstIterator p = section.inherited.begin();
+    QList<QPair<InnerNode *, int> >::ConstIterator p = section.inherited.begin();
     while (p != section.inherited.end()) {
         out() << "<li class=\"fn\">";
         out() << (*p).second << " ";
@@ -2792,9 +2797,12 @@ void HtmlGenerator::generateSynopsis(const Node *node,
                                      const Node *relative,
                                      CodeMarker *marker,
                                      CodeMarker::SynopsisStyle style,
-                                     bool alignNames)
+                                     bool alignNames,
+                                     const QString* prefix)
 {
     QString marked = marker->markedUpSynopsis(node, relative, style);
+    if (prefix)
+        marked.prepend(*prefix);
     QRegExp templateTag("(<[^@>]*>)");
     if (marked.indexOf(templateTag) != -1) {
         QString contents = protectEnc(marked.mid(templateTag.pos(1),
@@ -2812,7 +2820,7 @@ void HtmlGenerator::generateSynopsis(const Node *node,
         marked.replace("</@name>", "");  // was "</b>"
     }
 
-    if (style == CodeMarker::SeparateList) {
+    if (style == CodeMarker::Subpage) {
         QRegExp extraRegExp("<@extra>.*</@extra>");
         extraRegExp.setMinimal(true);
         marked.replace(extraRegExp, "");

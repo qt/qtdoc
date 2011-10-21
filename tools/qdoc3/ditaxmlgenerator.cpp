@@ -3305,7 +3305,7 @@ void DitaXmlGenerator::generateSectionInheritedList(const Section& section,
     if (section.inherited.isEmpty())
         return;
     writeStartTag(DT_ul);
-    QList<QPair<ClassNode*,int> >::ConstIterator p = section.inherited.begin();
+    QList<QPair<InnerNode*,int> >::ConstIterator p = section.inherited.begin();
     while (p != section.inherited.end()) {
         writeStartTag(DT_li);
         QString text;
@@ -3361,7 +3361,7 @@ QString DitaXmlGenerator::getMarkedUpSynopsis(const Node* node,
         marked.replace("</@name>","");  // was "</b>"
     }
 
-    if (style == CodeMarker::SeparateList) {
+    if (style == CodeMarker::Subpage) {
         QRegExp extraRegExp("<@extra>.*</@extra>");
         extraRegExp.setMinimal(true);
         marked.replace(extraRegExp,"");

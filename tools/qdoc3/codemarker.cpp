@@ -43,7 +43,7 @@
 #include "codemarker.h"
 #include "config.h"
 #include "node.h"
-
+#include <qdebug.h>
 #include <stdio.h>
 
 QT_BEGIN_NAMESPACE
@@ -326,9 +326,13 @@ QString CodeMarker::linkTag(const Node *node, const QString& body)
         + QLatin1String("\">") + body + QLatin1String("</@link>");
 }
 
-QString CodeMarker::sortName(const Node *node)
+QString CodeMarker::sortName(const Node *node, const QString* name)
 {
-    QString nodeName = node->name();
+    QString nodeName;
+    if (name != 0)
+        nodeName = *name;
+    else
+        nodeName = node->name();
     int numDigits = 0;
     for (int i = nodeName.size() - 1; i > 0; --i) {
         if (nodeName.at(i).digitValue() == -1)
@@ -397,7 +401,7 @@ void CodeMarker::insert(FastSection &fastSection,
     }
     else if (node->type() == Node::Class || node->type() == Node::Enum
 		    || node->type() == Node::Typedef) {
-	irrelevant = (inheritedMember && style != SeparateList);
+        irrelevant = (inheritedMember && style != Subpage);
         if (!irrelevant && style == Detailed && node->type() == Node::Typedef) {
             const TypedefNode* typedeffe = static_cast<const TypedefNode*>(node);
             if (typedeffe->associatedEnum())
@@ -419,7 +423,7 @@ void CodeMarker::insert(FastSection &fastSection,
     }
 
     if (!irrelevant) {
-	if (!inheritedMember || style == SeparateList) {
+        if (!inheritedMember || style == Subpage) {
 	    QString key = sortName(node);
             if (!fastSection.memberMap.contains(key))
 		fastSection.memberMap.insert(key, node);
@@ -428,12 +432,45 @@ void CodeMarker::insert(FastSection &fastSection,
 	    if (node->parent()->type() == Node::Class) {
 		if (fastSection.inherited.isEmpty()
                     || fastSection.inherited.last().first != node->parent()) {
-		    QPair<ClassNode *, int> p((ClassNode *)node->parent(), 0);
+                    QPair<InnerNode *, int> p(node->parent(), 0);
 		    fastSection.inherited.append(p);
 		}
 		fastSection.inherited.last().second++;
 	    }
 	}
+    }
+}
+
+void CodeMarker::insert(FastSection& fastSection,
+                        Node* node,
+                        SynopsisStyle style,
+                        bool includeClassName)
+{
+    if (node->status() == Node::Compat || node->status() == Node::Obsolete)
+        return;
+
+    bool inheritedMember = false;
+    InnerNode* parent = node->parent();
+    if (parent && (parent->type() == Node::Fake) &&
+        (parent->subType() == Node::QmlPropertyGroup)) {
+        parent = parent->parent();
+    }
+    inheritedMember = (parent != (const InnerNode*)fastSection.innerNode);
+
+    if (!inheritedMember || style == Subpage) {
+        QString key = sortName(node);
+        if (!fastSection.memberMap.contains(key))
+            fastSection.memberMap.insert(key, node);
+    }
+    else {
+        if ((parent->type() == Node::Fake) && (parent->subType() == Node::QmlClass)) {
+            if (fastSection.inherited.isEmpty()
+                || fastSection.inherited.last().first != parent) {
+                QPair<InnerNode*, int> p(parent, 0);
+                fastSection.inherited.append(p);
+            }
+            fastSection.inherited.last().second++;
+        }
     }
 }
 
@@ -466,10 +503,13 @@ bool CodeMarker::insertReimpFunc(FastSection& fs, Node* node, Status status)
   If \a fs is not empty, convert it to a Section and append
   the new Section to \a sectionList.
  */
-void CodeMarker::append(QList<Section>& sectionList, const FastSection& fs)
+void CodeMarker::append(QList<Section>& sectionList, const FastSection& fs, bool includeKeys)
 {
     if (!fs.isEmpty()) {
 	Section section(fs.name,fs.divClass,fs.singularMember,fs.pluralMember);
+        if (includeKeys) {
+            section.keys = fs.memberMap.keys();
+        }
 	section.members = fs.memberMap.values();
         section.reimpMembers = fs.reimpMemberMap.values();
 	section.inherited = fs.inherited;

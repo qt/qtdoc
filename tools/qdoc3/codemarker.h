@@ -62,9 +62,10 @@ struct Section
     QString divClass;
     QString singularMember;
     QString pluralMember;
+    QStringList keys;
     NodeList members;
     NodeList reimpMembers;
-    QList<QPair<ClassNode *, int> > inherited;
+    QList<QPair<InnerNode *, int> > inherited;
 
     Section() { }
     Section(const QString& name0, 
@@ -88,7 +89,7 @@ struct FastSection
     QString pluralMember;
     QMap<QString, Node *> memberMap;
     QMap<QString, Node *> reimpMemberMap;
-    QList<QPair<ClassNode *, int> > inherited;
+    QList<QPair<InnerNode *, int> > inherited;
 
     FastSection(const InnerNode *innerNode0, 
                 const QString& name0,
@@ -111,7 +112,7 @@ struct FastSection
 class CodeMarker
 {
  public:
-    enum SynopsisStyle { Summary, Detailed, SeparateList, Accessors };
+    enum SynopsisStyle { Summary, Detailed, Subpage, Accessors };
     enum Status { Compat, Obsolete, Okay };
 
     CodeMarker();
@@ -163,7 +164,7 @@ class CodeMarker
     QString typified(const QString &string);
 
  protected:
-    virtual QString sortName(const Node *node);
+    virtual QString sortName(const Node *node, const QString* name = 0);
     QString protect(const QString &string);
     QString taggedNode(const Node* node);
     QString taggedQmlNode(const Node* node);
@@ -172,8 +173,12 @@ class CodeMarker
                 Node *node, 
                 SynopsisStyle style, 
                 Status status);
+    void insert(FastSection& fastSection,
+                Node* node,
+                SynopsisStyle style,
+                bool includeClassName = false);
     bool insertReimpFunc(FastSection& fs, Node* node, Status status);
-    void append(QList<Section>& sectionList, const FastSection& fastSection);
+    void append(QList<Section>& sectionList, const FastSection& fastSection, bool includeKeys = false);
 
  private:
     QString macName(const Node *parent, const QString &name = QString());

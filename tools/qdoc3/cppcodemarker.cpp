@@ -186,7 +186,7 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
     case Node::QmlSignalHandler:
     case Node::QmlMethod:
 	func = (const FunctionNode *) node;
-	if (style != SeparateList && !func->returnType().isEmpty())
+        if (style != Subpage && !func->returnType().isEmpty())
 	    synopsis = typified(func->returnType()) + " ";
 	synopsis += name;
         if (func->metaness() != FunctionNode::MacroWithoutParams) {
@@ -198,11 +198,11 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 		    if (p != func->parameters().begin())
 		        synopsis += ", ";
 		    synopsis += typified((*p).leftType());
-                    if (style != SeparateList && !(*p).name().isEmpty())
+                    if (style != Subpage && !(*p).name().isEmpty())
                         synopsis +=
                             " <@param>" + protect((*p).name()) + "</@param>";
                     synopsis += protect((*p).rightType());
-		    if (style != SeparateList && !(*p).defaultValue().isEmpty())
+                    if (style != Subpage && !(*p).defaultValue().isEmpty())
 		        synopsis += " = " + protect((*p).defaultValue());
 		    ++p;
 	        }
@@ -219,7 +219,7 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 	    if (func->virtualness() == FunctionNode::PureVirtual)
 		synopsis.append(" = 0");
 	}
-        else if (style == SeparateList) {
+        else if (style == Subpage) {
             if (!func->returnType().isEmpty() && func->returnType() != "void")
                 synopsis += " : " + typified(func->returnType());
         }
@@ -305,7 +305,7 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 	break;
     case Node::Variable:
 	variable = static_cast<const VariableNode *>(node);
-        if (style == SeparateList) {
+        if (style == Subpage) {
             synopsis = name + " : " + typified(variable->dataType());
         }
         else {
@@ -1277,13 +1277,22 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                         NodeList::ConstIterator p = qpgn->childNodes().begin();
                         while (p != qpgn->childNodes().end()) {
                             if ((*p)->type() == Node::QmlProperty) {
-                                insert(all,*p,style,Okay);
+                                QString key = current->name() + "::" + (*p)->name();
+                                key = sortName(*p, &key);
+                                if (!all.memberMap.contains(key))
+                                    all.memberMap.insert(key,*p);
+                                //insert(all,*p,style,Okay);
                             }
                             ++p;
                         }
                     }
-                    else
-                        insert(all,*c,style,Okay);
+                    else {
+                        QString key = current->name() + "::" + (*c)->name();
+                        key = sortName(*c, &key);
+                        if (!all.memberMap.contains(key))
+                            all.memberMap.insert(key,*c);
+                        //insert(all,*c,style,Okay);
+                    }
                     ++c;
                 }
                 const FakeNode* fn = current->qmlBase();
@@ -1299,7 +1308,7 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                 else
                     current = 0;
             }
-	    append(sections, all);
+            append(sections, all, true);
         }
     }
 
