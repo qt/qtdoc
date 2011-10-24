@@ -71,11 +71,11 @@ su -c "make install"
 
 
 //! [5]
-PATH=/usr/local/Trolltech/QtEmbedded-%VERSION%/bin:$PATH
+PATH=/usr/local/Qt-%VERSION%/bin:$PATH
 export PATH
 //! [5]
 
 
 //! [6]
-setenv PATH /usr/local/Trolltech/QtEmbedded-%VERSION%/bin:$PATH
+setenv PATH /usr/local/Qt-%VERSION%/bin:$PATH
 //! [6]

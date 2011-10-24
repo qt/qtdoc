@@ -73,7 +73,7 @@ for your platform from the following list.
     \c{./configure} script in the package directory.
 
     By default, Qt is configured for installation in the
-    \c{/usr/local/Trolltech/Qt-%VERSION%} directory, but this can be
+    \c{/usr/local/Qt-%VERSION%} directory, but this can be
     changed by using the \c{-prefix} option.
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 1
@@ -125,7 +125,7 @@ for your platform from the following list.
 
     For compilers that do not support rpath you must also extended the
     \c LD_LIBRARY_PATH environment variable to include
-    \c{/usr/local/Trolltech/Qt-%VERSION%/lib}. On Linux with GCC this step
+    \c{/usr/local/Qt-%VERSION%/lib}. On Linux with GCC this step
     is not needed.
 
 \bold {That's all. Qt is now installed.}
@@ -313,7 +313,7 @@ must be run as root.
     \c{./configure} script in the package directory.
 
     By default, Qt is configured for installation in the
-    \c{/usr/local/Trolltech/Qt-%VERSION%} directory, but this can be
+    \c{/usr/local/Qt-%VERSION%} directory, but this can be
     changed by using the \c{-prefix} option.
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 12

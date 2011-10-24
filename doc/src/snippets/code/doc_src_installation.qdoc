@@ -67,13 +67,13 @@ PATH               - to locate qmake, moc and other Qt tools
 
 
 //! [5]
-PATH=/usr/local/Trolltech/Qt-%VERSION%/bin:$PATH
+PATH=/usr/local/Qt-%VERSION%/bin:$PATH
 export PATH
 //! [5]
 
 
 //! [6]
-setenv PATH /usr/local/Trolltech/Qt-%VERSION%/bin:$PATH
+setenv PATH /usr/local/Qt-%VERSION%/bin:$PATH
 //! [6]
 
 
@@ -128,13 +128,13 @@ PATH               - to locate qmake, moc and other Qt tools
 
 
 //! [16]
-PATH=/usr/local/Trolltech/Qt-%VERSION%/bin:$PATH
+PATH=/usr/local/Qt-%VERSION%/bin:$PATH
 export PATH
 //! [16]
 
 
 //! [17]
-setenv PATH /usr/local/Trolltech/Qt-%VERSION%/bin:$PATH
+setenv PATH /usr/local/Qt-%VERSION%/bin:$PATH
 //! [17]
 
 
