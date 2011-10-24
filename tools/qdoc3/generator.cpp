@@ -74,7 +74,8 @@ QStringList Generator::scriptFiles;
 QStringList Generator::scriptDirs;
 QStringList Generator::styleFiles;
 QStringList Generator::styleDirs;
-QString Generator::outDir;
+QString Generator::outDir_;
+QString Generator::baseDir_;
 QString Generator::project;
 QHash<QString, QString> Generator::outputPrefixes;
 
@@ -133,32 +134,36 @@ void Generator::initialize(const Config &config)
 {
     outputFormats = config.getStringSet(CONFIG_OUTPUTFORMATS);
     if (!outputFormats.isEmpty()) {
-        outDir = config.getString(CONFIG_OUTPUTDIR);
-        if (outDir.isEmpty())
+        outDir_ = config.getString(CONFIG_OUTPUTDIR);
+        baseDir_ = config.getString(CONFIG_BASEDIR);
+        if (baseDir_.isEmpty())
+            config.location().warning(tr("No \"basedir\" specified in config file. "
+                                         "All output will be in the output directory"));
+        if (outDir_.isEmpty())
             config.lastLocation().fatal(tr("No output directory specified in configuration file"));
 
         QDir dirInfo;
-        if (dirInfo.exists(outDir)) {
-            if (!Config::removeDirContents(outDir))
-                config.lastLocation().error(tr("Cannot empty output directory '%1'").arg(outDir));
+        if (dirInfo.exists(outDir_)) {
+            if (!Config::removeDirContents(outDir_))
+                config.lastLocation().error(tr("Cannot empty output directory '%1'").arg(outDir_));
         }
         else {
-            if (!dirInfo.mkpath(outDir))
-                config.lastLocation().fatal(tr("Cannot create output directory '%1'").arg(outDir));
+            if (!dirInfo.mkpath(outDir_))
+                config.lastLocation().fatal(tr("Cannot create output directory '%1'").arg(outDir_));
         }
 
-        if (!dirInfo.mkdir(outDir + "/images"))
+        if (!dirInfo.mkdir(outDir_ + "/images"))
             config.lastLocation().fatal(tr("Cannot create output directory '%1'")
-                                        .arg(outDir + "/images"));
-        if (!dirInfo.mkdir(outDir + "/images/used-in-examples"))
+                                        .arg(outDir_ + "/images"));
+        if (!dirInfo.mkdir(outDir_ + "/images/used-in-examples"))
             config.lastLocation().fatal(tr("Cannot create output directory '%1'")
-                                        .arg(outDir + "/images/used-in-examples"));
-        if (!dirInfo.mkdir(outDir + "/scripts"))
+                                        .arg(outDir_ + "/images/used-in-examples"));
+        if (!dirInfo.mkdir(outDir_ + "/scripts"))
             config.lastLocation().fatal(tr("Cannot create output directory '%1'")
-                                        .arg(outDir + "/scripts"));
-        if (!dirInfo.mkdir(outDir + "/style"))
+                                        .arg(outDir_ + "/scripts"));
+        if (!dirInfo.mkdir(outDir_ + "/style"))
             config.lastLocation().fatal(tr("Cannot create output directory '%1'")
-                                        .arg(outDir + "/style"));
+                                        .arg(outDir_ + "/style"));
     }
 
     imageFiles = config.getStringList(CONFIG_IMAGES);
@@ -320,7 +325,7 @@ void Generator::terminate()
     imgFileExts.clear();
     imageFiles.clear();
     imageDirs.clear();
-    outDir = "";
+    outDir_ = "";
     QmlClassNode::terminate();
     ExampleNode::terminate();
 }
@@ -699,7 +704,7 @@ void Generator::generateFileList(const FakeNode* fake,
                                                        userFriendlyFilePath);
                     userFriendlyFilePath.truncate(userFriendlyFilePath.lastIndexOf('/'));
 
-                    QString imgOutDir = outDir + "/images/used-in-examples/" + userFriendlyFilePath;
+                    QString imgOutDir = outDir_ + "/images/used-in-examples/" + userFriendlyFilePath;
                     if (!dirInfo.mkpath(imgOutDir))
                         fake->location().fatal(tr("Cannot create output directory '%1'")
                                                .arg(imgOutDir));

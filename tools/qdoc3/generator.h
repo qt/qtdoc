@@ -89,6 +89,8 @@ class Generator
     static void initialize(const Config& config);
     static void terminate();
     static Generator *generatorForFormat(const QString& format);
+    static const QString& outputDir() { return outDir_; }
+    static const QString& baseDir() { return baseDir_; }
 
  protected:
     virtual void startText(const Node *relative, CodeMarker *marker);
@@ -136,7 +138,6 @@ class Generator
 
     virtual QString outFileName() { return QString(); }
 
-    const QString& outputDir() { return outDir; }
     QString indent(int level, const QString& markedCode);
     QString plainCode(const QString& markedCode);
     virtual QString typeString(const Node *node);
@@ -209,7 +210,8 @@ class Generator
     static QStringList scriptDirs;
     static QStringList styleFiles;
     static QStringList styleDirs;
-    static QString outDir;
+    static QString outDir_;
+    static QString baseDir_;
     static QString project;
     static QHash<QString, QString> outputPrefixes;
 };

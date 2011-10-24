@@ -48,6 +48,7 @@
 #include <errno.h>
 #include "codechunk.h"
 #include "config.h"
+#include "generator.h"
 #include "cppcodeparser.h"
 #include "tokenizer.h"
 #include "tree.h"
@@ -294,6 +295,41 @@ void CppCodeParser::parseSourceFile(const Location& location,
     if (!in.open(QIODevice::ReadOnly)) {
         location.error(tr("Cannot open C++ source file '%1' (%2)").arg(filePath).arg(strerror(errno)));
         return;
+    }
+
+    QString bd = Generator::baseDir();
+    if (!bd.isEmpty()) {
+        int baseIdx = filePath.indexOf(bd);
+        if (baseIdx == -1)
+            location.warning(tr("File path: '%1' does not contain bundle base dir: '%2'")
+                             .arg(filePath).arg(bd));
+        else {
+            int subDirIdx = filePath.indexOf(QChar('/'),baseIdx);
+            if (subDirIdx == -1)
+                location.warning(tr("File path: '%1' has no sub dir after bundle base dir: '%2'")
+                                 .arg(filePath).arg(bd));
+            else {
+                ++subDirIdx;
+                int fileNameIdx = filePath.indexOf(QChar('/'),subDirIdx);
+                if (fileNameIdx == -1)
+                    location.warning(tr("File path: '%1' has no file name after sub dir: '%2/'")
+                                     .arg(filePath).arg(filePath.mid(subDirIdx)));
+                else {
+                    QString subDir = filePath.mid(subDirIdx,fileNameIdx-subDirIdx);
+                    if (subDir.isEmpty())
+                        location.warning(tr("File path: '%1' has no sub dir after bundle base dir: '%2'")
+                                         .arg(filePath).arg(bd));
+                    else {
+                        QString subDirPath = Generator::outputDir() + "/" + subDir;
+                        QDir dirInfo;
+                        if (!dirInfo.exists(subDirPath)) {
+                            if (!dirInfo.mkpath(subDirPath))
+                                location.fatal(tr("Cannot create output sub-directory '%1'").arg(subDir));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     reset(tree);
