@@ -100,22 +100,22 @@ MODULE_OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/$${MODULE}.qdocconf
 MODULE_OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 # Output files in the build tree
-QHP_FILE = doc/html/qt.qhp
+QHP_FILE = html/qt.qhp
 QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
-QCH_FILE = doc/qch/qt.qch
+QCH_FILE = qch/qt.qch
 QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
 
-INDEX_FILE = doc/html/qt.index
+INDEX_FILE = html/qt.index
 INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
 INDEX_DEST = $$INDEX_DESTDIR/qt.index
 INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
 
-MODULE_QHP_FILE = doc/html/$${MODULE}.qhp
+MODULE_QHP_FILE = html/$${MODULE}.qhp
 MODULE_QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
-MODULE_QCH_FILE = doc/qch/$${MODULE}.qch
+MODULE_QCH_FILE = qch/$${MODULE}.qch
 MODULE_QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
 
-MODULE_INDEX_FILE = doc/html/$${MODULE}.index
+MODULE_INDEX_FILE = html/$${MODULE}.index
 MODULE_INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
 MODULE_INDEX_DEST = $$INDEX_DESTDIR/$${MODULE}.index
 MODULE_INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
