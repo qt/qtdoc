@@ -490,8 +490,14 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::FunctionDeclaration* fd)
     lastEndOffset = fd->lastSourceLocation().end();
 }
 
+/*!
+  Begin the visit of the signal handler declaration \a sb, but only
+  if the nesting level is 1.
+ */
 bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiScriptBinding* sb)
 {
+    if (nestingLevel > 1)
+        return true;
     if (current->type() == Node::Fake) {
         QString handler = sb->qualifiedId->name.toString();
         if (handler.length() > 2 && handler.startsWith("on") && handler.at(2).isUpper()) {
