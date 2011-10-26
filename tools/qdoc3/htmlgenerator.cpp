@@ -216,6 +216,19 @@ void HtmlGenerator::initializeGenerator(const Config &config)
     headerStyles = config.getString(HtmlGenerator::format() +
                                        Config::dot +
                                        CONFIG_HEADERSTYLES);
+    /*
+      If the output files will be in subdirectores in the output
+      directory, change the references to files in the style and
+      scripts subdirectories that appear in the headerscipts and
+      headerstyles string so that they link to the correct files,
+      whic means prepending "../" to each
+     */
+    if (!baseDir().isEmpty()) {
+        headerScripts = headerScripts.replace("style/","../style/");
+        headerScripts = headerScripts.replace("scripts/","../scripts/");
+        headerStyles = headerStyles.replace("style/","../style/");
+        headerStyles = headerStyles.replace("scripts/","../scripts/");
+    }
 }
 
 void HtmlGenerator::terminateGenerator()
