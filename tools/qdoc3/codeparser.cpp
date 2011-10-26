@@ -47,6 +47,7 @@
 #include "node.h"
 #include "tree.h"
 #include "config.h"
+#include "generator.h"
 #include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
@@ -69,6 +70,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_THREADSAFE              Doc::alias(QLatin1String("threadsafe"))
 #define COMMAND_TITLE                   Doc::alias(QLatin1String("title"))
 
+QString CodeParser::currentSubDir_;
 QList<CodeParser *> CodeParser::parsers;
 bool CodeParser::showInternal = false;
 QMap<QString,QString> CodeParser::nameToTitle;
@@ -350,6 +352,55 @@ void CodeParser::setLink(Node* node, Node::LinkType linkType, const QString& arg
     QString desc;
     extractPageLinkAndDesc(arg, &link, &desc);
     node->setLink(linkType, link, desc);
+}
+
+/*!
+  If the \e {basedir} variable is not set in the qdocconf
+  file, do nothing.
+
+  Otherwise, search for the basedir string string in the
+  \a filePath. It must be found, or else a warning message
+  is output. Extract the subdirectory name that follows the
+  basedir name and create a subdirectory using that name
+  in the output director.
+ */
+void CodeParser::createOutputSubdirectory(const Location& location,
+                                          const QString& filePath)
+{
+    QString bd = Generator::baseDir();
+    if (!bd.isEmpty()) {
+        int baseIdx = filePath.indexOf(bd);
+        if (baseIdx == -1)
+            location.warning(tr("File path: '%1' does not contain bundle base dir: '%2'")
+                             .arg(filePath).arg(bd));
+        else {
+            int subDirIdx = filePath.indexOf(QChar('/'),baseIdx);
+            if (subDirIdx == -1)
+                location.warning(tr("File path: '%1' has no sub dir after bundle base dir: '%2'")
+                                 .arg(filePath).arg(bd));
+            else {
+                ++subDirIdx;
+                int fileNameIdx = filePath.indexOf(QChar('/'),subDirIdx);
+                if (fileNameIdx == -1)
+                    location.warning(tr("File path: '%1' has no file name after sub dir: '%2/'")
+                                     .arg(filePath).arg(filePath.mid(subDirIdx)));
+                else {
+                    currentSubDir_ = filePath.mid(subDirIdx,fileNameIdx-subDirIdx);
+                    if (currentSubDir_.isEmpty())
+                        location.warning(tr("File path: '%1' has no sub dir after bundle base dir: '%2'")
+                                         .arg(filePath).arg(bd));
+                    else {
+                        QString subDirPath = Generator::outputDir() + "/" + currentSubDir_;
+                        QDir dirInfo;
+                        if (!dirInfo.exists(subDirPath)) {
+                            if (!dirInfo.mkpath(subDirPath))
+                                location.fatal(tr("Cannot create output sub-directory '%1'").arg(currentSubDir_));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 QT_END_NAMESPACE

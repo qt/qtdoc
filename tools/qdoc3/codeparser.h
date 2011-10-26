@@ -75,6 +75,8 @@ class CodeParser
     virtual void doneParsingHeaderFiles(Tree *tree);
     virtual void doneParsingSourceFiles(Tree *tree) = 0;
 
+    void createOutputSubdirectory(const Location& location, const QString& filePath);
+
     static void initialize(const Config& config);
     static void terminate();
     static CodeParser *parserForLanguage(const QString& language);
@@ -82,6 +84,7 @@ class CodeParser
     static CodeParser *parserForSourceFile(const QString &filePath);
     static const QString titleFromName(const QString& name);
     static void setLink(Node* node, Node::LinkType linkType, const QString& arg);
+    static const QString& currentOutputSubdirectory() { return currentSubDir_; }
 
  protected:
     QSet<QString> commonMetaCommands();
@@ -93,6 +96,7 @@ class CodeParser
                                        QString* desc);
 
  private:
+    static QString currentSubDir_;
     static QList<CodeParser *> parsers;
     static bool showInternal;
     static QMap<QString,QString> nameToTitle;

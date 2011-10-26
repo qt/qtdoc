@@ -42,6 +42,7 @@
 #include "node.h"
 #include "tree.h"
 #include "codemarker.h"
+#include "codeparser.h"
 #include <QUuid>
 #include <qdebug.h>
 
@@ -91,17 +92,18 @@ void Node::setDoc(const Doc& doc, bool replace)
   parent's child list.
  */
 Node::Node(Type type, InnerNode *parent, const QString& name)
-    : typ(type),
-      acc(Public),
-      saf(UnspecifiedSafeness),
-      pageTyp(NoPageType),
-      sta(Commendable),
+    : type_(type),
+      access_(Public),
+      safeness_(UnspecifiedSafeness),
+      pageType_(NoPageType),
+      status_(Commendable),
       par(parent),
       rel(0),
-      nam(name)
+      name_(name)
 {
     if (par)
         par->addChild(this);
+    outSubDir_ = CodeParser::currentOutputSubdirectory();
 }
 
 /*!
@@ -109,7 +111,7 @@ Node::Node(Type type, InnerNode *parent, const QString& name)
  */
 QString Node::url() const
 {
-    return u;
+    return url_;
 }
 
 /*!
@@ -117,7 +119,7 @@ QString Node::url() const
  */
 void Node::setUrl(const QString &url)
 {
-    u = url;
+    url_ = url;
 }
 
 /*!
@@ -126,7 +128,7 @@ void Node::setUrl(const QString &url)
  */
 QString Node::pageTypeString() const
 {
-    switch (pageTyp) {
+    switch (pageType_) {
         case Node::ApiPage:
             return "api";
         case Node::ArticlePage:
@@ -152,19 +154,19 @@ QString Node::pageTypeString() const
 void Node::setPageType(const QString& t)
 {
     if ((t == "API") || (t == "api"))
-        pageTyp = ApiPage;
+        pageType_ = ApiPage;
     else if (t == "howto")
-        pageTyp = HowToPage;
+        pageType_ = HowToPage;
     else if (t == "overview")
-        pageTyp = OverviewPage;
+        pageType_ = OverviewPage;
     else if (t == "tutorial")
-        pageTyp = TutorialPage;
+        pageType_ = TutorialPage;
     else if (t == "howto")
-        pageTyp = HowToPage;
+        pageType_ = HowToPage;
     else if (t == "article")
-        pageTyp = ArticlePage;
+        pageType_ = ArticlePage;
     else if (t == "example")
-        pageTyp = ExamplePage;
+        pageType_ = ExamplePage;
 }
 
 /*!
@@ -207,7 +209,7 @@ void Node::setSince(const QString &since)
  */
 QString Node::accessString() const
 {
-    switch (acc) {
+    switch (access_) {
     case Protected:
         return "protected";
     case Private:
@@ -270,7 +272,7 @@ Node::Status Node::inheritedStatus() const
     Status parentStatus = Commendable;
     if (par)
         parentStatus = par->inheritedStatus();
-    return (Status)qMin((int)sta, (int)parentStatus);
+    return (Status)qMin((int)status_, (int)parentStatus);
 }
 
 /*!
@@ -282,9 +284,9 @@ Node::Status Node::inheritedStatus() const
  */
 Node::ThreadSafeness Node::threadSafeness() const
 {
-    if (par && saf == par->inheritedThreadSafeness())
+    if (par && safeness_ == par->inheritedThreadSafeness())
         return UnspecifiedSafeness;
-    return saf;
+    return safeness_;
 }
 
 /*!
@@ -294,9 +296,9 @@ Node::ThreadSafeness Node::threadSafeness() const
  */
 Node::ThreadSafeness Node::inheritedThreadSafeness() const
 {
-    if (par && saf == UnspecifiedSafeness)
+    if (par && safeness_ == UnspecifiedSafeness)
         return par->inheritedThreadSafeness();
-    return saf;
+    return safeness_;
 }
 
 /*!

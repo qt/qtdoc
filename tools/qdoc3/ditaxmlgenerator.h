@@ -434,13 +434,13 @@ class DitaXmlGenerator : public PageGenerator
     QString lookupGuid(QString text);
     QString lookupGuid(const QString& fileName, const QString& text);
     GuidMap* lookupGuidMap(const QString& fileName);
-    virtual void beginSubPage(const Location& location, const QString& fileName);
+    virtual void beginSubPage(const InnerNode* node, const QString& fileName);
     virtual void endSubPage();
     virtual void generateInnerNode(const InnerNode* node);
     QXmlStreamWriter& xmlWriter();
     void writeApiDesc(const Node* node, CodeMarker* marker, const QString& title);
     void addLink(const QString& href, const QStringRef& text, DitaTag t = DT_xref);
-    void writeDitaMap();
+    void writeDitaMap(const Tree* tree);
     void writeStartTag(DitaTag t);
     void writeEndTag(DitaTag t=DT_NONE);
     DitaTag currentTag();

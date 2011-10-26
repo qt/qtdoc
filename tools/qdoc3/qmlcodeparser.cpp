@@ -133,6 +133,7 @@ void QmlCodeParser::parseSourceFile(const Location& location,
         location.error(tr("Cannot open QML file '%1'").arg(filePath));
         return;
     }
+    createOutputSubdirectory(location, filePath);
 
     QString document = in.readAll();
     in.close();

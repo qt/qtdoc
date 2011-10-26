@@ -155,18 +155,18 @@ class Node
 
     virtual ~Node();
 
-    void setAccess(Access access) { acc = access; }
+    void setAccess(Access access) { access_ = access; }
     void setLocation(const Location& location) { loc = location; }
     void setDoc(const Doc& doc, bool replace = false);
-    void setStatus(Status status) { sta = status; }
-    void setThreadSafeness(ThreadSafeness safeness) { saf = safeness; }
+    void setStatus(Status status) { status_ = status; }
+    void setThreadSafeness(ThreadSafeness safeness) { safeness_ = safeness; }
     void setSince(const QString &since);
     void setRelates(InnerNode* pseudoParent);
     void setModuleName(const QString &module) { mod = module; }
     void setLink(LinkType linkType, const QString &link, const QString &desc);
     void setUrl(const QString &url);
-    void setTemplateStuff(const QString &templateStuff) { tpl = templateStuff; }
-    void setPageType(PageType t) { pageTyp = t; }
+    void setTemplateStuff(const QString &templateStuff) { templateStuff_ = templateStuff; }
+    void setPageType(PageType t) { pageType_ = t; }
     void setPageType(const QString& t);
     void setParent(InnerNode* n) { par = n; }
 
@@ -176,27 +176,27 @@ class Node
     virtual bool isQmlNode() const { return false; }
     virtual bool isInternal() const { return false; }
     virtual bool isQtQuickNode() const { return false; }
-    Type type() const { return typ; }
+    Type type() const { return type_; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return par; }
     InnerNode* relates() const { return rel; }
-    const QString& name() const { return nam; }
+    const QString& name() const { return name_; }
     QMap<LinkType, QPair<QString,QString> > links() const { return linkMap; }
     QString moduleName() const;
     QString url() const;
-    virtual QString nameForLists() const { return nam; }
+    virtual QString nameForLists() const { return name_; }
 
-    Access access() const { return acc; }
+    Access access() const { return access_; }
     QString accessString() const;
     const Location& location() const { return loc; }
     const Doc& doc() const { return d; }
-    Status status() const { return sta; }
+    Status status() const { return status_; }
     Status inheritedStatus() const;
     ThreadSafeness threadSafeness() const;
     ThreadSafeness inheritedThreadSafeness() const;
     QString since() const { return sinc; }
-    QString templateStuff() const { return tpl; }
-    PageType pageType() const { return pageTyp; }
+    QString templateStuff() const { return templateStuff_; }
+    PageType pageType() const { return pageType_; }
     QString pageTypeString() const;
     virtual void addPageKeywords(const QString& ) { }
 
@@ -217,6 +217,7 @@ class Node
     virtual void setImportList(const ImportList& ) { }
     const QmlClassNode* qmlClassNode() const;
     const ClassNode* declarativeCppNode() const;
+    const QString& outputSubdirectory() const { return outSubDir_; }
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -224,29 +225,30 @@ class Node
  private:
 
 #ifdef Q_WS_WIN
-    Type typ;
-    Access acc;
-    ThreadSafeness saf;
-    PageType pageTyp;
-    Status sta;
+    Type type_;
+    Access access_;
+    ThreadSafeness safeness_;
+    PageType pageType_;
+    Status status_;
 #else
-    Type typ : 4;
-    Access acc : 2;
-    ThreadSafeness saf : 2;
-    PageType pageTyp : 4;
-    Status sta : 3;
+    Type type_ : 4;
+    Access access_ : 2;
+    ThreadSafeness safeness_ : 2;
+    PageType pageType_ : 4;
+    Status status_ : 3;
 #endif
     InnerNode* par;
     InnerNode* rel;
-    QString nam;
+    QString name_;
     Location loc;
     Doc d;
     QMap<LinkType, QPair<QString, QString> > linkMap;
     QString mod;
-    QString u;
+    QString url_;
     QString sinc;
-    QString tpl;
+    QString templateStuff_;
     mutable QString uuid;
+    QString outSubDir_;
 };
 
 class FunctionNode;

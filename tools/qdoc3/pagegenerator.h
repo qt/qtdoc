@@ -73,7 +73,7 @@ class PageGenerator : public Generator
     virtual QString fileExtension(const Node* node) const = 0;
     QString fileName(const Node* node) const;
     QString outFileName();
-    virtual void beginSubPage(const Location& location, const QString& fileName);
+    virtual void beginSubPage(const InnerNode* node, const QString& fileName);
     virtual void endSubPage();
     virtual void generateInnerNode(const InnerNode *node);
     QTextStream& out();

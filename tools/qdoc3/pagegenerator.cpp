@@ -284,12 +284,15 @@ QString PageGenerator::outFileName()
   Attaches a QTextStream to the created file, which is written
   to all over the place using out().
  */
-void PageGenerator::beginSubPage(const Location& location,
-                                 const QString& fileName)
+void PageGenerator::beginSubPage(const InnerNode* node, const QString& fileName)
 {
-    QFile* outFile = new QFile(outputDir() + "/" + fileName);
+    QString path = outputDir() + "/";
+    if (!node->outputSubdirectory().isEmpty())
+        path += node->outputSubdirectory() + "/";
+    path += fileName;
+    QFile* outFile = new QFile(path);
     if (!outFile->open(QFile::WriteOnly))
-	location.fatal(tr("Cannot open output file '%1'").arg(outFile->fileName()));
+        node->location().fatal(tr("Cannot open output file '%1'").arg(outFile->fileName()));
     QTextStream* out = new QTextStream(outFile);
 
     if (outputCodec)
@@ -362,7 +365,7 @@ PageGenerator::generateInnerNode(const InnerNode* node)
             collisionNodes.append(const_cast<NameCollisionNode*>(ncn));
         }
         else {
-            beginSubPage(node->location(), fileName(node));
+            beginSubPage(node, fileName(node));
             if (node->type() == Node::Namespace || node->type() == Node::Class) {
                 generateClassLikeNode(node, marker);
             }

@@ -616,7 +616,7 @@ void DitaXmlGenerator::generateTree(const Tree *tree)
     findAllSince(tree->root());
 
     PageGenerator::generateTree(tree);
-    writeDitaMap();
+    writeDitaMap(tree);
 }
 
 void DitaXmlGenerator::startText(const Node* /* relative */,
@@ -5409,10 +5409,10 @@ void DitaXmlGenerator::writePropertyParameter(const QString& tag, const NodeList
   to all over the place using out(). Finally, it sets some
   parameters in the XML writer and calls writeStartDocument().
  */
-void DitaXmlGenerator::beginSubPage(const Location& location,
+void DitaXmlGenerator::beginSubPage(const InnerNode* node,
                                     const QString& fileName)
 {
-    PageGenerator::beginSubPage(location,fileName);
+    PageGenerator::beginSubPage(node,fileName);
     (void) lookupGuidMap(fileName);
     QXmlStreamWriter* writer = new QXmlStreamWriter(out().device());
     xmlWriterStack.push(writer);
@@ -5521,7 +5521,7 @@ DitaXmlGenerator::generateInnerNode(const InnerNode* node)
     CodeMarker *marker = CodeMarker::markerForFileName(node->location().filePath());
 
     if (node->parent() != 0) {
-	beginSubPage(node->location(), fileName(node));
+        beginSubPage(node, fileName(node));
 	if (node->type() == Node::Namespace || node->type() == Node::Class) {
 	    generateClassLikeNode(node, marker);
 	}
@@ -5552,9 +5552,9 @@ bool DitaXmlGenerator::canHandleFormat(const QString& format)
     return (format == "HTML") || (format == this->format());
 }
 
-void DitaXmlGenerator::writeDitaMap()
+void DitaXmlGenerator::writeDitaMap(const Tree *tree)
 {
-    beginSubPage(Location(),"qt-dita-map.xml");
+    beginSubPage(tree->root(),"qt-dita-map.xml");
 
     QString doctype;
     doctype = "<!DOCTYPE cxxAPIMap PUBLIC \"-//NOKIA//DTD DITA C++ API Map Reference Type v0.6.0//EN\" \"dtd/cxxAPIMap.dtd\">";

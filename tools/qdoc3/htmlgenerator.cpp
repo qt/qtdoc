@@ -1319,7 +1319,7 @@ void HtmlGenerator::generateDisambiguationPages()
     for (int i=0; i<collisionNodes.size(); ++i) {
         NameCollisionNode* ncn = collisionNodes.at(i);
         ncn->clearCurrentChild();
-        beginSubPage(ncn->location(), PageGenerator::fileName(ncn));
+        beginSubPage(ncn, PageGenerator::fileName(ncn));
         QString fullTitle = "Name Collision: " + ncn->fullTitle();
         QString htmlTitle = fullTitle;
         CodeMarker* marker = CodeMarker::markerForFileName(ncn->location().filePath());
@@ -2000,7 +2000,7 @@ QString HtmlGenerator::generateListOfAllMemberFile(const InnerNode *inner,
         return QString();
 
     QString fileName = fileBase(inner) + "-members." + fileExtension(inner);
-    beginSubPage(inner->location(), fileName);
+    beginSubPage(inner, fileName);
     QString title = "List of All Members for " + inner->name();
     generateHeader(title, inner, marker);
     generateTitle(title, Text(), SmallSubTitle, inner, marker);
@@ -2032,7 +2032,7 @@ QString HtmlGenerator::generateAllQmlMembersFile(const QmlClassNode* qml_cn,
         return QString();
 
     QString fileName = fileBase(qml_cn) + "-members." + fileExtension(qml_cn);
-    beginSubPage(qml_cn->location(), fileName);
+    beginSubPage(qml_cn, fileName);
     QString title = "List of All Members for " + qml_cn->name();
     generateHeader(title, qml_cn, marker);
     generateTitle(title, Text(), SmallSubTitle, qml_cn, marker);
@@ -2077,7 +2077,7 @@ QString HtmlGenerator::generateLowStatusMemberFile(const InnerNode *inner,
         fileName = fileBase(inner) + "-obsolete." + fileExtension(inner);
     }
 
-    beginSubPage(inner->location(), fileName);
+    beginSubPage(inner, fileName);
     generateHeader(title, inner, marker);
     generateTitle(title, Text(), SmallSubTitle, inner, marker);
 
