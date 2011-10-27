@@ -3310,6 +3310,16 @@ QString HtmlGenerator::linkForNode(const Node *node, const Node *relative)
         link += "#";
         link += ref;
     }
+    /*
+      If the output is going to subdirectories, then if the
+      two nodes will be output to different directories, then
+      the link must go up to the parent directory and then
+      back down into the other subdirectory.
+     */
+    if (node && relative && (node != relative)) {
+        if (node->outputSubdirectory() != relative->outputSubdirectory())
+            link.prepend(QString("../" + node->outputSubdirectory() + "/"));
+    }
     return link;
 }
 
@@ -3717,6 +3727,16 @@ QString HtmlGenerator::getLink(const Atom *atom,
             if (targetAtom)
                 link += "#" + refForAtom(targetAtom, *node);
         }
+    }
+    /*
+      If the output is going to subdirectories, then if the
+      two nodes will be output to different directories, then
+      the link must go up to the parent directory and then
+      back down into the other subdirectory.
+     */
+    if (*node && relative && (*node != relative)) {
+        if ((*node)->outputSubdirectory() != relative->outputSubdirectory())
+            link.prepend(QString("../" + (*node)->outputSubdirectory() + "/"));
     }
     return link;
 }
