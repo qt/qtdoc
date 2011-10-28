@@ -80,7 +80,7 @@ SOURCES += atom.cpp \
 
 ### QML/JS Parser ###
 
-contains(QT_CONFIG, declarative) {
+contains(QT_CONFIG, qmldevtools) {
 
     QT += qmldevtools-private
     DEFINES += HAVE_DECLARATIVE
