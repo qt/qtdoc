@@ -1279,31 +1279,31 @@ We hope you will enjoy using Qt.
     information on Windows CE Customization can be found
     \l{Windows CE - Working with Custom SDKs}{here}.
 
-	\section3 Requirements
-	\list
-		\o Development environment:
-		\list
-			\o Microsoft Visual Studio 2005 (Standard Edition) or higher
-			\o ActivePerl
-		\endlist
-		\o Footprint
-		\list
-			\o Lean configuration - 4.8 MB
-			\o Full configuration - 8.4 MB
-		\endlist
-		\o Operating Systems
-		\list
-			\o Windows CE 5 or higher
-			\o Windows Mobile 5 or higher
-		\endlist
-		\o Hardware Platform
-		\list
-			\o Supported on ARM, x86
-			\o (Compiles on SH4 and MIPS)
-		\endlist
-	\endlist
+    \section3 Requirements
+    \list
+        \o Development environment:
+        \list
+            \o Microsoft Visual Studio 2005 (Standard Edition) or higher
+            \o ActivePerl
+        \endlist
+        \o Footprint
+        \list
+            \o Lean configuration - 4.8 MB
+            \o Full configuration - 8.4 MB
+        \endlist
+        \o Operating Systems
+        \list
+            \o Windows CE 5 or higher
+            \o Windows Mobile 5 or higher
+        \endlist
+        \o Hardware Platform
+        \list
+            \o Supported on ARM, x86
+            \o (Compiles on SH4 and MIPS)
+        \endlist
+    \endlist
 
-		\sa {Known Issues}
+        \sa {Known Issues}
 */
 
 /*!
@@ -1321,27 +1321,21 @@ We hope you will enjoy using Qt.
     use version \bold{uClibc 0.9.29 or greater} as that is the earliest version
     with sufficient pthread support.
 
+    \section1 QPA
+
+    QPA (Lighthouse) should be used for new projects. QPA is a platform independent
+    windowing architecture that allows easy porting of UI code between platforms.
+    For further information about using QPA consult the README file in
+    qtbase/src/plugins/platforms/<your platform>. For example, for the X graphical
+    environment under Linux you will need to use the '-xcb' configure option and
+    also read the file qtbase/src/plugins/platforms/xcb/README to see a list
+    of required packages.
+
     \section1 Memory Requirements
 
     The memory and storage requirements for Qt for Embedded Linux depend on a
     an variety of different factors, including the target architecture and the
     features enabled in the Qt build.
-
-    The following table shows typical library sizes for the most common Qt
-    libraries on different architectures, built in release mode with different
-    feature profiles.
-
-    \table
-    \header \o{1,2} Architecture \o{1,2} Compiler  \o{2,1} QtCore       \o{2,1} QtGui        \o{2,1} QtNetwork    \o{2,1} QtWebKit
-    \header                                        \o Minimal \o Normal \o Minimal \o Normal \o Minimal \o Normal \o Minimal \o Normal
-    \row    \o linux-x86-g++ \o GCC 4.2.4          \o 1.7M    \o 2.7M   \o 3.3M    \o 9.9M   \o 653K    \o 1.1M   \o N/A     \o 17M
-    \row    \o linux-arm-g++ \o GCC 4.1.1          \o 1.9M    \o 3.2M   \o 4.1M    \o 11M    \o 507K    \o 1.0M   \o N/A     \o 17M
-    \row    \o linux-mips-g++ (MIPS32)
-                             \o GCC 4.2.4          \o 2.0M    \o 3.2M   \o 4.5M    \o 12M    \o 505K    \o 1003K  \o N/A     \o 21M
-    \endtable
-
-    Library sizes are given in the following units: K = 1024 bytes; M = 1024K.
-    QtWebKit is excluded from the minimal configuration.
 
     The \l{Fine-Tuning Features in Qt} document covers the process of configuring
     Qt builds to avoid the inclusion of unnecessary features.
@@ -1352,6 +1346,7 @@ We hope you will enjoy using Qt.
     in addition to the libraries used to build Qt for X11. This library
     enables the use of the Record extension to the X protocol to be used in
     applications.
+
 */
 
 /*!
