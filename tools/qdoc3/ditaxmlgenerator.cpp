@@ -1178,15 +1178,12 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
             if (atom->next() != 0)
                 text = atom->next()->string();
             if (fileName.isEmpty()) {
-                /*
-                  Don't bother outputting an error message.
-                  Just output the href as if the image is in
-                  the images directory...
-                 */
-                if (atom->string()[0] == '/')
-                    fileName = QLatin1String("images") + atom->string();
-                else
-                    fileName = QLatin1String("images/") + atom->string();
+                QString images = "images";
+                if (!baseDir().isEmpty())
+                    images.prepend("../");
+                if (atom->string()[0] != '/')
+                    images.append("/");
+                fileName = images + atom->string();
             }
 
             if (currentTag() != DT_xref)
@@ -3877,6 +3874,16 @@ QString DitaXmlGenerator::linkForNode(const Node* node, const Node* relative)
         link += "#";
         link += guid;
     }
+    /*
+      If the output is going to subdirectories, then if the
+      two nodes will be output to different directories, then
+      the link must go up to the parent directory and then
+      back down into the other subdirectory.
+     */
+    if (node && relative && (node != relative)) {
+        if (node->outputSubdirectory() != relative->outputSubdirectory())
+            link.prepend(QString("../" + node->outputSubdirectory() + "/"));
+    }
     return link;
 }
 
@@ -4188,14 +4195,19 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
                 QString guid = lookupGuid(link,refForAtom(targetAtom,*node));
                 link += "#" + guid;
             }
-#if 0
-            else if (link.isEmpty() && *node) {
-                link = outFileName() + "#" + (*node)->guid();
-            }
-#endif
             else if (!link.isEmpty() && *node && link.endsWith(".xml")) {
                 link += "#" + (*node)->guid();
             }
+        }
+        /*
+          If the output is going to subdirectories, then if the
+          two nodes will be output to different directories, then
+          the link must go up to the parent directory and then
+          back down into the other subdirectory.
+        */
+        if (*node && relative && (*node != relative)) {
+            if ((*node)->outputSubdirectory() != relative->outputSubdirectory())
+                link.prepend(QString("../" + (*node)->outputSubdirectory() + "/"));
         }
     }
     if (!link.isEmpty() && link[0] == '#') {

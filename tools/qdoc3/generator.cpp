@@ -825,9 +825,12 @@ QString Generator::imageFileName(const Node *relative, const QString& fileBase)
                                     filePath,
                                     userFriendlyFilePath,
                                     outputDir() + QLatin1String("/images"));
+    QString images = "images";
+    if (!baseDir().isEmpty())
+        images.prepend("../");
     if (path[0] != '/')
-        return QLatin1String("images/") + path;
-    return QLatin1String("images") + path;
+        images.append("/");
+    return images + path;
 }
 
 void Generator::setImageFileExtensions(const QStringList& extensions)
