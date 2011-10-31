@@ -276,6 +276,7 @@ class HtmlGenerator : public PageGenerator
     QString projectDescription;
     QString projectUrl;
     QString navigationLinks;
+    QString manifestDir;
     QStringList stylesheets;
     QStringList customHeadElements;
     const Tree *myTree;
