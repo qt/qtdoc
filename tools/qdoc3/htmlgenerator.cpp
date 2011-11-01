@@ -1347,11 +1347,11 @@ void HtmlGenerator::generateDisambiguationPages()
             out() << "<h1 class=\"title\">" << protectEnc(fullTitle) << "</h1>\n";
         const NodeList& nl = ncn->childNodes();
         NodeMap nm;
-        NodeList::ConstIterator i = nl.begin();
-        while (i != nl.end()) {
-            QString t = (*i)->qmlModuleIdentifier() + " " + protectEnc(fullTitle);
-            nm.insertMulti(t,(*i));
-            ++i;
+        NodeList::ConstIterator it = nl.begin();
+        while (it != nl.end()) {
+            QString t = (*it)->qmlModuleIdentifier() + " " + protectEnc(fullTitle);
+            nm.insertMulti(t,(*it));
+            ++it;
         }
         generateAnnotatedList(ncn, marker, nm, true);
 
@@ -1362,9 +1362,9 @@ void HtmlGenerator::generateDisambiguationPages()
                 out() << "<a name=\"" << Doc::canonicalTitle(t.key()) << "\"></a>";
                 out() << "<h2 class=\"title\">" << protectEnc(t.key()) << "</h2>\n";
                 out() << "<ul>\n";
-                i = nl.begin();
-                while (i != nl.end()) {
-                    InnerNode* n = static_cast<InnerNode*>(*i);
+                it = nl.begin();
+                while (it != nl.end()) {
+                    InnerNode* n = static_cast<InnerNode*>(*it);
                     Node* p = n->findNode(t.key());
                     if (p) {
                         QString link = linkForNode(p,0);
@@ -1374,7 +1374,7 @@ void HtmlGenerator::generateDisambiguationPages()
                         out() << protectEnc(label) << "</a>";
                         out() << "</li>\n";
                     }
-                    ++i;
+                    ++it;
                 }
                 out() << "</ul>\n";
                 ++t;
