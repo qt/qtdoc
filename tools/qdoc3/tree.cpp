@@ -1524,7 +1524,11 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
     QString fullName = fullDocumentName(node);
     if (fullName != objName)
         writer.writeAttribute("fullname", fullName);
-    writer.writeAttribute("href", HtmlGenerator::fullDocumentLocation(node));
+    QString href = node->outputSubdirectory();
+    if (!href.isEmpty())
+        href.append("/");
+    href.append(HtmlGenerator::fullDocumentLocation(node));
+    writer.writeAttribute("href", href);
     if ((node->type() != Node::Fake) && (!node->isQmlNode()))
         writer.writeAttribute("location", node->location().fileName());
 

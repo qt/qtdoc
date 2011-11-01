@@ -105,6 +105,9 @@ HtmlGenerator::HtmlGenerator()
 {
 }
 
+/*!
+  The destructor deletes the instance of HelpProjectWriter.
+ */
 HtmlGenerator::~HtmlGenerator()
 {
     if (helpProjectWriter)
@@ -772,7 +775,10 @@ int HtmlGenerator::generateAtom(const Atom *atom,
                       << protectEnc(atom->string()) << "]</font>";
             }
             else {
-                out() << "<img src=\"" << protectEnc(fileName) << "\"";
+                QString prefix = "";
+                if (!baseDir().isEmpty())
+                    prefix = "../";
+                out() << "<img src=\"" << protectEnc(prefix + fileName) << "\"";
                 if (!text.isEmpty())
                     out() << " alt=\"" << protectEnc(text) << "\"";
                 out() << " />";
@@ -3738,9 +3744,13 @@ QString HtmlGenerator::getLink(const Atom *atom,
           the link must go up to the parent directory and then
           back down into the other subdirectory.
         */
-        if (*node && relative && (*node != relative)) {
-            if ((*node)->outputSubdirectory() != relative->outputSubdirectory())
+        if (link.startsWith("images/")) {
+            link.prepend(QString("../"));
+        }
+        else if (*node && relative && (*node != relative)) {
+            if ((*node)->outputSubdirectory() != relative->outputSubdirectory()) {
                 link.prepend(QString("../" + (*node)->outputSubdirectory() + "/"));
+            }
         }
     }
     return link;
@@ -4387,7 +4397,7 @@ void HtmlGenerator::generateExtractionMark(const Node *node, ExtractionMarkType 
 /*!
   Returns the full document location for HTML-based documentation.
  */
-QString HtmlGenerator::fullDocumentLocation(const Node *node)
+QString HtmlGenerator::fullDocumentLocation(const Node *node, bool subdir)
 {
     if (!node)
         return "";
@@ -4396,7 +4406,18 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
 
     QString parentName;
     QString anchorRef;
+    QString fdl = "";
 
+    /*
+      If the output is being sent to subdirectories of the
+      output directory, and if the subdir parameter is set,
+      prepend the subdirectory name + '/' to the result.
+     */
+    if (subdir) {
+        fdl = node->outputSubdirectory();
+        if (!fdl.isEmpty())
+            fdl.append("/");
+    }
     if (node->type() == Node::Namespace) {
 
         // The root namespace has no name - check for this before creating
@@ -4419,7 +4440,7 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
                     mq = node->qmlModuleQualifier().replace(QChar('.'),QChar('-'));
                     mq = mq.toLower() + "-";
                 }
-                return Generator::outputPrefix(QLatin1String("QML")) + mq +
+                return fdl+ Generator::outputPrefix(QLatin1String("QML")) + mq +
                     node->fileBase() + QLatin1String(".html");
             }
         }
@@ -4431,8 +4452,9 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
 
     Node *parentNode = 0;
 
-    if ((parentNode = node->relates()))
+    if ((parentNode = node->relates())) {
         parentName = fullDocumentLocation(node->relates());
+    }
     else if ((parentNode = node->parent())) {
         if (parentNode->subType() == Node::QmlPropertyGroup) {
             parentNode = parentNode->parent();
@@ -4535,7 +4557,7 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node)
         }
     }
 
-    return parentName.toLower() + anchorRef;
+    return fdl + parentName.toLower() + anchorRef;
 }
 
 /*!
@@ -4607,7 +4629,6 @@ void HtmlGenerator::generateManifestFile(QString manifest, QString element)
         }
         writer.writeStartElement(element);
         writer.writeAttribute("name", en->title());
-        //QString docUrl = projectUrl + "/" + en->fileBase() + ".html";
         QString docUrl = manifestDir + en->fileBase() + ".html";
         writer.writeAttribute("docUrl", docUrl);
         foreach (const Node* child, en->childNodes()) {
@@ -4621,7 +4642,6 @@ void HtmlGenerator::generateManifestFile(QString manifest, QString element)
                 }
             }
         }
-        //writer.writeAttribute("imageUrl", projectUrl + "/" + en->imageFileName());
         writer.writeAttribute("imageUrl", manifestDir + en->imageFileName());
         writer.writeStartElement("description");
         Text brief = en->doc().briefText();

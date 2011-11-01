@@ -811,6 +811,9 @@ QString Generator::typeString(const Node *node)
     }
 }
 
+/*!
+  Returns a relative path name for an image.
+ */
 QString Generator::imageFileName(const Node *relative, const QString& fileBase)
 {
     QString userFriendlyFilePath;
@@ -826,8 +829,6 @@ QString Generator::imageFileName(const Node *relative, const QString& fileBase)
                                     userFriendlyFilePath,
                                     outputDir() + QLatin1String("/images"));
     QString images = "images";
-    if (!baseDir().isEmpty())
-        images.prepend("../");
     if (path[0] != '/')
         images.append("/");
     return images + path;
