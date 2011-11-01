@@ -230,6 +230,9 @@
     \list
     \o \c -functions \BR
     outputs all test functions available in the test, then quits.
+    \o \c -datatags \BR
+    outputs all data tags available in the test.
+    A global data tag is preceded by ' __global__ '.
     \o \c -eventdelay \e ms \BR
     if no delay is specified for keyboard or mouse simulation
     (\l QTest::keyClick(),
