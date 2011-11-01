@@ -2038,7 +2038,7 @@ void Tree::generateTagFileCompounds(QXmlStreamWriter& writer,
 
         if (node->type() == Node::Class) {
             writer.writeTextElement("name", fullDocumentName(node));
-            writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node));
+            writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node,true));
 
             // Classes contain information about their base classes.
             const ClassNode* classNode = static_cast<const ClassNode*>(node);
@@ -2056,7 +2056,7 @@ void Tree::generateTagFileCompounds(QXmlStreamWriter& writer,
             generateTagFileCompounds(writer, static_cast<const InnerNode*>(node));
         } else {
             writer.writeTextElement("name", fullDocumentName(node));
-            writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node));
+            writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node,true));
 
             // Recurse to write all members.
             generateTagFileMembers(writer, static_cast<const InnerNode*>(node));
@@ -2177,7 +2177,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                                             "virtual " + functionNode->returnType());
 
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
 
@@ -2217,7 +2217,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                 const PropertyNode* propertyNode = static_cast<const PropertyNode*>(node);
                 writer.writeAttribute("type", propertyNode->dataType());
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
                 writer.writeTextElement("arglist", "");
@@ -2253,7 +2253,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                 else
                     writer.writeAttribute("type", "");
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
                 writer.writeTextElement("arglist", "");
