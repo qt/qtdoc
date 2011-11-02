@@ -4,7 +4,7 @@ DEFINES += QT_NO_CAST_TO_ASCII
 #DEFINES += QT_USE_FAST_OPERATOR_PLUS
 #DEFINES += QT_USE_FAST_CONCATENATION
 
-DESTDIR = ../../bin/
+DESTDIR = $$QT.doc.bins
 
 qdoc_bootstrapped {
     include(../../src/tools/bootstrap/bootstrap.pri)
