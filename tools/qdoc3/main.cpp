@@ -93,7 +93,7 @@ static const struct {
     { 0, 0 }
 };
 
-static bool slow = false;
+static bool highlighting = false;
 static bool showInternal = false;
 static bool obsoleteLinks = false;
 static QStringList defines;
@@ -112,8 +112,8 @@ static void printHelp()
                               "Display version of qdoc and exit\n"
                               "    -D<name>      "
                               "Define <name> as a macro while parsing sources\n"
-                              "    -slow         "
-                              "Turn on features that slow down qdoc\n"
+                              "    -highlighting         "
+                              "Turn on syntax highlighting (makes qdoc run slower)\n"
                               "    -showinternal "
                               "Include stuff marked internal\n"
                               "    -obsoletelinks "
@@ -151,7 +151,7 @@ static void processQdocconfFile(const QString &fileName)
                              QStringList() << defaults[i].value);
         ++i;
     }
-    config.setStringList(CONFIG_SYNTAXHIGHLIGHTING, QStringList(slow ? "true" : "false"));
+    config.setStringList(CONFIG_SYNTAXHIGHLIGHTING, QStringList(highlighting ? "true" : "false"));
     config.setStringList(CONFIG_SHOWINTERNAL,
                          QStringList(showInternal ? "true" : "false"));
     config.setStringList(CONFIG_OBSOLETELINKS,
@@ -426,8 +426,8 @@ int main(int argc, char **argv)
             QString define = opt.mid(2);
             defines += define;
         }
-        else if (opt == "-slow") {
-            slow = true;
+        else if (opt == "-highlighting") {
+            highlighting = true;
         }
         else if (opt == "-showinternal") {
             showInternal = true;

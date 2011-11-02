@@ -159,7 +159,6 @@ class Config
 #define CONFIG_QUOTINGINFORMATION       "quotinginformation"
 #define CONFIG_SCRIPTDIRS               "scriptdirs"
 #define CONFIG_SCRIPTS                  "scripts"
-#define CONFIG_SLOW                     "slow"
 #define CONFIG_SHOWINTERNAL             "showinternal"
 #define CONFIG_SOURCEDIRS               "sourcedirs"
 #define CONFIG_SOURCEENCODING           "sourceencoding"

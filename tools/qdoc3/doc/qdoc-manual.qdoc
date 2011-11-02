@@ -249,7 +249,7 @@
     \o \l {05-qdoc-commands-documentstructure.html#chapter-command} {\\chapter}
     \o \l {06-qdoc-commands-includecodeinline.html#code-command} {\\code}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#codeline-command} {\\codeline}
-    \o \l {04-qdoc-commands-textmarkup.html#div-command} {\\div} \span {class="newStuff"} {(new)}
+    \o \l {04-qdoc-commands-textmarkup.html#div-command} {\\div}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#dots-command} {\\dots}
     \o \l {12-0-qdoc-commands-miscellaneous.html#else-command} {\\else}
     \o \l {12-0-qdoc-commands-miscellaneous.html#endif-command} {\\endif}
@@ -279,7 +279,7 @@
     \o \l {11-qdoc-commands-specialcontent.html#quotation-command} {\\quotation}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefile-command} {\\quotefile}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefromfile-command} {\\quotefromfile}
-    \o \l {12-0-qdoc-commands-miscellaneous.html#raw-command} {\\raw} \span {class="newStuff"} {(deprecated)}
+    \o \l {12-0-qdoc-commands-miscellaneous.html#raw-command} {\\raw}
     \o \l {10-qdoc-commands-tablesandlists.html#row-command} {\\row}
     \o \l {08-qdoc-commands-creatinglinks.html#sa-command} {\\sa}
     \o \l {05-qdoc-commands-documentstructure.html#sectionOne-command} {\\section1}
@@ -290,7 +290,7 @@
     \o \l {07-0-qdoc-commands-includingexternalcode.html#skipto-command} {\\skipto}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#skipuntil-command} {\\skipuntil}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#snippet-command} {\\snippet}
-    \o \l {04-qdoc-commands-textmarkup.html#span-command} {\\span} \span {class="newStuff"} {(new)}
+    \o \l {04-qdoc-commands-textmarkup.html#span-command} {\\span}
     \o \l {04-qdoc-commands-textmarkup.html#sub-command} {\\sub}
     \o \l {04-qdoc-commands-textmarkup.html#sup-command} {\\sup}
     \o \l {10-qdoc-commands-tablesandlists.html#table-command} {\\table}
@@ -399,7 +399,7 @@
     See also \l {tt-command} {\\tt} and \l {code-command} {\\code}.
 
     \target div-command
-    \section1 \\div \span {class="newStuff"} {(new)}
+    \section1 \\div
 
     The \\div and \\enddiv commands delimit a large or small block of
     text (which may include other QDoc commands) to which special
@@ -567,7 +567,7 @@
     See also \l {span-command} {\\span}.
 
     \target span -command
-    \section1 \\span \span {class="newStuff"} {(new)}
+    \section1 \\span
 
     The \\span command is for applying special formatting
     attributes to a small block of text.
@@ -1334,7 +1334,7 @@
     See also \l {newcode-command} {\\newcode} and \l {badcode-command} {\\badcode}.
 
     \target qml-command
-    \section1 \\qml  \span {class="newStuff"} {(new)}
+    \section1 \\qml
 
     The \\qml and \\endqml commands enclose a snippet of QML source
     code.  Currently, QDoc handles \\qml and \\endqml exactly the same
@@ -4003,7 +4003,7 @@
     \l{corefeatures.html} {as shown here}.
 
     \target 2-argument-form}
-    \section2 \\include filename snippet-identifier \span {class="newStuff"} {(new)}
+    \section2 \\include filename snippet-identifier
 
     It is kind of a pain to make a separate \c .qdocinc file for every
     QDoc include snippet you want to use in multiple places in the
@@ -5346,7 +5346,7 @@
      {generatelist-command} {\\generatelist}.
 
     \target qmlattachedproperty-command
-    \section1 \\qmlattachedproperty \span {class="newStuff"} {(new)}
+    \section1 \\qmlattachedproperty
 
     The \\qmlattachedproperty command is for documenting a QML
     property that will be attached to some QML element type. See
@@ -5379,7 +5379,7 @@
     {ListView} element.
 
     \target qmlattachedsignal-command
-    \section1 \\qmlattachedsignal  \span {class="newStuff"} {(new)}
+    \section1 \\qmlattachedsignal
 
     The \\qmlattachedsignal command is for documenting an attachable
     \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
@@ -5405,7 +5405,7 @@
     {GridView} element.
 
     \target qmlbasictype-command
-    \section1 \\qmlbasictype  \span {class="newStuff"} {(new)}
+    \section1 \\qmlbasictype
 
     The \\qmlbasictype command is for documenting a basic type for QML.
     The argument is the type name. The type must be included in the
@@ -5443,7 +5443,7 @@
     {qml-int.html}.
 
     \target qmlclass-command
-    \section1 \\qmlclass  \span {class="newStuff"} {(new)}
+    \section1 \\qmlclass
 
     The \\qmlclass command is for documenting a QML element that is
     instantiated by a C++ class. The command has two arguments. The
@@ -5488,7 +5488,7 @@
     {\\ingroup} commands.
 
     \target qmlmethod-command
-    \section1 \\qmlmethod  \span {class="newStuff"} {(new)}
+    \section1 \\qmlmethod
 
     The \\qmlmethod command is for documenting a QML method. The
     argument is the complete method signature, including return
@@ -5515,7 +5515,7 @@
     {TextInput} element.
 
     \target qmlproperty-command
-    \section1 \\qmlproperty  \span {class="newStuff"} {(new)}
+    \section1 \\qmlproperty
 
     The \\qmlproperty command is for documenting a QML property. The
     argument is the rest of the line. The argument text should be the
@@ -5537,7 +5537,7 @@
     element.
 
     \target qmlsignal-command
-    \section1 \\qmlsignal  \span {class="newStuff"} {(new)}
+    \section1 \\qmlsignal
 
     The \\qmlsignal command is for documenting a
     \l{http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#signal-handlers}
@@ -5566,7 +5566,7 @@
     {MouseArea} element.
 
     \target qmlmodule-command
-    \section1 \\qmlmodule \span {class="newStuff"} {(new)}
+    \section1 \\qmlmodule
 
     Insert the \c{\\qmlmodule} command to create a \c QML module page. A QML
     module is a collection of QML components or any related material. This
@@ -5595,7 +5595,7 @@
     QDoc commands to document QML components and QML modules.
 
     \target inqmlmodule-command
-    \section1 \\inqmlmodule \span {class="newStuff"} {(new)}
+    \section1 \\inqmlmodule
 
     A QML class may belong to a \l{qmlmodule-command}{QML module} by inserting
     the \l{inqmlmodule-command}{\\inqmlmodule} command as a topic command.
@@ -6131,7 +6131,7 @@
     \endquotation
 
     \target default-command
-    \section1 \\default  \span {class="newStuff"} {(new)}
+    \section1 \\default
 
     The \\default command is for marking a QML property as the
     \l {http://doc.qt.nokia.com/4.7/qdeclarativeintroduction.html#default-properties}
@@ -6542,7 +6542,7 @@
     \section1 Commands
 
     \target inherits-command
-    \section2 \\inherits  \span {class="newStuff"} {(new)}
+    \section2 \\inherits
 
     The \\inherits command is for documenting that one QML element
     inherits some other QML element. It must be included in the
@@ -6974,6 +6974,7 @@
     \o \l {22-qdoc-configuration-generalvariables.html#alias-variable} {alias}
     \o \l {23-qdoc-configuration-cppvariables.html#Cpp.ignoredirectives-variable} {Cpp.ignoredirectives}
     \o \l {23-qdoc-configuration-cppvariables.html#Cpp.ignoretokens-variable} {Cpp.ignoretokens}
+    \o \l {23-qdoc-configuration-cppvariables.html#basedir-variable} {basedir} \span {class="newStuff"} {(experimental)}
     \o \l {22-qdoc-configuration-generalvariables.html#defines-variable} {defines}
     \o \l {22-qdoc-configuration-generalvariables.html#edition-variable} {edition}
     \o \l {22-qdoc-configuration-generalvariables.html#exampledirs-variable} {exampledirs}
@@ -6994,7 +6995,6 @@
     \o \l {22-qdoc-configuration-generalvariables.html#macro-variable} {macro}
     \o \l {22-qdoc-configuration-generalvariables.html#outputdir-variable} {outputdir}
     \o \l {22-qdoc-configuration-generalvariables.html#outputformats-variable} {outputformats}
-    \o \l {22-qdoc-configuration-generalvariables.html#slow-variable} {slow}
     \o \l {22-qdoc-configuration-generalvariables.html#sourcedirs-variable} {sourcedirs}
     \o \l {22-qdoc-configuration-generalvariables.html#sources-variable} {sources}
     \o \l {22-qdoc-configuration-generalvariables.html#sources.fileextensions-variable} {sources.fileextensions}
@@ -7146,6 +7146,40 @@
     Specific Configuration Variables#HTML.stylesheets} {stylesheets}
     to adjust the appearance of certain types of HTML elements, this
     level of indentation is not always required.
+
+    \target basedir-variable \span {class="newStuff"} {(experimental)}
+    \section1 basedir
+
+    The \c basedir variable tells QDoc two things. First, the fact that
+    it is set it tells QDoc to the put the output files in subdirectories
+    of the output directory. Second, the value of basedir is the name of
+    the bundle directory for your project. .e.g. if you are working with
+    the Qt5 bundle, you will have checked out the bundle into some root
+    subdirectory (the base directory), and that root directory might
+    very well be \e {qt5}
+
+    Then in your qdocconf file, you would assign to the basedir variable:
+
+    \code
+        basedir = qt5
+    \endcode
+
+    Now, QDoc knows to scan the file path of each source file it parses,
+    looking for \e qt5. For example, this file would be:
+
+    \code
+        ~/depot/qt5/qtdoc/tools/qdoc3/doc/qdoc-manual.qdoc
+    \endcode
+
+    QDoc scans the path for the basedir \e{qt5} and the next subdirectory
+    \e{qtdoc} becomes one of the subdirectories in the output directory.
+    The HTML output file created from this file will be stored in the
+    \e{qtdoc} subdirectory.
+
+    \note This is an experimental command. It is currently used only by
+    the Qt documentation group. If you use it, be advised that you might
+    find some broken links in your HTML output due to remaining problems
+    with cross-subdirectory linking.
 
     \target defines-variable
     \section1 defines
@@ -7758,19 +7792,6 @@
 
     See the \l{Creating Help Project Files} chapter for information
     about this process.
-
-
-    \target slow-variable
-    \section1 slow
-
-    The \c slow variable specifies whether QDoc should do
-    time-consuming processing, such as syntax highlighting.  The
-    default value is false.
-
-    \note This option has been replaced by the \l{syntaxhighlighting} option.
-
-    For compatibility, the \c -slow command-line option has been
-    retained. This has the effect of enabling syntax highlighting.
 
     \target sourcedirs-variable
     \section1 sourcedirs
