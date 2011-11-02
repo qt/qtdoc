@@ -4157,12 +4157,16 @@ bool HtmlGenerator::generatePageElement(QXmlStreamWriter& writer,
         return false;
 
     QString guid = QUuid::createUuid().toString();
-    QString url = PageGenerator::fileName(node);
     QString title;
     QString rawTitle;
     QString fullTitle;
     QStringList pageWords;
     QXmlStreamAttributes attributes;
+
+    QString url = node->outputSubdirectory();
+    if (!url.isEmpty())
+        url.append("/");
+    url.append(PageGenerator::fileName(node));
 
     writer.writeStartElement("page");
 
