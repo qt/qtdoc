@@ -53,6 +53,7 @@
 QT_BEGIN_NAMESPACE
 
 #define COMMAND_DEPRECATED              Doc::alias(QLatin1String("deprecated")) // ### don't document
+#define COMMAND_INGROUP                 Doc::alias(QLatin1String("ingroup"))
 #define COMMAND_INTERNAL                Doc::alias(QLatin1String("internal"))
 #define COMMAND_OBSOLETE                Doc::alias(QLatin1String("obsolete"))
 #define COMMAND_PAGEKEYWORDS            Doc::alias(QLatin1String("pagekeywords"))
@@ -250,6 +251,9 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                     QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
                     qpn->setDefault();
                 }
+            }
+            else if (command == COMMAND_INGROUP) {
+                tree->addToGroup(node, args[0]);
             }
             else if (command == COMMAND_INTERNAL) {
                 node->setAccess(Node::Private);
