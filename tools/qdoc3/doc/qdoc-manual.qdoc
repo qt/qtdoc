@@ -241,6 +241,7 @@
     \list
     \o \l {04-qdoc-commands-textmarkup.html#a-command} {\\a}
     \o \l {11-qdoc-commands-specialcontent.html#abstract-command} {\\abstract}
+    \o \l {12-0-qdoc-commands-miscellaneous.html#annotatedlist-command} {\\annotatedlist}
     \o \l {06-qdoc-commands-includecodeinline.html#badcode-command} {\\badcode}
     \o \l {04-qdoc-commands-textmarkup.html#bold-command} {\\bold}
     \o \l {11-qdoc-commands-specialcontent.html#brief-command} {\\brief}
@@ -3167,7 +3168,8 @@
 
     The brief text is used to introduce the documentation of the
     associated object, and in lists generated using the \l
-    {generatelist-command} {\\generatelist} command.
+    {generatelist-command} {\\generatelist} command and the \l
+    {annotatedlist-command} {\\annotatedlist} command.
 
     The \\brief command can be used in two significant different ways:
     \l {brief class} {One for classes, namespaces and header files},
@@ -3545,6 +3547,31 @@
            \quotation
                porting.qdoc:6: Documentation expired 185 days ago
            \endquotation
+
+
+    \target annotatedlist-command
+    \section1 \\annotatedlist
+
+    The \\annotatedlist command expands to a list of the members of a
+    group, each member listed with its \e {brief} text. Below is an
+    example from the Qt Reference Documentation:
+
+           \code
+           / *!
+               ...
+               \section1 Drag and Drop Classes
+
+               These classes deal with drag and drop and the necessary mime type
+               encoding and decoding.
+
+               \annotatedlist draganddrop
+
+           * /
+           \endcode
+
+    This generates a list of all the classes in the \e{draganddrop} group.
+    A class in the \e{draganddrop} group will have the \\ingroup command
+    in its \\class or \\qmlclass comment.
 
 
     \target generatelist-command
@@ -8594,6 +8621,8 @@
 
     \o \l {04-qdoc-commands-textmarkup.html#a-command} {\\a}
     \o \l {11-qdoc-commands-specialcontent.html#abstract-command} {\\abstract}
+    \o \l {12-0-qdoc-commands-miscellaneous.html#annotatedlist-command} {\\annotatedlist} \span {class="newStuff"} {(new 03/11/11)}
+    \o \l {23-qdoc-configuration-cppvariables.html#basedir-variable} {basedir} \span {class="newStuff"} {(experimental)}
     \o \l {06-qdoc-commands-includecodeinline.html#badcode-command} {\\badcode}
     \o \l {04-qdoc-commands-textmarkup.html#bold-command} {\\bold}
     \o \l {11-qdoc-commands-specialcontent.html#brief-command} {\\brief}
@@ -8605,8 +8634,8 @@
     \o \l {07-0-qdoc-commands-includingexternalcode.html#codeline-command} {\\codeline},
     \o \l {16-qdoc-commands-status.html#compat-command} {\\compat}
     \o \l {15-qdoc-commands-navigation.html#contentspage-command} {\\contentspage}
-    \o \l {16-qdoc-commands-status.html#default-command} {\\default} \span {class="newStuff"} {(new)}
-    \o \l {04-qdoc-commands-textmarkup.html#div-command} {\\div} \span {class="newStuff"} {(new)}
+    \o \l {16-qdoc-commands-status.html#default-command} {\\default}
+    \o \l {04-qdoc-commands-textmarkup.html#div-command} {\\div}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#dots-command} {\\dots}
     \o \l {12-0-qdoc-commands-miscellaneous.html#else-command} {\\else}
     \o \l {12-0-qdoc-commands-miscellaneous.html#endif-command} {\\endif}
@@ -8626,7 +8655,7 @@
     \o \l {12-0-qdoc-commands-miscellaneous.html#include-command} {\\include}
     \o \l {15-qdoc-commands-navigation.html#indexpage-command} {\\indexpage}
     \o \l {19-qdoc-commands-grouping.html#ingroup-command} {\\ingroup}
-    \o \l {18-qdoc-commands-relating.html#inherits-command}{\\inherits} \span {class="newStuff"} {(new)}
+    \o \l {18-qdoc-commands-relating.html#inherits-command}{\\inherits}
     \o \l {19-qdoc-commands-grouping.html#inmodule-command} {\\inmodule}
     \o \l {09-qdoc-commands-includingimages.html#inlineimage-command} {\\inlineimage}
     \o \l {16-qdoc-commands-status.html#internal-command} {\\internal}
@@ -8656,15 +8685,15 @@
     \o \l {07-0-qdoc-commands-includingexternalcode.html#printto-command} {\\printto}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#printuntil-command} {\\printuntil}
     \o \l {13-qdoc-commands-topics.html#property-command} {\\property}
-    \o \l {13-qdoc-commands-topics.html#qmlattachedproperty-command} {\\qmlattachedproperty} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlattachedsignal-command} {\\qmlattachedsignal} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlbasictype-command} {\\qmlbasictype} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlclass-command} {\\qmlclass} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlmethod-command} {\\qmlmethod} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlproperty-command} {\\qmlproperty} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlsignal-command} {\\qmlsignal} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#qmlmodule-command} {\\qmlmodule} \span {class="newStuff"} {(new)}
-    \o \l {13-qdoc-commands-topics.html#inqmlmodule-command} {\\inqmlmodule} \span {class="newStuff"} {(new)}
+    \o \l {13-qdoc-commands-topics.html#qmlattachedproperty-command} {\\qmlattachedproperty}
+    \o \l {13-qdoc-commands-topics.html#qmlattachedsignal-command} {\\qmlattachedsignal}
+    \o \l {13-qdoc-commands-topics.html#qmlbasictype-command} {\\qmlbasictype}
+    \o \l {13-qdoc-commands-topics.html#qmlclass-command} {\\qmlclass}
+    \o \l {13-qdoc-commands-topics.html#qmlmethod-command} {\\qmlmethod}
+    \o \l {13-qdoc-commands-topics.html#qmlproperty-command} {\\qmlproperty}
+    \o \l {13-qdoc-commands-topics.html#qmlsignal-command} {\\qmlsignal}
+    \o \l {13-qdoc-commands-topics.html#qmlmodule-command} {\\qmlmodule}
+    \o \l {13-qdoc-commands-topics.html#inqmlmodule-command} {\\inqmlmodule}
     \o \l {11-qdoc-commands-specialcontent.html#quotation-command} {\\quotation}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefile-command} {\\quotefile}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#quotefromfile-command} {\\quotefromfile}
@@ -8684,7 +8713,7 @@
     \o \l {07-0-qdoc-commands-includingexternalcode.html#skipto-command} {\\skipto}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#skipuntil-command} {\\skipuntil}
     \o \l {07-0-qdoc-commands-includingexternalcode.html#snippet-command} {\\snippet},
-    \o \l {04-qdoc-commands-textmarkup.html#span-command} {\\span} \span {class="newStuff"} {(new)}
+    \o \l {04-qdoc-commands-textmarkup.html#span-command} {\\span}
     \o \l {15-qdoc-commands-navigation.html#startpage-command} {\\startpage}
     \o \l {04-qdoc-commands-textmarkup.html#sub-command} {\\sub}
     \o \l {20-qdoc-commands-namingthings.html#subtitle-command} {\\subtitle}
