@@ -60,6 +60,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_PRELIMINARY             Doc::alias(QLatin1String("preliminary"))
 #define COMMAND_SINCE                   Doc::alias(QLatin1String("since"))
 
+#define COMMAND_QMLABSTRACT             Doc::alias(QLatin1String("qmlabstract"))
 #define COMMAND_QMLCLASS                Doc::alias(QLatin1String("qmlclass"))
 #define COMMAND_QMLMODULE               Doc::alias(QLatin1String("qmlmodule"))
 #define COMMAND_QMLPROPERTY             Doc::alias(QLatin1String("qmlproperty"))
@@ -225,7 +226,12 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
         while (i != metacommands.end()) {
             QString command = *i;
             args = doc.metaCommandArgs(command);
-            if (command == COMMAND_DEPRECATED) {
+            if (command == COMMAND_QMLABSTRACT) {
+                if ((node->type() == Node::Fake) && (node->subType() == Node::QmlClass)) {
+                    node->setAbstract(true);
+                }
+            }
+            else if (command == COMMAND_DEPRECATED) {
                 node->setStatus(Node::Deprecated);
             }
             else if (command == COMMAND_INQMLMODULE) {

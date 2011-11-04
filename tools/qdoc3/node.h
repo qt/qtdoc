@@ -176,6 +176,8 @@ class Node
     virtual bool isQmlNode() const { return false; }
     virtual bool isInternal() const { return false; }
     virtual bool isQtQuickNode() const { return false; }
+    virtual bool isAbstract() const { return false; }
+    virtual void setAbstract(bool ) { }
     Type type() const { return type_; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return par; }
@@ -298,8 +300,6 @@ class InnerNode : public Node
     QStringList secondaryKeys();
     const QStringList& pageKeywords() const { return pageKeywds; }
     virtual void addPageKeywords(const QString& t) { pageKeywds << t; }
-    virtual bool isAbstract() const { return false; }
-    virtual void setAbstract(bool ) { }
     virtual void setCurrentChild() { }
     virtual void setCurrentChild(InnerNode* ) { }
 
@@ -489,6 +489,8 @@ class QmlClassNode : public FakeNode
     virtual void clearCurrentChild();
     virtual const ImportList* importList() const { return &importList_; }
     virtual void setImportList(const ImportList& il) { importList_ = il; }
+    virtual bool isAbstract() const { return abstract; }
+    virtual void setAbstract(bool b) { abstract = b; }
     const FakeNode* qmlBase() const { return base_; }
     void resolveInheritance(const Tree* tree);
     static void addInheritedBy(const QString& base, Node* sub);
@@ -501,6 +503,7 @@ class QmlClassNode : public FakeNode
     static QMap<QString, QmlClassNode*> moduleMap;
 
  private:
+    bool abstract;
     const ClassNode*    cnode;
     const FakeNode*     base_;
     QString             qmlModuleName_;

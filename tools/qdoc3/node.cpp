@@ -1804,6 +1804,7 @@ QmlClassNode::QmlClassNode(InnerNode *parent,
                            const QString& name,
                            const ClassNode* cn)
     : FakeNode(parent, name, QmlClass, Node::ApiPage),
+      abstract(false),
       cnode(cn),
       base_(0)
 {

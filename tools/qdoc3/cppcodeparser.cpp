@@ -82,6 +82,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_STARTPAGE               Doc::alias("startpage")
 #define COMMAND_TYPEDEF                 Doc::alias("typedef")
 #define COMMAND_VARIABLE                Doc::alias("variable")
+#define COMMAND_QMLABSTRACT             Doc::alias("qmlabstract")
 #define COMMAND_QMLCLASS                Doc::alias("qmlclass")
 #define COMMAND_QMLPROPERTY             Doc::alias("qmlproperty")
 #define COMMAND_QMLATTACHEDPROPERTY     Doc::alias("qmlattachedproperty")
@@ -955,7 +956,8 @@ QSet<QString> CppCodeParser::otherMetaCommands()
                                 << COMMAND_INDEXPAGE
                                 << COMMAND_STARTPAGE
                                 << COMMAND_QMLINHERITS
-                                << COMMAND_QMLDEFAULT;
+                                << COMMAND_QMLDEFAULT
+                                << COMMAND_QMLABSTRACT;
 }
 
 /*!
@@ -1070,6 +1072,11 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
     else if (command == COMMAND_QMLDEFAULT) {
         QmlPropGroupNode* qpgn = static_cast<QmlPropGroupNode*>(node);
         qpgn->setDefault();
+    }
+    else if (command == COMMAND_QMLABSTRACT) {
+        if ((node->type() == Node::Fake) && (node->subType() == Node::QmlClass)) {
+            node->setAbstract(true);
+        }
     }
     else {
         processCommonMetaCommand(doc.location(),command,arg,node,tre);

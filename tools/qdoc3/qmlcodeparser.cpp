@@ -58,16 +58,28 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_STARTPAGE               Doc::alias("startpage")
 #define COMMAND_VARIABLE                Doc::alias("variable")
 
+#define COMMAND_DEPRECATED              Doc::alias("deprecated")
+#define COMMAND_INGROUP                 Doc::alias("ingroup")
+#define COMMAND_INTERNAL                Doc::alias("internal")
+#define COMMAND_OBSOLETE                Doc::alias("obsolete")
+#define COMMAND_PAGEKEYWORDS            Doc::alias("pagekeywords")
+#define COMMAND_PRELIMINARY             Doc::alias("preliminary")
+#define COMMAND_SINCE                   Doc::alias("since")
+
+#define COMMAND_QMLABSTRACT             Doc::alias("qmlabstract")
 #define COMMAND_QMLCLASS                Doc::alias("qmlclass")
+#define COMMAND_QMLMODULE               Doc::alias("qmlmodule")
 #define COMMAND_QMLPROPERTY             Doc::alias("qmlproperty")
 #define COMMAND_QMLATTACHEDPROPERTY     Doc::alias("qmlattachedproperty")
 #define COMMAND_QMLINHERITS             Doc::alias("inherits")
+#define COMMAND_INQMLMODULE             Doc::alias("inqmlmodule")
 #define COMMAND_QMLSIGNAL               Doc::alias("qmlsignal")
 #define COMMAND_QMLATTACHEDSIGNAL       Doc::alias("qmlattachedsignal")
 #define COMMAND_QMLMETHOD               Doc::alias("qmlmethod")
 #define COMMAND_QMLATTACHEDMETHOD       Doc::alias("qmlattachedmethod")
 #define COMMAND_QMLDEFAULT              Doc::alias("default")
 #define COMMAND_QMLBASICTYPE            Doc::alias("qmlbasictype")
+#define COMMAND_QMLMODULE               Doc::alias("qmlmodule")
 
 QmlCodeParser::QmlCodeParser()
 {
@@ -193,7 +205,16 @@ QSet<QString> QmlCodeParser::otherMetaCommands()
 {
     return commonMetaCommands() << COMMAND_STARTPAGE
                                 << COMMAND_QMLINHERITS
-                                << COMMAND_QMLDEFAULT;
+                                << COMMAND_QMLDEFAULT
+                                << COMMAND_DEPRECATED
+                                << COMMAND_INGROUP
+                                << COMMAND_INTERNAL
+                                << COMMAND_OBSOLETE
+                                << COMMAND_PRELIMINARY
+                                << COMMAND_SINCE
+                                << COMMAND_QMLABSTRACT
+                                << COMMAND_INQMLMODULE;
+
 }
 
 /*!
