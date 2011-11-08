@@ -195,6 +195,8 @@ QString PageGenerator::fileBase(const Node *node) const
     forever {
         const Node *pp = p->parent();
         base.prepend(p->name());
+        if (!p->qmlModuleQualifier().isEmpty())
+            base.prepend(p->qmlModuleQualifier()+QChar('-'));
         /*
           To avoid file name conflicts in the html directory,
           we prepend a prefix (by default, "qml-") to the file name of QML
@@ -202,8 +204,6 @@ QString PageGenerator::fileBase(const Node *node) const
          */
         if ((p->subType() == Node::QmlClass) ||
             (p->subType() == Node::QmlBasicType)) {
-            if ((p->subType() == Node::QmlClass) && !p->qmlModuleQualifier().isEmpty())
-                base.prepend(p->qmlModuleQualifier()+QChar('-'));
             base.prepend(outputPrefix(QLatin1String("QML")));
         }
         if (!pp || pp->name().isEmpty() || pp->type() == Node::Fake)

@@ -1901,7 +1901,7 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
   QML module name and version number. It stores these separately.
   The version number is not required.
  */
-void QmlClassNode::setQmlModuleName(const QString& arg)
+void Node::setQmlModuleName(const QString& arg)
 {
     QStringList blankSplit = arg.split(" ");
     qmlModuleName_ = blankSplit[0];
@@ -1960,8 +1960,7 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
             base_ = static_cast<const FakeNode*>(n);
             if (base_ && base_->subType() == Node::QmlClass) {
                 if (debug)
-                    qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
-                             << base_->qmlModuleIdentifier() << base_->name();
+                    qDebug() << base_->qmlModuleIdentifier() << base_->name();
                 return;
             }
         }

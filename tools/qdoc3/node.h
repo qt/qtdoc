@@ -208,11 +208,11 @@ class Node
     QString guid() const;
     QString ditaXmlHref();
     QString extractClassName(const QString &string) const;
-    virtual QString qmlModuleName() const { return QString(); }
-    virtual QString qmlModuleVersion() const { return QString(); }
-    virtual QString qmlModuleQualifier() const { return QString(); }
-    virtual QString qmlModuleIdentifier() const { return QString(); }
-    virtual void setQmlModuleName(const QString& ) { }
+    virtual QString qmlModuleName() const { return qmlModuleName_; }
+    virtual QString qmlModuleVersion() const { return qmlModuleVersion_; }
+    virtual QString qmlModuleQualifier() const { return qmlModuleName_ + " " + qmlModuleVersion_; }
+    virtual QString qmlModuleIdentifier() const { return qmlModuleName_ + qmlModuleVersion_; }
+    virtual void setQmlModuleName(const QString& );
     virtual const ClassNode* classNode() const { return 0; }
     virtual void clearCurrentChild() { }
     virtual const ImportList* importList() const { return 0; }
@@ -251,6 +251,8 @@ class Node
     QString templateStuff_;
     mutable QString uuid;
     QString outSubDir_;
+    QString qmlModuleName_;
+    QString qmlModuleVersion_;
 };
 
 class FunctionNode;
@@ -477,12 +479,7 @@ class QmlClassNode : public FakeNode
                  const ClassNode* cn);
     virtual ~QmlClassNode();
     virtual bool isQmlNode() const { return true; }
-    virtual bool isQtQuickNode() const { return (qmlModuleName_ == "QtQuick"); }
-    virtual QString qmlModuleName() const { return qmlModuleName_; }
-    virtual QString qmlModuleVersion() const { return qmlModuleVersion_; }
-    virtual QString qmlModuleIdentifier() const { return qmlModuleName_ + " " + qmlModuleVersion_; }
-    virtual QString qmlModuleQualifier() const { return qmlModuleName_ + qmlModuleVersion_; }
-    virtual void setQmlModuleName(const QString& arg);
+    virtual bool isQtQuickNode() const { return (qmlModuleName() == "QtQuick"); }
     virtual const ClassNode* classNode() const { return cnode; }
     virtual QString fileBase() const;
     virtual void setCurrentChild();
@@ -506,8 +503,6 @@ class QmlClassNode : public FakeNode
     bool abstract;
     const ClassNode*    cnode;
     const FakeNode*     base_;
-    QString             qmlModuleName_;
-    QString             qmlModuleVersion_;
     ImportList          importList_;
 };
 
