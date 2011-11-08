@@ -6,5 +6,9 @@ Prerequisites:
     * other modules exists as needed
 
 Instructions:
-    $> <path_to_Qt_5_qmake>/qmake
     $> make online_docs
+
+Known Issues:
+    * Building the documentation when Qt is built using the -prefix
+      flag when running configure does not work. Shadow building does
+      work.
