@@ -136,9 +136,9 @@ void Generator::initialize(const Config &config)
     if (!outputFormats.isEmpty()) {
         outDir_ = config.getString(CONFIG_OUTPUTDIR);
         baseDir_ = config.getString(CONFIG_BASEDIR);
-        if (baseDir_.isEmpty())
-            config.location().warning(tr("No \"basedir\" specified in config file. "
-                                         "All output will be in the output directory"));
+        if (!baseDir_.isEmpty())
+            config.location().warning(tr("\"basedir\" specified in config file. "
+                                         "All output will be in module directories of the output directory"));
         if (outDir_.isEmpty())
             config.lastLocation().fatal(tr("No output directory specified in configuration file"));
 
@@ -1041,7 +1041,7 @@ void Generator::generateThreadSafeness(const Node *node, CodeMarker *marker)
             NodeList nonreentrant;
             NodeList::ConstIterator c = innerNode->childNodes().begin();
             while (c != innerNode->childNodes().end()) {
-                
+
                 if ((*c)->status() != Node::Obsolete){
                     switch ((*c)->threadSafeness()) {
                     case Node::Reentrant:
