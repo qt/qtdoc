@@ -1034,26 +1034,26 @@ void Tree::readIndexSection(const QDomElement& element,
 
     }
     else if (element.nodeName() == "qmlclass") {
-        FakeNode* fakeNode = new FakeNode(parent, name, Node::QmlClass, Node::ApiPage);
-        fakeNode->setTitle(element.attribute("title"));
+        QmlClassNode* qcn = new QmlClassNode(parent, name, 0);
+        qcn->setTitle(element.attribute("title"));
         if (element.hasAttribute("location"))
             name = element.attribute("location", "");
         if (!indexUrl.isEmpty())
             location = Location(indexUrl + "/" + name);
         else if (!indexUrl.isNull())
             location = Location(name);
-        section = fakeNode;
+        section = qcn;
     }
     else if (element.nodeName() == "qmlbasictype") {
-        FakeNode* fakeNode = new FakeNode(parent, name, Node::QmlBasicType, Node::ApiPage);
-        fakeNode->setTitle(element.attribute("title"));
+        QmlBasicTypeNode* qbtn = new QmlBasicTypeNode(parent, name);
+        qbtn->setTitle(element.attribute("title"));
         if (element.hasAttribute("location"))
             name = element.attribute("location", "");
         if (!indexUrl.isEmpty())
             location = Location(indexUrl + "/" + name);
         else if (!indexUrl.isNull())
             location = Location(name);
-        section = fakeNode;
+        section = qbtn;
     }
     else if (element.nodeName() == "page") {
         Node::SubType subtype;
