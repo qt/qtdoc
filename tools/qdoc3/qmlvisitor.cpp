@@ -237,9 +237,9 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
             else if (command == COMMAND_INQMLMODULE) {
                 node->setQmlModuleName(args[0]);
                 tree->addToQmlModule(node,args[0]);
-                QString qmq = node->qmlModuleQualifier();
+                QString qmid = node->qmlModuleIdentifier();
                 QmlClassNode* qcn = static_cast<QmlClassNode*>(node);
-                QmlClassNode::moduleMap.insert(qmq + "::" + node->name(), qcn);
+                QmlClassNode::moduleMap.insert(qmid + "::" + node->name(), qcn);
             }
             else if (command == COMMAND_QMLINHERITS) {
                 if (node->name() == args[0])

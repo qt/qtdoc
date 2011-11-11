@@ -1171,8 +1171,9 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                             const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*p);
                             if (pn->isAttached())
                                 insert(qmlattachedproperties,*p,style,Okay);
-                            else
+                            else {
                                 insert(qmlproperties,*p,style,Okay);
+                            }
                         }
                         ++p;
                     }
@@ -1181,15 +1182,17 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                     const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*c);
                     if (pn->isAttached())
                         insert(qmlattachedproperties,*c,style,Okay);
-                    else
+                    else {
                         insert(qmlproperties,*c,style,Okay);
+                    }
                 }
                 else if ((*c)->type() == Node::QmlSignal) {
                     const FunctionNode* sn = static_cast<const FunctionNode*>(*c);
                     if (sn->isAttached())
                         insert(qmlattachedsignals,*c,style,Okay);
-                    else
+                    else {
                         insert(qmlsignals,*c,style,Okay);
+                    }
                 }
                 else if ((*c)->type() == Node::QmlSignalHandler) {
                     insert(qmlsignalhandlers,*c,style,Okay);
@@ -1198,8 +1201,9 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                     const FunctionNode* mn = static_cast<const FunctionNode*>(*c);
                     if (mn->isAttached())
                         insert(qmlattachedmethods,*c,style,Okay);
-                    else
+                    else {
                         insert(qmlmethods,*c,style,Okay);
+                    }
                 }
                 ++c;
             }
