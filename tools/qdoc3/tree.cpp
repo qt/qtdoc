@@ -2323,7 +2323,7 @@ QString Tree::fullDocumentName(const Node* node) const
 
         if ((n->type() == Node::Fake) && (n->subType() != Node::QmlPropertyGroup)) {
             if ((n->subType() == Node::QmlClass) && !n->qmlModuleName().isEmpty())
-                pieces.insert(0, n->qmlModuleQualifier());
+                pieces.insert(0, n->qmlModuleIdentifier());
             break;
         }
 

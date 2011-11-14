@@ -3864,6 +3864,28 @@ QString DitaXmlGenerator::linkForNode(const Node* node, const Node* relative)
         return QString();
 
     QString fn = fileName(node);
+    if (node && relative && node->parent() != relative) {
+        if (node->parent()->subType() == Node::QmlClass && relative->subType() == Node::QmlClass) {
+            if (node->parent()->isAbstract()) {
+                /*
+                  This is a bit of a hack. What we discover with
+                  the three 'if' statements immediately above,
+                  is that node's parent is marked \qmlabstract
+                  but the link appears in a qdoc comment for a
+                  subclass of the node's parent. This means the
+                  link should refer to the file for the relative
+                  node, not the file for node.
+                 */
+                fn = fileName(relative);
+#if DEBUG_ABSTRACT
+                qDebug() << "ABSTRACT:" << node->parent()->name()
+                         << node->name() << relative->name()
+                         << node->parent()->type() << node->parent()->subType()
+                         << relative->type() << relative->subType() << outFileName();
+#endif
+            }
+        }
+    }
     QString link = fn;
 
     if (!node->isInnerNode() || node->subType() == Node::QmlPropertyGroup) {

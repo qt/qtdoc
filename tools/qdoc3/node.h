@@ -210,7 +210,6 @@ class Node
     QString extractClassName(const QString &string) const;
     virtual QString qmlModuleName() const { return qmlModuleName_; }
     virtual QString qmlModuleVersion() const { return qmlModuleVersion_; }
-    virtual QString qmlModuleQualifier() const { return qmlModuleName_ + " " + qmlModuleVersion_; }
     virtual QString qmlModuleIdentifier() const { return qmlModuleName_ + qmlModuleVersion_; }
     virtual void setQmlModuleName(const QString& );
     virtual const ClassNode* classNode() const { return 0; }
@@ -527,7 +526,6 @@ class QmlPropGroupNode : public FakeNode
     virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
     virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
     virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
-    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     const QString& element() const { return parent()->name(); }
     void setDefault() { isdefault = true; }
@@ -570,7 +568,6 @@ class QmlPropertyNode : public LeafNode
     virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
     virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
     virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
-    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     const PropertyNode *correspondingProperty(const Tree *tree) const;
 
@@ -752,7 +749,6 @@ class FunctionNode : public LeafNode
     virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
     virtual QString qmlModuleVersion() const { return parent()->qmlModuleVersion(); }
     virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
-    virtual QString qmlModuleQualifier() const { return parent()->qmlModuleQualifier(); }
 
     void debug() const;
 

@@ -1876,7 +1876,7 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
     }
 }
 
-/*! \fn QString QmlClassNode::qmlModuleQualifier() const
+/*! \fn QString QmlClassNode::qmlModuleIdentifier() const
   This function is called to get a string that is used either
   as a prefix for the file name to use for QML element or
   component reference page, or as a qualifier to prefix a
@@ -1884,16 +1884,7 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
   is returned is the concatenation of the QML module name
   and its version number. e.g., if an element or component
   is defined to be in the QML module QtQuick 1, its module
-  qualifier is "QtQuick1". See setQmlModuleName().
- */
-
-/*! \fn QString QmlClassNode::qmlModuleIdentifier() const
-  This function is the same as qmlModuleQualifier() except
-  that this one returns a string with the module name and
-  the version number separated by a single blank. e.g., if
-  an element or component is defined to be in QML module
-  QtQuick 1, its module identifier is "QtQuick 1". See
-  qmlModuleQualifier().
+  identifier is "QtQuick1". See setQmlModuleName().
  */
 
 /*!
@@ -1968,9 +1959,9 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
             const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(base_);
             const NodeList& children = ncn->childNodes();
             for (int i=0; i<importList_.size(); ++i) {
-                QString qmq = importList_.at(i).first + importList_.at(i).second;
+                QString qmid = importList_.at(i).first + importList_.at(i).second;
                 for (int j=0; j<children.size(); ++j) {
-                    if (qmq == children.at(j)->qmlModuleQualifier()) {
+                    if (qmid == children.at(j)->qmlModuleIdentifier()) {
                         base_ = static_cast<const FakeNode*>(children.at(j));
                         if (debug)
                             qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
@@ -1995,10 +1986,10 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
                 const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(base_);
                 const NodeList& children = ncn->childNodes();
                 if (debug) {
-                    qDebug() << "QML CLASS:" << qmlModuleQualifier() << name();
+                    qDebug() << "QML CLASS:" << qmlModuleIdentifier() << name();
                     qDebug() << "  COLLISION:" << base_->name();
                     for (int j=0; j<children.size(); ++j) {
-                        qDebug() << "    " << children.at(j)->qmlModuleQualifier()
+                        qDebug() << "    " << children.at(j)->qmlModuleIdentifier()
                                  << children.at(j)->name();
                     }
                 }

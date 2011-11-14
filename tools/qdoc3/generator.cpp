@@ -1314,7 +1314,7 @@ void Generator::appendSortedQmlNames(Text& text,
     for (int i = 0; i < subs.size(); ++i) {
         Text t;
         if (!base->isQtQuickNode() || !subs[i]->isQtQuickNode() ||
-            (base->qmlModuleQualifier() == subs[i]->qmlModuleQualifier())) {
+            (base->qmlModuleIdentifier() == subs[i]->qmlModuleIdentifier())) {
             appendFullName(t, subs[i], base, marker);
             classMap[t.toString().toLower()] = t;
         }

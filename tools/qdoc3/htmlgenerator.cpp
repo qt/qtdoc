@@ -2515,7 +2515,6 @@ void HtmlGenerator::generateLegaleseList(const Node *relative,
     }
 }
 
-#ifdef QDOC_QML
 void HtmlGenerator::generateQmlItem(const Node *node,
                                     const Node *relative,
                                     CodeMarker *marker,
@@ -2546,7 +2545,6 @@ void HtmlGenerator::generateQmlItem(const Node *node,
     }
     out() << highlightedCode(marked, marker, relative, false, node);
 }
-#endif
 
 void HtmlGenerator::generateOverviewList(const Node *relative, CodeMarker * /* marker */)
 {
@@ -3293,10 +3291,6 @@ QString HtmlGenerator::refForNode(const Node *node)
   */
 QString HtmlGenerator::linkForNode(const Node *node, const Node *relative)
 {
-    QString link;
-    QString fn;
-    QString ref;
-
     if (node == 0 || node == relative)
         return QString();
     if (!node->url().isEmpty())
@@ -3305,16 +3299,34 @@ QString HtmlGenerator::linkForNode(const Node *node, const Node *relative)
         return QString();
     if (node->access() == Node::Private)
         return QString();
- 
-    fn = fileName(node);
-    /*
-    if (!node->url().isEmpty())
-        return fn;
-    */
-    link += fn;
+
+    QString fn = fileName(node);
+    if (node && relative && node->parent() != relative) {
+        if (node->parent()->subType() == Node::QmlClass && relative->subType() == Node::QmlClass) {
+            if (node->parent()->isAbstract()) {
+                /*
+                  This is a bit of a hack. What we discover with
+                  the three 'if' statements immediately above,
+                  is that node's parent is marked \qmlabstract
+                  but the link appears in a qdoc comment for a
+                  subclass of the node's parent. This means the
+                  link should refer to the file for the relative
+                  node, not the file for node.
+                 */
+                fn = fileName(relative);
+#if DEBUG_ABSTRACT
+                qDebug() << "ABSTRACT:" << node->parent()->name()
+                         << node->name() << relative->name()
+                         << node->parent()->type() << node->parent()->subType()
+                         << relative->type() << relative->subType() << outFileName();
+#endif
+            }
+        }
+    }
+    QString link = fn;
 
     if (!node->isInnerNode() || node->subType() == Node::QmlPropertyGroup) {
-        ref = refForNode(node);
+        QString ref = refForNode(node);
         if (relative && fn == fileName(relative) && ref == refForNode(relative))
             return QString();
 
@@ -4441,7 +4453,7 @@ QString HtmlGenerator::fullDocumentLocation(const Node *node, bool subdir)
             else {
                 QString mq = "";
                 if (!node->qmlModuleName().isEmpty()) {
-                    mq = node->qmlModuleQualifier().replace(QChar('.'),QChar('-'));
+                    mq = node->qmlModuleIdentifier().replace(QChar('.'),QChar('-'));
                     mq = mq.toLower() + "-";
                 }
                 return fdl+ Generator::outputPrefix(QLatin1String("QML")) + mq +
