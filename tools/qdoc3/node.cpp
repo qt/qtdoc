@@ -2249,4 +2249,26 @@ const InnerNode* NameCollisionNode::findAny(Node::Type t, Node::SubType st) cons
     return 0;
 }
 
+/*!
+  This node is a name collision node. Find a child of this node
+  such that the child's QML module identifier matches origin's
+  QML module identifier. Return the matching node, or return this
+  node if there is no matching node.
+ */
+const Node* NameCollisionNode::applyModuleIdentifier(const Node* origin) const
+{
+    if (origin && !origin->qmlModuleIdentifier().isEmpty()) {
+        const NodeList& cn = childNodes();
+        NodeList::ConstIterator i = cn.begin();
+        while (i != cn.end()) {
+            if ((*i)->type() == Node::Fake && (*i)->subType() == Node::QmlClass) {
+                if (origin->qmlModuleIdentifier() == (*i)->qmlModuleIdentifier())
+                    return (*i);
+            }
+            ++i;
+        }
+    }
+    return this;
+}
+
 QT_END_NAMESPACE

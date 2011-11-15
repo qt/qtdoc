@@ -216,6 +216,7 @@ class Node
     virtual void clearCurrentChild() { }
     virtual const ImportList* importList() const { return 0; }
     virtual void setImportList(const ImportList& ) { }
+    virtual const Node* applyModuleIdentifier(const Node* ) const { return 0; }
     const QmlClassNode* qmlClassNode() const;
     const ClassNode* declarativeCppNode() const;
     const QString& outputSubdirectory() const { return outSubDir_; }
@@ -443,6 +444,7 @@ class NameCollisionNode : public FakeNode
     virtual void setCurrentChild(InnerNode* child) { current = child; }
     virtual void clearCurrentChild() { current = 0; }
     virtual bool isQmlNode() const;
+    virtual const Node* applyModuleIdentifier(const Node* origin) const;
     const InnerNode* findAny(Node::Type t, Node::SubType st) const;
     void addCollision(InnerNode* child);
     const QMap<QString,QString>& linkTargets() const { return targets; }

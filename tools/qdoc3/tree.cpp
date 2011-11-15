@@ -173,11 +173,12 @@ const Node* Tree::findNode(const QStringList& path,
   is a QML node.
  */
 const Node* Tree::findNode(const QStringList& path,
-                           const Node* current,
+                           const Node* start,
                            int findFlags,
                            const Node* self,
                            bool qml) const
 {
+    const Node* current = start;
     do {
         const Node* node = current;
         int i;
@@ -225,6 +226,9 @@ const Node* Tree::findNode(const QStringList& path,
                 && (!(findFlags & NonFunction) || node->type() != Node::Function
                     || ((FunctionNode*)node)->metaness() == FunctionNode::MacroWithoutParams)) {
             if ((node != self) && (node->subType() != Node::QmlPropertyGroup)) {
+                if (node->subType() == Node::Collision) {
+                    node = node->applyModuleIdentifier(start);
+                }
                 return node;
             }
         }
