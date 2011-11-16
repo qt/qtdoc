@@ -4387,8 +4387,13 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
                 writeStartTag(DT_li);
                 writeGuidAttribute((Node*)qpn);
                 QString attr;
-                const ClassNode* cn = qpn->declarativeCppNode();
-                if (cn && !qpn->isWritable(myTree))
+                int ro = qpn->getReadOnly();
+                if (ro < 0) {
+                    const ClassNode* cn = qpn->declarativeCppNode();
+                    if (cn && !qpn->isWritable(myTree))
+                        attr = "read-only";
+                }
+                else if (ro > 0)
                     attr = "read-only";
                 if (qpgn->isDefault()) {
                     if (!attr.isEmpty())
@@ -4410,8 +4415,13 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
         writeStartTag(DT_li);
         writeGuidAttribute((Node*)qpn);
         QString attr;
-        const ClassNode* cn = qpn->declarativeCppNode();
-        if (cn && !qpn->isWritable(myTree))
+        int ro = qpn->getReadOnly();
+        if (ro < 0) {
+            const ClassNode* cn = qpn->declarativeCppNode();
+            if (cn && !qpn->isWritable(myTree))
+                attr = "read-only";
+        }
+        else if (ro > 0)
             attr = "read-only";
         if (qpn->isDefault()) {
             if (!attr.isEmpty())

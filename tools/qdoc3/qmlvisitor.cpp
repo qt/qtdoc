@@ -72,6 +72,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_QMLMETHOD               Doc::alias(QLatin1String("qmlmethod"))
 #define COMMAND_QMLATTACHEDMETHOD       Doc::alias(QLatin1String("qmlattachedmethod"))
 #define COMMAND_QMLDEFAULT              Doc::alias(QLatin1String("default"))
+#define COMMAND_QMLREADONLY             Doc::alias(QLatin1String("readonly"))
 #define COMMAND_QMLBASICTYPE            Doc::alias(QLatin1String("qmlbasictype"))
 #define COMMAND_QMLMODULE               Doc::alias(QLatin1String("qmlmodule"))
 
@@ -200,6 +201,7 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
             else if (topic == COMMAND_QMLPROPERTY) {
                 if (node->type() == Node::QmlProperty) {
                     QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+                    qpn->setReadOnly(0);
                     if (qpn->dataType() == "alias") {
                         QStringList part = args[0].split(" ");
                         qpn->setDataType(part[0]);
@@ -209,6 +211,10 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
             else if (topic == COMMAND_QMLMODULE) {
             }
             else if (topic == COMMAND_QMLATTACHEDPROPERTY) {
+                if (node->type() == Node::QmlProperty) {
+                    QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+                    qpn->setReadOnly(0);
+                }
             }
             else if (topic == COMMAND_QMLSIGNAL) {
             }
@@ -256,6 +262,12 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                 if (node->type() == Node::QmlProperty) {
                     QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
                     qpn->setDefault();
+                }
+            }
+            else if (command == COMMAND_QMLREADONLY) {
+                if (node->type() == Node::QmlProperty) {
+                    QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+                    qpn->setReadOnly(1);
                 }
             }
             else if (command == COMMAND_INGROUP) {

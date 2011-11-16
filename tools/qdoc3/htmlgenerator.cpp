@@ -3973,8 +3973,14 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
                 out() << "<td class=\"tblQmlPropNode\"><p>";
                 out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
 
-                const ClassNode* cn = qpn->declarativeCppNode();
-                if (cn && !qpn->isWritable(myTree)) {
+                int ro = qpn->getReadOnly();
+                if (ro < 0) {
+                    const ClassNode* cn = qpn->declarativeCppNode();
+                    if (cn && !qpn->isWritable(myTree)) {
+                        out() << "<span class=\"qmlreadonly\">read-only</span>";
+                    }
+                }
+                else if (ro > 0) {
                     out() << "<span class=\"qmlreadonly\">read-only</span>";
                 }
                 if (qpgn->isDefault())
@@ -3994,8 +4000,14 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         out() << "<tr valign=\"top\" class=\"odd\">";
         out() << "<td class=\"tblQmlPropNode\"><p>";
         out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
-        const ClassNode* cn = qpn->declarativeCppNode();
-        if (cn && !qpn->isWritable(myTree)) {
+        int ro = qpn->getReadOnly();
+        if (ro < 0) {
+            const ClassNode* cn = qpn->declarativeCppNode();
+            if (cn && !qpn->isWritable(myTree)) {
+                out() << "<span class=\"qmlreadonly\">read-only</span>";
+            }
+        }
+        else if (ro > 0) {
             out() << "<span class=\"qmlreadonly\">read-only</span>";
         }
         if (qpn->isDefault())

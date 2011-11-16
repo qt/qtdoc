@@ -2034,7 +2034,8 @@ QmlPropGroupNode::QmlPropGroupNode(QmlClassNode* parent,
                                    bool attached)
     : FakeNode(parent, name, QmlPropertyGroup, Node::ApiPage),
       isdefault(false),
-      att(attached)
+      att(attached),
+      readOnly(-1)
 {
     // nothing.
 }
@@ -2051,7 +2052,8 @@ QmlPropertyNode::QmlPropertyNode(QmlPropGroupNode *parent,
       sto(Trool_Default),
       des(Trool_Default),
       isdefault(false),
-      att(attached)
+      att(attached),
+      readOnly(-1)
 {
     setPageType(ApiPage);
 }
@@ -2068,7 +2070,8 @@ QmlPropertyNode::QmlPropertyNode(QmlClassNode *parent,
       sto(Trool_Default),
       des(Trool_Default),
       isdefault(false),
-      att(attached)
+      att(attached),
+      readOnly(-1)
 {
     setPageType(ApiPage);
 }

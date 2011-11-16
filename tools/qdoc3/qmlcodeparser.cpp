@@ -78,6 +78,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_QMLMETHOD               Doc::alias("qmlmethod")
 #define COMMAND_QMLATTACHEDMETHOD       Doc::alias("qmlattachedmethod")
 #define COMMAND_QMLDEFAULT              Doc::alias("default")
+#define COMMAND_QMLREADONLY             Doc::alias("readonly")
 #define COMMAND_QMLBASICTYPE            Doc::alias("qmlbasictype")
 #define COMMAND_QMLMODULE               Doc::alias("qmlmodule")
 
@@ -206,6 +207,7 @@ QSet<QString> QmlCodeParser::otherMetaCommands()
     return commonMetaCommands() << COMMAND_STARTPAGE
                                 << COMMAND_QMLINHERITS
                                 << COMMAND_QMLDEFAULT
+                                << COMMAND_QMLREADONLY
                                 << COMMAND_DEPRECATED
                                 << COMMAND_INGROUP
                                 << COMMAND_INTERNAL

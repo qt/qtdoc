@@ -92,6 +92,7 @@ QT_BEGIN_NAMESPACE
 #define COMMAND_QMLMETHOD               Doc::alias("qmlmethod")
 #define COMMAND_QMLATTACHEDMETHOD       Doc::alias("qmlattachedmethod")
 #define COMMAND_QMLDEFAULT              Doc::alias("default")
+#define COMMAND_QMLREADONLY             Doc::alias("readonly")
 #define COMMAND_QMLBASICTYPE            Doc::alias("qmlbasictype")
 #define COMMAND_QMLMODULE               Doc::alias("qmlmodule")
 #define COMMAND_AUDIENCE                Doc::alias("audience")
@@ -957,6 +958,7 @@ QSet<QString> CppCodeParser::otherMetaCommands()
                                 << COMMAND_STARTPAGE
                                 << COMMAND_QMLINHERITS
                                 << COMMAND_QMLDEFAULT
+                                << COMMAND_QMLREADONLY
                                 << COMMAND_QMLABSTRACT;
 }
 
@@ -1070,8 +1072,32 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
         }
     }
     else if (command == COMMAND_QMLDEFAULT) {
-        QmlPropGroupNode* qpgn = static_cast<QmlPropGroupNode*>(node);
-        qpgn->setDefault();
+        if (node->type() == Node::QmlProperty) {
+            QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+            qpn->setDefault();
+        }
+        else if (node->type() == Node::Fake && node->subType() == Node::QmlPropertyGroup) {
+            QmlPropGroupNode* qpgn = static_cast<QmlPropGroupNode*>(node);
+            qpgn->setDefault();
+        }
+    }
+    else if (command == COMMAND_QMLREADONLY) {
+        if (node->type() == Node::QmlProperty) {
+            QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+            qpn->setReadOnly(1);
+        }
+        else if (node->type() == Node::Fake && node->subType() == Node::QmlPropertyGroup) {
+            QmlPropGroupNode* qpgn = static_cast<QmlPropGroupNode*>(node);
+            qpgn->setReadOnly(1);
+            NodeList::ConstIterator p = qpgn->childNodes().begin();
+            while (p != qpgn->childNodes().end()) {
+                if ((*p)->type() == Node::QmlProperty) {
+                    QmlPropertyNode* qpn = static_cast<const QmlPropertyNode*>(*p);
+                    qpn->setReadOnly(1);
+                }
+                ++p;
+            }
+        }
     }
     else if (command == COMMAND_QMLABSTRACT) {
         if ((node->type() == Node::Fake) && (node->subType() == Node::QmlClass)) {

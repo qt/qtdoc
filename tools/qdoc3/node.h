@@ -531,12 +531,16 @@ class QmlPropGroupNode : public FakeNode
 
     const QString& element() const { return parent()->name(); }
     void setDefault() { isdefault = true; }
+    void setReadOnly(int ro) { readOnly = ro; }
+    int getReadOnly() const { return readOnly; }
     bool isDefault() const { return isdefault; }
     bool isAttached() const { return att; }
+    bool isReadOnly() const { return (readOnly > 0); }
 
  private:
     bool    isdefault;
     bool    att;
+    int     readOnly;
 };
 
 class QmlPropertyNode : public LeafNode
@@ -560,11 +564,14 @@ class QmlPropertyNode : public LeafNode
     const QString &dataType() const { return dt; }
     QString qualifiedDataType() const { return dt; }
     void setDefault() { isdefault = true; }
+    void setReadOnly(int ro) { readOnly = ro; }
+    int getReadOnly() const { return readOnly; }
     bool isDefault() const { return isdefault; }
     bool isStored() const { return fromTrool(sto,true); }
     bool isDesignable() const { return fromTrool(des,false); }
     bool isWritable(const Tree* tree) const;
     bool isAttached() const { return att; }
+    bool isReadOnly() const { return (readOnly > 0); }
     virtual bool isQmlNode() const { return true; }
     virtual bool isQtQuickNode() const { return parent()->isQtQuickNode(); }
     virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
@@ -587,6 +594,7 @@ class QmlPropertyNode : public LeafNode
     Trool   wri;
     bool    isdefault;
     bool    att;
+    int     readOnly;
 };
 
 class EnumItem
