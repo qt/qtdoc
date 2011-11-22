@@ -316,7 +316,7 @@ const QmlClassNode* Tree::findQmlClassNode(const QString& module, const QString&
  */
 NameCollisionNode* Tree::checkForCollision(const QString& name, Node::Type t) const
 {
-    Node* n = const_cast<Node*>(findNode(QStringList(name), t));
+    Node* n = const_cast<Node*>(findNode(QStringList(name)));
     if (n) {
         if (n->subType() == Node::Collision) {
             NameCollisionNode* ncn = static_cast<NameCollisionNode*>(n);
