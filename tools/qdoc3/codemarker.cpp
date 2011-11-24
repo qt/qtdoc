@@ -444,7 +444,7 @@ void CodeMarker::insert(FastSection &fastSection,
 void CodeMarker::insert(FastSection& fastSection,
                         Node* node,
                         SynopsisStyle style,
-                        bool includeClassName)
+                        bool /* includeClassName */)
 {
     if (node->status() == Node::Compat || node->status() == Node::Obsolete)
         return;
@@ -584,7 +584,6 @@ QStringList CodeMarker::macRefsForNode(Node *node)
             if (func->metaness() == FunctionNode::MacroWithParams
                 || func->metaness() == FunctionNode::MacroWithoutParams) {
                 result += QLatin1String("macro/");
-                isMacro = true;
 #if 0
             }
             else if (!func->templateStuff().isEmpty()) {

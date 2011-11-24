@@ -178,7 +178,7 @@ bool QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
 /*!
   Applies the metacommands found in the comment.
  */
-void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation location,
+void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation,
                                       Node* node,
                                       Doc& doc)
 {
@@ -292,7 +292,7 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation locati
                 node->setSince(arg);
             }
             else {
-                doc.location().warning(tr("The \%1 command is ignored in QML files").arg(command));
+                doc.location().warning(tr("The \\%1 command is ignored in QML files").arg(command));
             }
             ++i;
         }
@@ -470,7 +470,7 @@ void QmlDocVisitor::endVisit(QDeclarativeJS::AST::UiPublicMember* member)
     lastEndOffset = member->lastSourceLocation().end();
 }
 
-bool QmlDocVisitor::visit(QDeclarativeJS::AST::IdentifierPropertyName *idproperty)
+bool QmlDocVisitor::visit(QDeclarativeJS::AST::IdentifierPropertyName *)
 {
     return true;
 }

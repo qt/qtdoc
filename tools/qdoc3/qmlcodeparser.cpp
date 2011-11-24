@@ -178,7 +178,7 @@ void QmlCodeParser::parseSourceFile(const Location& location,
   This function is called when the parser finishes parsing
   the file, but in this case the function does nothing.
  */
-void QmlCodeParser::doneParsingSourceFiles(Tree *tree)
+void QmlCodeParser::doneParsingSourceFiles(Tree *)
 {
 }
 
