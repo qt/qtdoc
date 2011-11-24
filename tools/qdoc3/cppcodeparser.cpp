@@ -1092,7 +1092,7 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
             NodeList::ConstIterator p = qpgn->childNodes().begin();
             while (p != qpgn->childNodes().end()) {
                 if ((*p)->type() == Node::QmlProperty) {
-                    QmlPropertyNode* qpn = static_cast<const QmlPropertyNode*>(*p);
+                    QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(*p);
                     qpn->setReadOnly(1);
                 }
                 ++p;
