@@ -4098,10 +4098,9 @@ const Node* DitaXmlGenerator::findNodeForTarget(const QString& target,
     else if (marker) {
         node = marker->resolveTarget(target, myTree, relative);
         if (!node)
-            node = myTree->findFakeNodeByTitle(target);
+            node = myTree->findFakeNodeByTitle(target, relative);
         if (!node && atom) {
-            node = myTree->findUnambiguousTarget(target,
-                *const_cast<Atom**>(&atom));
+            node = myTree->findUnambiguousTarget(target, *const_cast<Atom**>(&atom), relative);
         }
     }
 
@@ -4160,10 +4159,10 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
         else {
             *node = marker->resolveTarget(first, myTree, relative);
             if (!*node) {
-                *node = myTree->findFakeNodeByTitle(first);
+                *node = myTree->findFakeNodeByTitle(first, relative);
             }
             if (!*node) {
-                *node = myTree->findUnambiguousTarget(first, targetAtom);
+                *node = myTree->findUnambiguousTarget(first, targetAtom, relative);
             }
         }
 

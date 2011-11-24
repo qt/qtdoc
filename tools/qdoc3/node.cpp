@@ -1220,7 +1220,7 @@ const QmlClassNode* ClassNode::findQmlBaseNode() const
   the page index is set here.
  */
 FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node::PageType ptype)
-    : InnerNode(Fake, parent, name), sub(subtype)
+    : InnerNode(Fake, parent, name), subtype_(subtype)
 {
     switch (subtype) {
     case Page:
@@ -1251,7 +1251,7 @@ FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node
 */
 QString FakeNode::title() const
 {
-    return tle;
+    return title_;
 }
 
 /*!
@@ -1261,19 +1261,19 @@ QString FakeNode::title() const
  */
 QString FakeNode::fullTitle() const
 {
-    if (sub == File) {
+    if (subtype_ == File) {
         if (title().isEmpty())
             return name().mid(name().lastIndexOf('/') + 1) + " Example File";
         else
             return title();
     }
-    else if (sub == Image) {
+    else if (subtype_ == Image) {
         if (title().isEmpty())
             return name().mid(name().lastIndexOf('/') + 1) + " Image File";
         else
             return title();
     }
-    else if ((sub == HeaderFile) || (sub == Collision)) {
+    else if ((subtype_ == HeaderFile) || (subtype_ == Collision)) {
         if (title().isEmpty())
             return name();
         else
@@ -1289,10 +1289,10 @@ QString FakeNode::fullTitle() const
  */
 QString FakeNode::subTitle() const
 {
-    if (!stle.isEmpty())
-        return stle;
+    if (!subtitle_.isEmpty())
+        return subtitle_;
 
-    if ((sub == File) || (sub == Image)) {
+    if ((subtype_ == File) || (subtype_ == Image)) {
         if (title().isEmpty() && name().contains("/"))
             return name();
     }
@@ -1937,11 +1937,9 @@ void QmlClassNode::clearCurrentChild()
   \\qmlclass command. This leaves qdoc bereft, when it tries
   to output the line in the documentation that specifies the
   QML element that a QML element inherits.
-
  */
 void QmlClassNode::resolveInheritance(const Tree* tree)
 {
-    bool debug = false;
     if (!links().empty() && links().contains(Node::InheritsLink)) {
         QPair<QString,QString> linkPair;
         linkPair = links()[Node::InheritsLink];
@@ -1950,8 +1948,6 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
         if (n && (n->subType() == Node::QmlClass || n->subType() == Node::Collision)) {
             base_ = static_cast<const FakeNode*>(n);
             if (base_ && base_->subType() == Node::QmlClass) {
-                if (debug)
-                    qDebug() << base_->qmlModuleIdentifier() << base_->name();
                 return;
             }
         }
@@ -1963,9 +1959,6 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
                 for (int j=0; j<children.size(); ++j) {
                     if (qmid == children.at(j)->qmlModuleIdentifier()) {
                         base_ = static_cast<const FakeNode*>(children.at(j));
-                        if (debug)
-                            qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
-                                     << base_->qmlModuleIdentifier() << base_->name();
                         return;
                     }
                 }
@@ -1974,41 +1967,17 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
             for (int k=0; k<children.size(); ++k) {
                 if (qmid == children.at(k)->qmlModuleIdentifier()) {
                     base_ = static_cast<const QmlClassNode*>(children.at(k));
-                    if (debug)
-                        qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
-                                 << base_->qmlModuleIdentifier() << base_->name();
                     return;
                 }
             }
         }
-        if (base_) {
-            if (base_->subType() == Node::Collision) {
-                const NameCollisionNode* ncn = static_cast<const NameCollisionNode*>(base_);
-                const NodeList& children = ncn->childNodes();
-                if (debug) {
-                    qDebug() << "QML CLASS:" << qmlModuleIdentifier() << name();
-                    qDebug() << "  COLLISION:" << base_->name();
-                    for (int j=0; j<children.size(); ++j) {
-                        qDebug() << "    " << children.at(j)->qmlModuleIdentifier()
-                                 << children.at(j)->name();
-                    }
-                }
-            }
+        if (base_)
             return;
-        }
     }
     if (cnode) {
         const QmlClassNode* qcn = cnode->findQmlBaseNode();
-        if (qcn != 0) {
+        if (qcn != 0)
             base_ = qcn;
-            if (debug)
-                qDebug() << qmlModuleIdentifier() << name() << "INHERITS"
-                         << base_->qmlModuleIdentifier() << base_->name();
-        }
-        else {
-            if (debug)
-                qDebug() << qmlModuleIdentifier() << name() << "doesn't inherit anything";
-        }
     }
     return;
 }
@@ -2178,6 +2147,7 @@ const PropertyNode *QmlPropertyNode::correspondingProperty(const Tree *tree) con
 NameCollisionNode::NameCollisionNode(InnerNode* child)
     : FakeNode(child->parent(), child->name(), Collision, Node::NoPageType)
 {
+    setTitle("Name Collisions For: " + child->name());
     addCollision(child);
     current = 0;
 }
@@ -2232,9 +2202,7 @@ bool NameCollisionNode::isQmlNode() const
 
 /*!
   Find any of this collision node's children that has type \a t
-  and subtype \a st. Normally, it will be the current child, but
-  the return value might be null. It never should be null, but
-  at this point, I'm not sure what will happen.
+  and subtype \a st and return a pointer to it.
 */
 const InnerNode* NameCollisionNode::findAny(Node::Type t, Node::SubType st) const
 {

@@ -722,7 +722,24 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
             else if (t == "faq")
                 ptype = Node::FAQPage;
         }
-        return new FakeNode(tre->root(), args[0], Node::Page, ptype);
+
+        /*
+          Search for a node with the same name. If there is one,
+          then there is a collision, so create a collision node
+          and make the existing node a child of the collision
+          node, and then create the new Page node and make
+          it a child of the collision node as well. Return the
+          collision node.
+
+          If there is no collision, just create a new Page
+          node and return that one.
+        */
+        NameCollisionNode* ncn = tre->checkForCollision(args[0]);
+        FakeNode* fn = new FakeNode(tre->root(), args[0], Node::Page, ptype);
+        if (ncn) {
+            ncn->addCollision(fn);
+        }
+        return fn;
     }
     else if (command == COMMAND_QMLCLASS) {
         const ClassNode* classNode = 0;
@@ -738,14 +755,13 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
           then there is a collision, so create a collision node
           and make the existing node a child of the collision
           node, and then create the new QML class node and make
-          it a child of the collision node as well. The new QML
-          class node becomes the current child of the collision
-          node. Return the collision node.
+          it a child of the collision node as well. Return the
+          collision node.
 
           If there is no collision, just create a new QML class
           node and return that one.
          */
-        NameCollisionNode* ncn = tre->checkForCollision(names[0],Node::Fake);
+        NameCollisionNode* ncn = tre->checkForCollision(names[0]);
         QmlClassNode* qcn = new QmlClassNode(tre->root(), names[0], classNode);
         if (ncn) {
             ncn->addCollision(qcn);

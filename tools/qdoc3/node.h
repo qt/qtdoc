@@ -413,12 +413,12 @@ class FakeNode : public InnerNode
              PageType ptype);
     virtual ~FakeNode() { }
 
-    void setTitle(const QString &title) { tle = title; }
-    void setSubTitle(const QString &subTitle) { stle = subTitle; }
+    void setTitle(const QString &title) { title_ = title; }
+    void setSubTitle(const QString &subTitle) { subtitle_ = subTitle; }
     void addGroupMember(Node* node) { nodeList.append(node); }
     void addQmlModuleMember(Node* node) { nodeList.append(node); }
 
-    SubType subType() const { return sub; }
+    SubType subType() const { return subtype_; }
     virtual QString title() const;
     virtual QString fullTitle() const;
     virtual QString subTitle() const;
@@ -429,9 +429,9 @@ class FakeNode : public InnerNode
     virtual void setImageFileName(const QString& ) { }
 
   protected:
-    SubType sub;
-    QString tle;
-    QString stle;
+    SubType subtype_;
+    QString title_;
+    QString subtitle_;
     NodeList nodeList;
 };
 

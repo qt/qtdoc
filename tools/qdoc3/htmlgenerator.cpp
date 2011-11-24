@@ -3625,17 +3625,16 @@ const Node *HtmlGenerator::findNodeForTarget(const QString &target,
     }
     else if (marker) {
         node = marker->resolveTarget(target, myTree, relative);
-        if (!node)
-            node = myTree->findFakeNodeByTitle(target);
+        if (!node) {
+            node = myTree->findFakeNodeByTitle(target, relative);
+        }
         if (!node && atom) {
-            node = myTree->findUnambiguousTarget(target,
-                *const_cast<Atom**>(&atom));
+            node = myTree->findUnambiguousTarget(target, *const_cast<Atom**>(&atom), relative);
         }
     }
 
     if (!node)
         relative->doc().location().warning(tr("Cannot link to '%1'").arg(target));
-
     return node;
 }
 
@@ -3690,17 +3689,19 @@ QString HtmlGenerator::getLink(const Atom *atom,
         else {
             *node = marker->resolveTarget(first, myTree, relative);
             if (!*node) {
-                *node = myTree->findFakeNodeByTitle(first);
+                *node = myTree->findFakeNodeByTitle(first, relative);
             }
             if (!*node) {
-                *node = myTree->findUnambiguousTarget(first, targetAtom);
+                *node = myTree->findUnambiguousTarget(first, targetAtom, relative);
             }
         }
         if (*node) {
-            if (!(*node)->url().isEmpty())
+            if (!(*node)->url().isEmpty()) {
                 return (*node)->url();
-            else
+            }
+            else {
                 path.removeFirst();
+            }
         }
         else {
             *node = relative;
@@ -3736,6 +3737,14 @@ QString HtmlGenerator::getLink(const Atom *atom,
             }
         }
 
+        /*
+          This loop really only makes sense if *node is not 0.
+          In that case, The node *node points to represents a
+          qdoc page, so the link will ultimately point to some
+          target on that page. This loop finds that target on
+          the page that *node represents. targetAtom is that
+          target.
+         */
         while (!path.isEmpty()) {
             targetAtom = myTree->findTarget(path.first(), *node);
             if (targetAtom == 0)
@@ -3743,6 +3752,12 @@ QString HtmlGenerator::getLink(const Atom *atom,
             path.removeFirst();
         }
 
+        /*
+          Given that *node is not null, we now cconstruct a link
+          to the page that *node represents, and then if there is
+          a target on that page, we connect the target to the link
+          with '#'.
+         */
         if (path.isEmpty()) {
             link = linkForNode(*node, relative);
             if (*node && (*node)->subType() == Node::Image)
@@ -3785,7 +3800,7 @@ QString HtmlGenerator::getDisambiguationLink(const Atom* atom, CodeMarker* marke
     if (!atom->string().contains("::"))
         return link;
     QStringList path = atom->string().split("::");
-    NameCollisionNode* ncn = myTree->findCollisionNode(path[0],Node::Fake);
+    NameCollisionNode* ncn = myTree->findCollisionNode(path[0]);
     if (ncn) {
         QString label;
         if (atom->next() && atom->next()->next()) {

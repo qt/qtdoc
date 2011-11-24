@@ -305,16 +305,15 @@ const QmlClassNode* Tree::findQmlClassNode(const QString& module, const QString&
 }
 
 /*!
-  First, search for a node of the specified type \a t with
-  the specified \a name. If a matching node is found, if it
-  is a collision node, another collision with this name has
-  been found, so return the collision node. If the matching
-  node is not a collision node, the first collision for this
-  name has been found, so create a NameCollisionNode with the
-  matching node as its first child, and return a pointer to
-  the new NameCollisionNode. Otherwise return 0.
+  First, search for a node with the specified \a name. If a matching
+  node is found, if it is a collision node, another collision with
+  this name has been found, so return the collision node. If the
+  matching node is not a collision node, the first collision for this
+  name has been found, so create a NameCollisionNode with the matching
+  node as its first child, and return a pointer to the new
+  NameCollisionNode. Otherwise return 0.
  */
-NameCollisionNode* Tree::checkForCollision(const QString& name, Node::Type t) const
+NameCollisionNode* Tree::checkForCollision(const QString& name) const
 {
     Node* n = const_cast<Node*>(findNode(QStringList(name)));
     if (n) {
@@ -330,13 +329,13 @@ NameCollisionNode* Tree::checkForCollision(const QString& name, Node::Type t) co
 
 /*!
   This function is like checkForCollision() in that it searches
-  for a collision node with the specified \a name of the specified
-  \a type. But it doesn't create anything. If it finds a match,
-  it returns the pointer. Otherwise it returns 0.
+  for a collision node with the specified \a name. But it doesn't
+  create anything. If it finds a match, it returns the pointer.
+  Otherwise it returns 0.
  */
-NameCollisionNode* Tree::findCollisionNode(const QString& name, Node::Type t) const
+NameCollisionNode* Tree::findCollisionNode(const QString& name) const
 {
-    Node* n = const_cast<Node*>(findNode(QStringList(name), t));
+    Node* n = const_cast<Node*>(findNode(QStringList(name)));
     if (n) {
         if (n->subType() == Node::Collision) {
             NameCollisionNode* ncn = static_cast<NameCollisionNode*>(n);
@@ -481,13 +480,40 @@ static const char*  const suffixes[NumSuffixes] = { "", "s", "es" };
 
 /*!
   This function searches for a node with the specified \a title.
+  If \a relative is provided, use it to disambiguate if it has a
+  QML module identifier.
  */
-const FakeNode* Tree::findFakeNodeByTitle(const QString& title) const
+const FakeNode* Tree::findFakeNodeByTitle(const QString& title, const Node* relative ) const
 {
     for (int pass = 0; pass < NumSuffixes; ++pass) {
-        FakeNodeHash::const_iterator i =
-                priv->fakeNodesByTitle.find(Doc::canonicalTitle(title + suffixes[pass]));
+        FakeNodeHash::const_iterator i = priv->fakeNodesByTitle.find(Doc::canonicalTitle(title + suffixes[pass]));
         if (i != priv->fakeNodesByTitle.constEnd()) {
+            if (relative && !relative->qmlModuleIdentifier().isEmpty()) {
+                const FakeNode* fn = i.value();
+                InnerNode* parent = fn->parent();
+                if (parent && parent->type() == Node::Fake && parent->subType() == Node::Collision) {
+                    const NodeList& nl = parent->childNodes();
+                    NodeList::ConstIterator it = nl.begin();
+                    while (it != nl.end()) {
+                        if ((*it)->qmlModuleIdentifier() == relative->qmlModuleIdentifier()) {
+                            /*
+                              By returning here, we avoid printing all the duplicate
+                              header warnings, which are not really duplicates now,
+                              because of the QML module identifier being used as a
+                              namespace qualifier.
+                             */
+                            fn = static_cast<const FakeNode*>(*it);
+                            return fn;
+                        }
+                        ++it;
+                    }
+               }
+            }
+            /*
+              Reporting all these duplicate section titles is probably
+              overkill. We should report the duplicate file and let
+              that suffice.
+             */
             FakeNodeHash::const_iterator j = i;
             ++j;
             if (j != priv->fakeNodesByTitle.constEnd() && j.key() == i.key()) {
@@ -516,22 +542,25 @@ const FakeNode* Tree::findFakeNodeByTitle(const QString& title) const
   the found node.
  */
 const Node*
-Tree::findUnambiguousTarget(const QString& target, Atom *&atom) const
+Tree::findUnambiguousTarget(const QString& target, Atom *&atom, const Node* relative) const
 {
     Target bestTarget = {0, 0, INT_MAX};
     int numBestTargets = 0;
+    QList<Target> bestTargetList;
 
     for (int pass = 0; pass < NumSuffixes; ++pass) {
-        TargetHash::const_iterator i =
-                priv->targetHash.find(Doc::canonicalTitle(target + suffixes[pass]));
+        TargetHash::const_iterator i = priv->targetHash.find(Doc::canonicalTitle(target + suffixes[pass]));
         if (i != priv->targetHash.constEnd()) {
             TargetHash::const_iterator j = i;
             do {
                 const Target& candidate = j.value();
                 if (candidate.priority < bestTarget.priority) {
                     bestTarget = candidate;
+                    bestTargetList.clear();
+                    bestTargetList.append(candidate);
                     numBestTargets = 1;
                 } else if (candidate.priority == bestTarget.priority) {
+                    bestTargetList.append(candidate);
                     ++numBestTargets;
                 }
                 ++j;
@@ -540,6 +569,17 @@ Tree::findUnambiguousTarget(const QString& target, Atom *&atom) const
             if (numBestTargets == 1) {
                 atom = bestTarget.atom;
                 return bestTarget.node;
+            }
+            else if (bestTargetList.size() > 1) {
+                if (relative && !relative->qmlModuleIdentifier().isEmpty()) {
+                    for (int i=0; i<bestTargetList.size(); ++i) {
+                        const Node* n = bestTargetList.at(i).node;
+                        if (relative->qmlModuleIdentifier() == n->qmlModuleIdentifier()) {
+                            atom = bestTargetList.at(i).atom;
+                            return n;
+                        }
+                    }
+                }
             }
         }
     }
@@ -800,14 +840,18 @@ void Tree::resolveQmlModules()
 
 /*!
  */
-void Tree::resolveTargets()
+void Tree::resolveTargets(InnerNode* root)
 {
     // need recursion
 
-    foreach (Node* child, roo.childNodes()) {
+    foreach (Node* child, root->childNodes()) {
         if (child->type() == Node::Fake) {
             FakeNode* node = static_cast<FakeNode*>(child);
-            priv->fakeNodesByTitle.insert(Doc::canonicalTitle(node->title()), node);
+            if (!node->title().isEmpty())
+                priv->fakeNodesByTitle.insert(Doc::canonicalTitle(node->title()), node);
+            if (node->subType() == Node::Collision) {
+                resolveTargets(node);
+            }
         }
 
         if (child->doc().hasTableOfContents()) {

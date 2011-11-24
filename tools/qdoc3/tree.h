@@ -79,8 +79,8 @@ class Tree
                          const Node* self,
                          bool qml) const;
     QmlClassNode* findQmlClassNode(const QString& module, const QString& name);
-    NameCollisionNode* checkForCollision(const QString& name, Node::Type t) const;
-    NameCollisionNode* findCollisionNode(const QString& name, Node::Type t) const;
+    NameCollisionNode* checkForCollision(const QString& name) const;
+    NameCollisionNode* findCollisionNode(const QString& name) const;
     FunctionNode *findFunctionNode(const QStringList &path, 
                                    Node *relative = 0,
                                    int findFlags = 0);
@@ -106,7 +106,7 @@ class Tree
     void resolveProperties();
     void resolveGroups();
     void resolveQmlModules();
-    void resolveTargets();
+    void resolveTargets(InnerNode* root);
     void resolveCppToQmlLinks();
     void fixInheritance(NamespaceNode *rootNode = 0);
     void setVersion(const QString &version) { vers = version; }
@@ -129,8 +129,8 @@ class Tree
                                          const FunctionNode *clone,
                                          const Node *relative = 0,
                                          int findFlags = 0) const;
-    const FakeNode *findFakeNodeByTitle(const QString &title) const;
-    const Node *findUnambiguousTarget(const QString &target, Atom *&atom) const;
+    const FakeNode *findFakeNodeByTitle(const QString &title, const Node* relative = 0) const;
+    const Node *findUnambiguousTarget(const QString &target, Atom *&atom, const Node* relative) const;
     Atom *findTarget(const QString &target, const Node *node) const;
     const NamespaceNode *root() const { return &roo; }
     void readIndexes(const QStringList &indexFiles);

@@ -321,7 +321,7 @@ static void processQdocconfFile(const QString &fileName)
      */
     tree->resolveGroups();
     tree->resolveQmlModules();
-    tree->resolveTargets();
+    tree->resolveTargets(tree->root());
     tree->resolveCppToQmlLinks();
     tree->resolveQmlInheritance();
 
