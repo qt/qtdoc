@@ -2254,14 +2254,46 @@ void HtmlGenerator::generateCompactList(const Node *relative,
     /*
       If commonPrefix is not empty, then the caller knows what
       the common prefix is and has passed it in, so just use that
-      one.
+      one. But if the commonPrefix is empty (it normally is), then
+      compute a common prefix using this simple algorithm. Note we
+      assume the prefix length is 1, i.e. we will have a single
+      character as the common prefix.
      */
     int commonPrefixLen = commonPrefix.length();
     if (commonPrefixLen == 0) {
-        QString first;
-        QString last;
-        
+        QVector<int> count(26);
+        for (int i=0; i<26; ++i)
+            count[i] = 0;
+
+        NodeMap::const_iterator iter = classMap.begin();
+        while (iter != classMap.end()) {
+            if (!iter.key().contains("::")) {
+                QChar c = iter.key()[0];
+                if ((c >= 'A') && (c <= 'Z')) {
+                    int idx = c.unicode() - QChar('A').unicode();
+                    ++count[idx];
+                }
+            }
+            ++iter;
+        }
+        int highest = 0;
+        int idx = -1;
+        for (int i=0; i<26; ++i) {
+            if (count[i] > highest) {
+                highest = count[i];
+                idx = i;
+            }
+        }
+        idx += QChar('A').unicode();
+        QChar common(idx);
+        commonPrefix = common;
+        commonPrefixLen = 1;
+
+#if 0
         /*
+          The algorithm below eventually failed, so it was replaced
+          with the simple (perhaps too simple) algorithm above.
+
           The caller didn't pass in a common prefix, so get the common
           prefix by looking at the class names of the first and last
           classes in the class map. Discard any namespace names and
@@ -2272,7 +2304,8 @@ void HtmlGenerator::generateCompactList(const Node *relative,
           and QXtWidget in Qt 2.1), fails if either class name does not
           begin with Q.
         */
-
+        QString first;
+        QString last;
         NodeMap::const_iterator iter = classMap.begin();
         while (iter != classMap.end()) {
             if (!iter.key().contains("::")) {
@@ -2305,6 +2338,7 @@ void HtmlGenerator::generateCompactList(const Node *relative,
         }
 
         commonPrefix = first.left(commonPrefixLen);
+#endif
     }
 
     /*
