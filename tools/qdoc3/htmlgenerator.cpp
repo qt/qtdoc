@@ -1148,7 +1148,7 @@ void HtmlGenerator::generateClassLikeNode(const InnerNode *inner,
         classe = static_cast<const ClassNode *>(inner);
         rawTitle = marker->plainName(inner);
         fullTitle = marker->plainFullName(inner);
-        title = rawTitle + " Class Reference";
+        title = rawTitle + " Class";
     }
 
     Text subtitleText;
@@ -4224,7 +4224,7 @@ bool HtmlGenerator::generatePageElement(QXmlStreamWriter& writer,
             }
         case Node::Class:
             {
-                title = node->name() + " Class Reference";
+                title = node->name() + " Class";
                 pageWords << node->name() << "class" << "reference";
                 break;
             }
@@ -4232,7 +4232,7 @@ bool HtmlGenerator::generatePageElement(QXmlStreamWriter& writer,
             {
                 rawTitle = marker->plainName(inner);
                 fullTitle = marker->plainFullName(inner);
-                title = rawTitle + " Namespace Reference";
+                title = rawTitle + " Namespace";
                 pageWords << rawTitle << "namespace" << "reference";
                 break;
             }
@@ -4246,28 +4246,28 @@ bool HtmlGenerator::generatePageElement(QXmlStreamWriter& writer,
         switch (node->type()) {
         case Node::Enum:
             {
-                title = node->name() + " Enum Reference";
+                title = node->name() + " Enum";
                 pageWords << node->name() << "enum" << "type";
                 url += "#" + node->name() + "-enum";
                 break;
             }
         case Node::Function:
             {
-                title = node->name() + " Function Reference";
+                title = node->name() + " Function";
                 pageWords << node->name() << "function";
                 url += "#" + node->name();
                 break;
             }
         case Node::Property:
             {
-                title = node->name() + " Property Reference";
+                title = node->name() + " Property";
                 pageWords << node->name() << "property";
                 url += "#" + node->name() + "-prop";
                 break;
             }
         case Node::Typedef:
             {
-                title = node->name() + " Type Reference";
+                title = node->name() + " Type";
                 pageWords << node->name() << "typedef" << "type";
                 url += "#" + node->name();
                 break;

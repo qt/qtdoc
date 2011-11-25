@@ -1346,8 +1346,11 @@ QString Generator::fullName(const Node *node,
 {
     if (node->type() == Node::Fake) {
         const FakeNode* fn = static_cast<const FakeNode *>(node);
+#if 0
+        // Removed for QTBUG-22870
         if (!fn->qmlModuleIdentifier().isEmpty())
             return fn->qmlModuleIdentifier() + " " + fn->title();
+#endif
         return fn->title();
     }
     else if (node->type() == Node::Class &&

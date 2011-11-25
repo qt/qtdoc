@@ -1824,7 +1824,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
         const ClassNode* cn = const_cast<ClassNode*>(static_cast<const ClassNode*>(inner));
         rawTitle = marker->plainName(inner);
         fullTitle = marker->plainFullName(inner);
-        title = rawTitle + " Class Reference";
+        title = rawTitle + " Class";
 
         generateHeader(inner, fullTitle);
         generateBrief(inner, marker); // <shortdesc>
@@ -2079,7 +2079,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
         const ClassNode* cn = qcn->classNode();
         rawTitle = marker->plainName(inner);
         fullTitle = marker->plainFullName(inner);
-        title = rawTitle + " Element Reference";
+        title = rawTitle + " Element";
         //QString fullTitle = fake->fullTitle();
         //QString htmlTitle = fullTitle;
 
@@ -5809,7 +5809,7 @@ DitaXmlGenerator::writeProlog(const InnerNode* inner)
             category = "Namespace";
         else if (inner->type() == Node::Fake) {
             if (inner->subType() == Node::QmlClass)
-                category = "QML Element Reference";
+                category = "QML Reference";
             else if (inner->subType() == Node::QmlBasicType)
                 category = "QML Basic Type";
             else if (inner->subType() == Node::HeaderFile)

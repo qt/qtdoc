@@ -1813,7 +1813,7 @@ QmlClassNode::QmlClassNode(InnerNode *parent,
         qDebug() << "BOGUS:" << name;
         i = 4;
     }
-    setTitle(name.mid(i) + QLatin1String(" Reference"));
+    setTitle(name.mid(i));
 }
 
 /*!
