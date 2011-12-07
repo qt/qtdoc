@@ -79,10 +79,6 @@ public:
     virtual bool visit(QDeclarativeJS::AST::UiArrayMemberList *);
     virtual bool visit(QDeclarativeJS::AST::UiQualifiedId *);
 
-    virtual bool visit(QDeclarativeJS::AST::UiSignature *);
-    virtual void endVisit(QDeclarativeJS::AST::UiSignature *);
-
-    virtual bool visit(QDeclarativeJS::AST::UiFormal *);
     virtual bool visit(QDeclarativeJS::AST::ThisExpression *);
     virtual bool visit(QDeclarativeJS::AST::IdentifierExpression *);
     virtual bool visit(QDeclarativeJS::AST::NullExpression *);

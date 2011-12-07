@@ -323,25 +323,6 @@ bool QmlMarkupVisitor::visit(QDeclarativeJS::AST::UiQualifiedId *id)
     return false;
 }
 
-bool QmlMarkupVisitor::visit(QDeclarativeJS::AST::UiSignature *signature)
-{
-    addVerbatim(signature->lparenToken);
-    return true;
-}
-
-void QmlMarkupVisitor::endVisit(QDeclarativeJS::AST::UiSignature *signature)
-{
-    addVerbatim(signature->rparenToken);
-}
-
-bool QmlMarkupVisitor::visit(QDeclarativeJS::AST::UiFormal *formal)
-{
-    addMarkedUpToken(formal->identifierToken, QLatin1String("name"));
-    addVerbatim(formal->asToken);
-    addVerbatim(formal->aliasToken);
-    return false;
-}
-
 bool QmlMarkupVisitor::visit(QDeclarativeJS::AST::ThisExpression *expression)
 {
     addVerbatim(expression->thisToken);
