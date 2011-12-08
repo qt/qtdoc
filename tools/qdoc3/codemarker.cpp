@@ -575,6 +575,7 @@ QStringList CodeMarker::macRefsForNode(Node *node)
     case Node::Function:
         {
             bool isMacro = false;
+            Q_UNUSED(isMacro)
             const FunctionNode *func = static_cast<const FunctionNode *>(node);
 
             // overloads are too clever for the Xcode documentation browser
