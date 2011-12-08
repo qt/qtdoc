@@ -158,7 +158,7 @@ static QString cleanType(const QString &type, const Tree *tree)
     if (result.contains("::")) {
         // remove needless (and needful) class prefixes
         QRegExp regExp("[A-Za-z0-9_]+::");
-        result.replace(regExp, "");
+        result.remove(regExp);
     }
     return result;
 }
@@ -624,8 +624,8 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         /*
           The command was neither "fn" nor "macro" .
          */
-        // ### split(" ") hack is there to support header file syntax
-        QStringList paths = arg.split(" ");
+        // ### split(QLatin1Char(' ')) hack is there to support header file syntax
+        QStringList paths = arg.split(QLatin1Char(' '));
         QStringList path = paths[0].split("::");
         Node *node = 0;
         if (!usedNamespaces.isEmpty()) {
@@ -651,7 +651,7 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
         else if (command == COMMAND_SERVICE) {
             // If the command is "\service", then we need to tag the
             // class with the actual service name.
-            QStringList args = arg.split(" ");
+            QStringList args = arg.split(QLatin1Char(' '));
             if (args.size() > 1) {
                 ClassNode *cnode = static_cast<ClassNode *>(node);
                 cnode->setServiceName(args[1]);
@@ -706,7 +706,7 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
     }
     else if (command == COMMAND_PAGE) {
         Node::PageType ptype = Node::ArticlePage;
-        QStringList args = arg.split(" ");
+        QStringList args = arg.split(QLatin1Char(' '));
         if (args.size() > 1) {
             QString t = args[1].toLower();
             if (t == "howto")
@@ -743,7 +743,7 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
     }
     else if (command == COMMAND_QMLCLASS) {
         const ClassNode* classNode = 0;
-        QStringList names = arg.split(" ");
+        QStringList names = arg.split(QLatin1Char(' '));
         if (names.size() > 1) {
             Node* n = tre->findNode(names[1].split("::"),Node::Class);
             if (n) {
@@ -823,7 +823,7 @@ bool CppCodeParser::splitQmlPropertyArg(const Doc& doc,
                                         QString& element,
                                         QString& name)
 {
-    QStringList blankSplit = arg.split(" ");
+    QStringList blankSplit = arg.split(QLatin1Char(' '));
     if (blankSplit.size() > 1) {
         type = blankSplit[0];
         QStringList colonSplit(blankSplit[1].split("::"));
@@ -871,7 +871,7 @@ bool CppCodeParser::splitQmlMethodArg(const Doc& doc,
 {
     QStringList colonSplit(arg.split("::"));
     if (colonSplit.size() > 1) {
-        QStringList blankSplit = colonSplit[0].split(" ");
+        QStringList blankSplit = colonSplit[0].split(QLatin1Char(' '));
         if (blankSplit.size() > 1) {
             type = blankSplit[0];
             if (colonSplit.size() > 2) {
@@ -1039,7 +1039,7 @@ void CppCodeParser::processOtherMetaCommand(const Doc& doc,
     }
     else if (command == COMMAND_RELATES) {
         InnerNode *pseudoParent;
-        if (arg.startsWith("<") || arg.startsWith("\"")) {
+        if (arg.startsWith(QLatin1Char('<')) || arg.startsWith('"')) {
             pseudoParent =
                 static_cast<InnerNode *>(tre->findNode(QStringList(arg),
                                                        Node::Fake));
@@ -1603,7 +1603,7 @@ bool CppCodeParser::matchFunctionDecl(InnerNode *parent,
     if (parent) {
         if (name == parent->name()) {
             func->setMetaness(FunctionNode::Ctor);
-        } else if (name.startsWith("~"))  {
+        } else if (name.startsWith(QLatin1Char('~')))  {
             func->setMetaness(FunctionNode::Dtor);
         }
     }
@@ -1833,11 +1833,11 @@ bool CppCodeParser::matchEnumItem(InnerNode *parent, EnumNode *enume)
                 bool ok;
                 int n = last.toInt(&ok);
                 if (ok) {
-                    if (last.startsWith("0") && last.size() > 1) {
+                    if (last.startsWith(QLatin1Char('0')) && last.size() > 1) {
                         if (last.startsWith("0x") || last.startsWith("0X"))
                             strVal = last.left(2) + QString::number(n + 1, 16);
                         else
-                            strVal = "0" + QString::number(n + 1, 8);
+                            strVal = QLatin1Char('0') + QString::number(n + 1, 8);
                     }
                     else
                         strVal = QString::number(n + 1);
@@ -2376,8 +2376,8 @@ void CppCodeParser::parseQiteratorDotH(const Location &location,
 
     QString text = file.readAll();
     text.remove("\r");
-    text.replace("\\\n", "");
-    QStringList lines = text.split("\n");
+    text.remove("\\\n");
+    QStringList lines = text.split(QLatin1Char('\n'));
     lines = lines.filter("Q_DECLARE");
     lines.replaceInStrings(QRegExp("#define Q[A-Z_]*\\(C\\)"), "");
 
@@ -2399,7 +2399,7 @@ void CppCodeParser::instantiateIteratorMacro(const QString &container,
 {
     QString resultingCode = macroDef;
     resultingCode.replace(QRegExp("\\bC\\b"), container);
-    resultingCode.replace(QRegExp("\\s*##\\s*"), "");
+    resultingCode.remove(QRegExp("\\s*##\\s*"));
 
     Location loc(includeFile);   // hack to get the include file for free
     QByteArray latin1 = resultingCode.toLatin1();
@@ -2412,7 +2412,7 @@ void CppCodeParser::instantiateIteratorMacro(const QString &container,
 void CppCodeParser::createExampleFileNodes(FakeNode *fake)
 {
     QString examplePath = fake->name();
-    QString proFileName = examplePath + "/" + examplePath.split("/").last() + ".pro";
+    QString proFileName = examplePath + QLatin1Char('/') + examplePath.split(QLatin1Char('/')).last() + ".pro";
     QString userFriendlyFilePath;
 
     QString fullPath = Config::findFile(fake->doc().location(),
@@ -2423,7 +2423,7 @@ void CppCodeParser::createExampleFileNodes(FakeNode *fake)
 
     if (fullPath.isEmpty()) {
         QString tmp = proFileName;
-        proFileName = examplePath + "/" + "qbuild.pro";
+        proFileName = examplePath + QLatin1Char('/') + "qbuild.pro";
         userFriendlyFilePath.clear();
         fullPath = Config::findFile(fake->doc().location(),
                                     exampleFiles,
@@ -2431,7 +2431,7 @@ void CppCodeParser::createExampleFileNodes(FakeNode *fake)
                                     proFileName,
                                     userFriendlyFilePath);
         if (fullPath.isEmpty()) {
-            proFileName = examplePath + "/" + examplePath.split("/").last() + ".qmlproject";
+            proFileName = examplePath + QLatin1Char('/') + examplePath.split(QLatin1Char('/')).last() + ".qmlproject";
             userFriendlyFilePath.clear();
             fullPath = Config::findFile(fake->doc().location(),
                                         exampleFiles,

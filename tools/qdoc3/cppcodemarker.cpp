@@ -187,12 +187,12 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
     case Node::QmlMethod:
 	func = (const FunctionNode *) node;
         if (style != Subpage && !func->returnType().isEmpty())
-	    synopsis = typified(func->returnType()) + " ";
+            synopsis = typified(func->returnType()) + QLatin1Char(' ');
 	synopsis += name;
         if (func->metaness() != FunctionNode::MacroWithoutParams) {
             synopsis += " (";
 	    if (!func->parameters().isEmpty()) {
-	        synopsis += " ";
+                synopsis += QLatin1Char(' ');
 	        QList<Parameter>::ConstIterator p = func->parameters().begin();
 	        while (p != func->parameters().end()) {
 		    if (p != func->parameters().begin())
@@ -206,9 +206,9 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 		        synopsis += " = " + protect((*p).defaultValue());
 		    ++p;
 	        }
-	        synopsis += " ";
+                synopsis += QLatin1Char(' ');
 	    }
-	    synopsis += ")";
+            synopsis += QLatin1Char(')');
         }
 	if (func->isConst())
 	    synopsis += " const";
@@ -248,7 +248,7 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 		bracketed += "slot";
 	    }
 	    if (!bracketed.isEmpty())
-		extra += " [" + bracketed.join(" ") + "]";
+                extra += " [" + bracketed.join(" ") + QLatin1Char(']');
 	}
 	break;
     case Node::Enum:
@@ -286,8 +286,8 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
                 }
             }
 	    if (!documentedItems.isEmpty())
-		synopsis += " ";
-	    synopsis += "}";
+                synopsis += QLatin1Char(' ');
+            synopsis += QLatin1Char('}');
 	}
 	break;
     case Node::Typedef:
@@ -309,7 +309,7 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
             synopsis = name + " : " + typified(variable->dataType());
         }
         else {
-            synopsis = typified(variable->leftType()) + " " +
+            synopsis = typified(variable->leftType()) + QLatin1Char(' ') +
                 name + protect(variable->rightType());
         }
 	break;
@@ -433,7 +433,7 @@ QString CppCodeMarker::markedUpIncludes(const QStringList& includes)
 
 QString CppCodeMarker::functionBeginRegExp(const QString& funcName)
 {
-    return "^" + QRegExp::escape(funcName) + "$";
+    return QLatin1Char('^') + QRegExp::escape(funcName) + QLatin1Char('$');
 
 }
 
@@ -814,9 +814,9 @@ const Node *CppCodeMarker::resolveTarget(const QString& target,
                 && func->metaness() != FunctionNode::MacroWithoutParams)
             return func;
     }
-    else if (target.contains("#")) {
+    else if (target.contains(QLatin1Char('#'))) {
         // ### this doesn't belong here; get rid of TargetNode hack
-        int hashAt = target.indexOf("#");
+        int hashAt = target.indexOf(QLatin1Char('#'));
         QString link = target.left(hashAt);
         QString ref = target.mid(hashAt + 1);
         const Node *node;
@@ -1096,13 +1096,13 @@ QString CppCodeMarker::addMarkUp(const QString &in,
 	    out += QLatin1String("<@") + tag;
             if (target)
                 out += QLatin1String(" target=\"") + text + QLatin1String("()\"");
-            out += QLatin1String(">");
+            out += QLatin1Char('>');
         }
 
         out += protect(text);
 
 	if (!tag.isEmpty())
-	    out += QLatin1String("</@") + tag + QLatin1String(">");
+            out += QLatin1String("</@") + tag + QLatin1Char('>');
     }
 
     if (start < code.length()) {

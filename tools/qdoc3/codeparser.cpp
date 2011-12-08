@@ -331,7 +331,7 @@ void CodeParser::extractPageLinkAndDesc(const QString& arg,
             *desc = *link;
     }
     else {
-        int spaceAt = arg.indexOf(" ");
+        int spaceAt = arg.indexOf(QLatin1Char(' '));
         if (arg.contains(".html") && spaceAt != -1) {
             *link = arg.left(spaceAt).trimmed();
             *desc = arg.mid(spaceAt).trimmed();
@@ -390,7 +390,7 @@ void CodeParser::createOutputSubdirectory(const Location& location,
                         location.warning(tr("File path: '%1' has no sub dir after bundle base dir: '%2'")
                                          .arg(filePath).arg(bd));
                     else {
-                        QString subDirPath = Generator::outputDir() + "/" + currentSubDir_;
+                        QString subDirPath = Generator::outputDir() + QLatin1Char('/') + currentSubDir_;
                         QDir dirInfo;
                         if (!dirInfo.exists(subDirPath)) {
                             if (!dirInfo.mkpath(subDirPath))

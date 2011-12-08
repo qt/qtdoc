@@ -227,7 +227,7 @@ QString PageGenerator::fileBase(const Node *node) const
     // the code below is effectively equivalent to:
     //   base.replace(QRegExp("[^A-Za-z0-9]+"), " ");
     //   base = base.trimmed();
-    //   base.replace(" ", "-");
+    //   base.replace(QLatin1Char(' '), QLatin1Char('-'));
     //   base = base.toLower();
     // as this function accounted for ~8% of total running time
     // we optimize a bit...
@@ -286,9 +286,9 @@ QString PageGenerator::outFileName()
  */
 void PageGenerator::beginSubPage(const InnerNode* node, const QString& fileName)
 {
-    QString path = outputDir() + "/";
+    QString path = outputDir() + QLatin1Char('/');
     if (!node->outputSubdirectory().isEmpty())
-        path += node->outputSubdirectory() + "/";
+        path += node->outputSubdirectory() + QLatin1Char('/');
     path += fileName;
     QFile* outFile = new QFile(path);
     if (!outFile->open(QFile::WriteOnly))

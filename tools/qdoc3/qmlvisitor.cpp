@@ -130,7 +130,7 @@ QDeclarativeJS::AST::SourceLocation QmlDocVisitor::precedingComment(quint32 offs
             // Only examine multiline comments in order to avoid snippet markers.
             if (document.mid(loc.offset - 1, 1) == "*") {
                 QString comment = document.mid(loc.offset, loc.length);
-                if (comment.startsWith("!") || comment.startsWith("*"))
+                if (comment.startsWith(QLatin1Char('!')) || comment.startsWith(QLatin1Char('*')))
                     return loc;
             }
         }
@@ -203,7 +203,7 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation,
                     QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
                     qpn->setReadOnly(0);
                     if (qpn->dataType() == "alias") {
-                        QStringList part = args[0].split(" ");
+                        QStringList part = args[0].split(QLatin1Char(' '));
                         qpn->setDataType(part[0]);
                     }
                 }
@@ -382,7 +382,7 @@ static QString reconstituteFieldMemberExpression(EN* en)
         if (en->kind == QDeclarativeJS::AST::Node::Kind_FieldMemberExpression) {
             FME* fme = (FME*) en;
             s = reconstituteFieldMemberExpression(fme->base);
-            s += "." + fme->name.toString();
+            s += QLatin1Char('.') + fme->name.toString();
         }
         else if (en->kind == QDeclarativeJS::AST::Node::Kind_IdentifierExpression) {
             IE* ie = (IE*) en;

@@ -727,9 +727,9 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                 atom = atom->next();
             }
             str[0] = str[0].toLower();
-            if (str.right(1) == ".")
+            if (str.endsWith(QLatin1Char('.')))
                 str.truncate(str.length() - 1);
-            writeCharacters(str + ".");
+            writeCharacters(str + QLatin1Char('.'));
         }
         break;
     case Atom::BriefRight:
@@ -968,7 +968,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                 QMultiMap <QString, Node *> groups = myTree->groups();
                 foreach (const QString &groupName, editionGroupMap[editionName]) {
                     QList<Node *> groupClasses;
-                    if (groupName.startsWith("-")) {
+                    if (groupName.startsWith(QLatin1Char('-'))) {
                         groupClasses = groups.values(groupName.mid(1));
                         foreach (const Node *node, groupClasses)
                             editionClasses.remove(node->name());
@@ -1110,7 +1110,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                 s = sections.constBegin();
                 while (s != sections.constEnd()) {
                     if (!(*s).members.isEmpty()) {
-                        QString li = outFileName() + "#" + Doc::canonicalTitle((*s).name);
+                        QString li = outFileName() + QLatin1Char('#') + Doc::canonicalTitle((*s).name);
                         writeXrefListItem(li, (*s).name);
                     }
                     ++s;
@@ -1182,7 +1182,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                 if (!baseDir().isEmpty())
                     images.prepend("../");
                 if (atom->string()[0] != '/')
-                    images.append("/");
+                    images.append(QLatin1Char('/'));
                 fileName = images + atom->string();
             }
 
@@ -1415,7 +1415,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
     case Atom::RawString:
         if (atom->string() == " ")
             break;
-        if (atom->string().startsWith("&"))
+        if (atom->string().startsWith(QLatin1Char('&')))
             writeCharacters(atom->string());
         else if (atom->string() == "<sup>*</sup>") {
             writeStartTag(DT_sup);
@@ -1450,7 +1450,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
     case Atom::SectionHeadingLeft:
         writeStartTag(DT_p);
         writeGuidAttribute(Doc::canonicalTitle(Text::sectionHeading(atom).toString()));
-        hx = "h" + QString::number(atom->string().toInt() + hOffset(relative));
+        hx = QLatin1Char('h') + QString::number(atom->string().toInt() + hOffset(relative));
         xmlWriter().writeAttribute("outputclass",hx);
         inSectionHeading = true;
         break;
@@ -1571,7 +1571,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
         break;
     case Atom::TableItemLeft:
         {
-            QString values = "";
+            QString values;
             writeStartTag(DT_entry);
             for (int i=0; i<atom->count(); ++i) {
                 attr = atom->string(i);
@@ -1594,10 +1594,10 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                     }
                 }
                 else {
-                    QStringList spans = attr.split(",");
+                    QStringList spans = attr.split(QLatin1Char(','));
                     if (spans.size() == 2) {
                         if ((spans[0].toInt()>1) || (spans[1].toInt()>1)) {
-                            values += "span(" + spans[0] + "," + spans[1] + ")";
+                            values += "span(" + spans[0] + QLatin1Char(',') + spans[1] + QLatin1Char(')');
                         }
                     }
                 }
@@ -1623,9 +1623,9 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
             const Node* node = relative;
 
             Doc::Sections sectionUnit = Doc::Section4;
-            QStringList params = atom->string().split(",");
+            QStringList params = atom->string().split(QLatin1Char(','));
             QString columnText = params.at(0);
-            QStringList pieces = columnText.split(" ", QString::SkipEmptyParts);
+            QStringList pieces = columnText.split(QLatin1Char(' '), QString::SkipEmptyParts);
             if (pieces.size() >= 2) {
                 columnText = pieces.at(0);
                 pieces.pop_front();
@@ -2270,7 +2270,7 @@ void DitaXmlGenerator::writeLink(const Node* node,
                                  const QString& role)
 {
     if (node) {
-        QString link = fileName(node) + "#" + node->guid();
+        QString link = fileName(node) + QLatin1Char('#') + node->guid();
         writeStartTag(DT_link);
         xmlWriter().writeAttribute("href", link);
         xmlWriter().writeAttribute("role", role);
@@ -2482,7 +2482,7 @@ void DitaXmlGenerator::generateTableOfContents(const Node* node,
     if (numColumns > 1) {
         tdTag = "<td>"; /* width=\"" + QString::number((100 + numColumns - 1) / numColumns) + "%\">";*/
         out() << "<table class=\"toc\">\n<tr class=\"topAlign\">"
-              << tdTag << "\n";
+              << tdTag << '\n';
     }
 
     // disable nested links in table of contents
@@ -3160,8 +3160,8 @@ void DitaXmlGenerator::generateQmlItem(const Node* node,
     marked.replace("</@extra>", "</tt>");
 
     if (summary) {
-        marked.replace("<@type>", "");
-        marked.replace("</@type>", "");
+        marked.remove("<@type>");
+        marked.remove("</@type>");
     }
     writeText(marked, marker, relative);
 }
@@ -3341,7 +3341,7 @@ void DitaXmlGenerator::generateSectionInheritedList(const Section& section,
         writeStartTag(DT_li);
         QString text;
         text.setNum((*p).second);
-        text += " ";
+        text += QLatin1Char(' ');
         if ((*p).second == 1)
             text += section.singularMember;
         else
@@ -3351,7 +3351,7 @@ void DitaXmlGenerator::generateSectionInheritedList(const Section& section,
         writeStartTag(DT_xref);
         // formathtml
         // zzz
-        text = fileName((*p).first) + "#";
+        text = fileName((*p).first) + QLatin1Char('#');
         text += DitaXmlGenerator::cleanRef(section.name.toLower());
         xmlWriter().writeAttribute("href",text);
         text = protectEnc(marker->plainFullName((*p).first, relative));
@@ -3388,14 +3388,14 @@ QString DitaXmlGenerator::getMarkedUpSynopsis(const Node* node,
     marked.replace("</@param>","</i>");
 #endif
     if (style == CodeMarker::Summary) {
-        marked.replace("<@name>","");   // was "<b>"
-        marked.replace("</@name>","");  // was "</b>"
+        marked.remove("<@name>");   // was "<b>"
+        marked.remove("</@name>");  // was "</b>"
     }
 
     if (style == CodeMarker::Subpage) {
         QRegExp extraRegExp("<@extra>.*</@extra>");
         extraRegExp.setMinimal(true);
-        marked.replace(extraRegExp,"");
+        marked.remove(extraRegExp);
     }
 #if 0    
     else {
@@ -3405,8 +3405,8 @@ QString DitaXmlGenerator::getMarkedUpSynopsis(const Node* node,
 #endif    
 
     if (style != CodeMarker::Detailed) {
-        marked.replace("<@type>","");
-        marked.replace("</@type>","");
+        marked.remove("<@type>");
+        marked.remove("</@type>");
     }
     return marked;
 }
@@ -3617,7 +3617,7 @@ QString DitaXmlGenerator::cleanRef(const QString& ref)
         clean += "underscore.";
     }
     else {
-        clean += "A";
+        clean += QLatin1Char('A');
     }
 
     for (int i = 1; i < (int) ref.length(); i++) {
@@ -3630,7 +3630,7 @@ QString DitaXmlGenerator::cleanRef(const QString& ref)
             clean += c;
         }
         else if (c.isSpace()) {
-            clean += "-";
+            clean += QLatin1Char('-');
         }
         else if (u == '!') {
             clean += "-not";
@@ -3648,10 +3648,10 @@ QString DitaXmlGenerator::cleanRef(const QString& ref)
             clean += "-gt";
         }
         else if (u == '#') {
-            clean += "#";
+            clean += QLatin1Char('#');
         }
         else {
-            clean += "-";
+            clean += QLatin1Char('-');
             clean += QString::number((int)u, 16);
         }
     }
@@ -3670,7 +3670,7 @@ QString DitaXmlGenerator::registerRef(const QString& ref)
         }
         else if (prevRef == ref)
             break;
-        clean += "x";
+        clean += QLatin1Char('x');
     }
     return clean;
 }
@@ -3789,7 +3789,7 @@ QString DitaXmlGenerator::refForNode(const Node* node)
         else {
             ref = func->name();
             if (func->overloadNumber() != 1)
-                ref += "-" + QString::number(func->overloadNumber());
+                ref += QLatin1Char('-') + QString::number(func->overloadNumber());
         }
         break;
     case Node::Fake:
@@ -3842,7 +3842,7 @@ QString DitaXmlGenerator::guidForNode(const Node* node)
             else {
                 QString ref = fn->name();
                 if (fn->overloadNumber() != 1) {
-                    ref += "-" + QString::number(fn->overloadNumber());
+                    ref += QLatin1Char('-') + QString::number(fn->overloadNumber());
                 }
             }
             return fn->guid();
@@ -3925,7 +3925,7 @@ QString DitaXmlGenerator::linkForNode(const Node* node, const Node* relative)
         if (relative && fn == fileName(relative) && guid == guidForNode(relative)) {
             return QString();
         }
-        link += "#";
+        link += QLatin1Char('#');
         link += guid;
     }
     /*
@@ -3936,7 +3936,7 @@ QString DitaXmlGenerator::linkForNode(const Node* node, const Node* relative)
      */
     if (node && relative && (node != relative)) {
         if (node->outputSubdirectory() != relative->outputSubdirectory())
-            link.prepend(QString("../" + node->outputSubdirectory() + "/"));
+            link.prepend(QString("../" + node->outputSubdirectory() + QLatin1Char('/')));
     }
     return link;
 }
@@ -4163,7 +4163,7 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
     *node = 0;
     inObsoleteLink = false;
 
-    if (atom->string().contains(":") &&
+    if (atom->string().contains(QLatin1Char(':')) &&
         (atom->string().startsWith("file:")
          || atom->string().startsWith("http:")
          || atom->string().startsWith("https:")
@@ -4246,10 +4246,10 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
                 if (link.isEmpty())
                     link = outFileName();
                 QString guid = lookupGuid(link,refForAtom(targetAtom,*node));
-                link += "#" + guid;
+                link += QLatin1Char('#') + guid;
             }
             else if (!link.isEmpty() && *node && link.endsWith(".xml")) {
-                link += "#" + (*node)->guid();
+                link += QLatin1Char('#') + (*node)->guid();
             }
         }
         /*
@@ -4263,7 +4263,7 @@ QString DitaXmlGenerator::getLink(const Atom* atom,
         }
         else if (*node && relative && (*node != relative)) {
             if ((*node)->outputSubdirectory() != relative->outputSubdirectory()) {
-                link.prepend(QString("../" + (*node)->outputSubdirectory() + "/"));
+                link.prepend(QString("../" + (*node)->outputSubdirectory() + QLatin1Char('/')));
             }
         }
     }
@@ -4289,7 +4289,7 @@ void DitaXmlGenerator::generateIndex(const QString& fileBase,
                                      const QString& url,
                                      const QString& title)
 {
-    myTree->generateIndex(outputDir() + "/" + fileBase + ".index", url, title);
+    myTree->generateIndex(outputDir() + QLatin1Char('/') + fileBase + ".index", url, title);
 }
 
 void DitaXmlGenerator::generateStatus(const Node* node, CodeMarker* marker)
@@ -4317,13 +4317,14 @@ void DitaXmlGenerator::generateStatus(const Node* node, CodeMarker* marker)
             Atom *targetAtom = 0;
             if (fakeNode && node->type() == Node::Class) {
                 QString oldName(node->name());
-                targetAtom = myTree->findTarget(oldName.replace("3",""),fakeNode);
+                oldName.remove(QLatin1Char('3'));
+                targetAtom = myTree->findTarget(oldName,fakeNode);
             }
 
             if (targetAtom) {
                 QString fn = fileName(fakeNode);
                 QString guid = lookupGuid(fn,refForAtom(targetAtom,fakeNode));
-                text << Atom(Atom::GuidLink, fn + "#" + guid);
+                text << Atom(Atom::GuidLink, fn + QLatin1Char('#') + guid);
             }
             else
                 text << Atom(Atom::Link, "Porting to Qt 4");
@@ -4427,7 +4428,7 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
                     attr = "read-only";
                 if (qpgn->isDefault()) {
                     if (!attr.isEmpty())
-                        attr += " ";
+                        attr += QLatin1Char(' ');
                     attr += "default";
                 }
                 if (!attr.isEmpty())
@@ -4455,7 +4456,7 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
             attr = "read-only";
         if (qpn->isDefault()) {
             if (!attr.isEmpty())
-                attr += " ";
+                attr += QLatin1Char(' ');
             attr += "default";
         }
         if (!attr.isEmpty())
@@ -4668,7 +4669,7 @@ void DitaXmlGenerator::writeDerivations(const ClassNode* cn, CodeMarker* marker)
             // not included: <cxxClassDerivationVirtual>
 
             writeStartTag(DT_cxxClassBaseClass);
-            QString attr = fileName((*r).node) + "#" + (*r).node->guid();
+            QString attr = fileName((*r).node) + QLatin1Char('#') + (*r).node->guid();
             xmlWriter().writeAttribute("href",attr);
             writeCharacters(marker->plainFullName((*r).node));
             writeEndTag(); // </cxxClassBaseClass>
@@ -5332,7 +5333,7 @@ void DitaXmlGenerator::writeDataMembers(const Section& s,
             }
             
             writeStartTag(DT_cxxVariablePrototype);
-            writeCharacters(vn->leftType() + " ");
+            writeCharacters(vn->leftType() + QLatin1Char(' '));
             //writeCharacters(vn->parent()->name() + "::" + vn->name()); 
             writeCharacters(vn->name()); 
             if (!vn->rightType().isEmpty())

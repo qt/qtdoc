@@ -339,7 +339,7 @@ void Location::emitMessage(MessageType type,
 
     QString result = message;
     if (!details.isEmpty())
-	result += "\n[" + details + "]";
+        result += "\n[" + details + QLatin1Char(']');
     result.replace("\n", "\n    ");
     if (type == Error)
 	result.prepend(tr("error: "));

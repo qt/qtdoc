@@ -390,7 +390,7 @@ bool DocPrivate::isEnumDocSimplifiable() const
     const Atom *atom = text.firstAtom();
     while (atom) {
         if (atom->type() == Atom::AutoLink || atom->type() == Atom::String) {
-            justMetColon = atom->string().endsWith(":");
+            justMetColon = atom->string().endsWith(QLatin1Char(':'));
         }
         else if ((atom->type() == Atom::ListLeft) &&
                    (atom->string() == ATOM_LIST_VALUE)) {
@@ -758,7 +758,7 @@ void DocParser::parse(const QString& source,
                     case CMD_ENDLINK:
                         if (closeCommand(cmd)) {
                             if (priv->text.lastAtom()->type() == Atom::String
-                                    && priv->text.lastAtom()->string().endsWith(" "))
+                                    && priv->text.lastAtom()->string().endsWith(QLatin1Char(' ')))
                                 priv->text.lastAtom()->chopString();
                             append(Atom::FormattingRight, ATOM_FORMATTING_LINK);
                         }
@@ -1714,7 +1714,7 @@ void DocParser::include(const QString& fileName, const QString& identifier)
                         }
                     }
                     else
-                        result += lineBuffer[i] + "\n";
+                        result += lineBuffer[i] + QLatin1Char('\n');
                     ++i;
                 } while (i < lineBuffer.size());
                 if (result.isEmpty()) {
@@ -2039,7 +2039,7 @@ void DocParser::leavePara()
         }
         else {
             if (priv->text.lastAtom()->type() == Atom::String &&
-                 priv->text.lastAtom()->string().endsWith(" ")) {
+                 priv->text.lastAtom()->string().endsWith(QLatin1Char(' '))) {
                 priv->text.lastAtom()->chopString();
             }
             append(pendingParaRightType, pendingParaString);
@@ -2240,13 +2240,13 @@ QString DocParser::getArgument(bool verbatim)
             switch (in[pos].unicode()) {
             case '{':
                 delimDepth++;
-                arg += "{";
+                arg += QLatin1Char('{');
                 pos++;
                 break;
             case '}':
                 delimDepth--;
                 if (delimDepth >= 0)
-                    arg += "}";
+                    arg += QLatin1Char('}');
                 pos++;
                 break;
             case '\\':
@@ -2524,8 +2524,8 @@ void DocParser::skipAllSpaces()
 
 void DocParser::skipToNextPreprocessorCommand()
 {
-    QRegExp rx("\\\\(?:" + cmdName(CMD_IF) + "|" +
-                           cmdName(CMD_ELSE) + "|" +
+    QRegExp rx("\\\\(?:" + cmdName(CMD_IF) + QLatin1Char('|') +
+                           cmdName(CMD_ELSE) + QLatin1Char('|') +
                            cmdName(CMD_ENDIF) + ")\\b");
     int end = rx.indexIn(in, pos + 1); // ### + 1 necessary?
 
@@ -2629,7 +2629,7 @@ QString DocParser::untabifyEtc(const QString& str)
 
     while (result.endsWith("\n\n"))
         result.truncate(result.length() - 1);
-    while (result.startsWith("\n"))
+    while (result.startsWith(QLatin1Char('\n')))
         result = result.mid(1);
    
     return result;
@@ -2678,8 +2678,8 @@ QString DocParser::unindent(int level, const QString& str)
 QString DocParser::slashed(const QString& str)
 {
     QString result = str;
-    result.replace("/", "\\/");
-    return "/" + result + "/";
+    result.replace(QLatin1Char('/'), "\\/");
+    return QLatin1Char('/') + result + QLatin1Char('/');
 }
 
 #define COMMAND_BRIEF                   Doc::alias("brief")
@@ -2831,7 +2831,7 @@ Text Doc::trimmedBriefText(const QString &className) const
             atom = atom->next();
         }
 
-        QStringList w = briefStr.split(" ");
+        QStringList w = briefStr.split(QLatin1Char(' '));
         if (!w.isEmpty() && w.first() == "Returns") {
         }
         else {
@@ -2878,7 +2878,7 @@ Text Doc::trimmedBriefText(const QString &className) const
 
         whats = w.join(" ");
         
-        if (whats.endsWith("."))
+        if (whats.endsWith(QLatin1Char('.')))
             whats.truncate(whats.length() - 1);
 
         if (whats.isEmpty()) {

@@ -343,7 +343,7 @@ QString CodeMarker::sortName(const Node *node, const QString* name)
     // we want 'qint8' to appear before 'qint16'
     if (numDigits > 0) {
         for (int i = 0; i < 4 - numDigits; ++i)
-            nodeName.insert(nodeName.size()-numDigits-1, QLatin1String("0"));
+            nodeName.insert(nodeName.size()-numDigits-1, QLatin1Char('0'));
     }
 
     if (node->type() == Node::Function) {
@@ -608,17 +608,17 @@ QStringList CodeMarker::macRefsForNode(Node *node)
             // this code is too clever for the Xcode documentation
             // browser and/or pbhelpindexer
             if (!isMacro) {
-                result += "/" + QLatin1String(QMetaObject::normalizedSignature(func->returnType().toLatin1().constData())) + "/(";
+                result += QLatin1Char('/') + QLatin1String(QMetaObject::normalizedSignature(func->returnType().toLatin1().constData())) + "/(";
                 const QList<Parameter> &params = func->parameters();
                 for (int i = 0; i < params.count(); ++i) {
                     QString type = params.at(i).leftType() +
                         params.at(i).rightType();
                     type = QLatin1String(QMetaObject::normalizedSignature(type.toLatin1().constData()));
                     if (i != 0)
-                        result += ",";
+                        result += QLatin1Char(',');
                     result += type;
                 }
-                result += ")";
+                result += QLatin1Char(')');
             }
 #endif
         }

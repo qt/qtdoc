@@ -179,7 +179,7 @@ QString QmlCodeMarker::markedUpIncludes(const QStringList& includes)
 
     QStringList::ConstIterator inc = includes.begin();
     while (inc != includes.end()) {
-        code += "import " + *inc + "\n";
+        code += "import " + *inc + QLatin1Char('\n');
         ++inc;
     }
     Location location;

@@ -142,14 +142,14 @@ void HelpProjectWriter::readSelectors(SubProject &subproject, const QStringList 
     QSet<Node::SubType> allSubTypes = QSet<Node::SubType>::fromList(subTypeHash.values());
 
     foreach (const QString &selector, selectors) {
-        QStringList pieces = selector.split(":");
+        QStringList pieces = selector.split(QLatin1Char(':'));
         if (pieces.size() == 1) {
             QString lower = selector.toLower();
             if (typeHash.contains(lower))
                 subproject.selectors[typeHash[lower]] = allSubTypes;
         } else if (pieces.size() >= 2) {
             QString lower = pieces[0].toLower();
-            pieces = pieces[1].split(",");
+            pieces = pieces[1].split(QLatin1Char(','));
             if (typeHash.contains(lower)) {
                 QSet<Node::SubType> subTypes;
                 for (int i = 0; i < pieces.size(); ++i) {
@@ -376,7 +376,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project,
                                 details << keyword->string()
                                         << keyword->string()
                                         << HtmlGenerator::fullDocumentLocation(node,true) +
-                                    "#" + Doc::canonicalTitle(keyword->string());
+                                    QLatin1Char('#') + Doc::canonicalTitle(keyword->string());
                                 project.keywords.append(details);
                             } else
                                 fakeNode->doc().location().warning(
@@ -395,7 +395,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project,
                             details << title
                                     << title
                                     << HtmlGenerator::fullDocumentLocation(node,true) +
-                                    "#" + Doc::canonicalTitle(title);
+                                    QLatin1Char('#') + Doc::canonicalTitle(title);
                             project.keywords.append(details);
                         } else
                             fakeNode->doc().location().warning(
@@ -417,7 +417,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project,
         if (atom->type() == Atom::Image || atom->type() == Atom::InlineImage) {
             // Images are all placed within a single directory regardless of
             // whether the source images are in a nested directory structure.
-            QStringList pieces = atom->string().split("/");
+            QStringList pieces = atom->string().split(QLatin1Char('/'));
             project.files.insert("images/" + pieces.last());
         }
         atom = atom->next();

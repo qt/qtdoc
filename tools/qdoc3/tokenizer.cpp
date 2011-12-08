@@ -603,7 +603,7 @@ int Tokenizer::getTokenAfterPreprocessor()
             condition += yyCh;
             yyCh = getChar();
         }
-        condition.replace(*comment, "");
+        condition.remove(*comment);
         condition = condition.simplified();
 
         /*
@@ -749,7 +749,7 @@ bool Tokenizer::isTrue(const QString &condition)
 
     if (t[0] == QChar('!'))
         return !isTrue(t.mid(1));
-    if (t[0] == QChar('(') && t.right(1)[0] == QChar(')'))
+    if (t[0] == QChar('(') && t.endsWith(QChar(')')))
         return isTrue(t.mid(1, t.length() - 2));
 
     if (definedX->exactMatch(t))

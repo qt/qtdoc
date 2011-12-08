@@ -489,7 +489,7 @@ QString Config::findFile(const Location& location,
         else
 	    break;
 
-	userFriendlyFilePath += "?";
+        userFriendlyFilePath += QLatin1Char('?');
     }
     return fileInfo.filePath();
 }
@@ -508,7 +508,7 @@ QString Config::findFile(const Location& location,
 	QString filePath = findFile(location,
                                     files,
                                     dirs,
-                                    fileBase + "." + *e,
+                                    fileBase + QLatin1Char('.') + *e,
                                     userFriendlyFilePath);
 	if (!filePath.isEmpty())
 	    return filePath;
@@ -537,11 +537,11 @@ QString Config::copyFile(const Location& location,
     }
 
     QString outFileName = userFriendlySourceFilePath;
-    int slash = outFileName.lastIndexOf("/");
+    int slash = outFileName.lastIndexOf(QLatin1Char('/'));
     if (slash != -1)
 	outFileName = outFileName.mid(slash);
 
-    QFile outFile(targetDirPath + "/" + outFileName);
+    QFile outFile(targetDirPath + QLatin1Char('/') + outFileName);
     if (!outFile.open(QFile::WriteOnly)) {
 	location.fatal(tr("Cannot open output file '%1': %2")
 			.arg(outFile.fileName()).arg(outFile.errorString()));

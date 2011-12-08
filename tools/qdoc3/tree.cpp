@@ -1065,7 +1065,7 @@ void Tree::readIndexSection(const QDomElement& element,
         section = new NamespaceNode(parent, name);
 
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + name.toLower() + ".html");
+            location = Location(indexUrl + QLatin1Char('/') + name.toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(name.toLower() + ".html");
 
@@ -1076,7 +1076,7 @@ void Tree::readIndexSection(const QDomElement& element,
             static_cast<ClassNode*>(section), element.attribute("bases")));
 
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + name.toLower() + ".html");
+            location = Location(indexUrl + QLatin1Char('/') + name.toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(name.toLower() + ".html");
 
@@ -1087,7 +1087,7 @@ void Tree::readIndexSection(const QDomElement& element,
         if (element.hasAttribute("location"))
             name = element.attribute("location", "");
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + name);
+            location = Location(indexUrl + QLatin1Char('/') + name);
         else if (!indexUrl.isNull())
             location = Location(name);
         section = qcn;
@@ -1098,7 +1098,7 @@ void Tree::readIndexSection(const QDomElement& element,
         if (element.hasAttribute("location"))
             name = element.attribute("location", "");
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + name);
+            location = Location(indexUrl + QLatin1Char('/') + name);
         else if (!indexUrl.isNull())
             location = Location(name);
         section = qbtn;
@@ -1156,7 +1156,7 @@ void Tree::readIndexSection(const QDomElement& element,
             name = element.attribute("location", "");
 
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + name);
+            location = Location(indexUrl + QLatin1Char('/') + name);
         else if (!indexUrl.isNull())
             location = Location(name);
 
@@ -1168,7 +1168,7 @@ void Tree::readIndexSection(const QDomElement& element,
 
         if (!indexUrl.isEmpty())
             location =
-                Location(indexUrl + "/" + parent->name().toLower() + ".html");
+                Location(indexUrl + QLatin1Char('/') + parent->name().toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(parent->name().toLower() + ".html");
 
@@ -1186,7 +1186,7 @@ void Tree::readIndexSection(const QDomElement& element,
 
         if (!indexUrl.isEmpty())
             location =
-                Location(indexUrl + "/" + parent->name().toLower() + ".html");
+                Location(indexUrl + QLatin1Char('/') + parent->name().toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(parent->name().toLower() + ".html");
 
@@ -1196,7 +1196,7 @@ void Tree::readIndexSection(const QDomElement& element,
 
         if (!indexUrl.isEmpty())
             location =
-                Location(indexUrl + "/" + parent->name().toLower() + ".html");
+                Location(indexUrl + QLatin1Char('/') + parent->name().toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(parent->name().toLower() + ".html");
 
@@ -1262,7 +1262,7 @@ void Tree::readIndexSection(const QDomElement& element,
 
         if (!indexUrl.isEmpty())
             location =
-                Location(indexUrl + "/" + parent->name().toLower() + ".html");
+                Location(indexUrl + QLatin1Char('/') + parent->name().toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(parent->name().toLower() + ".html");
 
@@ -1271,7 +1271,7 @@ void Tree::readIndexSection(const QDomElement& element,
         section = new VariableNode(parent, name);
 
         if (!indexUrl.isEmpty())
-            location = Location(indexUrl + "/" + parent->name().toLower() + ".html");
+            location = Location(indexUrl + QLatin1Char('/') + parent->name().toLower() + ".html");
         else if (!indexUrl.isNull())
             location = Location(parent->name().toLower() + ".html");
 
@@ -1352,10 +1352,10 @@ void Tree::readIndexSection(const QDomElement& element,
 
     section->setModuleName(element.attribute("module"));
     if (!indexUrl.isEmpty()) {
-        if (indexUrl.startsWith("."))
+        if (indexUrl.startsWith(QLatin1Char('.')))
             section->setUrl(href);
         else
-            section->setUrl(indexUrl + "/" + href);
+            section->setUrl(indexUrl + QLatin1Char('/') + href);
     }
 
     // Create some content for the node.
@@ -1409,7 +1409,7 @@ void Tree::resolveIndex()
     QPair<ClassNode*,QString> pair;
 
     foreach (pair, priv->basesList) {
-        foreach (const QString& base, pair.second.split(",")) {
+        foreach (const QString& base, pair.second.split(QLatin1Char(','))) {
             Node* baseClass = root()->findNode(base, Node::Class);
             if (baseClass) {
                 pair.first->addBaseClass(Node::Public,
@@ -1574,7 +1574,7 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
         writer.writeAttribute("fullname", fullName);
     QString href = node->outputSubdirectory();
     if (!href.isEmpty())
-        href.append("/");
+        href.append(QLatin1Char('/'));
     href.append(HtmlGenerator::fullDocumentLocation(node));
     writer.writeAttribute("href", href);
     if ((node->type() != Node::Fake) && (!node->isQmlNode()))
@@ -1841,17 +1841,17 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
                     const TypedefNode* typedefNode =
                         static_cast<const TypedefNode*>(leftNode);
                     if (typedefNode->associatedEnum()) {
-                        leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+">";
+                        leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+QLatin1Char('>');
                     }
                 }
                 else
                     leftType = fullDocumentName(leftNode);
             }
             resolvedParameters.append(leftType);
-            signatureList.append(leftType + " " + parameter.name());
+            signatureList.append(leftType + QLatin1Char(' ') + parameter.name());
         }
 
-        QString signature = functionNode->name()+"("+signatureList.join(", ")+")";
+        QString signature = functionNode->name()+QLatin1Char('(')+signatureList.join(", ")+QLatin1Char(')');
         if (functionNode->isConst())
             signature += " const";
         writer.writeAttribute("signature", signature);
@@ -2225,7 +2225,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                                             "virtual " + functionNode->returnType());
 
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split(QLatin1Char('#'));
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
 
@@ -2244,13 +2244,13 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                     if (leftNode) {
                         const TypedefNode* typedefNode = static_cast<const TypedefNode*>(leftNode);
                         if (typedefNode->associatedEnum()) {
-                            leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+">";
+                            leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+QLatin1Char('>');
                         }
                     }
-                    signatureList.append(leftType + " " + parameter.name());
+                    signatureList.append(leftType + QLatin1Char(' ') + parameter.name());
                 }
 
-                QString signature = "("+signatureList.join(", ")+")";
+                QString signature = QLatin1Char('(')+signatureList.join(", ")+QLatin1Char(')');
                 if (functionNode->isConst())
                     signature += " const";
                 if (functionNode->virtualness() == FunctionNode::PureVirtual)
@@ -2265,7 +2265,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                 const PropertyNode* propertyNode = static_cast<const PropertyNode*>(node);
                 writer.writeAttribute("type", propertyNode->dataType());
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split(QLatin1Char('#'));
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
                 writer.writeTextElement("arglist", "");
@@ -2277,7 +2277,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
             {
                 const EnumNode* enumNode = static_cast<const EnumNode*>(node);
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node).split(QLatin1Char('#'));
                 writer.writeTextElement("anchor", pieces[1]);
                 writer.writeTextElement("arglist", "");
                 writer.writeEndElement(); // member
@@ -2301,7 +2301,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                 else
                     writer.writeAttribute("type", "");
                 writer.writeTextElement("name", objName);
-                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split("#");
+                QStringList pieces = HtmlGenerator::fullDocumentLocation(node,true).split(QLatin1Char('#'));
                 writer.writeTextElement("anchorfile", pieces[0]);
                 writer.writeTextElement("anchor", pieces[1]);
                 writer.writeTextElement("arglist", "");
@@ -2385,7 +2385,7 @@ QString Tree::fullDocumentName(const Node* node) const
     // Create a name based on the type of the ancestor node.
     QString concatenator = "::";
     if ((n->type() == Node::Fake) && (n->subType() != Node::QmlClass))
-        concatenator = "#";
+        concatenator = QLatin1Char('#');
 
     return pieces.join(concatenator);
 }

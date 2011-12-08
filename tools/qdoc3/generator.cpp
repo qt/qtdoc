@@ -830,7 +830,7 @@ QString Generator::imageFileName(const Node *relative, const QString& fileBase)
                                     outputDir() + QLatin1String("/images"));
     QString images = "images";
     if (path[0] != '/')
-        images.append("/");
+        images.append(QLatin1Char('/'));
     return images + path;
 }
 
@@ -1137,7 +1137,7 @@ void Generator::generateSince(const Node *node, CodeMarker *marker)
         else
             text << " was introduced in ";
 
-        QStringList since = node->since().split(" ");
+        QStringList since = node->since().split(QLatin1Char(' '));
         if (since.count() == 1) {
             // Handle legacy use of \since <version>.
             if (project.isEmpty())
@@ -1349,7 +1349,7 @@ QString Generator::fullName(const Node *node,
 #if 0
         // Removed for QTBUG-22870
         if (!fn->qmlModuleIdentifier().isEmpty())
-            return fn->qmlModuleIdentifier() + " " + fn->title();
+            return fn->qmlModuleIdentifier() + QLatin1Char(' ') + fn->title();
 #endif
         return fn->title();
     }

@@ -313,7 +313,7 @@ QString Node::fileBase() const
         base.chop(5);
     base.replace(QRegExp("[^A-Za-z0-9]+"), " ");
     base = base.trimmed();
-    base.replace(" ", "-");
+    base.replace(QLatin1Char(' '), QLatin1Char('-'));
     return base.toLower();
 }
 
@@ -351,7 +351,7 @@ QString Node::ditaXmlHref()
     }
     if (!href.endsWith(".xml"))
         href += ".xml";
-    return href + "#" + guid();
+    return href + QLatin1Char('#') + guid();
 }
 
 /*!
@@ -1293,7 +1293,7 @@ QString FakeNode::subTitle() const
         return subtitle_;
 
     if ((subtype_ == File) || (subtype_ == Image)) {
-        if (title().isEmpty() && name().contains("/"))
+        if (title().isEmpty() && name().contains(QLatin1Char('/')))
             return name();
     }
     return QString();
@@ -1425,7 +1425,7 @@ QString Parameter::reconstruct(bool value) const
 {
     QString p = lef + rig;
     if (!p.endsWith(QChar('*')) && !p.endsWith(QChar('&')) && !p.endsWith(QChar(' ')))
-        p += " ";
+        p += QLatin1Char(' ');
     p += nam;
     if (value && !def.isEmpty())
         p += " = " + def;
@@ -1623,8 +1623,8 @@ QString FunctionNode::signature(bool values) const
 {
     QString s;
     if (!returnType().isEmpty())
-        s = returnType() + " ";
-    s += name() + "(";
+        s = returnType() + QLatin1Char(' ');
+    s += name() + QLatin1Char('(');
     QStringList params = reconstructParams(values);
     int p = params.size();
     if (p > 0) {
@@ -1634,7 +1634,7 @@ QString FunctionNode::signature(bool values) const
                 s += ", ";
         }
     }
-    s += ")";
+    s += QLatin1Char(')');
     return s;
 }
 
@@ -1721,7 +1721,7 @@ void PropertyNode::setOverriddenFrom(const PropertyNode* baseProperty)
 QString PropertyNode::qualifiedDataType() const
 {
     if (setters().isEmpty() && resetters().isEmpty()) {
-        if (dt.contains("*") || dt.contains("&")) {
+        if (dt.contains(QLatin1Char('*')) || dt.contains(QLatin1Char('&'))) {
             // 'QWidget *' becomes 'QWidget *' const
             return dt + " const";
         }
@@ -1894,7 +1894,7 @@ void QmlClassNode::subclasses(const QString& base, NodeList& subs)
  */
 void Node::setQmlModuleName(const QString& arg)
 {
-    QStringList blankSplit = arg.split(" ");
+    QStringList blankSplit = arg.split(QLatin1Char(' '));
     qmlModuleName_ = blankSplit[0];
     if (blankSplit.size() > 1)
         qmlModuleVersion_ = blankSplit[1];

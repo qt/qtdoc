@@ -549,7 +549,7 @@ static bool matchBracelessControlStatement()
     if ( yyLine->endsWith("else") )
         return true;
 
-    if ( !yyLine->endsWith(")") )
+    if ( !yyLine->endsWith(QLatin1Char(')')) )
         return false;
 
     for ( int i = 0; i < SmallRoof; i++ ) {
@@ -652,7 +652,7 @@ static bool isUnfinishedLine()
                   for ( int i = 1; i < 10;
             */
             unf = true;
-        } else if ( readLine() && yyLine->endsWith(";") &&
+        } else if ( readLine() && yyLine->endsWith(QLatin1Char(';')) &&
                     lastParen(*yyLine) == QChar('(') ) {
             /*
               Exception:
@@ -770,7 +770,7 @@ static int indentForContinuationLine()
                      (*yyLine)[j + 1] != '=' ) {
                     if ( braceDepth == 0 && delimDepth == 0 &&
                          j < (int) yyLine->length() - 1 &&
-                         !yyLine->endsWith(",") &&
+                         !yyLine->endsWith(QLatin1Char(',')) &&
                          (yyLine->contains('(') == yyLine->contains(')')) )
                         hook = j;
                 }
@@ -826,7 +826,7 @@ static int indentForContinuationLine()
                 */
                 if ( !isContinuationLine() )
                     return indentOfLine( *yyLine );
-            } else if ( isContinuationLine() || yyLine->endsWith(",") ) {
+            } else if ( isContinuationLine() || yyLine->endsWith(QLatin1Char(',')) ) {
                 /*
                     We have
 
@@ -943,7 +943,7 @@ static int indentForStandaloneLine()
             YY_RESTORE();
         }
 
-        if ( yyLine->endsWith(";") || yyLine->contains('{') ) {
+        if ( yyLine->endsWith(QLatin1Char(';')) || yyLine->contains('{') ) {
             /*
                 The situation is possibly this, and we want to indent
                 "z;":
@@ -1166,21 +1166,21 @@ int main( int argc, char **argv )
     while ( line != program.end() ) {
         p.push_back( *line );
         QChar typedIn = firstNonWhiteSpace( *line );
-        if ( p.last().endsWith(":") )
+        if ( p.last().endsWith(QLatin1Char(':')) )
             typedIn = ':';
 
         int indent = indentForBottomLine( p, typedIn );
 
         if ( !(*line).trimmed().isEmpty() ) {
             for ( int j = 0; j < indent; j++ )
-                out += " ";
+                out += QLatin1Char(' ');
             out += (*line).trimmed();
         }
-        out += "\n";
+        out += QLatin1Char('\n');
         ++line;
     }
 
-    while ( out.endsWith("\n") )
+    while ( out.endsWith(QLatin1Char('\n')) )
         out.truncate( out.length() - 1 );
 
     printf( "%s\n", out.toLatin1().data() );
