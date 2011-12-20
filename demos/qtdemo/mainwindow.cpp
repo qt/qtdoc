@@ -272,7 +272,7 @@ void MainWindow::setupSceneItems()
 
     this->mainSceneRoot = new QGraphicsWidget();
     this->scene->addItem(mainSceneRoot);
-    this->companyLogo = new ImageItem(QImage(":/images/trolltech-logo.png"), 1000, 1000, this->scene, mainSceneRoot, true, 0.5f);
+    this->companyLogo = new ImageItem(QImage(":/images/qtlogo_large.png"), 1000, 1000, this->scene, mainSceneRoot, true, 0.5f);
     this->qtLogo = new ImageItem(QImage(":/images/qtlogo_small.png"), 1000, 1000, this->scene, mainSceneRoot, true, 0.5f);
     this->companyLogo->setZValue(100);
     this->qtLogo->setZValue(100);
