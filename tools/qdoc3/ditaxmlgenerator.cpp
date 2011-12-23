@@ -2174,7 +2174,7 @@ void DitaXmlGenerator::writeXrefListItem(const QString& link, const QString& tex
 }
 
 /*!
-  Generate the html page for a qdoc file that doesn't map
+  Generate the DITA page for a qdoc file that doesn't map
   to an underlying c++ file.
  */
 void DitaXmlGenerator::generateFakeNode(const FakeNode* fake, CodeMarker* marker)
@@ -2232,8 +2232,9 @@ void DitaXmlGenerator::generateFakeNode(const FakeNode* fake, CodeMarker* marker
          generateBody(fake, marker);
          leaveSection();
         }
-        else
+        else {
             generateBody(fake, marker);
+        }
         generateAlsoList(fake, marker);
 
         if ((fake->subType() == Node::QmlModule) && !fake->qmlModuleMembers().isEmpty()) {
@@ -3536,7 +3537,7 @@ void DitaXmlGenerator::writeText(const QString& markedCode,
                                 addLink(link, arg);
                             }
                             else {
-                                link = arg.toString();
+                                writeCharacters(arg.toString());
                             }
                         }
                         else {
