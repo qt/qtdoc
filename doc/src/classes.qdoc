@@ -50,14 +50,12 @@
 
     \brief If you know the name of the class you want, find it here.
 
-    This is a list of all Qt classes. For a list of the classes
-    provided for compatibility with Qt3, see \l{Qt3 Support
-    Classes}. For classes that have been deprecated, see the
-    \l{Obsolete Classes} list.
+    This is a list of all Qt classes. For classes that have been
+    deprecated, see the \l{Obsolete Classes} list.
 
     \generatelist classes
 
-    \sa {Qt3 Support Classes}, {All Modules}, {Obsolete Classes}
+    \sa {All Modules}, {Obsolete Classes}
 */
 
 /*!
@@ -113,20 +111,6 @@
     classes in new code.
 
     \generatelist obsoleteclasses
-
-*/
-
-/*!
-    \page compatclasses.html
-    \title Qt3 Support Classes
-    \ingroup classlists
-
-    \brief These classes ease the porting of code from Qt 3 to Qt 4.
-
-    These are the classes that Qt provides for compatibility with Qt
-    3. Most of these are provided by the Qt3Support module.
-
-    \generatelist compatclasses
 
 */
 
