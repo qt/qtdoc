@@ -4932,7 +4932,13 @@ void DitaXmlGenerator::replaceTypesWithLinks(const Node* n,
             i += 2;
             if (parseArg(src, typeTag, &i, srcSize, &arg, &par1)) {
                 const Node* tn = marker->resolveTarget(arg.toString(), myTree, parent, n);
-                addLink(linkForNode(tn,parent),arg,DT_apiRelation);
+                if (tn) {
+                    //Do not generate a link from a C++ function to a QML Basic Type (such as int)
+                    if (n->type() == Node::Function && tn->subType() == Node::QmlBasicType)
+                        writeCharacters(arg.toString());
+                    else
+                        addLink(linkForNode(tn,parent),arg,DT_apiRelation);
+                }
             }
         }
         else {
