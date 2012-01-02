@@ -4785,9 +4785,9 @@ void DitaXmlGenerator::writeFunctions(const Section& s,
                 xmlWriter().writeAttribute("outputclass",attribute);
             writeStartTag(DT_apiName);
             if (fn->metaness() == FunctionNode::Signal)
-                xmlWriter().writeAttribute("class","signal");
+                xmlWriter().writeAttribute("outputclass","signal");
             else if (fn->metaness() == FunctionNode::Slot)
-                xmlWriter().writeAttribute("class","slot");
+                xmlWriter().writeAttribute("outputclass","slot");
             writeCharacters(fn->name());
             writeEndTag(); // </apiName>
             generateBrief(fn,marker);
