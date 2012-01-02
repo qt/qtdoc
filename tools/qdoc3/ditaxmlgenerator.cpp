@@ -198,6 +198,7 @@ QString DitaXmlGenerator::ditaTags[] =
         "link",
         "linktext",
         "lq",
+        "map",
         "metadata",
         "ol",
         "othermeta",
@@ -5638,20 +5639,22 @@ bool DitaXmlGenerator::canHandleFormat(const QString& format)
 
 void DitaXmlGenerator::writeDitaMap(const Tree *tree)
 {
-    beginSubPage(tree->root(),"qt-dita-map.xml");
+    beginSubPage(tree->root(),"qt.ditamap");
 
     QString doctype;
-    doctype = "<!DOCTYPE cxxAPIMap PUBLIC \"-//NOKIA//DTD DITA C++ API Map Reference Type v0.6.0//EN\" \"dtd/cxxAPIMap.dtd\">";
+    doctype = "<!DOCTYPE map PUBLIC \"-//OASIS//DTD DITA Map//EN\" \"map.dtd\">";
+    //    doctype = "<!DOCTYPE cxxAPIMap PUBLIC \"-//NOKIA//DTD DITA C++ API Map Reference Type v0.6.0//EN\" \"dtd/cxxAPIMap.dtd\">";
 
     xmlWriter().writeDTD(doctype);
-    writeStartTag(DT_cxxAPIMap);
-    xmlWriter().writeAttribute("id","Qt-DITA-Map");
-    xmlWriter().writeAttribute("title","Qt DITA Map");
+    writeStartTag(DT_map);
+    //xmlWriter().writeAttribute("id","Qt-DITA-Map");
+    //xmlWriter().writeAttribute("title","Qt DITA Map");
     writeStartTag(DT_topicmeta);
     writeStartTag(DT_shortdesc);
     xmlWriter().writeCharacters("The top level map for the Qt documentation");
     writeEndTag(); // </shortdesc>
     writeEndTag(); // </topicmeta>
+#if 0
     GuidMaps::iterator i = guidMaps.begin();
     while (i != guidMaps.end()) {
         writeStartTag(DT_topicref);
@@ -5660,6 +5663,7 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
         writeEndTag(); // </topicref>
         ++i;
     }
+#endif
     endSubPage();
 }
 
