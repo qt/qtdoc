@@ -3155,9 +3155,6 @@ void DitaXmlGenerator::generateQmlItem(const Node* node,
     marked.replace("<@param>", "<i>");
     marked.replace("</@param>", "</i>");
 
-    if (summary)
-        marked.replace("@name>", "b>");
-
     marked.replace("<@extra>", "<tt>");
     marked.replace("</@extra>", "</tt>");
 
@@ -4400,8 +4397,7 @@ void DitaXmlGenerator::generateQmlSummary(const Section& section,
 }
 
 /*!
-  zzz
-  Outputs the html detailed documentation for a section
+  Outputs the DITA detailed documentation for a section
   on a QML element reference page.
  */
 void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
