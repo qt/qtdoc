@@ -64,8 +64,8 @@ ExampleNodeMap ExampleNode::exampleNodeMap;
  */
 Node::~Node()
 {
-    if (par)
-        par->removeChild(this);
+    if (parent_)
+        parent_->removeChild(this);
     if (rel)
         rel->removeRelated(this);
 }
@@ -97,12 +97,12 @@ Node::Node(Type type, InnerNode *parent, const QString& name)
       safeness_(UnspecifiedSafeness),
       pageType_(NoPageType),
       status_(Commendable),
-      par(parent),
+      parent_(parent),
       rel(0),
       name_(name)
 {
-    if (par)
-        par->addChild(this);
+    if (parent_)
+        parent_->addChild(this);
     outSubDir_ = CodeParser::currentOutputSubdirectory();
 }
 
@@ -266,12 +266,13 @@ QString RelatedClass::accessString() const
 }
 
 /*!
+  Returns the inheritance status.
  */
 Node::Status Node::inheritedStatus() const
 {
     Status parentStatus = Commendable;
-    if (par)
-        parentStatus = par->inheritedStatus();
+    if (parent_)
+        parentStatus = parent_->inheritedStatus();
     return (Status)qMin((int)status_, (int)parentStatus);
 }
 
@@ -284,7 +285,7 @@ Node::Status Node::inheritedStatus() const
  */
 Node::ThreadSafeness Node::threadSafeness() const
 {
-    if (par && safeness_ == par->inheritedThreadSafeness())
+    if (parent_ && safeness_ == parent_->inheritedThreadSafeness())
         return UnspecifiedSafeness;
     return safeness_;
 }
@@ -296,8 +297,8 @@ Node::ThreadSafeness Node::threadSafeness() const
  */
 Node::ThreadSafeness Node::inheritedThreadSafeness() const
 {
-    if (par && safeness_ == UnspecifiedSafeness)
-        return par->inheritedThreadSafeness();
+    if (parent_ && safeness_ == UnspecifiedSafeness)
+        return parent_->inheritedThreadSafeness();
     return safeness_;
 }
 
@@ -324,12 +325,18 @@ QString Node::fileBase() const
 QString Node::guid() const
 {
     if (uuid.isEmpty()) {
+        uuid = uuidForNode();
+        qDebug() << "UUID:" << uuid;
+#if 0
         QUuid quuid = QUuid::createUuid();
         QString t = quuid.toString();
         uuid = "id-" + t.mid(1,t.length()-2);
+#endif
     }
     return uuid;
 }
+//#include "htmlgenerator.h"
+//qDebug() << "FULL DOC LOC:" << HtmlGenerator::fullDocumentLocation(node,false);
 
 /*!
   Composes a string to be used as an href attribute in DITA
@@ -2240,6 +2247,124 @@ const Node* NameCollisionNode::applyModuleIdentifier(const Node* origin) const
         }
     }
     return this;
+}
+
+/*!
+  Construct the full document name for this node and return it.
+ */
+QString Node::fullDocumentName() const
+{
+    QStringList pieces;
+    const Node* n = this;
+
+    do {
+        if (!n->name().isEmpty() &&
+            ((n->type() != Node::Fake) || (n->subType() != Node::QmlPropertyGroup)))
+            pieces.insert(0, n->name());
+
+        if ((n->type() == Node::Fake) && (n->subType() != Node::QmlPropertyGroup)) {
+            if ((n->subType() == Node::QmlClass) && !n->qmlModuleName().isEmpty())
+                pieces.insert(0, n->qmlModuleIdentifier());
+            break;
+        }
+
+        // Examine the parent node if one exists.
+        if (n->parent())
+            n = n->parent();
+        else
+            break;
+    } while (true);
+
+    // Create a name based on the type of the ancestor node.
+    QString concatenator = "::";
+    if ((n->type() == Node::Fake) && (n->subType() != Node::QmlClass))
+        concatenator = QLatin1Char('#');
+
+    return pieces.join(concatenator);
+}
+
+/*!
+  Creates a string that can be used as a UUID for the node,
+  depending on the type and subtype of the node. Uniquenss
+  is not guaranteed, but it is expected that strings created
+  here will be unique within an XML document. Hence, the
+  returned string can be used as the value of an \e id
+  attribute.
+ */
+QString Node::uuidForNode() const
+{
+    const FunctionNode* func;
+    const TypedefNode* tdn;
+    QString str;
+
+    switch (type()) {
+    case Node::Namespace:
+        str = "namespace-" + fullDocumentName();
+        break;
+    case Node::Class:
+        str = "class-" + fullDocumentName();
+        break;
+    default:
+        break;
+    case Node::Enum:
+        str = "enum-" + name();
+        break;
+    case Node::Typedef:
+        tdn = static_cast<const TypedefNode*>(this);
+        if (tdn->associatedEnum()) {
+            return tdn->associatedEnum()->uuidForNode();
+        }
+        else {
+            str = "typedef-" + name();
+        }
+        break;
+    case Node::Function:
+        func = static_cast<const FunctionNode*>(this);
+        if (func->associatedProperty()) {
+            return func->associatedProperty()->uuidForNode();
+        }
+        else {
+            if (parent_ && parent_->type() == Class)
+                str = "member-";
+            str += func->name();
+            if (func->overloadNumber() != 1)
+                str += QLatin1Char('-') + QString::number(func->overloadNumber());
+        }
+        break;
+    case Node::Fake:
+        if (subType() == Node::QmlClass) {
+            str = "qml-class-" + name();
+            break;
+        }
+        if (subType() == Node::QmlPropertyGroup)
+            str = "qml-property-" + name();
+        break;
+    case Node::QmlProperty:
+        str = "qml-property-" + name();
+        break;
+    case Node::Property:
+        str = "property-" + name();
+        break;
+    case Node::QmlSignal:
+        str = "qml-signal-" + name();
+        break;
+    case Node::QmlSignalHandler:
+        str = "qml-signal-handler-" + name();
+        break;
+    case Node::QmlMethod:
+        str = "qml-method-" + name();
+        break;
+    case Node::Variable:
+        str = "var-" + name();
+        break;
+    case Node::Target:
+        return name();
+    }
+    str = str.toLower();
+    str = str.replace("::","-");
+    str = str.replace(" ","-");
+    str = str.replace("~","dtor.");
+    return str;
 }
 
 QT_END_NAMESPACE

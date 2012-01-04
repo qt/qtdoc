@@ -243,7 +243,7 @@ bool HelpProjectWriter::generateSection(HelpProject &project,
         objName = fake->fullTitle();
     }
     else
-        objName = tree->fullDocumentName(node);
+        objName = node->fullDocumentName();
     
     // Only add nodes to the set for each subproject if they match a selector.
     // Those that match will be listed in the table of contents.
@@ -451,7 +451,7 @@ void HelpProjectWriter::generateSections(HelpProject &project,
                     foreach (const Node* n, inner->childNodes()) {
                         if (n->access() == Node::Private)
                             continue;
-                        childMap[tree->fullDocumentName(n)] = n;
+                        childMap[n->fullDocumentName()] = n;
                     }
                 }
                 else
@@ -463,7 +463,7 @@ void HelpProjectWriter::generateSections(HelpProject &project,
                     if (funcNode->isOverload())
                         continue;
                 }
-                childMap[tree->fullDocumentName(node)] = node;
+                childMap[node->fullDocumentName()] = node;
             }
         }
 

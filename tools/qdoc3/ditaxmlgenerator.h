@@ -278,7 +278,6 @@ class DitaXmlGenerator : public PageGenerator
     virtual void generateClassLikeNode(const InnerNode* inner, CodeMarker* marker);
     virtual void generateFakeNode(const FakeNode* fake, CodeMarker* marker);
     virtual QString fileExtension(const Node* node) const;
-    virtual QString refForNode(const Node* node);
     virtual QString guidForNode(const Node* node);
     virtual QString linkForNode(const Node* node, const Node* relative);
     virtual QString refForAtom(Atom* atom, const Node* node);

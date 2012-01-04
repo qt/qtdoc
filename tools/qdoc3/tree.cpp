@@ -1569,7 +1569,7 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
     writer.writeAttribute("status", status);
 
     writer.writeAttribute("name", objName);
-    QString fullName = fullDocumentName(node);
+    QString fullName = node->fullDocumentName();
     if (fullName != objName)
         writer.writeAttribute("fullname", fullName);
     QString href = node->outputSubdirectory();
@@ -1841,11 +1841,13 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
                     const TypedefNode* typedefNode =
                         static_cast<const TypedefNode*>(leftNode);
                     if (typedefNode->associatedEnum()) {
-                        leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+QLatin1Char('>');
+                        leftType = "QFlags<" +
+                            typedefNode->associatedEnum()->fullDocumentName() +
+                            QLatin1Char('>');
                     }
                 }
                 else
-                    leftType = fullDocumentName(leftNode);
+                    leftType = leftNode->fullDocumentName();
             }
             resolvedParameters.append(leftType);
             signatureList.append(leftType + QLatin1Char(' ') + parameter.name());
@@ -1871,8 +1873,7 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
 
         const EnumNode* enumNode = static_cast<const EnumNode*>(node);
         if (enumNode->flagsType()) {
-            writer.writeAttribute("typedef",
-                fullDocumentName(enumNode->flagsType()));
+            writer.writeAttribute("typedef",enumNode->flagsType()->fullDocumentName());
         }
         foreach (const EnumItem& item, enumNode->items()) {
             writer.writeStartElement("value");
@@ -1886,8 +1887,7 @@ bool Tree::generateIndexSection(QXmlStreamWriter& writer,
 
         const TypedefNode* typedefNode = static_cast<const TypedefNode*>(node);
         if (typedefNode->associatedEnum()) {
-            writer.writeAttribute("enum",
-                fullDocumentName(typedefNode->associatedEnum()));
+            writer.writeAttribute("enum",typedefNode->associatedEnum()->fullDocumentName());
         }
     }
 
@@ -2085,7 +2085,7 @@ void Tree::generateTagFileCompounds(QXmlStreamWriter& writer,
         writer.writeAttribute("kind", kind);
 
         if (node->type() == Node::Class) {
-            writer.writeTextElement("name", fullDocumentName(node));
+            writer.writeTextElement("name", node->fullDocumentName());
             writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node,true));
 
             // Classes contain information about their base classes.
@@ -2103,7 +2103,7 @@ void Tree::generateTagFileCompounds(QXmlStreamWriter& writer,
             // Recurse to write all compounds.
             generateTagFileCompounds(writer, static_cast<const InnerNode*>(node));
         } else {
-            writer.writeTextElement("name", fullDocumentName(node));
+            writer.writeTextElement("name", node->fullDocumentName());
             writer.writeTextElement("filename", HtmlGenerator::fullDocumentLocation(node,true));
 
             // Recurse to write all members.
@@ -2184,11 +2184,11 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
         switch (node->type()) {
 
         case Node::Class:
-            writer.writeCharacters(fullDocumentName(node));
+            writer.writeCharacters(node->fullDocumentName());
             writer.writeEndElement();
             break;
         case Node::Namespace:
-            writer.writeCharacters(fullDocumentName(node));
+            writer.writeCharacters(node->fullDocumentName());
             writer.writeEndElement();
             break;
         case Node::Function:
@@ -2244,7 +2244,9 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
                     if (leftNode) {
                         const TypedefNode* typedefNode = static_cast<const TypedefNode*>(leftNode);
                         if (typedefNode->associatedEnum()) {
-                            leftType = "QFlags<"+fullDocumentName(typedefNode->associatedEnum())+QLatin1Char('>');
+                            leftType = "QFlags<" +
+                                typedefNode->associatedEnum()->fullDocumentName() +
+                                QLatin1Char('>');
                         }
                     }
                     signatureList.append(leftType + QLatin1Char(' ') + parameter.name());
@@ -2297,7 +2299,7 @@ void Tree::generateTagFileMembers(QXmlStreamWriter& writer,
             {
                 const TypedefNode* typedefNode = static_cast<const TypedefNode*>(node);
                 if (typedefNode->associatedEnum())
-                    writer.writeAttribute("type", fullDocumentName(typedefNode->associatedEnum()));
+                    writer.writeAttribute("type", typedefNode->associatedEnum()->fullDocumentName());
                 else
                     writer.writeAttribute("type", "");
                 writer.writeTextElement("name", objName);
@@ -2350,44 +2352,6 @@ void Tree::addExternalLink(const QString& url, const Node* relative)
     Location location(relative->doc().location());
     Doc doc(location, location, " ", emptySet); // placeholder
     fakeNode->setDoc(doc);
-}
-
-/*!
-  Construct the full document name for \a node and return the
-  name.
- */
-QString Tree::fullDocumentName(const Node* node) const
-{
-    if (!node)
-        return "";
-
-    QStringList pieces;
-    const Node* n = node;
-
-    do {
-        if (!n->name().isEmpty() &&
-            ((n->type() != Node::Fake) || (n->subType() != Node::QmlPropertyGroup)))
-            pieces.insert(0, n->name());
-
-        if ((n->type() == Node::Fake) && (n->subType() != Node::QmlPropertyGroup)) {
-            if ((n->subType() == Node::QmlClass) && !n->qmlModuleName().isEmpty())
-                pieces.insert(0, n->qmlModuleIdentifier());
-            break;
-        }
-
-        // Examine the parent node if one exists.
-        if (n->parent())
-            n = n->parent();
-        else
-            break;
-    } while (true);
-
-    // Create a name based on the type of the ancestor node.
-    QString concatenator = "::";
-    if ((n->type() == Node::Fake) && (n->subType() != Node::QmlClass))
-        concatenator = QLatin1Char('#');
-
-    return pieces.join(concatenator);
 }
 
 QT_END_NAMESPACE

@@ -190,9 +190,9 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
             synopsis = typified(func->returnType()) + QLatin1Char(' ');
 	synopsis += name;
         if (func->metaness() != FunctionNode::MacroWithoutParams) {
-            synopsis += " (";
+            synopsis += "(";
 	    if (!func->parameters().isEmpty()) {
-                synopsis += QLatin1Char(' ');
+                //synopsis += QLatin1Char(' ');
 	        QList<Parameter>::ConstIterator p = func->parameters().begin();
 	        while (p != func->parameters().end()) {
 		    if (p != func->parameters().begin())
@@ -200,13 +200,13 @@ QString CppCodeMarker::markedUpSynopsis(const Node *node,
 		    synopsis += typified((*p).leftType());
                     if (style != Subpage && !(*p).name().isEmpty())
                         synopsis +=
-                            " <@param>" + protect((*p).name()) + "</@param>";
+                            "<@param>" + protect((*p).name()) + "</@param>";
                     synopsis += protect((*p).rightType());
                     if (style != Subpage && !(*p).defaultValue().isEmpty())
 		        synopsis += " = " + protect((*p).defaultValue());
 		    ++p;
 	        }
-                synopsis += QLatin1Char(' ');
+                //synopsis += QLatin1Char(' ');
 	    }
             synopsis += QLatin1Char(')');
         }

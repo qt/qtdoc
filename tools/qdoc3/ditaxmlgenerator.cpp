@@ -550,8 +550,15 @@ QString DitaXmlGenerator::lookupGuid(QString text)
     QMap<QString, QString>::const_iterator i = name2guidMap.find(text);
     if (i != name2guidMap.end())
         return i.value();
+#if 0
     QString t = QUuid::createUuid().toString();
     QString guid = "id-" + t.mid(1,t.length()-2);
+#endif
+    QString guid = text;
+    guid = guid.toLower();
+    guid = guid.replace("::","-");
+    guid = guid.replace(" ","-");
+    guid = guid.replace("~","dtor.");
     name2guidMap.insert(text,guid);
     return guid;
 }
@@ -570,8 +577,15 @@ QString DitaXmlGenerator::lookupGuid(const QString& fileName, const QString& tex
     GuidMap::const_iterator i = gm->find(text);
     if (i != gm->end())
         return i.value();
+#if 0
     QString t = QUuid::createUuid().toString();
     QString guid = "id-" + t.mid(1,t.length()-2);
+#endif
+    QString guid = text;
+    guid = guid.toLower();
+    guid = guid.replace("::","-");
+    guid = guid.replace(" ","-");
+    guid = guid.replace("~","dtor.");
     gm->insert(text,guid);
     return guid;
 }
@@ -3757,65 +3771,6 @@ QString DitaXmlGenerator::fileBase(const Node* node) const
     return result;
 }
 
-QString DitaXmlGenerator::refForNode(const Node* node)
-{
-    const FunctionNode* func;
-    const TypedefNode* tdn;
-    QString ref;
-
-    switch (node->type()) {
-    case Node::Namespace:
-    case Node::Class:
-    default:
-        break;
-    case Node::Enum:
-        ref = node->name() + "-enum";
-        break;
-    case Node::Typedef:
-        tdn = static_cast<const TypedefNode *>(node);
-        if (tdn->associatedEnum()) {
-            return refForNode(tdn->associatedEnum());
-        }
-        else {
-            ref = node->name() + "-typedef";
-        }
-        break;
-    case Node::Function:
-        func = static_cast<const FunctionNode *>(node);
-        if (func->associatedProperty()) {
-            return refForNode(func->associatedProperty());
-        }
-        else {
-            ref = func->name();
-            if (func->overloadNumber() != 1)
-                ref += QLatin1Char('-') + QString::number(func->overloadNumber());
-        }
-        break;
-    case Node::Fake:
-        if (node->subType() != Node::QmlPropertyGroup)
-            break;
-    case Node::QmlProperty:
-    case Node::Property:
-        ref = node->name() + "-prop";
-        break;
-    case Node::QmlSignal:
-        ref = node->name() + "-signal";
-        break;
-    case Node::QmlSignalHandler:
-        ref = node->name() + "-signal-handler";
-        break;
-    case Node::QmlMethod:
-        ref = node->name() + "-method";
-        break;
-    case Node::Variable:
-        ref = node->name() + "-var";
-        break;
-    case Node::Target:
-        return protectEnc(node->name());
-    }
-    return registerRef(ref);
-}
-
 QString DitaXmlGenerator::guidForNode(const Node* node)
 {
     switch (node->type()) {
@@ -4031,7 +3986,7 @@ void DitaXmlGenerator::findAllFunctions(const InnerNode* node)
                     !func->isInternal() &&
                     (func->metaness() != FunctionNode::Ctor) &&
                     (func->metaness() != FunctionNode::Dtor)) {
-                    funcIndex[(*c)->name()].insert(myTree->fullDocumentName((*c)->parent()), *c);
+                    funcIndex[(*c)->name()].insert((*c)->parent()->fullDocumentName(), *c);
                 }
             }
         }

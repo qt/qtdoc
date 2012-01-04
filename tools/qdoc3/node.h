@@ -168,7 +168,7 @@ class Node
     void setTemplateStuff(const QString &templateStuff) { templateStuff_ = templateStuff; }
     void setPageType(PageType t) { pageType_ = t; }
     void setPageType(const QString& t);
-    void setParent(InnerNode* n) { par = n; }
+    void setParent(InnerNode* n) { parent_ = n; }
 
     virtual bool isInnerNode() const = 0;
     virtual bool isReimp() const { return false; }
@@ -180,7 +180,7 @@ class Node
     virtual void setAbstract(bool ) { }
     Type type() const { return type_; }
     virtual SubType subType() const { return NoSubType; }
-    InnerNode* parent() const { return par; }
+    InnerNode* parent() const { return parent_; }
     InnerNode* relates() const { return rel; }
     const QString& name() const { return name_; }
     QMap<LinkType, QPair<QString,QString> > links() const { return linkMap; }
@@ -220,6 +220,8 @@ class Node
     const QmlClassNode* qmlClassNode() const;
     const ClassNode* declarativeCppNode() const;
     const QString& outputSubdirectory() const { return outSubDir_; }
+    QString fullDocumentName() const;
+    QString uuidForNode() const;
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -239,7 +241,7 @@ class Node
     PageType pageType_ : 4;
     Status status_ : 3;
 #endif
-    InnerNode* par;
+    InnerNode* parent_;
     InnerNode* rel;
     QString name_;
     Location loc;

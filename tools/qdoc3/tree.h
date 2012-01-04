@@ -148,7 +148,6 @@ class Tree
                                 const InnerNode *inner) const;
     void generateTagFile(const QString &fileName) const;
     void addExternalLink(const QString &url, const Node *relative);
-    QString fullDocumentName(const Node *node) const;
     QString fullDocumentLocation(const Node *node) const;
     void resolveQmlInheritance();
 
