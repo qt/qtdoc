@@ -1959,6 +1959,10 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
             else if ((*s).name == "Macro Documentation") {
                 writeMacros((*s),marker);
             }
+            else if ((*s).name == "Related Non-Members") {
+                QString attribute("related-non-member");
+                writeFunctions((*s),cn,marker,attribute);
+            }
             ++s;
         }
 
