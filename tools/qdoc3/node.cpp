@@ -326,7 +326,6 @@ QString Node::guid() const
 {
     if (uuid.isEmpty()) {
         uuid = uuidForNode();
-        qDebug() << "UUID:" << uuid;
 #if 0
         QUuid quuid = QUuid::createUuid();
         QString t = quuid.toString();
