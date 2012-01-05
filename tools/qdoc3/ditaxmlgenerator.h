@@ -321,6 +321,7 @@ class DitaXmlGenerator : public PageGenerator
                               DitaXmlGenerator::DitaTag t, 
                               bool force=true);
     bool writeMetadataElements(const InnerNode* inner, DitaXmlGenerator::DitaTag t);
+    void writeHrefAttribute(const QString& href);
     QString getMetadataElement(const InnerNode* inner, DitaXmlGenerator::DitaTag t);
     QStringList getMetadataElements(const InnerNode* inner, DitaXmlGenerator::DitaTag t);
 

@@ -2303,8 +2303,6 @@ QString Node::uuidForNode() const
     case Node::Class:
         str = "class-" + fullDocumentName();
         break;
-    default:
-        break;
     case Node::Enum:
         str = "enum-" + name();
         break;
@@ -2331,12 +2329,50 @@ QString Node::uuidForNode() const
         }
         break;
     case Node::Fake:
-        if (subType() == Node::QmlClass) {
-            str = "qml-class-" + name();
-            break;
+        {
+            switch (subType()) {
+            case Node::QmlClass:
+                str = "qml-class-" + name();
+                break;
+            case Node::QmlPropertyGroup:
+                str = "qml-property-" + name();
+                break;
+            case Node::Page:
+            case Node::Group:
+            case Node::Module:
+            case Node::HeaderFile:
+                str = title();
+                if (str.isEmpty()) {
+                    str = name();
+                    if (str.endsWith(".html"))
+                        str.remove(str.size()-5,5);
+                }
+                str.replace("/","-");
+                break;
+            case Node::File:
+                str = name();
+                str.replace("/","-");
+                break;
+            case Node::Example:
+                str = name();
+                str.replace("/","-");
+                break;
+            case Node::QmlBasicType:
+                str = "qml-basic-type-" + name();
+                break;
+            case Node::QmlModule:
+                str = "qml-module-" + name();
+                break;
+            case Node::Collision:
+                str = title();
+                str.replace(": ","-");
+                break;
+            default:
+                qDebug() << "ERROR: A case was not handled in Node::uuidForNode():"
+                         << "subType():" << subType() << "type():" << type();
+                break;
+            }
         }
-        if (subType() == Node::QmlPropertyGroup)
-            str = "qml-property-" + name();
         break;
     case Node::QmlProperty:
         str = "qml-property-" + name();
@@ -2357,12 +2393,25 @@ QString Node::uuidForNode() const
         str = "var-" + name();
         break;
     case Node::Target:
-        return name();
+        str = name();
+        break;
+    default:
+        qDebug() << "ERROR: A case was not handled in Node::uuidForNode():"
+                 << "type():" << type() << "subType():" << subType();
+        break;
     }
-    str = str.toLower();
-    str = str.replace("::","-");
-    str = str.replace(" ","-");
-    str = str.replace("~","dtor.");
+    if (str.isEmpty()) {
+        qDebug() << "ERROR: A link text was empty in Node::uuidForNode():"
+                 << "type():" << type() << "subType():" << subType()
+                 << "name():" << name()
+                 << "title():" << title();
+    }
+    else {
+        str = str.toLower();
+        str = str.replace("::","-");
+        str = str.replace(" ","-");
+        str = str.replace("~","dtor.");
+    }
     return str;
 }
 

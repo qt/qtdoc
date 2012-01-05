@@ -178,6 +178,7 @@ class Node
     virtual bool isQtQuickNode() const { return false; }
     virtual bool isAbstract() const { return false; }
     virtual void setAbstract(bool ) { }
+    virtual QString title() const { return QString(); }
     Type type() const { return type_; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return parent_; }

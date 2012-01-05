@@ -273,7 +273,7 @@ void DitaXmlGenerator::addLink(const QString& href,
     if (!href.isEmpty()) {
         writeStartTag(t);
         // formathtml
-        xmlWriter().writeAttribute("href", href);
+        writeHrefAttribute(href);
         writeCharacters(text.toString());
         writeEndTag(); // </t>
     }
@@ -1204,7 +1204,7 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
             if (currentTag() != DT_xref)
                 writeStartTag(DT_fig);
             writeStartTag(DT_image);
-            xmlWriter().writeAttribute("href",protectEnc(fileName));
+            writeHrefAttribute(protectEnc(fileName));
             if (atom->type() == Atom::InlineImage)
                 xmlWriter().writeAttribute("placement","inline");
             else {
@@ -2186,7 +2186,7 @@ void DitaXmlGenerator::writeXrefListItem(const QString& link, const QString& tex
     writeStartTag(DT_li);
     writeStartTag(DT_xref);
     // formathtml
-    xmlWriter().writeAttribute("href",link);
+    writeHrefAttribute(link);
     writeCharacters(text);
     writeEndTag(); // </xref>
     writeEndTag(); // </li>
@@ -2291,8 +2291,10 @@ void DitaXmlGenerator::writeLink(const Node* node,
 {
     if (node) {
         QString link = fileName(node) + QLatin1Char('#') + node->guid();
+        if (link.endsWith("#"))
+            qDebug() << "LINK ENDS WITH #:" << link << outFileName();
         writeStartTag(DT_link);
-        xmlWriter().writeAttribute("href", link);
+        writeHrefAttribute(link);
         xmlWriter().writeAttribute("role", role);
         writeStartTag(DT_linktext);
         writeCharacters(text);
@@ -3058,7 +3060,7 @@ void DitaXmlGenerator::generateCompactList(const Node* relative,
             */
             writeStartTag(DT_xref);
             // formathtml
-            xmlWriter().writeAttribute("href",linkForNode(it.value(), relative));
+            writeHrefAttribute(linkForNode(it.value(), relative));
             
             QStringList pieces;
             if (it.value()->subType() == Node::QmlClass)
@@ -3918,7 +3920,7 @@ void DitaXmlGenerator::generateFullName(const Node* apparentNode,
     writeStartTag(DT_xref);
     // formathtml
     QString href = linkForNode(actualNode, relative);
-    xmlWriter().writeAttribute("href",href);
+    writeHrefAttribute(href);
     writeCharacters(protectEnc(fullName(apparentNode, relative, marker)));
     writeEndTag(); // </xref>
 }
@@ -4307,7 +4309,7 @@ void DitaXmlGenerator::beginLink(const QString& link)
         return;
     writeStartTag(DT_xref);
     // formathtml
-    xmlWriter().writeAttribute("href",link);
+    writeHrefAttribute(link);
     inLink = true;
 }
 
@@ -5866,6 +5868,19 @@ DitaXmlGenerator::writeProlog(const InnerNode* inner)
     }
     writeEndTag(); // </metadata>
     writeEndTag(); // </prolog>
+}
+
+/*!
+  This function should be called to write the \a href attribute
+  if the href could be an \e http or \e ftp link. If \a href is
+  one or the other, a \e scope attribute is also writen, with
+  value \e external.
+ */
+void DitaXmlGenerator::writeHrefAttribute(const QString& href)
+{
+    xmlWriter().writeAttribute("href", href);
+    if (href.startsWith("http:") || href.startsWith("ftp:"))
+        xmlWriter().writeAttribute("scope", "external");
 }
 
 QT_END_NAMESPACE
