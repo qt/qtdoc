@@ -34,6 +34,7 @@
     \page accessible.html
     \title Accessibility
     \brief How to make your applications accessible to those with disabilities.
+    \nextpage Accessibility for QWidget Applications
 
     \ingroup technology-apis
     \ingroup qt-basic-concepts
@@ -41,37 +42,59 @@
 
     \tableofcontents
 
+
+
+
     \section1 Introduction
 
     Accessibility in computer software is making applications usable
-    for people with disabilities. This could be achieved by providing
+    for people with disabilities. This can be achieved by providing
     keyboard shortcuts, a high-contrast user interface that uses
     specially selected colors and fonts, or support for assistive tools
     such as screen readers and braille displays.
 
-    An application does not usually communicate directly with
-    assistive tools but through an assistive technology, which is a
-    bridge for exchange of information between the applications and
-    the tools. Information about user interface elements, such as
+    An application does not usually communicate directly with the
+    assistive tools but through a platform specific API, which uses an IPC mechanism.
+    Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
-    Qt supports Microsoft Active Accessibility (MSAA) on Windows, Mac
-    OS X Accessibility on Mac OS X, and AT-SPI on Unix/X11. On
-    Unix/X11, support is preliminary. The individual technologies are
-    abstracted from Qt, and there is only a single interface to
-    consider. We will use MSAA throughout this document when we need
-    to address technology related issues.
+    Qt supports Microsoft Active Accessibility (MSAA) and IAccessible2 on Windows, Mac
+    OS X Accessibility on Mac OS X, and AT-SPI via DBus on Unix/X11. On
+    Unix/X11, a plugin is currently required
+    (\l {http://gitorious.org/qt-at-spi} {Qt AT-SPI bridge on Gitorious}).
+    The platform specific technologies are
+    abstracted by Qt, so you will only have a generic interface to consider.
+    Qt tries to make adding accessibility support to your application as easy
+    as possible, so that only few changes from your side may be required to
+    allow even more users to enjoy it.
 
     In this overview document, we will examine the overall Qt
     accessibility architecture, and how to implement accessibility for
-    custom widgets and elements. 
+    custom widgets and elements.
+
+    \section1 Making Applications Accessible
+
+    These two pages focus on giving an overview of how to achieve
+    good accessibility:
+
+    \l{Accessibility for QWidget Applications}
+
+    \l{Accessibility for Qt Quick Applications}
 
     \section1 Architecture
 
+    If you want a deeper understanding how the cross platform accessibility
+    support is implemented, this section is for you.
+
     Providing accessibility is a collaboration between accessibility
     compliant applications, the assistive technology, and the
-    assistive tools. 
+    assistive tools.
 
     \image accessibilityarchitecture.png
+
+    // FIXME: In the image several text snippets are wrong:
+    // QAccessibleInterface
+    // Unix: AT-SPI
+
 
     Accessibility compliant applications are called AT-Servers while
     assistive tools are called AT-Clients. A Qt application will
@@ -80,15 +103,37 @@
     when talking about AT-Clients and AT-Servers in the rest of this
     document.
 
-    We will from now on focus on the Qt accessibility interface and
-    how it is implemented to create Qt applications that support
-    accessibility.
 
-    \section2 Accessibility in Qt
-    
-    These classes provide support for accessible applications.
+    \section1 Further Reading
 
+    \l{Accessibility for QWidget Applications}
+
+    \l{Accessibility for Qt Quick Applications}
+
+    These classes provide support for accessible applications:
     \annotatedlist accessibility
+
+    The \l{Cross-Platform Accessibility Support in Qt 4} document contains a more
+    general overview of Qt's accessibility features and discusses how it is
+    used on each platform.
+*/
+
+
+/*!
+    \page accessible-qwidget.html
+    \title Accessibility for QWidget Applications
+    \brief How to make your applications accessible to those with disabilities.
+    \previouspage Accessibility
+    \nextpage Accessibility for Qt Quick Applications
+
+    \tableofcontents
+
+    \section1 Introduction
+
+    We will focus on the Qt accessibility interface \l {QAccessibleInterface}
+    and how to make applications accessible.
+
+    \section2 Accessibility in QWidget based applications
 
     When we communicate with the assistive technologies, we need to
     describe Qt's user interface in a way that they can understand. Qt
@@ -113,19 +158,19 @@
     the object that generated the event through
     QAccessible::queryAccessibleInterface().
 
-    Three of the enums in QAccessible help clients query and alter
+    The members and enums in QAccessible are used to describe
     accessible objects:
 
     \list
         \o \l{QAccessible::}{Role}: Describes the role the object
-            fills in the user interface, e.g., if it is a main
-            window, a text caret, or a cell in an item view.
-        \o \l{QAccessible::}{Action}: The actions that the
-            clients can perform on the objects, e.g., pushing a
-            button.
+            fills in the user interface, e.g., if it is a
+            window, a text edit, or a cell in a table.
         \o \l{QAccessible::}{Relation}: Describes the relationship
-            between objects in the object tree.
-            This is used for navigation.
+            between objects in the object hierarchy.
+        \o \l{QAccessible::}{State}: The objects can be in a number
+            of different states. Examples of states are whether
+            the object is disabled, if it has focus,
+            or if it provides a pop-up menu.
     \endlist
 
     The clients also have some possibilities to get the content of
@@ -133,10 +178,6 @@
     defined by the QAccessible::Text enum, that give information
     about content.
 
-    The objects can be in a number of different states as defined by
-    the \l{QAccessible::}{State} enum. Examples of states are whether
-    the object is disabled, if it has focus, or if it provides a pop-up
-    menu.
 
     \section2 The Accessible Object Tree
 
@@ -247,19 +288,6 @@
     concerned about factories because you can implement plugins that
     produce interfaces. We will give examples of both approaches
     later.
-
-    \section2 Enabling Accessibility Support
-
-    By default, Qt applications are run with accessibility support
-    enabled on Windows and Mac OS X. On Unix/X11 platforms, applications
-    must be launched in an environment with the \c QT_ACCESSIBILITY
-    variable set to 1. For example, this is set in the following way with
-    the bash shell:
-
-    \snippet doc/src/snippets/code/doc_src_qt4-accessibility.cpp environment
-
-    Accessibility features are built into Qt by default when the libraries
-    are configured and built.
 
     \section1 Implementing Accessibility
 
@@ -447,54 +475,41 @@
 
     \section2 Handling Action Requests from Clients
 
-    QAccessible provides a number of \l{QAccessible::}{Action}s
-    that can be performed on request from clients. If an
-    accessible object supports actions, it should reimplement the
-    following functions from QAccessibleInterface:
+    Applications can expose actions, which can be invoked by the
+    client.
+    In order to support actions in an object, inherit the
+    \l {QAccessibleActionInterface}.
 
-    \list
-        \o \l{QAccessibleInterface::}{actionText()} returns
-            strings that describe each action. The descriptions
-            to be made available are one for each
-            \l{QAccessible::}{Text} enum value.
-        \o  \l{QAccessibleInterface::}{doAction()} executes requests
-            from clients to perform actions.
-    \endlist
+    Interactive elements should expose functionality triggered
+    by mouse interaction, for example.
+    A button should, for example, implement a click action.
 
-    Note that a client can request any action from an object. If
-    the object does not support the action, it returns false from
-    \l{QAccessibleInterface::}{doAction()}.
+    Setting the focus is another action that should be implemented
+    for widgets that accept receive the focus.
 
-    None of the standard actions take any parameters. It is possible
-    to provide user-defined actions that can take parameters.
-    The interface must then also reimplement
-    \l{QAccessibleInterface::}{userActionCount()}. Since this is not
-    defined in the MSAA specification, it is probably only useful to
-    use this if you know which specific AT-Clients will use the
-    application.
+    You need to re-implement \l{QAccessibleActionInterface::}{actionNames()}
+    to return a list of all actions that the object supports.
+    This list should not be localized.
 
-    QAccessibleInterface gives another technique for clients to handle
-    accessible objects. It works basically the same way, but uses the
-    concept of methods in place of actions. The available methods are
-    defined by the QAccessible::Method enum. The following functions
-    need to be reimplemented from QAccessibleInterface if the
-    accessible object is to support methods:
+    There are two functions that give information about the actions
+    that must return localized strings:
+    \l{QAccessibleActionInterface::}{localizedActionName()} and
+    \l{QAccessibleActionInterface::}{localizedActionDescription()}.
+    These functions can be used by the client to present the actions to the user.
+    In general, the name should be concise and only consist of a single word, such as "press".
 
-    \list
-        \o \l{QAccessibleInterface::}{supportedMethods()} returns
-            a QSet of \l{QAccessible::}{Method} values that are 
-            supported by the object.
-        \o \l{QAccessibleInterface::}{invokeMethod()} executes
-           methods requested by clients.
-    \endlist
+    There is a list of standard action names and localizations available
+    that should be used when the action fits. This makes it easier for
+    clients to understand the semantics, and Qt will try to expose them
+    correctly on the different platforms.
 
-    The action mechanism will probably be substituted by providing
-    methods in place of the standard actions. 
+    Of course the action also needs a way to be triggered.
+    \l{QAccessibleActionInterface::}{doAction()} should
+    invoke the action as advertised by name and description.
 
     To see examples on how to implement actions and methods, you
-    could examine the QAccessibleObject and QAccessibleWidget
-    implementations. You might also want to take a look at the
-    MSAA documentation.
+    could examine the implementations for Qt's standard widgets such as
+    QAccessiblePushButton.
 
     \section2 Implementing Accessible Plugins
 
@@ -607,10 +622,30 @@
 
     \endomit
 
-    \section1 Further Reading
+*/
 
-    The \l{Cross-Platform Accessibility Support in Qt 4} document contains a more
-    general overview of Qt's accessibility features and discusses how it is
-    used on each platform.
-    issues
+/*!
+    \page accessible-qtquick.html
+    \title Accessibility for Qt Quick Applications
+    \brief How to make your applications accessible to those with disabilities.
+    \startpage Accessibility
+    \previouspage Accessibility for QWidget Applications
+
+    \ingroup technology-apis
+    \ingroup qt-basic-concepts
+    \ingroup best-practices
+
+    \tableofcontents
+
+    \section1 Introduction
+
+    We will explain how to make Qt Quick applications accessible.
+    This can be compared to making web application accessible.
+    You simply need to assign a few properties when creating controls such
+    as buttons in QML.
+
+    The most important property for this purpose is the attached property
+    \l {Accessible}.
+
+
 */
