@@ -41,7 +41,8 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
-#include <QHttp>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QWidget>
 #include <QXmlInputSource>
 #include <QXmlSimpleReader>
@@ -62,8 +63,8 @@ public:
 public slots:
     void addItem(QString &title, QString &link);
     void fetch();
-    void finished(int id, bool error);
-    void readData(const QHttpResponseHeader &);
+    void finished(QNetworkReply *reply);
+    void readData();
 
 private:
     Handler *handler;
@@ -72,7 +73,7 @@ private:
 
     bool newInformation;
 
-    QHttp http;
+    QNetworkAccessManager http;
     int connectionId;
 
     QLineEdit *lineEdit;
