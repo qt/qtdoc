@@ -222,7 +222,8 @@ class Node
     const ClassNode* declarativeCppNode() const;
     const QString& outputSubdirectory() const { return outSubDir_; }
     QString fullDocumentName() const;
-    QString uuidForNode() const;
+    QString idForNode() const;
+    static QString cleanId(QString str);
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -256,6 +257,7 @@ class Node
     QString outSubDir_;
     QString qmlModuleName_;
     QString qmlModuleVersion_;
+    static QStringMap operators_;
 };
 
 class FunctionNode;

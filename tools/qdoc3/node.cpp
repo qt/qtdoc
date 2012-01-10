@@ -49,6 +49,7 @@
 QT_BEGIN_NAMESPACE
 
 ExampleNodeMap ExampleNode::exampleNodeMap;
+QStringMap Node::operators_;
 
 /*!
   \class Node
@@ -104,6 +105,50 @@ Node::Node(Type type, InnerNode *parent, const QString& name)
     if (parent_)
         parent_->addChild(this);
     outSubDir_ = CodeParser::currentOutputSubdirectory();
+    if (operators_.isEmpty()) {
+        operators_.insert("++","inc");
+        operators_.insert("--","dec");
+        operators_.insert("==","eq");
+        operators_.insert("!=","ne");
+        operators_.insert("<<","lt-lt");
+        operators_.insert(">>","gt-gt");
+        operators_.insert("+=","plus-assign");
+        operators_.insert("-=","minus-assign");
+        operators_.insert("*=","mult-assign");
+        operators_.insert("/=","div-assign");
+        operators_.insert("%=","mod-assign");
+        operators_.insert("&=","bitwise-and-assign");
+        operators_.insert("|=","bitwise-or-assign");
+        operators_.insert("^=","bitwise-xor-assign");
+        operators_.insert("<<=","bitwise-left-shift-assign");
+        operators_.insert(">>=","bitwise-right-shift-assign");
+        operators_.insert("||","logical-or");
+        operators_.insert("&&","logical-and");
+        operators_.insert("()","call");
+        operators_.insert("[]","subscript");
+        operators_.insert("->","pointer");
+        operators_.insert("->*","pointer-star");
+        operators_.insert("+","plus");
+        operators_.insert("-","minus");
+        operators_.insert("*","mult");
+        operators_.insert("/","div");
+        operators_.insert("%","mod");
+        operators_.insert("|","bitwise-or");
+        operators_.insert("&","bitwise-and");
+        operators_.insert("^","bitwise-xor");
+        operators_.insert("!","not");
+        operators_.insert("~","bitwise-not");
+        operators_.insert("<=","lt-eq");
+        operators_.insert(">=","gt-eq");
+        operators_.insert("<","lt");
+        operators_.insert(">","gt");
+        operators_.insert("=","assign");
+        operators_.insert(",","comma");
+        operators_.insert("delete[]","delete-array");
+        operators_.insert("delete","delete");
+        operators_.insert("new[]","new-array");
+        operators_.insert("new","new");
+    }
 }
 
 /*!
@@ -325,7 +370,7 @@ QString Node::fileBase() const
 QString Node::guid() const
 {
     if (uuid.isEmpty()) {
-        uuid = uuidForNode();
+        uuid = idForNode();
 #if 0
         QUuid quuid = QUuid::createUuid();
         QString t = quuid.toString();
@@ -2283,6 +2328,88 @@ QString Node::fullDocumentName() const
 }
 
 /*!
+  Returns the \a str as an NCName, which means the name can
+  be used as the value of an \e id attribute. Search for NCName
+  on the internet for details of what can be an NCName.
+ */
+QString Node::cleanId(QString str)
+{
+    QString clean;
+    QString name = str.simplified();
+
+    if (name.isEmpty())
+        return clean;
+
+    name = name.toLower();
+    name = name.replace("::","-");
+    name = name.replace(" ","-");
+    name = name.replace("()","-call");
+
+    clean.reserve(name.size() + 20);
+    const QChar c = name[0];
+    const uint u = c.unicode();
+
+    if ((u >= 'a' && u <= 'z') ||
+        (u >= '0' && u <= '9')) {
+        clean += c;
+    }
+    else if (u == '~') {
+        clean += "dtor.";
+    }
+    else if (u == '_') {
+        clean += "underscore.";
+    }
+    else {
+        clean += QLatin1Char('a');
+    }
+
+    for (int i = 1; i < (int) name.length(); i++) {
+        const QChar c = name[i];
+        const uint u = c.unicode();
+        if ((u >= 'a' && u <= 'z') ||
+            (u >= '0' && u <= '9') || u == '-' ||
+            u == '_' || u == '.') {
+            clean += c;
+        }
+        else if (c.isSpace() || u == ':' ) {
+            clean += QLatin1Char('-');
+        }
+        else if (u == '!') {
+            clean += "-not";
+        }
+        else if (u == '&') {
+            clean += "-and";
+        }
+        else if (u == '<') {
+            clean += "-lt";
+        }
+        else if (u == '=') {
+            clean += "-eq";
+        }
+        else if (u == '>') {
+            clean += "-gt";
+        }
+        else if (u == '#') {
+            clean += "-hash";
+        }
+        else if (u == '(') {
+            clean += "-";
+        }
+        else if (u == ')') {
+            clean += "-";
+        }
+        else {
+            clean += QLatin1Char('-');
+            clean += QString::number((int)u, 16);
+        }
+    }
+    //clean = clean.replace("(","-");
+    //clean = clean.replace(")","-");
+    //clean = clean.replace("--","-");
+    return clean;
+}
+
+/*!
   Creates a string that can be used as a UUID for the node,
   depending on the type and subtype of the node. Uniquenss
   is not guaranteed, but it is expected that strings created
@@ -2290,7 +2417,7 @@ QString Node::fullDocumentName() const
   returned string can be used as the value of an \e id
   attribute.
  */
-QString Node::uuidForNode() const
+QString Node::idForNode() const
 {
     const FunctionNode* func;
     const TypedefNode* tdn;
@@ -2309,7 +2436,7 @@ QString Node::uuidForNode() const
     case Node::Typedef:
         tdn = static_cast<const TypedefNode*>(this);
         if (tdn->associatedEnum()) {
-            return tdn->associatedEnum()->uuidForNode();
+            return tdn->associatedEnum()->idForNode();
         }
         else {
             str = "typedef-" + name();
@@ -2318,12 +2445,64 @@ QString Node::uuidForNode() const
     case Node::Function:
         func = static_cast<const FunctionNode*>(this);
         if (func->associatedProperty()) {
-            return func->associatedProperty()->uuidForNode();
+            return func->associatedProperty()->idForNode();
         }
         else {
-            if (parent_ && parent_->type() == Class)
-                str = "member-";
-            str += func->name();
+            if (func->name().startsWith("operator")) {
+                QString op = func->name().mid(8);
+                if (!op.isEmpty()) {
+                    int i = 0;
+                    while (i<op.size() && op.at(i) == ' ')
+                        ++i;
+                    if (i>0 && i<op.size()) {
+                        op = op.mid(i);
+                    }
+                    if (!op.isEmpty()) {
+                        i = 0;
+                        while (i < op.size()) {
+                            const QChar c = op.at(i);
+                            const uint u = c.unicode();
+                            if ((u >= 'a' && u <= 'z') ||
+                                (u >= 'A' && u <= 'Z') ||
+                                (u >= '0' && u <= '9'))
+                                break;
+                            ++i;
+                        }
+                        str = "operator-";
+                        if (i>0) {
+                            QString tail = op.mid(i);
+                            op = op.left(i);
+                            if (operators_.contains(op)) {
+                                str += operators_.value(op);
+                                if (!tail.isEmpty())
+                                    str += "-" + tail;
+                            }
+                            else
+                                qDebug() << "qdoc3 internal error: Operator missing from operators_ map:" << op;
+                        }
+                        else {
+                            str += op;
+                        }
+                    }
+                }
+            }
+            else if (parent_) {
+                if (parent_->type() == Class)
+                    str = "class-member-" + func->name();
+                else if (parent_->type() == Namespace)
+                    str = "namespace-member-" + func->name();
+                else if (parent_->type() == Fake) {
+                    if (parent_->subType() == QmlClass)
+                        str = "qml-method-" + func->name();
+                    else
+                        qDebug() << "qdoc3 internal error: Node subtype not handled:"
+                                 << parent_->subType() << func->name();
+                }
+                else
+                    qDebug() << "qdoc3 internal error: Node type not handled:"
+                             << parent_->type() << func->name();
+
+            }
             if (func->overloadNumber() != 1)
                 str += QLatin1Char('-') + QString::number(func->overloadNumber());
         }
@@ -2368,7 +2547,7 @@ QString Node::uuidForNode() const
                 str.replace(": ","-");
                 break;
             default:
-                qDebug() << "ERROR: A case was not handled in Node::uuidForNode():"
+                qDebug() << "ERROR: A case was not handled in Node::idForNode():"
                          << "subType():" << subType() << "type():" << type();
                 break;
             }
@@ -2396,21 +2575,18 @@ QString Node::uuidForNode() const
         str = name();
         break;
     default:
-        qDebug() << "ERROR: A case was not handled in Node::uuidForNode():"
+        qDebug() << "ERROR: A case was not handled in Node::idForNode():"
                  << "type():" << type() << "subType():" << subType();
         break;
     }
     if (str.isEmpty()) {
-        qDebug() << "ERROR: A link text was empty in Node::uuidForNode():"
+        qDebug() << "ERROR: A link text was empty in Node::idForNode():"
                  << "type():" << type() << "subType():" << subType()
                  << "name():" << name()
                  << "title():" << title();
     }
     else {
-        str = str.toLower();
-        str = str.replace("::","-");
-        str = str.replace(" ","-");
-        str = str.replace("~","dtor.");
+        str = cleanId(str);
     }
     return str;
 }

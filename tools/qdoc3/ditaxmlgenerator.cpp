@@ -554,11 +554,7 @@ QString DitaXmlGenerator::lookupGuid(QString text)
     QString t = QUuid::createUuid().toString();
     QString guid = "id-" + t.mid(1,t.length()-2);
 #endif
-    QString guid = text;
-    guid = guid.toLower();
-    guid = guid.replace("::","-");
-    guid = guid.replace(" ","-");
-    guid = guid.replace("~","dtor.");
+    QString guid = Node::cleanId(text);
     name2guidMap.insert(text,guid);
     return guid;
 }
@@ -581,11 +577,7 @@ QString DitaXmlGenerator::lookupGuid(const QString& fileName, const QString& tex
     QString t = QUuid::createUuid().toString();
     QString guid = "id-" + t.mid(1,t.length()-2);
 #endif
-    QString guid = text;
-    guid = guid.toLower();
-    guid = guid.replace("::","-");
-    guid = guid.replace(" ","-");
-    guid = guid.replace("~","dtor.");
+    QString guid = Node::cleanId(text);
     gm->insert(text,guid);
     return guid;
 }
@@ -2442,7 +2434,8 @@ void DitaXmlGenerator::generateHeader(const Node* node,
     xmlWriter().writeDTD(doctype);
     xmlWriter().writeComment(node->doc().location().fileName());
     writeStartTag(mainTag);
-    xmlWriter().writeAttribute("id",node->guid());
+    QString id = node->guid();
+    xmlWriter().writeAttribute("id",id);
     if (!outputclass.isEmpty())
         xmlWriter().writeAttribute("outputclass",outputclass);
     writeStartTag(nameTag); // <title> or <apiName>
