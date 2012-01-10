@@ -17,4 +17,5 @@
     "qtxmlpatterns" => "refs/heads/master",
     "qttools" => "refs/heads/master",
     "qtdeclarative" => "refs/heads/master",
+    "qtjsbackend" => "refs/heads/master",
 );
