@@ -5027,7 +5027,10 @@ void DitaXmlGenerator::writeEnumerations(const Section& s,
 
                     if (!(*i).value().isEmpty()) {
                         writeStartTag(DT_cxxEnumeratorInitialiser);
-                        xmlWriter().writeAttribute("value", (*i).value());
+                        if ((*i).value().toInt(0,16) == 0)
+                            xmlWriter().writeAttribute("value", "0");
+                        else
+                            xmlWriter().writeAttribute("value", (*i).value());
                         writeEndTag(); // <cxxEnumeratorInitialiser>
                     }
 
