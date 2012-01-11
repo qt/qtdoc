@@ -367,7 +367,6 @@ class DitaXmlGenerator : public PageGenerator
     void generateLegaleseList(const Node* relative, CodeMarker* marker);
     void generateOverviewList(const Node* relative, CodeMarker* marker);
 
-#ifdef QDOC_QML
     void generateQmlSummary(const Section& section,
                             const Node* relative,
                             CodeMarker* marker);
@@ -382,7 +381,6 @@ class DitaXmlGenerator : public PageGenerator
     void generateQmlInheritedBy(const QmlClassNode* qcn, CodeMarker* marker);
     void generateQmlInstantiates(const QmlClassNode* qcn, CodeMarker* marker);
     void generateInstantiatedBy(const ClassNode* cn, CodeMarker* marker);
-#endif
 
     void generateSection(const NodeList& nl,
                          const Node* relative,
@@ -452,6 +450,7 @@ class DitaXmlGenerator : public PageGenerator
     bool inSection() const { return (sectionNestingLevel > 0); }
     int currentSectionNestingLevel() const { return sectionNestingLevel; }
     QString metadataDefault(DitaTag t) const;
+    QString stripMarkup(const QString& src) const;
 
  private:
     /*

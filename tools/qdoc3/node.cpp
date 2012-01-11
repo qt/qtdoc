@@ -2340,7 +2340,6 @@ QString Node::cleanId(QString str)
     if (name.isEmpty())
         return clean;
 
-    name = name.toLower();
     name = name.replace("::","-");
     name = name.replace(" ","-");
     name = name.replace("()","-call");
@@ -2350,6 +2349,7 @@ QString Node::cleanId(QString str)
     const uint u = c.unicode();
 
     if ((u >= 'a' && u <= 'z') ||
+        (u >= 'A' && u <= 'Z') ||
         (u >= '0' && u <= '9')) {
         clean += c;
     }
@@ -2367,6 +2367,7 @@ QString Node::cleanId(QString str)
         const QChar c = name[i];
         const uint u = c.unicode();
         if ((u >= 'a' && u <= 'z') ||
+            (u >= 'A' && u <= 'Z') ||
             (u >= '0' && u <= '9') || u == '-' ||
             u == '_' || u == '.') {
             clean += c;

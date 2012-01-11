@@ -146,6 +146,7 @@ QString Text::toString() const
     while (atom != 0) {
 	if (atom->type() == Atom::String ||
              atom->type() == Atom::AutoLink ||
+             atom->type() == Atom::C ||
              atom->type() == Atom::GuidLink)
 	    str += atom->string();
 	atom = atom->next();

@@ -1455,11 +1455,16 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
         leaveSection();
         break;
     case Atom::SectionHeadingLeft:
-        writeStartTag(DT_p);
-        writeGuidAttribute(Doc::canonicalTitle(Text::sectionHeading(atom).toString()));
-        hx = QLatin1Char('h') + QString::number(atom->string().toInt() + hOffset(relative));
-        xmlWriter().writeAttribute("outputclass",hx);
-        inSectionHeading = true;
+        {
+            writeStartTag(DT_p);
+            QString id = Text::sectionHeading(atom).toString();
+            id = stripMarkup(id);
+            id = Doc::canonicalTitle(id);
+            writeGuidAttribute(id);
+            hx = QLatin1Char('h') + QString::number(atom->string().toInt() + hOffset(relative));
+            xmlWriter().writeAttribute("outputclass",hx);
+            inSectionHeading = true;
+        }
         break;
     case Atom::SectionHeadingRight:
         writeEndTag(); // </title> (see case Atom::SectionHeadingLeft)
@@ -5878,5 +5883,38 @@ void DitaXmlGenerator::writeHrefAttribute(const QString& href)
     if (href.startsWith("http:") || href.startsWith("ftp:"))
         xmlWriter().writeAttribute("scope", "external");
 }
+
+/*!
+  Strips the markup tags from \a src, when we are trying to
+  create an \e{id} attribute. Returns the stripped text.
+ */
+QString DitaXmlGenerator::stripMarkup(const QString& src) const
+{
+    QString text;
+    const QChar charAt = '@';
+    const QChar charSlash = '/';
+    const QChar charLangle = '<';
+    const QChar charRangle = '>';
+
+    int n = src.size();
+    int i = 0;
+    while (i < n) {
+        if (src.at(i) == charLangle) {
+            ++i;
+            if (src.at(i) == charAt || (src.at(i) == charSlash && src.at(i+1) == charAt)) {
+                while (i < n && src.at(i) != charRangle)
+                    ++i;
+                ++i;
+            }
+            else {
+                text += charLangle;
+            }
+        }
+        else
+            text += src.at(i++);
+    }
+    return text;
+}
+
 
 QT_END_NAMESPACE
