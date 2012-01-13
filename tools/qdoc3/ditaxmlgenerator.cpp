@@ -5612,7 +5612,6 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
     xmlWriter().writeCharacters("The top level map for the Qt documentation");
     writeEndTag(); // </shortdesc>
     writeEndTag(); // </topicmeta>
-#if 0
     GuidMaps::iterator i = guidMaps.begin();
     while (i != guidMaps.end()) {
         writeStartTag(DT_topicref);
@@ -5621,7 +5620,6 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
         writeEndTag(); // </topicref>
         ++i;
     }
-#endif
     endSubPage();
 }
 
