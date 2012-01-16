@@ -5616,7 +5616,6 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
     while (i != guidMaps.end()) {
         writeStartTag(DT_topicref);
         xmlWriter().writeAttribute("href",i.key());
-        xmlWriter().writeAttribute("type","topic");
         writeEndTag(); // </topicref>
         ++i;
     }
