@@ -436,7 +436,7 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
             if (qmlClass) {
                 QString name = member->name.toString();
                 QmlPropertyNode *qmlPropNode = new QmlPropertyNode(qmlClass, name, type, false);
-                qmlPropNode->setWritable(!member->isReadonlyMember);
+                qmlPropNode->setReadOnly(member->isReadonlyMember);
                 if (member->isDefaultMember)
                     qmlPropNode->setDefault();
                 applyDocumentation(member->firstSourceLocation(), qmlPropNode);
