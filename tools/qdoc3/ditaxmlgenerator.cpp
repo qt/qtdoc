@@ -5615,7 +5615,8 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
     GuidMaps::iterator i = guidMaps.begin();
     while (i != guidMaps.end()) {
         writeStartTag(DT_topicref);
-        xmlWriter().writeAttribute("href",i.key());
+        if (i.key() != "qt.ditamap")
+            xmlWriter().writeAttribute("href",i.key());
         writeEndTag(); // </topicref>
         ++i;
     }
