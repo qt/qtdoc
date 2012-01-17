@@ -219,7 +219,7 @@ QString QmlCodeMarker::addMarkUp(const QString &code,
         QDeclarativeJS::AST::Node::accept(ast, &visitor);
         output = visitor.markedUpCode();
     } else {
-        location.warning(tr("Unable to parse QML: \"%1\" at line %2, column %3").arg(
+        location.warning(tr("Unable to parse QML snippet: \"%1\" at line %2, column %3").arg(
             parser.errorMessage()).arg(parser.errorLineNumber()).arg(
             parser.errorColumnNumber()));
         output = protect(code);

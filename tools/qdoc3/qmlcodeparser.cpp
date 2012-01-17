@@ -172,6 +172,11 @@ void QmlCodeParser::parseSourceFile(const Location& location,
                               topicCommandsAllowed);
         QDeclarativeJS::AST::Node::accept(ast, &visitor);
     }
+    foreach (const  QDeclarativeJS::DiagnosticMessage &msg, parser->diagnosticMessages()) {
+        qDebug().nospace() << qPrintable(filePath) << ':' << msg.loc.startLine
+                           << ": QML syntax error at col " << msg.loc.startColumn
+                           << ": " << qPrintable(msg.message);
+    }
 }
 
 /*!
