@@ -42,7 +42,7 @@
     \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
     \row \o \l{QtGui} \o Base classes for graphical user interface (GUI) components
     \row \o \l{QtLocation Module}{QtLocation} \o Classes for location positioning, mapping, navigation and place search.
-    \row \o \l{QtMultimedia Module}{QtMultimedia} \o Classes for low-level multimedia functionality
+    \row \o \l{QtMultimedia Module}{QtMultimedia} \o Classes for audio, video, radio and camera functionality
     \row \o \l{QtNetwork} \o Classes for network programming
     \row \o \l{QtOpenGL} \o OpenGL support classes
     \row \o \l{QtOpenVG} \o OpenVG support classes
@@ -95,7 +95,7 @@
     \title QtMultimedia Module
     \ingroup modules
 
-    \brief The QtMultimedia module provides low-level multimedia functionality.
+    \brief The QtMultimedia module provides audio, video, radio and camera functionality.
 
     To include the definitions of the module's classes, use the
     following directive:
@@ -107,8 +107,6 @@
 
     \snippet doc/src/snippets/code/doc_src_qtmultimedia.pro 0
 
-    The functionality provided by the \l{Phonon Module} is on a higher level
-    and in many cases more suitable for application developers.
 */
 
 /*!
