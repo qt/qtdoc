@@ -68,7 +68,7 @@ class Tree;
 
 typedef QMap<QString, const Node*> NodeMap;
 typedef QMultiMap<QString, Node*> NodeMultiMap;
-typedef QMap<QString, const ExampleNode*> ExampleNodeMap;
+typedef QMultiMap<QString, const ExampleNode*> ExampleNodeMap;
 typedef QList<QPair<QString,QString> > ImportList;
 
 class Node

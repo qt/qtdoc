@@ -791,7 +791,6 @@ int HtmlGenerator::generateAtom(const Atom *atom,
                     if (cen->imageFileName().isEmpty()) {
                         ExampleNode* en = const_cast<ExampleNode*>(cen);
                         en->setImageFileName(fileName);
-                        ExampleNode::exampleNodeMap.insert(en->title(),en);
                     }
                 }
             }
@@ -4721,7 +4720,8 @@ void HtmlGenerator::generateManifestFile(QString manifest, QString element)
                 }
             }
         }
-        writer.writeAttribute("imageUrl", manifestDir + en->imageFileName());
+        if (!en->imageFileName().isEmpty())
+            writer.writeAttribute("imageUrl", manifestDir + en->imageFileName());
         writer.writeStartElement("description");
         Text brief = en->doc().briefText();
         if (!brief.isEmpty())

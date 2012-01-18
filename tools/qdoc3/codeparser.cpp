@@ -299,6 +299,9 @@ void CodeParser::processCommonMetaCommand(const Location& location,
         if (node->type() == Node::Fake) {
             FakeNode *fake = static_cast<FakeNode *>(node);
             fake->setTitle(arg);
+            if (fake->subType() == Node::Example) {
+                ExampleNode::exampleNodeMap.insert(fake->title(),static_cast<ExampleNode*>(fake));
+            }
             nameToTitle.insert(fake->name(),arg);
         }
         else
