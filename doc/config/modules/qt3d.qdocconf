@@ -1,0 +1,14 @@
+headerdirs  += $QT_3D_SOURCES/..
+
+sourcedirs  += $QT_3D_SOURCES/.. \
+               $QT_3D_SOURCES/../../doc/src
+
+exampledirs += $QT_3D_SOURCES/../../examples \
+               $QT_3D_SOURCES/../../src/plugins
+
+imagedirs   += $QT_3D_SOURCES/../../doc/src/images \
+               $QT_3D_SOURCES/../../examples/qt3d \
+               $QT_3D_SOURCES/../../examples/quick3d
+
+excludedirs +=
+

@@ -41,6 +41,7 @@
     \row \o \l{QtCore} \o Core non-graphical classes used by other modules
     \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
     \row \o \l{QtGui} \o Base classes for graphical user interface (GUI) components
+    \row \o \l{Qt3D}  \o Classes and elements for the 3D API.
     \row \o \l{QtLocation Module}{QtLocation} \o Classes for location positioning, mapping, navigation and place search.
     \row \o \l{QtMultimedia Module}{QtMultimedia} \o Classes for audio, video, radio and camera functionality
     \row \o \l{QtNetwork} \o Classes for network programming
@@ -67,7 +68,7 @@
     \header \o {2,1} \bold{Modules for working with Qt's tools}
     \row \o \l{QtDesigner} \o Classes for extending \QD
     \row \o \l{QtUiTools} \o Classes for handling \QD forms in applications
-    \row \o \l{QtHelp} \o Classes for online help    
+    \row \o \l{QtHelp} \o Classes for online help
     \row \o \l{QtTest} \o Tool classes for unit testing
     \header \o {2,1} \bold{Modules for Windows developers}
     \row \o \l{QAxContainer} \o Extension for accessing ActiveX controls
@@ -645,7 +646,7 @@
     \since 4.1
     \ingroup modules
 
-    \brief The QtUiTools module provides classes to handle forms created 
+    \brief The QtUiTools module provides classes to handle forms created
     with Qt Designer.
 
     These forms are processed at run-time to produce dynamically-generated
@@ -815,7 +816,7 @@
     \ingroup modules
 
     \brief The QAxServer module is a Windows-only static library that
-    you can use to turn a standard Qt binary into a COM server. 
+    you can use to turn a standard Qt binary into a COM server.
 
     QAxServer is part of the \l{ActiveQt Framework}.
 
@@ -876,7 +877,7 @@
     the \l{GNU Lesser General Public License (LGPL)}, or the
     \l{Qt Commercial Edition}{Qt Commercial License}. Instead, it is distributed under
     the following license.
-    
+
     \legalese
     Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).\br
     All rights reserved.
@@ -914,7 +915,7 @@
     \l{GNU Lesser General Public License (LGPL)}, or the
     \l{Qt Commercial Edition}{Qt Commercial License}. Instead, they are
     distributed under the following license.
-    
+
     \legalese
     Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).\br
     All rights reserved.\br
