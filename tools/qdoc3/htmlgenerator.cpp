@@ -3286,16 +3286,13 @@ QString HtmlGenerator::refForNode(const Node *node)
                 ref += "-" + QString::number(func->overloadNumber());
         }
         break;
-#ifdef QDOC_QML        
     case Node::Fake:
         if (node->subType() != Node::QmlPropertyGroup)
             break;
     case Node::QmlProperty:
-#endif        
     case Node::Property:
         ref = node->name() + "-prop";
         break;
-#ifdef QDOC_QML
     case Node::QmlSignal:
         ref = node->name() + "-signal";
         break;
@@ -3305,7 +3302,6 @@ QString HtmlGenerator::refForNode(const Node *node)
     case Node::QmlMethod:
         ref = node->name() + "-method";
         break;
-#endif        
     case Node::Variable:
         ref = node->name() + "-var";
         break;

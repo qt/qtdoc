@@ -67,8 +67,8 @@ Node::~Node()
 {
     if (parent_)
         parent_->removeChild(this);
-    if (rel)
-        rel->removeRelated(this);
+    if (relatesTo_)
+        relatesTo_->removeRelated(this);
 }
 
 /*!
@@ -99,7 +99,7 @@ Node::Node(Type type, InnerNode *parent, const QString& name)
       pageType_(NoPageType),
       status_(Commendable),
       parent_(parent),
-      rel(0),
+      relatesTo_(0),
       name_(name)
 {
     if (parent_)
@@ -219,11 +219,11 @@ void Node::setPageType(const QString& t)
  */
 void Node::setRelates(InnerNode *pseudoParent)
 {
-    if (rel) {
-        rel->removeRelated(this);
+    if (relatesTo_) {
+        relatesTo_->removeRelated(this);
     }
-    rel = pseudoParent;
-    pseudoParent->related.append(this);
+    relatesTo_ = pseudoParent;
+    pseudoParent->related_.append(this);
 }
 
 /*!
@@ -379,8 +379,6 @@ QString Node::guid() const
     }
     return uuid;
 }
-//#include "htmlgenerator.h"
-//qDebug() << "FULL DOC LOC:" << HtmlGenerator::fullDocumentLocation(node,false);
 
 /*!
   Composes a string to be used as an href attribute in DITA
@@ -771,8 +769,8 @@ void InnerNode::normalizeOverloads()
  */
 void InnerNode::removeFromRelated()
 {
-    while (!related.isEmpty()) {
-        Node *p = static_cast<Node *>(related.takeFirst());
+    while (!related_.isEmpty()) {
+        Node *p = static_cast<Node *>(related_.takeFirst());
 
         if (p != 0 && p->relates() == this) p->clearRelated();
     }
@@ -1077,7 +1075,7 @@ QString Node::moduleName() const
  */
 void InnerNode::removeRelated(Node *pseudoChild)
 {
-    related.removeAll(pseudoChild);
+    related_.removeAll(pseudoChild);
 }
 
 /*!
@@ -2450,6 +2448,15 @@ QString Node::idForNode() const
         }
         else {
             if (func->name().startsWith("operator")) {
+                str = "";
+                /*
+                  The test below should probably apply to all
+                  functions, but for now, overloaded operators
+                  are the only ones that produce duplicate id
+                  attributes in the DITA XML files.
+                 */
+                if (relatesTo_)
+                    str = "nonmember-";
                 QString op = func->name().mid(8);
                 if (!op.isEmpty()) {
                     int i = 0;
@@ -2469,7 +2476,7 @@ QString Node::idForNode() const
                                 break;
                             ++i;
                         }
-                        str = "operator-";
+                        str += "operator-";
                         if (i>0) {
                             QString tail = op.mid(i);
                             op = op.left(i);

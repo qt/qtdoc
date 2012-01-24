@@ -182,7 +182,7 @@ class Node
     Type type() const { return type_; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return parent_; }
-    InnerNode* relates() const { return rel; }
+    InnerNode* relates() const { return relatesTo_; }
     const QString& name() const { return name_; }
     QMap<LinkType, QPair<QString,QString> > links() const { return linkMap; }
     QString moduleName() const;
@@ -203,7 +203,7 @@ class Node
     QString pageTypeString() const;
     virtual void addPageKeywords(const QString& ) { }
 
-    void clearRelated() { rel = 0; }
+    void clearRelated() { relatesTo_ = 0; }
 
     virtual QString fileBase() const;
     QString guid() const;
@@ -222,8 +222,8 @@ class Node
     const ClassNode* declarativeCppNode() const;
     const QString& outputSubdirectory() const { return outSubDir_; }
     QString fullDocumentName() const;
-    QString idForNode() const;
     static QString cleanId(QString str);
+    QString idForNode() const;
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);
@@ -244,7 +244,7 @@ class Node
     Status status_ : 3;
 #endif
     InnerNode* parent_;
-    InnerNode* rel;
+    InnerNode* relatesTo_;
     QString name_;
     Location loc;
     Doc d;
@@ -296,7 +296,7 @@ class InnerNode : public Node
     const FunctionNode* findFunctionNode(const FunctionNode* clone) const;
     const EnumNode* findEnumNodeForValue(const QString &enumValue) const;
     const NodeList & childNodes() const { return children; }
-    const NodeList & relatedNodes() const { return related; }
+    const NodeList & relatedNodes() const { return related_; }
     int count() const { return children.size(); }
     int overloadNumber(const FunctionNode* func) const;
     int numOverloads(const QString& funcName) const;
@@ -326,7 +326,7 @@ class InnerNode : public Node
     QStringList inc;
     NodeList children;
     NodeList enumChildren;
-    NodeList related;
+    NodeList related_;
     QMap<QString, Node*> childMap;
     QMap<QString, Node*> primaryFunctionMap;
     QMap<QString, NodeList> secondaryFunctionMap;
