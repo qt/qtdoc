@@ -38,38 +38,38 @@
 
     \table 80%
     \header \o {2,1} \bold{Modules for general software development}
+    \row \o \l{QtContacts} \o Classes for managing your contacts.
     \row \o \l{QtCore} \o Core non-graphical classes used by other modules
     \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
     \row \o \l{QtGui} \o Base classes for graphical user interface (GUI) components
-    \row \o \l{Qt3D}  \o Classes and elements for the 3D API.
     \row \o \l{QtLocation Module}{QtLocation} \o Classes for location positioning, mapping, navigation and place search.
     \row \o \l{QtMultimedia Module}{QtMultimedia} \o Classes for audio, video, radio and camera functionality
     \row \o \l{QtNetwork} \o Classes for network programming
     \row \o \l{QtOpenGL} \o OpenGL support classes
     \row \o \l{QtOpenVG} \o OpenVG support classes
+    \row \o \l{QtOrganizer} \o Classes for managing your calendar events.
     \row \o \l{QtPrintSupport} \o Classes for printing.
+    \row \o \l{Qt Publish Subscribe Module}{QtPublishSubscribe} \o Simplified mechanism for subscribing to notifications
     \row \o \l{QtScript} \o Classes for evaluating Qt Scripts
     \row \o \l{QtScriptTools} \o Additional Qt Script components
     \row \o \l{QtSensors} \o Classes for reading hardware sensors
+    \row \o \l{Qt Service Framework}{QtServiceFramework} \o Classes to create and start services
     \row \o \l{QtSql} \o Classes for database integration using SQL
     \row \o \l{QtSvg} \o Classes for displaying the contents of SVG files
-    \row \o \l{QtPublishSubscribe}{QtSystems - PublishSubscribe} \o Simplified mechanism for subscribing to notifications
-    \row \o \l{Qt Service Framework}{QtSystems - ServiceFramework} \o Classes to create and start services
-    \row \o \l{Qt System Information}{QtSystems - SystemInformation} \o Classes for accessing information about a device
+    \row \o \l{Qt System Info Module}{QtSystemInfo} \o Classes for accessing information about a device
+    \row \o \l{QtVersit} \o Classes to manage Versit.
     \row \o \l{QtWebKit} \o Classes for displaying and editing Web content
     \row \o \l{QtWidgets} \o Classes for widget development
     \row \o \l{QtXml} \o Classes for handling XML
     \row \o \l{QtXmlPatterns} \o An XQuery & XPath engine for XML and custom data models
-    \row \o \l{Phonon Module}{Phonon} \o Multimedia framework classes
+    \row \o \l{Qt3D}  \o Classes and elements for the 3D API.
     \row \o \l{Qt3Support} \o Qt 3 compatibility classes
-    \row \o \l{QtContacts} \o Classes for managing your contacts.
-    \row \o \l{QtOrganizer} \o Classes for managing your calendar events.
-    \row \o \l{QtVersit} \o Classes to manage Versit.
+    \row \o \l{Phonon Module}{Phonon} \o Multimedia framework classes
     \header \o {2,1} \bold{Modules for working with Qt's tools}
     \row \o \l{QtDesigner} \o Classes for extending \QD
-    \row \o \l{QtUiTools} \o Classes for handling \QD forms in applications
     \row \o \l{QtHelp} \o Classes for online help
     \row \o \l{QtTest} \o Tool classes for unit testing
+    \row \o \l{QtUiTools} \o Classes for handling \QD forms in applications
     \header \o {2,1} \bold{Modules for Windows developers}
     \row \o \l{QAxContainer} \o Extension for accessing ActiveX controls
     \row \o \l{QAxServer} \o Extension for writing ActiveX servers
