@@ -47,7 +47,8 @@ MODULES = activeqt \
           qt3support \
           contacts \
           organizer \
-          versit
+          versit \
+          bluetooth
 
 # Compile a list of location definitions for each of the modules and a list of
 # qdocconf files to include.

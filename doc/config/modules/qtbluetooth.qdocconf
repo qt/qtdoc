@@ -1,0 +1,15 @@
+# QT_BLUETOOTH_SOURCES points to qtconnectivity/src/bluetooth
+
+headerdirs  += $QT_BLUETOOTH_SOURCES/.. \
+               $QT_BLUETOOTH_SOURCES/../../examples
+
+sourcedirs  += $QT_BLUETOOTH_SOURCES/.. \
+               $QT_BLUETOOTH_SOURCES/../../doc/src \
+               $QT_BLUETOOTH_SOURCES/../../examples
+
+exampledirs += $QT_BLUETOOTH_SOURCES/../../examples \
+               $QT_BLUETOOTH_SOURCES/../../doc/src
+
+imagedirs   += $QT_BLUETOOTH_SOURCES/../../doc/src/images
+
+excludedirs +=
