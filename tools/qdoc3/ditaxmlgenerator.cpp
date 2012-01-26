@@ -97,6 +97,8 @@ QString DitaXmlGenerator::ditaTags[] =
         "cxxClassBaseClass",
         "cxxClassDeclarationFile",
         "cxxClassDeclarationFileLine",
+        "cxxClassDeclarationFileLineStart",
+        "cxxClassDeclarationFileLineEnd",
         "cxxClassDefinition",
         "cxxClassDerivation",
         "cxxClassDerivationAccessSpecifier",
@@ -123,10 +125,9 @@ QString DitaXmlGenerator::ditaTags[] =
         "cxxEnumerationAPIItemLocation",
         "cxxEnumerationDeclarationFile",
         "cxxEnumerationDeclarationFileLine",
+        "cxxEnumerationDeclarationFileLineStart",
+        "cxxEnumerationDeclarationFileLineEnd",
         "cxxEnumerationDefinition",
-        "cxxEnumerationDefinitionFile",
-        "cxxEnumerationDefinitionFileLineStart",
-        "cxxEnumerationDefinitionFileLineEnd",
         "cxxEnumerationDetail",
         "cxxEnumerationNameLookup",
         "cxxEnumerationPrototype",
@@ -1823,7 +1824,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
                 qDebug() << "Nested namespaces" << outFileName();
             }
             else if ((*s).name == "Macro Documentation") {
-                writeMacros((*s),marker);
+                //writeMacros((*s),marker);
             }
             ++s;
         }
@@ -1954,7 +1955,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
                 writeProperties((*s),marker);
             }
             else if ((*s).name == "Macro Documentation") {
-                writeMacros((*s),marker);
+                //writeMacros((*s),marker);
             }
             else if ((*s).name == "Related Non-Members") {
                 QString attribute("related-non-member");
@@ -2082,7 +2083,7 @@ DitaXmlGenerator::generateClassLikeNode(const InnerNode* inner, CodeMarker* mark
                 qDebug() << "Nested namespaces" << outFileName();
             }
             else if ((*s).name == "Macro Documentation") {
-                writeMacros((*s),marker);
+                //writeMacros((*s),marker);
             }
             ++s;
         }
@@ -2366,7 +2367,7 @@ void DitaXmlGenerator::generateHeader(const Node* node,
         mainTag = DT_cxxClass;
         nameTag = DT_apiName;
         dtd = "dtd/cxxClass.dtd";
-        version = "0.6.0";
+        version = "0.7.0";
         doctype = "<!DOCTYPE " + ditaTags[mainTag] +
             " PUBLIC \"-//NOKIA//DTD DITA C++ API Class Reference Type v" +
             version + "//EN\" \"" + dtd + "\">";
@@ -2375,7 +2376,7 @@ void DitaXmlGenerator::generateHeader(const Node* node,
         mainTag = DT_cxxClass;
         nameTag = DT_apiName;
         dtd = "dtd/cxxClass.dtd";
-        version = "0.6.0";
+        version = "0.7.0";
         doctype = "<!DOCTYPE " + ditaTags[mainTag] +
             " PUBLIC \"-//NOKIA//DTD DITA C++ API Class Reference Type v" +
             version + "//EN\" \"" + dtd + "\">";
@@ -2386,7 +2387,7 @@ void DitaXmlGenerator::generateHeader(const Node* node,
             mainTag = DT_cxxClass;
             nameTag = DT_apiName;
             dtd = "dtd/cxxClass.dtd";
-            version = "0.6.0";
+            version = "0.7.0";
             doctype = "<!DOCTYPE " + ditaTags[mainTag] +
                 " PUBLIC \"-//NOKIA//DTD DITA C++ API Class Reference Type v" +
                 version + "//EN\" \"" + dtd + "\">";
@@ -2396,7 +2397,7 @@ void DitaXmlGenerator::generateHeader(const Node* node,
             mainTag = DT_cxxClass;
             nameTag = DT_apiName;
             dtd = "dtd/cxxClass.dtd";
-            version = "0.6.0";
+            version = "0.7.0";
             doctype = "<!DOCTYPE " + ditaTags[mainTag] +
                 " PUBLIC \"-//NOKIA//DTD DITA C++ API Class Reference Type v" +
                 version + "//EN\" \"" + dtd + "\">";
@@ -2712,7 +2713,7 @@ void DitaXmlGenerator::generateLowStatusMembers(const InnerNode* inner,
             writeProperties((*s),marker,attribute);
         }
         else if ((*s).name == "Macro Documentation") {
-            writeMacros((*s),marker,attribute);
+            //writeMacros((*s),marker,attribute);
         }
         ++s;
     }
@@ -4649,76 +4650,68 @@ void DitaXmlGenerator::writeDerivations(const ClassNode* cn, CodeMarker* marker)
  */
 void DitaXmlGenerator::writeLocation(const Node* n)
 {
-    DitaTag s1, s2, s3, s4, s5, s6;
+    DitaTag s1, s2, s3a, s3b;
     s1 = DT_cxxClassAPIItemLocation;
     s2 = DT_cxxClassDeclarationFile;
-    s3 = DT_cxxClassDeclarationFileLine;
-    s4 = DT_LAST;
+    s3a = DT_cxxClassDeclarationFileLineStart;
+    s3b = DT_cxxClassDeclarationFileLineEnd;
     if (n->type() == Node::Class || n->type() == Node::Namespace) {
         s1 = DT_cxxClassAPIItemLocation;
         s2 = DT_cxxClassDeclarationFile;
-        s3 = DT_cxxClassDeclarationFileLine;
+        s3a = DT_cxxClassDeclarationFileLineStart;
+        s3b = DT_cxxClassDeclarationFileLineEnd;
     }
     else if (n->type() == Node::Function) {
         FunctionNode* fn = const_cast<FunctionNode*>(static_cast<const FunctionNode*>(n));
         if (fn->isMacro()) {
             s1 = DT_cxxDefineAPIItemLocation;
             s2 = DT_cxxDefineDeclarationFile;
-            s3 = DT_cxxDefineDeclarationFileLine;
+            s3a = DT_cxxDefineDeclarationFileLine;
+            s3b = DT_NONE;
         }
         else {
             s1 = DT_cxxFunctionAPIItemLocation;
             s2 = DT_cxxFunctionDeclarationFile;
-            s3 = DT_cxxFunctionDeclarationFileLine;
+            s3a = DT_cxxFunctionDeclarationFileLine;
+            s3b = DT_NONE;
         }
     }
     else if (n->type() == Node::Enum) {
         s1 = DT_cxxEnumerationAPIItemLocation;
         s2 = DT_cxxEnumerationDeclarationFile;
-        s3 = DT_cxxEnumerationDeclarationFileLine;
-        s4 = DT_cxxEnumerationDefinitionFile;
-        s5 = DT_cxxEnumerationDefinitionFileLineStart;
-        s6 = DT_cxxEnumerationDefinitionFileLineEnd;
+        s3a = DT_cxxEnumerationDeclarationFileLineStart;
+        s3b = DT_cxxEnumerationDeclarationFileLineEnd;
     }
     else if (n->type() == Node::Typedef) {
         s1 = DT_cxxTypedefAPIItemLocation;
         s2 = DT_cxxTypedefDeclarationFile;
-        s3 = DT_cxxTypedefDeclarationFileLine;
+        s3a = DT_cxxTypedefDeclarationFileLine;
+        s3b = DT_NONE;
     }
     else if ((n->type() == Node::Property) ||
              (n->type() == Node::Variable)) {
         s1 = DT_cxxVariableAPIItemLocation;
         s2 = DT_cxxVariableDeclarationFile;
-        s3 = DT_cxxVariableDeclarationFileLine;
+        s3a = DT_cxxVariableDeclarationFileLine;
+        s3b = DT_NONE;
     }
     writeStartTag(s1);
     writeStartTag(s2);
     xmlWriter().writeAttribute("name","filePath");
     xmlWriter().writeAttribute("value",n->location().filePath());
-    writeEndTag(); // </cxx<s2>DeclarationFile>
-    writeStartTag(s3);
+    writeEndTag(); // <s2>
+    writeStartTag(s3a);
     xmlWriter().writeAttribute("name","lineNumber");
     QString lineNr;
     xmlWriter().writeAttribute("value",lineNr.setNum(n->location().lineNo()));
-    writeEndTag(); // </cxx<s3>DeclarationFileLine>
-    if (s4 != DT_LAST) { // zzz This stuff is temporary, I think.
-        writeStartTag(s4);
-        xmlWriter().writeAttribute("name","filePath");
-        xmlWriter().writeAttribute("value",n->location().filePath());
-        writeEndTag(); // </cxx<s4>DefinitionFile>
-        writeStartTag(s5);
+    writeEndTag(); // </s3a>
+    if (s3b != DT_NONE) {
+        writeStartTag(s3b);
         xmlWriter().writeAttribute("name","lineNumber");
+        QString lineNr;
         xmlWriter().writeAttribute("value",lineNr.setNum(n->location().lineNo()));
-        writeEndTag(); // </cxx<s5>DefinitionFileLineStart>
-        writeStartTag(s6);
-        xmlWriter().writeAttribute("name","lineNumber");
-        xmlWriter().writeAttribute("value",lineNr.setNum(n->location().lineNo()));
-        writeEndTag(); // </cxx<s6>DefinitionFileLineEnd>
+        writeEndTag(); // </s3b>
     }
-
-    // not included: <cxxXXXDefinitionFile>, <cxxXXXDefinitionFileLineStart>,
-    //               and <cxxXXXDefinitionFileLineEnd>
-
     writeEndTag(); // </cxx<s1>ApiItemLocation>
 }
 
