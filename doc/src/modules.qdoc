@@ -38,7 +38,7 @@
 
     \table 80%
     \header \o {2,1} \bold{Modules for general software development}
-    \row \o \l{QtContacts} \o Classes for managing your contacts.
+    \row \o \l{Qt Contacts API Reference Documentation}{QtContacts} \o Classes for managing your contacts.
     \row \o \l{QtCore} \o Core non-graphical classes used by other modules
     \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
     \row \o \l{QtGui} \o Base classes for graphical user interface (GUI) components
@@ -47,7 +47,7 @@
     \row \o \l{QtNetwork} \o Classes for network programming
     \row \o \l{QtOpenGL} \o OpenGL support classes
     \row \o \l{QtOpenVG} \o OpenVG support classes
-    \row \o \l{QtOrganizer} \o Classes for managing your calendar events.
+    \row \o \l{Qt Organizer API Reference Documentation}{QtOrganizer} \o Classes for managing your calendar events.
     \row \o \l{QtPrintSupport} \o Classes for printing.
     \row \o \l{Qt Publish Subscribe Module}{QtPublishSubscribe} \o Simplified mechanism for subscribing to notifications
     \row \o \l{QtScript} \o Classes for evaluating Qt Scripts
@@ -57,7 +57,7 @@
     \row \o \l{QtSql} \o Classes for database integration using SQL
     \row \o \l{QtSvg} \o Classes for displaying the contents of SVG files
     \row \o \l{Qt System Info Module}{QtSystemInfo} \o Classes for accessing information about a device
-    \row \o \l{QtVersit} \o Classes to manage Versit.
+    \row \o \l{C++ Versit}{QtVersit} \o Classes to manage Versit.
     \row \o \l{QtWebKit} \o Classes for displaying and editing Web content
     \row \o \l{QtWidgets} \o Classes for widget development
     \row \o \l{QtXml} \o Classes for handling XML
@@ -537,21 +537,6 @@
     .pro file:
 
     \snippet doc/src/snippets/code/doc_src_qtcontacts.pro 0
-
-    \table 80%
-    \header \o {1,1} \bold{ Contacts API Quick Links }
-    \row \o \l{contacts.html}{ Contacts main overview }
-    \row \o \l{qml-contacts.html}{ QML Contacts API  }
-    \row \o \l{contactsasync.html}{ Contacts Asynchronous c++ API  }
-    \row \o \l{contactssync.html}{ Contacts Synchronous c++ API  }
-    \row \o \l{contactsengines.html}{ Creating Contacts dedicated engines  }
-    \row \o \l{contactsusage.html}{ Using Contacts }
-    \row \o \l{contactsactions.html}{  Contacts Actions  }
-    \row \o \l{contactsschema.html}{  Contacts schema  }
-    \endtable
-
-    \generatelist{classesbymodule Contacts}
-
 */
 
 /*!
@@ -571,18 +556,6 @@
     .pro file:
 
     \snippet doc/src/snippets/code/doc_src_qtorganizer.pro 0
-
-    \table 80%
-    \header \o {1,1} \bold{ Organizer API Quick Links }
-    \row \o \l{organizer.html}{ Organizer main overview }
-    \row \o \l{qml-organizer.html}{ QML Organizer API  }
-    \row \o \l{organizerasync.html}{ Organizer Asynchronous c++ API  }
-    \row \o \l{organizersync.html}{ Organizer Synchronous c++ API  }
-    \row \o \l{organizerengines.html}{ Creating Organizer dedicated engines  }
-    \row \o \l{organizeradvanced.html}{ Advanced Organizer functionality  }
-    \endtable
-
-    \generatelist{classesbymodule Organizer}
 */
 
 /*!
