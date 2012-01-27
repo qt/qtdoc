@@ -800,6 +800,24 @@ int HtmlGenerator::generateAtom(const Atom *atom,
         break;
     case Atom::ImageText:
         break;
+    case Atom::ImportantLeft:
+        out() << "<p>";
+        out() << formattingLeftMap()[ATOM_FORMATTING_BOLD];
+        out() << "Important: ";
+        out() << formattingRightMap()[ATOM_FORMATTING_BOLD];
+       break;
+    case Atom::ImportantRight:
+        out() << "</p>";
+        break;
+    case Atom::NoteLeft:
+        out() << "<p>";
+        out() << formattingLeftMap()[ATOM_FORMATTING_BOLD];
+        out() << "Note: ";
+        out() << formattingRightMap()[ATOM_FORMATTING_BOLD];
+        break;
+    case Atom::NoteRight:
+        out() << "</p>";
+        break;
     case Atom::LegaleseLeft:
         out() << "<div class=\"LegaleseLeft\">";
         break;

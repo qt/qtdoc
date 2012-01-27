@@ -210,6 +210,7 @@ class DitaXmlGenerator : public PageGenerator
         DT_lq,
         DT_map,
         DT_metadata,
+        DT_note,
         DT_ol,
         DT_othermeta,
         DT_p,

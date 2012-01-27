@@ -115,6 +115,7 @@ enum {
     CMD_I,
     CMD_IF,
     CMD_IMAGE,
+    CMD_IMPORTANT,
     CMD_INCLUDE,
     CMD_INLINEIMAGE,
     CMD_INDEX,
@@ -125,6 +126,7 @@ enum {
     CMD_LIST,
     CMD_META,
     CMD_NEWCODE,
+    CMD_NOTE,
     CMD_O,
     CMD_OLDCODE,
     CMD_OMIT,
@@ -222,6 +224,7 @@ static struct {
     { "i", CMD_I, 0 },
     { "if", CMD_IF, 0 },
     { "image", CMD_IMAGE, 0 },
+    { "important", CMD_IMPORTANT, 0 },
     { "include", CMD_INCLUDE, 0 },
     { "inlineimage", CMD_INLINEIMAGE, 0 },
     { "index", CMD_INDEX, 0 }, // ### don't document for now
@@ -232,6 +235,7 @@ static struct {
     { "list", CMD_LIST, 0 },
     { "meta", CMD_META, 0 },
     { "newcode", CMD_NEWCODE, 0 },
+    { "note", CMD_NOTE, 0 },
     { "o", CMD_O, 0 },
     { "oldcode", CMD_OLDCODE, 0 },
     { "omit", CMD_OMIT, 0 },
@@ -870,6 +874,10 @@ void DocParser::parse(const QString& source,
                         append(Atom::Image, getArgument());
                         append(Atom::ImageText, getRestOfLine());
                         break;
+                    case CMD_IMPORTANT:
+                        leavePara();
+                        enterPara(Atom::ImportantLeft, Atom::ImportantRight);
+                        break;
                     case CMD_INCLUDE:
                         {
                             QString fileName = getArgument();
@@ -952,6 +960,10 @@ void DocParser::parse(const QString& source,
                         break;
                     case CMD_NEWCODE:
                         location().warning(tr("Unexpected '\\%1'").arg(cmdName(CMD_NEWCODE)));
+                        break;
+                    case CMD_NOTE:
+                        leavePara();
+                        enterPara(Atom::NoteLeft, Atom::NoteRight);
                         break;
                     case CMD_O:
                         leavePara();

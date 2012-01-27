@@ -121,6 +121,7 @@ QString Atom::UPPERROMAN_    ("upperroman");
   \value GeneratedList
   \value Image
   \value ImageText
+  \value ImportantNote
   \value InlineImage
   \value LineBreak
   \value Link
@@ -133,6 +134,7 @@ QString Atom::UPPERROMAN_    ("upperroman");
   \value ListItemRight
   \value ListRight
   \value Nop
+  \value Note
   \value ParaLeft
   \value ParaRight
   \value Qml
@@ -196,6 +198,8 @@ static const struct {
     { "GuidLink", Atom::GuidLink},
     { "Image", Atom::Image },
     { "ImageText", Atom::ImageText },
+    { "ImportantLeft", Atom::ImportantLeft },
+    { "ImportantRight", Atom::ImportantRight },
     { "InlineImage", Atom::InlineImage },
     { "JavaScript", Atom::JavaScript },
     { "EndJavaScript", Atom::EndJavaScript },
@@ -212,6 +216,8 @@ static const struct {
     { "ListItemRight", Atom::ListItemRight },
     { "ListRight", Atom::ListRight },
     { "Nop", Atom::Nop },
+    { "NoteLeft", Atom::NoteLeft },
+    { "NoteRight", Atom::NoteRight },
     { "ParaLeft", Atom::ParaLeft },
     { "ParaRight", Atom::ParaRight },
     { "Qml", Atom::Qml},

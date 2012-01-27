@@ -201,6 +201,7 @@ QString DitaXmlGenerator::ditaTags[] =
         "lq",
         "map",
         "metadata",
+        "note",
         "ol",
         "othermeta",
         "p",
@@ -1216,6 +1217,20 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
         break;
     case Atom::ImageText:
         // nothing
+        break;
+    case Atom::ImportantLeft:
+        writeStartTag(DT_note);
+        xmlWriter().writeAttribute("type","important");
+        break;
+    case Atom::ImportantRight:
+        writeEndTag(); // </note>
+        break;
+    case Atom::NoteLeft:
+        writeStartTag(DT_note);
+        xmlWriter().writeAttribute("type","note");
+        break;
+    case Atom::NoteRight:
+        writeEndTag(); // </note>
         break;
     case Atom::LegaleseLeft:
         inLegaleseText = true;
