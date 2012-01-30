@@ -247,13 +247,29 @@ static const struct {
 
 /*! \fn Atom::Atom(Type type, const QString& string)
 
-  Constructs an atom (\a type, \a string) outside of any atom list.
+  Constructs an atom of the specified \a type with the single
+  parameter \a string and does not put the new atom in a list.
 */
 
-/*! \fn Atom(Atom *prev, Type type, const QString& string)
+/*! \fn Atom::Atom(Type type, const QString& p1, const QString& p2)
 
-  Constructs an atom (\a type, \a string) that follows \a prev in \a
-  prev's atom list.
+  Constructs an atom of the specified \a type with the two
+  parameters \a p1 and \a p2 and does not put the new atom
+  in a list.
+*/
+
+/*! \fn Atom(Atom *previous, Type type, const QString& string)
+
+  Constructs an atom of the specified \a type with the single
+  parameter \a string and inserts the new atom into the list
+  after the \a previous atom.
+*/
+
+/*! \fn Atom::Atom(Atom* previous, Type type, const QString& p1, const QString& p2)
+
+  Constructs an atom of the specified \a type with the two
+  parameters \a p1 and \a p2 and inserts the new atom into
+  the list after the \a previous atom.
 */
 
 /*! \fn void Atom::appendChar(QChar ch)
@@ -286,7 +302,7 @@ static const struct {
  */
 const Atom* Atom::next(Type t) const
 {
-    return (nxt && (nxt->type() == t)) ? nxt : 0;
+    return (next_ && (next_->type() == t)) ? next_ : 0;
 }
 
 /*!
@@ -295,7 +311,7 @@ const Atom* Atom::next(Type t) const
  */
 const Atom* Atom::next(Type t, const QString& s) const
 {
-    return (nxt && (nxt->type() == t) && (nxt->string() == s)) ? nxt : 0;
+    return (next_ && (next_->type() == t) && (next_->string() == s)) ? next_ : 0;
 }
 
 /*! \fn const Atom *Atom::next() const

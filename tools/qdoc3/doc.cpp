@@ -55,7 +55,6 @@
 #include <qregexp.h>
 #include <ctype.h>
 #include <limits.h>
-#include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -974,6 +973,7 @@ void DocParser::parse(const QString& source,
                         }
                         else if (openedCommands.top() == CMD_TABLE) {
                             p1 = "1,1";
+                            p2 = "";
                             if (isLeftBraceAhead()) {
                                 p1 = getArgument();
                                 if (isLeftBraceAhead()) {
@@ -1214,10 +1214,12 @@ void DocParser::parse(const QString& source,
                         startFormat(ATOM_FORMATTING_SUPERSCRIPT, cmd);
                         break;
                     case CMD_TABLE:
-                        p1 = getRestOfLine();
+                        //p1 = getRestOfLine();
+                        p1 = getOptionalArgument();
+                        p2 = getOptionalArgument();
                         if (openCommand(cmd)) {
                             leavePara();
-                            append(Atom::TableLeft, p1);
+                            append(Atom::TableLeft, p1, p2);
                             inTableHeader = false;
                             inTableRow = false;
                             inTableItem = false;

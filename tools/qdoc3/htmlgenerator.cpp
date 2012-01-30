@@ -1009,23 +1009,39 @@ int HtmlGenerator::generateAtom(const Atom *atom,
         }
         break;
     case Atom::TableLeft:
-        if (in_para) {
-            out() << "</p>\n";
-            in_para = false;
-        }
-        if (!atom->string().isEmpty()) {
-            if (atom->string().contains("%")) {
-                out() << "<table class=\"generic\" width=\""
-                      << atom->string() << "\">\n ";
+        {
+            QString p1, p2;
+            QString attr = "generic";
+            QString width;
+            if (in_para) {
+                out() << "</p>\n";
+                in_para = false;
             }
-            else {
-                out() << "<table class=\"generic\">\n";
+            if (atom->count() > 0) {
+                p1 = atom->string(0);
+                if (atom->count() > 1)
+                    p2 = atom->string(1);
             }
+            if (p1 == "borderless" || p2 == "borderless")
+                qDebug() << "ATOM::TABLELEFT:" << atom->count() << p1 << p2;
+            if (!p1.isEmpty()) {
+                if (p1 == "borderless")
+                    attr = p1;
+                else if (p1.contains("%"))
+                    width = p1;
+            }
+            if (!p2.isEmpty()) {
+                if (p2 == "borderless")
+                    attr = p2;
+                else if (p2.contains("%"))
+                    width = p2;
+            }
+            out() << "<table class=\"" << attr << "\"";
+            if (!width.isEmpty())
+                out() << " width=\"" << width << "\">";
+            out() << "\n ";
+            numTableRows = 0;
         }
-        else {
-            out() << "<table class=\"generic\">\n";
-        }
-        numTableRows = 0;
         break;
     case Atom::TableRight:
         out() << "</table>\n";

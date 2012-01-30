@@ -136,46 +136,46 @@ class Atom
     };
 
     Atom(Type type, const QString& string = "")
-	: nxt(0), typ(type) 
+        : next_(0), type_(type)
     {
         strs << string; 
     }
 
     Atom(Type type, const QString& p1, const QString& p2)
-	: nxt(0), typ(type) 
+        : next_(0), type_(type)
     { 
         strs << p1; 
         if (!p2.isEmpty()) 
             strs << p2; 
     }
 
-    Atom(Atom* prev, Type type, const QString& string = "")
-	: nxt(prev->nxt), typ(type) 
+    Atom(Atom* previous, Type type, const QString& string = "")
+        : next_(previous->next_), type_(type)
     { 
         strs << string; 
-        prev->nxt = this; 
+        previous->next_ = this;
     }
     
-    Atom(Atom* prev, Type type, const QString& p1, const QString& p2)
-	: nxt(prev->nxt), typ(type) 
+    Atom(Atom* previous, Type type, const QString& p1, const QString& p2)
+        : next_(previous->next_), type_(type)
     { 
         strs << p1; 
         if (!p2.isEmpty()) 
             strs << p2; 
-        prev->nxt = this; 
+        previous->next_ = this;
     }
 
     void appendChar(QChar ch) { strs[0] += ch; }
     void appendString(const QString& string) { strs[0] += string; }
     void chopString() { strs[0].chop(1); }
     void setString(const QString& string) { strs[0] = string; }
-    Atom* next() { return nxt; }
-    void setNext(Atom* newNext) { nxt = newNext; }
+    Atom* next() { return next_; }
+    void setNext(Atom* newNext) { next_ = newNext; }
 
-    const Atom* next() const { return nxt; }
+    const Atom* next() const { return next_; }
     const Atom* next(Type t) const;
     const Atom* next(Type t, const QString& s) const;
-    Type type() const { return typ; }
+    Type type() const { return type_; }
     QString typeString() const;
     const QString& string() const { return strs[0]; }
     const QString& string(int i) const { return strs[i]; }
@@ -203,8 +203,8 @@ class Atom
     static QString UPPERROMAN_;
 
  private:
-    Atom* nxt;
-    Type typ;
+    Atom* next_;
+    Type type_;
     QStringList strs;
 };
 

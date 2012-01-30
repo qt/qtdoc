@@ -1487,11 +1487,18 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
         break;
     case Atom::TableLeft:
         {
+           QString attr;
+           if ((atom->count() > 0) && (atom->string(0) == "borderless"))
+               attr = "borderless";
+           else if ((atom->count() > 1) && (atom->string(1) == "borderless"))
+               attr = "borderless";
             if (in_para) {
                 writeEndTag(); // </p>
                 in_para = false;
             }
             writeStartTag(DT_table);
+            if (!attr.isEmpty())
+                xmlWriter().writeAttribute("outputclass",attr);
             numTableRows = 0;
             if (tableColumnCount != 0) {
                 qDebug() << "ERROR: Nested tables!";

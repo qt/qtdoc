@@ -92,11 +92,21 @@ Text& Text::operator<<(const QString& string)
 
 Text& Text::operator<<(const Atom& atom)
 {
-    if (first == 0) {
-	first = new Atom(atom.type(), atom.string());
-	last = first;
-    } else {
-	last = new Atom(last, atom.type(), atom.string());
+    if (atom.count() < 2) {
+        if (first == 0) {
+            first = new Atom(atom.type(), atom.string());
+            last = first;
+        }
+        else
+            last = new Atom(last, atom.type(), atom.string());
+    }
+    else {
+        if (first == 0) {
+            first = new Atom(atom.type(), atom.string(), atom.string(1));
+            last = first;
+        }
+        else
+            last = new Atom(last, atom.type(), atom.string(), atom.string(1));
     }
     return *this;
 }
