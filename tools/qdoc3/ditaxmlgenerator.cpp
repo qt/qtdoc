@@ -5892,7 +5892,8 @@ DitaXmlGenerator::writeProlog(const InnerNode* inner)
 void DitaXmlGenerator::writeHrefAttribute(const QString& href)
 {
     xmlWriter().writeAttribute("href", href);
-    if (href.startsWith("http:") || href.startsWith("ftp:"))
+    if (href.startsWith("http:") || href.startsWith("ftp:") ||
+        href.startsWith("https:") || href.startsWith("mailto:"))
         xmlWriter().writeAttribute("scope", "external");
 }
 
