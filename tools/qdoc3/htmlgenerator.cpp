@@ -2011,16 +2011,18 @@ void HtmlGenerator::generateTableOfContents(const Node *node,
     for (int i = 0; i < toc.size(); ++i) {
         Atom *atom = toc.at(i);
         int nextLevel = atom->string().toInt() + detailsBase;
-        if (sectionNumber.size() < nextLevel) {
-            do {
-                sectionNumber.append("1");
-            } while (sectionNumber.size() < nextLevel);
-        }
-        else {
-            while (sectionNumber.size() > nextLevel) {
-                sectionNumber.removeLast();
+        if (nextLevel >= 0) {
+            if (sectionNumber.size() < nextLevel) {
+                do {
+                    sectionNumber.append("1");
+                } while (sectionNumber.size() < nextLevel);
             }
-            sectionNumber.last() = QString::number(sectionNumber.last().toInt() + 1);
+            else {
+                while (sectionNumber.size() > nextLevel) {
+                    sectionNumber.removeLast();
+                }
+                sectionNumber.last() = QString::number(sectionNumber.last().toInt() + 1);
+            }
         }
         int numAtoms;
         Text headingText = Text::sectionHeading(atom);
