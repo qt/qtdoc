@@ -274,6 +274,7 @@ void HtmlGenerator::generateTree(const Tree *tree)
     findAllSince(tree->root());
 
     PageGenerator::generateTree(tree);
+    reportOrphans(tree->root());
     generateDisambiguationPages();
 
     QString fileBase = project.toLower().simplified().replace(" ", "-");
@@ -4828,6 +4829,128 @@ void HtmlGenerator::generateManifestFile(QString manifest, QString element)
     writer.writeEndElement(); // instructionals
     writer.writeEndDocument();
     file.close();
+}
+
+/*!
+  Find global entities that have documentation but no
+  \e{relates} comand. Report these as errors if they
+  are not also marked \e {internal}.
+
+  type: Class
+  type: Namespace
+
+  subtype: Example
+  subtype: External page
+  subtype: Group
+  subtype: Header file
+  subtype: Module
+  subtype: Page
+  subtype: QML basic type
+  subtype: QML class
+  subtype: QML module
+ */
+void HtmlGenerator::reportOrphans(const InnerNode* parent)
+{
+    const NodeList& children = parent->childNodes();
+    if (children.size() == 0)
+        return;
+
+    bool related;
+    QString message;
+    for (int i=0; i<children.size(); ++i) {
+        Node* child = children[i];
+        if (!child || child->isInternal() || child->doc().isEmpty())
+            continue;
+        if (child->relates()) {
+            related = true;
+            message = child->relates()->name();
+        }
+        else {
+            related = false;
+            message = "has documentation but no \\relates command";
+        }
+        switch (child->type()) {
+        case Node::Namespace:
+            break;
+        case Node::Class:
+            break;
+        case Node::Fake:
+            switch (child->subType()) {
+            case Node::Example:
+                break;
+            case Node::HeaderFile:
+                break;
+            case Node::File:
+                break;
+            case Node::Image:
+                break;
+            case Node::Group:
+                break;
+            case Node::Module:
+                break;
+            case Node::Page:
+                break;
+            case Node::ExternalPage:
+                break;
+            case Node::QmlClass:
+                break;
+            case Node::QmlPropertyGroup:
+                break;
+            case Node::QmlBasicType:
+                break;
+            case Node::QmlModule:
+                break;
+            case Node::Collision:
+                break;
+            default:
+                break;
+            }
+            break;
+        case Node::Enum:
+            if (!related)
+                child->location().warning(tr("Global enum, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Typedef:
+            if (!related)
+                child->location().warning(tr("Global typedef, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Function:
+            if (!related) {
+                const FunctionNode* fn = static_cast<const FunctionNode*>(child);
+                if (fn->isMacro())
+                    child->location().warning(tr("Global macro, %1, %2").arg(child->name()).arg(message));
+                else
+                    child->location().warning(tr("Global function, %1(), %2").arg(child->name()).arg(message));
+            }
+            break;
+        case Node::Property:
+            break;
+        case Node::Variable:
+            if (!related)
+                child->location().warning(tr("Global variable, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Target:
+            break;
+        case Node::QmlProperty:
+            if (!related)
+                child->location().warning(tr("Global QML property, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlSignal:
+            if (!related)
+                child->location().warning(tr("Global QML, signal, %1 %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlSignalHandler:
+            if (!related)
+                child->location().warning(tr("Global QML signal handler, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlMethod:
+            if (!related)
+                child->location().warning(tr("Global QML method, %1, %2").arg(child->name()).arg(message));
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 QT_END_NAMESPACE

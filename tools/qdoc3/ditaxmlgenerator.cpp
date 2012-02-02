@@ -407,7 +407,9 @@ DitaXmlGenerator::DitaXmlGenerator()
       sectionNestingLevel(0),
       tableColumnCount(0),
       funcLeftParen("\\S(\\()"),
-      myTree(0)
+      myTree(0),
+      nodeTypeMaps(Node::LastType,0),
+      nodeSubtypeMaps(Node::LastSubtype,0)
 {
     // nothing yet.
 }
@@ -602,8 +604,7 @@ GuidMap* DitaXmlGenerator::lookupGuidMap(const QString& fileName)
 
 /*!
   This is where the DITA XML files are written.
-  \note The file generation is done in the base class,
-  PageGenerator::generateTree().
+  \note The file is created in PageGenerator::generateTree().
  */
 void DitaXmlGenerator::generateTree(const Tree *tree)
 {
@@ -5609,8 +5610,154 @@ bool DitaXmlGenerator::canHandleFormat(const QString& format)
     return (format == "HTML") || (format == this->format());
 }
 
+/*!
+  Collect all the nodes in the tree according to their type or subtype.
+
+  type: Class
+  type: Namespace
+
+  subtype: Example
+  subtype: External page
+  subtype: Group
+  subtype: Header file
+  subtype: Module
+  subtype: Page
+  subtype: QML basic type
+  subtype: QML class
+  subtype: QML module
+ */
+void DitaXmlGenerator::collectNodesByTypeAndSubtype(const InnerNode* parent)
+{
+    //qDebug() << "START";
+    const NodeList& children = parent->childNodes();
+    if (children.size() == 0)
+        return;
+
+    bool related;
+    QString message;
+    for (int i=0; i<children.size(); ++i) {
+        Node* child = children[i];
+        if (!child || child->isInternal() || child->doc().isEmpty())
+            continue;
+        if (child->relates()) {
+            related = true;
+            message = child->relates()->name();
+        }
+        else {
+            related = false;
+            message = "has documentation but no \\relates command";
+        }
+        switch (child->type()) {
+        case Node::Namespace:
+            //qDebug() << "NODE: Namespace" << "TITLE:" << child->name();
+            break;
+        case Node::Class:
+            //qDebug() << "NODE: Class" << "TITLE:" << child->name();
+            break;
+        case Node::Fake:
+            //qDebug() << "NODE: Fake";
+            switch (child->subType()) {
+            case Node::Example:
+                //qDebug() << "FAKE NODE: Example" << "TITLE:" << child->title();
+                break;
+            case Node::HeaderFile:
+                //qDebug() << "FAKE NODE: Header file" << "TITLE:" << child->title();
+                break;
+            case Node::File:
+                //qDebug() << "FAKE NODE: File";
+                break;
+            case Node::Image:
+                //qDebug() << "FAKE NODE: Image";
+                break;
+            case Node::Group:
+                //qDebug() << "FAKE NODE: Group" << "TITLE:" << child->title();
+                break;
+            case Node::Module:
+                //qDebug() << "FAKE NODE: Module" << "TITLE:" << child->title();
+                break;
+            case Node::Page:
+                //qDebug() << "FAKE NODE: Page" << "TITLE:" << child->title();
+                break;
+            case Node::ExternalPage:
+                //qDebug() << "FAKE NODE: External page" << "TITLE:" << child->title();
+                break;
+            case Node::QmlClass:
+                //qDebug() << "FAKE NODE: QML class" << "TITLE:" << child->title();
+                break;
+            case Node::QmlPropertyGroup:
+                //qDebug() << "FAKE NODE: QML property group";
+                break;
+            case Node::QmlBasicType:
+                //qDebug() << "FAKE NODE: QML basic type" << "TITLE:" << child->title();
+                break;
+            case Node::QmlModule:
+                //qDebug() << "FAKE NODE: QML module" << "TITLE:" << child->title();
+                break;
+            case Node::Collision:
+                //qDebug() << "FAKE NODE: Collision";
+                break;
+            default:
+                break;
+            }
+            break;
+        case Node::Enum:
+            if (!related)
+                child->location().warning(tr("Global enum, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Typedef:
+            if (!related)
+                child->location().warning(tr("Global typedef, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Function:
+            if (!related) {
+                const FunctionNode* fn = static_cast<const FunctionNode*>(child);
+                if (fn->isMacro())
+                    child->location().warning(tr("Global macro, %1, %2").arg(child->name()).arg(message));
+                else
+                    child->location().warning(tr("Global function, %1(), %2").arg(child->name()).arg(message));
+            }
+            break;
+        case Node::Property:
+            break;
+        case Node::Variable:
+            if (!related)
+                child->location().warning(tr("Global variable, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::Target:
+            break;
+        case Node::QmlProperty:
+            if (!related)
+                child->location().warning(tr("Global QML property, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlSignal:
+            if (!related)
+                child->location().warning(tr("Global QML, signal, %1 %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlSignalHandler:
+            if (!related)
+                child->location().warning(tr("Global QML signal handler, %1, %2").arg(child->name()).arg(message));
+            break;
+        case Node::QmlMethod:
+            if (!related)
+                child->location().warning(tr("Global QML method, %1, %2").arg(child->name()).arg(message));
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+/*!
+  Creates the DITA map for the qdoc run. The map is written
+  to the file \e{qt.ditamap" in the DITA XML output directory.
+ */
 void DitaXmlGenerator::writeDitaMap(const Tree *tree)
 {
+    for (unsigned i=0; i<Node::LastType; ++i)
+        nodeTypeMaps[i] = new NodeMultiMap;
+    for (unsigned i=0; i<Node::LastSubtype; ++i)
+        nodeSubtypeMaps[i] = new NodeMultiMap;
+    collectNodesByTypeAndSubtype(tree->root());
     beginSubPage(tree->root(),"qt.ditamap");
 
     QString doctype;

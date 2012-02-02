@@ -105,7 +105,8 @@ class Node
         QmlPropertyGroup,
         QmlBasicType,
         QmlModule,
-        Collision
+        Collision,
+        LastSubtype
     };
     
     enum Access { Public, Protected, Private };
@@ -150,7 +151,8 @@ class Node
         HowToPage,
         OverviewPage,
         TutorialPage,
-        FAQPage
+        FAQPage,
+        OnBeyondZebra
     };
 
     virtual ~Node();

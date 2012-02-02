@@ -248,6 +248,7 @@ class HtmlGenerator : public PageGenerator
                               CodeMarker* marker) const;
     void generatePageIndex(const QString& fileName) const;
     void generateExtractionMark(const Node *node, ExtractionMarkType markType);
+    void reportOrphans(const InnerNode* parent);
 
     QMap<QString, QString> refMap;
     int codeIndent;

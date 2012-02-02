@@ -453,6 +453,7 @@ class DitaXmlGenerator : public PageGenerator
     int currentSectionNestingLevel() const { return sectionNestingLevel; }
     QString metadataDefault(DitaTag t) const;
     QString stripMarkup(const QString& src) const;
+    void collectNodesByTypeAndSubtype(const InnerNode* parent);
 
  private:
     /*
@@ -518,6 +519,8 @@ class DitaXmlGenerator : public PageGenerator
     QStack<QXmlStreamWriter*> xmlWriterStack;
     QStack<DitaTag> tagStack;
     QStringMultiMap metadataDefaults;
+    QVector<NodeMultiMap*> nodeTypeMaps;
+    QVector<NodeMultiMap*> nodeSubtypeMaps;
 };
 
 #define DITAXMLGENERATOR_ADDRESS           "address"
