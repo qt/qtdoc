@@ -454,6 +454,8 @@ class DitaXmlGenerator : public PageGenerator
     QString metadataDefault(DitaTag t) const;
     QString stripMarkup(const QString& src) const;
     void collectNodesByTypeAndSubtype(const InnerNode* parent);
+    void writeTopicrefs(NodeMultiMap* nmm, const QString& navtitle);
+    bool isDuplicate(NodeMultiMap* nmm, const QString& key, Node* node);
 
  private:
     /*
@@ -521,6 +523,7 @@ class DitaXmlGenerator : public PageGenerator
     QStringMultiMap metadataDefaults;
     QVector<NodeMultiMap*> nodeTypeMaps;
     QVector<NodeMultiMap*> nodeSubtypeMaps;
+    QVector<NodeMultiMap*> pageTypeMaps;
 };
 
 #define DITAXMLGENERATOR_ADDRESS           "address"

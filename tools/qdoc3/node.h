@@ -203,6 +203,8 @@ class Node
     QString templateStuff() const { return templateStuff_; }
     PageType pageType() const { return pageType_; }
     QString pageTypeString() const;
+    QString nodeTypeString() const;
+    QString nodeSubtypeString() const;
     virtual void addPageKeywords(const QString& ) { }
 
     void clearRelated() { relatesTo_ = 0; }
@@ -226,6 +228,10 @@ class Node
     QString fullDocumentName() const;
     static QString cleanId(QString str);
     QString idForNode() const;
+
+    static QString pageTypeString(unsigned t);
+    static QString nodeTypeString(unsigned t);
+    static QString nodeSubtypeString(unsigned t);
 
  protected:
     Node(Type type, InnerNode* parent, const QString& name);

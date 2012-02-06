@@ -409,7 +409,8 @@ DitaXmlGenerator::DitaXmlGenerator()
       funcLeftParen("\\S(\\()"),
       myTree(0),
       nodeTypeMaps(Node::LastType,0),
-      nodeSubtypeMaps(Node::LastSubtype,0)
+      nodeSubtypeMaps(Node::LastSubtype,0),
+      pageTypeMaps(Node::OnBeyondZebra,0)
 {
     // nothing yet.
 }
@@ -1194,6 +1195,14 @@ int DitaXmlGenerator::generateAtom(const Atom *atom,
                 if (atom->string()[0] != '/')
                     images.append(QLatin1Char('/'));
                 fileName = images + atom->string();
+            }
+            if (relative && (relative->type() == Node::Fake) &&
+                (relative->subType() == Node::Example)) {
+                const ExampleNode* cen = static_cast<const ExampleNode*>(relative);
+                if (cen->imageFileName().isEmpty()) {
+                    ExampleNode* en = const_cast<ExampleNode*>(cen);
+                    en->setImageFileName(fileName);
+                }
             }
 
             if (currentTag() != DT_xref)
@@ -5611,6 +5620,24 @@ bool DitaXmlGenerator::canHandleFormat(const QString& format)
 }
 
 /*!
+  If the node multimap \a nmm contains nodes mapped to \a key,
+  if any of the nodes mapped to \a key has the same href as the
+  \a node, return true. Otherwise, return false.
+ */
+bool DitaXmlGenerator::isDuplicate(NodeMultiMap* nmm, const QString& key, Node* node)
+{
+    QList<Node*> matches = nmm->values(key);
+    if (!matches.isEmpty()) {
+        for (int i=0; i<matches.size(); ++i) {
+            if (matches[i] == node)
+                return true;
+            if (fileName(node) == fileName(matches[i]))
+                return true;
+        }
+    }
+    return false;
+}
+/*!
   Collect all the nodes in the tree according to their type or subtype.
 
   type: Class
@@ -5649,19 +5676,31 @@ void DitaXmlGenerator::collectNodesByTypeAndSubtype(const InnerNode* parent)
         }
         switch (child->type()) {
         case Node::Namespace:
-            //qDebug() << "NODE: Namespace" << "TITLE:" << child->name();
+            //qDebug() << "NODE: Namespace" << "TITLE:" << child->name()
+            //         << "FILE:" << fileName(child);
+            if (!isDuplicate(nodeTypeMaps[Node::Namespace],child->name(),child))
+                nodeTypeMaps[Node::Namespace]->insert(child->name(),child);
             break;
         case Node::Class:
-            //qDebug() << "NODE: Class" << "TITLE:" << child->name();
+            //qDebug() << "NODE: Class" << "TITLE:" << child->name()
+            //         << "FILE:" << fileName(child);
+            if (!isDuplicate(nodeTypeMaps[Node::Class],child->name(),child))
+                nodeTypeMaps[Node::Class]->insert(child->name(),child);
             break;
         case Node::Fake:
             //qDebug() << "NODE: Fake";
             switch (child->subType()) {
             case Node::Example:
-                //qDebug() << "FAKE NODE: Example" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: Example" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::Example],child->title(),child))
+                    nodeSubtypeMaps[Node::Example]->insert(child->title(),child);
                 break;
             case Node::HeaderFile:
-                //qDebug() << "FAKE NODE: Header file" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: Header file" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::HeaderFile],child->title(),child))
+                    nodeSubtypeMaps[Node::HeaderFile]->insert(child->title(),child);
                 break;
             case Node::File:
                 //qDebug() << "FAKE NODE: File";
@@ -5670,28 +5709,50 @@ void DitaXmlGenerator::collectNodesByTypeAndSubtype(const InnerNode* parent)
                 //qDebug() << "FAKE NODE: Image";
                 break;
             case Node::Group:
-                //qDebug() << "FAKE NODE: Group" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: Group" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::Group],child->title(),child))
+                    nodeSubtypeMaps[Node::Group]->insert(child->title(),child);
                 break;
             case Node::Module:
-                //qDebug() << "FAKE NODE: Module" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: Module" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::Module],child->title(),child))
+                    nodeSubtypeMaps[Node::Module]->insert(child->title(),child);
                 break;
             case Node::Page:
-                //qDebug() << "FAKE NODE: Page" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: Page" << "PAGE TYPE:" << child->pageTypeString()
+                //         << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(pageTypeMaps[child->pageType()],child->title(),child))
+                    pageTypeMaps[child->pageType()]->insert(child->title(),child);
                 break;
             case Node::ExternalPage:
-                //qDebug() << "FAKE NODE: External page" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: External page" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::ExternalPage],child->title(),child))
+                    nodeSubtypeMaps[Node::ExternalPage]->insert(child->title(),child);
                 break;
             case Node::QmlClass:
-                //qDebug() << "FAKE NODE: QML class" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: QML class" << "TITLE:" << child->title() << "FILE:"
+                //         << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::QmlClass],child->title(),child))
+                    nodeSubtypeMaps[Node::QmlClass]->insert(child->title(),child);
                 break;
             case Node::QmlPropertyGroup:
                 //qDebug() << "FAKE NODE: QML property group";
                 break;
             case Node::QmlBasicType:
-                //qDebug() << "FAKE NODE: QML basic type" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: QML basic type" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::QmlBasicType],child->title(),child))
+                    nodeSubtypeMaps[Node::QmlBasicType]->insert(child->title(),child);
                 break;
             case Node::QmlModule:
-                //qDebug() << "FAKE NODE: QML module" << "TITLE:" << child->title();
+                //qDebug() << "FAKE NODE: QML module" << "TITLE:" << child->title()
+                //         << "FILE:" << fileName(child);
+                if (!isDuplicate(nodeSubtypeMaps[Node::QmlModule],child->title(),child))
+                    nodeSubtypeMaps[Node::QmlModule]->insert(child->title(),child);
                 break;
             case Node::Collision:
                 //qDebug() << "FAKE NODE: Collision";
@@ -5753,11 +5814,6 @@ void DitaXmlGenerator::collectNodesByTypeAndSubtype(const InnerNode* parent)
  */
 void DitaXmlGenerator::writeDitaMap(const Tree *tree)
 {
-    for (unsigned i=0; i<Node::LastType; ++i)
-        nodeTypeMaps[i] = new NodeMultiMap;
-    for (unsigned i=0; i<Node::LastSubtype; ++i)
-        nodeSubtypeMaps[i] = new NodeMultiMap;
-    collectNodesByTypeAndSubtype(tree->root());
     beginSubPage(tree->root(),"qt.ditamap");
 
     QString doctype;
@@ -5782,7 +5838,192 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
         ++i;
     }
     endSubPage();
+
+    for (unsigned i=0; i<Node::LastType; ++i)
+        nodeTypeMaps[i] = new NodeMultiMap;
+    for (unsigned i=0; i<Node::LastSubtype; ++i)
+        nodeSubtypeMaps[i] = new NodeMultiMap;
+    for (unsigned i=0; i<Node::OnBeyondZebra; ++i)
+        pageTypeMaps[i] = new NodeMultiMap;
+    collectNodesByTypeAndSubtype(tree->root());
+#if 0
+    for (unsigned i=0; i<Node::LastType; ++i) {
+        if (nodeTypeMaps[i] && nodeTypeMaps[i]->size() > 0)
+            qDebug() << "NODE TYPE:" << Node::nodeTypeString(i) << nodeTypeMaps[i]->size();
+    }
+    for (unsigned i=1; i<Node::LastSubtype; ++i) {
+        if (nodeSubtypeMaps[i] && nodeSubtypeMaps[i]->size() > 0)
+            qDebug() << "NODE SUBTYPE:" << Node::nodeSubtypeString(i) << nodeSubtypeMaps[i]->size();
+    }
+    for (unsigned i=1; i<Node::OnBeyondZebra; ++i) {
+        if (pageTypeMaps[i] && pageTypeMaps[i]->size() > 0)
+            qDebug() << "PAGE TYPE:" << Node::pageTypeString(i) << pageTypeMaps[i]->size();
+    }
+#endif
+    beginSubPage(tree->root(),"test.ditamap");
+
+    doctype = "<!DOCTYPE map PUBLIC \"-//OASIS//DTD DITA Map//EN\" \"map.dtd\">";
+    xmlWriter().writeDTD(doctype);
+    writeStartTag(DT_map);
+    writeStartTag(DT_topicmeta);
+    writeStartTag(DT_shortdesc);
+    xmlWriter().writeCharacters("The top level map for the Qt documentation");
+    writeEndTag(); // </shortdesc>
+    writeEndTag(); // </topicmeta>
+
+    writeTopicrefs(pageTypeMaps[Node::OverviewPage], "overviews");
+    writeTopicrefs(pageTypeMaps[Node::HowToPage], "howtos");
+    writeTopicrefs(pageTypeMaps[Node::TutorialPage], "tutorials");
+    writeTopicrefs(pageTypeMaps[Node::FAQPage], "faqs");
+    writeTopicrefs(pageTypeMaps[Node::ArticlePage], "articles");
+    writeTopicrefs(nodeSubtypeMaps[Node::Example], "examples");
+    writeTopicrefs(nodeSubtypeMaps[Node::QmlClass], "QML classes");
+    writeTopicrefs(nodeTypeMaps[Node::Class], "C++ classes");
+    writeTopicrefs(nodeTypeMaps[Node::Namespace], "C++ namespaces");
+    writeTopicrefs(nodeSubtypeMaps[Node::HeaderFile], "header files");
+    writeTopicrefs(nodeSubtypeMaps[Node::Module], "modules");
+    writeTopicrefs(nodeSubtypeMaps[Node::Group], "groups");
+    writeTopicrefs(nodeSubtypeMaps[Node::QmlModule], "QML modules");
+    writeTopicrefs(nodeSubtypeMaps[Node::QmlBasicType], "QML basic types");
+
+    endSubPage();
+
+    for (unsigned i=0; i<Node::LastType; ++i)
+        delete nodeTypeMaps[i];
+    for (unsigned i=0; i<Node::LastSubtype; ++i)
+        delete nodeSubtypeMaps[i];
+    for (unsigned i=0; i<Node::OnBeyondZebra; ++i)
+        delete pageTypeMaps[i];
 }
+
+void DitaXmlGenerator::writeTopicrefs(NodeMultiMap* nmm, const QString& navtitle)
+{
+    if (!nmm || nmm->isEmpty())
+        return;
+    writeStartTag(DT_topicref);
+    xmlWriter().writeAttribute("navtitle",navtitle);
+    NodeMultiMap::iterator i = nmm->begin();
+    while (i != nmm->end()) {
+        writeStartTag(DT_topicref);
+        xmlWriter().writeAttribute("navtitle",i.key());
+        xmlWriter().writeAttribute("href",fileName(i.value()));
+        switch (i.value()->type()) {
+            case Node::Fake: {
+                const FakeNode* fn = static_cast<const FakeNode*>(i.value());
+                switch (fn->subType()) {
+                    case Node::Group: {
+                        const NodeList& members = fn->groupMembers();
+                        for (int j=0; j<members.size(); ++j) {
+                            writeStartTag(DT_topicref);
+                            xmlWriter().writeAttribute("navtitle",members[j]->name());
+                            xmlWriter().writeAttribute("href",fileName(members[j]));
+                            writeEndTag(); // </topicref>
+                        }
+                        break;
+                    }
+                    case Node::QmlModule: {
+                        const NodeList& members = fn->qmlModuleMembers();
+                        for (int j=0; j<members.size(); ++j) {
+                            writeStartTag(DT_topicref);
+                            xmlWriter().writeAttribute("navtitle",members[j]->name());
+                            xmlWriter().writeAttribute("href",fileName(members[j]));
+                            writeEndTag(); // </topicref>
+                        }
+                        break;
+                    }
+                    case Node::Example: {
+                        const ExampleNode* en = static_cast<const ExampleNode*>(fn);
+                        if (!en->imageFileName().isEmpty()) {
+                            writeStartTag(DT_topicref);
+                            xmlWriter().writeAttribute("navtitle","image");
+                            xmlWriter().writeAttribute("href",en->imageFileName());
+                            writeEndTag(); // </topicref>
+                        }
+                        const NodeList& files = en->childNodes();
+                        for (int j=0; j<files.size(); ++j) {
+                            writeStartTag(DT_topicref);
+                            xmlWriter().writeAttribute("href",files[j]->name());
+                            writeEndTag(); // </topicref>
+                        }
+                        break;
+                    }
+                    case Node::Module: {
+                        if (moduleNamespaceMap.contains(fn->name())) {
+                            const NodeMap& nodeMap = moduleNamespaceMap[fn->name()];
+                            foreach (const QString& name, nodeMap.keys()) {
+                                const Node* node = nodeMap[name];
+                                if (node->status() == Node::Obsolete ||
+                                    node->isInternal() ||
+                                    node->access() == Node::Private ||
+                                    node->doc().isEmpty())
+                                    continue;
+                                writeStartTag(DT_topicref);
+                                xmlWriter().writeAttribute("navtitle",node->name());
+                                xmlWriter().writeAttribute("href",fileName(node));
+                                writeEndTag(); // </topicref>
+                            }
+                        }
+                        if (moduleClassMap.contains(fn->name())) {
+                            const NodeMap& nodeMap = moduleClassMap[fn->name()];
+                            foreach (const QString& name, nodeMap.keys()) {
+                                const Node* node = nodeMap[name];
+                                if (node->status() == Node::Obsolete ||
+                                    node->isInternal() ||
+                                    node->access() == Node::Private ||
+                                    node->doc().isEmpty())
+                                    continue;
+                                writeStartTag(DT_topicref);
+                                xmlWriter().writeAttribute("navtitle",node->name());
+                                xmlWriter().writeAttribute("href",fileName(node));
+                                writeEndTag(); // </topicref>
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                break;
+            }
+            case Node::Namespace: {
+                const NamespaceNode* nn = static_cast<const NamespaceNode*>(i.value());
+                const NodeList& c = nn->childNodes();
+                for (int j=0; j<c.size(); ++j) {
+                    if (c[j]->isInternal() || c[j]->access() == Node::Private || c[j]->doc().isEmpty())
+                        continue;
+                    if (c[j]->type() == Node::Class) {
+                        writeStartTag(DT_topicref);
+                        xmlWriter().writeAttribute("navtitle",c[j]->name());
+                        xmlWriter().writeAttribute("href",fileName(c[j]));
+                        writeEndTag(); // </topicref>
+                    }
+                }
+                break;
+            }
+            case Node::Class: {
+                const NamespaceNode* nn = static_cast<const NamespaceNode*>(i.value());
+                const NodeList& c = nn->childNodes();
+                for (int j=0; j<c.size(); ++j) {
+                    if (c[j]->isInternal() || c[j]->access() == Node::Private || c[j]->doc().isEmpty())
+                        continue;
+                    if (c[j]->type() == Node::Class) {
+                        writeStartTag(DT_topicref);
+                        xmlWriter().writeAttribute("navtitle",c[j]->name());
+                        xmlWriter().writeAttribute("href",fileName(c[j]));
+                        writeEndTag(); // </topicref>
+                    }
+                }
+                break;
+            }
+            default:
+                break;
+        }
+        writeEndTag(); // </topicref>
+        ++i;
+    }
+    writeEndTag(); // </topicref>
+ }
+
 
 /*!
   Looks up the tag name for \a t in the map of metadata

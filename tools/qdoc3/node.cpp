@@ -168,12 +168,21 @@ void Node::setUrl(const QString &url)
 }
 
 /*!
-  Returns the page type as a string for use as an
+  Returns this node's page type as a string, for use as an
   attribute value in XML or HTML.
  */
 QString Node::pageTypeString() const
 {
-    switch (pageType_) {
+    return pageTypeString(pageType_);
+}
+
+/*!
+  Returns the page type \a t as a string, for use as an
+  attribute value in XML or HTML.
+ */
+QString Node::pageTypeString(unsigned t)
+{
+    switch ((PageType)t) {
         case Node::ApiPage:
             return "api";
         case Node::ArticlePage:
@@ -191,6 +200,105 @@ QString Node::pageTypeString() const
         default:
             return "article";
     }
+}
+
+/*!
+  Returns this node's type as a string for use as an
+  attribute value in XML or HTML.
+ */
+QString Node::nodeTypeString() const
+{
+    return nodeTypeString(type());
+}
+
+/*!
+  Returns the node type \a t as a string for use as an
+  attribute value in XML or HTML.
+ */
+QString Node::nodeTypeString(unsigned t)
+{
+    switch ((Type)t) {
+        case Namespace:
+            return "namespace";
+        case Class:
+            return "class";
+        case Fake:
+            return "fake";
+        case Enum:
+            return "enum";
+        case Typedef:
+            return "typedef";
+        case Function:
+            return "function";
+        case Property:
+            return "property";
+        case Variable:
+            return "variable";
+        case Target:
+            return "target";
+        case QmlProperty:
+            return "QML property";
+        case QmlSignal:
+            return "QML signal";
+        case QmlSignalHandler:
+            return "QML signal handler";
+        case QmlMethod:
+            return "QML method";
+        default:
+            break;
+    }
+    return "";
+}
+
+/*!
+  Returns this node's subtype as a string for use as an
+  attribute value in XML or HTML. This is only useful
+  in the case where the node type is Fake.
+ */
+QString Node::nodeSubtypeString() const
+{
+    return nodeSubtypeString(subType());
+}
+
+/*!
+  Returns the node subtype \a t as a string for use as an
+  attribute value in XML or HTML. This is only useful
+  in the case where the node type is Fake.
+ */
+QString Node::nodeSubtypeString(unsigned t)
+{
+    switch ((SubType)t) {
+        case Example:
+            return "example";
+        case HeaderFile:
+            return "header file";
+        case File:
+            return "file";
+        case Image:
+            return "image";
+        case Group:
+            return "group";
+        case Module:
+            return "module";
+        case Page:
+            return "page";
+        case ExternalPage:
+            return "external page";
+        case QmlClass:
+            return "QML class";
+        case QmlPropertyGroup:
+            return "QML property group";
+        case QmlBasicType:
+            return "QML basic type";
+        case QmlModule:
+            return "QML module";
+        case Collision:
+            return "collision";
+        case NoSubType:
+        default:
+            break;
+    }
+    return "";
 }
 
 /*!
