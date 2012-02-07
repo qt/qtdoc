@@ -3017,10 +3017,10 @@ const QStringMultiMap &Doc::metaTagMap() const
 void Doc::initialize(const Config& config)
 {
     DocParser::tabSize = config.getInt(CONFIG_TABSIZE);
-    DocParser::exampleFiles = config.getStringList(CONFIG_EXAMPLES);
-    DocParser::exampleDirs = config.getStringList(CONFIG_EXAMPLEDIRS);
-    DocParser::sourceFiles = config.getStringList(CONFIG_SOURCES);
-    DocParser::sourceDirs = config.getStringList(CONFIG_SOURCEDIRS);
+    DocParser::exampleFiles = config.getCleanPathList(CONFIG_EXAMPLES);
+    DocParser::exampleDirs = config.getCleanPathList(CONFIG_EXAMPLEDIRS);
+    DocParser::sourceFiles = config.getCleanPathList(CONFIG_SOURCES);
+    DocParser::sourceDirs = config.getCleanPathList(CONFIG_SOURCEDIRS);
     DocParser::quoting = config.getBool(CONFIG_QUOTINGINFORMATION);
 
     QmlClassNode::qmlOnly = config.getBool(CONFIG_QMLONLY);

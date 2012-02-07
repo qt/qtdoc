@@ -166,13 +166,13 @@ void Generator::initialize(const Config &config)
                                         .arg(outDir_ + "/style"));
     }
 
-    imageFiles = config.getStringList(CONFIG_IMAGES);
-    imageDirs = config.getStringList(CONFIG_IMAGEDIRS);
-    scriptFiles = config.getStringList(CONFIG_SCRIPTS);
-    scriptDirs = config.getStringList(CONFIG_SCRIPTDIRS);
-    styleFiles = config.getStringList(CONFIG_STYLES);
-    styleDirs = config.getStringList(CONFIG_STYLEDIRS);
-    exampleDirs = config.getStringList(CONFIG_EXAMPLEDIRS);
+    imageFiles = config.getCleanPathList(CONFIG_IMAGES);
+    imageDirs = config.getCleanPathList(CONFIG_IMAGEDIRS);
+    scriptFiles = config.getCleanPathList(CONFIG_SCRIPTS);
+    scriptDirs = config.getCleanPathList(CONFIG_SCRIPTDIRS);
+    styleFiles = config.getCleanPathList(CONFIG_STYLES);
+    styleDirs = config.getCleanPathList(CONFIG_STYLEDIRS);
+    exampleDirs = config.getCleanPathList(CONFIG_EXAMPLEDIRS);
     exampleImgExts = config.getStringList(CONFIG_EXAMPLES + Config::dot +
                                           CONFIG_IMAGEEXTENSIONS);
 
@@ -191,7 +191,7 @@ void Generator::initialize(const Config &config)
         if (outputFormats.contains((*g)->format())) {
             (*g)->initializeGenerator(config);
             QStringList extraImages =
-                config.getStringList(CONFIG_EXTRAIMAGES+Config::dot+(*g)->format());
+                config.getCleanPathList(CONFIG_EXTRAIMAGES+Config::dot+(*g)->format());
             QStringList::ConstIterator e = extraImages.begin();
             while (e != extraImages.end()) {
                 QString userFriendlyFilePath;
@@ -218,7 +218,7 @@ void Generator::initialize(const Config &config)
                 QStringList noExts;
                 QStringList searchDirs = QStringList() << templateDir;
                 QStringList scripts =
-                    config.getStringList((*g)->format()+Config::dot+CONFIG_SCRIPTS);
+                    config.getCleanPathList((*g)->format()+Config::dot+CONFIG_SCRIPTS);
                 e = scripts.begin();
                 while (e != scripts.end()) {
                     QString userFriendlyFilePath;
@@ -238,7 +238,7 @@ void Generator::initialize(const Config &config)
                 }
 
                 QStringList styles =
-                    config.getStringList((*g)->format()+Config::dot+CONFIG_STYLESHEETS);
+                    config.getCleanPathList((*g)->format()+Config::dot+CONFIG_STYLESHEETS);
                 e = styles.begin();
                 while (e != styles.end()) {
                     QString userFriendlyFilePath;

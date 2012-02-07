@@ -198,8 +198,8 @@ void CppCodeParser::initializeParser(const Config &config)
     nodeTypeMap.insert(COMMAND_PROPERTY, Node::Property);
     nodeTypeMap.insert(COMMAND_VARIABLE, Node::Variable);
 
-    exampleFiles = config.getStringList(CONFIG_EXAMPLES);
-    exampleDirs = config.getStringList(CONFIG_EXAMPLEDIRS);
+    exampleFiles = config.getCleanPathList(CONFIG_EXAMPLES);
+    exampleDirs = config.getCleanPathList(CONFIG_EXAMPLEDIRS);
     QStringList exampleFilePatterns = config.getStringList(
         CONFIG_EXAMPLES + Config::dot + CONFIG_FILEEXTENSIONS);
 

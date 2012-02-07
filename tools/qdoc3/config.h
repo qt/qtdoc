@@ -74,17 +74,20 @@ class Config
     QString getString(const QString& var) const;
     QSet<QString> getStringSet(const QString& var) const;
     QStringList getStringList(const QString& var) const;
+    QStringList getCleanPathList(const QString& var) const;
     QRegExp getRegExp(const QString& var) const;
     QList<QRegExp> getRegExpList(const QString& var) const;
     QSet<QString> subVars(const QString& var) const;
     void subVarsAndValues(const QString& var, QStringMultiMap& t) const;
     QStringList getAllFiles(const QString& filesVar, 
                             const QString& dirsVar,
-                            const QSet<QString> &excludedDirs = QSet<QString>());
+                            const QSet<QString> &excludedDirs = QSet<QString>(),
+                            const QSet<QString> &excludedFiles = QSet<QString>());
 
     static QStringList getFilesHere(const QString& dir,
                                     const QString& nameFilter,
-                                    const QSet<QString> &excludedDirs = QSet<QString>());
+                                    const QSet<QString> &excludedDirs = QSet<QString>(),
+                                    const QSet<QString> &excludedFiles = QSet<QString>());
     static QString findFile(const Location& location, 
                             const QStringList &files,
                             const QStringList& dirs, 
@@ -132,6 +135,7 @@ class Config
 #define CONFIG_EXAMPLEDIRS              "exampledirs"
 #define CONFIG_EXAMPLES                 "examples"
 #define CONFIG_EXCLUDEDIRS              "excludedirs"
+#define CONFIG_EXCLUDEFILES             "excludefiles"
 #define CONFIG_EXTRAIMAGES              "extraimages"
 #define CONFIG_FALSEHOODS               "falsehoods"
 #define CONFIG_FORMATTING               "formatting"

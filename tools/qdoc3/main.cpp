@@ -261,20 +261,30 @@ static void processQdocconfFile(const QString &fileName)
     tree->readIndexes(indexFiles);
 
     QSet<QString> excludedDirs;
+    QSet<QString> excludedFiles;
     QSet<QString> headers;
     QSet<QString> sources;
     QStringList headerList;
     QStringList sourceList;
     QStringList excludedDirsList;
+    QStringList excludedFilesList;
 
-    excludedDirsList = config.getStringList(CONFIG_EXCLUDEDIRS);
-    foreach (const QString &excludeDir, excludedDirsList)
-        excludedDirs.insert(QDir::fromNativeSeparators(excludeDir));
+    excludedDirsList = config.getCleanPathList(CONFIG_EXCLUDEDIRS);
+    foreach (const QString &excludeDir, excludedDirsList) {
+        QString p = QDir::fromNativeSeparators(excludeDir);
+        excludedDirs.insert(p);
+    }
 
-    headerList = config.getAllFiles(CONFIG_HEADERS,CONFIG_HEADERDIRS,excludedDirs);
+    excludedFilesList = config.getCleanPathList(CONFIG_EXCLUDEFILES);
+    foreach (const QString& excludeFile, excludedFilesList) {
+        QString p = QDir::fromNativeSeparators(excludeFile);
+        excludedFiles.insert(p);
+    }
+
+    headerList = config.getAllFiles(CONFIG_HEADERS,CONFIG_HEADERDIRS,excludedDirs,excludedFiles);
     headers = QSet<QString>::fromList(headerList);
 
-    sourceList = config.getAllFiles(CONFIG_SOURCES,CONFIG_SOURCEDIRS,excludedDirs);
+    sourceList = config.getAllFiles(CONFIG_SOURCES,CONFIG_SOURCEDIRS,excludedDirs,excludedFiles);
     sources = QSet<QString>::fromList(sourceList);
 
     /*

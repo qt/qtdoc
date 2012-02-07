@@ -309,6 +309,39 @@ QStringList Config::getStringList(const QString& var) const
 }
 
 /*!
+  This function should only be called when the configuration
+  variable \a var maps to a string list that contains file paths.
+  It cleans the paths with QDir::cleanPath() before returning
+  them.
+
+  First, this function looks up the configuration variable \a var
+  in the location map and, if found, sets the internal variable
+  \c{lastLoc} the Location that \a var maps to.
+
+  Then it looks up the configuration variable \a var in the string
+  list map, which maps to a string list that contains file paths.
+  These paths might not be clean, so QDir::cleanPath() is called
+  for each one. The string list returned contains cleaned paths.
+ */
+QStringList Config::getCleanPathList(const QString& var) const
+{
+    if (!locMap[var].isEmpty())
+        (Location&) lastLoc = locMap[var];
+    QStringList t;
+    QMap<QString,QStringList>::const_iterator it = stringListValueMap.find(var);
+    if (it != stringListValueMap.end()) {
+        const QStringList& sl = it.value();
+        if (!sl.isEmpty()) {
+            t.reserve(sl.size());
+            for (int i=0; i<sl.size(); ++i) {
+                t.append(QDir::cleanPath(sl[i]));
+            }
+        }
+    }
+    return t;
+}
+
+/*!
   Calls getRegExpList() with the control variable \a var and
   iterates through the resulting list of regular expressions,
   concatening them with some extras characters to form a single
@@ -404,11 +437,13 @@ void Config::subVarsAndValues(const QString& var, QStringMultiMap& t) const
   The files are found in the directories specified by
   \a dirsVar, and they are filtered by \a defaultNameFilter
   if a better filter can't be constructed from \a filesVar.
-  The directories in \a excludedDirs are avoided.
+  The directories in \a excludedDirs are avoided. The files
+  in \a excludedFiles are not included in the return list.
  */
 QStringList Config::getAllFiles(const QString &filesVar,
                                 const QString &dirsVar,
-                                const QSet<QString> &excludedDirs)
+                                const QSet<QString> &excludedDirs,
+                                const QSet<QString> &excludedFiles)
 {
     QStringList result = getStringList(filesVar);
     QStringList dirs = getStringList(dirsVar);
@@ -417,7 +452,7 @@ QStringList Config::getAllFiles(const QString &filesVar,
 
     QStringList::ConstIterator d = dirs.begin();
     while (d != dirs.end()) {
-	result += getFilesHere(*d, nameFilter, excludedDirs);
+        result += getFilesHere(*d, nameFilter, excludedDirs, excludedFiles);
 	++d;
     }
     return result;
@@ -532,7 +567,7 @@ QString Config::copyFile(const Location& location,
     QFile inFile(sourceFilePath);
     if (!inFile.open(QFile::ReadOnly)) {
 	location.fatal(tr("Cannot open input file '%1': %2")
-			.arg(inFile.fileName()).arg(inFile.errorString()));
+                       .arg(sourceFilePath).arg(inFile.errorString()));
 	return "";
     }
 
@@ -875,7 +910,8 @@ void Config::load(Location location, const QString& fileName)
 
 QStringList Config::getFilesHere(const QString& dir,
                                  const QString& nameFilter,
-                                 const QSet<QString> &excludedDirs)
+                                 const QSet<QString> &excludedDirs,
+                                 const QSet<QString> &excludedFiles)
 {
     QStringList result;
     if (excludedDirs.contains(dir))
@@ -891,8 +927,13 @@ QStringList Config::getFilesHere(const QString& dir,
     fileNames = dirInfo.entryList();
     fn = fileNames.constBegin();
     while (fn != fileNames.constEnd()) {
-        if (!fn->startsWith(QLatin1Char('~')))
-            result.append(dirInfo.filePath(*fn));
+        if (!fn->startsWith(QLatin1Char('~'))) {
+            QString s = dirInfo.filePath(*fn);
+            QString c = QDir::cleanPath(s);
+            if (!excludedFiles.contains(c)) {
+                result.append(c);
+            }
+        }
 	++fn;
     }    
     
@@ -901,7 +942,7 @@ QStringList Config::getFilesHere(const QString& dir,
     fileNames = dirInfo.entryList();
     fn = fileNames.constBegin();
     while (fn != fileNames.constEnd()) {
-        result += getFilesHere(dirInfo.filePath(*fn), nameFilter, excludedDirs);
+        result += getFilesHere(dirInfo.filePath(*fn), nameFilter, excludedDirs, excludedFiles);
 	++fn;
     }
     return result;
