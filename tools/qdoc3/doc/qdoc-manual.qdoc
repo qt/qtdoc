@@ -7007,6 +7007,8 @@
     \o \l {22-qdoc-configuration-generalvariables.html#exampledirs-variable} {exampledirs}
     \o \l {22-qdoc-configuration-generalvariables.html#examples-variable} {examples}
     \o \l {22-qdoc-configuration-generalvariables.html#examples.fileextensions-variable} {examples.fileextensions}
+    \o \l {22-qdoc-configuration-generalvariables.html#excludedirs-variable} {excludedirs}
+    \o \l {22-qdoc-configuration-generalvariables.html#excludefiles-variable} {excludefiles}
     \o \l {22-qdoc-configuration-generalvariables.html#extraimages-variable} {extraimages}
     \o \l {22-qdoc-configuration-generalvariables.html#falsehoods-variable} {falsehoods}
     \o \l {22-qdoc-configuration-generalvariables.html#headerdirs-variable} {headerdirs}
@@ -7383,7 +7385,7 @@
     for display in the documentation.
 
     The default extensions are *.cpp, *.h, *.js, *.xq, *.svg, *.xml
-    and *.ui. However, if
+    and *.ui.
 
     The extensions are given as standard wildcard expressions.  You
     can add a file extension to the filter using '+='. For example:
@@ -7393,6 +7395,47 @@
     \endcode
 
     See also \l{headers.fileextensions}.
+
+    \target excludedirs-variable
+    \section1 excludedirs
+
+    The \c excludedirs variable is for listing directories that should \e{not}
+    be processed by qdoc, even if the same directories are included by the
+    \l {sourcedirs-variable} {sourcedirs} or \l {headerdirs-variable} {headerdirs}
+    variables.
+
+    For example in \l qt.qdocconf
+
+    \code
+        excludedirs = $QTDIR/extensions/activeqt \
+                      $QTDIR/extensions/motif \
+                      $QTDIR/tools/designer/src/lib/extension \
+                      $QTDIR/tools/designer/src/lib/sdk \
+                      $QTDIR/tools/designer/src/lib/uilib
+    \endcode
+
+    When executed, QDoc will exclude the listed directories from
+    further consideration. Files in these directories will not be
+    read by qdoc.
+
+    See also \l {excludefiles-variable} {excludefiles}.
+
+    \target excludefiles-variable
+    \section1 excludefiles
+
+    The \c excludefiles variable allows you to specify individual files
+    that should \e{not} be processed by qdoc.
+
+    \code
+    excludefiles += $QT_CORE_SOURCES/../../src/widgets/kernel/qwidget.h \
+                    $QT_CORE_SOURCES/../../src/widgets/kernel/qwidget.cpp
+    \endcode
+
+    If you include the above in your qdocconf file for qtbase, there
+    will be no qwidget.html generated for html and no qwidget.xml
+    generated for DITA XML.
+
+    See also \l {excludedirs-variable} {excludedirs}.
 
     \target extraimages-variable
     \section1 extraimages
@@ -7491,7 +7534,7 @@
                      $QTDIR/tools/designer/src/lib/uilib
     \endcode
 
-    When executed, the first QDoc will do is to read through the
+    When executed, the first thing QDoc will do is to read through the
     headers specified in the \l {headers} {\c headers} variable, and
     the ones located in the directories specified in the \c headerdir
     variable (including all subdirectories), building an internal
@@ -7838,7 +7881,7 @@
                      $QTDIR/tools/designer/src/lib/uilib
     \endcode
 
-    When executed, the first QDoc will do is to read through the
+    When executed, the first thing QDoc will do is to read through the
     headers specified in the \l {header-command} {\c header} variable,
     and the ones located in the directories specified in the \c
     headerdir variable (including all subdirectories), building an
