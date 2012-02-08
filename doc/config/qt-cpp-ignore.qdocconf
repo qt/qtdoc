@@ -75,7 +75,12 @@ Cpp.ignoretokens        = QAXFACTORY_EXPORT \
                           QWEBKIT_EXPORT \
                           Q_INVOKABLE \
                           Q_DECL_CONSTEXPR \
-                          Q_BLUETOOTH_EXPORT
+                          Q_BLUETOOTH_EXPORT \
+                          QTBLUETOOTH_BEGIN_NAMESPACE \
+                          QTBLUETOOTH_END_NAMESAPCE \
+                          Q_NFC_EXPORT \
+                          QTNFC_BEGIN_NAMESPACE \
+                          QTNFC_END_NAMESPACE
 Cpp.ignoredirectives    = Q_DECLARE_HANDLE \
                           Q_DECLARE_INTERFACE \
                           Q_DECLARE_METATYPE \
