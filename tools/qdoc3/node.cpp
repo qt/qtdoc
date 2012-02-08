@@ -477,16 +477,17 @@ QString Node::fileBase() const
  */
 QString Node::guid() const
 {
-    if (uuid.isEmpty()) {
+    if (uuid.isEmpty())
         uuid = idForNode();
+    return uuid;
+}
+
 #if 0
+        // fossil
         QUuid quuid = QUuid::createUuid();
         QString t = quuid.toString();
         uuid = "id-" + t.mid(1,t.length()-2);
 #endif
-    }
-    return uuid;
-}
 
 /*!
   Composes a string to be used as an href attribute in DITA
@@ -2451,6 +2452,8 @@ QString Node::cleanId(QString str)
     name = name.replace("()","-call");
 
     clean.reserve(name.size() + 20);
+    if (!str.startsWith("id-"))
+        clean = "id-";
     const QChar c = name[0];
     const uint u = c.unicode();
 
@@ -2510,9 +2513,6 @@ QString Node::cleanId(QString str)
             clean += QString::number((int)u, 16);
         }
     }
-    //clean = clean.replace("(","-");
-    //clean = clean.replace(")","-");
-    //clean = clean.replace("--","-");
     return clean;
 }
 
