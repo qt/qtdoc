@@ -512,6 +512,22 @@
     The \l{componentset}{UIComponents} example demonstrates proper usage of
     QDoc commands to document QML components and QML modules.
 
+    \section3 Read-only and Internal QML Properties
+
+    QDoc detects QML properties that are marked as \c readonly. Note that the
+    property must be initialized with a value.
+
+    \code
+        readonly property int sampleReadOnlyProperty: 0
+    \endcode
+    For example, the example \l{TabWidget} component has a fictitious read-only
+    property \c sampleReadOnlyProperty. Its declaration has the \c readonly
+    identifier and it has an initial value.
+
+    Properties and signals that are not meant for the public interface may
+    be marked with the \l{internal-command}{\\internal} command. QDoc will not
+    publish the documentation in the generated outputs.
+
     \section1 Articles & Overviews
     Articles and overviews are a style of writing best used for providing
     summary detail on a topic or concept. It may introduce a technology or

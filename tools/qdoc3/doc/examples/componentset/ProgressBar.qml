@@ -42,7 +42,7 @@ import QtQuick 1.0
 
 /*!
     \qmlclass ProgressBar
-    \inqmlmodule UIComponents
+    \inqmlmodule UIComponents 1.0
     \brief A component that shows the progress of an event
 
     A ProgressBar shows the linear progress of an event as its \l value.

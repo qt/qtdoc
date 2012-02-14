@@ -42,7 +42,7 @@ import QtQuick 1.0
 
 /*!
     \qmlclass TabWidget
-    \inqmlmodule UIComponents
+    \inqmlmodule UIComponents 1.0
     \brief A widget that places its children as tabs
 
     A TabWidget places its children as tabs in a view. Selecting
@@ -103,12 +103,26 @@ Item {
     */
     property int current: 0
 
+    /*!
+        A sample \c{read-only} property.
+        A contrived property to demonstrate QDoc's ability to detect
+        read-only properties.
+
+        The signature is:
+        \code
+        readonly property int sampleReadOnlyProperty: 0
+        \endcode
+
+        Note that the property must be initialized to a value.
+
+    */
+    readonly property int sampleReadOnlyProperty: 0
 
     /*!
     \internal
 
-    There is a \qmlsignalhandler command, but this handler is an implementation
-    detail. The \internal command will prevent QDoc from publishing this
+    This handler is an implementation
+    detail. The \c{\internal} command will prevent QDoc from publishing this
     documentation on the public API.
     */
     onCurrentChanged: setOpacities()
