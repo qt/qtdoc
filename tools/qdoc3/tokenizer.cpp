@@ -665,7 +665,7 @@ int Tokenizer::getTokenAfterPreprocessor()
           the stack.
         */
         tok = getToken();
-    } while (yyNumPreprocessorSkipping > 0);
+    } while (yyNumPreprocessorSkipping > 0 && tok != Tok_Eoi);
     return tok;
 }
 
