@@ -49,6 +49,21 @@
 
 QT_BEGIN_NAMESPACE
 
+struct QmlPropArgs
+{
+    QString type_;
+    QString module_;
+    QString component_;
+    QString name_;
+
+    void clear() {
+        type_.clear();
+        module_.clear();
+        component_.clear();
+        name_.clear();
+    }
+};
+
 class QmlDocVisitor : public QDeclarativeJS::AST::Visitor
 {
 public:
@@ -84,6 +99,9 @@ private:
     QDeclarativeJS::AST::SourceLocation precedingComment(quint32 offset) const;
     bool applyDocumentation(QDeclarativeJS::AST::SourceLocation location, Node *node);
     void applyMetacommands(QDeclarativeJS::AST::SourceLocation location, Node* node, Doc& doc);
+    bool splitQmlPropertyArg(const Doc& doc,
+                             const QString& arg,
+                             QmlPropArgs& qpa);
 
     QDeclarativeJS::Engine *engine;
     quint32 lastEndOffset;

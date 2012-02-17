@@ -159,8 +159,7 @@ void QmlCodeParser::parseSourceFile(const Location& location,
 
     QSet<QString> topicCommandsAllowed = topicCommands();
     QSet<QString> otherMetacommandsAllowed = otherMetaCommands();
-    QSet<QString> metacommandsAllowed = topicCommandsAllowed +
-        otherMetacommandsAllowed;
+    QSet<QString> metacommandsAllowed = topicCommandsAllowed + otherMetacommandsAllowed;
 
     if (parser->parse()) {
         QDeclarativeJS::AST::UiProgram *ast = parser->ast();

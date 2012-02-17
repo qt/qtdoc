@@ -93,7 +93,7 @@ void Node::setDoc(const Doc& doc, bool replace)
   parent's child list.
  */
 Node::Node(Type type, InnerNode *parent, const QString& name)
-    : type_(type),
+    : nodeType_(type),
       access_(Public),
       safeness_(UnspecifiedSafeness),
       pageType_(NoPageType),
@@ -1223,6 +1223,34 @@ LeafNode::LeafNode(Type type, InnerNode *parent, const QString& name)
 }
 
 /*!
+  This constructor should only be used when this node's parent
+  is meant to be \a parent, but this node is not to be listed
+  as a child of \a parent. It is currently only used for the
+  documentation case where a \e{qmlproperty} command is used
+  to override the QML definition of a QML property.
+ */
+LeafNode::LeafNode(InnerNode* parent, Type type, const QString& name)
+    : Node(type, 0, name)
+{
+    setParent(parent);
+    switch (type) {
+    case Enum:
+    case Function:
+    case Typedef:
+    case Variable:
+    case QmlProperty:
+    case QmlSignal:
+    case QmlSignalHandler:
+    case QmlMethod:
+        setPageType(ApiPage);
+        break;
+    default:
+        break;
+    }
+}
+
+
+/*!
   \class NamespaceNode
  */
 
@@ -1378,7 +1406,7 @@ const QmlClassNode* ClassNode::findQmlBaseNode() const
   the page index is set here.
  */
 FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node::PageType ptype)
-    : InnerNode(Fake, parent, name), subtype_(subtype)
+    : InnerNode(Fake, parent, name), nodeSubtype_(subtype)
 {
     switch (subtype) {
     case Page:
@@ -1419,19 +1447,19 @@ QString FakeNode::title() const
  */
 QString FakeNode::fullTitle() const
 {
-    if (subtype_ == File) {
+    if (nodeSubtype_ == File) {
         if (title().isEmpty())
             return name().mid(name().lastIndexOf('/') + 1) + " Example File";
         else
             return title();
     }
-    else if (subtype_ == Image) {
+    else if (nodeSubtype_ == Image) {
         if (title().isEmpty())
             return name().mid(name().lastIndexOf('/') + 1) + " Image File";
         else
             return title();
     }
-    else if ((subtype_ == HeaderFile) || (subtype_ == Collision)) {
+    else if ((nodeSubtype_ == HeaderFile) || (nodeSubtype_ == Collision)) {
         if (title().isEmpty())
             return name();
         else
@@ -1450,7 +1478,7 @@ QString FakeNode::subTitle() const
     if (!subtitle_.isEmpty())
         return subtitle_;
 
-    if ((subtype_ == File) || (subtype_ == Image)) {
+    if ((nodeSubtype_ == File) || (nodeSubtype_ == Image)) {
         if (title().isEmpty() && name().contains(QLatin1Char('/')))
             return name();
     }
@@ -1607,7 +1635,7 @@ FunctionNode::FunctionNode(InnerNode *parent, const QString& name)
       sta(false),
       ove(false),
       reimp(false),
-      att(false),
+      attached_(false),
       rf(0),
       ap(0)
 {
@@ -1627,7 +1655,7 @@ FunctionNode::FunctionNode(Type type, InnerNode *parent, const QString& name, bo
       sta(false),
       ove(false),
       reimp(false),
-      att(attached),
+      attached_(attached),
       rf(0),
       ap(0)
 {
@@ -1879,20 +1907,20 @@ void PropertyNode::setOverriddenFrom(const PropertyNode* baseProperty)
 QString PropertyNode::qualifiedDataType() const
 {
     if (setters().isEmpty() && resetters().isEmpty()) {
-        if (dt.contains(QLatin1Char('*')) || dt.contains(QLatin1Char('&'))) {
+        if (type_.contains(QLatin1Char('*')) || type_.contains(QLatin1Char('&'))) {
             // 'QWidget *' becomes 'QWidget *' const
-            return dt + " const";
+            return type_ + " const";
         }
         else {
             /*
               'int' becomes 'const int' ('int const' is
               correct C++, but looks wrong)
             */
-            return "const " + dt;
+            return "const " + type_;
         }
     }
     else {
-        return dt;
+        return type_;
     }
 }
 
@@ -2160,45 +2188,78 @@ QmlPropGroupNode::QmlPropGroupNode(QmlClassNode* parent,
                                    const QString& name,
                                    bool attached)
     : FakeNode(parent, name, QmlPropertyGroup, Node::ApiPage),
-      isdefault(false),
-      att(attached),
-      readOnly(-1)
+      isdefault_(false),
+      attached_(attached),
+      readOnly_(-1)
 {
     // nothing.
 }
 
 /*!
-  Constructor for the QML property node.
+  Constructor for the QML property node, when the \a parent
+  is QML property group node. This constructor is only used
+  for creating QML property nodes for QML elements, i.e.
+  not for creating QML property nodes for QML components.
+  Hopefully, this constructor will become obsolete, so don't
+  use it unless one of the other two constructors can't be
+  used.
  */
 QmlPropertyNode::QmlPropertyNode(QmlPropGroupNode *parent,
                                  const QString& name,
                                  const QString& type,
                                  bool attached)
     : LeafNode(QmlProperty, parent, name),
-      dt(type),
+      type_(type),
       sto(Trool_Default),
       des(Trool_Default),
-      isdefault(false),
-      att(attached),
-      readOnly(-1)
+      isdefault_(false),
+      attached_(attached),
+      readOnly_(-1)
 {
     setPageType(ApiPage);
 }
 
 /*!
-  Constructor for the QML property node.
+  Constructor for the QML property node, when the \a parent
+  is a QML class node.
  */
 QmlPropertyNode::QmlPropertyNode(QmlClassNode *parent,
                                  const QString& name,
                                  const QString& type,
                                  bool attached)
     : LeafNode(QmlProperty, parent, name),
-      dt(type),
+      type_(type),
       sto(Trool_Default),
       des(Trool_Default),
-      isdefault(false),
-      att(attached),
-      readOnly(-1)
+      isdefault_(false),
+      attached_(attached),
+      readOnly_(-1)
+{
+    setPageType(ApiPage);
+}
+
+/*!
+  Constructor for the QML property node, when the \a parent
+  is a QML property node. Strictly speaking, this is not the
+  way QML property nodes were originally meant to be built,
+  because this constructor has another QML property node as
+  its parent. But this constructor is useful for documenting
+  QML properties in QML components, i.e., when you override
+  the definition of a property with the \e{qmlproperty}
+  command. It actually uses the parent of \a parent as the
+  parent.
+ */
+QmlPropertyNode::QmlPropertyNode(QmlPropertyNode* parent,
+                                 const QString& name,
+                                 const QString& type,
+                                 bool attached)
+    : LeafNode(parent->parent(), QmlProperty, name),
+      type_(type),
+      sto(Trool_Default),
+      des(Trool_Default),
+      isdefault_(false),
+      attached_(attached),
+      readOnly_(-1)
 {
     setPageType(ApiPage);
 }

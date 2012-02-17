@@ -181,7 +181,7 @@ class Node
     virtual bool isAbstract() const { return false; }
     virtual void setAbstract(bool ) { }
     virtual QString title() const { return QString(); }
-    Type type() const { return type_; }
+    Type type() const { return nodeType_; }
     virtual SubType subType() const { return NoSubType; }
     InnerNode* parent() const { return parent_; }
     InnerNode* relates() const { return relatesTo_; }
@@ -239,13 +239,13 @@ class Node
  private:
 
 #ifdef Q_WS_WIN
-    Type type_;
+    Type nodeType_;
     Access access_;
     ThreadSafeness safeness_;
     PageType pageType_;
     Status status_;
 #else
-    Type type_ : 4;
+    Type nodeType_ : 4;
     Access access_ : 2;
     ThreadSafeness safeness_ : 2;
     PageType pageType_ : 4;
@@ -350,6 +350,7 @@ class LeafNode : public Node
 
  protected:
     LeafNode(Type type, InnerNode* parent, const QString& name);
+    LeafNode(InnerNode* parent, Type type, const QString& name);
 };
 
 class NamespaceNode : public InnerNode
@@ -431,7 +432,7 @@ class FakeNode : public InnerNode
     void addGroupMember(Node* node) { nodeList.append(node); }
     void addQmlModuleMember(Node* node) { nodeList.append(node); }
 
-    SubType subType() const { return subtype_; }
+    SubType subType() const { return nodeSubtype_; }
     virtual QString title() const;
     virtual QString fullTitle() const;
     virtual QString subTitle() const;
@@ -442,7 +443,7 @@ class FakeNode : public InnerNode
     virtual void setImageFileName(const QString& ) { }
 
   protected:
-    SubType subtype_;
+    SubType nodeSubtype_;
     QString title_;
     QString subtitle_;
     NodeList nodeList;
@@ -543,18 +544,20 @@ class QmlPropGroupNode : public FakeNode
     virtual QString qmlModuleIdentifier() const { return parent()->qmlModuleIdentifier(); }
 
     const QString& element() const { return parent()->name(); }
-    void setDefault() { isdefault = true; }
-    void setReadOnly(int ro) { readOnly = ro; }
-    int getReadOnly() const { return readOnly; }
-    bool isDefault() const { return isdefault; }
-    bool isAttached() const { return att; }
-    bool isReadOnly() const { return (readOnly > 0); }
+    void setDefault() { isdefault_ = true; }
+    void setReadOnly(int ro) { readOnly_ = ro; }
+    int getReadOnly() const { return readOnly_; }
+    bool isDefault() const { return isdefault_; }
+    bool isAttached() const { return attached_; }
+    bool isReadOnly() const { return (readOnly_ > 0); }
 
  private:
-    bool    isdefault;
-    bool    att;
-    int     readOnly;
+    bool    isdefault_;
+    bool    attached_;
+    int     readOnly_;
 };
+
+class QmlPropertyNode;
 
 class QmlPropertyNode : public LeafNode
 {
@@ -567,24 +570,28 @@ class QmlPropertyNode : public LeafNode
                     const QString& name,
                     const QString& type,
                     bool attached);
+    QmlPropertyNode(QmlPropertyNode* parent,
+                    const QString& name,
+                    const QString& type,
+                    bool attached);
     virtual ~QmlPropertyNode() { }
 
-    void setDataType(const QString& dataType) { dt = dataType; }
+    void setDataType(const QString& dataType) { type_ = dataType; }
     void setStored(bool stored) { sto = toTrool(stored); }
     void setDesignable(bool designable) { des = toTrool(designable); }
     void setWritable(bool writable) { wri = toTrool(writable); }
 
-    const QString &dataType() const { return dt; }
-    QString qualifiedDataType() const { return dt; }
-    void setDefault() { isdefault = true; }
-    void setReadOnly(int ro) { readOnly = ro; }
-    int getReadOnly() const { return readOnly; }
-    bool isDefault() const { return isdefault; }
+    const QString &dataType() const { return type_; }
+    QString qualifiedDataType() const { return type_; }
+    void setDefault() { isdefault_ = true; }
+    void setReadOnly(int ro) { readOnly_ = ro; }
+    int getReadOnly() const { return readOnly_; }
+    bool isDefault() const { return isdefault_; }
     bool isStored() const { return fromTrool(sto,true); }
     bool isDesignable() const { return fromTrool(des,false); }
     bool isWritable(const Tree* tree) const;
-    bool isAttached() const { return att; }
-    bool isReadOnly() const { return (readOnly > 0); }
+    bool isAttached() const { return attached_; }
+    bool isReadOnly() const { return (readOnly_ > 0); }
     virtual bool isQmlNode() const { return true; }
     virtual bool isQtQuickNode() const { return parent()->isQtQuickNode(); }
     virtual QString qmlModuleName() const { return parent()->qmlModuleName(); }
@@ -594,6 +601,8 @@ class QmlPropertyNode : public LeafNode
     const PropertyNode *correspondingProperty(const Tree *tree) const;
 
     const QString& element() const { return static_cast<QmlPropGroupNode*>(parent())->element(); }
+    void appendQmlPropNode(QmlPropertyNode* p) { qmlPropNodes_.append(p); }
+    const NodeList& qmlPropNodes() const { return qmlPropNodes_; }
 
  private:
     enum Trool { Trool_True, Trool_False, Trool_Default };
@@ -601,13 +610,14 @@ class QmlPropertyNode : public LeafNode
     static Trool toTrool(bool boolean);
     static bool fromTrool(Trool troolean, bool defaultValue);
 
-    QString dt;
+    QString type_;
     Trool   sto;
     Trool   des;
     Trool   wri;
-    bool    isdefault;
-    bool    att;
-    int     readOnly;
+    bool    isdefault_;
+    bool    attached_;
+    int     readOnly_;
+    NodeList qmlPropNodes_;
 };
 
 class EnumItem
@@ -761,7 +771,7 @@ class FunctionNode : public LeafNode
     QStringList reconstructParams(bool values = false) const;
     QString signature(bool values = false) const;
     const QString& element() const { return parent()->name(); }
-    bool isAttached() const { return att; }
+    bool isAttached() const { return attached_; }
     virtual bool isInternal() const;
     virtual bool isQmlNode() const { 
         return ((type() == QmlSignal) ||
@@ -794,7 +804,7 @@ class FunctionNode : public LeafNode
     bool sta : 1;
     bool ove : 1;
     bool reimp: 1; 
-    bool att: 1;
+    bool attached_: 1;
     QList<Parameter> params;
     const FunctionNode* rf;
     const PropertyNode* ap;
@@ -810,7 +820,7 @@ class PropertyNode : public LeafNode
     PropertyNode(InnerNode* parent, const QString& name);
     virtual ~PropertyNode() { }
 
-    void setDataType(const QString& dataType) { dt = dataType; }
+    void setDataType(const QString& dataType) { type_ = dataType; }
     void addFunction(FunctionNode* function, FunctionRole role);
     void addSignal(FunctionNode* function, FunctionRole role);
     void setStored(bool stored) { sto = toTrool(stored); }
@@ -825,7 +835,7 @@ class PropertyNode : public LeafNode
     void setFinal() { fnl = true; }
     void setRevision(int revision) { rev = revision; }
 
-    const QString &dataType() const { return dt; }
+    const QString &dataType() const { return type_; }
     QString qualifiedDataType() const;
     NodeList functions() const;
     NodeList functions(FunctionRole role) const { return funcs[(int)role]; }
@@ -856,7 +866,7 @@ class PropertyNode : public LeafNode
     static Trool toTrool(bool boolean);
     static bool fromTrool(Trool troolean, bool defaultValue);
 
-    QString dt;
+    QString type_;
     QString runtimeDesFunc;
     QString runtimeScrFunc;
     NodeList funcs[NumFunctionRoles];

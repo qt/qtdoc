@@ -55,10 +55,12 @@
 #include <qregexp.h>
 #include <ctype.h>
 #include <limits.h>
+#include <qdebug.h>
 
 QT_BEGIN_NAMESPACE
 
 Q_GLOBAL_STATIC(QSet<QString>, null_Set_QString)
+Q_GLOBAL_STATIC(TopicList, nullTopicList)
 Q_GLOBAL_STATIC(QStringList, null_QStringList)
 Q_GLOBAL_STATIC(QList<Text>, null_QList_Text)
 //Q_GLOBAL_STATIC(QStringMap, null_QStringMap)
@@ -354,6 +356,7 @@ class DocPrivate : public Shared
     bool hasLegalese : 1;
     bool hasSectioningUnits : 1;
     DocPrivateExtra *extra;
+    TopicList topics;
 };
 
 DocPrivate::DocPrivate(const Location& start,
@@ -411,7 +414,8 @@ class DocParser
   public:
     void parse(const QString &source,
                DocPrivate *docPrivate,
-               const QSet<QString> &metaCommandSet);
+               const QSet<QString> &metaCommandSet,
+               const QSet<QString>& possibleTopics);
 
     static int endCmdFor(int cmd);
     static QString cmdName(int cmd);
@@ -526,7 +530,8 @@ bool DocParser::quoting;
  */
 void DocParser::parse(const QString& source,
                       DocPrivate *docPrivate,
-                      const QSet<QString>& metaCommandSet)
+                      const QSet<QString>& metaCommandSet,
+                      const QSet<QString>& possibleTopics)
 {
     in = source;
     pos = 0;
@@ -535,6 +540,7 @@ void DocParser::parse(const QString& source,
     cachedPos = 0;
     priv = docPrivate;
     priv->text << Atom::Nop;
+    priv->topics.clear();
 
     paraState = OutsideParagraph;
     inTableHeader = false;
@@ -1324,8 +1330,11 @@ void DocParser::parse(const QString& source,
                     case NOT_A_CMD:
                         if (metaCommandSet.contains(cmdStr)) {
                             priv->metacommandsUsed.insert(cmdStr);
-                            QString xxx = getMetaCommandArgument(cmdStr);
-                            priv->metaCommandMap[cmdStr].append(xxx);
+                            QString arg = getMetaCommandArgument(cmdStr);
+                            priv->metaCommandMap[cmdStr].append(arg);
+                            if (possibleTopics.contains(cmdStr)) {
+                                priv->topics.append(Topic(cmdStr,arg));
+                            }
                         }
                         else if (macroHash()->contains(cmdStr)) {
                             const Macro &macro = macroHash()->value(cmdStr);
@@ -2706,7 +2715,26 @@ Doc::Doc(const Location& start_loc,
 {
     priv = new DocPrivate(start_loc,end_loc,source);
     DocParser parser;
-    parser.parse(source,priv,metaCommandSet);
+    parser.parse(source,priv,metaCommandSet,QSet<QString>());
+}
+
+/*!
+  Parse the qdoc comment \a source. Build up a list of all the topic
+  commands found including their arguments.  This constructor is used
+  when there can be more than one topic command in theqdoc comment.
+  Normally, there is only one topic command in a qdoc comment, but in
+  QML documentation, there is the case where the qdoc \e{qmlproperty}
+  command can appear multiple times in a qdoc comment.
+ */
+Doc::Doc(const Location& start_loc,
+         const Location& end_loc,
+         const QString& source,
+         const QSet<QString>& metaCommandSet,
+         const QSet<QString>& topics)
+{
+    priv = new DocPrivate(start_loc,end_loc,source);
+    DocParser parser;
+    parser.parse(source,priv,metaCommandSet,topics);
 }
 
 Doc::Doc(const Doc& doc)
@@ -2958,6 +2986,16 @@ const QStringList &Doc::omitEnumItemNames() const
 const QSet<QString> &Doc::metaCommandsUsed() const
 {
     return priv == 0 ? *null_Set_QString() : priv->metacommandsUsed;
+}
+
+/*!
+  Returns a reference to the list of topic commands used in the
+  current qdoc comment. Normally there is only one, but there
+  can be multiple \e{qmlproperty} commands, for example.
+ */
+const TopicList& Doc::topicsUsed() const
+{
+    return priv == 0 ? *nullTopicList() : priv->topics;
 }
 
 QStringList Doc::metaCommandArgs(const QString& metacommand) const

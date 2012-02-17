@@ -1041,8 +1041,6 @@ int HtmlGenerator::generateAtom(const Atom *atom,
                 if (atom->count() > 1)
                     p2 = atom->string(1);
             }
-            if (p1 == "borderless" || p2 == "borderless")
-                qDebug() << "ATOM::TABLELEFT:" << atom->count() << p1 << p2;
             if (!p1.isEmpty()) {
                 if (p1 == "borderless")
                     attr = p1;
@@ -3348,6 +3346,8 @@ QString HtmlGenerator::refForNode(const Node *node)
     return registerRef(ref);
 }
 
+#define DEBUG_ABSTRACT 0
+
 /*!
   Construct the link string for the \a node and return it.
   The \a relative node is use to decide the link we are
@@ -4047,7 +4047,6 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
         NodeList::ConstIterator p = qpgn->childNodes().begin();
         out() << "<div class=\"qmlproto\">";
         out() << "<table class=\"qmlname\">";
-
         while (p != qpgn->childNodes().end()) {
             if ((*p)->type() == Node::QmlProperty) {
                 qpn = static_cast<const QmlPropertyNode*>(*p);
@@ -4076,27 +4075,78 @@ void HtmlGenerator::generateDetailedQmlMember(const Node *node,
     }
     else if (node->type() == Node::QmlProperty) {
         qpn = static_cast<const QmlPropertyNode*>(node);
-        out() << "<div class=\"qmlproto\">";
-        out() << "<table class=\"qmlname\">";
-        out() << "<tr valign=\"top\" class=\"odd\">";
-        out() << "<td class=\"tblQmlPropNode\"><p>";
-        out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
-        int ro = qpn->getReadOnly();
-        if (ro < 0) {
-            const ClassNode* cn = qpn->declarativeCppNode();
-            if (cn && !qpn->isWritable(myTree)) {
+        /*
+          If the QML property node has a single subproperty,
+          override, replace qpn with that override node and
+          proceed as normal.
+         */
+        if (qpn->qmlPropNodes().size() == 1) {
+            Node* n = qpn->qmlPropNodes().at(0);
+            if (n->type() == Node::QmlProperty)
+                qpn = static_cast<const QmlPropertyNode*>(n);
+        }
+        /*
+          Now qpn either has no overrides, or it has more
+          than 1. If it has none, proceed to output as nortmal.
+         */
+        if (qpn->qmlPropNodes().isEmpty()) {
+            out() << "<div class=\"qmlproto\">";
+            out() << "<table class=\"qmlname\">";
+            out() << "<tr valign=\"top\" class=\"odd\">";
+            out() << "<td class=\"tblQmlPropNode\"><p>";
+            out() << "<a name=\"" + refForNode(qpn) + "\"></a>";
+            int ro = qpn->getReadOnly();
+            if (ro < 0) {
+                const ClassNode* cn = qpn->declarativeCppNode();
+                if (cn && !qpn->isWritable(myTree)) {
+                    out() << "<span class=\"qmlreadonly\">read-only</span>";
+                }
+            }
+            else if (ro > 0) {
                 out() << "<span class=\"qmlreadonly\">read-only</span>";
             }
+            if (qpn->isDefault())
+                out() << "<span class=\"qmldefault\">default</span>";
+            generateQmlItem(qpn, relative, marker, false);
+            out() << "</p></td></tr>";
+            out() << "</table>";
+            out() << "</div>";
         }
-        else if (ro > 0) {
-            out() << "<span class=\"qmlreadonly\">read-only</span>";
+        else {
+            /*
+              The QML property node has multiple override nodes.
+              Process the whole list as we would for a QML property
+              group.
+             */
+            NodeList::ConstIterator p = qpn->qmlPropNodes().begin();
+            out() << "<div class=\"qmlproto\">";
+            out() << "<table class=\"qmlname\">";
+            while (p != qpn->qmlPropNodes().end()) {
+                if ((*p)->type() == Node::QmlProperty) {
+                    QmlPropertyNode* q = static_cast<QmlPropertyNode*>(*p);
+                    out() << "<tr valign=\"top\" class=\"odd\">";
+                    out() << "<td class=\"tblQmlPropNode\"><p>";
+                    out() << "<a name=\"" + refForNode(q) + "\"></a>";
+
+                    int ro = qpn->getReadOnly();
+                    if (ro < 0) {
+                        if (!qpn->isWritable(myTree)) {
+                            out() << "<span class=\"qmlreadonly\">read-only</span>";
+                        }
+                    }
+                    else if (ro > 0) {
+                        out() << "<span class=\"qmlreadonly\">read-only</span>";
+                    }
+                    if (qpn->isDefault())
+                        out() << "<span class=\"qmldefault\">default</span>";
+                    generateQmlItem(q, relative, marker, false);
+                    out() << "</p></td></tr>";
+                }
+                ++p;
+            }
+            out() << "</table>";
+            out() << "</div>";
         }
-        if (qpn->isDefault())
-            out() << "<span class=\"qmldefault\">default</span>";
-        generateQmlItem(qpn, relative, marker, false);
-        out() << "</p></td></tr>";
-        out() << "</table>";
-        out() << "</div>";
     }
     else if (node->type() == Node::QmlSignal) {
         const FunctionNode* qsn = static_cast<const FunctionNode*>(node);

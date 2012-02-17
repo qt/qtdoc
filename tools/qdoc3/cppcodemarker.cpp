@@ -1181,10 +1181,25 @@ QList<Section> CppCodeMarker::qmlSections(const QmlClassNode* qmlClassNode,
                     }
                     else if ((*c)->type() == Node::QmlProperty) {
                         const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*c);
-                        if (pn->isAttached())
-                            insert(qmlattachedproperties,*c,style,Okay);
-                        else
-                            insert(qmlproperties,*c,style,Okay);
+                        if (pn->qmlPropNodes().isEmpty()) {
+                            if (pn->isAttached())
+                                insert(qmlattachedproperties,*c,style,Okay);
+                            else
+                                insert(qmlproperties,*c,style,Okay);
+                        }
+                        else {
+                            NodeList::ConstIterator p = pn->qmlPropNodes().begin();
+                            while (p != pn->qmlPropNodes().end()) {
+                                if ((*p)->type() == Node::QmlProperty) {
+                                    const QmlPropertyNode* pn = static_cast<const QmlPropertyNode*>(*p);
+                                    if (pn->isAttached())
+                                        insert(qmlattachedproperties,*p,style,Okay);
+                                    else
+                                        insert(qmlproperties,*p,style,Okay);
+                                }
+                                ++p;
+                            }
+                        }
                     }
                     else if ((*c)->type() == Node::QmlSignal) {
                         const FunctionNode* sn = static_cast<const FunctionNode*>(*c);

@@ -4431,28 +4431,79 @@ void DitaXmlGenerator::generateDetailedQmlMember(const Node* node,
     }
     else if (node->type() == Node::QmlProperty) {
         qpn = static_cast<const QmlPropertyNode*>(node);
-        writeStartTag(DT_ul);
-        writeStartTag(DT_li);
-        writeGuidAttribute((Node*)qpn);
-        QString attr;
-        int ro = qpn->getReadOnly();
-        if (ro < 0) {
-            const ClassNode* cn = qpn->declarativeCppNode();
-            if (cn && !qpn->isWritable(myTree))
+        /*
+          If the QML property node has a single subproperty,
+          override, replace qpn with that override node and
+          proceed as normal.
+         */
+        if (qpn->qmlPropNodes().size() == 1) {
+            Node* n = qpn->qmlPropNodes().at(0);
+            if (n->type() == Node::QmlProperty)
+                qpn = static_cast<const QmlPropertyNode*>(n);
+        }
+        /*
+          Now qpn either has no overrides, or it has more
+          than 1. If it has none, proceed to output as nortmal.
+         */
+        if (qpn->qmlPropNodes().isEmpty()) {
+            writeStartTag(DT_ul);
+            writeStartTag(DT_li);
+            writeGuidAttribute((Node*)qpn);
+            QString attr;
+            int ro = qpn->getReadOnly();
+            if (ro < 0) {
+                const ClassNode* cn = qpn->declarativeCppNode();
+                if (cn && !qpn->isWritable(myTree))
+                    attr = "read-only";
+            }
+            else if (ro > 0)
                 attr = "read-only";
-        }
-        else if (ro > 0)
-            attr = "read-only";
-        if (qpn->isDefault()) {
+            if (qpn->isDefault()) {
+                if (!attr.isEmpty())
+                    attr += QLatin1Char(' ');
+                attr += "default";
+            }
             if (!attr.isEmpty())
-                attr += QLatin1Char(' ');
-            attr += "default";
+                xmlWriter().writeAttribute("outputclass",attr);
+            generateQmlItem(qpn, relative, marker, false);
+            writeEndTag(); // </li>
+            writeEndTag(); // </ul>
         }
-        if (!attr.isEmpty())
-            xmlWriter().writeAttribute("outputclass",attr);
-        generateQmlItem(qpn, relative, marker, false);
-        writeEndTag(); // </li>
-        writeEndTag(); // </ul>
+        else {
+            /*
+              The QML property node has multiple override nodes.
+              Process the whole list as we would for a QML property
+              group.
+             */
+            NodeList::ConstIterator p = qpn->qmlPropNodes().begin();
+            writeStartTag(DT_ul);
+            while (p != qpn->qmlPropNodes().end()) {
+                if ((*p)->type() == Node::QmlProperty) {
+                    QmlPropertyNode* q = static_cast<QmlPropertyNode*>(*p);
+                    writeStartTag(DT_li);
+                    writeGuidAttribute((Node*)q);
+                    QString attr;
+                    int ro = qpn->getReadOnly();
+                    if (ro < 0) {
+                        if (!qpn->isWritable(myTree))
+                            attr = "read-only";
+                    }
+                    else if (ro > 0)
+                        attr = "read-only";
+                    if (qpn->isDefault()) {
+                        if (!attr.isEmpty())
+                            attr += QLatin1Char(' ');
+                        attr += "default";
+                    }
+                    if (!attr.isEmpty())
+                        xmlWriter().writeAttribute("outputclass",attr);
+                    generateQmlItem(q, relative, marker, false);
+                    writeEndTag(); // </li>
+                }
+                ++p;
+            }
+            writeEndTag(); // </ul>
+        }
     }
     else if (node->type() == Node::QmlSignal) {
         Node* n = const_cast<Node*>(node);

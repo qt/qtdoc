@@ -66,6 +66,14 @@ typedef QMap<QString, QStringList> QCommandMap;
 typedef QMap<QString, QString> QStringMap;
 typedef QMultiMap<QString, QString> QStringMultiMap;
 
+struct Topic
+{
+    QString topic;
+    QString args;
+  Topic(QString& t, QString a) : topic(t), args(a) { }
+};
+typedef QList<Topic> TopicList;
+
 class Doc
 {
  public:
@@ -85,6 +93,11 @@ class Doc
         const Location &end_loc, 
         const QString &source, 
         const QSet<QString> &metaCommandSet);
+    Doc(const Location& start_loc,
+        const Location& end_loc,
+        const QString& source,
+        const QSet<QString>& metaCommandSet,
+        const QSet<QString>& topics);
     Doc(const Doc &doc);
     ~Doc();
 
@@ -108,6 +121,7 @@ class Doc
     const QStringList &enumItemNames() const;
     const QStringList &omitEnumItemNames() const;
     const QSet<QString> &metaCommandsUsed() const;
+    const TopicList& topicsUsed() const;
     QStringList metaCommandArgs( const QString& metaCommand ) const;
     const QList<Text> &alsoList() const;
     bool hasTableOfContents() const;

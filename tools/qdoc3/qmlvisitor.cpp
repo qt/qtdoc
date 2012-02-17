@@ -161,7 +161,7 @@ bool QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
         finish.setLineNo(loc.startLine);
         finish.setColumnNo(loc.startColumn);
 
-        Doc doc(start, finish, source.mid(1), commands);
+        Doc doc(start, finish, source.mid(1), commands, topics);
         node->setDoc(doc);
         applyMetacommands(loc, node, doc);
         usedComments.insert(loc.offset);
@@ -176,12 +176,83 @@ bool QmlDocVisitor::applyDocumentation(QDeclarativeJS::AST::SourceLocation locat
 }
 
 /*!
+  A QML property argument has the form...
+
+  <type> <component>::<name>
+  <type> <QML-module>::<component>::<name>
+
+  This function splits the argument into one of those
+  two forms. The three part form is the old form, which
+  was used before the creation of QtQuick 2 and Qt
+  Components. A <QML-module> is the QML equivalent of a
+  C++ namespace. So this function splits \a arg on "::"
+  and stores the parts in the \e {type}, \e {module},
+  \e {component}, and \a {name}, fields of \a qpa. If it
+  is successful, it returns true. If not enough parts
+  are found, a qdoc warning is emitted and false is
+  returned.
+ */
+bool QmlDocVisitor::splitQmlPropertyArg(const Doc& doc,
+                                        const QString& arg,
+                                        QmlPropArgs& qpa)
+{
+    qpa.clear();
+    QStringList blankSplit = arg.split(QLatin1Char(' '));
+    if (blankSplit.size() > 1) {
+        qpa.type_ = blankSplit[0];
+        QStringList colonSplit(blankSplit[1].split("::"));
+        if (colonSplit.size() == 3) {
+            qpa.module_ = colonSplit[0];
+            qpa.component_ = colonSplit[1];
+            qpa.name_ = colonSplit[2];
+            return true;
+        }
+        else if (colonSplit.size() == 2) {
+            qpa.component_ = colonSplit[0];
+            qpa.name_ = colonSplit[1];
+            return true;
+        }
+        else if (colonSplit.size() == 1) {
+            qpa.name_ = colonSplit[0];
+            return true;
+        }
+        QString msg = "Unrecognizable QML module/component qualifier for " + arg;
+        doc.location().warning(tr(msg.toLatin1().data()));
+    }
+    else {
+        QString msg = "Missing property type for " + arg;
+        doc.location().warning(tr(msg.toLatin1().data()));
+    }
+    return false;
+}
+
+/*!
   Applies the metacommands found in the comment.
  */
 void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation,
                                       Node* node,
                                       Doc& doc)
 {
+    const TopicList& topicsUsed = doc.topicsUsed();
+    if (topicsUsed.size() > 0) {
+        if (node->type() == Node::QmlProperty) {
+            QmlPropertyNode* qpn = static_cast<QmlPropertyNode*>(node);
+            for (int i=0; i<topicsUsed.size(); ++i) {
+                if (topicsUsed.at(i).topic == "qmlproperty") {
+                    QmlPropArgs qpa;
+                    if (splitQmlPropertyArg(doc, topicsUsed.at(i).args, qpa)) {
+                        QmlPropertyNode* n = new QmlPropertyNode(qpn, qpa.name_, qpa.type_, false);
+                        qpn->appendQmlPropNode(n);
+                    }
+                    else
+                        qDebug() << "  FAILED TO PARSE QML PROPERTY:"
+                                 << topicsUsed.at(i).topic << topicsUsed.at(i).args;
+                }
+            }
+        }
+        else if (topicsUsed.size() > 0)
+            qDebug() << "  " << topicsUsed.at(0).topic << topicsUsed.at(0).args;
+    }
     QSet<QString> metacommands = doc.metaCommandsUsed();
     if (metacommands.count() > 0) {
         QString topic;
@@ -430,7 +501,6 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiPublicMember *member)
     {
         QString type = member->memberType.toString();
         QString name = member->name.toString();
-
         if (current->type() == Node::Fake) {
             QmlClassNode *qmlClass = static_cast<QmlClassNode *>(current);
             if (qmlClass) {
