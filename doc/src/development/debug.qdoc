@@ -144,11 +144,31 @@
 
     \snippet doc/src/snippets/code/doc_src_debug.cpp 0
 
-    The Qt implementation of these functions prints the text to the
+    The Qt implementation of these functions prints to the
     \c stderr output under Unix/X11 and Mac OS X. With Windows, if it
     is a console application, the text is sent to console; otherwise, it
-    is sent to the debugger. You can take over these functions by
-    installing a message handler using qInstallMsgHandler().
+    is sent to the debugger.
+
+    By default, only the message is printed. You can include additional information
+    by setting the \c QT_MESSAGE_PATTERN environment variable. For example:
+
+    \code
+    QT_MESSAGE_PATTERN="[%{type}] %{appname} (%{file}:%{line}) - %{message}"
+    \endcode
+
+    \table
+    \header \o Placeholder \o Description
+    \row \o \c %{appname} \o QCoreApplication::applicationName()
+    \row \o \c %{file} \o Path to source file
+    \row \o \c %{function} \o Function
+    \row \o \c %{line} \o Line in source file
+    \row \o \c %{message} \o The actual message
+    \row \o \c %{pid} \o QCoreApplication::applicationPid()
+    \row \o \c %{threadid} \o ID of current thread
+    \row \o \c %{type} \o "debug", "warning", "critical" or "fatal"
+    \endtable
+
+    You can also install your own message handler using qInstallMessageHandler().
 
     If the \c QT_FATAL_WARNINGS environment variable is set,
     qWarning() exits after printing the warning message. This makes
