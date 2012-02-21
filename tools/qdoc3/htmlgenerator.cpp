@@ -2891,6 +2891,7 @@ void HtmlGenerator::generateSynopsis(const Node *node,
                                      const QString* prefix)
 {
     QString marked = marker->markedUpSynopsis(node, relative, style);
+
     if (prefix)
         marked.prepend(*prefix);
     QRegExp templateTag("(<[^@>]*>)");
@@ -2902,7 +2903,7 @@ void HtmlGenerator::generateSynopsis(const Node *node,
     }
     marked.replace(QRegExp("<@param>([a-z]+)_([1-9n])</@param>"),
                    "<i>\\1<sub>\\2</sub></i>");
-    marked.replace("<@param>", "<i>");
+    marked.replace("<@param>", "<i> ");
     marked.replace("</@param>", "</i>");
 
     if (style == CodeMarker::Summary) {
@@ -2923,6 +2924,7 @@ void HtmlGenerator::generateSynopsis(const Node *node,
         marked.remove("<@type>");
         marked.remove("</@type>");
     }
+
     out() << highlightedCode(marked, marker, relative, alignNames);
 }
 
@@ -2970,7 +2972,6 @@ QString HtmlGenerator::highlightedCode(const QString& markedCode,
             html += src.at(i++);
         }
     }
-
 
     // replace all <@func> tags: "(<@func target=\"([^\"]*)\">)(.*)(</@func>)"
     src = html;
@@ -3110,7 +3111,6 @@ QString HtmlGenerator::highlightedCode(const QString& markedCode,
             ++i;
         }
     }
-
     return html;
 }
 

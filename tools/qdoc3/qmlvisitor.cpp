@@ -250,8 +250,6 @@ void QmlDocVisitor::applyMetacommands(QDeclarativeJS::AST::SourceLocation,
                 }
             }
         }
-        else if (topicsUsed.size() > 0)
-            qDebug() << "  " << topicsUsed.at(0).topic << topicsUsed.at(0).args;
     }
     QSet<QString> metacommands = doc.metaCommandsUsed();
     if (metacommands.count() > 0) {

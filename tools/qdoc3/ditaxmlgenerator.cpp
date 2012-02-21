@@ -3432,7 +3432,7 @@ QString DitaXmlGenerator::getMarkedUpSynopsis(const Node* node,
         marked.replace(tag.pos(1), tag.cap(1).length(), tmp);
     }
     marked.replace(QRegExp("<@param>([a-z]+)_([1-9n])</@param>"),
-                   "<i>\\1<sub>\\2</sub></i>");
+                   "<i> \\1<sub>\\2</sub></i>");
 #if 0    
     marked.replace("<@param>","<i>");
     marked.replace("</@param>","</i>");
@@ -3560,7 +3560,7 @@ void DitaXmlGenerator::writeText(const QString& markedCode,
                             html.clear();
                         }
                         writeStartTag(DT_i);
-                        writeCharacters(arg.toString());
+                        writeCharacters(" " + arg.toString());
                         writeEndTag(); // </i>
                     }
                     else if (k == 5) { // <@extra>
