@@ -197,6 +197,8 @@ QString Node::pageTypeString(unsigned t)
             return "tutorial";
         case Node::FAQPage:
             return "faq";
+        case Node::DitaMapPage:
+            return "ditamap";
         default:
             return "article";
     }
@@ -292,6 +294,8 @@ QString Node::nodeSubtypeString(unsigned t)
             return "QML basic type";
         case QmlModule:
             return "QML module";
+        case DitaMap:
+            return "ditamap";
         case Collision:
             return "collision";
         case NoSubType:
@@ -320,6 +324,8 @@ void Node::setPageType(const QString& t)
         pageType_ = ArticlePage;
     else if (t == "example")
         pageType_ = ExamplePage;
+    else if (t == "ditamap")
+        pageType_ = DitaMapPage;
 }
 
 /*!
@@ -1410,6 +1416,9 @@ FakeNode::FakeNode(InnerNode* parent, const QString& name, SubType subtype, Node
 {
     switch (subtype) {
     case Page:
+        setPageType(ptype);
+        break;
+    case DitaMap:
         setPageType(ptype);
         break;
     case Module:

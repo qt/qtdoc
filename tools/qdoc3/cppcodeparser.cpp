@@ -59,17 +59,18 @@ QT_BEGIN_NAMESPACE
 
 #define COMMAND_CLASS                   Doc::alias("class")
 #define COMMAND_CONTENTSPAGE            Doc::alias("contentspage")
+#define COMMAND_DITAMAP                 Doc::alias("ditamap")
 #define COMMAND_ENUM                    Doc::alias("enum")
 #define COMMAND_EXAMPLE                 Doc::alias("example")
 #define COMMAND_EXTERNALPAGE            Doc::alias("externalpage")
-#define COMMAND_FILE                    Doc::alias("file") // ### don't document
+#define COMMAND_FILE                    Doc::alias("file")
 #define COMMAND_FN                      Doc::alias("fn")
 #define COMMAND_GROUP                   Doc::alias("group")
 #define COMMAND_HEADERFILE              Doc::alias("headerfile")
 #define COMMAND_INDEXPAGE               Doc::alias("indexpage")
-#define COMMAND_INHEADERFILE            Doc::alias("inheaderfile") // ### don't document
+#define COMMAND_INHEADERFILE            Doc::alias("inheaderfile")
 #define COMMAND_MACRO                   Doc::alias("macro")
-#define COMMAND_MODULE                  Doc::alias("module") // ### don't document
+#define COMMAND_MODULE                  Doc::alias("module")
 #define COMMAND_NAMESPACE               Doc::alias("namespace")
 #define COMMAND_OVERLOAD                Doc::alias("overload")
 #define COMMAND_NEXTPAGE                Doc::alias("nextpage")
@@ -498,6 +499,7 @@ const FunctionNode *CppCodeParser::findFunctionNode(const QString& synopsis,
 QSet<QString> CppCodeParser::topicCommands()
 {
     return QSet<QString>() << COMMAND_CLASS
+                           << COMMAND_DITAMAP
                            << COMMAND_ENUM
                            << COMMAND_EXAMPLE
                            << COMMAND_EXTERNALPAGE
@@ -721,6 +723,8 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
                 ptype = Node::TutorialPage;
             else if (t == "faq")
                 ptype = Node::FAQPage;
+            else if (t == "ditamap")
+                ptype = Node::DitaMapPage;
         }
 
         /*
@@ -735,10 +739,18 @@ Node* CppCodeParser::processTopicCommand(const Doc& doc,
           node and return that one.
         */
         NameCollisionNode* ncn = tre->checkForCollision(args[0]);
-        FakeNode* fn = new FakeNode(tre->root(), args[0], Node::Page, ptype);
+        FakeNode* fn = 0;
+        if (ptype == Node::DitaMapPage)
+            fn = new DitaMapNode(tre->root(), args[0]);
+        else
+            fn = new FakeNode(tre->root(), args[0], Node::Page, ptype);
         if (ncn) {
             ncn->addCollision(fn);
         }
+        return fn;
+    }
+    else if (command == COMMAND_DITAMAP) {
+        FakeNode* fn = new DitaMapNode(tre->root(), arg);
         return fn;
     }
     else if (command == COMMAND_QMLCLASS) {

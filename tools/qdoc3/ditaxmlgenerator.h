@@ -442,6 +442,7 @@ class DitaXmlGenerator : public PageGenerator
     void writeApiDesc(const Node* node, CodeMarker* marker, const QString& title);
     void addLink(const QString& href, const QStringRef& text, DitaTag t = DT_xref);
     void writeDitaMap(const Tree* tree);
+    void writeDitaMap(const DitaMapNode* node);
     void writeStartTag(DitaTag t);
     void writeEndTag(DitaTag t=DT_NONE);
     DitaTag currentTag();
@@ -454,6 +455,7 @@ class DitaXmlGenerator : public PageGenerator
     QString metadataDefault(DitaTag t) const;
     QString stripMarkup(const QString& src) const;
     void collectNodesByTypeAndSubtype(const InnerNode* parent);
+    void writeTopicrefs(const QList<Topicref*>& topicrefs);
     void writeTopicrefs(NodeMultiMap* nmm, const QString& navtitle);
     bool isDuplicate(NodeMultiMap* nmm, const QString& key, Node* node);
 

@@ -105,6 +105,7 @@ class Node
         QmlPropertyGroup,
         QmlBasicType,
         QmlModule,
+        DitaMap,
         Collision,
         LastSubtype
     };
@@ -152,6 +153,7 @@ class Node
         OverviewPage,
         TutorialPage,
         FAQPage,
+        DitaMapPage,
         OnBeyondZebra
     };
 
@@ -446,7 +448,7 @@ class FakeNode : public InnerNode
     SubType nodeSubtype_;
     QString title_;
     QString subtitle_;
-    NodeList nodeList;
+    NodeList nodeList; // used for groups and QML modules.
 };
 
 class NameCollisionNode : public FakeNode
@@ -939,6 +941,16 @@ class TargetNode : public LeafNode
     virtual ~TargetNode() { }
 
     virtual bool isInnerNode() const;
+};
+
+class DitaMapNode : public FakeNode
+{
+ public:
+    DitaMapNode(InnerNode* parent, const QString& name)
+        : FakeNode(parent, name, Node::Page, Node::DitaMapPage) { }
+    virtual ~DitaMapNode() { }
+
+    const QList<Topicref*>& map() const { return doc().ditamap(); }
 };
 
 QT_END_NAMESPACE

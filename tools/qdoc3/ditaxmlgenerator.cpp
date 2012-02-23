@@ -2228,6 +2228,17 @@ void DitaXmlGenerator::writeXrefListItem(const QString& link, const QString& tex
  */
 void DitaXmlGenerator::generateFakeNode(const FakeNode* fake, CodeMarker* marker)
 {
+    /*
+      If the fake node is a page node, and if the page type
+      is DITA map page, write the node's contents as a dita
+      map and return without doing anything else.
+     */
+    if (fake->subType() == Node::Page && fake->pageType() == Node::DitaMapPage) {
+        const DitaMapNode* dmn = static_cast<const DitaMapNode*>(fake);
+        writeDitaMap(dmn);
+        return;
+    }
+
     QList<Section> sections;
     QList<Section>::const_iterator s;
     QString fullTitle = fake->fullTitle();
@@ -5945,6 +5956,46 @@ void DitaXmlGenerator::writeDitaMap(const Tree *tree)
         delete nodeSubtypeMaps[i];
     for (unsigned i=0; i<Node::OnBeyondZebra; ++i)
         delete pageTypeMaps[i];
+}
+
+/*!
+  Creates the DITA map from the topicrefs in \a node,
+  which is a DitaMapNode.
+ */
+void DitaXmlGenerator::writeDitaMap(const DitaMapNode* node)
+{
+    beginSubPage(node,node->name());
+
+    QString doctype;
+    doctype = "<!DOCTYPE map PUBLIC \"-//OASIS//DTD DITA Map//EN\" \"map.dtd\">";
+    //    doctype = "<!DOCTYPE cxxAPIMap PUBLIC \"-//NOKIA//DTD DITA C++ API Map Reference Type v0.6.0//EN\" \"dtd/cxxAPIMap.dtd\">";
+
+    xmlWriter().writeDTD(doctype);
+    writeStartTag(DT_map);
+    writeStartTag(DT_topicmeta);
+    writeStartTag(DT_shortdesc);
+    xmlWriter().writeCharacters(node->title());
+    writeEndTag(); // </shortdesc>
+    writeEndTag(); // </topicmeta>
+    const QList<Topicref*> map = node->map();
+    writeTopicrefs(map);
+    endSubPage();
+}
+
+/*!
+  Write the \a topicrefs to the current output file.
+ */
+void DitaXmlGenerator::writeTopicrefs(const QList<Topicref*>& topicrefs)
+{
+    foreach (Topicref* t, topicrefs) {
+        writeStartTag(DT_topicref);
+        xmlWriter().writeAttribute("navtitle",t->navtitle());
+        if (!t->href().isEmpty())
+            xmlWriter().writeAttribute("href",t->href());
+        if (!t->subrefs().isEmpty())
+            writeTopicrefs(t->subrefs());
+        writeEndTag(); // </topicref>
+    }
 }
 
 void DitaXmlGenerator::writeTopicrefs(NodeMultiMap* nmm, const QString& navtitle)

@@ -84,7 +84,7 @@ enum {
     CMD_BRIEF,
     CMD_C,
     CMD_CAPTION,
-    CMD_CHAPTER, // 9
+    CMD_CHAPTER,
     CMD_CODE,
     CMD_CODELINE,
     CMD_DIV,
@@ -109,6 +109,7 @@ enum {
     CMD_ENDSECTION4,
     CMD_ENDSIDEBAR,
     CMD_ENDTABLE,
+    CMD_ENDTOPICREF,
     CMD_EXPIRE,
     CMD_FOOTNOTE,
     CMD_GENERATELIST,
@@ -145,10 +146,10 @@ enum {
     CMD_RAW,
     CMD_ROW,
     CMD_SA,
-    CMD_SECTION1, // 68
-    CMD_SECTION2, // 69
-    CMD_SECTION3, // 70
-    CMD_SECTION4, // 71
+    CMD_SECTION1,
+    CMD_SECTION2,
+    CMD_SECTION3,
+    CMD_SECTION4,
     CMD_SIDEBAR,
     CMD_SINCELIST,
     CMD_SKIPLINE,
@@ -161,6 +162,7 @@ enum {
     CMD_TABLE,
     CMD_TABLEOFCONTENTS,
     CMD_TARGET,
+    CMD_TOPICREF,
     CMD_TT,
     CMD_UNDERLINE,
     CMD_UNICODE,
@@ -218,6 +220,7 @@ static struct {
     { "endsection4", CMD_ENDSECTION4, 0 },  // ### don't document for now
     { "endsidebar", CMD_ENDSIDEBAR, 0 },
     { "endtable", CMD_ENDTABLE, 0 },
+    { "endtopicref", CMD_ENDTOPICREF, 0 },
     { "expire", CMD_EXPIRE, 0 },
     { "footnote", CMD_FOOTNOTE, 0 },
     { "generatelist", CMD_GENERATELIST, 0 },
@@ -250,7 +253,7 @@ static struct {
     { "quotation", CMD_QUOTATION, 0 },
     { "quotefile", CMD_QUOTEFILE, 0 },
     { "quotefromfile", CMD_QUOTEFROMFILE, 0 },
-    { "quotefunction", CMD_QUOTEFUNCTION, 0 }, // ### don't document for now
+    { "quotefunction", CMD_QUOTEFUNCTION, 0 },
     { "raw", CMD_RAW, 0 },
     { "row", CMD_ROW, 0 },
     { "sa", CMD_SA, 0 },
@@ -258,7 +261,7 @@ static struct {
     { "section2", CMD_SECTION2, 0 },
     { "section3", CMD_SECTION3, 0 },
     { "section4", CMD_SECTION4, 0 },
-    { "sidebar", CMD_SIDEBAR, 0 }, // ### don't document for now
+    { "sidebar", CMD_SIDEBAR, 0 },
     { "sincelist", CMD_SINCELIST, 0 },
     { "skipline", CMD_SKIPLINE, 0 },
     { "skipto", CMD_SKIPTO, 0 },
@@ -270,6 +273,7 @@ static struct {
     { "table", CMD_TABLE, 0 },
     { "tableofcontents", CMD_TABLEOFCONTENTS, 0 },
     { "target", CMD_TARGET, 0 },
+    { "topicref", CMD_TOPICREF, 0 },
     { "tt", CMD_TT, 0 },
     { "underline", CMD_UNDERLINE, 0 },
     { "unicode", CMD_UNICODE, 0 },
@@ -357,6 +361,7 @@ class DocPrivate : public Shared
     bool hasSectioningUnits : 1;
     DocPrivateExtra *extra;
     TopicList topics;
+    QList<Topicref*> ditamap_;
 };
 
 DocPrivate::DocPrivate(const Location& start,
@@ -375,6 +380,9 @@ DocPrivate::DocPrivate(const Location& start,
 DocPrivate::~DocPrivate()
 {
     delete extra;
+    foreach (Topicref* t, ditamap_) {
+        delete t;
+    }
 }
 
 void DocPrivate::addAlso(const Text& also)
@@ -465,6 +473,7 @@ class DocParser
     QString expandMacroToString(const QString &name, const QString &def, int numParams);
     Doc::Sections getSectioningUnit();
     QString getArgument(bool verbatim = false);
+    QString getBracedArgument(bool verbatim);
     QString getOptionalArgument();
     QString getRestOfLine();
     QString getMetaCommandArgument(const QString &cmdStr);
@@ -510,6 +519,7 @@ class DocParser
     QStack<int> openedCommands;
     QStack<OpenedList> openedLists;
     Quoter quoter;
+    QStack<Topicref*> topicrefs_;
 };
 
 int DocParser::tabSize;
@@ -784,6 +794,11 @@ void DocParser::parse(const QString& source,
                             openedLists.pop();
                         }
                         break;
+                    case CMD_ENDTOPICREF:
+                        if (closeCommand(cmd)) {
+                            topicrefs_.pop(); // zzz
+                        }
+                        break;
                     case CMD_ENDOMIT:
                         closeCommand(cmd);
                         break;
@@ -957,6 +972,20 @@ void DocParser::parse(const QString& source,
                             leavePara();
                             openedLists.push(OpenedList(location(),
                                                          getOptionalArgument()));
+                        }
+                        break;
+                    case CMD_TOPICREF:
+                        if (openCommand(cmd)) {
+                            Topicref* t = new Topicref();
+                            t->setNavtitle(getArgument(true));
+                            t->setHref(getOptionalArgument());
+                            if (topicrefs_.isEmpty()) {
+                                priv->ditamap_.append(t);
+                            }
+                            else {
+                                topicrefs_.top()->appendSubref(t);
+                            }
+                            topicrefs_.push(t);
                         }
                         break;
                     case CMD_META:
@@ -1817,14 +1846,15 @@ bool DocParser::openCommand(int cmd)
         else if (outer == CMD_FOOTNOTE || outer == CMD_LINK) {
             ok = false;
         }
+        else if (outer == CMD_TOPICREF)
+            ok = (cmd == CMD_TOPICREF);
     }
 
     if (ok) {
         openedCommands.push(cmd);
     }
     else {
-        location().warning(tr("Cannot use '\\%1' within '\\%2'")
-                           .arg(cmdName(cmd)).arg(cmdName(outer)));
+        location().warning(tr("Can't use '\\%1' in '\\%2'").arg(cmdName(cmd)).arg(cmdName(outer)));
     }
     return ok;
 }
@@ -2235,28 +2265,19 @@ Doc::Sections DocParser::getSectioningUnit()
     }
 }
 
-QString DocParser::getArgument(bool verbatim)
+/*!
+  Gets an argument that is enclosed in braces and returns it
+  without the enclosing braces. On entry, the current character
+  is the left brace. On exit, the current character is the one
+  that comes afterr the right brace.
+
+  If \a verbatim is true, extra whitespace is retained in the
+  returned string. Otherwise, extr whitespace is removed.
+ */
+QString DocParser::getBracedArgument(bool verbatim)
 {
     QString arg;
     int delimDepth = 0;
-
-    skipSpacesOrOneEndl();
-
-    int startPos = pos;
-
-    /*
-      Typically, an argument ends at the next white-space. However,
-      braces can be used to group words:
-
-          {a few words}
-
-      Also, opening and closing parentheses have to match. Thus,
-
-          printf("%d\n", x)
-
-      is an argument too, although it contains spaces. Finally,
-      trailing punctuation is not included in an argument, nor is 's.
-    */
     if (pos < (int) in.length() && in[pos] == '{') {
         pos++;
         while (pos < (int) in.length() && delimDepth >= 0) {
@@ -2300,7 +2321,30 @@ QString DocParser::getArgument(bool verbatim)
         if (delimDepth > 0)
             location().warning(tr("Missing '}'"));
     }
-    else {
+    return arg;
+}
+
+/*!
+  Typically, an argument ends at the next white-space. However,
+  braces can be used to group words:
+
+  {a few words}
+
+  Also, opening and closing parentheses have to match. Thus,
+
+  printf("%d\n", x)
+
+  is an argument too, although it contains spaces. Finally,
+  trailing punctuation is not included in an argument, nor is 's.
+*/
+QString DocParser::getArgument(bool verbatim)
+{
+    skipSpacesOrOneEndl();
+
+    int delimDepth = 0;
+    int startPos = pos;
+    QString arg = getBracedArgument(verbatim);
+    if (arg.isEmpty()) {
         while ((pos < in.length()) &&
                ((delimDepth > 0) || ((delimDepth == 0) && !in[pos].isSpace()))) {
             switch (in[pos].unicode()) {
@@ -2609,6 +2653,8 @@ int DocParser::endCmdFor(int cmd)
         return CMD_ENDSIDEBAR;
     case CMD_TABLE:
         return CMD_ENDTABLE;
+    case CMD_TOPICREF:
+        return CMD_ENDTOPICREF;
     default:
         return cmd;
     }
@@ -3296,5 +3342,21 @@ void Doc::detach()
 
     priv = newPriv;
 }
+
+/*!
+  The destructor deletes all the sub-Topicrefs.
+ */
+Topicref::~Topicref()
+{
+    foreach (Topicref* t, subrefs_) {
+        delete t;
+    }
+}
+
+/*!
+  Returns a reference to the structure that will be used
+  for generating a DITA mao.
+ */
+const QList<Topicref*>& Doc::ditamap() const { return priv->ditamap_; }
 
 QT_END_NAMESPACE

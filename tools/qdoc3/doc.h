@@ -74,6 +74,25 @@ struct Topic
 };
 typedef QList<Topic> TopicList;
 
+class Topicref
+{
+ public:
+    Topicref() { }
+    ~Topicref();
+
+    const QString& navtitle() const { return navtitle_; }
+    const QString& href() const { return href_; }
+    void setNavtitle(const QString& t) { navtitle_ = t; }
+    void setHref(const QString& t) { href_ = t; }
+    const QList<Topicref*>& subrefs() const { return subrefs_; }
+    void appendSubref(Topicref* t) { subrefs_.append(t); }
+
+ private:
+    QString navtitle_;
+    QString href_;
+    QList<Topicref*> subrefs_;
+};
+
 class Doc
 {
  public:
@@ -107,6 +126,7 @@ class Doc
                           const QStringList &newNames);
     void simplifyEnumDoc();
     void setBody(const Text &body);
+    const QList<Topicref*>& ditamap() const;
 
     const Location &location() const;
     bool isEmpty() const;
