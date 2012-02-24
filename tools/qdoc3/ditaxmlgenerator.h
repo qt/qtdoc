@@ -501,7 +501,7 @@ class DitaXmlGenerator : public PageGenerator
     QStringList vrm;
     QStringList stylesheets;
     QStringList customHeadElements;
-    const Tree* myTree;
+    const Tree* tree_;
     QMap<QString, QString> refMap;
     QMap<QString, QString> name2guidMap;
     GuidMaps guidMaps;
