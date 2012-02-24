@@ -97,26 +97,4 @@
 
     \snippet doc/src/snippets/code/doc_src_qt-conf.qdoc 0
 
-    Subgroups of the \c Paths group may be used to specify locations
-    for specific versions of the Qt libraries. Such subgroups are of
-    the form \c Paths/x.y.z, where x is the major version of the Qt
-    libraries, y the minor, and z the patch level. The subgroup that
-    most closely matches the current Qt version is used. If no
-    subgroup matches, the \c Paths group is used as the fallback. The
-    minor and patch level values may be omitted, in which case they
-    default to zero.
-
-    For example, given the following groups:
-
-    \snippet doc/src/snippets/code/doc_src_qt-conf.qdoc 1
-
-    The current version will be matched as shown:
-
-    \list
-    \o 4.0.1 matches \c Paths/4
-    \o 4.1.5 matches \c Paths/4.1
-    \o 4.6.3 matches \c Paths/4.2.5 (because 4.2.5 is the latest version with the same major version number)
-    \o 5.0.0 matches \c Paths
-    \o 6.0.2 matches \c Paths/6
-    \endlist
 */
