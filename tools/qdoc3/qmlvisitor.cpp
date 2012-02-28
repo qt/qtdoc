@@ -381,7 +381,7 @@ bool QmlDocVisitor::visit(QDeclarativeJS::AST::UiObjectDefinition *definition)
 
     if (current->type() == Node::Namespace) {
         QmlClassNode *component = new QmlClassNode(current, name, 0);
-        component->setTitle(QLatin1String("QML ") + name + QLatin1String(" Component"));
+        component->setTitle(name);
         component->setImportList(importList);
 
         if (applyDocumentation(definition->firstSourceLocation(), component)) {

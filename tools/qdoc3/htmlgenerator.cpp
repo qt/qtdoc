@@ -1737,7 +1737,7 @@ void HtmlGenerator::generateBreadCrumbs(const QString &title,
         }
         else if (node->subType() == Node::QmlClass) {
                 breadcrumbs << Atom(Atom::ListItemLeft)
-                            << Atom(Atom::AutoLink, QLatin1String("QML Elements"))
+                            << Atom(Atom::AutoLink, QLatin1String("Basic QML Types"))
                             << Atom(Atom::ListItemRight);
                 breadcrumbs << Atom(Atom::ListItemLeft)
                             << Atom(Atom::String, protectEnc(title))
