@@ -5537,6 +5537,8 @@ void DitaXmlGenerator::writePropertyParameter(const QString& tag, const NodeList
   Attaches a QTextStream to the created file, which is written
   to all over the place using out(). Finally, it sets some
   parameters in the XML writer and calls writeStartDocument().
+
+  It also ensures that a GUID map is created for the output file.
  */
 void DitaXmlGenerator::beginSubPage(const InnerNode* node,
                                     const QString& fileName)

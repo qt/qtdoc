@@ -250,6 +250,12 @@ class HtmlGenerator : public PageGenerator
     void generateExtractionMark(const Node *node, ExtractionMarkType markType);
     void reportOrphans(const InnerNode* parent);
 
+    void beginDitamapPage(const InnerNode* node, const QString& fileName);
+    void endDitamapPage();
+    void writeDitaMap(const DitaMapNode* node);
+    void writeTopicrefs(const QList<Topicref*>& topicrefs);
+    QXmlStreamWriter& xmlWriter();
+
     QMap<QString, QString> refMap;
     int codeIndent;
     HelpProjectWriter *helpProjectWriter;
@@ -293,6 +299,7 @@ class HtmlGenerator : public PageGenerator
     NodeMap qmlClasses;
     QMap<QString, NodeMap > funcIndex;
     QMap<Text, const Node *> legaleseTexts;
+    QStack<QXmlStreamWriter*> xmlWriterStack;
     static int id;
  public:
     static bool debugging_on;

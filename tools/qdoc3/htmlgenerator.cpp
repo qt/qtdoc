@@ -1435,6 +1435,17 @@ void HtmlGenerator::generateDisambiguationPages()
  */
 void HtmlGenerator::generateFakeNode(const FakeNode *fake, CodeMarker *marker)
 {
+    /*
+      If the fake node is a page node, and if the page type
+      is DITA map page, write the node's contents as a dita
+      map and return without doing anything else.
+     */
+    if (fake->subType() == Node::Page && fake->pageType() == Node::DitaMapPage) {
+        const DitaMapNode* dmn = static_cast<const DitaMapNode*>(fake);
+        writeDitaMap(dmn);
+        return;
+    }
+
     SubTitleSize subTitleSize = LargeSubTitle;
     QList<Section> sections;
     QList<Section>::const_iterator s;
@@ -5000,6 +5011,101 @@ void HtmlGenerator::reportOrphans(const InnerNode* parent)
         default:
             break;
         }
+    }
+}
+
+/*!
+  Returns a reference to the XML stream writer currently in use.
+  There is one XML stream writer open for each XML file being
+  written, and they are kept on a stack. The one on top of the
+  stack is the one being written to at the moment. In the HTML
+  output generator, it is perhaps impossible for there to ever
+  be more than one writer open.
+ */
+QXmlStreamWriter& HtmlGenerator::xmlWriter()
+{
+    return *xmlWriterStack.top();
+}
+
+/*!
+  This function is only called for writing ditamaps.
+
+  Calls beginSubPage() in the base class to open the file.
+  Then creates a new XML stream writer using the IO device
+  from opened file and pushes the XML writer onto a stackj.
+  Creates the file named \a fileName in the output directory.
+  Attaches a QTextStream to the created file, which is written
+  to all over the place using out(). Finally, it sets some
+  parameters in the XML writer and calls writeStartDocument().
+
+  It also ensures that a GUID map is created for the output file.
+ */
+void HtmlGenerator::beginDitamapPage(const InnerNode* node, const QString& fileName)
+{
+    PageGenerator::beginSubPage(node,fileName);
+    QXmlStreamWriter* writer = new QXmlStreamWriter(out().device());
+    xmlWriterStack.push(writer);
+    writer->setAutoFormatting(true);
+    writer->setAutoFormattingIndent(4);
+    writer->writeStartDocument();
+}
+
+/*!
+  This function is only called for writing ditamaps.
+
+  Calls writeEndDocument() and then pops the XML stream writer
+  off the stack and deletes it. Then it calls endSubPage() in
+  the base class to close the device.
+ */
+void HtmlGenerator::endDitamapPage()
+{
+    xmlWriter().writeEndDocument();
+    delete xmlWriterStack.pop();
+    PageGenerator::endSubPage();
+}
+
+/*!
+  This function is only called for writing ditamaps.
+
+  Creates the DITA map from the topicrefs in \a node,
+  which is a DitaMapNode.
+ */
+void HtmlGenerator::writeDitaMap(const DitaMapNode* node)
+{
+    beginDitamapPage(node,node->name());
+
+    QString doctype = "<!DOCTYPE map PUBLIC \"-//OASIS//DTD DITA Map//EN\" \"map.dtd\">";
+
+    xmlWriter().writeDTD(doctype);
+    xmlWriter().writeStartElement("map");
+    xmlWriter().writeStartElement("topicmeta");
+    xmlWriter().writeStartElement("shortdesc");
+    xmlWriter().writeCharacters(node->title());
+    xmlWriter().writeEndElement(); // </shortdesc>
+    xmlWriter().writeEndElement(); // </topicmeta>
+    const QList<Topicref*> map = node->map();
+    writeTopicrefs(map);
+    endDitamapPage();
+}
+
+/*!
+  Write the \a topicrefs to the current output file.
+ */
+void HtmlGenerator::writeTopicrefs(const QList<Topicref*>& topicrefs)
+{
+    foreach (Topicref* t, topicrefs) {
+        xmlWriter().writeStartElement("topicref");
+        xmlWriter().writeAttribute("navtitle",t->navtitle());
+        if (t->href().isEmpty()) {
+            const FakeNode* fn = myTree->findFakeNodeByTitle(t->navtitle());
+            if (fn)
+                xmlWriter().writeAttribute("href",fileName(fn));
+        }
+        else
+            xmlWriter().writeAttribute("href",t->href());
+        if (!t->subrefs().isEmpty())
+            writeTopicrefs(t->subrefs());
+        xmlWriter().writeEndElement(); // </topicref>
     }
 }
 
