@@ -148,6 +148,8 @@ QStringList MetaStack::getExpanded(const Location& location)
 }
 
 QT_STATIC_CONST_IMPL QString Config::dot = QLatin1String(".");
+QString Config::overrideOutputDir;
+QSet<QString> Config::overrideOutputFormats;
 QMap<QString, QString> Config::extractedDirs;
 int Config::numInstances;
 
@@ -266,6 +268,32 @@ int Config::getInt(const QString& var) const
 	++s;
     }
     return sum;
+}
+
+/*!
+  Function to return the correct outputdir.
+  outputdir can be set using the qdocconf or the command-line
+  variable -outputdir.
+  */
+QString Config::getOutputDir() const
+{
+    if (overrideOutputDir.isNull())
+        return getString(CONFIG_OUTPUTDIR);
+    else
+        return overrideOutputDir;
+}
+
+/*!
+  Function to return the correct outputformats.
+  outputformats can be set using the qdocconf or the command-line
+  variable -outputformat.
+  */
+QSet<QString> Config::getOutputFormats() const
+{
+    if (overrideOutputFormats.isEmpty())
+        return getStringSet(CONFIG_OUTPUTFORMATS);
+    else
+        return overrideOutputFormats;
 }
 
 /*!

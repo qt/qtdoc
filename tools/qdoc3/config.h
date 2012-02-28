@@ -71,6 +71,8 @@ class Config
     const Location& lastLocation() const { return lastLoc; }
     bool getBool(const QString& var) const;
     int getInt(const QString& var) const;
+    QString getOutputDir() const;
+    QSet<QString> getOutputFormats() const;
     QString getString(const QString& var) const;
     QSet<QString> getStringSet(const QString& var) const;
     QStringList getStringList(const QString& var) const;
@@ -107,6 +109,9 @@ class Config
     static bool removeDirContents(const QString& dir);
 
     QT_STATIC_CONST QString dot;
+
+    static QString overrideOutputDir;
+    static QSet<QString> overrideOutputFormats;
 
  private:
     static bool isMetaKeyChar(QChar ch);

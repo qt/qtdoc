@@ -132,15 +132,15 @@ void Generator::terminateGenerator()
 
 void Generator::initialize(const Config &config)
 {
-    outputFormats = config.getStringSet(CONFIG_OUTPUTFORMATS);
+    outputFormats = config.getOutputFormats();
     if (!outputFormats.isEmpty()) {
-        outDir_ = config.getString(CONFIG_OUTPUTDIR);
+        outDir_ = config.getOutputDir();
         baseDir_ = config.getString(CONFIG_BASEDIR);
         if (!baseDir_.isEmpty())
             config.location().warning(tr("\"basedir\" specified in config file. "
                                          "All output will be in module directories of the output directory"));
         if (outDir_.isEmpty())
-            config.lastLocation().fatal(tr("No output directory specified in configuration file"));
+            config.lastLocation().fatal(tr("No output directory specified in configuration file or on the command line"));
 
         QDir dirInfo;
         if (dirInfo.exists(outDir_)) {

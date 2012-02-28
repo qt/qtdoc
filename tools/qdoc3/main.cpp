@@ -106,18 +106,22 @@ static void printHelp()
 {
     Location::information(tr("Usage: qdoc [options] file1.qdocconf ...\n"
                               "Options:\n"
-                              "    -help         "
+                              "    -help          "
                               "Display this information and exit\n"
-                              "    -version      "
+                              "    -version       "
                               "Display version of qdoc and exit\n"
-                              "    -D<name>      "
+                              "    -D<name>       "
                               "Define <name> as a macro while parsing sources\n"
-                              "    -highlighting         "
+                              "    -highlighting  "
                               "Turn on syntax highlighting (makes qdoc run slower)\n"
-                              "    -showinternal "
+                              "    -showinternal  "
                               "Include stuff marked internal\n"
                               "    -obsoletelinks "
-                              "Report links from obsolete items to non-obsolete items") );
+                              "Report links from obsolete items to non-obsolete items\n"
+                              "    -outputdir     "
+                              "Specify output directory, overrides setting in qdocconf file\n"
+                              "    -outputformat  "
+                              "Specify output format, overrides setting in qdocconf file") );
 }
 
 /*!
@@ -251,7 +255,7 @@ static void processQdocconfFile(const QString &fileName)
     /*
       By default, the only output format is HTML.
      */
-    QSet<QString> outputFormats = config.getStringSet(CONFIG_OUTPUTFORMATS);
+    QSet<QString> outputFormats = config.getOutputFormats();
     Location outputFormatsLocation = config.lastLocation();
 
     /*
@@ -444,6 +448,14 @@ int main(int argc, char **argv)
         }
         else if (opt == "-obsoletelinks") {
             obsoleteLinks = true;
+        }
+        else if (opt == "-outputdir") {
+            Config::overrideOutputDir = argv[i];
+            i++;
+        }
+        else if (opt == "-outputformat") {
+            Config::overrideOutputFormats.insert(argv[i]);
+            i++;
         }
         else {
             qdocFiles.append(opt);

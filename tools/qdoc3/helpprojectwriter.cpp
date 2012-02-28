@@ -56,7 +56,7 @@ HelpProjectWriter::HelpProjectWriter(const Config &config, const QString &defaul
 {
     // The output directory should already have been checked by the calling
     // generator.
-    outputDir = config.getString(CONFIG_OUTPUTDIR);
+    outputDir = config.getOutputDir();
 
     QStringList names = config.getStringList(CONFIG_QHP + Config::dot + "projects");
 
