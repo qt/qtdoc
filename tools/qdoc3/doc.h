@@ -61,6 +61,7 @@ class DocPrivate;
 class Quoter;
 class Text;
 class FakeNode;
+class DitaRef;
 
 typedef QMap<QString, QStringList> QCommandMap;
 typedef QMap<QString, QString> QStringMap;
@@ -74,23 +75,48 @@ struct Topic
 };
 typedef QList<Topic> TopicList;
 
-class Topicref
+typedef QList<DitaRef*> DitaRefList;
+
+class DitaRef
 {
  public:
-    Topicref() { }
-    ~Topicref();
+    DitaRef() { }
+    virtual ~DitaRef() { }
 
     const QString& navtitle() const { return navtitle_; }
     const QString& href() const { return href_; }
     void setNavtitle(const QString& t) { navtitle_ = t; }
     void setHref(const QString& t) { href_ = t; }
-    const QList<Topicref*>& subrefs() const { return subrefs_; }
-    void appendSubref(Topicref* t) { subrefs_.append(t); }
+    virtual bool isMapRef() const = 0;
+    virtual const DitaRefList* subrefs() const { return 0; }
+    virtual void appendSubref(DitaRef* ) { }
 
  private:
     QString navtitle_;
     QString href_;
-    QList<Topicref*> subrefs_;
+};
+
+class TopicRef : public DitaRef
+{
+ public:
+    TopicRef() { }
+    ~TopicRef();
+
+    virtual bool isMapRef() const { return false; }
+    virtual const DitaRefList* subrefs() const { return &subrefs_; }
+    virtual void appendSubref(DitaRef* t) { subrefs_.append(t); }
+
+ private:
+    DitaRefList subrefs_;
+};
+
+class MapRef : public DitaRef
+{
+ public:
+    MapRef() { }
+    ~MapRef() { }
+
+    virtual bool isMapRef() const { return true; }
 };
 
 class Doc
@@ -126,7 +152,7 @@ class Doc
                           const QStringList &newNames);
     void simplifyEnumDoc();
     void setBody(const Text &body);
-    const QList<Topicref*>& ditamap() const;
+    const DitaRefList& ditamap() const;
 
     const Location &location() const;
     bool isEmpty() const;

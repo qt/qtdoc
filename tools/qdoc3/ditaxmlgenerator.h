@@ -209,6 +209,7 @@ class DitaXmlGenerator : public PageGenerator
         DT_linktext,
         DT_lq,
         DT_map,
+        DT_mapref,
         DT_metadata,
         DT_note,
         DT_ol,
@@ -455,7 +456,7 @@ class DitaXmlGenerator : public PageGenerator
     QString metadataDefault(DitaTag t) const;
     QString stripMarkup(const QString& src) const;
     void collectNodesByTypeAndSubtype(const InnerNode* parent);
-    void writeTopicrefs(const QList<Topicref*>& topicrefs);
+    void writeDitaRefs(const DitaRefList& ditarefs);
     void writeTopicrefs(NodeMultiMap* nmm, const QString& navtitle);
     bool isDuplicate(NodeMultiMap* nmm, const QString& key, Node* node);
 

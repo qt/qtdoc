@@ -950,7 +950,7 @@ class DitaMapNode : public FakeNode
         : FakeNode(parent, name, Node::Page, Node::DitaMapPage) { }
     virtual ~DitaMapNode() { }
 
-    const QList<Topicref*>& map() const { return doc().ditamap(); }
+    const DitaRefList& map() const { return doc().ditamap(); }
 };
 
 QT_END_NAMESPACE

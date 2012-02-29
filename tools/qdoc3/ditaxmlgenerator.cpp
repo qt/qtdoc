@@ -200,6 +200,7 @@ QString DitaXmlGenerator::ditaTags[] =
         "linktext",
         "lq",
         "map",
+        "mapref",
         "metadata",
         "note",
         "ol",
@@ -5979,18 +5980,21 @@ void DitaXmlGenerator::writeDitaMap(const DitaMapNode* node)
     xmlWriter().writeCharacters(node->title());
     writeEndTag(); // </shortdesc>
     writeEndTag(); // </topicmeta>
-    const QList<Topicref*> map = node->map();
-    writeTopicrefs(map);
+    const DitaRefList map = node->map();
+    writeDitaRefs(map);
     endSubPage();
 }
 
 /*!
-  Write the \a topicrefs to the current output file.
+  Write the \a ditarefs to the current output file.
  */
-void DitaXmlGenerator::writeTopicrefs(const QList<Topicref*>& topicrefs)
+void DitaXmlGenerator::writeDitaRefs(const DitaRefList& ditarefs)
 {
-    foreach (Topicref* t, topicrefs) {
-        writeStartTag(DT_topicref);
+    foreach (DitaRef* t, ditarefs) {
+        if (t->isMapRef())
+            writeStartTag(DT_mapref);
+        else
+            writeStartTag(DT_topicref);
         xmlWriter().writeAttribute("navtitle",t->navtitle());
         if (t->href().isEmpty()) {
             const FakeNode* fn = tree_->findFakeNodeByTitle(t->navtitle());
@@ -5999,9 +6003,9 @@ void DitaXmlGenerator::writeTopicrefs(const QList<Topicref*>& topicrefs)
         }
         else
             xmlWriter().writeAttribute("href",t->href());
-        if (!t->subrefs().isEmpty())
-            writeTopicrefs(t->subrefs());
-        writeEndTag(); // </topicref>
+        if (t->subrefs() && !t->subrefs()->isEmpty())
+            writeDitaRefs(*(t->subrefs()));
+        writeEndTag(); // </topicref> or </mapref>
     }
 }
 

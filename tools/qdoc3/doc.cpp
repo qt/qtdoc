@@ -99,6 +99,7 @@ enum {
     CMD_ENDLEGALESE,
     CMD_ENDLINK,
     CMD_ENDLIST,
+    CMD_ENDMAPREF,
     CMD_ENDOMIT,
     CMD_ENDPART,
     CMD_ENDQUOTATION,
@@ -127,6 +128,7 @@ enum {
     CMD_LEGALESE,
     CMD_LINK,
     CMD_LIST,
+    CMD_MAPREF,
     CMD_META,
     CMD_NEWCODE,
     CMD_NOTE,
@@ -210,6 +212,7 @@ static struct {
     { "endlegalese", CMD_ENDLEGALESE, 0 },
     { "endlink", CMD_ENDLINK, 0 },
     { "endlist", CMD_ENDLIST, 0 },
+    { "endmapref", CMD_ENDMAPREF, 0 },
     { "endomit", CMD_ENDOMIT, 0 },
     { "endpart", CMD_ENDPART, 0 },
     { "endquotation", CMD_ENDQUOTATION, 0 },
@@ -238,6 +241,7 @@ static struct {
     { "legalese", CMD_LEGALESE, 0 },
     { "link", CMD_LINK, 0 },
     { "list", CMD_LIST, 0 },
+    { "mapref", CMD_MAPREF, 0 },
     { "meta", CMD_META, 0 },
     { "newcode", CMD_NEWCODE, 0 },
     { "note", CMD_NOTE, 0 },
@@ -361,7 +365,7 @@ class DocPrivate : public Shared
     bool hasSectioningUnits : 1;
     DocPrivateExtra *extra;
     TopicList topics;
-    QList<Topicref*> ditamap_;
+    DitaRefList ditamap_;
 };
 
 DocPrivate::DocPrivate(const Location& start,
@@ -377,10 +381,14 @@ DocPrivate::DocPrivate(const Location& start,
     // nothing.
 }
 
+/*!
+  If the doc is a ditamap, the destructor deletes each element
+  in the ditamap structure. These were allocated as needed.
+ */
 DocPrivate::~DocPrivate()
 {
     delete extra;
-    foreach (Topicref* t, ditamap_) {
+    foreach (DitaRef* t, ditamap_) {
         delete t;
     }
 }
@@ -519,7 +527,7 @@ class DocParser
     QStack<int> openedCommands;
     QStack<OpenedList> openedLists;
     Quoter quoter;
-    QStack<Topicref*> topicrefs_;
+    QStack<DitaRef*> ditarefs_;
 };
 
 int DocParser::tabSize;
@@ -794,9 +802,10 @@ void DocParser::parse(const QString& source,
                             openedLists.pop();
                         }
                         break;
+                    case CMD_ENDMAPREF:
                     case CMD_ENDTOPICREF:
                         if (closeCommand(cmd)) {
-                            topicrefs_.pop(); // zzz
+                            ditarefs_.pop(); // zzz
                         }
                         break;
                     case CMD_ENDOMIT:
@@ -975,17 +984,23 @@ void DocParser::parse(const QString& source,
                         }
                         break;
                     case CMD_TOPICREF:
+                    case CMD_MAPREF:
                         if (openCommand(cmd)) {
-                            Topicref* t = new Topicref();
+                            DitaRef* t = 0;
+                            if (cmd == CMD_MAPREF)
+                                t = new MapRef();
+                            else
+                                t = new TopicRef();
                             t->setNavtitle(getArgument(true));
-                            t->setHref(getOptionalArgument());
-                            if (topicrefs_.isEmpty()) {
+                            if (cmd == CMD_MAPREF)
+                                t->setHref(getArgument());
+                            else
+                                t->setHref(getOptionalArgument());
+                            if (ditarefs_.isEmpty())
                                 priv->ditamap_.append(t);
-                            }
-                            else {
-                                topicrefs_.top()->appendSubref(t);
-                            }
-                            topicrefs_.push(t);
+                            else
+                                ditarefs_.top()->appendSubref(t);
+                            ditarefs_.push(t);
                         }
                         break;
                     case CMD_META:
@@ -1847,7 +1862,9 @@ bool DocParser::openCommand(int cmd)
             ok = false;
         }
         else if (outer == CMD_TOPICREF)
-            ok = (cmd == CMD_TOPICREF);
+            ok = (cmd == CMD_TOPICREF || cmd == CMD_MAPREF);
+        else if (outer == CMD_MAPREF)
+            ok = false;
     }
 
     if (ok) {
@@ -2655,6 +2672,8 @@ int DocParser::endCmdFor(int cmd)
         return CMD_ENDTABLE;
     case CMD_TOPICREF:
         return CMD_ENDTOPICREF;
+    case CMD_MAPREF:
+        return CMD_ENDMAPREF;
     default:
         return cmd;
     }
@@ -3344,11 +3363,11 @@ void Doc::detach()
 }
 
 /*!
-  The destructor deletes all the sub-Topicrefs.
+  The destructor deletes all the sub-TopicRefs.
  */
-Topicref::~Topicref()
+TopicRef::~TopicRef()
 {
-    foreach (Topicref* t, subrefs_) {
+    foreach (DitaRef* t, subrefs_) {
         delete t;
     }
 }
@@ -3357,6 +3376,6 @@ Topicref::~Topicref()
   Returns a reference to the structure that will be used
   for generating a DITA mao.
  */
-const QList<Topicref*>& Doc::ditamap() const { return priv->ditamap_; }
+const DitaRefList& Doc::ditamap() const { return priv->ditamap_; }
 
 QT_END_NAMESPACE

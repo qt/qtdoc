@@ -253,7 +253,7 @@ class HtmlGenerator : public PageGenerator
     void beginDitamapPage(const InnerNode* node, const QString& fileName);
     void endDitamapPage();
     void writeDitaMap(const DitaMapNode* node);
-    void writeTopicrefs(const QList<Topicref*>& topicrefs);
+    void writeDitaRefs(const DitaRefList& ditarefs);
     QXmlStreamWriter& xmlWriter();
 
     QMap<QString, QString> refMap;
