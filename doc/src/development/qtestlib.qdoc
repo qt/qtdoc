@@ -207,7 +207,7 @@
     standard output.  If no format option is used, test results will be logged in
     plain text.
 
-    \section4 Detail Options
+    \section4 Test Log Detail Options
 
     The following command line options control how much detail is reported
     in test logs:
@@ -215,12 +215,16 @@
     \list
     \o \c -silent \BR
     silent output, only shows fatal errors, test failures and minimal status messages.
+    (This option only affects plain text output.)
     \o \c -v1 \BR
-    verbose output; outputs information on entering and exiting test functions.
+    verbose output; shows when each test function is entered.
+    (This option only affects plain text output.)
     \o \c -v2 \BR
-    extended verbose output; also outputs each \l QCOMPARE() and \l QVERIFY().
+    extended verbose output; shows each \l QCOMPARE() and \l QVERIFY().
+    (This option affects all output formats and implies \c -v1 for plain text output.)
     \o \c -vs \BR
-    outputs every signal that gets emitted.
+    shows every signal that gets emitted and the slot invocations resulting from those signals.
+    (This option affects all output formats.)
     \endlist
 
     \section4 Testing Options
