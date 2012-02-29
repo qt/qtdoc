@@ -126,13 +126,13 @@ enum {
     CMD_KEYWORD,
     CMD_L,
     CMD_LEGALESE,
+    CMD_LI,
     CMD_LINK,
     CMD_LIST,
     CMD_MAPREF,
     CMD_META,
     CMD_NEWCODE,
     CMD_NOTE,
-    CMD_O,
     CMD_OLDCODE,
     CMD_OMIT,
     CMD_OMITVALUE,
@@ -239,13 +239,13 @@ static struct {
     { "keyword", CMD_KEYWORD, 0 },
     { "l", CMD_L, 0 },
     { "legalese", CMD_LEGALESE, 0 },
+    { "li", CMD_LI, 0 },
     { "link", CMD_LINK, 0 },
     { "list", CMD_LIST, 0 },
     { "mapref", CMD_MAPREF, 0 },
     { "meta", CMD_META, 0 },
     { "newcode", CMD_NEWCODE, 0 },
     { "note", CMD_NOTE, 0 },
-    { "o", CMD_O, 0 },
     { "oldcode", CMD_OLDCODE, 0 },
     { "omit", CMD_OMIT, 0 },
     { "omitvalue", CMD_OMITVALUE, 0 },
@@ -1015,7 +1015,7 @@ void DocParser::parse(const QString& source,
                         leavePara();
                         enterPara(Atom::NoteLeft, Atom::NoteRight);
                         break;
-                    case CMD_O:
+                    case CMD_LI:
                         leavePara();
                         if (openedCommands.top() == CMD_LIST) {
                             if (openedLists.top().isStarted()) {
@@ -1047,7 +1047,7 @@ void DocParser::parse(const QString& source,
                                 location().warning(tr("Missing '\\%1' or '\\%1' before '\\%3'")
                                                    .arg(cmdName(CMD_HEADER))
                                                    .arg(cmdName(CMD_ROW))
-                                                   .arg(cmdName(CMD_O)));
+                                                   .arg(cmdName(CMD_LI)));
                                 append(Atom::TableRowLeft);
                                 inTableRow = true;
                             }
