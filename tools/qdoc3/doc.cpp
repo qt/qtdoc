@@ -78,6 +78,7 @@ enum {
     CMD_A,
     CMD_ABSTRACT,
     CMD_ANNOTATEDLIST,
+    CMD_B,
     CMD_BADCODE,
     CMD_BASENAME,
     CMD_BOLD,
@@ -191,6 +192,7 @@ static struct {
     { "a", CMD_A, 0 },
     { "abstract", CMD_ABSTRACT, 0 },
     { "annotatedlist", CMD_ANNOTATEDLIST, 0 },
+    { "b", CMD_B, 0 },
     { "badcode", CMD_BADCODE, 0 },
     { "basename", CMD_BASENAME, 0 }, // ### don't document for now
     { "bold", CMD_BOLD, 0 },
@@ -635,6 +637,7 @@ void DocParser::parse(const QString& source,
                         leavePara();
                         insertBaseName(getArgument());
                         break;
+                    case CMD_B:
                     case CMD_BOLD:
                         startFormat(ATOM_FORMATTING_BOLD, cmd);
                         break;
