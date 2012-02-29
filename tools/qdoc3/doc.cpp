@@ -89,6 +89,7 @@ enum {
     CMD_CODELINE,
     CMD_DIV,
     CMD_DOTS,
+    CMD_E,
     CMD_ELSE,
     CMD_ENDABSTRACT,
     CMD_ENDCHAPTER,
@@ -116,7 +117,6 @@ enum {
     CMD_GENERATELIST,
     CMD_GRANULARITY,
     CMD_HEADER,
-    CMD_I,
     CMD_IF,
     CMD_IMAGE,
     CMD_IMPORTANT,
@@ -202,6 +202,7 @@ static struct {
     { "codeline", CMD_CODELINE, 0},
     { "div", CMD_DIV, 0 },
     { "dots", CMD_DOTS, 0 },
+    { "e", CMD_E, 0 },
     { "else", CMD_ELSE, 0 },
     { "endabstract", CMD_ENDABSTRACT, 0 },
     { "endchapter", CMD_ENDCHAPTER, 0 },
@@ -229,7 +230,6 @@ static struct {
     { "generatelist", CMD_GENERATELIST, 0 },
     { "granularity", CMD_GRANULARITY, 0 }, // ### don't document for now
     { "header", CMD_HEADER, 0 },
-    { "i", CMD_I, 0 },
     { "if", CMD_IF, 0 },
     { "image", CMD_IMAGE, 0 },
     { "important", CMD_IMPORTANT, 0 },
@@ -889,7 +889,7 @@ void DocParser::parse(const QString& source,
                             }
                         }
                         break;
-                    case CMD_I:
+                    case CMD_E:
                         startFormat(ATOM_FORMATTING_ITALIC, cmd);
                         break;
                     case CMD_IF:
