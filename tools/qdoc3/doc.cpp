@@ -81,6 +81,7 @@ enum {
     CMD_B,
     CMD_BADCODE,
     CMD_BASENAME,
+    CMD_BOLD,
     CMD_BRIEF,
     CMD_C,
     CMD_CAPTION,
@@ -117,6 +118,7 @@ enum {
     CMD_GENERATELIST,
     CMD_GRANULARITY,
     CMD_HEADER,
+    CMD_I,
     CMD_IF,
     CMD_IMAGE,
     CMD_IMPORTANT,
@@ -133,6 +135,7 @@ enum {
     CMD_META,
     CMD_NEWCODE,
     CMD_NOTE,
+    CMD_O,
     CMD_OLDCODE,
     CMD_OMIT,
     CMD_OMITVALUE,
@@ -194,6 +197,7 @@ static struct {
     { "b", CMD_B, 0 },
     { "badcode", CMD_BADCODE, 0 },
     { "basename", CMD_BASENAME, 0 }, // ### don't document for now
+    { "bold", CMD_BOLD, 0 },
     { "brief", CMD_BRIEF, 0 },
     { "c", CMD_C, 0 },
     { "caption", CMD_CAPTION, 0 },
@@ -230,6 +234,7 @@ static struct {
     { "generatelist", CMD_GENERATELIST, 0 },
     { "granularity", CMD_GRANULARITY, 0 }, // ### don't document for now
     { "header", CMD_HEADER, 0 },
+    { "i", CMD_I, 0 },
     { "if", CMD_IF, 0 },
     { "image", CMD_IMAGE, 0 },
     { "important", CMD_IMPORTANT, 0 },
@@ -246,6 +251,7 @@ static struct {
     { "meta", CMD_META, 0 },
     { "newcode", CMD_NEWCODE, 0 },
     { "note", CMD_NOTE, 0 },
+    { "o", CMD_O, 0 },
     { "oldcode", CMD_OLDCODE, 0 },
     { "omit", CMD_OMIT, 0 },
     { "omitvalue", CMD_OMITVALUE, 0 },
@@ -635,6 +641,8 @@ void DocParser::parse(const QString& source,
                         leavePara();
                         insertBaseName(getArgument());
                         break;
+                    case CMD_BOLD:
+                        location().warning(tr("'\\bold' is deprecated. Use '\\b'"));
                     case CMD_B:
                         startFormat(ATOM_FORMATTING_BOLD, cmd);
                         break;
@@ -889,6 +897,8 @@ void DocParser::parse(const QString& source,
                             }
                         }
                         break;
+                    case CMD_I:
+                        location().warning(tr("'\\i' is deprecated. Use '\\e' for italic or '\\li' for list item"));
                     case CMD_E:
                         startFormat(ATOM_FORMATTING_ITALIC, cmd);
                         break;
@@ -1015,6 +1025,8 @@ void DocParser::parse(const QString& source,
                         leavePara();
                         enterPara(Atom::NoteLeft, Atom::NoteRight);
                         break;
+                    case CMD_O:
+                        location().warning(tr("'\\o' is deprecated. Use '\\li'"));
                     case CMD_LI:
                         leavePara();
                         if (openedCommands.top() == CMD_LIST) {
