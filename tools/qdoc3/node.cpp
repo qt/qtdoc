@@ -2000,7 +2000,7 @@ QmlClassNode::QmlClassNode(InnerNode *parent,
                            const ClassNode* cn)
     : FakeNode(parent, name, QmlClass, Node::ApiPage),
       abstract(false),
-      cnode(cn),
+      cnode_(cn),
       base_(0)
 {
     int i = 0;
@@ -2169,8 +2169,8 @@ void QmlClassNode::resolveInheritance(const Tree* tree)
         if (base_)
             return;
     }
-    if (cnode) {
-        const QmlClassNode* qcn = cnode->findQmlBaseNode();
+    if (cnode_) {
+        const QmlClassNode* qcn = cnode_->findQmlBaseNode();
         if (qcn != 0)
             base_ = qcn;
     }

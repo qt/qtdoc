@@ -497,7 +497,7 @@ class QmlClassNode : public FakeNode
     virtual ~QmlClassNode();
     virtual bool isQmlNode() const { return true; }
     virtual bool isQtQuickNode() const { return (qmlModuleName() == "QtQuick"); }
-    virtual const ClassNode* classNode() const { return cnode; }
+    virtual const ClassNode* classNode() const { return cnode_; }
     virtual QString fileBase() const;
     virtual void setCurrentChild();
     virtual void clearCurrentChild();
@@ -518,7 +518,7 @@ class QmlClassNode : public FakeNode
 
  private:
     bool abstract;
-    const ClassNode*    cnode;
+    const ClassNode*    cnode_;
     const FakeNode*     base_;
     ImportList          importList_;
 };

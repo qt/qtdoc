@@ -1081,7 +1081,8 @@ void Tree::readIndexSection(const QDomElement& element,
             location = Location(name.toLower() + ".html");
 
     }
-    else if (element.nodeName() == "qmlclass") {
+    else if ((element.nodeName() == "qmlclass") ||
+             ((element.nodeName() == "page") && (element.attribute("subtype") == "qmlclass"))) {
         QmlClassNode* qcn = new QmlClassNode(parent, name, 0);
         qcn->setTitle(element.attribute("title"));
         if (element.hasAttribute("location"))
