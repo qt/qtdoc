@@ -103,7 +103,7 @@
     QApplication::sessionId() again to access your state data and restore
     the state of the application.
 
-    \bold{Important:} In order to allow the window manager to
+    \b{Important:} In order to allow the window manager to
     restore window attributes such as stacking order or geometry
     information, you must identify your top level widgets with 
     unique application-wide object names (see QObject::setObjectName()). When
@@ -131,33 +131,33 @@
     Athena-based user interface). Here's a simple approach:
 
     \list
-    \i Run X11R6.
-    \i Create a dot file \c .xsmstartup in your home directory which
+    \li Run X11R6.
+    \li Create a dot file \c .xsmstartup in your home directory which
     contains the single line
     \snippet doc/src/snippets/code/doc_src_session.qdoc 0
     This tells \c xsm that the default/failsafe session is just an xterm
     and nothing else. Otherwise \c xsm would try to invoke lots of
     clients including the windowmanager \c twm, which isn't very helpful.
-    \i Now launch \c xsm from another terminal window. Both a session
+    \li Now launch \c xsm from another terminal window. Both a session
     manager window and the xterm will appear. The xterm has a nice
     property that sets it apart from all the other shells you are
     currently running: within its shell, the \c SESSION_MANAGER
     environment variable points to the session manager you just started.
-    \i Launch your application from the new xterm window. It will connect
+    \li Launch your application from the new xterm window. It will connect
     itself automatically to the session manager. You can check with the \e
     ClientList push button whether the connect was successful.
 
-    \bold{Note:} Never keep the \e ClientList open when you
+    \b{Note:} Never keep the \e ClientList open when you
     start or end session managed clients! Otherwise \c xsm is likely to
     crash.
-    \i Use the session manager's \e Checkpoint and \e Shutdown buttons
+    \li Use the session manager's \e Checkpoint and \e Shutdown buttons
     with different settings and see how your application behaves. The save
     type \e local means that the clients should save their state. It
     corresponds to the QApplication::saveState() function. The \e
     global save type asks applications to save their unsaved changes in
     permanent, globally accessible storage. It invokes
     QApplication::commitData().
-    \i Whenever something crashes, blame \c xsm and not Qt. \c xsm is far
+    \li Whenever something crashes, blame \c xsm and not Qt. \c xsm is far
     from being a usable session manager on a user's desktop. It is,
     however, stable and useful enough to serve as testing environment.
     \endlist

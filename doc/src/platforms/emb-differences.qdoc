@@ -36,10 +36,10 @@
     platform dependent code.
 
     \table 100%
-    \header \o Platform Dependent Code
+    \header \li Platform Dependent Code
 
     \row
-    \o
+    \li
     Platform dependent code includes system calls, calls to the
     underlying window system (Windows or X11), and Qt platform
     specific methods such as QApplication::x11EventFilter().
@@ -49,10 +49,10 @@
     code for each platform using \c #ifdef directives:
 
     \list
-    \o Qt for Embedded Linux: Q_WS_QWS
-    \o Qt for Mac OS X: Q_WS_MAC
-    \o Qt for Windows: Q_WS_WIN
-    \o Qt for X11: Q_WS_X11
+    \li Qt for Embedded Linux: Q_WS_QWS
+    \li Qt for Mac OS X: Q_WS_MAC
+    \li Qt for Windows: Q_WS_WIN
+    \li Qt for X11: Q_WS_X11
     \endlist
     \endtable
 */

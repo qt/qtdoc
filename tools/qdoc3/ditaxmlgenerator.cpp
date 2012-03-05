@@ -6247,33 +6247,33 @@ QString DitaXmlGenerator::metadataDefault(DitaTag t) const
   function writes one or more of these elements:
 
   \list
-    \o <audience> *
-    \o <author> *
-    \o <brand> not used
-    \o <category> *
-    \o <compomnent> *
-    \o <copyrholder> *
-    \o <copyright> *
-    \o <created> not used
-    \o <copyryear> *
-    \o <critdates> not used
-    \o <keyword> not used
-    \o <keywords> not used
-    \o <metadata> *
-    \o <othermeta> *
-    \o <permissions> *
-    \o <platform> not used
-    \o <prodinfo> *
-    \o <prodname> *
-    \o <prolog> *
-    \o <publisher> *
-    \o <resourceid> not used
-    \o <revised> not used
-    \o <source> not used
-    \o <tm> not used
-    \o <unknown> not used
-    \o <vrm> *
-    \o <vrmlist> *
+    \li <audience> *
+    \li <author> *
+    \li <brand> not used
+    \li <category> *
+    \li <compomnent> *
+    \li <copyrholder> *
+    \li <copyright> *
+    \li <created> not used
+    \li <copyryear> *
+    \li <critdates> not used
+    \li <keyword> not used
+    \li <keywords> not used
+    \li <metadata> *
+    \li <othermeta> *
+    \li <permissions> *
+    \li <platform> not used
+    \li <prodinfo> *
+    \li <prodname> *
+    \li <prolog> *
+    \li <publisher> *
+    \li <resourceid> not used
+    \li <revised> not used
+    \li <source> not used
+    \li <tm> not used
+    \li <unknown> not used
+    \li <vrm> *
+    \li <vrmlist> *
   \endlist
 
   \node * means the tag has been used.

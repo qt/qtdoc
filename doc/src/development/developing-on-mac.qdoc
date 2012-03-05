@@ -85,47 +85,47 @@
 
     \table
         \header
-            \o Mac OS X Version
-            \o Cat Name
-            \o Native API Used by Qt
-            \o Bits available to address memory
-            \o CPU Architecture Supported
-            \o Development Platform
+            \li Mac OS X Version
+            \li Cat Name
+            \li Native API Used by Qt
+            \li Bits available to address memory
+            \li CPU Architecture Supported
+            \li Development Platform
         \row
-            \o 10.4
-            \o Tiger
-            \o Carbon
-            \o 32
-            \o PPC/Intel
-            \o Yes
+            \li 10.4
+            \li Tiger
+            \li Carbon
+            \li 32
+            \li PPC/Intel
+            \li Yes
         \row
-            \o 10.5
-            \o Leopard
-            \o Carbon
-            \o 32
-            \o PPC/Intel
-            \o Yes
+            \li 10.5
+            \li Leopard
+            \li Carbon
+            \li 32
+            \li PPC/Intel
+            \li Yes
         \row
-            \o 10.5
-            \o Leopard
-            \o Cocoa
-            \o 32/64
-            \o PPC/Intel
-            \o Yes
+            \li 10.5
+            \li Leopard
+            \li Cocoa
+            \li 32/64
+            \li PPC/Intel
+            \li Yes
         \row
-            \o 10.6
-            \o Snow Leopard
-            \o Cocoa/Carbon
-            \o 32
-            \o PPC/Intel
-            \o Yes
+            \li 10.6
+            \li Snow Leopard
+            \li Cocoa/Carbon
+            \li 32
+            \li PPC/Intel
+            \li Yes
         \row
-            \o 10.6
-            \o Snow Leopard
-            \o Cocoa
-            \o 64
-            \o Intel
-            \o Yes
+            \li 10.6
+            \li Snow Leopard
+            \li Cocoa
+            \li 64
+            \li Intel
+            \li Yes
     \endtable
     
     Note that building for ppc-64 is not supported on 10.6.
@@ -176,20 +176,20 @@
 
     \table
         \header
-            \o Architecture		
-            \o Flag
+            \li Architecture
+            \li Flag
         \row
-            \o Intel, 32-bit
-            \o \c{-arch x86}
+            \li Intel, 32-bit
+            \li \c{-arch x86}
         \row
-            \o Intel, 64-bit
-            \o \c{-arch x86_64}
+            \li Intel, 64-bit
+            \li \c{-arch x86_64}
         \row
-            \o PPC, 32-bit
-            \o \c{-arch ppc}
+            \li PPC, 32-bit
+            \li \c{-arch ppc}
         \row
-            \o PPC, 64-bit
-            \o \c{-arch ppc64}
+            \li PPC, 64-bit
+            \li \c{-arch ppc64}
     \endtable
 
     If there are no \c{-arch} flags specified, configure builds Qt for a 32-bit
@@ -219,32 +219,32 @@
 
     \table
         \header
-            \o Qt
-            \o Location
+            \li Qt
+            \li Location
         \row
-            \o Designer, Linguist ...
-            \o /Developer/Applications/Qt
+            \li Designer, Linguist ...
+            \li /Developer/Applications/Qt
         \row
-            \o Documentation
-            \o /Developer/Documentation/Qt
+            \li Documentation
+            \li /Developer/Documentation/Qt
         \row
-            \o Examples
-            \o /Developer/Examples/Qt
+            \li Examples
+            \li /Developer/Examples/Qt
         \row
-            \o Plugins
-            \o /Developer/Applications/Qt/Plugins
+            \li Plugins
+            \li /Developer/Applications/Qt/Plugins
         \row
-            \o Frameworks
-            \o /Library/Frameworks
+            \li Frameworks
+            \li /Library/Frameworks
         \row
-            \o Libraries
-            \o /usr/lib
+            \li Libraries
+            \li /usr/lib
         \row
-            \o qmake, moc, uic ...
-            \o /Developer/Tools/Qt (symlink to /usr/bin)
+            \li qmake, moc, uic ...
+            \li /Developer/Tools/Qt (symlink to /usr/bin)
         \row
-            \o uninstall-qt.py, uninstall-qtsdk.py
-            \o /Developer/Tools
+            \li uninstall-qt.py, uninstall-qtsdk.py
+            \li /Developer/Tools
     \endtable
 
     \section1 Day-to-Day Application Development on OS X
@@ -279,11 +279,11 @@
     Some restrictions apply:
 
     \list
-        \o  Some functions and optimization paths that exist in later versions
+        \li  Some functions and optimization paths that exist in later versions
             of Mac OS X will not be available if you build on an earlier
             version of Mac OS X.
-        \o  The CPU architecture should match.
-        \o  Cocoa support is only available for Mac OS X 10.5 and up.
+        \li  The CPU architecture should match.
+        \li  Cocoa support is only available for Mac OS X 10.5 and up.
     \endlist
 
     Universal binaries can be used to provide a smorgasbord of configurations

@@ -41,24 +41,24 @@
 
     \table
     \header
-    \i Option
-    \i Result
+    \li Option
+    \li Result
     \row
-    \i dll -idl idl -version x.y
-    \i Writes the IDL of the server \e dll to the file \e idl. The
+    \li dll -idl idl -version x.y
+    \li Writes the IDL of the server \e dll to the file \e idl. The
        type library wll have version x.y.
     \row
-    \i dll -tlb tlb
-    \i Replaces the type library in \e dll with \e tlb
+    \li dll -tlb tlb
+    \li Replaces the type library in \e dll with \e tlb
     \row
-    \i -v
-    \i Print version information
+    \li -v
+    \li Print version information
     \row
-    \i -regserver dll
-    \i Register the COM server \e dll
+    \li -regserver dll
+    \li Register the COM server \e dll
     \row
-    \i -unregserver
-    \i Unregister the COM server \e dll
+    \li -unregserver
+    \li Unregister the COM server \e dll
     \endtable
 
     It is usually never necessary to invoke IDC manually, as the \c

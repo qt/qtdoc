@@ -93,9 +93,9 @@
     without having to filter for it in all applications.
 
     \table 100%
-    \header \o UNIX Domain Socket
+    \header \li UNIX Domain Socket
     \row
-    \o
+    \li
 
     \image qt-embedded-client.png
 
@@ -116,9 +116,9 @@
     \section1 Pointer Handling Layer
 
     \list
-        \o QWSMouseHandler
-        \o QMouseDriverPlugin
-        \o QMouseDriverFactory
+        \li QWSMouseHandler
+        \li QMouseDriverPlugin
+        \li QMouseDriverFactory
     \endlist
 
     The mouse driver (represented by an instance of the
@@ -152,9 +152,9 @@
     \section1 Character Input Layer
 
     \list
-        \o QWSKeyboardHandler
-        \o QKbdDriverPlugin
-        \o QKbdDriverFactory
+        \li QWSKeyboardHandler
+        \li QKbdDriverPlugin
+        \li QKbdDriverFactory
     \endlist
 
     The keyboard driver (represented by an instance of the
@@ -182,10 +182,10 @@
     \section1  Graphics Rendering
 
     \list
-        \o QApplication
-        \o QDecoration
-        \o QDecorationPlugin
-        \o QDecorationFactory
+        \li QApplication
+        \li QDecoration
+        \li QDecorationPlugin
+        \li QDecorationFactory
     \endlist
 
     The default behavior is for each client to render its widgets as well
@@ -208,9 +208,9 @@
     given decoration to an application.
 
     \table 100%
-    \header \o Direct Painting \target Direct Painting
+    \header \li Direct Painting \target Direct Painting
     \row
-    \o
+    \li
 
     It is possible for the clients to manipulate and control the
     underlying hardware directly. There are two ways of achieving
@@ -256,9 +256,9 @@
     \section1 Drawing on Screen
 
     \list
-        \o QScreen
-        \o QScreenDriverPlugin
-        \o QScreenDriverFactory
+        \li QScreen
+        \li QScreenDriverPlugin
+        \li QScreenDriverFactory
     \endlist
 
     When a screen update is required, the server runs through all the
@@ -290,9 +290,9 @@
     the framebuffer.
 
     \table 100%
-    \header \o Accelerated Graphics
+    \header \li Accelerated Graphics
     \row
-    \o
+    \li
 
     In \l{Qt for Embedded Linux}, painting is a pure software implementation,
     but (starting with Qt 4.2) it is possible to add an accelerated

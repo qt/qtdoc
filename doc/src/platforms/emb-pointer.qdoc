@@ -59,7 +59,7 @@
 
         \snippet doc/src/snippets/code/doc_src_emb-pointer.qdoc 0
 
-        \bold{Note:} By default only the PC mouse driver is enabled.
+        \b{Note:} By default only the PC mouse driver is enabled.
 
         The various drivers can be enabled and disabled using the \c
         configure script. For example:
@@ -125,9 +125,9 @@
     Input will be read from all specified drivers.
 
     \table
-    \header \o The Tslib Mouse Driver
+    \header \li The Tslib Mouse Driver
     \row
-    \o
+    \li
 
     The tslib mouse driver inherits the QWSCalibratedMouseHandler
     class, providing calibration and noise reduction functionality in

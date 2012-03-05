@@ -83,29 +83,29 @@
     options:
 
     \table
-    \header \o Option \o Description
+    \header \li Option \li Description
     \row
-    \o \c {-width <value>}
-    \o The width of the virtual framebuffer (default: 240).
+    \li \c {-width <value>}
+    \li The width of the virtual framebuffer (default: 240).
     \row
-    \o \c {-height <value>}
-    \o The height of the virtual framebuffer (default: 320).
+    \li \c {-height <value>}
+    \li The height of the virtual framebuffer (default: 320).
     \row
-    \o \c {-depth <value>}
-    \o The depth of the virtual framebuffer (1, 8 or 32; default: 8).
+    \li \c {-depth <value>}
+    \li The depth of the virtual framebuffer (1, 8 or 32; default: 8).
     \row
-    \o \c -nocursor
-    \o Do not display the X11 cursor in the framebuffer window.
+    \li \c -nocursor
+    \li Do not display the X11 cursor in the framebuffer window.
     \row
-    \o \c {-qwsdisplay <:id>}
-    \o The \l{Qt for Embedded Linux} display ID (default: 0).
+    \li \c {-qwsdisplay <:id>}
+    \li The \l{Qt for Embedded Linux} display ID (default: 0).
     \row
-    \o \c {-skin <name>.skin}
-    \o The preferred skin. Note that the skin must be located in Qt's
+    \li \c {-skin <name>.skin}
+    \li The preferred skin. Note that the skin must be located in Qt's
     \c /tools/qvfb/ directory.
     \row
-    \o \c {-zoom <factor>}
-    \o Scales the application view with the given factor.
+    \li \c {-zoom <factor>}
+    \li Scales the application view with the given factor.
 
     \endtable
 
@@ -123,31 +123,31 @@
 
     \table 100%
     \row
-        \o
-        \bold {Target Device Environment}
+        \li
+        \b {Target Device Environment}
 
         The \c qvfb tool provides various skins by default, allowing
         the user to view their application in an environment similar
         to their target device. The provided skins are:
 
         \list
-            \o ClamshellPhone
-            \o PortableMedia
-            \o S60-nHD-Touchscreen
-            \o S60-QVGA-Candybar
-            \o SmartPhone
-            \o SmartPhone2
-            \o SmartPhoneWithButtons
-            \o TouchscreenPhone
+            \li ClamshellPhone
+            \li PortableMedia
+            \li S60-nHD-Touchscreen
+            \li S60-QVGA-Candybar
+            \li SmartPhone
+            \li SmartPhone2
+            \li SmartPhoneWithButtons
+            \li TouchscreenPhone
         \endlist
 
         In addition, it is possible to create custom skins.
 
-        \o \image qt-embedded-phone.png
-        \o \image qt-embedded-pda.png
+        \li \image qt-embedded-phone.png
+        \li \image qt-embedded-pda.png
     \endtable
 
-    \bold {Creating Custom Skins}
+    \b {Creating Custom Skins}
 
     The XML and pixmap files specifying a custom skin must be located
     in subdirectory of the Qt's \c /tools/qvfb directory, called \c
@@ -159,11 +159,11 @@
     The \c /ClamshellPhone.skin directory contains the following files:
 
     \list
-        \o \c ClamshellPhone.skin
-        \o \c ClamshellPhone1-5.png
-        \o \c ClamshellPhone1-5-pressed.png
-        \o \c ClamshellPhone1-5-closed.png
-        \o \c defaultbuttons.conf (only necessary for \l Qt Extended)
+        \li \c ClamshellPhone.skin
+        \li \c ClamshellPhone1-5.png
+        \li \c ClamshellPhone1-5-pressed.png
+        \li \c ClamshellPhone1-5-closed.png
+        \li \c defaultbuttons.conf (only necessary for \l Qt Extended)
     \endlist
 
     Note that the \c defaultbuttons.conf file is only necessary if the
@@ -174,9 +174,9 @@
 
     \table 100%
     \header
-    \o {3,1} The ClamshellPhone Skin
+    \li {3,1} The ClamshellPhone Skin
     \row
-    \o {3,1}
+    \li {3,1}
 
     \snippet doc/src/snippets/code/doc_src_emb-qvfb.qdoc 3
 
@@ -197,16 +197,16 @@
     for the button are redrawn from the activated skin.
 
     \row
-    \o
+    \li
     \image qt-embedded-clamshellphone-closed.png The ClamshellPhone Skin (closed)
-    \o
+    \li
     \image qt-embedded-clamshellphone.png The ClamshellPhone Skin
-    \o
+    \li
     \image qt-embedded-clamshellphone-pressed.png The ClamshellPhone Skin (pressed)
     \row
-    \o \c ClamshellPhone1-5-closed.png
-    \o \c ClamshellPhone1-5.png
-    \o \c ClamshellPhone1-5-pressed.png
+    \li \c ClamshellPhone1-5-closed.png
+    \li \c ClamshellPhone1-5.png
+    \li \c ClamshellPhone1-5-pressed.png
     \endtable
 
     \section2 The File Menu

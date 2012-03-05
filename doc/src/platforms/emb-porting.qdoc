@@ -62,9 +62,9 @@
     framebuffer.
 
     \list
-        \o Modify \c qsharedmemory_p.cpp
-        \o Modify \c qlock_qws.cpp
-        \o Modify \c qwslock.cpp
+        \li Modify \c qsharedmemory_p.cpp
+        \li Modify \c qlock_qws.cpp
+        \li Modify \c qwslock.cpp
     \endlist
 
     \section1 Inter-Application Communication
@@ -81,7 +81,7 @@
     Embedded Linux).
 
     \list
-        \o Modify \c qwssocket_qws.cpp
+        \li Modify \c qwssocket_qws.cpp
     \endlist
 
     \section1 Screen Management
@@ -97,7 +97,7 @@
     likely be hard-coded).
 
     \list
-        \o Reimplement \c qscreen_qws.cpp
+        \li Reimplement \c qscreen_qws.cpp
     \endlist
 
     \section1 Sound Management
@@ -107,7 +107,7 @@
     another platform you must reimplement it.
 
     \list
-        \o Reimplement \c qsoundqss_qws.cpp
+        \li Reimplement \c qsoundqss_qws.cpp
     \endlist
 
     \section1 Event Dispatching
@@ -118,7 +118,7 @@
     your platform.
 
     \list
-        \o Modify \c qeventdispatcher_qws.cpp
+        \li Modify \c qeventdispatcher_qws.cpp
     \endlist
 */
 
@@ -156,9 +156,9 @@
     following documentation for more details:
 
     \list
-        \o \l{Qt for Embedded Linux Pointer Handling}{Pointer Handling}
-        \o \l{Qt for Embedded Linux Character Input}{Character Input}
-        \o \l{Qt for Embedded Linux Display Management}{Display Management}
+        \li \l{Qt for Embedded Linux Pointer Handling}{Pointer Handling}
+        \li \l{Qt for Embedded Linux Character Input}{Character Input}
+        \li \l{Qt for Embedded Linux Display Management}{Display Management}
     \endlist
 
     \section1 Atomic Operations

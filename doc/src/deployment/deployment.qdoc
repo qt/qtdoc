@@ -41,8 +41,8 @@
     There are two ways of deploying an application:
 
     \list
-        \o Static Linking
-        \o Shared Libraries (Frameworks on Mac)
+        \li Static Linking
+        \li Shared Libraries (Frameworks on Mac)
     \endlist
 
     Static linking results in a stand-alone executable. The advantage
@@ -71,30 +71,30 @@
 
     \table
     \header
-        \o {4,1} Qt's Libraries
+        \li {4,1} Qt's Libraries
     \row
-        \o \l {QAxContainer}
-        \o \l {QAxServer}
-        \o \l {QtCore}
-        \o \l {QtDBus}
+        \li \l {QAxContainer}
+        \li \l {QAxServer}
+        \li \l {QtCore}
+        \li \l {QtDBus}
     \row
-        \o \l {QtDesigner}
-        \o \l {QtGui}
-        \o \l {QtHelp}
-        \o \l {QtNetwork}
+        \li \l {QtDesigner}
+        \li \l {QtGui}
+        \li \l {QtHelp}
+        \li \l {QtNetwork}
     \row
-        \o \l {QtOpenGL}
-        \o \l {QtScript}
-        \o \l {QtScriptTools}
-        \o \l {QtSql}
+        \li \l {QtOpenGL}
+        \li \l {QtScript}
+        \li \l {QtScriptTools}
+        \li \l {QtSql}
     \row
-        \o \l {QtSvg}
-        \o \l {QtWebKit}
-        \o \l {QtXml}
-        \o \l {QtXmlPatterns}
+        \li \l {QtSvg}
+        \li \l {QtWebKit}
+        \li \l {QtXml}
+        \li \l {QtXmlPatterns}
     \row
-        \o \l {Phonon Module}{Phonon}
-        \o \l {Qt3Support}
+        \li \l {Phonon Module}{Phonon}
+        \li \l {Qt3Support}
     \endtable
 
     Since Qt is not a system library, it has to be redistributed along
@@ -137,29 +137,29 @@
     you should be aware of.
 
     \table
-    \header \o Qt Library \o Dependency
-            \o Licensing Issue
-    \row    \o QtHelp     \o CLucene
-    \o The version of clucene distributed with Qt is licensed
+    \header \li Qt Library \li Dependency
+            \li Licensing Issue
+    \row    \li QtHelp     \li CLucene
+    \li The version of clucene distributed with Qt is licensed
     under the GNU LGPL version 2.1 or later. This has implications for
     developers of closed source applications. Please see
     \l{QtHelp Module#License Information}{the QtHelp module documentation}
     for more information.
 
-    \row    \o QtNetwork  \o OpenSSL
-    \o Some configurations of QtNetwork use OpenSSL at run-time. Deployment
+    \row    \li QtNetwork  \li OpenSSL
+    \li Some configurations of QtNetwork use OpenSSL at run-time. Deployment
     of OpenSSL libraries is subject to both licensing and export restrictions.
     More information can be found in the \l{Secure Sockets Layer (SSL) Classes}
     documentation.
 
-    \row    \o QtWebKit   \o WebKit
-    \o WebKit is licensed under the GNU LGPL version 2 or later.
+    \row    \li QtWebKit   \li WebKit
+    \li WebKit is licensed under the GNU LGPL version 2 or later.
     This has implications for developers of closed source applications.
     Please see \l{WebKit in Qt#License Information}{the QtWebKit module
     documentation} for more information.
 
-    \row    \o \l{Phonon Module}{Phonon}     \o Phonon
-    \o Phonon relies on the native multimedia engines on different platforms.
+    \row    \li \l{Phonon Module}{Phonon}     \li Phonon
+    \li Phonon relies on the native multimedia engines on different platforms.
     Phonon itself is licensed under the GNU LGPL version 2. Please see
     \l{Phonon Module#License Information}{the Phonon module documentation}
     for more information on licensing and the
@@ -173,11 +173,11 @@
     various platforms:
 
     \list
-        \o \l{Deploying an Application on X11 Platforms}{Qt for X11 Platforms}
-        \o \l{Deploying an Application on Windows}{Qt for Windows}
-        \o \l{Deploying an Application on Mac OS X}{Qt for Mac OS X}
-        \o \l{Deploying Qt for Embedded Linux Applications}{Qt for Embedded Linux}
-        \o \l{Deploying an Application on the Symbian platform}{Qt for the Symbian platform}
+        \li \l{Deploying an Application on X11 Platforms}{Qt for X11 Platforms}
+        \li \l{Deploying an Application on Windows}{Qt for Windows}
+        \li \l{Deploying an Application on Mac OS X}{Qt for Mac OS X}
+        \li \l{Deploying Qt for Embedded Linux Applications}{Qt for Embedded Linux}
+        \li \l{Deploying an Application on the Symbian platform}{Qt for the Symbian platform}
     \endlist
 
     \sa Installation {Platform-Specific Documentation}
@@ -337,14 +337,14 @@
 
     \list
 
-    \o You can install the Qt libraries in one of the system
+    \li You can install the Qt libraries in one of the system
        library paths (e.g. \c /usr/lib on most systems).
 
-    \o You can pass a predetermined path to the \c -rpath command-line
+    \li You can pass a predetermined path to the \c -rpath command-line
        option when linking the application. This will tell the dynamic
        linker to look in this directory when starting your application.
 
-    \o You can write a startup script for your application, where you
+    \li You can write a startup script for your application, where you
        modify the dynamic linker configuration (e.g., adding your
        application's directory to the \c LD_LIBRARY_PATH environment
        variable. \note If your application will be running with "Set
@@ -383,25 +383,25 @@
 
     \table 100%
     \header
-        \o Component \o {2, 1} File Name
+        \li Component \li {2, 1} File Name
     \row
-        \o The executable
-        \o {2, 1} \c plugandpaint
+        \li The executable
+        \li {2, 1} \c plugandpaint
     \row
-        \o The script to run the executable
-        \o {2, 1} \c plugandpaint.sh
+        \li The script to run the executable
+        \li {2, 1} \c plugandpaint.sh
     \row
-        \o The Basic Tools plugin
-        \o {2, 1} \c plugins\libpnp_basictools.so
+        \li The Basic Tools plugin
+        \li {2, 1} \c plugins\libpnp_basictools.so
     \row
-        \o The ExtraFilters plugin
-        \o {2, 1} \c plugins\libpnp_extrafilters.so
+        \li The ExtraFilters plugin
+        \li {2, 1} \c plugins\libpnp_extrafilters.so
     \row
-        \o The Qt Core module
-        \o {2, 1} \c libQtCore.so.4
+        \li The Qt Core module
+        \li {2, 1} \c libQtCore.so.4
     \row
-        \o The Qt GUI module
-        \o {2, 1} \c libQtGui.so.4
+        \li The Qt GUI module
+        \li {2, 1} \c libQtGui.so.4
     \endtable
 
     On most systems, the extension for shared libraries is \c .so. A
@@ -487,13 +487,13 @@
 
     \list
 
-    \o \l{qt-conf.html}{Using \c qt.conf}. This is the recommended
+    \li \l{qt-conf.html}{Using \c qt.conf}. This is the recommended
     approach since it provides the most flexibility.
 
-    \o Using QApplication::addLibraryPath() or
+    \li Using QApplication::addLibraryPath() or
     QApplication::setLibraryPaths().
 
-    \o Using a third party installation utility or the target system's
+    \li Using a third party installation utility or the target system's
     package manager to change the hard-coded paths in the QtCore
     library.
 
@@ -671,22 +671,22 @@
 
     \table 100%
     \header
-        \o Component \o {2, 1} File Name
+        \li Component \li {2, 1} File Name
     \row
-        \o The executable
-        \o {2, 1} \c plugandpaint.exe
+        \li The executable
+        \li {2, 1} \c plugandpaint.exe
     \row
-        \o The Basic Tools plugin
-        \o {2, 1} \c plugins\pnp_basictools.dll
+        \li The Basic Tools plugin
+        \li {2, 1} \c plugins\pnp_basictools.dll
     \row
-        \o The ExtraFilters plugin
-        \o {2, 1} \c plugins\pnp_extrafilters.dll
+        \li The ExtraFilters plugin
+        \li {2, 1} \c plugins\pnp_extrafilters.dll
     \row
-        \o The Qt Core module
-        \o {2, 1} \c qtcore4.dll
+        \li The Qt Core module
+        \li {2, 1} \c qtcore4.dll
     \row
-        \o The Qt GUI module
-        \o {2, 1} \c qtgui4.dll
+        \li The Qt GUI module
+        \li {2, 1} \c qtgui4.dll
     \endtable
 
     In addition, the archive must contain the following compiler
@@ -694,19 +694,19 @@
 
     \table 100%
     \header
-        \o \o VC++ 6.0 \o VC++ 7.1 (2003) \o VC++ 8.0 (2005) \o VC++ 9.0 (2008)
+        \li \li VC++ 6.0 \li VC++ 7.1 (2003) \li VC++ 8.0 (2005) \li VC++ 9.0 (2008)
     \row
-        \o The C run-time
-        \o \c msvcrt.dll
-        \o \c msvcr71.dll
-        \o \c msvcr80.dll
-        \o \c msvcr90.dll
+        \li The C run-time
+        \li \c msvcrt.dll
+        \li \c msvcr71.dll
+        \li \c msvcr80.dll
+        \li \c msvcr90.dll
     \row
-        \o The C++ run-time
-        \o \c msvcp60.dll
-        \o \c msvcp71.dll
-        \o \c msvcp80.dll
-        \o \c msvcp90.dll
+        \li The C++ run-time
+        \li \c msvcp60.dll
+        \li \c msvcp71.dll
+        \li \c msvcp80.dll
+        \li \c msvcp90.dll
     \endtable
 
     To verify that the application now can be successfully deployed,
@@ -740,7 +740,7 @@
     application's dependencies on side-by-side assemblies, such as the runtime
     libraries.
 
-    The manifest file needs to be copied into the \bold same folder as the
+    The manifest file needs to be copied into the \b same folder as the
     application executable. You do not need to copy the manifest files for
     shared libraries (DLLs), since they are not used.
 
@@ -795,11 +795,11 @@
 
     \list 1
 
-        \o create a folder structure on the development computer that will match the target USB stick directory structure, for example '\\app' and for your dlls, '\\app\\lib'.
+        \li create a folder structure on the development computer that will match the target USB stick directory structure, for example '\\app' and for your dlls, '\\app\\lib'.
 
-        \o on the development computer, from the appropriate 'redist' folder copy over Microsoft.VC80.CRT and Microsoft.VC80.MFC to the directories '\\app' and '\\app\\lib' on the development PC.
+        \li on the development computer, from the appropriate 'redist' folder copy over Microsoft.VC80.CRT and Microsoft.VC80.MFC to the directories '\\app' and '\\app\\lib' on the development PC.
 
-        \o xcopy the \\app folder to the target USB stick.
+        \li xcopy the \\app folder to the target USB stick.
     \endlist
 
     Your application should now run. Also be aware that even with a service
@@ -829,31 +829,31 @@
 
     \table 100%
         \header
-            \o Qt
-            \o VC++ 6.0
-            \o VC++ 7.1 (2003)
-            \o VC++ 8.0 (2005)
-            \o MinGW
+            \li Qt
+            \li VC++ 6.0
+            \li VC++ 7.1 (2003)
+            \li VC++ 8.0 (2005)
+            \li MinGW
         \row
-        \o \list
-               \o QTCORE4.DLL - The QtCore runtime
-               \o QTGUI4.DLL - The QtGui runtime
+        \li \list
+               \li QTCORE4.DLL - The QtCore runtime
+               \li QTGUI4.DLL - The QtGui runtime
            \endlist
-        \o \list
-               \o MSVCRT.DLL - The C runtime
-               \o MSVCP60.DLL - The C++ runtime (only when STL is installed)
+        \li \list
+               \li MSVCRT.DLL - The C runtime
+               \li MSVCP60.DLL - The C++ runtime (only when STL is installed)
            \endlist
-        \o \list
-               \o MSVCR71.DLL - The C runtime
-               \o MSVCP71.DLL - The C++ runtime (only when STL is installed)
+        \li \list
+               \li MSVCR71.DLL - The C runtime
+               \li MSVCP71.DLL - The C++ runtime (only when STL is installed)
            \endlist
-        \o \list
-               \o MSVCR80.DLL - The C runtime
-               \o MSVCP80.DLL - The C++ runtime (only when STL is installed)
+        \li \list
+               \li MSVCR80.DLL - The C runtime
+               \li MSVCP80.DLL - The C++ runtime (only when STL is installed)
            \endlist
-        \o \list
-               \o MINGWM10.DLL - The MinGW run-time
-               \o LIBGCC_S_DW2-1.DLL
+        \li \list
+               \li MINGWM10.DLL - The MinGW run-time
+               \li LIBGCC_S_DW2-1.DLL
            \endlist
     \endtable
 
@@ -882,14 +882,14 @@
 
     \list
 
-    \o \l{qt-conf.html}{Using \c qt.conf}. This approach is the recommended 
+    \li \l{qt-conf.html}{Using \c qt.conf}. This approach is the recommended
     if you have executables in different places sharing the same plugins.
 
-    \o Using QApplication::addLibraryPath() or
+    \li Using QApplication::addLibraryPath() or
     QApplication::setLibraryPaths(). This approach is recommended if you only 
     have one executable that will use the plugin. 
 
-    \o Using a third party installation utility to change the
+    \li Using a third party installation utility to change the
     hard-coded paths in the QtCore library.
 
     \endlist
@@ -919,9 +919,9 @@
     \section1 Related Third Party Resources
 
     \list
-    \o \l{http://silmor.de/29}{Cross compiling Qt/Win Apps on Linux} covers the
+    \li \l{http://silmor.de/29}{Cross compiling Qt/Win Apps on Linux} covers the
     process of cross-compiling Windows applications on Linux.
-    \o \l{http://divided-mind.blogspot.com/2007/09/cross-compiling-qt4win-on-linux.html}
+    \li \l{http://divided-mind.blogspot.com/2007/09/cross-compiling-qt4win-on-linux.html}
     {Cross-compiling Qt4/Win on Linux} provides another Linux-to-Windows
     cross-compilation guide.
     \endlist
@@ -1188,10 +1188,10 @@
     need to follow with plugins are:
 
     \list
-        \o Put the plugins inside the bundle
-        \o Make sure that the plugins use the correct library using the
+        \li Put the plugins inside the bundle
+        \li Make sure that the plugins use the correct library using the
            \c install_name_tool
-        \o Make sure that the application knows where to get the plugins
+        \li Make sure that the application knows where to get the plugins
     \endlist
 
     While we can put the plugins anywhere we want in the bundle, the
@@ -1226,8 +1226,8 @@
 
     \table
     \row
-    \o \inlineimage deployment-mac-application.png
-    \o
+    \li \inlineimage deployment-mac-application.png
+    \li
     The additional code in \c tools/plugandpaint/mainwindow.cpp also
     enables us to view the plugins in the Finder, as shown to the left.
 
@@ -1315,13 +1315,13 @@
 
     \list
 
-    \o \l{qt-conf.html}{Using \c qt.conf}. This is the recommended
+    \li \l{qt-conf.html}{Using \c qt.conf}. This is the recommended
     approach since it provides the most flexibility.
 
-    \o Using QApplication::addLibraryPath() or
+    \li Using QApplication::addLibraryPath() or
     QApplication::setLibraryPaths().
 
-    \o Using a third party installation utility to change the
+    \li Using a third party installation utility to change the
     hard-coded paths in the QtCore library.
 
     \endlist
@@ -1378,10 +1378,10 @@
 
     \list
 
-        \o If you build your Qt 4.6 Phonon application on OS X 10.4
+        \li If you build your Qt 4.6 Phonon application on OS X 10.4
            (Tiger), it will run on OS X 10.4 and higher.
 
-        \o If you are using Leopard but would like to build your application
+        \li If you are using Leopard but would like to build your application
         against Tiger, you can use:
 
         \snippet doc/src/snippets/code/doc_src_deployment.qdoc 51b
@@ -1432,15 +1432,15 @@
     The mac deployment tool also deploys the Qt plugins, according
     to the following rules:
     \list
-    \o Debug versions of the plugins are not deployed.
-    \o The designer plugins are not deployed.
-    \o The Image format plugins are always deployed.
-    \o SQL driver plugins are deployed if the application uses the QtSql module.
-    \o Script plugins are deployed if the application uses the QtScript module.
-    \o The Phonon backend plugin is deployed if the application uses the \l{Phonon Module} {Phonon} module.
-    \o The svg icon plugin is deployed if the application uses the QtSvg module.
-    \o The accessibility plugin is always deployed.
-    \o Accessibility for Qt3Support is deployed if the application uses the Qt3Support module.
+    \li Debug versions of the plugins are not deployed.
+    \li The designer plugins are not deployed.
+    \li The Image format plugins are always deployed.
+    \li SQL driver plugins are deployed if the application uses the QtSql module.
+    \li Script plugins are deployed if the application uses the QtScript module.
+    \li The Phonon backend plugin is deployed if the application uses the \l{Phonon Module} {Phonon} module.
+    \li The svg icon plugin is deployed if the application uses the QtSvg module.
+    \li The accessibility plugin is always deployed.
+    \li Accessibility for Qt3Support is deployed if the application uses the Qt3Support module.
     \endlist
 
     \note If you want a 3rd party library to be included in your
@@ -1449,9 +1449,9 @@
 
     \c macdeployqt supports the following options:
     \list
-    \o -no-plugins: Skip plugin deployment
-    \o -dmg       : Create a .dmg disk image
-    \o -no-strip  : Don't run 'strip' on the binaries
+    \li -no-plugins: Skip plugin deployment
+    \li -dmg       : Create a .dmg disk image
+    \li -no-strip  : Don't run 'strip' on the binaries
     \endlist
 */
 

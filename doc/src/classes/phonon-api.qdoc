@@ -558,7 +558,7 @@
     \value Fade9Decibel Slow fade out.
     \value Fade12Decibel A more extreme version of the -9dB fade.
 
-    \bold{Notes:}
+    \b{Notes:}
 
     \c Fade3Decibel is often the best fade for a crossfade, as after half
     of the time the volume reached -3dB. This means that half the
@@ -927,12 +927,12 @@
     The property "name" must always be present. All other properties are optional.
 
     \table
-    \header \o Property \o Description
-    \row \o name \o The name of the device/effect/codec/...
-    \row \o description \o A text explaining what this device/effect/codec/... is/can do
-    \row \o icon \o An icon name (using the freedesktop naming scheme) or a QIcon for this
+    \header \li Property \li Description
+    \row \li name \li The name of the device/effect/codec/...
+    \row \li description \li A text explaining what this device/effect/codec/... is/can do
+    \row \li icon \li An icon name (using the freedesktop naming scheme) or a QIcon for this
     device/effect/codec/...
-    \row \o available \o A bool telling whether the device is present or unplugged.
+    \row \li available \li A bool telling whether the device is present or unplugged.
     \endtable
 
     \param type see ObjectDescriptionType
@@ -3318,7 +3318,7 @@
     The backend implementation has to provide two signals, that are not defined
     in this interface:
     \list
-    \o \target phonon_MediaObjectInterface_stateChanged
+    \li \target phonon_MediaObjectInterface_stateChanged
     void stateChanged(Phonon::State newstate, Phonon::State oldstate)
 
     Emitted when the state of the MediaObject has changed.
@@ -3328,7 +3328,7 @@
     \param newstate The state the Player is in now.
     \param oldstate The state the Player was in before.
 
-    \o \target phonon_MediaObjectInterface_tick
+    \li \target phonon_MediaObjectInterface_tick
     void tick(qint64 time)
 
     This signal gets emitted every tickInterval milliseconds.
@@ -3747,9 +3747,9 @@
     Commonly, the media controller allows you to:
 
     \list
-        \o Navigate between \bold chapters.
-        \o Navigate between \bold titles.
-        \o Select between \bold angles.
+        \li Navigate between \b chapters.
+        \li Navigate between \b titles.
+        \li Select between \b angles.
     \endlist 
 
     The \l{Phonon::MediaController::}{Feature} enum explains these

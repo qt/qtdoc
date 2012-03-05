@@ -79,10 +79,10 @@
         following responsibilities:
 
         \list
-        \o Providing a fast interface for managing a large number of items
-        \o Propagating events to each item
-        \o Managing item state, such as selection and focus handling
-        \o Providing untransformed rendering functionality; mainly for printing
+        \li Providing a fast interface for managing a large number of items
+        \li Propagating events to each item
+        \li Managing item state, such as selection and focus handling
+        \li Providing untransformed rendering functionality; mainly for printing
         \endlist
 
         The scene serves as a container for QGraphicsItem objects. Items are
@@ -153,13 +153,13 @@
         features:
 
         \list
-        \o Mouse press, move, release and double click events, as well as mouse
+        \li Mouse press, move, release and double click events, as well as mouse
         hover events, wheel events, and context menu events.
-        \o Keyboard input focus, and key events
-        \o Drag and drop
-        \o Grouping, both through parent-child relationships, and with
+        \li Keyboard input focus, and key events
+        \li Drag and drop
+        \li Grouping, both through parent-child relationships, and with
         QGraphicsItemGroup
-        \o Collision detection
+        \li Collision detection
         \endlist
 
         Items live in a local coordinate system, and like QGraphicsView, it

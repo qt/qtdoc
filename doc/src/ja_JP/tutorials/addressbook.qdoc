@@ -46,10 +46,10 @@
     このチュートリアルでは以下に示す Qt の基本的な機能を学ぶことが出来ます:
 
     \list
-    \o ウィジェットとレイアウトマネージャ
-    \o コンテナクラス
-    \o シグナル/スロット
-    \o 入力デバイスと出力デバイス
+    \li ウィジェットとレイアウトマネージャ
+    \li コンテナクラス
+    \li シグナル/スロット
+    \li 入力デバイスと出力デバイス
     \endlist
 
     Qt を初めて利用する方は、最初に \l{How to Learn Qt} をご覧ください。
@@ -57,13 +57,13 @@
     チュートリアルの目次:
 
     \list 1
-    \o \l{tutorials/addressbook/part1}{ユーザインターフェースの設計}
-    \o \l{tutorials/addressbook/part2}{アドレスの追加}
-    \o \l{tutorials/addressbook/part3}{項目間のナビゲーション}
-    \o \l{tutorials/addressbook/part4}{アドレスの編集と削除}
-    \o \l{tutorials/addressbook/part5}{検索機能の追加}
-    \o \l{tutorials/addressbook/part6}{読み込みと保存}
-    \o \l{tutorials/addressbook/part7}{その他の機能}
+    \li \l{tutorials/addressbook/part1}{ユーザインターフェースの設計}
+    \li \l{tutorials/addressbook/part2}{アドレスの追加}
+    \li \l{tutorials/addressbook/part3}{項目間のナビゲーション}
+    \li \l{tutorials/addressbook/part4}{アドレスの編集と削除}
+    \li \l{tutorials/addressbook/part5}{検索機能の追加}
+    \li \l{tutorials/addressbook/part6}{読み込みと保存}
+    \li \l{tutorials/addressbook/part7}{その他の機能}
     \endlist
 
     このチュートリアルのソースコードは、Qt の 
@@ -109,9 +109,9 @@
     以下の3つのファイルを使用してこのアドレス帳を実装します:
 
     \list
-	\o \c{addressbook.h} - \c AddressBook クラスを宣言するファイル、
-	\o \c{addressbook.cpp} - \c AddressBook クラスを実装するファイル、
-	\o \c{main.cpp} - \c AddressBook クラスのインスタンスを持つ
+    \li \c{addressbook.h} - \c AddressBook クラスを宣言するファイル、
+    \li \c{addressbook.cpp} - \c AddressBook クラスを実装するファイル、
+    \li \c{main.cpp} - \c AddressBook クラスのインスタンスを持つ
 	   \c main() 関数を含むファイル。
     \endlist
 
@@ -125,14 +125,14 @@
     以下のような利点があります:
 
     \list
-    \o 仮想関数または純粋仮想関数の実装を行って要求される機能を実装できます。
+    \li 仮想関数または純粋仮想関数の実装を行って要求される機能を実装できます。
        必要によっては基底クラスの実装にフォールバックして利用できます。
 
-    \o これにより、アプリケーションのその他の部分が
+    \li これにより、アプリケーションのその他の部分が
        ユーザインターフェースの個々のウィジェットを指定する必要がないよう、
        ユーザインターフェースの一部をクラス内にカプセル化できます。
 
-    \o 派生クラスは、同一のアプリケーションまたはライブラリに
+    \li 派生クラスは、同一のアプリケーションまたはライブラリに
        複数のカスタムウィジットを作成するために使用できます。
        また、派生クラスのコードは、他のプロジェクトで再利用可能です。
 
@@ -370,7 +370,7 @@
 
     \list 1
 
-    \o \c nameLine 及び \c addressText から連絡先の詳細を抽出し、
+    \li \c nameLine 及び \c addressText から連絡先の詳細を抽出し、
     QString オブジェクトに保存します。
     また、ユーザが入力フィールドに何も入力せずに 
     \gui Submit をクリックしないよう確認します。
@@ -379,7 +379,7 @@
 
     \snippet tutorials/addressbook/part2/addressbook.cpp submitContact part1
 
-    \o 続けて、連絡先が既に存在するかどうか確認します。
+    \li 続けて、連絡先が既に存在するかどうか確認します。
     存在しない場合は \c contacts に連絡先を追加して QMessageBox を表示し、
     連絡先が追加されたことをユーザに知らせます。
 
@@ -391,7 +391,7 @@
     \c contacts オブジェクトは、名前と住所のキー値のペアで構成されているため、
     \e key が一意であることを確認します。
 
-    \o 上記の両方の事例に対処したら、
+    \li 上記の両方の事例に対処したら、
     以下のコードを使ってプッシュボタンを通常の状態に戻します:
 
     \snippet tutorials/addressbook/part2/addressbook.cpp submitContact part3
@@ -508,9 +508,9 @@
     \c next() 関数で、 \c contacts のイテレータを作成し、次に:
 
     \list
-	\o イテレータが \c contacts の末尾にない場合は、次の項目に移動します。
+    \li イテレータが \c contacts の末尾にない場合は、次の項目に移動します。
 
-	\o イテレータが \c contacts の末尾にある場合は、
+    \li イテレータが \c contacts の末尾にある場合は、
 	\c contacts の先頭に移動します。
 	これによって、QMap が循環リストのように機能するという印象を与えます。
     \endlist
@@ -522,12 +522,12 @@
 
     同様に、 \c previous() 関数で、 \c contacts のイテレータを作成し、次に:
     \list
-	\o イテレータが \c contacts の末尾にある場合は、
+    \li イテレータが \c contacts の末尾にある場合は、
 	表示をクリアして戻ります。
  
-	\o イテレータが \c contacts の先頭にある場合は、末尾に移動します。
+    \li イテレータが \c contacts の先頭にある場合は、末尾に移動します。
  
-	\o イテレータを直前の項目に移動します。
+    \li イテレータを直前の項目に移動します。
     \endlist
 
     \snippet tutorials/addressbook/part3/addressbook.cpp previous() function
@@ -560,9 +560,9 @@
     本章では、以下のような2つの異なる値を持つ \c Mode 列挙型を定義します:
 
     \list
-    \o \c{NavigationMode}
-    \o \c{AddingMode}
-    \o \c{EditingMode}
+    \li \c{NavigationMode}
+    \li \c{AddingMode}
+    \li \c{EditingMode}
     \endlist
 
     \section1 AddressBook クラスの宣言

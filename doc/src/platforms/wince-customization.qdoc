@@ -61,8 +61,8 @@
     options:
 
     \list
-    \o \bold{CE_SDK} specifies the name of the SDK.
-    \o \bold{CE_ARCH} specifies information about the target architecture.
+    \li \b{CE_SDK} specifies the name of the SDK.
+    \li \b{CE_ARCH} specifies information about the target architecture.
     \endlist
 
     Following is an example configuration for the Windows Mobile 5 for 
@@ -104,12 +104,12 @@
     following options:
 
     \list
-        \o  \c list: Returns a list of available Windows CE SDKs. (This list
+        \li  \c list: Returns a list of available Windows CE SDKs. (This list
             may contain one or more SDKs not supported on Qt for Windows CE,
             e.g., Pocket PC 2003.)
-        \o  \c sdk: The parameter to specify an SDK. Returns a setup of
+        \li  \c sdk: The parameter to specify an SDK. Returns a setup of
             environment variables that must be set to cross-compile Qt.
-        \o  \c script: Stores your setup in a \c{.bat} file. This simplifies
+        \li  \c script: Stores your setup in a \c{.bat} file. This simplifies
             the process of switching environments when you load a command
             prompt in future.
     \endlist
@@ -159,9 +159,9 @@
     usually the result of missing symbols for the following classes or
     features:
     \list
-    \o \l{Drag and Drop}
-    \o \l{QClipboard}
-    \o \l{QCursor}
+    \li \l{Drag and Drop}
+    \li \l{QClipboard}
+    \li \l{QCursor}
     \endlist
 
     Please refer to the Microsoft documentation
@@ -194,19 +194,19 @@
     that you following these guidelines:
 
     \list
-    \o The original Qt source package must be left untouched - configure must
+    \li The original Qt source package must be left untouched - configure must
     never have been run in the source tree directory.
 
-    \o The shadow build directory must be on the same level as the Qt source
+    \li The shadow build directory must be on the same level as the Qt source
         package.\br
     If the Qt package is in \c{C:\Qt\%VERSION%} the shadow build directory
     could be \c{C:\Qt\shadowbuild}. A shadow build from a directory like
     \c{C:\shadowbuild} will not compile.
-    \o Avoid using "release" and "debug" in the path to the shadow build
+    \li Avoid using "release" and "debug" in the path to the shadow build
     directory. (This is an internal limitation of the build system.)
-    \o The \c{\bin} directory of the shadow build directory must be added to the
+    \li The \c{\bin} directory of the shadow build directory must be added to the
     \c PATH environment variable.
-    \o Perl has been installed on your system. (\l{ActivePerl} is a popular
+    \li Perl has been installed on your system. (\l{ActivePerl} is a popular
     distribution of Perl on Windows.)
     \endlist
 
@@ -214,20 +214,20 @@
     to create a shadow build in \c{C:\Qt\mobile5-shadow}:
 
     \list
-    \o First add \c{C:\Qt\mobile5-shadow\bin} to the \c PATH variable.
+    \li First add \c{C:\Qt\mobile5-shadow\bin} to the \c PATH variable.
 
     \snippet doc/src/snippets/code/doc_src_wince-customization.qdoc 3
 
-    \o Make sure the enviroment variables for your compiler are set.
+    \li Make sure the enviroment variables for your compiler are set.
 
     Visual Studio includes \c{vcvars32.bat} for that purpose - or simply use
     the "Visual Studio Command Prompt" from the Start menu.
 
-    \o Now navigate to your shadow build directory and run configure:
+    \li Now navigate to your shadow build directory and run configure:
 
     \snippet doc/src/snippets/code/doc_src_wince-customization.qdoc 4
 
-    \o To build Qt, you have to update your \c{PATH, INCLUDE} and \c LIB paths
+    \li To build Qt, you have to update your \c{PATH, INCLUDE} and \c LIB paths
     to point to your target platforms.
 
     For a default installation of the Windows Mobile 5.0 Pocket PC SDK, you
@@ -240,11 +240,11 @@
 
     \snippet doc/src/snippets/code/doc_src_wince-customization.qdoc 6
 
-    \o Finally, to build the shadow build type:
+    \li Finally, to build the shadow build type:
 
     \snippet doc/src/snippets/code/doc_src_wince-customization.qdoc 7
 
-    \o That's all. You have successfully created a shadow build of Qt in
+    \li That's all. You have successfully created a shadow build of Qt in
     \c{C:\Qt\mobile5-shadow}.
     \endlist
 */

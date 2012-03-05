@@ -54,15 +54,15 @@
 
     \section2 General options
     \list
-        \o QWS, not accelerated, allows arbitrary windowing with multiple
+        \li QWS, not accelerated, allows arbitrary windowing with multiple
         processes drawing on the screen.
-        \o X11 with an accelerated X11 driver provided by the silicon
+        \li X11 with an accelerated X11 driver provided by the silicon
         vendor. Like QWS, this allows arbitrary windows with multiple
         processes drawing on the screen. Our experience is that there is
         some overhead from X11 which will adversely affect framerates.
         Additionally, our experience is that the drivers from silicon
         vendors are still maturing.
-        \o Full screen single process single window. This will always work.
+        \li Full screen single process single window. This will always work.
         Some additional capabilities are available and are documented in
         the acceleration specific API sections.
     \endlist
@@ -74,17 +74,17 @@
 
      \table 
      \header
-        \o Supported APIs
-		\o API Version
+        \li Supported APIs
+        \li API Version
      \row
-        \o \l {Qt for Embedded Linux and OpenGL}{OpenGL ES}
-		\o 1.x and 2.x
+        \li \l {Qt for Embedded Linux and OpenGL}{OpenGL ES}
+        \li 1.x and 2.x
      \row
-        \o \l {Qt for Embedded Linux and OpenVG}{OpenVG } 
-		\o 1.1
+        \li \l {Qt for Embedded Linux and OpenVG}{OpenVG }
+        \li 1.1
      \row
-        \o \l {Qt for Embedded Linux and DirectFB}{DirectFB}
-		\o 2.0
+        \li \l {Qt for Embedded Linux and DirectFB}{DirectFB}
+        \li 2.0
      \endtable 
 
 

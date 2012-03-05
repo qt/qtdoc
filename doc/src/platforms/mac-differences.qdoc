@@ -73,7 +73,7 @@
     \l{http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/index.html}
     {Framework Programming Guide} discusses issues to keep in mind
     when choosing frameworks over the more typical, dynamic libraries.
-    However, one point to remember is: \bold {Frameworks always link
+    However, one point to remember is: \b {Frameworks always link
     with "release" versions of libraries}.
 
     If you actually want to use a \e{debug} version of a Qt framework,
@@ -136,12 +136,12 @@
 
     \list
 
-    \o Q_OS_DARWIN is defined when Qt detects you are on a
+    \li Q_OS_DARWIN is defined when Qt detects you are on a
     Darwin-based system (including the Open Source version)
 
-    \o Q_WS_MAC is defined when the Mac OS X GUI is present.
+    \li Q_WS_MAC is defined when the Mac OS X GUI is present.
 
-    \o QT_MAC_USE_COCOA is defined when Qt is built to use the Cocoa framework.
+    \li QT_MAC_USE_COCOA is defined when Qt is built to use the Cocoa framework.
     If it is not present, then Qt is using Carbon.
 
     \endlist
@@ -216,13 +216,13 @@
 
     \list 1
 
-    \i If the window has a QMenuBar, then it is used.
+    \li If the window has a QMenuBar, then it is used.
 
-    \i If the window is modal, then its menu bar is used. If no menu
+    \li If the window is modal, then its menu bar is used. If no menu
        bar is specified, then a default menu bar is used (as
        documented below).
 
-    \i If the window has no parent, then the default menu bar is used
+    \li If the window has no parent, then the default menu bar is used
        (as documented below).
 
     \endlist
@@ -253,13 +253,13 @@
 
     \list
 
-    \o Actions in a QMenu with accelerators that have more than one
+    \li Actions in a QMenu with accelerators that have more than one
        keystroke (QKeySequence) will not display correctly, when the
        QMenu is translated into a Mac native menu bar. The first key
        will be displayed. However, the shortcut will still be
        activated as on all other platforms.
 
-    \o QMenu objects used in the native menu bar are not able to
+    \li QMenu objects used in the native menu bar are not able to
        handle Qt events via the normal event handlers.
        For Carbon, you will have to install a Carbon event handler on
        the menu bar in order to receive Carbon events that are similar
@@ -302,12 +302,12 @@
     modification, are permitted provided that the following conditions are met:
 
     \list
-    \o Redistributions of source code must retain the above copyright notice,
+    \li Redistributions of source code must retain the above copyright notice,
        this list of conditions and the following disclaimer.
-    \o Redistributions in binary form must reproduce the above copyright notice,
+    \li Redistributions in binary form must reproduce the above copyright notice,
        this list of conditions and the following disclaimer in the documentation
        and/or other materials provided with the distribution.
-    \o Neither the name of Apple, Inc. nor the names of its contributors
+    \li Neither the name of Apple, Inc. nor the names of its contributors
        may be used to endorse or promote products derived from this software
        without specific prior written permission.
     \endlist

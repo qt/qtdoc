@@ -54,8 +54,8 @@
 
     \table 100%
     \row
-    \o
-    \bold {Optimization}
+    \li
+    \b {Optimization}
 
     The \l FreeType, \l QPF2 and \l QPF formats are features that can be
     disabled using the
@@ -67,7 +67,7 @@
     See the \l {Fine-Tuning Features in Qt} documentation for
     details.
 
-    \o
+    \li
     \inlineimage qt-embedded-fontfeatures.png
     \endtable
 
@@ -83,17 +83,17 @@
     library (and therefore \l{Qt for Embedded Linux}) can support the following font formats:
 
     \list
-        \o TrueType (TTF)
-        \o PostScript Type1 (PFA/PFB)
-        \o Bitmap Distribution Format (BDF)
-        \o CID-keyed Type1
-        \o Compact Font Format (CFF)
-        \o OpenType fonts
-        \o SFNT-based bitmap fonts
-        \o Portable Compiled Format (PCF)
-        \o Microsoft Windows Font File Format (Windows FNT)
-        \o Portable Font Resource (PFR)
-        \o Type 42 (limited support)
+        \li TrueType (TTF)
+        \li PostScript Type1 (PFA/PFB)
+        \li Bitmap Distribution Format (BDF)
+        \li CID-keyed Type1
+        \li Compact Font Format (CFF)
+        \li OpenType fonts
+        \li SFNT-based bitmap fonts
+        \li Portable Compiled Format (PCF)
+        \li Microsoft Windows Font File Format (Windows FNT)
+        \li Portable Font Resource (PFR)
+        \li Type 42 (limited support)
     \endlist
 
     It is possible to add modules to the \l
@@ -157,30 +157,30 @@
     \snippet doc/src/snippets/code/doc_src_emb-fonts.qdoc 0
 
     \table 100%
-    \header \o Field \o Description
-    \row \o \bold name
-    \o The name of the font format, e.g.,\c Helvetica, \c Times, etc.
-    \row \o \bold file
-    \o The name of the file containing the font, e.g., \c
+    \header \li Field \li Description
+    \row \li \b name
+    \li The name of the font format, e.g.,\c Helvetica, \c Times, etc.
+    \row \li \b file
+    \li The name of the file containing the font, e.g., \c
     helvR0810.bdf, \c verdana.ttf, etc.
-    \row \o \bold renderer
-    \o Specifies the font engine that should be used to render the
+    \row \li \b renderer
+    \li Specifies the font engine that should be used to render the
     font, currently only the FreeType font engine (\c FT) is
     supported.
-    \row \o \bold italic
-    \o Specifies whether the font is italic or not; the accepted
+    \row \li \b italic
+    \li Specifies whether the font is italic or not; the accepted
     values are \c y or \c n.
-    \row \o \bold weight
-    \o Specifies the font's weight: \c 50 is normal, \c 75 is bold,
+    \row \li \b weight
+    \li Specifies the font's weight: \c 50 is normal, \c 75 is bold,
     etc.
-    \row \o \bold size
-    \o Specifies the font size, i.e., point size * 10. For example, a
+    \row \li \b size
+    \li Specifies the font size, i.e., point size * 10. For example, a
     value of 120 means 12pt. A value of 0 means that the font is
     scalable.
-    \row \o \bold flags
-    \o The following flag is supported:
+    \row \li \b flags
+    \li The following flag is supported:
     \list
-        \o \c s: smooth (anti-aliased)
+        \li \c s: smooth (anti-aliased)
     \endlist
     All other flags are ignored.
     \endtable

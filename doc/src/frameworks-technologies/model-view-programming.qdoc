@@ -77,8 +77,8 @@
     customized.
 
     \table
-    \row \i \inlineimage modelview-overview.png
-    \i \bold{The model/view architecture}
+    \row \li \inlineimage modelview-overview.png
+    \li \b{The model/view architecture}
 
     The model communicates with a source of data, providing an \e interface
     for the other components in the architecture. The nature of the
@@ -106,11 +106,11 @@
     and slots}:
 
     \list
-    \o Signals from the model inform the view about changes to the data
+    \li Signals from the model inform the view about changes to the data
        held by the data source.
-    \o Signals from the view provide information about the user's interaction
+    \li Signals from the view provide information about the user's interaction
        with the items being displayed.
-    \o Signals from the delegate are used during editing to tell the
+    \li Signals from the delegate are used during editing to tell the
        model and view about the state of the editor.
     \endlist
 
@@ -141,12 +141,12 @@
     data:
 
     \list
-    \o QStringListModel is used to store a simple list of QString items.
-    \o QStandardItemModel manages more complex tree structures of items, each
+    \li QStringListModel is used to store a simple list of QString items.
+    \li QStandardItemModel manages more complex tree structures of items, each
        of which can contain arbitrary data.
-    \o QFileSystemModel provides information about files and directories in the
+    \li QFileSystemModel provides information about files and directories in the
        local filing system.
-    \o QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel are used
+    \li QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel are used
        to access databases using model/view conventions.
     \endlist
 
@@ -363,8 +363,8 @@
     a model index.
 
     \table
-    \row \i \inlineimage modelview-tablemodel.png
-    \i \bold{Rows and columns}
+    \row \li \inlineimage modelview-tablemodel.png
+    \li \b{Rows and columns}
 
     The diagram shows a representation of a basic table model in which each
     item is located by a pair of row and column numbers. We obtain a model
@@ -395,8 +395,8 @@
     \snippet doc/src/snippets/code/doc_src_model-view-programming.cpp 3
 
     \table
-    \row \i \inlineimage modelview-treemodel.png
-    \i \bold{Parents, rows, and columns}
+    \row \li \inlineimage modelview-treemodel.png
+    \li \b{Parents, rows, and columns}
 
     The diagram shows a representation of a tree model in which each item is
     referred to by a parent, a row number, and a column number.
@@ -426,8 +426,8 @@
     \snippet doc/src/snippets/code/doc_src_model-view-programming.cpp 6
 
     \table
-    \row \i \inlineimage modelview-roles.png
-    \i \bold{Item roles}
+    \row \li \inlineimage modelview-roles.png
+    \li \b{Item roles}
 
     The role indicates to the model which type of data is being referred to.
     Views can display the roles in different ways, so it is important to
@@ -447,21 +447,21 @@
     \section3 Summary
 
     \list
-    \o Model indexes give views and delegates information about the location
+    \li Model indexes give views and delegates information about the location
        of items provided by models in a way that is independent of any
        underlying data structures.
-    \o Items are referred to by their row and column numbers, and by the model
+    \li Items are referred to by their row and column numbers, and by the model
        index of their parent items.
-    \o Model indexes are constructed by models at the request of other
+    \li Model indexes are constructed by models at the request of other
        components, such as views and delegates.
-    \o If a valid model index is specified for the parent item when an index is
+    \li If a valid model index is specified for the parent item when an index is
        requested using \l{QAbstractItemModel::index()}{index()}, the index
        returned refers to an item beneath that parent item in the model.
        The index obtained refers to a child of that item.
-    \o If an invalid model index is specified for the parent item when an index
+    \li If an invalid model index is specified for the parent item when an index
        is requested using \l{QAbstractItemModel::index()}{index()}, the index
        returned refers to a top-level item in the model.
-    \o The \l{Qt::ItemDataRole}{role} distinguishes between the
+    \li The \l{Qt::ItemDataRole}{role} distinguishes between the
        different kinds of data associated with an item.
     \endlist
 
@@ -505,16 +505,16 @@
     data from a model:
 
     \list
-    \i The dimensions of a model can be found using
+    \li The dimensions of a model can be found using
        \l{QAbstractItemModel::rowCount()}{rowCount()} and
        \l{QAbstractItemModel::columnCount()}{columnCount()}.
        These functions generally require a parent model index to be
        specified.
-    \i Model indexes are used to access items in the model. The row, column,
+    \li Model indexes are used to access items in the model. The row, column,
        and parent model index are needed to specify the item.
-    \i To access top-level items in a model, specify a null model index
+    \li To access top-level items in a model, specify a null model index
        as the parent index with \c QModelIndex().
-    \i Items contain data for different roles. To obtain the data for a
+    \li Items contain data for different roles. To obtain the data for a
        particular role, both the model index and the role must be supplied
        to the model.
     \endlist
@@ -913,28 +913,28 @@
 
     \table
     \header
-        \o  Current Item
-        \o  Selected Items
+        \li  Current Item
+        \li  Selected Items
 
     \row
-        \o  There can only be one current item.
-        \o  There can be multiple selected items.
+        \li  There can only be one current item.
+        \li  There can be multiple selected items.
     \row
-        \o  The current item will be changed with key navigation or mouse
+        \li  The current item will be changed with key navigation or mouse
             button clicks.
-        \o  The selected state of items is set or unset, depending on several
+        \li  The selected state of items is set or unset, depending on several
             pre-defined modes - e.g., single selection, multiple selection,
             etc. - when the user interacts with the items.
     \row
-        \o  The current item will be edited if the edit key, \gui F2, is
+        \li  The current item will be edited if the edit key, \gui F2, is
             pressed or the item is double-clicked (provided that editing is
             enabled).
-        \o  The current item can be used together with an anchor to specify a
+        \li  The current item can be used together with an anchor to specify a
             range that should be selected or deselected (or a combination of
             the two).
     \row
-        \o  The current item is indicated by the focus rectangle.
-        \o  The selected items are indicated with the selection rectangle.
+        \li  The current item is indicated by the focus rectangle.
+        \li  The selected items are indicated with the selection rectangle.
     \endtable
 
     When manipulating selections, it is often helpful to think of
@@ -1576,22 +1576,22 @@
 
     \table
     \row
-    \i \img selection-single.png
-    \i \bold{Single item selections:}
+    \li \img selection-single.png
+    \li \b{Single item selections:}
     Where the user needs to choose a single item from a widget, the
     default \c SingleSelection mode is most suitable. In this mode, the
     current item and the selected item are the same.
 
     \row
-    \i \img selection-multi.png
-    \i \bold{Multi-item selections:}
+    \li \img selection-multi.png
+    \li \b{Multi-item selections:}
     In this mode, the user can toggle the selection state of any item in the
     widget without changing the existing selection, much like the way
     non-exclusive checkboxes can be toggled independently.
 
     \row
-    \i \img selection-extended.png
-    \i \bold{Extended selections:}
+    \li \img selection-extended.png
+    \li \b{Extended selections:}
     Widgets that often require many adjacent items to be selected, such
     as those found in spreadsheets, require the \c ExtendedSelection mode.
     In this mode, continuous ranges of items in the widget can be selected
@@ -1667,12 +1667,12 @@
     of the built-in support for drag and drop:
 
     \list
-    \o To enable item dragging, set the view's
+    \li To enable item dragging, set the view's
        \l{QAbstractItemView::dragEnabled}{dragEnabled} property to \c true.
-    \o To allow the user to drop either internal or external items within the view,
+    \li To allow the user to drop either internal or external items within the view,
        set the view's \l{QAbstractScrollArea::}{viewport()}'s
        \l{QWidget::acceptDrops}{acceptDrops} property to \c true.
-    \o To show the user where the item currently being dragged will be placed if
+    \li To show the user where the item currently being dragged will be placed if
        dropped, set the view's \l{QAbstractItemView::showDropIndicator}{showDropIndicator}
        property. This provides the user with continuously updating information about
        item placement within the view.
@@ -1915,9 +1915,9 @@
     called whenever a model index from the proxy model is requested or used:
 
     \list
-    \o \l{QSortFilterProxyModel::filterAcceptsColumn()}{filterAcceptsColumn()} is used to
+    \li \l{QSortFilterProxyModel::filterAcceptsColumn()}{filterAcceptsColumn()} is used to
        filter specific columns from part of the source model.
-    \o \l{QSortFilterProxyModel::filterAcceptsRow()}{filterAcceptsRow()} is used to filter
+    \li \l{QSortFilterProxyModel::filterAcceptsRow()}{filterAcceptsRow()} is used to filter
        specific rows from part of the source model.
     \endlist
 
@@ -1949,12 +1949,12 @@
     groups:
 
     \list
-    \o \bold{Item data handling:} All models need to implement functions to enable views and
+    \li \b{Item data handling:} All models need to implement functions to enable views and
        delegates to query the dimensions of the model, examine items, and retrieve data.
-    \o \bold{Navigation and index creation:} Hierarchical models need to provide functions
+    \li \b{Navigation and index creation:} Hierarchical models need to provide functions
        that views can call to navigate the tree-like structures they expose, and obtain
        model indexes for items.
-    \o \bold{Drag and drop support and MIME type handling:} Models inherit functions that
+    \li \b{Drag and drop support and MIME type handling:} Models inherit functions that
        control the way that internal and external drag and drop operations are performed.
        These functions allow items of data to be described in terms of MIME types that
        other components and applications can understand.
@@ -1975,22 +1975,22 @@
     \e{must} be implemented in the model's subclass:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::flags()}{flags()}
-         \o Used by other components to obtain information about each item provided by
+    \row \li \l{QAbstractItemModel::flags()}{flags()}
+         \li Used by other components to obtain information about each item provided by
             the model. In many models, the combination of flags should include
             Qt::ItemIsEnabled and Qt::ItemIsSelectable.
-    \row \o \l{QAbstractItemModel::data()}{data()}
-         \o Used to supply item data to views and delegates. Generally, models only
+    \row \li \l{QAbstractItemModel::data()}{data()}
+         \li Used to supply item data to views and delegates. Generally, models only
             need to supply data for Qt::DisplayRole and any application-specific user
             roles, but it is also good practice to provide data for Qt::ToolTipRole,
             Qt::AccessibleTextRole, and Qt::AccessibleDescriptionRole.
             See the Qt::ItemDataRole enum documentation for information about the types
             associated with each role.
-    \row \o \l{QAbstractItemModel::headerData()}{headerData()}
-         \o Provides views with information to show in their headers. The information is
+    \row \li \l{QAbstractItemModel::headerData()}{headerData()}
+         \li Provides views with information to show in their headers. The information is
             only retrieved by views that can display header information.
-    \row \o \l{QAbstractItemModel::rowCount()}{rowCount()}
-         \o Provides the number of rows of data exposed by the model.
+    \row \li \l{QAbstractItemModel::rowCount()}{rowCount()}
+         \li Provides the number of rows of data exposed by the model.
     \endtable
 
     These four functions must be implemented in all types of model, including list models
@@ -2000,8 +2000,8 @@
     of QAbstractTableModel and QAbstractItemModel:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::columnCount()}{columnCount()}
-         \o Provides the number of columns of data exposed by the model. List models do not
+    \row \li \l{QAbstractItemModel::columnCount()}{columnCount()}
+         \li Provides the number of columns of data exposed by the model. List models do not
             provide this function because it is already implemented in QAbstractListModel.
     \endtable
 
@@ -2012,20 +2012,20 @@
     editing, the following functions must be implemented correctly:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::flags()}{flags()}
-         \o Must return an appropriate combination of flags for each item. In particular,
+    \row \li \l{QAbstractItemModel::flags()}{flags()}
+         \li Must return an appropriate combination of flags for each item. In particular,
             the value returned by this function must include \l{Qt::ItemIsEditable} in
             addition to the values applied to items in a read-only model.
-    \row \o \l{QAbstractItemModel::setData()}{setData()}
-         \o Used to modify the item of data associated with a specified model index.
+    \row \li \l{QAbstractItemModel::setData()}{setData()}
+         \li Used to modify the item of data associated with a specified model index.
             To be able to accept user input, provided by user interface elements, this
             function must handle data associated with Qt::EditRole.
             The implementation may also accept data associated with many different kinds
             of roles specified by Qt::ItemDataRole. After changing the item of data,
             models must emit the \l{QAbstractItemModel::dataChanged()}{dataChanged()}
             signal to inform other components of the change.
-    \row \o \l{QAbstractItemModel::setHeaderData()}{setHeaderData()}
-         \o Used to modify horizontal and vertical header information. After changing
+    \row \li \l{QAbstractItemModel::setHeaderData()}{setHeaderData()}
+         \li Used to modify horizontal and vertical header information. After changing
             the item of data, models must emit the
             \l{QAbstractItemModel::headerDataChanged()}{headerDataChanged()}
             signal to inform other components of the change.
@@ -2042,29 +2042,29 @@
     delegates:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::insertRows()}{insertRows()}
-         \o Used to add new rows and items of data to all types of model.
+    \row \li \l{QAbstractItemModel::insertRows()}{insertRows()}
+         \li Used to add new rows and items of data to all types of model.
             Implementations must call
             \l{QAbstractItemModel::beginInsertRows()}{beginInsertRows()} \e before
             inserting new rows into any underlying data structures, and call
             \l{QAbstractItemModel::endInsertRows()}{endInsertRows()}
             \e{immediately afterwards}.
-    \row \o \l{QAbstractItemModel::removeRows()}{removeRows()}
-         \o Used to remove rows and the items of data they contain from all types of model.
+    \row \li \l{QAbstractItemModel::removeRows()}{removeRows()}
+         \li Used to remove rows and the items of data they contain from all types of model.
             Implementations must call
             \l{QAbstractItemModel::beginRemoveRows()}{beginRemoveRows()}
             \e before inserting new columns into any underlying data structures, and call
             \l{QAbstractItemModel::endRemoveRows()}{endRemoveRows()}
             \e{immediately afterwards}.
-    \row \o \l{QAbstractItemModel::insertColumns()}{insertColumns()}
-         \o Used to add new columns and items of data to table models and hierarchical models.
+    \row \li \l{QAbstractItemModel::insertColumns()}{insertColumns()}
+         \li Used to add new columns and items of data to table models and hierarchical models.
             Implementations must call
             \l{QAbstractItemModel::beginInsertColumns()}{beginInsertColumns()} \e before
             rows are removed from any underlying data structures, and call
             \l{QAbstractItemModel::endInsertColumns()}{endInsertColumns()}
             \e{immediately afterwards}.
-    \row \o \l{QAbstractItemModel::removeColumns()}{removeColumns()}
-         \o Used to remove columns and the items of data they contain from table models and
+    \row \li \l{QAbstractItemModel::removeColumns()}{removeColumns()}
+         \li Used to remove columns and the items of data they contain from table models and
             hierarchical models.
             Implementations must call
             \l{QAbstractItemModel::beginRemoveColumns()}{beginRemoveColumns()}
@@ -2137,13 +2137,13 @@
     by providing implementations of the following functions:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::index()}{index()}
-         \o Given a model index for a parent item, this function allows views and delegates
+    \row \li \l{QAbstractItemModel::index()}{index()}
+         \li Given a model index for a parent item, this function allows views and delegates
             to access children of that item. If no valid child item - corresponding to the
             specified row, column, and parent model index, can be found, the function
             must return QModelIndex(), which is an invalid model index.
-    \row \o \l{QAbstractItemModel::parent()}{parent()}
-         \o Provides a model index corresponding to the parent of any given child item.
+    \row \li \l{QAbstractItemModel::parent()}{parent()}
+         \li Provides a model index corresponding to the parent of any given child item.
             If the model index specified corresponds to a top-level item in the model, or if
             there is no valid parent item in the model, the function must return
             an invalid model index, created with the empty QModelIndex() constructor.
@@ -2182,10 +2182,10 @@
     each item as it is streamed into a QByteArray and stored in a QMimeData object:
 
     \table 90%
-    \header \o Description \o Type
-    \row \o Row \o int
-    \row \o Column \o int
-    \row \o Data for each role \o QMap<int, QVariant>
+    \header \li Description \li Type
+    \row \li Row \li int
+    \row \li Column \li int
+    \row \li Data for each role \li QMap<int, QVariant>
     \endtable
 
     This information can be retrieved for use in non-model classes by calling
@@ -2198,8 +2198,8 @@
     function:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::mimeData()}{mimeData()}
-         \o This function can be reimplemented to return data in formats other
+    \row \li \l{QAbstractItemModel::mimeData()}{mimeData()}
+         \li This function can be reimplemented to return data in formats other
             than the default \c{application/x-qabstractitemmodeldatalist} internal
             MIME type.
 
@@ -2233,29 +2233,29 @@
     MIME type, new models must provide reimplementations of the following functions:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::insertRows()}{insertRows()}
-         \o {1, 2} These functions enable the model to automatically insert new data using
+    \row \li \l{QAbstractItemModel::insertRows()}{insertRows()}
+         \li {1, 2} These functions enable the model to automatically insert new data using
             the existing implementation provided by QAbstractItemModel::dropMimeData().
-    \row \o \l{QAbstractItemModel::insertColumns()}{insertColumns()}
-    \row \o \l{QAbstractItemModel::setData()}{setData()}
-         \o Allows the new rows and columns to be populated with items.
-    \row \o \l{QAbstractItemModel::setItemData()}{setItemData()}
-         \o This function provides more efficient support for populating new items.
+    \row \li \l{QAbstractItemModel::insertColumns()}{insertColumns()}
+    \row \li \l{QAbstractItemModel::setData()}{setData()}
+         \li Allows the new rows and columns to be populated with items.
+    \row \li \l{QAbstractItemModel::setItemData()}{setItemData()}
+         \li This function provides more efficient support for populating new items.
     \endtable
 
     To accept other forms of data, these functions must be reimplemented:
 
     \table 90%
-    \row \o \l{QAbstractItemModel::supportedDropActions()}{supportedDropActions()}
-         \o Used to return a combination of \l{Qt::DropActions}{drop actions},
+    \row \li \l{QAbstractItemModel::supportedDropActions()}{supportedDropActions()}
+         \li Used to return a combination of \l{Qt::DropActions}{drop actions},
             indicating the types of drag and drop operations that the model accepts.
-    \row \o \l{QAbstractItemModel::mimeTypes()}{mimeTypes()}
-         \o Used to return a list of MIME types that can be decoded and handled by
+    \row \li \l{QAbstractItemModel::mimeTypes()}{mimeTypes()}
+         \li Used to return a list of MIME types that can be decoded and handled by
             the model. Generally, the MIME types that are supported for input into
             the model are the same as those that it can use when encoding data for
             use by external components.
-    \row \o \l{QAbstractItemModel::dropMimeData()}{dropMimeData()}
-         \o Performs the actual decoding of the data transferred by drag and drop
+    \row \li \l{QAbstractItemModel::dropMimeData()}{dropMimeData()}
+         \li Performs the actual decoding of the data transferred by drag and drop
             operations, determines where in the model it will be set, and inserts
             new rows and columns where necessary. How this function is implemented
             in subclasses depends on the requirements of the data exposed by each
@@ -2276,10 +2276,10 @@
     reimplement the following functions that remove data from the model:
 
     \list
-        \o \l{QAbstractItemModel::}{removeRows()}
-        \o \l{QAbstractItemModel::}{removeRow()}
-        \o \l{QAbstractItemModel::}{removeColumns()}
-        \o \l{QAbstractItemModel::}{removeColumn()}
+        \li \l{QAbstractItemModel::}{removeRows()}
+        \li \l{QAbstractItemModel::}{removeRow()}
+        \li \l{QAbstractItemModel::}{removeColumns()}
+        \li \l{QAbstractItemModel::}{removeColumn()}
     \endlist
 
     For more information about drag and drop with item views, refer to
@@ -2330,10 +2330,10 @@
     \section1 Related examples
 
     \list
-    \o \l{itemviews/dirview}{Dir View}
-    \o \l{itemviews/spinboxdelegate}{Spin Box Delegate}
-    \o \l{itemviews/pixelator}{Pixelator}
-    \o \l{itemviews/simpletreemodel}{Simple Tree Model}
-    \o \l{itemviews/chart}{Chart}
+    \li \l{itemviews/dirview}{Dir View}
+    \li \l{itemviews/spinboxdelegate}{Spin Box Delegate}
+    \li \l{itemviews/pixelator}{Pixelator}
+    \li \l{itemviews/simpletreemodel}{Simple Tree Model}
+    \li \l{itemviews/chart}{Chart}
     \endlist
 */

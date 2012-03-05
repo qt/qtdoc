@@ -68,9 +68,9 @@
 
     \list
 
-    \i \l{http://www.unicode.org/unicode/standard/principles.html}{A
+    \li \l{http://www.unicode.org/unicode/standard/principles.html}{A
     technical introduction to Unicode}
-    \i \l{http://www.unicode.org/unicode/standard/standard.html}{The
+    \li \l{http://www.unicode.org/unicode/standard/standard.html}{The
     home page for the standard}
 
     \endlist
@@ -83,10 +83,10 @@
     Previous printed versions of the specification:
 
     \list
-    \o \l{http://www.amazon.com/Unicode-Standard-Version-5-0-5th/dp/0321480910/trolltech/t}{The Unicode Standard, Version 5.0}
-    \o \l{http://www.amazon.com/exec/obidos/ASIN/0321185781/trolltech/t}{The Unicode Standard, version 4.0}  
-    \o \l{http://www.amazon.com/exec/obidos/ASIN/0201616335/trolltech/t}{The Unicode Standard, version 3.2}
-    \o \l{http://www.amazon.com/exec/obidos/ASIN/0201473459/trolltech/t}{The Unicode Standard, version 2.0} \mdash
+    \li \l{http://www.amazon.com/Unicode-Standard-Version-5-0-5th/dp/0321480910/trolltech/t}{The Unicode Standard, Version 5.0}
+    \li \l{http://www.amazon.com/exec/obidos/ASIN/0321185781/trolltech/t}{The Unicode Standard, version 4.0}
+    \li \l{http://www.amazon.com/exec/obidos/ASIN/0201616335/trolltech/t}{The Unicode Standard, version 3.2}
+    \li \l{http://www.amazon.com/exec/obidos/ASIN/0201473459/trolltech/t}{The Unicode Standard, version 2.0} \mdash
     see also the \l{http://www.unicode.org/unicode/reports/tr8.html}{2.1 update} and
     \l{http://www.unicode.org/unicode/standard/versions/enumeratedversions.html#Unicode 2.1.9}{the 2.1.9 data files} at
     \l{http://www.unicode.org}.
@@ -99,16 +99,16 @@
 
     \list
 
-    \i Translation to/from legacy encodings for file I/O: see
+    \li Translation to/from legacy encodings for file I/O: see
     QTextCodec and QTextStream.
-    \i Translation from Input Methods and 8-bit keyboard input.
-    \i Translation to legacy character sets for on-screen display.
-    \i A string class, QString, that stores Unicode characters, with
+    \li Translation from Input Methods and 8-bit keyboard input.
+    \li Translation to legacy character sets for on-screen display.
+    \li A string class, QString, that stores Unicode characters, with
     support for migrating from C strings including fast (cached)
     translation to and from US-ASCII, and all the usual string
     operations.
-    \i Unicode-aware widgets where appropriate.
-    \i Unicode support detection on Windows, so that Qt provides Unicode
+    \li Unicode-aware widgets where appropriate.
+    \li Unicode support detection on Windows, so that Qt provides Unicode
     even on Windows platforms that do not support it natively.
 
     \endlist

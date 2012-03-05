@@ -46,42 +46,42 @@
     based applications and libraries:
 
     \table
-    \header \o Feature \o Details
+    \header \li Feature \li Details
     \row
-        \o \bold Lightweight
-        \o QTestLib consists of about 6000 lines of code and 60
+        \li \b Lightweight
+        \li QTestLib consists of about 6000 lines of code and 60
            exported symbols.
     \row
-        \o \bold Self-contained
-        \o QTestLib requires only a few symbols from the Qt Core library
+        \li \b Self-contained
+        \li QTestLib requires only a few symbols from the Qt Core library
            for non-gui testing.
     \row
-        \o \bold {Rapid testing}
-        \o QTestLib needs no special test-runners; no special
+        \li \b {Rapid testing}
+        \li QTestLib needs no special test-runners; no special
            registration for tests.
     \row
-        \o \bold {Data-driven testing}
-        \o A test can be executed multiple times with different test data.
+        \li \b {Data-driven testing}
+        \li A test can be executed multiple times with different test data.
     \row
-        \o \bold {Basic GUI testing}
-        \o QTestLib offers functionality for mouse and keyboard simulation.
+        \li \b {Basic GUI testing}
+        \li QTestLib offers functionality for mouse and keyboard simulation.
     \row
-        \o \bold {Benchmarking}
-        \o QTestLib supports benchmarking and provides several measurement back-ends.
+        \li \b {Benchmarking}
+        \li QTestLib supports benchmarking and provides several measurement back-ends.
     \row
-         \o \bold {IDE friendly}
-         \o QTestLib outputs messages that can be interpreted by Visual
+         \li \b {IDE friendly}
+         \li QTestLib outputs messages that can be interpreted by Visual
             Studio and KDevelop.
     \row
-         \o \bold Thread-safety
-         \o The error reporting is thread safe and atomic.
+         \li \b Thread-safety
+         \li The error reporting is thread safe and atomic.
     \row
-         \o \bold Type-safety
-         \o Extensive use of templates prevent errors introduced by
+         \li \b Type-safety
+         \li Extensive use of templates prevent errors introduced by
             implicit type casting.
     \row
-         \o \bold {Easily extendable}
-         \o Custom types can easily be added to the test data and test output.
+         \li \b {Easily extendable}
+         \li Custom types can easily be added to the test data and test output.
     \endtable
 
     \note For higher-level GUI and application testing needs, please
@@ -108,10 +108,10 @@
     clean up either the entire test or the current test function.
 
     \list
-    \o \c{initTestCase()} will be called before the first testfunction is executed.
-    \o \c{cleanupTestCase()} will be called after the last testfunction was executed.
-    \o \c{init()} will be called before each testfunction is executed.
-    \o \c{cleanup()} will be called after every testfunction.
+    \li \c{initTestCase()} will be called before the first testfunction is executed.
+    \li \c{cleanupTestCase()} will be called after the last testfunction was executed.
+    \li \c{init()} will be called before each testfunction is executed.
+    \li \c{cleanup()} will be called after every testfunction.
     \endlist
 
     If \c{initTestCase()} fails, no testfunction will be executed. If \c{init()} fails,
@@ -179,19 +179,19 @@
     The following command line options determine how test results are reported:
 
     \list
-    \o \c -o \e{filename,format} \BR
+    \li \c -o \e{filename,format} \BR
     write output to the specified file, in the specified format (one of
     \c txt, \c xml, \c lightxml or \c xunitxml).  The special filename \c -
     may be used to log to standard output.
-    \o \c -o \e filename \BR
+    \li \c -o \e filename \BR
     write output to the specified file.
-    \o \c -txt \BR
+    \li \c -txt \BR
     outputs results in plain text.
-    \o \c -xml \BR
+    \li \c -xml \BR
     outputs results as an XML document.
-    \o \c -lightxml \BR
+    \li \c -lightxml \BR
     outputs results as a stream of XML tags.
-    \o \c -xunitxml \BR
+    \li \c -xunitxml \BR
     outputs results as an Xunit XML document.
     \endlist
 
@@ -213,16 +213,15 @@
     in test logs:
 
     \list
-    \o \c -silent \BR
+    \li \c -silent \BR
     silent output, only shows fatal errors, test failures and minimal status messages.
-    (This option only affects plain text output.)
-    \o \c -v1 \BR
+    \li \c -v1 \BR
     verbose output; shows when each test function is entered.
     (This option only affects plain text output.)
-    \o \c -v2 \BR
+    \li \c -v2 \BR
     extended verbose output; shows each \l QCOMPARE() and \l QVERIFY().
     (This option affects all output formats and implies \c -v1 for plain text output.)
-    \o \c -vs \BR
+    \li \c -vs \BR
     shows every signal that gets emitted and the slot invocations resulting from those signals.
     (This option affects all output formats.)
     \endlist
@@ -232,25 +231,25 @@
     The following command-line options influence how tests are run:
 
     \list
-    \o \c -functions \BR
+    \li \c -functions \BR
     outputs all test functions available in the test, then quits.
-    \o \c -datatags \BR
+    \li \c -datatags \BR
     outputs all data tags available in the test.
     A global data tag is preceded by ' __global__ '.
-    \o \c -eventdelay \e ms \BR
+    \li \c -eventdelay \e ms \BR
     if no delay is specified for keyboard or mouse simulation
     (\l QTest::keyClick(),
     \l QTest::mouseClick() etc.), the value from this parameter
     (in milliseconds) is substituted.
-    \o \c -keydelay \e ms \BR
+    \li \c -keydelay \e ms \BR
     like -eventdelay, but only influences keyboard simulation and not mouse
     simulation.
-    \o \c -mousedelay \e ms \BR
+    \li \c -mousedelay \e ms \BR
     like -eventdelay, but only influences mouse simulation and not keyboard
     simulation.
-    \o \c -maxwarnings \e number\BR
+    \li \c -maxwarnings \e number\BR
     sets the maximum number of warnings to output. 0 for unlimited, defaults to 2000.
-    \o \c -nocrashhandler \BR
+    \li \c -nocrashhandler \BR
     disables the crash handler on Unix platforms.
     \endlist
 
@@ -259,26 +258,26 @@
     The following command line options control benchmark testing:
 
     \list
-    \o \c -callgrind \BR
+    \li \c -callgrind \BR
     use callgrind to time benchmarks (Linux only).
-    \o \c -tickcounter \BR
+    \li \c -tickcounter \BR
     use CPU tick counters to time benchmarks.
-    \o \c -eventcounter \BR
+    \li \c -eventcounter \BR
     counts events received during benchmarks.
-    \o \c -minimumvalue \e n \BR
+    \li \c -minimumvalue \e n \BR
     sets the minimum acceptable measurement value.
-    \o \c -iterations \e n \BR
+    \li \c -iterations \e n \BR
     sets the number of accumulation iterations.
-    \o \c -median \e n \BR
+    \li \c -median \e n \BR
     sets the number of median iterations.
-    \o \c -vb \BR
+    \li \c -vb \BR
     output verbose benchmarking information.
     \endlist
 
     \section4 Miscellaneous Options
 
     \list
-    \o \c -help \BR
+    \li \c -help \BR
     outputs the possible command line arguments and give some useful help.
     \endlist
 
@@ -297,21 +296,21 @@
     \target testlib-benchmarking-measurement
 
     \table
-    \header \o Name
-         \o Commmand-line Argument
-         \o Availability
-    \row \o Walltime
-         \o (default)
-         \o All platforms
-    \row \o CPU tick counter
-         \o -tickcounter
-         \o Windows, Mac OS X, Linux, many UNIX-like systems.
-    \row \o Valgrind/Callgrind
-         \o -callgrind
-         \o Linux (if installed)
-    \row \o Event Counter
-         \o -eventcounter
-         \o All platforms
+    \header \li Name
+         \li Commmand-line Argument
+         \li Availability
+    \row \li Walltime
+         \li (default)
+         \li All platforms
+    \row \li CPU tick counter
+         \li -tickcounter
+         \li Windows, Mac OS X, Linux, many UNIX-like systems.
+    \row \li Valgrind/Callgrind
+         \li -callgrind
+         \li Linux (if installed)
+    \row \li Event Counter
+         \li -eventcounter
+         \li All platforms
     \endtable
 
     In short, walltime is always available but requires many repetitions to
@@ -342,10 +341,10 @@
     Prior to launching, the following files are copied to the device:
 
     \list
-    \o all Qt libraries the project links to
-    \o \l {QtRemote}{QtRemote.dll}
-    \o the c runtime library specified during installation
-    \o all files specified in the \c .pro file following the \l DEPLOYMENT rules.
+    \li all Qt libraries the project links to
+    \li \l {QtRemote}{QtRemote.dll}
+    \li the c runtime library specified during installation
+    \li all files specified in the \c .pro file following the \l DEPLOYMENT rules.
     \endlist
 
     \section2 Using \c cetest
@@ -362,19 +361,19 @@
     The following commands are also included:
 
     \list
-    \o \c -debug \BR
+    \li \c -debug \BR
     Test version compiled in debug mode.
-    \o \c -release \BR
+    \li \c -release \BR
     Test version compiled in release mode.
-    \o \c -libpath \e path \BR
+    \li \c -libpath \e path \BR
     Target path to copy Qt libraries to.
-    \o \c -qt-delete \BR
+    \li \c -qt-delete \BR
     Delete Qt libraries after execution.
-    \o \c -project-delete \BR
+    \li \c -project-delete \BR
     Delete project files after execution.
-    \o \c -delete \BR
+    \li \c -delete \BR
     Delete project and Qt libraries after execution.
-    \o \c -conf \BR
+    \li \c -conf \BR
     Specifies a qt.conf file to be deployed to remote directory.
     \endlist
 
@@ -444,11 +443,11 @@
     chapters:
 
     \list 1
-    \o \l {Chapter 1: Writing a Unit Test}{Writing a Unit Test}
-    \o \l {Chapter 2: Data Driven Testing}{Data Driven Testing}
-    \o \l {Chapter 3: Simulating GUI Events}{Simulating GUI Events}
-    \o \l {Chapter 4: Replaying GUI Events}{Replaying GUI Events}
-    \o \l {Chapter 5: Writing a Benchmark}{Writing a Benchmark}
+    \li \l {Chapter 1: Writing a Unit Test}{Writing a Unit Test}
+    \li \l {Chapter 2: Data Driven Testing}{Data Driven Testing}
+    \li \l {Chapter 3: Simulating GUI Events}{Simulating GUI Events}
+    \li \l {Chapter 4: Replaying GUI Events}{Replaying GUI Events}
+    \li \l {Chapter 5: Writing a Benchmark}{Writing a Benchmark}
     \endlist
 
 */
@@ -517,7 +516,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qtestlib.qdoc 9
 
-    \bold {Note:}If you're using windows, replace \c make with \c
+    \b {Note:}If you're using windows, replace \c make with \c
     nmake or whatever build tool you use.
 
     Running the resulting executable should give you the following
@@ -583,25 +582,25 @@
 
     \table
     \header
-        \o index
-        \o name
-        \o string
-        \o result
+        \li index
+        \li name
+        \li string
+        \li result
     \row
-        \o 0
-        \o all lower
-        \o "hello"
-        \o HELLO
+        \li 0
+        \li all lower
+        \li "hello"
+        \li HELLO
     \row
-        \o 1
-        \o mixed
-        \o "Hello"
-        \o HELLO
+        \li 1
+        \li mixed
+        \li "Hello"
+        \li HELLO
     \row
-        \o 2
-        \o all upper
-        \o "HELLO"
-        \o HELLO
+        \li 2
+        \li all upper
+        \li "HELLO"
+        \li HELLO
     \endtable
 
     \section1 Rewriting the Test Function

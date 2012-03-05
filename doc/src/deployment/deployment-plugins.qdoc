@@ -68,28 +68,28 @@
     the Qt library installed side by side.
 
     \list
-    \o Plugins linked with a Qt library that has a higher version number
+    \li Plugins linked with a Qt library that has a higher version number
        will not be loaded by a library with a lower version number.
 
       \br
-      \bold{Example:} Qt 4.3.0 will \e{not} load a plugin built with Qt 4.3.1.
+      \b{Example:} Qt 4.3.0 will \e{not} load a plugin built with Qt 4.3.1.
 
-    \o Plugins linked with a Qt library that has a lower major version
+    \li Plugins linked with a Qt library that has a lower major version
        number will not be loaded by a library with a higher major version
        number.
 
       \br
-      \bold{Example:} Qt 4.3.1 will \e{not} load a plugin built with Qt 3.3.1.
+      \b{Example:} Qt 4.3.1 will \e{not} load a plugin built with Qt 3.3.1.
       \br
-      \bold{Example:} Qt 4.3.1 will load plugins built with Qt 4.3.0 and Qt 4.2.3.
+      \b{Example:} Qt 4.3.1 will load plugins built with Qt 4.3.0 and Qt 4.2.3.
 
-    \o The Qt library and all plugins are built using a \e {build
+    \li The Qt library and all plugins are built using a \e {build
        key}. The build key in the Qt library is examined against the build
        key in the plugin, and if they match, the plugin is loaded. If the
        build keys do not match, then the Qt library refuses to load the
        plugin.
 
-      \br \bold{Rationale:} See the \l{#The Build Key}{The Build Key} section below.
+      \br \b{Rationale:} See the \l{#The Build Key}{The Build Key} section below.
     \endlist
 
     When building plugins to extend an application, it is important to ensure
@@ -117,14 +117,14 @@
 
     The build key contains the following information:
     \list
-    \o Architecture, operating system and compiler.
+    \li Architecture, operating system and compiler.
 
        \e {Rationale:}
        In cases where different versions of the same compiler do not
        produce binary compatible code, the version of the compiler is
        also present in the build key.
 
-    \o Configuration of the Qt library. The configuration is a list
+    \li Configuration of the Qt library. The configuration is a list
        of the missing features that affect the available API in the
        library.
 
@@ -145,7 +145,7 @@
        development time and application runtime costs, a simple string
        comparision of the build keys is used.
 
-    \o Optionally, an extra string may be specified on the configure
+    \li Optionally, an extra string may be specified on the configure
        script command line.
 
        \e {Rationale:}
@@ -198,20 +198,20 @@
     developers experience when creating plugins:
 
     \table
-    \header \o Problem \o Cause \o Solution
-    \row \o Plugins sliently fail to load even when opened directly by the
+    \header \li Problem \li Cause \li Solution
+    \row \li Plugins sliently fail to load even when opened directly by the
             application. \QD shows the plugin libraries in its
             \gui{Help|About Plugins} dialog, but no plugins are listed under each
             of them.
-         \o The application and its plugins are built in different modes.
-         \o Either share the same build information or build the plugins in both
+         \li The application and its plugins are built in different modes.
+         \li Either share the same build information or build the plugins in both
             debug and release modes by appending the \c debug_and_release to
             the \l{qmake Variable Reference#CONFIG}{CONFIG} variable in each of
             their project files.
-    \row \o A valid plugin that replaces an invalid (or broken) plugin fails to load.
-         \o The entry for the plugin in the plugin cache indicates that the original
+    \row \li A valid plugin that replaces an invalid (or broken) plugin fails to load.
+         \li The entry for the plugin in the plugin cache indicates that the original
             plugin could not be loaded, causing Qt to ignore the replacement.
-         \o Either ensure that the plugin's timestamp is updated, or delete the
+         \li Either ensure that the plugin's timestamp is updated, or delete the
             entry in the \l{#The Plugin Cache}{plugin cache}.
     \endtable
 

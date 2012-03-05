@@ -40,9 +40,9 @@
     when:
 
     \list
-        \o your application will be deployed to more than one device
+        \li your application will be deployed to more than one device
            handset, or more than one device form factor.
-        \o your application will be deployed for a long period of time,
+        \li your application will be deployed for a long period of time,
            so that new device handsets might appear on the market after
            your initial deployment.
     \endlist
@@ -56,14 +56,14 @@
     follow these techniques:
 
     \list
-        \o Create separate top-level layout
+        \li Create separate top-level layout
            definitions for each form factor.
-        \o Keep the layouts small and let components
+        \li Keep the layouts small and let components
            scale relative to their immediate parent.
-        \o Define device independent measurements, such as dp
+        \li Define device independent measurements, such as dp
            (device independent pixels), and use
            these to scale components and for layout measurement.
-        \o Define layouts in a
+        \li Define layouts in a
            proportional way using the built-in layout features of QML.
     \endlist
 
@@ -116,7 +116,7 @@
     your top level layouts:
 
     \list
-    \o In some cases, the contents of an entire page in a smaller
+    \li In some cases, the contents of an entire page in a smaller
      handset could form a component element of a layout in a
      larger device. Therefore, consider making that a separate
      component (i.e. defined in a separate QML file), and in the
@@ -126,7 +126,7 @@
      viewer, if the screen is large enough, it may be possible to
      show the email list view, and the email reader view side by
      side.
-    \o In some cases, the contents of a view might be quite similar
+    \li In some cases, the contents of a view might be quite similar
      on all screen sizes, but with an expanded content area. In
      this case, it may be possible to re-use the same layout
      definition, if defined appropriately using anchors.
@@ -145,12 +145,12 @@
     component layout, there are a number aspects to consider:
 
     \list
-    \o The layout structure, the high-level relationship between
+    \li The layout structure, the high-level relationship between
      items. Which item is the parent? How are the items arranged
      relatively on the screen? Are they in a grid or column?
-    \o The layout measurements. How big is an item, or a margin
+    \li The layout measurements. How big is an item, or a margin
      inside the edge of an item, or an anchor between items?
-    \o The implicit size of contained items. Some child items will
+    \li The implicit size of contained items. Some child items will
      require a certain amount of space, such as a button
      containing a text. That may also depend on the current
      platform and style. How do you ensure that you leave enough
@@ -178,13 +178,13 @@
     are:
 
     \list
-    \o To reduce the amount of duplication, and hence increase
+    \li To reduce the amount of duplication, and hence increase
       maintainability.
-    \o It becomes much easier to change the layout structure,
+    \li It becomes much easier to change the layout structure,
      perhaps due to subsequent specification changes. In that
      case, the layout structure can be modified once, and many or
      all of the layout measurements would remain unchanged.
-    \o It becomes much easier to add support for additional Device
+    \li It becomes much easier to add support for additional Device
      Profiles, simply by adding another measurement definition
      file.
     \endlist
@@ -196,9 +196,9 @@
     defined in a proportional way using a combination of
 
     \list
-    \o \l{Item::anchors.top}{anchors} within an Item
-    \o \l{Row} / \l{Column} / \l{Grid}
-    \o simple JavaScript expressions such as width: Math.round(parent.width / 3.0).
+    \li \l{Item::anchors.top}{anchors} within an Item
+    \li \l{Row} / \l{Column} / \l{Grid}
+    \li simple JavaScript expressions such as width: Math.round(parent.width / 3.0).
     \endlist
 
     These basic building blocks, along with the powerful evaluation
@@ -221,14 +221,14 @@
     Here are some things not to do with layouts:
 
     \list
-    \o Don't define complex JavaScript functions that are regularly
+    \li Don't define complex JavaScript functions that are regularly
      evaluated. This will cause poor performance, particularly
      during animated transitions.
-    \o Don't define all of your layouts using x, y, width and
+    \li Don't define all of your layouts using x, y, width and
      height. Reserve this for items that cannot easily be defined
      using anchors (anchors are evaluated in a more efficient
      way).
-    \o Don't make assumptions about the container size, or about
+    \li Don't make assumptions about the container size, or about
      the size of child items. Try to make flexible layout
      definitions that can absorb changes in the available space.
     \endlist
@@ -283,14 +283,14 @@
     There are a few additional cases to consider:
 
     \list
-    \o What if you have a single page that looks completely
+    \li What if you have a single page that looks completely
      different between landscape and portrait, i.e. all of the
      child items are different? For each page, have two child
      components, with separate layout definitions, and make one
      or other of the items have zero opacity in each state. You
      can use a cross-fade animation by simply applying a
      NumberAnimation transition to the opacity.
-    \o What if you have a single page that shares 30% or more of
+    \li What if you have a single page that shares 30% or more of
      the same layout contents between portrait and landscape? In
      that case, consider having one component with landscape and
      portrait states, and a collection of separate child items
@@ -299,7 +299,7 @@
      items that are shared between the orientations, whilst the
      other items are either faded in/out, or animated on/off
      screen.
-    \o What if you have two pages on a handheld device that need to
+    \li What if you have two pages on a handheld device that need to
      be on screen at the same time, for example on a larger form
      factor device? In this case, notice that your view component
      will no longer be occupying the full screen. Therefore it's
@@ -309,7 +309,7 @@
      necessary to set the width in a Component.onCompleted()
      handler in this case, to ensure that the list item delegate
      has been constructed before the value is set.
-    \o What if the two orientations take up too much memory to have
+    \li What if the two orientations take up too much memory to have
      them both in memory at once? Use a \l{Loader} if necessary, if
      you cannot keep both versions of the view in memory at once,
      but beware performance on the cross-fade animation during

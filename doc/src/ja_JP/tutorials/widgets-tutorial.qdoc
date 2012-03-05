@@ -68,13 +68,13 @@
     以下の簡単なウィジェットのサンプルでは \c main() 関数の中にコードを記述しています。
 
     \list
-    \o \l {tutorials/widgets/toplevel}{ウィンドウの作成}
+    \li \l {tutorials/widgets/toplevel}{ウィンドウの作成}
 
-    \o \l {tutorials/widgets/childwidget}{子ウィジェット}
+    \li \l {tutorials/widgets/childwidget}{子ウィジェット}
 
-    \o \l {tutorials/widgets/windowlayout}{レイアウトの利用}
+    \li \l {tutorials/widgets/windowlayout}{レイアウトの利用}
 
-    \o \l {tutorials/widgets/nestedlayouts}{複雑なレイアウト}
+    \li \l {tutorials/widgets/nestedlayouts}{複雑なレイアウト}
     \endlist
 
     \section1 複雑なウィジェットのサンプル
@@ -88,11 +88,11 @@
     これらを変更し再コンパイルをしたい場合は、次の手順に従う必要があります:
 
     \list 1
-    \o コマンドラインで、再コンパイルしたいサンプルを含むディレクトリに移動します。
-    \o \c qmake と入力し、\key{Return} キーを押します。
+    \li コマンドラインで、再コンパイルしたいサンプルを含むディレクトリに移動します。
+    \li \c qmake と入力し、\key{Return} キーを押します。
        うまくいかない場合は、現在のパス内にこの実行ファイルが存在することを確認するか、
        フルパスを指定して実行してください。
-    \o Linux/Unix および Mac OS X の場合、\c make と入力し、\key{Return} キーを押します。
+    \li Linux/Unix および Mac OS X の場合、\c make と入力し、\key{Return} キーを押します。
        Windows 上の Visual Studio の場合、\c nmake と入力し、\key{Return} キーを押します。
     \endlist
 

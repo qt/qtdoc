@@ -105,11 +105,11 @@
     influences whether you can interact with it later.
 
     \list
-    \o Accepting the gesture means the widget acts on the gesture and there will follow
+    \li Accepting the gesture means the widget acts on the gesture and there will follow
        gestures with the Qt::GestureUpdatedstate.
-    \o Ignoring the gesture will mean the gesture will never be offered to you again.
+    \li Ignoring the gesture will mean the gesture will never be offered to you again.
        It will be offered to a parent widget or item as well.
-    \o Calling setGestureCancelPolicy() on the gesture when it is in its starting state,
+    \li Calling setGestureCancelPolicy() on the gesture when it is in its starting state,
        and is also accepted can cause other gestures to be canceled.
     \endlist
 

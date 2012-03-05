@@ -31,7 +31,7 @@
     \ingroup best-practices
     \brief A guide to exception safety in Qt.
 
-    \bold {Preliminary warning}: Exception safety is not feature complete!
+    \b {Preliminary warning}: Exception safety is not feature complete!
     Common cases should work, but classes might still leak or even crash.
 
     Qt itself will not throw exceptions. Instead, error codes are used.

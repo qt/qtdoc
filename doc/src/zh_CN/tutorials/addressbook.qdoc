@@ -48,10 +48,10 @@
     在学习过程中，我们将了解部分 Qt 基本技术，如
 
     \list
-    \o Widget 和布局管理器
-    \o 容器类
-    \o 信号和槽
-    \o 输入和输出设备
+    \li Widget 和布局管理器
+    \li 容器类
+    \li 信号和槽
+    \li 输入和输出设备
     \endlist
 
     如果您完全不了解 Qt，请阅读\l{How to Learn Qt}{如何学习 Qt}（如果您还未阅读）。
@@ -61,13 +61,13 @@
     教程章节：
 
     \list 1
-    \o \l{tutorials/addressbook/part1}{设计用户界面}
-    \o \l{tutorials/addressbook/part2}{添加地址}
-    \o \l{tutorials/addressbook/part3}{浏览地址簿条目}
-    \o \l{tutorials/addressbook/part4}{编辑和删除地址}
-    \o \l{tutorials/addressbook/part5}{添加查找功能}
-    \o \l{tutorials/addressbook/part6}{加载和保存}
-    \o \l{tutorials/addressbook/part7}{附加功能}
+    \li \l{tutorials/addressbook/part1}{设计用户界面}
+    \li \l{tutorials/addressbook/part2}{添加地址}
+    \li \l{tutorials/addressbook/part3}{浏览地址簿条目}
+    \li \l{tutorials/addressbook/part4}{编辑和删除地址}
+    \li \l{tutorials/addressbook/part5}{添加查找功能}
+    \li \l{tutorials/addressbook/part6}{加载和保存}
+    \li \l{tutorials/addressbook/part7}{附加功能}
     \endlist
 
     虽然这个小型应用程序看起来并不象一个成熟的现代 GUI 应用程序，但它使用多种用于更复杂应用程序的基本技术。在您完成学习之后，我们建议您查看一下\l{mainwindows/application}{应用程序}示例，它提供带有菜单、工具栏、状态栏等项目的小型 GUI 应用程序。
@@ -94,9 +94,9 @@
     要应用地址簿需使用三个文件：
 
     \list
-        \o \c{addressbook.h} — AddressBook 类的定义文件，
-        \o \c{addressbook.cpp} — AddressBook 类的执行文件，以及
-        \o \c{main.cpp} — 包含 \c main() 函数并带有 AddressBook 实例的文件。
+        \li \c{addressbook.h} — AddressBook 类的定义文件，
+        \li \c{addressbook.cpp} — AddressBook 类的执行文件，以及
+        \li \c{main.cpp} — 包含 \c main() 函数并带有 AddressBook 实例的文件。
     \endlist
 
     \section1 Qt 编程 — 使用子类
@@ -104,9 +104,9 @@
     在编写 Qt 程序时，我们通常使用 Qt 对象子类来添加功能。这是创建定制 widget 或标准 widget 集合的基本概念之一。使用子类扩展或改变 widget 的操作具有以下优势：
 
     \list
-    \o 我们可以编写虚函数或纯虚函数应用，以得到我们确切所需的功能，并在需要时再使用基本的类应用。
-    \o 这样我们就可以在类中封装部分用户界面，应用程序的其他部分也就无需了解用户界面中单独使用的 widget。
-    \o 可使用子类在同一应用程序或库中创建多个定制 widget，这样子类的代码可在其他项目重复使用。
+    \li 我们可以编写虚函数或纯虚函数应用，以得到我们确切所需的功能，并在需要时再使用基本的类应用。
+    \li 这样我们就可以在类中封装部分用户界面，应用程序的其他部分也就无需了解用户界面中单独使用的 widget。
+    \li 可使用子类在同一应用程序或库中创建多个定制 widget，这样子类的代码可在其他项目重复使用。
     \endlist
 
     由于 Qt 未提供特定的地址簿 widget，我们在标准的 Qt widget 类中使用子类，然后添加功能。我们在本教程中创建的 \c AddressBook 类在需要使用基本地址簿 widget 的情况下可重复使用。
@@ -236,17 +236,17 @@
     \c submitContact() 函数可分为三个部分：
 
     \list 1
-    \o 我们从 \c nameLine 和 \c addressText 提取联系人的详细信息，然后将其储存在 QString 对象中。我们还要验证确保用户没有在输入字段为空时点击\gui{提交}，否则，会显示 QMessageBox 提示用户输入姓名和地址。
+    \li 我们从 \c nameLine 和 \c addressText 提取联系人的详细信息，然后将其储存在 QString 对象中。我们还要验证确保用户没有在输入字段为空时点击\gui{提交}，否则，会显示 QMessageBox 提示用户输入姓名和地址。
 
     \snippet tutorials/addressbook/part2/addressbook.cpp submitContact part1
 
-    \o 我们接着继续检查是否联系人已存在。如果不存在，将联系人添加至 \c contacts，然后显示 QMessageBox 提示用户已添加联系人。
+    \li 我们接着继续检查是否联系人已存在。如果不存在，将联系人添加至 \c contacts，然后显示 QMessageBox 提示用户已添加联系人。
 
     \snippet tutorials/addressbook/part2/addressbook.cpp submitContact part2
 
     如果联系人已存在，还是会显示 QMessageBox 以提示用户，以免添加重复的联系人。由于 \c contacts 对象是基于姓名地址的键-值对，因此要确保键唯一。
 
-    \o 在处理了上述两种情况后，使用以下代码将按钮恢复为正常状态：
+    \li 在处理了上述两种情况后，使用以下代码将按钮恢复为正常状态：
 
     \snippet tutorials/addressbook/part2/addressbook.cpp submitContact part3
 
@@ -331,8 +331,8 @@
     记得我们曾使用 QMap 对象 \c contacts 模拟了一个循环链接的列表。因此，在 \c next() 函数中，我们获取 \c contacts 的迭代器，然后执行以下操作：
 
     \list
-        \o 如果迭代器未达到 \c contacts 结尾，就会增加一。
-        \o 如果迭代器已达到 \c contacts 的结尾，就移至 \c contacts 的起始位置。这给人感觉 QMap 就像是一个循环链接的列表。
+        \li 如果迭代器未达到 \c contacts 结尾，就会增加一。
+        \li 如果迭代器已达到 \c contacts 的结尾，就移至 \c contacts 的起始位置。这给人感觉 QMap 就像是一个循环链接的列表。
     \endlist
 
     \snippet tutorials/addressbook/part3/addressbook.cpp next() function
@@ -342,9 +342,9 @@
     同样，在 \c previous() 函数中，我们获取 \c contacts 的迭代器，然后执行以下操作：
 
     \list
-        \o 如果迭代器达到 \c contacts 的结尾，就清除显示内容，然后返回。
-        \o 如果迭代器在 \c contacts 的起始位置，就将其移至结尾。
-        \o 然后，将迭代器减一。
+        \li 如果迭代器达到 \c contacts 的结尾，就清除显示内容，然后返回。
+        \li 如果迭代器在 \c contacts 的起始位置，就将其移至结尾。
+        \li 然后，将迭代器减一。
     \endlist
 
     \snippet tutorials/addressbook/part3/addressbook.cpp previous() function
@@ -369,9 +369,9 @@
     在本章中，我们定义带有以下三种不同值的 \c{Mode} enum 类型：
 
     \list
-        \o \c{NavigationMode}、
-        \o \c{AddingMode} 和
-        \o \c{EditingMode}。
+        \li \c{NavigationMode}、
+        \li \c{AddingMode} 和
+        \li \c{EditingMode}。
     \endlist
 
     \section1 定义 AddressBook 类

@@ -60,16 +60,16 @@
     This document is divided up into chapters for convenient reference:
 
     \list
-    \i \l{Rich Text Document Structure} outlines
+    \li \l{Rich Text Document Structure} outlines
        the different kinds of elements in a QTextDocument, and describes how
        they are arranged in a document structure.
-    \i \l{The QTextCursor Interface} explains how rich
+    \li \l{The QTextCursor Interface} explains how rich
        text documents can be edited using the cursor-based interface.
-    \i \l{Document Layouts} briefly explains the role of document layouts.
-    \i \l{Common Rich Text Editing Tasks} examines some
+    \li \l{Document Layouts} briefly explains the role of document layouts.
+    \li \l{Common Rich Text Editing Tasks} examines some
        common tasks that involve reading or manipulating rich text documents.
-    \i \l{Advanced Rich Text Processing} examines advanced rich text editing tasks.
-    \i \l{Supported HTML Subset} lists the HTML tags supported by QTextDocument.
+    \li \l{Advanced Rich Text Processing} examines advanced rich text editing tasks.
+    \li \l{Supported HTML Subset} lists the HTML tags supported by QTextDocument.
     \endlist
 
     \section1 Rich Text Processing APIs
@@ -109,8 +109,8 @@
 
     \table
     \row
-    \i \inlineimage richtext-document.png
-    \i \bold{Basic structure}
+    \li \inlineimage richtext-document.png
+    \li \b{Basic structure}
 
     The "top level" of a document might be populated in the way shown.
     Each document always contains a root frame, and this always contains
@@ -450,14 +450,14 @@
     cursor position, but they do not return the element that was inserted:
 
     \list
-    \i \l{QTextCursor::insertBlock()}{insertBlock()} inserts a new text block
+    \li \l{QTextCursor::insertBlock()}{insertBlock()} inserts a new text block
        (paragraph) into a document at the cursor's position, and moves the
        cursor to the start of the new block.
-    \i \l{QTextCursor::insertFragment()}{insertFragment()} inserts an existing
+    \li \l{QTextCursor::insertFragment()}{insertFragment()} inserts an existing
        text fragment into a document at the cursor's position.
-    \i \l{QTextCursor::insertImage()}{insertImage()} inserts an image into a
+    \li \l{QTextCursor::insertImage()}{insertImage()} inserts an image into a
        document at the cursor's position.
-    \i \l{QTextCursor::insertText()}{insertText()} inserts text into the
+    \li \l{QTextCursor::insertText()}{insertText()} inserts text into the
        document at the cursor's position.
     \endlist
 
@@ -468,13 +468,13 @@
     the document, and return the structure that was inserted:
 
     \list
-    \i \l{QTextCursor::insertFrame()}{insertFrame()} inserts a frame into the
+    \li \l{QTextCursor::insertFrame()}{insertFrame()} inserts a frame into the
        document \e after the cursor's current block, and moves the cursor to
        the start of the empty block in the new frame.
-    \i \l{QTextCursor::insertList()}{insertList()} inserts a list into the
+    \li \l{QTextCursor::insertList()}{insertList()} inserts a list into the
        document at the cursor's position, and moves the cursor to the start
        of the first item in the list.
-    \i \l{QTextCursor::insertTable()}{insertTable()} inserts a table into
+    \li \l{QTextCursor::insertTable()}{insertTable()} inserts a table into
        the document \e after the cursor's current block, and moves the cursor
        to the start of the block following the table.
     \endlist
@@ -818,14 +818,14 @@
     following issues:
 
     \list
-        \o You should consider breaking up large paragraphs into smaller 
+        \li You should consider breaking up large paragraphs into smaller
            ones as Qt handles small paragraphs better. You could also 
            insert line breaks at regular intervals, which will look the
            same as one large paragraph in a QTextEdit.
-        \o You can reduce the amount of blocks in a QTextDocument with 
+        \li You can reduce the amount of blocks in a QTextDocument with
            \l{QTextDocument::}{maximumBlockCount()}. The document is only
            as large as the number of blocks as far as QTextEdit is concerned.
-        \o When adding text to a text edit, it is an advantage to add it 
+        \li When adding text to a text edit, it is an advantage to add it
            in an edit block (see example below). The result is that the
            text edit does not need to build the entire document structure at once.
     \endlist
@@ -861,7 +861,7 @@
 
     Widgets automatically detect HTML markup and display rich text accordingly. For example,
     setting a label's \l{QLabel::}{text} property with the string \c{"<b>Hello</b> <i>Qt!</i>"}
-    will result in the label displaying text like this: \bold{Hello} \e{Qt!}
+    will result in the label displaying text like this: \b{Hello} \e{Qt!}
 
     When HTML markup is used for text, Qt follows the rules defined by the \l{HTML 4}
     specification. This includes default properties for text layout, such as the
@@ -874,107 +874,107 @@
     \l{Rich Text Processing}{rich text} engine:
 
     \table
-    \header \o Tag
-            \o Description
-            \o Comment
-    \row    \o \c a
-            \o Anchor or link
-            \o Supports the \c href and \c name attributes.
-    \row    \o \c address
-            \o Address
-            \o
-    \row    \o \c b
-            \o Bold
-            \o
-    \row    \o \c big
-            \o Larger font
-            \o
-    \row    \o \c blockquote
-            \o Indented paragraph
-            \o
-    \row    \o \c body
-            \o Document body
-            \o Supports the \c bgcolor attribute, which
+    \header \li Tag
+            \li Description
+            \li Comment
+    \row    \li \c a
+            \li Anchor or link
+            \li Supports the \c href and \c name attributes.
+    \row    \li \c address
+            \li Address
+            \li
+    \row    \li \c b
+            \li Bold
+            \li
+    \row    \li \c big
+            \li Larger font
+            \li
+    \row    \li \c blockquote
+            \li Indented paragraph
+            \li
+    \row    \li \c body
+            \li Document body
+            \li Supports the \c bgcolor attribute, which
                can be a Qt \l{QColor::setNamedColor()}{color name}
                or a \c #RRGGBB color specification.
-    \row    \o \c br
-            \o Line break
-            \o
-    \row    \o \c center
-            \o Centered paragraph
-            \o
-    \row    \o \c cite
-            \o Inline citation
-            \o Same as \c i.
-    \row    \o \c code
-            \o Code
-            \o Same as \c tt.
-    \row    \o \c dd
-            \o Definition data
-            \o
-    \row    \o \c dfn
-            \o Definition
-            \o Same as \c i.
-    \row    \o \c div
-            \o Document division
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c dl
-            \o Definition list
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c dt
-            \o Definition term
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c em
-            \o Emphasized
-            \o Same as \c i.
-    \row    \o \c font
-            \o Font size, family, and/or color
-            \o Supports the following attributes:
+    \row    \li \c br
+            \li Line break
+            \li
+    \row    \li \c center
+            \li Centered paragraph
+            \li
+    \row    \li \c cite
+            \li Inline citation
+            \li Same as \c i.
+    \row    \li \c code
+            \li Code
+            \li Same as \c tt.
+    \row    \li \c dd
+            \li Definition data
+            \li
+    \row    \li \c dfn
+            \li Definition
+            \li Same as \c i.
+    \row    \li \c div
+            \li Document division
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c dl
+            \li Definition list
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c dt
+            \li Definition term
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c em
+            \li Emphasized
+            \li Same as \c i.
+    \row    \li \c font
+            \li Font size, family, and/or color
+            \li Supports the following attributes:
                \c size, \c face, and \c color (Qt
                \l{QColor::setNamedColor()}{color names} or
                \c #RRGGBB).
-    \row    \o \c h1
-            \o Level 1 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c h2
-            \o Level 2 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c h3
-            \o Level 3 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c h4
-            \o Level 4 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c h5
-            \o Level 5 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c h6
-            \o Level 6 heading
-            \o Supports the standard \l{block attributes}.
-    \row    \o \c head
-            \o Document header
-            \o
-    \row    \o \c hr
-            \o Horizontal line
-            \o Supports the \c width attribute, which can
+    \row    \li \c h1
+            \li Level 1 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c h2
+            \li Level 2 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c h3
+            \li Level 3 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c h4
+            \li Level 4 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c h5
+            \li Level 5 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c h6
+            \li Level 6 heading
+            \li Supports the standard \l{block attributes}.
+    \row    \li \c head
+            \li Document header
+            \li
+    \row    \li \c hr
+            \li Horizontal line
+            \li Supports the \c width attribute, which can
                be specified as an absolute or relative (\c %) value.
-    \row    \o \c html
-            \o HTML document
-            \o
-    \row    \o \c i
-            \o Italic
-            \o
-    \row    \o \c img
-            \o Image
-            \o Supports the \c src, \c source
+    \row    \li \c html
+            \li HTML document
+            \li
+    \row    \li \c i
+            \li Italic
+            \li
+    \row    \li \c img
+            \li Image
+            \li Supports the \c src, \c source
                (for Qt 3 compatibility), \c width, and \c height
                attributes.
-    \row    \o \c kbd
-            \o User-entered text
-            \o
-    \row    \o \c meta
-            \o Meta-information
-            \o If a text encoding is specified using the \c{meta} tag,
+    \row    \li \c kbd
+            \li User-entered text
+            \li
+    \row    \li \c meta
+            \li Meta-information
+            \li If a text encoding is specified using the \c{meta} tag,
                it is picked up by Qt::codecForHtml().
                Likewise, if an encoding is specified to
                QTextDocument::toHtml(), the encoding is stored using
@@ -982,91 +982,91 @@
 
     \snippet doc/src/snippets/code/doc_src_richtext.qdoc 7
 
-    \row    \o \c li
-            \o List item
-            \o
-    \row    \o \c nobr
-            \o Non-breakable text
-            \o
-    \row    \o \c ol
-            \o Ordered list
-            \o Supports the standard \l{list attributes}.
-    \row    \o \c p
-            \o Paragraph
-            \o Left-aligned by default. Supports the standard
+    \row    \li \c li
+            \li List item
+            \li
+    \row    \li \c nobr
+            \li Non-breakable text
+            \li
+    \row    \li \c ol
+            \li Ordered list
+            \li Supports the standard \l{list attributes}.
+    \row    \li \c p
+            \li Paragraph
+            \li Left-aligned by default. Supports the standard
                \l{block attributes}.
-    \row    \o \c pre
-            \o Preformated text
-            \o
-    \row    \o \c qt
-            \o Qt rich-text document
-            \o Synonym for \c html. Provided for compatibility with
+    \row    \li \c pre
+            \li Preformated text
+            \li
+    \row    \li \c qt
+            \li Qt rich-text document
+            \li Synonym for \c html. Provided for compatibility with
                earlier versions of Qt.
-    \row    \o \c s
-            \o Strikethrough
-            \o
-    \row    \o \c samp
-            \o Sample code
-            \o Same as \c tt.
-    \row    \o \c small
-            \o Small font
-            \o
-    \row    \o \c span
-            \o Grouped elements
-            \o
-    \row    \o \c strong
-            \o Strong
-            \o Same as \c b.
-    \row    \o \c sub
-            \o Subscript
-            \o
-    \row    \o \c sup
-            \o Superscript
-            \o
-    \row    \o \c table
-            \o Table
-            \o Supports the following attributes: \c border,
+    \row    \li \c s
+            \li Strikethrough
+            \li
+    \row    \li \c samp
+            \li Sample code
+            \li Same as \c tt.
+    \row    \li \c small
+            \li Small font
+            \li
+    \row    \li \c span
+            \li Grouped elements
+            \li
+    \row    \li \c strong
+            \li Strong
+            \li Same as \c b.
+    \row    \li \c sub
+            \li Subscript
+            \li
+    \row    \li \c sup
+            \li Superscript
+            \li
+    \row    \li \c table
+            \li Table
+            \li Supports the following attributes: \c border,
                \c bgcolor (Qt \l{QColor::setNamedColor()}{color names}
                or \c #RRGGBB), \c cellspacing, \c cellpadding,
                \c width (absolute or relative), and \c height.
-    \row    \o \c tbody
-            \o Table body
-            \o Does nothing.
-    \row    \o \c td
-            \o Table data cell
-            \o Supports the standard \l{table cell attributes}.
-    \row    \o \c tfoot
-            \o Table footer
-            \o Does nothing.
-    \row    \o \c th
-            \o Table header cell
-            \o Supports the standard \l{table cell attributes}.
-    \row    \o \c thead
-            \o Table header
-            \o If the \c thead tag is specified, it is used when printing tables
+    \row    \li \c tbody
+            \li Table body
+            \li Does nothing.
+    \row    \li \c td
+            \li Table data cell
+            \li Supports the standard \l{table cell attributes}.
+    \row    \li \c tfoot
+            \li Table footer
+            \li Does nothing.
+    \row    \li \c th
+            \li Table header cell
+            \li Supports the standard \l{table cell attributes}.
+    \row    \li \c thead
+            \li Table header
+            \li If the \c thead tag is specified, it is used when printing tables
                that span multiple pages.
-    \row    \o \c title
-            \o Document title
-            \o The value specified using the \c
+    \row    \li \c title
+            \li Document title
+            \li The value specified using the \c
                title tag is available through
                QTextDocument::metaInformation().
-    \row    \o \c tr
-            \o Table row
-            \o Supports the \c bgcolor attribute, which
+    \row    \li \c tr
+            \li Table row
+            \li Supports the \c bgcolor attribute, which
                can be a Qt \l{QColor::setNamedColor()}{color name}
                or a \c #RRGGBB color specification.
-    \row    \o \c tt
-            \o Typewrite font
-            \o
-    \row    \o \c u
-            \o Underlined
-            \o
-    \row    \o \c ul
-            \o Unordered list
-            \o Supports the standard \l{list attributes}.
-    \row    \o \c var
-            \o Variable
-            \o Same as \c i.
+    \row    \li \c tt
+            \li Typewrite font
+            \li
+    \row    \li \c u
+            \li Underlined
+            \li
+    \row    \li \c ul
+            \li Unordered list
+            \li Supports the standard \l{list attributes}.
+    \row    \li \c var
+            \li Variable
+            \li Same as \c i.
     \endtable
 
     \section1 Block Attributes
@@ -1075,8 +1075,8 @@
     dt, \c h1, \c h2, \c h3, \c h4, \c h5, \c h6, \c p tags:
 
     \list
-    \o \c align (\c left, \c right, \c center, \c justify)
-    \o \c dir (\c ltr, \c rtl)
+    \li \c align (\c left, \c right, \c center, \c justify)
+    \li \c dir (\c ltr, \c rtl)
     \endlist
 
     \section1 List Attributes
@@ -1084,7 +1084,7 @@
     The following attribute is supported by the \c ol and \c ul tags:
 
     \list
-    \o \c type (\c 1, \c a, \c A, \c square, \c disc, \c circle)
+    \li \c type (\c 1, \c a, \c A, \c square, \c disc, \c circle)
     \endlist
 
     \section1 Table Cell Attributes
@@ -1093,12 +1093,12 @@
     tags:
 
     \list
-    \o \c width (absolute, relative, or no-value)
-    \o \c bgcolor (Qt \l{QColor::setNamedColor()}{color names} or \c #RRGGBB)
-    \o \c colspan
-    \o \c rowspan
-    \o \c align (\c left, \c right, \c center, \c justify)
-    \o \c valign (\c top, \c middle, \c bottom)
+    \li \c width (absolute, relative, or no-value)
+    \li \c bgcolor (Qt \l{QColor::setNamedColor()}{color names} or \c #RRGGBB)
+    \li \c colspan
+    \li \c rowspan
+    \li \c align (\c left, \c right, \c center, \c justify)
+    \li \c valign (\c top, \c middle, \c bottom)
     \endlist
 
     \section1 CSS Properties
@@ -1106,104 +1106,104 @@
     \l{Rich Text Processing}{rich text} engine:
 
     \table
-    \header \o Property
-            \o Values
-            \o Description
+    \header \li Property
+            \li Values
+            \li Description
     \row
-            \o \c background-color
-            \o <color>
-            \o Background color for elements
+            \li \c background-color
+            \li <color>
+            \li Background color for elements
     \row
-            \o \c background-image
-            \o <uri>
-            \o Background image for elements
-    \row    \o \c color
-            \o <color>
-            \o Text foreground color
-    \row    \o \c font-family
-            \o <family name>
-            \o Font family name
-    \row    \o \c font-size
-            \o [ small | medium | large | x-large | xx-large ] | <size>pt | <size>px
-            \o Font size relative to the document font, or specified in points or pixels
-    \row    \o \c font-style
-            \o [ normal | italic | oblique ]
-            \o
-    \row    \o \c font-weight
-            \o [ normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 ]
-            \o Specifies the font weight used for text, where \c normal and \c bold
+            \li \c background-image
+            \li <uri>
+            \li Background image for elements
+    \row    \li \c color
+            \li <color>
+            \li Text foreground color
+    \row    \li \c font-family
+            \li <family name>
+            \li Font family name
+    \row    \li \c font-size
+            \li [ small | medium | large | x-large | xx-large ] | <size>pt | <size>px
+            \li Font size relative to the document font, or specified in points or pixels
+    \row    \li \c font-style
+            \li [ normal | italic | oblique ]
+            \li
+    \row    \li \c font-weight
+            \li [ normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 ]
+            \li Specifies the font weight used for text, where \c normal and \c bold
                are mapped to the corresponding QFont weights. Numeric values are
                8 times the equivalent QFont weight values.
-    \row    \o \c text-decoration
-            \o none | [ underline || overline || line-through ]
-            \o Additional text effects
-    \row    \o \c font
-            \o [ [ <'font-style'> || <'font-weight'> ]? <'font-size'> <'font-family'> ]
-            \o Font shorthand property
-    \row    \o \c text-indent
-            \o <length>px
-            \o First line text indentation in pixels
-    \row    \o \c white-space
-            \o normal | pre | nowrap | pre-wrap
-            \o Declares how whitespace in HTML is handled.
-    \row    \o \c margin-top
-            \o <length>px
-            \o Top paragraph margin in pixels
-    \row    \o \c margin-bottom
-            \o <length>px
-            \o Bottom paragraph margin in pixels
-    \row    \o \c margin-left
-            \o <length>px
-            \o Left paragraph margin in pixels
-    \row    \o \c margin-right
-            \o <length>px
-            \o Right paragraph margin in pixels
-    \row    \o \c padding-top
-            \o <length>px
-            \o Top table cell padding in pixels
-    \row    \o \c padding-bottom
-            \o <length>px
-            \o Bottom table cell padding in pixels
-    \row    \o \c padding-left
-            \o <length>px
-            \o Left table cell padding in pixels
-    \row    \o \c padding-right
-            \o <length>px
-            \o Right table cell padding in pixels
-    \row    \o \c padding
-            \o <length>px
-            \o Shorthand for setting all the padding properties at once.
-    \row    \o \c vertical-align
-            \o baseline | sub | super | middle | top | bottom
-            \o Vertical text alignment. For vertical alignment in text table cells only middle, top, and bottom apply.
-    \row    \o \c border-color
-            \o <color>
-            \o Border color for text tables.
-    \row    \o \c border-style
-            \o none | dotted | dashed | dot-dash | dot-dot-dash | solid | double | groove | ridge | inset | outset
-            \o Border style for text tables.
-    \row    \o \c background
-            \o [ <'background-color'> || <'background-image'> ]
-            \o Background shorthand property
-    \row    \o \c page-break-before
-            \o [ auto | always ]
-            \o Make it possible to enforce a page break before the paragraph/table
-    \row    \o \c page-break-after
-            \o [ auto | always ]
-            \o Make it possible to enforce a page break after the paragraph/table
-    \row    \o float
-            \o [ left | right | none ]
-            \o Specifies where an image or a text will be placed in another element. Note that the \c float property is
+    \row    \li \c text-decoration
+            \li none | [ underline || overline || line-through ]
+            \li Additional text effects
+    \row    \li \c font
+            \li [ [ <'font-style'> || <'font-weight'> ]? <'font-size'> <'font-family'> ]
+            \li Font shorthand property
+    \row    \li \c text-indent
+            \li <length>px
+            \li First line text indentation in pixels
+    \row    \li \c white-space
+            \li normal | pre | nowrap | pre-wrap
+            \li Declares how whitespace in HTML is handled.
+    \row    \li \c margin-top
+            \li <length>px
+            \li Top paragraph margin in pixels
+    \row    \li \c margin-bottom
+            \li <length>px
+            \li Bottom paragraph margin in pixels
+    \row    \li \c margin-left
+            \li <length>px
+            \li Left paragraph margin in pixels
+    \row    \li \c margin-right
+            \li <length>px
+            \li Right paragraph margin in pixels
+    \row    \li \c padding-top
+            \li <length>px
+            \li Top table cell padding in pixels
+    \row    \li \c padding-bottom
+            \li <length>px
+            \li Bottom table cell padding in pixels
+    \row    \li \c padding-left
+            \li <length>px
+            \li Left table cell padding in pixels
+    \row    \li \c padding-right
+            \li <length>px
+            \li Right table cell padding in pixels
+    \row    \li \c padding
+            \li <length>px
+            \li Shorthand for setting all the padding properties at once.
+    \row    \li \c vertical-align
+            \li baseline | sub | super | middle | top | bottom
+            \li Vertical text alignment. For vertical alignment in text table cells only middle, top, and bottom apply.
+    \row    \li \c border-color
+            \li <color>
+            \li Border color for text tables.
+    \row    \li \c border-style
+            \li none | dotted | dashed | dot-dash | dot-dot-dash | solid | double | groove | ridge | inset | outset
+            \li Border style for text tables.
+    \row    \li \c background
+            \li [ <'background-color'> || <'background-image'> ]
+            \li Background shorthand property
+    \row    \li \c page-break-before
+            \li [ auto | always ]
+            \li Make it possible to enforce a page break before the paragraph/table
+    \row    \li \c page-break-after
+            \li [ auto | always ]
+            \li Make it possible to enforce a page break after the paragraph/table
+    \row    \li float
+            \li [ left | right | none ]
+            \li Specifies where an image or a text will be placed in another element. Note that the \c float property is
                only supported for tables and images.
-    \row    \o \c text-transform
-            \o [ uppercase | lowercase ]
-            \o Select the transformation that will be performed on the text prior to displaying it.
-    \row    \o \c font-variant
-            \o small-caps
-            \o Perform the smallcaps transformation on the text prior to displaying it.
-    \row    \o \c word-spacing
-            \o <width>px
-            \o Specifies an alternate spacing between each word.
+    \row    \li \c text-transform
+            \li [ uppercase | lowercase ]
+            \li Select the transformation that will be performed on the text prior to displaying it.
+    \row    \li \c font-variant
+            \li small-caps
+            \li Perform the smallcaps transformation on the text prior to displaying it.
+    \row    \li \c word-spacing
+            \li <width>px
+            \li Specifies an alternate spacing between each word.
     \endtable
 
     \section1 Supported CSS Selectors

@@ -47,12 +47,12 @@
     \c uic.
 
     \table
-    \header \o Option \o Description
-    \row \o \c{-o <file>} \o Write output to \c <file> instead of to standard output.
-    \row \o \c{-tr <func>} \o Use \c <func> for translating strings instead of \c tr().
-    \row \o \c{-p} \o Don't generate guards against multiple inclusion (\c #ifndef FOO_H ...).
-    \row \o \c{-h} \o Display the usage and the list of options.
-    \row \o \c{-v} \o Display \c{uic}'s version number.
+    \header \li Option \li Description
+    \row \li \c{-o <file>} \li Write output to \c <file> instead of to standard output.
+    \row \li \c{-tr <func>} \li Use \c <func> for translating strings instead of \c tr().
+    \row \li \c{-p} \li Don't generate guards against multiple inclusion (\c #ifndef FOO_H ...).
+    \row \li \c{-h} \li Display the usage and the list of options.
+    \row \li \c{-v} \li Display \c{uic}'s version number.
     \endtable
 
     \section1 Examples

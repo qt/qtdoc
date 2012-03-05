@@ -37,45 +37,45 @@
     library.
 
     \table 80%
-    \header \o {2,1} \bold{Modules for general software development}
-    \row \o \l{Qt Bluetooth Module}{QtBluetooth} \o Classes for Bluetooth device interaction.
-    \row \o \l{Qt Contacts API Reference Documentation}{QtContacts} \o Classes for managing your contacts.
-    \row \o \l{QtCore} \o Core non-graphical classes used by other modules
-    \row \o \l{QtDeclarative} \o An engine for declaratively building fluid user interfaces.
-    \row \o \l{QtGui} \o Base classes for graphical user interface (GUI) components
-    \row \o \l{QtLocation Module}{QtLocation} \o Classes for location positioning, mapping, navigation and place search.
-    \row \o \l{QtMultimedia Module}{QtMultimedia} \o Classes for audio, video, radio and camera functionality
-    \row \o \l{QtNetwork} \o Classes for network programming
-    \row \o \l{QtOpenGL} \o OpenGL support classes
-    \row \o \l{QtOpenVG} \o OpenVG support classes
-    \row \o \l{Qt Organizer API Reference Documentation}{QtOrganizer} \o Classes for managing your calendar events.
-    \row \o \l{QtPrintSupport} \o Classes for printing.
-    \row \o \l{Qt Publish Subscribe Module}{QtPublishSubscribe} \o Simplified mechanism for subscribing to notifications
-    \row \o \l{QtScript} \o Classes for evaluating Qt Scripts
-    \row \o \l{QtScriptTools} \o Additional Qt Script components
-    \row \o \l{Qt Sensors}{QtSensors} \o Classes for reading hardware sensors
-    \row \o \l{Qt Service Framework}{QtServiceFramework} \o Classes to create and start services
-    \row \o \l{QtSql} \o Classes for database integration using SQL
-    \row \o \l{QtSvg} \o Classes for displaying the contents of SVG files
-    \row \o \l{Qt System Info Module}{QtSystemInfo} \o Classes for accessing information about a device
-    \row \o \l{C++ Versit}{QtVersit} \o Classes to manage Versit.
-    \row \o \l{QtWebKit} \o Classes for displaying and editing Web content
-    \row \o \l{QtWidgets} \o Classes for widget development
-    \row \o \l{QtXml} \o Classes for handling XML
-    \row \o \l{QtXmlPatterns} \o An XQuery & XPath engine for XML and custom data models
-    \row \o \l{Qt3D Module}{Qt3D}  \o Classes and elements for the 3D API.
-    \row \o \l{Qt3Support} \o Qt 3 compatibility classes
-    \row \o \l{Phonon Module}{Phonon} \o Multimedia framework classes
-    \header \o {2,1} \bold{Modules for working with Qt's tools}
-    \row \o \l{QtDesigner} \o Classes for extending \QD
-    \row \o \l{QtHelp} \o Classes for online help
-    \row \o \l{QtTest} \o Tool classes for unit testing
-    \row \o \l{QtUiTools} \o Classes for handling \QD forms in applications
-    \header \o {2,1} \bold{Modules for Windows developers}
-    \row \o \l{QAxContainer} \o Extension for accessing ActiveX controls
-    \row \o \l{QAxServer} \o Extension for writing ActiveX servers
-    \header \o {2,1} \bold{Modules for Unix developers}
-    \row \o \l{QtDBus} \o Classes for Inter-Process Communication using the D-Bus
+    \header \li {2,1} \b{Modules for general software development}
+    \row \li \l{Qt Bluetooth Module}{QtBluetooth} \li Classes for Bluetooth device interaction.
+    \row \li \l{Qt Contacts API Reference Documentation}{QtContacts} \li Classes for managing your contacts.
+    \row \li \l{QtCore} \li Core non-graphical classes used by other modules
+    \row \li \l{QtDeclarative} \li An engine for declaratively building fluid user interfaces.
+    \row \li \l{QtGui} \li Base classes for graphical user interface (GUI) components
+    \row \li \l{QtLocation Module}{QtLocation} \li Classes for location positioning, mapping, navigation and place search.
+    \row \li \l{QtMultimedia Module}{QtMultimedia} \li Classes for audio, video, radio and camera functionality
+    \row \li \l{QtNetwork} \li Classes for network programming
+    \row \li \l{QtOpenGL} \li OpenGL support classes
+    \row \li \l{QtOpenVG} \li OpenVG support classes
+    \row \li \l{Qt Organizer API Reference Documentation}{QtOrganizer} \li Classes for managing your calendar events.
+    \row \li \l{QtPrintSupport} \li Classes for printing.
+    \row \li \l{Qt Publish Subscribe Module}{QtPublishSubscribe} \li Simplified mechanism for subscribing to notifications
+    \row \li \l{QtScript} \li Classes for evaluating Qt Scripts
+    \row \li \l{QtScriptTools} \li Additional Qt Script components
+    \row \li \l{Qt Sensors}{QtSensors} \li Classes for reading hardware sensors
+    \row \li \l{Qt Service Framework}{QtServiceFramework} \li Classes to create and start services
+    \row \li \l{QtSql} \li Classes for database integration using SQL
+    \row \li \l{QtSvg} \li Classes for displaying the contents of SVG files
+    \row \li \l{Qt System Info Module}{QtSystemInfo} \li Classes for accessing information about a device
+    \row \li \l{C++ Versit}{QtVersit} \li Classes to manage Versit.
+    \row \li \l{QtWebKit} \li Classes for displaying and editing Web content
+    \row \li \l{QtWidgets} \li Classes for widget development
+    \row \li \l{QtXml} \li Classes for handling XML
+    \row \li \l{QtXmlPatterns} \li An XQuery & XPath engine for XML and custom data models
+    \row \li \l{Qt3D Module}{Qt3D}  \li Classes and elements for the 3D API.
+    \row \li \l{Qt3Support} \li Qt 3 compatibility classes
+    \row \li \l{Phonon Module}{Phonon} \li Multimedia framework classes
+    \header \li {2,1} \b{Modules for working with Qt's tools}
+    \row \li \l{QtDesigner} \li Classes for extending \QD
+    \row \li \l{QtHelp} \li Classes for online help
+    \row \li \l{QtTest} \li Tool classes for unit testing
+    \row \li \l{QtUiTools} \li Classes for handling \QD forms in applications
+    \header \li {2,1} \b{Modules for Windows developers}
+    \row \li \l{QAxContainer} \li Extension for accessing ActiveX controls
+    \row \li \l{QAxServer} \li Extension for writing ActiveX servers
+    \header \li {2,1} \b{Modules for Unix developers}
+    \row \li \l{QtDBus} \li Classes for Inter-Process Communication using the D-Bus
     \endtable
 
     If you use \l qmake to build your projects, the QtCore and QtGui
@@ -182,18 +182,18 @@
     platform:
 
     \list
-    \o QMAKE_INCDIR_OPENVG
-    \o QMAKE_LIBDIR_OPENVG
-    \o QMAKE_LIBS_OPENVG
+    \li QMAKE_INCDIR_OPENVG
+    \li QMAKE_LIBDIR_OPENVG
+    \li QMAKE_LIBS_OPENVG
     \endlist
 
     Most OpenVG implementations are based on EGL, so the following
     variables may also need to be set:
 
     \list
-    \o QMAKE_INCDIR_EGL
-    \o QMAKE_LIBDIR_EGL
-    \o QMAKE_LIBS_EGL
+    \li QMAKE_INCDIR_EGL
+    \li QMAKE_LIBDIR_EGL
+    \li QMAKE_LIBS_EGL
     \endlist
 
     See \l{qmake Variable Reference} for more information on these variables.
@@ -583,9 +583,9 @@
     \snippet doc/src/snippets/code/doc_src_qtversit.pro 0
 
     \table 80%
-    \header \o {1,1} \bold{ Versit API Quick Links }
-    \row \o \l{versit.html}{ Versit Overview }
-    \row \o \l{versitplugins.html}{ Versit plugins  }
+    \header \li {1,1} \b{ Versit API Quick Links }
+    \row \li \l{versit.html}{ Versit Overview }
+    \row \li \l{versitplugins.html}{ Versit plugins  }
     \endtable
 
     \generatelist{classesbymodule Versit}

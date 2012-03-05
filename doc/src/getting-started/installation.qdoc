@@ -97,7 +97,7 @@ for your platform from the following list.
     e.g. gmake. The configure script tells you which make utility to
     use.
 
-    \bold{Note:} If you later need to reconfigure and rebuild Qt from the
+    \b{Note:} If you later need to reconfigure and rebuild Qt from the
     same location, ensure that all traces of the previous configuration are
     removed by entering the build directory and typing \c{make confclean}
     before running \c configure again.
@@ -128,7 +128,7 @@ for your platform from the following list.
     \c{/usr/local/Qt-%VERSION%/lib}. On Linux with GCC this step
     is not needed.
 
-\bold {That's all. Qt is now installed.}
+\b {That's all. Qt is now installed.}
 
 \section1 Qt Demos and Examples
 
@@ -140,11 +140,11 @@ for your platform from the following list.
     You might also want to try the following links:
 
     \list
-    \o \l{Configuring Qt}
-    \o \l{How to Learn Qt}
-    \o \l{Tutorials}
-    \o \l{Developer Zone}
-    \o \l{Deploying Qt Applications}
+    \li \l{Configuring Qt}
+    \li \l{How to Learn Qt}
+    \li \l{Tutorials}
+    \li \l{Developer Zone}
+    \li \l{Deploying Qt Applications}
     \endlist
 
     We hope you will enjoy using Qt. Good luck!
@@ -177,7 +177,7 @@ for your platform from the following list.
     from your account on the distribution server into your home directory
     (this may be known as the \c userprofile environment variable) and
     rename it to \c{.qt-license}. This renaming process must be done
-    using a \e{command prompt} on Windows, \bold{not} with Windows Explorer.
+    using a \e{command prompt} on Windows, \b{not} with Windows Explorer.
     For example on Windows 2000, \c{%USERPROFILE%} should be something
     like \c{C:\Documents and Settings\username}
 
@@ -216,7 +216,7 @@ for your platform from the following list.
 
 
     To configure the Qt library for your machine, type the following command
-    in a \bold{Visual Studio} command prompt:
+    in a \b{Visual Studio} command prompt:
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 8
 
@@ -249,7 +249,7 @@ for your platform from the following list.
     removed by entering the build directory and typing \c{nmake distclean}
     before running \c configure again.
 
-\bold{That's all. Qt is now installed.}
+\b{That's all. Qt is now installed.}
 
 \section1 Qt Demos and Examples
 
@@ -261,10 +261,10 @@ for your platform from the following list.
     You might also want to try the following links:
 
     \list
-    \o \l{How to Learn Qt}
-    \o \l{Tutorials}
-    \o \l{Developer Zone}
-    \o \l{Deploying Qt Applications}
+    \li \l{How to Learn Qt}
+    \li \l{Tutorials}
+    \li \l{Developer Zone}
+    \li \l{Deploying Qt Applications}
     \endlist
 
     We hope you will enjoy using Qt. Good luck!
@@ -373,7 +373,7 @@ must be run as root.
     If you use a different shell, please modify your environment
     variables accordingly.
 
-\bold {That's all. Qt is now installed.}
+\b {That's all. Qt is now installed.}
 
 \section1 Qt Demos and Examples
     If you are new to Qt, we suggest that you take a look at the
@@ -384,10 +384,10 @@ must be run as root.
     You might also want to try the following links:
 
     \list
-    \o \l{How to Learn Qt}
-    \o \l{Tutorials}
-    \o \l{Developer Zone}
-    \o \l{Deploying Qt Applications}
+    \li \l{How to Learn Qt}
+    \li \l{Tutorials}
+    \li \l{Developer Zone}
+    \li \l{Deploying Qt Applications}
     \endlist
 
     We hope you will enjoy using Qt. Good luck!
@@ -458,7 +458,7 @@ in the \l{Qt for Windows CE Requirements} document.
 
     \snippet doc/src/snippets/code/doc_src_installation.qdoc 22
 
-\bold{That's all. Qt is now installed.}
+\b{That's all. Qt is now installed.}
 
 \section1 Qt Demos and Examples
 
@@ -472,25 +472,25 @@ in the \l{Qt for Windows CE Requirements} document.
 
     The links below provide further information for using Qt:
     \list
-    \o \l{How to Learn Qt}
-    \o \l{Tutorials}
-    \o \l{Developer Zone}
-    \o \l{Deploying Qt Applications}
+    \li \l{How to Learn Qt}
+    \li \l{Tutorials}
+    \li \l{Developer Zone}
+    \li \l{Deploying Qt Applications}
     \endlist
 
     You might also want to try the following Windows CE specific links:
     \list
-    \o \l{Windows CE - Introduction to using Qt}
-    \o \l{Windows CE - Working with Custom SDKs}
-    \o \l{Windows CE - Using shadow builds}
-    \o \l{Windows CE - Signing}
+    \li \l{Windows CE - Introduction to using Qt}
+    \li \l{Windows CE - Working with Custom SDKs}
+    \li \l{Windows CE - Using shadow builds}
+    \li \l{Windows CE - Signing}
     \endlist
 
     Information on feature and performance tuning for embedded builds can
     be found on the following pages:
     \list
-    \o \l{Fine-Tuning Features in Qt}
-    \o \l{Qt Performance Tuning}
+    \li \l{Fine-Tuning Features in Qt}
+    \li \l{Qt Performance Tuning}
     \endlist
 
     We hope you will enjoy using Qt. Good luck!
@@ -551,7 +551,7 @@ in the \l{Qt for the Symbian platform Requirements} document.
 Symbian platform,
         see \l{The Symbian platform - Introduction to Qt}.
 
-\bold{We hope you will enjoy using Qt.}
+\b{We hope you will enjoy using Qt.}
 
 
 */
@@ -626,7 +626,7 @@ Binary Package} document.
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 23
     (to build the tools using MinGW, and the libraries using abld)
 
-    \bold or
+    \b or
 
 \snippet doc/src/snippets/code/doc_src_installation.qdoc 31
     (to build the tools using MinGW, and the libraries using SBSv2)
@@ -768,7 +768,7 @@ To run any application or demo on a real device, you need to install it
 on the device. To do this you first have to create a a package for the
 device, containing the libraries:
 
-\bold{Building a Qt package without a certificate}
+\b{Building a Qt package without a certificate}
 
 If you have no certificate, build a self signed Qt:
 
@@ -779,7 +779,7 @@ they can support all types of applications. However, these
 capabilities are automatically lowered if you make a self-signed
 package.
 
-\bold{Building a Qt package with a Symbian developer certificate}
+\b{Building a Qt package with a Symbian developer certificate}
 
 If you have a Symbian-signed developer certificate, specify the
 capabilities you can sign for, for example:
@@ -799,7 +799,7 @@ to use the App TRK tool.
 Download the package from the following location.
 
 \list
-\o \l{http://tools.ext.nokia.com/trk/}{Application TRK}.
+\li \l{http://tools.ext.nokia.com/trk/}{Application TRK}.
    Choose the correct installation package based on the
    S60 version of your device
    (\c{S60_<S60-version>_app_trk_<TRK-version>.sisx}).
@@ -956,12 +956,12 @@ We hope you will enjoy using Qt.
     Qt on your platform.
 
     \list
-    \o \l{Qt for Embedded Linux Requirements}
-    \o \l{Qt for Mac OS X Requirements}
-    \o \l{Qt for the Symbian platform Requirements}
-    \o \l{Qt for Windows CE Requirements}
-    \o \l{Qt for Windows Requirements}
-    \o \l{Qt for X11 Requirements}
+    \li \l{Qt for Embedded Linux Requirements}
+    \li \l{Qt for Mac OS X Requirements}
+    \li \l{Qt for the Symbian platform Requirements}
+    \li \l{Qt for Windows CE Requirements}
+    \li \l{Qt for Windows Requirements}
+    \li \l{Qt for X11 Requirements}
     \endlist
 */
 
@@ -985,10 +985,10 @@ We hope you will enjoy using Qt.
     To build Qt with Phonon on Windows, you require:
 
     \list
-        \o Microsoft's DirectX Software Development Kit which can be
+        \li Microsoft's DirectX Software Development Kit which can be
         downloaded
         \l{http://msdn2.microsoft.com/en-us/directx/aa937788.aspx}{here}, and
-        \o Microsoft's Windows Server 2003 R2 Platform SDK which is available
+        \li Microsoft's Windows Server 2003 R2 Platform SDK which is available
         \l{http://www.microsoft.com/downloads/details.aspx?FamilyID=0baf2b35-c656-4969-ace8-e4c0c0716adb&amp;DisplayLang=en}{here}.
     \endlist
 
@@ -1000,16 +1000,16 @@ We hope you will enjoy using Qt.
           They are not required when using a prebuilt library.
 
     \list
-        \o Install \l{http://www.activestate.com/Products/ActivePerl/}{ActiveState Perl}
-        \o Install \l{http://www.python.org/download/}{Python 2.x}
+        \li Install \l{http://www.activestate.com/Products/ActivePerl/}{ActiveState Perl}
+        \li Install \l{http://www.python.org/download/}{Python 2.x}
            (and add the installation location to your PATH)
-        \o In addition, you need these external GNU tools from the
+        \li In addition, you need these external GNU tools from the
            \l{http://gnuwin32.sourceforge.net/packages.html}{GnuWin32 Project}:
         \list
-            \o \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
-            \o \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
-            \o \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
-            \o \l{http://gnuwin32.sourceforge.net/downlinks/libiconv.php}{LibIconv} (needed for bison)
+            \li \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
+            \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
+            \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
+            \li \l{http://gnuwin32.sourceforge.net/downlinks/libiconv.php}{LibIconv} (needed for bison)
         \endlist
     \endlist
 
@@ -1053,105 +1053,105 @@ We hope you will enjoy using Qt.
 
     \table 100%
     \header
-    \o Name
-    \o Library
-    \o Notes
-    \o Configuration options
-    \o Minimum working version
+    \li Name
+    \li Library
+    \li Notes
+    \li Configuration options
+    \li Minimum working version
     \row {id="OptionalColor"}
-    \o XRender
-    \o libXrender
-    \o X Rendering Extension; used for anti-aliasing
-    \o \tt{-xrender} or auto-detected
-    \o 0.9.0
+    \li XRender
+    \li libXrender
+    \li X Rendering Extension; used for anti-aliasing
+    \li \tt{-xrender} or auto-detected
+    \li 0.9.0
     \row {id="OptionalColor"}
-    \o Xrandr
-    \o libXrandr
-    \o X Resize and Rotate Extension
-    \o \tt{-xrandr} or auto-detected
-    \o 1.0.2
+    \li Xrandr
+    \li libXrandr
+    \li X Resize and Rotate Extension
+    \li \tt{-xrandr} or auto-detected
+    \li 1.0.2
     \row {id="OptionalColor"}
-    \o Xcursor
-    \o libXcursor
-    \o X Cursor Extension
-    \o \tt{-xcursor} or auto-detected
-    \o 1.1.4
+    \li Xcursor
+    \li libXcursor
+    \li X Cursor Extension
+    \li \tt{-xcursor} or auto-detected
+    \li 1.1.4
     \row {id="OptionalColor"}
-    \o Xfixes
-    \o libXfixes
-    \o X Fixes Extension
-    \o \tt{-xfixes} or auto-detected
-    \o 3.0.0
+    \li Xfixes
+    \li libXfixes
+    \li X Fixes Extension
+    \li \tt{-xfixes} or auto-detected
+    \li 3.0.0
     \row {id="OptionalColor"}
-    \o Xinerama
-    \o libXinerama
-    \o Multi-head support
-    \o \tt{-xinerama} or auto-detected
-    \o 1.1.0
+    \li Xinerama
+    \li libXinerama
+    \li Multi-head support
+    \li \tt{-xinerama} or auto-detected
+    \li 1.1.0
 
     \row {id="OptionalColor"}
-    \o Fontconfig
-    \o libfontconfig
-    \o Font customization and configuration
-    \o \tt{-fontconfig} or auto-detected
-    \o 2.1
+    \li Fontconfig
+    \li libfontconfig
+    \li Font customization and configuration
+    \li \tt{-fontconfig} or auto-detected
+    \li 2.1
     \row {id="OptionalColor"}
-    \o FreeType
-    \o libfreetype
-    \o Font engine
-    \o
-    \o 2.1.3
+    \li FreeType
+    \li libfreetype
+    \li Font engine
+    \li
+    \li 2.1.3
 
     \row {id="DefaultColor"}
-    \o Xi
-    \o libXi
-    \o X11 Input Extensions
-    \o \tt{-xinput} or auto-detected
-    \o 1.3.0
+    \li Xi
+    \li libXi
+    \li X11 Input Extensions
+    \li \tt{-xinput} or auto-detected
+    \li 1.3.0
     \row {id="DefaultColor"}
-    \o Xt
-    \o libXt
-    \o Xt Intrinsics
-    \o
-    \o 0.99
+    \li Xt
+    \li libXt
+    \li Xt Intrinsics
+    \li
+    \li 0.99
     \row {id="DefaultColor"}
-    \o Xext
-    \o libXext
-    \o X Extensions
-    \o
-    \o 6.4.3
+    \li Xext
+    \li libXext
+    \li X Extensions
+    \li
+    \li 6.4.3
     \row {id="DefaultColor"}
-    \o X11
-    \o libX11
-    \o X11 Client-Side Library
-    \o
-    \o 6.2.1
+    \li X11
+    \li libX11
+    \li X11 Client-Side Library
+    \li
+    \li 6.2.1
 
     \row {id="SMColor"}
-    \o SM
-    \o libSM
-    \o X Session Management
-    \o \tt{-sm} or auto-detected
-    \o 6.0.4
+    \li SM
+    \li libSM
+    \li X Session Management
+    \li \tt{-sm} or auto-detected
+    \li 6.0.4
     \row {id="SMColor"}
-    \o ICE
-    \o libICE
-    \o Inter-Client Exchange
-    \o \tt{-sm} or auto-detected
-    \o 6.3.5
+    \li ICE
+    \li libICE
+    \li Inter-Client Exchange
+    \li \tt{-sm} or auto-detected
+    \li 6.3.5
 
     \row {id="GlibColor"}
-    \o glib
-    \o libglib-2.0
-    \o Common event loop handling
-    \o \tt{-glib} or auto-detected
-    \o 2.8.3
+    \li glib
+    \li libglib-2.0
+    \li Common event loop handling
+    \li \tt{-glib} or auto-detected
+    \li 2.8.3
     \row {id="PthreadColor"}
-    \o pthread
-    \o libpthread
-    \o Multithreading
-    \o
-    \o 2.3.5
+    \li pthread
+    \li libpthread
+    \li Multithreading
+    \li
+    \li 2.3.5
     \endtable
 
     \note You must compile with XRender support to get alpha transparency
@@ -1163,16 +1163,16 @@ We hope you will enjoy using Qt.
     packages:
 
     \list
-    \o libfontconfig1-dev
-    \o libfreetype6-dev
-    \o libx11-dev
-    \o libxcursor-dev
-    \o libxext-dev
-    \o libxfixes-dev
-    \o libxft-dev
-    \o libxi-dev
-    \o libxrandr-dev
-    \o libxrender-dev
+    \li libfontconfig1-dev
+    \li libfreetype6-dev
+    \li libx11-dev
+    \li libxcursor-dev
+    \li libxext-dev
+    \li libxfixes-dev
+    \li libxft-dev
+    \li libxi-dev
+    \li libxrandr-dev
+    \li libxrender-dev
     \endlist
 
     Some of these packages depend on others in this list, so installing one
@@ -1212,13 +1212,13 @@ We hope you will enjoy using Qt.
           They are not required when using a prebuilt library.
 
     \list
-        \o gperf
-        \o bison
-        \o flex (v2.5.33 or later)
-        \o sqlite (development version)
-        \o fontconfig (development version)
-        \o xrender (development version)
-        \o phonon (development version)
+        \li gperf
+        \li bison
+        \li flex (v2.5.33 or later)
+        \li sqlite (development version)
+        \li fontconfig (development version)
+        \li xrender (development version)
+        \li phonon (development version)
     \endlist
 
     These should be available in most major Linux distributions, but the exact install instructions will vary.
@@ -1239,36 +1239,36 @@ We hope you will enjoy using Qt.
     Windows CE development on Windows XP and Windows Vista:
 
     \list
-        \o  Windows CE 5.0 Standard SDK for ARM, X86, and MIPS
-        \o  Windows CE 6.0 SDKs for ARM generated using the defaults found in
+        \li  Windows CE 5.0 Standard SDK for ARM, X86, and MIPS
+        \li  Windows CE 6.0 SDKs for ARM generated using the defaults found in
             Platform Builder
-        \o  Windows Mobile 5.0 (\e{Pocket PC}, \e{Smartphone} and
+        \li  Windows Mobile 5.0 (\e{Pocket PC}, \e{Smartphone} and
             \e{Pocket PC with Phone} editions)
-        \o  Windows Mobile 6.0 (\e{Standard}, \e{Classic} and
+        \li  Windows Mobile 6.0 (\e{Standard}, \e{Classic} and
             \e{Professional} editions)
     \endlist
 
     Below is a list of links to download the SDKs:
 
     \list
-        \o \l{http://www.microsoft.com/downloads/details.aspx?familyid=fa1a3d66-3f61-4ddc-9510-ae450e2318c3&amp;displaylang=en}
+        \li \l{http://www.microsoft.com/downloads/details.aspx?familyid=fa1a3d66-3f61-4ddc-9510-ae450e2318c3&amp;displaylang=en}
             {Windows CE 5 Standard SDK}
-        \o  \l{http://www.microsoft.com/downloads/details.aspx?familyid=83A52AF2-F524-4EC5-9155-717CBE5D25ED&amp;displaylang=en}
+        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=83A52AF2-F524-4EC5-9155-717CBE5D25ED&amp;displaylang=en}
             {Windows Mobile 5 Pocket PC}
-        \o  \l{http://www.microsoft.com/downloads/details.aspx?familyid=DC6C00CB-738A-4B97-8910-5CD29AB5F8D9&amp;displaylang=en}
+        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=DC6C00CB-738A-4B97-8910-5CD29AB5F8D9&amp;displaylang=en}
             {Windows Mobile 5 Smartphone}
-        \o  \l{http://www.microsoft.com/downloads/details.aspx?familyid=06111A3A-A651-4745-88EF-3D48091A390B&amp;displaylang=en}
+        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=06111A3A-A651-4745-88EF-3D48091A390B&amp;displaylang=en}
             {Windows Mobile 6 Professional/Standard}
     \endlist
 
-    \bold{Note:}
+    \b{Note:}
     \table
         \row
-            \o
+            \li
             \list 1
-                \o Currently, there is only compile support for Windows CE 5.0
+                \li Currently, there is only compile support for Windows CE 5.0
                    Standard SDK for SH-4.
-                \o There is currently no "out of the box" support for the
+                \li There is currently no "out of the box" support for the
                    Windows CE Automotive or Portable Media SDKs from Microsoft.
             \endlist
     \endtable
@@ -1281,25 +1281,25 @@ We hope you will enjoy using Qt.
 
     \section3 Requirements
     \list
-        \o Development environment:
+        \li Development environment:
         \list
-            \o Microsoft Visual Studio 2005 (Standard Edition) or higher
-            \o ActivePerl
+            \li Microsoft Visual Studio 2005 (Standard Edition) or higher
+            \li ActivePerl
         \endlist
-        \o Footprint
+        \li Footprint
         \list
-            \o Lean configuration - 4.8 MB
-            \o Full configuration - 8.4 MB
+            \li Lean configuration - 4.8 MB
+            \li Full configuration - 8.4 MB
         \endlist
-        \o Operating Systems
+        \li Operating Systems
         \list
-            \o Windows CE 5 or higher
-            \o Windows Mobile 5 or higher
+            \li Windows CE 5 or higher
+            \li Windows Mobile 5 or higher
         \endlist
-        \o Hardware Platform
+        \li Hardware Platform
         \list
-            \o Supported on ARM, x86
-            \o (Compiles on SH4 and MIPS)
+            \li Supported on ARM, x86
+            \li (Compiles on SH4 and MIPS)
         \endlist
     \endlist
 
@@ -1318,7 +1318,7 @@ We hope you will enjoy using Qt.
     \section1 Building Qt for Embedded Linux with uclibc
 
     If you intend to include the QtWebKit module in your Qt build then you should
-    use version \bold{uClibc 0.9.29 or greater} as that is the earliest version
+    use version \b{uClibc 0.9.29 or greater} as that is the earliest version
     with sufficient pthread support.
 
     \section1 QPA
@@ -1358,30 +1358,30 @@ We hope you will enjoy using Qt.
 
     Qt for the Symbian platform requires the following software installed on your development PC:
     \list
-        \o \l{http://www.forum.nokia.com/Library/Tools_and_downloads/Other/Carbide.c++/}{Carbide.c++ v2.3.0 or higher recommended}.
+        \li \l{http://www.forum.nokia.com/Library/Tools_and_downloads/Other/Carbide.c++/}{Carbide.c++ v2.3.0 or higher recommended}.
            \list
-           \o \bold{Note:} It may be necessary to update the Carbide compiler depending on Carbide version.
+           \li \b{Note:} It may be necessary to update the Carbide compiler depending on Carbide version.
               See \l{http://pepper.troll.no/s60prereleases/patches/}{here} for instructions how to check your
               compiler version and how to patch it, if needed.
            \endlist
-        \o \l{http://downloads.activestate.com/ActivePerl/releases}{ActivePerl 5.6.1 build 638 or higher}
+        \li \l{http://downloads.activestate.com/ActivePerl/releases}{ActivePerl 5.6.1 build 638 or higher}
            \list
-           \o \bold{Note:} According to Symbian, version 5.6.1 build 638 is mandatory for building Symbian applications,
+           \li \b{Note:} According to Symbian, version 5.6.1 build 638 is mandatory for building Symbian applications,
               but that version is no longer available from ActiveState. However, Qt for Symbian has been successfully
               compiled using both 5.8.x and 5.10.x versions.
            \endlist
-        \o \l{http://www.forum.nokia.com/info/sw.nokia.com/id/ec866fab-4b76-49f6-b5a5-af0631419e9c/S60_All_in_One_SDKs.html}{S60 Platform SDK 3rd Edition FP1 or higher}
+        \li \l{http://www.forum.nokia.com/info/sw.nokia.com/id/ec866fab-4b76-49f6-b5a5-af0631419e9c/S60_All_in_One_SDKs.html}{S60 Platform SDK 3rd Edition FP1 or higher}
            \list
-           \o \bold{Note:} Users of \bold{S60 Platform SDK 3rd Edition FP1} also need special update. The update can be found
+           \li \b{Note:} Users of \b{S60 Platform SDK 3rd Edition FP1} also need special update. The update can be found
            \l{http://pepper.troll.no/s60prereleases/patches/}{here}.
            \endlist
-        \o \l{http://www.forum.nokia.com/info/sw.nokia.com/id/91d89929-fb8c-4d66-bea0-227e42df9053/Open_C_SDK_Plug-In.html}{Open C/C++ v1.7.5 or higher}.
+        \li \l{http://www.forum.nokia.com/info/sw.nokia.com/id/91d89929-fb8c-4d66-bea0-227e42df9053/Open_C_SDK_Plug-In.html}{Open C/C++ v1.7.5 or higher}.
            Install this to all Symbian SDKs you plan to use Qt with.
-        \o Building Qt tools from scratch requires \l{http://www.mingw.org/}{MinGW 3.4.5 or higher}, or another windows compiler.
+        \li Building Qt tools from scratch requires \l{http://www.mingw.org/}{MinGW 3.4.5 or higher}, or another windows compiler.
            \list
-           \o \bold{Note:} This is not required if you are using pre-built binary package.
+           \li \b{Note:} This is not required if you are using pre-built binary package.
            \endlist
-        \o Building Qt libraries requires \l{http://www.arm.com/products/tools/software-development-tools.php}{RVCT} version 2.2 (build 686 or later),
+        \li Building Qt libraries requires \l{http://www.arm.com/products/tools/software-development-tools.php}{RVCT} version 2.2 (build 686 or later),
            which is not available free of charge.  Usage of later versions of RVCT, including the 3.x and 4.x series, is not supported
            in this release.
     \endlist
@@ -1394,21 +1394,21 @@ We hope you will enjoy using Qt.
     under your Qt installation:
 
     \list
-        \o \c{src\s60installs\sqlite3.sis}
+        \li \c{src\s60installs\sqlite3.sis}
     \endlist
 
     The Open C packages you can find in the Symbian SDK where you installed Open C/C++:
     \list
-        \o \c{nokia_plugin\openc\s60opencsis\pips_s60_<version>.sis}
-        \o \c{nokia_plugin\openc\s60opencsis\openc_ssl_s60_<version>.sis}
-        \o \c{nokia_plugin\opencpp\s60opencppsis\stdcpp_s60_<version>.sis}
+        \li \c{nokia_plugin\openc\s60opencsis\pips_s60_<version>.sis}
+        \li \c{nokia_plugin\openc\s60opencsis\openc_ssl_s60_<version>.sis}
+        \li \c{nokia_plugin\opencpp\s60opencppsis\stdcpp_s60_<version>.sis}
     \endlist
 
     If you wish to do hardware debugging with Carbide or run applications in real devices using "make run" command,
-    TRK must be installed to the device. \bold{Note:} TRK is not required if you just want to install and run
+    TRK must be installed to the device. \b{Note:} TRK is not required if you just want to install and run
     applications manually on the device.
     \list
-        \o \l{http://tools.ext.nokia.com/trk/}{Application TRK}. Choose the correct
+        \li \l{http://tools.ext.nokia.com/trk/}{Application TRK}. Choose the correct
            installation package based on the S60 version of your device (S60_<S60-version>_app_trk_<TRK-version>.sisx).
     \endlist
 
@@ -1459,273 +1459,273 @@ We hope you will enjoy using Qt.
     \section2 Cross platform options:
 
     \table
-    \header \o Option  \o Description \o Note
-    \row   \o \c {-buildkey} <key> \o Build the Qt library and plugins
-    using the specified \o
-    \row   \o \c {<key>} \o When the library loads plugins, it will only
-    load those that have a matching <key>. \o
-    \row   \o \c {-release} \o Compile and link Qt with debugging turned off. \o
-    \row   \o \c {-debug} \o Compile and link Qt with debugging turned on.
-    \o Default value.
-    \row   \o \c {-debug-and-release} \o Compile and link two Qt libraries,
-    with and without debugging turned on. \o This option denotes a default
+    \header \li Option  \li Description \li Note
+    \row   \li \c {-buildkey} <key> \li Build the Qt library and plugins
+    using the specified \li
+    \row   \li \c {<key>} \li When the library loads plugins, it will only
+    load those that have a matching <key>. \li
+    \row   \li \c {-release} \li Compile and link Qt with debugging turned off. \li
+    \row   \li \c {-debug} \li Compile and link Qt with debugging turned on.
+    \li Default value.
+    \row   \li \c {-debug-and-release} \li Compile and link two Qt libraries,
+    with and without debugging turned on. \li This option denotes a default
     value and needs to be evaluated. If the evaluation succeeds, the
     feature is included.
-    \row   \o \c {-opensource} \o Compile and link the Open-Source Edition
-    of Qt. \o
-    \row   \o \c {-commercial} \o Compile and link the Commercial Edition
-    of Qt. \o
-    \row   \o \c {-developer-build} \o Compile and link Qt with Qt developer
-    options including auto-tests exporting) \o
-    \row   \o \c {-shared} \o Create and use shared Qt libraries. \o Default
+    \row   \li \c {-opensource} \li Compile and link the Open-Source Edition
+    of Qt. \li
+    \row   \li \c {-commercial} \li Compile and link the Commercial Edition
+    of Qt. \li
+    \row   \li \c {-developer-build} \li Compile and link Qt with Qt developer
+    options including auto-tests exporting) \li
+    \row   \li \c {-shared} \li Create and use shared Qt libraries. \li Default
     value.
-    \row   \o \c {-static} \o Create and use static Qt libraries. \o
-    \row   \o \c {-ltcg} \o Use Link Time Code Generation. \o Apply to release
+    \row   \li \c {-static} \li Create and use static Qt libraries. \li
+    \row   \li \c {-ltcg} \li Use Link Time Code Generation. \li Apply to release
     builds only.
-    \row   \o \c {-no-ltcg} \o Do not use Link Time Code Generation. \o Default
+    \row   \li \c {-no-ltcg} \li Do not use Link Time Code Generation. \li Default
     value.
-    \row   \o \c {-no-fast} \o Configure Qt normally by generating Makefiles for
-    all project files. \o Default value.
-    \row   \o \c {-fast} \o Configure Qt quickly by generating Makefiles only for
-    library and subdirectory targets. \o All other Makefiles are created as
+    \row   \li \c {-no-fast} \li Configure Qt normally by generating Makefiles for
+    all project files. \li Default value.
+    \row   \li \c {-fast} \li Configure Qt quickly by generating Makefiles only for
+    library and subdirectory targets. \li All other Makefiles are created as
     wrappers which will in turn run qmake.
-    \row   \o \c {-no-exceptions} \o Disable exceptions on platforms that support
-    it. \o
-    \row   \o \c {-exceptions} \o Enable exceptions on platforms that support it.
-    \o Default value.
-    \row   \o \c {-no-accessibility} \o Do not compile Windows Active
-    Accessibility support. \o
-    \row   \o \c {-accessibility} \o Compile Windows Active Accessibility
-    support. \o Default value.
-    \row   \o \c {-no-stl} \o Do not compile STL support. \o
-    \row   \o \c {-stl} \o Compile STL support. \o Default value.
-    \row   \o \c {-no-sql-<driver>} \o Disable SQL <driver> entirely, by default
-    none are turned on. \o
-    \row   \o \c {-qt-sql-<driver>} \o Enable a SQL <driver> in the Qt Library.
-    \o
-    \row   \o \c {-plugin-sql-<driver>} \o Enable SQL <driver> as a plugin to be
-    linked to at run time. \o Available values for <driver>: mysql, psql,
+    \row   \li \c {-no-exceptions} \li Disable exceptions on platforms that support
+    it. \li
+    \row   \li \c {-exceptions} \li Enable exceptions on platforms that support it.
+    \li Default value.
+    \row   \li \c {-no-accessibility} \li Do not compile Windows Active
+    Accessibility support. \li
+    \row   \li \c {-accessibility} \li Compile Windows Active Accessibility
+    support. \li Default value.
+    \row   \li \c {-no-stl} \li Do not compile STL support. \li
+    \row   \li \c {-stl} \li Compile STL support. \li Default value.
+    \row   \li \c {-no-sql-<driver>} \li Disable SQL <driver> entirely, by default
+    none are turned on. \li
+    \row   \li \c {-qt-sql-<driver>} \li Enable a SQL <driver> in the Qt Library.
+    \li
+    \row   \li \c {-plugin-sql-<driver>} \li Enable SQL <driver> as a plugin to be
+    linked to at run time. \li Available values for <driver>: mysql, psql,
     oci, odbc, tds, db2, sqlite, sqlite2, ibase. Drivers marked with a
     '+' during configure have been detected as available on this system.
-    \row   \o \c {-system-sqlite} \o Use sqlite from the operating system. \o
-    \row   \o \c {-no-qt3support} \o Disables the Qt 3 support functionality. \o
-    \row   \o \c {-no-opengl} \o Disables OpenGL functionality \o
-    \row   \o \c {-opengl <api>} \o Enable OpenGL support with specified API
-    version. \o Available values for <api>: desktop - Enable support for
+    \row   \li \c {-system-sqlite} \li Use sqlite from the operating system. \li
+    \row   \li \c {-no-qt3support} \li Disables the Qt 3 support functionality. \li
+    \row   \li \c {-no-opengl} \li Disables OpenGL functionality \li
+    \row   \li \c {-opengl <api>} \li Enable OpenGL support with specified API
+    version. \li Available values for <api>: desktop - Enable support for
     Desktop OpenGL (Default), es1 - Enable support for OpenGL ES Common
     Profile, es2 - Enable support for OpenGL ES 2.0.
-    \row   \o \c {-no-openvg} \o Disables OpenVG functionality \o Default value.
-    \row   \o \c {-openvg} \o Enables OpenVG functionality \o Requires EGL
+    \row   \li \c {-no-openvg} \li Disables OpenVG functionality \li Default value.
+    \row   \li \c {-openvg} \li Enables OpenVG functionality \li Requires EGL
     support, typically supplied by an OpenGL or other graphics
     implementation.
-    \row   \o \c {-platform <spec>} \o The operating system and compiler you
-    are building on. \o The default value is %QMAKESPEC%.
-    \row   \o \c {-xplatform <spec>} \o The operating system and compiler you
-    are cross compiling for. \o See the README file for a list of supported
+    \row   \li \c {-platform <spec>} \li The operating system and compiler you
+    are building on. \li The default value is %QMAKESPEC%.
+    \row   \li \c {-xplatform <spec>} \li The operating system and compiler you
+    are cross compiling for. \li See the README file for a list of supported
     operating systems and compilers.
-    \row   \o \c {-qtnamespace <namespace>} \o Wraps all Qt library code in
-    'namespace name {..} \o
-    \row   \o \c {-qtlibinfix <infix>} \o Renames all Qt* libs to Qt*<infix>
-    \o
-    \row   \o \c {-D <define>} \o Add an explicit define to the preprocessor.
-    \o
-    \row   \o \c {-I <includepath>} \o Add an explicit include path. \o
-    \row   \o \c {-L <librarypath>} \o Add an explicit library path. \o
-    \row   \o \c {-l <libraryname>} \o Add an explicit library name, residing
-    in a librarypath. \o
-    \row   \o \c {-graphicssystem <sys>} \o Specify which graphics system should
-    be used. \o Available values for <sys>: * raster - Software rasterizer,
+    \row   \li \c {-qtnamespace <namespace>} \li Wraps all Qt library code in
+    'namespace name {..} \li
+    \row   \li \c {-qtlibinfix <infix>} \li Renames all Qt* libs to Qt*<infix>
+    \li
+    \row   \li \c {-D <define>} \li Add an explicit define to the preprocessor.
+    \li
+    \row   \li \c {-I <includepath>} \li Add an explicit include path. \li
+    \row   \li \c {-L <librarypath>} \li Add an explicit library path. \li
+    \row   \li \c {-l <libraryname>} \li Add an explicit library name, residing
+    in a librarypath. \li
+    \row   \li \c {-graphicssystem <sys>} \li Specify which graphics system should
+    be used. \li Available values for <sys>: * raster - Software rasterizer,
     opengl - Using OpenGL acceleration, experimental!, openvg - Using
     OpenVG acceleration, experimental!
-    \row   \o \c {-help, -h, -?} \o Display this information. \o
+    \row   \li \c {-help, -h, -?} \li Display this information. \li
     \endtable
 
     \section2 Third Party Libraries
 
     \table
-    \header \o Option  \o Description \o Note
-    \row   \o \c {-qt-zlib} \o Use the zlib bundled with Qt. \o
-    \row   \o \c {-system-zlib} \o Use zlib from the operating system.
-    \o See http://www.gzip.org/zlib
-    \row   \o \c {-no-gif} \o Do not compile GIF reading support.
-    \o This option denotes a default value and needs to be evaluated.
+    \header \li Option  \li Description \li Note
+    \row   \li \c {-qt-zlib} \li Use the zlib bundled with Qt. \li
+    \row   \li \c {-system-zlib} \li Use zlib from the operating system.
+    \li See http://www.gzip.org/zlib
+    \row   \li \c {-no-gif} \li Do not compile GIF reading support.
+    \li This option denotes a default value and needs to be evaluated.
     If the evaluation succeeds, the feature is included.
-    \row   \o \c {-qt-gif} \o Compile GIF reading support. \o See also
+    \row   \li \c {-qt-gif} \li Compile GIF reading support. \li See also
     src/gui/image/qgifhandler_p.h
-    \row   \o \c {-no-libpng} \o Do not compile PNG support. \o
-    \row   \o \c {-qt-libpng} \o Use the libpng bundled with Qt.
-    \o This option denotes a default value and needs to be evaluated.
+    \row   \li \c {-no-libpng} \li Do not compile PNG support. \li
+    \row   \li \c {-qt-libpng} \li Use the libpng bundled with Qt.
+    \li This option denotes a default value and needs to be evaluated.
     If the evaluation succeeds, the feature is included.
-    \row   \o \c {-system-libpng} \o Use libpng from the operating system.
-    \o See http://www.libpng.org/pub/png
-    \row   \o \c {-no-libmng} \o Do not compile MNG support. \o This option
+    \row   \li \c {-system-libpng} \li Use libpng from the operating system.
+    \li See http://www.libpng.org/pub/png
+    \row   \li \c {-no-libmng} \li Do not compile MNG support. \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-qt-libmng} \o Use the libmng bundled with Qt. \o
-    \row   \o \c {-system-libmng} \o Use libmng from the operating system.
-    \o See http://www.libmng.com
-    \row   \o \c {-no-libtiff} \o Do not compile TIFF support. \o This option
+    \row   \li \c {-qt-libmng} \li Use the libmng bundled with Qt. \li
+    \row   \li \c {-system-libmng} \li Use libmng from the operating system.
+    \li See http://www.libmng.com
+    \row   \li \c {-no-libtiff} \li Do not compile TIFF support. \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-qt-libtiff} \o Use the libtiff bundled with Qt. \o
-    \row   \o \c {-system-libtiff} \o Use libtiff from the operating system.
-    \o See http://www.libtiff.org
-    \row   \o \c {-no-libjpeg} \o Do not compile JPEG support. \o This option
+    \row   \li \c {-qt-libtiff} \li Use the libtiff bundled with Qt. \li
+    \row   \li \c {-system-libtiff} \li Use libtiff from the operating system.
+    \li See http://www.libtiff.org
+    \row   \li \c {-no-libjpeg} \li Do not compile JPEG support. \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-qt-libjpeg} \o Use the libjpeg bundled with Qt. \o
-    \row   \o \c {-system-libjpeg} \o Use libjpeg from the operating system.
-    \o See http://www.ijg.org. This option denotes a default value and
+    \row   \li \c {-qt-libjpeg} \li Use the libjpeg bundled with Qt. \li
+    \row   \li \c {-system-libjpeg} \li Use libjpeg from the operating system.
+    \li See http://www.ijg.org. This option denotes a default value and
     needs to be evaluated. If the evaluation succeeds, the feature is
     included.
     \endtable
 
     \section2 Qt for Windows only:
     \table
-    \header \o Option  \o Description \o Note
-    \row   \o \c {-no-dsp} \o Do not generate VC++ .dsp files. \o
-    \row   \o \c {-dsp} \o Generate VC++ .dsp files, only if spec "win32-msvc".
-    \o Default value.
-    \row   \o \c {-no-vcproj} \o Do not generate VC++ .vcproj files. \o
-    \row   \o \c {-vcproj} \o Generate VC++ .vcproj files, only if platform
-    "win32-msvc.net". \o Default value.
-    \row   \o \c {-no-incredibuild-xge} \o Do not add IncrediBuild XGE distribution
-    commands to custom build steps. \o
-    \row   \o \c {-incredibuild-xge} \o Add IncrediBuild XGE distribution commands
+    \header \li Option  \li Description \li Note
+    \row   \li \c {-no-dsp} \li Do not generate VC++ .dsp files. \li
+    \row   \li \c {-dsp} \li Generate VC++ .dsp files, only if spec "win32-msvc".
+    \li Default value.
+    \row   \li \c {-no-vcproj} \li Do not generate VC++ .vcproj files. \li
+    \row   \li \c {-vcproj} \li Generate VC++ .vcproj files, only if platform
+    "win32-msvc.net". \li Default value.
+    \row   \li \c {-no-incredibuild-xge} \li Do not add IncrediBuild XGE distribution
+    commands to custom build steps. \li
+    \row   \li \c {-incredibuild-xge} \li Add IncrediBuild XGE distribution commands
     to custom build steps. This will distribute MOC and UIC steps, and other
     custom buildsteps which are added to the INCREDIBUILD_XGE variable.
-    \o The IncrediBuild distribution commands are only added to Visual Studio
+    \li The IncrediBuild distribution commands are only added to Visual Studio
     projects. This option denotes a default value and needs to be evaluated.
     If the evaluation succeeds, the feature is included.
-    \row   \o \c {-no-plugin-manifests} \o Do not embed manifests in plugins. \o
-    \row   \o \c {-plugin-manifests} \o Embed manifests in plugins.
-    \o Default value.
-    \row   \o \c {-no-qmake} \o Do not compile qmake. \o
-    \row   \o \c {-qmake} \o Compile qmake. \o Default value
-    \row   \o \c {-dont-process} \o Do not generate Makefiles/Project files. This
-    will override -no-fast if specified. \o
-    \row   \o \c {-process} \o Generate Makefiles/Project files. \o Default value.
-    \row   \o \c {-no-rtti} \o Do not compile runtime type information. \o
-    \row   \o \c {-rtti} \o Compile runtime type information. \o Default value.
-    \row   \o \c {-no-mmx} \o Do not compile with use of MMX instructions \o
-    \row   \o \c {-mmx} \o Compile with use of MMX instructions \o This option
+    \row   \li \c {-no-plugin-manifests} \li Do not embed manifests in plugins. \li
+    \row   \li \c {-plugin-manifests} \li Embed manifests in plugins.
+    \li Default value.
+    \row   \li \c {-no-qmake} \li Do not compile qmake. \li
+    \row   \li \c {-qmake} \li Compile qmake. \li Default value
+    \row   \li \c {-dont-process} \li Do not generate Makefiles/Project files. This
+    will override -no-fast if specified. \li
+    \row   \li \c {-process} \li Generate Makefiles/Project files. \li Default value.
+    \row   \li \c {-no-rtti} \li Do not compile runtime type information. \li
+    \row   \li \c {-rtti} \li Compile runtime type information. \li Default value.
+    \row   \li \c {-no-mmx} \li Do not compile with use of MMX instructions \li
+    \row   \li \c {-mmx} \li Compile with use of MMX instructions \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-no-3dnow} \o Do not compile with use of 3DNOW instructions \o
-    \row   \o \c {-3dnow} \o Compile with use of 3DNOW instructions \o This
+    \row   \li \c {-no-3dnow} \li Do not compile with use of 3DNOW instructions \li
+    \row   \li \c {-3dnow} \li Compile with use of 3DNOW instructions \li This
     option denotes a default value and needs to be evaluated. If the
     evaluation succeeds, the feature is included.
-    \row   \o \c {-no-sse} \o Do not compile with use of SSE instructions \o
-    \row   \o \c {-sse} \o Compile with use of SSE instructions \o This option
+    \row   \li \c {-no-sse} \li Do not compile with use of SSE instructions \li
+    \row   \li \c {-sse} \li Compile with use of SSE instructions \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-no-sse2} \o Do not compile with use of SSE2 instructions \o
-    \row   \o \c {-sse2} \o Compile with use of SSE2 instructions \o This option
+    \row   \li \c {-no-sse2} \li Do not compile with use of SSE2 instructions \li
+    \row   \li \c {-sse2} \li Compile with use of SSE2 instructions \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-no-openssl} \o Do not compile in OpenSSL support \o
-    \row   \o \c {-openssl} \o Compile in run-time OpenSSL support \o This option
+    \row   \li \c {-no-openssl} \li Do not compile in OpenSSL support \li
+    \row   \li \c {-openssl} \li Compile in run-time OpenSSL support \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-openssl-linked} \o Compile in linked OpenSSL support \o
-    \row   \o \c {-no-dbus} \o Do not compile in D-Bus support \o
-    \row   \o \c {-dbus} \o Compile in D-Bus support and load libdbus-1 dynamically.
-    \o This option denotes a default value and needs to be evaluated.
+    \row   \li \c {-openssl-linked} \li Compile in linked OpenSSL support \li
+    \row   \li \c {-no-dbus} \li Do not compile in D-Bus support \li
+    \row   \li \c {-dbus} \li Compile in D-Bus support and load libdbus-1 dynamically.
+    \li This option denotes a default value and needs to be evaluated.
     If the evaluation succeeds, the feature is included.
-    \row   \o \c {-dbus-linked} \o Compile in D-Bus support and link to
-    libdbus-1 \o
-    \row   \o \c {-no-phonon} \o Do not compile in the Phonon module \o
-    \row   \o \c {-phonon} \o Compile the Phonon module. \o Phonon is built if a
+    \row   \li \c {-dbus-linked} \li Compile in D-Bus support and link to
+    libdbus-1 \li
+    \row   \li \c {-no-phonon} \li Do not compile in the Phonon module \li
+    \row   \li \c {-phonon} \li Compile the Phonon module. \li Phonon is built if a
     decent C++ compiler is used. This option denotes a default value and needs
     to be evaluated. If the evaluation succeeds, the feature is included.
-    \row   \o \c {-no-phonon-backend} \o Do not compile the platform-specific
-    Phonon backend-plugin \o
-    \row   \o \c {-phonon-backend} \o Compile in the platform-specific Phonon
-    backend-plugin \o Default value.
-    \row   \o \c {-no-multimedia} \o Do not compile the multimedia module \o
-    \row   \o \c {-multimedia} \o Compile in multimedia module \o Default value.
-    \row   \o \c {-no-audio-backend} \o Do not compile in the platform audio
-    backend into QtMultimedia \o
-    \row   \o \c {-audio-backend} \o Compile in the platform audio backend into
-    QtMultimedia \o This option denotes a default value and needs to be
+    \row   \li \c {-no-phonon-backend} \li Do not compile the platform-specific
+    Phonon backend-plugin \li
+    \row   \li \c {-phonon-backend} \li Compile in the platform-specific Phonon
+    backend-plugin \li Default value.
+    \row   \li \c {-no-multimedia} \li Do not compile the multimedia module \li
+    \row   \li \c {-multimedia} \li Compile in multimedia module \li Default value.
+    \row   \li \c {-no-audio-backend} \li Do not compile in the platform audio
+    backend into QtMultimedia \li
+    \row   \li \c {-audio-backend} \li Compile in the platform audio backend into
+    QtMultimedia \li This option denotes a default value and needs to be
     evaluated. If the evaluation succeeds, the feature is included.
-    \row   \o \c {-no-webkit} \o Do not compile in the WebKit module \o
-    \row   \o \c {-webkit} \o Compile in the WebKit module \o WebKit is built
+    \row   \li \c {-no-webkit} \li Do not compile in the WebKit module \li
+    \row   \li \c {-webkit} \li Compile in the WebKit module \li WebKit is built
     if a decent C++ compiler is used. This option denotes a default value
     and needs to be evaluated. If the evaluation succeeds, the feature is
     included.
-    \row   \o \c {-webkit-debug} \o Compile in the WebKit module with debug
-    symbols. \o
-    \row   \o \c {-no-script} \o Do not build the QtScript module. \o
-    \row   \o \c {-script} \o Build the QtScript module. \o This option
+    \row   \li \c {-webkit-debug} \li Compile in the WebKit module with debug
+    symbols. \li
+    \row   \li \c {-no-script} \li Do not build the QtScript module. \li
+    \row   \li \c {-script} \li Build the QtScript module. \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-no-scripttools} \o Do not build the QtScriptTools module. \o
-    \row   \o \c {-scripttools} \o Build the QtScriptTools module. \o This
+    \row   \li \c {-no-scripttools} \li Do not build the QtScriptTools module. \li
+    \row   \li \c {-scripttools} \li Build the QtScriptTools module. \li This
     option denotes a default value and needs to be evaluated. If the
     evaluation succeeds, the feature is included.
-    \row   \o \c {-no-declarative} \o Do not build the declarative module \o
-    \row   \o \c {-declarative} \o Build the declarative module \o This option
+    \row   \li \c {-no-declarative} \li Do not build the declarative module \li
+    \row   \li \c {-declarative} \li Build the declarative module \li This option
     denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-no-declarative-debug} \o Do not build the declarative debugging
-    support \o
-    \row   \o \c {-declarative-debug} \o Build the declarative debugging support
-    \o Default value.
-    \row   \o \c {-arch <arch>} \o Specify an architecture. \o Available values for
+    \row   \li \c {-no-declarative-debug} \li Do not build the declarative debugging
+    support \li
+    \row   \li \c {-declarative-debug} \li Build the declarative debugging support
+    \li Default value.
+    \row   \li \c {-arch <arch>} \li Specify an architecture. \li Available values for
     <arch>:  * windows, windowsce, symbian, boundschecker, generic.
-    \row   \o \c {-no-style-<style>} \o Disable <style> entirely. \o
-    \row   \o \c {-qt-style-<style>} \o Enable <style> in the Qt Library.
-    \o Available styles: * windows, + windowsxp, + windowsvista,
+    \row   \li \c {-no-style-<style>} \li Disable <style> entirely. \li
+    \row   \li \c {-qt-style-<style>} \li Enable <style> in the Qt Library.
+    \li Available styles: * windows, + windowsxp, + windowsvista,
     * plastique, * cleanlooks, * motif, * cde, windowsce, windowsmobile,
     s60
-    \row   \o \c {-no-native-gestures} \o Do not use native gestures on Windows 7.
-    \o
-    \row   \o \c {-native-gestures} \o Use native gestures on Windows 7.
-    \o Default value.
-    \row   \o \c {-no-mp} \o Do not use multiple processors for compiling with MSVC
-    \o Default value.
-    \row   \o \c {-mp} \o Use multiple processors for compiling with MSVC (-MP) \o
-    \row   \o \c {-loadconfig <config>} \o Run configure with the parameters from file
-    configure_<config>.cache. \o
-    \row   \o \c {-saveconfig <config>} \o Run configure and save the parameters in
-    file configure_<config>.cache. \o
-    \row   \o \c {-redo} \o Run configure with the same parameters as last time. \o
+    \row   \li \c {-no-native-gestures} \li Do not use native gestures on Windows 7.
+    \li
+    \row   \li \c {-native-gestures} \li Use native gestures on Windows 7.
+    \li Default value.
+    \row   \li \c {-no-mp} \li Do not use multiple processors for compiling with MSVC
+    \li Default value.
+    \row   \li \c {-mp} \li Use multiple processors for compiling with MSVC (-MP) \li
+    \row   \li \c {-loadconfig <config>} \li Run configure with the parameters from file
+    configure_<config>.cache. \li
+    \row   \li \c {-saveconfig <config>} \li Run configure and save the parameters in
+    file configure_<config>.cache. \li
+    \row   \li \c {-redo} \li Run configure with the same parameters as last time. \li
     \endtable
 
     \section2 Qt for Windows CE only:
     \table
-    \header \o Option  \o Description \o Note
-    \row   \o \c {-no-iwmmxt} \o Do not compile with use of IWMMXT instructions \o
-    \row   \o \c {-iwmmxt} \o Do compile with use of IWMMXT instructions. \o This is
+    \header \li Option  \li Description \li Note
+    \row   \li \c {-no-iwmmxt} \li Do not compile with use of IWMMXT instructions \li
+    \row   \li \c {-iwmmxt} \li Do compile with use of IWMMXT instructions. \li This is
     for Qt for Windows CE on Arm only. This option denotes a default value and
     needs to be evaluated. If the evaluation succeeds, the feature is included.
-    \row   \o \c {-no-crt} \o Do not add the C runtime to default deployment rules.
-    \o Default value.
-    \row   \o \c {-qt-crt} \o Qt identifies C runtime during project generation \o
-    \row   \o \c {-crt <path>} \o Specify path to C runtime used for project
-    generation. \o
-    \row   \o \c {-no-cetest} \o Do not compile Windows CE remote test application \o
-    \row   \o \c {-cetest} \o Compile Windows CE remote test application \o This
+    \row   \li \c {-no-crt} \li Do not add the C runtime to default deployment rules.
+    \li Default value.
+    \row   \li \c {-qt-crt} \li Qt identifies C runtime during project generation \li
+    \row   \li \c {-crt <path>} \li Specify path to C runtime used for project
+    generation. \li
+    \row   \li \c {-no-cetest} \li Do not compile Windows CE remote test application \li
+    \row   \li \c {-cetest} \li Compile Windows CE remote test application \li This
     option denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
-    \row   \o \c {-signature <file>} \o Use file for signing the target project \o
-    \row   \o \c {-phonon-wince-ds9} \o Enable Phonon Direct Show 9 backend for
-    Windows CE \o Default value
+    \row   \li \c {-signature <file>} \li Use file for signing the target project \li
+    \row   \li \c {-phonon-wince-ds9} \li Enable Phonon Direct Show 9 backend for
+    Windows CE \li Default value
     \endtable
 
     \section2 Qt for Symbian OS only:
     \table
-    \header \o Option  \o Description \o Note
-    \row   \o \c {-no-freetype} \o Do not compile in Freetype2 support.
-    \o Default value.
-    \row   \o \c {-qt-freetype} \o Use the libfreetype bundled with Qt. \o
-    \row   \o \c {-fpu <flags>} \o VFP type on ARM, supported options:
-    softvfp(default) |vfpv2 | softvfp+vfpv2 \o
-    \row   \o \c {-no-s60} \o Do not compile in S60 support. \o
-    \row   \o \c {-s60} \o Compile with support for the S60 UI Framework
-    \o Default value.
-    \row   \o \c {-no-usedeffiles} \o Disable the usage of DEF files. \o
-    \row   \o \c {-usedeffiles} \o Enable the usage of DEF files. \o
+    \header \li Option  \li Description \li Note
+    \row   \li \c {-no-freetype} \li Do not compile in Freetype2 support.
+    \li Default value.
+    \row   \li \c {-qt-freetype} \li Use the libfreetype bundled with Qt. \li
+    \row   \li \c {-fpu <flags>} \li VFP type on ARM, supported options:
+    softvfp(default) |vfpv2 | softvfp+vfpv2 \li
+    \row   \li \c {-no-s60} \li Do not compile in S60 support. \li
+    \row   \li \c {-s60} \li Compile with support for the S60 UI Framework
+    \li Default value.
+    \row   \li \c {-no-usedeffiles} \li Disable the usage of DEF files. \li
+    \row   \li \c {-usedeffiles} \li Enable the usage of DEF files. \li
     \endtable
 */

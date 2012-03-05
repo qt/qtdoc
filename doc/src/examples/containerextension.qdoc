@@ -48,16 +48,16 @@
     There are four available types of extensions in \QD:
 
     \list
-        \o QDesignerMemberSheetExtension  provides an extension that allows
+        \li QDesignerMemberSheetExtension  provides an extension that allows
            you to manipulate a widget's member functions which is displayed
            when configuring connections using Qt Designer's mode for editing
            signals and slots.
-        \o QDesignerPropertySheetExtension provides an extension that
+        \li QDesignerPropertySheetExtension provides an extension that
            allows you to manipulate a widget's properties which is displayed
            in Qt Designer's property editor.
-        \o QDesignerTaskMenuExtension provides an extension that allows
+        \li QDesignerTaskMenuExtension provides an extension that allows
            you to add custom menu entries to \QD's task menu.
-        \o QDesignerContainerExtension provides an extension that allows
+        \li QDesignerContainerExtension provides an extension that allows
            you to add (and delete) pages to a multi-page container plugin
            in \QD.
     \endlist
@@ -69,14 +69,14 @@
     The Container Extension example consists of four classes:
 
     \list
-    \o \c MultiPageWidget is a custom container widget that lets the user
+    \li \c MultiPageWidget is a custom container widget that lets the user
        manipulate and populate its pages, and navigate among these
        using a combobox.
-    \o \c MultiPageWidgetPlugin exposes the \c MultiPageWidget class
+    \li \c MultiPageWidgetPlugin exposes the \c MultiPageWidget class
        to \QD.
-    \o \c MultiPageWidgetExtensionFactory creates a
+    \li \c MultiPageWidgetExtensionFactory creates a
        \c MultiPageWidgetContainerExtension object.
-    \o \c MultiPageWidgetContainerExtension provides the container
+    \li \c MultiPageWidgetContainerExtension provides the container
        extension.
     \endlist
 
@@ -108,11 +108,11 @@
     plugin:
 
     \list
-        \o \c designer: Since custom widgets plugins rely on components
+        \li \c designer: Since custom widgets plugins rely on components
            supplied with \QD, this value ensures that our plugin links against
            \QD's library (\c libQtDesigner.so).
 
-        \o \c plugin: We also need to ensure that \c qmake considers the
+        \li \c plugin: We also need to ensure that \c qmake considers the
            custom widget a \e plugin library.
     \endlist
 

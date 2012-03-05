@@ -40,34 +40,34 @@
 
     \table
     \header
-    \i Option
-    \i Result
+    \li Option
+    \li Result
     \row
-    \i input
-    \i Generate documentation for \e input. \e input can specify a type library file or a type 
+    \li input
+    \li Generate documentation for \e input. \e input can specify a type library file or a type
     library ID, or a CLSID or ProgID for an object
     \row
-    \i -o file
-    \i Writes the class declaration to \e {file}.h and meta object infomation to \e {file}.cpp
+    \li -o file
+    \li Writes the class declaration to \e {file}.h and meta object infomation to \e {file}.cpp
     \row
-    \i -n namespace
-    \i Generate a C++ namespace \e namespace
+    \li -n namespace
+    \li Generate a C++ namespace \e namespace
     \row
-    \i -nometaobject
-    \i Do not generate a .cpp file with the meta object information. 
+    \li -nometaobject
+    \li Do not generate a .cpp file with the meta object information.
     The meta object is then generated in runtime.
     \row
-    \i -getfile libid
-    \i Print the filename for the typelibrary \e libid to stdout
+    \li -getfile libid
+    \li Print the filename for the typelibrary \e libid to stdout
     \row
-    \i -compat
-    \i Generate namespace with dynamicCall-compatible API
+    \li -compat
+    \li Generate namespace with dynamicCall-compatible API
     \row
-    \i -v
-    \i Print version information
+    \li -v
+    \li Print version information
     \row
-    \i -h
-    \i Print help
+    \li -h
+    \li Print help
     \endtable
 
     \c dumpcpp can be integrated into the \c qmake build system. In your .pro file, list the type 

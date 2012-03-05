@@ -46,12 +46,12 @@
 
     \list 1
 
-    \o \c :/qt/etc/qt.conf using the resource system
+    \li \c :/qt/etc/qt.conf using the resource system
 
-    \o on Mac OS X, in the Resource directory inside the appliction
+    \li on Mac OS X, in the Resource directory inside the appliction
     bundle, for example \c assistant.app/Contents/Resources/qt.conf
 
-    \o in the directory containing the application executable, i.e.
+    \li in the directory containing the application executable, i.e.
     QCoreApplication::applicationDirPath() + QDir::separator() + "qt.conf"
 
     \endlist
@@ -65,20 +65,20 @@
 
     \table
 
-    \header \o Entry            \o Default Value
+    \header \li Entry            \li Default Value
 
-    \row \o Prefix              \o QCoreApplication::applicationDirPath()
-    \row \o Documentation       \o \c doc
-    \row \o Headers             \o \c include
-    \row \o Libraries           \o \c lib
-    \row \o Binaries            \o \c bin
-    \row \o Plugins             \o \c plugins
-    \row \o Imports             \o \c imports
-    \row \o Data                \o \c .
-    \row \o Translations        \o \c translations
-    \row \o Settings            \o \c .
-    \row \o Examples            \o \c .
-    \row \o Demos               \o \c .
+    \row \li Prefix              \li QCoreApplication::applicationDirPath()
+    \row \li Documentation       \li \c doc
+    \row \li Headers             \li \c include
+    \row \li Libraries           \li \c lib
+    \row \li Binaries            \li \c bin
+    \row \li Plugins             \li \c plugins
+    \row \li Imports             \li \c imports
+    \row \li Data                \li \c .
+    \row \li Translations        \li \c translations
+    \row \li Settings            \li \c .
+    \row \li Examples            \li \c .
+    \row \li Demos               \li \c .
 
     \endtable
 

@@ -23,18 +23,18 @@ configure.  It is assumed that the following qmake variables are set to
 appropriate values in the qmake.conf file for your platform:
 
     \list
-    \o QMAKE_INCDIR_OPENVG
-    \o QMAKE_LIBDIR_OPENVG
-    \o QMAKE_LIBS_OPENVG
+    \li QMAKE_INCDIR_OPENVG
+    \li QMAKE_LIBDIR_OPENVG
+    \li QMAKE_LIBS_OPENVG
     \endlist
 
 Most OpenVG implementations are based on EGL, so the following variables
 may also need to be set:
 
     \list
-    \o QMAKE_INCDIR_EGL
-    \o QMAKE_LIBDIR_EGL
-    \o QMAKE_LIBS_EGL
+    \li QMAKE_INCDIR_EGL
+    \li QMAKE_LIBDIR_EGL
+    \li QMAKE_LIBS_EGL
     \endlist
 
 See \l{qmake Variable Reference} for more information on these variables.
@@ -82,12 +82,12 @@ libOpenVG.so library.
 
 \table
     \header
-        \o Feature
-        \o Description
+        \li Feature
+        \li Description
 
     \row
-        \o Context modes
-        \o The default configuration is "single-context" mode, where a single
+        \li Context modes
+        \li The default configuration is "single-context" mode, where a single
 EGLContext object is used for all drawing, regardless of the surface.
 Multiple EGLSurfaces are created, one for each window surface or pixmap.
 eglMakeCurrent() is called with the same EGLContext every time, but a
@@ -103,8 +103,8 @@ define if the OpenVG engine does not support one context with multiple
 surfaces.
 
     \row
-        \o Transformation matrices
-        \o All affine and projective transformation matrices are supported.
+        \li Transformation matrices
+        \li All affine and projective transformation matrices are supported.
 
 QVGPaintEngine will use the engine to accelerate affine transformation
 matrices only. When a projective transformation matrix is used,
@@ -118,20 +118,20 @@ It is recommended that client applications should avoid using projective
 transformations for non-image elements in performance critical code.
 
     \row
-        \o Composition modes
-        \o The following composition modes are supported:
+        \li Composition modes
+        \li The following composition modes are supported:
 
 \list
-\o QPainter::CompositionMode_SourceOver
-\o QPainter::CompositionMode_DestinationOver
-\o QPainter::CompositionMode_Source
-\o QPainter::CompositionMode_SourceIn
-\o QPainter::CompositionMode_DestinationIn
-\o QPainter::CompositionMode_Plus
-\o QPainter::CompositionMode_Multiply
-\o QPainter::CompositionMode_Screen
-\o QPainter::CompositionMode_Darken
-\o QPainter::CompositionMode_Lighten
+\li QPainter::CompositionMode_SourceOver
+\li QPainter::CompositionMode_DestinationOver
+\li QPainter::CompositionMode_Source
+\li QPainter::CompositionMode_SourceIn
+\li QPainter::CompositionMode_DestinationIn
+\li QPainter::CompositionMode_Plus
+\li QPainter::CompositionMode_Multiply
+\li QPainter::CompositionMode_Screen
+\li QPainter::CompositionMode_Darken
+\li QPainter::CompositionMode_Lighten
 \endlist
 
 The other members of QPainter::CompositionMode are not supported
@@ -139,18 +139,18 @@ unless the \c{VG_KHR_advanced_blending} extension is present,
 in which case the following additional modes are supported:
 
 \list
-\o QPainter::CompositionMode_Overlay
-\o QPainter::CompositionMode_ColorDodge
-\o QPainter::CompositionMode_ColorBurn
-\o QPainter::CompositionMode_HardLight
-\o QPainter::CompositionMode_SoftLight
-\o QPainter::CompositionMode_Difference
-\o QPainter::CompositionMode_Exclusion
-\o QPainter::CompositionMode_SourceOut
-\o QPainter::CompositionMode_DestinationOut
-\o QPainter::CompositionMode_SourceAtop
-\o QPainter::CompositionMode_DestinationAtop
-\o QPainter::CompositionMode_Xor
+\li QPainter::CompositionMode_Overlay
+\li QPainter::CompositionMode_ColorDodge
+\li QPainter::CompositionMode_ColorBurn
+\li QPainter::CompositionMode_HardLight
+\li QPainter::CompositionMode_SoftLight
+\li QPainter::CompositionMode_Difference
+\li QPainter::CompositionMode_Exclusion
+\li QPainter::CompositionMode_SourceOut
+\li QPainter::CompositionMode_DestinationOut
+\li QPainter::CompositionMode_SourceAtop
+\li QPainter::CompositionMode_DestinationAtop
+\li QPainter::CompositionMode_Xor
 \endlist
 
 Any attempt to set an unsupported mode will result in
@@ -158,8 +158,8 @@ the actual mode being set to QPainter::CompositionMode_SourceOver.
 Client applications should avoid using unsupported modes.
 
     \row
-        \o Pens and brushes
-        \o All pen styles are supported, including cosmetic pens.
+        \li Pens and brushes
+        \li All pen styles are supported, including cosmetic pens.
 
 All brush styles are supported except for conical gradients, which are not
 supported by OpenVG 1.1.  Conical gradients will be converted into a solid
@@ -170,8 +170,8 @@ matrices.
 
 
     \row
-        \o Rectangles, lines, and points
-        \o Rectangles, lines, and rounded rectangles use cached VGPath
+        \li Rectangles, lines, and points
+        \li Rectangles, lines, and rounded rectangles use cached VGPath
 objects to try to accelerate drawing operations.  vgModifyPathCoords() is
 used to modify the co-ordinates in the cached VGPath object each time
 fillRect(), drawRects(), drawLines(), or drawRoundedRect() is called.
@@ -184,8 +184,8 @@ Points are implemented as lines from the point to itself.  The cached line
 drawing VGPath object is used when drawing points.
 
     \row
-        \o Polygons and Ellipses
-        \o Polygon and ellipse drawing creates a new VGPath object every
+        \li Polygons and Ellipses
+        \li Polygon and ellipse drawing creates a new VGPath object every
 time drawPolygon() or drawEllipse() is called.  If the client application
 is making heavy use of these functions, the constant creation and
 destruction of VGPath objects could have an impact on performance.
@@ -197,8 +197,8 @@ Client applications should avoid polygon and ellipse drawing in performance
 critical code if possible.
 
     \row
-        \o Other Objects
-        \o Most other objects (arcs, pies, etc) use drawPath(), which takes
+        \li Other Objects
+        \li Most other objects (arcs, pies, etc) use drawPath(), which takes
 a QPainterPath argument.  The default implementation in QPainterEngineEx
 converts the QPainterPath into a QVectorPath and then calls draw(), which
 in turn converts the QVectorPath into a VGPath for drawing.
@@ -212,8 +212,8 @@ performance critical code because of the QPainterPath to VGPath conversion
 cost.
 
     \row
-        \o Clipping
-        \o Clipping with QRect, QRectF, and QRegion objects is supported on
+        \li Clipping
+        \li Clipping with QRect, QRectF, and QRegion objects is supported on
 all OpenVG engines with vgMask() if the transformation matrix is the
 identity or a simple origin translation.
  
@@ -233,15 +233,15 @@ The QVG_SCISSOR_CLIP define should only be used if the OpenVG engine does
 not support vgMask() or vgRenderToMask().
 
     \row
-        \o Opacity
-        \o Opacity is supported for all drawing operations.  Solid color
+        \li Opacity
+        \li Opacity is supported for all drawing operations.  Solid color
 pens, solid color brushes, gradient brushes, and image drawing with
 drawPixmap() and drawImage() will probably have the best performance
 compared to other kinds of pens and brushes.
 
     \row
-        \o Text Drawing
-        \o If OpenVG 1.1 is used, the paint engine will use VG fonts to
+        \li Text Drawing
+        \li If OpenVG 1.1 is used, the paint engine will use VG fonts to
 cache glyphs while drawing.  If the engine does not support VG fonts
 correctly, QVG_NO_DRAW_GLYPHS can be defined to disable this mode.  Text
 drawing performance will suffer if VG fonts are not used.
@@ -256,8 +256,8 @@ need for hinting and will usually give better results than path-based
 glyphs.
 
     \row
-        \o Pixmaps
-        \o In single-context mode, pixmaps will be implemented using
+        \li Pixmaps
+        \li In single-context mode, pixmaps will be implemented using
 VGImage unless QVG_NO_PIXMAP_DATA is defined.
 
 QVGPixmapData will convert QImage's into VGImage's when the application
@@ -274,13 +274,13 @@ Bitmaps must use QRasterPixmapData.  They are not accelerated with VGImage
 at present.
 
     \row
-        \o Pixmap filters
-        \o Convolution, colorize, drop shadow, and blur filters are
+        \li Pixmap filters
+        \li Convolution, colorize, drop shadow, and blur filters are
 accelerated using OpenVG operations.
 
     \row
-        \o Scrolling
-        \o Accelerated scrolling is implemented but disabled by default
+        \li Scrolling
+        \li Accelerated scrolling is implemented but disabled by default
 unless QVG_BUFFER_SCROLLING is defined. This should only be enabled on
 OpenVG engines where vgCopyPixels() is known to be efficient.
 

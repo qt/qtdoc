@@ -69,11 +69,11 @@
 
     Tutorial chapters:
     \list 1
-        \o \l {Defining a Button and a Menu}{Defining a Button and a Menu}
-        \o \l {Implementing a Menu Bar}{Implementing a Menu Bar}
-        \o \l {Building a Text Editor}{Building a Text Editor}
-        \o \l {Decorating the Text Editor}{Decorating the Text Editor}
-        \o \l {Extending QML using Qt C++}{Extending QML using Qt C++}
+        \li \l {Defining a Button and a Menu}{Defining a Button and a Menu}
+        \li \l {Implementing a Menu Bar}{Implementing a Menu Bar}
+        \li \l {Building a Text Editor}{Building a Text Editor}
+        \li \l {Decorating the Text Editor}{Decorating the Text Editor}
+        \li \l {Extending QML using Qt C++}{Extending QML using Qt C++}
     \endlist
 
     \section1 Defining a Button and a Menu
@@ -645,11 +645,11 @@
 
     For our application, we need to create the following items:
     \list 1
-    \o \c Directory class that will handle directory related operations
-    \o \c File class which is a QObject, simulating the list of files in a directory
-    \o plugin class that will register the class to the QML context
-    \o Qt project file that will compile the plugin
-    \o A \c qmldir file telling the qmlviewer tool where to find the plugin
+    \li \c Directory class that will handle directory related operations
+    \li \c File class which is a QObject, simulating the list of files in a directory
+    \li plugin class that will register the class to the QML context
+    \li Qt project file that will compile the plugin
+    \li A \c qmldir file telling the qmlviewer tool where to find the plugin
     \endlist
 
     \section3 Building a Qt Plugin

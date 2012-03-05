@@ -56,18 +56,18 @@
     platform:
 
     \list
-    \o QMAKE_INCDIR_OPENVG
-    \o QMAKE_LIBDIR_OPENVG
-    \o QMAKE_LIBS_OPENVG
+    \li QMAKE_INCDIR_OPENVG
+    \li QMAKE_LIBDIR_OPENVG
+    \li QMAKE_LIBS_OPENVG
     \endlist
 
     Most OpenVG implementations are based on EGL, so the following
     variables may also need to be set:
 
     \list
-    \o QMAKE_INCDIR_EGL
-    \o QMAKE_LIBDIR_EGL
-    \o QMAKE_LIBS_EGL
+    \li QMAKE_INCDIR_EGL
+    \li QMAKE_LIBDIR_EGL
+    \li QMAKE_LIBS_EGL
     \endlist
 
     See \l{qmake Variable Reference} for more information on these variables.
@@ -147,16 +147,16 @@
     The following composition modes are supported:
 
     \list
-    \o QPainter::CompositionMode_SourceOver
-    \o QPainter::CompositionMode_DestinationOver
-    \o QPainter::CompositionMode_Source
-    \o QPainter::CompositionMode_SourceIn
-    \o QPainter::CompositionMode_DestinationIn
-    \o QPainter::CompositionMode_Plus
-    \o QPainter::CompositionMode_Multiply
-    \o QPainter::CompositionMode_Screen
-    \o QPainter::CompositionMode_Darken
-    \o QPainter::CompositionMode_Lighten
+    \li QPainter::CompositionMode_SourceOver
+    \li QPainter::CompositionMode_DestinationOver
+    \li QPainter::CompositionMode_Source
+    \li QPainter::CompositionMode_SourceIn
+    \li QPainter::CompositionMode_DestinationIn
+    \li QPainter::CompositionMode_Plus
+    \li QPainter::CompositionMode_Multiply
+    \li QPainter::CompositionMode_Screen
+    \li QPainter::CompositionMode_Darken
+    \li QPainter::CompositionMode_Lighten
     \endlist
 
     The other members of QPainter::CompositionMode are not supported
@@ -164,18 +164,18 @@
     in which case the following additional modes are supported:
 
     \list
-    \o QPainter::CompositionMode_Overlay
-    \o QPainter::CompositionMode_ColorDodge
-    \o QPainter::CompositionMode_ColorBurn
-    \o QPainter::CompositionMode_HardLight
-    \o QPainter::CompositionMode_SoftLight
-    \o QPainter::CompositionMode_Difference
-    \o QPainter::CompositionMode_Exclusion
-    \o QPainter::CompositionMode_SourceOut
-    \o QPainter::CompositionMode_DestinationOut
-    \o QPainter::CompositionMode_SourceAtop
-    \o QPainter::CompositionMode_DestinationAtop
-    \o QPainter::CompositionMode_Xor
+    \li QPainter::CompositionMode_Overlay
+    \li QPainter::CompositionMode_ColorDodge
+    \li QPainter::CompositionMode_ColorBurn
+    \li QPainter::CompositionMode_HardLight
+    \li QPainter::CompositionMode_SoftLight
+    \li QPainter::CompositionMode_Difference
+    \li QPainter::CompositionMode_Exclusion
+    \li QPainter::CompositionMode_SourceOut
+    \li QPainter::CompositionMode_DestinationOut
+    \li QPainter::CompositionMode_SourceAtop
+    \li QPainter::CompositionMode_DestinationAtop
+    \li QPainter::CompositionMode_Xor
     \endlist
 
     Any attempt to set an unsupported mode will result in

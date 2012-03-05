@@ -162,12 +162,12 @@
     accessible objects:
 
     \list
-        \o \l{QAccessible::}{Role}: Describes the role the object
+        \li \l{QAccessible::}{Role}: Describes the role the object
             fills in the user interface, e.g., if it is a
             window, a text edit, or a cell in a table.
-        \o \l{QAccessible::}{Relation}: Describes the relationship
+        \li \l{QAccessible::}{Relation}: Describes the relationship
             between objects in the object hierarchy.
-        \o \l{QAccessible::}{State}: The objects can be in a number
+        \li \l{QAccessible::}{State}: The objects can be in a number
             of different states. Examples of states are whether
             the object is disabled, if it has focus,
             or if it provides a pop-up menu.
@@ -226,29 +226,29 @@
 
     \table 40%
         \header
-            \o Source Object
-            \o Target Object
-            \o Relation
+            \li Source Object
+            \li Target Object
+            \li Relation
         \row
-            \o Slider
-            \o Indicator
-            \o Controller
+            \li Slider
+            \li Indicator
+            \li Controller
         \row
-            \o Indicator
-            \o Slider
-            \o Controlled
+            \li Indicator
+            \li Slider
+            \li Controlled
         \row
-            \o Slider
-            \o Application
-            \o Ancestor
+            \li Slider
+            \li Application
+            \li Ancestor
         \row
-            \o Application
-            \o Slider
-            \o Child
+            \li Application
+            \li Slider
+            \li Child
         \row
-            \o PushButton
-            \o Indicator
-            \o Sibling
+            \li PushButton
+            \li Indicator
+            \li Sibling
     \endtable
 
     \section2 The Static QAccessible Functions
@@ -305,11 +305,11 @@
     accessibility, you will need to consider the following:
 
     \list
-        \o Qt already implements accessibility for its own widgets.
+        \li Qt already implements accessibility for its own widgets.
            We therefore recommend that you use Qt widgets where possible.
-        \o A QAccessibleInterface needs to be implemented for each element
+        \li A QAccessibleInterface needs to be implemented for each element
            that you want to make available to accessibility clients.
-        \o You need to send accessibility events from the custom
+        \li You need to send accessibility events from the custom
            user interface elements that you implement.
     \endlist
 
@@ -344,17 +344,17 @@
     The QAccessibleWidget provides the following functionality:
 
     \list
-        \o It handles the navigation of the tree and
+        \li It handles the navigation of the tree and
            hit testing of the objects. 
-        \o It handles events, roles, and actions that are common for all
+        \li It handles events, roles, and actions that are common for all
            \l{QWidget}s.
-        \o It handles action and methods that can be performed on
+        \li It handles action and methods that can be performed on
            all widgets.
-        \o It calculates bounding rectangles with
+        \li It calculates bounding rectangles with
            \l{QAccessibleInterface::}{rect()}.
-        \o It gives \l{QAccessibleInterface::}{text()} strings that are
+        \li It gives \l{QAccessibleInterface::}{text()} strings that are
            appropriate for a generic widget.
-        \o It sets the \l{QAccessible::State}{states} that
+        \li It sets the \l{QAccessible::State}{states} that
            are common for all widgets.
     \endlist
 
@@ -594,9 +594,9 @@
     needs an assistive technology to support:
 
     \list
-        \o A root object. This is the root in the accessible
+        \li A root object. This is the root in the accessible
            object tree and is of type QAccessibleInterface.
-        \o Receive events from from accessible objects.
+        \li Receive events from from accessible objects.
     \endlist
 
     The root object is set with the

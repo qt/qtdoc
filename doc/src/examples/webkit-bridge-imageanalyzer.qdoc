@@ -47,7 +47,7 @@ as shown in the screenshot below.
 
     \image webkit-imageanalyzer-screenshot.png
 
-Now, we can click on \bold Analyze, and each image is analyzed using some
+Now, we can click on \b Analyze, and each image is analyzed using some
 computationally intensive C++ function, in parallel and on different cores.
 Progress is shown while the analysis is proceeding.
 
@@ -89,12 +89,12 @@ Clicking an image adds it to an images list.
 
     \snippet examples/webkit/imageanalyzer/resources/index.html addImage
 
-The \bold {Analyze} button at the bottom of the image list is clicked when we
+The \b {Analyze} button at the bottom of the image list is clicked when we
 want to start the analysis:
 
     \snippet examples/webkit/imageanalyzer/resources/index.html images list
 
-When the user clicks the \bold {Analyze} button, \c analyzeImages() is called,
+When the user clicks the \b {Analyze} button, \c analyzeImages() is called,
 another regular JavaScript method, shown below.
 Notice it assumes the \c imageAnalyzer object is already defined and initialized
 in JavaScript space, but we guaranteed that by connecting our setup slot to the

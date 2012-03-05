@@ -53,21 +53,21 @@
 
     \table
         \header
-            \o Operating System
-            \o {3,1} Hardware Acceleration Platform
+            \li Operating System
+            \li {3,1} Hardware Acceleration Platform
         \row
-            \o \bold {Windows CE}
-            \o \l {Qt for Windows CE and OpenGL ES}{OpenGL ES}
-            \o \l {Qt for Windows CE and OpenVG}{OpenVG} 
-            \o
+            \li \b {Windows CE}
+            \li \l {Qt for Windows CE and OpenGL ES}{OpenGL ES}
+            \li \l {Qt for Windows CE and OpenVG}{OpenVG}
+            \li
         \row
-            \o \bold {Embedded Linux}
-            \o \l {Qt for Embedded Linux and OpenGL}{OpenGL ES}
-            \o \l {Qt for Embedded Linux and OpenVG}{OpenVG} 
-            \o \l {Qt for Embedded Linux and DirectFB}{DirectFB}
+            \li \b {Embedded Linux}
+            \li \l {Qt for Embedded Linux and OpenGL}{OpenGL ES}
+            \li \l {Qt for Embedded Linux and OpenVG}{OpenVG}
+            \li \l {Qt for Embedded Linux and DirectFB}{DirectFB}
         \row
-            \o \bold {Symbian Platform}
-            \o {3,1} \e {There are currently no support for hardware
+            \li \b {Symbian Platform}
+            \li {3,1} \e {There are currently no support for hardware
             acceleration.}
     \endtable
 \omit
@@ -75,12 +75,12 @@
 
     \table
         \header
-            \o Embedded Platform
-            \o Example
+            \li Embedded Platform
+            \li Example
         \row
-            \o Windows CE
+            \li Windows CE
         \row
-            \o Embedded Linux
+            \li Embedded Linux
     \endtable
 \endomit
 

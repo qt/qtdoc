@@ -56,9 +56,9 @@
     Qt provides two APIs for creating plugins:
 
     \list
-    \o A higher-level API for writing extensions to Qt itself: custom database
+    \li A higher-level API for writing extensions to Qt itself: custom database
        drivers, image formats, text codecs, custom styles, etc.
-    \o A lower-level API for extending Qt applications.
+    \li A lower-level API for extending Qt applications.
     \endlist
 
     For example, if you want to write a custom QStyle subclass and
@@ -87,21 +87,21 @@
     directory.
 
     \table
-    \header \o Base Class              \o Directory Name      \o Key Case Sensitivity
-    \row    \o QAccessibleBridgePlugin \o \c accessiblebridge \o Case Sensitive
-    \row    \o QAccessiblePlugin       \o \c accessible       \o Case Sensitive
-    \row    \o QDecorationPlugin       \o \c decorations      \o Case Insensitive
-    \row    \o QFontEnginePlugin       \o \c fontengines      \o Case Insensitive
-    \row    \o QIconEnginePlugin       \o \c iconengines      \o Case Insensitive
-    \row    \o QImageIOPlugin          \o \c imageformats     \o Case Sensitive
-    \row    \o QInputContextPlugin     \o \c inputmethods     \o Case Sensitive
-    \row    \o QKbdDriverPlugin        \o \c kbddrivers       \o Case Insensitive
-    \row    \o QMouseDriverPlugin      \o \c mousedrivers     \o Case Insensitive
-    \row    \o QScreenDriverPlugin     \o \c gfxdrivers       \o Case Insensitive
-    \row    \o QScriptExtensionPlugin  \o \c script           \o Case Sensitive
-    \row    \o QSqlDriverPlugin        \o \c sqldrivers       \o Case Sensitive
-    \row    \o QStylePlugin            \o \c styles           \o Case Insensitive
-    \row    \o QTextCodecPlugin        \o \c codecs           \o Case Sensitive
+    \header \li Base Class              \li Directory Name      \li Key Case Sensitivity
+    \row    \li QAccessibleBridgePlugin \li \c accessiblebridge \li Case Sensitive
+    \row    \li QAccessiblePlugin       \li \c accessible       \li Case Sensitive
+    \row    \li QDecorationPlugin       \li \c decorations      \li Case Insensitive
+    \row    \li QFontEnginePlugin       \li \c fontengines      \li Case Insensitive
+    \row    \li QIconEnginePlugin       \li \c iconengines      \li Case Insensitive
+    \row    \li QImageIOPlugin          \li \c imageformats     \li Case Sensitive
+    \row    \li QInputContextPlugin     \li \c inputmethods     \li Case Sensitive
+    \row    \li QKbdDriverPlugin        \li \c kbddrivers       \li Case Insensitive
+    \row    \li QMouseDriverPlugin      \li \c mousedrivers     \li Case Insensitive
+    \row    \li QScreenDriverPlugin     \li \c gfxdrivers       \li Case Insensitive
+    \row    \li QScriptExtensionPlugin  \li \c script           \li Case Sensitive
+    \row    \li QSqlDriverPlugin        \li \c sqldrivers       \li Case Sensitive
+    \row    \li QStylePlugin            \li \c styles           \li Case Insensitive
+    \row    \li QTextCodecPlugin        \li \c codecs           \li Case Sensitive
     \endtable
 
     Suppose that you have a new style class called \c MyStyle that you
@@ -150,24 +150,24 @@
     following steps:
 
     \list 1
-    \o Define a set of interfaces (classes with only pure virtual
+    \li Define a set of interfaces (classes with only pure virtual
        functions) used to talk to the plugins.
-    \o Use the Q_DECLARE_INTERFACE() macro to tell Qt's
+    \li Use the Q_DECLARE_INTERFACE() macro to tell Qt's
        \l{meta-object system} about the interface.
-    \o Use QPluginLoader in the application to load the plugins.
-    \o Use qobject_cast() to test whether a plugin implements a given
+    \li Use QPluginLoader in the application to load the plugins.
+    \li Use qobject_cast() to test whether a plugin implements a given
        interface.
     \endlist
 
     Writing a plugin involves these steps:
 
     \list 1
-    \o Declare a plugin class that inherits from QObject and from the
+    \li Declare a plugin class that inherits from QObject and from the
        interfaces that the plugin wants to provide.
-    \o Use the Q_INTERFACES() macro to tell Qt's \l{meta-object
+    \li Use the Q_INTERFACES() macro to tell Qt's \l{meta-object
        system} about the interfaces.
-    \o Export the plugin using the Q_EXPORT_PLUGIN2() macro.
-    \o Build the plugin using a suitable \c .pro file.
+    \li Export the plugin using the Q_EXPORT_PLUGIN2() macro.
+    \li Build the plugin using a suitable \c .pro file.
     \endlist
 
     For example, here's the definition of an interface class:
@@ -249,34 +249,34 @@
     static plugins:
 
     \table
-    \header \o Plugin name                  \o Type               \o Description
-    \row    \o \c qtaccessiblecompatwidgets \o Accessibility      \o Accessibility for Qt 3 support widgets
-    \row    \o \c qtaccessiblewidgets       \o Accessibility      \o Accessibility for Qt widgets
-    \row    \o \c qdecorationdefault        \o Decorations (Qt Extended) \o Default style
-    \row    \o \c qdecorationwindows        \o Decorations (Qt Extended) \o Windows style
-    \row    \o \c qgif                      \o Image formats      \o GIF
-    \row    \o \c qjpeg                     \o Image formats      \o JPEG
-    \row    \o \c qmng                      \o Image formats      \o MNG
-    \row    \o \c qico                      \o Image formats      \o ICO
-    \row    \o \c qsvg                      \o Image formats      \o SVG
-    \row    \o \c qtiff                     \o Image formats      \o TIFF
-    \row    \o \c qimsw_multi               \o Input methods (Qt Extended) \o Input Method Switcher
-    \row    \o \c qwstslibmousehandler      \o Mouse drivers (Qt Extended) \o \c tslib mouse
-    \row    \o \c qgfxtransformed           \o Graphic drivers (Qt Extended) \o Transformed screen
-    \row    \o \c qgfxvnc                   \o Graphic drivers (Qt Extended) \o VNC
-    \row    \o \c qscreenvfb                \o Graphic drivers (Qt Extended) \o Virtual frame buffer
-    \row    \o \c qsqldb2                   \o SQL driver         \o IBM DB2    \row    \o \c qsqlibase       \o SQL driver         \o Borland InterBase
-    \row    \o \c qsqlite                   \o SQL driver         \o SQLite version 3
-    \row    \o \c qsqlite2                  \o SQL driver         \o SQLite version 2
-    \row    \o \c qsqlmysql                 \o SQL driver         \o MySQL
-    \row    \o \c qsqloci                   \o SQL driver         \o Oracle (OCI)
-    \row    \o \c qsqlodbc                  \o SQL driver         \o Open Database Connectivity (ODBC)
-    \row    \o \c qsqlpsql                  \o SQL driver         \o PostgreSQL
-    \row    \o \c qsqltds                   \o SQL driver         \o Sybase Adaptive Server (TDS)
-    \row    \o \c qcncodecs                 \o Text codecs        \o Simplified Chinese (People's Republic of China)
-    \row    \o \c qjpcodecs                 \o Text codecs        \o Japanese
-    \row    \o \c qkrcodecs                 \o Text codecs        \o Korean
-    \row    \o \c qtwcodecs                 \o Text codecs        \o Traditional Chinese (Taiwan)
+    \header \li Plugin name                  \li Type               \li Description
+    \row    \li \c qtaccessiblecompatwidgets \li Accessibility      \li Accessibility for Qt 3 support widgets
+    \row    \li \c qtaccessiblewidgets       \li Accessibility      \li Accessibility for Qt widgets
+    \row    \li \c qdecorationdefault        \li Decorations (Qt Extended) \li Default style
+    \row    \li \c qdecorationwindows        \li Decorations (Qt Extended) \li Windows style
+    \row    \li \c qgif                      \li Image formats      \li GIF
+    \row    \li \c qjpeg                     \li Image formats      \li JPEG
+    \row    \li \c qmng                      \li Image formats      \li MNG
+    \row    \li \c qico                      \li Image formats      \li ICO
+    \row    \li \c qsvg                      \li Image formats      \li SVG
+    \row    \li \c qtiff                     \li Image formats      \li TIFF
+    \row    \li \c qimsw_multi               \li Input methods (Qt Extended) \li Input Method Switcher
+    \row    \li \c qwstslibmousehandler      \li Mouse drivers (Qt Extended) \li \c tslib mouse
+    \row    \li \c qgfxtransformed           \li Graphic drivers (Qt Extended) \li Transformed screen
+    \row    \li \c qgfxvnc                   \li Graphic drivers (Qt Extended) \li VNC
+    \row    \li \c qscreenvfb                \li Graphic drivers (Qt Extended) \li Virtual frame buffer
+    \row    \li \c qsqldb2                   \li SQL driver         \li IBM DB2    \row    \li \c qsqlibase       \li SQL driver         \li Borland InterBase
+    \row    \li \c qsqlite                   \li SQL driver         \li SQLite version 3
+    \row    \li \c qsqlite2                  \li SQL driver         \li SQLite version 2
+    \row    \li \c qsqlmysql                 \li SQL driver         \li MySQL
+    \row    \li \c qsqloci                   \li SQL driver         \li Oracle (OCI)
+    \row    \li \c qsqlodbc                  \li SQL driver         \li Open Database Connectivity (ODBC)
+    \row    \li \c qsqlpsql                  \li SQL driver         \li PostgreSQL
+    \row    \li \c qsqltds                   \li SQL driver         \li Sybase Adaptive Server (TDS)
+    \row    \li \c qcncodecs                 \li Text codecs        \li Simplified Chinese (People's Republic of China)
+    \row    \li \c qjpcodecs                 \li Text codecs        \li Japanese
+    \row    \li \c qkrcodecs                 \li Text codecs        \li Korean
+    \row    \li \c qtwcodecs                 \li Text codecs        \li Traditional Chinese (Taiwan)
     \endtable
 
     To link statically against those plugins, you need to use the
@@ -295,9 +295,9 @@
     following these steps:
 
     \list 1
-    \o Add \c{CONFIG += static} to your plugin's \c .pro file.
-    \o Use the Q_IMPORT_PLUGIN() macro in your application.
-    \o Link your application with your plugin library using \c LIBS
+    \li Add \c{CONFIG += static} to your plugin's \c .pro file.
+    \li Use the Q_IMPORT_PLUGIN() macro in your application.
+    \li Link your application with your plugin library using \c LIBS
        in the \c .pro file.
     \endlist
 

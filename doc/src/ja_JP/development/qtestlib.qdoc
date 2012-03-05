@@ -37,11 +37,11 @@
     このチュートリアルは全5章で構成されています:
 
     \list 1
-    \o \l {第1章: ユニットテストの作成}{ユニットテストの作成}
-    \o \l {第2章: データドリブンテスト}{データドリブンテスト}
-    \o \l {第3章: GUI イベントのシミュレート}{GUI イベントのシミュレート}
-    \o \l {第4章: GUI イベントの再現}{GUI イベントの再現}
-    \o \l {第5章: ベンチマークの作成}{ベンチマークの作成}
+    \li \l {第1章: ユニットテストの作成}{ユニットテストの作成}
+    \li \l {第2章: データドリブンテスト}{データドリブンテスト}
+    \li \l {第3章: GUI イベントのシミュレート}{GUI イベントのシミュレート}
+    \li \l {第4章: GUI イベントの再現}{GUI イベントの再現}
+    \li \l {第5章: ベンチマークの作成}{ベンチマークの作成}
     \endlist
 
 */
@@ -104,7 +104,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qtestlib.qdoc 9
 
-    \bold {注:} Windows をお使いの場合、 \c make を \c nmake または、
+    \b {注:} Windows をお使いの場合、 \c make を \c nmake または、
     任意のビルドツールに置き換えてください。
 
     作成した実行ファイルを実行すると、次の出力が表示されます:
@@ -169,25 +169,25 @@
 
     \table
     \header
-        \o index
-        \o name
-        \o string
-        \o result
+        \li index
+        \li name
+        \li string
+        \li result
     \row
-        \o 0
-        \o all lower
-        \o "hello"
-        \o HELLO
+        \li 0
+        \li all lower
+        \li "hello"
+        \li HELLO
     \row
-        \o 1
-        \o mixed
-        \o "Hello"
-        \o HELLO
+        \li 1
+        \li mixed
+        \li "Hello"
+        \li HELLO
     \row
-        \o 2
-        \o all upper
-        \o "HELLO"
-        \o HELLO
+        \li 2
+        \li all upper
+        \li "HELLO"
+        \li HELLO
     \endtable
 
     \section1 テスト関数を書き換える

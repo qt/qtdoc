@@ -209,12 +209,12 @@
     テキストエディターを起動して、次の手順に従って変更を行ってください:
 
     \list
-    \o \c printpanel.cpp の文字列 "\<b\>TROLL PRINT\</b\>" を引数に
+    \li \c printpanel.cpp の文字列 "\<b\>TROLL PRINT\</b\>" を引数に
        QLabel を作成する2つの行のコメントを解除します。 
-    \o ソースの変更: \c printpanel.cpp で、"2-sided" を
+    \li ソースの変更: \c printpanel.cpp で、"2-sided" を
        "Two-sided" に置き換えます。 
-    \o \c mainwindow.cpp で、すべての "1.0" を "1.1" に置き換えます。 
-    \o \c mainwindow.cpp で、著作権表示の年号を 1999-2000 に更新します。 
+    \li \c mainwindow.cpp で、すべての "1.0" を "1.1" に置き換えます。
+    \li \c mainwindow.cpp で、著作権表示の年号を 1999-2000 に更新します。
     \endlist
 
     (実際のアプリケーションでは、バージョン番号と著作権表示の年号は
@@ -224,23 +224,23 @@
     \c trollprint_pt.ts を開きます。以下の項目は、特別なコンテンツです:
 
     \list
-    \o \c MainWindow
+    \li \c MainWindow
          \list
-         \o Troll Print 1.0 - 古いテキストとして灰色でマーク
-         \o About Troll Print 1.0 - 古いテキストとして灰色でマーク
-         \o Troll Print 1.0. Copyright 1999 Software, Inc. -
+         \li Troll Print 1.0 - 古いテキストとして灰色でマーク
+         \li About Troll Print 1.0 - 古いテキストとして灰色でマーク
+         \li Troll Print 1.0. Copyright 1999 Software, Inc. -
        古いテキストとして灰色でマーク
-         \o Troll Print 1.1 - 自動的に "Troll Imprimir 1.1" に翻訳(未完了)
-         \o About Troll Print 1.1 - 自動的に "Troll Imprimir 1.1" に翻訳(未完了)
-         \o Troll Print 1.1. Copyright 1999-2000 Software,
+         \li Troll Print 1.1 - 自動的に "Troll Imprimir 1.1" に翻訳(未完了)
+         \li About Troll Print 1.1 - 自動的に "Troll Imprimir 1.1" に翻訳(未完了)
+         \li Troll Print 1.1. Copyright 1999-2000 Software,
        Inc. - 自動的に "Troll Imprimir 1.1.
        Copyright 1999-2000 Software, Inc." に翻訳(未完了)
          \endlist
-    \o \c PrintPanel
+    \li \c PrintPanel
          \list
-         \o 2-sided - 古いテキストとして灰色でマーク
-         \o \<b\>TROLL PRINT\</b\> - 未翻訳のテキストとして"?"マーク 
-         \o Two-sided - 未翻訳のテキストとして"?"マーク 
+         \li 2-sided - 古いテキストとして灰色でマーク
+         \li \<b\>TROLL PRINT\</b\> - 未翻訳のテキストとして"?"マーク
+         \li Two-sided - 未翻訳のテキストとして"?"マーク
          \endlist
     \endlist
 

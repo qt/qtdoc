@@ -345,9 +345,9 @@
     The main functions for graph building are:
 
     \list
-        \o createPath(): This function creates a path between to
+        \li createPath(): This function creates a path between to
                          nodes, which it takes as arguments.
-        \o 
+        \li
     \endlist
 
     For more detailed information, please consult the API
@@ -464,22 +464,22 @@
 
     \table
         \header
-            \o Package
-            \o Description
+            \li Package
+            \li Description
         \row
-            \o libgstreamer0.10_0.10
-            \o The GStreamer base library.
+            \li libgstreamer0.10_0.10
+            \li The GStreamer base library.
         \row
-            \o libgstreamer0.10_0.10-devel
-            \o Contains files for developing applications with
+            \li libgstreamer0.10_0.10-devel
+            \li Contains files for developing applications with
                GStreamer.
         \row
-            \o libgstreamer-plugins-base0.10
-            \o Contains the basic plugins for audio and video
+            \li libgstreamer-plugins-base0.10
+            \li Contains the basic plugins for audio and video
                playback, and will enable support for \c ogg files.
         \row
-            \o libgstreamer-plugins-base0.10-devel
-            \o Makes it possible to develop applications using the
+            \li libgstreamer-plugins-base0.10-devel
+            \li Makes it possible to develop applications using the
                base plugins.
     \endtable
 
@@ -487,28 +487,28 @@
     alsasink backend for GStreamer
     \table
         \header
-            \o Variable
-            \o Description
+            \li Variable
+            \li Description
         \row
-            \o PHONON_GST_AUDIOSINK
-            \o Sets the audio sink to be used. Possible values are
+            \li PHONON_GST_AUDIOSINK
+            \li Sets the audio sink to be used. Possible values are
                ... alsasink.
         \row
-            \o PHONON_GSTREAMER_DRIVER
-            \o Sets the driver for GStreamer. This driver will
+            \li PHONON_GSTREAMER_DRIVER
+            \li Sets the driver for GStreamer. This driver will
                usually be configured automatically when
                installing.
         \row
-            \o PHONON_GST_VIDEOWIDGET
-            \o This variable can be set to the name of a widget to
+            \li PHONON_GST_VIDEOWIDGET
+            \li This variable can be set to the name of a widget to
                use as the video widget??
         \row
-            \o PHONON_GST_DEBUG
-            \o Phonon will give debug information while running if
+            \li PHONON_GST_DEBUG
+            \li Phonon will give debug information while running if
                this variable is set to a number between 1 and 3.
         \row
-            \o PHONON_TESTURL
-            \o ...
+            \li PHONON_TESTURL
+            \li ...
     \endtable
     \endomit
 

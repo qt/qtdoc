@@ -68,9 +68,9 @@ With either mode, Qt will try the following to look for the DirectFB
 includes/libs.
 
 \list
-    \o Use pkg-config
-    \o Use directfb-config
-    \o Check in your qmake.conf
+    \li Use pkg-config
+    \li Use directfb-config
+    \li Check in your qmake.conf
 \endlist
 
 Often the values returned from pkg-config/directfb-config indicates the
@@ -168,11 +168,11 @@ Following is a table showing which options you have.
 
 \table
     \header
-        \o Define option
-        \o Description
+        \li Define option
+        \li Description
     \row
-        \o QT_DIRECTFB_IMAGECACHE
-        \o Defining this means that Qt will cache an IDirectFBSurface per
+        \li QT_DIRECTFB_IMAGECACHE
+        \li Defining this means that Qt will cache an IDirectFBSurface per
 QImage you draw based on its \l{QImage::}{cacheKey()}.
 Use this define if your application draws many QImages that
 remain the same. Note that if you in this situation draw an image and then
@@ -181,8 +181,8 @@ not benefit you. You can control the cache size with the imageCacheSize
 connect option.
 
     \row
-        \o QT_NO_DIRECTFB_WM
-        \o If your DirectFB implementation does not support windows, you
+        \li QT_NO_DIRECTFB_WM
+        \li If your DirectFB implementation does not support windows, you
 have to define this to make Qt work properly. You can test this by checking
 if the \l{DirectFB - df_window example}{df_window example} runs well.
 This means that all drawing operations onto a QWidget involves
@@ -199,31 +199,31 @@ In addition, it will not work without proper DirectFB mouse support from the
 layer. Also, see QT_NO_DIRECTFB_LAYER for more.
 
     \row
-        \o QT_NO_DIRECTFB_LAYER
-        \o If your DirectFB display layer cannot be used for e.g. drawing
+        \li QT_NO_DIRECTFB_LAYER
+        \li If your DirectFB display layer cannot be used for e.g. drawing
 mouse cursor, creating windows you have to define this. Defining this also
 requires defining QT_NO_DIRECTFB_WM and involves making Qt render the
 cursor rather than letting DirectFB do it.
 
     \row
-        \o QT_NO_DIRECTFB_PALETTE
-        \o Define this if your DirectFB driver does not support surfaces
+        \li QT_NO_DIRECTFB_PALETTE
+        \li Define this if your DirectFB driver does not support surfaces
 with \l{DirectFB - IDirectFBPalette}{color tables}.
 The effect of defining this is that Qt will have to convert
 images with \l QImage::Format_Indexed8 format to another format before
 rendering them.
 
     \row
-        \o QT_NO_DIRECTFB_PREALLOCATED
-        \o Define this if your DirectFB driver does not support creating a
+        \li QT_NO_DIRECTFB_PREALLOCATED
+        \li Define this if your DirectFB driver does not support creating a
 surface with preallocated data. This will make a more frequent use of
 \l{C++ Reference - memcpy}{memcpy()}
 when drawing images. If you define this, you might want to consider
 defining QT_DIRECTFB_IMAGECACHE for better image rendering performance.
 
     \row
-        \o QT_NO_DIRECTFB_MOUSE and QT_NO_DIRECTFB_KEYBOARD
-        \o Define this if your driver does not provide keyboard/mouse
+        \li QT_NO_DIRECTFB_MOUSE and QT_NO_DIRECTFB_KEYBOARD
+        \li Define this if your driver does not provide keyboard/mouse
 events through \l{DirectFB - CreateInputEventBuffer}{CreateInputEventBuffer}.
 This means that Qt cannot use DirectFB to receive keyboard/mouse events and
 if you want such events in your application, you will have to provide
@@ -232,13 +232,13 @@ Handling}{Qt for Embedded Linux Pointer Handling} and \l{Qt for Embedded
 Linux Character Input}{Qt for Embedded Linux Character Input}
 
     \row
-        \o QT_DIRECTFB_TIMING
-        \o Define this when debugging to get output on stderr about the
+        \li QT_DIRECTFB_TIMING
+        \li Define this when debugging to get output on stderr about the
 frames per second.
 
     \row
-        \o QT_NO_DIRECTFB_OPAQUE_DETECTION
-        \o When blitting a surface Qt has to decide whether to set the
+        \li QT_NO_DIRECTFB_OPAQUE_DETECTION
+        \li When blitting a surface Qt has to decide whether to set the
 \l{DirectFB - DFBSurfaceBlittingFlags}{DSBLIT_BLEND_ALPHACHANNEL}
 flag. If you load an image from file or network data that has a format that
 includes an alpha channel, the image might still be completely opaque.
@@ -249,27 +249,27 @@ assume that an image with a format that has alpha channel contains at least
 one pixel with an alpha value != 255.
 
  \row
-    \o QT_DIRECTFB_SUBSURFACE
-    \o Defining this enables a mode that tries to minimize overhead from
+    \li QT_DIRECTFB_SUBSURFACE
+    \li Defining this enables a mode that tries to minimize overhead from
 locking/unlocking surfaces. Note that this currently is experimental.
 
  \row
-    \o QT_DIRECTFB_WINDOW_AS_CURSOR
-    \o Define this if your DirectFB implementation supports windows but
+    \li QT_DIRECTFB_WINDOW_AS_CURSOR
+    \li Define this if your DirectFB implementation supports windows but
 can not render the cursor properly. This involves creating a small top level
 window and moving it around when the cursor moves. It does not always
 perform well.
 
  \row
-    \o QT_NO_DIRECTFB_IMAGEPROVIDER
-    \o By default Qt will use DirectFB to load QPixmaps from disk/memory. If
+    \li QT_NO_DIRECTFB_IMAGEPROVIDER
+    \li By default Qt will use DirectFB to load QPixmaps from disk/memory. If
 your DirectFB implementation does not support this it might make sense to
 define this. If you see strange rendering issues with pixmaps that have an
 alpha channel defining this could solve the problem.
 
  \row
-    \o QT_DIRECTFB_IMAGEPROVIDER_KEEPALIVE
-    \o Define this to make sure Qt always keeps at least one
+    \li QT_DIRECTFB_IMAGEPROVIDER_KEEPALIVE
+    \li Define this to make sure Qt always keeps at least one
 \l{DirectFB - IDirectFBImageProvider}{IDirectFBImageProvider}
 object alive. This is to avoid considerable overhead when the first
 IDirectFBImageProvider is created, the last IDirectFBImageProvider is
@@ -286,35 +286,35 @@ does not support the following functions.
 
 \table
  \header
-  \o Functions
+  \li Functions
  \row
-  \o QPainter::strokePath(const QPainterPath & path, const QPen & pen)
+  \li QPainter::strokePath(const QPainterPath & path, const QPen & pen)
  \row
-  \o QPainter::drawPath(const QPainterPath & path)
+  \li QPainter::drawPath(const QPainterPath & path)
  \row
-  \o QPainter::fillPath(const QPainterPath & path, const QBrush & brush)
+  \li QPainter::fillPath(const QPainterPath & path, const QBrush & brush)
  \row
-  \o QPainter::drawPoints(const QPointF * points, int pointCount)
+  \li QPainter::drawPoints(const QPointF * points, int pointCount)
  \row
-  \o QPainter::drawEllipse(const QRectF & rectangle)
+  \li QPainter::drawEllipse(const QRectF & rectangle)
  \row
-  \o QPainter::drawPolygon(const QPointF * points, int pointCount,
+  \li QPainter::drawPolygon(const QPointF * points, int pointCount,
  Qt::FillRule fillRule = Qt::OddEvenFill)
  \row
-  \o QPainter::drawText(const QPointF & position, const QString & text)
+  \li QPainter::drawText(const QPointF & position, const QString & text)
  \row
-  \o QGradient
+  \li QGradient
  \endtable
 
 \section2 Avoiding fallbacks
 To avoid fallbacks make sure that the following points are true:
 
 \list
-    \o QPen::isSolid() returns true and uses a color with a one pixel
+    \li QPen::isSolid() returns true and uses a color with a one pixel
 width. (QPen::width() returns 1.
-    \o QTransform::TransformationType() <= QTransform::TxScale are not
+    \li QTransform::TransformationType() <= QTransform::TxScale are not
 supported.
-    \o Clipping must be a simple rectangle or a QRegion.
+    \li Clipping must be a simple rectangle or a QRegion.
 \endlist
 
 \section2 When painting images

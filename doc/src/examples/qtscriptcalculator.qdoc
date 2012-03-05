@@ -39,20 +39,20 @@
 
     The C++ part of the example consists of four steps:
     \list
-    \o Evaluate the script code that defines the \c{Calculator} class.
+    \li Evaluate the script code that defines the \c{Calculator} class.
 
     \snippet examples/script/calculator/main.cpp 0a
     \snippet examples/script/calculator/main.cpp 0b
 
-    \o Create a widget from the UI file using QUiLoader.
+    \li Create a widget from the UI file using QUiLoader.
 
     \snippet examples/script/calculator/main.cpp 1
 
-    \o Call the Calculator constructor function to create a new \c{Calculator} script object, passing the widget as argument.
+    \li Call the Calculator constructor function to create a new \c{Calculator} script object, passing the widget as argument.
 
     \snippet examples/script/calculator/main.cpp 2
 
-    \o Show the widget and start the application event loop.
+    \li Show the widget and start the application event loop.
 
     \snippet examples/script/calculator/main.cpp 3
 

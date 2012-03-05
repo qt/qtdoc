@@ -46,18 +46,18 @@
     requirements apply:
 
     \list 1
-    \i Your X server and graphics card/hardware must support overlays.
+    \li Your X server and graphics card/hardware must support overlays.
        For many X servers, overlay support can be turned on with
        a configuration option; consult your X server installation
        documentation.
 
-    \i Your X server must (be configured to) use an overlay visual as the
+    \li Your X server must (be configured to) use an overlay visual as the
        default visual. Most modern X servers do this, since this has the
        added advantage that pop-up menus, overlapping windows etc., will
        \e not affect underlying images in the main plane, thereby
        avoiding expensive redraws.
 
-    \i The best (deepest) visual for OpenGL rendering is in the main
+    \li The best (deepest) visual for OpenGL rendering is in the main
        plane. This is the normal case. Typically, X servers that support
        overlays provide a 24-bit \c TrueColor visual in the main plane,
        and an 8-bit \c PseudoColor (default) visual in the overlay plane.

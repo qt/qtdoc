@@ -99,46 +99,46 @@
 
     \table
     \header
-        \o Driver Specific Option \o Available For  \o Description
+        \li Driver Specific Option \li Available For  \li Description
     \row
-        \o \c tty=<device>
-        \o LinuxFb
-        \o Passes the device file to the console the application is
+        \li \c tty=<device>
+        \li LinuxFb
+        \li Passes the device file to the console the application is
         running on.
     \row
-        \o \c nographicsmodeswitch
-        \o LinuxFb
-        \o Ensures that the application is not in graphics mode.
+        \li \c nographicsmodeswitch
+        \li LinuxFb
+        \li Ensures that the application is not in graphics mode.
     \row
-        \o \c littleendian
-        \o LinuxFb
-        \o Tells the driver it must handle a little-endian frame 
+        \li \c littleendian
+        \li LinuxFb
+        \li Tells the driver it must handle a little-endian frame
         buffer in a big-endian system.
     \row
-        \o \c mmWidth=<value> \target mmWidth
-        \o LinuxFb, QVFb
-        \o The screen's physical width (used to calculate DPI).
+        \li \c mmWidth=<value> \target mmWidth
+        \li LinuxFb, QVFb
+        \li The screen's physical width (used to calculate DPI).
     \row
-        \o \c mmHeight=<value> \target mmHeight
-        \o LinuxFb, QVFb
-        \o The screen's physical height (used to calculate DPI).
+        \li \c mmHeight=<value> \target mmHeight
+        \li LinuxFb, QVFb
+        \li The screen's physical height (used to calculate DPI).
     \row
-        \o \c <device>
-        \o LinuxFb
-        \o
+        \li \c <device>
+        \li LinuxFb
+        \li
     \row
-        \o \c <subdriver>
-        \o VNC, Transformed, Multi
-        \o Specifies a subdriver.
+        \li \c <subdriver>
+        \li VNC, Transformed, Multi
+        \li Specifies a subdriver.
     \row
-        \o \c <RotX>
-        \o Transformed
-        \o Specifies the rotation of the screen. The valid values of
+        \li \c <RotX>
+        \li Transformed
+        \li Specifies the rotation of the screen. The valid values of
         \c X are 90, 180 and 270.
     \row
-        \o \c offset=<x,y>
-        \o Multi
-        \o Specifies the coordinates of a subscreen's top-left corner
+        \li \c offset=<x,y>
+        \li Multi
+        \li Specifies the coordinates of a subscreen's top-left corner
         (by default 0,0).
 
     \endtable
@@ -169,10 +169,10 @@
     of the default virtual screen:
 
     \list
-        \o \c {size=<width x height>}
-        \o \c {depth=<value>}
-        \o \c {mmHeight=<physical height in millimeters>}
-        \o \c {mmWidth=<physical width in millimeters>}
+        \li \c {size=<width x height>}
+        \li \c {depth=<value>}
+        \li \c {mmHeight=<physical height in millimeters>}
+        \li \c {mmWidth=<physical width in millimeters>}
     \endlist
 
     Example running the VNC screen driver with a virtual screen of size 

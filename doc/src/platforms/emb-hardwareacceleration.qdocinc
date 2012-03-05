@@ -95,11 +95,11 @@ In addition to this, we can categorize the devices into five types based on
 the different graphics operations supported by their hardware.
 
 \list 1
-    \o No support for graphics acceleration.
-    \o Support for blitter and alpha blending.
-    \o Support for path based 2D vector graphics.
-    \o Support for fixed function 3D graphics.
-    \o Support for programmable 3D graphics.
+    \li No support for graphics acceleration.
+    \li Support for blitter and alpha blending.
+    \li Support for path based 2D vector graphics.
+    \li Support for fixed function 3D graphics.
+    \li Support for programmable 3D graphics.
 \endlist
 
 Based on these characteristics the table below recommends which paint
@@ -109,29 +109,29 @@ engines to use with the different types of hardware configurations.
 
 \table
     \header
-        \o Type
-        \o UMA
-        \o Non-UMA
+        \li Type
+        \li UMA
+        \li Non-UMA
     \row
-        \o \bold {None}
-        \o Qt Raster Engine
-        \o Qt Raster Engine
+        \li \b {None}
+        \li Qt Raster Engine
+        \li Qt Raster Engine
     \row
-        \o \bold {Blitter}
-        \o DirectFB
-        \o DirectFB
+        \li \b {Blitter}
+        \li DirectFB
+        \li DirectFB
     \row
-        \o \bold {2D Vector}
-        \o OpenVG
-        \o OpenVG
+        \li \b {2D Vector}
+        \li OpenVG
+        \li OpenVG
     \row
-        \o \bold {Fixed 3D}
-        \o OpenGL (ES) 1.x
-        \o OpenGL (ES) 1.x
+        \li \b {Fixed 3D}
+        \li OpenGL (ES) 1.x
+        \li OpenGL (ES) 1.x
     \row
-        \o \bold {Programmable 3D}
-        \o OpenGL (ES) 2.x
-        \o OpenGL (ES) 2.x
+        \li \b {Programmable 3D}
+        \li OpenGL (ES) 2.x
+        \li OpenGL (ES) 2.x
 \endtable
 
 \note Since the DirectFB API is quite primitive, the raster paint engine

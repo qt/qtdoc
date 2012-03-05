@@ -94,17 +94,17 @@
 
     \list
 
-    \o A single phrase may need to be translated into several
+    \li A single phrase may need to be translated into several
     different forms depending on context, e.g. \e open in English
     might become \e{\ouml}\e{ffnen}, "open file", or \e aufbauen,
     "open internet connection", in German.
 
-    \o Keyboard accelerators may need to be changed but without
+    \li Keyboard accelerators may need to be changed but without
     introducing conflicts, e.g. "\&Quit" in English becomes "Avslutt"
     in Norwegian which doesn't contain a "Q". We cannot use a letter
     that is already in use - unless we change several accelerators.
 
-    \o Phrases that contain variables, for example, "The 25 files
+    \li Phrases that contain variables, for example, "The 25 files
     selected will take 63 seconds to process", where the two numbers
     are inserted programmatically at run-time may need to be reworded
     because in a different language the word order and therefore the
@@ -118,10 +118,10 @@
     Chapters:
 
     \list
-    \o \l{Qt Linguist Manual: Release Manager}{Release Manager}
-    \o \l{Qt Linguist Manual: Translators}{Translators}
-    \o \l{Qt Linguist Manual: Programmers}{Programmers}
-    \o \l{Qt Linguist Manual: TS File Format}{TS File Format}
+    \li \l{Qt Linguist Manual: Release Manager}{Release Manager}
+    \li \l{Qt Linguist Manual: Translators}{Translators}
+    \li \l{Qt Linguist Manual: Programmers}{Programmers}
+    \li \l{Qt Linguist Manual: TS File Format}{TS File Format}
     \endlist
 
     \QL and \c lupdate are able to import and export XML Localization
@@ -132,10 +132,10 @@
 
     \table
 
-    \row \o{1,2} \inlineimage wVista-Cert-border-small.png
-    \o \e{Qt Linguist 4.3 is Certified for Windows Vista}
+    \row \li{1,2} \inlineimage wVista-Cert-border-small.png
+    \li \e{Qt Linguist 4.3 is Certified for Windows Vista}
 
-    \row \o Windows Vista and the Windows Vista Start button are
+    \row \li Windows Vista and the Windows Vista Start button are
     trademarks or registered trademarks of Microsoft Corporation in
     the United States and/or other countries.
 
@@ -393,20 +393,20 @@
 
     \list
 
-    \o \inlineimage linguist-check-on.png
+    \li \inlineimage linguist-check-on.png
     All strings in the context have been translated, and all the
     translations passed the \l{Validation Tests} {validation tests}.
 
-    \o \inlineimage linguist-check-warning.png
+    \li \inlineimage linguist-check-warning.png
     All strings in the context have been translated or marked as
     translated, but at least one translation failed the \l{Validation
     Tests} {validation tests}.
 
-    \o \inlineimage linguist-check-off.png
+    \li \inlineimage linguist-check-off.png
     At least one string in the context has not been translated or is
     not marked as translated.
 
-    \o \inlineimage linguist-check-obsolete.png
+    \li \inlineimage linguist-check-obsolete.png
     None of the translated strings still appears in the context. This
     usually means the context itself no longer exists in the
     application.
@@ -421,8 +421,8 @@
     have translations. i.e., if the numbers are equal, all the
     translatable strings in the context have translations.
 
-    In the UI snapshot above, the \bold{MessageEditor} context is
-    selected.  Its \e{Items} entry shows \bold{18/18}, which means it
+    In the UI snapshot above, the \b{MessageEditor} context is
+    selected.  Its \e{Items} entry shows \b{18/18}, which means it
     has 18 translatable strings and all 18 strings currently have
     translations. However, the context has been marked with the
     \inlineimage linguist-check-warning.png
@@ -463,14 +463,14 @@
 
     \table
     \header
-    \o State
-    \o Icon
-    \o Description
+    \li State
+    \li Icon
+    \li Description
 
     \row
-    \o Accepted/Correct
-    \o \inlineimage linguist-check-on.png
-    \o The source string has a translation (possibly empty); the user
+    \li Accepted/Correct
+    \li \inlineimage linguist-check-on.png
+    \li The source string has a translation (possibly empty); the user
     has accepted the translation, and the translation passes all the
     \l{Validation Tests} {validation tests}. If the translation is
     empty, the user has chosen to leave it empty. Click the icon to
@@ -486,9 +486,9 @@
     .
 
     \row
-    \o Accepted/Warnings
-    \o \inlineimage linguist-check-warning.png
-    \o The user has accepted the translation, but the translation does
+    \li Accepted/Warnings
+    \li \inlineimage linguist-check-warning.png
+    \li The user has accepted the translation, but the translation does
     not pass all the \l{Validation Tests} {validation tests}. The
     validation test failures are shown in the \l{Warnings Window}
     {warnings window}. Click the icon to revoke acceptance of the
@@ -497,9 +497,9 @@
     of the \l{Context Window} {context list} is decremented by 1.
 
     \row
-    \o Not Accepted
-    \o \inlineimage linguist-check-off.png
-    \o The string has a non-empty translation that passes all the
+    \li Not Accepted
+    \li \inlineimage linguist-check-off.png
+    \li The string has a non-empty translation that passes all the
     \l{Validation Tests} {validation tests}, but the user has not yet
     accepted the translation. Click the icon or press \key{Ctrl+Enter}
     to accept the translation. The state is reset to
@@ -508,18 +508,18 @@
     of the \l{Context Window} {context list} is incremented by 1.
 
     \row
-    \o No Translation
-    \o \inlineimage linguist-check-empty.png
-    \o The string does not have a translation. Click the icon to
+    \li No Translation
+    \li \inlineimage linguist-check-empty.png
+    \li The string does not have a translation. Click the icon to
     accept the empty translation anyway. The state is reset to
     \inlineimage linguist-check-on.png
     , and the number of accepted translations in the \e{Items} column
     of the \l{Context Window} {context list} is incremented by 1.
 
     \row
-    \o Validation Failures
-    \o \inlineimage linguist-danger.png
-    \o The string has a translation, but the translation does not
+    \li Validation Failures
+    \li \inlineimage linguist-danger.png
+    \li The string has a translation, but the translation does not
     pass all the \l{Validation Tests} {validation tests}. Validation
     test failures are shown in the \l{Warnings Window} {warnings}
     window. Click on the icon or press \key{Ctrl+Return} to accept
@@ -531,9 +531,9 @@
     , when all the failures have been fixed.
 
     \row
-    \o Obsolete
-    \o \inlineimage linguist-check-obsolete.png
-    \o The string is obsolete. It is no longer used in the context.
+    \li Obsolete
+    \li \inlineimage linguist-check-obsolete.png
+    \li The string is obsolete. It is no longer used in the context.
     See the \l{Qt Linguist Manual: Release Manager} {Release Manager}
     for instructions on how to remove obsolete messages from the file.
 
@@ -656,12 +656,12 @@
 
     The \e{Items} column in the \l{Context Window} combines the values
     for both languages. The best way to see this is to look at the
-    value for the \bold{MessageEditor} context, which is the one
+    value for the \b{MessageEditor} context, which is the one
     selected in the snapshot shown above. Recall that in the first UI
     snapshot (Polish only), the numbers for this context were
     \e{18/18}, meaning 18 translatable strings had been found in the
     context, and all 18 strings had accepted translations.  In the UI
-    snapshot above, the numbers for the \bold{MessageEditor} context
+    snapshot above, the numbers for the \b{MessageEditor} context
     are now \e{1/18}, meaning that both languages have 18 translatable
     strings for that context, but for Japanese, only 1 of the 18
     strings has an accepted translation. The
@@ -897,18 +897,18 @@
     \QL provides four kinds of validation tests for translations.
 
     \list 1
-    \o \e {Accelerator validation} detects translated phrases
+    \li \e {Accelerator validation} detects translated phrases
     that do not have an ampersand when the source phrase does and vice
     versa.
-    \o \e {Punctuation validation} detects differences in the
+    \li \e {Punctuation validation} detects differences in the
     terminating punctuation between source and translated phrases when this
     may be significant, e.g. warns if the source phrase ends with an
     ellipsis, exclamation mark or question mark, and the translated phrase
     doesn't and vice versa.
-    \o \e {Phrases validation} detects source phrases that are
+    \li \e {Phrases validation} detects source phrases that are
     also in the phrase book but whose translation differs from that given in
     the phrase book.
-    \o \e {Place marker validation} detects whether the same variables
+    \li \e {Place marker validation} detects whether the same variables
     (like \c %1, \c %2) are used both in the source text and in the translation.
     \endlist
 
@@ -943,21 +943,21 @@
     \QL makes use of four kinds of files:
 
     \list
-    \o TS \e {translation source files} \BR are human-readable XML
+    \li TS \e {translation source files} \BR are human-readable XML
     files containing source phrases and their translations. These files are
     usually created and updated by \l{linguist-manager.html#lupdate}{lupdate}
     and are specific to an application.
-    \o \c .xlf \e {XLIFF files} \BR are human-readable XML files that adhere
+    \li \c .xlf \e {XLIFF files} \BR are human-readable XML files that adhere
     to the international XML Localization Interchange File Format. \QL
     can be used to edit XLIFF files generated by other programs. However, for
     standard Qt projects, only the TS file format is used.  \note The minimum
     supported version for XLIFF format files is 1.1. XLIFF 1.0 version files
     are not supported.
-    \o QM \e {Qt message files} \BR are binary files that contain
+    \li QM \e {Qt message files} \BR are binary files that contain
     translations used by an application at run-time. These files are
     generated by \l{linguist-manager.html#lrelease}{lrelease}, but can also
     be generated by \QL.
-    \o \c .qph \e {Qt phrase book files} \BR are human-readable XML
+    \li \c .qph \e {Qt phrase book files} \BR are human-readable XML
     files containing standard phrases and their translations. These files
     are created and updated by \QL and may be used by any
     number of projects and applications.
@@ -969,162 +969,162 @@
     \image linguist-menubar.png
 
     \list
-    \o \gui {File}
+    \li \gui {File}
         \list
-        \o \gui {Open... Ctrl+O} \BR pops up an open file dialog from which a
+        \li \gui {Open... Ctrl+O} \BR pops up an open file dialog from which a
         translation source \c .ts or \c .xlf file can be chosen.
-        \o \gui {Recently opened files} \BR shows the TS files that
+        \li \gui {Recently opened files} \BR shows the TS files that
         have been opened recently, click one to open it.
-        \o \gui {Save Ctrl+S} \BR saves the current translation source file.
-        \o \gui {Save As...} \BR pops up a save as file dialog so that the
+        \li \gui {Save Ctrl+S} \BR saves the current translation source file.
+        \li \gui {Save As...} \BR pops up a save as file dialog so that the
         current translation source file may be saved with a different
         name, format and/or put in a different location.
-        \o \gui {Release} \BR create a Qt message QM file with the same base
+        \li \gui {Release} \BR create a Qt message QM file with the same base
         name as the current translation source file. The release manager's
         command line tool \l{linguist-manager.html#lrelease}{lrelease}
         performs the same function on \e all of an application's translation
         source files.
-        \o \gui {Release As...} \BR pops up a save as file dialog. The
+        \li \gui {Release As...} \BR pops up a save as file dialog. The
         filename entered will be a Qt message QM file of the translation
         based on the current translation source file. The release manager's
         command line tool \l{linguist-manager.html#lrelease}{lrelease}
         performs the same function on \e all of an application's translation
         source files.
-        \o \gui {Print... Ctrl+P} \BR pops up a print dialog. If you click
+        \li \gui {Print... Ctrl+P} \BR pops up a print dialog. If you click
         OK the translation source and the translations will be printed.
-        \o \gui {Exit Ctrl+Q} \BR closes \QL.
+        \li \gui {Exit Ctrl+Q} \BR closes \QL.
         \endlist
 
-    \o \gui {Edit}
+    \li \gui {Edit}
         \list
-        \o \gui {Undo Ctrl+Z} \BR undoes the last editing action in the
+        \li \gui {Undo Ctrl+Z} \BR undoes the last editing action in the
         translation pane.
-        \o \gui {Redo Ctrl+Y} \BR redoes the last editing action in the
+        \li \gui {Redo Ctrl+Y} \BR redoes the last editing action in the
         translation pane.
-        \o \gui {Cut Ctrl+X} \BR deletes any highlighted text in the
+        \li \gui {Cut Ctrl+X} \BR deletes any highlighted text in the
         translation pane and saves a copy to the clipboard.
-        \o \gui {Copy Ctrl+C} \BR copies the highlighted text in the
+        \li \gui {Copy Ctrl+C} \BR copies the highlighted text in the
         translation pane to the clipboard.
-        \o \gui {Paste Ctrl+V} \BR pastes the clipboard text into the
+        \li \gui {Paste Ctrl+V} \BR pastes the clipboard text into the
         translation pane.
     \omit
-        \o \gui {Delete} \BR deletes the highlighted text in the
+        \li \gui {Delete} \BR deletes the highlighted text in the
         translation pane.
     \endomit
-        \o \gui {Select All Ctrl+A} \BR selects all the text in the
+        \li \gui {Select All Ctrl+A} \BR selects all the text in the
         translation pane ready for copying or deleting.
-        \o \gui {Find... Ctrl+F} \BR pops up the
+        \li \gui {Find... Ctrl+F} \BR pops up the
         Find dialog. When the dialog pops up
         enter the text to be found and click the \gui {Find Next} button.
         Source phrases, translations and comments may be searched.
-        \o \gui {Find Next F3} \BR finds the next occurrence of the text that
+        \li \gui {Find Next F3} \BR finds the next occurrence of the text that
         was last entered in the Find dialog.
-        \o \gui {Search and Translate...} \BR pops up the Search and
+        \li \gui {Search and Translate...} \BR pops up the Search and
         Replace Dialog. Use this dialog to translate the same text in multiple items.
-        \o \gui {Translation File Settings...} \BR let you configure the target
+        \li \gui {Translation File Settings...} \BR let you configure the target
         language and the country/region of a translation source file.
         \endlist
 
-    \o \gui {Translation}
+    \li \gui {Translation}
         \list
-        \o \gui {Prev Unfinished Ctrl+K} \BR moves to the nearest previous
+        \li \gui {Prev Unfinished Ctrl+K} \BR moves to the nearest previous
         unfinished source phrase (unfinished means non-translated or
         translated but failed validation).
-        \o \gui {Next Unfinished Ctrl+L} \BR moves to the next unfinished source
+        \li \gui {Next Unfinished Ctrl+L} \BR moves to the next unfinished source
         phrase.
-        \o \gui {Prev Shift+Ctrl+K} \BR moves to the previous source phrase.
-        \o \gui {Next Shift+Ctrl+L} \BR moves to the next source phrase.
-        \o \gui {Done \& Next Ctrl+Enter} \BR mark this phrase as 'done'
+        \li \gui {Prev Shift+Ctrl+K} \BR moves to the previous source phrase.
+        \li \gui {Next Shift+Ctrl+L} \BR moves to the next source phrase.
+        \li \gui {Done \& Next Ctrl+Enter} \BR mark this phrase as 'done'
         (translated) and move to the next unfinished source phrase.
-        \o \gui {Copy from source text Ctrl+B} \BR copies the source text into
+        \li \gui {Copy from source text Ctrl+B} \BR copies the source text into
         the translation.
         \endlist
 
-    \o \gui {Validation} (See \l{Validation Tests})
+    \li \gui {Validation} (See \l{Validation Tests})
         \list
-        \o \gui {Accelerators} \BR toggles validation on or off for Alt
+        \li \gui {Accelerators} \BR toggles validation on or off for Alt
         accelerators.
-        \o \gui {Ending Punctuation} \BR switches validation on or off
+        \li \gui {Ending Punctuation} \BR switches validation on or off
         for phrase ending punctuation, e.g. ellipsis, exclamation mark,
         question mark, etc.
-        \o \gui {Phrase Matches} \BR sets validation on or off for
+        \li \gui {Phrase Matches} \BR sets validation on or off for
         matching against translations that are in the current phrase book.
-        \o \gui {Place Marker Matches} \BR sets validation on or off for
+        \li \gui {Place Marker Matches} \BR sets validation on or off for
         the use of the same place markers in the source and translation.
         \endlist
 
-    \o \gui {Phrases} (See the section \l {Phrase Books} for details.)
+    \li \gui {Phrases} (See the section \l {Phrase Books} for details.)
         \list
 
-        \o \gui {New Phrase Book... Ctrl+N} \BR pops up a save as file
+        \li \gui {New Phrase Book... Ctrl+N} \BR pops up a save as file
         dialog.  You must enter a filename to be used for the phrase
         book and save the file. Once saved you should open the phrase
         book to begin using it.
 
-        \o \gui {Open Phrase Book... Ctrl+H} \BR pops up an open file
+        \li \gui {Open Phrase Book... Ctrl+H} \BR pops up an open file
         dialog.  Find and choose a phrase book to open.
 
-        \o \gui {Close Phrase Book} \BR displays the list of phrase
+        \li \gui {Close Phrase Book} \BR displays the list of phrase
         books currently opened. Clicking on one of the items will
         close the phrase book. If the phrase book has been modified, a
         dialog box asks whether \QL should save the changes.
 
-        \o \gui {Edit Phrase Book...} \BR displays the list of phrase
+        \li \gui {Edit Phrase Book...} \BR displays the list of phrase
         books currently opened. Clicking on one of the items will open
         the \l{Creating and Editing Phrase Books}{Phrase Book Dialog}
         where you can add, edit or delete phrases.
 
-        \o \gui {Print Phrase Book...} \BR displays the list of phrase
+        \li \gui {Print Phrase Book...} \BR displays the list of phrase
         books currently opened. Clicking on one of the items pops up a
         print dialog.  If you click OK the phrase book will be
         printed.
 
-        \o \gui {Add to Phrase Book Ctrl+T} \BR Adds the source text
+        \li \gui {Add to Phrase Book Ctrl+T} \BR Adds the source text
         and translation currently shown in the \l{The Translation
         Area} {translation area} to a phrase book.  If multiple phrase
         books are loaded, a dialog box let you specify select one.
 
         \endlist
 
-    \o \gui {Tools}
+    \li \gui {Tools}
         \list
 
-        \o \gui {Batch Translation...} \BR Opens a \l{Batch
+        \li \gui {Batch Translation...} \BR Opens a \l{Batch
         Translation}{dialog} which let you automatically insert
         translations for source texts which are in a phrase book.
 
-        \o \gui {Open/Refresh Form Preview F3} \BR Opens the \l{Form
+        \li \gui {Open/Refresh Form Preview F3} \BR Opens the \l{Form
         Preview}.  This window let you instantly see translations for
         forms created with \QD.  \endlist
 
-    \o \gui {View}
+    \li \gui {View}
         \list
 
-        \o \gui {Revert Sorting} \BR puts the items in the \l{Context
+        \li \gui {Revert Sorting} \BR puts the items in the \l{Context
         Window} {context list} and in the \l{Strings Window} {string
         list} into their original order.
 
-        \o \gui {Display Guesses} \BR turns the display of phrases and
+        \li \gui {Display Guesses} \BR turns the display of phrases and
         guesses on or off.
 
-        \o \gui {Statistics} \BR toggles the visibility of the
+        \li \gui {Statistics} \BR toggles the visibility of the
         Statistics dialog.
 
-        \o \gui {Views} \BR toggles the visibility of the \l{Context
+        \li \gui {Views} \BR toggles the visibility of the \l{Context
         Window}, \l{Strings Window}, \l{Phrases and Guesses Window},
         \l{Warnings Window}, or \l{Sources and Forms Window}.
 
-        \o \gui {Toolbars} \BR toggles the visibility of the different
+        \li \gui {Toolbars} \BR toggles the visibility of the different
         toolbars.
 
         \endlist
 
-    \o \gui {Help}
+    \li \gui {Help}
         \list
-        \o \gui {Manual F1} \BR opens this manual.
-        \o \gui {About Qt Linguist} \BR Shows information about \QL.
-        \o \gui {About Qt} \BR Shows information about \e{Qt}.
-        \o \gui {What's This? Shift+F1} \BR Click on one item in the main window
+        \li \gui {Manual F1} \BR opens this manual.
+        \li \gui {About Qt Linguist} \BR Shows information about \QL.
+        \li \gui {About Qt} \BR Shows information about \e{Qt}.
+        \li \gui {What's This? Shift+F1} \BR Click on one item in the main window
         to get additional information about it.
         \endlist
 
@@ -1135,81 +1135,81 @@
     \image linguist-toolbar.png
 
     \list
-    \o \inlineimage linguist-fileopen.png
+    \li \inlineimage linguist-fileopen.png
     \BR
     Pops up the open file dialog to open a new translation source TS file.
 
-    \o \inlineimage linguist-filesave.png
+    \li \inlineimage linguist-filesave.png
     \BR
     Saves the current translation source TS file.
 
-    \o \inlineimage linguist-fileprint.png
+    \li \inlineimage linguist-fileprint.png
     \BR
     Prints the current translation source TS file.
 
-    \o \inlineimage linguist-phrasebookopen.png
+    \li \inlineimage linguist-phrasebookopen.png
     \BR
     Pops up the file open dialog to open a new phrase book \c .qph file.
 
-    \o \inlineimage linguist-editundo.png
+    \li \inlineimage linguist-editundo.png
     \BR
     Undoes the last editing action in the translation pane.
 
-    \o \inlineimage linguist-editredo.png
+    \li \inlineimage linguist-editredo.png
     \BR
     Redoes the last editing action in the translation pane.
 
-    \o \inlineimage linguist-editcut.png
+    \li \inlineimage linguist-editcut.png
     \BR
     Deletes any highlighted text in the translation pane and save a copy to
     the clipboard.
 
-    \o \inlineimage linguist-editcopy.png
+    \li \inlineimage linguist-editcopy.png
     \BR
     Copies the highlighted text in the translation pane to the clipboard.
 
-    \o \inlineimage linguist-editpaste.png
+    \li \inlineimage linguist-editpaste.png
     \BR
     Pastes the clipboard text into the translation pane.
 
-    \o \inlineimage linguist-editfind.png
+    \li \inlineimage linguist-editfind.png
     \BR
     Pops up the Find dialog .
 
-    \o \inlineimage linguist-prev.png
+    \li \inlineimage linguist-prev.png
     \BR
     Moves to the previous source phrase.
 
-    \o \inlineimage linguist-next.png
+    \li \inlineimage linguist-next.png
     \BR
     Moves to the next source phrase.
 
-    \o \inlineimage linguist-prevunfinished.png
+    \li \inlineimage linguist-prevunfinished.png
     \BR
     Moves to the previous unfinished source phrase.
 
-    \o \inlineimage linguist-nextunfinished.png
+    \li \inlineimage linguist-nextunfinished.png
     \BR
     Moves to the next unfinished source phrase.
 
-    \o \inlineimage linguist-doneandnext.png
+    \li \inlineimage linguist-doneandnext.png
     \BR
     Marks the phrase as 'done' (translated) and move to the next
     unfinished source phrase.
 
-    \o \inlineimage linguist-validateaccelerators.png
+    \li \inlineimage linguist-validateaccelerators.png
     \BR
     Toggles accelerator validation on and off.
 
-    \o \inlineimage linguist-validatepunctuation.png
+    \li \inlineimage linguist-validatepunctuation.png
     \BR
     Toggles phrase ending punctuation validation on and off.
 
-    \o \inlineimage linguist-validatephrases.png
+    \li \inlineimage linguist-validatephrases.png
     \BR
     Toggles phrase book validation on or off.
 
-    \o \inlineimage linguist-validateplacemarkers.png
+    \li \inlineimage linguist-validateplacemarkers.png
     \BR
     Toggles place marker validation on or off.
 
@@ -1264,18 +1264,18 @@
     Translation files are created as follows:
 
     \list 1
-    \o Run \l {linguist-manager.html#lupdate}{lupdate} initially to
+    \li Run \l {linguist-manager.html#lupdate}{lupdate} initially to
     generate the first set of TS translation source files with all the
     user-visible text but no translations.
-    \o The TS files are given to the translator who adds translations
+    \li The TS files are given to the translator who adds translations
     using \QL. \QL takes care of any changed
     or deleted source text.
-    \o Run \l{linguist-manager.html#lupdate}{lupdate} to incorporate any new
+    \li Run \l{linguist-manager.html#lupdate}{lupdate} to incorporate any new
     text added to the application. \l{linguist-manager.html#lupdate}{lupdate}
     synchronizes the user-visible text from the application with the
     translations; it does not destroy any data.
-    \o Steps 2 and 3 are repeated as often as necessary.
-    \o When a release of the application is needed
+    \li Steps 2 and 3 are repeated as often as necessary.
+    \li When a release of the application is needed
     \l{linguist-manager.html#lrelease}{lrelease} is run to
     read the TS files and produce the QM files used by the
     application at runtime.
@@ -1472,17 +1472,17 @@
     Three tutorials are presented:
 
     \list 1
-    \o \l{linguist/hellotr}{Hello tr()} demonstrates the creation of
+    \li \l{linguist/hellotr}{Hello tr()} demonstrates the creation of
         a \l QTranslator object. It also shows the simplest use of
         the \c tr() function to mark user-visible source text for
         translation.
 
-    \o \l{linguist/arrowpad}{Arrow Pad} explains how to make the application load the
+    \li \l{linguist/arrowpad}{Arrow Pad} explains how to make the application load the
        translation file applicable to the current locale. It also shows the
        use of the two-argument form of \c tr() which provides additional
        information to the translator.
 
-    \o \l{linguist/trollprint}{Troll Print} explains how
+    \li \l{linguist/trollprint}{Troll Print} explains how
         identical source texts can be distinguished even when they occur in
         the same context. This tutorial also discusses how the translation
         tools help minimize the translator's work when an application is

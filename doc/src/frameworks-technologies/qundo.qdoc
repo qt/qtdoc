@@ -53,18 +53,18 @@
     The framework consists of four classes:
 
     \list
-    \i \l QUndoCommand is the base class of all commands stored on an
+    \li \l QUndoCommand is the base class of all commands stored on an
             undo stack. It can apply (redo) or undo a single change in the document.
-    \i \l QUndoStack is a list of QUndoCommand objects. It contains all the
+    \li \l QUndoStack is a list of QUndoCommand objects. It contains all the
             commands executed on the document and can roll the document's state
             backwards or forwards by undoing or redoing them.
-    \i \l QUndoGroup is a group of undo stacks. It is useful when an application
+    \li \l QUndoGroup is a group of undo stacks. It is useful when an application
             contains more than one undo stack, typically one for each opened
             document. QUndoGroup provides a single pair of undo/redo slots for all
             the stacks in the group. It forwards undo and redo requests to
             the active stack, which is the stack associated with the document that
             is currently being edited by the user.
-    \i \l QUndoView is a widget which shows the contents of an undo stack. Clicking
+    \li \l QUndoView is a widget which shows the contents of an undo stack. Clicking
             on a command in the view rolls the document's state backwards or
             forwards to that command.
     \endlist
@@ -74,16 +74,16 @@
     The following concepts are supported by the framework:
 
     \list
-    \i \bold{Clean state:} Used to signal when the document enters and leaves a
+    \li \b{Clean state:} Used to signal when the document enters and leaves a
         state that has been saved to disk. This is typically used to disable or
         enable the save actions, and to update the document's title bar.
-    \i \bold{Command compression:} Used to compress sequences of commands into a
+    \li \b{Command compression:} Used to compress sequences of commands into a
         single command.
         For example: In a text editor, the commands that insert individual
         characters into the document can be compressed into a single command that
         inserts whole sections of text. These bigger changes are more convenient
         for the user to undo and redo.
-    \i \bold{Command macros:} A sequence of commands, all of which are undone or
+    \li \b{Command macros:} A sequence of commands, all of which are undone or
         redone in one step.
         These simplify the task of writing an application, since a set of simpler
         commands can be composed into more complex commands. For example, a command

@@ -70,10 +70,10 @@ QString Atom::UPPERROMAN_    ("upperroman");
     \brief The Atom class is the fundamental unit for representing
     documents internally.
 
-  Atoms have a \i type and are completed by a \i string whose
-  meaning depends on the \i type. For example, the string
+  Atoms have a \li type and are completed by a \li string whose
+  meaning depends on the \li type. For example, the string
   \quotation
-      \i italic text looks nicer than \bold bold text
+      \li italic text looks nicer than \b bold text
   \endquotation
   is represented by the following atoms:
   \quotation

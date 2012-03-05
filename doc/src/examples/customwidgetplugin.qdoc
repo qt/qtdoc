@@ -61,11 +61,11 @@
 
     \list
 
-    \o \c designer: Since custom widgets plugins rely on components
+    \li \c designer: Since custom widgets plugins rely on components
     supplied with \QD, this value ensures that our plugin links
     against \QD's library (\c libQtDesigner.so).
 
-    \o \c plugin: We also need to ensure that \c qmake considers the
+    \li \c plugin: We also need to ensure that \c qmake considers the
     custom widget a plugin library.
 
     \endlist

@@ -43,10 +43,10 @@
   plugin manually just carry out the following steps.
 
   \list
-  \i Start up Visual Studio.
-  \i Select Tools|Customize|Add-ins and Macro Files.
-  \i Ensure that there is a tick next to QMsDev Developer Studio Add-In.
-  \i Click Close.
+  \li Start up Visual Studio.
+  \li Select Tools|Customize|Add-ins and Macro Files.
+  \li Ensure that there is a tick next to QMsDev Developer Studio Add-In.
+  \li Click Close.
   \endlist
 
   Now the integration plugin should be installed. If this doesn't
@@ -59,8 +59,8 @@
   following steps.
 
   \list
-  \i Close down any instances of Visual Studio.
-  \i Delete the file '%MSDevDir%\\addins\\qmsdev.dll'
+  \li Close down any instances of Visual Studio.
+  \li Delete the file '%MSDevDir%\\addins\\qmsdev.dll'
   \endlist
 
   \section1 What can the Visual Studio Integration Plugin do?
@@ -68,13 +68,13 @@
   The integration plugin adds the following options to Visual Studio:
 
   \list
-  \i New Qt Project
-  \i New Qt Dialog
-  \i Qt Designer
-  \i Open Qt Project
-  \i Write Qt Project
-  \i Use Qt In Current Project
-  \i Add MOC
+  \li New Qt Project
+  \li New Qt Dialog
+  \li Qt Designer
+  \li Open Qt Project
+  \li Write Qt Project
+  \li Use Qt In Current Project
+  \li Add MOC
   \endlist
 
   \section2 Using the 'New Qt Project' button

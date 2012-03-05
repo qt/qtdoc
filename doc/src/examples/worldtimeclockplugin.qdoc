@@ -42,9 +42,9 @@
     The World Time Clock Plugin example consists of two classes:
 
     \list
-    \o \c WorldTimeClock is a custom clock widget with hour and
+    \li \c WorldTimeClock is a custom clock widget with hour and
        minute hands that is automatically updated every few seconds.
-    \o \c WorldTimeClockPlugin exposes the \c WorldTimeClock class to \QD.
+    \li \c WorldTimeClockPlugin exposes the \c WorldTimeClock class to \QD.
     \endlist
 
     First we will take a look at the \c WorldTimeClock class which
@@ -150,11 +150,11 @@
     \c designer and \c plugin:
 
     \list
-        \o \c designer: Since custom widgets plugins rely on components
+        \li \c designer: Since custom widgets plugins rely on components
            supplied with \QD, this value ensures that our plugin links against
            \QD's library (\c libQtDesigner.so).
 
-        \o \c plugin: We also need to ensure that \c qmake considers the
+        \li \c plugin: We also need to ensure that \c qmake considers the
            custom widget a \e plugin library.
     \endlist
 

@@ -41,14 +41,14 @@
     RCC accepts the following command line options:
 
     \table
-    \header \o Option         \o Argument \o Description
+    \header \li Option         \li Argument \li Description
 
-    \row \o \c{-o} \o \c{file} \o Write output to \c{file} rather than to stdout.
+    \row \li \c{-o} \li \c{file} \li Write output to \c{file} rather than to stdout.
 
-    \row \o \c{-name} \o \c{name} \o Create an external initialization 
+    \row \li \c{-name} \li \c{name} \li Create an external initialization
                                      function with \c{name}.
 
-    \row \o \c{-threshold} \o \c{level} \o Specifies a threshold \c{level} (as a
+    \row \li \c{-threshold} \li \c{level} \li Specifies a threshold \c{level} (as a
                            percentage) to use when deciding whether to compress
                            a file. If the reduction in the file size is greater than
                            the threshold \c{level}, it is compressed; otherwise,
@@ -57,7 +57,7 @@
                            which are 30% or less of their original size are
                            stored as compressed data.
 
-    \row \o \c{-compress} \o \c{level} \o Compress input files to the given
+    \row \li \c{-compress} \li \c{level} \li Compress input files to the given
                                           compression \c{level}, which is an
                                           integer in the range 1 to 9. Level 1
                                           does the least compression but is
@@ -68,16 +68,16 @@
                                           which means use zlib's default
                                           compression level.
 
-    \row \o \c{-root} \o \c{path} \o Prefix the resource access path with \c{path}.
+    \row \li \c{-root} \li \c{path} \li Prefix the resource access path with \c{path}.
                                      The default is no prefix.
 
-    \row \o \c{-no-compress} \o \o Disable compression.
+    \row \li \c{-no-compress} \li \li Disable compression.
 
-    \row \o \c{-binary} \o \o Output a binary file for use as a dynamic resource.
+    \row \li \c{-binary} \li \li Output a binary file for use as a dynamic resource.
 
-    \row \o \c{-version} \o \o Display version information.
+    \row \li \c{-version} \li \li Display version information.
 
-    \row \o \c{-help} \o \o Display usage information.
+    \row \li \c{-help} \li \li Display usage information.
 
     \endtable
 

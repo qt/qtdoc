@@ -53,33 +53,33 @@
     links:
 
     \list
-        \o  \l{Qt Designer's Editing Modes}
+        \li  \l{Qt Designer's Editing Modes}
             \list
-                \o  \l{Qt Designer's Widget Editing Mode}{Widget Editing Mode}
-                \o  \l{Qt Designer's Signals and Slots Editing Mode}
+                \li  \l{Qt Designer's Widget Editing Mode}{Widget Editing Mode}
+                \li  \l{Qt Designer's Signals and Slots Editing Mode}
                       {Signals and Slots Editing Mode}
-                \o  \l{Qt Designer's Buddy Editing Mode}
+                \li  \l{Qt Designer's Buddy Editing Mode}
                       {Buddy Editing Mode}
-                \o  \l{Qt Designer's Tab Order Editing Mode}
+                \li  \l{Qt Designer's Tab Order Editing Mode}
                       {Tab Order Editing Mode}
             \endlist
-        \o  \l{Using Layouts in Qt Designer}
-        \o  \l{Saving, Previewing and Printing Forms in Qt Designer}
-        \o  \l{Using Containers in Qt Designer}
-        \o  \l{Creating Main Windows in Qt Designer}
-        \o  \l{Editing Resources with Qt Designer}
-        \o  \l{Using Stylesheets with Qt Designer}
-        \o  \l{Using a Designer UI File in Your Application}
+        \li  \l{Using Layouts in Qt Designer}
+        \li  \l{Saving, Previewing and Printing Forms in Qt Designer}
+        \li  \l{Using Containers in Qt Designer}
+        \li  \l{Creating Main Windows in Qt Designer}
+        \li  \l{Editing Resources with Qt Designer}
+        \li  \l{Using Stylesheets with Qt Designer}
+        \li  \l{Using a Designer UI File in Your Application}
     \endlist
 
     For advanced usage of \QD, you can refer to these links:
 
     \list
-        \o  \l{Customizing Qt Designer Forms}
-        \o  \l{Using Custom Widgets with Qt Designer}
-        \o  \l{Creating Custom Widgets for Qt Designer}
-        \o  \l{Creating Custom Widget Extensions}
-        \o  \l{Qt Designer's UI File Format}
+        \li  \l{Customizing Qt Designer Forms}
+        \li  \l{Using Custom Widgets with Qt Designer}
+        \li  \l{Creating Custom Widgets for Qt Designer}
+        \li  \l{Creating Custom Widget Extensions}
+        \li  \l{Qt Designer's UI File Format}
     \endlist
 
 
@@ -92,7 +92,7 @@
     appendix to the documentation.
 
     \list
-    \i \l{Implementation of the Recursive Shadow Casting Algorithm in Qt Designer}
+    \li \l{Implementation of the Recursive Shadow Casting Algorithm in Qt Designer}
     \endlist
 */
 
@@ -113,13 +113,13 @@
     The way that you launch \QD depends on your platform:
 
     \list
-        \i On Windows, click the Start button, under the \gui Programs submenu,
+        \li On Windows, click the Start button, under the \gui Programs submenu,
            open the \gui{Qt 4} submenu and click \gui Designer.
-        \i On Unix or Linux, you might find a \QD icon on the desktop
+        \li On Unix or Linux, you might find a \QD icon on the desktop
            background or in the desktop start menu under the \gui Programming
            or \gui Development submenus. You can launch \QD from this icon.
            Alternatively, you can type \c{designer} in a terminal window.
-        \i On Mac OS X, double click on \QD in \gui Finder.
+        \li On Mac OS X, double click on \QD in \gui Finder.
     \endlist
 
     \section1 The User Interface
@@ -139,8 +139,8 @@
     \target MainWindow
     \table
         \row
-            \i \inlineimage designer-main-window.png
-            \i \bold{Qt Designer's Main Window}
+            \li \inlineimage designer-main-window.png
+            \li \b{Qt Designer's Main Window}
 
         The menu bar provides all the standard actions for managing forms,
         using the clipboard, and accessing application-specific help.
@@ -163,8 +163,8 @@
     \target WidgetBox
     \table
         \row
-            \i \inlineimage designer-widget-box.png
-            \i \bold{Qt Designer's Widget Box}
+            \li \inlineimage designer-widget-box.png
+            \li \b{Qt Designer's Widget Box}
 
         The widget box provides a selection of standard Qt widgets, layouts,
         and other objects that can be used to create user interfaces on forms.
@@ -238,10 +238,10 @@
     Qt's layouts help when you:
 
     \list 1
-        \i  Resize the user face to fit different window sizes.
-        \i  Resize elements within the user interface to suit different
+        \li  Resize the user face to fit different window sizes.
+        \li  Resize elements within the user interface to suit different
             localizations.
-        \i  Arrange elements to adhere to layout guidelines for different
+        \li  Arrange elements to adhere to layout guidelines for different
             platforms.
     \endlist
 
@@ -256,11 +256,11 @@
 
     \table
         \header
-            \i  A Dialog in English
-            \i  A Dialog in French
+            \li  A Dialog in English
+            \li  A Dialog in French
         \row
-            \i  \image designer-english-dialog.png
-            \i  \image designer-french-dialog.png
+            \li  \image designer-english-dialog.png
+            \li  \image designer-french-dialog.png
     \endtable
 
     The process of laying out widgets consists of creating the layout hierarchy
@@ -278,13 +278,13 @@
 
     \title A Quick Start to Qt Designer
 
-    Using \QD involves \bold four basic steps:
+    Using \QD involves \b four basic steps:
 
     \list 1
-        \o  Choose your form and objects
-        \o  Lay the objects out on the form
-        \o  Connect the signals to the slots
-        \o  Preview the form
+        \li  Choose your form and objects
+        \li  Lay the objects out on the form
+        \li  Connect the signals to the slots
+        \li  Preview the form
     \endlist
 
     \image rgbController-screenshot.png
@@ -296,8 +296,8 @@
 
     \table
     \row
-    \i \inlineimage designer-choosing-form.png
-    \i \bold{Choosing a Form}
+    \li \inlineimage designer-choosing-form.png
+    \li \b{Choosing a Form}
 
     You start by choosing \gui Widget from the \gui{New Form} dialog.
     \endtable
@@ -305,8 +305,8 @@
 
     \table
     \row
-    \i  \inlineimage rgbController-arrangement.png
-    \i  \bold{Placing Widgets on a Form}
+    \li  \inlineimage rgbController-arrangement.png
+    \li  \b{Placing Widgets on a Form}
 
     Drag three labels, three spin boxes and three vertical sliders on to your
     form. To change the label's default text, simply double-click on it. You
@@ -321,15 +321,15 @@
 
     \table
         \row
-            \i \inlineimage rgbController-form-gridLayout.png
-            \i \inlineimage rgbController-selectForLayout.png
+            \li \inlineimage rgbController-form-gridLayout.png
+            \li \inlineimage rgbController-selectForLayout.png
     \endtable
 
 
     Repeat the step for the other two labels along with their corresponding
     spin boxes and sliders as well.
 
-    The next step is to combine all three layouts into one \bold{main layout}.
+    The next step is to combine all three layouts into one \b{main layout}.
     The main layout is the top level widget's (in this case, the QWidget)
     layout. It is important that your top level widget has a layout; otherwise,
     the widgets on your window will not resize when your window is resized. To
@@ -362,8 +362,8 @@
 
     \table
         \row
-            \i \inlineimage rgbController-signalsAndSlots.png
-            \i \bold{Connecting Signals to Slots}
+            \li \inlineimage rgbController-signalsAndSlots.png
+            \li \b{Connecting Signals to Slots}
 
         Click on the slider and drag the cursor towards the spin box. The
         \gui{Configure Connection} dialog, shown below, will pop up. Select the
@@ -391,8 +391,8 @@
 
     \table
         \row
-            \i \inlineimage rgbController-property-editing.png
-            \i \bold{Setting Widget Properties}
+            \li \inlineimage rgbController-property-editing.png
+            \li \b{Setting Widget Properties}
 
         Click on the first spin box. Within the \gui{Property Editor}, you will
         see \l{QSpinBox}'s properties. Enter "255" for the
@@ -428,30 +428,30 @@
     further detail.
 
     \table
-        \header \i  \i  \bold{Editing Modes}
+        \header \li  \li  \b{Editing Modes}
         \row
-            \i  \inlineimage designer-widget-tool.png
-            \i  In \l{Qt Designer's Widget Editing Mode}{Edit} mode, we can
+            \li  \inlineimage designer-widget-tool.png
+            \li  In \l{Qt Designer's Widget Editing Mode}{Edit} mode, we can
                 change the appearance of the form, add layouts, and edit the
                 properties of each widget. To switch to this mode, press
                 \key{F3}. This is \QD's default mode.
 
         \row
-            \i  \inlineimage designer-connection-tool.png
-            \i  In \l{Qt Designer's Signals and Slots Editing Mode}
+            \li  \inlineimage designer-connection-tool.png
+            \li  In \l{Qt Designer's Signals and Slots Editing Mode}
                 {Signals and Slots} mode, we can connect widgets together using
                 Qt's signals and slots mechanism. To switch to this mode, press
                 \key{F4}.
 
         \row
-            \i  \inlineimage designer-buddy-tool.png
-            \i  In \l{Qt Designer's Buddy Editing Mode}{Buddy Editing Mode},
+            \li  \inlineimage designer-buddy-tool.png
+            \li  In \l{Qt Designer's Buddy Editing Mode}{Buddy Editing Mode},
                 buddy widgets can be assigned to label widgets to help them
                 handle keyboard focus correctly.
 
         \row
-            \i  \inlineimage designer-tab-order-tool.png
-            \i  In \l{Qt Designer's Tab Order Editing Mode}
+            \li  \inlineimage designer-tab-order-tool.png
+            \li  In \l{Qt Designer's Tab Order Editing Mode}
                 {Tab Order Editing Mode}, we can set the order in which widgets
                 receive the keyboard focus.
     \endtable
@@ -517,8 +517,8 @@
     \target SelectingObjects
     \table
         \row
-            \i  \inlineimage designer-selecting-widget.png
-            \i  \bold{Selecting Objects}
+            \li  \inlineimage designer-selecting-widget.png
+            \li  \b{Selecting Objects}
 
         Objects on the form are selected by clicking on them with the left
         mouse button. When an object is selected, resize handles are shown at
@@ -545,31 +545,31 @@
 
     \target ShortcutsForEditing
     \table
-        \header \i Action       \i Shortcut     \i Description
+        \header \li Action       \li Shortcut     \li Description
         \row
-            \i Cut
-            \i \key{Ctrl+X}
-            \i Cuts the selected objects to the clipboard.
+            \li Cut
+            \li \key{Ctrl+X}
+            \li Cuts the selected objects to the clipboard.
         \row
-            \i Copy
-            \i \key{Ctrl+C}
-            \i Copies the selected objects to the clipboard.
+            \li Copy
+            \li \key{Ctrl+C}
+            \li Copies the selected objects to the clipboard.
         \row
-            \i Paste
-            \i \key{Ctrl+V}
-            \i Pastes the objects in the clipboard onto the form.
+            \li Paste
+            \li \key{Ctrl+V}
+            \li Pastes the objects in the clipboard onto the form.
         \row
-            \i Delete
-            \i \key Delete
-            \i Deletes the selected objects.
+            \li Delete
+            \li \key Delete
+            \li Deletes the selected objects.
         \row
-            \i Clone object
-            \i \key{Ctrl+drag} (leftmouse button)
-            \i Makes a copy of the selected object or group of objects.
+            \li Clone object
+            \li \key{Ctrl+drag} (leftmouse button)
+            \li Makes a copy of the selected object or group of objects.
         \row
-            \i Preview
-            \i \key{Ctrl+R}
-            \i Shows a preview of the form.
+            \li Preview
+            \li \key{Ctrl+R}
+            \li Shows a preview of the form.
     \endtable
 
     All of the above actions (apart from cloning) can be accessed via both the
@@ -586,8 +586,8 @@
     \target DragAndDrop
     \table
         \row
-            \i \inlineimage designer-dragging-onto-form.png
-            \i \bold{Drag and Drop}
+            \li \inlineimage designer-dragging-onto-form.png
+            \li \b{Drag and Drop}
 
         \QD makes extensive use of the drag and drop facilities provided by Qt.
         Widgets can be dragged from the widget box and dropped onto the form.
@@ -618,8 +618,8 @@
     \target EditingProperties
     \table
         \row
-            \i \inlineimage designer-property-editor.png
-            \i \bold{Editing Properties}
+            \li \inlineimage designer-property-editor.png
+            \li \b{Editing Properties}
 
         The property editor uses standard Qt input widgets to manage the
         properties of objects on the form. Textual properties are shown in line
@@ -637,12 +637,12 @@
     Certain properties are treated specially by the property editor:
 
     \list
-        \o Compound properties -- properties that are made up of more than one
+        \li Compound properties -- properties that are made up of more than one
            value -- are represented as nodes that can be expanded, allowing
            their values to be edited.
-        \o Properties that contain a choice or selection of flags are edited
+        \li Properties that contain a choice or selection of flags are edited
            via combo boxes with checkable items.
-        \o Properties that allow access to rich data types, such as QPalette,
+        \li Properties that allow access to rich data types, such as QPalette,
            are modified using dialogs that open when the properties are edited.
            QLabel and the widgets in the \gui Buttons section of the widget box
            have a \c text property that can also be edited by double-clicking
@@ -676,8 +676,8 @@
     \section2 The Object Inspector
     \table
         \row
-            \i  \inlineimage designer-object-inspector.png
-            \i  \bold{The Object Inspector}
+            \li  \inlineimage designer-object-inspector.png
+            \li  \b{The Object Inspector}
 
         The \gui{Object Inspector} displays a hierarchical list of all the
         objects on the form that is currently being edited. To show the child
@@ -740,8 +740,8 @@
     \target InsertingObjectsIntoALayout
     \table
         \row
-            \i  \inlineimage designer-layout-inserting.png
-            \i  \bold{Inserting Objects into a Layout}
+            \li  \inlineimage designer-layout-inserting.png
+            \li  \b{Inserting Objects into a Layout}
 
         Objects can be inserted into an existing layout by dragging them from
         their current positions and dropping them at the required location. A
@@ -760,8 +760,8 @@
 
     \table
         \row
-            \i  \inlineimage designer-set-layout.png
-            \i  \bold{Applying a Layout}
+            \li  \inlineimage designer-set-layout.png
+            \li  \b{Applying a Layout}
 
         To apply a layout, you can select your choice of layout from the
         toolbar shown on the left, or from the context menu shown below.
@@ -822,13 +822,13 @@
 
     \table
         \header
-            \i  Windows XP
-            \i  Mac OS X
-            \i  Cleanlooks
+            \li  Windows XP
+            \li  Mac OS X
+            \li  Cleanlooks
         \row
-            \i  \inlineimage designer-form-layout-windowsXP.png
-            \i  \inlineimage designer-form-layout-macintosh.png
-            \i  \inlineimage designer-form-layout-cleanlooks.png
+            \li  \inlineimage designer-form-layout-windowsXP.png
+            \li  \inlineimage designer-form-layout-macintosh.png
+            \li  \inlineimage designer-form-layout-cleanlooks.png
     \endtable
 
 
@@ -840,39 +840,39 @@
     \target LayoutShortcuts
     \table
         \header
-            \i  Layout
-            \i  Shortcut
-            \i  Description
+            \li  Layout
+            \li  Shortcut
+            \li  Description
         \row
-            \i  Horizontal
-            \i  \key{Ctrl+1}
-            \i  Places the selected objects in a horizontal layout.
+            \li  Horizontal
+            \li  \key{Ctrl+1}
+            \li  Places the selected objects in a horizontal layout.
         \row
-            \i  Vertical
-            \i  \key{Ctrl+2}
-            \i  Places the selected objects in a vertical layout.
+            \li  Vertical
+            \li  \key{Ctrl+2}
+            \li  Places the selected objects in a vertical layout.
         \row
-            \i  Grid
-            \i  \key{Ctrl+5}
-            \i  Places the selected objects in a grid layout.
+            \li  Grid
+            \li  \key{Ctrl+5}
+            \li  Places the selected objects in a grid layout.
         \row
-            \i  Form
-            \i  \key{Ctrl+6}
-            \i  Places the selected objects in a form layout.
+            \li  Form
+            \li  \key{Ctrl+6}
+            \li  Places the selected objects in a form layout.
         \row
-            \i  Horizontal splitter
-            \i  \key{Ctrl+3}
-            \i  Creates a horizontal splitter and places the selected objects
+            \li  Horizontal splitter
+            \li  \key{Ctrl+3}
+            \li  Creates a horizontal splitter and places the selected objects
                 inside it.
         \row
-            \i  Vertical splitter
-            \i  \key{Ctrl+4}
-            \i  Creates a vertical splitter and places the selected objects
+            \li  Vertical splitter
+            \li  \key{Ctrl+4}
+            \li  Creates a vertical splitter and places the selected objects
                 inside it.
         \row
-            \i  Adjust size
-            \i  \key{Ctrl+J}
-            \i  Adjusts the size of the layout to ensure that each child object
+            \li  Adjust size
+            \li  \key{Ctrl+J}
+            \li  Adjusts the size of the layout to ensure that each child object
                 has sufficient space to display its contents. See
                 QWidget::adjustSize() for more information.
     \endtable
@@ -949,13 +949,13 @@
 
     \table
     \row
-    \i \inlineimage designer-file-menu.png
-    \i \bold{Saving Forms}
+    \li \inlineimage designer-file-menu.png
+    \li \b{Saving Forms}
 
     To save a form as an image, choose the \gui{Save Image...} option. The file
     will be saved in \c{.png} format.
 
-    \bold{Printing Forms}
+    \b{Printing Forms}
 
     To print a form, select the \gui{Print...} option.
 
@@ -1002,8 +1002,8 @@
     \target HighlightedObjects
     \table
         \row
-            \i  \inlineimage designer-connection-highlight.png
-            \i  \bold{Highlighted Objects}
+            \li  \inlineimage designer-connection-highlight.png
+            \li  \b{Highlighted Objects}
 
         When the cursor is over an object that can be used in a connection, the
         object will be highlighted.
@@ -1022,8 +1022,8 @@
     \target MakingAConnection
     \table
         \row
-            \i  \inlineimage designer-connection-making.png
-            \i  \bold{Making a Connection}
+            \li  \inlineimage designer-connection-making.png
+            \li  \b{Making a Connection}
 
         The connection path will change its shape as the cursor moves around
         the form. As it passes over objects, they are highlighted, indicating
@@ -1053,8 +1053,8 @@
     \target ConnectingToTheForm
     \table
         \row
-            \i  \inlineimage designer-connection-to-form.png
-            \i  \bold{Connecting to a Form}
+            \li  \inlineimage designer-connection-to-form.png
+            \li  \b{Connecting to a Form}
 
         To connect an object to the form itself, simply position the cursor
         over the form and release the mouse button. The end point of the
@@ -1073,8 +1073,8 @@
     \target ConnectionEditor
     \table
         \row
-            \i  \inlineimage designer-connection-editor.png
-            \i  \bold{The Signal/Slot Editor}
+            \li  \inlineimage designer-connection-editor.png
+            \li  \b{The Signal/Slot Editor}
 
         The signal and slot used in a connection can be changed after it has
         been set up. When a connection is configured, it becomes visible in
@@ -1086,8 +1086,8 @@
     \target DeletingConnections
     \table
         \row
-            \i  \inlineimage designer-connection-editing.png
-            \i  \bold{Deleting Connections}
+            \li  \inlineimage designer-connection-editing.png
+            \li  \b{Deleting Connections}
 
         The whole connection can be selected by clicking on any of its path
         segments. Once selected, a connection can be deleted with the
@@ -1126,8 +1126,8 @@
     \target MakingBuddies
     \table
         \row
-            \i  \inlineimage designer-buddy-making.png
-            \i  \bold{Making Buddies}
+            \li  \inlineimage designer-buddy-making.png
+            \li  \b{Making Buddies}
 
         To define a buddy widget for a label, click on the label, drag the
         connection to another widget on the form, and release the mouse button.
@@ -1238,8 +1238,8 @@
 
     \table
         \row
-            \i  \inlineimage designer-containers-frame.png
-            \i  \bold Frames
+            \li  \inlineimage designer-containers-frame.png
+            \li  \b Frames
 
         Frames are used to enclose and group widgets, as well as to provide
         decoration. They are used as the foundation for more complex
@@ -1250,8 +1250,8 @@
         in more detail in the QFrame class description.
 
         \row
-            \i  \inlineimage designer-containers-groupbox.png
-            \i  \bold{Group Boxes}
+            \li  \inlineimage designer-containers-groupbox.png
+            \li  \b{Group Boxes}
 
         Group boxes are usually used to group together collections of
         checkboxes and radio buttons with similar purposes.
@@ -1264,8 +1264,8 @@
         group box, click inside it and apply the layout as usual.
 
         \row
-            \i  \inlineimage designer-containers-stackedwidget.png
-            \i  \bold{Stacked Widgets}
+            \li  \inlineimage designer-containers-stackedwidget.png
+            \li  \b{Stacked Widgets}
 
         Stacked widgets are collections of widgets in which only the topmost
         layer is visible. Control over the visible layer is usually managed by
@@ -1280,8 +1280,8 @@
         you to add and remove pages.
 
         \row
-            \i  \inlineimage designer-containers-tabwidget.png
-            \i  \bold{Tab Widgets}
+            \li  \inlineimage designer-containers-tabwidget.png
+            \li  \b{Tab Widgets}
 
         Tab widgets allow the developer to split up the contents of a widget
         into different labelled sections, only one of which is displayed at any
@@ -1290,25 +1290,25 @@
 
         To delete a tab:
         \list
-            \o  Click on its label to make it the current tab.
-            \o  Select the tab widget and open its context menu.
-            \o  Select \gui{Delete Page}.
+            \li  Click on its label to make it the current tab.
+            \li  Select the tab widget and open its context menu.
+            \li  Select \gui{Delete Page}.
         \endlist
 
         To add a new tab:
         \list
-            \o  Select the tab widget and open its context menu.
-            \o  Select \gui{Insert Page}.
-            \o  You can add a page before or after the \e current page. \QD
+            \li  Select the tab widget and open its context menu.
+            \li  Select \gui{Insert Page}.
+            \li  You can add a page before or after the \e current page. \QD
                 will create a new widget for that particular tab and insert it
                 into the tab widget.
-            \o  You can set the title of the current tab by changing the
+            \li  You can set the title of the current tab by changing the
                 \c currentTabText property in the \gui{Property Editor}.
         \endlist
 
         \row
-            \i  \inlineimage designer-containers-toolbox.png
-            \i  \bold{ToolBox Widgets}
+            \li  \inlineimage designer-containers-toolbox.png
+            \li  \b{ToolBox Widgets}
 
         Toolbox widgets provide a series of pages or compartments in a toolbox.
         They are handled in a way similar to stacked widgets.
@@ -1323,8 +1323,8 @@
         context menu.
 
         \row
-            \i  \inlineimage designer-containers-dockwidget.png
-            \i  \bold{Dock Widgets}
+            \li  \inlineimage designer-containers-dockwidget.png
+            \li  \b{Dock Widgets}
 
         Dock widgets are floating panels, often containing input widgets and
         more complex controls, that are either attached to the edges of the
@@ -1365,7 +1365,7 @@
     \gui{Create Menu Bar} option from the context menu, obtained by
     right-clicking within the main window form.
 
-    An application can have only \bold one menu bar, but \bold several
+    An application can have only \b one menu bar, but \b several
     toolbars.
 
 
@@ -1618,8 +1618,8 @@
     \target ResourceFiles
     \table
         \row
-            \i  \inlineimage designer-resource-browser.png
-            \i  \bold{Resource Files}
+            \li  \inlineimage designer-resource-browser.png
+            \li  \b{Resource Files}
 
         Within the resource browser, you can open existing resource files or
         create new ones. Click the \gui{Edit Resources} button
@@ -1646,8 +1646,8 @@
     \target EditResource
     \table
         \row
-            \i  \inlineimage designer-edit-resource.png
-            \i  \bold{Editing Resource Files}
+            \li  \inlineimage designer-edit-resource.png
+            \li  \b{Editing Resource Files}
 
         Press the
         \inlineimage designer-add-resource-entry-button.png
@@ -1672,8 +1672,8 @@
     \target UsingResources
     \table
         \row
-            \i  \inlineimage designer-resources-using.png
-            \i  \bold{Using Resources}
+            \li  \inlineimage designer-resources-using.png
+            \li  \b{Using Resources}
 
         When changing properties with values that may be defined within a
         resource file, \QD's property editor allows you to specify a resource
@@ -1681,8 +1681,8 @@
         way.
 
         \row
-            \i  \inlineimage designer-resource-selector.png
-            \i  \bold{Selecting a Resource}
+            \li  \inlineimage designer-resource-selector.png
+            \li  \b{Selecting a Resource}
 
         You can open the resource selector by clicking \gui{Choose Resource...}
         to add resources any time during the design process.
@@ -1712,14 +1712,14 @@ pixmap property in the property editor.
     \target UsingStylesheets
     \table
         \row
-            \i \inlineimage designer-stylesheet-options.png
-            \bold{Setting a Stylesheet}
+            \li \inlineimage designer-stylesheet-options.png
+            \b{Setting a Stylesheet}
 
             The stylesheet editor can be accessed by right-clicking a widget
             and selecting \gui{Change styleSheet...}
 
         \row
-            \i \inlineimage designer-stylesheet-usage.png
+            \li \inlineimage designer-stylesheet-usage.png
     \endtable
 
 */
@@ -1737,9 +1737,9 @@ pixmap property in the property editor.
     forms can be processed:
 
     \list
-        \o \l{Compile Time Form Processing}{At compile time}, which means that forms
+        \li \l{Compile Time Form Processing}{At compile time}, which means that forms
             are converted to C++ code that can be compiled.
-        \o \l{Run Time Form Processing}{At runtime}, which means that forms are processed
+        \li \l{Run Time Form Processing}{At runtime}, which means that forms are processed
             by the QUiLoader class that dynamically constructs the widget tree while
             parsing the XML file.
     \endlist
@@ -1753,11 +1753,11 @@ pixmap property in the property editor.
     interface object. It is a C++ struct that contains:
 
     \list
-        \o Pointers to the form's widgets, layouts, layout items,
+        \li Pointers to the form's widgets, layouts, layout items,
            button groups, and actions.
-        \o A member function called \c setupUi() to build the widget tree
+        \li A member function called \c setupUi() to build the widget tree
            on the parent widget.
-        \o A member function called \c retranslateUi() that handles the
+        \li A member function called \c retranslateUi() that handles the
            translation of the string properties of the form. For more information,
            see \l{Reacting to Language Changes}.
     \endlist
@@ -1769,12 +1769,12 @@ pixmap property in the property editor.
     the following approaches:
 
     \list
-        \o  \l{The Direct Approach}: you construct a widget to use as a placeholder
+        \li  \l{The Direct Approach}: you construct a widget to use as a placeholder
             for the component, and set up the user interface inside it.
-        \o  \l{The Single Inheritance Approach}: you subclass the form's base class
+        \li  \l{The Single Inheritance Approach}: you subclass the form's base class
             (QWidget or QDialog, for example), and include a private instance
             of the form's user interface object.
-        \o  \l{The Multiple Inheritance Approach}: you subclass both the form's base
+        \li  \l{The Multiple Inheritance Approach}: you subclass both the form's base
             class and the form's user interface object. This allows the widgets
             defined in the form to be used directly from within the scope of
             the subclass.
@@ -1836,8 +1836,8 @@ pixmap property in the property editor.
     the form of:
 
     \list
-        \o A member variable
-        \o A pointer member variable
+        \li A member variable
+        \li A pointer member variable
     \endlist
 
     \section3 Using a Member Variable
@@ -2154,8 +2154,8 @@ pixmap property in the property editor.
     \target LayoutFunction
     \table
     \row
-    \i \inlineimage designer-form-layoutfunction.png
-    \i \bold{Layout Function}
+    \li \inlineimage designer-form-layoutfunction.png
+    \li \b{Layout Function}
 
     The default layout properties will be replaced by the corresponding
     \gui{Layout Function}, when \c uic generates code for the form. This is
@@ -2203,11 +2203,11 @@ pixmap property in the property editor.
     widgets may not be available as standard for a number of reasons:
 
     \list
-        \i Custom widgets may not be available at the time the user interface
+        \li Custom widgets may not be available at the time the user interface
            is being designed.
-        \i Custom widgets may be platform-specific, and designers may be
+        \li Custom widgets may be platform-specific, and designers may be
            developing the user interface on a different platform to end users.
-        \i The source code for a custom widget is not available, or the user
+        \li The source code for a custom widget is not available, or the user
            interface designers are unable to use the widget for non-technical
            reasons.
     \endlist
@@ -2314,63 +2314,63 @@ pixmap property in the property editor.
 
     \table
         \header
-            \o  Function
-            \o  Description of the return value
+            \li  Function
+            \li  Description of the return value
         \row
-            \o  \c name()
-            \o  The name of the class that provides the widget.
+            \li  \c name()
+            \li  The name of the class that provides the widget.
         \row
-            \o  \c group()
-            \o  The group in \QD's widget box that the widget belongs to.
+            \li  \c group()
+            \li  The group in \QD's widget box that the widget belongs to.
         \row
-            \o  \c toolTip()
-            \o  A short description to help users identify the widget in \QD.
+            \li  \c toolTip()
+            \li  A short description to help users identify the widget in \QD.
         \row
-            \o  \c whatsThis()
-            \o  A longer description of the widget for users of \QD.
+            \li  \c whatsThis()
+            \li  A longer description of the widget for users of \QD.
         \row
-            \o  \c includeFile()
-            \o  The header file that must be included in applications that use
+            \li  \c includeFile()
+            \li  The header file that must be included in applications that use
                 this widget. This information is stored in UI files and will
                 be used by \c uic to create a suitable \c{#includes} statement
                 in the code it generates for the form containing the custom
                 widget.
         \row
-            \o  \c icon()
-            \o  An icon that can be used to represent the widget in \QD's
+            \li  \c icon()
+            \li  An icon that can be used to represent the widget in \QD's
                 widget box.
         \row
-            \o  \c isContainer()
-            \o  True if the widget will be used to hold child widgets;
+            \li  \c isContainer()
+            \li  True if the widget will be used to hold child widgets;
                 false otherwise.
         \row
-            \o  \c createWidget()
-            \o  A QWidget pointer to an instance of the custom widget,
+            \li  \c createWidget()
+            \li  A QWidget pointer to an instance of the custom widget,
                 constructed with the parent supplied.
                 \note createWidget() is a factory function responsible for
                 creating the widget only. The custom widget's properties will
                 not be available until load() returns.
         \row
-            \o  \c domXml()
-            \o  A description of the widget's properties, such as its object
+            \li  \c domXml()
+            \li  A description of the widget's properties, such as its object
                 name, size hint, and other standard QWidget properties.
         \row
-            \o  \c codeTemplate()
-            \o  This function is reserved for future use by \QD.
+            \li  \c codeTemplate()
+            \li  This function is reserved for future use by \QD.
     \endtable
 
     Two other virtual functions can also be reimplemented:
 
     \table
         \row
-            \o  \c initialize()
-            \o  Sets up extensions and other features for custom widgets. Custom
+            \li  \c initialize()
+            \li  Sets up extensions and other features for custom widgets. Custom
                 container extensions (see QDesignerContainerExtension) and task
                 menu extensions (see QDesignerTaskMenuExtension) should be set
                 up in this function.
         \row
-            \o  \c isInitialized()
-            \o  Returns true if the widget has been initialized; returns false
+            \li  \c isInitialized()
+            \li  Returns true if the widget has been initialized; returns false
                 otherwise. Reimplementations usually check whether the
                 \c initialize() function has been called and return the result
                 of this test.
@@ -2384,7 +2384,7 @@ pixmap property in the property editor.
     properties.
 
     Since Qt 4.4, \QD's widget box allows for a complete UI file to
-    describe \bold one custom widget. The UI file can be loaded using the
+    describe \b one custom widget. The UI file can be loaded using the
     \c{<ui>} tag. Specifying the <ui> tag allows for adding the <customwidget>
     element that contains additional information for custom widgets. The
     \c{<widget>} tag is sufficient if no additional information is required
@@ -2428,21 +2428,21 @@ pixmap property in the property editor.
     Attributes of the \c{<ui>} tag:
         \table
         \header
-            \o  Attribute
-            \o  Presence
-            \o  Values
-            \o  Comment
+            \li  Attribute
+            \li  Presence
+            \li  Values
+            \li  Comment
         \row
-            \o  \c{language}
-            \o  optional
-            \o  "c++", "jambi"
-            \o  This attribute specifies the language the custom widget is intended for.
+            \li  \c{language}
+            \li  optional
+            \li  "c++", "jambi"
+            \li  This attribute specifies the language the custom widget is intended for.
                 It is mainly there to prevent C++-plugins from appearing in Qt Jambi.
         \row
-            \o \c{displayname}
-            \o optional
-            \o Class name
-            \o The value of the attribute appears in the Widget box and can be used to
+            \li \c{displayname}
+            \li optional
+            \li Class name
+            \li The value of the attribute appears in the Widget box and can be used to
                 strip away namespaces.
     \endtable
 
@@ -2461,50 +2461,50 @@ pixmap property in the property editor.
 
     \table
         \header
-            \o  Attribute
-            \o  Presence
-            \o  Values
-            \o  Comment
+            \li  Attribute
+            \li  Presence
+            \li  Values
+            \li  Comment
         \row
-            \o  \c{name}
-            \o  required
-            \o  Name of the property
+            \li  \c{name}
+            \li  required
+            \li  Name of the property
         \row
-            \o \c{type}
-            \o required
-            \o See below table
-            \o The value of the attribute determines how the property editor will handle them.
+            \li \c{type}
+            \li required
+            \li See below table
+            \li The value of the attribute determines how the property editor will handle them.
         \row
-            \o \c{notr}
-            \o optional
-            \o "true", "false"
-            \o If the attribute is "true", the value is not meant to be translated.
+            \li \c{notr}
+            \li optional
+            \li "true", "false"
+            \li If the attribute is "true", the value is not meant to be translated.
     \endtable
 
     Values of the \c{type} attribute of the string property:
 
     \table
         \header
-            \o  Value
-            \o  Type
+            \li  Value
+            \li  Type
         \row
-            \o \c{"richtext"}
-            \o Rich text.
+            \li \c{"richtext"}
+            \li Rich text.
         \row
-            \o \c{"multiline"}
-            \o Multi-line plain text.
+            \li \c{"multiline"}
+            \li Multi-line plain text.
         \row
-            \o \c{"singleline"}
-            \o Single-line plain text.
+            \li \c{"singleline"}
+            \li Single-line plain text.
         \row
-            \o \c{"stylesheet"}
-            \o A CSS-style sheet.
+            \li \c{"stylesheet"}
+            \li A CSS-style sheet.
         \row
-            \o \c{"objectname"}
-            \o An object name (restricted set of valid characters).
+            \li \c{"objectname"}
+            \li An object name (restricted set of valid characters).
         \row
-            \o \c{"url"}
-            \o URL, file name.
+            \li \c{"url"}
+            \li URL, file name.
     \endtable
 
     \section1 Plugin Requirements
@@ -2583,7 +2583,7 @@ pixmap property in the property editor.
     There are two ways to resolve this:
 
     \list
-        \i Create a \c{.pri} file that contains the headers sources and sources
+        \li Create a \c{.pri} file that contains the headers sources and sources
            of the custom widget:
 
            \code
@@ -2602,7 +2602,7 @@ pixmap property in the property editor.
            Running \c{qmake -Wall} on the \c{.pro} files causes a warning to be
            printed if an included \c{.pri} file cannot be found.
 
-        \i Create a standalone shared library containing the custom widgets only
+        \li Create a standalone shared library containing the custom widgets only
            as described in
            \l{sharedlibrary.html}{Creating Shared Libraries}.
 
@@ -2646,8 +2646,8 @@ pixmap property in the property editor.
 
     \table
         \row
-            \i  \inlineimage designer-manual-taskmenuextension.png
-            \i  \bold{QDesignerTaskMenuExtension}
+            \li  \inlineimage designer-manual-taskmenuextension.png
+            \li  \b{QDesignerTaskMenuExtension}
 
         QDesignerTaskMenuExtension is useful for custom widgets. It provides an
         extension that allows you to add custom menu entries to \QD's task
@@ -2657,8 +2657,8 @@ pixmap property in the property editor.
         illustrates how to use this class.
 
         \row
-            \i  \inlineimage designer-manual-containerextension.png
-            \i  \bold{QDesignerContainerExtension}
+            \li  \inlineimage designer-manual-containerextension.png
+            \li  \b{QDesignerContainerExtension}
 
         QDesignerContainerExtension is necessary when implementing a custom
         multi-page container. It provides an extension that allows you to add
@@ -2673,15 +2673,15 @@ pixmap property in the property editor.
 
     \table
         \row
-            \i  \inlineimage designer-manual-membersheetextension.png
-            \i  \bold{QDesignerMemberSheetExtension}
+            \li  \inlineimage designer-manual-membersheetextension.png
+            \li  \b{QDesignerMemberSheetExtension}
 
         The QDesignerMemberSheetExtension class allows you to manipulate a
         widget's member functions displayed when connecting signals and slots.
 
         \row
-            \i  \inlineimage designer-manual-propertysheetextension.png
-            \i  \bold{QDesignerPropertySheetExtension,
+            \li  \inlineimage designer-manual-propertysheetextension.png
+            \li  \b{QDesignerPropertySheetExtension,
                 QDesignerDynamicPropertySheetExtension}
 
         These extension classes allow you to control how a widget's properties
@@ -2690,8 +2690,8 @@ pixmap property in the property editor.
 
 \omit
      \row
-        \o
-        \o \bold {QDesignerScriptExtension}
+        \li
+        \li \b {QDesignerScriptExtension}
 
          The QDesignerScriptExtension class allows you to define script
          snippets that are executed when a form is loaded. The extension

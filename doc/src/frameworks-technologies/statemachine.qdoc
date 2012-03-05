@@ -509,8 +509,8 @@
 
   The State Machine API guarantees that a property assigned by the state machine either:
   \list
-  \o Has a value explicitly assigned to the property.
-  \o Is currently being animated into a value explicitly assigned to the property.
+  \li Has a value explicitly assigned to the property.
+  \li Is currently being animated into a value explicitly assigned to the property.
   \endlist
 
   When a state is exited prior to the animation finishing, the behavior of the state machine depends

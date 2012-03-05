@@ -62,12 +62,12 @@ You can find them in the Tools subdirectory of the SDK root folder.
 Example:
 
 \list
-\o Calling configure with signing enabled:
+\li Calling configure with signing enabled:
 \code
 configure.exe -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005 -signature C:\some\path\SDKSamplePrivDeveloper.pfx
 \endcode
 
-\o Using pro file to specify signature
+\li Using pro file to specify signature
 \code
 ...
 TARGET = foo

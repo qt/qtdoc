@@ -72,13 +72,13 @@
     We should call all three set functions form QScrollPrepareEvent.
 
     \list
-    \o \c setViewportSize to indicate our viewport size. Actually the
+    \li \c setViewportSize to indicate our viewport size. Actually the
      given code could be improved by giving our size minus the borders.
-    \o \c setMaxContentPos to indicate the maximum values for the scroll
+    \li \c setMaxContentPos to indicate the maximum values for the scroll
      position. The minimum values are implicitely set to 0.
      In our example we give a very high number here and hope that the user
      is not patient enough to scroll until the very end.
-    \o \c setContentPos to indicate the current scroll position.
+    \li \c setContentPos to indicate the current scroll position.
      We give a position in the middle of the huge scroll area.
      Actually we give this position every time a new scroll is started so
      the user will only reach the end if he continuously scrolls in one
@@ -90,10 +90,10 @@
 
     In principle it does three steps.
     \list
-    \o It calculates and updates the current scroll position as given by
+    \li It calculates and updates the current scroll position as given by
      QScroller.
-    \o It repaints the widget so that the new position is shown.
-    \o It centers the item as soon as the scrolling stopps.
+    \li It repaints the widget so that the new position is shown.
+    \li It centers the item as soon as the scrolling stopps.
     \endlist
 
     The following code does the centering.

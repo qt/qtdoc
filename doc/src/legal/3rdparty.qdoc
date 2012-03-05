@@ -79,19 +79,19 @@
     has been made to these files:
 
     \list
-    \i Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
+    \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
     conflicts.
-    \i Removed parts of code not relevant when compiled with
+    \li Removed parts of code not relevant when compiled with
     _STANDALONE_ defined.
-    \i Changed behavior in ftraster.c to follow X polygon filling
+    \li Changed behavior in ftraster.c to follow X polygon filling
     rules.
-    \i Implemented support in ftraster.c for winding / odd even
+    \li Implemented support in ftraster.c for winding / odd even
     polygon fill rules.
-    \i Replaced bitmap generation with span generation in ftraster.c
-    \i Renamed: ftraster.h to qblackraster_p.h
-    \i Renamed: ftraster.c to qblackraster.c
-    \i Renamed: ftgrays.h to qgrayraster_p.h
-    \i Renamed: ftgrays.c to qgrayraster.c
+    \li Replaced bitmap generation with span generation in ftraster.c
+    \li Renamed: ftraster.h to qblackraster_p.h
+    \li Renamed: ftraster.c to qblackraster.c
+    \li Renamed: ftgrays.h to qgrayraster_p.h
+    \li Renamed: ftgrays.c to qgrayraster.c
     \endlist
 
     \section1 HarfBuzz (\c harfbuzz)
@@ -833,11 +833,11 @@
        software, but was originally created to meet the needs of browser
        manufacturers. It allows browsers to, for example:}
     \list
-    \o \e{Avoid privacy-damaging "supercookies" being set for high-level
+    \li \e{Avoid privacy-damaging "supercookies" being set for high-level
           domain name suffixes}
-    \o \e{Highlight the most important part of a domain name in the user
+    \li \e{Highlight the most important part of a domain name in the user
           interface}
-    \o \e{Accurately sort history entries by site}
+    \li \e{Accurately sort history entries by site}
     \endlist
     -- quoted from \l{publicsuffix.org}.
 

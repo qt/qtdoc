@@ -146,72 +146,72 @@
     Here are the command-line options supported by the moc:
 
     \table
-    \header \o Option \o Description
+    \header \li Option \li Description
 
     \row
-    \o \c{-o<file>}
-    \o Write output to \c <file> rather than to standard output.
+    \li \c{-o<file>}
+    \li Write output to \c <file> rather than to standard output.
 
     \row
-    \o \c{-f[<file>]}
-    \o Force the generation of an \c #include statement in the
+    \li \c{-f[<file>]}
+    \li Force the generation of an \c #include statement in the
     output. This is the default for header files whose extension
     starts with \c H or \c h. This option is useful if you have
     header files that do not follow the standard naming conventions.
     The \c <file> part is optional.
 
     \row
-    \o \c -i
-    \o Do not generate an \c #include statement in the output.
+    \li \c -i
+    \li Do not generate an \c #include statement in the output.
     This may be used to run the moc on on a C++ file containing one or
     more class declarations. You should then \c #include the meta-object
     code in the \c .cpp file.
 
     \row
-    \o \c -nw
-    \o Do not generate any warnings. (Not recommended.)
+    \li \c -nw
+    \li Do not generate any warnings. (Not recommended.)
 
     \row
-    \o \c {-p<path>}
-    \o Makes the moc prepend \c {<path>/} to the file name in the
+    \li \c {-p<path>}
+    \li Makes the moc prepend \c {<path>/} to the file name in the
     generated \c #include statement.
 
     \row
-    \o \c {-I<dir>}
-    \o Add dir to the include path for header files.
+    \li \c {-I<dir>}
+    \li Add dir to the include path for header files.
 
     \row
-    \o \c{-E}
-    \o Preprocess only; do not generate meta-object code.
+    \li \c{-E}
+    \li Preprocess only; do not generate meta-object code.
 
     \row
-    \o \c {-D<macro>[=<def>]}
-    \o Define macro, with optional definition.
+    \li \c {-D<macro>[=<def>]}
+    \li Define macro, with optional definition.
 
     \row
-    \o \c{-U<macro>}
-    \o Undefine macro.
+    \li \c{-U<macro>}
+    \li Undefine macro.
 
     \row
-    \o \c{@<file>}
-    \o Read additional command-line options from \c{<file>}.
+    \li \c{@<file>}
+    \li Read additional command-line options from \c{<file>}.
     Each line of the file is treated as a single option. Empty lines
     are ignored. Note that this option is not supported within the
     options file itself (i.e. an options file can't "include" another
     file).
 
     \row
-    \o \c{-h}
-    \o Display the usage and the list of options.
+    \li \c{-h}
+    \li Display the usage and the list of options.
 
     \row
-    \o \c {-v}
-    \o Display \c{moc}'s version number.
+    \li \c {-v}
+    \li Display \c{moc}'s version number.
 
     \row
-    \o \c{-Fdir}
+    \li \c{-Fdir}
     
-    \o Mac OS X. Add the framework directory \c{dir} to the head of
+    \li Mac OS X. Add the framework directory \c{dir} to the head of
        the list of directories to be searched for header files. These
        directories are interleaved with those specified by -I options
        and are scanned in a left-to-right order (see the manpage for

@@ -176,12 +176,12 @@
     purposes, the following table can be used:
 
     \table 90%
-    \header \o D-Bus Concept  \o Analogy            \o Name format
-    \row    \o Service name   \o Network hostnames  \o Dot-separated
+    \header \li D-Bus Concept  \li Analogy            \li Name format
+    \row    \li Service name   \li Network hostnames  \li Dot-separated
                                                        ("looks like a hostname")
-    \row    \o Object path    \o URL path component \o Slash-separated
+    \row    \li Object path    \li URL path component \li Slash-separated
                                                        ("looks like a path")
-    \row    \o Interface      \o Plugin identifier  \o Dot-separated
+    \row    \li Interface      \li Plugin identifier  \li Dot-separated
     \endtable
 
     \section1 Debugging
@@ -208,8 +208,8 @@
     type information over the bus:
 
     \list
-    \o \l{Using QtDBus Adaptors}
-    \o \l{The QtDBus Type System}
-    \o \l{QtDBus XML compiler (qdbusxml2cpp)}
+    \li \l{Using QtDBus Adaptors}
+    \li \l{The QtDBus Type System}
+    \li \l{QtDBus XML compiler (qdbusxml2cpp)}
     \endlist
 */

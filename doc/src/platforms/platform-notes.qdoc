@@ -50,21 +50,21 @@
     supported by Qt can be found on the \l{Supported Platforms} page.
 
     \list
-    \o \l{Platform and Compiler Notes - X11}
+    \li \l{Platform and Compiler Notes - X11}
     \tableofcontents{1 Platform and Compiler Notes - X11}
-    \o \l{Platform and Compiler Notes - Windows}
+    \li \l{Platform and Compiler Notes - Windows}
     \tableofcontents{1 Platform and Compiler Notes - Windows}
-    \o \l{Platform and Compiler Notes - Mac OS X}
+    \li \l{Platform and Compiler Notes - Mac OS X}
     \tableofcontents{1 Platform and Compiler Notes - Mac OS X}
-    \o \l{Platform and Compiler Notes - Symbian}
+    \li \l{Platform and Compiler Notes - Symbian}
     \tableofcontents{1 Platform and Compiler Notes - Symbian}
-    \o \l{Platform and Compiler Notes - Embedded Linux}
+    \li \l{Platform and Compiler Notes - Embedded Linux}
     \tableofcontents{1 Platform and Compiler Notes - Embedded Linux}
-    \o \l{Platform and Compiler Notes - Windows CE}
+    \li \l{Platform and Compiler Notes - Windows CE}
     \tableofcontents{1 Platform and Compiler Notes - Windows CE}
-    \o \l{Platform and Compiler Notes - QNX}
+    \li \l{Platform and Compiler Notes - QNX}
     \tableofcontents{1 Platform and Compiler Notes - QNX}
-    \o \l{Platform and Compiler Notes - VxWorks}
+    \li \l{Platform and Compiler Notes - VxWorks}
     \tableofcontents{1 Platform and Compiler Notes - VxWorks}
     \endlist
 
@@ -77,17 +77,17 @@
     platforms and compilers.
 
     \table
-    \header \o Compiler \o{5,1} Features
-    \header \o                  \o Concurrent \o XmlPatterns \o WebKit(*)   \o CLucene  \o Phonon
-    \row    \o g++ 3.3          \o            \o \bold{X}    \o          \o \bold{X} \o \bold{X}
-    \row    \o g++ 3.4 and up   \o \bold{X}   \o \bold{X}    \o \bold{X} \o \bold{X} \o \bold{X}
-    \row    \o SunCC 5.5        \o            \o             \o          \o \bold{X} \o \bold{X}
-    \row    \o aCC series 3     \o            \o             \o          \o \bold{X} \o \bold{X}
-    \row    \o aCC series 6     \o \bold{X}   \o \bold{X}    \o \bold{X} \o \bold{X} \o \bold{X}
-    \row    \o xlC 6            \o            \o             \o          \o \bold{X} \o \bold{X}
-    \row    \o Intel CC 10      \o \bold{X}   \o \bold{X}    \o \bold{X} \o \bold{X} \o \bold{X}
-    \row    \o MSVC 2003        \o \bold{X}   \o \bold{X}    \o          \o \bold{X} \o \bold{X}
-    \row    \o MSVC 2005 and up \o \bold{X}   \o \bold{X}    \o \bold{X} \o \bold{X} \o \bold{X}
+    \header \li Compiler \li{5,1} Features
+    \header \li                  \li Concurrent \li XmlPatterns \li WebKit(*)   \li CLucene  \li Phonon
+    \row    \li g++ 3.3          \li            \li \b{X}    \li          \li \b{X} \li \b{X}
+    \row    \li g++ 3.4 and up   \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
+    \row    \li SunCC 5.5        \li            \li             \li          \li \b{X} \li \b{X}
+    \row    \li aCC series 3     \li            \li             \li          \li \b{X} \li \b{X}
+    \row    \li aCC series 6     \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
+    \row    \li xlC 6            \li            \li             \li          \li \b{X} \li \b{X}
+    \row    \li Intel CC 10      \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
+    \row    \li MSVC 2003        \li \b{X}   \li \b{X}    \li          \li \b{X} \li \b{X}
+    \row    \li MSVC 2005 and up \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
     \endtable
 
     * WebKit is only supported as a dynamically built library. Static linkage is not supported.
@@ -98,9 +98,9 @@
     release build. There are several workarounds:
 
     \list 1
-    \o Use a debug build instead.
-    \o For each miscompilation encountered, recompile the file, removing the \c{-O2} option.
-    \o Add \c{-fno-gcse} to the
+    \li Use a debug build instead.
+    \li For each miscompilation encountered, recompile the file, removing the \c{-O2} option.
+    \li Add \c{-fno-gcse} to the
        \l{qmake Variable Reference#QMAKE_CXXFLAGS_RELEASE}{QMAKE_CXXFLAGS_RELEASE} qmake
        variable.
     \endlist
@@ -145,14 +145,14 @@
     Qt has been tested on AIX 5.2, using the xlC compiler.
 
     \table
-    \header \o Compiler \o Notes
-    \row    \o xlC
-    \o If Qt is built correctly but all symbols are reported to be missing
+    \header \li Compiler \li Notes
+    \row    \li xlC
+    \li If Qt is built correctly but all symbols are reported to be missing
     when you link an application, your makeC++SharedLib script might be out
     of date. Make sure you have the latest version from the
     \l{http://www-306.ibm.com/software/awdtools/vacpp/support/}{IBM website}.
-    \row    \o GCC
-    \o We have tested earlier versions of Qt 4 successfully with GCC version
+    \row    \li GCC
+    \li We have tested earlier versions of Qt 4 successfully with GCC version
     3.3 and above. Some versions of GCC may fail to link Qt with a "TOC overflow"
     message.
     Fix this by upgrading to the latest maintenance release of the dynamic
@@ -173,11 +173,11 @@
     Redbook:
 
     \list
-    \o "The second step is to use the makeC++SharedLib command to create the
+    \li "The second step is to use the makeC++SharedLib command to create the
        shared object. The command has many optional arguments, but in its
        simplest form, can be used as follows:"
        \snippet doc/src/snippets/code/doc_src_compiler-notes.qdoc 1
-    \o "The full path name to the command is not required; however, to avoid
+    \li "The full path name to the command is not required; however, to avoid
        this, you will have to add the directory in which it is located to
        your PATH environment variable. The command is located in the
        /usr/vacpp/bin directory with the VisualAge C++ Professional for AIX,
@@ -246,7 +246,7 @@
     \target IRIX
     \section1 IRIX - 6.5.x
 
-    \bold{IRIX is an unsupported platform. See the \l{Supported Platforms} page
+    \b{IRIX is an unsupported platform. See the \l{Supported Platforms} page
     and Qt's Software's online \l{Platform Support Policy} page for details.}
 
     Unpackaging and IRIX tar:
@@ -298,10 +298,10 @@
 
     \list
 
-    \o Intel(R) C++ Compiler for applications running on IA-32,
+    \li Intel(R) C++ Compiler for applications running on IA-32,
     Version 10.1 Build 20080602 Package ID: l_cc_p_10.1.017
 
-    \o Intel(R) C++ Compiler for applications running on Intel(R) 64,
+    \li Intel(R) C++ Compiler for applications running on Intel(R) 64,
     Version 10.1 Build 20080602 Package ID: l_cc_p_10.1.017
 
     \endlist
@@ -312,15 +312,15 @@
 
     \list
 
-    \o Precompiled header support does not work in version 10.0.025
+    \li Precompiled header support does not work in version 10.0.025
        and older. For these compilers, you should configure Qt with
        -no-pch. Precompiled header support works properly in version
        10.0.026 and later.
-    \o Version 10.0.026 for Intel 64 is known to miscompile qmake when
+    \li Version 10.0.026 for Intel 64 is known to miscompile qmake when
        building in release mode. For now, configure Qt with
        -debug. Version 10.1.008 and later can compile qmake in release
        mode.
-    \o Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
+    \li Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
        known crash with "(0): internal error: 0_47021" when compiling
        QtXmlPatterns, QtWebKit, and Designer in release mode. Version
        10.1.017 compiles these modules correctly in release mode.
@@ -434,9 +434,9 @@
     Qt 4 has been tested successfully with:
 
     \list
-    \o Windows - Intel(R) C++ Compiler for 32-bit applications,
+    \li Windows - Intel(R) C++ Compiler for 32-bit applications,
        Version 9.1.040.
-    \o Altix - Intel(R) C++ Itanium(R) Compiler for Itanium(R)-based
+    \li Altix - Intel(R) C++ Itanium(R) Compiler for Itanium(R)-based
        applications Version 8.1 Build 20050406 Package ID: l_cc_pc_8.1.030
     \endlist
 
@@ -716,27 +716,27 @@
     The following technologies and classes are not currently supported:
 
     \table
-    \header \o Technology
-            \o Note
-    \row    \o QtConcurrent
-            \o Planned for future release.
-    \row    \o QtDBus
-            \o No current plans to support this feature.
-    \row    \o Printing support
-            \o No current plans to support this feature.
-    \row    \o Qt3Support
-            \o No current plans to support this feature.
+    \header \li Technology
+            \li Note
+    \row    \li QtConcurrent
+            \li Planned for future release.
+    \row    \li QtDBus
+            \li No current plans to support this feature.
+    \row    \li Printing support
+            \li No current plans to support this feature.
+    \row    \li Qt3Support
+            \li No current plans to support this feature.
     \endtable
 
     The following technologies have limited support:
 
     \table
-    \header \o Technology
-            \o Note
-    \row    \o QtSql
-            \o The only driver supported is SQLite.
-    \row    \o QtMultimedia
-            \o Although the module itself is supported, no backend for Symbian
+    \header \li Technology
+            \li Note
+    \row    \li QtSql
+            \li The only driver supported is SQLite.
+    \row    \li QtMultimedia
+            \li Although the module itself is supported, no backend for Symbian
                is currently available. However, there is a backend available
                for Phonon.
     \endtable
@@ -769,24 +769,24 @@
     overview:
 
     \table
-    \header \o Module
-            \o Required Symbian Capability
-    \row    \o QtCore
-            \o \c PowerMgmt if QProcess::kill(...) or QProcess::terminate(...) is called.
-    \row    \o QtCore
-            \o \c AllFiles when \l{http://developer.symbian.org/wiki/index.php/Capabilities_%28Symbian_Signed%29/AllFiles_Capability}{accessing specific areas.}
-    \row    \o QtDeclarative
-            \o \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
-    \row    \o QtNetwork
-            \o \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
-    \row    \o QtNetwork
-            \o \c ReadUserData is required to include all the phone's SSL certificates in the system's default CA certificate list
+    \header \li Module
+            \li Required Symbian Capability
+    \row    \li QtCore
+            \li \c PowerMgmt if QProcess::kill(...) or QProcess::terminate(...) is called.
+    \row    \li QtCore
+            \li \c AllFiles when \l{http://developer.symbian.org/wiki/index.php/Capabilities_%28Symbian_Signed%29/AllFiles_Capability}{accessing specific areas.}
+    \row    \li QtDeclarative
+            \li \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
+    \row    \li QtNetwork
+            \li \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
+    \row    \li QtNetwork
+            \li \c ReadUserData is required to include all the phone's SSL certificates in the system's default CA certificate list
                   (for example those added by the user or stored in the SIM card),
                   without this capability only the CA certs built into the phone are used.
-    \row    \o QtMultiMedia
-            \o \c UserEnvironment if QAudioInput is used.
-    \row    \o QtWebkit
-            \o \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
+    \row    \li QtMultiMedia
+            \li \c UserEnvironment if QAudioInput is used.
+    \row    \li QtWebkit
+            \li \c NetworkServices is automatically added for this module if no capabilities are explicitly specified.
     \endtable
 
     \note Some modules rely on other modules. E.g. QtWebkit and QtDeclarative
@@ -847,23 +847,23 @@
     non-ScreenPlay devices.
 
     \table
-    \header \o Symbian
-            \o Qt
-    \row    \o \image symbian-rendering-stack-non-screenplay.png
-            \o \image symbian-qt-rendering-stack-non-screenplay.png
+    \header \li Symbian
+            \li Qt
+    \row    \li \image symbian-rendering-stack-non-screenplay.png
+            \li \image symbian-qt-rendering-stack-non-screenplay.png
     \endtable
 
     The following diagrams show a simplified sequence of drawing a pixmap in
     a non-ScreenPlay device.
 
     \table
-    \header \o Symbian
-    \row    \o \image symbian-draw-pixmap-sequence.png
+    \header \li Symbian
+    \row    \li \image symbian-draw-pixmap-sequence.png
     \endtable
 
     \table
-    \header \o Qt
-    \row    \o \image symbian-qt-draw-pixmap-sequence.png
+    \header \li Qt
+    \row    \li \image symbian-qt-draw-pixmap-sequence.png
     \endtable
 
     When compared to a native Symbian application, Qt does an additional blit

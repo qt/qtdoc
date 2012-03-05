@@ -49,11 +49,11 @@
     The example consists of four classes:
 
     \list
-        \o \c Assistant provides functionality to launch \QA.
-        \o \c MainWindow is the main application window.
-        \o \c FindFileDialog allows the user to search for
+        \li \c Assistant provides functionality to launch \QA.
+        \li \c MainWindow is the main application window.
+        \li \c FindFileDialog allows the user to search for
            files using wildcard matching.
-        \o \c TextEdit provides a rich text browser that makes
+        \li \c TextEdit provides a rich text browser that makes
            sure that images referenced in HTML documents are
            displayed properly.
     \endlist
@@ -121,15 +121,15 @@
     want to use the following outline for the table of contents:
 
     \list
-    \o Simple Text Viewer
+    \li Simple Text Viewer
       \list
-      \o Find File
+      \li Find File
         \list
-        \o File Dialog
-        \o Wildcard Matching
-        \o Browse
+        \li File Dialog
+        \li Wildcard Matching
+        \li Browse
         \endlist
-      \o Open File      
+      \li Open File
       \endlist
     \endlist
 

@@ -88,7 +88,7 @@
     without prior written authorization of the copyright holder.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -105,7 +105,7 @@
     CONTRIBUTORS ACCEPT NO RESPONSIBILITY IN ANY CONCEIVABLE MANNER.
 
     \list
-    \o Parts of the QCrashHandler class
+    \li Parts of the QCrashHandler class
     \endlist
 
     \hr
@@ -116,19 +116,19 @@
     has been made to these files:
 
     \list
-    \i Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
+    \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
     conflicts in \c{qrasterdefs_p.h}.
-    \i Removed parts of code not relevant when compiled with
+    \li Removed parts of code not relevant when compiled with
     _STANDALONE_ defined.
-    \i Changed behavior in \c{ftraster.c} to follow X polygon filling
+    \li Changed behavior in \c{ftraster.c} to follow X polygon filling
     rules.
-    \i Implemented support in \c{ftraster.c} for winding / odd even
+    \li Implemented support in \c{ftraster.c} for winding / odd even
     polygon fill rules.
-    \i Replaced bitmap generation with span generation in \c{ftraster.c}.
-    \i Renamed \c{ftraster.h} as \c{qblackraster_p.h}.
-    \i Renamed \c{ftraster.c} as \c{qblackraster.c}.
-    \i Renamed \c{ftgrays.h} as \c{qgrayraster_p.h}.
-    \i Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
+    \li Replaced bitmap generation with span generation in \c{ftraster.c}.
+    \li Renamed \c{ftraster.h} as \c{qblackraster_p.h}.
+    \li Renamed \c{ftraster.c} as \c{qblackraster.c}.
+    \li Renamed \c{ftgrays.h} as \c{qgrayraster_p.h}.
+    \li Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
     \endlist
 
     See \c src/3rdparty/freetype/docs/FTL.txt and \c
@@ -163,7 +163,7 @@
     from the X Consortium.
 
     \list
-    \o Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
+    \li Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
     \endlist
 
     \hr
@@ -189,7 +189,7 @@
     SOFTWARE.
 
     \list
-    \o Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
+    \li Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
     \endlist
 
     \hr
@@ -217,7 +217,7 @@
     in this Software without prior written authorization from The Open Group.
 
     \list
-    \o Parts of the internal QKeyMapper class on X11 platforms
+    \li Parts of the internal QKeyMapper class on X11 platforms
     \endlist
 
     \hr
@@ -234,7 +234,7 @@
     implied warranty.
 
     \list
-    \o Parts of the internal QImageSmoothScaler::scale() function use code
+    \li Parts of the internal QImageSmoothScaler::scale() function use code
     based on pnmscale.c by Jef Poskanzer.
     \endlist
 
@@ -253,7 +253,7 @@
     More information: http://sizzlejs.com/
 
     \list
-    \o examples/webkit/fancybrowser/jquery.min.js
+    \li examples/webkit/fancybrowser/jquery.min.js
     \endlist
 
     \hr
@@ -283,7 +283,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o src/corelib/io/qurl.cpp
+    \li src/corelib/io/qurl.cpp
     \endlist
 
     \hr
@@ -330,7 +330,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -369,7 +369,7 @@
     SUCH DAMAGE.
 
     \list
-    \o Parts of the codecs implemented by Qt
+    \li Parts of the codecs implemented by Qt
     \endlist
 
     \hr
@@ -407,7 +407,7 @@
     SUCH DAMAGE.
 
     \list
-    \o src/corelib/tools/qlocale.cpp
+    \li src/corelib/tools/qlocale.cpp
     \endlist
 
     \hr
@@ -439,7 +439,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -471,7 +471,7 @@
     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of the FreeType library
+    \li Parts of the FreeType library
     \endlist
 
     \hr
@@ -488,8 +488,8 @@
     Note that this license is compatible with the FreeType license.
 
     \list
-    \o Included in the build system of the FreeType library
-    \o See \l{CatharonLicense.txt} for more information
+    \li Included in the build system of the FreeType library
+    \li See \l{CatharonLicense.txt} for more information
     \endlist
 
     \hr
@@ -559,7 +559,7 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -590,7 +590,7 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -623,7 +623,7 @@
     SUCH DAMAGE.
 
     \list
-    \o src/3rdparty/ce-compat/ce_time.c
+    \li src/3rdparty/ce-compat/ce_time.c
     \endlist
 
     \hr
@@ -658,7 +658,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -696,7 +696,7 @@
     POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -732,7 +732,7 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o Parts of WebKit used by the QtWebKit module
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -776,10 +776,10 @@
     without prior written authorization of the copyright holder.
 
     \list
-    \o Included in \c{util/unicode/data},
+    \li Included in \c{util/unicode/data},
     \c{tests/auto/qtextboundaryfinder/data} and
     \c{tests/auto/qchar}
-    \o Parts of the \l makeqpf tool
+    \li Parts of the \l makeqpf tool
     \endlist
 
     \hr
@@ -816,15 +816,15 @@
 
 
     \list
-    \o qtbase/src/corelib/Qt5CoreMacros.cmake
-    \o qtbase/src/widgets/Qt5WidgetsMacros.cmake
-    \o qttools/src/linguist/Qt5LinguistToolsMacros.cmake
-    \o qttools/src/dbus/Qt5DBusToolsMacros.cmake
+    \li qtbase/src/corelib/Qt5CoreMacros.cmake
+    \li qtbase/src/widgets/Qt5WidgetsMacros.cmake
+    \li qttools/src/linguist/Qt5LinguistToolsMacros.cmake
+    \li qttools/src/dbus/Qt5DBusToolsMacros.cmake
     \endlist
 
     \hr
 
-    \bold Licenses that apply to tests.
+    \b Licenses that apply to tests.
     The following licenses apply to some tests.
     These are not by default shipped with Qt but part of the tests directory of a source checkout.
 
@@ -852,7 +852,7 @@
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o \c{tests/benchmarks/script/v8/tests/richards.js}
+    \li \c{tests/benchmarks/script/v8/tests/richards.js}
     \endlist
 
     \hr
@@ -881,7 +881,7 @@
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \o \c{tests/benchmarks/script/sunspider/tests/3d-morph.js},
+    \li \c{tests/benchmarks/script/sunspider/tests/3d-morph.js},
        \c{tests/benchmarks/script/sunspider/tests/3d-raytrace.js},
        \c{tests/benchmarks/script/sunspider/tests/bitops-bitwise-and.js} and
        \c{tests/benchmarks/script/sunspider/tests/string-tagcloud.js}
@@ -914,7 +914,7 @@
 
 
     \list
-    \o \c{benchmarks/script/sunspider/tests/math-cordic.js}
+    \li \c{benchmarks/script/sunspider/tests/math-cordic.js}
     \endlist
 
     \hr
@@ -972,8 +972,8 @@
     holders.
 
     \list
-    \o Included in \c{tests/arthur/data/1.1 svg files}
-    \o Part of the Arthur tests
+    \li Included in \c{tests/arthur/data/1.1 svg files}
+    \li Part of the Arthur tests
     \endlist
 */
 

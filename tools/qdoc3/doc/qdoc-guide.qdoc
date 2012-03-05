@@ -39,9 +39,9 @@
 
     There are three essential materials for generating documentation with qdoc:
     \list
-        \o \c QDoc binary
-        \o \c qdocconf configuration files
-        \o \c Documentation in \c C++, \c QML, and \c .qdoc files
+        \li \c QDoc binary
+        \li \c qdocconf configuration files
+        \li \c Documentation in \c C++, \c QML, and \c .qdoc files
     \endlist
 
     This section intends to cover the basic necessities for creating a
@@ -55,11 +55,11 @@
     \section1 Chapters
 
     \list 1
-    \o \l{Creating QDoc Configuration Files}
-    \o \l{Writing Documentation}
-    \o \l{Categories of Documentation}
-    \o \l{Configuration File Example}
-    \o \l{QML Documentation Example}
+    \li \l{Creating QDoc Configuration Files}
+    \li \l{Writing Documentation}
+    \li \l{Categories of Documentation}
+    \li \l{Configuration File Example}
+    \li \l{QML Documentation Example}
     \endlist
 
 */
@@ -296,21 +296,21 @@
 
     Example of topic commands:
     \list
-        \o \l{enum-command}{\\enum} - for enumeration documentation
-        \o \l{class-command}{\\class} - for C++ class documentation
-        \o \l{qmlclass-command}{\\qmlclass} - for QML component documentation
-        \o \l{page-command}{\\page} - for creating a page.
+        \li \l{enum-command}{\\enum} - for enumeration documentation
+        \li \l{class-command}{\\class} - for C++ class documentation
+        \li \l{qmlclass-command}{\\qmlclass} - for QML component documentation
+        \li \l{page-command}{\\page} - for creating a page.
     \endlist
 
     The \l{page-command}{\\page} command is for creating articles that are not
     part of source documentation. The command can also accept two arguments: the
     file name of the article and the documentation type. The possible types are:
     \list
-    \o \c howto
-    \o \c overview
-    \o \c tutorial
-    \o \c faq
-    \o \c article - \e default when there is no type
+    \li \c howto
+    \li \c overview
+    \li \c tutorial
+    \li \c faq
+    \li \c article - \e default when there is no type
     \endlist
 
     \snippet examples/samples.qdocinc sample-faq
@@ -339,11 +339,11 @@
     \section2 Documentation Markup
 
     QDoc can provide \e markup to content similar to other markup or
-    documentation tools. QDoc can mark a section of text in \bold{bold} when
-    the text is marked up with the \l{bold-command}{\\bold} command.
+    documentation tools. QDoc can mark a section of text in \b{bold} when
+    the text is marked up with the \l{bold-command}{\\b} command.
 
     \code
-        \bold{This} text will be in \bold{bold}.
+        \b{This} text will be in \b{bold}.
     \endcode
 
     The \l{Markup Commands} page has a full listing of the available markup
@@ -355,15 +355,15 @@
     ingredients present.
 
     \list
-        \o Assign a topic to a  QDoc comment - A comment could be a page, a
+        \li Assign a topic to a  QDoc comment - A comment could be a page, a
         property documentation, a class documentation, or any of the available
         \l{Topic Commands}{topic commands}.
 
-        \o Give the topic a context - QDoc can associate certain topics to other
+        \li Give the topic a context - QDoc can associate certain topics to other
         pages such as associating obsolete functions when the documentation is
         marked with \l{obsolete-command}{\\obsolete}.
 
-        \o Mark sections of the document with
+        \li Mark sections of the document with
         \l{Markup Commands}{markup commands} - QDoc can create layouts and
         format the documentation for the documentation.
     \endlist
@@ -408,14 +408,14 @@
     There are several types of predefined documentation \e categories or
     \e types:
     \list
-    \o How-To's
-    \o Tutorial
-    \o Overview
-    \o Article
-    \o FAQ (Frequently Asked Questions)
-    \o C++ API Documentation
-    \o QML Component Documentation
-    \o Code Example
+    \li How-To's
+    \li Tutorial
+    \li Overview
+    \li Article
+    \li FAQ (Frequently Asked Questions)
+    \li C++ API Documentation
+    \li QML Component Documentation
+    \li Code Example
     \endlist
 
     QDoc has the ability to format a page depending on the type. Further,
@@ -453,16 +453,16 @@
 
     A list of QML related QDoc commands:
     \list
-    \o \l{qmlattachedproperty-command}{\\qmlattachedproperty}
-    \o \l{qmlattachedsignal-command}{\\qmlattachedsignal}
-    \o \l{qmlbasictype-command}{\\qmlbasictype}
-    \o \l{qmlclass-command}{\\qmlclass} - creates a QML component documentation
-    \o \l{qmlmethod-command}{\\qmlmethod}
-    \o \l{qmlproperty-command}{\\qmlproperty}
-    \o \l{qmlsignal-command}{\\qmlsignal}
-    \o \l{inherits-command}{\\inherits}
-    \o \l{qmlmodule-command}{\\qmlmodule}
-    \o \l{inqmlmodule-command}{\\inqmlmodule}
+    \li \l{qmlattachedproperty-command}{\\qmlattachedproperty}
+    \li \l{qmlattachedsignal-command}{\\qmlattachedsignal}
+    \li \l{qmlbasictype-command}{\\qmlbasictype}
+    \li \l{qmlclass-command}{\\qmlclass} - creates a QML component documentation
+    \li \l{qmlmethod-command}{\\qmlmethod}
+    \li \l{qmlproperty-command}{\\qmlproperty}
+    \li \l{qmlsignal-command}{\\qmlsignal}
+    \li \l{inherits-command}{\\inherits}
+    \li \l{qmlmodule-command}{\\qmlmodule}
+    \li \l{inqmlmodule-command}{\\inqmlmodule}
 
     \endlist
 
@@ -607,10 +607,10 @@
 
     \section1 Macros and other Definitions
     \list
-    \o \l{config/compat.qdocconf}
-    \o \l{config/macros.qdocconf}
-    \o \l{config/qt-cpp-ignore.qdocconf}
-    \o \l{config/qt-defines.qdocconf}
+    \li \l{config/compat.qdocconf}
+    \li \l{config/macros.qdocconf}
+    \li \l{config/qt-cpp-ignore.qdocconf}
+    \li \l{config/qt-defines.qdocconf}
     \endlist
 
     QDoc allows macros to help with aliasing and for inputting special HTML
@@ -624,9 +624,9 @@
 
     \section1 Project Information
     \list
-    \o \l{config/qdoc-online.qdocconf}
-    \o \l{config/qdoc.qdocconf}
-    \o \l{config/qdoc-project.qdocconf}
+    \li \l{config/qdoc-online.qdocconf}
+    \li \l{config/qdoc.qdocconf}
+    \li \l{config/qdoc-project.qdocconf}
     \endlist
 
     These configuration files dictate how QDoc will generate the project.
@@ -643,10 +643,10 @@
 
     \section1 HTML Styles
     \list
-    \o \l{config/qt-html-default-styles.qdocconf}
-    \o \l{config/qt-html-online-styles.qdocconf}
-    \o \l{config/qt-html-templates-online.qdocconf}
-    \o \l{config/qt-html-templates.qdocconf}
+    \li \l{config/qt-html-default-styles.qdocconf}
+    \li \l{config/qt-html-online-styles.qdocconf}
+    \li \l{config/qt-html-templates-online.qdocconf}
+    \li \l{config/qt-html-templates.qdocconf}
     \endlist
 
     These files indicate which styles QDoc should use for the HTML formats.
@@ -657,7 +657,7 @@
 
     \section1 Project File
     \list
-    \o \l{config/config.pro}
+    \li \l{config/config.pro}
     \endlist
 
     Every example page (such as this one) needs a Qt project file. QDoc will

@@ -52,9 +52,9 @@
     Depending on your target platform, Qt provides special macros that contain
     the necessary definitions:
     \list
-        \o  \c{Q_DECL_EXPORT} must be added to the declarations of symbols used
+        \li  \c{Q_DECL_EXPORT} must be added to the declarations of symbols used
             when compiling a shared library.
-        \o  \c{Q_DECL_IMPORT} must be added to the declarations of symbols used
+        \li  \c{Q_DECL_IMPORT} must be added to the declarations of symbols used
             when compiling a client that uses the shared library.
     \endlist
 

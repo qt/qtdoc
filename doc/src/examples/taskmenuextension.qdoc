@@ -48,17 +48,17 @@
     There are four available types of extensions in \QD:
 
     \list
-        \o QDesignerContainerExtension provides an extension that allows
+        \li QDesignerContainerExtension provides an extension that allows
            you to add (and delete) pages to a multi-page container plugin
            in \QD.
-        \o QDesignerMemberSheetExtension provides an extension that allows
+        \li QDesignerMemberSheetExtension provides an extension that allows
            you to manipulate a widget's member functions which is displayed
            when configuring connections using Qt Designer's mode for editing
            signals and slots.
-        \o QDesignerPropertySheetExtension provides an extension that
+        \li QDesignerPropertySheetExtension provides an extension that
            allows you to manipulate a widget's properties which is displayed
            in Qt Designer's property editor.
-        \o QDesignerTaskMenuExtension provides an extension that allows
+        \li QDesignerTaskMenuExtension provides an extension that allows
            you to add custom menu entries to \QD's task menu.
     \endlist
 
@@ -69,13 +69,13 @@
     The Task Menu Extension example consists of five classes:
 
     \list
-    \o \c TicTacToe is a custom widget that lets the user play
+    \li \c TicTacToe is a custom widget that lets the user play
        the Tic-Tac-Toe game.
-    \o \c TicTacToePlugin exposes the \c TicTacToe class to \QD.
-    \o \c TicTacToeTaskMenuFactory creates a \c TicTacToeTaskMenu object.
-    \o \c TicTacToeTaskMenu provides the task menu extension, i.e the
+    \li \c TicTacToePlugin exposes the \c TicTacToe class to \QD.
+    \li \c TicTacToeTaskMenuFactory creates a \c TicTacToeTaskMenu object.
+    \li \c TicTacToeTaskMenu provides the task menu extension, i.e the
        plugin's associated task menu entries.
-    \o \c TicTacToeDialog lets the user modify the state of a
+    \li \c TicTacToeDialog lets the user modify the state of a
        Tic-Tac-Toe plugin loaded into \QD.
     \endlist
 
@@ -108,11 +108,11 @@
     plugin:
 
     \list
-        \o \c designer: Since custom widgets plugins rely on components
+        \li \c designer: Since custom widgets plugins rely on components
            supplied with \QD, this value ensures that our plugin links against
            \QD's library (\c libQtDesigner.so).
 
-        \o \c plugin: We also need to ensure that \c qmake considers the
+        \li \c plugin: We also need to ensure that \c qmake considers the
            custom widget a \e plugin library.
     \endlist
 

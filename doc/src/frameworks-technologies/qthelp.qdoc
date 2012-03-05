@@ -38,12 +38,12 @@
     with three levels of detail:
 
     \list 1
-        \o Tool Tips and Status Bar message - flyweight help, extremely brief,
+        \li Tool Tips and Status Bar message - flyweight help, extremely brief,
             entirely integrated in the user interface, requiring little
             or no user interaction to invoke.
-        \o What's This? - lightweight, but can be
+        \li What's This? - lightweight, but can be
             a three-paragraph explanation.
-        \o Online Help - can encompass any amount of information,
+        \li Online Help - can encompass any amount of information,
             but is typically slower to call up, somewhat separated
             from the user's work, and often users feel that using online
             help is a digression from their real task.
@@ -101,36 +101,36 @@
 
     \table
         \header
-            \o Name
-            \o Extension
-            \o Brief Description
+            \li Name
+            \li Extension
+            \li Brief Description
         \row
-            \o \l {Qt Help Project}
-            \o .qhp
-            \o The input file for the help generator consisting of the table
+            \li \l {Qt Help Project}
+            \li .qhp
+            \li The input file for the help generator consisting of the table
                of contents, indices and references to the actual documentation
                files (*.html); it also defines a unique namespace for the
                documentation.
 
         \row
-            \o Qt Compressed Help
-            \o .qch
-            \o The output file of the help generator. This binary file contains
+            \li Qt Compressed Help
+            \li .qch
+            \li The output file of the help generator. This binary file contains
                all information specified in the help project file along with all
                compressed documentation files.
 
         \row
-            \o \l {Qt Help Collection Project}
-            \o .qhcp
-            \o The input file for the help collection generator. It contains
+            \li \l {Qt Help Collection Project}
+            \li .qhcp
+            \li The input file for the help collection generator. It contains
                references to compressed help files which should be included in
                the collection; it also may contain other information for
                customizing Qt Assistant.
 
         \row
-            \o Qt Help Collection
-            \o .qhc
-            \o The output of the help collection generator. This is the file
+            \li Qt Help Collection
+            \li .qhc
+            \li The output of the help collection generator. This is the file
                QHelpEngine operates on. It contains references to any number of
                compressed help files as well as additional information, such as
                custom filters.

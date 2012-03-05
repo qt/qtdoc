@@ -61,7 +61,7 @@
 
     \table 100%
     \row
-    \o
+    \li
     Provided that the environment variables are adjusted properly
     during the \l {Installing Qt for Embedded Linux}{installation process}, you
     should see the \l {Text Edit} demo appear.
@@ -71,12 +71,12 @@
     consult the following documentation:
 
     \list
-        \o \l{Qt for Embedded Linux Pointer Handling}{Pointer Handling}
-        \o \l{Qt for Embedded Linux Character Input}{Character Input}
-        \o \l{Qt for Embedded Linux Display Management}{Display Management}
+        \li \l{Qt for Embedded Linux Pointer Handling}{Pointer Handling}
+        \li \l{Qt for Embedded Linux Character Input}{Character Input}
+        \li \l{Qt for Embedded Linux Display Management}{Display Management}
     \endlist
 
-    \o
+    \li
     \inlineimage qt-embedded-runningapplication.png
     \endtable
 
@@ -124,68 +124,68 @@
 
     \table 100%
     \header
-    \o Option \o Description
+    \li Option \li Description
     \row
-    \o \bold -fn <font>
-    \o
+    \li \b -fn <font>
+    \li
     Defines the application font. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 4
     The font should be specified using an X logical font description.
     \row
-    \o \bold -bg <color>
-    \o
+    \li \b -bg <color>
+    \li
     Sets the default application background color. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 5
     The color-name must be one of the names recognized by the QColor constructor.
     \row
-    \o \bold -btn <color> \o
+    \li \b -btn <color> \li
     Sets the default button color. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 6
     The color-name must be one of the names recognized by the QColor constructor.
     \row
-    \o \bold -fg <color> \o
+    \li \b -fg <color> \li
     Sets the default application foreground color. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 7
     The color-name must be one of the names recognized by the QColor constructor.
     \row
-    \o \bold -name <objectname> \o
+    \li \b -name <objectname> \li
     Sets the application name, i.e. the application object's object name. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 8
     \row
-    \o \bold -title <title> \o
+    \li \b -title <title> \li
     Sets the application's title. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 9
     \row
-    \o \bold -geometry <width>x<height>+<Xoffset>+<Yoffset> \o
+    \li \b -geometry <width>x<height>+<Xoffset>+<Yoffset> \li
     Sets the client geometry of the first window that is shown. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 10
     \row
-    \o \bold -keyboard \o
+    \li \b -keyboard \li
     Enables the keyboard.
 
     See also: \l {Qt for Embedded Linux Character Input}.
     \row
-    \o \bold -nokeyboard \o
+    \li \b -nokeyboard \li
     Disables the keyboard.
     \row
-    \o \bold -mouse \o
+    \li \b -mouse \li
     Enables the mouse cursor.
 
     See also: \l {Qt for Embedded Linux Pointer Handling}.
     \row
-    \o \bold -nomouse \o
+    \li \b -nomouse \li
     Disables the mouse cursor.
     \row
-    \o \bold -qws \o
+    \li \b -qws \li
     Runs the application as a server application, i.e. constructs a
     QApplication object of the QApplication::GuiServer type.
     \row
-    \o \bold -display \o
+    \li \b -display \li
     Specifies the screen driver.
 
     See also: \l {Qt for Embedded Linux Display Management}.
     \row
-    \o \bold -decoration <style>\o
+    \li \b -decoration <style>\li
     Sets the application decoration. For example:
     \snippet doc/src/snippets/code/doc_src_emb-running.qdoc 11
     The supported styles are \c windows, \c default and \c styled.

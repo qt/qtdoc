@@ -60,10 +60,10 @@
     to drag and drop operations:
 
     \list
-    \i \l{QApplication::startDragTime} describes the amount of time in
+    \li \l{QApplication::startDragTime} describes the amount of time in
        milliseconds that the user must hold down a mouse button over an
        object before a drag will begin.
-    \i \l{QApplication::startDragDistance} indicates how far the user has to
+    \li \l{QApplication::startDragDistance} indicates how far the user has to
        move the mouse while holding down a mouse button before the movement
        will be interpreted as dragging. Use of high values for this quantity
        prevents accidental dragging when the user only meant to click on an
@@ -378,11 +378,11 @@
     \section1 Examples
 
     \list
-    \o \l{draganddrop/draggableicons}{Draggable Icons}
-    \o \l{draganddrop/draggabletext}{Draggable Text}
-    \o \l{draganddrop/dropsite}{Drop Site}
-    \o \l{draganddrop/fridgemagnets}{Fridge Magnets}
-    \o \l{draganddrop/puzzle}{Drag and Drop Puzzle}
+    \li \l{draganddrop/draggableicons}{Draggable Icons}
+    \li \l{draganddrop/draggabletext}{Draggable Text}
+    \li \l{draganddrop/dropsite}{Drop Site}
+    \li \l{draganddrop/fridgemagnets}{Fridge Magnets}
+    \li \l{draganddrop/puzzle}{Drag and Drop Puzzle}
     \endlist
 
     \section1 Interoperating with Other Applications

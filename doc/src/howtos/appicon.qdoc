@@ -103,13 +103,13 @@
 
     If you do not use \c qmake, you must do the following manually:
     \list 1
-    \i Create an \c Info.plist file for your application (using the
+    \li Create an \c Info.plist file for your application (using the
        \c PropertyListEditor, found in \c Developer/Applications).
-    \i Associate your \c .icns record with the \c CFBundleIconFile record in the
+    \li Associate your \c .icns record with the \c CFBundleIconFile record in the
        \c Info.plist file (again, using the \c PropertyListEditor).
-    \i Copy the \c Info.plist file into your application bundle's \c Contents
+    \li Copy the \c Info.plist file into your application bundle's \c Contents
        directory.
-    \i Copy the \c .icns file into your application bundle's \c Contents/Resources
+    \li Copy the \c .icns file into your application bundle's \c Contents/Resources
        directory.
     \endlist
 
