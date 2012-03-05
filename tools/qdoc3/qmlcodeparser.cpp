@@ -254,7 +254,7 @@ void QmlCodeParser::extractPragmas(QString &script)
     int token = l.lex();
 
     while (true) {
-        if (token != QDeclarativeJSGrammar::T_DOT)
+        if (token != QQmlJSGrammar::T_DOT)
             return;
 
         int startOffset = l.tokenOffset();
@@ -262,14 +262,14 @@ void QmlCodeParser::extractPragmas(QString &script)
 
         token = l.lex();
 
-        if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
+        if (token != QQmlJSGrammar::T_IDENTIFIER ||
             l.tokenStartLine() != startLine ||
             script.mid(l.tokenOffset(), l.tokenLength()) != pragma)
             return;
 
         token = l.lex();
 
-        if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
+        if (token != QQmlJSGrammar::T_IDENTIFIER ||
             l.tokenStartLine() != startLine)
             return;
 

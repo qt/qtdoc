@@ -260,7 +260,7 @@ QList<QDeclarativeJS::AST::SourceLocation> QmlCodeMarker::extractPragmas(QString
     int token = l.lex();
 
     while (true) {
-        if (token != QDeclarativeJSGrammar::T_DOT)
+        if (token != QQmlJSGrammar::T_DOT)
             return removed;
 
         int startOffset = l.tokenOffset();
@@ -269,14 +269,14 @@ QList<QDeclarativeJS::AST::SourceLocation> QmlCodeMarker::extractPragmas(QString
 
         token = l.lex();
 
-        if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
+        if (token != QQmlJSGrammar::T_IDENTIFIER ||
             l.tokenStartLine() != startLine ||
             script.mid(l.tokenOffset(), l.tokenLength()) != pragma)
             return removed;
 
         token = l.lex();
 
-        if (token != QDeclarativeJSGrammar::T_IDENTIFIER ||
+        if (token != QQmlJSGrammar::T_IDENTIFIER ||
             l.tokenStartLine() != startLine)
             return removed;
 
