@@ -1,5 +1,5 @@
 TEMPLATE = subdirs 
-SUBDIRS = tools doc # demos
+SUBDIRS = doc # demos
 
 # Doc rules
 
