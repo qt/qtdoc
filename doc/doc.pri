@@ -67,16 +67,14 @@ for(module, MODULES) {
     module_value = $$eval(QT.$$replace(module, "-", "_").sources)
     !isEmpty(module_value) {
         LOCATIONS += $$SET
-        LOCATIONS += QT_$${module_name}_SOURCES=$$module_value
-        LOCATIONS += $$SEP
+        LOCATIONS += QT_$${module_name}_SOURCES=$$module_value$$SEP
 
-        INCLUDES += QT_$${module_name}_QDOCCONF=modules/qt$${module}.qdocconf
+        INCLUDES += QT_$${module_name}_QDOCCONF=modules/qt$${module}.qdocconf$$SEP
         debug : message($$module : $$module_value)
     } else {
-        INCLUDES += QT_$${module_name}_QDOCCONF=modules/missing.qdocconf
+        INCLUDES += QT_$${module_name}_QDOCCONF=modules/missing.qdocconf$$SEP
         debug : message($$module not found.)
     }
-    INCLUDES += $$SEP
 }
 
 # Output the locations and includes as build messages. This helps the user to
