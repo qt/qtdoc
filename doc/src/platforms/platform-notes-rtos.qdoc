@@ -71,8 +71,6 @@
             processes.
     \row \li Phonon
          \li There is no standard audio backend, which could be integrated into Phonon.
-    \row \li Qt3Support
-         \li The Qt3Support library is not available on VxWorks.
 
     \endtable
 
@@ -189,8 +187,6 @@
          \li QT_NO_QWS_MULTIPROCESS is always on due to missing shared memory support.
     \row \li Phonon
          \li There is no standard audio backend, which could be integrated into Phonon.
-    \row \li Qt3Support
-         \li The Qt3Support library is not available on QNX.
     \endtable
 
     \section1 Build Instructions
@@ -203,14 +199,13 @@
     i386 QNX target:
 
     \code
-    configure -xplatform unsupported/qws/qnx-i386-g++ -embedded i386 -no-gfx-linuxfb -no-mouse-linuxtp -no-kbd-tty -no-qt3support -qt-gfx-qnx -qt-mouse-qnx -qt-kbd-qnx -no-exceptions
+    configure -xplatform unsupported/qws/qnx-i386-g++ -embedded i386 -no-gfx-linuxfb -no-mouse-linuxtp -no-kbd-tty -qt-gfx-qnx -qt-mouse-qnx -qt-kbd-qnx -no-exceptions
     \endcode
 
     \list
     \li \c{-xplatform unsupported/qws/qnx-i386-g++} - selects the i386-g++ mkspec for QNX
     \li \c{-embedded i386} - builds the embedded version of Qt and sets the architecture to i386
     \li \c{-no-gfx-linuxfb},  \c{-no-mouse-linuxtp} and \c{-no-kbd-tty} are Linux specific and won't work on QNX
-    \li \c{-no-qt3support} - required since the Qt3 support classes are not supported on QNX
     \li \c{-no-exceptions} - reduces the size of the library by disabling exception support
     \li \c{-qt-gfx-qnx} - enables the experimental \c{io-graphics} based display driver
     \li \c{-qt-mouse-qnx} - enables the experimental \c{devi-hig} based mouse driver
@@ -292,8 +287,6 @@
          \li QT_NO_QWS_MULTIPROCESS is always on due to missing shared memory support.
     \row \li Phonon
          \li There is no standard audio backend.
-    \row \li Qt3Support
-         \li The Qt3Support library is not available on INTEGRITY.
     \row \li QtScript
          \li Not available - INTEGRITY's mmap() doesn't support allocating memory.
     \endtable
@@ -308,7 +301,7 @@
     ARM INTEGRITY target:
 
     \code
-    ./configure --hostprefix=$PWD -embedded integrity -xplatform unsupported/qws/integrity-arm-cxarm -static -qt-kbd-integrity -qt-mouse-integrity -no-mouse-linuxtp -no-mouse-pc -no-kbd-tty -qt-gfx-integrityfb -no-qt3support -no-gfx-linuxfb -no-glib -no-openssl -no-largefile -little-endian -arch integrity -prefix / -opensource -no-feature-QWS_MULTIPROCESS -no-feature-SHAREDMEMORY -no-feature-PROCESS -no-feature-SYSTEMSEMAPHORE -no-feature-PRINTER -no-feature-QWS_QPF2 -no-libtiff -no-exceptions -no-scripttools
+    ./configure --hostprefix=$PWD -embedded integrity -xplatform unsupported/qws/integrity-arm-cxarm -static -qt-kbd-integrity -qt-mouse-integrity -no-mouse-linuxtp -no-mouse-pc -no-kbd-tty -qt-gfx-integrityfb -no-gfx-linuxfb -no-glib -no-openssl -no-largefile -little-endian -arch integrity -prefix / -opensource -no-feature-QWS_MULTIPROCESS -no-feature-SHAREDMEMORY -no-feature-PROCESS -no-feature-SYSTEMSEMAPHORE -no-feature-PRINTER -no-feature-QWS_QPF2 -no-libtiff -no-exceptions -no-scripttools
     \endcode
 
     \list
@@ -318,7 +311,6 @@
     \li \c{-xplatform unsupported/qws/integrity-arm-cxarm} - selects the arm-cxarm mkspec for INTEGRITY
     \li \c{-static} - specifies a static build of Qt
     \li \c{-no-gfx-linuxfb},  \c{-no-mouse-linuxtp}, \c{-no-mouse-pc} and \c{-no-kbd-tty} are Linux specific and won't work on INTEGRITY
-    \li \c{-no-qt3support} - required since the Qt3 support classes are not supported on INTEGRITY
     \li \c{-no-exceptions} - reduces the size of the library by disabling exception support
     \li \c{-no-openssl} - disable support for OpenSSL
     \li \c(-no-libtiff} - disable support for libTIFF

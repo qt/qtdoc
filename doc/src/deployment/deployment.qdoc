@@ -94,7 +94,6 @@
         \li \l {QtXmlPatterns}
     \row
         \li \l {Phonon Module}{Phonon}
-        \li \l {Qt3Support}
     \endtable
 
     Since Qt is not a system library, it has to be redistributed along
@@ -1440,7 +1439,6 @@
     \li The Phonon backend plugin is deployed if the application uses the \l{Phonon Module} {Phonon} module.
     \li The svg icon plugin is deployed if the application uses the QtSvg module.
     \li The accessibility plugin is always deployed.
-    \li Accessibility for Qt3Support is deployed if the application uses the Qt3Support module.
     \endlist
 
     \note If you want a 3rd party library to be included in your

@@ -44,7 +44,6 @@ MODULES = activeqt \
           webkit \
           webkit-examples-and-demos \
           xmlpatterns \
-          qt3support \
           contacts \
           organizer \
           versit \

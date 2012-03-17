@@ -2187,19 +2187,14 @@ pixmap property in the property editor.
 
     \QD can display custom widgets through its extensible plugin mechanism,
     allowing the range of designable widgets to be extended by the user and
-    third parties. This feature also allows \QD to optionally support
-    \l{Qt3Support}{Qt 3 compatibility widgets}. Alternatively, it is possible
+    third parties. Alternatively, it is possible
     to use existing widgets as placeholders for widget classes that provide
     similar APIs.
-
-    Widgets from the Qt3Support library are made available via in \QD's support
-    for custom widgets.
 
 
     \section1 Handling Custom Widgets
 
-    Although \QD supports all of the standard Qt widgets, and can be configured
-    to handle widgets supplied in the Qt3Support library, some specialized
+    Although \QD supports all of the standard Qt widgets, some specialized
     widgets may not be available as standard for a number of reasons:
 
     \list

@@ -64,7 +64,6 @@
     \row \li \l{QtXml} \li Classes for handling XML
     \row \li \l{QtXmlPatterns} \li An XQuery & XPath engine for XML and custom data models
     \row \li \l{Qt3D Module}{Qt3D}  \li Classes and elements for the 3D API.
-    \row \li \l{Qt3Support} \li Qt 3 compatibility classes
     \row \li \l{Phonon Module}{Phonon} \li Multimedia framework classes
     \header \li {2,1} \b{Modules for working with Qt's tools}
     \row \li \l{QtDesigner} \li Classes for extending \QD
@@ -488,36 +487,6 @@
     the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
     Boston, MA 02110-1301, USA.
     \endlegalese
-*/
-
-/*!
-    \module Qt3Support
-    \title Qt3Support Module
-    \ingroup modules
-
-    \keyword Qt3Support
-    \brief The Qt3Support module provides classes that ease porting
-    from Qt 3 to Qt 4.
-
-    \warning The classes in this module are intended to be used in
-    intermediate stages of a porting process and are not intended
-    to be used in production code.
-
-    To include the definitions of the module's classes, use the
-    following directive:
-
-    \snippet doc/src/snippets/code/doc_src_qt3support.cpp 0
-
-    To link against the module, add this line to your \l qmake \c
-    .pro file:
-
-    \snippet doc/src/snippets/code/doc_src_qt3support.pro 1
-
-    \note Since this module provides compatibility classes for
-    diverse parts of the Qt 3 API, it has dependencies on the QtCore,
-    QtGui, QtNetwork, QtSql, and QtXml modules.
-
-    \sa {Porting to Qt 4}
 */
 
 /*!
