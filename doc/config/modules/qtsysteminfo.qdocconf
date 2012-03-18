@@ -1,10 +1,12 @@
 headerdirs  += $QT_SYSTEMINFO_SOURCES \
                $QT_SYSTEMINFO_SOURCES/../../plugins/declarative/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../imports/systeminfo \
                $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
 sourcedirs  += $QT_SYSTEMINFO_SOURCES \
                $QT_SYSTEMINFO_SOURCES/../../plugins/declarative/systeminfo \
                $QT_SYSTEMINFO_SOURCES/../../doc/src/systeminfo \
+               $QT_SYSTEMINFO_SOURCES/../imports/systeminfo \
                $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
 exampledirs += $QT_SYSTEMINFO_SOURCES/../.. \

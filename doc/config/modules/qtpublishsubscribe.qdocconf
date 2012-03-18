@@ -1,10 +1,12 @@
 headerdirs  += $QT_PUBLISHSUBSCRIBE_SOURCES \
                $QT_PUBLISHSUBSCRIBE_SOURCES/../../plugins/declarative/publishsubscribe \
+               $QT_PUBLISHSUBSCRIBE_SOURCES/../imports/publishsubscribe \
                $QT_PUBLISHSUBSCRIBE_SOURCES/../../examples/publishsubscribe
 
 sourcedirs  += $QT_PUBLISHSUBSCRIBE_SOURCES \
                $QT_PUBLISHSUBSCRIBE_SOURCES/../../plugins/declarative/publishsubscribe \
                $QT_PUBLISHSUBSCRIBE_SOURCES/../../doc/src/publishsubscribe \
+               $QT_PUBLISHSUBSCRIBE_SOURCES/../imports/publishsubscribe \
                $QT_PUBLISHSUBSCRIBE_SOURCES/../../examples/publishsubscribe
 
 exampledirs += $QT_PUBLISHSUBSCRIBE_SOURCES/../../doc/src/publishsubscribe \
