@@ -1,12 +1,12 @@
-headerdirs  += $QT_WEBKIT/Api \
-               $QT_WEBKIT/declarative
+headerdirs  += $QT_WEBKIT/WebKit/qt/Api \
+               $QT_WEBKIT/WebKit/qt/declarative
 
-sourcedirs  += $QT_WEBKIT/Api \
-               $QT_WEBKIT/docs \
-               $QT_WEBKIT/declarative
+sourcedirs  += $QT_WEBKIT/WebKit/qt/Api \
+               $QT_WEBKIT/WebKit/qt/docs \
+               $QT_WEBKIT/WebKit/qt/declarative
 
 exampledirs += 
 
-imagedirs   += $QT_WEBKIT/docs
+imagedirs   += $QT_WEBKIT/WebKit/qt/docs
 
 excludedirs += 

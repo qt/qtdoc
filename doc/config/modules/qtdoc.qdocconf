@@ -3,15 +3,9 @@ headerdirs  +=
 sourcedirs  += $QT_DOC_SOURCES/doc/src
 
 exampledirs += $QT_DOC_SOURCES/doc/src \
-               $QT_DOC_SOURCES/examples \
-               $QT_DOC_SOURCES/examples/tutorials \
                $QT_DOC_SOURCES \
-               $QT_DOC_SOURCES/qmake/examples \
-               $QT_DOC_SOURCES/src/3rdparty/webkit/WebKit/qt/docs
 
 imagedirs   += $QT_DOC_SOURCES/doc/src/images \
-               $QT_DOC_SOURCES/examples \
-               $QT_DOC_SOURCES/doc/src/declarative/pics \
                $QT_DOC_SOURCES/doc/src/template/images
 
 excludedirs += $QT_DOC_SOURCES/doc/src/snippets \
