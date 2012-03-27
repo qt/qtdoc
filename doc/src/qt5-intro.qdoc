@@ -29,5 +29,29 @@
     \page qt5-intro.html
     \title What's New in Qt 5
 
+    \section1 Qt 5 in a nutshell
+
+    Qt 5 focuses on delivering the following four key topics:
+
+    \b {Graphics capabilities and performance}, which is especially important in constrained
+    environments like mobile devices. Qt Quick 2 offers a GL based scene graph, a particle system
+    and a collection of shader effects. Qt Multimedia, Qt 3D and Qt Graphical Effects bring these
+    features even further.
+
+    \b {Developer productivity and flexibility}, by making Javascript and QML first class citizens
+    while keeping the C++ foundation and Qt Widget support. The new Qt JS Backend powered by V8,
+    Qt JSON DB and the addition of Qt WebKit 2 should make HTML5 developers feel at home.
+
+    \b {Cross-platform portability} is now simpler for OS developers thanks to the new structure
+    of Essentials and Add-ons modules, plus the consolidation of
+    \l {http://qt-project.org/wiki/Qt-Platform-Abstraction} {Qt Platform Abstraction} [qt-
+    project.org]. We look forward to see Qt running in all kinds of environments!
+
+    \b {Open development and open governance} is assuring wider development and testing of Qt 5
+    by a growing community including developers from Nokia, the KDE project, Digia, Collabora,
+    Accenture, KDAB and many more companies and individuals.
+
+    \section1 API changes
+
     \sincelist 5.0
 */
