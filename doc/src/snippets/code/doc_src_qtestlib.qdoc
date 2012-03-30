@@ -70,7 +70,7 @@ set LIB=C:\Program Files\Windows CE Tools\wce500\Windows Mobile 5.0 Pocket PC SD
 
 
 //! [9]
-/myTestDirectory$ qmake -project "CONFIG += qtestlib"
+/myTestDirectory$ qmake -project "QT += testlib"
 /myTestDirectory$ qmake
 /myTestDirectory$ make
 //! [9]
