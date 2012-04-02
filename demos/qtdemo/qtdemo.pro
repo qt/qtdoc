@@ -13,8 +13,8 @@ contains(QT_CONFIG, opengl) {
     QT += opengl
 }
 
-contains(QT_CONFIG, declarative) {
-    QT += declarative qtquick1
+contains(QT_CONFIG, quick1) {
+    QT += quick1
 } else {
     DEFINES *= QT_NO_DECLARATIVE
 }

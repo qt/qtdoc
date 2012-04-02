@@ -46,7 +46,6 @@
 
 #ifndef QT_NO_DECLARATIVE
 #include <QtQuick1>
-#include <QDeclarativeEngine>
 #endif
 
 MenuManager *MenuManager::pInstance = 0;
