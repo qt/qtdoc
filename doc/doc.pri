@@ -4,7 +4,6 @@
 
 DOCS_GENERATION_DEFINES =
 GENERATOR = $${QT.help.bins}/qhelpgenerator
-MODULE = qtdoc
 
 win32:!win32-g++* {
     unixstyle = false
@@ -48,6 +47,9 @@ MODULES = activeqt \
           organizer \
           versit \
           bluetooth
+
+# Pretend there is a doc module. Simplifies things a bit.
+QT.doc.sources = $$dirname(PWD)
 
 # Compile a list of location definitions for each of the modules and a list of
 # qdocconf files to include.

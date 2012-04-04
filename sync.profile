@@ -1,9 +1,3 @@
-%modules = ( # path to module name map
-    "QtDoc" => "$basedir/modules",  # point to an invalid directory in this case
-);
-%modulepris = (
-    "QtDoc" => "$basedir/modules/qt_doc.pri",
-);
 # Module dependencies.
 # Every module that is required to build this module should have one entry.
 # Each of the module version specifiers can take one of the following values:
