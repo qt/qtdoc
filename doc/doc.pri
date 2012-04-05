@@ -124,9 +124,9 @@ MODULE_INDEX_DEST = $$INDEX_DESTDIR/$${MODULE}.index
 MODULE_INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
 
 $$unixstyle {
-    QDOC = $$LOCATIONS $$INCLUDES MODULE_SOURCE_TREE=$${QT.doc.sources} MODULE_BUILD_TREE=$$MODULE_BUILD_DIR $$QT.core.bins/qdoc $$DOCS_GENERATION_DEFINES
+    QDOC = $$LOCATIONS $$INCLUDES MODULE_SOURCE_TREE=$${QT.doc.sources} MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources) $$QT.core.bins/qdoc $$DOCS_GENERATION_DEFINES
 } else {
-    QDOC = $$LOCATIONS $$INCLUDES set MODULE_SOURCE_TREE=$${QT.doc.sources}&& set MODULE_BUILD_TREE=$$MODULE_BUILD_DIR&& $$QT.core.bins/qdoc.exe $$DOCS_GENERATION_DEFINES
+    QDOC = $$LOCATIONS $$INCLUDES set MODULE_SOURCE_TREE=$${QT.doc.sources}&& set MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources)&& $$QT.core.bins/qdoc.exe $$DOCS_GENERATION_DEFINES
     QDOC = $$replace(QDOC, "/", $$QMAKE_DIR_SEP)
 }
 
