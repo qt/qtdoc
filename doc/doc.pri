@@ -35,6 +35,8 @@ MODULES = activeqt \
           phonon \
           publishsubscribe \
           3d \
+          qml \
+          quick \
           script \ # scripttools
           sensors \
           serviceframework \
