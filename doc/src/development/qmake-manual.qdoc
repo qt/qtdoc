@@ -1285,6 +1285,12 @@
     \row \li x11 \li The target is a X11 application or library. The proper
         include paths and libraries will automatically be added to the
         project.
+    \row \li testcase \li The target is an automated test.
+        \l{qmake Common Projects#building-a-testcase}{A check target} will be added
+        to the generated Makefile to run the test. Only relevant when generating
+        Makefiles.
+    \row \li insignificant_test \li The exit code of the automated test will be ignored.
+        Only relevant if \c testcase is also set.
     \row \li windows \li The target is a Win32 window application (app only). The
         proper include paths, compiler flags and libraries will
         automatically be added to the project.
@@ -4973,6 +4979,7 @@
     \row    \li windows \li The application is a Windows GUI application.
     \row    \li console \li \c app template only: the application is a Windows console
                        application.
+    \row    \li testcase \li The application is \l{Building a Testcase}{an automated test}.
     \endtable
 
     When using this template the following \l{qmake Manual#qmake}{\c qmake}
@@ -5011,6 +5018,69 @@
     add to the existing items of that type. Using "=" replaces the item's
     value with the new value, for example if we wrote \c{DEFINES=QT_DLL},
     all other definitions would be deleted.
+
+    \section2 Building a Testcase
+
+    A testcase project is an \c app project intended to be run as an automated
+    test. Any \c app may be marked as a testcase by adding the value \c testcase
+    to the \c CONFIG variable.
+
+    For testcase projects, \l{qmake Manual#qmake}{\c qmake} will insert a \c check
+    target into the generated Makefile. This target will run the application.
+    The test is considered to pass if it terminates with an exit code equal to zero.
+
+    The \c check target automatically recurses through
+    \l{qmake Variable Reference#SUBDIRS}{SUBDIRS} projects. This means it is
+    possible to issue a \c{make check} command from within a SUBDIRS project
+    to run an entire test suite.
+
+    The execution of the \c check target may be customized by certain Makefile
+    variables. These variables are:
+
+    \table
+    \header
+        \li Variable
+        \li Description
+    \row
+        \li TESTRUNNER
+        \li A command or shell fragment prepended to each test command. An example
+            use-case is a "timeout" script which will terminate a test if it does not
+            complete within a specified time.
+    \row
+        \li TESTARGS
+        \li Additional arguments appended to each test command. For example, it may
+            be useful to pass additional arguments to set the output file and format
+            from the test (such as the \e{-o filename,format} option supported by
+            \l{QTestLib}).
+    \endtable
+
+    Note that these must be set while invoking the \c make tool, and not set in the
+    .pro file. Most \c make tools support the setting of Makefile variables directly
+    on the command-line:
+
+    \code
+        # Run tests through test-wrapper and use xunitxml output format.
+        # In this example, test-wrapper is a fictional wrapper script which terminates
+        # a test if it does not complete within the amount of seconds set by "--timeout".
+        # The "-o result.xml,xunitxml" options are interpreted by QTestLib.
+        make check TESTRUNNER="test-wrapper --timeout 120" TESTARGS="-o result.xml,xunitxml"
+    \endcode
+
+    Testcase projects may be further customized with the following \c CONFIG options:
+
+    \table
+    \header
+        \li Option
+        \li Description
+    \row
+        \li insignificant_test
+        \li The exit code of the test will be ignored during \c{make check}.
+    \endtable
+
+    Testcases will often be written with \l{QTestLib} or \l{QtQuickTest}, but
+    that is not a requirement to make use of \c{CONFIG+=testcase} and \c{make check}.
+    The primary requirement is only that the test program exit with a zero exit code
+    on success, and a non-zero exit code on failure.
 
     \target Library
     \section1 Building a Library

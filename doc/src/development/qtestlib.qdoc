@@ -130,6 +130,14 @@
 
     \snippet doc/src/snippets/code/doc_src_qtestlib.pro 1
 
+    If you would like to run the test via \c{make check}, add the
+    additional line:
+
+    \snippet doc/src/snippets/code/doc_src_qtestlib.pro 2
+
+    See \l{qmake Common Projects#building-a-testcase}{the qmake manual} for
+    more information about \c{make check}.
+
     If you are using other build tools, make sure that you add the location
     of the QTestLib header files to your include path (usually \c{include/QtTest}
     under your Qt installation directory). If you are using a release build
