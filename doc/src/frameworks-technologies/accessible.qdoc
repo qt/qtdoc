@@ -33,7 +33,20 @@
 /*!
     \page accessible.html
     \title Accessibility
+    \brief Qt's accessibility APIs are not made public for Qt 5.0.
+
+    If you really need to use Qt's _internal_ accessibility APIs, there are no technical reasons
+    preventing you from using them. However, there is no generated accessibility documentation
+    available, and keep in mind that since the API is still internal we might change it at some
+    point in the future which might cause your application to not compile, or even just crash if
+    you decide to upgrade Qt.
+*/
+
+/*
+    \page accessible.html
+    \title Accessibility
     \brief How to make your applications accessible to those with disabilities.
+    \internal
     \nextpage Accessibility for QWidget Applications
 
     \ingroup technology-apis
@@ -123,6 +136,7 @@
     \page accessible-qwidget.html
     \title Accessibility for QWidget Applications
     \brief How to make your applications accessible to those with disabilities.
+    \internal
     \previouspage Accessibility
     \nextpage Accessibility for Qt Quick Applications
 
@@ -628,6 +642,7 @@
     \page accessible-qtquick.html
     \title Accessibility for Qt Quick Applications
     \brief How to make your applications accessible to those with disabilities.
+    \internal
     \startpage Accessibility
     \previouspage Accessibility for QWidget Applications
 
