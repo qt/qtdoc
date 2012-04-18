@@ -7,10 +7,12 @@ sourcedirs  += $QT_CORE_SOURCES/.. \
 
 exampledirs += $QT_CORE_SOURCES/../.. \
                $QT_CORE_SOURCES/../../doc/src \
-               $QT_CORE_SOURCES/../../examples
+               $QT_CORE_SOURCES/../../examples \
+               $QT_CORE_SOURCES/doc/snippets
 
 imagedirs   += $QT_CORE_SOURCES/../../doc/src/images \
-               $QT_CORE_SOURCES/../../examples
+               $QT_CORE_SOURCES/../../examples \
+               $QT_CORE_SOURCES/doc/images
 
 excludedirs += $QT_CORE_SOURCES/../3rdparty/ce-compat \
                $QT_CORE_SOURCES/../3rdparty/des \
