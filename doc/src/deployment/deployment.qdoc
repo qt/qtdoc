@@ -693,19 +693,17 @@
 
     \table 100%
     \header
-        \li \li VC++ 6.0 \li VC++ 7.1 (2003) \li VC++ 8.0 (2005) \li VC++ 9.0 (2008)
+        \li \li VC++ 8.0 (2005) \li VC++ 9.0 (2008) \li VC++ 10.0 (2010)
     \row
         \li The C run-time
-        \li \c msvcrt.dll
-        \li \c msvcr71.dll
         \li \c msvcr80.dll
         \li \c msvcr90.dll
+        \li \c msvcr100.dll
     \row
         \li The C++ run-time
-        \li \c msvcp60.dll
-        \li \c msvcp71.dll
         \li \c msvcp80.dll
         \li \c msvcp90.dll
+        \li \c msvcp100.dll
     \endtable
 
     To verify that the application now can be successfully deployed,
@@ -780,9 +778,9 @@
     compiler version against the same C runtime version. This prevents
     deploying errors caused by different versions of the C runtime libraries.
 
-    \section2 Visual Studio 2008 And Manual Installs
+    \section2 Manual installations with Visual Studio 2008 and 2010
 
-    As well as the above details for VS 2005 and onwards, Visual Studio 2008
+    As well as the above details for VS 2005 and onwards, Visual Studio 2008\2010
     applications may have problems when deploying manually, say to a USB
     stick.
 
@@ -829,26 +827,27 @@
     \table 100%
         \header
             \li Qt
-            \li VC++ 6.0
-            \li VC++ 7.1 (2003)
             \li VC++ 8.0 (2005)
+            \li VC++ 9.0 (2008)
+            \li VC++ 10.0 (2010)
             \li MinGW
         \row
         \li \list
-               \li QTCORE4.DLL - The QtCore runtime
-               \li QTGUI4.DLL - The QtGui runtime
-           \endlist
-        \li \list
-               \li MSVCRT.DLL - The C runtime
-               \li MSVCP60.DLL - The C++ runtime (only when STL is installed)
-           \endlist
-        \li \list
-               \li MSVCR71.DLL - The C runtime
-               \li MSVCP71.DLL - The C++ runtime (only when STL is installed)
+               \li QTCORE5.DLL - The QtCore runtime
+               \li QTGUI5.DLL - The QtGui runtime
+               \li QTWIDGETS5.DLL - The QtWidgets runtime
            \endlist
         \li \list
                \li MSVCR80.DLL - The C runtime
-               \li MSVCP80.DLL - The C++ runtime (only when STL is installed)
+               \li MSVCP80.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MSVCR90.DLL - The C runtime
+               \li MSVCP90.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MSVCR100.DLL - The C runtime
+               \li MSVCP100.DLL - The C++ runtime
            \endlist
         \li \list
                \li MINGWM10.DLL - The MinGW run-time
