@@ -46,7 +46,6 @@
     \row \li \l{QtMultimedia Module}{QtMultimedia} \li Classes for audio, video, radio and camera functionality
     \row \li \l{QtNetwork} \li Classes for network programming
     \row \li \l{QtOpenGL} \li OpenGL support classes
-    \row \li \l{QtOpenVG} \li OpenVG support classes
     \row \li \l{QtOrganizer} \li Classes for managing your calendar events.
     \row \li \l{QtPrintSupport} \li Classes for printing.
     \row \li \l{Qt Publish Subscribe Module}{QtPublishSubscribe} \li Simplified mechanism for subscribing to notifications
@@ -109,109 +108,6 @@
 
     \snippet doc/src/snippets/code/doc_src_qtmultimedia.pro 0
 
-*/
-
-/*!
-    \module QtOpenGL
-    \title QtOpenGL Module
-    \ingroup modules
-	\ingroup technology-apis
-
-    \brief The QtOpenGL module offers classes that make it easy to
-    use OpenGL in Qt applications.
-
-    OpenGL is a standard API for rendering 3D graphics. OpenGL only
-    deals with 3D rendering and provides little or no support for GUI
-    programming issues. The user interface for an OpenGL application
-    must be created with another toolkit, such as Motif on the X
-    platform, Microsoft Foundation Classes (MFC) under Windows, or Qt
-    on both platforms.
-
-    \note OpenGL is a trademark of Silicon Graphics, Inc. in
-    the United States and other countries.
-
-    The Qt OpenGL module makes it easy to use OpenGL in Qt applications.
-    It provides an OpenGL widget class that can be used just like any
-    other Qt widget, except that it opens an OpenGL display buffer where
-    you can use the OpenGL API to render the contents.
-
-    To include the definitions of the module's classes, use the
-    following directive:
-
-    \snippet doc/src/snippets/code/doc_src_qtopengl.cpp 0
-
-    To link against the module, add this line to your \l qmake \c
-    .pro file:
-
-    \snippet doc/src/snippets/code/doc_src_qtopengl.pro 1
-
-    The Qt OpenGL module is implemented as a platform-independent Qt/C++
-    wrapper around the platform-dependent GLX (version 1.3 or later),
-    WGL, or AGL C APIs. Although the basic functionality provided is very
-    similar to Mark Kilgard's GLUT library, applications using the Qt
-    OpenGL module can take advantage of the whole Qt API for
-    non-OpenGL-specific GUI functionality.
-
-    The QtOpenGL module is available on Windows, X11 and Mac OS X.
-    \l{Qt for Embedded Linux and OpenGL} supports OpenGL ES (OpenGL for
-    Embedded Systems).
-    \note To be able to use the OpenGL API in \l{Qt for Embedded Linux}, it must be
-    integrated with the Q Window System (QWS). See the
-    \l{Qt for Embedded Linux and OpenGL} documentation for details.
-
-*/
-
-/*!
-    \module QtOpenVG
-    \title QtOpenVG Module
-    \since 4.6
-    \ingroup modules
-	\ingroup technology-apis
-
-    \brief The QtOpenVG module is a plugin that provides support for
-    OpenVG painting.
-
-    OpenVG is a standard API from the
-    \l{http://www.khronos.org/openvg}{Khronos Group} for accelerated
-    2D vector graphics that is appearing in an increasing number of
-    embedded devices.
-
-    OpenVG support can be enabled by passing the \c{-openvg} option
-    to configure. It is assumed that the following qmake variables
-    are set to appropriate values in the qmake.conf file for your
-    platform:
-
-    \list
-    \li QMAKE_INCDIR_OPENVG
-    \li QMAKE_LIBDIR_OPENVG
-    \li QMAKE_LIBS_OPENVG
-    \endlist
-
-    Most OpenVG implementations are based on EGL, so the following
-    variables may also need to be set:
-
-    \list
-    \li QMAKE_INCDIR_EGL
-    \li QMAKE_LIBDIR_EGL
-    \li QMAKE_LIBS_EGL
-    \endlist
-
-    See \l{qmake Variable Reference} for more information on these variables.
-
-    Two kinds of OpenVG engines are currently supported: EGL based,
-    and engines built on top of OpenGL such as
-    \l{http://sourceforge.net/projects/shivavg}{ShivaVG}.
-    EGL based engines are preferred.
-
-    Once the graphics system plugin has been built and installed,
-    applications can be run as follows to use the plugin:
-
-    \code
-    app -graphicssystem OpenVG
-    \endcode
-
-    If ShivaVG is being used, then substitute \c ShivaVG instead of
-    \c OpenVG in the line above.
 */
 
 /*!
@@ -676,33 +572,6 @@
     \endlegalese
 
     \sa {The Qt Help Framework}
-*/
-
-/*!
-    \module QtTest
-    \title QtTest Module
-    \ingroup modules
-
-    \keyword QtTest
-
-    \brief The QtTest module provides classes for unit testing Qt applications and libraries.
-
-    Applications that use Qt's unit testing classes need to
-    be configured to be built against the QtTest module.
-    To include the definitions of the module's classes, use the
-    following directive:
-
-    \snippet doc/src/snippets/code/doc_src_qttest.cpp 0
-
-    To link against the module, add this line to your \l qmake \c
-    .pro file:
-
-    \snippet doc/src/snippets/code/doc_src_qttest.pro 1
-
-    See the \l{QTestLib Manual} for a detailed introduction on how to use
-    Qt's unit testing features with your applications.
-
-    The QtTest module is part of all \l{Qt editions}.
 */
 
 /*!

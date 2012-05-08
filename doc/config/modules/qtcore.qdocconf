@@ -9,12 +9,25 @@ exampledirs += $QT_CORE_SOURCES/../.. \
                $QT_CORE_SOURCES/../../doc/src \
                $QT_CORE_SOURCES/../../examples \
                $QT_CORE_SOURCES/doc/snippets \
+               $QT_CORE_SOURCES/../concurrent/doc/snippets \
+               $QT_CORE_SOURCES/../dbus/doc/snippets \
+               $QT_CORE_SOURCES/../gui/doc/snippets \
+               $QT_CORE_SOURCES/../network/doc/snippets \
+               $QT_CORE_SOURCES/../opengl/doc/snippets \
+               $QT_CORE_SOURCES/../printsupport/doc/snippets \
                $QT_CORE_SOURCES/../sql/doc/snippets \
+               $QT_CORE_SOURCES/../testlib/doc/snippets \
+               $QT_CORE_SOURCES/../widgets/doc/snippets \
                $QT_CORE_SOURCES/../xml/doc/snippets
 
 imagedirs   += $QT_CORE_SOURCES/../../doc/src/images \
                $QT_CORE_SOURCES/../../examples \
-               $QT_CORE_SOURCES/doc/images
+               $QT_CORE_SOURCES/doc/images \
+               $QT_CORE_SOURCES/../concurrent/doc/images \
+               $QT_CORE_SOURCES/../gui/doc/images \
+               $QT_CORE_SOURCES/../printsupport/doc/images \
+               $QT_CORE_SOURCES/../sql/doc/images \
+               $QT_CORE_SOURCES/../widgets/doc/images
 
 excludedirs += $QT_CORE_SOURCES/../3rdparty/ce-compat \
                $QT_CORE_SOURCES/../3rdparty/des \
