@@ -1,0 +1,57 @@
+#! [0]
+cmake_minimum_required(VERSION 2.8.8)
+
+project(testproject)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed.
+set(CMAKE_AUTOMOC ON)
+
+# Find the QtWidgets library
+find_package(Qt5Widgets)
+
+# Tell CMake to create the helloworld executable
+add_executable(helloworld main.cpp)
+
+# Use the Widgets module from Qt 5.
+qt5_use_modules(helloworld Widgets)
+#! [0]
+
+#! [1]
+find_package(Qt5Core)
+
+# Find the Widgets Sql and Network modules, and
+# use them in helloworld.
+qt5_use_modules(helloworld Widgets Sql Network)
+#! [1]
+
+#! [2]
+cmake_minimum_required(VERSION 2.8.3)
+
+project(testproject)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# Find the QtWidgets library
+find_package(Qt5Widgets)
+
+# Add the include directories for the Qt 5 Widgets module to
+# the compile lines.
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+
+# Use the compile definitions defined in the Qt 5 Widgets module
+add_definitions(${Qt5Widgets_DEFINITIONS})
+
+# Add compiler flags for building executables (-fPIE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+
+qt5_generate_moc(main.cpp main.moc)
+
+# Tell CMake to create the helloworld executable
+add_executable(helloworld main.cpp main.moc)
+
+#Link the helloworld executable to the Qt 5 widgets library.
+target_link_libraries(${Qt5Widgets_LIBRARIES})
+#! [2]
