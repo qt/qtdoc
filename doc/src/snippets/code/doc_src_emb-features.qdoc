@@ -39,12 +39,12 @@
 ****************************************************************************/
 
 //! [0]
-configure.exe -D QT_NO_THREAD
+configure.exe -D QT_NO_FILEDIALOG
 //! [0]
 
 
 //! [1]
-./configure -no-feature-thread
+./configure -no-feature-filedialog
 //! [1]
 
 

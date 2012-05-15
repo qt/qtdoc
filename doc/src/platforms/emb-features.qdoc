@@ -66,13 +66,13 @@
 
     To disable a particular feature, just run the \c configure script 
     with the set of required \c -D<feature> options. For example,
-    you can use the \c -D option to define \c{QT_NO_THREAD}:
+    you can use the \c -D option to define \c{QT_NO_FILEDIALOG}:
 
     \snippet doc/src/snippets/code/doc_src_emb-features.qdoc 0
 
     The \c -D option only creates a Qt internal define. If you get linker
-    errors you have to define \c QT_NO_THREAD also for your project.
-    You can do this by adding \c DEFINES += \c QT_NO_THREAD to your
+    errors you have to define \c QT_NO_FILEDIALOG also for your project.
+    You can do this by adding \c DEFINES += \c QT_NO_FILEDIALOG to your
     \c .pro file.
 
     See also \l{Qt Performance Tuning}.
