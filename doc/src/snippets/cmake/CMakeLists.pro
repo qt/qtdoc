@@ -27,6 +27,22 @@ qt5_use_modules(helloworld Widgets Sql Network)
 #! [1]
 
 #! [2]
+find_package(Qt5Core)
+
+get_target_property(QtCore_location Qt5::Core LOCATION)
+#! [2]
+
+#! [3]
+find_package(Qt5Core)
+
+set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_RELEASE} -fprofile-arcs -ftest-coverage")
+
+# set up a mapping so that the Release configuration for the Qt imported target is
+# used in the COVERAGE CMake configuration.
+set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+#! [3]
+
+#! [4]
 cmake_minimum_required(VERSION 2.8.3)
 
 project(testproject)
@@ -54,4 +70,4 @@ add_executable(helloworld main.cpp main.moc)
 
 #Link the helloworld executable to the Qt 5 widgets library.
 target_link_libraries(${Qt5Widgets_LIBRARIES})
-#! [2]
+#! [4]

@@ -70,6 +70,31 @@
     The CMAKE_AUTOMOC setting runs moc automatically when required. For more on this feature see
     the \l{CMake AUTOMOC documentation}
 
+    \section2 Imported targets
+
+    Imported targets are created for each Qt module. That means that the Qt5<Module>_LIBRARIES contains
+    a name of an imported target, rather than a path to a library. The actual path to the library can be
+    obtained using the \l{CMake LOCATION Documentation}{LOCATION property}:
+
+    \snippet doc/src/snippets/cmake/CMakeLists.pro 2
+
+    Note however that it is rare to require the full location to the library in \c{CMake} code. Most
+    \c{CMake} APIs are aware of imported targets and can automatically use them instead of the full path.
+
+    Each module in Qt 5 has a library target with the naming convention Qt5::<Module> which can be used for
+    this purpose.
+
+    Imported targets are created with the configurations Qt was configured with. That is, if Qt was
+    configured with the -debug switch, an imported target with the configuration DEBUG will be created. If
+    Qt was configured with the -release switch an imported target with the configuration RELEASE will be
+    created. If Qt was configured with the -debug-and-release switch (the default on windows), then
+    imported targets will be created with both RELEASE and DEBUG configurations.
+
+    If your project has custom CMake build configurations, it may be necessary to set a mapping from your
+    custom configuration to either the debug or release Qt configuration.
+
+    \snippet doc/src/snippets/cmake/CMakeLists.pro 3
+
     \section2 Using Qt 5 with \c{CMake} older than 2.8.8
 
     If using \c{CMake} older than 2.8.8, the \c{qt5_use_modules} macro is not available. Attempting to use it
@@ -79,7 +104,7 @@
     \c{target_link_libraries}, \c{include_directories}, and \c{add_definitions} commands, and to manually
     specify moc requirements with either \c{qt5_generate_moc} or \c{qt5_wrap_cpp}:
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 2
+    \snippet doc/src/snippets/cmake/CMakeLists.pro 4
 
     It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
     the CMAKE_CXX_FLAGS so that the -fPIE flags are added to the compile flags if necessary (as
