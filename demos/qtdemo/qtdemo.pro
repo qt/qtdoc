@@ -1,8 +1,6 @@
 CONFIG += help x11inc
 TARGET = qtdemo
-DEMO_DESTDIR = $$QT_BUILD_TREE
-isEmpty(DEMO_DESTDIR):DEMO_DESTDIR=../..
-DESTDIR = $$DEMO_DESTDIR/bin
+DESTDIR = $$QT.core.bins
 INSTALLS += target sources
 
 
