@@ -1,11 +1,11 @@
 headerdirs  += $QT_QML_SOURCES
 
-sourcedirs  += $QT_QML_SOURCES \
-               $QT_QML_SOURCES/../../doc/src/qml
+sourcedirs  += $QT_QML_SOURCES
 
 exampledirs += $QT_QML_SOURCES/../.. \
-               $QT_QML_SOURCES/../../doc/src/qml \
-               $QT_QUICK_SOURCES/../../doc/src/snippets
+               $QT_QML_SOURCES/../../doc/src/examples \
+               $QT_QML_SOURCES/doc/snippets
 
-imagedirs   += $QT_QML_SOURCES/../../doc/src/images
+imagedirs   += $QT_QML_SOURCES/../../doc/src/images \
+               $QT_QML_SOURCES/doc/images
 
