@@ -36,216 +36,39 @@
     Mac OS X is a UNIX platform and behaves similar to other Unix-like
     platforms. The main difference is X11 is not used as the primary windowing
     system. Instead, Mac OS X uses its own native windowing system that is
-    accessible through the Carbon and Cocoa APIs.  Application development on
-    Mac OS X is done using Xcode Tools, an optional install included on every
-    Mac with updates available from \l {http://developer.apple.com}{Apple's
-    developer website}. Xcode Tools includes Apple-modified versions of the GCC
-    compiler.
+    accessible through the Cocoa API. Application development on Mac OS X is
+    done using Xcode, available from the Mac App store.
 
+    After installng Xcode you need to download the command line tools.
+    This is done in the Preferences dialog under the Downloads section.
+    After installing, "clang" should be available on the command line.
+
+    You can also download the command line tools directly and skip the
+    code download. Log on to developer.apple.com and look for
+    "Command Line Tools for Xcode" in the download area.
 
     \section1 What Versions of Mac OS X are Supported?
 
-    As of Qt 4.7, Qt supports Mac OS X versions 10.4 and up. It is usually in
+    Qt 5 supports Mac OS X versions 10.6 (Snow Leopard) and up. It is usually in
     the best interest of the developer and user to be running the latest
-    updates to any version. We test internally against Mac OS X 10.4.11 as well
-    as the updated release of Mac OS X 10.5 and Mac OS X 10.6.
+    updates to any version. We test internally against Mac OS X 10.6 and 10.7.
 
     \section2 Carbon or Cocoa?
     
-    Qt supports building in two flavors, using either the Carbon or Cocoa API.
-    Using the Cocoa API, Qt requires 10.5 and provides both 32-bit and 64-bit support. With
-    Carbon, Qt can be developed on and deployed to 10.4, but there is no 64-bit
-    support.
+    Qt 5 uses Cocoa. Building for Carbon is not possible.
 
-    Note: There is no accessibility support in the Cocoa version. This is planned
-    for Qt 4.8.
-
-    With Qt 4.7 we recommend using the Cocoa version of Qt for development,
-    unless you want to target the 10.4 platform. Qt uses Cocoa by default,
-    both for the binary package and when configuring Qt from source (using the \c{configure}
-    script). To build Qt for Carbon, specify the \c{-carbon} flag to configure.
-
-    There are two versions of the Qt binary, one with x86 and x86_64
-    Cocoa and another with x86 and ppc Carbon. If you want a different setup
-    you must build Qt yourself using the source package. To explicitly configure
-    Qt to build for 34-bit or 64-bit architectures (or both), use
-    the \c{-arch} flags (see \l{universal binaries}{Universal Binaries}).
-    For the Cocoa version, 64 bit is chosen by default.
-
-    Currently, Apple's default GCC compiler is used by default (GCC 4.0.1 on
-    10.4 and 10.5, GCC 4.2 on 10.6). You can specify alternate compilers
-    though. For example, on Mac OS X 10.5, Apple's GCC 4.2 is also available
-    and selectable with the configure flag: \c{-platform macx-g++42}.  LLVM-GCC
-    support is available by passing in the \c{-platform macx-llvm} flag. GCC
-    3.x will \e not work. Though they may work, We do not support custom-built
-    GCC's.
-
-    The following table summarizes the different versions of Mac OS X and what
-    capabilities are used by Qt.
-
-    \table
-        \header
-            \li Mac OS X Version
-            \li Cat Name
-            \li Native API Used by Qt
-            \li Bits available to address memory
-            \li CPU Architecture Supported
-            \li Development Platform
-        \row
-            \li 10.4
-            \li Tiger
-            \li Carbon
-            \li 32
-            \li PPC/Intel
-            \li Yes
-        \row
-            \li 10.5
-            \li Leopard
-            \li Carbon
-            \li 32
-            \li PPC/Intel
-            \li Yes
-        \row
-            \li 10.5
-            \li Leopard
-            \li Cocoa
-            \li 32/64
-            \li PPC/Intel
-            \li Yes
-        \row
-            \li 10.6
-            \li Snow Leopard
-            \li Cocoa/Carbon
-            \li 32
-            \li PPC/Intel
-            \li Yes
-        \row
-            \li 10.6
-            \li Snow Leopard
-            \li Cocoa
-            \li 64
-            \li Intel
-            \li Yes
-    \endtable
+    \section2 32-bit or 64-bit
     
-    Note that building for ppc-64 is not supported on 10.6.
+    Qt can be built for either x86 or x86_64. 64-bit is used by default.
+    To select a 32-bit build, use the macx-clang-32 (or macx-g++32) mkspec.
+    This is selectable at configure time: ./configure -platform macx-clang-32
 
-    \section2 Which One Should I Use?
-
-    Carbon and Cocoa both have their advantages and disadvantages. Probably the
-    easiest way to determine is to look at the version of Mac OS X you are
-    targetting. If your application can target 10.5 and up, then we recommend 
-    using Cocoa. If you need to target earlier versions of the operating system
-    and do not need access to 64-bit or newer Apple technologies, then Carbon 
-    is a good fit. If your needs fall in between, you can go with a 64-bit Cocoa and 32-bit
-    Carbon universal application.
-
-    For Mac OS X 10.6, Apple has started recommending developers to build their
-    applications 64-bit. The main reason is that there is a small speed
-    increase due to the extra registers on Intel CPU's, all their machine
-    offerings have been 64-bit since 2007, and there is a cost for reading all
-    the 32-bit libraries into memory if everything else is 64-bit.  If you want
-    to follow this advice, there is only one choice, 64-bit Cocoa.
-
+    The Qt build system does not support building unversal binaries directly.
+    Instead, use the "lipo" tool to glue two Qt builds together.
 
     \section2 Building Qt statically
 
-    We recommend building Qt as shared frameworks. Static builds are only partially
-    supported, meaning that you can build most of Qt statically, but some modules,
-    like web-kit and Designer, will fail. You can specify which modules to build
-    from configure (e.g. -no-webkit -nomake tools). For Cocoa configurations, both
-    static and no-framework builds requires manually copying the
-    'src/gui/mac/qt_menu.nib/ directory into the " Resources" directory in
-    the application bundle.
-
-    \target universal binaries
-    \section1 Universal Binaries
-
-    In 2006, Apple begin transitioning from PowerPC (PPC) to Intel (x86)
-    systems.  Both architectures are supported by Qt. The release of Mac OS X
-    10.5 in October 2007 added the possibility of writing and deploying 64-bit
-    GUI applications. Qt 4.5 and up supports both the 32-bit (PPC and x86) and
-    64-bit (PPC64 and x86-64) versions of PowerPC and Intel-based systems.
-
-    Universal binaries are used to bundle binaries for more than one
-    architecture into a single package, simplifying deployment and
-    distribution. When running an application the operating system will select
-    the most appropriate architecture. Universal binaries support the following
-    architectures; they can be added to the build at configure time using the
-    \c{-arch} arguments:
-
-    \table
-        \header
-            \li Architecture
-            \li Flag
-        \row
-            \li Intel, 32-bit
-            \li \c{-arch x86}
-        \row
-            \li Intel, 64-bit
-            \li \c{-arch x86_64}
-        \row
-            \li PPC, 32-bit
-            \li \c{-arch ppc}
-        \row
-            \li PPC, 64-bit
-            \li \c{-arch ppc64}
-    \endtable
-
-    If there are no \c{-arch} flags specified, configure builds Qt for a 32-bit
-    architecture when using Carbon, and a 64-bit architecture when using Cocoa. Universal
-    binaries were initially
-    used to simplify the PPC to Intel migration. You can use \c{-universal} to
-    build for both the 32-bit Intel and PPC architectures.
-
-    \note The \c{-arch} flags at configure time only affect how Qt is built.
-    Applications are by default built for the 32-bit architecture you are
-    currently on. To build a universal binary, add the architectures to the
-    CONFIG variable in the .pro file:
-
-    \code
-    CONFIG += x86 ppc x86_64 ppc64
-    \endcode
-
-    \section2 Working with several versions of Qt
-    You can only install one version of Qt at a time when using the binary
-    package. The reason for this is that a binary installation will install different parts of Qt
-    (frameworks, documentation, examples, tools, etc) to different
-    predefined locations on the OS, as described by Apple. If you want
-    to work against other versions at the same time, you need
-    to build the other versions explicitly from source. When doing so, you can
-    provide \c{-prefix} to configure to set install location. 
-    The binary package will install Qt to the following locations: 
-
-    \table
-        \header
-            \li Qt
-            \li Location
-        \row
-            \li Designer, Linguist ...
-            \li /Developer/Applications/Qt
-        \row
-            \li Documentation
-            \li /Developer/Documentation/Qt
-        \row
-            \li Examples
-            \li /Developer/Examples/Qt
-        \row
-            \li Plugins
-            \li /Developer/Applications/Qt/Plugins
-        \row
-            \li Frameworks
-            \li /Library/Frameworks
-        \row
-            \li Libraries
-            \li /usr/lib
-        \row
-            \li qmake, moc, uic ...
-            \li /Developer/Tools/Qt (symlink to /usr/bin)
-        \row
-            \li uninstall-qt.py, uninstall-qtsdk.py
-            \li /Developer/Tools
-    \endtable
+    Static builds are not tested.
 
     \section1 Day-to-Day Application Development on OS X
 
@@ -269,25 +92,12 @@
     CONFIG -= app_bundle
     \endcode
 
-
     \section1 Deployment - "Compile once, deploy everywhere"
 
     In general, Qt supports building on one Mac OS X version and deploying on
-    all others, both forward and backwards. You can build on 10.4 Tiger and run
-    the same binary on 10.5 and up.
-
-    Some restrictions apply:
-
-    \list
-        \li  Some functions and optimization paths that exist in later versions
-            of Mac OS X will not be available if you build on an earlier
-            version of Mac OS X.
-        \li  The CPU architecture should match.
-        \li  Cocoa support is only available for Mac OS X 10.5 and up.
-    \endlist
-
-    Universal binaries can be used to provide a smorgasbord of configurations
-    catering to all possible architectures.
+    all others, both forward and backwards. You can build on 10.7 Lion and run
+    the same binary on 10.6 and up. The recommended way is to build on the
+    latest OS version and deploy backwards.
 
     Mac applications are typically deployed as self-contained application
     bundles. The application bundle contains the application executable as well
@@ -295,13 +105,15 @@
     resources you may need. Third party libraries like Qt are normally not
     installed system-wide; each application provides its own copy.
 
-    The most common way to distribute applications is to provide a compressed
+    A common way to distribute applications is to provide a compressed
     disk image (.dmg file) that the user can mount in Finder. The Mac
     deployment tool (macdeployqt) can be used to create the self-contained bundles, and
     optionally also create a .dmg archive. See the
     \l{Deploying an Application on Mac OS X}{Mac deployment guide} for more
-    information about deployment. It is also possible to use an installer
-    wizard. More information on this option can be found in
-    \l{http://developer.apple.com/mac/}{Apple's documentation}.
+    information about deployment.
+
+    Applications can also be distributed through the Mac App store. Qt 5 aims
+    to stay within the app store sandbox rules. macdeployqt (qttools/src/macdeployqt)
+    can be used as a starting point for app store deployment.
 */
 

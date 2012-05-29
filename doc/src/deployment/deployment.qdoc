@@ -1281,8 +1281,8 @@
     distributed. Apple provides a fair bit of information about how to
     do this and instead of repeating it here, we recommend that you
     consult their \l
-    {http://developer.apple.com/documentation/DeveloperTools/Conceptual/SoftwareDistribution/index.html}{software delivery}
-    documentation.
+    {https://developer.apple.com/library/mac/#documentation/ToolsLanguages/Conceptual/OSXWorkflowGuide/Introduction/Introduction.html}{Tools Workflow Guide}.
+
 
     Although the process of deploying an application do have some
     pitfalls, once you know the various issues you can easily create
@@ -1348,9 +1348,8 @@
 
     \section2 Mac OS X Version Dependencies
 
-    From Qt 4.6, Mac OS X 10.3 (Panther) is no longer supported.  Qt
-    4.6 applications can be built and deployed on Mac OS X 10.4
-    (Tiger) and higher. This is achieved using \e{weak linking}. In
+    Qt 5 applications can be built and deployed on Mac OS X 10.6
+    (Snow Leopard) and higher. This is achieved using \e{weak linking}. In
     \e{weak linking}, Qt tests whether a function added in a newer
     version of Mac OS X is available on the computer it is running
     on. This allows Qt to use newer features, when it runs on a newer
@@ -1358,7 +1357,7 @@
 
     For more information about cross development issues on Mac OS X,
     see \l
-    {http://developer.apple.com/documentation/DeveloperTools/Conceptual/cross_development/index.html}{Apple's Developer Website}.
+    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{Apple's Developer Website}.
 
     Since the linker is set to be compatible with all OS X versions,
     you must change the \c MACOSX_DEPLOYMENT_TARGET environment
@@ -1370,55 +1369,7 @@
     to your .pro file, and qmake will take care of this for you.
 
     For more information about C++ runtime environment, see \l
-    {http://developer.apple.com/documentation/DeveloperTools/Conceptual/CppRuntimeEnv/index.html}{Apple's Developer Website}
-
-    \section3 Deploying Phonon Applications on Mac OS X
-
-    \list
-
-        \li If you build your Qt 4.6 Phonon application on OS X 10.4
-           (Tiger), it will run on OS X 10.4 and higher.
-
-        \li If you are using Leopard but would like to build your application
-        against Tiger, you can use:
-
-        \snippet doc/src/snippets/code/doc_src_deployment.qdoc 51b
-    \endlist
-
-    \section2 Architecture Dependencies
-
-    The Qt for Mac OS X libraries, tools, and examples can be built
-    "universal" (i.e. they run natively on both Intel and PowerPC
-    machines).  This is accomplished by passing \c -universal on the
-    \c configure line of the source package, and requires that you use
-    GCC 4.0.x. On PowerPC hardware you will need to pass the universal
-    SDK as a command line argument to the Qt configure command. For
-    example:
-
-    \snippet doc/src/snippets/code/doc_src_deployment.qdoc 52
-
-    From 4.1.1 the Qt binary package is already universal.
-
-    If you want to create a binary that runs on older versions of
-    PowerPC and x86, it is possible to build Qt for the PowerPC using
-    GCC 3.3, and for x86 one using GCC 4.0, and use Apple's \c lipo(1)
-    tool to stitch them together. This is beyond the scope of this
-    document and is not something we have tried, but Apple documents
-    it on their \l
-    {http://developer.apple.com/documentation/}{developer website}.
-
-    Once you have a universal Qt, \a qmake will generate makefiles
-    that will build for its host architecture by default. If you want
-    to build for a specific architecture, you can control this with
-    the \c CONFIG line in your \c .pro file. Use \c CONFIG+=ppc for
-    PowerPC, and \c CONFIG+=x86 for x86. If you desire both, simply
-    add both to the \c CONFIG line. PowerPC users also need an
-    SDK. For example:
-
-    \snippet doc/src/snippets/code/doc_src_deployment.pro 53
-
-    Besides \c lipo, you can also check your binaries with the \c file(1)
-    command line tool or the Finder.
+    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/CppRuntimeEnv/CPPRuntimeEnv.html}{Apple's Developer Website}
     
     \section1 The Mac Deployment Tool
     \target macdeploy

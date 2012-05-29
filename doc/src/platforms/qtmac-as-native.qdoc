@@ -40,8 +40,8 @@
     application that talks directly to the underlying window system, rather
     than one that uses some intermediary (for example Apple's X11 server, or a
     web browser). Qt applications run as first class citizens, just like
-    Cocoa, and Carbon applications. In fact, we use Carbon and HIView
-    internally to communicate with OS X.
+    Cocoa, and Carbon applications. We use Cocoa internally to communicate
+    with OS X.
 
     When an application is running as a first class citizen, it means that
     it can interact with specific components of the Mac OS X experience:
@@ -63,7 +63,7 @@
     \section1 Aqua
 
     This is a critical piece of Mac OS X (documentation can be found at
-    \l{http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html}).
+    \l{https://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html#//apple_ref/doc/uid/20000957}).
     It is a huge topic, but the most important guidelines for GUI
     design are probably these:
 
@@ -72,9 +72,8 @@
 
       As with Cocoa/Carbon, Qt provides widgets that look like those
       described in the Human Interface Descriptions. Qt's widgets use
-      Appearance Manager on Mac OS X 10.2 and the new HIThemes on Mac OS X 10.3
-      and higher to implement the look, in other words we use Apple's own API's
-      for doing the rendering.
+      HIThemes to implement the look, in other words we use Apple's
+      own API's for doing the rendering.
 
     \li \e{Aqua feel}
 
@@ -107,7 +106,7 @@
     \section1 Dock
 
     Interaction with the dock is possible. The icon can be set by calling
-    QWidget::setWindowIcon() on the main window in your application. The
+    QWindow::setWindowIcon() on the main window in your application. The
     setWindowIcon() call can be made as often as necessary, providing an
     icon that can be easily updated.
     \omit
@@ -127,9 +126,9 @@
 
     Mac OS X developers expect a certain level of interopability
     between their development toolkit and the platform's developer
-    tools (for example Visual Studio, gmake, etc). Qt supports both Unix
-    style Makefiles, and ProjectBuilder/Xcode project files by using
-    the \l qmake tool. For example:
+    tools (for example Visual Studio, gmake, etc). Qt supports Unix
+    style Makefiles. Generating Xcode project files by using
+    the \l qmake tool is also possible. For example:
 
     \snippet doc/src/snippets/code/doc_src_qtmac-as-native.qdoc 0
 
@@ -140,6 +139,5 @@
 
     Qt does not entirely interact with the development environment (for
     example plugins to set a file to "mocable" from within the Xcode
-    user interface). Nokia is actively working on improving Qt's
-    interoperability with various IDEs.
+    user interface).
 */

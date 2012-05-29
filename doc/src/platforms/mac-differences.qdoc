@@ -139,15 +139,11 @@
     \li Q_OS_DARWIN is defined when Qt detects you are on a
     Darwin-based system (including the Open Source version)
 
-    \li Q_WS_MAC is defined when the Mac OS X GUI is present.
+    \li Q_OS_MAC is defined when you are on Mac OS.
 
-    \li QT_MAC_USE_COCOA is defined when Qt is built to use the Cocoa framework.
-    If it is not present, then Qt is using Carbon.
+    \li Q_WS_MAC is no longer defined in Qt 5.
 
     \endlist
-
-    A additional flag, Q_OS_MAC, is defined as a convenience whenever
-    Q_OS_DARWIN is defined.
 
     If you want to define code for specific versions of Mac OS X, use
     the availability macros defined in /usr/include/AvailabilityMacros.h.
@@ -183,7 +179,7 @@
     The items in the Application Menu will be merged correctly for
     your localized application, but they will not show up translated
     until you 
-    \l{http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFBundles/Concepts/BundleAnatomy.html#//apple_ref/doc/uid/20001119-105003-BAJFDAAG}
+    \l{https://developer.apple.com/library/mac/#documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html#//apple_ref/doc/uid/10000123i-CH101-SW13}
     {add a localized resource folder} to the application bundle.
     The main thing you need to do is create a file called
     locversion.plist.  Here is an example for Norwegian:
@@ -211,7 +207,7 @@
     application will normally be automatic. However, if you have
     special needs, the Qt implementation currently selects a menu
     bar by starting at the active window
-    (i.e. QApplication::activeWindow()) and applying the following
+    (i.e. QGuiApplication::focusWindow()) and applying the following
     tests:
 
     \list 1
@@ -261,11 +257,7 @@
 
     \li QMenu objects used in the native menu bar are not able to
        handle Qt events via the normal event handlers.
-       For Carbon, you will have to install a Carbon event handler on
-       the menu bar in order to receive Carbon events that are similar
-       to \l{QMenu::}{showEvent()}, \l{QMenu::}{hideEvent()}, and
-       \l{QMenu::}{mouseMoveEvent()}. For Cocoa, you will have to
-       install a delegate on the menu itself to be notified of these
+       Install a delegate on the menu itself to be notified of these
        changes. Alternatively, consider using the QMenu::aboutToShow()
        and QMenu::aboutToHide() signals to keep track of menu visibility;
        these provide a solution that should work on all platforms
@@ -275,17 +267,13 @@
 
     \section2 Native Widgets
 
-    Qt has support for sheets and drawers, represented in the
-    window flags by Qt::Sheet and Qt::Drawer respectiviely. Brushed
-    metal windows can also be created by using the
-    Qt::WA_MacMetalStyle window attribute.
-
+    Qt has support for sheets, represented in the window flag by Qt::Sheet.
 */
 
 /*!
     \page qt-mac-cocoa-licensing.html
 
-    \title Contributions to the Following QtGui Files: qapplication_cocoa_p.h, qapplication_mac.mm, qdesktopwidget_mac.mm qeventdispatcher_mac.mm qeventdispatcher_mac_p.h qmacincludes_mac.h qt_cocoa_helpers.mm qt_cocoa_helpers_p.h qwidget_mac.mm qsystemtrayicon_mac.mm
+    \title Contributions to the Following Cocoa platform plugin files: qcocoaapplication.h, qcocoaapplication.mm, qcocoaapplicationdelegate.h, qcocoaapplicationdelegate.mm, qcocoaeventdispatcher.h, qcocoaeventdispatcher.mm, qmacdefines_mac.h
 
     \contentspage {Other Licenses Used in Qt}{Contents}
 

@@ -499,77 +499,21 @@
 
     \section1 General Information
 
-    Qt 4.6 applications can only be deployed on Mac OS X 10.4 (Tiger)
-    and higher. 
+    Qt 5 applications can be deployed on Mac OS X 10.6 (Snow Leopard)
+    and higher. We reccomenbd using the most recent version of Mac OS
+    for developing applicatoions. Qt Binaries built on 10.7 can be
+    deployed on 10.6.
 
-    Qt 4.4 and Qt 4.5 development is only supported on Mac OS X 10.4 and up.
-    Applications built against these version of Qt can be deployed on Mac OS X
-    10.3, but cannot be developed on that version of the operating system due
-    to compiler issues.
+    \section2 Required Compiler Versions
 
-    Qt 4.3 has been tested to run on Mac OS X 10.3.9 and up. See notes on
-    the binary package for more information.
-
-    Qt 4.1 has been tested to run on Mac OS X 10.2.8 and up. Qt 4.1.4 is the
-    last release to work with Mac OS X 10.2.
-
-    \section2 Required GCC version
-
-    Apple's GCC 4 that is shipped with the Xcode Tools for both Mac OS X 10.4
-    and 10.5 will compile Qt. There is preliminary support for GCC 4.2 which
-    is included with Xcode Tools 3.1+ (configurable with
-    \c{-platform macx-g++42}).
-
-    Please use the latest GCC 3.3 from Apple or a later version of GCC 3.
-    The GCC 3.3 that is provided with Xcode 1.5 is known to generate bad code.
-    Use the November 2004 GCC 3.3 updater \l{http://connect.apple.com}{available from Apple}.
+    Use the latest gcc or clang as supplied with xcode. Currently
+    tested versions are Apple gcc 4.2.1 and Apple clang version 3.1.
 
     \section2 Binary Package
 
-    The binary package requires that you have your .qt-license file in your
-    home directory. Installer.app cannot complete without a valid .qt-license
-    file. Evaluation users of Qt will have information about how to create
-    this file in the email they receive.
+    \section2 Mac OS X on PowerPC hardware
 
-    The binary package was built on Mac OS X 10.4 with Xcode Tools 2.1
-    (GCC 4.0.0) for Qt 4.1.0, Xcode Tools 2.2 (GCC 4.0.1) for Qt 4.1.1-4.1.4
-    and Xcode Tools 2.3 for 4.2.0. It will only link executables built
-    against 10.4 (or a 10.4 SDK). You should be able to run applications
-    linked against these frameworks on Mac OS X 10.3.9 and Mac OS X 10.4+.
-    If you require a different configuration, you will have to use the
-    source package and build with GCC 3.3.
-
-    \section2 Mac OS X on Intel hardware
-
-    Qt 4 fully supports both the Intel and PowerPC architectures on the Mac.
-    As of Qt 4.1 it is possible to support the Intel architecture by
-    creating Universal Binaries with qmake. As of Qt 4.1 it is possible to
-    build Qt as a set of universal binaries and frameworks from configure by
-    adding these extra flags:
-
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 3
-
-    If you are building on Intel hardware you can omit the sdk parameter, but
-    PowerPC hardware requires it.
-
-    You can also generate universal binaries using qmake. Simply add these
-    lines to your .pro file:
-
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 4
-
-    \section2 Build Issues
-
-    If Qt does not build upon executing make, and fails with an error message
-    such as
-
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 5
-
-    this could be an indication you have upgraded your version of Mac OS X
-    (e.g. 10.3 to 10.4), without upgrading your Developer Tools (Xcode Tools).
-    These must match in order to successfully compile files.
-
-    Please be sure to upgrade both simultaneously. If problems still occur,
-    contact support.
+    Qt 5 does not support OS X on PowerPC.
 
     \section2 Fink
 
@@ -589,19 +533,6 @@
 
     re-link Qt using -single_module. This is only a problem when building the
     MySQL driver into Qt. It does not affect plugins or static builds.
-
-    \section2 Qt and Precompiled Headers (PCH)
-
-    Starting with Qt 3.3.0 it is possible to use precompiled headers. They
-    are not enabled by default as it appears that some versions of Apple's
-    GCC and make have problems with this feature. If you want to use
-    precompiled headers when building the Qt source package, specify the
-    -pch option to configure. If, while using precompiled headers, you
-    encounter an internal compile error, try removing the -include header
-    statement from the compile line and trying again. If this solves the
-    problem, it probably is a good idea to turn off precompiled headers.
-    Also, consider filing a bug report with Apple so that they can
-    improve support for this feature.
 
     \section2 Attributes
     The following lists a set of useful attributes that can be used to tweak applications
