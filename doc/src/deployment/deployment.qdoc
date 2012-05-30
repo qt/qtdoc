@@ -540,7 +540,7 @@
 
     This will build Qt statically. Note that unlike with a dynamic build,
     building Qt statically will result in libraries without version numbers;
-    e.g. \c QtCore4.lib will be \c QtCore.lib. Also, we have used \c nmake
+    e.g. \c QtCore5.lib will be \c QtCore.lib. Also, we have used \c nmake
     in all the examples, but if you use MinGW you must use
     \c mingw32-make instead.
 
@@ -681,10 +681,13 @@
         \li {2, 1} \c plugins\pnp_extrafilters.dll
     \row
         \li The Qt Core module
-        \li {2, 1} \c qtcore4.dll
+        \li {2, 1} \c qtcore5.dll
     \row
         \li The Qt GUI module
-        \li {2, 1} \c qtgui4.dll
+        \li {2, 1} \c qtgui5.dll
+    \row
+        \li The Qt Widgets module
+        \li {2, 1} \c qtwidgets5.dll
     \endtable
 
     In addition, the archive must contain the following compiler
@@ -726,7 +729,7 @@
     in the application's own directory. Any number of additional paths
     can be added.
 
-    \section2 Visual Studio 2005 Onwards
+    \section2 Manifest files
 
     When deploying an application compiled with Visual Studio 2005 onwards,
     there are some additional steps to be taken.
@@ -807,7 +810,13 @@
     \section2 Additional Libraries
 
     Depending on configuration, compiler specific libraries must be
-    redistributed along with your application. You can check which
+    redistributed along with your application.
+
+    For example, if Qt is built using \l{ANGLE}, its shared libraries
+    and the shared libraries of the \l{Direct X SDK} need to be shipped
+    as well.
+
+    You can check which
     libraries your application is linking against by using the
     \l{Dependency Walker} tool. All you need to do is to run it like
     this:
@@ -851,6 +860,7 @@
         \li \list
                \li MINGWM10.DLL - The MinGW run-time
                \li LIBGCC_S_DW2-1.DLL
+               \li LIBSTDC++-6.dll
            \endlist
     \endtable
 

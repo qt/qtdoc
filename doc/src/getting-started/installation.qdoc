@@ -167,9 +167,6 @@ for your platform from the following list.
     consult the installation instructions provided instead of the ones in
     this document.
 
-    Open Source Versions of Qt is not officially supported for use with
-    any version of Visual Studio. Integration with Visual Studio is available
-    as part of the \l{Qt Commercial Edition}.
 
 \section1 Step 1: Install the License File (commercial editions only)
 
@@ -193,56 +190,73 @@ for your platform from the following list.
 
 \section1 Step 3: Set the Environment variables
 
-    In order to build and use Qt, the \c PATH environment variable needs to be
-    extended:
+    We recommend creating a desktop link that opens a command
+    prompt with the environment set up similar to the
+    \uicontrol{Command Prompt} menu entries provided by the Windows SDKs.
+    This is done by creating an application link passing a \c .cmd file setting
+    up the environment and the command line option \c /k (remain open)
+    to \c cmd.exe.
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 7
+    Assuming the file is called \c{qt5vars.cmd}
+    and the Qt folder is called \c qt-5 and located under \c C:\qt:
 
-    This is done by adding \c{c:\Qt\%VERSION%\bin} to the \c PATH variable.
+    \code
+    REM Set up Windows SDK for 64bit
+    CALL "C:\Program Files (x86)\MSVC10\VC\vcvarsall.bat" amd64
+    set PATH=c:\qt\qt-5\qtbase\bin;c:\qt\qt-5\qtrepotools\bin;c:\qt\qt-5\gnuwin32\bin;%PATH%
+    set QMAKESPEC=win32-msvc2010
+    \endcode
 
-    For newer versions of Windows, \c PATH can be extended through
-    the \menu{Control Panel|System|Advanced|Environment variables} menu.
+    A desktop link can then be created by specifying the command
+    \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k c:\qt\qt5vars.cmd}
+    as application and \c{c:\qt\qt-5} as working directory.
 
-    You may also need to ensure that the locations of your compiler and
-    other build tools are listed in the \c PATH variable. This will depend
-    on your choice of software development environment.
+    \note Setups for MinGW are similar; they differ
+    only in that the \c bin folder of the installation should be added to the
+    path instead of calling the Windows SDK setup script. For MinGW, please make
+    sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
 
-    \note If you don't use the configured shells, which is
-    available in the application menu, in the \l{Open Source Versions of Qt},
-    \c configure requires that \c sh.exe is not in the path
-    or that it is run from \c msys. This also goes for mingw32-make.
+    Settings required by the additional libraries (see \l{Qt for Windows Requirements})
+    should also go this file below the call to the Windows SDK setup script.
 
 \section1 Step 4: Build the Qt Library
 
+    The default behavior of configure is to create an in-source build
+    of Qt 5. If you want to install Qt 5 to a separate location,
+    you need to specify the command line option \c{-prefix <location>}.
+    Alternatively, the command line option \c -developer-build creates
+    an in-source build for developer usage.
 
-    To configure the Qt library for your machine, type the following command
-    in a \b{Visual Studio} command prompt:
+    To configure the Qt library for a debug build for your machine, type
+    the following command in the command prompt:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 8
+    \code
+    configure -debug -nomake examples -opensource
+    \endcode
 
     Type \c{configure -help} to get a list of all available options. The
     \l{Configuration Options for Qt} page gives a brief overview of these.
 
-    If you have multiple compilers installed, and want to build the Qt library
-    using a specific compiler, you must specify a \c qmake specification.
-    This is done by pasing \c{-platform <spec>} to configure; for example:
+    To build Qt using \l{jom}, type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 9
+    \code
+    jom
+    \endcode
 
-    In some cases you need to set up the compilation environment before running
-    configure in order to use the right compiler. For instance, you need to do this
-    if you have Visual Studio 2005 installed and want to compile Qt using the x64
-    compiler because the 32-bit and 64-bit compiler both use the same
-    \c qmake specification file.
-    This is usually done by selecting
-    \menu{Microsoft Visual Studio 2005|Visual Studio Tools|<Command Prompt>}
-    from the \gui Start menu.
+    If you do not have \l{jom} installed, type:
 
-    The actual commands needed to build Qt depends on your development
-    system. For Microsoft Visual Studio to create the library and
-    compile all the examples, tools and tutorials type:
+    \code
+    nmake
+    \endcode
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 10
+    For MinGW, type:
+
+    \code
+    mingw32-make
+    \endcode
+
+    If an installation prefix was given, type
+    \c{jom install}, \c{nmake install} or \c{mingw32-make install}.
 
     \note If you later need to reconfigure and rebuild Qt from the
     same location, ensure that all traces of the previous configuration are
@@ -254,9 +268,8 @@ for your platform from the following list.
 \section1 Qt Demos and Examples
 
     If you are new to Qt, we suggest that you take a look at the
-    examples to see Qt in action. Run the Qt Examples
-    either by typing \c qtdemo on the command line or through the
-    desktop's Start menu.
+    examples to see Qt in action (provided in the \c examples folder
+    of each module).
 
     You might also want to try the following links:
 
@@ -537,50 +550,87 @@ in the \l{Qt for Windows CE Requirements} document.
     \brief Setting up the Windows environment for Qt.
     \previouspage General Qt Requirements
 
-    If you are using a binary version of Qt with Visual Studio 2005, you must
-    first install the Visual Studio Service Pack 1 available
-    \l{http://www.microsoft.com/downloads/details.aspx?FamilyId=BB4A75AB-E2D4-4C96-B39D-37BAF6B5B1DC&amp;displaylang=en}{here}
-    to avoid runtime conflicts.
-    Additionally, you must use the Check for Updates feature in the Help menu of the Visual Studio 2005 IDE to apply at least the following security updates: KB937061, KB971023, KB971090, KB973673.
+    \section1 Graphics Drivers
 
-    If you are using a source edition of Qt, you must first install Perl so
-    that the syncqt script invoked by configure can be executed. You can download
-    this \l{http://www.activestate.com/downloads/}{here}.
+    For QML2 to work, a graphics driver that provides OpenGL 2.1 or higher is required.
+    The Windows default driver provides only OpenGL 1.1, which is not sufficient.
 
-    To build Qt with Phonon on Windows, you require:
+    Alternatively, \l{ANGLE} can be used, which provides
+    Open GL ES 2.0 by converting the calls to DirectX.
+
+    \section1 Libraries
 
     \list
-        \li Microsoft's DirectX Software Development Kit which can be
-        downloaded
-        \l{http://msdn2.microsoft.com/en-us/directx/aa937788.aspx}{here}, and
-        \li Microsoft's Windows Server 2003 R2 Platform SDK which is available
-        \l{http://www.microsoft.com/downloads/details.aspx?FamilyID=0baf2b35-c656-4969-ace8-e4c0c0716adb&amp;DisplayLang=en}{here}.
+        \li \l{ICU}: Qt 5 can make use of the ICU library for
+           UNICODE and Globalization support (required for QtWebKit).
+           At compile time, the include and lib folders of the ICU installation must be appended to
+           the \c INCLUDE and \c LIB environment variables.
+           At run-time, the ICU DLLs need to be found. This can be achieved by copying
+           the DLLs to the application folder or adding the bin folder of
+           the ICU installation to the \c PATH environment variable.
+
+        \li \l{ANGLE}: This library converts
+           OpenGL ES 2.0 API calls to DirectX 9, removing the need to install
+           graphics drivers on the target machines.
+           \l{http://code.google.com/p/angleproject/wiki/DevSetup}{Building}
+           the library requires the installation of the
+           \l{Direct X SDK}.
+
+           Pass the command line options \c{-opengl es2 -angle <folder>} to \c configure
+           to use it.
+
+           \note When building for 64bit, de-activate the \c WarnAsError option
+           in every project file (as otherwise integer conversion warnings will
+           break the build).
     \endlist
 
-    \section1 QtWebKit Dependencies
-
-    QtWebKit depends on some extra development tools in addition to those required for the rest of Qt.
-
-    \note These dependencies are only needed if you use a source version of Qt.
-          They are not required when using a prebuilt library.
+    \section1 Development tools
 
     \list
-        \li Install \l{http://www.activestate.com/Products/ActivePerl/}{ActiveState Perl}
-        \li Install \l{http://www.python.org/download/}{Python 2.x}
-           (and add the installation location to your PATH)
-        \li In addition, you need these external GNU tools from the
-           \l{http://gnuwin32.sourceforge.net/packages.html}{GnuWin32 Project}:
-        \list
-            \li \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
-            \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
-            \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
-            \li \l{http://gnuwin32.sourceforge.net/downlinks/libiconv.php}{LibIconv} (needed for bison)
-        \endlist
+        \li Install a recent version of ActivePerl
+           and add the installation location to your PATH.
+           \note Please make sure the perl executable is found in the path before
+           the perl executable provided by msysgit, since the latter is outdated.
+
+        \li Install Python from \l{http://www.python.org/download/}{here}
+           and add the installation location to your PATH in order to be able
+           to build QtJsBackend and QtWebKit.
+
+        \li \l{jom} is a replacement for \c nmake which makes use of all CPU cores
+           and thus speeds up building.
     \endlist
 
-    Please make sure that you install all the tools in a path without spaces in it.
+    QtWebKit depends on some extra tools from the \l{GnuWin32 Project}
+    which are provided for your convenience in the \c gnuwin32/bin folder:
 
-    For the most up to date information about QtWebKit dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{QtWebKit wiki for Windows}
+    \list
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
+    \endlist
+
+    The folder should be added to the PATH.
+
+    \section1 SDKs and Compilers
+
+    \list
+        \li Windows SDK 7.1 with Visual Studio 2010 SP1 (recommended).
+            As of 16.3.2012, installing the SDK requires installing the following packages
+            in this order (see \c readme.html provided with the service pack):
+            \list
+                \li Install Visual Studio 2010
+                \li Install Windows SDK 7.1
+                \li Install Visual Studio 2010 SP1
+                \li Install Visual C++ 2010 SP1 Compiler Update for the Windows SDK 7.1
+            \endlist
+        \li Windows SDK 7 with Visual Studio 2008
+        \li MinGW or \l{TDM-GCC} with g++ version 4.6 or higher (not supported for all modules).
+    \endlist
+
+    Qt Phonon on Windows additionally requires the \l{Direct X SDK}.
+
+    For the most up to date information about QtWebKit dependencies,
+    please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{QtWebKit wiki for Windows}.
 
     \sa {Known Issues}
 */
