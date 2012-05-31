@@ -37,10 +37,10 @@
 
     \image qt-embedded-architecture.png
 
-    Currently, three embedded platforms are supported by Qt:
+    Currently, the following embedded platforms are supported by Qt:
 
     \table 90%
-    \header \li Embedded Linux \li Windows CE \li Symbian platform
+    \header \li Embedded Linux \li Windows CE
     \row
     \li \l{Qt for Embedded Linux} is designed to be used on Linux devices
     without X11 or existing graphical environments. This flavor of
@@ -53,9 +53,5 @@
     Applications use the appropriate style for the embedded
     environment and use native features, such as menus, to conform
     to the native style guidelines.
-    \li \l{Qt for the Symbian platform} is used to create applications running
-    in existing Symbian platform environments. Applications use the appropriate
-    style for the embedded environment and use native features, such as menus,
-    to conform to the native style guidelines.
     \endtable
 */

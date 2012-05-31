@@ -128,16 +128,4 @@
     After an exception is thrown, the connection to the windowing server
     might already be closed. It is not safe to call a GUI related function
     after catching an exception.
-
-    \section1 Platform-Specific Exception Handling
-
-    \section2 The Symbian platform
-
-    The Symbian platform implements its own exception system that differs from the standard
-    C++ mechanism. When using Qt for the Symbian platform, and especially when writing code to 
-    access Symbian functionality directly, it may be necessary to know about the underlying 
-    implementation and how it interacts with Qt.
-
-    The \l{Exception Safety with Symbian} document shows how to use the facilities provided
-    by Qt to use exceptions as safely as possible.
 */
