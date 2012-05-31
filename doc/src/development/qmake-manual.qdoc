@@ -2829,14 +2829,6 @@
     typically handled by \l{qmake Manual#qmake}{\c qmake} or
     \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
 
-    \section1 QMAKE_LIBS_X11SM
-
-    \e {This is used on Unix platforms only.}
-
-    This variable contains all X11 session management libraries.  The value of
-    this variable is typically handled by \l{qmake Manual#qmake}{\c qmake} or
-    \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
-
     \section1 QMAKE_LIB_FLAG
 
     This variable is not empty if the \c lib template is specified. The value
