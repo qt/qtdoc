@@ -1044,10 +1044,6 @@ in the \l{Qt for Windows CE Requirements} document.
     version. \li Available values for <api>: desktop - Enable support for
     Desktop OpenGL (Default), es1 - Enable support for OpenGL ES Common
     Profile, es2 - Enable support for OpenGL ES 2.0.
-    \row   \li \c {-no-openvg} \li Disables OpenVG functionality \li Default value.
-    \row   \li \c {-openvg} \li Enables OpenVG functionality \li Requires EGL
-    support, typically supplied by an OpenGL or other graphics
-    implementation.
     \row   \li \c {-platform <spec>} \li The operating system and compiler you
     are building on. \li The default value is %QMAKESPEC%.
     \row   \li \c {-xplatform <spec>} \li The operating system and compiler you
@@ -1063,10 +1059,6 @@ in the \l{Qt for Windows CE Requirements} document.
     \row   \li \c {-L <librarypath>} \li Add an explicit library path. \li
     \row   \li \c {-l <libraryname>} \li Add an explicit library name, residing
     in a librarypath. \li
-    \row   \li \c {-graphicssystem <sys>} \li Specify which graphics system should
-    be used. \li Available values for <sys>: * raster - Software rasterizer,
-    opengl - Using OpenGL acceleration, experimental!, openvg - Using
-    OpenVG acceleration, experimental!
     \row   \li \c {-help, -h, -?} \li Display this information. \li
     \endtable
 
