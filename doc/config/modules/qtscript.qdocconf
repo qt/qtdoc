@@ -5,9 +5,11 @@ sourcedirs  += $QT_SCRIPT_SOURCES/.. \
 
 exampledirs += $QT_SCRIPT_SOURCES/../.. \
                $QT_SCRIPT_SOURCES/../../doc/src \
+               $QT_SCRIPT_SOURCES/doc/snippets \
                $QT_SCRIPT_SOURCES/../../examples
 
 imagedirs   += $QT_SCRIPT_SOURCES/../../doc/src/images \
+               $QT_SCRIPT_SOURCES/doc/images \
                $QT_SCRIPT_SOURCES/../../examples
 
 excludedirs += $QT_SCRIPT_SOURCES/../../doc/src/snippets
