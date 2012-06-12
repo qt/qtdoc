@@ -129,12 +129,14 @@ that deal with inter-process communication.
 \section2 Rendering and Paint System
 Qt has various support for different rendering and painting methods.
 \list
-\li \l{Coordinate System} - Information about the coordinate system used by the paint system
-\li \l{Graphics View Framework} - manages a large number of 2D items and visualizes the items
-\li \l{Paint System} - A system for painting on the screen or on print devices using the same API
-\li \l{QtSvg Module} - module for displaying and creating SVG files
-\li \l{QtOpenGL Module} - module for rendering with the OpenGL API
-\li \l{Printing with Qt} - A guide to producing printed output with Qt's paint system and widgets
+\li \l{QML Scene Graph} - used for rendering in Qt Quick 2.0.
+\li \l{OpenGL Enablers} - classes for rendering with the OpenGL API.
+\li \l{Paint System} - A system for painting on the screen or on print devices using the same API.
+\li \l{Coordinate System} - Information about the coordinate system used by the paint system.
+\li \l{Graphics View Framework} - manages a large number of 2D items and visualizes the items.
+\li \l{QtSvg Module} - module for displaying and creating SVG files.
+\li \l{QtOpenGL Module} - Legacy module for rendering with the OpenGL API.
+\li \l{Printing with Qt} - A guide to producing printed output with Qt's paint system.
 \endlist
 
 \keyword qt-webkit
@@ -155,7 +157,7 @@ Qt supports many utilities that work on multiple platforms.
 \li \l{Making Applications Scriptable} - provides Qt applications with ECMAScript processor
 \li \l{Qt Linguist Manual}{Qt Linguist} - for translating applications into local languages
 \endlist
-For more information, visit the \l{Qt's Tools}{Qt Tools} page.
+For more information, visit the \l{Qt's Tools}{Qt Tools} page.
 \enddiv
 \div {class = "indexboxcont indexboxbar normallist"}
 \keyword qt-testing
