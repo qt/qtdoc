@@ -110,6 +110,12 @@
     the CMAKE_CXX_FLAGS so that the -fPIE flags are added to the compile flags if necessary (as
     is the default with Qt 5).
 
+    If not using the \c{qt5_use_modules} macro, and if using CMake 2.8.9 or later, the
+    POSITION_INDEPENDENT_CODE property can be set on targets using Qt instead, or it can be set globally
+    for all targets:
+
+    \snippet doc/src/snippets/cmake/CMakeLists.pro 5
+
     \section1 Variable Reference
 
     \section2 Module variables

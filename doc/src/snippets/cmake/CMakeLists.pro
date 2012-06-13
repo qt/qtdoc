@@ -71,3 +71,17 @@ add_executable(helloworld main.cpp main.moc)
 #Link the helloworld executable to the Qt 5 widgets library.
 target_link_libraries(${Qt5Widgets_LIBRARIES})
 #! [4]
+
+#! [5]
+find_package(Qt5Core)
+
+add_executable(exe1 ${exe1_SRCS})
+# Set the POSITION_INDEPENDENT_CODE property for the exe1 target...
+set_target_properties(exe1 PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+# Or set it globally for all targets:
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+add_executable(exe2 ${exe2_SRCS})
+
+add_executable(exe3 ${exe3_SRCS})
+#! [5]
