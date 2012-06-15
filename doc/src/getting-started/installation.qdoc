@@ -1052,7 +1052,7 @@ in the \l{Qt for Windows CE Requirements} document.
     \row   \li \c {-qtnamespace <namespace>} \li Wraps all Qt library code in
     'namespace name {..} \li
     \row   \li \c {-qtlibinfix <infix>} \li Renames all Qt* libs to Qt*<infix>
-    \li
+    \li Do not use dots in <infix>
     \row   \li \c {-D <define>} \li Add an explicit define to the preprocessor.
     \li
     \row   \li \c {-I <includepath>} \li Add an explicit include path. \li
