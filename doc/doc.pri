@@ -147,11 +147,11 @@ docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
 
 htmldocs.files = html
 htmldocs.path = $$[QT_INSTALL_DOCS]
-htmldocs.CONFIG += no_check_exist directory
+htmldocs.CONFIG += no_check_exist directory no_default_install
 
 qchdocs.files= qch
 qchdocs.path = $$[QT_INSTALL_DOCS]
-qchdocs.CONFIG += no_check_exist directory
+qchdocs.CONFIG += no_check_exist directory no_default_install
 
 docimages.files = src/images
 docimages.path = $$[QT_INSTALL_DOCS]/src
