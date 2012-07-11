@@ -549,4 +549,22 @@
 
   Note that animations explicitly set on transitions will take precedence over any default
   animation for the given property.
+
+  \section1 Nesting State Machines
+
+  QStateMachine is a subclass of QState. This allows for a state machine to be a child state of
+  another machine. QStateMachine reimplements QState::onEntry() and calls QStateMachine::start(),
+  so that when the child state machine is entered, it will automatically start running.
+
+  The parent state machine treats the child machine as an \e atomic state in the state machine
+  algorithm. The child state machine is self-contained; it maintains its own event queue and
+  configuration. In particular, note that the \l{QStateMachine::configuration()}{configuration}
+  of the child machine is not part of the parent machine's configuration (only the child machine
+  itself is).
+
+  States of the child state machine cannot be specified as targets of transitions in the parent
+  state machine; only the child state machine itself can. Conversely, states of the parent state
+  machine cannot be specified as targets of transitions in the child state machine. The child
+  state machine's \l{QState::finished()}{finished}() signal can be used to trigger a transition
+  in the parent machine.
 */
