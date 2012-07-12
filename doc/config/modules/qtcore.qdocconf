@@ -29,7 +29,8 @@ imagedirs   += $QT_CORE_SOURCES/../../doc/src/images \
                $QT_CORE_SOURCES/../sql/doc/images \
                $QT_CORE_SOURCES/../widgets/doc/images
 
-excludedirs += $QT_CORE_SOURCES/../3rdparty/ce-compat \
+excludedirs += $QT_CORE_SOURCES/../tools/qdoc \
+               $QT_CORE_SOURCES/../3rdparty/ce-compat \
                $QT_CORE_SOURCES/../3rdparty/des \
                $QT_CORE_SOURCES/../3rdparty/easing \
                $QT_CORE_SOURCES/../3rdparty/fonts \
