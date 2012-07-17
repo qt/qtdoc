@@ -43,24 +43,24 @@
             \endlist
         \enddiv
         \div {class="sectionlist normallist"}
+            \div {class="heading"}
+            \enddiv
             \list
             \li \l{external: Qt SDK Manual}{Qt SDK}
             \li \l{Qt Creator Whitepaper}{Qt Creator}
             \li \l{external: Qt Simulator Manual}{Qt Simulator}
-            \endlist
-            \list
             \li \l{Supported Platforms}{Platform Support}
             \li \l{What's New in Qt 5}
             \endlist
         \enddiv
         \div {class="sectionlist normallist"}
             \div {class="heading"}
-                Qt in Action
+                Using Qt
             \enddiv
             \list
-            \li \l{Qt Demonstrations}{Application Gallery}
+            \li \l{Qt Demonstrations}{Qt Apps}
             \li \l{Tutorials}{Step-by-Step Tutorials}
-            \li \l{Qt Examples}{Qt Example Code}
+            \li \l{Qt Examples}{About Qt Examples}
             \li \l{QML Examples and Demos}
             \endlist
         \enddiv
@@ -73,13 +73,13 @@
                 Develop with Qt
             \enddiv
             \list
-            \li \l{Develop with Qt}{Steps to Programming Qt Applications}
-            \li \l{qt-creator-configure-target}{Configure Qt and Creator for Platforms}
+            \li \l{Develop with Qt}{Programming with Qt}
+            \li \l{qt-creator-configure-target}{Setting up Qt and Creator}
             \li \l{Qt and Key Technologies}{Qt Features and Technologies}
             \li \l{qt-utilities}{Utilities and Testing}
             \endlist
             \list
-            \li \l{Getting Started Guides}{Qt and Qt Quick Programming Tutorials}
+            \li \l{Getting Started Guides}{Qt Programming Tutorials}
             \endlist
         \enddiv
         \div {class="sectionlist normallist"}
@@ -90,9 +90,9 @@
             \list
             \li \l{qt-ui-creation}{Create UI with Qt}
             \li \l{qt-rendering-painting-system}{Qt's Rendering and Painting Systems}
-            \li \l{QML Application Developer Resources}{QML and Qt Quick} - develop fluid UIs with QML
-            \li \l{Widgets and Layouts} - elements for C++ interfaces
-            \li \l{external: Designer in Creator}{Designing UI in Creator}
+            \li \l{QML Application Developer Resources}{Fluid UIs with Qt Quick}
+            \li \l{Widgets and Layouts}{C++ Widgets and Layouts}
+            \li \l{external: Designer in Creator}{UI Design with Creator}
             \endlist
         \enddiv
         \div {class="sectionlist normallist"}
@@ -100,8 +100,8 @@
                 Featured Articles
             \enddiv
             \list
-            \li \l{Getting Started Programming with QML}
-            \li \l{Scalability}{How to Create Scalable Applications}
+            \li \l{Getting Started Programming with QML}{Getting Started with QML}
+            \li \l{Scalability}{Scalable Applications}
             \li \l{qt-mobile-demos}{Mobile Applications}
             \li \l{QtWebKit Guide}{QtWebKit Developer Guide}
             \endlist
@@ -126,8 +126,10 @@
             \endlist
         \enddiv
         \div {class="sectionlist normallist"}
+            \div {class="heading"}
+            \enddiv
             \list
-            \li \l{QML Elements}
+            \li \l{QML Types Provided By Qt Quick}{Qt Quick Types}
             \li \l{Qt and Key Technologies}{Qt Module APIs}
             \li \l{Qt Module QML Plugins}
             \endlist
