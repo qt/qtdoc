@@ -3,7 +3,8 @@
 #####################################################################
 
 DOCS_GENERATION_DEFINES =
-GENERATOR = $${QT.help.bins}/qhelpgenerator
+qtPrepareTool(GENERATOR, qhelpgenerator)
+qtPrepareTool(QDOC, qdoc)
 
 win32:!win32-g++* {
     unixstyle = false
@@ -80,68 +81,39 @@ for(module, MODULES) {
     }
 }
 
-# Output the locations and includes as build messages. This helps the user to
-# see which modules have been installed and diagnose any problems.
-
-message($$LOCATIONS)
-message($$INCLUDES)
-
 # Input files in the source tree
 ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs-online.qdocconf
-ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 DITA_QDOCCONF = $${QT.doc.sources}/doc/config/qt-ditaxml.qdocconf
-DITA_QDOCCONF = $$replace(DITA_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/qt-build-docs.qdocconf
-OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 MODULE_ONLINE_QDOCCONF = $${QT.doc.sources}/doc/config/$${MODULE}-online.qdocconf
-MODULE_ONLINE_QDOCCONF = $$replace(ONLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 MODULE_OFFLINE_QDOCCONF = $${QT.doc.sources}/doc/config/$${MODULE}.qdocconf
-MODULE_OFFLINE_QDOCCONF = $$replace(OFFLINE_QDOCCONF, "/", $$QMAKE_DIR_SEP)
 
 # Output files in the build tree
 QHP_FILE = html/qt.qhp
-QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
 QCH_FILE = qch/qt.qch
-QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
 
 INDEX_FILE = html/qt.index
-INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
 INDEX_DEST = $$INDEX_DESTDIR/qt.index
-INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
 
 MODULE_QHP_FILE = html/$${MODULE}.qhp
-MODULE_QHP_FILE = $$replace(QHP_FILE, "/", $$QMAKE_DIR_SEP)
 MODULE_QCH_FILE = qch/$${MODULE}.qch
-MODULE_QCH_FILE = $$replace(QCH_FILE, "/", $$QMAKE_DIR_SEP)
 
 MODULE_INDEX_FILE = html/$${MODULE}.index
-MODULE_INDEX_FILE = $$replace(INDEX_FILE, "/", $$QMAKE_DIR_SEP)
 MODULE_INDEX_DEST = $$INDEX_DESTDIR/$${MODULE}.index
-MODULE_INDEX_DEST = $$replace(INDEX_DEST, "/", $$QMAKE_DIR_SEP)
 
-$$unixstyle {
-    QDOC = $$LOCATIONS $$INCLUDES MODULE_SOURCE_TREE=$${QT.doc.sources} MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources) $$QT.core.bins/qdoc $$DOCS_GENERATION_DEFINES
-} else {
-    QDOC = $$LOCATIONS $$INCLUDES set MODULE_SOURCE_TREE=$${QT.doc.sources}&& set MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources)&& $$QT.core.bins/qdoc.exe $$DOCS_GENERATION_DEFINES
-    QDOC = $$replace(QDOC, "/", $$QMAKE_DIR_SEP)
-}
+COMMAND = $$LOCATIONS $$INCLUDES $$SET MODULE_SOURCE_TREE=$${QT.doc.sources}$$SEP $$SET MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources)$$SEP $$QDOC $$DOCS_GENERATION_DEFINES
 
 # Build rules:
 
-online_docs.commands = ($$QDOC $$ONLINE_QDOCCONF)
+online_docs.commands = ($$COMMAND $$ONLINE_QDOCCONF)
 
-dita_docs.commands = ($$QDOC $$DITA_QDOCCONF)
+dita_docs.commands = ($$COMMAND $$DITA_QDOCCONF)
 
-qch_docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
-                     $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE)
-
-docs.commands = ($$QDOC $$OFFLINE_QDOCCONF && \
-                 $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE && \
-                 $$QDOC $$ONLINE_QDOCCONF)
+docs.commands = ($$COMMAND $$ONLINE_QDOCCONF)
 
 # Install rules
 
@@ -149,13 +121,27 @@ htmldocs.files = html
 htmldocs.path = $$[QT_INSTALL_DOCS]
 htmldocs.CONFIG += no_check_exist directory no_default_install
 
-qchdocs.files= qch
-qchdocs.path = $$[QT_INSTALL_DOCS]
-qchdocs.CONFIG += no_check_exist directory no_default_install
-
 docimages.files = src/images
 docimages.path = $$[QT_INSTALL_DOCS]/src
 
-QMAKE_EXTRA_TARGETS += online_docs qch_docs docs dita_docs
-INSTALLS += htmldocs qchdocs docimages
+QMAKE_EXTRA_TARGETS += online_docs docs dita_docs
+INSTALLS += htmldocs docimages
 
+# Rules for QCH docs, which depend on qhelpgenerator
+isEmpty(GENERATOR) {
+    message("qhelpgenerator is not available. Documentation for use with Qt Assistant and Qt Creator cannot be generated.")
+} else {
+    qch_docs.commands = ($$COMMAND $$OFFLINE_QDOCCONF && \
+                         $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE)
+
+    qchdocs.files = qch
+    qchdocs.path = $$[QT_INSTALL_DOCS]
+    qchdocs.CONFIG += no_check_exist directory no_default_install
+
+    QMAKE_EXTRA_TARGETS += qch_docs
+    INSTALLS += qchdocs
+
+    docs.commands = ($$COMMAND $$OFFLINE_QDOCCONF && \
+                     $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE && \
+                     $$COMMAND $$ONLINE_QDOCCONF)
+}
