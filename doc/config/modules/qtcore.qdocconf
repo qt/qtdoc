@@ -30,6 +30,18 @@ imagedirs   += $QT_CORE_SOURCES/../../doc/src/images \
                $QT_CORE_SOURCES/../widgets/doc/images
 
 excludedirs += $QT_CORE_SOURCES/../tools/qdoc \
+               $QT_CORE_SOURCES/../doc/src/snippets \
+               $QT_CORE_SOURCES/../concurrent/doc/snippets \
+               $QT_CORE_SOURCES/../corelib/doc/snippets \
+               $QT_CORE_SOURCES/../dbus/doc/snippets \
+               $QT_CORE_SOURCES/../gui/doc/snippets \
+               $QT_CORE_SOURCES/../network/doc/snippets \
+               $QT_CORE_SOURCES/../opengl/doc/snippets \
+               $QT_CORE_SOURCES/../printsupport/doc/snippets \
+               $QT_CORE_SOURCES/../sql/doc/snippets \
+               $QT_CORE_SOURCES/../testlib/doc/snippets \
+               $QT_CORE_SOURCES/../widgets/doc/snippets \
+               $QT_CORE_SOURCES/../xml/doc/snippets \
                $QT_CORE_SOURCES/../3rdparty/ce-compat \
                $QT_CORE_SOURCES/../3rdparty/des \
                $QT_CORE_SOURCES/../3rdparty/easing \

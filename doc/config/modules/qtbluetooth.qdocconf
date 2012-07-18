@@ -12,4 +12,5 @@ exampledirs += $QT_BLUETOOTH_SOURCES/../../examples \
 
 imagedirs   += $QT_BLUETOOTH_SOURCES/../../doc/src/images
 
-excludedirs += $QT_BLUETOOTH_SOURCES/../imports/bluetooth
+excludedirs += $QT_BLUETOOTH_SOURCES/../imports/bluetooth \
+               $QT_BLUETOOTH_SOURCES/../../doc/src/snippets

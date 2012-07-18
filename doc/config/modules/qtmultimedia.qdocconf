@@ -10,4 +10,5 @@ exampledirs += $QT_MULTIMEDIA_SOURCES/../.. \
 imagedirs   += $QT_MULTIMEDIA_SOURCES/../../doc/src/images \
                $QT_MULTIMEDIA_SOURCES/../../examples
 
-excludedirs += 
+excludedirs += $QT_MULTIMEDIA_SOURCES/../../examples/video/snippets \
+               $QT_MULTIMEDIA_SOURCES/../../doc/src/snippets

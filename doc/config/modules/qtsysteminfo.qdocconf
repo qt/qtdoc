@@ -16,4 +16,5 @@ exampledirs += $QT_SYSTEMINFO_SOURCES/../.. \
 imagedirs   += $QT_SYSTEMINFO_SOURCES/../../doc/src/systeminfo/images \
                $QT_SYSTEMINFO_SOURCES/../../examples/systeminfo
 
-excludedirs += $QT_SYSTEMINFO_SOURCES/../imports
+excludedirs += $QT_SYSTEMINFO_SOURCES/../imports \
+               $QT_SYSTEMINFO_SOURCES/../../doc/src/serviceframework/snippets
