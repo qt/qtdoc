@@ -26,44 +26,79 @@
 ****************************************************************************/
 
 /*!
+    \page qtexamples.html
+    \title Qt Examples
+
+    Qt includes a set of examples that cover nearly every aspect of Qt
+    development. They demonstrate usage of various modules and technologies.
+
+    The examples include a project file and some include documentation.
+    Qt Creator can directly run these examples through the Welcome Page.
+
+    The \l{Qt Widget Gallery} also provides overviews of selected Qt
+    widgets in each of the styles used on various supported platforms.
+
+    Most examples are provided under the terms of the
+    \l{New and Modified BSD Licenses}{Modified BSD License}. Some examples
+    are however provided under the terms of the
+    \l{GNU Lesser General Public License (LGPL)}{GNU LGPL version 2.1}.
+
+    \section1 Tutorials
+
+    Tutorials demonstrate the development using Qt. The tutorials walk through
+    code and provide explanation for various Qt technologies.
+
+    \list
+    \li \l{Tutorials}
+    \endlist
+
+    \section1 Qt Examples by Technology
+
+    \list
+    \li \l{Qt Quick Code Samples}
+    \li \l{Widget Examples}
+    \li \l{Dialog Examples}}
+    \li \l{Main Window Examples}
+    \li \l{Layout Examples}
+    \li \l{Item Views Examples}
+    \li \l{Graphics View Examples}
+    \li \l{Painting Examples}
+    \li \l{Rich Text Examples}
+    \li \l{Desktop Examples}
+    \li \l{Drag and Drop Examples}
+    \li \l{Threading and Concurrent Programming Examples}
+    \li \l{Tools Examples}
+    \li \l{Network Examples}
+    \li \l{IPC Examples}
+    \li \l{OpenGL Examples}
+    \li \l{Multimedia Examples}
+    \li \l{SQL Examples}
+    \li \l{XML Examples}
+    \li \l{Qt Designer Examples}
+    \li \l{UiTools Examples}
+    \li \l{Qt Linguist Examples}
+    \li \l{Qt Script Examples}
+    \li \l{WebKit Examples}
+    \li \l{Help System Examples}
+    \li \l{State Machine Examples}
+    \li \l{Animation Framework Examples}
+    \li \l{Touch Input Examples}
+    \li \l{Gestures Examples}
+    \li \l{D-Bus Examples}
+    \li \l{Qt for Embedded Linux Examples}
+    \li \l{Embedded Platform Examples}
+    \li \l{ActiveQt Examples}
+    \endlist
+*/
+
+/*!
    \group all-examples
-   \title Qt Examples
-
-   Qt includes a set of examples that cover nearly every aspect of Qt
-   development. They aren't meant to be impressive when you run them,
-   but in each case the source code has been carefully written to
-   illustrate one or more best Qt programming practices.
-
-   You can run the examples from the \l{Examples and Demos Launcher}
-   application (except see \l{QML Examples and Demos} {QML Examples}
-   for special instructions for running those examples). In addition,
-   Qt Creator can directly run these examples through the Welcome Page.
-
-   The examples are listed below by functional area. Each example
-   listed in a particular functional area is meant to illustrate how
-   best to use Qt to do some particular task in that functional area,
-   but the examples will often use features from other functional
-   areas as well for completeness.
-
-   If you are new to Qt, you should probably start by going through
-   the \l{Tutorials}, and then begin with the
-   \l{mainwindows/application} {Application} example.
-
-   The \l{Qt Widget Gallery} also provides overviews of selected Qt
-   widgets in each of the styles used on various supported platforms.
-
-   Most examples are provided under the terms of the
-   \l{New and Modified BSD Licenses}{Modified BSD License}. Some examples
-   are however provided under the terms of the
-   \l{GNU Lesser General Public License (LGPL)}{GNU LGPL version 2.1}.
-
-   \section1 Qt Quick Example Code
-   The \l{QML Examples and Demos} site has a dedicated page for QML examples.
-
-   \section1 Qt Examples by Module or Technology
+   \title List of Qt Examples
+   \brief Alphabetical listing of Qt Examples
 
    \generatelist{related}
 */
+
 
 /*!
     \page examples-widgets.html
