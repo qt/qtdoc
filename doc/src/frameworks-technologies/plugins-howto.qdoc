@@ -90,18 +90,13 @@
     \header \li Base Class              \li Directory Name      \li Key Case Sensitivity
     \row    \li QAccessibleBridgePlugin \li \c accessiblebridge \li Case Sensitive
     \row    \li QAccessiblePlugin       \li \c accessible       \li Case Sensitive
-    \row    \li QDecorationPlugin       \li \c decorations      \li Case Insensitive
-    \row    \li QFontEnginePlugin       \li \c fontengines      \li Case Insensitive
     \row    \li QIconEnginePlugin       \li \c iconengines      \li Case Insensitive
     \row    \li QImageIOPlugin          \li \c imageformats     \li Case Sensitive
-    \row    \li QInputContextPlugin     \li \c inputmethods     \li Case Sensitive
-    \row    \li QKbdDriverPlugin        \li \c kbddrivers       \li Case Insensitive
-    \row    \li QMouseDriverPlugin      \li \c mousedrivers     \li Case Insensitive
-    \row    \li QScreenDriverPlugin     \li \c gfxdrivers       \li Case Insensitive
     \row    \li QScriptExtensionPlugin  \li \c script           \li Case Sensitive
     \row    \li QSqlDriverPlugin        \li \c sqldrivers       \li Case Sensitive
     \row    \li QStylePlugin            \li \c styles           \li Case Insensitive
-    \row    \li QTextCodecPlugin        \li \c codecs           \li Case Sensitive
+    \row    \li QGenericPlugin          \li \c generic          \li Case Insensitive
+    \row    \li QPlatformIntegrationPlugin \li \c platforms     \li Case Insensitive
     \endtable
 
     Suppose that you have a new style class called \c MyStyle that you
