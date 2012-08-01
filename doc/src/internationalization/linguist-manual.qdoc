@@ -122,6 +122,7 @@
     \li \l{Qt Linguist Manual: Translators}{Translators}
     \li \l{Qt Linguist Manual: Programmers}{Programmers}
     \li \l{Qt Linguist Manual: TS File Format}{TS File Format}
+    \li \l{Qt Linguist Manual: Text ID Based Translations}{Text ID Based Translations}
     \endlist
 
     \QL and \c lupdate are able to import and export XML Localization
@@ -1512,6 +1513,7 @@
 
     \contentspage {Qt Linguist Manual}{Contents}
     \previouspage Qt Linguist Manual: Programmers
+    \nextpage Qt Linguist Manual: Text ID Based Translations
 
     The TS file format used by \QL is described by the
     \l{http://www.w3.org/TR/1998/REC-xml-19980210}{DTD} presented below,
@@ -1519,5 +1521,175 @@
     may change in future Qt releases.
 
     \quotefile tools/linguist/shared/ts.dtd
+
+*/
+
+/*!
+    \page linguist-id-based-i18n.html
+    \title Qt Linguist Manual: Text ID Based Translations
+    \ingroup internationalization
+
+    \contentspage {Qt Linguist Manual}{Contents}
+    \previouspage Qt Linguist Manual: TS File Format
+
+    \brief Text ID based internationalization provides support for large scale
+    projects with many target locales and many texts to translate.
+
+    The text ID translation mechanism is an "industrial strength" system for
+    internationalization and localization. Each text in the application is assigned
+    a unique identifier (text ID) and these identifiers are used directly in the
+    source code in place of the plain texts. This requires a little more work for
+    the user interface developers but makes it much easier to manage large numbers
+    of translated texts.
+
+    \note You must use only plain-text-based or only text-ID-based functions in
+    one application. If you mix them, you will end up with an incomplete set of
+    texts to be translated.
+
+
+    \section1 Internationalizing With Text IDs
+
+    When using text IDs instead of plain text, the general method of
+    internationalizing an application is the same but the details are a bit
+    different:
+
+    \list 1
+
+        \li The functions and macros for the text-ID-based translation system are
+        different to the plain-text system. You use the \c qsTrId() function instead
+        of qsTr(), and the \c QT_TRID_NOOP() macro instead of QT_TR_NOOP().
+
+        \li Use text IDs as user interface strings rather than plain text
+        strings. For example, \c {qsTrId("id-back-not-front")}
+
+        \li You cannot specify a context parameter with a text ID. If there are
+        identically spelled words with different meanings, these need separate
+        text IDs. For example, \c {qsTrId("id-back-backstep")} will
+        differentiate the back-step "Back" from the back-of-the-object "Back".
+
+        \li The "Engineering English" text that you see in the user interface for
+        development builds is indicated with a \c {//%} comment. If you do not
+        include this, the text ID will be shown in the user interface. This is
+        especially important when you have texts with parameters. The \c {//%}
+        comment needs to include the parameters indicators in the string. For
+        example, \c {//% "Number of files: %1"}
+
+        \li The \c {//:} comments that provide extra information to the translator
+        are optional in the plain-text system. However, with the text-ID-based
+        system, this extra information becomes essential because without it you only
+        have the text ID and the translator might not be able to make a sensible
+        translation from without any other context. You can use long descriptive
+        text ID and no comments but comments are often easier to understand.
+
+    \endlist
+
+    The side-by-side code snippets below show a comparison of text-ID -based and
+    plain-text-based translations:
+
+    \table
+        \header
+            \li text-ID-based
+            \li plain-text-based
+        \row
+            \li
+            \code
+            Text {
+                id: backTxt;
+                //: The back of the object, not the front
+                //% "Back"
+                //~ Context Not related to back-stepping
+                text: qsTrId("id-back-not-front");
+            }
+            \endcode
+
+            \li
+            \code
+            Text {
+                id: backTxt;
+                //: The back of the object, not the front
+                //~ Context Not related to back-stepping
+                text: qsTr("Back","Not front")
+            }
+            \endcode
+    \endtable
+
+    \section1 Localizing With Text IDs
+
+    Localizing with text IDs follows much the same process as for plain text.
+
+    The \c lupdate tool is used the same way and translations are made into
+    the .ts files:
+
+    \code
+    lupdate <myapp>.pro
+    \endcode
+
+    Note that the source values in the translation files will be text IDs rather
+    than plain text. This means you need very descriptive text IDs, or good
+    additional comments, or both to ensure that the translator makes a correct
+    translation.
+
+    The example text-ID-based user interface text from above results in the following
+    content in the .ts file:
+
+    \code
+    <message id="id-back-not-front">
+        <source>Back</source>
+        <extracomment>The back of the object, not the front</extracomment>
+        <translation type="unfinished"></translation>
+        <extra-Context>Not related to back-stepping</extra-Context>
+    </message>
+    \endcode
+
+    When using \c lrelease, you need to specify that the keys for translated
+    texts are based on text IDs, rather than plain texts. If strings in the code
+    are specified with \c qsTr() there is no "id" attribute set so they are
+    ignored by \c lrelease.
+
+    This command produces all the compiled translation .qm files for your
+    application:
+
+    \code
+    lrelease -idbased <myapp>.pro
+    \endcode
+
+    However, if there is no translation available for a given text (which is
+    generally the case until late in development), the text ID will be shown in
+    the user interface rather than a proper text. In order to make the application
+    more usable for testing, you can make \c lrelease use the "Engineering English"
+    source text (from the \c {//%} comments) as the translated text and mark it with
+    some indicator so you can see texts that are not yet translated.
+
+    For example, this command builds the .qm files and puts a "!" in front of the
+    untranslated texts:
+
+    \code
+    lrelease -idbased -markuntranslated ! <myapp>.pro
+    \endcode
+
+
+
+    \section1 Advanced Usage
+
+    For projects that target a large number of locales, you can remove the
+    TRANSLATIONS info from the .pro file and, instead, manage the translations
+    with a separate script. The script can call lrelease and lupdate for each of
+    the desired targets.
+
+    The updates could be scripted something like this:
+
+    \code
+    lupdate -recursive <project-dir> -ts <project-dir>/i18n/myapp-text_en_GB.ts
+    lupdate -recursive <project-dir> -ts <project-dir>/i18n/myapp-text_en_US.ts
+    ...
+    \endcode
+
+    The generation of the final .qm files could be scripted something like this:
+
+    \code
+    lrelease -idbased <project-dir>/i18n/myapp-text_en_GB.ts
+    lrelease -idbased <project-dir>/i18n/myapp-text_en_US.ts
+    ...
+    \endcode
 
 */
