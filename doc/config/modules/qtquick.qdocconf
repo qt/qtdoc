@@ -1,9 +1,11 @@
-headerdirs  += $QT_QUICK_SOURCES
+headerdirs  += $QT_QUICK_SOURCES \
+               $QT_QUICK_SOURCES/../particles \
+               $QT_QUICK_SOURCES/../imports
 
 sourcedirs  += $QT_QUICK_SOURCES \
-               $QT_QUICK_SOURCES/../../doc/src/examples \
-               $QT_QUICK_SOURCES/doc/src/localstorage \
-               $QT_QUICK_SOURCES/doc/src/particles
+               $QT_QUICK_SOURCES/../particles \
+               $QT_QUICK_SOURCES/../imports \
+               $QT_QUICK_SOURCES/../../doc/src/examples
 
 exampledirs += $QT_QUICK_SOURCES \
                $QT_QUICK_SOURCES/../../doc/src/examples \
