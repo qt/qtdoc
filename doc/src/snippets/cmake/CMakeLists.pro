@@ -85,3 +85,9 @@ add_executable(exe2 ${exe2_SRCS})
 
 add_executable(exe3 ${exe3_SRCS})
 #! [5]
+
+#! [6]
+if (Qt5_POSITION_INDEPENDENT_CODE)
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+#! [6]

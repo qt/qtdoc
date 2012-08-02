@@ -116,6 +116,13 @@
 
     \snippet doc/src/snippets/cmake/CMakeLists.pro 5
 
+    Note that it may be necessary to enable POSITION_INDEPENDENT_CODE globally in order to use try_compile
+    with Qt code, or any wrapper macros around it such as check_cxx_source_compiles etc.
+    As position independent code is a platform-specific and Qt-configuration-specific concept, the
+    Qt5_POSITION_INDEPENDENT_CODE property can be used to check whether it is required.
+
+    \snippet doc/src/snippets/cmake/CMakeLists.pro 6
+
     \section1 Variable Reference
 
     \section2 Module variables
