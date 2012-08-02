@@ -37,7 +37,7 @@
 
     \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}.
     The rest of this manual details the specifics of how to use Qt 5 with \c{CMake}.
-    The minimum version required to use Qt5 is \c{CMake} 2.8.3, but 2.8.8 is recommended.
+    The minimum version required to use Qt5 is \c{CMake} 2.8.3, but 2.8.9 is recommended.
 
     \section1 Getting Started
 
@@ -45,7 +45,7 @@
     and header files shipped with Qt. These libraries and header files can then be used
     to build libraries and applications based on Qt.
 
-    The recommended way to use Qt libraries and headers with \c{CMake} 2.8.8 is to use
+    The recommended way to use Qt libraries and headers with \c{CMake} 2.8.9 is to use
     the \c{qt5_use_modules} command.
 
     To build a helloworld executable, typical usage would be:
@@ -95,12 +95,12 @@
 
     \snippet doc/src/snippets/cmake/CMakeLists.pro 3
 
-    \section2 Using Qt 5 with \c{CMake} older than 2.8.8
+    \section2 Using Qt 5 with \c{CMake} older than 2.8.9
 
-    If using \c{CMake} older than 2.8.8, the \c{qt5_use_modules} macro is not available. Attempting to use it
+    If using \c{CMake} older than 2.8.9, the \c{qt5_use_modules} macro is not available. Attempting to use it
     will result in an error.
 
-    To use Qt 5 with versions of \c{CMake} older than 2.8.8, it is necessary to use the
+    To use Qt 5 with versions of \c{CMake} older than 2.8.9, it is necessary to use the
     \c{target_link_libraries}, \c{include_directories}, and \c{add_definitions} commands, and to manually
     specify moc requirements with either \c{qt5_generate_moc} or \c{qt5_wrap_cpp}:
 
@@ -178,10 +178,10 @@
              or LINK_PUBLIC specifiers can optionally be specified. If LINK_PRIVATE is specified
              then the modules are not made part of the link interface of the target.
              See the documentation for
-             \l{http://www.cmake.org/cmake/help/v2.8.8/cmake.html#command:target_link_libraries}{target_link_libraries}
+             \l{http://www.cmake.org/cmake/help/v2.8.9/cmake.html#command:target_link_libraries}{target_link_libraries}
              for more information.
 
-             Note that this macro is only available if using \c{CMake} 2.8.8 or later.
+             Note that this macro is only available if using \c{CMake} 2.8.9 or later.
     \endtable
 
     \section2 Qt5Widgets macros
