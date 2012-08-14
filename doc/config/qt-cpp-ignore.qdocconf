@@ -80,7 +80,8 @@ Cpp.ignoretokens        = QAXFACTORY_EXPORT \
                           QTBLUETOOTH_END_NAMESAPCE \
                           Q_NFC_EXPORT \
                           QTNFC_BEGIN_NAMESPACE \
-                          QTNFC_END_NAMESPACE
+                          QTNFC_END_NAMESPACE \
+                          Q_DECL_NOTHROW
 Cpp.ignoredirectives    = Q_DECLARE_HANDLE \
                           Q_DECLARE_INTERFACE \
                           Q_DECLARE_METATYPE \
