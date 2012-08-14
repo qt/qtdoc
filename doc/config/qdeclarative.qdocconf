@@ -13,7 +13,7 @@ edition.Console.modules = QtCore QtDBus QtNetwork QtScript QtSql QtXml \
                           QtXmlPatterns QtTest
 edition.Desktop.modules = QtCore QtDBus QtGui QtNetwork QtOpenGL QtScript QtSql QtSvg \
                           QtWebKit QtXml QtXmlPatterns QtHelp \
-                          QtDesigner QtAssistant QAxContainer Phonon \
+                          QtDesigner QtAssistant QAxContainer \
                           QAxServer QtUiTools QtTest QtDBus
 edition.DesktopLight.modules = QtCore QtDBus QtGui QtTest
 edition.DesktopLight.groups       = -graphicsview-api

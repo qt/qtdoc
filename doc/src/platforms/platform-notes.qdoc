@@ -76,16 +76,16 @@
 
     \table
     \header \li Compiler \li{5,1} Features
-    \header \li                  \li Concurrent \li XmlPatterns \li WebKit(*)   \li CLucene  \li Phonon
-    \row    \li g++ 3.3          \li            \li \b{X}    \li          \li \b{X} \li \b{X}
-    \row    \li g++ 3.4 and up   \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
-    \row    \li SunCC 5.5        \li            \li             \li          \li \b{X} \li \b{X}
-    \row    \li aCC series 3     \li            \li             \li          \li \b{X} \li \b{X}
-    \row    \li aCC series 6     \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
-    \row    \li xlC 6            \li            \li             \li          \li \b{X} \li \b{X}
-    \row    \li Intel CC 10      \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
-    \row    \li MSVC 2003        \li \b{X}   \li \b{X}    \li          \li \b{X} \li \b{X}
-    \row    \li MSVC 2005 and up \li \b{X}   \li \b{X}    \li \b{X} \li \b{X} \li \b{X}
+    \header \li                  \li Concurrent \li XmlPatterns \li WebKit(*)   \li CLucene
+    \row    \li g++ 3.3          \li            \li \b{X}    \li          \li \b{X}
+    \row    \li g++ 3.4 and up   \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
+    \row    \li SunCC 5.5        \li            \li             \li          \li \b{X}
+    \row    \li aCC series 3     \li            \li             \li          \li \b{X}
+    \row    \li aCC series 6     \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
+    \row    \li xlC 6            \li            \li             \li          \li \b{X}
+    \row    \li Intel CC 10      \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
+    \row    \li MSVC 2003        \li \b{X}   \li \b{X}    \li          \li \b{X}
+    \row    \li MSVC 2005 and up \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
     \endtable
 
     * WebKit is only supported as a dynamically built library. Static linkage is not supported.

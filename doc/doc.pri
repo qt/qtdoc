@@ -33,7 +33,6 @@ MODULES = activeqt \
           clucene \ # help designer
           location \
           multimedia \
-          phonon \
           publishsubscribe \
           3d \
           qml \

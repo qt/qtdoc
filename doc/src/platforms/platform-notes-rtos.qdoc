@@ -69,9 +69,6 @@
             tightly coupled to one address space and process, while VxWorks
             only supports one global address space and has no concept of
             processes.
-    \row \li Phonon
-         \li There is no standard audio backend, which could be integrated into Phonon.
-
     \endtable
 
     \section1 Build Instructions
@@ -185,8 +182,6 @@
          \li Not available - QNX doesn't support SYSV style system semaphores.
     \row \li QWS Multi Process
          \li QT_NO_QWS_MULTIPROCESS is always on due to missing shared memory support.
-    \row \li Phonon
-         \li There is no standard audio backend, which could be integrated into Phonon.
     \endtable
 
     \section1 Build Instructions
@@ -285,8 +280,6 @@
          \li Not available - INTEGRITY doesn't support SYSV style system semaphores.
     \row \li QWS Multi Process
          \li QT_NO_QWS_MULTIPROCESS is always on due to missing shared memory support.
-    \row \li Phonon
-         \li There is no standard audio backend.
     \row \li QtScript
          \li Not available - INTEGRITY's mmap() doesn't support allocating memory.
     \endtable

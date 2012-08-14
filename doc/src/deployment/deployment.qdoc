@@ -92,8 +92,6 @@
         \li \l {QtWebKit}
         \li \l {QtXml}
         \li \l {QtXmlPatterns}
-    \row
-        \li \l {Phonon Module}{Phonon}
     \endtable
 
     Since Qt is not a system library, it has to be redistributed along
@@ -157,13 +155,6 @@
     Please see \l{WebKit in Qt#License Information}{the QtWebKit module
     documentation} for more information.
 
-    \row    \li \l{Phonon Module}{Phonon}     \li Phonon
-    \li Phonon relies on the native multimedia engines on different platforms.
-    Phonon itself is licensed under the GNU LGPL version 2. Please see
-    \l{Phonon Module#License Information}{the Phonon module documentation}
-    for more information on licensing and the
-    \l{Phonon Overview#Backends}{Phonon Overview} for details of the backends
-    in use on different platforms.
     \endtable
 
     \section1 Platform-Specific Notes
@@ -1395,7 +1386,6 @@
     \li The Image format plugins are always deployed.
     \li SQL driver plugins are deployed if the application uses the QtSql module.
     \li Script plugins are deployed if the application uses the QtScript module.
-    \li The Phonon backend plugin is deployed if the application uses the \l{Phonon Module} {Phonon} module.
     \li The svg icon plugin is deployed if the application uses the QtSvg module.
     \li The accessibility plugin is always deployed.
     \endlist

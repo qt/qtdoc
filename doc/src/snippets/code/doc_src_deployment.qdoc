@@ -408,7 +408,6 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 //! [51a]
 install_name_tool -change /System/Library/Frameworks/CoreVideo.framework/
 Versions/A/CoreVideo /System/Library/Frameworks/QuartzCore.framework/
-Versions/A/QuartzCore libphonon_qt7.dylib 
 //! [51a]
 
 //! [51b]

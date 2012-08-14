@@ -627,8 +627,6 @@ in the \l{Qt for Windows CE Requirements} document.
         \li MinGW or \l{TDM-GCC} with g++ version 4.6 or higher (not supported for all modules).
     \endlist
 
-    Qt Phonon on Windows additionally requires the \l{Direct X SDK}.
-
     For the most up to date information about QtWebKit dependencies,
     please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{QtWebKit wiki for Windows}.
 
@@ -808,13 +806,13 @@ in the \l{Qt for Windows CE Requirements} document.
     programming. If you're new to the subject a good starting point is
     \l{http://www.opengl.org/}.
 
-    \section1 Phonon Dependencies
+    \section1 Multimedia Dependencies
 
-    As described in the \l{Phonon Overview}, Phonon uses the GStreamer multimedia
-    framework as the backend for audio and video playback on X11. The minimum required
+    As described in the \l{Multimedia Overview}, Qt Multimedia uses the GStreamer multimedia
+    framework as the backend for audio and video playback on Linux. The minimum required
     version of GStreamer is 0.10.
 
-    To build Phonon, you need the GStreamer library, base plugins, and development
+    To build Qt Multimedia, you need the GStreamer library, base plugins, and development
     files for your system. The package names for GStreamer vary between Linux
     distributions; try searching for \c gstreamer or \c libgstreamer in your
     distribution's package repository to find suitable packages.
@@ -833,7 +831,7 @@ in the \l{Qt for Windows CE Requirements} document.
         \li sqlite (development version)
         \li fontconfig (development version)
         \li xrender (development version)
-        \li phonon (development version)
+        \li gstreamer (development version)
     \endlist
 
     These should be available in most major Linux distributions, but the exact install instructions will vary.
@@ -1156,14 +1154,6 @@ in the \l{Qt for Windows CE Requirements} document.
     If the evaluation succeeds, the feature is included.
     \row   \li \c {-dbus-linked} \li Compile in D-Bus support and link to
     libdbus-1 \li
-    \row   \li \c {-no-phonon} \li Do not compile in the Phonon module \li
-    \row   \li \c {-phonon} \li Compile the Phonon module. \li Phonon is built if a
-    decent C++ compiler is used. This option denotes a default value and needs
-    to be evaluated. If the evaluation succeeds, the feature is included.
-    \row   \li \c {-no-phonon-backend} \li Do not compile the platform-specific
-    Phonon backend-plugin \li
-    \row   \li \c {-phonon-backend} \li Compile in the platform-specific Phonon
-    backend-plugin \li Default value.
     \row   \li \c {-no-multimedia} \li Do not compile the multimedia module \li
     \row   \li \c {-multimedia} \li Compile in multimedia module \li Default value.
     \row   \li \c {-no-audio-backend} \li Do not compile in the platform audio
@@ -1232,7 +1222,5 @@ in the \l{Qt for Windows CE Requirements} document.
     option denotes a default value and needs to be evaluated. If the evaluation
     succeeds, the feature is included.
     \row   \li \c {-signature <file>} \li Use file for signing the target project \li
-    \row   \li \c {-phonon-wince-ds9} \li Enable Phonon Direct Show 9 backend for
-    Windows CE \li Default value
     \endtable
 */
