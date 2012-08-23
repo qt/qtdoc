@@ -285,67 +285,81 @@
     across desktop, mobile and embedded operating systems without
     rewriting the source code.
 
-    \section1 Qt is Available for the Following Platforms
+    \section1 Development Platforms
 
-    \table
-    \header
-    \li {2,1} Qt Cross Platform Support
-    \header
-    \li {1,1} Desktop
-    \li {1,1} Mobile/Embedded
-    \row
-    \li \l{Support for Windows}{Windows}
-    \row
-    \li \l{Support for Linux/X11}{Linux/X11}
-    \row
-    \li \l{Support for Mac OS X}{Mac OS X}
-    \endtable
+    You can develop with Qt on the following platforms:
 
-    \section1 Supported Platform Details
+    \list
+        \li \l{Support for Windows}{Windows}
+        \li \l{Support for Linux/X11}{Linux/X11}
+        \li \l{Support for Mac OS X}{Mac OS X}
+    \endlist
 
     Qt is supported on a variety of 32-bit and 64-bit platforms, and can
     usually be built on each platform with GCC, a vendor-supplied compiler, or
     a third party compiler.
+    On all platforms, Open GL (ES) 2.0 is required.
 
-    \tableofcontents
+    \section1 Tested Configurations
 
-    Information about the specific platforms Qt runs on, and the compilers used
-    on each platform, can be found on the \l{Platform and Compiler Notes} page.
-
-    \section1 Tested Platforms
-
-    All Tested platforms are subjected to our unit test suite and other internal
-    testing tools on a frequent basis (prior to new version releases, source tree
-    branching, and at other significant period points in the development process).
-    Errors or bugs discovered in these platforms are prioritized for correction.
-    Significant errors discovered in Tested platforms can impact release dates.
+    A \e {tested configuration} is a combination of an operating system version,
+    a compiler version, and a graphics system. The following table lists the
+    configurations that are tested by the Qt Project:
 
     \table
     \header \li Platform
-                                     \li Compilers
-    \row    \li Ubuntu Linux 11.04 (32-bit)
+                                     \li Compiler
+    \row    \li Ubuntu Linux 10.04, X11 (32-bit)
                                      \li As provided by Ubuntu
-    \row    \li Ubuntu Linux 11.04 (64-bit)
+    \row    \li Ubuntu Linux 11.10, X11 (64-bit)
+                                     \li As provided by Ubuntu
+    \row    \li Ubuntu Linux 12.04, X11 (64-bit)
                                      \li As provided by Ubuntu
     \row    \li Microsoft Windows 7 (32-bit)
                                      \li MSVC 2010 SP1
-    \row    \li Microsoft Windows 7 (64-bit)
-                                     \li MSVC 2010 SP1
-    \row    \li Apple Mac OS X 10.6 "Snow Leopard" (32-bit)
-                                     \li Gcc as provided by Apple
-    \row    \li Apple Mac OS X 10.7 "Lion" (64-bit)
+    \row    \li Apple Mac OS X 10.6 "Snow Leopard", Cocoa (32-bit)
+                                     \li GCC as provided by Apple
+    \row    \li Apple Mac OS X 10.7 "Lion", Cocoa (64-bit)
                                      \li Clang as provided by Apple
     \endtable
 
-    All platforms not specifically listed above are not tested by the Qt Project. The
-    Qt Project does not run its unit test suite or perform any other internal tests on
-    platforms not listed above. However Qt may run on platforms other than those actively
-    tested on, and additional platforms may be raised to tested state, if sufficient
-    effort is made to get continuous integration in an acceptable state on that particular
-    platform.
+    All tested configurations are run on the continuous integration (CI) system
+    of the Qt Project. In addition, they are subjected to unit test suite and
+    other internal
+    testing tools on a frequent basis (prior to new version releases, source tree
+    branching, and at other significant period points in the development process).
+    Errors or bugs discovered in these platforms are prioritized for correction.
+    Significant errors discovered in tested configurations can impact release
+    dates.
+
+    Any configurations not specifically listed above are not tested by the Qt
+    Project. The Qt Project does not run its unit test suite or perform any
+    other internal tests on configurations not listed above. However, Qt may run
+    on configurations other than those actively tested on, and additional
+    configurations may be raised to tested state, if sufficient effort is made
+    to bring continuous integration to an acceptable state for that particular
+    configuration.
 
     There may be various open source projects, community users and/or Qt partners who
-    are able to provide assistance with platforms not listed above.
+    are able to provide assistance with configurations not listed above.
+
+    \section1 Availability of Binary Installation Packages
+
+    The Qt Project provides binary Qt installation packages for the following
+    platforms:
+
+    \list
+        \li Ubuntu Linux 11.10, X11 (32-bit and 64-bit)
+        \li Ubuntu Linux 12.04, X11 (32-bit and 64-bit)
+        \li Microsoft Windows 7 (32-bit and 64-bit), MSVC 2010 SP1
+        \li Apple Mac OS X 10.7 "Lion" (64-bit)
+    \endlist
+
+    To develop with Qt on other supported platforms, you need to build it from
+    source.
+
+    Fore more information about the platforms Qt runs on, and the compilers used
+    on each platform, see the \l{Platform and Compiler Notes} page.
 
     \section1 General Legal Disclaimer
 
