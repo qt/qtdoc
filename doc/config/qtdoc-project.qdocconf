@@ -65,9 +65,7 @@ sourcedirs              = $MODULE_SOURCE_TREE/src \
                           $MODULE_SOURCE_TREE/tools/qtestlib/src \
                           $MODULE_SOURCE_TREE/tools/qdbus
 
-excludedirs             = $MODULE_SOURCE_TREE/doc/src/snippets \
-                          $MODULE_SOURCE_TREE/doc/src/ja_JP \
-                          $MODULE_SOURCE_TREE/doc/src/zh_CN
+excludedirs             = $MODULE_SOURCE_TREE/doc/src/snippets
 
 sources.fileextensions  = "*.c++ *.cc *.cpp *.cxx *.mm *.qml *.qdoc"
 headers.fileextensions  = "*.ch *.h *.h++ *.hh *.hpp *.hxx"
