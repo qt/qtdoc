@@ -1,0 +1,61 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** GNU Free Documentation License
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.
+**
+** Other Usage
+** Alternatively, this file may be used in accordance with the terms
+** and conditions contained in a signed written agreement between you
+** and Nokia.
+**
+**
+**
+**
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page portingguide.html
+\title Porting Guidelines
+\brief Provides intructions to migrate your Qt 4 application to Qt 5.
+
+Qt 5 has undergone quite a few changes to make it more modular and easy to use. The following is a summary of the changes:
+\list
+   \li Modularized codebase means you only need Qt essentials and the add-on modules you're interested in, to develop an application. To know what makes the essentials
+       and add-on modules, refer to the \l {All Modules}{modules} page.
+   \li Platform-specific code for Symbian and Meego is removed from the codebase.
+   \li Widgets are now part of the separate Qt Widgets add-on module.
+   \li Qt Quick from Qt 4 is now part of a separate Qt Quick1 add-on module for compatibility purposes, and we recommend using the new Qt Quick (2.0) from now on
+       to avoid binary breaks in the future.
+\endlist
+
+The following step-by-step instructions takes you through the changes required to make the \c animatedtiles C++ application work on Qt 5:
+
+\list
+   \li Edit \c {main.cpp} and change the \c {#include <QtGui>} to \c {#include <QtWidgets>}.
+       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= qtgui} directive in the qmake project file.
+   \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the end of the file.
+   \li Run qmake and make utilities to build the binary.
+\endlist
+
+This creates the \c animatedtiles executable. Try running the executable to see if the application behaves as expected.
+
+\image animatedtiles_snapshot.png "A snapshot of the animatedtiles application running on Ubuntu"
+
+\section1 Related topics
+\list
+\li \l {http://qt-project.org/wiki/Qt-5-Beta}{Qt 5 Beta}
+\li \l {Porting QML Applications to Qt 5}
+\li \l {QML Examples and Demos}
+\endlist
+*/
