@@ -139,23 +139,23 @@
     Let us take a look at the code.
 
     \code
- 1        #include <QtGui>
+ 1        #include <QtWidgets>
  2
- 3        int main(int argv, char **args)
+ 3        int main(int argc, char *argv[])
  4        {
- 5            QApplication app(argv, args);
+ 5            QApplication app(argc, argv);
  6
- 7            QTextEdit textEdit;
- 8            QPushButton quitButton("Quit");
+ 7            QTextEdit *textEdit = new QTextEdit;
+ 8            QPushButton *quitButton = new QPushButton("&Quit");
  9
-10            QObject::connect(&quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
+10            QObject::connect(quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
 11
-12            QVBoxLayout layout;
-13            layout.addWidget(&textEdit);
-14            layout.addWidget(&quitButton);
+12            QVBoxLayout *layout = new QVBoxLayout;
+13            layout->addWidget(textEdit);
+14            layout->addWidget(quitButton);
 15
 16            QWidget window;
-17            window.setLayout(&layout);
+17            window.setLayout(layout);
 18
 19            window.show();
 20
@@ -163,7 +163,7 @@
 22        }
     \endcode
 
-    Line 1 includes QtGui, which contains all of Qt's GUI classes.
+    Line 1 includes QtWidgets, which contains all of Qt's widgets.
 
     Line 10 uses Qt's Signals and Slots mechanism to make the
     application exit when the \gui {Quit button} is pushed. A slot is
@@ -333,7 +333,7 @@
     Let us look at the new \c Notepad class definition.
 
     \code
- 2        #include <QtGui>
+ 2        #include <QtWidgets>
  3 
  4        class Notepad : public QMainWindow
  5        {
