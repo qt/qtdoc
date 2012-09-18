@@ -14,12 +14,13 @@ win32:!win32-g++* {
     unixstyle = true
 }
 
+NEWLINE = $$escape_expand(\\n\\t)
 $$unixstyle {
     SET =
     SEP =
 } else {
     SET = set
-    SEP = &&
+    SEP = $$NEWLINE
 }
 
 # The module names correspond to the names of files in qtbase/mkspecs/modules
@@ -104,15 +105,16 @@ MODULE_QCH_FILE = qch/$${MODULE}.qch
 MODULE_INDEX_FILE = html/$${MODULE}.index
 MODULE_INDEX_DEST = $$INDEX_DESTDIR/$${MODULE}.index
 
-COMMAND = $$LOCATIONS $$INCLUDES $$SET MODULE_SOURCE_TREE=$${QT.doc.sources}$$SEP $$SET MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources)$$SEP $$QDOC $$DOCS_GENERATION_DEFINES
+COMMAND_ENV = $$LOCATIONS $$INCLUDES $$SET MODULE_SOURCE_TREE=$${QT.doc.sources}$$SEP $$SET MODULE_BUILD_TREE=$$shadowed($$QT.doc.sources)$$SEP
+COMMAND = $$QDOC $$DOCS_GENERATION_DEFINES
 
 # Build rules:
 
-online_docs.commands = ($$COMMAND $$ONLINE_QDOCCONF)
+online_docs.commands = $$COMMAND_ENV $$COMMAND $$ONLINE_QDOCCONF
 
-dita_docs.commands = ($$COMMAND $$DITA_QDOCCONF)
+dita_docs.commands = $$COMMAND_ENV $$COMMAND $$DITA_QDOCCONF
 
-docs.commands = ($$COMMAND $$ONLINE_QDOCCONF)
+docs.commands = $$COMMAND_ENV $$COMMAND $$ONLINE_QDOCCONF
 
 # Install rules
 
@@ -140,7 +142,7 @@ isEmpty(GENERATOR) {
     QMAKE_EXTRA_TARGETS += qch_docs
     INSTALLS += qchdocs
 
-    docs.commands = ($$COMMAND $$OFFLINE_QDOCCONF && \
-                     $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE && \
-                     $$COMMAND $$ONLINE_QDOCCONF)
+    docs.commands = $$COMMAND_ENV $$COMMAND $$OFFLINE_QDOCCONF $$NEWLINE \
+                     $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE $$NEWLINE \
+                     $$COMMAND_ENV $$COMMAND $$ONLINE_QDOCCONF
 }
