@@ -77,7 +77,7 @@ QModelIndex LinearModel::index(int row, int column, const QModelIndex &parent) c
 {
     if (parent == QModelIndex() && row >= 0 && row < rowCount()
         && column == 0)
-        return createIndex(row, column, 0);
+        return createIndex(row, column);
     else
         return QModelIndex();
 }
