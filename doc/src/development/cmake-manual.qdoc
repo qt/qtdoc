@@ -164,20 +164,20 @@
 
     \table
     \header \li Macro \li Description
-    \row \li QT5_WRAP_CPP(outfiles inputfile ... OPTIONS ...)
+    \row \li qt5_wrap_cpp(outfiles inputfile ... OPTIONS ...)
          \li Create moc code from a list of files containing Qt class with
              the Q_OBJECT declaration.  Per-direcotry preprocessor definitions
              are also added.  Options may be given to moc, such as those found
              when executing "moc -help".
-    \row \li QT5_ADD_RESOURCES(outfiles inputfile ... OPTIONS ...)
+    \row \li qt5_add_resources(outfiles inputfile ... OPTIONS ...)
          \li Create code from a list of Qt resource files.
              Options may be given to rcc, such as those found
              when executing "rcc -help"
-    \row \li QT5_GENERATE_MOC(inputfile outputfile )
+    \row \li qt5_generate_moc(inputfile outputfile )
          \li Creates a rule to run moc on infile and create outfile.
              Use this if for some reason QT5_WRAP_CPP() isn't appropriate, e.g.
              because you need a custom filename for the moc file or something similar.
-    \row \li QT5_USE_MODULES(target [LINK_PUBLIC|LINK_PRIVATE] module ... )
+    \row \li qt5_use_modules(target [LINK_PUBLIC|LINK_PRIVATE] module ... )
          \li Indicates that the target uses the named Qt 5 modules. The target
              will be linked to the specified modules, use the include directories
              installed by those modules, use the COMPILE_DEFINITIONS set by those
@@ -197,7 +197,7 @@
 
     \table
     \header \li Macro \li Description
-    \row \li QT5_WRAP_UI(outfiles inputfile ... OPTIONS ...)
+    \row \li qt5_wrap_ui(outfiles inputfile ... OPTIONS ...)
          \li Create code from a list of Qt designer ui files.
              Options may be given to uic, such as those found
              when executing "uic -help"
@@ -209,17 +209,17 @@
 
     \table
     \header \li Macro \li Description
-    \row \li QT5_ADD_DBUS_INTERFACE(outfiles interface basename)
+    \row \li qt5_add_dbus_interface(outfiles interface basename)
          \li Create a the interface header and implementation files with the
              given basename from the given interface xml file and add it to
              the list of sources
 
-    \row \li QT5_ADD_DBUS_INTERFACES(outfiles inputfile ... )
+    \row \li qt5_add_dbus_interfaces(outfiles inputfile ... )
          \li Create the interface header and implementation files
              for all listed interface xml files
              the name will be automatically determined from the name of the xml file
 
-    \row \li QT5_ADD_DBUS_ADAPTOR(outfiles xmlfile parentheader parentclassname [basename] [classname])
+    \row \li qt5_add_dbus_adaptor(outfiles xmlfile parentheader parentclassname [basename] [classname])
          \li Create a dbus adaptor (header and implementation file) from the xml file
              describing the interface, and add it to the list of sources. The adaptor
              forwards the calls to a parent class, defined in parentheader and named
@@ -228,7 +228,7 @@
              If <classname> is provided, then it will be used as the classname of the
              adaptor itself.
 
-    \row \li QT5_GENERATE_DBUS_INTERFACE( header [interfacename] OPTIONS ...)
+    \row \li qt5_generate_dbus_interface( header [interfacename] OPTIONS ...)
          \li Generate the xml interface file from the given header.
              If the optional argument interfacename is omitted, the name of the
              interface file is constructed from the basename of the header with
@@ -242,7 +242,7 @@
 
     \table
     \header \li Macro \li Description
-    \row \li QT5_CREATE_TRANSLATION( qm_files directories ... sources ...
+    \row \li qt5_create_translation( qm_files directories ... sources ...
                                   ts_files ... OPTIONS ...)
          \li Out: qm_files
              In:  Directories sources ts_files
@@ -257,7 +257,7 @@
              always updated, or by adding a custom target to control when
              they get updated/generated.
 
-    \row \li QT5_ADD_TRANSLATION( qm_files ts_files ... )
+    \row \li qt5_add_translation( qm_files ts_files ... )
          \li Out: qm_files
              In:  ts_files
              Generates commands to create .qm from .ts - files. The generated
