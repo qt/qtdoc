@@ -1,0 +1,53 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page portingcppapp.html
+\title Porting C++ Applications to Qt 5
+\brief Provides instructions to migrate a Qt 4 C++ application to Qt 5.
+
+This topic talks about the Qt Widgets change and provides guidance to handle it.
+The following step-by-step instructions takes you through the changes required
+to port the \l{Animated Tiles Example}{Animated Tiles} C++ application to Qt 5:
+
+\list 1
+   \li Edit \c {main.cpp} and change the \c {#include <QtGui>} to \c {#include <QtWidgets>}.
+       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= qtgui} directive in the \c{qmake} project file.
+   \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the end of the file.
+   \li Run qmake and make utilities to build the binary.
+\endlist
+
+This creates the \c animatedtiles executable. Try running the executable to see if the application behaves as expected.
+
+\image animatedtiles_snapshot.png "A snapshot of the \c animatedtiles application running on Ubuntu v12.04"
+
+\section1 Related topics
+\list
+\li \l {API Changes}
+\li \l {Porting QML Applications to Qt 5}
+\li \l {QML Examples and Demos}
+\endlist
+*/
