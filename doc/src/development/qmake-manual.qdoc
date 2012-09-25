@@ -937,98 +937,6 @@
     This is discussed in more detail in the
     \l{Deploying an Application on Windows#Visual Studio 2005 Onwards}
     {deployment guide for Windows}.
-
-
-    \section1 Symbian Platform
-
-    Features specific to this platform include handling of static data,
-    capabilities, stack and heap size, compiler specific options, and unique
-    identifiers for the application or library.
-
-    \section2 Handling of Static Data
-
-    If the application uses any static data, the build system needs to be
-    informed about it. This is because Symbian tries to save memory if no
-    static data is in use.
-
-    To specify that static data support is desired, add this to the project file:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 129
-
-    The default value is zero.
-
-    \section2 Stack and Heap Size
-
-    The Symbian platform uses predefined sizes for stacks and heaps. If an
-    application exceeds either limit, it may crash or fail to complete its
-    task. Crashes that seem to have no reason can often be traced back to
-    insufficient stack and/or heap sizes.
-
-    The stack size has a maximum value, whereas the heap size has a
-    minimum and a maximum value, all specified in bytes. The minimum value
-    prevents the application from starting if that amount of memory is not available. The
-    minimum and maximum values are separated by a space. For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 130
-
-    The default values depend on the version of the Symbian SDK you're using,
-    however, the Qt toolchain sets this to the maximum possible value and this
-    should not be changed.
-
-    \section2 Compiler-Specific Options
-
-    General compiler options can as usual be set using \c QMAKE_CFLAGS and \c QMAKE_CXXFLAGS.
-    In order to set specific compiler options, \c QMAKE_CFLAGS.<compiler> and
-    \c QMAKE_CXXFLAGS.<compiler> can be used. \c <compiler> can be either \c CW for the WINSCW
-    architecture (emulator), or \c ARMCC for the ARMv5 architecture (hardware), or \c GCCE for
-    the ARMv5 architecture (hardware).
-
-    Here is an example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 131
-
-    \section2 Unique Identifiers
-
-    Symbian applications may have unique identifiers attached to them.
-    Here is how to define them in a project file:
-
-    There are four available types of IDs supported: \c UID2, \c UID3, \c SID, and \c VID. They
-    are specified like this:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 132
-
-    If \c SID is not specified, it defaults to the same value as \c UID3.
-    If \c UID3 is not specified, qmake will automatically generate a \c UID3
-    suitable for development and debugging. This value should be manually
-    specified for applications that are to be released. See the
-    \l{Symbian Signed} Web site for information about obtaining an official
-    UID. Both \c SID and \c VID default to empty values.
-
-    There exists one UID1 too, but this should not be touched by any application.
-
-    The UID2 has a specific value for different types of files; e.g. apps/exes
-    are always 0x100039CE. The toolchain will set this for value for the most common file types like,
-    EXE/APP and shared library DLL.
-
-    For more information about unique identifiers and their meaning for
-    Symbian applications, please refer to the \l{UID Q&As (Symbian Signed)}
-    page in the \l{Forum Nokia Wiki} for more information.
-
-    \section2 Capabilities
-
-    Capabilities define extra privileges for the application, such as the
-    ability to list all files on the file system. Capabilities are defined
-    in the project file like this:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 133
-
-    It is also possible to specify which capabilities \e not to have,
-    by first specifying \c ALL and then list the unwanted capabilities
-    with a minus in front of them, like this:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 134
-
-    For more information about capabilities, please refer to the Symbian SDK documentation.
 */
 
 /*!
@@ -1129,59 +1037,13 @@
     \c enable_backup \c CONFIG value for Maemo platform. The default value is:
     \c{$$_PRO_FILE_PWD_/backup_registration/maemo/$$basename(TARGET).conf}.
 
-    Unfortunately it is not possible to have a common registration file for Maemo like there is
-    for Symbian, so the developer must always provide one if the platform default backup support is
+    Unfortunately it is not possible to have a common registration file for Maemo,
+    so the developer must always provide one if the platform default backup support is
     not sufficient.
 
     For documentation about how to create backup registration files and how the device
     backup works in general, see:
     (\l{http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide/Generic_Platform_Components/Using_Backup_Application}{Using Backup Application})
-
-    \target BACKUP_REGISTRATION_FILE_SYMBIAN
-    \section1 BACKUP_REGISTRATION_FILE_SYMBIAN
-
-    \e {This is only used on the Symbian platform.}
-
-    This variable is used to specify the backup registration file to use with
-    \c enable_backup \c CONFIG value for Symbian platform. The default value is
-    determined as follows:
-
-    If a custom registration file \c{$$_PRO_FILE_PWD_/backup_registration/symbian/backup_registration.xml}
-    exists, it is used. Otherwise, the common registration file \c{$$[QT_INSTALL_DATA]/mkspecs/common/symbian/backup_registration.xml}
-    is used. This common registration file will define backing up of application binaries,
-    resources, and all files under application private directory. Also note that \c{C:/Data}
-    contents are backed up by default on Symbian devices, so no registration is needed for any
-    files found there.
-
-    For documentation about how to create backup registration files and how the device
-    backup works in general, see:
-    (\l{http://library.forum.nokia.com/index.jsp?topic=/S60_5th_Edition_Cpp_Developers_Library/GUID-35228542-8C95-4849-A73F-2B4F082F0C44/sdk/doc_source/guide/Connectivity-subsystem-guide/Connectivity/PC_Connectivity_How-To_Write_Backup_Aware_Software.html}{How-To Write Backup-aware Software})
-
-    \target BLD_INF_RULES
-    \section1 BLD_INF_RULES
-
-    \e {This is only used on the Symbian platform.}
-
-    Generic \c bld.inf file content can be specified with \c BLD_INF_RULES variables.
-    The section of \c bld.inf file where each rule goes is appended to
-    \c BLD_INF_RULES with a dot.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 152
-
-    This will add the specified statements to the \c prj_exports section of the
-    generated \c bld.inf file.
-
-    It is also possible to add multiple rows in a single block. Each double
-    quoted string will be placed on a new row in the generated \c bld.inf file.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 143
-
-    Any rules you define will be added after automatically generated
-    rules in each section.
 
     \target CONFIG
     \section1 CONFIG
@@ -1363,36 +1225,13 @@
     The build process for bundles is also influenced by
     the contents of the \l{#QMAKE_BUNDLE_DATA}{QMAKE_BUNDLE_DATA} variable.
 
-    These options only have an effect on the Symbian platform:
-
-    \table 95%
-    \header \li Option \li Description
-    \row \li stdbinary \li Builds an Open C binary (i.e. STDDLL, STDEXE, or STDLIB,
-         depending on the target binary type.)
-    \row \li no_icon \li Doesn't generate resources needed for displaying an icon
-         for executable in application menu (app only).
-    \row \li symbian_test \li Places mmp files and extension makefiles under
-         test sections in generated bld.inf instead of their regular sections.
-         Note that this only affects automatically generated bld.inf content;
-         the content added via \c BLD_INF_RULES variable is not affected.
-    \row \li localize_deployment \li Makes \c lupdate tool add fields for
-         application captions and package file names into generated \c{.ts}
-         files. Qmake generates properly localized \c{.loc} and \c{.pkg} files
-         based on available translations. Translation file name bodies must
-         end with underscore and the language code for deployment localization
-         to work. E.g. \c{myapp_en.ts}.
-         \b{Note:} All languages supported by Qt are not supported by Symbian,
-         so some \c{.ts} files may be ignored by qmake.
-    \endtable
-
-    These options only have an effect on Symbian and Maemo platforms:
+    These options only have an effect on Maemo platforms:
 
     \table 95%
     \header \li Option \li Description
     \row \li enable_backup \li Generates deployment for backup registration file
          to enable backing up the application during device backup.
          See \l{#BACKUP_REGISTRATION_FILE_MAEMO}{BACKUP_REGISTRATION_FILE_MAEMO}
-         and \l{#BACKUP_REGISTRATION_FILE_SYMBIAN}{BACKUP_REGISTRATION_FILE_SYMBIAN}
          for more information about backup.
     \endtable
 
@@ -1425,13 +1264,9 @@
     \target DEF_FILE
     \section1 DEF_FILE
 
-    \e {This is only used on Windows when using the \c app template,
-    and on Symbian when building a shared DLL}.
+    \e {This is only used on Windows when using the \c app template}.
 
-    Specifies a \c .def file to be included in the project. On Symbian
-    a directory may be specified instead, in which case the real files
-    will be located under the standard Symbian directories \c bwins and
-    \c eabi.
+    Specifies a \c .def file to be included in the project.
 
     \target DEPENDPATH
     \section1 DEPENDPATH
@@ -1443,7 +1278,7 @@
     \target DEPLOYMENT
     \section1 DEPLOYMENT
 
-    \e {This is only used on Windows CE and the Symbian platform.}
+    \e {This is only used on Windows CE platform.}
 
     Specifies which additional files will be deployed. Deployment means the
     transfer of files from the development system to the target device or
@@ -1461,8 +1296,7 @@
 
     The default deployment target path for Windows CE is
     \c{%CSIDL_PROGRAM_FILES%\target}, which usually gets expanded to
-    \c{\Program Files\target}. For the Symbian platform, the default target
-    is the application private directory on the drive it is installed to.
+    \c{\Program Files\target}.
 
     It is also possible to specify multiple \c sources to be deployed on
     target \c paths. In addition, different variables can be used for
@@ -1473,147 +1307,12 @@
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 29
 
     \note In Windows CE all linked Qt libraries will be deployed to the path
-    specified by \c{myFiles.path}. On Symbian platform all libraries and executables
-    will always be deployed to the \\sys\\bin of the installation drive.
-
-    Since the Symbian platform build system automatically moves binaries to certain
-    directories under the epoc32 directory, custom plugins, executables or
-    dynamically loadable libraries need special handling. When deploying
-    extra executables or dynamically loadable libraries, the target path
-    must specify \\sys\\bin. For plugins, the target path must specify the
-    location where the plugin stub will be deployed to (see the
-    \l{How to Create Qt Plugins} document for more information about plugins).
-    If the binary cannot be found from the indicated source path,
-    the directory Symbian build process moves the executables to is
-    searched, e.g. \\epoc32\\release\\armv5\\urel.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 128
-
-    On the Symbian platform, generic PKG file content can also be specified with this
-    variable. You can use either \c pkg_prerules or \c pkg_postrules to
-    pass raw data to PKG file. The strings in \c pkg_prerules are added before
-    package-body and \c pkg_postrules after. \c pkg_prerules is used for
-    defining vendor information, dependencies, custom package headers, and the
-    like, while \c pkg_postrules is used for custom file deployment and
-    embedded sis directives.
-    The strings defined in \c pkg_postrules or \c pkg_prerules are not parsed
-    by qmake, so they should be in a format understood by Symbian package
-    generation tools.
-    Please consult the Symbian platform documentation for correct syntax.
-
-    For example, to deploy DLL and add a new dependency:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 140
-
-    Please note that \c pkg_prerules can also replace default statements in
-    pkg file. If no pkg_prerules is defined, qmake makes sure that PKG file
-    syntax is correct and it contains all mandatory statements such as:
-
-    \list
-    \li languages, for example \BR
-        &EN,FR
-    \li package-header, for example \BR
-        #{"MyApp-EN", "MyApp-FR"}, (0x1000001F), 1, 2, 3, TYPE=SA
-    \li localized and unique vendor, for example \BR
-        %{"Vendor-EN", ..., "Vendor-FR"}
-        :"Unique vendor name"
-    \endlist
-
-    If you decide to override any of these statements, you need to pay
-    attention that also other statements stay valid. For example if you
-    override languages statement, you must override also package-header
-    statement and all other statements which are language specific.
-
-    On the Symbian platform, three separate PKG files are generated:
-
-    \list
-    \li <app>_template.pkg - For application SIS file. Rules suffix: \c{.main}
-    \li <app>_installer.pkg - For smart installer SIS file. Rules suffix: \c{.installer}
-    \li <app>_stub.pkg - For ROM stubs. Rules suffix: \c{.stub}
-    \endlist
-
-    \c pkg_prerules and \c pkg_postrules given without rules suffix will
-    intelligently apply to each of these files, but rules can also be
-    targeted to only one of above files by appending listed rules suffix
-    to the variable name:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 153
-
-    On the Symbian platform, the \c default_deployment item specifies
-    default platform and package dependencies. Those dependencies can be
-    selectively disabled if alternative dependencies need to be defined
-    - e.g. if a specific device is required to run the application or
-    more languages need to be supported by the package file. The supported
-    \c default_deployment rules that can be disabled are:
-
-    \list
-    \li pkg_depends_qt
-    \li pkg_depends_webkit
-    \li pkg_platform_dependencies
-    \endlist
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 141
-
-    On the Symbian platform, a default deployment is generated for all
-    application projects. You can modify the autogenerated default
-    deployment via following \c DEPLOYMENT variable values:
-
-    \list
-    \li default_bin_deployment - Application executable
-    \li default_resource_deployment - Application resources, including icon
-    \li default_reg_deployment - Application registration file
-    \endlist
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 154
-
-    This will entirely remove the default application deployment.
-
-    On the Symbian platform, you can specify file specific install options
-    with \c{.flags} modifier. Please consult the Symbian platform documentation
-    for supported options.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 155
-
-    This will show a message box that gives user an option to cancel the
-    installation and then automatically runs the application after
-    installation is complete.
-
-    \note Automatically running the applications after install may require signing
-    the package with better than self-signed certificate, depending on the phone model.
-    Additionally, some tools such as Runonphone may not work properly with sis
-    packages that automatically run the application upon install.
-
-    On the Symbian platform, the default package name and the default name that
-    appears in application menu is derived from the \c TARGET variable.
-    Often the default is not optimal for displaying to end user. To set a better
-    display name for these purposes, use \c{DEPLOYMENT.display_name} variable:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 156
-
-    On the Symbian platform, you can use \c{DEPLOYMENT.installer_header}
-    variable to generate smart installer wrapper for your application.
-    If you specify just UID of the installer package as the value, then
-    installer package name and version will be autogenerated:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 146
-
-    If autogenerated values are not suitable, you can also specify the sis
-    header yourself using this variable:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 147
+    specified by \c{myFiles.path}.
 
     \target DEPLOYMENT_PLUGIN
     \section1 DEPLOYMENT_PLUGIN
 
-    \e {This is only used on Windows CE and the Symbian platform.}
+    \e {This is only used on Windows CE platform.}
 
     This variable specifies the Qt plugins that will be deployed. All plugins
     available in Qt can be explicitly deployed to the device. See
@@ -1622,10 +1321,6 @@
     \note In Windows CE, No plugins will be deployed automatically.
     If the application depends on plugins, these plugins have to be specified
     manually.
-
-    \note On the Symbian platform, all plugins supported by this variable
-    will be deployed by default with Qt libraries, so generally using this
-    variable is not needed.
 
     For example:
 
@@ -1735,7 +1430,7 @@
     \target ICON
     \section1 ICON
 
-    This variable is used only in MAC and the Symbian platform to set the application icon.
+    This variable is used only on Mac OS to set the application icon.
     Please see \l{Setting the Application Icon}{the application icon documentation}
     for more information.
 
@@ -1806,8 +1501,8 @@
 
     This variable contains a list of libraries to be linked into the project.
     You can use the Unix \c -l (library) and -L (library path) flags and qmake
-    will do the correct thing with these libraries on Windows and the
-    Symbian platform (namely this means passing the full path of the library to
+    will do the correct thing with these libraries on Windows
+    (namely this means passing the full path of the library to
     the linker). The only limitation to this is the library must exist, for
     qmake to find which directory a \c -l lib lives in.
 
@@ -1827,15 +1522,6 @@
     instead of \c{libmathlib}. To avoid this ambiguity, we recommend that you
     explicitly specify the library to be used by including the \c{.lib}
     file name suffix.
-
-    \b{Note:} On the Symbian platform, the build system makes a
-    distinction between shared and
-    static libraries. In most cases, qmake will figure out which library you
-    are refering to, but in some cases you may have to specify it explicitly to
-    get the expected behavior. This typically happens if you are building a
-    library and using it in the same project. To specify that the library is
-    either shared or static, add a ".dll" or ".lib" suffix, respectively, to the
-    library name.
 
     By default, the list of libraries stored in \c LIBS is reduced to a list of
     unique names before it is used. To change this behavior, add the
@@ -1866,10 +1552,6 @@
     typically handled by \l{qmake Manual#qmake}{\c qmake} or
     \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
 
-    \b{Note:} On the Symbian platform, this variable is ignored.
-
-    \b{Note:} On the Symbian platform, this variable is ignored.
-
     \target MAKEFILE_GENERATOR
     \section1 MAKEFILE_GENERATOR
 
@@ -1877,44 +1559,6 @@
     when generating a Makefile.  The value of this variable is typically
     handled internally by \l{qmake Manual#qmake}{\c qmake} and rarely needs to
     be modified.
-
-    \target MMP_RULES
-    \section1 MMP_RULES
-
-    \e {This is only used on the Symbian platform.}
-
-    Generic MMP file content can be specified with this variable.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 137
-
-    This will add the specified statement to the end of the generated MMP file.
-
-    It is also possible to add multiple rows in a single block. Each double
-    quoted string will be placed on a new row in the generated MMP file.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 138
-
-    If you need to include a hash (\c{#}) character inside the
-    \c MMP_RULES statement, it can be done with the variable
-    \c LITERAL_HASH as follows:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 139
-
-    There is also a convenience function for adding conditional rules
-    called \c{addMMPRules}. Suppose you need certain functionality
-    to require different library depending on architecture. This
-    can be specified with \c{addMMPRules} as follows:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 148
-
-    \note You should not use this variable to add MMP statements that are
-    explicitly supported by their own variables, such as
-    \c TARGET.EPOCSTACKSIZE.
-    Doing so could result in duplicate statements in the MMP file.
 
     \target MOC_DIR
     \section1 MOC_DIR
@@ -2222,12 +1866,6 @@
     needs to be modified. The flags specific to debug and release modes can be
     adjusted by modifying the \c QMAKE_CXXFLAGS_DEBUG and
     \c QMAKE_CXXFLAGS_RELEASE variables, respectively.
-
-    \b{Note:} On the Symbian platform, this variable can be used to pass
-    architecture specific options to each compiler in the Symbian build system.
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 131
 
     For more information, see
     \l{qmake Platform Notes#Compiler specific options}{qmake Platform Notes}.
@@ -2798,7 +2436,7 @@
 
     \section1 QMAKE_LIBS_THREAD
 
-    \e {This is used on Unix and Symbian platforms only.}
+    \e {This is used on Unix platforms only.}
 
     This variable contains all libraries that need to be linked against when
     building a multi-threaded application.  The value of this variable is
@@ -3076,71 +2714,6 @@
     \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
     needs to be modified.
 
-    \target RSS_RULES
-    \section1 RSS_RULES
-
-    \e {This is only used on the Symbian platform.}
-
-    Generic RSS file content can be specified with this variable. The syntax is
-    similar to \c MMP_RULES and \c BLD_INF_RULES.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 144
-
-    This will add the specified statement to the end of the \c APP_REGISTRATION_INFO
-    resource struct in the generated registration resource file.
-    As an impact of this statement, the application will not be visible in application shell.
-
-    It is also possible to add multiple rows in a single block. Each double
-    quoted string will be placed on a new row in the registration resource file.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 145
-
-    This example will install the application to MyFolder in the Symbian
-    platform application shell. In addition it will make the application to
-    be launched in background.
-
-    For detailed list of possible \c APP_REGISTRATION_INFO statements, please refer to the
-    Symbian platform help.
-
-    \note You should not use \c RSS_RULES variable to set the following RSS statements:
-    \c app_file, \c localisable_resource_file, and \c localisable_resource_id.
-
-    These statements are internally handled by qmake.
-
-    There is a number of special modifiers you can attach to \c RSS_RULES to specify where
-    in the application registration file the rule will be written:
-
-    \table
-    \header \li Modifier \li Location of the rule
-    \row \li <no modifier>        \li Inside \c APP_REGISTRATION_INFO resource struct.
-    \row \li .header              \li Before \c APP_REGISTRATION_INFO resource struct.
-    \row \li .footer              \li After \c APP_REGISTRATION_INFO resource struct.
-    \row \li .service_list        \li Inside a \c SERVICE_INFO item in the \c service_list
-                                 of \c APP_REGISTRATION_INFO
-    \row \li .file_ownership_list \li Inside a \c FILE_OWNERSHIP_INFO item in the
-                                 \c file_ownership_list of \c APP_REGISTRATION_INFO
-    \row \li .datatype_list       \li Inside a \c DATATYPE item in the \c datatype_list of
-                                 \c APP_REGISTRATION_INFO
-    \endtable
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 151
-
-    This example will define service information for a fictional service that requires
-    an icon to be supplied via the \c opaque_data of the service information.
-
-    \target S60_VERSION
-    \section1 S60_VERSION
-
-    \e {This is only used on the Symbian platform.}
-
-    Contains the version number of the underlying S60 SDK; e.g. "5.0".
-
     \target SIGNATURE_FILE
     \section1 SIGNATURE_FILE
 
@@ -3201,8 +2774,6 @@
     \row \li .subdir     \li Use the specified subdirectory instead of \c SUBDIRS value.
     \row \li .file       \li Specify the subproject \c pro file explicitly. Cannot be
                         used in conjunction with \c .subdir modifier.
-    \row \li .condition  \li Specifies a \c bld.inf define that must be true for
-                        subproject to be built. Available only on Symbian platform.
     \row \li .depends    \li This subproject depends on specified subproject.
                         Available only on platforms that use makefiles.
     \row \li .makefile   \li The makefile of subproject.
@@ -3217,17 +2788,6 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 149
 
-    For example, define a subdirectory that is only build for emulator builds in Qt for Symbian:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 150
-
-    \target SYMBIAN_VERSION
-    \section1 SYMBIAN_VERSION
-
-    \e {This is only used on the Symbian platform.}
-
-    Contains the version number of the underlying Symbian SDK; e.g. "9.2" or "Symbian3".
-
     \target TARGET
     \section1 TARGET
 
@@ -3239,104 +2799,6 @@
 
     The project file above would produce an executable named \c myapp on
     unix and 'myapp.exe' on windows.
-
-    \target TARGET.CAPABILITY
-    \section1 TARGET.CAPABILITY
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies which platform capabilities the application should have. These
-    include the following basic capabilities, but others are also available
-    for signed applications.
-
-    \table
-    \header \li Capability   \li Description
-    \row \li LocalServices   \li The ability to use local services running on the
-                               phone or device, including those which provide
-                               local connectivity to other devices.
-    \row \li Location        \li Access to the service that provides information
-                               about the user's location, from GPS, phone
-                               network, or other sources.
-    \row \li NetworkServices \li Use of services that access the phone network,
-                               such as dialling a phone number, sending an SMS,
-                               or other operations that result in network
-                               traffic.
-    \row \li ReadUserData    \li Access to the user's private data, such as
-                               contact information.
-    \row \li UserEnvironment \li The ability to use services that provide from the
-                               user's physical environment, such as the camera or
-                               microphone.
-    \row \li WriteUserData   \li The ability to write or modify the user's private
-                               data.
-    \endtable
-
-    For more information, and a comprehensive list of capabilities, please refer
-    to the Symbian SDK documentation or the \l{Symbian Capabilities} page of
-    the \l{Forum Nokia Wiki}.
-
-    \target TARGET.EPOCALLOWDLLDATA
-    \section1 TARGET.EPOCALLOWDLLDATA
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies whether static data should be allowed in the application. Symbian
-    disallows this by default in order to save memory. To use it, set this to 1.
-
-    \target TARGET.EPOCHEAPSIZE
-    \section1 TARGET.EPOCHEAPSIZE
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies the minimum and maximum heap size of the application. The program
-    will refuse to run if the minimum size is not available when it starts. For
-    example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 135
-
-    \target TARGET.EPOCSTACKSIZE
-    \section1 TARGET.EPOCSTACKSIZE
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies the maximum stack size of the application. For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 136
-
-    \target TARGET.SID
-    \section1 TARGET.SID
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies which secure identifier to use for the target application or
-    library. For more information, see the Symbian SDK documentation.
-
-    \target TARGET.UID2
-    \section1 TARGET.UID2
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies which unique identifier 2 to use for the target application or
-    library. If this variable is not specified, it defaults to the same value
-    as TARGET.UID3. For more information, see the Symbian SDK documentation.
-
-    \target TARGET.UID3
-    \section1 TARGET.UID3
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies which unique identifier 3 to use for the target application or
-    library. If this variable is not specified, a UID3 suitable for development
-    and debugging will be generated automatically. However, applications being
-    released should always define this variable. For more information, see the
-    Symbian SDK documentation.
-
-    \target TARGET.VID
-    \section1 TARGET.VID
-
-    \e {This is only used on the Symbian platform.}
-
-    Specifies which vendor identifier to use for the target application or
-    library. For more information, see the Symbian SDK documentation.
 
     \section1 TARGET_EXT
 
@@ -4240,11 +3702,6 @@
         \li Indicates that the output should not be added to the list of objects to be linked in.
     \endtable
 
-    \note Symbian platform specific: Generating objects to be linked in is
-    not supported on the Symbian platform, so either the \c CONFIG option
-    \c no_link or variable \c variable_out should always be defined for
-    extra compilers.
-
 */
 
 /*!
@@ -4436,8 +3893,6 @@
 
     You can test for any other platform-compiler combination as long as a
     specification exists for it in the \c mkspecs directory.
-
-    The scope \c unix is true for the Symbian platform.
 
     \section1 Variables
 
