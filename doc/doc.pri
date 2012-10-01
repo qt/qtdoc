@@ -132,7 +132,7 @@ INSTALLS += htmldocs docimages
 isEmpty(GENERATOR) {
     message("qhelpgenerator is not available. Documentation for use with Qt Assistant and Qt Creator cannot be generated.")
 } else {
-    qch_docs.commands = ($$COMMAND $$OFFLINE_QDOCCONF && \
+    qch_docs.commands = ( $$COMMAND_ENV $$COMMAND $$OFFLINE_QDOCCONF && \
                          $$GENERATOR -platform minimal $$QHP_FILE -o $$QCH_FILE)
 
     qchdocs.files = qch
