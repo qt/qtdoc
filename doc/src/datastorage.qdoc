@@ -30,17 +30,103 @@
 \title Data Structure and Storage
 \brief Qt's data and storage features
 
-A page describing the data storage options in Qt 5. This page includes links to the overviews from various repositories and modules.
+### A brief introduction to the concept of storing data leading into the overview
+of different ways this can be achieved in Qt.
 
-A list of sections in this topic page (with links to the feature overviews):
+\section1 Container Classes
+
+Qt provides a set of general purpose, template-based container classes that can be used to
+store data in memory. For most purposes, QList will be the best choice, but Qt also provides
+other data structures which might be more appropriate for a given use case due to performance
+characteristics or API. See the full list of \l {container classes} for more details.
+
+\section1 Saving and Loading Data
+
+### Talk about using the disk to store data and point to documentation for QIODevice, QFile,
+QTextStream, QDataStream, as well addressing the fact that disk access API is not available
+by default in QML, but that you can easily create a C++ extension which suits your needs.
+
+In addition, make sure the following pages are reachable via links from this section:
+
 \list
-\li Containers
-\li Saving and Loading Data (maybe about QIODevice, QTextStream, QDataStream and QFile)
-\li XML
-\li SQL and related database APIs
-\li JavaScript Storage (available from Qt WebKit and Qt Quick)
-\li QSettings
-\li JSON
-\li Qt resources?
+\li \l {Input/Output and Networking} (list of I/O related classes)
+\li \l {Serializing Qt Data Types}
 \endlist
+
+\section1 SQL support in Qt
+
+### Talk about databases and SQL support in Qt, with backend drivers such as MySQL for
+full database support or SQLite for local storage. Mention that this integrates with Model/View
+classes, QWidgets and can also be used in QML.
+
+Make sure the following pages are linked from this section, either indirectly or directly:
+
+\list
+\li \l {SQL in Qt}
+\li \l {Qt SQL}
+\li \l {Qt SQL Module - C++ Classes}
+\li \l {Connecting to Databases}
+\li \l {SQL Database Drivers}
+\li \l {Creating Data-Aware Forms}
+\li \l {Using the SQL Model Classes}
+\li \l {Presenting Data in a Table View}
+\li \l {SQL Programming}
+\li \l {Executing SQL Statements}
+\li \l {Data Types for Qt-supported Database Systems}
+\li \l {QML Module QtQuick.LocalStorage 2.0}
+\endlist
+
+\section1 XML Support in Qt
+
+### Talk briefly about XML as a storage format and mention main classes QXMLStreamReader and
+QXMLStreamWriter, as well as XML usage in QML.
+
+In addition, make sure the following pages are reachable from this section, either directly
+or indirectly:
+
+\list
+\li \l {An Introduction to Namespaces}
+\li \l {Working with the DOM tree}
+\li \l {XML Processing}
+\li \l {XQuery}
+\li \l {The SAX Interface}
+\li \l {XML Streaming}
+\li \l {XML Classes}
+\li \l {A Short Path to XQuery}
+\li \l {QML Module QtQuick.XmlListModel 2.0}
+\endlist
+
+\section1 JSON in Qt
+
+### Talk briefly about JSON as a storage format. Make sure the following page is reachable from
+this section:
+
+\list
+\li \l {JSON Support in Qt}
+\endlist
+
+\section1 JavaScript Storage
+
+### Discuss the use of JavaScript storage in Webkit and QML with links to the relevant pages
+under both of those technologies.
+
+\section1 QSettings
+
+### Talk about using QSettings for storing user preferences and small amounts of data in
+a cross-platform manner.
+
+\section1 Resources
+
+### Talk about using Qt Resources to store data that is used by your application. Mention that
+the resources can be embedded in the executable (for smaller resources) or in a separate binary
+file. Mention the benefit that the resources can be accessed by the application as if they were
+part of a regular file system with relative paths etc. and that this file system also becomes
+available to QML with the qrc: url scheme.
+
+Make sure the following page is linked from this section:
+
+\list
+\li \l {The Qt Resource System}
+\endlist
+
 */
