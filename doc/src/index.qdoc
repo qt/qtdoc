@@ -26,128 +26,84 @@
 ****************************************************************************/
 
 /*!
-\page index.html
+\page index-mockup.html
 \keyword Qt Reference Documentation
 
 \div {class="indexbox tools"}
     \div {class="indexboxcont indexboxbar"}
         \div {class="sectionlist normallist"}
             \div {class="heading"}
-                What is Qt
+                Introduction Section
             \enddiv
-            \list
-            \li \l{Qt Features Overview}
-            \li \l{How to Learn Qt}
-            \li \l{QML Application Developer Resources}{Introduction to Qt Quick and QML}
-            \li \l{Qt WebKit}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Tools
-            \enddiv
-            \list
-            \li \l{external: Qt SDK Manual}{Qt SDK}
-            \li \l{Qt Creator Whitepaper}{Qt Creator}
-            \li \l{external: Qt Simulator Manual}{Qt Simulator}
-            \li \l{Supported Platforms}{Platform Support}
-            \li \l{What's New in Qt 5}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Using Qt
-            \enddiv
-            \list
-            \li \l{Qt Demonstrations}{Qt Apps}
-            \li \l{Tutorials}{Step-by-Step Tutorials}
-            \li \l{Qt Examples}{About Qt Examples}
-            \li \l{Qt Quick Code Samples}{QML Examples and Demos}
-            \endlist
-        \enddiv
-    \enddiv
-\enddiv
-\div {class="indexbox tools"}
-    \div {class="indexboxcont indexboxbar"}
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Develop with Qt
-            \enddiv
-            \list
-            \li \l{Develop with Qt}{Programming with Qt}
-            \li \l{qt-creator-configure-target}{Setting up Qt and Creator}
-            \li \l{Qt and Key Technologies}{Qt Features and Technologies}
-            \li \l{qt-utilities}{Utilities and Testing}
-            \endlist
-            \list
-            \li \l{Getting Started Guides}{Qt Programming Tutorials}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                UI Creation with Qt
-            \enddiv
+            <Insert a product description of Qt.>
 
             \list
-            \li \l{qt-ui-creation}{Create UI with Qt}
-            \li \l{qt-rendering-painting-system}{Qt's Rendering and Painting Systems}
-            \li \l{QML Application Developer Resources}{Fluid UIs with Qt Quick}
-            \li \l{Widgets and Layouts}{C++ Widgets and Layouts}
-            \li \l{external: Designer in Creator}{UI Design with Creator}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Featured Articles
-            \enddiv
-            \list
-            \li \l{Getting Started Programming with QML}{Getting Started with QML}
-            \li \l{Scalability}{Scalable Applications}
-            \endlist
-        \enddiv
-    \enddiv
-\enddiv
-\div {class="indexbox tools"}
-    \div {class="heading"}
-        Reference
-    \enddiv
-    \div {class="indexboxcont indexboxbar"}
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Qt C++ API
-            \enddiv
-            \list
-            \li \l{All Classes}{All Classes}
-            \li \l{All Functions}{All Functions}
-            \li \l{All Classes by Module}{All Classes by Module}
-            \li \l{All Namespaces}{All Namespaces}
-            \li \l{Global Qt Declarations}{Global Declarations}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                QML API
-            \enddiv
-            \list
-            \li \l{QML Types Provided By Qt Quick}{Qt Quick Types}
-            \li \l{All QML APIs by Module}
-            \endlist
-            \list
+            \li What is Qt
+            \li \l{What's New in Qt 5}
+            \li Getting Started
             \li \l{Qt Licenses and Credits}
             \endlist
         \enddiv
+    \enddiv
+\enddiv
+\div {class="indexbox tools"}
+    \div {class="indexboxcont indexboxbar"}
         \div {class="sectionlist normallist"}
             \div {class="heading"}
-                Qt Tool Manuals
+                Overviews
             \enddiv
             \list
-            \li \l{external: Qt Creator Manual}{Qt Creator}
-            \li \l{external: Qt Simulator Manual}{Qt Simulator}
-            \li \l{linguist-manual.html}{Qt Linguist}
-            \li \l{assistant-manual.html}{Qt Assistant}
-            \li \l{Qt Designer Manual}{Qt Designer}
-            \li \l{qmake Manual}{qmake}
+            \li \l{Development Tools}
+            \li \l{User Interfaces}
+            \li \l{Core fundamentals}
+            \li \l{Data Structure and Storage}
+            \li \l{Multimedia}
+            \li \l{Networking and Connectivity}
             \endlist
+            \list
+            \li \l{Qt Topics}{All Qt Topics}
+            \endlist
+        \enddiv
+        \div {class="sectionlist normallist"}
+            \div {class="heading"}
+                Code Samples
+            \enddiv
+            \div {class="indexboxcont indexboxbar"}
+                \list
+                \li \l{Qt Examples}{C++ Code Samples}
+                \li \l{Tutorials}
+                \li \l{Qt Quick Code Samples}
+                \endlist
+            \enddiv
+        \enddiv
+        \div {class="sectionlist normallist"}
+            \div {class="heading"}
+                Reference
+            \enddiv
+            \div {class="indexboxcont indexboxbar"}
+                \b{Qt C++ API}
+                \list
+                \li \l{All Classes}{All Classes}
+                \li \l{All Functions}{All Functions}
+                \li \l{All Classes by Module}{All Classes by Module}
+                \li \l{All Namespaces}{All Namespaces}
+                \li \l{Global Qt Declarations}{Global Declarations}
+                \endlist
+                \b{QML API}
+                \list
+                \li \l{QML Types Provided By Qt Quick}{Qt Quick Types}
+                \li \l{All QML APIs by Module}
+                \endlist
+                \b{Qt Tool Manuals}
+                \list
+                \li \l{external: Qt Creator Manual}{Qt Creator}
+                \li \l{external: Qt Simulator Manual}{Qt Simulator}
+                \li \l{linguist-manual.html}{Qt Linguist}
+                \li \l{assistant-manual.html}{Qt Assistant}
+                \li \l{Qt Designer Manual}{Qt Designer}
+                \li \l{qmake Manual}{qmake}
+                \endlist
+            \enddiv
         \enddiv
     \enddiv
 \enddiv
