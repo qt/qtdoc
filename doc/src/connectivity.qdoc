@@ -30,16 +30,76 @@
 \title Networking and Connectivity
 \brief Qt's network and connectivity features
 
-A page describing the connectivity and networking offering in Qt 5. This can
+### Give a brief overview of the connectivity and networking offering in Qt 5. This can
 mean communication between the same application, inside the application, to the
 operating system, or through the internet or bluetooth.
 
-A list of sections in this topic page (with links to the feature overviews):
+Make sure the following links are reachable from this section, either directly or indirectly:
+
 \list
-\li TCP/IP
-\li Bluetooth
-\li Bearer Management
-\li QNetworkAccessManager
-\li Network transparency in QML
-\li WebKit?
+\li \l {Qt Network}
+\endlist
+
+\section1 Network Communication
+
+### Talk about the TCP/IP support in Qt with focus on QNetworkAccessManager and low-level classes
+such as QTCPSocket, QUDPSocket and QTCPServer. Mention support for SSL. Mention network
+transparency in QML.
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Network Programming API}
+\li \l {Network Programming with Qt}
+\li \l {Qt Network - C++ Classes}
+\li \l {Secure Sockets Layer (SSL) Classes}
+\li \l {Resource Loading and Network Transparency}
+\endlist
+
+\section1 Bearer Management
+
+### Introduction to Bearer management and a link to the overview page:
+
+\list
+\li \l {Bearer Management}
+\endlist
+
+\section1 World Wide Web Support
+
+### Briefly discuss using WebKit in QML or with QtWidgets to display web information in an
+application with links to the relevant overview pages.
+
+\section1 Inter-Process Communication
+
+### Introduction to the different ways of doing IPC in Qt: DBUS, QProcess, QSharedMemory, TCP.
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Using QtDBus Adaptors}
+\li \l {QtDBus module}
+\li \l {D-Bus}
+\li \l {Inter-Process Communication in Qt}
+\li \l {Declaring Signals in D-Bus Adaptors}
+\li \l {Declaring Slots in D-Bus Adaptors}
+\li \l {QDBus Namespace}
+\li \l {The QtDBus Type System}
+\li \l {D-Bus Viewer}
+\li \l {QtDBus XML Compiler (qdbusxml2cpp)}
+\endlist
+
+\section1 Bluetooth Communication
+
+### Introduction to bluetooth support in Qt.
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Qt Bluetooth C++ API}
+\li \l {Qt Bluetooth QML API}
+\li \l {Qt Bluetooth}
+\li \l {Qt Bluetooth Overview}
+\li \l {QBluetooth Namespace}
+\endlist
+
 */
