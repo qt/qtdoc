@@ -28,12 +28,77 @@
 /*!
 \page topics-app-development.html
 \title Development Tools
-\brief Qt's tools for application development
+    \brief Qt tools for application development.
 
-\list
-\li SDK
-\li Creator
-\li Linguist
-\li Qmake
-\endlist
+    Qt is designed for developing applications and user interfaces once and
+    deploying them across several desktop and mobile operating systems.
+
+    The easiest way to start Qt development is to install the Qt Software
+    Development Kit (SDK). It contains Qt APIs, examples, documentation, and
+    the necessary development tools, such as the
+    \l{http://doc.qt.digia.com/qtcreator-2.5/index.html}{Qt Creator}
+    integrated development environment (IDE).
+
+    Qt Creator provides you with tools for accomplishing your tasks throughout
+    the whole application development life-cycle, from creating a project to
+    deploying the application on the target platforms. Qt Creator automates some
+    tasks, such as creating projects, by providing wizards that guide you
+    step-by-step through the project creation process, create the necessary
+    files, and specify settings depending on the choices you make. Also, it
+    speeds up some tasks, such as writing code, by offering semantic
+    highlighting, checking code syntax, code completion, refactoring actions,
+    and other useful features.
+
+    \image qt-creator-gs.png
+
+    The following Qt tools are integrated into Qt Creator:
+
+    \list
+        \li \l{Qt Designer Manual}{Qt Designer} for designing and building
+            graphical user interfaces (GUIs) from Qt widgets. You can compose
+            and customize your widgets or dialogs in a visual editor, and
+            test them using different styles and resolutions. You can access
+            Qt Designer from Qt Creator in the Design mode (1).
+        \li \l{qmake Manual}{qmake} for building applications for different
+            target platforms. You can also use other build automation tools,
+            such as \l{CMake Manual}{CMake} or Autotools. You can run qmake and
+            CMake from Qt Creator to build applications. You specify the build
+            system in the Projects mode (2).
+        \li \l{Qt Linguist Manual}{Qt Linguist} for localizing applications.
+            Qt Linguist contains tools for the roles typically involved in
+            localizing applications: developers, translators, and release
+            managers. You can run the lupdate and lrelease tools from the
+            Qt Creator Tools menu.
+        \li \l{Qt Assistant Manual}{Qt Assistant} for viewing Qt documentation.
+            You can also view documentation in Qt Creator. The documentation
+            installed with the Qt SDK is displayed automatically in the Help
+            mode (3), and you can add documents to the list.
+    \endlist
+
+    In addition, you can use the tools listed in the following table.
+
+    \table
+    \header \li Tool \li Description
+    \row \li \l{The Virtual Framebuffer}{qvfb}
+         \li Run and test embedded applications on the desktop.
+    \row \li \l{makeqpf}
+         \li Create pre-rendered fonts for embedded devices.
+    \row \li \l{moc}{Meta-Object Compiler (moc)}
+         \li Generate meta-object information for QObject subclasses.
+    \row \li \l{User Interface Compiler (uic)}
+         \li Generate C++ code from user interface files.
+    \row \li \l{Resource Compiler (rcc)}
+         \li Embed resources into Qt applications during the build process.
+    \row \li \l{Configuring Qt}{Configuring Qt (qtconfig)}
+         \li X11-based Qt configuration tool with online help.
+    \row \li \l{Fine-Tuning Features in Qt}{Configuring Qt Embedded (qconfig)}
+         \li Qt Embedded (Linux and Windows CE) configuration tool.
+    \row \li \l{Examples and Demos Launcher}
+         \li A launcher for Qt's Examples and Demonstration programs.
+    \row \li \l{QtDBus XML compiler (qdbusxml2cpp)}
+         \li A tool to convert D-Bus interface descriptions to C++ source code.
+    \row \li \l{D-Bus Viewer}
+         \li A tool to introspect D-Bus objects and messages.
+    \endtable
+
 */
