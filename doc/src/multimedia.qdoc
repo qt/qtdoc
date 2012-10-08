@@ -30,18 +30,76 @@
 \title Multimedia
 \brief Qt's multimedia features
 
-A page describing the multimedia story in Qt 5. This page includes links to the overviews from various repositories and modules.
+### Give a brief overview of the multimedia offering in Qt 5.
 
-A list of sections in this topic page (with links to the feature overviews):
+Make sure the following links are reachable from this section, either directly or indirectly:
+
 \list
-\li Backend/engine
-\li Supported platforms, media, codecs, and so on.
-\li Audio API
-\li Video API
-\li Camera API
-\li Radio API
-\li Printing API?
+\li \l {Qt Multimedia}
+\li \l {Qt Multimedia QML API}
+\li \l {Qt Multimedia - C++ Classes}
+\li \l {Qt Multimedia - QML Types}
+\li \l {QtMultimedia Namespace}
+\li \l {QtMultimedia::MetaData Namespace}
+\li \l {Changes in Qt Multimedia}
 \endlist
 
-Candidate: Qt Multimedia Overview (Maybe renamed to "Multimedia in Qt"?)
+The \l {Qt Multimedia Overview} already contains some overview, maybe it can be
+merged into this page (alternatively it should be linked to).
+
+\section1 Backend/engine
+### Talk about how the multimedia backend/engine works
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Multimedia Backend Development}
+\endlist
+
+\section1 Supported platforms, media, codecs, and so on.
+### Talk about platform support and which media / codecs Qt multimedia supports
+
+Not sure there is any existing document about this. Consider leaving this section out for now.
+
+\section1 Audio API
+### Talk about the audio multimedia support in Qt
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Positional Audio}
+\li \l {Audio Overview}
+\li \l {QAudio Namespace}
+\endlist
+
+\section1 Video API
+### Talk about the video multimedia support in Qt
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Video Overview}
+\endlist
+
+\section1 Camera API
+### Talk about the camera multimedia support in Qt
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Camera Overview}
+\endlist
+
+\section1 Radio API
+### Talk about the radio multimedia support in Qt
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Radio Overview}
+\endlist
+
+\section1 Printing?
+### Provide some link to printing overview documentation in case someone
+stumbles in here looking for that
 */
