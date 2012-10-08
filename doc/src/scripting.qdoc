@@ -26,27 +26,34 @@
 ****************************************************************************/
 
 /*!
-\page overviews-main.html
-\title Qt Overviews
-\brief Qt development topics
+\page topics-scripting.html
+\title Scripting
+\brief Qt's scripting features
 
-<insert introduction>
+A page describing the scripting story in Qt 5. This page covers how to add
+scripting capabilities into C++ and QML applications.
 
+Possible sections:
 \list
-\li \l{Development Tools}
-\li \l{User Interfaces}
-\li \l{Core fundamentals}
-\li \l{Data Structure and Storage}
-\li \l{Multimedia}
-\li \l{Networking and Connectivity}
+\li the main classes involved into embedding scripts
+\li JavaScript introduction (in the context of Qt)
+\li where JavaScript may be used in C++ applications
+\li where JavaScript may be used in QML applications
+\endlist
+This page includes links to the overviews from various repositories and modules.
+
+A list of pages or topics that should be reachable from this page, directly or
+indirectly:
+\list
+\li \l{ECMAScript Reference}
+\li \l{Making Applications Scriptable}
 \endlist
 
+Other things that may need to be mentioned:
 \list
-\li Graphics
-\li \l Scripting
-\li Web applications
-\li \l {Testing and Debugging}
-\li Add-ons (Contacts, Sensors, Location, Qt 3D etc)
-\li Porting guide from Qt 4?
+\li JSON syntax (also part of data storage)
+\li Scripting in QML applications (\l{Use Case - Integrating JavaScript in QML})
+\li \l QtScript
+\li \l{Qt Script C++ Classes}
 \endlist
 */
