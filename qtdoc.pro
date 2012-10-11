@@ -15,9 +15,7 @@ qch_docs.CONFIG = recursive
 qch_docs.recurse_target = qch_docs
 qch_docs.recurse = doc
 
-docs.CONFIG = recursive
-docs.recurse_target = docs
-docs.recurse = doc
+docs.commands = @echo $$shell_quote(Please use specific targets for monolithic docs (online_docs, dita_docs, qch_docs))
 
 QMAKE_EXTRA_TARGETS += online_docs qch_docs docs dita_docs
 
