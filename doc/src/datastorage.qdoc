@@ -53,11 +53,63 @@ In addition, make sure the following pages are reachable via links from this sec
 
 \section1 SQL support in Qt
 
-### Talk about databases and SQL support in Qt, with backend drivers such as MySQL for
-full database support or SQLite for local storage. Mention that this integrates with Model/View
-classes, QWidgets and can also be used in QML.
+The \l {Qt SQL} module uses driver plugins to communicate with several database
+APIs. Qt has drivers for SQLite, MYSQL, DB2, Borland InterBase, Oracle, ODBC,
+and PostgreSQL. It is also possible to develop your own driver if Qt is not
+providing the driver needed.
 
-Make sure the following pages are linked from this section, either indirectly or directly:
+Qt's SQL classes can be divided in 3 layers:
+\table
+    \header
+        \li Layer
+        \li Purpose
+        \li Example class
+    \row
+        \li
+            \list
+               \li Driver layer
+               \li SQL API layer
+               \li User Interface layer
+            \endlist
+        \li
+            \list
+               \li Low-level communication between database and the SQL API layer
+               \li Provide access to databases
+               \li Link data from a database to data-aware widgets
+            \endlist
+        \li
+            \list
+               \li QSqlDriver, QSqlDriverCreator
+               \li QSqlDatabase, QSqlQuery
+               \li QSqlQueryModel (read-only), QSqlTableModel (read-write), QSqlRelationalTableModel (read-write with foreign-key support)
+            \endlist
+\endtable
+
+QSqlQueryModel, QSqlTableModel and QSqlRelationalTableModel can be used as a
+datasource for Qt's classes for viewing data. QSqlTableModel and QtSqlRelational-
+TableModel provide editable models for use with Qt's item views. QSqlTableModel
+has read/write access to a single table. QSqlRelationalTableModel has read/write
+access to the main table, not to the table where the foreign key comes from.
+
+With the MYSQL driver, it is possible to connect to a MYSQL server. In order to
+build the QMYSQL Plugin for Unix or Mac OS X, you need the MYSQL header files
+and as well as the shared library libmysqlclient.so. To compile the plugin
+for Windows, you need to get the MYSQL installation files and to run SETUP.EXE.
+
+If you use the embedded MYSQL Server, you do not need a MYSQL server in order
+to use that database system. In order to do so, you need to link the Qt plugin
+to libmysqld instead of libmysqlclient.
+
+The Qt SQLite plugin is very suitable for local storage. SQLite is a relational
+database management system contained in a small (~350 KiB) C library.
+In contrast to other database management systems, SQLite is not a separate process
+that is accessed from the client application, but an integral part of it. SQLite
+operates on a single file, which must be set as the database name when opening
+a connection. If the file does not exist, SQLite will try to create it.
+
+SQLite has some restrictions regarding multiple users and multiple transactions.
+If you are reading or writing on a file from different transactions, your appli-
+cation might freeze until one transaction commits or rolls back.
 
 \list
 \li \l {SQL in Qt}
