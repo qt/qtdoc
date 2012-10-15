@@ -1,2 +1,49 @@
-include(qtdoc-project.qdocconf)
-include(qt-html-templates.qdocconf)
+include($QT_INSTALL_DOCS/global/qt-html-templates-offline.qdocconf)
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+include(compat.qdocconf)
+include(macros.qdocconf)
+
+project         = qtdoc
+description     = Qt Reference Documentation
+url             = http://qt-project.org/doc/qt-5.0/
+version         = 5.0.0
+
+depends += \
+    qt3d \
+    qtbluetooth \
+    qtconcurrent \
+    qtcontacts \
+    qtcore \
+    qtfeedback \
+    qtgui \
+    qtlocation \
+    qtmultimedia \
+    qtnetwork \
+    qtopengl \
+    qtorganizer \
+    qtprintsupport \
+    qtpublishsubscribe \
+    qtqml \
+    qtquick \
+    qtscript \
+    qtsensors \
+    qtserviceframework \
+    qtsql \
+    qtsysteminfo \
+    qttestlib \
+    qtversit \
+    qtwidgets \
+    qtxml \
+    qtxmlpatterns
+
+headerdirs  += ../src
+imagedirs   += ../src/images
+
+sourcedirs  += \
+    ../.. \
+    ../src
+
+exampledirs += \
+    ../.. \
+    ../src
