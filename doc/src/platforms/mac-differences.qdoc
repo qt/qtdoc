@@ -178,7 +178,7 @@
 
     The items in the Application Menu will be merged correctly for
     your localized application, but they will not show up translated
-    until you 
+    until you
     \l{https://developer.apple.com/library/mac/#documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html#//apple_ref/doc/uid/10000123i-CH101-SW13}
     {add a localized resource folder} to the application bundle.
     The main thing you need to do is create a file called
@@ -273,12 +273,21 @@
 /*!
     \page qt-mac-cocoa-licensing.html
 
-    \title Contributions to the Following Cocoa platform plugin files: qcocoaapplication.h, qcocoaapplication.mm, qcocoaapplicationdelegate.h, qcocoaapplicationdelegate.mm, qcocoaeventdispatcher.h, qcocoaeventdispatcher.mm, qmacdefines_mac.h
-
+    \title Contributions to the Cocoa Platform Plugin Files
     \contentspage {Other Licenses Used in Qt}{Contents}
-
     \ingroup licensing
     \brief License information for contributions by Apple, Inc. to specific parts of the Qt for Mac OS X Cocoa port.
+
+    This page is about the contributions to the following files
+    \list
+    \li qcocoaapplication.h
+    \li qcocoaapplication.mm
+    \li qcocoaapplicationdelegate.h
+    \li qcocoaapplicationdelegate.mm
+    \li qcocoaeventdispatcher.h
+    \li qcocoaeventdispatcher.mm
+    \li qmacdefines_mac.h
+    \endlist
 
     \legalese
 
