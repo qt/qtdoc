@@ -63,17 +63,15 @@
     The benefits of this architectural change in the rendering engine is well
     demonstrated by the following projects:
     \list
-    \li \l{http://www.youtube.com/watch?v=P4kv-AoAJ-Q}
-        {Livecoding video effects with Qt5} - The Big Buck Bunny you never
-        saw before. Video effects created using Qt Quick 2.0.
-    \li \l{http://labs.qt.nokia.com/2012/02/29/pimp-my-videoAeffects-and-
-        multimedia}{Pimp my video: shader effects and multimedia} - Video
-        effects implemented using the shader language with QML.
-    \li \l{http://qt-project.org/wiki/QtMediaHub}{QtMediaHub} and the
-        \l{http://www.youtube.com/watch?v=u94vwMXJJrs}{YouTube video} -
+    \li \l{external:http://qt-project.org/videos/watch/livecoding-video-effects
+        -with-qt5}{Livecoding video effects with Qt5} - The Big Buck Bunny you
+        never saw before. Video effects created using Qt Quick 2.0.
+    \li \l{external:http://blog.qt.digia.com/2012/02/29/pimp-my-video-shader-
+        effects-and-multimedia/}{Pimp my video}
+        - Video effects implemented using the shader language with QML.
+    \li \l{external: http://qt-project.org/wiki/QtMediaHub}{QtMediaHub} -
         The power and convenience of Qt Quick.
-    \li \l{http://qt-project.org/wiki/Qt-RaspberryPi}{QtonPi} and the
-        \l{http://www.youtube.com/watch?v=1189Pj1mkDk}{YouTube video} -
+    \li \l{external:http://qt-project.org/wiki/Qt-RaspberryPi}{QtonPi} -
         Good example of Qt 5 running on the low cost hardware, Raspberry PI.
     \endlist
 
@@ -107,13 +105,14 @@
     Stricter client authentication is one of the primary concerns for many
     applications handling confidential/critical data. The opaque Private Keys
     support in Qt 5 enables applications to read private keys from devices such
-    as PKCS#11 dongles for stricter client authentication. Here is an example
-    application that illustrates reading private keys from a device,
-    \l{http://git.iksaif.net/?p=qsslkey-p11.git;a=tree}.
+    as PKCS#11 dongles for stricter client authentication. The \l{external:
+    http://git.iksaif.net/?p=qsslkey-p11.git}{qsslkey example} illustrates
+    reading private keys from a device.
 
     \section1 JSON Support
 
     Qt applications that use simple data structures to store small amount of
+
     data, can now choose to use JSON documents over the complex database
     backends that need necessary drivers or plugins to access data. The fact
     that JSON is a text-based open standard derived from JavaScript, makes it
@@ -126,11 +125,13 @@
 
     \section1 Mouse Input
 
-    Qt Applications can now receive Button Events from more mouse buttons:
+    Qt applications can now receive button events from more mouse buttons:
     \list
       \li 27 mouse buttons on X11.
       \li 16 mouse buttons on Wayland and Mac OS X.
     \endlist
+
+    This comes in handy for gaming applications developed using Qt.
 
     \note: Qt on Windows continues to support only 5 mouse buttons due to the
     Windows Platform limitation.
