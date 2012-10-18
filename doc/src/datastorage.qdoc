@@ -40,9 +40,17 @@ See the full list of \l {container classes} for more details.
 
 \section1 Saving and Loading Data
 
-### Talk about using the disk to store data and point to documentation for QIODevice, QFile,
-QTextStream, QDataStream, as well addressing the fact that disk access API is not available
-by default in QML, but that you can easily create a C++ extension which suits your needs.
+The QIODevice class is the base class for all file and data storage devices
+in Qt. All classes that are used for reading and writing data inherit from
+it. They are only required to implement the protected readData() and
+writeData() functions.
+
+Examples of devices are QFile, QBuffer, QTcpSocket and QProcess.
+QFile is used for reading and writing text, binary files and resources.
+The QBuffer class provides a QIODevice interface for a QByteArray.
+QTcpSocket enables the developer to establish a TCP connection and transfer
+streams of data. QProcess is used to start external programs, and to read
+from and write to that process.
 
 In addition, make sure the following pages are reachable via links from this section:
 
