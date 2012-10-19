@@ -624,6 +624,12 @@
     the application) as well as the executable to the same directory
     in the \c release subdirectory.
 
+    If you are using \l{ANGLE} (the default) then you additionally
+    need to include both libEGL.dll and libGLESv2.dll from Qt's 'lib'
+    directory as well as the HLSL compiler from DirectX. The HLSL
+    compiler library is called d3dcompiler_XX.dll where XX is the
+    version number that ANGLE (libGLESv2) was linked against.
+
     Remember that if your application depends on compiler specific
     libraries, these must be redistributed along with your
     application. You can check which libraries your application is
@@ -697,6 +703,18 @@
         \li \c msvcp80.dll
         \li \c msvcp90.dll
         \li \c msvcp100.dll
+    \endtable
+
+    Finally, if ANGLE was used, then the archive must additionally
+    contain:
+
+    \table 100%
+    \header
+        \li{3,1} File Name
+    \row
+        \li libEGL.dll
+        \li libGLESv2.dll
+        \li d3dcompiler_XX.dll
     \endtable
 
     To verify that the application now can be successfully deployed,
@@ -804,8 +822,8 @@
     redistributed along with your application.
 
     For example, if Qt is built using \l{ANGLE}, its shared libraries
-    and the shared libraries of the \l{Direct X SDK} need to be shipped
-    as well.
+    and the required shared libraries of the \l{Direct X SDK} need to
+    be shipped as well.
 
     You can check which
     libraries your application is linking against by using the

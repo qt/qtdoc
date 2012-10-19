@@ -549,10 +549,20 @@ in the \l{Qt for Windows CE Requirements} document.
     \section1 Graphics Drivers
 
     For QML2 to work, a graphics driver that provides OpenGL 2.1 or higher is required.
-    The Windows default driver provides only OpenGL 1.1, which is not sufficient.
+    The Windows default driver provides only OpenGL 1.1, which is not sufficient. To work
+    around this limitation, Qt now includes a version of the \l{ANGLE} project which is used
+    by default. ANGLE implements the OpenGL ES 2.0 API on top of DirectX 9. ANGLE requires
+    that the DirectX SDK is installed when building Qt.
 
-    Alternatively, \l{ANGLE} can be used, which provides
-    Open GL ES 2.0 by converting the calls to DirectX.
+    To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable to point to
+    the ANGLE source tree before building Qt.
+
+    If you have installed additional OpenGL drivers from your hardware vendor, then you may
+    want to consider using this version of OpenGL instead of ANGLE. To use "desktop" OpenGL
+    you should pass the command line options \c{-opengl desktop} to configure.
+
+    If you wish to use an OpenGL ES 2.0 emulator other than ANGLE, then you can use the
+    following command line options: \c{-opengl es2 -no-angle}.
 
     \section1 Libraries
 
@@ -571,9 +581,6 @@ in the \l{Qt for Windows CE Requirements} document.
            \l{http://code.google.com/p/angleproject/wiki/DevSetup}{Building}
            the library requires the installation of the
            \l{Direct X SDK}.
-
-           Pass the command line options \c{-opengl es2 -angle <folder>} to \c configure
-           to use it.
 
            \note When building for 64bit, de-activate the \c WarnAsError option
            in every project file (as otherwise integer conversion warnings will
@@ -596,7 +603,7 @@ in the \l{Qt for Windows CE Requirements} document.
            and thus speeds up building.
     \endlist
 
-    QtWebKit depends on some extra tools from the \l{GnuWin32 Project}
+    QtWebKit and ANGLE depend on some extra tools from the \l{GnuWin32 Project}
     which are provided for your convenience in the \c gnuwin32/bin folder:
 
     \list
@@ -1036,8 +1043,8 @@ in the \l{Qt for Windows CE Requirements} document.
     \row   \li \c {-no-opengl} \li Disables OpenGL functionality \li
     \row   \li \c {-opengl <api>} \li Enable OpenGL support with specified API
     version. \li Available values for <api>: desktop - Enable support for
-    Desktop OpenGL (Default), es1 - Enable support for OpenGL ES Common
-    Profile, es2 - Enable support for OpenGL ES 2.0.
+    Desktop OpenGL, es1 - Enable support for OpenGL ES Common
+    Profile, es2 (Default) - Enable support for OpenGL ES 2.0.
     \row   \li \c {-platform <spec>} \li The operating system and compiler you
     are building on. \li The default value is %QMAKESPEC%.
     \row   \li \c {-xplatform <spec>} \li The operating system and compiler you
@@ -1094,6 +1101,10 @@ in the \l{Qt for Windows CE Requirements} document.
     \li See http://www.ijg.org. This option denotes a default value and
     needs to be evaluated. If the evaluation succeeds, the feature is
     included.
+    \row   \li \c {-angle} \li Enable ANGLE. This is the default when building
+    with \c {-opengl es2} for Windows \li
+    \row   \li \c {-no-angle} \li Disable ANGLE. This option only makes sense
+    when used with \c {-opengl es2} and is automatically disabled otherwise.
     \endtable
 
     \section2 Qt for Windows only:
