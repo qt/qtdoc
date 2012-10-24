@@ -44,7 +44,7 @@
 
     Cross-platform portability is made simpler in Qt 5, thanks to the new
     modularized codebase consisting of the
-    \l{All Modules}{Essentials and Add-ons} modules, and the consolidation
+    \l{All Modules}{essentials and add-ons} modules, and the consolidation
     of \l{http://qt-project.org/wiki/Qt-Platform-Abstraction}{Qt Platform
     Abstraction} [qt-project.org].
 
@@ -63,16 +63,13 @@
     The benefits of this architectural change in the rendering engine is well
     demonstrated by the following projects:
     \list
-    \li \l{external:http://qt-project.org/videos/watch/livecoding-video-effects
-        -with-qt5}{Livecoding video effects with Qt5} - The Big Buck Bunny you
+    \li \l{Livecoding video effects with Qt5} - The Big Buck Bunny you
         never saw before. Video effects created using Qt Quick 2.0.
-    \li \l{external:http://blog.qt.digia.com/2012/02/29/pimp-my-video-shader-
-        effects-and-multimedia/}{Pimp my video}
-        - Video effects implemented using the shader language with QML.
-    \li \l{external: http://qt-project.org/wiki/QtMediaHub}{QtMediaHub} -
-        The power and convenience of Qt Quick.
-    \li \l{external:http://qt-project.org/wiki/Qt-RaspberryPi}{QtonPi} -
-        Good example of Qt 5 running on the low cost hardware, Raspberry PI.
+    \li \l{Pimp my video} - Video effects implemented using the shader language
+        with QML.
+    \li \l{QtMediaHub} - The power and convenience of Qt Quick.
+    \li \l{QtonPi} - Good example of Qt 5 running on the low cost hardware,
+        Raspberry PI.
     \endlist
 
     \section1 Qt Quick in Qt 5
@@ -105,9 +102,8 @@
     Stricter client authentication is one of the primary concerns for many
     applications handling confidential/critical data. The opaque Private Keys
     support in Qt 5 enables applications to read private keys from devices such
-    as PKCS#11 dongles for stricter client authentication. The \l{external:
-    http://git.iksaif.net/?p=qsslkey-p11.git}{qsslkey example} illustrates
-    reading private keys from a device.
+    as PKCS#11 dongles for stricter client authentication. The \l{qsslkey
+    example} illustrates reading private keys from a device.
 
     \section1 JSON Support
 
