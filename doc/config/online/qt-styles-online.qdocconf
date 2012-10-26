@@ -2,7 +2,7 @@
 # specified relative to the template directory and will be copied into
 # subdirectories of the output directory.
 
-HTML.templatedir = $MODULE_SOURCE_TREE/doc/src/template
+HTML.templatedir = online/template
 
 HTML.stylesheets = style/narrow.css \
                    style/style.css \
@@ -20,6 +20,7 @@ HTML.scripts     = scripts/functions.js \
 
 # Files not referenced in any qdoc file.
 # See also qhp.Qt.extraFiles
+imagedirs += online/template/images
 extraimages.HTML        = qt-logo.png \
                           bg_l.png \
                           bg_l_blank.png \
@@ -42,7 +43,7 @@ extraimages.HTML        = qt-logo.png \
                           page_bg.png \
                           sprites-combined.png \
                           spinner.gif
-    
+
 # Include the style sheets and scripts used.
 
 HTML.headerstyles = \
