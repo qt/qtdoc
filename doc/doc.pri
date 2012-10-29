@@ -32,24 +32,14 @@ MODULES = activeqt \
           declarative \
           doc \
           clucene \ # help designer
-          location \
           multimedia \
-          publishsubscribe \
-          3d \
           qml \
           quick \
           script \ # scripttools
-          sensors \
-          serviceframework \
-          systeminfo \
           svg \
           webkit \
           webkit-examples-and-demos \
           xmlpatterns \
-          contacts \
-          organizer \
-          versit \
-          bluetooth
 
 # Pretend there is a doc module. Simplifies things a bit.
 QT.doc.sources = $$dirname(PWD)
