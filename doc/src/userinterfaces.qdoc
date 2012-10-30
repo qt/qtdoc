@@ -48,4 +48,24 @@ implementation.
 \li QTextDocument in QML and Widgets
 \li WebKit
 \li I18N
+\endlist
+
+\section1 General
+
+Qt features two main ways of creating user interfaces: Qt Quick and Qt Widgets.
+\l{Qt Quick} offers a great way to create dynamic and fluid UIs. It lets you
+create the UI in a declarative way. The QWidget based classes from the Widgets
+module on the other hand give more traditional interface elements that are
+typically found on desktops. Below you find a brief overview to help you choose
+which technology to use for your project. It is also possible to mix and match
+both approaches as needed.
+
+\section1 QML and Qt Quick
+
+For an overview over Qt Quick consult the \l {Getting Started Programming with
+QML} page.
+
+\section1 Widgets The \l {Widgets and Layouts} documentation is a good starting
+point to learn about Qt Widgets.
+
 */
