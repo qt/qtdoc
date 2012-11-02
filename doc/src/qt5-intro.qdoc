@@ -27,31 +27,114 @@
 
 /*!
     \page qt5-intro.html
-    \title What's New in Qt 5
+    \title Introduction to Qt 5
+    \brief Qt 5 features and its benefits
 
-    \section1 Qt 5 in a nutshell
+    Qt 5 is the latest version of the Qt C++ UI framework supported on Linux
+    (X11 and Wayland), MS Windows, and Mac OS X. It makes developers’ lives
+    easy by enabling them to develop applications faster than ever before with
+    intuitive user interfaces for multiple targets. With Qt 5, it is
+    easier to address the latest UI paradigm shifts that touch screens and
+    tablets require.
 
-    Qt 5 focuses on delivering the following four key topics:
+    Developers can be more productive and flexible with the improved support
+    for JavaScript and QML in Qt 5, without disturbing the C++ foundation
+    and Qt Widget support. The JavaScript backend powered by V8
+    and Qt WebKit 2 will make HTML5 developers feel at home.
 
-    \b {Graphics capabilities and performance}, which is especially important in constrained
-    environments like mobile devices. Qt Quick 2 offers a GL based scene graph, a particle system
-    and a collection of shader effects. Qt Multimedia, Qt 3D and Qt Graphical Effects bring these
-    features even further.
+    Cross-platform portability is made simpler in Qt 5, thanks to the new
+    modularized codebase consisting of the
+    \l{All Modules}{essentials and add-ons} modules, and the consolidation
+    of \l{http://qt-project.org/wiki/Qt-Platform-Abstraction}{Qt Platform
+    Abstraction} [qt-project.org].
 
-    \b {Developer productivity and flexibility}, by making Javascript and QML first class citizens
-    while keeping the C++ foundation and Qt Widget support. The new Qt JS Backend powered by V8,
-    Qt JSON DB and the addition of Qt WebKit 2 should make HTML5 developers feel at home.
+    The following sections summarize some of the key features that Qt 5 brings
+    to the table.
 
-    \b {Cross-platform portability} is now simpler for OS developers thanks to the new structure
-    of Essentials and Add-ons modules, plus the consolidation of
-    \l {http://qt-project.org/wiki/Qt-Platform-Abstraction} {Qt Platform Abstraction} [qt-
-    project.org]. We look forward to see Qt running in all kinds of environments!
+    \section1 Amazing Graphics Capability and Performance
 
-    \b {Open development and open governance} is assuring wider development and testing of Qt 5
-    by a growing community including developers from Nokia, the KDE project, Digia, Collabora,
-    Accenture, KDAB and many more companies and individuals.
+    Improved graphical effects are an achievable target now with Qt 5 even on
+    the constrained hardware environments of mobile and embedded devices.
+    Qt 5 uses OpenGL ES for impressive graphics features and better 2D and 3D
+    animations. The new version of Qt Quick complements the OpenGL ES scene
+    graph backend, which makes the animations look more appealing and smoother
+    than before.
 
-    \section1 API changes
+    The benefits of this architectural change in the rendering engine is well
+    demonstrated by the following projects:
+    \list
+    \li \l{Livecoding video effects with Qt5} - The Big Buck Bunny you
+        never saw before. Video effects created using Qt Quick 2.0.
+    \li \l{Pimp my video} - Video effects implemented using the shader language
+        with QML.
+    \li \l{QtMediaHub} - The power and convenience of Qt Quick.
+    \li \l{QtonPi} - Good example of Qt 5 running on the low cost hardware,
+        Raspberry PI.
+    \endlist
 
-    \sincelist 5.0
+    \section1 Qt Quick in Qt 5
+
+    Qt Quick provides the necessary infrastructure to develop QML applications.
+    The latest version (v2.0) of this technology also introduces a set of new
+    C++ classes as a replacement for the QDeclarative* equivalents in Qt
+    Quick 1. Refer to \l{Qt Quick Release Notes} for details about the new
+    features.
+
+    \section1 Connectivity and Networking
+
+    Qt 5 provides better support for IPv6 and dual mode networks. Most
+    applications using host names and network layer transparent protocols
+    can now gain IPv6 support transparently. Such applications can also choose
+    to receive both IPv4 and IPv6 connections or bind to only one of the two
+    connection types. In the case of outgoing HTTP connections using
+    \c{QNetworkAccessManager}, both IPv4 and IPv6 connections are attempted in
+    parallel, and the one that succeeds first is used. This is useful in
+    environments where one of the two types has limited connectivity.
+
+    Qt 5 also provides better ways to handle TCP socket-based connections and
+    SSL certificates. This means developers can now:
+    \list
+      \li bind a TCP socket to an IP address before connecting,
+      \li verify an SSL certificate chain programmatically,
+      \li and access legacy systems.
+    \endlist
+
+    Stricter client authentication is one of the primary concerns for many
+    applications handling confidential/critical data. The opaque Private Keys
+    support in Qt 5 enables applications to read private keys from devices such
+    as PKCS#11 dongles for stricter client authentication. The \l{qsslkey
+    example} illustrates reading private keys from a device.
+
+    \section1 JSON Support
+
+    Qt applications that use simple data structures to store small amount of
+
+    data, can now choose to use JSON documents over the complex database
+    backends that need necessary drivers or plugins to access data. The fact
+    that JSON is a text-based open standard derived from JavaScript, makes it
+    the obvious choice for QML applications as well.
+
+    The Qt Core provides a set of classes to enable parsing and generating JSON
+    documents. These classes also allow you to convert between an in-memory
+    binary representation of JSON to a standard textual JSON format. The goal
+    is to make common operations on JSON faster.
+
+    \section1 Mouse Input
+
+    Qt applications can now receive button events from more mouse buttons:
+    \list
+      \li 27 mouse buttons on X11.
+      \li 16 mouse buttons on Wayland and Mac OS X.
+    \endlist
+
+    This comes in handy for gaming applications developed using Qt.
+
+    \note: Qt on Windows continues to support only 5 mouse buttons due to the
+    Windows Platform limitation.
+
+   \section1 Related Topics
+   \list
+    \li \l{What's New in Qt 5}
+    \li \l{Porting Guide}
+   \endlist
 */

@@ -46,7 +46,7 @@
     to build libraries and applications based on Qt.
 
     The recommended way to use Qt libraries and headers with \c{CMake} 2.8.9 is to use
-    the \c{qt5_use_modules} command.
+    the \c{qt5_use_modules} macro.
 
     To build a helloworld executable, typical usage would be:
 
@@ -62,7 +62,7 @@
     Qt5WidgetsConfig.cmake file. The easiest way to use \c{CMake} is to set the CMAKE_PREFIX_PATH
     environment variable to the install prefix of Qt 5.
 
-    The \c{qt5_use_modules} command encapsulates all of the variable usage required to use a Qt module.
+    The \c{qt5_use_modules} macro encapsulates all of the variable usage required to use a Qt module.
     It automatically finds the modules given to it on the command line if they have not already been found.
 
     \snippet doc/src/snippets/cmake/CMakeLists.pro 1
