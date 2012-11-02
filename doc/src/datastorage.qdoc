@@ -27,23 +27,22 @@
 
 /*!
 \page topics-data-storage.html
-\title Data Structure and Storage
+\title Data Structures and Storage
 \brief Qt's data and storage features
 
 \section1 Container Classes
 
-Qt provides a set of general purpose, template-based container classes that
-can be used to store data in memory. For most purposes, QList will be the
-best choice, but Qt also provides other data structures which might be more
-appropriate for a given use case due to performance characteristics or API.
-See the full list of \l {container classes} for more details.
+A container is a data structure whose instances are collections of other objects.
+Some examples of containers are: dynamic arrays, queues, linked lists and
+associative arrays. Qt provides a set of general purpose, template-based container
+classes that can be used to store data in memory. See the full list of
+\l {Container Classes} for more details.
 
 \section1 Saving and Loading Data
 
 The QIODevice class is the base class for all file and data storage devices
 in Qt. All classes that are used for reading and writing data inherit from
-it. They are only required to implement the protected readData() and
-writeData() functions.
+it.
 
 Examples of devices are QFile, QBuffer, QTcpSocket and QProcess.
 QFile is used for reading and writing text, binary files and resources.
@@ -52,10 +51,9 @@ QTcpSocket enables the developer to establish a TCP connection and transfer
 streams of data. QProcess is used to start external programs, and to read
 from and write to that process.
 
-In addition, make sure the following pages are reachable via links from this section:
-
 \list
 \li \l {Input/Output and Networking} (list of I/O related classes)
+\li \l {I/O Functions}
 \li \l {Serializing Qt Data Types}
 \endlist
 
@@ -63,8 +61,8 @@ In addition, make sure the following pages are reachable via links from this sec
 
 The \l {Qt SQL} module uses driver plugins to communicate with several database
 APIs. Qt has drivers for SQLite, MYSQL, DB2, Borland InterBase, Oracle, ODBC,
-and PostgreSQL. It is also possible to develop your own driver if Qt is not
-providing the driver needed.
+and PostgreSQL. It is also possible to develop your own driver if Qt does not
+provide the driver needed.
 
 Qt's SQL classes can be divided in 3 layers:
 \table
@@ -101,8 +99,8 @@ access to the main table, not to the table where the foreign key comes from.
 
 With the MYSQL driver, it is possible to connect to a MYSQL server. In order to
 build the QMYSQL Plugin for Unix or Mac OS X, you need the MYSQL header files
-and as well as the shared library libmysqlclient.so. To compile the plugin
-for Windows, you need to get the MYSQL installation files and to run SETUP.EXE.
+as well as the shared library libmysqlclient.so. To compile the plugin
+for Windows, you need to get the MYSQL installation files and run SETUP.EXE.
 
 If you use the embedded MYSQL Server, you do not need a MYSQL server in order
 to use that database system. In order to do so, you need to link the Qt plugin
