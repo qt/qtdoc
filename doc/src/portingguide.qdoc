@@ -26,36 +26,32 @@
 ****************************************************************************/
 /*!
 \page portingguide.html
-\title Porting Guidelines
-\brief Provides intructions to migrate your Qt 4 application to Qt 5.
+\title Porting Guide
+\brief Provides guidance to migrate your Qt 4 application to Qt 5.
 
-Qt 5 has undergone quite a few changes to make it more modular and easy to use. The following is a summary of the changes:
+Qt 5 is a result of the conscious effort to make this C++ framework more efficient and easy to use.
+This release replaces quite a few legacy APIs with more meaningful ones, such as the newer version of Qt Quick.
+
+We try to maintain binary and source compatibility for all the public APIs in each release, but some changes were inevitable in an effort to make Qt a better UI framework. In this topic, we try to summarize those
+changes and provide guidance to handle them.
+
+The following list summarizes the changes in Qt 5:
 \list
-   \li Modularized codebase means you only need Qt essentials and the add-on modules you're interested in, to develop an application. To know what makes the essentials
-       and add-on modules, refer to the \l {All Modules}{modules} page.
-   \li Platform-specific code for Symbian and Meego is removed from the codebase.
-   \li Widgets are now part of the separate Qt Widgets add-on module.
-   \li Qt Quick from Qt 4 is now part of a separate Qt Quick1 add-on module for compatibility purposes, and we recommend using the new Qt Quick (2.0) from now on
-       to avoid binary breaks in the future.
+   \li Modularized codebase - This means only Qt essentials and the add-on modules you're interested in are needed to develop an application.
+       To know what makes the essentials and add-on modules, refer to the \l {All Modules}{modules} page.
+   \li Platform-specific code - Symbian and Meego-specific code is removed from the codebase.
+   \li Platform defines - All platform-specific code must be wrapped using the preprocessor macro, \c{Q_OS_*} instead of \c{Q_WS_*}.
+   \li Qt Widgets - These are not part of Qt Gui anymore. They are in a separate add-on module, \l{Qt Widgets}{QtWidgets}.
+   \li Qt Quick - The older Qt Quick version (1.0) is now part of a separate \l{Qt Quick1} add-on module for compatibility purposes,
+       and we recommend using the new Qt Quick (2.0) from now on to avoid binary breaks in the future.
+   \li Qt3Support - This module is removed in Qt 5, so you must move away from this module before porting your codebase to Qt 5.
 \endlist
 
-The following step-by-step instructions takes you through the changes required to make the \c animatedtiles C++ application work on Qt 5:
-
+\section1 Related Topics
 \list
-   \li Edit \c {main.cpp} and change the \c {#include <QtGui>} to \c {#include <QtWidgets>}.
-       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= qtgui} directive in the qmake project file.
-   \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the end of the file.
-   \li Run qmake and make utilities to build the binary.
-\endlist
-
-This creates the \c animatedtiles executable. Try running the executable to see if the application behaves as expected.
-
-\image animatedtiles_snapshot.png "A snapshot of the animatedtiles application running on Ubuntu"
-
-\section1 Related topics
-\list
-\li \l {http://qt-project.org/wiki/Qt-5-Beta}{Qt 5 Beta}
+\li \l {C++ API Changes}
+\li \l {Porting C++ Applications to Qt 5}
+\li \l {QML Applications in Qt 5}
 \li \l {Porting QML Applications to Qt 5}
-\li \l {QML Examples and Demos}
 \endlist
 */

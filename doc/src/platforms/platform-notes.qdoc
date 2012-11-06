@@ -240,8 +240,7 @@
     \target IRIX
     \section1 IRIX - 6.5.x
 
-    \b{IRIX is an unsupported platform. See the \l{Supported Platforms} page
-    and Qt's Software's online \l{Platform Support Policy} page for details.}
+    \b{IRIX is an unsupported platform. See the \l{Supported Platforms} page.
 
     Unpackaging and IRIX tar:
     Because of long filenames some files will be cut off incorrectly with IRIX
@@ -265,8 +264,6 @@
     \l{Platform and Compiler Notes#General Compiler Notes}{General Compiler Notes}.
 
     \section2 Installation problems
-
-    See also the \l{Installation FAQ}.
 
     If you experience problems when installing new open source versions of Qt
     versions, try to use the open source Qt archives (e.g., RPM)
@@ -341,7 +338,7 @@
     Please use GCC 3.4.2 or later.
 
     Do not use GCC with Sun's assembler/linker, this will result in link-time
-    errors in shared libraries. Use GNU binutils instead. 
+    errors in shared libraries. Use GNU binutils instead.
 
     GCC 3.2.* is known to miscompile Qt due to an optimizer bug that will
     cause the resulting binaries to hang.
@@ -507,7 +504,7 @@
     Qt::WA_MacNoClickThrough, Qt::WA_MacOpaqueSizeGrip, Qt::WA_MacShowFocusRect,
     Qt::WA_MacNormalSize, Qt::WA_MacSmallSize, Qt::WA_MacMiniSize, Qt::WA_MacVariableSize,
     Qt::WA_MacBrushedMetal, Qt::WA_MacAlwaysShowToolWindow, Qt::WA_MacFrameworkScaled,
-    Qt::WA_MacNoShadow, Qt::Sheet, Qt::Drawer, Qt::MacWindowToolBarButtonHint, 
+    Qt::WA_MacNoShadow, Qt::Sheet, Qt::Drawer, Qt::MacWindowToolBarButtonHint,
     QMainWindow::unifiedTitleAndToolBarOnMac
 
     \section2 Mixing Qt with native code
@@ -515,7 +512,7 @@
     inside a Qt application, or the opposite, embedding Qt into a native
     Cocoa application:
 
-    QMacCocoaViewContainer, QMacNativeWidget 
+    QMacCocoaViewContainer, QMacNativeWidget
 
     \section3 Using native Cocoa panels
     Launching native Cocoa panels from within a Qt application can sometimes
@@ -527,7 +524,7 @@
     unfortunately make mixing in native panels hard. The best way at the moment
     to do this, is to follow the pattern below, where we post the call to the
     function with native code rather than calling it directly. Then we know that
-    Qt has cleanly updated any pending event loop recursions before the native 
+    Qt has cleanly updated any pending event loop recursions before the native
     panel is shown:
 
     \code
