@@ -218,7 +218,7 @@ TextButton::TextButton(const QString &text, ALIGNMENT align, int userCode,
     this->bgDisabled = 0;
     this->state = OFF;
 
-    this->setAcceptsHoverEvents(true);
+    this->setAcceptHoverEvents(true);
     this->setCursor(Qt::PointingHandCursor);
 
     // Calculate button size:

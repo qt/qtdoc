@@ -47,7 +47,7 @@
 QHash<QString, SharedImage *> DemoItem::sharedImageHash;
 QMatrix DemoItem::matrix;
 
-DemoItem::DemoItem(QGraphicsScene *scene, QGraphicsItem *parent) : QGraphicsItem(parent, scene)
+DemoItem::DemoItem(QGraphicsScene *, QGraphicsItem *parent) : QGraphicsItem(parent)
 {
     this->opacity = 1.0;
     this->locked = false;
@@ -97,7 +97,7 @@ void DemoItem::setRecursiveVisible(bool visible){
     }
 
     this->setVisible(visible);
-    QList<QGraphicsItem *> c = children();
+    QList<QGraphicsItem *> c = childItems();
     for (int i=0; i<c.size(); i++){
         // DemoItem *d = dynamic_cast<DemoItem *>(c[i]);
         // if (d)

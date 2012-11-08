@@ -257,7 +257,7 @@ ItemCircleAnimation::ItemCircleAnimation(QGraphicsScene *scene, QGraphicsItem *p
     this->tickOnPaint = false;
     this->paused = false;
     this->doIntroTransitions = true;
-    this->setAcceptsHoverEvents(true);
+    this->setAcceptHoverEvents(true);
     this->setCursor(Qt::OpenHandCursor);
     this->setupGuides();
     this->setupLetters();

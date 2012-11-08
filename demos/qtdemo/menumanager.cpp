@@ -44,6 +44,8 @@
 #include "menucontent.h"
 #include "examplecontent.h"
 
+#include <QStandardPaths>
+
 #ifndef QT_NO_DECLARATIVE
 #include <QtQuick1>
 #endif
@@ -115,9 +117,11 @@ void MenuManager::initHelpEngine()
         .arg(QT_VERSION & 0xFF);
 
     // Store help collection file in cache dir of assistant
-    QString cacheDir = QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-                     + QLatin1String("/Trolltech/Assistant/");
-    QString helpDataFile = QString(QLatin1String("qtdemo_%1.qhc")).arg(QLatin1String(QT_VERSION_STR));
+    QString cacheDir;
+    const QStringList paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    if (!paths.isEmpty())
+        cacheDir = paths.front() + QLatin1String("/Trolltech/Assistant/"); // ### fixme
+    const QString helpDataFile = QString(QLatin1String("qtdemo_%1.qhc")).arg(QLatin1String(QT_VERSION_STR));
 
     QDir dir;
     if (!dir.exists(cacheDir))
