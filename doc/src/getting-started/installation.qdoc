@@ -993,8 +993,7 @@ in the \l{Qt for Windows CE Requirements} document.
     \table
     \header \li Option  \li Description \li Note
     \row   \li \c {-buildkey} <key> \li Build the Qt library and plugins
-    using the specified \li
-    \row   \li \c {<key>} \li When the library loads plugins, it will only
+    using the specified <key>. When the library loads plugins, it will only
     load those that have a matching <key>. \li
     \row   \li \c {-release} \li Compile and link Qt with debugging turned off. \li
     \row   \li \c {-debug} \li Compile and link Qt with debugging turned on.
