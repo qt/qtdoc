@@ -616,9 +616,20 @@ in the \l{Qt for Windows CE Requirements} document.
 
     \section1 SDKs and Compilers
 
+    A Windows SDK is required to develop Qt applications on Windows.
+    Below, we have listed some potential options for SDKs and compilers.
+
     \list
-        \li Windows SDK 7.1 with Visual Studio 2010 SP1 (recommended).
-            As of 16.3.2012, installing the SDK requires installing the following packages
+        \li Windows SDK 8 (with Visual Studio 2012 Express).
+            As of Windows 8, the SDK no longer ships with a complete command-line build environment.
+            You must install a compiler and build environment separately. If you require a
+            complete development environment that includes compilers and a build environment,
+            you can download Visual Studio 2012 Express, which includes the appropriate
+            components of the Windows SDK.
+            \l{http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx}
+        \li Windows SDK 7.1.
+            Note that, as of 16.3.2012, if you use this SDK with Visual Studio 2010,
+            installing the SDK requires installing the following packages
             in this order (see \c readme.html provided with the service pack):
             \list
                 \li Install Visual Studio 2010
@@ -626,8 +637,21 @@ in the \l{Qt for Windows CE Requirements} document.
                 \li Install Visual Studio 2010 SP1
                 \li Install Visual C++ 2010 SP1 Compiler Update for the Windows SDK 7.1
             \endlist
-        \li Windows SDK 7 with Visual Studio 2008
-        \li MinGW or \l{TDM-GCC} with g++ version 4.6 or higher (not supported for all modules).
+        \li Windows SDK 7.
+        \li MinGW \l{mingw.org}, TDM MinGW \l{tdm-gcc.tdragon.net}, or MinGW-builds
+            \l{http://sourceforge.net/projects/mingwbuilds/} with g++ version 4.7 or higher
+            (not supported for all modules).
+
+    \endlist
+
+    \section2 Popular IDEs
+
+    There are several popular IDEs for Qt development on Windows:
+
+    \list
+        \li Qt Creator
+        \li Visual Studio
+        \li Eclipse
     \endlist
 
     For the most up to date information about QtWebKit dependencies,
