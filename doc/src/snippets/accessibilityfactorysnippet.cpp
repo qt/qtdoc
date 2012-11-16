@@ -51,9 +51,9 @@ QAccessibleInterface *sliderFactory(const QString &classname, QObject *object)
     return interface;
 }
 
-int main(int argv, char **args)
+int main(int argc, char *argv[])
 {
-    QApplication app(argv, args);
+    QApplication app(argc, argv);
     QAccessible::installFactory(sliderFactory);
 //! [0]
 

@@ -30,10 +30,10 @@ void Notepad::on_quitButton_clicked()
 //! [2]
 void Notepad::on_actionOpen_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), QString(),
             tr("Text Files (*.txt);;C++ Files (*.cpp *.h)"));
 
-        if (fileName != "") {
+        if (!fileName.isEmpty()) {
             QFile file(fileName);
             if (!file.open(QIODevice::ReadOnly)) {
                 QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
@@ -49,10 +49,10 @@ void Notepad::on_actionOpen_triggered()
 //! [3]
 void Notepad::on_actionSave_triggered()
 {
-            QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "",
+            QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), QString(),
             tr("Text Files (*.txt);;C++ Files (*.cpp *.h)"));
 
-            if (fileName != "") {
+            if (!fileName.isEmpty()) {
                 QFile file(fileName);
                 if (!file.open(QIODevice::WriteOnly)) {
                     // error message
