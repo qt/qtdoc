@@ -34,7 +34,7 @@ Qt 5 introduces some source incompatible changes. Here we list the important one
 
 The following sections lists the API changes in each module and provides recommendations to handle those changes.
 
-\section1 Qt Core
+\section1 Changes to Qt Core
     \list
      \li The \l{QObject::connectNotify()} and \l {QObject::disconnectNotify()} functions now need a \l{QMetaMethod} argument
          that identifies the signal, rather than a \c{const char} pointer.
