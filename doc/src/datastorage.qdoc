@@ -32,17 +32,17 @@
 
 \section1 Container Classes
 
-A container is a data structure whose instances are collections of other objects.
-Some examples of containers are: dynamic arrays, queues, linked lists and
-associative arrays. Qt provides a set of general purpose, template-based container
-classes that can be used to store data in memory. See the full list of
-\l {Container Classes} for more details.
+A container is a data structure whose instances are collections of other
+objects. Some examples of containers are: dynamic arrays, queues, linked
+lists and associative arrays. Qt provides a set of general purpose,
+template-based container classes that can be used to store data in memory.
+See the full list of \l {Container Classes} for more details.
 
 \section1 Saving and Loading Data
 
 The QIODevice class is the base class for all file and data storage devices
-in Qt. All classes that are used for reading and writing data inherit from
-it.
+in \l {Qt Core}. All classes that are used for reading and writing data
+inherit from it.
 
 Examples of devices are QFile, QBuffer, QTcpSocket and QProcess.
 QFile is used for reading and writing text, binary files and resources.
@@ -53,7 +53,7 @@ from and write to that process.
 
 \list
 \li \l {Input/Output and Networking} (list of I/O related classes)
-\li \l {I/O Functions}
+\li \l {File and Datastream Functions}
 \li \l {Serializing Qt Data Types}
 \endlist
 
