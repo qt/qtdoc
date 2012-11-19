@@ -882,11 +882,11 @@
     \section2 Qt Plugins
 
     Your application may also depend on one or more Qt plugins, such
-    as the JPEG image format plugin or a SQL driver plugin. Be sure
-    to distribute any Qt plugins that you need with your application,
-    and note that each type of plugin should be located within a
-    specific subdirectory (such as \c imageformats or \c sqldrivers)
-    within your distribution directory, as described below.
+    as the print support plugin, the JPEG image format plugin or a SQL driver
+    plugin. Be sure to distribute any Qt plugins that you need with your
+    application, and note that each type of plugin should be located within a
+    specific subdirectory (such as \c printsupport, \c imageformats or
+    \c sqldrivers) within your distribution directory, as described below.
 
     \note If you are deploying an application that uses QtWebKit to display
     HTML pages from the World Wide Web, you should include all text codec
