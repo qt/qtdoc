@@ -624,6 +624,11 @@
     the application) and the windows platform plugin as well as the executable
     to the same directory in the \c release subdirectory.
 
+    Qt relies on the \l{ICU} library for unicode support. Therefore, you must
+    include the ICU DLLs that are located in the \c bin directory of your Qt
+    installation. These DLLs are version dependent and have to match the ones
+    your Qt version was linked against.
+
     If you are using \l{ANGLE} (the default) then you additionally
     need to include both libEGL.dll and libGLESv2.dll from Qt's 'lib'
     directory as well as the HLSL compiler from DirectX. The HLSL
@@ -688,6 +693,10 @@
     \row
         \li The Qt Widgets module
         \li {2, 1} \c qtwidgets5.dll
+    \row
+        \li The ICU DLLs
+        \li {2, 1} \c icudtXX.dll, icuinXX.dll, icuioXX.dll, iculeXX.dll,
+            iculxXX.dll, icutuXX.dll, icuucXX.dll
     \endtable
 
     In addition, the archive must contain the following compiler
