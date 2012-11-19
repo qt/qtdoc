@@ -35,12 +35,15 @@
             \div {class="heading"}
                 Introduction Section
             \enddiv
-            <Insert a product description of Qt.>
+
+            Qt is a cross-platform application and UI framework for
+            developers using C++ or QML, a CSS & JavaScript like
+            language. Qt Creator is the supporting Qt IDE.
 
             \list
             \li What is Qt
             \li \l{What's New in Qt 5}
-            \li Getting Started
+            \li \l{Getting Started Guides}{Getting Started}
             \li \l{Qt Licenses and Credits}
             \endlist
         \enddiv
@@ -56,7 +59,7 @@
             \li \l{Development Tools}
             \li \l{User Interfaces}
             \li \l{Core fundamentals}
-            \li \l{Data Structure and Storage}
+            \li \l{Data Structures and Storage}
             \li \l{Multimedia}
             \li \l{Networking and Connectivity}
             \endlist
@@ -66,13 +69,13 @@
         \enddiv
         \div {class="sectionlist normallist"}
             \div {class="heading"}
-                Code Samples
+                Examples
             \enddiv
             \div {class="indexboxcont indexboxbar"}
                 \list
-                \li \l{Qt Examples}{C++ Code Samples}
+                \li \l{Qt Examples}{Qt C++ Examples}
                 \li \l{Tutorials}
-                \li \l{Qt Quick Code Samples}
+                \li \l{Qt Quick Code Samples}{Qt Quick Examples}
                 \endlist
             \enddiv
         \enddiv
@@ -98,7 +101,7 @@
                 \list
                 \li \l{external: Qt Creator Manual}{Qt Creator}
                 \li \l{linguist-manual.html}{Qt Linguist}
-                \li \l{assistant-manual.html}{Qt Assistant}
+                \li \l{Qt Assistant Manual}{Qt Assistant}
                 \li \l{Qt Designer Manual}{Qt Designer}
                 \li \l{qmake Manual}{qmake}
                 \endlist
