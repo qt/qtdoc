@@ -29,30 +29,43 @@
 \title Porting QML Applications to Qt 5
 \brief Provides step-by-step instructions to port a QML application to Qt 5.
 
-The new version of Qt Quick in Qt 5 brings in some changes to the way QML applications are developed.
-For the complete list of changes that affect existing QML applications, refer to \l{QML Applications in Qt 5}.
+The new version of Qt Quick in Qt 5 brings in some changes to the way QML
+applications are developed. For the complete list of changes that affect
+existing QML applications, refer to \l{QML Applications in Qt 5}.
 
-This topic uses the \c{flickr} Qt 4 QML demo application to provide a walk-through of the changes required to
-make the application work on Qt 5. If you have the Qt 4 SDK installed, you can find
-this application in \c{<install_dir_root>/Examples/4.7/declarative/demos/}.
+This topic will walk through the porting process to make the \c{flickr} Qt 4
+QML demo work on Qt 5. If you have the SDK based on Qt 4.8 installed, you can
+find this demo application under \c{<install_dir_root>/Examples/4.x/declarative
+/demos/}.
 
-The \c{flickr} application is a complete application that comes with an application launcher.
-It handles the screen orientation changes on platforms that support different orientations.
+The \c{flickr} application is a complete application that comes with a launcher.
+It handles the screen orientation changes on platforms that support different
+orientations.
 
-Follow these step-by-step instructions to make the \c{flickr} Qt 4 QML application work on Qt 5:
+Follow these step-by-step instructions to make the \e{flickr} Qt 4 QML
+application work on Qt 5:
 \list 1
- \li Edit all the \c{.qml} files and replace \c{import QtQuick 1.0} statements in all the QML files with \c{import QtQuick 2.0}
- \li Add the additional \c{import QtQuick.XmlListModel 2.0} statement to \c{qml/common/RssModel.qml}.
-     \note XmlListModel is part of a submodule under QtQuick and it must be imported explicitly to use it.
- \li Edit \c{qmlapplicationviewer/qmlapplicationviewer.h} to make the following changes:
+ \li Edit all the \c{.qml} files and replace \c{import QtQuick 1.0} statements
+     with \c{import QtQuick 2.0}.
+ \li Add the additional \c{import QtQuick.XmlListModel 2.0} statement to
+     \c{qml/common/RssModel.qml}.
+     \note XmlListModel is part of a submodule under QtQuick and it must be
+           imported explicitly to use it.
+ \li Make the following changes to \c{qmlapplicationviewer
+     /qmlapplicationviewer.h}:
   \list
-   \li Replace the \c{#include <QtDeclarative/QDeclarativeView>} with \c{#include <QQuickView>}.
-   \li Replace \c{QDeclarativeView} with \c{QQuickView} in the class declaration for \c{QmlApplicationViewer}.
-   \li Replace the parameter for \c{QmlApplicationViewer} constructor from \c{QWidget} to \c{QWindow}.
+   \li Replace the \c{#include <QtDeclarative/QDeclarativeView>} with
+       \c{#include <QQuickView>}.
+   \li Replace \c{QDeclarativeView} with \c{QQuickView} in the class
+       declaration for \c{QmlApplicationViewer}.
+   \li Replace the parameter for \c{QmlApplicationViewer} constructor from
+       \c{QWidget} to \c{QWindow}.
   \endlist
- \li Edit \c{qmlapplicationviewer/qmlapplicationviewer.cpp} to make the following changes:
+ \li Make the following changes to \c{qmlapplicationviewer/
+     qmlapplicationviewer.cpp}:
   \list
-   \li Replace all the \c{QtCore} and \c{QtDeclarative} include statements with these:
+   \li Replace all the \c{QtCore} and \c{QtDeclarative} include statements with
+       these:
     \code
       #include <QCoreApplication>
       #include <QDir>
@@ -62,50 +75,62 @@ Follow these step-by-step instructions to make the \c{flickr} Qt 4 QML applicati
       #include <QQmlContext>
       #include <QDebug>
      \endcode
-   \li Replace all references to \c{QWidget} with \c{QWindow}, and \c{QDeclarativeView} with \c{QQuickView}.
-   \li Remove the code between \c{#if defined(Q_OS_SYMBIAN)} and \c{#endif} as Symbian is not supported in Qt 5.
-   \li Remove the code between \c{#if QT_VERSION < 0x040702} and \c{#else}, and \c{#endif // QT_VERSION < 0x040702} towards the end.
-   \li Change the \c{attribute} variable type from \c{Qt::WidgetAttribute} to \c{Qt::ScreenOrientation}.
-   \li Replace \c{Qt::WA_LocKPortraitOrientation}, \c{Qt:WA_LockLandscapeOrientation}, and \c{Qt::WA_AutoOrientation} with
-       \c{Qt::PortraitOrientation}, \c{Qt::LandscapeOrientation}, and \c{Qt::PrimaryOrientation} respectively.
+   \li Replace all instances of \c{QWidget} with \c{QWindow}, and
+       \c{QDeclarativeView} with \c{QQuickView}.
+   \li Remove the code between \c{#if defined(Q_OS_SYMBIAN)} and \c{#endif}
+       macros as Symbian platform is not supported in Qt 5.
+   \li Remove the code between \c{#if QT_VERSION < 0x040702} and \c{#else}, and
+       \c{#endif // QT_VERSION < 0x040702} macros towards the end.
+   \li Change the \c{attribute} variable type from \c{Qt::WidgetAttribute} to
+       \c{Qt::ScreenOrientation}.
+   \li Replace \c{Qt::WA_LocKPortraitOrientation},
+       \c{Qt:WA_LockLandscapeOrientation}, and \c{Qt::WA_AutoOrientation} with
+       \c{Qt::PortraitOrientation}, \c{Qt::LandscapeOrientation}, and
+       \c{Qt::PrimaryOrientation} respectively.
    \li Replace \c{setAttribute(attribute,true);} with the following:
     \code
       if (windowOrientation() != attribute)
         if (!requestWindowOrientation(attribute))
           qWarning() << "Not a supported orientation.";
     \endcode
-       Orientation changes must be handled differently now as \c{QQuickView} is a subclass of \c{QWindow} and not \c{QWidget}.
-       The \c{QWindow::windowOrientation()} and \c{QWindow::requestWindowOrientation(Qt::ScreenOrientation orientation)} functions
-       are meant to identify the current window orientation and request for a specific orientation change respectively.
+       Orientation changes must be handled differently now as QQuickView is
+       a subclass of QWindow and not QWidget. The QWindow::
+       windowOrientation() and QWindow::requestWindowOrientation(Qt::
+       ScreenOrientation orientation) functions are meant to identify the
+       current window orientation and request for a specific orientation change
+       respectively.
   \endlist
 
-      After making all these changes, this is how the implementation for \c{QmlApplicationViewer::setOrientation()} looks:
+      After making all these changes, this is how the implementation for
+      \c{QmlApplicationViewer::setOrientation()} looks:
        \code
-void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
-{
-    Qt::ScreenOrientation attribute;
-    switch (orientation) {
-    case ScreenOrientationLockPortrait:
-        attribute = Qt::PortraitOrientation;
-        break;
-    case ScreenOrientationLockLandscape:
-        attribute = Qt::LandscapeOrientation;
-        break;
-    default:
-    case ScreenOrientationAuto:
-        attribute = Qt::PrimaryOrientation;
-        break;
-    };
-    if (windowOrientation() != attribute)
-       if (!requestWindowOrientation(attribute))
+       void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
+       {
+        Qt::ScreenOrientation attribute;
+        switch (orientation) {
+        case ScreenOrientationLockPortrait:
+          attribute = Qt::PortraitOrientation;
+          break;
+        case ScreenOrientationLockLandscape:
+          attribute = Qt::LandscapeOrientation;
+          break;
+        default:
+        case ScreenOrientationAuto:
+          attribute = Qt::PrimaryOrientation;
+          break;
+        };
+        if (windowOrientation() != attribute)
+        if (!requestWindowOrientation(attribute))
           qWarning() << "Not a supported orientation.";
-}
+       }
        \endcode
  \li Run the \c{qmake} and \c{make} utilities to build the application.
-     \note Ensure that the \c{PATH} environment variable is pointing to the Qt 5 binaries and libraries directories, before running \c{qmake}.
+     \note Ensure that the \c{PATH} environment variable is pointing to the
+     Qt 5 binaries and libraries directories, before running \c{qmake}.
 \endlist
 
-Run the \c{flickr} application to see whether it behaves as expected. Here is a snapshot of the application running on Ubuntu v12.04:
+Run the \c{flickr} application to see whether it behaves as expected. Here is a
+snapshot of the application running on Ubuntu v12.04:
 \image flickr_application.png
 
 \section1 Related Topics
