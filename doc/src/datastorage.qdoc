@@ -134,11 +134,38 @@ cation might freeze until one transaction commits or rolls back.
 
 \section1 XML Support in Qt
 
-### Talk briefly about XML as a storage format and mention main classes QXMLStreamReader and
-QXMLStreamWriter, as well as XML usage in QML.
+The QXmlStreamReader class provides a fast parser for reading XML via a simple
+streaming API. QXmlStreamReader is a well-formed XML 1.0 parser that does not
+include external parsed entities. As long as no error occurs, the application
+code can assume that the XML follows W3C's standards.
 
-In addition, make sure the following pages are reachable from this section, either directly
-or indirectly:
+QXmlStreamReader understands and resolves XML namespaces. For example, in
+case of a StartElement, namespaceUri() returns the namespace the element
+is in, and name() returns the element's local name. The combination of
+namespaceUri() and name() uniquely identifies an element.
+
+QXmlStreamReader does not put a high load on the CPU, since it doesn't store
+the entire XML document tree in memory, but only the current token at the time
+it is reported.
+
+The QXmlStreamWriter class provides an XML writer with a simple streaming API.
+QXmlStreamWriter is the counterpart to QXmlStreamReader for writing XML.
+It operates on a QIODevice specified with setDevice(). The API is quite simple:
+for every XML token or event you want to write, the writer provides a dedicated
+function.
+
+QXmlStreamWriter takes care of prefixing namespaces, all you have to do
+is specify the namespaceUri when writing elements or attributes. If you
+have to use certain standardized prefixes, you can force the writer to use them
+by declaring the namespaces manually with either writeNamespace()
+or writeDefaultNamespace().
+
+The stream writer can automatically format the generated XML data by adding
+line-breaks and indentation, making the code much more readable. This feature
+can be turned on with the auto-formatting property.
+
+By default, QXmlStreamWriter encodes XML in UTF-8. Different encodings can
+be enforced using setCodec().
 
 \list
 \li \l {An Introduction to Namespaces}
