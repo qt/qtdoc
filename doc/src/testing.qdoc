@@ -1,0 +1,70 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page testing-and-debugging.html
+\title Testing and debugging
+\brief Writing unit tests and debugging with Qt
+
+### Short top-level abstract about writing debuggable code which leads into the following
+sections.
+
+\section1 Writing unit tests with QtTest Module
+
+### Short introduction to concept of unit tests and brief description of tools
+providing support for this in Qt and QML.
+
+Make sure the following links are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {QTest Namespace}
+\li \l {QTestLib Manual}
+\li \l {Chapter 1: Writing a Unit Test}
+\li \l {Chapter 2: Data Driven Testing}
+\li \l {Chapter 3: Simulating GUI Events}
+\li \l {Chapter 4: Replaying GUI Events}
+\li \l {Chapter 5: Writing a Benchmark}
+\li \l {QTestLib Tutorial}
+\li \l {QtQuickTest Reference Documentation}
+\li \l {QtTest Module}
+\endlist
+
+\section1 Debugging Qt applications
+
+### Presenting APIs useful for debugging Qt applications, in C++ and QML. Mention stuff like
+building with debug symbols, QDebug and Q_ASSERT, and environment variables that could help
+with debugging: QT_DEBUG_PLUGINS and QML_IMPORT_TRACE.
+
+Make sure the following links are reachable from this section indirectly or directly:
+
+\list
+\li \l {Debugging Techniques}
+\li \l {Debugging QML Applications}
+\li "Debugging Plugins" section in \l {Deploying Plugins}
+\endlist
+*/
+

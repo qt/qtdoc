@@ -31,87 +31,113 @@
     \title Getting Started Programming with Qt
         \ingroup gettingStarted
 
-    Welcome to the world of Qt--the cross-platform GUI toolkit. In
-    this getting started guide, we teach basic Qt knowledge by
-    implementing a simple Notepad application. After reading this
-    guide, you should be ready to delve into our overviews and API
-    documentation, and find the information you need for the
-    application you are developing.
+    In this topic, we teach basic Qt knowledge by implementing a simple Notepad
+    application. We use the Qt Creator IDE and Qt Designer to generate some
+    code, but you could also write all the code yourself.
 
-    \section1 Hello Notepad
+    After reading this topic, you are ready to refer to our overviews and API
+    documentation, to find the information you need for the application you are
+    developing.
 
-    In this first example, we simply create and show a text edit in a
-    window frame on the desktop. This represents the simplest possible
-    Qt program that has a GUI.
+    In this topic, we first use Qt Creator to create a project with the
+    necessary files. Then we use Qt Designer to modify the user interface files
+    to show a text edit and a push button in a window on the desktop.
+    This represents a simple Qt application that has a GUI. Finally, we add
+    user interaction to the application by creating actions for opening and
+    saving files.
 
-    \image gs1.png
+    \image gs1.png "Notepad application"
 
-    Here is the code:
+    You can find the final Notepad source files in the qtdoc repository in the
+    doc/src/snippets/widgets-tutorial/notepad directory. You can either fetch
+    the Qt 5 sources from Qt Project or install them as part of Qt 5.
 
-    \code
- 1        #include <QApplication>
- 2        #include <QTextEdit>
- 3
- 4        int main(int argv, char **args)
- 5        {
- 6            QApplication app(argv, args);
- 7
- 8            QTextEdit textEdit;
- 9            textEdit.show();
-10
-11            return app.exec();
-12        }
-    \endcode
+    \section1 Creating the Notepad Project
 
-    Let us go through the code line by line. In the first two lines, we
-    include the header files for QApplication and QTextEdit, which are
-    the two classes that we need for this example. All Qt classes have
-    a header file named after them.
+    Setting up a new project in Qt Creator is aided by a wizard that guides you
+    step-by-step through the project creation process. The wizard prompts you
+    to enter the settings needed for that particular type of project and creates
+    the project for you.
+
+    \image gs-project1.png "Qt Creator New File or Project dialog"
+
+    To create the Notepad project, select \b File > \b{New File or Project} >
+    \b Applications > \b {Qt Gui Application} > \b Choose, and follow the
+    instructions of the wizard. In the \b {Class Information} dialog, type
+    \b Notepad as the class name and select \b QMainWindow as the base class.
+
+    \image gs-project2.png "Class Information Dialog"
+
+    The \b {Qt Gui Application} wizard creates a project that contains a main
+    source file and a set of files that specify a user interface (Notepad
+    widget):
+
+    \list
+        \li notepad.pro - the project file.
+        \li main.cpp - the main source file for the application.
+        \li notepad.cpp - the source file of the notepad class of the Notepad
+            widget.
+        \li notepad.h - the header file of the notepad class for the Notepad
+            widget.
+        \li notepad.ui - the UI form for the Notepad widget.
+    \endlist
+
+    The .cpp, .h, and .ui files come with the necessary boiler plate code for
+    you to be able to build and run the project. The .pro file is complete.
+    We will take a closer look at the file contents in the following sections.
+
+    \section2 Learn More
+
+    \table
+        \header
+            \li About
+            \li Here
+        \row
+            \li Using Qt Creator
+            \li \l{external: Qt Creator Manual}{Qt Creator}
+        \row
+            \li Creating other kind of applications with Qt Creator
+            \li \l{external: Tutorials for Creator}
+                {Qt Creator Tutorials}
+    \endtable
+
+
+    \section1 Main Source File
+
+    The wizard generates the following code in the main.cpp file:
+
+    \quotefile snippets/widgets-tutorial/notepad/main.cpp
+
+    Let us go through the code line by line. On the first two lines, we include
+    the header files for the Notepad widget and QApplication. All Qt classes
+    have a header file named after them.
+
+    Line 4 defines the main function that is the entry point for all C and C++
+    based applications.
 
     Line 6 creates a QApplication object. This object manages
     application-wide resources and is necessary to run any Qt program
-    that has a GUI. It needs \c argv and \c args because Qt accepts a
-    few command line arguments.
+    that has a GUI. It constructs an application object with \c argc command
+    line arguments run in \c argv.
 
-    Line 8 creates a QTextEdit object. A text edit is a visual element
-    in the GUI. In Qt, we call such elements widgets. Examples of
-    other widgets are scroll bars, labels, and radio buttons. A widget
-    can also be a container for other widgets; a dialog or a main
-    application window, for example.  
+    Line 7 creates the Notepad object. This is the object for which the wizard
+    created the class and the UI file. The user interface contains visual
+    elements that are called \c widgets in Qt. Examples of widgets are text
+    edits, scroll bars, labels, and radio buttons. A widget can also be a
+    container for other widgets; a dialog or a main application window, for
+    example.
 
-    Line 9 shows the text edit on the screen in its own window frame.
+    Line 8 shows the Notepad widget on the screen in its own window.
     Since widgets also function as containers (for instance a
     QMainWindow, which has toolbars, menus, a status bar, and a few
     other widgets), it is possible to show a single widget in its own
     window. Widgets are not visible by default; the function
     \l{QWidget::}{show()} makes the widget visible.
 
-    Line 11 makes the QApplication enter its event loop. When a Qt
+    Line 10 makes the QApplication enter its event loop. When a Qt
     application is running, events are generated and sent to the
     widgets of the application. Examples of events are mouse presses
-    and key strokes. When you type text in the text edit widget, it
-    receives key pressed events and responds by drawing the text
-    typed.
-
-    To run the application, open a command prompt, and enter the
-    directory in which you have the \c .cpp file of the program. The
-    following shell commands build the program.
-
-    \code
-        qmake -project
-        qmake
-        make
-    \endcode
-
-    This will leave an executable in the \c part1 directory (note that
-    on Windows, you may have to use \c nmake instead of \c make. Also,
-    the executable will be placed in part1\\debug or part1\\release
-    (these directories are created when you run \c make). \c qmake is
-    Qt's build tool, which takes a configuration file. \c qmake
-    generates this for us when given the \c{-project} argument. Given
-    the configuration file (suffixed .pro), \c qmake produces a \c
-    make file that will build the program for you. We will look into
-    writing our own \c .pro files later.
+    and key strokes.
 
     \section2 Learn More
 
@@ -127,68 +153,229 @@
             \li \l{The Event System}
     \endtable
 
-    \section1 Adding a Quit Button
+    \section1 Designing a UI
 
-    In a real application, you will normally need more than one
-    widget. We will now introduce a QPushButton beneath the text edit.
-    The button will exit the Notepad application when pushed (i.e.,
-    clicked on with the mouse).
+    The wizard generates a user interface definition in XML format, notepad.ui.
+    When you open the notepad.ui file in Qt Creator, it automatically opens
+    in the integrated Qt Designer.
+
+    When you build the application, Qt Creator launches the Qt
+    \l{User Interface Compiler (uic)} that reads the .ui file and creates a
+    corresponding C++ header file, ui_notepad.h.
+
+    \section2 Using Qt Designer
+
+    The wizard creates an application that uses a QMainWindow. It has its own
+    layout to which you can add a menu bar, dock widgets, tool bars, and a
+    status bar. The center area can be occupied by any kind of widget. The
+    wizard places the Notepad widget there.
+
+    Let us use Qt Designer to add a QTextEdit object and a QPushButton object to
+    the main window. When you type text in the text edit widget, it receives key
+    pressed events and responds by drawing the text typed. The button will exit
+    the Notepad application when pushed (that is, clicked with the mouse).
+
+    To add widgets in Qt Designer:
+
+    \list 1
+        \li In the Qt Creator \b Editor mode, double-click the notepad.ui file
+            in the \b Projects view to launch the file in the integrated Qt
+            Designer.
+        \li Drag and drop the following widgets to the form:
+            \list
+                \li Text Edit (QTextEdit)
+                \li Push Button (QPushButton)
+            \endlist
+        \li Double-click the \b {Push Button} widget and enter the text \b Quit.
+        \li In the \b Properties pane, change the value of \b objectName to
+            \b quitButton.
+        \li Press \b {Ctrl+A} (or \b {Cmd+A}) to select the widgets and click
+            \b {Lay out Vertically} (or press \b {Ctrl+L}) to apply a vertical
+            layout (QVBoxLayout).
+        \li Press \b {Ctrl+S} (or \b {Cmd+S}) to save your changes.
+    \endlist
+
+    The UI now looks as follows in Qt Designer:
 
     \image gs2.png
 
-    Let us take a look at the code.
+    You can view the generated XML file in the code editor:
 
-    \code
- 1        #include <QtWidgets>
- 2
- 3        int main(int argc, char *argv[])
- 4        {
- 5            QApplication app(argc, argv);
- 6
- 7            QTextEdit *textEdit = new QTextEdit;
- 8            QPushButton *quitButton = new QPushButton("&Quit");
- 9
-10            QObject::connect(quitButton, SIGNAL(clicked()), qApp, SLOT(quit()));
-11
-12            QVBoxLayout *layout = new QVBoxLayout;
-13            layout->addWidget(textEdit);
-14            layout->addWidget(quitButton);
-15
-16            QWidget window;
-17            window.setLayout(layout);
-18
-19            window.show();
-20
-21            return app.exec();
-22        }
-    \endcode
+    \quotefromfile snippets/widgets-tutorial/notepad/notepad.ui
 
-    Line 1 includes QtWidgets, which contains all of Qt's widgets.
+    \printuntil QMenuBar
+    \dots
 
-    Line 10 uses Qt's Signals and Slots mechanism to make the
-    application exit when the \gui {Quit button} is pushed. A slot is
-    a function that can be invoked at runtime using its name (as a
-    literal string). A signal is a function that when called will
-    invoke slots registered with it; we call that to connect the slot
-    to the signal and to emit the signal.
+    Line 1 contains the XML declaration, which specifies the XML version and
+    character encoding used in the document.
 
-    \l{QApplication::}{quit()} is a slot of QApplication that exits
-    the application. \l{QPushButton::}{clicked()} is a signal that
-    QPushButton emits when it is pushed. The static
-    QObject::connect() function takes care of connecting the slot to
-    the signal. SIGNAL() and SLOT() are two macros that take the
-    function signatures of the signal and slot to connect. We also
-    need to give pointers to the objects that should send and receive
-    the signal.
+    Line 2 creates an \c ui element that defines a Notepad widget.
 
-    Line 12 creates a QVBoxLayout. As mentioned, widgets can contain
+    Line 26 creates a QVBoxLayout widget that contains a QTextEdit
+    and QPushButton widget. As mentioned, widgets can contain
     other widgets. It is possible to set the bounds (the location and
     size) of child widgets directly, but it is usually easier to use a
     layout. A layout manages the bounds of a widget's children.
     QVBoxLayout, for instance, places the children in a vertical row.
 
-    Line 13 and 14 adds the text edit and button to the layout. In
-    line 17, we set the layout on a widget. 
+    The UI file is used together with the header and source file of the Notepad
+    class. We will look at the rest of the UI file in the later sections.
+
+    \section2 Notepad Header File
+
+    The wizard generated a header file for the Notepad class that has the
+    necessary #includes, a constructor, a destructor, and the Ui object. The
+    file looks as follows:
+
+    \quotefile snippets/gs/notepad1.h
+
+    Line 4 includes QMainWindow that provides a main application window.
+
+    Line 6 declares the Notepad class in the Ui namespace, which is the
+    standard namespace for the UI classes generated from .ui files by the
+    \c uic tool.
+
+    Line 10 contains the \c Q_OBJECT macro. It must come first in the class
+    definition, and declares our class as a QObject. Naturally, it must also
+    inherit from QObject. A QObject adds several abilities to a normal C++
+    class. Notably, the class name and slot names can be
+    queried at run-time. It is also possible to query a slot's
+    parameter types and invoke it.
+
+    Line 15 declares a constructor that has a default argument called \c parent.
+    The value 0 indicates that the widget has no parent (it is a top-level
+    widget).
+
+    Line 16 declares a virtual destructor to free the resources that were
+    acquired by the object during its life-cycle. According to the C++
+    naming convention, destructors have the same name as the class they are
+    associated with, prefixed with a tilde (~). In QObject, destructors are
+    virtual to ensure that the destructors of derived classes are invoked
+    properly when an object is deleted through a pointer-to-base-class.
+
+    Line 19 declares a member variable which is a pointer to the Notepad UI
+    class. A member variable is associated with a specific class, and accessible
+    for all its methods.
+
+    \section2 Notepad Source File
+
+    The source file that the wizard generated for the Notepad class looks as
+    follows:
+
+    \quotefile snippets/gs/notepad1.cpp
+
+    The first two lines include the Notepad class header file that was generated
+    by the wizard and the UI header file that was generated by the \c uic tool.
+
+    Line 4 defines the \c {Notepad} constructor and sets up the UI file.
+
+    Line 5 calls the QMainWindow constructor, which is the base class for the
+    Notepad class.
+
+    Line 6 creates the UI class instance and assigns it to the \c ui member.
+
+    Line 8 sets up the UI.
+
+    Line 11 destructs the \c ui.
+
+    \section2 Project File
+
+    The wizard generates the following project file, \c {notepad.pro}, for us:
+
+    \quotefile snippets/widgets-tutorial/notepad/notepad.pro
+
+    The project file specifies the application name and the \c qmake template to
+    use for generating the project, as well as the source, header, and UI files
+    included in the project.
+
+    You could also use \c qmake's \c -project option to generate the \.pro file.
+
+    \section2 Learn More
+
+    \table
+        \header
+            \li About
+            \li Here
+        \row
+            \li Using Qt Designer
+            \li \l{Qt Designer Manual}
+        \row
+            \li Layouts
+            \li \l{Layout Management},
+               \l{Widgets and Layouts},
+               \l{Layout Examples}
+        \row
+            \li The widgets that come with Qt
+            \li \l{Qt Widget Gallery}
+        \row
+            \li Main windows and main window classes
+            \li \l{Application Main Window},
+               \l{Main Window Examples}
+        \row
+            \li QObjects and the Qt Object model (This is essential to
+                understand Qt)
+            \li \l{Object Model}
+        \row
+            \li qmake and the Qt build system
+            \li \l{qmake Manual}
+    \endtable
+
+    \section1 Adding User Interaction
+
+    We now have a user interface, but it does not really do anything useful, as
+    it only contains a text edit and a push button, as well as some standard
+    functions for quitting, minimizing and maximizing the application. To make
+    the application useful, we will add user interaction to it. First, we will
+    add functionality to the push button. Second, we will add functions for
+    loading a file to the text edit and for saving the contents of the text edit
+    as a file.
+
+    \section2 Adding Push Buttons
+
+    Most desktop operating systems have standard ways of enabling users to quit
+    applications. However, in this example we use this basic function to
+    illustrate how you can add user interaction to applications. To do this, we
+    add a slot that we connect to the \b {Quit button}.
+
+    To exit the application when the \b Quit button is pushed, you use the Qt
+    signals and slots mechanism. A signal is emitted when a particular event
+    occurs and a slot is a function that is called in response to a particular
+    signal. Qt widgets have predefined signals and slots that you can use
+    directly from Qt Designer.
+
+    To use Qt Designer to add a slot for the quit function, right-click the
+    \b Quit button to open a context-menu and then select \b {Go to slot} >
+    \b {clicked()}.
+
+    A private slot, \c{on_quitButton_clicked()}, is added to the Notepad widget
+    class header file, notepad.h and a private function,
+    \c{Notepad::on_quitButton_clicked()}, is added to the Notepad widget class
+    source file, notepad.cpp. We just need to write the code to execute the quit
+    function in the source file.
+
+    Let us look at the modified code in the header file, notepad.h:
+
+    \quotefile snippets/gs/notepad2.h
+
+    Line 14 uses Qt's signals and slots mechanism to make the
+    application exit when the \b {Quit button} is pushed. Qt Designer uses
+    QMetaObject \l{designer-using-a-ui-file.html#automatic-connections}
+    {auto-connection facilities} to connect the button's clicked() signal to a
+    slot in the Notepad class. The \c uic tool automatically generates code in
+    the dialog's \l{setupUi()} function to do this, so Qt Designer only needs to
+    declare and implement a slot with a name that follows a standard convention.
+
+    The corresponding code in the source file, notepad.cpp, looks as follows:
+
+    \quotefile snippets/gs/notepad2.cpp
+
+    The code defines the private function that is executed when QPushButton
+    emits the \l{QPushButton::}{clicked()} signal.
+
+    We now complement the code to have the \l{QApplication::}{quit()} slot of
+    QApplication exit Notepad:
+
+    \snippet snippets/widgets-tutorial/notepad/notepad.cpp 1
 
     \section2 Learn More
 
@@ -199,258 +386,68 @@
          \row
             \li Signals and slots
             \li \l{Signals & Slots}
-        \row
-            \li Layouts
-            \li \l{Layout Management},
-               \l{Widgets and Layouts},
-               \l{Layout Examples}
-        \row 
-            \li The widgets that come with Qt
-            \li \l{Qt Widget Gallery},
-               \l{Widget Examples}
     \endtable
 
-    \section1 Subclassing QWidget
-
-    When the user wants to quit an application, you might want to
-    pop-up a dialog that asks whether he/she really wants to quit. In
-    this example, we subclass QWidget, and add a slot that we connect
-    to the \gui {Quit button}.
-
-    \image gs3.png
-
-    Let us look at the code:
-
-    \code
- 5        class Notepad : public QWidget
- 6        {
- 7            Q_OBJECT
- 8
- 9        public:
-10            Notepad();
-11
-12        private slots:
-13            void quit();
-14
-15        private:
-16            QTextEdit *textEdit;
-17            QPushButton *quitButton;
-18        };
-    \endcode
-
-    The \c Q_OBJECT macro must be first in the class definition, and
-    declares our class as a \c QObject (Naturally, it must also
-    inherit from QObject). A \l{QObject} adds several abilities to a
-    normal C++ class. Notably, the class name and slot names can be
-    queried at run-time. It is also possible to query a slot's
-    parameter types and invoke it.
-
-    Line 13 declares the slot \c quit(). This is easy using the \c
-    slots macro. The \c quit() slot can now be connected to signals.
-    We will do that later.
-
-    Instead of setting up the GUI and connecting the slot in the \c
-    main() function, we now use \c{Notepad}'s constructor. 
-
-    \code
-20        Notepad::Notepad()
-21        {
-22            textEdit = new QTextEdit;
-23            quitButton = new QPushButton(tr("Quit"));
-24
-25            connect(quitButton, SIGNAL(clicked()), this, SLOT(quit()));
-26
-27            QVBoxLayout *layout = new QVBoxLayout;
-28            layout->addWidget(textEdit);
-29            layout->addWidget(quitButton);
-30
-31            setLayout(layout);
-32
-33            setWindowTitle(tr("Notepad"));
-34        }
-    \endcode
-
-    As you saw in the class definition, we use pointers to our \l
-    {QObject}s (\c textEdit and \c quitButton). As a rule, you should
-    always allocate \l{QObject}s on the heap and never copy them.
-
-    We now use the function \l{QObject::}{tr()} around our user
-    visible strings. This function is necessary when you want to
-    provide your application in more than one language (e.g.  English
-    and Chinese). We will not go into details here, but you can follow
-    the \c {Qt Linguist} link from the learn more table. We will not
-    look at the implementation of \c quit() slot and the \c main()
-    function, but you can check out the source code if you want to.
-
-    \section2 Learn More
-
-    \table
-        \header
-            \li About
-            \li Here
-        \row
-            \li tr() and internationalization
-            \li \l{Qt Linguist Manual},
-               \l{Writing Source Code for Translation},
-               \l{Hello tr() Example},
-               \l{Internationalization with Qt}
-        \row
-            \li QObjects and the Qt Object model (This is essential to understand Qt)
-            \li \l{Object Model}
-        \row
-            \li qmake and the Qt build system
-            \li \l{qmake Manual}
-    \endtable
-
-    \section2 Creating a .pro file
-
-    For this example, we write our own \c .pro file instead of
-    using \c qmake's \c -project option.
-
-    \code
- 1        HEADERS =  notepad.h
- 2        SOURCES =  notepad.cpp \
- 3                   main.cpp
-    \endcode
-
-    The following shell commands build the example.
-
-    \code
-        qmake
-        make
-    \endcode
-
-    \section1 Using a QMainWindow
-
-    Many applications will benefit from using a QMainWindow, which has
-    its own layout to which you can add a menu bar, dock widgets, tool
-    bars, and a status bar. QMainWindow has a center area that can be
-    occupied by any kind of widget. In our case, we will place our
-    text edit there.
-
-    \image gs4.png
-
-    Let us look at the new \c Notepad class definition.
-
-    \code
- 2        #include <QtWidgets>
- 3 
- 4        class Notepad : public QMainWindow
- 5        {
- 6            Q_OBJECT
- 7 
- 8        public:
- 9            Notepad();
-10
-11        private slots:
-12            void open();
-13            void save();
-14            void quit();
-15
-16        private:
-17            QTextEdit *textEdit;
-18
-19            QAction *openAction;
-20            QAction *saveAction;
-21            QAction *exitAction;
-22
-23            QMenu *fileMenu;
-24        };
-    \endcode
-
-    We include two more slots that can save and open a document. We
-    will implement these in the next section.
+    \section2 Adding Menu Items
 
     Often, in a main window, the same slot should be invoked by
     several widgets. Examples are menu items and buttons on a tool
     bar. To make this easier, Qt provides QAction, which can be given
     to several widgets, and be connected to a slot. For instance, both
     QMenu and QToolBar can create menu items and tool buttons from the
-    same \l{QAction}s. We will see how this works shortly.
+    same \l{QAction}.
 
-    As before, we use the \c {Notepad}s constructor to set up the
-    GUI.
+    To learn how to use actions with signals and slots, we add menu items to
+    open and save a document and connect them to slots.
 
-    \code
-25        Notepad::Notepad()
-26        {
-27            openAction = new QAction(tr("&Open"), this);
-28            saveAction = new QAction(tr("&Save"), this);
-29            exitAction = new QAction(tr("E&xit"), this);
-30
-31            connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
-32            connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
-33            connect(exitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-34
-35            fileMenu = menuBar()->addMenu(tr("&File"));
-36            fileMenu->addAction(openAction);
-37            fileMenu->addAction(saveAction);
-38            fileMenu->addSeparator();
-39            fileMenu->addAction(exitAction);
-40
-41            textEdit = new QTextEdit;
-42            setCentralWidget(textEdit);
-43
-44            setWindowTitle(tr("Notepad"));
-45        }
-    \endcode
+    As before, we use Qt Designer to add the widgets to the user interface.
+    The wizard creates an application with a QMenu widget, with the text
+    \b {Type Here} as a placeholder for menu and menu item names. Double-click
+    the text to enter names for the \b File menu and \b Open and \b Save menu
+    items. Qt Designer automatically generates the appropriate actions.
 
-    \l{QAction}s are created with the text that should appear on the
+    \image gs3.png
+
+    To connect the actions to slots, right-click an action and select
+    \b {Go to slot} > \b triggered().
+
+    \l{QAction} instances are created with the text that should appear on the
     widgets that we add them to (in our case, menu items). If we also
-    wanted to add them to a tool bar, we could have given
-    \l{QIcon}{icons} to the actions.
+    wanted to add the actions to a tool bar, we could have specified
+    \l{QIcon}{icons} for them.
 
-    When a menu item is clicked now, the item will trigger the action,
-    and the respective slot will be invoked.
+    The modified code in notepad.ui now looks as follows:
 
-    \section2 Learn More
+    \quotefromfile snippets/widgets-tutorial/notepad/notepad.ui
 
-    \table
-        \header
-            \li About
-            \li Here
-        \row
-            \li Main windows and main window classes
-            \li \l{Application Main Window},
-               \l{Main Window Examples}
-        \row
-            \li MDI applications
-            \li QMdiArea,
-               \l{MDI Example}
-    \endtable
+    \skipto QMenuBar
+    \printto layoutdefault
 
-    \section1 Saving and Loading
+    Qt Designer adds the private slots \c{on_actionOpen_triggered()} and
+    \c{on_actionSave_triggered()} to notepad.h and the private functions
+    \c{Notepad::on_actionOpen_triggered()} and
+    \c{Notepad::on_actionSave_triggered()} to notepad.cpp.
 
-    In this example, we will implement the functionality of the \c
-    open() and \c save() slots that we added in the previous example.
+    In the following sections, we complement the code to load and save files.
+    When a menu item is clicked, the item triggers the action, and the
+    respective slot is invoked.
 
-    \image gs5.png
+    \section2 Opening Files
 
-    We will start with the \c open() slot:
+    In this section, we implement the functionality of the
+    \c{on_actionOpen_triggered()} slot. The first step is asking the user for
+    the name of the file to open. Qt comes with QFileDialog, which is a dialog
+    from which the user can select a file. The appearance of the dialog depends
+    on the desktop platform that you run the application on. The following
+    image shows the dialog on Mac OS:
 
-    \code
-48    void Notepad::open()
-49    {
-50        QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",
-51            tr("Text Files (*.txt);;C++ Files (*.cpp *.h)"));
-52
-53        if (fileName != "") {
-54            QFile file(fileName);
-55            if (!file.open(QIODevice::ReadOnly)) {
-56                QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
-57                return;
-58            }
-59            QTextStream in(&file);
-60            textEdit->setText(in.readAll());
-61            file.close();
-62        }
-63    }
-    \endcode
+    \image gs4.png
 
-    The first step is asking the user for the name of the file to
-    open. Qt comes with QFileDialog, which is a dialog from which the
-    user can select a file. The image above shows the dialog on
-    Kubuntu. The static \l{QFileDialog::}{getOpenFileName()} function
+    We complement the code generated by Qt Designer in notepad.cpp, as follows:
+
+    \snippet snippets/widgets-tutorial/notepad/notepad.cpp 2
+
+    The static \l{QFileDialog::}{getOpenFileName()} function
     displays a modal file dialog. It returns the file path of the file
     selected, or an empty string if the user canceled the dialog. 
 
@@ -469,27 +466,28 @@
     edit. We then \l{QIODevice::}{close()} the file to return the file
     descriptor back to the operating system.
 
-    Now, let us move on to the the \c save() slot.
+    We now use the function \l{QObject::}{tr()} around our user
+    visible strings. This function is necessary when you want to
+    provide your application in more than one language (for example, English
+    and Chinese). We will not go into details here, but you can follow
+    the \c {Qt Linguist} link from the learn more table.
 
-    \code
-65    void Notepad::save()
-66    {
-67        QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "",
-68        tr("Text Files (*.txt);;C++ Files (*.cpp *.h)"));
-69
-70        if (fileName != "") {
-71            QFile file(fileName);
-72            if (!file.open(QIODevice::WriteOnly)) {
-73                // error message
-74            } else {
-75                QTextStream stream(&file);
-76                stream << textEdit->toPlainText();
-77                stream.flush();
-78                file.close();
-79            }
-80        }
-81    }
-    \endcode
+    To use QFileDialog, QFile, QMessageBox, and QTextStream, add the following
+    includes to notepad.cpp:
+
+    \snippet snippets/widgets-tutorial/notepad/notepad.cpp 0
+
+    \section2 Saving Files
+
+    Now, let us move on to the the \c{on_actionSave_triggered()} slot, which
+    also uses QFileDialog to create a dialog in which the user can save a
+    file with the specified name in the specified location.
+
+    \image gs5.png
+
+    We complement the code generated by Qt Designer in notepad.cpp, as follows:
+
+    \snippet snippets/widgets-tutorial/notepad/notepad.cpp 3
 
     When we write the contents of the text edit to the file, we use
     the QTextStream class again. QTextStream can also write
@@ -502,20 +500,43 @@
             \li About
             \li Here
         \row
+            \li MDI applications
+            \li QMdiArea,
+               \l{MDI Example}
+        \row
             \li Files and I/O devices
             \li QFile, QIODevice
+        \row
+            \li tr() and internationalization
+            \li \l{Qt Linguist Manual},
+               \l{Writing Source Code for Translation},
+               \l{Internationalization with Qt}
     \endtable
 
-    \omit
-    \section1 Moving On
+    \section1 Building and Running Notepad
 
-    This may not be true for the first release. 
-    The Qt documentation comes with three getting started guides. You
-    have come to the end of the first, which concerns itself with
-    basic Qt concepts. We also have guides covering intermediate and
-    advanced topics. They are found here: You may also have noticed that the learn more sections in
-    this guide frequently linked to them.
-    Basic Qt Architecture
-    \endomit
+    Now that you have all the necessary files, select \b Build >
+    \b {Build Project Notepad} to build and run the application. Qt Creator
+    uses \c qmake and \c make to create an executable in the directory
+    specified in the build settings of the project and runs it.
+
+    \section2 Building and Running from the Command Line
+
+    To build the application from the command line, switch to the
+    directory in which you have the \c .cpp file of the application. The
+    following shell commands build the application.
+
+    \code
+        qmake -project
+        qmake
+        make (or nmake on Windows)
+    \endcode
+
+    The commands create an executable in the project directory. \c qmake is
+    Qt's build tool, which takes a configuration file. \c qmake
+    generates this for us when given the \c{-project} argument. Given
+    the configuration file (suffixed .pro), \c qmake produces a \c
+    make file that will build the program for you.
+
 */
 

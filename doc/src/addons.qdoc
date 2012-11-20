@@ -1,0 +1,275 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page addons.html
+\title Add-ons
+\brief Add-on modules to Qt
+
+In addition to the essential Qt modules which are supported on all the platforms
+supported by Qt, there is also a set of add-on modules. Platform support for these
+modules is optional, but many are still widely supported. Note that, though the
+modules are considered optional, they are not necessarily less important than the
+essential Qt modules. Some are deprecated APIs available for backwards compatability,
+but others are fundamental modules which may primarily be relevant on a sub-set of the
+platforms supported by Qt.
+
+\section1 Qt Bluetooth
+
+### Introduction to Qt Bluetooth with a link to the bluetooth section in the
+\l {Networking and Connectivity} overview and \l {Qt Bluetooth Overview}.
+
+\section1 Qt Concurrent
+
+### Introduction to the Qt Concurrent Module. Link to the \l {QtConcurrent Module} documentation
+and \l {Concurrent Programming}.
+
+\section1 Qt D-Bus
+
+### Introduction to the D-Bus add-on. Link to the \l {QtDBus module} documentation and
+"Inter-Process Communication" in \l {Networking and Connectivity}.
+
+\section1 Qt Contacts
+
+### Introduction to the contacts module.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {Qt Contacts Module}
+\li \l {Qt Contacts Overview}
+\li \l {Qt Contacts Action API}
+\li \l {Qt Contacts Asynchronous API}
+\li \l {Qt Contacts C++ API}
+\li \l {Qt Contacts Manager Engines}
+\li \l {Qt Contacts Synchronous API}
+\li \l {Qt Contacts API Usage}
+\endlist
+
+\section1 Qt Location
+
+### Introduction to the location API.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {Qt Location C++ API}
+\li \l {Qt Location GeoServices}
+\li \l {QtLocation Namespace}
+\li \l {Qt Location Module}
+\li \l {QML Maps}
+\li \l {QML Location Plugin}
+\li \l {Location QML Plugin}
+\li \l {QML Maps Plugin}
+\li \l {Qt Location}
+\endlist
+
+\section1 Qt Organizer
+
+### Introduction to the organizer APIs.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {Qt Organizer}
+\li \l {QtOrganizer Module}
+\li \l {Qt Organizer Manager Engines}
+\li \l {Qt Organizer Overview}
+\li \l {Qt Organizer Synchronous API}
+\li \l {Qt Organizer API Advanced Usage}
+\li \l {Qt Organizer Asynchronous API}
+\li \l {Qt Organizer C++ API}
+\endlist
+
+\section1 Qt OpenGL
+
+### Introduction to Qt OpenGL. Mention that some of the APIs have been replaced by new classes
+in Qt GUI, but that QGLWidget still resides in this module. Link to \l {QtOpenGL Module}
+documentation.
+
+\section1 Qt Print Support
+
+### Introduction to printing in Qt. Link to \l {QtPrintSupport Module} and \l {Printing with Qt}.
+
+\section1 Qt Publish and Subscribe
+
+### Introduction to the module.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {QValueSpace Namespace}
+\li \l {Qt Publish Subscribe Module}
+\li \l {Publish and Subscribe QML Plugin}
+\endlist
+
+\section1 Qt Script and Qt Script Tools (deprecated)
+
+### Introduction to the module and mention that it only exists for supporting old code.
+Link to the relevant classes in Qt Qml that can be used as replacement. Link to the \l {Scripting}
+overview.
+
+Also make sure the following pages are reachable directly or indirectly:
+
+\list
+\li \l {QtScript Debugger Manual}
+\li \l {Creating QtScript Extensions}
+\li \l {QtScript Module}
+\li \l {QtScriptTools Module}
+\li \l {Scripting Classes and Overviews}
+\li \l {Making Applications Scriptable}
+\endlist
+
+\section1 Qt Sensors
+
+### Introduction to Qt Sensors.
+
+Make sure the following pages are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {QtSensorGestures C++ API}
+\li \l {Qt Sensors C++ API}
+\li \l {Porting Applications from QtMobility Sensors to Qt Sensors}
+\li \l {QtSensorGestures Emulator}
+\li \l {QtSensorGestures Plugins}
+\li \l {Qt Sensors Backend}
+\li \l {Creating a sensor plugin}
+\li \l {Compatibility map}
+\li \l {Determining the default sensor for a type}
+\li \l {Dynamic Sensor Backend Registration}
+\li \l {Generic Backend}
+\li \l {Qt Sensors}
+\endlist
+
+\section1 Qt Service
+
+### Introduction to the module.
+
+Make sure the following pages are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {Qt Service Framework}
+\li \l {Service Frameworks Classes}
+\li \l {Qt Service Framework Module}
+\endlist
+
+\section1 Qt SVG
+
+### Short description of SVG and link to the \l {QtSVG Module} documentation.
+
+\section1 Qt System Info
+
+### Short description of the module with a link to the \l {Qt System Info Module} documentation.
+
+\section1 Qt Tools
+
+### Introduction to tools for developing Qt applications. Link to the \l {Development Tools}
+overview.
+
+Make sure the following pages are reachable from this section, either directly or indirectly:
+
+\list
+\li \l {QtUiTools Module} documentation.
+\li \l {The Qt Help Framework}
+\li \l {QtHelp Module}
+\li \l {Qt Help Project}
+\endlist
+
+\section1 Qt Versit
+
+### Introduction to the Qt Versit module.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {Qt Versit}
+\li \l {QtVersit Module}
+\li \l {Supported vCard Features}
+\li \l {Qt Versit C++ API}
+\li \l {Qt Versit Overview}
+\li \l {Qt Versit Plugins}
+\li \l {Supported iCalendar Features}
+\endlist
+
+\section1 Qt Wayland
+
+### Introduction to Qt Wayland as a replacement for QWS. If there is any documentation, link
+to it.
+
+\section1 Qt Widgets
+
+### Introduction to widgets, link to the \l {User Interfaces} overview and module description.
+
+\section1 Qt XML (deprecated)
+
+### Remind people that Qt XML is deprecated and mainly exists for porting old code. Mention the
+alternatives QXMLStreamReader and QXMLStreamWriter and link to the documentation for these,
+as well as the "XML Support in Qt" section in \l {Data Structure and Storage}. Link to the
+\l {QtXML Module} documentation.
+
+\section1 Qt XML Patterns
+
+### Introduction to XML patterns. With link to the module description: \l {Qt XML patterns Module}
+
+
+\section1 Qt 3D
+
+### Introduction to Qt 3D.
+
+Make sure the following pages are reachable from this section, indirectly or directly:
+
+\list
+\li \l {Acceptance tests for Qt3D}
+\li \l {Qt3D Classes}
+\li \l {Qt 3D Namespaces}
+\li \l {Qt 3D Annotated Class List}
+\li \l {Qt3D Arrays and Vertex Buffers}
+\li \l {Building QtQuick3D}
+\li \l {Camera and View Frustum}
+\li \l {Qt 3D Classes}
+\li \l {Contributing to QtQuick3D and Qt3D}
+\li \l {Declarative Scenegraph Creation}
+\li \l {Qt3D Geometry}
+\li \l {Qt3D Graphics View Integration}
+\li \l {Qt 3D Inheritance Hierarchy}
+\li \l {Qt3D Classes}
+\li \l {Qt 3D}
+\li \l {Other Licenses Used in Qt 3D}
+\li \l {Qt3D Materials}
+\li \l {3D Math Basis}
+\li \l {Qt3D Math}
+\li \l {Qt 3D Modules}
+\li \l {Qt3D Painting}
+\li \l {QtQuick3D for Scripting 3D Apps in QML}
+\li \l {Stock Shapes for QtQuick3D}
+\li \l {Qt3D Scene Management}
+\li \l {Qt3D Texture Handling}
+\li \l {QtQuick3D Troubleshooting Guide}
+\li \l {Qt3D Viewing}
+\endlist
+*/
+

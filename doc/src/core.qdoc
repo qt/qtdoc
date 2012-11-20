@@ -26,34 +26,37 @@
 ****************************************************************************/
 
 /*!
-    \page platform-notes-vxworks.html
-    \title Platform and Compiler Notes - VxWorks
-    \contentspage Platform and Compiler Notes
-    \target VxWorks
+\page topics-core.html
+\title Core Fundamentals
+\brief Qt's core topics
 
-    \note VxWorks is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
-*/
-
-/*!
-    \page platform-notes-qnx.html
-    \title Platform and Compiler Notes - QNX
-    \contentspage Platform and Compiler Notes
-    \target QNX
-
-    \note QNX is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
-*/
-
-/*!
-    \page platform-notes-integrity.html
-    \title Platform Notes - INTEGRITY
-    \contentspage Platform Notes
-    \target INTEGRITY
-
-    \note INTEGRITY is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
+A list of topics in this topic page:
+\list
+\li \l{Inter-Process Communication in Qt}
+\li QProcess
+\li \l{Thread Support in Qt}
+\list
+\li \l{Threading Basics}
+\endlist
+\li \l{Container Classes}
+\li \l{The Event System}
+\li \l{The State Machine Framework}
+\li \l{Object Model}
+\list
+\li \l{The Meta-Object System}
+\li \l{The property system}
+\li \l{Signals & Slots}
+\li The meta-object in QML
+\endlist
+\li QString / Unicode
+\li Text codecs
+\li QPA
+\li Wayland
+\li Platform specific development
+\list
+\li Mac
+\li Windows CE
+\endlist
+\li \l{How to Create Qt Plugins}
+\endlist
 */

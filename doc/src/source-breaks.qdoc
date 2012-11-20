@@ -34,7 +34,7 @@ Qt 5 introduces some source incompatible changes. Here we list the important one
 
 The following sections lists the API changes in each module and provides recommendations to handle those changes.
 
-\section1 Qt Core
+\section1 Changes to Qt Core
     \list
      \li The \l{QObject::connectNotify()} and \l {QObject::disconnectNotify()} functions now need a \l{QMetaMethod} argument
          that identifies the signal, rather than a \c{const char} pointer.
@@ -179,7 +179,7 @@ The following sections lists the API changes in each module and provides recomme
          in the URL, but now it returns "%25" like the \l{QUrl::toEncoded} does.
     \endlist
 
-\section1 Qt GUI
+\section1 Changes to Qt GUI
     \list
      \li \l{QPainter} does not support uniting clipped regions anymore. Use \l{QRegion::united()} instead to unite clips and pass the result to \l{QPainter}.
      \li \l{QAccessibleInterface} has undergone the following changes:
@@ -193,7 +193,7 @@ The following sections lists the API changes in each module and provides recomme
          \li role(int child) is now \l{QAccessibleInterface::role()}{role()}
          \li state(int child) is now \l{QAccessibleInterface::state()}{state()}
         \endlist
-       \li \c{navigate()} is replaced with \li{QAccessibleInterface::parent()}{parent()} and \li{QAccessibleInterface::child()}{child()} to navigate the hierarchy.
+       \li \c{navigate()} is replaced with \l{QAccessibleInterface::parent()}{parent()} and \l{QAccessibleInterface::child()}{child()} to navigate the hierarchy.
        \li \c{relationTo()} is replaced with \l{QAccessibleInterface::relations()}{relations()}.
        \li \c{QAccessibleInterface::userActionCount()}, \c{QAccessibleInterface::actionText()}, and \c{QAccessibleInterface::doAction()} are removed.
            We recommend the \l{QAccessibleInterface} subclasses to implement the \l{QAccessibleActionInterface} instead.
@@ -220,7 +220,7 @@ The following sections lists the API changes in each module and provides recomme
          This is to ensure consistency with RGB32 and other 32-bit formats.
     \endlist
 
-\section1 Qt Widgets
+\section1 Changes to Qt Widgets
     \list
      \li The signatures of \l{QItemEditorFactory::createEditor} and \l{QItemEditorFactory::valuePropertyName}
          are changed to take arguments of type \c{int} instead of \l{QVariant::Type}.
@@ -256,13 +256,13 @@ The following sections lists the API changes in each module and provides recomme
          their second parameter instead of \c{QRgb}.
     \endlist
 
-\section1 Qt Print Support
+\section1 Changes to Qt Print Support
     \list
      \li The \l{QPageSetupDialog::PageSetupDialogOption} enum and the corresponding set and get functions, \c{QPageSetupDialog::options()}
          and \c{QPageSetupDialog::setOptions()} are removed.
     \endlist
 
-\section1 Qt Network
+\section1 Changes to Qt Network
     \list
      \li The \l{QSslCertificate::subjectInfo()} and \l{QSslCertificate::issuerInfo()} functions now return QStringList instead of a QString.
          This change makes searching the required information a lot easier than scanning a long string.
@@ -277,7 +277,7 @@ The following sections lists the API changes in each module and provides recomme
      \li \c{QNetworkConfiguration::bearerName()} is removed. Use the \l{QNetworkConfiguration::bearerTypeName()}{bearerTypeName()} instead.
     \endlist
 
-\section1 Qt SQL
+\section1 Changes to Qt SQL
     \list
      \li \l{QSqlQueryModel::indexInQuery} is virtual now.
      \li \l{QSqlQueryMode::setQuery} emits fewer signals. The \c{modelAboutToBeReset()}
@@ -289,7 +289,7 @@ The following sections lists the API changes in each module and provides recomme
          functions are also removed as the subclasses of \l{QSqlDriver} can re-implement those directly.
     \endlist
 
-\section1 Qt Test
+\section1 Changes to Qt Test
     The following source incompatible changes are made in this module:
      \list
       \li The plain-text, XML and lightxml test output formats are updated to
@@ -322,7 +322,7 @@ The following sections lists the API changes in each module and provides recomme
           only the current data row of a data-driven test function.  Every skipped
           data row is now reported in the test log.
      \endlist
-\section1 Qt Global
+\section1 Changes to Qt Global
     The following source incompatible changes are made:
     \list
      \li \c{qMacVersion()}: This global function is removed. Use \l{QSysInfo::macVersion()} or
@@ -331,7 +331,7 @@ The following sections lists the API changes in each module and provides recomme
      \li \c{qIsDetached<>}: This global function is removed as it is not relevant anymore for multi-threaded applications. There is no replacement for this function.
     \endlist
 
-\section1 Tools
+\section1 Changes to Tools
     \list
      \li Avoid using \c{qttest_p4.prf} file. We recommend that you explicitly enable the preferences you want.
          Autotest \c{.pro} files must stop using \c{'load(qttest_p4)'} and use \c{'CONFIG+=testcase'} instead.

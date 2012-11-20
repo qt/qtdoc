@@ -63,13 +63,13 @@
     a slot in another process. This \l {D-Bus} page has detailed
     information on how to use the \l{QtDBus} module.
 
-    \section1 Qt COmmunications Protocol (QCOP)
 
-    The QCopChannel class implements a protocol for transferring messages
-    between client processes across named channels. QCopChannel is
-    only available in \l{Qt for Embedded Linux}. Like the \l{QtDBus}
-    module, QCOP extends Qt's \l{Signals and Slots} mechanism to the
-    IPC level, allowing a signal emitted by one process to be
-    connected to a slot in another process, but unlike QtDBus, QCOP
-    does not depend on a third party library.
+    \section QProcess
+    ###
+
+
+    \section Wayland
+
+    TODO: link to Wayland documentation (this section used to be QCOP, which has been replaced by the Wayland protocol)
+
 */

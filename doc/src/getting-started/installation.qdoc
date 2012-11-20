@@ -923,49 +923,6 @@ in the \l{Qt for Windows CE Requirements} document.
 */
 
 /*!
-    \page requirements-embedded-linux.html
-    \title Qt for Embedded Linux Requirements
-    \ingroup installation
-    \brief Setting up the Embedded Linux environment for Qt.
-    \previouspage General Qt Requirements
-
-    \sa {Known Issues}
-
-    \section1 Building Qt for Embedded Linux with uclibc
-
-    If you intend to include the QtWebKit module in your Qt build then you should
-    use version \b{uClibc 0.9.29 or greater} as that is the earliest version
-    with sufficient pthread support.
-
-    \section1 QPA
-
-    QPA (Lighthouse) should be used for new projects. QPA is a platform independent
-    windowing architecture that allows easy porting of UI code between platforms.
-    For further information about using QPA consult the README file in
-    qtbase/src/plugins/platforms/<your platform>. For example, for the X graphical
-    environment under Linux you will need to use the '-xcb' configure option and
-    also read the file qtbase/src/plugins/platforms/xcb/README to see a list
-    of required packages.
-
-    \section1 Memory Requirements
-
-    The memory and storage requirements for Qt for Embedded Linux depend on a
-    an variety of different factors, including the target architecture and the
-    features enabled in the Qt build.
-
-    The \l{Fine-Tuning Features in Qt} document covers the process of configuring
-    Qt builds to avoid the inclusion of unnecessary features.
-
-    \section1 Additional X11 Libraries for QVFb
-
-    The Virtual Framebuffer (QVFb) application requires the \c libxtst library
-    in addition to the libraries used to build Qt for X11. This library
-    enables the use of the Record extension to the X protocol to be used in
-    applications.
-
-*/
-
-/*!
     \page configure-options.html
     \title Configuration Options for Qt
     \ingroup installation

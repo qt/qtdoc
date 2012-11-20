@@ -29,7 +29,6 @@ SUBDIRS         = brush \
                   painterpath \
                   persistentindexes \
 #                  picture \                # broken
-                  plaintextlayout \
 #                  pointer \
                   polygon \
                   process \
@@ -88,21 +87,6 @@ SUBDIRS         = brush \
                   sqldatabase \
                   stringlistmodel \
 #                  styles \
-                  textblock-formats \
-                  textblock-fragments \
-                  textdocument-blocks \
-                  textdocument-charformats \
-                  textdocument-cursors \
-                  textdocument-find \
-                  textdocument-frames \
-                  textdocument-imageformat \
-                  textdocument-images \
-                  textdocument-listitems \
-                  textdocument-lists \
-                  textdocument-printing \
-#                  textdocument-resources \
-                  textdocument-selections \
-                  textdocument-tables \
 #                  threads \
                   timers \
                   updating-selections \

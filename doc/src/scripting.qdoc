@@ -26,34 +26,34 @@
 ****************************************************************************/
 
 /*!
-    \page platform-notes-vxworks.html
-    \title Platform and Compiler Notes - VxWorks
-    \contentspage Platform and Compiler Notes
-    \target VxWorks
+\page topics-scripting.html
+\title Scripting
+\brief Qt's scripting features
 
-    \note VxWorks is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
+A page describing the scripting story in Qt 5. This page covers how to add
+scripting capabilities into C++ and QML applications.
 
-*/
+Possible sections:
+\list
+\li the main classes involved into embedding scripts
+\li JavaScript introduction (in the context of Qt)
+\li where JavaScript may be used in C++ applications
+\li where JavaScript may be used in QML applications
+\endlist
+This page includes links to the overviews from various repositories and modules.
 
-/*!
-    \page platform-notes-qnx.html
-    \title Platform and Compiler Notes - QNX
-    \contentspage Platform and Compiler Notes
-    \target QNX
+A list of pages or topics that should be reachable from this page, directly or
+indirectly:
+\list
+\li \l{ECMAScript Reference}
+\li \l{Making Applications Scriptable}
+\endlist
 
-    \note QNX is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
-*/
-
-/*!
-    \page platform-notes-integrity.html
-    \title Platform Notes - INTEGRITY
-    \contentspage Platform Notes
-    \target INTEGRITY
-
-    \note INTEGRITY is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
+Other things that may need to be mentioned:
+\list
+\li JSON syntax (also part of data storage)
+\li Scripting in QML applications (\l{Use Case - Integrating JavaScript in QML})
+\li \l QtScript
+\li \l{Qt Script C++ Classes}
+\endlist
 */

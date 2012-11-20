@@ -1,0 +1,11 @@
+include($QT_INSTALL_DOCS/global/compat.qdocconf)
+include($QT_INSTALL_DOCS/global/macros.qdocconf)
+include($QT_INSTALL_DOCS/global/qt-cpp-ignore.qdocconf)
+include($QT_INSTALL_DOCS/global/qt-defines.qdocconf)
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+include(online/qt-html-templates-online.qdocconf)
+include(online/qt-styles-online.qdocconf)
+include(online/qt-html-templates-online.qdocconf)
+
+include(qtdoc-project.qdocconf)

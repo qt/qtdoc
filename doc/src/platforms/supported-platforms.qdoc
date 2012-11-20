@@ -26,92 +26,6 @@
 ****************************************************************************/
 
 /*!
-    \page windows-support.html
-    \title Support for Windows
-    \brief Platform support for Windows.
-    \ingroup platform-specific
-    \ingroup platform-details
-
-    \section1 Qt on Windows
-
-    Qt is a comprehensive application and UI framework for developing Windows
-    applications that can also be deployed across many other desktop and
-    embedded operating systems without rewriting the source code. Use the
-    code from one single code-base and rebuild for all
-    \l{Supported Platforms}{supported Windows versions and other platforms}.
-
-    \section1 Getting Started on Windows
-
-    \list
-        \li \l{Supported Platforms}{Supported Windows platforms} - Qt
-        supports a wide range of Windows platforms.
-        \li \l{Qt for Windows Requirements}{Qt for Windows Requirements}
-        - Requirements for developing with Qt on Windows.
-        \li \l{Installing Qt for Windows}{Installing Qt for Windows}
-        - Build Qt for Windows development.
-        \li \l{Platform and Compiler Notes - Windows}{Platform and Compiler Notes - Windows}
-        - Windows platform specific notes.
-        \li \l{Getting Started Guides}{Getting started} - Getting started developing for Windows
-    \endlist
-
-    \section1 Key Features for Windows Development
-
-    \section2 Rich Class Library
-
-    The Qt class library includes all the functionality needed to build
-    advanced GUI applications.
-
-    \list
-        \li Complete set of customizable  \l{UI Design with Qt}{UI
-        controls/widgets}
-        \li 3D graphics support with \l{QtOpenGL Module}{OpenGL}
-        or Direct3D
-        \li Powerful \l{Thread Support in Qt}{multi-threading} features
-        \li \l{Graphics View Framework}{2D graphics canvas} capable of
-        handling millions of items
-        \li Multimedia support with \l{QtMultimedia module}{Qt Multimedia
-        module}
-        \li \l{WebKit in Qt}{WebKit} integration
-        \li \l{Network programming with Qt}{Networking}, \l{QtXml Module}
-        {XML} and \l{SQL in Qt}{database} functionality
-        \li \l{ECMAScript Reference}{ECMA standard} scripting engine
-    \endlist
-
-    \section2 Integrated Development Tools
-
-    Qt includes a set of integrated development tools to speed
-    development on the Windows platform.
-
-    \list
-        \li \l{Qt Designer Manual}{Qt Designer} provides a drag and drop
-        visual GUI builder.
-        \li \l{Qt Linguist Manual}{Qt Linguist} provides internationalization
-        and translation features.
-        \li \l{Qt Assistant Manual}{Qt Assistant} is a customizable HTML help
-        file reader providing the complete Qt documentation offline.
-    \endlist
-
-    \section2 Cross-Platform Development using Qt Creator
-
-    \l{external: Qt Creator Manual}{Qt Creator} is
-    a complete Cross-platform IDE included in the Qt SDK. The IDE allows
-    programmers to create, build, debug and run Qt applications accross all
-    supported platforms.
-
-    \section2 Visual Studio Add-in.
-
-    The Qt Visual Studio Add-in allows programmers to create, build, debug
-    and run Qt applications from within Microsoft Visual Studio 2005, 2008
-    and 2010. The add-in contains project wizards, Qt project import/export
-    support, integrated Qt resource manager and automated build setup for
-    the Qt Meta-Object Compiler, User Interface Compiler, and Resource
-    Compiler.
-
-    Additional \l{Cross-Platform and Platform-Specific Development}
-    information.
-*/
-
-/*!
     \page linuxX11-support.html
     \title Support for Linux/X11
     \brief Platform support for Linux/X11.
@@ -299,6 +213,25 @@
     usually be built on each platform with GCC, a vendor-supplied compiler, or
     a third party compiler.
     On all platforms, Open GL (ES) 2.0 is required.
+
+    \section1 Embedded platforms
+
+    ### Flesh out this section
+
+    QNX
+    VxWorks
+    INTEGRITY
+    Windows Embedded Compact 7
+    Embedded Linux
+
+    Mention EGLFS and Wayland
+
+    Link to http://qt-project.org/wiki/Category:Devices
+
+    \section1 Mobile platforms
+
+    ### Mention experimental work done on Android, iOS, Windows 8 and that Qt 5
+    has been successfully run on these platforms
 
     \section1 Tested Configurations
 
