@@ -30,53 +30,121 @@
 \title Graphics
 \brief Qt's graphics features
 
-### Give a brief overview of the graphics related features in Qt 5.
-
-The information on the following wiki page is meant to either be made part of
-this page or put into separate pages linked to from here:
-http://qt-project.org/wiki/Qt5GraphicsOverview
-
-\section1 Printing
-### Talk about Qt's printing support
-
-Make sure the following links are reachable from this section, either directly or indirectly:
-
-\list
-\li \l {Qt Graphics and Printing}
-\li \l {QtPrintSupport module}
-\li \l {Printing with Qt}
-\endlist
+Graphics in Qt 5 is primarily done either through the imperative QPainter API,
+or through Qt’s declarative UI language, Qt Quick, and its scene graph back-end.
+Qt 5's graphics capabilities also includes support for printing, as well as the
+loading and saving of various image formats.
 
 \section1 2D graphics with QPainter
-### Talk about the 2D graphics in Qt
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+The QPainter provides API for drawing vector graphics, text and images onto
+different surfaces, or QPaintDevice instances, such as QImage,
+QOpenGLPaintDevice, QWidget, and QPrinter. The surfaces each represents a two
+dimensional \l {Coordinate System}{coordinate system}. QPainter supports
+brushes and pens to define how the interior of vector shapes are filled and how
+the outlines are stroked, as further explained in \l {Drawing and Filling}. To
+do the actual drawing, depending on what kind of QPaintDevice the QPainter is
+operating on, there are different back-ends, implemented as QPaintEngine
+instances. The two most important ones are the software rasterizer and OpenGL
+back-ends.
 
-\list
-\li \l {Coordinate System}
-\li \l {Painting Classes}
-\li \l {Paint Devices and Backends}
-\li \l {Drawing and Filling}
-\li \l {Paint System}
-\li \l {<qdrawutil.h> - Drawing Utility Functions}
-\endlist
+The raster paint engine is Qt’s software rasterizer, and is used when drawing
+on a QImage or QWidget. Its strength over the OpenGL paint engine is its high
+quality when antialiasing is enabled, and a complete feature set.
+
+The OpenGL paint engine is used when drawing on a QOpenGLPaintDevice. It is
+almost always hardware accelerated and has the potential of being much faster
+than the raster paint engine. However, it is more sensitive to state changes,
+and therefore requires the drawing commands to be carefully ordered to achieve
+optimal performance. Antialiasing with OpenGL needs multisampling, which
+consumes much more memory than antialiasing with the raster paint engine. The
+OpenGL paint engine requires OpenGL 2.0 or OpenGL ES 2.0 or later.
+
+To use the OpenGL paint engine on a window, you need to create a QOpenGLContext
+and a QWindow with an OpenGL surface. You then make the OpenGL context current
+with the window as the target surface, create a QOpenGLPaintDevice and open a
+QPainter on it.
+
+For more information on the paint devices see \l {Paint Devices and Backends},
+and for a list of all classes related to painting see \l {Painting Classes}.
+There are also a set of helper functions that contain convenience drawing
+operations that are not a core part of QPainter, see \l {Drawing Utility
+Functions}
+
+QPainter and related classes are part of the \l {Qt GUI C++ API}{Qt GUI module},
+which is described in further detail on the \l {Qt GUI} page.
+
+\section1 Qt Quick scene graph
+
+The \l {Qt Quick Scene Graph}{Qt Quick scene graph} is a new back-end for QML
+in Qt 5, and is based on OpenGL. It generally improves the performance of QML
+significantly over the QPainter-based back-end used in Qt 4. It achieves better
+performance in a number of ways:
+
+The scene graph uses OpenGL directly instead of going though a QPainter which
+could be using either the raster or OpenGL paint engine. This means that all
+the resources, like geometry, textures and shaders can be stored in a format
+suitable for OpenGL rather than using classes such as QPainterPath, QPixmap,
+QBrush, or QPen, which the QPainter would need to translate into OpenGL
+primitives and possibly cache. Qt Quick, being a set of core components in the
+declarative language QML, defines how the end result should look like, but it
+doesn’t define how and in which order each individual element is drawn. The
+drawing can therefore be reordered to reduce the number of state changes, or
+merged to reduce the number of draw calls. The scene graph uses a separate
+render thread, and synchronizes the animations with the vertical retrace on
+platforms where this can be supported. The render thread allows the
+preparation of the next frame to be done at the same time the current frame is
+being rendered. This has a positive effect also on single-core systems, since
+the render thread might block on OpenGL commands. The synchronization with the
+vertical retrace improves the perceived smoothness of the animations.
+
+To use the new Qt Quick scene graph, you need to import QtQuick 2.0 in your QML
+file, and use QQuickView to run it.
+
+Custom Qt Quick elements can be implemented by inheriting QQuickItem and
+reimplementing QQuickItem::updatePaintNode(). The QQuickItem is managed by the
+QQmlEngine, and lives in the main thread. When the QQuickItem is updated, the
+corresponding QSGNode in the Qt Quick scene graph needs to be synchronized with
+it. The render thread will block the main thread and call
+QQuickItem::updatePaintNode(). The custom reimplementation of this method can
+then update the QSGNode with the properties of the QQuickItem.
+QQuickItem::updatePaintNode() is also responsible for creating a QSGNode if one
+does not already exist. It can use any sub-class of QSGNode, for instance
+QSGGeometryNode. The Qt Quick scene graph is responsible for managing the
+QSGNode and will delete it shortly after the corresponding QQuickItem is
+destroyed.
+
+Qt Quick can be mixed with raw OpenGL rendering by connecting to the
+QQuickView/QQuickWindow signals beforeRendering() or afterRendering() which are
+emitted before and after the Qt Quick scene graph is rendered, respectively.
+There signals are emitted from the render thread, and the connections need to
+be direct.
+
+For more information on the Qt Quick scene graph, see the \l {Qt Quick Scene Graph}
+page. QQuickView, QQuickItem, and related classes are part of the
+\l {Qt Quick Module C++ Classes}{Qt Quick module}, which is described in
+further detail on the \l {Qt Quick} page.
+
+\section1 Printing
+
+Qt supports printing both directly to actual printers, locally or on the
+network, as well as producing PDF or PostScript output. How to do printing with
+Qt is described in detail on the \l {Printing with Qt} page.
+
+To be able to access the Qt printing classes from your application or library, see
+the \l {QtPrintSupport module} page.
 
 \section1 Images
-### Talk about the image loading / saving functionality in Qt
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+Qt supports convenient reading, writing, and manipulating of images through the
+QImage class. In addition, for more fine grained control of how images are
+loaded or saved, you can use the QImageReader and QImageWriter classes
+respectively. To add support for additional image formats, outside of the ones
+provided by Qt, you can create image format plugins by using QImageIOHandler
+and QImageIOPlugin.
 
-\list
-\li \l {Reading and Writing Image Files}
-\endlist
+See the \l {Reading and Writing Image Files} page for more information.
 
-\section1 Qt Quick Scene Graph
-### Talk about the Qt Quick scene graph rendering model
-
-Make sure the following links are reachable from this section, either directly or indirectly:
-
-\list
-\li \l {Qt Quick Scene Graph}
 \endlist
 
 */
