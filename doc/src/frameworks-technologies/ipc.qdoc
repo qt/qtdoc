@@ -54,21 +54,21 @@
     access to resources shared by the system, as well as to communicate
     between processes.
 
-    \section1 D-Bus
+    \section1 D-Bus protocol
 
     The \l{QtDBus} module is a Unix-only library you can use to
     implement IPC using the D-Bus protocol. It extends Qt's
     \l{signalsandslots.html} {Signals and Slots} mechanism to the IPC
     level, allowing a signal emitted by one process to be connected to
-    a slot in another process. This \l {D-Bus} page has detailed
+    a slot in another process. The \l{D-Bus} documentation has detailed
     information on how to use the \l{QtDBus} module.
 
 
-    \section QProcess
+    \section1 QProcess
     ###
 
 
-    \section Wayland
+    \section1 Wayland
 
     TODO: link to Wayland documentation (this section used to be QCOP, which has been replaced by the Wayland protocol)
 
