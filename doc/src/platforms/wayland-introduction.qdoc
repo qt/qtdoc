@@ -26,37 +26,22 @@
 ****************************************************************************/
 
 /*!
-\page topics-core.html
-\title Core Fundamentals
-\brief Qt's core topics
+\page wayland-introduction.html
+\title Wayland Support in Qt
 
-A list of topics in this topic page:
-\list
-\li \l{Inter-Process Communication in Qt}
-\li QProcess
-\li \l{Thread Support in Qt}
-\list
-\li \l{Threading Basics}
-\endlist
-\li \l{Container Classes}
-\li \l{The Event System}
-\li \l{The State Machine Framework}
-\li \l{Object Model}
-\list
-\li \l{The Meta-Object System}
-\li \l{The property system}
-\li \l{Signals & Slots}
-\li The meta-object in QML
-\endlist
-\li \l{Unicode in Qt}
-\li Text codecs
-\li QPA
-\li \l{Wayland Support in Qt}{Wayland}
-\li Platform specific development
-\list
-\li Mac
-\li Windows CE
-\endlist
-\li \l{How to Create Qt Plugins}
-\endlist
+With the release of Qt 5.0, Qt no longer contains its own window system
+implementation: QWS is no longer a supported platform. For single-process use
+cases, the Qt Platform Abstraction is a superior solution. Multiple graphical
+processes will be supported through Wayland.
+
+\l{http://wayland.freedesktop.org/}{Wayland} is a light-weight windowing
+system; or more precisely, it is a protocol for clients to talk to a display
+server.
+
+The Qt Wayland module is not part of Qt 5.0.0. It is currently fully
+functional, but the adaptations required by the recent 1.0.0 release of
+Wayland itself could not be done in time for the Qt feature freeze. The Qt
+Wayland module will have its official release soon after Qt 5.0.
+
+
 */
