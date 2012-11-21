@@ -30,6 +30,156 @@
 \title User Interfaces
 \brief Qt's features for creating user interfaces
 
+Qt features multiple technologies for creating user interfaces. While it is
+possible to mix and match these different technologies as needed, one approach
+is often better suitable for a certain type of user interface than the others.
+\l {Qt Creator} is a good example of an application that mixes different user
+interface technologies. In fact, it uses all of the three different approaches
+described below. \l {Qt Creator} uses the traditional \l {Qt Widgets} such as
+menus and dialogs as a basis of the user interface, \l {Qt Quick} amongst others
+for the welcome screen, and \l {Qt WebKit} for presenting the Qt reference
+documentation. The following sections provide brief introductions to the
+available technologies for creating user interfaces, and a comparison table
+to help choosing the best suitable technology.
+
+\section1 Qt Quick
+
+\l {Qt Quick} provides everything needed to create applications with fluid and dynamic
+user interfaces. It enables user interfaces to be built around the behavior of user
+interface components and how they connect with one another, and it provides a visual
+canvas with its own coordinate system and rendering engine. Animation and transition
+effects are a first class concept in \l {Qt Quick}, and visual effects can be
+supplemented through specialised components for particle and shader effects. The
+\l {Qt Quick} elements are primitive user interface building blocks, whereas the
+\l {Qt Widgets} are more feature rich standard industry widgets.
+
+\section2 Important Concepts in Qt Quick
+
+\list
+\li \l{qtquick-visualcanvas-topic.html}{The Visual Canvas}
+\li \l{qtquick-input-topic.html}{User Input}
+\li \l{qtquick-positioning-topic.html}{Positioning}
+\li \l{qtquick-statesanimations-topic.html}{States, Transitions and Animations}
+\li \l{qtquick-modelviewsdata-topic.html}{Data - Models, Views and Data Storage}
+\li \l{qtquick-effects-topic.html}{Particles and Graphical Effects}
+\li \l{qtquick-convenience-topic.html}{Convenience Types}
+\li \l{qtquick-internationalization.html}{Internationalization and Localization}
+\endlist
+
+\section1 Qt Widgets
+
+\l {Qt Widgets} are traditional user interface elements that are typically found
+in desktop environments. The widgets integrate well to the underlying platform
+providing native look'n'feel on Windows, Linux and Mac OSX. The widgets are mature
+and feature rich user interface elements suitable for mostly static user interfaces.
+In contrast to \l {Qt Quick}, the widgets do not scale that well for touch screens
+and fluid, highly animated modern user interfaces. The widgets are a good choice
+for applications with traditional desktop centric user interfaces, such as office
+type applications.
+
+\section2 Important Concepts in Qt Widgets
+\list
+\li \l{mainwindow.html}{Application Main Window}
+\li \l{desktop-integration.html}{Desktop Integration}
+\li \l{dialogs.html}{Dialog Windows}
+\li \l{layout.html}{Layout Management}
+\li \l{model-view-programming.html}{Model/View Programming}
+\li \l{richtext.html}{Rich Text Processing}
+\li \l{dnd.html}{Drag and Drop}
+\li \l{Internationalization with Qt}{Internationalization}
+\endlist
+
+\section1 Qt WebKit
+
+TODO
+
+\section1 Comparison
+
+Notice that choosing the appropriate technology for building an user interface is
+not always black and white, but may depend on several criterias such as other existing
+technologies used in a project or even target platform constraints. The following
+table provides recommendations to help you choose the right tools for the job.
+
+\table
+    \header
+        \li
+        \li Qt Quick
+        \li Qt Widgets
+        \li Qt WebKit
+        \li Comments
+    \row
+        \li Used language(s)
+        \li QML/JS
+        \li C++
+        \li HTML/CSS/JS
+        \li
+    \row
+        \li Native look'n'feel
+        \li
+        \li X
+        \li
+        \li Qt Widgets integrate well to the underlying platform
+            providing native look'n'feel on Windows, Linux and Mac OSX.
+    \row
+        \li Custom look'n'feel
+        \li X
+        \li
+        \li
+        \li Qt Widgets provide means for customization via style sheets,
+            but Qt Quick is a better performing choice for user interfaces
+            that do not aim to look native.
+    \row
+        \li Fluid animated UIs
+        \li X
+        \li
+        \li
+        \li Qt Widgets do not scale well for animations, and Qt WebKit's CSS3
+            animations are not as powerful as Qt Quick animations. Qt Quick
+            offers a convenient and natural way to implement animations in a
+            declarative manner.
+    \row
+        \li Touch screen
+        \li X
+        \li
+        \li
+        \li Qt Widgets often require a mouse cursor for good interaction, whereas
+            Qt Quick only provides primitive building blocks that were designed
+            with touch interaction in mind.
+    \row
+        \li Standard industry widgets
+        \li
+        \li X
+        \li
+        \li Qt Widgets provide all the bells and whistles, developed over two
+            decades, needed for building standard industry type applications.
+    \row
+        \li Rapid UI development
+        \li X
+        \li
+        \li
+        \li Thanks to its superior productivity, Qt Quick is an excellent choice
+            for rapid UI prototyping and development.
+    \row
+        \li OpenGL
+        \li X
+        \li
+        \li
+        \li Qt Widgets provides QGLWidget for rendering OpenGL graphics, and Qt WebKit
+            supports WebGL, but the OpenGL ES 2.0 or OpenGL 2.0 based
+            \l {Qt Quick Scene Graph} has proven to provide the best performance
+            for mixing Qt user interface elements and OpenGL content.
+    \row
+        \li Existing web content
+        \li
+        \li
+        \li X
+        \li Both Qt Quick and Qt Widgets prodive components for displaying and editing
+            \l {richtext-html-subset.html}{simple rich text}, but Qt WebKit is the
+            right choice for presenting full-blown web content.
+\endtable
+
+\section1 Notes
+
 A page describing the UI options in Qt 5. This page includes links to the overviews from various repositories and modules.
 
 A list of sections in this topic page (with links to the feature overviews):
@@ -49,23 +199,5 @@ implementation.
 \li WebKit
 \li I18N
 \endlist
-
-\section1 General
-
-Qt features two main ways of creating user interfaces: Qt Quick and Qt Widgets.
-\l{Qt Quick} offers a great way to create dynamic and fluid UIs. It lets you
-create the UI in a declarative way. The QWidget based classes from the Widgets
-module on the other hand give more traditional interface elements that are
-typically found on desktops. Below you find a brief overview to help you choose
-which technology to use for your project. It is also possible to mix and match
-both approaches as needed.
-
-\section1 QML and Qt Quick
-
-For an overview over Qt Quick consult the \l {Getting Started Programming with
-QML} page.
-
-\section1 Widgets The \l {Widgets and Layouts} documentation is a good starting
-point to learn about Qt Widgets.
 
 */
