@@ -631,6 +631,11 @@
     the application) and the windows platform plugin as well as the executable
     to the same directory in the \c release subdirectory.
 
+    In contrast to user plugins, Qt plugins have to be put into subdirectories
+    matching the plugin type. As we want to deploy the windows platform plugin
+    it has to be put into a "platforms" subdirectory. Additional information
+    about user and Qt plugins will be covered later.
+
     Qt relies on the \l{ICU} library for unicode support. Therefore, you must
     include the ICU DLLs that are located in the \c bin directory of your Qt
     installation if Qt was configured to use ICU. The Qt version bundled in
@@ -692,7 +697,7 @@
         \li {2, 1} \c plugins\pnp_extrafilters.dll
     \row
         \li The Qt Windows platform plugin
-        \li {2, 1} \c plugins\windows.dll
+        \li {2, 1} \c platforms\windows.dll
     \row
         \li The Qt Core module
         \li {2, 1} \c qtcore5.dll
