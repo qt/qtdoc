@@ -65,5 +65,11 @@
 
 
     \section1 QProcess
-    ###
+
+    The cross-platform class \l{QProcess} can be used to start external
+    programs as child processes, and to communicate with them. It provides
+    an API for monitoring and controlling the state of the child
+    process. QProcess gives access to the input/output channels of child
+    process by inheriting from QIODevice.
+
 */
