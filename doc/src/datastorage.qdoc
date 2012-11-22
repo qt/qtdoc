@@ -114,11 +114,10 @@ operates on a single file, which must be set as the database name when opening
 a connection. If the file does not exist, SQLite will try to create it.
 
 SQLite has some restrictions regarding multiple users and multiple transactions.
-If you are reading or writing on a file from different transactions, your appli-
-cation might freeze until one transaction commits or rolls back.
+If you are reading or writing on a file from different transactions, your
+application might freeze until one transaction commits or rolls back.
 
 \list
-\li \l {SQL in Qt}
 \li \l {Qt SQL}
 \li \l {Qt SQL Module - C++ Classes}
 \li \l {Connecting to Databases}
@@ -137,7 +136,7 @@ cation might freeze until one transaction commits or rolls back.
 The QXmlStreamReader class provides a fast parser for reading XML via a simple
 streaming API. QXmlStreamReader is a well-formed XML 1.0 parser that does not
 include external parsed entities. As long as no error occurs, the application
-code can assume that the XML follows W3C's standards.
+code can assume that the XML follows \l {W3C XML specifications}.
 
 QXmlStreamReader understands and resolves XML namespaces. For example, in
 case of a StartElement, namespaceUri() returns the namespace the element
