@@ -34,7 +34,7 @@
 
 A container is a data structure whose instances are collections of other
 objects. Some examples of containers are: dynamic arrays, queues, linked
-lists and associative arrays. Qt provides a set of general purpose,
+lists, and associative arrays. Qt provides a set of general purpose,
 template-based container classes that can be used to store data in memory.
 See the full list of \l {Container Classes} for more details.
 
@@ -44,8 +44,8 @@ The QIODevice class is the base class for all file and data storage devices
 in \l {Qt Core}. All classes that are used for reading and writing data
 inherit from it.
 
-Examples of devices are QFile, QBuffer, QTcpSocket and QProcess.
-QFile is used for reading and writing text, binary files and resources.
+Examples of devices are QFile, QBuffer, QTcpSocket, and QProcess.
+QFile is used for reading and writing text, binary files, and resources.
 The QBuffer class provides a QIODevice interface for a QByteArray.
 QTcpSocket enables the developer to establish a TCP connection and transfer
 streams of data. QProcess is used to start external programs, and to read
@@ -87,15 +87,16 @@ Qt's SQL classes can be divided in 3 layers:
             \list
                \li QSqlDriver, QSqlDriverCreator
                \li QSqlDatabase, QSqlQuery
-               \li QSqlQueryModel (read-only), QSqlTableModel (read-write), QSqlRelationalTableModel (read-write with foreign-key support)
+               \li QSqlQueryModel (readonly), QSqlTableModel (read/write), QSqlRelationalTableModel (read/write with foreign-key support)
             \endlist
 \endtable
 
-QSqlQueryModel, QSqlTableModel and QSqlRelationalTableModel can be used as a
-datasource for Qt's classes for viewing data. QSqlTableModel and QtSqlRelational-
-TableModel provide editable models for use with Qt's item views. QSqlTableModel
-has read/write access to a single table. QSqlRelationalTableModel has read/write
-access to the main table, not to the table where the foreign key comes from.
+QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel can be used as a
+datasource for Qt's classes for viewing data. QSqlTableModel, and
+QtSqlRelationalTableModel provide editable models for use with Qt's item views.
+QSqlTableModel has read/write access to a single table. QSqlRelationalTableModel
+has read/write access to the main table, not to the table where the foreign key
+comes from.
 
 With the MYSQL driver, it is possible to connect to a MYSQL server. In order to
 build the QMYSQL Plugin for Unix or Mac OS X, you need the MYSQL header files
@@ -175,13 +176,39 @@ be enforced using setCodec().
 \li \l {XML Streaming}
 \li \l {XML Classes}
 \li \l {A Short Path to XQuery}
-\li \l {QML Module QtQuick.XmlListModel 2.0}
+\li \l {XmlListModel}
 \endlist
 
 \section1 JSON in Qt
 
-### Talk briefly about JSON as a storage format. Make sure the following page is reachable from
-this section:
+JSON is a text-based open standard for data interchange that is easy to read
+and parse. It is used for representing simple data structures and associative
+arrays, called objects. It is related to JavaScript, but is a language-independent
+notation form.
+
+An object can take 2 forms:
+
+\table
+    \header
+        \list
+        \li Collection of name/value pairs
+        \li Ordered list of values
+        \endlist
+    \row
+    \li
+        \list
+        \li
+           {
+                     "last_name": "Routledge",
+                     "first_name": "Ronald",
+                     "birth_date": 1960
+           }
+        \li   "colours": ["green", "blue", "yellow"]
+        \endlist
+    \li
+\endtable
+
+
 
 \list
 \li \l {JSON Support in Qt}
