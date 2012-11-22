@@ -34,242 +34,82 @@ In addition to the essential Qt modules which are supported on all the platforms
 supported by Qt, there is also a set of add-on modules. Platform support for these
 modules is optional, but many are still widely supported. Note that, though the
 modules are considered optional, they are not necessarily less important than the
-essential Qt modules. Some are deprecated APIs available for backwards compatability,
+essential Qt modules. Some are deprecated APIs available for backwards compatibility,
 but others are fundamental modules which may primarily be relevant on a sub-set of the
 platforms supported by Qt.
 
-\section1 Qt Bluetooth
+The following are the add-on modules available in the Qt SDK.
 
-### Introduction to Qt Bluetooth with a link to the bluetooth section in the
-\l {Networking and Connectivity} overview and \l {Qt Bluetooth Overview}.
+\section1 Qt ActiveQt
+
+The \l {QtActiveQt Module} provides support for ActiveX and COM on Windows platforms.
 
 \section1 Qt Concurrent
 
-### Introduction to the Qt Concurrent Module. Link to the \l {QtConcurrent Module} documentation
-and \l {Concurrent Programming}.
+The \l {QtConcurrent Module} provides APIs to make it simpler and safer to
+\l{Concurrent Programming}{write multi-threaded code} in a structured manner, enabling your
+application to better exploit the hardware resources of the platform where it is running.
 
-\section1 Qt D-Bus
+\section1 Qt Declarative
 
-### Introduction to the D-Bus add-on. Link to the \l {QtDBus module} documentation and
-"Inter-Process Communication" in \l {Networking and Connectivity}.
+The \l {QtDeclarative Module} provides APIs and tools to support code written in Qt Quick 1.
 
-\section1 Qt Contacts
+\section1 Qt Graphical Effects
 
-### Introduction to the contacts module.
+The \l {QtGraphicalEffects Module} is an extension to QtQuick which provides a ready-made set
+of shader effects to be used in QML. The module provides graphical effects such as blurring,
+colorization, drop shadows, and more.
 
-Make sure the following pages are reachable from this section, indirectly or directly:
+\section1 Qt Image Formats
 
-\list
-\li \l {Qt Contacts Module}
-\li \l {Qt Contacts Overview}
-\li \l {Qt Contacts Action API}
-\li \l {Qt Contacts Asynchronous API}
-\li \l {Qt Contacts C++ API}
-\li \l {Qt Contacts Manager Engines}
-\li \l {Qt Contacts Synchronous API}
-\li \l {Qt Contacts API Usage}
-\endlist
-
-\section1 Qt Location
-
-### Introduction to the location API.
-
-Make sure the following pages are reachable from this section, indirectly or directly:
-
-\list
-\li \l {Qt Location C++ API}
-\li \l {Qt Location GeoServices}
-\li \l {QtLocation Namespace}
-\li \l {Qt Location Module}
-\li \l {QML Maps}
-\li \l {QML Location Plugin}
-\li \l {Location QML Plugin}
-\li \l {QML Maps Plugin}
-\li \l {Qt Location}
-\endlist
-
-\section1 Qt Organizer
-
-### Introduction to the organizer APIs.
-
-Make sure the following pages are reachable from this section, indirectly or directly:
-
-\list
-\li \l {Qt Organizer}
-\li \l {QtOrganizer Module}
-\li \l {Qt Organizer Manager Engines}
-\li \l {Qt Organizer Overview}
-\li \l {Qt Organizer Synchronous API}
-\li \l {Qt Organizer API Advanced Usage}
-\li \l {Qt Organizer Asynchronous API}
-\li \l {Qt Organizer C++ API}
-\endlist
+The \l {QtImageFormats Module} contains plugins that provide support for an extended set of
+image formats to Qt applications.
 
 \section1 Qt OpenGL
 
-### Introduction to Qt OpenGL. Mention that some of the APIs have been replaced by new classes
-in Qt GUI, but that QGLWidget still resides in this module. Link to \l {QtOpenGL Module}
-documentation.
+The essential \l{QtGui Module} provides a set of OpenGL classes which cover many use
+cases where you want to mix Qt- and OpenGL-based code. For an even wider set of features, it's
+possible to use the \l {QtOpenGL Module}. Among other things, this module provides the
+\l {QGLWidget} class as a means to create a widget-based UI with an OpenGL-based viewport.
 
 \section1 Qt Print Support
 
-### Introduction to printing in Qt. Link to \l {QtPrintSupport Module} and \l {Printing with Qt}.
+The \l {QtPrintSupport Module} provides cross-platform APIs to make printing easy and portable.
+\l {Printing with Qt} is done by using the same \l {QPainter} APIs which can also be used to
+paint on screen or on a \l {QImage}.
 
-\section1 Qt Publish and Subscribe
+\section1 Qt Script
 
-### Introduction to the module.
-
-Make sure the following pages are reachable from this section, indirectly or directly:
-
-\list
-\li \l {QValueSpace Namespace}
-\li \l {Qt Publish Subscribe Module}
-\li \l {Publish and Subscribe QML Plugin}
-\endlist
-
-\section1 Qt Script and Qt Script Tools (deprecated)
-
-### Introduction to the module and mention that it only exists for supporting old code.
-Link to the relevant classes in Qt Qml that can be used as replacement. Link to the \l {Scripting}
-overview.
-
-Also make sure the following pages are reachable directly or indirectly:
-
-\list
-\li \l {QtScript Debugger Manual}
-\li \l {Creating QtScript Extensions}
-\li \l {QtScript Module}
-\li \l {QtScriptTools Module}
-\li \l {Scripting Classes and Overviews}
-\li \l {Making Applications Scriptable}
-\endlist
-
-\section1 Qt Sensors
-
-### Introduction to Qt Sensors.
-
-Make sure the following pages are reachable from this section, either directly or indirectly:
-
-\list
-\li \l {QtSensorGestures C++ API}
-\li \l {Qt Sensors C++ API}
-\li \l {Porting Applications from QtMobility Sensors to Qt Sensors}
-\li \l {QtSensorGestures Emulator}
-\li \l {QtSensorGestures Plugins}
-\li \l {Qt Sensors Backend}
-\li \l {Creating a sensor plugin}
-\li \l {Compatibility map}
-\li \l {Determining the default sensor for a type}
-\li \l {Dynamic Sensor Backend Registration}
-\li \l {Generic Backend}
-\li \l {Qt Sensors}
-\endlist
-
-\section1 Qt Service
-
-### Introduction to the module.
-
-Make sure the following pages are reachable from this section, either directly or indirectly:
-
-\list
-\li \l {Qt Service Framework}
-\li \l {Service Frameworks Classes}
-\li \l {Qt Service Framework Module}
-\endlist
+The \l {QtScript Module} provides APIs to
+\l{Making Applications Scriptable}{make Qt applications scriptable}. This
+module is primarily provided for compatibility with Qt 4, and to support applications that
+use the \l {QtDeclarative Module}. An alternative API is provided by the essential
+\l {QtQml Module}. For more information, see
+\l{Scripting Classes and Overviews}{the list of QtScript APIs}, or
+\l{Creating QtScript Extensions}{learn how to make your own extensions} to QtScript.
 
 \section1 Qt SVG
 
-### Short description of SVG and link to the \l {QtSVG Module} documentation.
-
-\section1 Qt System Info
-
-### Short description of the module with a link to the \l {Qt System Info Module} documentation.
+Scalable Vector Graphics, or "SVG", is an XML-based format for storing vector-based graphics.
+The \l {QtSVG Module} provides APIs to render and save files in the SVG format, and supports
+a subset of the SVG 1.2 Tiny standard.
 
 \section1 Qt Tools
 
-### Introduction to tools for developing Qt applications. Link to the \l {Development Tools}
-overview.
-
-Make sure the following pages are reachable from this section, either directly or indirectly:
-
-\list
-\li \l {QtUiTools Module} documentation.
-\li \l {The Qt Help Framework}
-\li \l {QtHelp Module}
-\li \l {Qt Help Project}
-\endlist
-
-\section1 Qt Versit
-
-### Introduction to the Qt Versit module.
-
-Make sure the following pages are reachable from this section, indirectly or directly:
-
-\list
-\li \l {Qt Versit}
-\li \l {QtVersit Module}
-\li \l {Supported vCard Features}
-\li \l {Qt Versit C++ API}
-\li \l {Qt Versit Overview}
-\li \l {Qt Versit Plugins}
-\li \l {Supported iCalendar Features}
-\endlist
-
-\section1 Qt Wayland
-
-### Introduction to Qt Wayland as a replacement for QWS. If there is any documentation, link
-to it.
+The \l {QtTools Module} provides APIs related to the specific tools provided to make development
+with Qt easier. In particular there is the \l {QtUITools Module} which provides classes to handle
+the forms created in Qt Designer and the \l {QtHelp Module} which can be used to integrate online
+documentation in applications, similar to Qt Assistant.
 
 \section1 Qt Widgets
 
-### Introduction to widgets, link to the \l {User Interfaces} overview and module description.
+The \l {QtWidgets Module} provides a set of UI elements to create classic desktop-style user
+interfaces. See the \l {User Interfaces} overview for more information on using widgets.
 
-\section1 Qt XML (deprecated)
+\section1 Qt XML
 
-### Remind people that Qt XML is deprecated and mainly exists for porting old code. Mention the
-alternatives QXMLStreamReader and QXMLStreamWriter and link to the documentation for these,
-as well as the "XML Support in Qt" section in \l {Data Structure and Storage}. Link to the
-\l {QtXML Module} documentation.
+The \l {QtXML Module} is provided for compatibility with older code. It has been superseded by
+the \l {QXMLStreamReader} and \l {QXMLStreamWriter} classes in the \l {QtCore Module}.
 
-\section1 Qt XML Patterns
-
-### Introduction to XML patterns. With link to the module description: \l {Qt XML patterns Module}
-
-
-\section1 Qt 3D
-
-### Introduction to Qt 3D.
-
-Make sure the following pages are reachable from this section, indirectly or directly:
-
-\list
-\li \l {Acceptance tests for Qt3D}
-\li \l {Qt3D Classes}
-\li \l {Qt 3D Namespaces}
-\li \l {Qt 3D Annotated Class List}
-\li \l {Qt3D Arrays and Vertex Buffers}
-\li \l {Building QtQuick3D}
-\li \l {Camera and View Frustum}
-\li \l {Qt 3D Classes}
-\li \l {Contributing to QtQuick3D and Qt3D}
-\li \l {Declarative Scenegraph Creation}
-\li \l {Qt3D Geometry}
-\li \l {Qt3D Graphics View Integration}
-\li \l {Qt 3D Inheritance Hierarchy}
-\li \l {Qt3D Classes}
-\li \l {Qt 3D}
-\li \l {Other Licenses Used in Qt 3D}
-\li \l {Qt3D Materials}
-\li \l {3D Math Basis}
-\li \l {Qt3D Math}
-\li \l {Qt 3D Modules}
-\li \l {Qt3D Painting}
-\li \l {QtQuick3D for Scripting 3D Apps in QML}
-\li \l {Stock Shapes for QtQuick3D}
-\li \l {Qt3D Scene Management}
-\li \l {Qt3D Texture Handling}
-\li \l {QtQuick3D Troubleshooting Guide}
-\li \l {Qt3D Viewing}
-\endlist
-*/
-
+For more information, read the section "XML Support in Qt" in the \l {Data Structure and Storage}
+overview.
