@@ -66,59 +66,20 @@
 
     \section2 Supported Features
 
-    Not all compilers used to build Qt are able to compile all modules. The following table
-    shows the compiler support for five modules that are not uniformly available for all
-    platforms and compilers.
+    Qt can be compiled with any compiler that is compliant with the C++98 standard. C++11
+    support is automatically enabled on compilers supporting it.
 
-    \table
-    \header \li Compiler \li{5,1} Features
-    \header \li                  \li Concurrent \li XmlPatterns \li WebKit(*)   \li CLucene
-    \row    \li g++ 3.3          \li            \li \b{X}    \li          \li \b{X}
-    \row    \li g++ 3.4 and up   \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
-    \row    \li SunCC 5.5        \li            \li             \li          \li \b{X}
-    \row    \li aCC series 3     \li            \li             \li          \li \b{X}
-    \row    \li aCC series 6     \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
-    \row    \li xlC 6            \li            \li             \li          \li \b{X}
-    \row    \li Intel CC 10      \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
-    \row    \li MSVC 2003        \li \b{X}   \li \b{X}    \li          \li \b{X}
-    \row    \li MSVC 2005 and up \li \b{X}   \li \b{X}    \li \b{X} \li \b{X}
-    \endtable
+    Building Qt is currently being tested on the following list of compilers:
 
-    * WebKit is only supported as a dynamically built library. Static linkage is not supported.
-
-    \section2 GCC 3.4.6 (Debian 3.4.6-5) on AMD64 (x86_64)
-
-    This compiler is known to miscompile some parts of Qt when doing a
-    release build. There are several workarounds:
-
-    \list 1
-    \li Use a debug build instead.
-    \li For each miscompilation encountered, recompile the file, removing the \c{-O2} option.
-    \li Add \c{-fno-gcse} to the
-       \l{qmake Variable Reference#QMAKE_CXXFLAGS_RELEASE}{QMAKE_CXXFLAGS_RELEASE} qmake
-       variable.
+    \list
+    \li gcc 4.2.1 (Mac OS X only)
+    \li Apple clang 3.1 (Mac OS X / XCode 4)
+    \li gcc 4.5 and newer (Linux)
+    \li MSVC 2008 and newer
+    \li MingW 4.6
+    \li Intel CC (latest version)
     \endlist
 
-    \section2 GCC 4.0.0
-
-    The released package of the compiler has some bugs that lead to
-    miscompilations.  We recommend using GCC 4.0.1 or later, or to use
-    a recent CVS snapshot of the GCC 4.0 branch. The version of GCC
-    4.0.0 that is shipped with Mac OS X 10.4 "Tiger" is known to work
-    with Qt for Mac OS X.
-
-    \section2 Intel C++ Compiler
-
-    Qt supports the Intel C++ compiler on both Windows and Linux.
-    However, there are a few issues on Linux; see
-    \l{Platform and Compiler Notes - X11#Intel C++ Compiler for Linux}{Intel C++ Compiler for Linux}
-    for details.
-
-    \section1 Feedback and Corrections
-
-    If you have anything to add to this list or any of the platform or
-    compiler-specific pages, please submit it via the \l{Qt Bug Tracker}
-    or through the \l{Public Qt Repository}.
 */
 
 /*!
@@ -132,128 +93,6 @@
     found on the \l{Supported Platforms} page.
 
     \tableofcontents
-
-    \target AIX
-    \section1 AIX - 5.2
-
-    Qt has been tested on AIX 5.2, using the xlC compiler.
-
-    \table
-    \header \li Compiler \li Notes
-    \row    \li xlC
-    \li If Qt is built correctly but all symbols are reported to be missing
-    when you link an application, your makeC++SharedLib script might be out
-    of date. Make sure you have the latest version from the
-    \l{http://www-306.ibm.com/software/awdtools/vacpp/support/}{IBM website}.
-    \row    \li GCC
-    \li We have tested earlier versions of Qt 4 successfully with GCC version
-    3.3 and above. Some versions of GCC may fail to link Qt with a "TOC overflow"
-    message.
-    Fix this by upgrading to the latest maintenance release of the dynamic
-    linker. On AIX this is bos.rte.bind_cmds.4.1.5.3 or later.
-    Some versions of GCC may fail to build Qt with STL and large-file support
-    enabled, due to
-    \l{http://gcc.gnu.org/bugzilla/show_bug.cgi?id=9551}{a bug in GCC}.
-    Fix this by upgrading to the latest maintenance release of the compiler.
-    It is also possible to work around this problem by running configure with
-    either \c{-no-stl} or \c{-no-largefile}.
-    \endtable
-
-    \section2 IBM xlC
-
-    The makeC++SharedLib utility must be in your PATH and be up to date to
-    build shared libraries. From IBM's
-    \l{http://www.redbooks.ibm.com/abstracts/sg245674.html}{C and C++ Application Development on AIX}
-    Redbook:
-
-    \list
-    \li "The second step is to use the makeC++SharedLib command to create the
-       shared object. The command has many optional arguments, but in its
-       simplest form, can be used as follows:"
-       \snippet doc/src/snippets/code/doc_src_compiler-notes.qdoc 1
-    \li "The full path name to the command is not required; however, to avoid
-       this, you will have to add the directory in which it is located to
-       your PATH environment variable. The command is located in the
-       /usr/vacpp/bin directory with the VisualAge C++ Professional for AIX,
-       Version 5 compiler."
-    \endlist
-
-    \section2 VisualAge C++ for AIX, Version 6.0
-
-    Make sure you have the
-    \l{http://www-1.ibm.com/support/search.wss?rs=32&amp;tc=SSEP5D&amp;dc=D400}{latest upgrades}
-    installed.
-
-    \target FreeBSD
-    \section1 FreeBSD - 6.0-RELEASE
-
-    \note FreeBSD is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
-
-    The system compiler on FreeBSD 4.x is GCC 2.95.4, which is not
-    officially supported by Qt 4. We develop using and recommend
-    ports/lang/gcc34. You will need to run configure with the
-    \c{-platform freebsd-g++34} arguments. Optionally, you may use
-    ports/lang/icc.
-
-    The system compiler on FreeBSD 5.x and 6.x is GCC 3.4.4, which should be
-    sufficient to build Qt. You do not need to add any special arguments when
-    running configure. Optionally, you may use ports/lang/icc.
-
-    Note that we do not actively test FreeBSD 4.x and 5.x. Our developers
-    migrated to 6.x after the Qt 4 launch. FreeBSD-CURRENT is not supported.
-
-    \section1 HP-UX
-
-    Qt supports HP-UX on both PA-RISC and the Itanium (IA64) architectures.
-
-    \section2 PA-RISC - B.11.11 or later
-
-    You can configure Qt for aCC in 32 and 64 bit mode (hpux-acc-64 or
-    hpux-acc-32), or GCC in 32 bit mode (hpux-g++).  The default platform is
-    hpux-acc-32. The minimum required version for aCC (HP ANSI C++) on PA-RISC
-    is A.03.57. The supported GCC compiler is GCC 3.4.3.
-
-    \section2 Itanium - B.11.23 or later
-
-    You can configure Qt for aCC in 32 and 64 bit mode (hpuxi-acc-64 or
-    hpuxi-acc-32). GCC is currently unsupported.  The default platform is
-    hpuxi-acc-64. The minimum required version for aCC (HP ANSI C++) on
-    Itanium is A.06.12.
-
-    \section2 HP ANSI C++ (aCC)
-
-    The hpux-acc-32 and hpux-acc-64 platforms are tested with aCC A.03.57. The
-    hpuxi-acc-32 and hpuxi-acc-64 platforms are tested with aCC A.06.10.
-
-    \section2 GCC
-
-    The hpux-g++ platform is tested with GCC 3.4.4.
-
-    \section2 OpenGL Support
-
-    Qt's \l{QtOpenGL}{OpenGL} module requires GLX 1.3 or later to be installed.
-    This is available for HP-UX 11i - see the
-    \l{http://docs.hp.com/en/5992-2331/ch04s02.html}{Graphics and Technical Computing Software}
-    section of the release notes for more information.
-
-    \target IRIX
-    \section1 IRIX - 6.5.x
-
-    \b{IRIX is an unsupported platform. See the \l{Supported Platforms} page.
-
-    Unpackaging and IRIX tar:
-    Because of long filenames some files will be cut off incorrectly with IRIX
-    tar. Please use GNU tar to unpack Qt packages.
-
-    \section2 MIPSpro
-
-    Qt 4.4.x requires MIPSpro version 7.4.2m.
-
-    Note that MIPSpro version 7.4.4m is currently not supported, since it has
-    introduced a number of problems that have not yet been resolved.
-    We recommend using 7.4.2m for Qt development. However, please note the
-    unsupported status of this platform.
 
     \section1 Linux
 
@@ -285,19 +124,8 @@
 
     \section2 Intel C++ Compiler for Linux
 
-    Nokia currently tests the following compilers:
-
-    \list
-
-    \li Intel(R) C++ Compiler for applications running on IA-32,
-    Version 10.1 Build 20080602 Package ID: l_cc_p_10.1.017
-
-    \li Intel(R) C++ Compiler for applications running on Intel(R) 64,
-    Version 10.1 Build 20080602 Package ID: l_cc_p_10.1.017
-
-    \endlist
-
-    We do not currently test the IA-64 (Itanium) compiler.
+    Qt can be compiled with the Intel C++ compile for Linux. The configuration is
+    not tested on a regular basis.
 
     \section2 Known Issues with Intel C++ Compiler for Linux
 
@@ -317,53 +145,6 @@
        10.1.017 compiles these modules correctly in release mode.
     \endlist
 
-    \target Solaris
-    \section1 Solaris - 9 or later
-
-    \section2 Unpackaging and Solaris tar
-
-    On some Solaris systems, both Solaris tar and GNU tar have been reported
-    to truncate long filenames. We recommend using star instead
-    (http://star.berlios.de).
-
-    Please note that WebKit is not supported for Solaris, regardless of
-    which compiler is used.
-
-    \section2 CC
-
-    See the notes for \l{Forte Developer / Sun Studio}.
-
-    \section2 GCC
-
-    Please use GCC 3.4.2 or later.
-
-    Do not use GCC with Sun's assembler/linker, this will result in link-time
-    errors in shared libraries. Use GNU binutils instead.
-
-    GCC 3.2.* is known to miscompile Qt due to an optimizer bug that will
-    cause the resulting binaries to hang.
-
-    \section2 Forte Developer / Sun Studio
-
-    Qt is tested using Sun Studio 12 (Sun CC 5.9). Go to
-    \l{Sun Studio Patches} page on Sun's Web site to download
-    the latest patches for your Sun compiler.
-
-    Please note that Qt 4.6 is stricter in its STL requirements and
-    that the default STL implementation used by Sun CC does not pass
-    those requirements. This does not affect binary compatibility and
-    you can continue to use STL in your own code, but Qt's
-    STL-compatibility functions will be disabled.
-
-    Sun CC ships with a secondary STL implementation (called stlport4)
-    which is standards-compliant and can be used by Qt. You can enable
-    it by passing the -library=stlport4 option to the compiler. Note
-    that this does not affect Qt's binary compatibility, but it may
-    affect that of other libraries and programs that use STL.
-
-    \section2 Sun WorkShop 5.0
-
-    Sun WorkShop 5.0 is not supported with Qt 4.
 */
 
 /*!
@@ -408,7 +189,7 @@
 
     \section2 Intel C++ Compiler (Windows, Altix)
 
-    Qt 4 has been tested successfully with:
+    Qt has been tested successfully with:
 
     \list
     \li Windows - Intel(R) C++ Compiler for 32-bit applications,
