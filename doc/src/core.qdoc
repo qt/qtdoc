@@ -30,33 +30,52 @@
 \title Core Fundamentals
 \brief Qt's core topics
 
-A list of topics in this topic page:
+Qt is primarily an application and UI development framework. However,
+Qt also contains core technology enablers.
+
+\section1 Inter-Process Communication
+
 \list
 \li \l{Inter-Process Communication in Qt}
-\li QProcess
-\li \l{Thread Support in Qt}
+\li \l{QProcess}
+\endlist
+
+\section1 Threading
+
 \list
+\li \l{Thread Support in Qt}
 \li \l{Threading Basics}
 \endlist
-\li \l{Container Classes}
+
+
+\section1 Objects, Properties and Events
+
+\list
 \li \l{The Event System}
 \li \l{The State Machine Framework}
 \li \l{Object Model}
-\list
 \li \l{The Meta-Object System}
 \li \l{The property system}
 \li \l{Signals & Slots}
-\li The meta-object in QML
+\li \l{Exposing Attributes of C++ Types to QML}{The meta-object in QML}
 \endlist
+
+
+\section1 Fundamental Data Types
+\list
+\li \l{Container Classes}
 \li \l{Unicode in Qt}
 \li Text codecs
-\li QPA
+\endlist
+
+\section1 Platform Support
+
+\list
+\li \l{Qt Platform Abstraction}
 \li \l{Wayland Support in Qt}{Wayland}
 \li Platform specific development
-\list
 \li Mac
 \li Windows CE
-\endlist
 \li \l{How to Create Qt Plugins}
 \endlist
 */
