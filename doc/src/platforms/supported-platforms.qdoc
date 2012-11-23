@@ -26,6 +26,92 @@
 ****************************************************************************/
 
 /*!
+    \page windows-support.html
+    \title Support for Windows
+    \brief Platform support for Windows.
+    \ingroup platform-specific
+    \ingroup platform-details
+
+    \section1 Qt on Windows
+
+    Qt is a comprehensive application and UI framework for developing Windows
+    applications that can also be deployed across many other desktop and
+    embedded operating systems without rewriting the source code. Use the
+    code from one single code-base and rebuild for all
+    \l{Supported Platforms}{supported Windows versions and other platforms}.
+
+    \section1 Getting Started on Windows
+
+    \list
+        \li \l{Supported Platforms}{Supported Windows platforms} - Qt
+        supports a wide range of Windows platforms.
+        \li \l{Qt for Windows Requirements}{Qt for Windows Requirements}
+        - Requirements for developing with Qt on Windows.
+        \li \l{Installing Qt for Windows}{Installing Qt for Windows}
+        - Build Qt for Windows development.
+        \li \l{Platform and Compiler Notes - Windows}{Platform and Compiler Notes - Windows}
+        - Windows platform specific notes.
+        \li \l{Getting Started Guides}{Getting started} - Getting started developing for Windows
+    \endlist
+
+    \section1 Key Features for Windows Development
+
+    \section2 Rich Class Library
+
+    The Qt class library includes all the functionality needed to build
+    advanced GUI applications.
+
+    \list
+        \li Complete set of customizable  \l{UI Design with Qt}{UI
+        controls/widgets}
+        \li 3D graphics support with \l{QtOpenGL Module}{OpenGL}
+        or Direct3D
+        \li Powerful \l{Thread Support in Qt}{multi-threading} features
+        \li \l{Graphics View Framework}{2D graphics canvas} capable of
+        handling millions of items
+        \li Multimedia support with \l{QtMultimedia module}{Qt Multimedia
+        module}
+        \li \l{WebKit in Qt}{WebKit} integration
+        \li \l{Network programming with Qt}{Networking}, \l{QtXml Module}
+        {XML} and \l{SQL in Qt}{database} functionality
+        \li \l{ECMAScript Reference}{ECMA standard} scripting engine
+    \endlist
+
+    \section2 Integrated Development Tools
+
+    Qt includes a set of integrated development tools to speed
+    development on the Windows platform.
+
+    \list
+        \li \l{Qt Designer Manual}{Qt Designer} provides a drag and drop
+        visual GUI builder.
+        \li \l{Qt Linguist Manual}{Qt Linguist} provides internationalization
+        and translation features.
+        \li \l{Qt Assistant Manual}{Qt Assistant} is a customizable HTML help
+        file reader providing the complete Qt documentation offline.
+    \endlist
+
+    \section2 Cross-Platform Development using Qt Creator
+
+    \l{external: Qt Creator Manual}{Qt Creator} is
+    a complete Cross-platform IDE included in the Qt SDK. The IDE allows
+    programmers to create, build, debug and run Qt applications accross all
+    supported platforms.
+
+    \section2 Visual Studio Add-in.
+
+    The Qt Visual Studio Add-in allows programmers to create, build, debug
+    and run Qt applications from within Microsoft Visual Studio 2005, 2008
+    and 2010. The add-in contains project wizards, Qt project import/export
+    support, integrated Qt resource manager and automated build setup for
+    the Qt Meta-Object Compiler, User Interface Compiler, and Resource
+    Compiler.
+
+    Additional \l{Cross-Platform and Platform-Specific Development}
+    information.
+*/
+
+/*!
     \page linuxX11-support.html
     \title Support for Linux/X11
     \brief Platform support for Linux/X11.
@@ -197,11 +283,19 @@
     Qt is a cross-platform application and UI framework. Using Qt,
     you can write GUI applications once and deploy them
     across desktop, mobile and embedded operating systems without
-    rewriting the source code.
+    rewriting the source code.In Qt 5 all platforms are created using
+    the new Qt Platform Abstraction (QPA), which makes it easier
+    than before to port Qt into a new operating system.
 
-    \section1 Development Platforms
+    Qt is supported on a variety of 32-bit and 64-bit platforms,
+    and can usually be built on each platform with GCC, a vendor-supplied
+    compiler, or a third party compiler. Open GL (ES) 2.0 or
+    DirectX 9 (with ANGLE) is required for Qt Quick 2. Widgets and
+    Qt Quick 1 can be used also without hardware acceleration.
 
-    You can develop with Qt on the following platforms:
+    \section1 Desktop Platforms
+
+    You can develop with Qt on the following desktop platforms:
 
     \list
         \li \l{Support for Windows}{Windows}
@@ -209,54 +303,49 @@
         \li \l{Support for Mac OS X}{Mac OS X}
     \endlist
 
-    Qt is supported on a variety of 32-bit and 64-bit platforms, and can
-    usually be built on each platform with GCC, a vendor-supplied compiler, or
-    a third party compiler.
-    On all platforms, Open GL (ES) 2.0 is required.
-
     \section1 Embedded platforms
-
-    ### Flesh out this section
-
-    QNX
-    VxWorks
-    INTEGRITY
-    Windows Embedded Compact 7
-    Embedded Linux
-
-    Mention EGLFS and Wayland
-
-    Link to http://qt-project.org/wiki/Category:Devices
+    You can develop with Qt for the following embedded platforms:
+    \list
+        \li Embedded Linux (DirectFB, EGLFS, KMS, and Wayland)
+        \li Windows Embedded (Compact and Standard)
+        \li Real-Time Operating Systems, such as QNX and VxWorks
+    \endlist
 
     \section1 Mobile platforms
+    Qt 5 will support all leading mobile operating systems. There already exists work in progress support for:
+    \list
+        \li Android
+        \li iOS
+        \li Windows 8 (WinRT)
+        \li BlackBerry 10
+    \endlist
 
-    ### Mention experimental work done on Android, iOS, Windows 8 and that Qt 5
-    has been successfully run on these platforms
+    \section1 Reference Configurations
 
-    \section1 Tested Configurations
-
-    A \e {tested configuration} is a combination of an operating system version,
+    A \e {reference configuration} is a combination of an operating system version,
     a compiler version, and a graphics system. The following table lists the
     configurations that are tested by the Qt Project:
 
     \table
     \header \li Platform
                                      \li Compiler
-    \row    \li Ubuntu Linux 10.04, X11 (32-bit)
-                                     \li As provided by Ubuntu
     \row    \li Ubuntu Linux 11.10, X11 (64-bit)
                                      \li As provided by Ubuntu
     \row    \li Ubuntu Linux 12.04, X11 (64-bit)
                                      \li As provided by Ubuntu
     \row    \li Microsoft Windows 7 (32-bit)
                                      \li MSVC 2010 SP1
-    \row    \li Apple Mac OS X 10.6 "Snow Leopard", Cocoa (32-bit)
-                                     \li GCC as provided by Apple
+    \row    \li Microsoft Windows 7 (32-bit)
+                                     \li MinGW 4.7
+    \row    \li Microsoft Windows 8 (64-bit)
+                                     \li MSVC 2012
     \row    \li Apple Mac OS X 10.7 "Lion", Cocoa (64-bit)
+                                     \li Clang as provided by Apple
+    \row    \li Apple Mac OS X 10.8 "Mountain Lion", Cocoa (64-bit)
                                      \li Clang as provided by Apple
     \endtable
 
-    All tested configurations are run on the continuous integration (CI) system
+    All these reference configurations are run on the continuous integration (CI) system
     of the Qt Project. In addition, they are subjected to unit test suite and
     other internal
     testing tools on a frequent basis (prior to new version releases, source tree
@@ -265,7 +354,7 @@
     Significant errors discovered in tested configurations can impact release
     dates.
 
-    Any configurations not specifically listed above are not tested by the Qt
+    Any configurations not listed above are not actively tested by the Qt
     Project. The Qt Project does not run its unit test suite or perform any
     other internal tests on configurations not listed above. However, Qt may run
     on configurations other than those actively tested on, and additional
@@ -273,20 +362,28 @@
     to bring continuous integration to an acceptable state for that particular
     configuration.
 
-    There may be various open source projects, community users and/or Qt partners who
-    are able to provide assistance with configurations not listed above.
+    In addition to the reference platforms Qt is occasionally tested on other
+    configurations in which it is known to run well. These include, for example:
+
+    \table
+    \header \li Platform
+                                     \li Compiler
+    \row    \li Ubuntu Linux 10.04, X11 (32-bit)
+                                     \li As provided by Ubuntu
+    \row    \li Microsoft Windows XP (32-bit)
+                                     \li MSVC 2008
+    \row    \li Apple Mac OS X 10.6 "Snow Leopard", Cocoa (32-bit)
+                                     \li GCC as provided by Apple
+    \endtable
+
+    Digia, Qt partners, open source projects and community users
+    are able to provide assistance with various different supported
+    platforms and configurations.
 
     \section1 Availability of Binary Installation Packages
 
-    The Qt Project provides binary Qt installation packages for the following
-    platforms:
-
-    \list
-        \li Ubuntu Linux 11.10, X11 (32-bit and 64-bit)
-        \li Ubuntu Linux 12.04, X11 (32-bit and 64-bit)
-        \li Microsoft Windows 7 (32-bit and 64-bit), MSVC 2010 SP1
-        \li Apple Mac OS X 10.7 "Lion" (64-bit)
-    \endlist
+    The Qt Project provides binary Qt installation packages for all of the
+    reference platforms.
 
     To develop with Qt on other supported platforms, you need to build it from
     source.
@@ -298,7 +395,7 @@
 
     Please note that Qt is offered on an "as is" basis without warranty
     of any kind and that our products are not error or bug free. To the maximum extent
-    permitted by applicable law, Nokia on behalf of itself and its suppliers, disclaims all
+    permitted by applicable law, Digia on behalf of itself and its suppliers, disclaims all
     warranties and conditions, either express or implied, including, but not limited to,
     implied warranties of merchantability, fitness for a particular purpose, title and
     non-infringement with regard to the Licensed Software.
