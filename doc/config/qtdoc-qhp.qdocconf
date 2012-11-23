@@ -1,14 +1,14 @@
 qhp.projects            = QtDoc
 
 qhp.QtDoc.file                = qtdoc.qhp
-qhp.QtDoc.namespace           = com.trolltech.qt.500
+qhp.QtDoc.namespace           = org.qt-project.qtdoc.500
 qhp.QtDoc.virtualFolder       = qdoc
 qhp.QtDoc.indexTitle          = Qt Reference Documentation
 qhp.QtDoc.indexRoot           =
 
-qhp.QtDoc.filterAttributes    = qt 5.0.0 qtrefdoc
-qhp.QtDoc.customFilters.Qt.name = Qt 5.0.0
-qhp.QtDoc.customFilters.Qt.filterAttributes = qt 5.0.0
+qhp.QtDoc.filterAttributes    = qtdoc 5.0.0 qtrefdoc
+qhp.QtDoc.customFilters.Qt.name = Qtdoc 5.0.0
+qhp.QtDoc.customFilters.Qt.filterAttributes = qtdoc 5.0.0
 qhp.QtDoc.subprojects         = classes overviews examples
 qhp.QtDoc.subprojects.classes.title = Classes
 qhp.QtDoc.subprojects.classes.indexTitle = Qt's Classes
