@@ -54,7 +54,7 @@
     QRegularExpression is introduced to provide better support for regular
     expressions compatible with Perl. This class is more powerful and
     faster than QRegExp, and supports more features such as lazy and possessive
-    quantifiers, lookbehinds, named capturing groups and iteration of matches.
+    quantifiers, lookbehinds, named capturing groups, and iteration of matches.
 
     \section1 Qt Gui
     \section2 New Classes for Windowing and Rendering
@@ -255,9 +255,9 @@
       \li Propagates \c clicked, \c doubleClicked and \c pressAndHold events
           differently to \c pressed. These events are propagated to the handler
           of the topmost \l{MouseArea} in the stack-order.
-      \li Can ignore the propagated events using the \cpropagateComposedEvents.
-          Such ignored events are propagated to the next MouseArea handler in
-          the stack-order.
+      \li Can ignore the propagated events using the
+          \c{propagateComposedEvents}. Such ignored events are propagated to
+          the next MouseArea handler in the stack-order.
      \endlist
     \endlist
 
@@ -337,7 +337,8 @@
       \li New \c{asynchronous} property allows components to be instantiated
           with a lower chance of blocking. With the \c {asynchonous} property
           set to \c {true}, the component is compiled in a background thread.
-      \li New \cactive property delays instantiation of a Loader object’s item.
+      \li New \c{active} property delays instantiation of a Loader object’s
+          item.
       \li New \c {setSource(JSObject)} method to specify initial property
           values for the loaded item, similar to \c{Component::createObject}
           {Component.createObject()}.

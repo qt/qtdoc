@@ -35,8 +35,8 @@ existing QML applications, refer to \l{QML Applications in Qt 5}.
 
 This topic will walk through the porting process to make the \c{flickr} Qt 4
 QML demo work on Qt 5. If you have the SDK based on Qt 4.8 installed, you can
-find this demo application under \c{<install_dir_root>/Examples/4.x/declarative
-/demos/}.
+find this demo application under
+\c{<install_dir_root>/Examples/4.x/declarative/demos/}.
 
 The \c{flickr} application is a complete application that comes with a launcher.
 It handles the screen orientation changes on platforms that support different
@@ -51,8 +51,8 @@ application work on Qt 5:
      \c{qml/common/RssModel.qml}.
      \note XmlListModel is part of a submodule under QtQuick and it must be
            imported explicitly to use it.
- \li Make the following changes to \c{qmlapplicationviewer
-     /qmlapplicationviewer.h}:
+ \li Make the following changes to
+     \c{qmlapplicationviewer/qmlapplicationviewer.h}:
   \list
    \li Replace the \c{#include <QtDeclarative/QDeclarativeView>} with
        \c{#include <QQuickView>}.
@@ -61,8 +61,8 @@ application work on Qt 5:
    \li Replace the parameter for \c{QmlApplicationViewer} constructor from
        \c{QWidget} to \c{QWindow}.
   \endlist
- \li Make the following changes to \c{qmlapplicationviewer/
-     qmlapplicationviewer.cpp}:
+ \li Make the following changes to
+     \c{qmlapplicationviewer/qmlapplicationviewer.cpp}:
   \list
    \li Replace all the \c{QtCore} and \c{QtDeclarative} include statements with
        these:
