@@ -42,11 +42,30 @@ Make sure the following links are reachable from this section, either directly o
 
 \section1 Network Communication
 
-### Talk about the TCP/IP support in Qt with focus on QNetworkAccessManager and low-level classes
-such as QTCPSocket, QUDPSocket and QTCPServer. Mention support for SSL. Mention network
-transparency in QML. Mention Bearer Management for connection status.
+Qt supports a wide range of network communication, with a focus on HTTP, TCP, and UDP.
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+At the HTTP level, Qt offers the network access API, which consists mainly of QNetworkRequest,
+QNetworkAccessManager, and QNetworkReply. Put simply, the QNetworkRequest resembles an HTTP
+request, which gets passed to the QNetworkAccessManager to send the request on the wire; this
+class returns a QNetworkReply, which enables parsing the HTTP reply. The network access API
+uses the socket classes mentioned below (for TCP and SSL) internally.
+
+For communication at the socket level, QTcpSocket, QUdpSocket and QSslSocket should be used.
+These classes offer a synchronous API through the waitFor* methods as well as an asynchronous
+API; if possible (i.e. if the event loop is running), the asynchronous API should always be
+preferred.
+Qt also offers QTcpServer to enable the server-side part of a TCP communication. Please note
+that there is no HTTP server class in Qt.
+
+For secure communication via SSL, Qt offers a wide range of classes alongside the central
+QSslSocket, e.g. QSslCertificate, QSslConfiguration and QSslError. The only supported backend
+for SSL in Qt is OpenSSL, which needs to be installed separately.
+
+For mobile devices, Qt offers the bearer management API to track the status of a connection
+(e.g. getting notified about online/offline status or whether Wifi or 3G is used).
+
+Qt also offers HTTP support in QML by either using HTTP explicitly via XmlHttpRequest, or by
+transparently using HTTP URLs in e.g. Image sources.
 
 \list
 \li \l {Network Programming API}
