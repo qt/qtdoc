@@ -30,25 +30,29 @@
 \title Scripting
 \brief Qt's scripting features
 
-Qt has three main ways to help in making an application scriptable. All of them allow to easily
-integrate \l{ECMAScript Reference}{ECMAScript} language into the application. Depending how deep
-the integration should be, one of these api can be used:
+Qt has three main ways to help make an application scriptable. All of them allow easy
+integration of \l{ECMAScript Reference}{ECMAScript} language into the application. Depending on how deep
+the integration should be, one of these APIs can be used:
 
-\list
-\li \l QtScript. It is a separate module, designed with scripting applications in mind. It has
- a mature and rich api that permits a really deep integration of scripting functionality. It allows
- to evaluate and debug scripts, advanced use of objects and functions, it also gives an access to really
+\section1 QtScript
+ \l QtScript is a separate module, designed with scripting applications in mind. It has
+ a mature and rich API that permits a really deep integration of scripting functionality. It allows
+  evaluating and debugging of scripts, and advanced use of objects and functions. It also gives access to a really
  low level \l{ECMAScript Reference}{ECMAScript} engine API. Full documentation about using QtScript to make an application
  scriptable can be found \l{Making Applications Scriptable}{here}.
-\li JS api. Simple api, very similar to QtScript, but limited to a basic functionality. The main
- classes are QJSEngine and QJSValue which can be used to embed pure \l{ECMAScript Reference}{ECMAScript} functionality
+
+\section1 JS API
+This is a simple API, very similar to QtScript, but limited to basic functionality. The main
+ classes are QJSEngine and QJSValue, which can be used to embed pure \l{ECMAScript Reference}{ECMAScript} functionality
  like evaluating scripts and calling functions.
-\li QML. API exposing a modified \l{ECMAScript Reference}{ECMAScript} environment, it is supposed to mix well with JS
- api mentioned earlier. QML may be used without QtQuick components which may be useful for
- a server side scripting. QML allows to use pure \l{ECMAScript Reference}{ECMAScript} and declarative components
+
+\section1 QML
+QML exposes a modified \l{ECMAScript Reference}{ECMAScript} environment. It is designed to mix well with the JS
+ API mentioned earlier. QML may be used without QtQuick components which may be useful for
+ server side scripting. QML enables the use of pure \l{ECMAScript Reference}{ECMAScript} and declarative components
  together (\l{Use Case - Integrating JavaScript in QML}).
 \endlist
 
-All of them seamlessly inter-operate with \l{The Meta-Object System}{the Meta-Object System}, which means that all \l{Signals & Slots}{signals and slots},
-\l{The property system}{properties} of a QObject instance would be accessible in \l{ECMAScript Reference}{ECMAScript} environment.
+All of these three scripting solutions seamlessly inter-operate with \l{The Meta-Object System}{the Meta-Object System}, which means that all \l{Signals & Slots}{signals and slots} and
+\l{The property system}{properties} of a QObject instance are accessible in an \l{ECMAScript Reference}{ECMAScript} environment.
 */
