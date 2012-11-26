@@ -66,7 +66,7 @@
     encodings and presentation conventions.
 
     Qt tries to make internationalization as painless as possible for
-    developers. All input widgets and text drawing methods in Qt offer
+    developers. All input controls and text drawing methods in Qt offer
     built-in support for all supported languages. The built-in font engine
     is capable of correctly and attractively rendering text that contains
     characters from a variety of different writing systems at the same
@@ -81,26 +81,35 @@
     \li Greek
     \li Hebrew
     \li Thai and Lao
-    \li All scripts in Unicode 5.1 that do not require special processing
-    \endlist
-
-    On Windows, Unix/X11 with FontConfig (client side font support)
-    and Qt for Embedded Linux the following languages are also supported:
-    \list
+    \li All scripts in Unicode 6.2 that do not require special processing
     \li Bengali
+    \li Burmese (Myanmar)
     \li Devanagari
-    \li Dhivehi (Thaana)
     \li Gujarati
     \li Gurmukhi
     \li Kannada
     \li Khmer
     \li Malayalam
-    \li Myanmar
-    \li Syriac
     \li Tamil
     \li Telugu
     \li Tibetan
+    \endlist
+
+    The list above is supported and will work on all platforms as long as
+    the system has fonts to render these writing systems installed.
+
+    On Windows, Linux and Unix with FontConfig (client side font support)
+    the following languages are also supported:
+    \list
+    \li Dhivehi (Thaana)
+    \li Syriac
     \li N'Ko
+    \endlist
+
+    On Mac OS Xthe following languages are also supported:
+    \list
+    \li Oriya
+    \li Sinhala
     \endlist
 
     Many of these writing systems exhibit special features:
@@ -130,8 +139,9 @@
 
     Qt tries to take care of all the special features listed above. You
     usually don't have to worry about these features so long as you use
-    Qt's input widgets (e.g. QLineEdit, QTextEdit, and derived classes)
-    and Qt's display widgets (e.g. QLabel).
+    Qt's input controls (e.g. QLineEdit, QTextEdit, and derived classes
+    or the Quick TextInput item) and Qt's display controls (e.g. QLabel
+    and Qt Quick's Text item).
 
     Support for these writing systems is transparent to the
     programmer and completely encapsulated in \l{rich text
@@ -170,7 +180,7 @@
 
     \section2 Use QString for All User-Visible Text
 
-    Since QString uses the Unicode 5.1 encoding internally, every
+    Since QString uses the Unicode encoding internally, every
     language in the world can be processed transparently using
     familiar text processing operations. Also, since all Qt functions
     that present text to the user take a QString as a parameter,
@@ -183,6 +193,11 @@
     You're unlikely to notice that you are using Unicode;
     QString, and QChar are just like easier versions of the crude
     \c{const char *} and char from traditional C.
+
+    \c{char *} strings in source code are assumend to be UTF-8 encoded
+    when being implicitly converted to a QString. If your C string literal
+    uses a different encoding, use QString::fromLatin1() or QTextCodec
+    to convert the literal to a Unicode encoded QString.
 
     \section2 Use tr() for All Literal Text
 
@@ -221,15 +236,8 @@
     If you disable the \c{const char *} to QString automatic
     conversion by compiling your software with the macro \c
     QT_NO_CAST_FROM_ASCII defined, you'll be very likely to catch any
-    strings you are missing. See QString::fromLatin1() for more
-    information. Disabling the conversion can make programming a bit
-    cumbersome.
-
-    If your source language uses characters outside Latin1, you
-    might find QObject::trUtf8() more convenient than
-    QObject::tr(), as tr() depends on the
-    QTextCodec::codecForTr(), which makes it more fragile than
-    QObject::trUtf8().
+    strings you are missing. See QString::fromUtf8() and QString::fromLatin1()
+    for more information.
 
     \section2 Use QKeySequence() for Accelerator Values
 
@@ -299,7 +307,7 @@
     When you run \c lupdate or \c lrelease, you must give the name of the
     project file as a command-line argument.
 
-    In this example, four exotic languages are supported: Danish,
+    In this example, four languages are supported: Danish,
     Finnish, Norwegian and Swedish. If you use \l{qmake}, you usually
     don't need an extra project file for \c lupdate; your \c qmake
     project file will work fine once you add the \c TRANSLATIONS
@@ -317,10 +325,8 @@
     \target qt-itself
     Qt itself contains over 400 strings that will also need to be
     translated into the languages that you are targeting. You will find
-    translation files for French, German and Simplified Chinese in
-    \c{$QTDIR/translations}, as well as a template for translating to
-    other languages. (This directory also contains some additional
-    unsupported translations which may be useful.)
+    a large number of translation files, as well as a template for translating
+    to other languages in the QtTranslations module.
 
     Typically, your application's \c main() function will look like
     this:
@@ -335,10 +341,11 @@
     \section2 Support for Encodings
 
     The QTextCodec class and the facilities in QTextStream make it easy to
-    support many input and output encodings for your users' data. When an
+    support many legacy input and output encodings for your users' data. When an
     application starts, the locale of the machine will determine the 8-bit
-    encoding used when dealing with 8-bit data: such as for font
-    selection, text display, 8-bit text I/O, and character input.
+    encoding used when dealing with external 8-bit data. QTextCodec::codecForLocale()
+    returns a codec that can be used to convert between this locale encoding
+    and Unicode.
 
     The application may occasionally require encodings other than the
     default local 8-bit encoding. For example, an application in a
@@ -362,13 +369,11 @@
 
     \snippet doc/src/snippets/code/doc_src_i18n.cpp 10
 
-    Ideally Unicode I/O should be used as this maximizes the portability
-    of documents between users around the world, but in reality it is
-    useful to support all the appropriate encodings that your users will
-    need to process existing documents. In general, Unicode (UTF-16 or
-    UTF-8) is best for information transferred between arbitrary people,
-    while within a language or national group, a local standard is often
-    more appropriate. The most important encoding to support is the one
+    Unicode I/O should be used as this maximizes the portability
+    of documents between users around the world. In many cases it is
+    however still necessary to support other encodings as your users will
+    need to process existing documents. The most important additional
+    encoding to support is the one
     returned by QTextCodec::codecForLocale(), as this is the one the user
     is most likely to need for communicating with other people and
     applications (this is the codec used by local8Bit()).
@@ -399,7 +404,7 @@
     Europe we would translate it as something else and this will make
     the code use the 24-hour clock branch.
 
-    For localized numbers use the QLocale class.
+    For localized numbers, dates, times and currency strings use the QLocale class.
 
     Localizing images is not recommended. Choose clear icons that are
     appropriate for all localities, rather than relying on local puns or
@@ -476,19 +481,28 @@
         provides Unicode input and output.
     \li  Filesystem conventions such as
         \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8}
-        are under development in some Unix variants. All Qt file
+        are today used by default in most Unix variants. All Qt file
         functions allow Unicode, but convert filenames to the local
         8-bit encoding, as this is the Unix convention (see
         QFile::setEncodingFunction() to explore alternative
         encodings).
     \li  File I/O defaults to the local 8-bit encoding,
         with Unicode options in QTextStream.
-    \li  Many Unix distributions contain only partial support for some locales.
+    \li  Some older Unix distributions contain only partial support for some locales.
         For example, if you have a \c /usr/share/locale/ja_JP.EUC directory,
         this does not necessarily mean you can display Japanese text; you also
-        need JIS encoded fonts (or Unicode fonts), and the
+        need to have Japanese fonts installed, and the
         \c /usr/share/locale/ja_JP.EUC directory needs to be complete. For
         best results, use complete locales from your system vendor.
+    \endlist
+
+    \section2 Linux
+
+    \list
+    \li  Qt provides full Unicode support, including input methods, fonts,
+        clipboard, drag-and-drop.
+    \li  The file system is usually encoded in UTF-8 on all modern Linux
+        distributions and should not pose a problem. File I/O defaults to UTF-8.
     \endlist
 
     \section2 Windows
@@ -652,8 +666,7 @@
 
     \section1 Character Encodings
 
-    You can set the encoding for the source text by calling QTextCodec::setCodecForTr().
-    By default, the source text is assumed to be in Latin-1 encoding.
+    The encoding for the source text is assumed to be UTF-8.
 
     \section1 Handling Plurals
 
@@ -698,7 +711,7 @@
     Instead of \c %n, you can use \c %Ln to produce a localized
     representation of \a n. The conversion uses the default locale,
     set using QLocale::setDefault(). (If no default locale was
-    specified, the "C" locale is used.)
+    specified, the system wide locale is used.)
 
     A summary of the rules used to translate strings containing plurals can be
     found in the \l{Translation Rules for Plurals} document.
