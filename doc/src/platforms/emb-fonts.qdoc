@@ -117,7 +117,7 @@
     The Qt Prerendered Font (QPF2) is an architecture-independent,
     light-weight and non-scalable font format specific to \l{Qt for Embedded Linux}.
 
-    Nokia provides the cross-platform \l makeqpf tool, included in the
+    Qt comes with the cross-platform \l makeqpf tool, included in the
     \c tools directory of both \l {Qt} and \l{Qt for Embedded Linux}, which allows
     generation of QPF2 files from system fonts.
 
@@ -129,7 +129,7 @@
     \target QPF
     \section1 Legacy Qt Prerendered Font (QPF)
 
-    Nokia provides support for the legacy QPF format for compatibility
+    Qt provides support for the legacy QPF format for compatibility
     reasons. QPF is based on the internal font engine data structure of Qt/Embedded
     versions 2 and 3.
 

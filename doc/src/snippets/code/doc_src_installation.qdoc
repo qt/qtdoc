@@ -168,13 +168,10 @@ nmake
 
 
 //! [23]
-cd \Qt\%VERSION%
-configure -platform win32-g++ -xplatform symbian-abld
 //! [23]
 
 
 //! [24]
-make debug-winscw
 //! [24]
 
 //! [25]
@@ -192,67 +189,36 @@ make release-armv5
 //! [28]
 
 //! [29]
-cd src\s60installs
-make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
-cd ..\3rdparty\webkit\WebCore
-make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
 //! [29]
 
 //! [30]
-cd examples\embedded\fluidlauncher
-make sis QT_SIS_OPTIONS=-i
 //! [30]
 
 //! [31]
-cd \Qt\%VERSION%
-configure -platform win32-g++ -xplatform symbian-sbsv2
 //! [31]
 
 //! [32]
-cd <Your SDK path>\S60CppExamples\Note\group
-bldmake bldfiles
-abld build winscw udeb
-abld build gcce urel
 //! [32]
 
 //! [33]
-SYMBIANBUILD_DEPENDENCYOFF=1
 //! [33]
 
 //! [34]
-cd src\s60installs
-make sis QT_SIS_OPTIONS=-i
-cd ..\3rdparty\webkit\WebCore
-make sis QT_SIS_OPTIONS=-i
 //! [34]
 
 //! [35]
-cd src\s60installs
-patch_capabilities.pl Qt_template.pkg release-armv5 "ALL -Tcb -AllFiles -DRM"
-make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
-cd ..\3rdparty\webkit\WebCore
-patch_capabilities.pl QtWebKit_template.pkg release-armv5 "ALL -Tcb -AllFiles -DRM"
-make sis QT_SIS_OPTIONS=-i QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
 //! [35]
 
 //! [36]
-EPOCROOT=/home/user/s60-sdk/
-export EPOCROOT
 //! [36]
 
 //! [37]
-PATH=/home/user/qt/%VERSION%/bin:$EPOCROOT/epoc32/tools:$PATH
-export PATH
 //! [37]
 
 //! [38]
-cd /home/user/qt/%VERSION%
-./configure -platform linux-g++ -xplatform symbian-armcc
 //! [38]
 
 //! [39]
-cd /home/user/qt/%VERSION%
-./configure -platform linux-g++ -xplatform symbian-gcce -no-webkit
 //! [39]
 
 //! [40]
@@ -260,17 +226,9 @@ make
 //! [40]
 
 //! [41]
-cd src
-make sis
 //! [41]
 
 //! [42]
-cd src/s60installs
-patch_capabilities.pl Qt_template.pkg - "ALL -Tcb -AllFiles -DRM"
-make sis QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
-cd ../3rdparty/webkit/WebCore
-patch_capabilities.pl QtWebKit_template.pkg - "ALL -Tcb -AllFiles -DRM"
-make sis QT_SIS_CERTIFICATE=<certificate file> QT_SIS_KEY=<certificate key file>
 //! [42]
 
 //! [43]
@@ -284,51 +242,32 @@ sudo modprobe usbserial vendor=0x0XXX product=0x0XXX
 
 //! [45]
 $ qmake -version
-QMake version 2.01a
-Using Qt version 4.6.2 in /usr/lib/qt4
+QMake version 3.0
+Using Qt version 5.0.0 in /usr/lib/qt5
 //! [45]
 
 //! [46]
-cd $HOME/runonphone
-qmake
-make
 //! [46]
 
 //! [47]
-runonphone -s lib/Qt.sis
 //! [47]
 
 //! [runonphone with device file path]
-runonphone -s lib/Qt.sis -p /dev/ttyUSB1
 //! [runonphone with device file path]
 
 //! [48]
-cd examples/embedded/fluidlauncher
-runonphone -s fluidlauncher.sis fluidlauncher.exe
 //! [48]
 
 //! [make runonphone with options]
-make runonphone "QT_RUN_ON_PHONE_OPTIONS=-p /dev/ttyUSB1"
 //! [make runonphone with options]
 
 //! [make runonphone with preset environment variable]
-export QT_RUN_ON_PHONE_OPTIONS="-p /dev/ttyUSB1"
-make runonphone
 //! [make runonphone with preset environment variable]
 
 //! [49]
-cd myapp
-qmake
-make
-make sis
-runonphone -s myapp.sis myapp.exe
 //! [49]
 
 //! [50]
-src/s60installs/sqlite3.sis
-$EPOCROOT/nokia_plugin/openc/s60opencsis/openc_ssl_s60_1_6_ss.sis
-$EPOCROOT/nokia_plugin/openc/s60opencsis/pips_s60_1_6_ss.sis
-$EPOCROOT/nokia_plugin/opencpp/s60opencppsis/stdcpp_s60_1_6_ss.sis
 //! [50]
 
 
