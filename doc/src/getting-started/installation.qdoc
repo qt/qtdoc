@@ -682,14 +682,18 @@ in the \l{Qt for Windows CE Requirements} document.
 
     \tableofcontents
 
-    \section1 QtGui Dependencies
+    \section1 Platform plugin dependencies
 
-    \image x11_dependencies.png Qt for X11 Dependencies
-
-    The QtGui module and the QtCore module, which provides the non-GUI features required
-    by QtGui, depend on the libraries described in the following table. To build
+    On X11 the "xcb" QPA (Qt Platform Abstraction) platform plugin is used. It provides
+    the basic functionality needed by QtGui and QtWidgets to run against X11.
+    Its library dependencies are described the following table. To build
     Qt from its source code, you will also need to install the development
     packages for these libraries for your system.
+
+    It's possible to configure Qt with -qt-xcb, which compiles in a set of xcb helper
+    libraries instead of trying to link against the system versions. This can help make
+    Qt less dependent on some of the xcb helper libraries that might not be available
+    on all distributions. The table specifies which dependencies are provided by -qt-xcb.
 
     \table 100%
     \header
@@ -701,33 +705,69 @@ in the \l{Qt for Windows CE Requirements} document.
     \row {id="OptionalColor"}
     \li XRender
     \li libXrender
-    \li X Rendering Extension; used for anti-aliasing
+    \li X Rendering Extension; used for anti-aliasing and alpha cursor support
     \li \tt{-xrender} or auto-detected
     \li 0.9.0
     \row {id="OptionalColor"}
-    \li Xrandr
-    \li libXrandr
-    \li X Resize and Rotate Extension
-    \li \tt{-xrandr} or auto-detected
-    \li 1.0.2
+    \li xcb-render
+    \li libxcb-render
+    \li X C Bindings for Render extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
     \row {id="OptionalColor"}
-    \li Xcursor
-    \li libXcursor
-    \li X Cursor Extension
-    \li \tt{-xcursor} or auto-detected
-    \li 1.1.4
+    \li xcb-render-util
+    \li libxcb-render-util
+    \li Utility library for XCB for Render extension
+    \li auto-detected or provided by -qt-xcb
+    \li 0.3.8
     \row {id="OptionalColor"}
-    \li Xfixes
-    \li libXfixes
-    \li X Fixes Extension
-    \li \tt{-xfixes} or auto-detected
-    \li 3.0.0
-    \row {id="OptionalColor"}
-    \li Xinerama
-    \li libXinerama
-    \li Multi-head support
-    \li \tt{-xinerama} or auto-detected
-    \li 1.1.0
+    \li xcb-shape
+    \li libxcb-shape
+    \li X C Bindings for Shape extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li xcb-randr
+    \li libxcb-randr
+    \li X C Bindings for Resize and Rotate Extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li xcb-xfixes
+    \li libxcb-xfixes
+    \li X C Bindings for Fixes Extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li xcb-sync
+    \li libxcb-sync
+    \li X C Bindings for Sync Extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li xcb-shm
+    \li libxcb-shm
+    \li X C Bindings for Shared Memory Extension
+    \li auto-detected or provided by -qt-xcb
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li xcb-icccm
+    \li libxcb-icccm
+    \li X C Bindings for ICCCM Protocol
+    \li auto-detected or provided by -qt-xcb
+    \li 0.3.9
+    \row {id="DefaultColor"}
+    \li xcb-keysyms
+    \li libxcb-keysyms
+    \li Utility library for XCB for keycode conversion
+    \li auto-detected or provided by -qt-xcb
+    \li 0.3.9
+    \row {id="DefaultColor"}
+    \li xcb-image
+    \li libxcb-image
+    \li Utility library for XCB for XImage and XShmImage, used for QBackingStore and cursor support
+    \li auto-detected or provided by -qt-xcb
+    \li 0.3.9
 
     \row {id="OptionalColor"}
     \li Fontconfig
@@ -749,12 +789,6 @@ in the \l{Qt for Windows CE Requirements} document.
     \li \tt{-xinput} or auto-detected
     \li 1.3.0
     \row {id="DefaultColor"}
-    \li Xt
-    \li libXt
-    \li Xt Intrinsics
-    \li
-    \li 0.99
-    \row {id="DefaultColor"}
     \li Xext
     \li libXext
     \li X Extensions
@@ -763,9 +797,21 @@ in the \l{Qt for Windows CE Requirements} document.
     \row {id="DefaultColor"}
     \li X11
     \li libX11
-    \li X11 Client-Side Library
+    \li X11 client-side library
     \li
     \li 6.2.1
+    \row {id="DefaultColor"}
+    \li xcb
+    \li libxcb
+    \li X C Binding library
+    \li
+    \li 1.8.1
+    \row {id="DefaultColor"}
+    \li X11-xcb
+    \li libX11-xcb
+    \li Xlib/XCB interface library
+    \li
+    \li 1.3.2
 
     \row {id="SMColor"}
     \li SM
@@ -794,9 +840,6 @@ in the \l{Qt for Windows CE Requirements} document.
     \li 2.3.5
     \endtable
 
-    \note You must compile with XRender support to get alpha transparency
-    support for pixmaps and images.
-
     Development packages for these libraries contain header files that are used
     when building Qt from its source code. On Debian-based GNU/Linux systems,
     for example, we recommend that you install the following development
@@ -806,13 +849,28 @@ in the \l{Qt for Windows CE Requirements} document.
     \li libfontconfig1-dev
     \li libfreetype6-dev
     \li libx11-dev
-    \li libxcursor-dev
     \li libxext-dev
     \li libxfixes-dev
-    \li libxft-dev
     \li libxi-dev
-    \li libxrandr-dev
     \li libxrender-dev
+    \li libxcb1-dev
+    \li libx11-xcb-dev
+    \li libxcb-glx0-dev
+    \endlist
+
+    Additionally, if you do not configure with -qt-xcb, you should also
+    install these development packages:
+
+    \list
+    \li libxcb-keysyms1-dev
+    \li libxcb-image0-dev
+    \li libxcb-shm0-dev
+    \li libxcb-icccm4-dev
+    \li libxcb-sync0-dev
+    \li libxcb-xfixes0-dev
+    \li libxcb-shape0-dev
+    \li libxcb-randr0-dev
+    \li libxcb-render-util0-dev
     \endlist
 
     Some of these packages depend on others in this list, so installing one
