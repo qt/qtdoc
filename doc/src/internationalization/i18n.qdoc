@@ -551,6 +551,10 @@
     installed on the application object in the way described in the
     \l{#Enabling Translation}{Enabling Translation} section below.
 
+    Translating strings in QML works exactly the same way as in C++, with the only
+    difference being that you need to call qsTr() instead of \l{QObject::}{tr()}. See also
+    the page on \l{Internationalization and Localization with Qt Quick}.
+
     \section1 Defining a Translation Context
 
     The translation context for QObject and each QObject subclass is the
