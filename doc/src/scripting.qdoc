@@ -30,30 +30,25 @@
 \title Scripting
 \brief Qt's scripting features
 
-A page describing the scripting story in Qt 5. This page covers how to add
-scripting capabilities into C++ and QML applications.
+Qt has three main ways to help in making an application scriptable. All of them allow to easily
+integrate \l{ECMAScript Reference}{ECMAScript} language into the application. Depending how deep
+the integration should be, one of these api can be used:
 
-Possible sections:
 \list
-\li the main classes involved into embedding scripts
-\li JavaScript introduction (in the context of Qt)
-\li where JavaScript may be used in C++ applications
-\li where JavaScript may be used in QML applications
+\li \l QtScript. It is a separate module, designed with scripting applications in mind. It has
+ a mature and rich api that permits a really deep integration of scripting functionality. It allows
+ to evaluate and debug scripts, advanced use of objects and functions, it also gives an access to really
+ low level \l{ECMAScript Reference}{ECMAScript} engine API. Full documentation about using QtScript to make an application
+ scriptable can be found \l{Making Applications Scriptable}{here}.
+\li JS api. Simple api, very similar to QtScript, but limited to a basic functionality. The main
+ classes are QJSEngine and QJSValue which can be used to embed pure \l{ECMAScript Reference}{ECMAScript} functionality
+ like evaluating scripts and calling functions.
+\li QML. API exposing a modified \l{ECMAScript Reference}{ECMAScript} environment, it is supposed to mix well with JS
+ api mentioned earlier. QML may be used without QtQuick components which may be useful for
+ a server side scripting. QML allows to use pure \l{ECMAScript Reference}{ECMAScript} and declarative components
+ together (\l{Use Case - Integrating JavaScript in QML}).
 \endlist
-This page includes links to the overviews from various repositories and modules.
 
-A list of pages or topics that should be reachable from this page, directly or
-indirectly:
-\list
-\li \l{ECMAScript Reference}
-\li \l{Making Applications Scriptable}
-\endlist
-
-Other things that may need to be mentioned:
-\list
-\li JSON syntax (also part of data storage)
-\li Scripting in QML applications (\l{Use Case - Integrating JavaScript in QML})
-\li \l QtScript
-\li \l{Qt Script C++ Classes}
-\endlist
+All of them seamlessly inter-operate with \l{The Meta-Object System}{the Meta-Object System}, which means that all \l{Signals & Slots}{signals and slots},
+\l{The property system}{properties} of a QObject instance would be accessible in \l{ECMAScript Reference}{ECMAScript} environment.
 */
