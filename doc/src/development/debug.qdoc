@@ -101,12 +101,24 @@
     \row \li \c -dograb
          \li Ignore any implicit or explicit \c{-nograb}. \c -dograb wins over
             \c -nograb even when \c -nograb is last on the command line.
-    \row \li \c -sync
-         \li Runs the application in X synchronous mode. Synchronous mode
-            forces the X server to perform each X client request
-            immediately and not use buffer optimization. It makes the
-            program easier to debug and often much slower. The \c -sync
-            option is only valid for the X11 version of Qt.
+    \endtable
+
+    \section1 Environment Variables Recognized by Qt
+
+    At runtime, a Qt application recognizes many environment variables, some of which can
+    be helpful for debugging:
+
+    \table
+    \header \li Variable \li Description
+    \row \li \c QT_DEBUG_PLUGINS
+         \li Set to a non-zero value to make Qt print out diagnostic information about the each
+             (C++) plugin it tries to load.
+    \row \li \c QML_IMPORT_TRACE
+         \li Set to a non-zero value to make QML print out diagnostic information from the import
+             loading mechanism.
+    \row \li \c QT_HASH_SEED
+         \li Set to an integer value to disable QHash and QSet using a new random ordering for
+             each application run, which in some cases might make testing and debugging difficult.
     \endtable
 
     \section1 Warning and Debugging Messages
