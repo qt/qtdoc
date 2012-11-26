@@ -41,7 +41,8 @@
     \section1 The Plugin Directory
 
     When the application is run, Qt will first treat the application's
-    executable directory as the \c{pluginsbase}. For example if the
+    executable directory as the base directory for searching for plugins.
+    For example if the
     application is in \c{C:\Program Files\MyApp} and has a style plugin,
     Qt will look in \c{C:\Program Files\MyApp\styles}. (See
     QCoreApplication::applicationDirPath() for how to find out where
@@ -72,30 +73,24 @@
        will not be loaded by a library with a lower version number.
 
       \br
-      \b{Example:} Qt 4.3.0 will \e{not} load a plugin built with Qt 4.3.1.
+      \b{Example:} Qt 5.0.0 will \e{not} load a plugin built with Qt 5.0.1.
 
     \li Plugins linked with a Qt library that has a lower major version
        number will not be loaded by a library with a higher major version
        number.
 
       \br
-      \b{Example:} Qt 4.3.1 will \e{not} load a plugin built with Qt 3.3.1.
+      \b{Example:} Qt 5.0.1 will \e{not} load a plugin built with Qt 4.8.2.
       \br
-      \b{Example:} Qt 4.3.1 will load plugins built with Qt 4.3.0 and Qt 4.2.3.
+      \b{Example:} Qt 5.1.1 will load plugins built with Qt 5.1.0 and Qt 5.0.3.
 
-    \li The Qt library and all plugins are built using a \e {build
-       key}. The build key in the Qt library is examined against the build
-       key in the plugin, and if they match, the plugin is loaded. If the
-       build keys do not match, then the Qt library refuses to load the
-       plugin.
-
-      \br \b{Rationale:} See the \l{#The Build Key}{The Build Key} section below.
     \endlist
 
     When building plugins to extend an application, it is important to ensure
     that the plugin is configured in the same way as the application. This means
     that if the application was built in release mode, plugins should be built
-    in release mode, too.
+    in release mode, too. Except for Unix operating systems, plugins build in
+    a different mode will not get loaded by the plugin system.
 
     If you configure Qt to be built in both debug and release modes,
     but only build applications in release mode, you need to ensure that your
@@ -108,84 +103,6 @@
 
     This will ensure that the plugin is compatible with the version of the library
     used in the application.
-
-    \section2 The Build Key
-
-    When loading plugins, Qt checks the build key of each plugin against its
-    own configuration to ensure that only compatible plugins are loaded; any
-    plugins that are configured differently are not loaded.
-
-    The build key contains the following information:
-    \list
-    \li Architecture, operating system and compiler.
-
-       \e {Rationale:}
-       In cases where different versions of the same compiler do not
-       produce binary compatible code, the version of the compiler is
-       also present in the build key.
-
-    \li Configuration of the Qt library. The configuration is a list
-       of the missing features that affect the available API in the
-       library.
-
-       \e {Rationale:}
-       Two different configurations of the same version of
-       the Qt library are not binary compatible. The Qt library that
-       loads the plugin uses the list of (missing) features to
-       determine if the plugin is binary compatible.
-
-       \e {Note:} There are cases where a plugin can use features that are
-       available in two different configurations. However, the
-       developer writing plugins would need to know which features are
-       in use, both in their plugin and internally by the utility
-       classes in Qt. The Qt library would require complex feature
-       and dependency queries and verification when loading plugins.
-       Requiring this would place an unnecessary burden on the developer, and
-       increase the overhead of loading a plugin. To reduce both
-       development time and application runtime costs, a simple string
-       comparision of the build keys is used.
-
-    \li Optionally, an extra string may be specified on the configure
-       script command line.
-
-       \e {Rationale:}
-       When distributing binaries of the Qt library with an
-       application, this provides a way for developers to write
-       plugins that can only be loaded by the library with which the
-       plugins were linked.
-    \endlist
-
-    For debugging purposes, it is possible to override the run-time build key
-    checks by configuring Qt with the \c QT_NO_PLUGIN_CHECK preprocessor macro
-    defined.
-
-    \section1 The Plugin Cache
-
-    In order to speed up loading and validation of plugins, some of
-    the information that is collected when plugins are loaded is cached
-    through QSettings. This includes information about whether or not
-    a plugin was successfully loaded, so that subsequent load operations
-    don't try to load an invalid plugin. However, if the "last modified"
-    timestamp of a plugin has changed, the plugin's cache entry is
-    invalidated and the plugin is reloaded regardless of the values in
-    the cache entry, and the cache entry itself is updated with the new
-    result.
-
-    This also means that the timestamp must be updated each time the
-    plugin or any dependent resources (such as a shared library) is
-    updated, since the dependent resources might influence the result
-    of loading a plugin.
-
-    Sometimes, when developing plugins, it is necessary to remove entries
-    from the plugin cache. Since Qt uses QSettings to manage the plugin
-    cache, the locations of plugins are platform-dependent; see
-    \l{QSettings#Platform-Specific Notes}{the QSettings documentation}
-    for more information about each platform.
-
-    For example, on Windows the entries are stored in the registry, and the
-    paths for each plugin will typically begin with either of these two strings:
-
-    \snippet doc/src/snippets/code/doc_src_plugins-howto.qdoc 6
 
     \section1 Debugging Plugins
 
@@ -208,11 +125,6 @@
             debug and release modes by appending the \c debug_and_release to
             the \l{qmake Variable Reference#CONFIG}{CONFIG} variable in each of
             their project files.
-    \row \li A valid plugin that replaces an invalid (or broken) plugin fails to load.
-         \li The entry for the plugin in the plugin cache indicates that the original
-            plugin could not be loaded, causing Qt to ignore the replacement.
-         \li Either ensure that the plugin's timestamp is updated, or delete the
-            entry in the \l{#The Plugin Cache}{plugin cache}.
     \endtable
 
     You can also use the \c QT_DEBUG_PLUGINS environment variable to obtain
