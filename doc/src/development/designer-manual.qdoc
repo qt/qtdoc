@@ -32,16 +32,30 @@
     \ingroup qttools
     \keyword Qt Designer
 
-    \QD is Qt's tool for designing and building graphical user
-    interfaces (GUIs) from Qt components. You can compose and customize your
-    widgets or dialogs in a what-you-see-is-what-you-get (WYSIWYG) manner, and
+    \QD is one of Qt's tools for designing and building graphical user
+    interfaces (GUIs) with \l {Qt Widgets}. You can compose and customize your
+    windows or dialogs in a what-you-see-is-what-you-get (WYSIWYG) manner, and
     test them using different styles and resolutions.
 
-    Widgets and forms created with \QD integrated seamlessly with programmed
-    code, using Qt's signals and slots mechanism, that lets you easily assign
+    Widgets and forms created with \QD integrate seamlessly with programmed
+    code, using Qt's signals and slots mechanism, so that you can easily assign
     behavior to graphical elements. All properties set in \QD can be changed
     dynamically within the code. Furthermore, features like widget promotion
     and custom plugins allow you to use your own components with \QD.
+
+    However you also have the option of using \l {Qt Quick} for user interface
+    design rather than widgets. It is a much easier way to write many kinds of
+    applications. It enables a completely customizable appearance,
+    touch-reactive elements, and smooth animated transitions, backed up by the
+    power of OpenGL graphics acceleration.
+
+    \l{http://qt.digia.com/Product/Developer-Tools/}{Qt Creator} is a more
+    comprehensive IDE (Integrated Development Environment) which enables you to
+    edit your application code in C++ or QML/JavaScript, as well as having \QD
+    as a plugin so that you can design the same kinds of forms and windows in
+    the same way. It can even write skeleton signal handlers for you. \QD on
+    the other hand is lightweight and can be used standalone for editing UI
+    files and graphical resources.
 
     If you are new to \QD, you can take a look at the
     \l{Getting To Know Qt Designer} document. For a quick tutorial on how to
@@ -113,14 +127,16 @@
     The way that you launch \QD depends on your platform:
 
     \list
-        \li On Windows, click the Start button, under the \gui Programs submenu,
-           open the \gui{Qt 4} submenu and click \gui Designer.
-        \li On Unix or Linux, you might find a \QD icon on the desktop
-           background or in the desktop start menu under the \gui Programming
-           or \gui Development submenus. You can launch \QD from this icon.
-           Alternatively, you can type \c{designer} in a terminal window.
+        \li On Windows, click the Start button, and you will find
+            \QD in the \gui Qt programs folder.
+        \li On Unix or Linux, you might find a \QD icon in the desktop
+            start menu under the \gui Programming or \gui Development submenus.
+            You can launch \QD from this icon.
+            Alternatively, you can type \c{designer} in a terminal window, and
+            you can optionally give the path to an existing UI file to edit.
         \li On Mac OS X, double click on \QD in \gui Finder.
     \endlist
+
 
     \section1 The User Interface
 
@@ -170,10 +186,6 @@
         and other objects that can be used to create user interfaces on forms.
         Each of the categories in the widget box contain widgets with similar
         uses or related features.
-
-        \note Since Qt 4.4, new widgets have been included, e.g.,
-        QPlainTextEdit, QCommandLinkButton, QScrollArea, QMdiArea, and
-        QWebView.
 
         You can display all of the available objects in a category by clicking
         on the handle next to the category label. When in
