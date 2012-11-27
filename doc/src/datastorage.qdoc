@@ -121,7 +121,7 @@ application might freeze until one transaction commits or rolls back.
 \li \l {SQL Programming}
 \li \l {Executing SQL Statements}
 \li \l {Data Types for Qt-supported Database Systems}
-\li \l {QML Module QtQuick.LocalStorage 2.0}
+\li \l {Qt Quick Local Storage QML Types}
 \endlist
 
 \section1 XML Support in Qt
@@ -200,31 +200,60 @@ An object can take 2 forms:
     \li
 \endtable
 
-
-
 \list
 \li \l {JSON Support in Qt}
 \endlist
 
 \section1 JavaScript Storage
 
-### Discuss the use of JavaScript storage in Webkit and QML with links to the relevant pages
-under both of those technologies.
+The Localstorage API provides the ability to access local offline storage in an
+ SQL database.
+
+These databases are user-specific and QML-specific, but accessible to all QML
+applications. They are stored in the Databases subdirectory of
+QDeclarativeEngine::offlineStoragePath(), currently as SQLite databases
+(\l {SQL Database Drivers}).
+
+The API conforms to the Synchronous API of the HTML5 Web Database API,
+W3C Working Draft 29 October 2009 (\l {HTML5 Web Database API}).
+
+This \l {SQL Local Storage Example} demonstrates the basics of using the Offline
+Storage API.
+
+\li \l {Qt Quick Local Storage QML Types}
 
 \section1 QSettings
 
-### Talk about using QSettings for storing user preferences and small amounts of data in
-a cross-platform manner.
+The QSettings class provides persistent storage of application settings.
+An application usually remembers its settings from the previous session.
+On Windows machines, the settings are often stored in the registry. In
+MAC OS X they are stored in XML files. In Unix there is no real standard
+for this.
+
+QSettings enable you to save and restore application settings in a portable
+manner. Constructing and destroying a QSettings object is leightweight, and
+very fast. A simple example of a QSettings object creation: when creating
+the object, it is a good practice to specify not only the name of the
+application, but also the name of your organization:
+
+\code
+   QSettings settings("MyCompany", "Accountancy");
+\endcode
 
 \section1 Resources
 
-### Talk about using Qt Resources to store data that is used by your application. Mention that
-the resources can be embedded in the executable (for smaller resources) or in a separate binary
-file. Mention the benefit that the resources can be accessed by the application as if they were
-part of a regular file system with relative paths etc. and that this file system also becomes
-available to QML with the qrc: url scheme.
+The Qt resource system is a platform-independent mechanism for storing binary
+files in the application's executable. This is handy if your application
+frequently needs a certain file, or set of files. It also protects against
+loss of that particular file .
 
-Make sure the following page is linked from this section:
+Resource data can either be compiled into the binary and thus accessed
+immediately in application code, or a binary resource can be created and at
+a later point in application code registered with the resource system.
+
+By default, resources are accessible in the application under the same file
+name as they have in the source tree, with a :/ prefix, or by a URL with a
+qrc scheme.
 
 \list
 \li \l {The Qt Resource System}
