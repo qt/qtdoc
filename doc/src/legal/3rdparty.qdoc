@@ -51,15 +51,6 @@
 
     \tableofcontents
 
-    \section1 DES (\c des.cpp)
-
-    \e{Implementation of DES encryption for NTLM\br
-    Copyright 1997-2005 Simon Tatham.\br
-    This software is released under the MIT license.}
-
-    See \c src/3rdparty/des/des.cpp for more information about the terms and
-    conditions under which the code is supplied.
-
     \section1 FreeType 2 (\c freetype) version 2.3.6
 
     \e{The FreeType project is a team of volunteers who develop free, portable
@@ -67,8 +58,8 @@
     target embedded systems and focus on bringing small, efficient and
     ubiquitous products.} -- quoted from \c 3rdparty/freetype/docs/freetype2.html.
 
-    See \c src/3rdparty/freetype/docs/FTL.txt and \c
-    src/3rdparty/freetype/docs/GPL.txt for license details.
+    See \c qtbase/src/3rdparty/freetype/docs/FTL.txt and \c
+    qtbase/src/3rdparty/freetype/docs/GPL.txt for license details.
 
     See also the files in \c src/3rdparty/harfbuzz, which are used by
     FreeType.
@@ -93,6 +84,54 @@
     \li Renamed: ftgrays.h to qgrayraster_p.h
     \li Renamed: ftgrays.c to qgrayraster.c
     \endlist
+
+    \hr
+
+    Copyright (C) 2005, 2007, 2008 by George Williams
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+    The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+    EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+    OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li Parts of the FreeType library
+    \endlist
+
+    \hr
+
+    Copyright 2001, 2002 Catharon Productions Inc.
+
+    This file is part of the Catharon Typography Project and shall only
+    be used, modified, and distributed under the terms of the Catharon
+    Open Source License that should come with this file under the name
+    `CatharonLicense.txt'.  By continuing to use, modify, or distribute
+    this file you indicate that you have read the license and
+    understand and accept it fully.
+
+    Note that this license is compatible with the FreeType license.
+
+    \quotefile doc/src/snippets/legal/CatharonLicense.txt
+
 
     \section1 HarfBuzz (\c harfbuzz)
 
