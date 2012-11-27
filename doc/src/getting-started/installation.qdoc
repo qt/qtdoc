@@ -548,7 +548,7 @@ in the \l{Qt for Windows CE Requirements} document.
 
     \section1 Graphics Drivers
 
-    For QML2 to work, a graphics driver that provides OpenGL 2.1 or higher is required.
+    For QtQuick 2.0 to work, a graphics driver that provides OpenGL 2.1 or higher is required.
     The Windows default driver provides only OpenGL 1.1, which is not sufficient. To work
     around this limitation, Qt now includes a version of the \l{ANGLE} project which is used
     by default. ANGLE implements the OpenGL ES 2.0 API on top of DirectX 9. ANGLE requires
