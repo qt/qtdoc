@@ -27,7 +27,7 @@
 
 /*!
     \page gettingstartedqml.html
-    \title Getting Started Programming with QML
+    \title Getting Started Programming with Qt Quick
     \ingroup gettingStarted
 
     Welcome to the world of QML, the declarative UI language. In this Getting
@@ -48,12 +48,12 @@
 
     \image qml-texteditor5_editmenu.png
 
-    The final source code is in the \c{examples/tutorials/gettingStarted/gsQml}
+    The final source code is in the \c{examples/tutorials/gettingStartedQml}
     directory. You may need to compile the C++ plugin in the
-    \c{examples/tutorials/gettingStarted/gsQml/} first. This will put the
+    \c{examples/tutorials/gettingStartedQml/filedialog} first. This will put the
     C++ plugin in a directory where the QML files may find it.
 
-    To launch the text editor, merely provide the included \l{QML Viewer}{qmlviewer}
+    To launch the text editor, merely provide the included \l{Prototyping with qmlscene}{qmlscene}
     tool with the QML file as the argument. The C++ portion of this tutorial assumes
     that the reader possesses basic knowledge of Qt's compilation procedures.
 
@@ -78,7 +78,7 @@
 
     \snippet examples/tutorials/gettingStarted/gsQml/parts/part0/Button.qml document
 
-    First, the \c { import QtQuick 1.0 } allows the qmlviewer tool to import the QML elements
+    First, the \c { import QtQuick 2.0 } allows the \c qmlscene tool to import the QML elements
     we will later use. This line must exist for every QML file. Notice that the version
     of Qt modules is included in the import statement.
 
@@ -95,7 +95,7 @@
     is called \c simplebutton. Anchors may bind to other items' anchors, allowing layout
     assignments simpler.
 
-    We shall save this code as \c SimpleButton.qml. Running qmlviewer with the file as the
+    We shall save this code as \c SimpleButton.qml. Running \c qmlscene with the file as the
     argument will display the grey rectangle with a text label.
 
     \image qml-texteditor1_simplebutton.png
@@ -214,7 +214,7 @@
     \c FileMenu.qml.
 
     \code
-        import QtQuick 1.0                \\import the main Qt QML module
+        import QtQuick 2.0                \\import the main Qt QML module
         import "folderName"            \\import the contents of the folder
         import "script.js" as Script        \\import a Javascript file and name it as Script
     \endcode
@@ -620,10 +620,10 @@
 
     Now that we have our text editor layout, we may now implement the text editor
     functionalities in C++. Using QML with C++ enables us to create our application
-    logic using Qt. We can create a QML context in a C++ application using the
-    \l {Using QML Bindings in C++ Applications}{Qt's Declarative} classes and display the QML
-    elements using a Graphics Scene. Alternatively, we can export our C++ code into
-    a plugin that the \l {QML Viewer}{qmlviewer} tool can read. For our application,
+    logic using Qt. We can create a QML context in a C++ application using
+    \l {Using QML Bindings in C++ Applications}{Qt's Quick classes} and display the QML
+    elements using a QQuickView. Alternatively, we can export our C++ code into
+    a plugin that the \l {Prototyping with qmlscene}{qmlscene} tool can read. For our application,
     we shall implement the load and save functions in C++ and export it as a plugin.
     This way, we only need to load the QML file directly instead of running an executable.
 
@@ -639,7 +639,7 @@
     \li \c File class which is a QObject, simulating the list of files in a directory
     \li plugin class that will register the class to the QML context
     \li Qt project file that will compile the plugin
-    \li A \c qmldir file telling the qmlviewer tool where to find the plugin
+    \li A \c qmldir file telling the \c qmlscene tool where to find the plugin
     \endlist
 
     \section3 Building a Qt Plugin
@@ -654,7 +654,7 @@
 
         TEMPLATE = lib
         CONFIG += qt plugin
-        QT += declarative
+        QT += qml
 
         DESTDIR +=  ../plugins
         OBJECTS_DIR = tmp
@@ -671,7 +671,7 @@
                 dialogPlugin.cpp
     \endcode
 
-    In particular, we compile Qt with the \c declarative module and configure it as a
+    In particular, we link the project with the \c qml module and configure it as a
     \c plugin, needing a \c lib template. We shall put the compiled plugin into the
     parent's \c plugins directory.
 
@@ -681,21 +681,27 @@
     \code
     In dialogPlugin.h:
 
-        #include <QtDeclarative/QDeclarativeExtensionPlugin>
+        #include <QtQml/QQmlExtensionPlugin>
 
-        class DialogPlugin : public QDeclarativeExtensionPlugin
+        class DialogPlugin : public QQmlExtensionPlugin
         {
             Q_OBJECT
+            Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
 
-            public:
+        public:
+            // registerTypes is inherited from QQmlExtensionPlugin
             void registerTypes(const char *uri);
-
         };
 
     \endcode
 
-    Our plugin class, \c DialogPlugin is a subclass of \l{QDeclarativeExtensionPlugin}.
-    We need to implement the inherited function, \l {QDeclarativeExtensionPlugin::}{registerTypes()}.
+    We need to export the plugin using the \l {How To Create Qt Plugins}{Q_PLUGIN_METADATA} macro.
+    Note that in our \c dialogPlugin.h file, we have the \l {Q_OBJECT}{Q_OBJECT}
+    macro at the top of our class. As well, we need to run \c qmake on the project
+    file to generate the necessary meta-object code.
+
+    Our plugin class, \c DialogPlugin is a subclass of \l{QQmlExtensionPlugin}.
+    We need to implement the inherited function, \l {QQmlExtensionPlugin::}{registerTypes()}.
     The \c dialogPlugin.cpp file looks like this:
 
     \code
@@ -704,27 +710,20 @@
         #include "dialogPlugin.h"
         #include "directory.h"
         #include "file.h"
-        #include <QtDeclarative/qdeclarative.h>
+        #include <QtQml/qqml.h>
 
-        void DialogPlugin::registerTypes(const char *uri){
-
+        void DialogPlugin::registerTypes(const char *uri)
+        {
+            //register the class Directory into QML as a "Directory" element version 1.0
             qmlRegisterType<Directory>(uri, 1, 0, "Directory");
-            qmlRegisterType<File>(uri, 1, 0,"File");
+            qmlRegisterType<File>(uri,1,0,"File");
         }
-
-        Q_EXPORT_PLUGIN2(FileDialog, DialogPlugin);
     \endcode
 
-    The \l{QDeclarativeExtensionPlugin::}{registerTypes()} function registers
+    The \l{QQmlExtensionPlugin::}{registerTypes()} function registers
     our File and Directory classes into QML. This function needs the class name
     for its template, a major version number, a minor version number, and a name
     for our classes.
-
-    We need to export the plugin using the \l {Q_EXPORT_PLUGIN2}{Q_EXPORT_PLUGIN2}
-    macro. Note that in our \c dialogPlugin.h file, we have the \l {Q_OBJECT}{Q_OBJECT}
-    macro at the top of our class. As well, we need to run \c qmake on the project
-    file to generate the necessary meta-object code.
-
 
     \section3 Creating QML Properties in a C++ class
 
@@ -746,7 +745,7 @@
             Q_PROPERTY(int filesCount READ filesCount CONSTANT)
             Q_PROPERTY(QString filename READ filename WRITE setFilename NOTIFY filenameChanged)
             Q_PROPERTY(QString fileContent READ fileContent WRITE setFileContent NOTIFY fileContentChanged)
-            Q_PROPERTY(QDeclarativeListProperty<File> files READ files CONSTANT )
+            Q_PROPERTY(QQmlListProperty<File> files READ files CONSTANT )
 
             ...
     \endcode
@@ -770,13 +769,13 @@
     content is stored in \c fileContent property.
 
     \code
-        Q_PROPERTY(QDeclarativeListProperty<File> files READ files CONSTANT )
+        Q_PROPERTY(QQmlListProperty<File> files READ files CONSTANT )
     \endcode
 
     The \c files list property is a list of all the filtered files in a directory.
     The \c Directory class is implemented to filter out invalid text files; only
     files with a \c .txt extension are valid. Further, \l{QList}s can be
-    used in QML files by declaring them as a QDeclarativeListProperty in C++.
+    used in QML files by declaring them as a QQmlListProperty in C++.
     The templated object needs to inherit from a QObject, therefore,
     the \c File class must also inherit from QObject. In the \c Directory class,
     the list of \c File objects is stored in a QList called \c m_fileList.
@@ -835,34 +834,34 @@
 
     The \c list properties need to be explored further. This is because list
     properties use callbacks to access and modify the list contents. The list
-    property is of type \c QDeclarativeListProperty<File>. Whenever the list
+    property is of type \c QQmlListProperty<File>. Whenever the list
     is accessed, the accessor function needs to return a
-    \c QDeclarativeListProperty<File>. The template type, \c File, needs to be a
+    \c QQmlListProperty<File>. The template type, \c File, needs to be a
     \c QObject derivative. Further, to create the
-    \l {QDeclarativeListProperty}{QDeclarativeListProperty}, the list's accessor
+    \l {QQmlListProperty}{QQmlListProperty}, the list's accessor
     and modifiers need to be passed to the constructor as function pointers. The list,
     a \c QList in our case,  also needs to be a list of \c File pointers.
 
-    The constructor of \l {QDeclarativeListProperty}{QDeclarativeListProperty}
+    The constructor of \l {QQmlListProperty}{QQmlListProperty}
     constructor and the \c Directory implementation:
     \code
-        QDeclarativeListProperty  ( QObject * object, void * data, AppendFunction append, CountFunction count = 0, AtFunction at = 0, ClearFunction clear = 0 )
-        QDeclarativeListProperty<File>( this, &m_fileList, &appendFiles, &filesSize, &fileAt,  &clearFilesPtr );
+        QQmlListProperty  ( QObject * object, void * data, AppendFunction append, CountFunction count = 0, AtFunction at = 0, ClearFunction clear = 0 )
+        QQmlListProperty<File>( this, &m_fileList, &appendFiles, &filesSize, &fileAt,  &clearFilesPtr );
     \endcode
 
     The constructor passes pointers to functions that will append the list, count
     the list, retrieve the item using an index, and empty the list. Only the append
     function is mandatory. Note that the function pointers must match the definition
-    of \l {QDeclarativeListProperty::AppendFunction}{AppendFunction},
-    \l {QDeclarativeListProperty::CountFunction}{CountFunction},
-    \l {QDeclarativeListProperty::AtFunction}{AtFunction}, or
-    \l {QDeclarativeListProperty::ClearFunction}{ClearFunction}.
+    of \l {QQmlListProperty::AppendFunction}{AppendFunction},
+    \l {QQmlListProperty::CountFunction}{CountFunction},
+    \l {QQmlListProperty::AtFunction}{AtFunction}, or
+    \l {QQmlListProperty::ClearFunction}{ClearFunction}.
 
     \code
-        void appendFiles(QDeclarativeListProperty<File> * property, File * file)
-        File* fileAt(QDeclarativeListProperty<File> * property, int index)
-        int filesSize(QDeclarativeListProperty<File> * property)
-        void clearFilesPtr(QDeclarativeListProperty<File> *property)
+        void appendFiles(QQmlListProperty<File> * property, File * file)
+        File* fileAt(QQmlListProperty<File> * property, int index)
+        int filesSize(QQmlListProperty<File> * property)
+        void clearFilesPtr(QQmlListProperty<File> *property)
     \endcode
 
     To simplify our file dialog, the \c Directory class filters out invalid text
@@ -882,7 +881,7 @@
 
     \section3 Importing a Plugin in QML
 
-        The qmlviewer tool imports files that are in the same directory as the
+        The \c qmlscene tool imports files that are in the same directory as the
         application. We can also create a \c qmldir file containing the locations of
         QML files we wish to import. The \c qmldir file can also store locations of
         plugins and other resources.
@@ -1004,10 +1003,10 @@
     \section1 Running the Text Editor
 
     We need to compile the file dialog C++ plugin before the text editor can run.
-    To compile, enter the \c gsQml directory, then run \c qmake and compile
+    To compile, enter the \c filedialog directory, then run \c qmake and compile
     using \c make or \c nmake, depending on your platform. To run, launch
-    qmlviewer and open the \c texteditor.qml file.
+    \c qmlscene and open the \c texteditor.qml file.
 
-    The source code is in the \c{examples/tutorials/gettingStarted/gsQml}
+    The source code is in the \c{examples/tutorials/gettingStartedQml}
     directory.
 */

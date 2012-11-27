@@ -28,12 +28,13 @@
 /*!
     \page gettingstartedqt.html
 
-    \title Getting Started Programming with Qt
+    \title Getting Started Programming with Qt Widgets
         \ingroup gettingStarted
 
     In this topic, we teach basic Qt knowledge by implementing a simple Notepad
-    application. We use the Qt Creator IDE and Qt Designer to generate some
-    code, but you could also write all the code yourself.
+    application using C++ and the \l{QtWidgets Module}{Qt Widgets module}. We use the
+    Qt Creator IDE and Qt Designer to generate some code, but you could also write all the
+    code yourself.
 
     After reading this topic, you are ready to refer to our overviews and API
     documentation, to find the information you need for the application you are
@@ -117,12 +118,13 @@
 
     Line 6 creates a QApplication object. This object manages
     application-wide resources and is necessary to run any Qt program
-    that has a GUI. It constructs an application object with \c argc command
-    line arguments run in \c argv.
+    that uses Qt Widgets. It constructs an application object with \c argc command
+    line arguments run in \c argv. (For GUI applications that do not use Qt Widgets, you can use
+    QGuiApplication instead.)
 
     Line 7 creates the Notepad object. This is the object for which the wizard
     created the class and the UI file. The user interface contains visual
-    elements that are called \c widgets in Qt. Examples of widgets are text
+    elements. These are are what is called \c widgets in Qt. Examples of widgets are text
     edits, scroll bars, labels, and radio buttons. A widget can also be a
     container for other widgets; a dialog or a main application window, for
     example.
