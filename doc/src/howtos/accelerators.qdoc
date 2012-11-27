@@ -33,7 +33,8 @@
     \ingroup best-practices
 
     Applications invariably need to define accelerator keys for actions.
-    Qt fully supports accelerators, for example with \l Q3Accel::shortcutKey().
+    Qt fully supports accelerators, for example with QShortcut. Platform
+    defaults for key bindings can also be assigned using QKeySequence::StandardKey.
 
     Here are Microsoft's recommendations for accelerator keys, with
     comments about the Open Group's recommendations where they exist
