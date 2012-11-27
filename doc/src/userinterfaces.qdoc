@@ -91,7 +91,17 @@ type applications.
 
 \section1 Qt WebKit
 
-TODO
+\l {QtWebKit} is a web content rendering engine based on the open source \l {http://www.webkit.org}{WebKit}
+project featuring broad support for standard web technologies.
+The Qt WebKit module provides integration with both the above Qt technologies,
+a \l {Qt Quick} WebView component as well as the Qt WebKit Widgets classes to render
+and interact with web content.
+
+The main difference in the underlying technology of the Qt Quick WebView component is
+that it utilizes a multi-process architecture (WebKit2) with a separate web rendering
+process whereas the Qt WebKit Widgets use a single-process architecture.
+
+See also \l {Integrating Web Content}.
 
 \section1 Comparison
 
@@ -147,6 +157,8 @@ choose the best suited tool for the job.
         \li Qt Widgets often require a mouse cursor for good interaction, whereas
             Qt Quick only provides primitive building blocks that were designed
             with touch interaction in mind.
+            The WebView Qt Quick component has support for multi-touch gestures
+            to interact with web content.
     \row
         \li Standard industry widgets
         \li
@@ -154,6 +166,8 @@ choose the best suited tool for the job.
         \li
         \li Qt Widgets provide all the bells and whistles, developed over two
             decades, needed for building standard industry type applications.
+            QtWebKit Widgets provide widgets and additional classes to render and
+            interact with web content.
     \row
         \li Model/View programming
         \li X
