@@ -30,8 +30,11 @@
 \title Core Fundamentals
 \brief Qt's core topics
 
-Qt is primarily an application and UI development framework. However,
-Qt also contains core technology enablers.
+Qt contains a rich set of fundamental enablers, mainly in the \l{QtCore}{Qt
+Core module}. Qt uses these enablers to provide higher-level UI and
+application development components. The following topics explain the most
+important enablers and show how to use them to implement specialized
+functionality not already provided by Qt.
 
 \section1 Objects, Properties and Events
 
@@ -73,9 +76,7 @@ Qt also contains core technology enablers.
 \list
 \li \l{Qt Platform Abstraction}
 \li \l{Wayland Support in Qt}{Wayland}
-\li Platform specific development
-\li Mac
-\li Windows CE
+\li \l{Cross-Platform and Platform-Specific Development}
 \li \l{How to Create Qt Plugins}
 \endlist
 */
