@@ -34,6 +34,7 @@
 */
 
 /*!
+    \page internationalization.html
     \title Internationalization with Qt
     \brief Information about Qt's support for internationalization and multiple languages.
     \nextpage Writing Source Code for Translation
@@ -415,8 +416,8 @@
 
     Some applications, such as Qt Linguist, must be able to support changes
     to the user's language settings while they are still running. To make
-    widgets aware of changes to the installed QTranslators, reimplement the 
-    widget's \l{QWidget::changeEvent()}{changeEvent()} function to check whether 
+    widgets aware of changes to the installed QTranslators, reimplement the
+    widget's \l{QWidget::changeEvent()}{changeEvent()} function to check whether
     the event is a \l{QEvent::LanguageChange}{LanguageChange} event, and update
     the text displayed by widgets using the \l{QObject::tr()}{tr()} function
     in the usual way. For example:
@@ -426,7 +427,7 @@
     All other change events should be passed on by calling the default
     implementation of the function.
 
-    The list of installed translators might change in reaction to a 
+    The list of installed translators might change in reaction to a
     \l{QEvent::LocaleChange}{LocaleChange} event, or the application might
     provide a user interface that allows the user to change the current
     application language.
@@ -769,14 +770,14 @@
         \li \c{n % 10 == 2} \li \e{otherwise}
     \row \li Polish \li \c{n == 1}
         \li \c{n % 10 >= 2 && n % 10 <= 4
-            && (n % 100 < 10 || n % 100 > 20)} 
+            && (n % 100 < 10 || n % 100 > 20)}
         \li \e{otherwise}
     \row \li Romanian \li \c{n == 1}
         \li \c{n == 0|| (n % 100 >= 1 && n % 100 <= 20)}
         \li \e{otherwise}
     \row \li Russian \li \c{n % 10 == 1&& n % 100 != 11}
         \li \c{n % 10 >= 2 && n % 10 <= 4
-            && (n % 100 < 10 || n % 100 > 20)} 
+            && (n % 100 < 10 || n % 100 > 20)}
         \li \e{otherwise}
     \row \li Slovak \li \c{n == 1} \li \c{n >= 2 && n <= 4}
         \li \e{otherwise}
