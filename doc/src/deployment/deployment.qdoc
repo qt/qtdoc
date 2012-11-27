@@ -65,62 +65,70 @@
 
     The disadvantage with the shared library approach is that you
     will get more files to deploy. For more information, see
-    \l{sharedlibrary.html}{Creating Shared Libraries}.
+    \l{Creating Shared Libraries}.
 
     \section1 Deploying Qt's Libraries
 
     \table
     \header
-        \li {4,1} Qt's Libraries
+        \li {4,1} Qt Libraries
     \row
-        \li \l {QAxContainer}
-        \li \l {QAxServer}
-        \li \l {QtCore}
-        \li \l {QtDBus}
+        \li \l{Qt Core C++ Classes}{QtCore}
+        \li \l{Qt Network C++ Classes}{QtNetwork}
+        \li \l{Qt GUI C++ API}{QtGui}
+        \li \l{Qt SQL Module C++ Classes}{QtSql}
     \row
-        \li \l {QtDesigner}
-        \li \l {QtGui}
-        \li \l {QtHelp}
-        \li \l {QtNetwork}
+        \li \l{Qt TestLib}{QtTestLib}
+        \li \l{Qt Widgets C++ Classes}{QtWidgets}
+        \li \l{Qt QML Module C++ Classes}{QtQml}
+        \li \l{Qt Quick Module C++ Classes}{QtQuick}
     \row
-        \li \l {QtOpenGL}
-        \li \l {QtScript}
-        \li \l {QtScriptTools}
-        \li \l {QtSql}
+        \li \l{Qt Multimedia C++ Classes}{QtMultimedia}
+        \li \l{Qt WebKit}{QtWebkit}
+        \li \l{Qt WebKit Widgets}{QtWetkitWidgets}
+        \li \l{QtXml Module}{QtXml}
     \row
-        \li \l {QtSvg}
-        \li \l {QtWebKit}
-        \li \l {QtXml}
-        \li \l {QtXmlPatterns}
+        \li \l{Qt XML Patterns C++ Classes}{QtXmlPatterns}
+        \li \l{Qt Svg C++ Classes}{QtSvg}
+        \li \l{QtConcurrent Module}{QtConcurrent}
+        \li \l{QtPrintSupport Module}{QtPrintSupport}
+    \row
+        \li \l{Qt D-Bus C++ Classes}{QtDBus}
+        \li \l{QtOpenGL Module}{QtOpenGL}
+        \li \l{Qt Active Qt}{QtActiveQt}
+        \li \l{Qt Graphical Effects}{QtGraphicalEffects}
+    \row
+        \li \l{Qt Script C++ Classes}{QtScript}
+        \li \l{QtDeclarative}
+        \li \l{Qt Image Formats}{QtImageFormats}
     \endtable
 
-    Since Qt is not a system library, it has to be redistributed along
-    with your application; the minimum is to redistribute the run-time
-    of the libraries used by the application.  Using static linking,
-    however, the Qt run-time is compiled into the executable.
+    Qt is not a system library, so it must be redistributed with your
+    application. The minimum is to redistribute the run-time
+    of the libraries used by the application.  However, with static linking,
+    the Qt run-times can be compiled into the executable.
 
-    In general, you should deploy all plugins that your build of Qt uses,
-    excluding only those that you have identified as being unnecessary
-    for your application and its users.
+    In general, you should deploy all plugins that your Qt build uses,
+    excluding those that you have identified as unnecessary for your
+    application and its users.
 
     For instance, you may need to deploy plugins for JPEG support and
     SQL drivers, but you should also deploy plugins that your users may
     require, including those for accessibility.
-    For more information about plugins, see the
-    \l{plugins-howto.html}{How to Create Qt Plugins} documentation.
+    For more information about plugins, see \l{How to Create Qt Plugins}.
 
-    When deploying an application using the shared library approach
-    you must ensure that the Qt libraries will use the correct path to
-    find the Qt plugins, documentation, translation etc. To do this you
-    can use a \c qt.conf file. For more information, see the \l {Using
-    qt.conf} documentation.
+    While deploying an application using the shared library approach,
+    you must ensure that the Qt libraries use the correct path to
+    find the Qt plugins, documentation, translation, and so on. To do this, you
+    can use a \c qt.conf file. For more information, see \l {Using
+    qt.conf}.
 
-    Depending on configuration, compiler specific libraries must be
-    redistributed as well. For more information, see the platform
-    specific Application Dependencies sections: \l
-    {deployment-x11.html#application-dependencies}{X11}, \l
-    {deployment-windows.html#application-dependencies}{Windows}, \l
-    {deployment-mac.html#application-dependencies}{Mac}.
+    Depending on configuration, compiler-specific libraries must be
+    redistributed as well. For more information, see the
+    platform-specific application dependencies for
+    \l{deployment-x11.html#application-dependencies}{X11},
+    \l{deployment-windows.html#application-dependencies}{Windows},
+    and \l{deployment-mac.html#application-dependencies}{Mac}.
 
     \section1 Licensing
 
@@ -130,26 +138,26 @@
     libraries, particularly when the application is statically linked
     to them.
 
-    The following table contains an inexhaustive summary of the issues
+    The following table summarizes a few issues that
     you should be aware of.
 
     \table
     \header \li Qt Library \li Dependency
             \li Licensing Issue
-    \row    \li QtHelp     \li CLucene
+    \row    \li \l{QtHelp}     \li CLucene
     \li The version of clucene distributed with Qt is licensed
     under the GNU LGPL version 2.1 or later. This has implications for
     developers of closed source applications. Please see
     \l{QtHelp Module#License Information}{the QtHelp module documentation}
     for more information.
 
-    \row    \li QtNetwork  \li OpenSSL
+    \row    \li \l{QtNetwork}  \li OpenSSL
     \li Some configurations of QtNetwork use OpenSSL at run-time. Deployment
     of OpenSSL libraries is subject to both licensing and export restrictions.
     More information can be found in the \l{Secure Sockets Layer (SSL) Classes}
     documentation.
 
-    \row    \li QtWebKit   \li WebKit
+    \row    \li \l{QtWebKit}   \li WebKit
     \li WebKit is licensed under the GNU LGPL version 2 or later.
     This has implications for developers of closed source applications.
     Please see \l{WebKit in Qt#License Information}{the QtWebKit module
@@ -166,7 +174,6 @@
         \li \l{Deploying an Application on X11 Platforms}{Qt for X11 Platforms}
         \li \l{Deploying an Application on Windows}{Qt for Windows}
         \li \l{Deploying an Application on Mac OS X}{Qt for Mac OS X}
-        \li \l{Deploying Qt for Embedded Linux Applications}{Qt for Embedded Linux}
     \endlist
 
     \sa Installation, {Platform-Specific Documentation}
@@ -346,7 +353,7 @@
     The disadvantage of the first approach is that the user must have
     super user privileges. The disadvantage of the second approach is
     that the user may not have privileges to install into the
-    predetemined path. In either case, the users don't have the option
+    predetermined path. In either case, the users don't have the option
     of installing to their home directory. We recommend using the
     third approach since it is the most flexible. For example, a \c
     plugandpaint.sh script will look like this:
@@ -465,7 +472,7 @@
 
     \note If you are deploying an application that uses QtWebKit to display
     HTML pages from the World Wide Web, you should include all text codec
-    plugins to support as many HTML encodings possible. 
+    plugins to support as many HTML encodings possible.
 
     The search path for Qt plugins (as well as a few other paths) is
     hard-coded into the QtCore library. By default, the first plugin
@@ -908,13 +915,13 @@
 
     \note If you are deploying an application that uses QtWebKit to display
     HTML pages from the World Wide Web, you should include all text codec
-    plugins to support as many HTML encodings possible. 
+    plugins to support as many HTML encodings possible.
 
-    The search path for Qt plugins is hard-coded into the QtCore library. 
-    By default, the plugins subdirectory of the Qt installation is the first 
-    plugin search path. However, pre-determined paths like the default one 
-    have certain disadvantages. For example, they may not exist on the target 
-    machine. For that reason, you need to examine various alternatives to make 
+    The search path for Qt plugins is hard-coded into the QtCore library.
+    By default, the plugins subdirectory of the Qt installation is the first
+    plugin search path. However, pre-determined paths like the default one
+    have certain disadvantages. For example, they may not exist on the target
+    machine. For that reason, you need to examine various alternatives to make
     sure that the Qt plugins are found:
 
     \list
@@ -923,30 +930,30 @@
     if you have executables in different places sharing the same plugins.
 
     \li Using QApplication::addLibraryPath() or
-    QApplication::setLibraryPaths(). This approach is recommended if you only 
-    have one executable that will use the plugin. 
+    QApplication::setLibraryPaths(). This approach is recommended if you only
+    have one executable that will use the plugin.
 
     \li Using a third party installation utility to change the
     hard-coded paths in the QtCore library.
 
     \endlist
 
-    If you add a custom path using QApplication::addLibraryPath it could 
+    If you add a custom path using QApplication::addLibraryPath it could
     look like this:
 
     \snippet doc/src/snippets/code/doc_src_deployment.qdoc 54
 
     Then qApp->libraryPaths() would return something like this:
 
-    "C:/customPath/plugins " 
-    "C:/Qt/%VERSION%/plugins" 
+    "C:/customPath/plugins"
+    "C:/Qt/%VERSION%/plugins"
     "E:/myApplication/directory/"
 
-    The executable will look for the plugins in these directories and 
-    the same order as the QStringList returned by qApp->libraryPaths(). 
-    The newly added path is prepended to the qApp->libraryPaths() which 
-    means that it will be searched through first. However, if you use 
-    qApp->setLibraryPaths(), you will be able to determend which paths 
+    The executable will look for the plugins in these directories and
+    the same order as the QStringList returned by qApp->libraryPaths().
+    The newly added path is prepended to the qApp->libraryPaths() which
+    means that it will be searched through first. However, if you use
+    qApp->setLibraryPaths(), you will be able to determine which paths
     and in which order they will be searched.
 
     The \l{How to Create Qt Plugins} document outlines the issues you
@@ -971,14 +978,14 @@
     \title Deploying an Application on Mac OS X
 
     Beginning with Qt 4.5, a \l {macdeploy}{deployment tool} is
-    included that automates the prodecures described here.
+    included that automates the procedures described here.
 
     This document describes how to create a bundle and how to make
     sure that the application will find the resources it needs at
     run-time. We demonstrate the procedures in terms of deploying the
     \l {tools/plugandpaint}{Plug & Paint} application that is provided
     in Qt's examples directory.
-    
+
     \tableofcontents
 
     \section1 The Bundle
@@ -986,7 +993,7 @@
     On the Mac, a GUI application must be built and run from a
     bundle. A bundle is a directory structure that appears as a single
     entity when viewed in the Finder. A bundle for an application
-    typcially contains the executable and all the resources it
+    typically contains the executable and all the resources it
     needs. See the image below:
 
     \image deployment-mac-bundlestructure.png
@@ -1340,7 +1347,7 @@
 
     \note If you are deploying an application that uses QtWebKit to display
     HTML pages from the World Wide Web, you should include all text codec
-    plugins to support as many HTML encodings possible. 
+    plugins to support as many HTML encodings possible.
 
     The search path for Qt plugins (as well as a few other paths) is
     hard-coded into the QtCore library. By default, the first plugin
@@ -1409,14 +1416,14 @@
 
     For more information about C++ runtime environment, see \l
     {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/CppRuntimeEnv/CPPRuntimeEnv.html}{Apple's Developer Website}
-    
+
     \section1 The Mac Deployment Tool
     \target macdeploy
     The Mac deployment tool can be found in QTDIR/bin/macdeployqt. It is
     designed to automate the process of creating a deployable
     application bundle that contains the Qt libraries as private
     frameworks.
-    
+
     The mac deployment tool also deploys the Qt plugins, according
     to the following rules:
     \list
