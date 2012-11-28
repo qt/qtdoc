@@ -33,12 +33,12 @@
 /*!
     \page accessible.html
     \title Accessibility
-    \brief Qt's accessibility APIs are not made public for Qt 5.0.
+    \warning Qt's accessibility APIs are not made public for Qt 5.0.
 
-    If you really need to use Qt's _internal_ accessibility APIs, there are no technical reasons
+    If you need to use Qt's \i internal accessibility APIs, there are no technical reasons
     preventing you from using them. However, there is no generated accessibility documentation
-    available, and keep in mind that since the API is still internal we might change it at some
-    point in the future which might cause your application to not compile, or even just crash if
+    available, and keep in mind that since the API is still internal it might change at some
+    point in the future which might cause your application to not compile, or even crash if
     you decide to upgrade Qt.
 */
 
