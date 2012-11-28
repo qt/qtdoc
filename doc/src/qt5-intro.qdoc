@@ -44,7 +44,7 @@
 
     Cross-platform portability is made simpler in Qt 5, thanks to the new
     modularized codebase consisting of the
-    \l{All Modules}{essentials and add-ons} modules, and the consolidation
+    \l{All Modules}{essential and add-on} modules, and the consolidation
     of the \l{Qt Platform Abstraction}.
 
     The following sections summarize some of the key features that Qt 5 brings
@@ -138,9 +138,19 @@
     binary representation of JSON to a standard textual JSON format. The goal
     is to make common operations on JSON faster.
 
-    \section1 Mouse Input
+    \section1 User Input
 
-    Qt applications can now receive button events from more mouse buttons:
+    The Qt 5 applications can now handle multi-point touch input using QML.
+    This means, applications can gather all information about the touch points,
+    including the touch position, pressure, and velocity.
+
+    The mouse event handling in Qt 5 is little different from it's predecessor.
+    Applications have more control to handle mouse events using QML. The
+    mouse area in a QML document can propagate the mouse wheel and click
+    events and also ignore propagated events.
+
+    Besides this, all Qt applications can now receive button events from more
+    mouse buttons:
     \list
       \li 27 mouse buttons on X11.
       \li 16 mouse buttons on Wayland and Mac OS X.
@@ -149,7 +159,7 @@
     This comes in handy for gaming applications developed using Qt.
 
     \note: Qt on Windows continues to support only 5 mouse buttons due to the
-    Windows Platform limitation.
+    Windows platform limitation.
 
    \section1 Related Topics
    \list
