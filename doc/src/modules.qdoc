@@ -52,7 +52,7 @@
         \li Module
         \li Description
     \row
-        \li \l{QtCore}{Qt Core}
+        \li \l{Qt Core}
         \li Core non-graphical classes used by other modules.
     \row
         \li \l{Qt GUI}
@@ -113,13 +113,13 @@
         \li Target Platforms
         \li Description
     \row
-        \li \l{QtConcurrent}{Qt Concurrent}
+        \li \l{Qt Concurrent}
         \li
         \li
         \li Classes for writing multi-threaded programs without using low-level
             threading primitives.
     \row
-        \li \l{QtDBus}{Qt D-Bus}
+        \li \l{Qt D-Bus}
         \li Unix
         \li
         \li Classes for inter-process communication over the D-Bus protocol.
@@ -134,32 +134,32 @@
         \li
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
     \row
-        \li \l{QtOpenGL}{Qt OpenGL}
+        \li \l{Qt OpenGL}
         \li
         \li
         \li OpenGL support classes.
         \note Provided to ease porting from Qt 4.x. Please use the QOpenGL
         classes in QtGui for new code.
     \row
-        \li \l{QtPrintSupport}{Qt Print Support}
+        \li \l{Qt Print Support}
         \li All
         \li
         \li Classes to make printing easier and more portable.
     \row
-        \li \l{QtDeclarative}{Qt Declarative}
+        \li \l{Qt Declarative}
         \li All
         \li
         \li Classes from Qt 4's QtDeclarative module. Provided for Qt 4.x
             compatibility. Please use the QtQuick module for new code.
     \row
-        \li \l{QtScript}{Qt Script}
+        \li \l{Qt Script}
         \li All
         \li
         \li Classes for making Qt applications scriptable. Provided for Qt 4.x
             compatibility. Please use the QJS* classes in the QtQml module for
             new code.
     \row
-        \li \l{QtScriptTools}{Qt Script Tools}
+        \li \l{Qt Script Tools}
         \li All
         \li
         \li Additional components for applications that use Qt Script.
@@ -174,14 +174,14 @@
         \li
         \li WebKit1 and QWidget based classes from Qt 4.
     \row
-        \li \l{QtXml}{Qt XML}
+        \li \l{Qt XML}
         \li
         \li
         \li C++ implementations of SAX and DOM.
             \note Deprecated, please use QXmlStreamReader and QXmlStreamWriter
             for new functionality.
     \row
-        \li \l{QtXmlPatterns}{Qt XML Patterns}
+        \li \l{Qt XML Patterns}
         \li
         \li
         \li Support for XPath, XQuery, XSLT and XML schema validation.
@@ -199,13 +199,13 @@
         \li Tool
         \li Description
     \row
-        \li \l{QtDesigner}{Qt Designer}
+        \li \l{Qt Designer}
         \li Classes for extending \QD.
     \row
-        \li \l{QtHelp}{Qt Help}
+        \li \l{Qt Help}
         \li Classes for online help.
     \row
-        \li \l{QtUiTools}{Qt UI Tools}
+        \li \l{Qt UI Tools}
         \li Classes for UI tools.
     \endtable
 
