@@ -35,8 +35,10 @@ to port the \l{Animated Tiles Example}{Animated Tiles} C++ application to Qt 5:
 
 \list 1
    \li Edit \c {main.cpp} and change the \c {#include <QtGui>} to \c {#include <QtWidgets>}.
-       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= qtgui} directive in the \c{qmake} project file.
+       \note You can find a perl script called fixqt4headers in the bin directory of your Qt package that will
+        automate many of the required header file changes.
    \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the end of the file.
+       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= qtgui} directive in the \c{qmake} project file.
    \li Run qmake and make utilities to build the binary.
 \endlist
 
