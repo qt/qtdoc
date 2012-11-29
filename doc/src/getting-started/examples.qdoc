@@ -379,11 +379,8 @@
 
     \image thread-examples.png
 
-    Qt 4 makes it easier than ever to write multithreaded applications. More
-    classes have been made usable from non-GUI threads, and the signals and slots
-    mechanism can now be used to communicate between threads.
-
-    Additionally, it is now possible to move objects between threads.
+    Qt makes it easy to write multithreaded applications. Signals and slots can be used
+    to safely communicate between threads in your application.
 
     \list
     \li \l{threads/queuedcustomtype}{Queued Custom Type}\raisedaster
