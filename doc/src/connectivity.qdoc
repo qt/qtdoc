@@ -111,8 +111,15 @@ transparently using HTTP URLs in e.g. Image sources.
 
 \section1 World Wide Web Support
 
-### Briefly discuss using WebKit in QML or with QtWidgets to display web information in an
-application with links to the relevant overview pages.
+Qt makes it easy to embed web content into your Qt application using features of the QtWebKit
+layout engine.
+The QtWebKit module equips Qt with support for a broad range of standard web technologies
+that make it possible to embed HTML content styled with CSS and scripted with JavaScript into your Qt
+application.
+QtWebKit facilitates both integration with traditional QWidget based desktop applications as
+well as embedding into Qt Quick QML applications.
+
+For more information see \l {Integrating Web Content}.
 
 \section1 Inter-Process Communication
 
