@@ -290,7 +290,9 @@
     use for generating the project, as well as the source, header, and UI files
     included in the project.
 
-    You could also use \c qmake's \c -project option to generate the \.pro file.
+    You could also use \c qmake's \c -project option to generate the \.pro file. Although,
+    in that case, you have to remember to add the line \c{QT += widgets} to the generated
+    file in order to link against the Qt Widgets Module.
 
     \section2 Learn More
 
@@ -525,20 +527,18 @@
     \section2 Building and Running from the Command Line
 
     To build the application from the command line, switch to the
-    directory in which you have the \c .cpp file of the application. The
-    following shell commands build the application.
+    directory in which you have the \c .cpp file of the application and add the
+    project file (suffixed .pro) described earlier. The following shell commands
+    then build the application:
 
     \code
-        qmake -project
         qmake
         make (or nmake on Windows)
     \endcode
 
-    The commands create an executable in the project directory. \c qmake is
-    Qt's build tool, which takes a configuration file. \c qmake
-    generates this for us when given the \c{-project} argument. Given
-    the configuration file (suffixed .pro), \c qmake produces a \c
-    make file that will build the program for you.
-
+    The commands create an executable in the project directory. The \c qmake tool reads the
+    project file and produces a \c Makefile with instructions on how to build the application.
+    The \c make tool (or the \c nmake tool) then reads the \c Makefile and produces the executable
+    binary.
 */
 
