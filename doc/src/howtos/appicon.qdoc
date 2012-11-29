@@ -34,7 +34,7 @@
 
     The application icon, typically displayed in the top-left corner of an
     application's top-level windows, is set by calling the
-    QWidget::setWindowIcon() method on top-level widgets.
+    QWindow::setWindowIcon() method.
 
     In order to change the icon of the executable application file
     itself, as it is presented on the desktop (i.e., prior to
@@ -74,10 +74,10 @@
     \section1 Setting the Application Icon on Mac OS X
 
     The application icon, typically displayed in the application dock
-    area, is set by calling QWidget::setWindowIcon() on a top-level
-    widget. It is possible that the program could appear in the
-    application dock area before the function call, in which case a
-    default icon will appear during the bouncing animation.
+    area, is set by calling QWindow::setWindowIcon() on a window. It is
+    possible that the program could appear in the application dock area
+    before the function call, in which case a default icon will appear
+    during the bouncing animation.
 
     To ensure that the correct icon appears, both when the application is
     being launched, and in the Finder, it is necessary to employ a
