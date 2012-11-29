@@ -123,15 +123,46 @@ For more information see \l {Integrating Web Content}.
 
 \section1 Inter-Process Communication
 
-### Introduction to the different ways of doing IPC in Qt: DBUS, QProcess, QSharedMemory, TCP.
+Qt provides several ways to implement Inter-Process Communication
+(IPC) in Qt applications.
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+The cross-platform \l{QtNetwork} module provides classes that make
+network programming portable and easy. It offers high-level
+classes (e.g., QNetworkAccessManager, QFtp) that communicate using
+specific application-level protocols, and lower-level classes
+(e.g., QTcpSocket, QTcpServer, QSslSocket) for implementing
+protocols.
+
+The cross-platform shared memory class, QSharedMemory, provides
+access to the operating system's shared memory implementation.
+It allows safe access to shared memory segments by multiple threads
+and processes. Additionally, QSystemSemaphore can be used to control
+access to resources shared by the system, as well as to communicate
+between processes.
+
+The \l{QtDBus} module is a Unix-only library you can use to
+implement IPC using the D-Bus protocol. It extends Qt's
+\l{signalsandslots.html} {Signals and Slots} mechanism to the IPC
+level, allowing a signal emitted by one process to be connected to
+a slot in another process. The \l{Qt D-Bus} documentation has detailed
+information on how to use the \l{QtDBus} module.
+
+The cross-platform class \l{QProcess} can be used to start external
+programs as child processes, and to communicate with them. It provides
+an API for monitoring and controlling the state of the child
+process. QProcess gives access to the input/output channels of child
+process by inheriting from QIODevice.
+
+The \l{QLocalSocket} class provides a local socket. On Windows this is
+a named pipe and on Unix this is a local domain socket.
+The \l{QLocalServer} class provides a local socket based server. This
+class makes it possible to accept incoming local socket connections.
 
 \list
 \li \l {Using QtDBus Adaptors}
-\li \l {QtDBus module}
+\li \l {Qt D-Bus}
 \li \l {D-Bus}
-\li \l {Inter-Process Communication in Qt}
+\li \l {QLocalSocket}
 \li \l {Declaring Signals in D-Bus Adaptors}
 \li \l {Declaring Slots in D-Bus Adaptors}
 \li \l {QDBus Namespace}
