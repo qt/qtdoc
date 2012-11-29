@@ -1,0 +1,58 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page topics-web-content.html
+\title Integrating Web Content
+\brief Qt's WebKit integration
+
+The QtWebKit module provides a \l {http://www.webkit.org/}{WebKit}-based layout engine with support for a wide range of
+standard web techologies such as HTML, CSS and JavaScript, that make it possible to embed content from the World Wide Web
+into your Qt application.
+
+QtWebKit provides the QtWebKit Widgets C++ classes to integrate web content into your QWidget and QGraphicsView based application.
+QtWebKit also includes a \l {WebView} QML component for embedding into \l {Qt Quick}.
+
+\section1 QtWebKit Widgets integration
+
+The QtWebKit Widgets module provides a number of different classes with a feature-rich C++ API that facilitates loading, viewing
+and editing web documents (\l {QGraphicsWebView}, \l {QWebView}, \l {QWebPage}, \l {QWebFrame}) or traversing the document model
+represented by a tree structure of \l {http://www.w3.org/DOM/}{DOM} elements (\l {QWebElement}).
+The \l{WebKit in Qt}{QtWebKit Widgets} classes provide traditional in-process rendering of web content.
+
+\section1 QtWebKit Qt Quick integration
+
+The QtWebKit module can be integrated into Qt Quick by importing the \l{WebView} QML component. The WebView item has a minimalistic QML API
+for web content visualization which is not as feature-rich as the C++ API of the widget classes but it has out-of-the-box multi-touch
+support and employs a multi-process architecture to render web content in a separate helper process (QtWebProcess).
+The WebView makes it possible to interact with content using touch gestures such as panning with inertia (flick), pinch-zoom,
+tap and double-tap-to-zoom. The underlying split-process model (\l {http://trac.webkit.org/wiki/WebKit2}{WebKit2}) assures
+smooth animations in the embedding application (UI process) as well as increases stability.
+
+Examples demonstrating how to embed web content into a Qt application can be found in the qtwebkit-examples-and-demos module.
+Specifically the QML examples flickrview and youtubeview in this module show how to integrate web content into a Qt Quick application.
+*/
