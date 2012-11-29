@@ -166,8 +166,6 @@
     constructs allow you to describe different build processes for different
     platforms and environments.
 
-    \tableofcontents
-
     \section1 Project File Elements
 
     The project file format used by \l{qmake Manual#qmake}{\c qmake} can be
@@ -214,7 +212,7 @@
     \l{qmake Manual#qmake}{\c qmake} uses when generating a Makefile.
     It is discussed in the section on
     \l{#GeneralConfiguration}{general configuration} later in this chapter.
-    In the above line, \c qt is added to the list of existing values
+    In the above line, \c console is added to the list of existing values
     contained in \c CONFIG.
 
     The following table lists the variables that \l{qmake Manual#qmake}{\c qmake}
@@ -421,7 +419,6 @@
     \row    \li qt     \li The project is a Qt application and should link against the Qt
                       library. You can use the \c QT variable to control any additional
                       Qt modules that are required by your application.
-    \row    \li thread \li The project is a multi-threaded application.
     \row    \li x11    \li The project is an X11 application or library.
     \endtable
 
@@ -431,12 +428,14 @@
     \l{qmake-common-projects.html}{Common Projects} chapter of this manual.
 
     For example, if your application uses the Qt library and you want to
-    build it as a multi-threaded application in \c debug mode, your project
-    file will contain the following line:
+    build it in \c debug mode, your project file will contain the following line:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 1
 
-    Note, that you must use "+=", not "=", or \l{qmake Manual#qmake}{\c qmake}
+    The value \c qt is added by default, but you can remove it to use qmake for
+    a non-Qt project.
+
+    \note You must use "+=", not "=", or \l{qmake Manual#qmake}{\c qmake}
     will not be able to use Qt's configuration to determine the settings
     needed for your project.
 
@@ -1027,26 +1026,6 @@
     of libraries that a project needs to link against, and \c QMAKE_LIBS_X11 can be
     used to extend or override this list.
 
-    \tableofcontents{3}
-
-
-    \target BACKUP_REGISTRATION_FILE_MAEMO
-    \section1 BACKUP_REGISTRATION_FILE_MAEMO
-
-    \e {This is only used on the Maemo platform.}
-
-    This variable is used to specify the backup registration file to use with
-    \c enable_backup \c CONFIG value for Maemo platform. The default value is:
-    \c{$$_PRO_FILE_PWD_/backup_registration/maemo/$$basename(TARGET).conf}.
-
-    Unfortunately it is not possible to have a common registration file for Maemo,
-    so the developer must always provide one if the platform default backup support is
-    not sufficient.
-
-    For documentation about how to create backup registration files and how the device
-    backup works in general, see:
-    (\l{http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide/Generic_Platform_Components/Using_Backup_Application}{Using Backup Application})
-
     \target CONFIG
     \section1 CONFIG
 
@@ -1227,16 +1206,6 @@
     The build process for bundles is also influenced by
     the contents of the \l{#QMAKE_BUNDLE_DATA}{QMAKE_BUNDLE_DATA} variable.
 
-    These options only have an effect on Maemo platforms:
-
-    \table 95%
-    \header \li Option \li Description
-    \row \li enable_backup \li Generates deployment for backup registration file
-         to enable backing up the application during device backup.
-         See \l{#BACKUP_REGISTRATION_FILE_MAEMO}{BACKUP_REGISTRATION_FILE_MAEMO}
-         for more information about backup.
-    \endtable
-
     These options have an effect on Linux/Unix platforms:
 
     \table 95%
@@ -1364,15 +1333,6 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 31
 
-    \target DSP_TEMPLATE
-    \section1 DSP_TEMPLATE
-
-    This variable is set internally by \l{qmake Manual#qmake}{\c qmake}, which
-    specifies where the dsp template file for basing generated dsp files is
-    stored. The value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
     \target FORMS
     \section1 FORMS
 
@@ -1388,18 +1348,6 @@
     If FORMS3 is defined in your project, then this variable must contain
     forms for uic, and not uic3. If CONFIG contains uic3, and FORMS3 is not
     defined, the this variable must contain only uic3 type forms.
-
-    \target FORMS3
-    \section1 FORMS3
-
-    This variable specifies the old style UI files to be processed
-    through \c uic3 before compiling, when \c CONFIG contains uic3.
-    All dependencies, headers and source files required to build these
-    UI files will automatically be added to the project.
-
-    For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 33
 
     \target GUID
     \section1 GUID
@@ -1604,8 +1552,9 @@
     \section1 POST_TARGETDEPS
 
     All libraries that the \l{#TARGET}{target} depends on can be
-    listed in this variable. Some backends do not support this, these include
-    MSVC Dsp, and ProjectBuilder .pbproj files. Generally this is supported
+    listed in this variable. Some backends, such as the generators for Visual
+    Studio and Xcode project files, do not support this. Generally, this is
+    supported
     internally by these build tools, this is useful for explicitly listing
     dependant static libraries.
 
@@ -1616,8 +1565,9 @@
     \section1 PRE_TARGETDEPS
 
     All libraries that the \l{#TARGET}{target} depends on can be
-    listed in this variable. Some backends do not support this, these include
-    MSVC Dsp, and ProjectBuilder .pbproj files. Generally this is supported
+    listed in this variable. Some backends, such as the generators for Visual
+    Studio and Xcode project files, do not support this. Generally this is
+    supported
     internally by these build tools, this is useful for explicitly listing
     dependant static libraries.
 
@@ -2331,15 +2281,6 @@
     This variable contains all project libraries. The value of this variable
     is typically handled by \l{qmake Manual#qmake}{\c qmake} or
     \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
-
-    \section1 QMAKE_LIBS_CONSOLE
-
-    \e {This Windows-specific variable is no longer used.}
-
-    Prior to Qt 4.2, this variable was used to list the libraries
-    that should be linked against when building a console application
-    project on Windows. \l{#QMAKE_LIBS_WINDOW}{QMAKE_LIBS_WINDOW}
-    should now be used instead.
 
     \section1 QMAKE_LIBS_EGL
 
@@ -4103,8 +4044,7 @@
     \li Windows
         \list
         \li nmake
-        \li Dsp projects (VC 6.0)
-        \li Vcproj projects (VC 7.0 \& 7.1)
+        \li Visual Studio projects (VS 2008 and later)
         \endlist
     \li Mac OS X
         \list
@@ -4288,7 +4228,7 @@
     Then type \c make or \c nmake depending on the compiler you use.
 
     For Visual Studio users, \l{qmake Manual#qmake}{\c qmake} can also
-    generate \c .dsp or \c .vcproj files, for example:
+    generate Visual Studio project files, for example:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 115
 

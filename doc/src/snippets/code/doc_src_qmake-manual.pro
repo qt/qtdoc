@@ -44,12 +44,11 @@ make all
 
 
 #! [1]
-CONFIG += qt thread debug
+CONFIG += qt debug
 #! [1]
 
 
 #! [2]
-CONFIG += qt
 QT += network xml
 #! [2]
 
@@ -178,7 +177,7 @@ build_pass:CONFIG(debug, debug|release) {
 
 
 #! [26]
-CONFIG += qt console newstuff
+CONFIG += console newstuff
 ...
 newstuff {
     SOURCES += new.cpp
@@ -440,7 +439,7 @@ OPTIONS -= custom
 
 #! [67]
 isEmpty( CONFIG ) {
-CONFIG += qt warn_on debug
+CONFIG += warn_on debug
 }
 #! [67]
 
