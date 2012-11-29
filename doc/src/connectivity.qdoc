@@ -30,11 +30,43 @@
 \title Networking and Connectivity
 \brief Qt's network and connectivity features
 
-### Give a brief overview of the connectivity and networking offering in Qt 5. This can
-mean communication between the same application, inside the application, to the
-operating system, or through the internet or bluetooth.
+Qt provides classes for both high-level and low-level network communication,
+classes for web integration, and classes for interprocess communication.
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+For high-level network traffic, Qt Network provides an abstraction layer over
+the operations used, showing only high-level classes and functions.
+
+Qt Network can also handle lower level protocols like TCP and UDP. Classes
+like QTcpSockeet and QUdpSocket enable the developer to send and receive
+messages using the TCP or UDP protocol.
+
+Name resolution is done with QHostInfo. QHostInfo is called before creating
+a network connection with QTcpSocket or QUdpSocket.
+
+Filtering and redistributing network traffic via proxies can handled by the
+QNetWorkProxy class.
+
+Qt Network also provides Bearer Management. It has functions that can start
+or stop network interfaces and roam between access points. It does however
+not take care of the network configurations itself. The platform needs to
+take care of that.
+
+Qt Webkit offers a web browser engine that makes it possible to use web
+content in your application. Qt Webkit can render HTML, XHTML,
+and SVG documents, and execute Javascript.
+
+Qt also offers functionalities for IPC.
+
+Class QProcess is used to start external programs.
+
+Qt has classes for D-Bus, an interprocess communication and remote procedure
+calling mechanism. It mostly communicates via a central server application,
+called a bus. However, it is also possible to let applications communicate
+directly with each other.
+
+QSharedMemory provides access to a shared memory segment by multiple threads
+and processes. It is however also possible for a single process to
+exclusively lock that shared memory.
 
 \list
 \li \l {Qt Network}
