@@ -95,10 +95,12 @@ TODO
 
 \section1 Comparison
 
-Notice that choosing the appropriate technology for building an user interface is
-not always black and white, but may depend on several criterias such as other existing
-technologies used in a project or even target platform constraints. The following
-table provides recommendations to help you choose the right tools for the job.
+Notice that choosing the appropriate technology for building an user interface
+is not always black and white, but may depend on several criterias, such as other
+existing technologies used in a project or even target platform constraints. To
+some extent, many items in the following table can be implemented using any of
+the three available technologies. The following table merely aims to help you
+choose the best suited tool for the job.
 
 \table
     \header
@@ -124,7 +126,7 @@ table provides recommendations to help you choose the right tools for the job.
         \li Custom look'n'feel
         \li X
         \li
-        \li
+        \li (X)
         \li Qt Widgets provide means for customization via style sheets,
             but Qt Quick is a better performing choice for user interfaces
             that do not aim to look native.
@@ -153,29 +155,53 @@ table provides recommendations to help you choose the right tools for the job.
         \li Qt Widgets provide all the bells and whistles, developed over two
             decades, needed for building standard industry type applications.
     \row
+        \li Model/View programming
+        \li X
+        \li X
+        \li
+        \li Though some MVC like concepts exist in Qt WebKit, Qt Quick
+            and Qt Widgets provide more convenient and complete frameworks.
+    \row
         \li Rapid UI development
         \li X
         \li
-        \li
+        \li (X)
         \li Thanks to its superior productivity, Qt Quick is an excellent choice
             for rapid UI prototyping and development.
     \row
-        \li OpenGL
+        \li HW accelerated graphics
         \li X
         \li
         \li
-        \li Qt Widgets provides QGLWidget for rendering OpenGL graphics, and Qt WebKit
-            supports WebGL, but the OpenGL ES 2.0 or OpenGL 2.0 based
-            \l {Qt Quick Scene Graph} has proven to provide the best performance
-            for mixing Qt user interface elements and OpenGL content.
+        \li Qt Widgets provide QGLWidget for rendering OpenGL graphics,
+            and Qt WebKit supports WebGL, but the OpenGL ES 2.0 or OpenGL 2.0
+            based \l {Qt Quick Scene Graph} has proven to provide the best
+            performance for UIs and for integrating with OpenGL content.
+    \row
+        \li Graphical effects
+        \li X
+        \li
+        \li
+        \li The particle system and shader effects available in Qt Quick
+            are more flexible compared to CSS Effects and Shaders available
+            in Qt WebKit. Qt Widgets offer very little in this area.
+    \row
+        \li Rich text processing
+        \li
+        \li X
+        \li
+        \li Even though Qt's rich text document classes can be utilized in
+            Qt Quick, Qt Widgets currently provide the most comprehensive
+            base for implementing text editors.
     \row
         \li Existing web content
         \li
         \li
         \li X
-        \li Both Qt Quick and Qt Widgets prodive components for displaying and editing
-            \l {richtext-html-subset.html}{simple rich text}, but Qt WebKit is the
-            right choice for presenting full-blown web content.
+        \li Both Qt Quick and Qt Widgets prodive components for presenting
+            \l {richtext-html-subset.html}{simple rich text}, but Qt WebKit
+            is the right choice for presenting full-blown web content.
+
 \endtable
 
 \section1 Internationalization and Translations
