@@ -99,7 +99,9 @@
     plugins to be built in release mode, add the following line to the plugin's
     project file:
 
-    \snippet doc/src/snippets/code/doc_src_plugins-howto.pro 3
+    \code
+        CONFIG += release
+    \endcode
 
     This will ensure that the plugin is compatible with the version of the library
     used in the application.
