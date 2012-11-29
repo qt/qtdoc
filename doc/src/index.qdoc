@@ -29,20 +29,40 @@
 \page index.html
 \keyword Qt Reference Documentation
 
-\div {class="indexbox tools"}
-    \div {class="indexboxcont indexboxbar"}
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Introduction to Qt
+\div {class="col-group"}
+    \div {class="col-1"}
+    \div {class="indexbox tools"}
+        \div {class="indexboxcont indexboxbar"}
+            \div {class="sectionlist normallist"}
+                \div {class="heading"}
+                    \title Qt 5.0
+                \enddiv
+
+                Qt is a full development framework with tools designed to streamline
+                the creation of applications and user interfaces for desktop,
+                embedded and mobile platforms.
+
+                \list
+
+                \li \b{Qt framework} - intuitive APIs for C++ and CSS/JavaScript-
+                like programming with Qt Quick for rapid UI creation
+
+                \li \b{Qt
+                Creator IDE} - powerful cross-platform integrated development
+                environment, including UI designer tools and on-device debugging
+
+                \li \b{Tools and toolchains} - All you need: simulator, local and
+                remote compilers, internationalization support, device toolchains
+                and more.
+                \endlist
+
+                With Qt, you can reuse code efficiently to target multiple platforms
+                with one code base. The modular C++ class library and developer
+                tools easily enables developers to create applications for one
+                platform and easily build and run to deploy on another platform.
             \enddiv
 
-            Qt is a full cross-platform development framework with
-            tools designed to ease the creation of applications and
-            user interfaces for desktop, embedded and mobile platforms.
-
-            With Qt, you can reuse code efficiently to target multiple
-            platforms with one code base.
-
+            \section1 Getting Started
             \list
             \li \l{Getting started Guides}{Getting Started with Qt}
             \li \l{What's New in Qt 5}
@@ -51,54 +71,57 @@
             \endlist
         \enddiv
     \enddiv
-\enddiv
-\div {class="indexbox tools"}
-    \div {class="indexboxcont indexboxbar"}
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Overviews
-            \enddiv
-            \list
-            \li \l{Development Tools}
-            \li \l{User Interfaces}
-            \li \l{Core Internals}
-            \li \l{Data Storage}
-            \li \l{Qt Multimedia Overview}{Multimedia}
-            \li \l{Networking and Connectivity}
-            \endlist
-            \list
-            \li \l{Qt Overviews}{All Qt Overviews}
-            \endlist
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Examples
-            \enddiv
-            \div {class="indexboxcont indexboxbar"}
+    \enddiv
+
+    \div {class="col-2"}
+    \div {class="indexbox tools"}
+        \div {class="indexboxcont indexboxbar"}
+            \div {class="sectionlist normallist"}
+                \div {class="heading"}
+                    \section1 Overviews
+                \enddiv
                 \list
-                \li \l{Qt Examples}{Qt C++ Examples}
-                \li \l{Tutorials}
-                \li \l{Qt Quick Code Samples}{Qt Quick Examples}
-                \endlist
-            \enddiv
-        \enddiv
-        \div {class="sectionlist normallist"}
-            \div {class="heading"}
-                Reference
-            \enddiv
-            \div {class="indexboxcont indexboxbar"}
-                \list
-                \li \l{All Classes}{All Qt C++ Classes}
-                \li \l{All Modules}{All Qt Modules}
-                \li \l{Qt Quick QML Types}
-                \li \l{All QML APIs by Module}
-                \li \l{external: Qt Creator Manual}{Qt Creator}
+                \li \l{Development Tools}
+                \li \l{User Interfaces}
+                \li \l{Core Internals}
+                \li \l{Data Storage}
+                \li \l{Qt Multimedia Overview}{Multimedia}
+                \li \l{Networking and Connectivity}
                 \endlist
                 \list
-                \li \l{Qt Reference Pages}{All Qt Reference Documentation}
+                \li \l{Qt Overviews}{All Qt Overviews}
                 \endlist
             \enddiv
+            \div {class="sectionlist normallist"}
+                \div {class="heading"}
+                    \section1 Examples
+                \enddiv
+                \div {class="indexboxcont indexboxbar"}
+                    \list
+                    \li \l{Qt Examples}{Qt C++ Examples}
+                    \li \l{Tutorials}
+                    \li \l{Qt Quick Code Samples}{Qt Quick Examples}
+                    \endlist
+                \enddiv
+            \enddiv
+            \div {class="sectionlist normallist"}
+                \div {class="heading"}
+                    \section1 Reference
+                \enddiv
+                \div {class="indexboxcont indexboxbar"}
+                    \list
+                    \li \l{All Classes}{All Qt C++ Classes}
+                    \li \l{All Modules}{All Qt Modules}
+                    \li \l{All QML APIs by Module}
+                    \li \l{external: Qt Creator Manual}{Qt Creator}
+                    \endlist
+                    \list
+                    \li \l{Qt Reference Pages}{All Qt Reference Documentation}
+                    \endlist
+                \enddiv
+            \enddiv
         \enddiv
+    \enddiv
     \enddiv
 \enddiv
 */
