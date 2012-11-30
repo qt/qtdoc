@@ -473,21 +473,14 @@
     These examples demonstrate the basic techniques used to take advantage of the
     Audio API in Qt applications.
 
-    \list
-    \li \l{multimedia/audiodevices}{Audio Devices}
-    \li \l{multimedia/audiooutput}{Audio Output}
-    \li \l{multimedia/audioinput}{Audio Input}
-    \li \l{multimedia/spectrum}{Spectrum Analyser}
-    \endlist
+    \annotatedlist audio_examples
 
     \section1 Video Output
 
-    \list
-    \li \l{multimedia/videowidget}{Video Widget}\raisedaster
-    \li \l{multimedia/videographicsitem}{Video Graphics Item}
-    \endlist
+    \annotatedlist video_examples
 
     Examples marked with an asterisk (*) are fully documented.
+
 */
 
 /*!
@@ -505,7 +498,6 @@
     to provide GUI integration for your database applications.
 
     \list
-    \li \l{sql/books}{Books}
     \li \l{sql/cachedtable}{Cached Table}\raisedaster
     \li \l{sql/drilldown}{Drill Down}\raisedaster
     \li \l{sql/querymodel}{Query Model}
