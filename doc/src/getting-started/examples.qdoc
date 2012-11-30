@@ -520,6 +520,16 @@
 
     \image xml-examples.png XML
 
+    The XQuery/XPath and XML Schema engines in the QtXmlPatterns modules
+    provide classes for querying XML files and custom data models.
+
+    \annotatedlist xmlpattern_examples
+
+    Examples marked with an asterisk (*) are fully documented.
+*/
+/*
+###Add these back in to the section above when the examples have documentation
+
     XML parsing and handling is supported through SAX and DOM compliant APIs
     as well as streaming classes.
 
@@ -532,9 +542,6 @@
     \li \l{xml/htmlinfo}{XML HTML Info}
     \endlist
 
-    The XQuery/XPath and XML Schema engines in the QtXmlPatterns modules
-    provide classes for querying XML files and custom data models.
-
     \list
     \li \l{xmlpatterns/recipes}{Recipes}
     \li \l{xmlpatterns/filetree}{File System Example}
@@ -544,7 +551,6 @@
     \li \l{xmlpatterns/schema}{XML Schema Validation}\raisedaster
     \endlist
 
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
