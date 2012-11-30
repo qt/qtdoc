@@ -220,7 +220,9 @@ W3C Working Draft 29 October 2009 (\l {HTML5 Web Database API}).
 This \l {SQL Local Storage Example} demonstrates the basics of using the Offline
 Storage API.
 
+\list
 \li \l {Qt Quick Local Storage QML Types}
+\endlist
 
 \section1 QSettings
 
@@ -242,7 +244,7 @@ application, but also the name of your organization:
 
 \section1 Resources
 
-The Qt resource system is a platform-independent mechanism for storing binary
+The Qt Resource System is a platform-independent mechanism for storing binary
 files in the application's executable. This is handy if your application
 frequently needs a certain file, or set of files. It also protects against
 loss of that particular file .
@@ -252,7 +254,7 @@ immediately in application code, or a binary resource can be created and at
 a later point in application code registered with the resource system.
 
 By default, resources are accessible in the application under the same file
-name as they have in the source tree, with a :/ prefix, or by a URL with a
+name as they have in the source tree, with a \c{:/} prefix, or by a URL with a
 qrc scheme.
 
 \list
