@@ -30,17 +30,21 @@
     \title What's New in Qt 5
     \brief Qt 5 features and its benefits
 
-    Qt 5 is the latest version of the Qt C++ UI framework supported on Linux
-    (X11 and Wayland), MS Windows, and Mac OS X. It makes developers’ lives
-    easy by enabling them to develop applications faster than ever before with
-    intuitive user interfaces for multiple targets. With Qt 5, it is
+    Qt 5 is the latest version of Qt. It enables developers to develop
+    applications with intuitive user interfaces for multiple targets, faster
+    than ever before. Qt 5 makes it
     easier to address the latest UI paradigm shifts that touch screens and
     tablets require.
 
     Developers can be more productive and flexible with the improved support
-    for JavaScript and QML in Qt 5, without disturbing the C++ foundation
+    for JavaScript and QML in Qt 5, while still having the C++ foundation
     and Qt Widget support. The JavaScript backend powered by V8
     and Qt WebKit 2 will make HTML5 developers feel at home.
+
+    Qt 5 is highly compatible with Qt 4. It is possible for developers
+    of Qt 4 applications to seamlessly move on to Qt 5 with their current
+    functionality and gradually develop new things leveraging all the great
+    items Qt 5 makes possible.
 
     Cross-platform portability is made simpler in Qt 5, thanks to the new
     modularized codebase consisting of the
@@ -48,7 +52,8 @@
     of the \l{Qt Platform Abstraction}.
 
     The following sections summarize some of the key features that Qt 5 brings
-    to the table.
+    to the table. Please refer to \l{Qt Quick Release Notes} for details about
+    the new features.
 
     \section1 Amazing Graphics Capability and Performance
 
@@ -76,8 +81,21 @@
     Qt Quick provides the necessary infrastructure to develop QML applications.
     The latest version (v2.0) of this technology also introduces a set of new
     C++ classes as a replacement for the QDeclarative* equivalents in Qt
-    Quick 1. Refer to \l{Qt Quick Release Notes} for details about the new
-    features.
+    Quick 1. New features in Qt Quick include:
+    \list
+    \li Canvas for drawing. Canvas provides an API similar to the HTML5 Canvas API,
+    along with some additional features.
+    \li Shader Effects which enable GLSL shader programs to be integrated
+    directly into QML code and applied to QML items and images.
+    \li Particle Effects for creating a variety of 2D particle systems.
+    \li Sprites can be used in animatin 2D graphical objects and as a source
+    for particle systems.
+    \li Offline Storage is a HTML5 Web Database API conformant JavaScript API
+    for storing data in Qt Quick applications.
+    \li Window provides a top-level window and the Screen type for accessing a
+    screen's resolution and other details. These come in especially handy when
+    creating desktop applications with Qt Quick.
+    \endlist
 
     \section1 New Connection Syntax
 
@@ -89,7 +107,7 @@
     QObject::connect(sender, &Sender::valueChanged, receiver, &Receiver::updateValue);
     \endcode
 
-    The new syntax provide compile time checking of the compatibility between signals
+    The new syntax provides compile time checking of the compatibility between signals
     and slots, automatic conversion of the arguments if there is an implicit cast between
     the types, and solve many problems occurring because of typedef or namespaces.
 
