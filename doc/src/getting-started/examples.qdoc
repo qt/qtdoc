@@ -263,85 +263,9 @@
     Examples marked with an asterisk (*) are fully documented.
 */
 
-/*!
-    \page examples-painting.html
-    \ingroup all-examples
-    \title Painting Examples
-    \brief How to use the Qt painting system.
 
-    \image painting-examples.png
 
-    Qt's painting system is able to render vector graphics, images, and outline
-    font-based text with sub-pixel accuracy accuracy using anti-aliasing to
-    improve rendering quality.
 
-    These examples show the most common techniques that are used when painting
-    with Qt, from basic concepts such as drawing simple primitives to the use of
-    transformations.
-
-    \list
-    \li \l{painting/affine}{Affine Transformations}
-    \li \l{painting/composition}{Composition Modes}
-    \li \l{painting/basicdrawing}{Basic Drawing}\raisedaster
-    \li \l{painting/concentriccircles}{Concentric Circles}\raisedaster
-    \li \l{painting/deform}{Vector Deformation}
-    \li \l{painting/fontsampler}{Font Sampler}
-    \li \l{painting/gradients}{Gradients}
-    \li \l{painting/imagecomposition}{Image Composition}\raisedaster
-    \li \l{painting/painterpaths}{Painter Paths}\raisedaster
-    \li \l{painting/pathstroke}{Path Stroking}
-    \li \l{painting/svggenerator}{SVG Generator}\raisedaster
-    \li \l{painting/svgviewer}{SVG Viewer}
-    \li \l{painting/transformations}{Transformations}\raisedaster
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
-    \page examples-richtext.html
-    \ingroup all-examples
-    \title Rich Text Examples
-    \brief Using the document-oriented rich text engine.
-
-    \image richtext-examples.png
-
-    Qt provides powerful document-oriented rich text engine that supports Unicode
-    and right-to-left scripts. Documents can be manipulated using a cursor-based
-    API, and their contents can be imported and exported as both HTML and in a
-    custom XML format.
-
-    \list
-    \li \l{richtext/calendar}{Calendar}\raisedaster
-    \li \l{richtext/orderform}{Order Form}\raisedaster
-    \li \l{richtext/syntaxhighlighter}{Syntax Highlighter}\raisedaster
-    \li \l{richtext/textedit}{Text Edit}
-    \li \l{richtext/textobject}{Text Object}\raisedaster
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
- */
-
-/*!
-    \page examples-desktop.html
-    \ingroup all-examples
-    \title Desktop Examples
-    \brief Integrating your Qt application with your favorite desktop.
-
-    \image desktop-examples.png
-
-    Qt provides features to enable applications to integrate with the user's
-    preferred desktop environment.
-
-    Features such as system tray icons, access to the desktop widget, and
-    support for desktop services can be used to improve the appearance of
-    applications and take advantage of underlying desktop facilities.
-
-    \list
-    \li \l{desktop/screenshot}{Screenshot}\raisedaster
-    \li \l{desktop/systray}{System Tray}\raisedaster
-    \endlist
-*/
 
 /*!
     \page examples-draganddrop.html
