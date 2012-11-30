@@ -384,10 +384,10 @@
 */
 
 /*!
-    \page examples.tools.html
     \ingroup all-examples
     \title Tools Examples
     \brief Using Qt's containers, iterators, and other tool classes.
+    \group examples-widgets-tools
 
     \image tool-examples.png
 
@@ -397,27 +397,6 @@
     Other classes provide application infrastructure support, handling plugin
     loading and managing configuration files.
 
-    \list
-    \li \l{tools/codecs}{Codecs}
-    \li \l{tools/completer}{Completer}\raisedaster
-    \li \l{tools/customcompleter}{Custom Completer}\raisedaster
-    \li \l{tools/customtype}{Custom Type}\raisedaster
-    \li \l{tools/customtypesending}{Custom Type Sending}\raisedaster
-    \li \l{tools/echoplugin}{Echo Plugin}\raisedaster
-    \li \l{tools/i18n}{I18N}
-    \li \l{tools/inputpanel}{Input Panel}\raisedaster
-    \li \l{tools/plugandpaint}{Plug & Paint}\raisedaster
-    \li Plug & Paint Plugins: \l{tools/plugandpaintplugins/basictools}{Basic Tools}\raisedaster
-       and \l{tools/plugandpaintplugins/extrafilters}{Extra Filters}\raisedaster
-    \li \l{tools/regexp}{RegExp}
-    \li \l{tools/settingseditor}{Settings Editor}
-    \li \l{tools/styleplugin}{Style Plugin}\raisedaster
-    \li \l{tools/treemodelcompleter}{Tree Model Completer}\raisedaster
-    \li \l{tools/undo}{Undo and Redo}
-    \li \l{tools/undoframework}{Undo Framework}\raisedaster
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
@@ -476,37 +455,6 @@
     Examples marked with an asterisk (*) are fully documented.
 */
 
-/*!
-    \page examples-opengl.html
-    \ingroup all-examples
-    \title OpenGL Examples
-    \brief Accessing OpenGL from Qt.
-
-    \image opengl-examples.png
-
-    Qt provides support for integration with OpenGL implementations on all
-    platforms, giving developers the opportunity to display hardware accelerated
-    3D graphics alongside a more conventional user interface.
-
-    These examples demonstrate the basic techniques used to take advantage of
-    OpenGL in Qt applications.
-
-    \list
-    \li \l{opengl/2dpainting}{2D Painting}\raisedaster
-    \li \l{opengl/framebufferobject}{Framebuffer Object}
-    \li \l{opengl/framebufferobject2}{Framebuffer Object 2}
-    \li \l{opengl/grabber}{Grabber}
-    \li \l{opengl/hellogl}{Hello GL}\raisedaster
-    \li \l{opengl/hellogl_es}{Hello GL - ported to Windows CE}\raisedaster
-    \li \l{opengl/overpainting}{Overpainting}\raisedaster
-    \li \l{opengl/pbuffers}{Pixel Buffers}
-    \li \l{opengl/pbuffers2}{Pixel Buffers 2}
-    \li \l{opengl/samplebuffers}{Sample Buffers}
-    \li \l{opengl/textures}{Textures}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
 
 /*!
     \page examples-multimedia.html
