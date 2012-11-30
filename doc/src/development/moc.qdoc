@@ -247,10 +247,6 @@
 
     \snippet doc/src/snippets/code/doc_src_moc.cpp 5
 
-    Another limitation is that moc does not expand macros, so you
-    for example cannot use a macro to declare a signal/slot
-    or use one to define a base class for a QObject.
-
     Less importantly, the following constructs are illegal. All of
     them have alternatives which we think are usually better, so
     removing these limitations is not a high priority for us.
@@ -290,16 +286,6 @@
     and when establishing connections. For example:
 
     \snippet doc/src/snippets/code/doc_src_moc.cpp 9
-
-    \section2 Type Macros Cannot Be Used for Signal and Slot Parameters
-
-    Since \c moc doesn't expand \c{#define}s, type macros that take
-    an argument will not work in signals and slots. Here is an
-    illegal example:
-
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 10
-
-    A macro without parameters will work.
 
     \section2 Nested Classes Cannot Have Signals or Slots
 
