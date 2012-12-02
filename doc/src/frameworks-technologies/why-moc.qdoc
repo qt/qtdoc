@@ -26,8 +26,8 @@
 ****************************************************************************/
 
 /*!
-    \page templates.html
-    \title Why Doesn't Qt Use Templates for Signals and Slots?
+    \page why-moc.html
+    \title Why Doesn Qt Use Moc for Signals and Slots?
     \brief The reasoning behind Qt's implementation of signals and slots.
 
     Templates are a builtin mechanism in C++ that allows the compiler to
@@ -46,24 +46,11 @@
     design beauty. Both templates and the C preprocessor can be stretched
     to do incredibility smart and mind boggling things. But just because
     those things can be done, does not necessarily mean doing them is the
-    right design choice.
-
-    There is an important practical challenge we have to mention: due to
-    the inadequacies of various compilers it is still not possible to
-    fully exploit the template mechanism in cross-platform
-    applications. Code unfortunately is not meant to be published in
+    right design choice. Code unfortunately is not meant to be published in
     books, but compiled with real-world compilers on real-world operating
-    system. Even today, many widely used C++ compilers have problems with
-    advanced templates. For example, you cannot safely rely on partial
-    template specialisation, which is essential for some non-trivial
-    problem domains. Some compilers also have limitations with regards to
-    template member functions, which make it hard to combine generic
-    programming with object orientated programming. However, we do not
-    perceive these problems as a serious limitation in our work. Even if
-    all our users had access to a fully standards compliant modern C++
-    compiler with excellent template support, we would not abandon the
-    string-based approach used by our meta object compiler for a template
-    based signals and slots system. Here are five reasons why:
+    system.
+
+    Here are some reasons why Qt uses the moc:
 
     \section1 Syntax matters
 
@@ -73,9 +60,7 @@
     practice. The syntax is intuitive, simple to use and easy to read.
     People learning Qt find the syntax helps them understand and utilize the
     signals and slots concept -- despite its highly abstract and generic
-    nature. Furthermore, declaring signals in class definitions ensures that
-    the signals are protected in the sense of protected C++ member
-    functions. This helps programmers get their design right from the very
+    nature. This helps programmers get their design right from the very
     beginning, without even having to think about design patterns.
 
     \section1 Code Generators are Good
@@ -137,10 +122,7 @@
     signals and slots, which feels natural when programming in a language
     where overloads are a key concept. Our signals add zero bytes to the
     size of a class instance, which means we can add new signals without
-    breaking binary compatibility. Because we do not rely on excessive
-    inlining as done with templates, we can keep the code size smaller.
-    Adding new connections just expands to a simple function call rather
-    than a complex template function. 
+    breaking binary compatibility.
 
     Another benefit is that we can explore an object's signals and slots at
     runtime. We can establish connections using type-safe call-by-name,
