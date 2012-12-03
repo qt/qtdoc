@@ -52,8 +52,7 @@
     of the \l{Qt Platform Abstraction}.
 
     The following sections summarize some of the key features that Qt 5 brings
-    to the table. Please refer to \l{Qt Quick Release Notes} for details about
-    the new features.
+    to the table.
 
     \section1 Amazing Graphics Capability and Performance
 
@@ -83,19 +82,21 @@
     C++ classes as a replacement for the QDeclarative* equivalents in Qt
     Quick 1. New features in Qt Quick include:
     \list
-    \li Canvas for drawing. Canvas provides an API similar to the HTML5 Canvas API,
-    along with some additional features.
+    \li Canvas for drawing. Canvas provides an API that is similar to the HTML5
+        Canvas API, along with some additional features.
     \li Shader Effects which enable GLSL shader programs to be integrated
     directly into QML code and applied to QML items and images.
     \li Particle Effects for creating a variety of 2D particle systems.
-    \li Sprites can be used in animatin 2D graphical objects and as a source
+    \li Sprites can be used in animating 2D graphical objects and as a source
     for particle systems.
-    \li Offline Storage is a HTML5 Web Database API conformant JavaScript API
+    \li Offline storage is a HTML5 Web Database API conformant JavaScript API
     for storing data in Qt Quick applications.
     \li Window provides a top-level window and the Screen type for accessing a
-    screen's resolution and other details. These come in especially handy when
-    creating desktop applications with Qt Quick.
+    screen's resolution and other details. This is useful for desktop
+    applications developed using Qt Quick.
     \endlist
+
+    For more information, refer to \l{Qt Quick Release Notes}.
 
     \section1 New Connection Syntax
 
@@ -133,7 +134,7 @@
     SSL certificates. This means developers can now:
     \list
       \li bind a TCP socket to an IP address before connecting,
-      \li verify an SSL certificate chain programmatically,
+      \li verify an SSL certificate chain,
       \li and access legacy systems.
     \endlist
 
