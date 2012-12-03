@@ -76,7 +76,21 @@
     In QML, the basic visual item is the \l {Rectangle}{Rectangle} element. The
     \c Rectangle element has properties to control the element's appearance and location.
 
-    \snippet examples/tutorials/gettingStarted/gsQml/parts/part0/Button.qml document
+    \code
+        import QtQuick 2.0
+
+        Rectangle {
+            id: simplebutton
+            color: "grey"
+            width: 150; height: 75
+
+            Text{
+                id: buttonLabel
+                anchors.centerIn: parent
+                text: "button label"
+            }
+        }
+    \endcode
 
     First, the \c { import QtQuick 2.0 } allows the \c qmlscene tool to import the QML elements
     we will later use. This line must exist for every QML file. Notice that the version
@@ -535,7 +549,24 @@
     the \c drawer, and the drawer's icon will undergo property changes to meet the
     current state.
 
-    \snippet examples/tutorials/gettingStarted/gsQml/texteditor.qml states
+    \code
+        states:[
+            State {
+                name: "DRAWER_OPEN"
+                PropertyChanges { target: menuBar; y: 0}
+                PropertyChanges { target: textArea; y: partition + drawer.height}
+                PropertyChanges { target: drawer; y: partition}
+                PropertyChanges { target: arrowIcon; rotation: 180}
+            },
+            State {
+                name: "DRAWER_CLOSED"
+                PropertyChanges { target: menuBar; y:-height; }
+                PropertyChanges { target: textArea; y: drawer.height; height: screen.height - drawer.height }
+                PropertyChanges { target: drawer; y: 0 }
+                PropertyChanges { target: arrowIcon; rotation: 0 }
+            }
+        ]
+    \endcode
 
     State changes are abrupt and needs smoother transitions. Transitions between states
     are defined using the \l {Transition}{Transition} element, which can then bind to
@@ -554,7 +585,16 @@
     the end of the animation. Please read \l {qdeclarativeanimation.html}{QML's Animation}
     article.
 
-    \snippet examples/tutorials/gettingStarted/gsQml/texteditor.qml transitions
+    \code
+        transitions: [
+            Transition {
+                to: "*"
+                NumberAnimation { target: textArea; properties: "y, height"; duration: 100; easing.type:Easing.OutExpo }
+                NumberAnimation { target: menuBar; properties: "y"; duration: 100; easing.type: Easing.OutExpo }
+                NumberAnimation { target: drawer; properties: "y"; duration: 100; easing.type: Easing.OutExpo }
+            }
+        ]
+    \endcode
 
     Another way of animating property changes is by declaring a \l {Behavior}{Behavior}
     element. A transition only works during state changes and \c Behavior can set an
