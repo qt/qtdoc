@@ -98,8 +98,7 @@
             \li \l{external: Qt Creator Manual}{Qt Creator}
         \row
             \li Creating other kind of applications with Qt Creator
-            \li \l{external: Tutorials for Creator}
-                {Qt Creator Tutorials}
+            \li \l{external: Tutorials for Creator}{Qt Creator Tutorials}
     \endtable
 
 
@@ -453,7 +452,7 @@
 
     The static \l{QFileDialog::}{getOpenFileName()} function
     displays a modal file dialog. It returns the file path of the file
-    selected, or an empty string if the user canceled the dialog. 
+    selected, or an empty string if the user canceled the dialog.
 
     If we have a file name, we try to open the file with
     \l{QIODevice::}{open()}, which returns true if the file could be
@@ -541,4 +540,3 @@
     The \c make tool (or the \c nmake tool) then reads the \c Makefile and produces the executable
     binary.
 */
-
