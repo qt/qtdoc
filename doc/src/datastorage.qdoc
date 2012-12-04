@@ -52,7 +52,7 @@ from and write to that process.
 \section1 SQL support in Qt
 
 The \l {Qt SQL} module uses driver plugins to communicate with several database
-APIs. Qt has drivers for SQLite, MYSQL, DB2, Borland InterBase, Oracle, ODBC,
+APIs. Qt has drivers for SQLite, MySQL, DB2, Borland InterBase, Oracle, ODBC,
 and PostgreSQL. It is also possible to develop your own driver if Qt does not
 provide the driver needed.
 
@@ -83,19 +83,12 @@ Qt's SQL classes can be divided in 3 layers:
             \endlist
 \endtable
 
-QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel can be used as a
-datasource for Qt's classes for viewing data. QSqlTableModel, and
-QtSqlRelationalTableModel provide editable models for use with Qt's item views.
-QSqlTableModel has read/write access to a single table. QSqlRelationalTableModel
-has read/write access to the main table, not to the table where the foreign key
-comes from.
+With the MySQL driver, it is possible to connect to a MySQL server. In order to
+build the QMYSQL Plugin for Unix or Mac OS X, you need the MySQL header files
+as well as the shared library, libmysqlclient.so. To compile the plugin
+for Windows, install MySQL.
 
-With the MYSQL driver, it is possible to connect to a MYSQL server. In order to
-build the QMYSQL Plugin for Unix or Mac OS X, you need the MYSQL header files
-as well as the shared library libmysqlclient.so. To compile the plugin
-for Windows, you need to get the MYSQL installation files and run SETUP.EXE.
-
-If you use the embedded MYSQL Server, you do not need a MYSQL server in order
+If you use the embedded MySQL Server, you do not need a MySQL server in order
 to use that database system. In order to do so, you need to link the Qt plugin
 to libmysqld instead of libmysqlclient.
 
@@ -109,6 +102,13 @@ a connection. If the file does not exist, SQLite will try to create it.
 SQLite has some restrictions regarding multiple users and multiple transactions.
 If you are reading or writing on a file from different transactions, your
 application might freeze until one transaction commits or rolls back.
+
+Once the driver part is set up, the data is accessible using the classes,
+QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel. QSqlTableModel
+and QtSqlRelationalTableModel provide editable models that can used with Qt's
+item views. QSqlTableModel has read/write access to a single table, whereas
+QSqlRelationalTableModel has read/write access to the main table (not to the
+table with the foreign key).
 
 \list
 \li \l {Qt SQL}
@@ -126,49 +126,55 @@ application might freeze until one transaction commits or rolls back.
 
 \section1 XML Support in Qt
 
-The QXmlStreamReader class provides a fast parser for reading XML via a simple
-streaming API. QXmlStreamReader is a well-formed XML 1.0 parser that does not
-include external parsed entities. As long as no error occurs, the application
-code can assume that the XML follows \l {W3C XML specifications}.
+Qt provides APIs to read and parse XML streams, and also to write to these
+streams. The following key classes facilitate these actions by providing the
+necessary infrastructure:
+\list
+ \li QXmlStreamReader class provides a parser to read XML. It is a well-formed
+     XML 1.0 parser that does not include external parsed entities.
+  \list
+   \li It understands and resolves XML namespaces. For example, in
+       case of a StartElement, namespaceUri() returns the namespace the element
+       is in, and name() returns the element's local name. The combination of
+       namespaceUri() and name() uniquely identifies an element.
+   \li It is not CPU-intensive, as it doesn't store the entire XML
+       document tree in memory. It only stores the current token at the time
+       it is reported.
+  \endlist
+ \li The QXmlStreamWriter class provides an XML writer with a simple streaming
+     API. It is the counterpart to QXmlStreamReader for writing XML, and it
+     operates on a QIODevice specified with setDevice().
+  \list
+   \li It is a simple API that provides a dedicated function for every XML
+       token or event you want to write.
+   \li It takes care of prefixing namespaces based on the namespaceUri
+       specified while writing elements or attributes. If you have to use
+       certain standardized prefixes, you can force the writer to use them
+       by declaring the namespaces manually with either writeNamespace()
+       or writeDefaultNamespace().
+   \li It can automatically format the generated XML data by adding
+       line-breaks and indentation, making it readable. This feature can be
+       turned on with the auto-formatting property.
+   \li It encodes XML in UTF-8 by default. Different encodings can be enforced
+       using setCodec().
+  \endlist
+\endlist
 
-QXmlStreamReader understands and resolves XML namespaces. For example, in
-case of a StartElement, namespaceUri() returns the namespace the element
-is in, and name() returns the element's local name. The combination of
-namespaceUri() and name() uniquely identifies an element.
+Besides reading and writing to XML streams, Qt also provides APIs for the
+the following additional use cases:
+\list
+ \li Querying an XML data source using XQuery and XPath
+ \li XML transformation using XSLT
+ \li XML schema validation
+\endlist
 
-QXmlStreamReader does not put a high load on the CPU, since it doesn't store
-the entire XML document tree in memory, but only the current token at the time
-it is reported.
-
-The QXmlStreamWriter class provides an XML writer with a simple streaming API.
-QXmlStreamWriter is the counterpart to QXmlStreamReader for writing XML.
-It operates on a QIODevice specified with setDevice(). The API is quite simple:
-for every XML token or event you want to write, the writer provides a dedicated
-function.
-
-QXmlStreamWriter takes care of prefixing namespaces, all you have to do
-is specify the namespaceUri when writing elements or attributes. If you
-have to use certain standardized prefixes, you can force the writer to use them
-by declaring the namespaces manually with either writeNamespace()
-or writeDefaultNamespace().
-
-The stream writer can automatically format the generated XML data by adding
-line-breaks and indentation, making the code much more readable. This feature
-can be turned on with the auto-formatting property.
-
-By default, QXmlStreamWriter encodes XML in UTF-8. Different encodings can
-be enforced using setCodec().
-
+The following topics provide more insight into Qt XML support:
 \list
 \li \l {An Introduction to Namespaces}
-\li \l {Working with the DOM tree}
-\li \l {XML Processing}
-\li \l {XQuery}
-\li \l {The SAX Interface}
 \li \l {XML Streaming}
-\li \l {XML Classes}
 \li \l {A Short Path to XQuery}
 \li \l {XmlListModel}
+\li \l {Qt XML Patterns}
 \endlist
 
 \section1 JSON in Qt
@@ -204,22 +210,20 @@ An object can take 2 forms:
 \li \l {JSON Support in Qt}
 \endlist
 
-*/
-/*
-\section1 JavaScript Storage
+\section1 Local Storage
 
-The Localstorage API provides the ability to access local offline storage in an
- SQL database.
+The Local Storage API provides the ability to access local offline storage in an
+ SQL database from QML and JavaScript.
 
 These databases are user-specific and QML-specific, but accessible to all QML
 applications. They are stored in the Databases subdirectory of
-QDeclarativeEngine::offlineStoragePath(), currently as SQLite databases
+QDeclarativeEngine::offlineStoragePath() as SQLite databases
 (\l {SQL Database Drivers}).
 
 The API conforms to the Synchronous API of the HTML5 Web Database API,
 W3C Working Draft 29 October 2009 (\l {HTML5 Web Database API}).
 
-This \l {SQL Local Storage Example} demonstrates the basics of using the Offline
+The \l {SQL Local Storage Example} demonstrates the basics of using the Local
 Storage API.
 
 \list
@@ -230,15 +234,16 @@ Storage API.
 
 The QSettings class provides persistent storage of application settings.
 An application usually remembers its settings from the previous session.
-On Windows machines, the settings are often stored in the registry. In
-MAC OS X they are stored in XML files. In Unix there is no real standard
-for this.
+
+Settings are stored differently on different platforms. For example,
+on Windows they are stored in the registry, whereas, on MAC OS X they are
+stored in XML files.
 
 QSettings enable you to save and restore application settings in a portable
-manner. Constructing and destroying a QSettings object is leightweight, and
-very fast. A simple example of a QSettings object creation: when creating
-the object, it is a good practice to specify not only the name of the
-application, but also the name of your organization:
+manner. Constructing and destroying a QSettings object is lightweight and
+fast. While creating an object of QSettings, it is a good practice to specify
+not only the name of the application, but also the name of your organization.
+For example:
 
 \code
    QSettings settings("MyCompany", "Accountancy");
@@ -251,13 +256,13 @@ files in the application's executable. This is handy if your application
 frequently needs a certain file, or set of files. It also protects against
 loss of that particular file .
 
-Resource data can either be compiled into the binary and thus accessed
-immediately in application code, or a binary resource can be created and at
-a later point in application code registered with the resource system.
+Resource data can either be compiled into the binary and accessed
+immediately in the application code, or a binary resource can be created
+dynamically and registered with the resource system by the application.
 
-By default, resources are accessible in the application under the same file
-name as they have in the source tree, with a \c{:/} prefix, or by a URL with a
-qrc scheme.
+By default, resources are accessible from the application code by the same file
+name as they are stored in the source tree, with a \c{:/} prefix, or by a URL
+with a qrc scheme.
 
 \list
 \li \l {The Qt Resource System}
