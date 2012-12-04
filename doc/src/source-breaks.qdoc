@@ -146,6 +146,7 @@ The following sections lists the API changes in each module and provides recomme
        \li Adding days to a null QDate or seconds to a null QTime will no longer return a valid QDate/QTime.
        \li The \l{QDate::addDays()} and QDateTime::addDays() functions now takes a \c{qint64} argument,
            and the \l{QDate::daysTo()} and \l{QDateTime::daysTo()} functions now returns a \c{qint64} value.
+      \endlist
        \li \l{QTextCodec} has undergone the following changes:
         \list
          \li \c{QTextCodec::codecForCStrings()} and \c{QTextCodec::setCodecForCStrings()} are removed as they were
