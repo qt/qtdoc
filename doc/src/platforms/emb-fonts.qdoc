@@ -31,41 +31,20 @@
     \title Qt for Embedded Linux Fonts
     \ingroup qt-embedded-linux
 
-    \l {Qt for Embedded Linux} uses the
+    Qt normally uses \tt{fontconfig} to provide access to system fonts. If
+    \tt{fontconfig} is not available, e.g. in dedicated embedded systems where
+    space is at a premium, Qt will fall back to using \c QBasicFontDatabase. In
+    this case, Qt applications will look for fonts in Qt's \c lib/fonts/
+    directory. Qt will automatically detect prerendered fonts and TrueType fonts.
+
+    Qt uses the
     \l{http://freetype.sourceforge.net/freetype2/index.html}{FreeType 2}
     font engine to produce font output. The formats supported depends on
-    the locally installed version of the FreeType library. In addition,
-    \l{Qt for Embedded Linux} supports the Qt Prerendered Font formats (\l QPF and \l QPF2):
-    light-weight non-scalable font formats specific to \l {Qt for Embedded Linux}.
-    QPF2 is the native format of \l{Qt for Embedded Linux}. QPF is the legacy
-    format used by Qt/Embedded 2.x and 3.x. Several of the formats may be rendered
-    using anti-aliasing for improved readability.
+    the locally installed version of the FreeType library. When using QBasicFontDatabase,
+    Qt also supports the Qt Prerendered Font format (\l QPF2),
+    a light-weight non-scalable font formats.
+    QPF2 is the native format of \l{Qt for Embedded Linux} 4.x.
 
-    When \l{Qt for Embedded Linux} applications run, they look for fonts in
-    Qt's \c lib/fonts/ directory. \l {Qt for Embedded Linux} will automatically detect
-    prerendered fonts and TrueType fonts. For compatibility, it will also read the
-    legacy \c lib/fonts/fontdir file.
-
-    Support for other font formats can be added. To make a suggestion,
-    please create a task in our bug tracker at \l
-    {http://bugreports.qt-project.org}{http://bugreports.qt-project.org}.
-
-    \tableofcontents
-
-    \table 100%
-    \row
-    \li
-    \b {Optimization}
-
-    The \l FreeType, \l QPF2 and \l QPF formats are features that can be
-    disabled using the
-    \l{Fine-Tuning Features in Qt}{feature definition system},
-    reducing the size of Qt and saving resources.
-
-    Note that at least one font format must be defined.
-
-    See the \l {Fine-Tuning Features in Qt} documentation for
-    details.
 
     \li
     \inlineimage qt-embedded-fontfeatures.png
@@ -80,7 +59,7 @@
     \section1 FreeType Formats
 
     The \l {http://freetype.sourceforge.net/freetype2/index.html}{FreeType 2}
-    library (and therefore \l{Qt for Embedded Linux}) can support the following font formats:
+    library can support the following font formats:
 
     \list
         \li TrueType (TTF)
@@ -106,7 +85,7 @@
     reducing memory requirements and speeding up text rendering.
 
     \omit
-    \l {Qt for Embedded Linux} will by default use the system FreeType library if it exists.
+    Qt  will by default use the system FreeType library if it exists.
     Otherwise it will use a copy of the FreeType library in Qt, which by default only
     supports TrueType fonts to reduce footprint.
     \endomit
@@ -115,10 +94,10 @@
     \section1 Qt Prerendered Font (QPF2)
 
     The Qt Prerendered Font (QPF2) is an architecture-independent,
-    light-weight and non-scalable font format specific to \l{Qt for Embedded Linux}.
+    light-weight and non-scalable font format.
 
     Qt comes with the cross-platform \l makeqpf tool, included in the
-    \c tools directory of both \l {Qt} and \l{Qt for Embedded Linux}, which allows
+    \c tools directory, which allows
     generation of QPF2 files from system fonts.
 
     QPF2 supports anti-aliasing and complex writing systems, using information
@@ -148,40 +127,4 @@
     font are needed.
     \endomit
 
-    \section1 The Legacy \c fontdir File
-
-    For compatibility reasons \l{Qt for Embedded Linux} supports the \c fontdir
-    file, if present. The file defines additional fonts available to the
-    application, and has the following format:
-
-    \snippet doc/src/snippets/code/doc_src_emb-fonts.qdoc 0
-
-    \table 100%
-    \header \li Field \li Description
-    \row \li \b name
-    \li The name of the font format, e.g.,\c Helvetica, \c Times, etc.
-    \row \li \b file
-    \li The name of the file containing the font, e.g., \c
-    helvR0810.bdf, \c verdana.ttf, etc.
-    \row \li \b renderer
-    \li Specifies the font engine that should be used to render the
-    font, currently only the FreeType font engine (\c FT) is
-    supported.
-    \row \li \b italic
-    \li Specifies whether the font is italic or not; the accepted
-    values are \c y or \c n.
-    \row \li \b weight
-    \li Specifies the font's weight: \c 50 is normal, \c 75 is bold,
-    etc.
-    \row \li \b size
-    \li Specifies the font size, i.e., point size * 10. For example, a
-    value of 120 means 12pt. A value of 0 means that the font is
-    scalable.
-    \row \li \b flags
-    \li The following flag is supported:
-    \list
-        \li \c s: smooth (anti-aliased)
-    \endlist
-    All other flags are ignored.
-    \endtable
 */
