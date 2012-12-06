@@ -257,6 +257,35 @@ The following sections lists the API changes in each module and provides recomme
          their second parameter instead of \c{QRgb}.
     \endlist
 
+\section1 Changes to Qt WebKit
+    \list
+     \li The WebKit module in Qt is now split in two modules, \c{webkit} and \c{webkitwidgets}, in order to allow the dependency of
+         the \c{widgets} module to be optional. The benefits will only be profitable once the QQuickWebView API are made public
+         through C++ in a future version. The \c{webkitwidgets} module adds the \c{webkit} module automatically to the project,
+         so in your application's project file, \c{QT += webkit} should now be modified to:
+         \code
+             QT += webkitwidgets
+         \endcode
+     \li The same applies to the module include, \c{#include <QtWebKit/QtWebKit>} should be modified to:
+         \code
+             #include <QtWebKitWidgets/QtWebKitWidgets>
+         \endcode
+     \li A consequence of the module split is that classes of the QtWebKit API aren't all in the new module, so for a better
+         compatibility of your application with both Qt4 and Qt5, #include <QtWebKit/QWebPage>, for example, should be included
+         directly as:
+         \code
+             #include <QWebPage>
+         \endcode
+         The include path will take care of selecting the right module.
+     \li The qwebkitversion.h header has been renamed to q\b{t}webkitversion.h to match other Qt modules, and part of its
+         contents has been moved to qwebkitglobal.h. \c{#include <qwebkitversion.h>} should be replaced with
+         two includes:
+         \code
+             #include <qtwebkitversion.h>
+             #include <qwebkitglobal.h>
+         \endcode
+    \endlist
+
 \section1 Changes to Qt Print Support
     \list
      \li The \l{QPageSetupDialog::PageSetupDialogOption} enum and the corresponding set and get functions, \c{QPageSetupDialog::options()}
