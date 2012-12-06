@@ -250,20 +250,25 @@
 
     Qt makes it easy to write multithreaded applications. Signals and slots can be used
     to safely communicate between threads in your application.
-
+    \omit
+    ###Add this explicit list back if the \annotatedlist fails
     \list
     \li \l{threads/queuedcustomtype}{Queued Custom Type}\raisedaster
     \li \l{threads/mandelbrot}{Mandelbrot}\raisedaster
     \li \l{threads/semaphores}{Semaphores}\raisedaster
     \li \l{threads/waitconditions}{Wait Conditions}\raisedaster
     \endlist
+    \endomit
+
+    \annotatedlist qtconcurrent-mtexamples
 
     The QtConcurrent namespace includes a collection of classes and functions
     for straightforward concurrent programming.
 
     These examples show how to apply the basic techniques of concurrent
     programming to simple problems.
-
+    \omit
+    ###Add this explicit list back if the \annotatedlist fails
     \list
     \li \l{qtconcurrent/imagescaling}{QtConcurrent Asynchronous Image Scaling}
     \li \l{qtconcurrent/map}{QtConcurrent Map}
@@ -271,6 +276,9 @@
     \li \l{qtconcurrent/runfunction}{QtConcurrent Run Function}
     \li \l{qtconcurrent/wordcount}{QtConcurrent Word Count}
     \endlist
+    \endomit
+
+    \annotatedlist qtconcurrentexamples
 
     Examples marked with an asterisk (*) are fully documented.
 */
@@ -344,7 +352,8 @@
 
     SQL support is integrated with Qt's model/view architecture, making it easier
     to provide GUI integration for your database applications.
-
+    \omit
+    ###Add this list back if \annotatedlist fails
     \list
      \li \l {Cached Table Example}{Caches Table}
      \li \l {Drill Down Example}{Drill Down}
@@ -355,6 +364,9 @@
      \li \l {SQL Widget Mapper Example}{SQL Widget Mapper}
      \li \l {Table Model Example}{Table Model}
     \endlist
+    \endomit
+
+    \annotatedlist sql_examples
 
     Examples marked with an asterisk (*) are fully documented.
 */
@@ -365,6 +377,10 @@
     \ingroup all-examples
     \title XML Examples
     \brief Using XML with Qt.
+
+    XML parsing and handling is supported through SAX and DOM compliant APIs as well as streaming classes.
+
+    \annotatedlist xml-examples
 
     \image xml-examples.png XML
 
@@ -534,6 +550,7 @@
     \page examples-dbus.html
     \title D-Bus Examples
     \brief Using D-Bus from Qt applications.
+    \ingroup all-examples
 
     \list
     \li \l{dbus/dbus-chat}{Chat}
@@ -550,6 +567,7 @@
     \page examples-activeqt.html
     \title ActiveQt Examples
     \brief Using ActiveX from Qt applications.
+    \ingroup all-examples
 
     \image activeqt-examples.png ActiveQt
 
