@@ -4092,27 +4092,118 @@
 
     \section2 \c stable.h
 
+    \snippet snippets/qmake/precompile-stable.h 0
+
+    \omit
+    ##Keeping the snippet in qtdoc is a workaround, because it contains code
+    that would tell qdoc to start a new page. Remove it and put the
+    following snippet back after modularizing the docs.
     \snippet examples/qmake/precompile/stable.h 0
+    \endomit
 
     \section2 \c myobject.h
 
+    \code
+    #include <QObject>
+
+    class MyObject : public QObject
+    {
+    public:
+        MyObject();
+        ~MyObject();
+    };
+    \endcode
+
+    \omit
+    ##Remove the code and put the snippets back after modularizing the docs.
     \snippet examples/qmake/precompile/myobject.h 0
+    \endomit
 
     \section2 \c myobject.cpp
 
+    \code
+    #include <iostream>
+    #include <QDebug>
+    #include <QObject>
+    #include "myobject.h"
+
+    MyObject::MyObject()
+        : QObject()
+    {
+        std::cout << "MyObject::MyObject()\n";
+    }
+    \endcode
+
+    \omit
     \snippet examples/qmake/precompile/myobject.cpp 0
+    \endomit
 
     \section2 \c util.cpp
 
+    \code
+    void util_function_does_nothing()
+    {
+        // Nothing here...
+        int x = 0;
+        ++x;
+    }
+    \endcode
+
+    \omit
     \snippet examples/qmake/precompile/util.cpp 0
+    \endomit
 
     \section2 \c main.cpp
 
+    \code
+    #include <QApplication>
+    #include <QPushButton>
+    #include <QLabel>
+    #include "myobject.h"
+    #include "mydialog.h"
+
+    int main(int argc, char **argv)
+    {
+        QApplication app(argc, argv);
+
+        MyObject obj;
+        MyDialog dialog;
+
+        dialog.connect(dialog.aButton, SIGNAL(clicked()), SLOT(close()));
+        dialog.show();
+
+        return app.exec();
+    }
+    \endcode
+
+    \omit
     \snippet examples/qmake/precompile/main.cpp 0
+    \endomit
 
     \section2 \c precompile.pro
 
+    \code
+    TEMPLATE  = app
+    LANGUAGE  = C++
+    CONFIG   += console precompile_header
+    CONFIG   -= app_bundle
+
+    # Use Precompiled headers (PCH)
+    PRECOMPILED_HEADER  = stable.h
+
+    HEADERS   = stable.h \
+                mydialog.h \
+                myobject.h
+    SOURCES   = main.cpp \
+                mydialog.cpp \
+                myobject.cpp \
+                util.cpp
+    FORMS     = mydialog.ui
+    \endcode
+
+    \omit
     \snippet examples/qmake/precompile/precompile.pro 0
+    \endomit
 */
 
 /*!
