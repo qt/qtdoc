@@ -133,11 +133,6 @@ QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
 #! [17]
 
 
-#! [18]
-CONFIG += x86 ppc
-#! [18]
-
-
 #! [19]
 qmake -spec macx-xcode project.pro
 #! [19]
