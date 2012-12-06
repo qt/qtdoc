@@ -37,7 +37,7 @@ For high-level network traffic, Qt Network provides an abstraction layer over
 the operations used, showing only high-level classes and functions.
 
 Qt Network can also handle lower level protocols like TCP and UDP. Classes
-like QTcpSockeet and QUdpSocket enable the developer to send and receive
+like QTcpSocket and QUdpSocket enable the developer to send and receive
 messages using the TCP or UDP protocol.
 
 Name resolution is done with QHostInfo. QHostInfo is called before creating
