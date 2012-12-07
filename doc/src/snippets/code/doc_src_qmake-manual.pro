@@ -182,7 +182,7 @@ newstuff {
 
 
 #! [27]
-DEFINES += USE_MY_STUFF QT_DLL
+DEFINES += USE_MY_STUFF
 #! [27]
 
 
@@ -563,17 +563,17 @@ TARGET = myapp
 
 
 #! [90]
-DEFINES += QT_DLL
+DEFINES += USE_MY_STUFF
 #! [90]
 
 
 #! [91]
-DEFINES -= QT_DLL
+DEFINES -= USE_MY_STUFF
 #! [91]
 
 
 #! [92]
-DEFINES *= QT_DLL
+DEFINES *= USE_MY_STUFF
 #! [92]
 
 
@@ -590,7 +590,7 @@ message($$EVERYTHING)
 
 
 #! [95]
-win32:DEFINES += QT_DLL
+win32:DEFINES += USE_MY_STUFF
 #! [95]
 
 
@@ -797,7 +797,7 @@ DESTDIR  = c:/helloapp
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
-DEFINES += QT_DLL
+DEFINES += USE_MY_STUFF
 CONFIG  += qt warn_on release
 #! [123]
 

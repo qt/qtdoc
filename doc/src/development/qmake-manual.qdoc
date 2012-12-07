@@ -1688,48 +1688,6 @@
     \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
     needs to be modified.
 
-    \target QMAKE_CFLAGS_MT
-    \section1 QMAKE_CFLAGS_MT
-
-    This variable contains the compiler flags for creating a
-    multi-threaded application or when the version of Qt that you link
-    against is a multi-threaded statically linked library.  The value of
-    this variable is typically handled by \l{qmake Manual#qmake}{\c qmake} or
-    \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
-
-    \target QMAKE_CFLAGS_MT_DBG
-    \section1 QMAKE_CFLAGS_MT_DBG
-
-    This variable contains the compiler flags for creating a debuggable
-    multi-threaded application or when the version of Qt that you link
-    against is a debuggable multi-threaded statically linked library.  The
-    value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \target QMAKE_CFLAGS_MT_DLL
-    \section1 QMAKE_CFLAGS_MT_DLL
-
-    \e {This is used on Windows only.}
-
-    This variable contains the compiler flags for creating a
-    multi-threaded dll or when the version of Qt that you link
-    against is a multi-threaded dll.  The value of this variable is typically
-    handled by \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf}
-    and rarely needs to be modified.
-
-    \target QMAKE_CFLAGS_MT_DLLDBG
-    \section1 QMAKE_CFLAGS_MT_DLLDBG
-
-    \e {This is used on Windows only.}
-
-    This variable contains the compiler flags for creating a debuggable
-    multi-threaded dll or when the version of Qt that you link
-    against is a debuggable multi-threaded statically linked library.
-    The value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
     \target QMAKE_CFLAGS_RELEASE
     \section1 QMAKE_CFLAGS_RELEASE
 
@@ -1799,42 +1757,6 @@
 
     This variable contains the C++ compiler flags for creating a debuggable
     application. The value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \target QMAKE_CXXFLAGS_MT
-    \section1 QMAKE_CXXFLAGS_MT
-
-    This variable contains the C++ compiler flags for creating a multi-threaded
-    application. The value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \target QMAKE_CXXFLAGS_MT_DBG
-    \section1 QMAKE_CXXFLAGS_MT_DBG
-
-    This variable contains the C++ compiler flags for creating a debuggable
-    multi-threaded application. The value of this variable is typically handled
-    by \l{qmake Manual#qmake}{\c qmake}or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \target QMAKE_CXXFLAGS_MT_DLL
-    \section1 QMAKE_CXXFLAGS_MT_DLL
-
-    \c {This is used on Windows only.}
-
-    This variable contains the C++ compiler flags for creating a multi-threaded
-    dll. The value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \target QMAKE_CXXFLAGS_MT_DLLDBG
-    \section1 QMAKE_CXXFLAGS_MT_DLLDBG
-
-    \c {This is used on Windows only.}
-
-    This variable contains the C++ compiler flags for creating a multi-threaded
-    debuggable dll. The value of this variable is typically handled by
     \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
     needs to be modified.
 
@@ -2104,14 +2026,6 @@
     of this variable is typically handled by \l{qmake Manual#qmake}{\c qmake}
     or \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
 
-    \section1 QMAKE_LFLAGS_CONSOLE_DLL
-
-    \e {This is used on Windows only.}
-
-    This variable contains link flags when building console dlls. The value of
-    this variable is typically handled by \l{qmake Manual#qmake}{\c qmake} or
-    \l{#QMAKESPEC}{qmake.conf} and rarely needs to be modified.
-
     \section1 QMAKE_LFLAGS_DEBUG
 
     This variable contains link flags when building debuggable applications.
@@ -2181,15 +2095,6 @@
     This variable contains link flags when building Windows GUI projects (i.e.
     non-console applications). The value of this variable is typically handled
     by \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
-    needs to be modified.
-
-    \section1 QMAKE_LFLAGS_WINDOWS_DLL
-
-    \e {This is used on Windows only.}
-
-    This variable contains link flags when building Windows DLL projects. The
-    value of this variable is typically handled by
-    \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
     needs to be modified.
 
     \section1 QMAKE_LIBDIR
@@ -3660,14 +3565,14 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 90
 
-    The above line appends \c QT_DLL to the list of pre-processor defines to be put
+    The above line appends \c USE_MY_STUFF to the list of pre-processor defines to be put
     in the generated Makefile.
 
     The \c -= operator removes a value from the list of values in a variable:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 91
 
-    The above line removes \c QT_DLL from the list of pre-processor defines to be
+    The above line removes \c USE_MY_STUFF from the list of pre-processor defines to be
     put in the generated Makefile.
 
     The \c *= operator adds a value to the list of values in a variable, but only
@@ -3676,7 +3581,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 92
 
-    In the above line, \c QT_DLL will only be added to the list of pre-processor
+    In the above line, \c USE_MY_STUFF will only be added to the list of pre-processor
     defines if it is not already defined. Note that the
     \l{qmake Function Reference#unique}{unique()}
     function can also be used to ensure that a variables only contains one
@@ -3749,7 +3654,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 95
 
-    The above line adds \c QT_DLL to the \c DEFINES variable only on the
+    The above line adds \c USE_MY_STUFF to the \c DEFINES variable only on the
     Windows platform.
     Generally, the \c : operator behaves like a logical AND operator, joining
     together a number of conditions, and requiring all of them to be true.
@@ -4458,7 +4363,7 @@
     For items that are single valued, e.g. the template or the destination
     directory, we use "="; but for multi-valued items we use "+=" to \e
     add to the existing items of that type. Using "=" replaces the item's
-    value with the new value, for example if we wrote \c{DEFINES=QT_DLL},
+    value with the new value, for example if we wrote \c{DEFINES=USE_MY_STUFF},
     all other definitions would be deleted.
 
     \section2 Building a Testcase
