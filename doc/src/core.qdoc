@@ -86,8 +86,8 @@ provides information on writing software on different platforms.
 Qt integrates with the windowing system on the target platform using the
 \l{Qt Platform Abstraction}. This is an abstraction of the windowing system which
 makes porting Qt to new platforms simple and quick. One such system is the
-Wayland protocol. \l{Wayland Support in Qt}{Qt supports Wayland}, which e.g. can be used to set up
-a light-weight windowing system on embedded hardware to support a multi-process graphical user
+Wayland protocol. \l{Wayland Support in Qt}{Qt can be used together with Wayland}, which e.g. can
+serve as a light-weight windowing system on embedded hardware to support a multi-process graphical user
 interface.
 
 The Qt Platform Abstraction uses \l{How to Create Qt Plugins}{Qt's plugin system}. This system
