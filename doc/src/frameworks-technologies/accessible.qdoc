@@ -564,15 +564,15 @@
 
     \snippet doc/src/snippets/accessibilitypluginsnippet.cpp 2
 
-    The Q_EXPORT_PLUGIN2 macro exports the plugin in the \c
+    The Q_PLUGIN_METADATA macro exports the plugin in the \c
     SliderPlugin class into the \c acc_sliderplugin library. The first
-    argument is the name of the plugin library file, excluding the
-    file suffix, and the second is the class name. For more
+    argument is the plugins IID and the second is an optional json file
+    which holds metadata information for the plugin. For more
     information on plugins, you can consult the plugins \l{How to
     Create Qt Plugins}{overview document}.
 
-    You can omit the first macro unless you want the plugin
-    to be statically linked with the application.
+    It does not matter if you need the plugin to be statically or
+    dynamically linked with the application.
 
     \section2 Implementing Interface Factories
 
