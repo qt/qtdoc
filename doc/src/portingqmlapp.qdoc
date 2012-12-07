@@ -79,6 +79,7 @@ application work on Qt 5:
        macros as Symbian platform is not supported in Qt 5.
    \li Remove the code between \c{#if QT_VERSION < 0x040702} and \c{#else}, and
        \c{#endif // QT_VERSION < 0x040702} macros towards the end.
+  \endlist
  \li Run the \c{qmake} and \c{make} utilities to build the application.
      \note Ensure that the \c{PATH} environment variable is pointing to the
      Qt 5 binaries and libraries directories, before running \c{qmake}.
