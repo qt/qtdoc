@@ -2592,6 +2592,11 @@
     \l{qmake Manual#qmake}{\c qmake} or \l{#QMAKESPEC}{qmake.conf} and rarely
     needs to be modified.
 
+    \section1 RC_INCLUDEPATH
+
+    This variable contains include paths that are passed to the Windows
+    Resource Compiler.
+
     \target RCC_DIR
     \section1 RCC_DIR
 
