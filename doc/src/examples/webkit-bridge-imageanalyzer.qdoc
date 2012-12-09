@@ -62,7 +62,7 @@ The MainWindow is defined in C++, and creates a \l QNetworkDiskCache and a
 \l QWebView, and tells the \l QWebView to load the starting page, providing us
 with a user interface for the client.
 
-  \snippet examples/webkit/imageanalyzer/mainwindow.cpp MainWindow - constructor
+  \snippet doc/src/snippets/webkit/imageanalyzer/mainwindow.cpp MainWindow - constructor
 
 In this example, the sample content is addressed with the \tt qrc:/index.html
 URL. \tt qrc:/ indicates that the file is stored as a Qt resource (attached to
@@ -74,7 +74,7 @@ to our \tt ImageAnalyzer before any other scripts are run. To do this, we
 connect the \l{QWebFrame::}{javaScriptWindowObjectCleared()} signal to a slot
 which does the object creation and handoff to JavaScript.
 
-  \snippet examples/webkit/imageanalyzer/mainwindow.cpp MainWindow - addJSObject
+  \snippet doc/src/snippets/webkit/imageanalyzer/mainwindow.cpp MainWindow - addJSObject
 
 The ImageAnalyzer object is created and added to a JavaScript object on the web
 page's mainFrame with \c addToJavaScriptWindowObject().
@@ -83,16 +83,16 @@ page's mainFrame with \c addToJavaScriptWindowObject().
     In one of its <div> regions, we have images, each
     with an \c onClick() handler that calls \c addImage().
 
-    \snippet examples/webkit/imageanalyzer/resources/index.html sample images
+    \snippet doc/src/snippets/webkit/imageanalyzer/resources/index.html sample images
 
 Clicking an image adds it to an images list.
 
-    \snippet examples/webkit/imageanalyzer/resources/index.html addImage
+    \snippet doc/src/snippets/webkit/imageanalyzer/resources/index.html addImage
 
 The \b {Analyze} button at the bottom of the image list is clicked when we
 want to start the analysis:
 
-    \snippet examples/webkit/imageanalyzer/resources/index.html images list
+    \snippet doc/src/snippets/webkit/imageanalyzer/resources/index.html images list
 
 When the user clicks the \b {Analyze} button, \c analyzeImages() is called,
 another regular JavaScript method, shown below.
@@ -100,7 +100,7 @@ Notice it assumes the \c imageAnalyzer object is already defined and initialized
 in JavaScript space, but we guaranteed that by connecting our setup slot to the
 appropriate signal, \l{QWebFrame::}{javaScriptWindowObjectCleared()}.
 
-    \snippet examples/webkit/imageanalyzer/resources/index.html analyzeImages
+    \snippet doc/src/snippets/webkit/imageanalyzer/resources/index.html analyzeImages
 
 The only methods on \c ImageAnalyzer that we can or do call from JavaScript are
 those which are exposed through \{The Meta-Object System}{Qt's MetaObject}
@@ -108,13 +108,13 @@ system: \l{The Property System}{property} getter/setter methods,
 \c public \l {Signals & Slots}{signals and slots}, and other 
 \l{Q_INVOKABLE}{Q_INVOKABLE} functions.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.h ImageAnalyzer - public interface
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.h ImageAnalyzer - public interface
 \dots
-\snippet examples/webkit/imageanalyzer/imageanalyzer.h ImageAnalyzer - private members
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.h ImageAnalyzer - private members
 
 Most of the members are set up in the constructor:
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - Constructor
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - Constructor
 
 Back on the JavaScript side, we want to connect signals from this object to
 JavaScript functions on our web page, after the web page is loaded, but before
@@ -124,29 +124,29 @@ From \c connectSlots(), we can see how to connect signals from the imageAnalyzer
 object to regular JavaScript functions, which can also behave like slots. We use
 this to monitor and display progress from the C++ side.
 
-    \snippet examples/webkit/imageanalyzer/resources/index.html connect slots
+    \snippet doc/src/snippets/webkit/imageanalyzer/resources/index.html connect slots
 
 The only public slot is \c startAnalysis(), called to place
 a list of URLs into the image analyzer's QtConcurrent processing queue
 from JavaScript space.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - startAnalysis
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - startAnalysis
 
 The images need to be loaded again now, which is why fetchURLs first checks the
 cache to see if we can save an extra network get.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - fetchURLs
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - fetchURLs
 
 For the images that were not in the cache, \c handleReply()
 will load them into a QImage when the data is ready.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - handleReply
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - handleReply
 
 After the images are loaded, they are queued up in preparation to be
 sent in a batch for analysis to a \l QFutureWatcher, which will distribute the
 processing across multiple threads and cores, depending on how many are available.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - queueImage
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - queueImage
 
 The function that gets performed on each image is \c averageRGB(),
 as specified in argument 2 to the \l{QtConcurrent::mapped()} function.
@@ -154,7 +154,7 @@ Notice it repeats the same calculations 100 times on each pixel to keep the CPU
 very busy. This is done only for the purposes of the demo so that the analysis
 takes a noticeable time to complete.
 
-\snippet examples/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - averageRGB
+\snippet doc/src/snippets/webkit/imageanalyzer/imageanalyzer.cpp ImageAnalyzer - averageRGB
 
 */
 

@@ -48,7 +48,7 @@
     The \c Window class describes the example's user interface and this is partially described
     by the \c window.ui file, created using \l{Qt Designer}:
 
-    \snippet examples/webkit/simpleselector/window.h Window class definition
+    \snippet doc/src/snippets/webkit/simpleselector/window.h Window class definition
 
     We use \l{Using a Designer UI File in Your Application#The Multiple Inheritance Approach}
     {multiple inheritance} to include the user interface description. We define slots that
@@ -59,7 +59,7 @@
     Since the layout of the user interface is provided by the \c{window.ui} user interface file,
     we only need to call the \l{QWidget::}{setupUi()} in the constructor:
 
-    \snippet examples/webkit/simpleselector/window.cpp Window class constructor
+    \snippet doc/src/snippets/webkit/simpleselector/window.cpp Window class constructor
 
     This adds all the controls to the window and sets up connections between their signals
     and suitably-named slots in the \c Window class. The QLineEdit instance was given a name of
@@ -71,7 +71,7 @@
     a QWebElement instance that represents the document, and we obtain this in order to
     examine its contents:
 
-    \snippet examples/webkit/simpleselector/window.cpp return pressed
+    \snippet doc/src/snippets/webkit/simpleselector/window.cpp return pressed
 
     Taking the contents of the QLineEdit as the query text, we call the element's
     \l{QWebElement::}{findAll()} function to obtain a list of elements that match the
@@ -84,19 +84,19 @@
     button, we also implement the \c{on_highlightButton_clicked()} slot to simply call
     the \c{on_elementLineEdit_returnPressed()} slot when it is invoked:
 
-    \snippet examples/webkit/simpleselector/window.cpp button clicked
+    \snippet doc/src/snippets/webkit/simpleselector/window.cpp button clicked
 
     For completeness, we also implement a \c setUrl() function which simply passes on
     a QUrl instance to the equivalent function in the QWebView widget:
 
-    \snippet examples/webkit/simpleselector/window.cpp set URL
+    \snippet doc/src/snippets/webkit/simpleselector/window.cpp set URL
 
     \section1 Starting the Example
 
     The main function implementation is simple. We set up the application, create
     a \c Window instance, set its URL, and show it:
 
-    \snippet examples/webkit/simpleselector/main.cpp main program
+    \snippet doc/src/snippets/webkit/simpleselector/main.cpp main program
 
     When the application's event loop is run, the WebKit home page will load, and the
     user can then begin to start running queries against the contents of the page.
