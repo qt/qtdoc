@@ -388,57 +388,6 @@
 */
 
 /*!
-    \page examples-webkit.html
-    \ingroup all-examples
-    \title WebKit Examples
-    \brief Using WebKit in your Qt application.
-
-    \image webkit-examples.png WebKit
-
-    Qt provides an integrated Web browser component based on WebKit, the popular
-    open source browser engine.
-
-    These examples and demonstrations show a range of different uses for WebKit,
-    from displaying Web pages within a Qt user interface to an implementation of
-    a basic function Web browser.
-
-    \table
-    \header \li Example \li Description
-    \row \li \l{webkit/domtraversal}{DOM Traversal}\raisedaster
-    \li Shows how to use QWebElement to inspect the document structure of a Web page.
-    \row \li \l{webkit/browser}{Tab Browser}
-    \li A browser example, showing a browser with support for tabs.
-    \row \li \l{webkit/fancybrowser}{Fancy Browser}
-    \li A browser example, showing the use of JQuery to perform effects.
-    \row \li \l{webkit/formextractor}{Form Extractor}
-    \li How to use JavaScript and C++ together to read page content.
-    \row \li \l{webkit/framecapture}{Frame Capture}
-    \li How to use the WebKit browser engine to obtain images of Web pages.
-    \row \li \l{webkit/googlechat}{Google Chat}
-    \li A real-world example that shows how an existing Web-based service can be accessed
-    using QtWebKit.
-    \row \li \l{webkit/imageanalyzer}{Image Analyzer}\raisedaster
-    \li A \l{The QtWebKit Bridge}{QtWebKit bridge} application which contains a
-    web interface and client-side processing.
-    \row \li \l{webkit/previewer}{Previewer}\raisedaster
-    \li Shows how to make a simple Web page previewer by using Qt's text input widgets
-    together with a QWebView widget.
-    \row \li \l{webkit/simpleselector}{Simple Selector}\raisedaster
-    \li A basic demonstration, showing how to use QWebElement to select elements in a
-    Web page.
-    \row \li \l{webkit/simplewebplugin}{Simple Web Plugin}\raisedaster
-    \li Shows how to embed a widget into a Web page displayed using a QWebView
-    widget.
-    \row \li \l{webkit/webftpclient}{Web FTP Client}\raisedaster
-    \li Shows how to add support for a new protocol to QtWebKit-based applications.
-    \row \li \l{webkit/webplugin}{Web Plugin}\raisedaster
-    \li Shows how to communicate with a widget embedded into a Web page.
-    \endtable
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
     \page examples-statemachine.html
     \ingroup all-examples
     \title State Machine Examples
