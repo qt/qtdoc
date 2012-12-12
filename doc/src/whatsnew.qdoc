@@ -182,6 +182,15 @@
     The QtQuick 2.0 QML module is a major update, and the following sections
     outline the features that come with it:
 
+    \section2 New Graphics Architecture
+
+    \list
+
+    \li Qt Quick 2.0 uses a dedicated OpenGL (ES) 2.0 based \l{Qt
+    Quick Scene Graph} scene graph for all its rendering.
+
+    \endlist
+
     \section2 Visual and Graphic Types
     \list
      \li New Canvas type for drawing, provides a HTML5 canvas-like API along
