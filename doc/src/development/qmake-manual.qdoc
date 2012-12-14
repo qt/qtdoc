@@ -4181,12 +4181,6 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 112
 
-    The final step is to set the \l{qmake Variable Reference#CONFIG}{CONFIG}
-    variable. Since this is a Qt application, we need to put \c qt on the
-    \c CONFIG line so that \l{qmake Manual#qmake}{\c qmake} will add the
-    relevant libraries to be linked against and ensure that build lines for
-    \c moc and \c uic are included in the generated Makefile.
-
     The finished project file should look like this:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 113

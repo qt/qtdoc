@@ -692,7 +692,6 @@ TARGET = helloworld
 
 
 #! [113]
-CONFIG += qt
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -710,7 +709,7 @@ qmake -tp vc hello.pro
 
 
 #! [116]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -725,7 +724,7 @@ win32 {
 
 
 #! [118]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -746,7 +745,7 @@ unix {
 
 
 #! [120]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -772,7 +771,7 @@ win32 {
 
 
 #! [122]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -798,7 +797,7 @@ HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
 DEFINES += USE_MY_STUFF
-CONFIG  += qt warn_on release
+CONFIG  += release
 #! [123]
 
 
