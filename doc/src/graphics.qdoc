@@ -53,13 +53,13 @@ and a complete feature set.
 
 \list 
 
-    \o \l {Paint System}{Paint System} - Overview over the QPainter
+    \li \l {Paint System}{Paint System} - Overview over the QPainter
     classes and architecture.
 
-    \o \l {Coordinate System}{Coordinate System} - Explains how
+    \li \l {Coordinate System}{Coordinate System} - Explains how
     QPainter's coordinate system works.
 
-    \o \l {Drawing and Filling}{Drawing and Filling} - Explains how
+    \li \l {Drawing and Filling}{Drawing and Filling} - Explains how
     QPainter performs filling and outlining of vector shapes.
 
 \endlist
@@ -68,24 +68,24 @@ The most important rendering targets for QPainter are:
 
 \list
 
-    \o \l {QImage}{QImage} - A hardware-independent image representation
+    \li \l {QImage}{QImage} - A hardware-independent image representation
     with direct pixel access. QPainter will use the software
     rasterizer to draw to QImage instances.
 
-    \o \l {QPixmap}{QPixmap} - A image representation suited for display
+    \li \l {QPixmap}{QPixmap} - A image representation suited for display
     on screen. QPainter will primarily use the software rasterizer to
     draw to QPixmap instances.
 
-    \o \l {QOpenGLPaintDevice}{QOpenGLPaintDevice} - A paint device to
+    \li \l {QOpenGLPaintDevice}{QOpenGLPaintDevice} - A paint device to
     render to the current OpenGL (ES) 2.0 context. QPainter will use
     hardware accellerated OpenGL calls to draw to QOpenGLPaintDevice
     instances.
 
-    \o \l {QBackingStore}{QBackingStore} - A backbuffer for top-level
+    \li \l {QBackingStore}{QBackingStore} - A backbuffer for top-level
     windows. QPainter will primarily use the software rasterizer to
     draw to QBackingStore instances.
 
-    \o \l {QWidget}{QWidget} - A baseclass for pre-Qt Quick user
+    \li \l {QWidget}{QWidget} - A baseclass for pre-Qt Quick user
     interface classes. QPainter will render widgets using a
     QBackingStore.
 
@@ -105,14 +105,14 @@ OpenGL into their applications.
 
 \list 
     
-    \o \l {qtgui-index.html#opengl-and-opengl-es-integration}{OpenGL
+    \li \l {qtgui-index.html#opengl-and-opengl-es-integration}{OpenGL
     in QtGui} - An overview of how OpenGL integrates with the Qt GUI
     Module.
 
-    \o \l {Mixing Scene Graph and OpenGL}{OpenGL and Qt Quick 2.0} -
+    \li \l {Mixing Scene Graph and OpenGL}{OpenGL and Qt Quick 2.0} -
     How to integrate OpenGL into a the Qt Quick 2.0 scene graph.
 
-    \o \l {http://www.khronos.org/opengl}{www.khronos.org/opengl} -
+    \li \l {http://www.khronos.org/opengl}{www.khronos.org/opengl} -
     The offical OpenGL pages.
 
 \endlist
@@ -143,10 +143,10 @@ file, and use QQuickView to run it.
 
 \list
 
-    \o \l {qtquick-visualcanvas-scenegraph.html}{Qt Quick Scene Graph}
+    \li \l {qtquick-visualcanvas-scenegraph.html}{Qt Quick Scene Graph}
     - Overview of the Qt Quick Scene Graph architecture.
 
-    \o \l {Scene Graph and Rendering} - Breakdown of the rendering of
+    \li \l {Scene Graph and Rendering} - Breakdown of the rendering of
     each frame.
 
 \endlist 
