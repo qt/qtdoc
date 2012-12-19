@@ -665,8 +665,13 @@ in the \l{Qt for Windows CE Requirements} document.
     \brief Setting up the Mac OS X environment for Qt.
     \previouspage General Qt Requirements
 
-    Qt requires Xcode to be installed on the system. Xcode should be
-    available on the Mac installation CD.
+    Qt requires Xcode to be installed on the system. You can get it from:
+
+    \l{https://developer.apple.com/xcode/}
+
+    The command line tools are also needed, they can be installed within XCode:
+
+    Xcode->Preferences->Downloads->Components->Command Line Tools
 
     \sa {Known Issues}
 */
