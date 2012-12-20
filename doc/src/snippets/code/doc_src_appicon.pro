@@ -47,7 +47,3 @@ RC_FILE = myapp.rc
 ICON = myapp.icns
 #! [2]
 
-
-#! [5]
-ICON = myapp.svg
-#! [5]
