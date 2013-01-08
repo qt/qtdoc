@@ -121,7 +121,7 @@ The following sections lists the API changes in each module and provides recomme
      \li \l{QString::mid}, \l{QString::midRef}, and \l{QByteArray::mid} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
          if the position passed is equal to the length (that is, right after the last character/byte).
          In Qt 4, they use to return a null \c{QString} or a null \c{QStringRef}.
-     \li The following \l{QString} functions use the the C locale instead of the default or system locale:
+     \li The following \l{QString} functions use the C locale instead of the default or system locale:
       \list
        \li \l{QString::toLongLong}{toLongLong()}
        \li \l{QString::toULongLong}{toULongLong()}
