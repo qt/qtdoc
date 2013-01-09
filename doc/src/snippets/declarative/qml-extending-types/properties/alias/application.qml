@@ -44,7 +44,7 @@ import QtQuick 1.0
 ImageViewer {
     id: viewer
 
-    currentImage.source: "http://qt.nokia.com/logo.png"
+    currentImage.source: "http://qt-project.org/images/qtdn/doc/qt-logo.png"
     currentImage.width: width
     currentImage.height: height
     currentImage.fillMode: Image.Tile
