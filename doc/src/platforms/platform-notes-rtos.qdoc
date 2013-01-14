@@ -44,9 +44,89 @@
     \contentspage Platform and Compiler Notes
     \target QNX
 
-    \note QNX is a community supported platform. See the
-    \l{Supported Platforms} page for more information.
+    \note QNX is a community supported platform.
 
+    \section1 Supported Architectures and QNX Versions
+
+    Qt 5 is currently tested and supported on QNX 6.5.0 SP1 supplemented by the new QNX UI Core
+    graphics framework (Screen). Supported architectures are ARMle-v7 and x86. Other QNX versions and
+    architectures may also work, but are not subject to regular builds and testing. For a
+    specific list of available boards, displays and input devices, contact QNX Software Systems
+    (info@qnx.com) or KDAB (qnx-info@kdab.com).
+
+    \section1 Build Requirements
+
+    Building Qt 5 requires \l {http://www.qnx.com/download/group.html?programid=20905}{QNX SDP 6.5.0 SP1} from the \l {http://www.qnx.com/}{QNX website} and the new QNX UI Core
+    graphics framework (contact QNX for access).
+
+    Supported compiler is qcc for both ARMle-v7 (QMakespec qnx-armv7le-qcc)
+    and x86 (qnx-x86-qcc).
+
+    When building qtbase, recommended configure flags include:
+
+    \code
+    -opengl es2 -egl -no-cups -no-xcb -no-eglfs -no-javascript-jit -no-gtkstyle -no-iconv
+    \endcode
+
+    \section2 Screen and OpenGL
+
+    As noted above, building Qt 5 requires the QNX 6.5.0 SP1 and the new UI Core graphics
+    framework headers and libraries. Both are available through QNX. For OpenGL support
+    (GL widgets and QML2), OpenGL ES2 or higher must be available.
+
+    \section1 Runtime Requirements
+
+    On the QNX target device, certain requirements must be met at runtime
+    to ensure Qt functions correctly.
+
+    \section2 UI Core (QNX Screen)
+
+    Before starting any Qt application, QNX Screen, the UI framework driver, must be started. To ensure QNX Screen is
+    configured correctly, verify that applications like gles2-gears can be started and run without problems.
+
+    \section2 IPv6 Support
+
+    Qt's networking stack, \l{Qt Network}, requires IPv6 support to be enabled, independent of
+    whether the actual networking uses IPv4 or IPv6. That means, that io-pkt-v6-hc must be running, \e {not} io-pkt-v4.
+
+    \section2 /dev/random
+
+    Qt requires \c{/dev/random} to be present and functional. Thus, start \c random before starting any Qt application:
+
+    \code
+    random -t
+    \endcode
+
+    \section2 Physical Screen Size
+
+    Qt needs information about the physical dimensions of the attached display to determine DPI
+    information and thus correct font sizes. This information is provided by Screen.
+    In some cases you may see an invalid screen size such as 0mmx0mm.
+    In such a case Qt requires an environment variable \c QQNX_PHYSICAL_SCREEN_SIZE to get the required information.
+    If Qt applications exits with an error message saying that the physical screen size couldn't be determined,
+    set the variable like this before starting the Qt application:
+
+    \code
+    export QQNX_PHYSICAL_SCREEN_SIZE=150,100
+    \endcode
+
+    to inform Qt that the screen has a width of 150mm and a height of 100mm.
+    (Note that the physical screen size is measured in millimeters (mm))
+
+    \section1 Development Board Setup
+
+    To develop for QNX with Qt Creator, the development board needs the following setup:
+
+    \section2 ssh
+
+    For deploying and running a binary remotely on the development board with Qt Creator,
+    ssh must be installed and running. ssh in turn also requires \c{/dev/random}.
+
+    \section2 pdebug
+
+    For remote debugging to work, pdebug must be running on the development device. See
+    the QNX documentation included with the QNX Momentics development tool suite for
+    more details pertaining to pdebug and other QNX development tools.
 */
 
 /*!
