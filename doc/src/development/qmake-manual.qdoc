@@ -80,14 +80,21 @@
       \tableofcontents{1 qmake Advanced Usage}
     \li \l{Using Precompiled Headers}
       \tableofcontents{1 Using Precompiled Headers}
-    \li \l{qmake Reference}
-      \tableofcontents{1 qmake Reference}
-    \li \l{qmake Variable Reference}
-      \tableofcontents{1 qmake Variable Reference}
-    \li \l{qmake Function Reference}
-      \tableofcontents{1 qmake Function Reference}
     \li \l{Configuring qmake's Environment}
       \tableofcontents{1 Configuring qmake's Environment}
+    \li \l{qmake Reference}
+        \list
+            \li \l{qmake Variable Reference}
+            \li \l{Replace Functions}
+            \list
+                \li \l{Built-in Replace Functions}
+           \endlist
+           \li \l{Test Functions}
+            \list
+                \li \l{Built-in Test Functions}
+                \li \l{Test Function Library}
+            \endlist
+        \endlist
     \endlist
 */
 
@@ -398,7 +405,7 @@
     Note that each of the options specified in the \c CONFIG variable can also be
     used as a scope condition.
     You can test for the presence of certain configuration options by using the
-    built-in \l{qmake Function Reference#CONFIG(config)}{CONFIG()} function.
+    built-in \l{CONFIG(config)}{CONFIG()} function.
     For example, the following lines show the function as the condition in a scope
     to test whether only the \c opengl option is in use:
 
@@ -926,7 +933,7 @@
     \page qmake-reference.html
     \title qmake Reference
     \contentspage {qmake Manual}{Contents}
-    \previouspage Using Precompiled Headers
+    \previouspage Configuring qmake's Environment
     \nextpage qmake Variable Reference
 
     This reference is a detailed index of all the variables and function that
@@ -940,8 +947,18 @@
 
     \section1 Function Reference
 
-    The \l{qmake Function Reference} describes the function that can be
-    used to process the contents of variables defined in project files.
+    There are two types of qmake functions: replace functions and test
+    functions. Replace functions return a value list, while test functions
+    return a boolean result. The functions are implemented in two places:
+    fundamental functionality is offered as built-in functions. More complex
+    functions are implemented in a library of feature files (.prf).
+
+    The functions are divided into categories according to their type:
+
+    \list
+        \li \l{Replace Functions}
+        \li \l{Test Functions}
+    \endlist
 
     \target FrequentlyUsedVariables
     \section1 Frequently Used Variables
@@ -993,7 +1010,7 @@
     \title qmake Variable Reference
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Reference
-    \nextpage qmake Function Reference
+    \nextpage Replace Functions
 
     \c{qmake}'s fundamental behavior is influenced by variable declarations that
     define the build process of each project. Some of these declare resources,
@@ -2809,43 +2826,126 @@
 
 /*!
     \page qmake-function-reference.html
-    \title qmake Function Reference
+    \title Replace Functions
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Variable Reference
-    \nextpage Configuring qmake's Environment
+    \nextpage Test Functions
 
-    \l{qmake Manual#qmake}{\c qmake} provides built-in functions to allow the
-    contents of variables to be processed, and to enable tests to be performed
-    during the configuration process. Functions that process the
-    contents of variables typically return values that can be assigned
-    to other variables, and these values are obtained by prefixing
-    function with the \c $$ operator. Functions that perform tests
-    are usually used as the conditional parts of scopes; these are
-    indicated in the function descriptions below.
+    qmake provides functions for processing the contents of variables
+    during the configuration process. These functions are called
+    \e {replace functions}. Typically, they return values that you can
+    assign to other variables. You can obtain these values by prefixing a
+    function with the \c $$ operator. Replace functions can be divided into
+    built-in functions and library functions.
 
-    \tableofcontents{2}
+    See also \l{Test Functions}.
 
-    \section1 packagesExist(packages)
+    \section1 Built-in Replace Functions
 
-    Uses the PKGCONFIG mechanism to determine whether or not the given packages
-    exist at the time of project parsing.
+    Basic replace functions are implemented as built-in functions.
 
-    This can be useful to optionally enable or disable features. For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 157
-
-    And then, in the code:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 158
-
-    \section1 basename(variablename)
+    \section2 basename(variablename)
 
     Returns the basename of the file specified. For example:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 59
 
-    \section1 CONFIG(config)
-    [Conditional]
+    \section2 dirname(file)
+
+    Returns the directory name part of the specified file. For example:
+
+    \snippet doc/src/snippets/qmake/dirname.pro 0
+
+    \section2 find(variablename, substr)
+
+    Places all the values in \e variablename that match \e substr. \e
+    substr may be a regular expression, and will be matched accordingly.
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 64
+
+    MY_VAR2 will contain '-Lone -Ltwo -Lthree -Lfour -Lfive', and MY_VAR3 will
+    contains 'three two three'.
+
+    \section2 join(variablename, glue, before, after)
+
+    Joins the value of \e variablename with \c glue. If this value is
+    non-empty it prefixes the value with \e before and suffix it with \e
+    after. \e variablename is the only required field, the others default
+    to empty strings. If you need to encode spaces in \e glue, \e before, or \e
+    after you must quote them.
+
+    \section2 member(variablename, position)
+
+    Returns the value at the given \e position in the list of items in
+    \e variablename.
+    If an item cannot be found at the position specified, an empty string is
+    returned. \e variablename is the only required field. If not specified,
+    \c position defaults to 0, causing the first value in the list to be
+    returned.
+
+    \section2 prompt(question)
+
+    Displays the specified \e question, and returns a value read from stdin.
+
+    \section2 quote(string)
+
+    Converts a whole \e string into a single entity and returns the result.
+    This is just a fancy way of enclosing the string into double quotes.
+
+    \section2 replace(string, old_string, new_string)
+
+    Replaces each instance of \c old_string with \c new_string in the
+    contents of the variable supplied as \c string. For example, the
+    code
+
+    \snippet doc/src/snippets/qmake/replace.pro 0
+
+    prints the message:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 70
+
+    \section2 sprintf(string, arguments...)
+
+    Replaces %1-%9 with the arguments passed in the comma-separated list
+    of function \e arguments and returns the processed string.
+
+    \section2 system(command[, mode])
+
+    You can use this variant of the \c system function to obtain stdout from the
+    command and assign it to a variable.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 72
+
+    See also \l{system(command)}.
+
+    \target unique
+    \section2 unique(variablename)
+
+    This will return a list of values in variable that are unique (that is
+    with repetitive entries removed). For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 73
+*/
+
+/*!
+    \page qmake-test-function-reference.html
+    \title Test Functions
+    \contentspage {qmake Manual}{Contents}
+    \previouspage Replace Functions
+
+    Test functions return a boolean value that you can test for in the
+    conditional parts of scopes. Test functions can be divided into
+    built-in functions and library functions.
+
+    See also \l{Replace Functions}.
+
+    \section1 Built-in Test Functions
+
+    Basic test functions are implemented as built-in functions.
+
+    \section2 CONFIG(config)
 
     This function can be used to test for variables placed into the
     \c CONFIG variable. This is the same as regular old style (tmake) scopes,
@@ -2862,8 +2962,7 @@
     case a second parameter is not needed, but for specific mutual
     exclusive tests it is invaluable.
 
-    \section1 contains(variablename, value)
-    [Conditional]
+    \section2 contains(variablename, value)
 
     Succeeds if the variable \e variablename contains the value \e value;
     otherwise fails. You can check the return value of this function using
@@ -2878,8 +2977,7 @@
     appropriate files are added to the \c SOURCES and \c HEADERS
     variables.
 
-    \section1 count(variablename, number)
-    [Conditional]
+    \section2 count(variablename, number)
 
     Succeeds if the variable \e variablename contains a list with the
     specified \e number of value; otherwise fails.
@@ -2890,13 +2988,7 @@
 
     \snippet doc/src/snippets/qmake/functions.pro 2
 
-    \section1 dirname(file)
-
-    Returns the directory name part of the specified file. For example:
-
-    \snippet doc/src/snippets/qmake/dirname.pro 0
-
-    \section1 error(string)
+    \section2 error(string)
 
     This function never returns a value. \l{qmake Manual#qmake}{\c qmake}
     displays the given \e string to the user, and exits. This function
@@ -2906,8 +2998,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 62
 
-    \section1 eval(string)
-    [Conditional]
+    \section2 eval(string)
 
     Evaluates the contents of the string using
     \l{qmake Manual#qmake}{\c qmake}'s syntax rules and returns true.
@@ -2920,8 +3011,7 @@
     Note that quotation marks can be used to delimit the string, and that
     the return value can be discarded if it is not needed.
 
-    \section1 exists(filename)
-    [Conditional]
+    \section2 exists(filename)
 
     Tests whether a file with the given \e filename exists.
     If the file exists, the function succeeds; otherwise it fails.
@@ -2934,17 +3024,7 @@
     Note that "/" can be used as a directory separator, regardless of the
     platform in use.
 
-    \section1 find(variablename, substr)
-
-    Places all the values in \e variablename that match \e substr. \e
-    substr may be a regular expression, and will be matched accordingly.
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 64
-
-    MY_VAR2 will contain '-Lone -Ltwo -Lthree -Lfour -Lfive', and MY_VAR3 will
-    contains 'three two three'.
-
-    \section1 for(iterate, list)
+    \section2 for(iterate, list)
 
     This special test function will cause a loop to be started that
     iterates over all values in \e list, setting \e iterate to each
@@ -2958,8 +3038,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 65
 
-    \section1 include(filename)
-    [Conditional]
+    \section2 include(filename)
 
     Includes the contents of the file specified by \e filename into the
     current project at the point where it is included. This function
@@ -2971,8 +3050,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 66
 
-    \section1 infile(filename, var, val)
-    [Conditional]
+    \section2 infile(filename, var, val)
 
     Succeeds if the file \e filename (when parsed by
     \l{qmake Manual#qmake}{\c qmake} itself) contains the variable \e var with
@@ -2980,8 +3058,7 @@
     (\e val), the function will only test whether \e var has been declared in
     the file.
 
-    \section1 isEmpty(variablename)
-    [Conditional]
+    \section2 isEmpty(variablename)
 
     Succeeds if the variable \e variablename is empty; otherwise fails.
     This is the equivalent of \c{count( variablename, 0 )}.
@@ -2990,24 +3067,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 67
 
-    \section1 join(variablename, glue, before, after)
-
-    Joins the value of \e variablename with \c glue. If this value is
-    non-empty it prefixes the value with \e before and suffix it with \e
-    after. \e variablename is the only required field, the others default
-    to empty strings. If you need to encode spaces in \e glue, \e before, or \e
-    after you must quote them.
-
-    \section1 member(variablename, position)
-
-    Returns the value at the given \e position in the list of items in
-    \e variablename.
-    If an item cannot be found at the position specified, an empty string is
-    returned. \e variablename is the only required field. If not specified,
-    \c position defaults to 0, causing the first value in the list to be
-    returned.
-
-    \section1 message(string)
+    \section2 message(string)
 
     This function simply writes a message to the console. Unlike the
     \c error() function, this function allows processing to continue.
@@ -3025,36 +3085,9 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 69
 
-    \section1 prompt(question)
+    \section2 system(command)
 
-    Displays the specified \e question, and returns a value read from stdin.
-
-    \section1 quote(string)
-
-    Converts a whole \e string into a single entity and returns the result.
-    This is just a fancy way of enclosing the string into double quotes.
-
-    \section1 replace(string, old_string, new_string)
-
-    Replaces each instance of \c old_string with \c new_string in the
-    contents of the variable supplied as \c string. For example, the
-    code
-
-    \snippet doc/src/snippets/qmake/replace.pro 0
-
-    prints the message:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 70
-
-    \section1 sprintf(string, arguments...)
-
-    Replaces %1-%9 with the arguments passed in the comma-separated list
-    of function \e arguments and returns the processed string.
-
-    \section1 system(command)
-    [Conditional]
-
-    Executes the given \c command in a secondary shell, and succeeds
+    Executes the given \c command in a secondary shell. Succeeds
     if the command returns with a zero exit status; otherwise fails.
     You can check the return value of this function using a scope:
 
@@ -3062,30 +3095,36 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 71
 
-    Alternatively, you can use this function to obtain stdout and stderr
-    from the command, and assign it to a variable. For example, you can
-    use this to interrogate information about the platform:
+    See also \l{system(command[, mode])}.
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 72
-
-    \target unique
-    \section1 unique(variablename)
-
-    This will return a list of values in variable that are unique (that is
-    with repetitive entries removed). For example:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 73
-
-    \section1 warning(string)
+    \section2 warning(string)
 
     This function will always succeed, and will display the given
-    \e string to the user. message() is a synonym for warning().
+    \c string to the user. message() is a synonym for warning().
+
+    \section1 Test Function Library
+
+    Complex test functions are implemented in a library of .prf files.
+
+    \section2 packagesExist(packages)
+
+    Uses the PKGCONFIG mechanism to determine whether or not the given packages
+    exist at the time of project parsing.
+
+    This can be useful to optionally enable or disable features. For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 157
+
+    And then, in the code:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 158
 */
 
 /*!
     \page qmake-environment-reference.html
     \contentspage {qmake Manual}{Contents}
-    \previouspage qmake Function Reference
+    \previouspage Using Precompiled Headers
+    \nextpage qmake Reference
 
     \title Configuring qmake's Environment
 
@@ -3583,7 +3622,7 @@
 
     In the above line, \c USE_MY_STUFF will only be added to the list of pre-processor
     defines if it is not already defined. Note that the
-    \l{qmake Function Reference#unique}{unique()}
+    \l{unique}{unique()}
     function can also be used to ensure that a variables only contains one
     instance of each value.
 
@@ -3906,7 +3945,7 @@
     \title Using Precompiled Headers
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Advanced Usage
-    \nextpage qmake Reference
+    \nextpage Configuring qmake's Environment
 
     \target Introduction
 
