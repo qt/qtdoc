@@ -6,15 +6,15 @@ include(qt-defines.qdocconf)
 
 project                 = QMake
 description             = QMake Manual
-url                     = http://qt.nokia.com/doc/4.8
+url                     = http://qt-project.org/doc/qtcore
 
 indexes                 = $QT_BUILD_TREE/doc-build/html-qt/qt.index
 
 qhp.projects            = qmake
 
 qhp.qmake.file                = qmake.qhp
-qhp.qmake.namespace           = com.trolltech.qmake.480
-qhp.qmake.virtualFolder       = qdoc
+qhp.qmake.namespace           = org.qt-project.qmake.500
+qhp.qmake.virtualFolder       = qmake
 qhp.qmake.indexTitle          = QMake Manual
 qhp.qmake.extraFiles          = images/bg_l.png \
                              images/bg_l_blank.png \
@@ -50,7 +50,7 @@ qhp.qmake.extraFiles          = images/bg_l.png \
                              style/style_ie8.css \
                              style/style.css
 
-qhp.qmake.filterAttributes    = qt 5.0.0 tools qmake
+qhp.qmake.filterAttributes    = qt 5.0.1 tools qmake
 qhp.qmake.customFilters.qmake.name = qmake Manual
 qhp.qmake.customFilters.qmake.filterAttributes = qt tools qmake
 qhp.qmake.subprojects         = manual

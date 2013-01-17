@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -52,23 +52,29 @@
     of the \l{Qt Platform Abstraction}.
 
     The following sections summarize some of the key features that Qt 5 brings
-    to the table. Please refer to \l{Qt Quick Release Notes} for details about
-    the new features.
+    to the table.
 
     \section1 Amazing Graphics Capability and Performance
 
-    Improved graphical effects are an achievable target now with Qt 5 even on
-    the constrained hardware environments of mobile and embedded devices.
-    Qt 5 uses OpenGL ES for impressive graphics features and better 2D and 3D
-    animations. The new version of Qt Quick complements the OpenGL ES scene
-    graph backend, which makes the animations look more appealing and smoother
-    than before.
+    Qt 5 uses an OpenGL based scene graph to accelerate the graphics
+    of Qt Quick, making it possible to do visually appealing user
+    interfaces with animations, impressive graphical effects and
+    particle systems, even on the constrained hardware environments of
+    mobile and embedded devices.
+
+    \table
+    \header
+      \li \l ShaderEffect on an \l Image
+    \row
+      \li \image qt5_shadereffect.jpg
+    \row
+    \endtable
 
     The benefits of this architectural change in the rendering engine is well
     demonstrated by the following projects:
     \list
     \li \l{Livecoding video effects with Qt5} - The Big Buck Bunny you
-        never saw before. Video effects created using Qt Quick 2.0.
+        never saw before. Video effects created using Qt Quick.
     \li \l{Pimp my video} - Video effects implemented using the shader language
         with QML.
     \li \l{QtMediaHub} - The power and convenience of Qt Quick.
@@ -76,25 +82,128 @@
         Raspberry PI.
     \endlist
 
+
+
     \section1 Qt Quick in Qt 5
 
-    Qt Quick provides the necessary infrastructure to develop QML applications.
-    The latest version (v2.0) of this technology also introduces a set of new
-    C++ classes as a replacement for the QDeclarative* equivalents in Qt
-    Quick 1. New features in Qt Quick include:
+    \l {Qt Quick} provides the necessary infrastructure to develop QML
+    applications. The latest version (v2.0) of this technology also
+    introduces a set of new C++ classes as a replacement for the
+    QDeclarative* equivalents in Qt Quick 1. New features in Qt Quick
+    include:
     \list
-    \li Canvas for drawing. Canvas provides an API similar to the HTML5 Canvas API,
-    along with some additional features.
-    \li Shader Effects which enable GLSL shader programs to be integrated
-    directly into QML code and applied to QML items and images.
-    \li Particle Effects for creating a variety of 2D particle systems.
-    \li Sprites can be used in animatin 2D graphical objects and as a source
+    \li \l Canvas for drawing. Canvas provides an API that is similar to
+        the HTML5 Canvas API, along with some additional features.
+    \li \l {ShaderEffect} {Shader Effects} which enable GLSL shader programs to be
+        integrated directly into QML code and applied to items and
+        images.
+    \li \l {Using the Qt Quick Particle System}{Particle Effects} for creating a variety of 2D particle systems.
+    \li \l {Sprite Animations}{Sprites} can be used in animating 2D graphical objects and as a source
     for particle systems.
-    \li Offline Storage is a HTML5 Web Database API conformant JavaScript API
+    \li \l {Qt Quick Local Storage QML Types}{Offline storage} is a HTML5 Web Database API conformant JavaScript API
     for storing data in Qt Quick applications.
-    \li Window provides a top-level window and the Screen type for accessing a
-    screen's resolution and other details. These come in especially handy when
-    creating desktop applications with Qt Quick.
+
+    \li \l {Qt Quick Window QML Types}{Window} provides a
+    top-level window and the Screen type for accessing a screen's
+    resolution and other details. This is useful for desktop
+    applications developed using Qt Quick.
+
+    \li \l {Qt Quick Scene Graph} {New rendering architecture} based on OpenGL for optimal performance.
+    \endlist
+
+    \table
+    \header
+      \li Qt Quick's \l {Using the Qt Quick Particle System}{Particle System}
+    \row
+      \li \image qt5_particles.jpg
+    \row
+    \endtable
+
+    The \l {qtgraphicaleffects-index.html}{Qt Graphical Effects} module provides a number of
+    ready-made effects for use in Qt Quick applications, including
+    soft drop shadow, blur, glow and colorize.
+
+    \table
+    \header
+      \li Excerpts from the Qt Graphical Effects module.
+    \row
+      \li \image qt5_graphicaleffects.jpg
+    \row
+    \endtable
+
+
+
+    \section1 WebKit and HTML5
+
+    \l {Qt WebKit} is a web content rendering engine based on the open
+    source WebKit project featuring broad support for standard web
+    technologies. The Qt WebKit module provides integration with both
+    Qt Quick and traditional widgets. The module brings the latest in
+    HTML5 advancements to Qt 5, including CSS filters and animations
+    and Video, Canvas and WebGL, Canvas support and HTML video.
+
+
+
+    \section1 Multimedia
+
+    \l {Qt Multimedia} provides a rich set of QML types and C++ classes to
+    handle multimedia content. It also provides necessary APIs to
+    access the camera and radio functionality. Qt 5 brings the Qt
+    Multimedia module into the set of essential modules with support
+    on all major platforms.
+
+    \table
+    \header
+      \li \l Video embedded into a Qt Quick application with a displacement effect
+    \row
+      \li \image qt5_video.jpg
+    \endtable
+
+
+
+    \section1 Modularized Qt Libraries
+
+    Qt 5 splits the Qt libraries into domain specific libraries and
+    modules. This means that an application can choose which libraries
+    it requires and only compile, use and deploy those.
+
+    For a complete list of modules and libraries, see \l {All
+    Modules}{all Qt modules}.
+
+    \section2 Widgets in Qt 5
+
+    The \l {Qt Widgets} have been separated into their own module in Qt 5,
+    the Qt Widgets module. It is part of the essential modules.
+
+    \table
+    \header
+      \li Screenshots of widget based applications running Qt 5.
+    \row
+      \li \image qt5_widgets.jpg
+    \endtable
+
+
+
+    \section1 Qt Platform Abstraction
+
+    The windowing system dependent parts of Qt have been completely
+    rewritten for Qt 5, based on the Qt Platform Abstraction, a plugin
+    architecture which allows Qt to dynamically load a windowing
+    system integration based on what system it is running on. This
+    gives several benefits:
+
+    \list
+
+      \li Centralize the windowing system integration codebase into
+      classes shared for all platforms.
+
+      \li Simplify the work required when porting Qt to new platforms.
+
+      \li Remove the windowing system dependency from Qt, making it
+      possible to have the same Qt binaries run against multiple
+      windowing systems. For instance, the Qt Linux binaries can run
+      against both X11 and Wayland.
+
     \endlist
 
     \section1 New Connection Syntax
@@ -133,7 +242,7 @@
     SSL certificates. This means developers can now:
     \list
       \li bind a TCP socket to an IP address before connecting,
-      \li verify an SSL certificate chain programmatically,
+      \li verify an SSL certificate chain,
       \li and access legacy systems.
     \endlist
 
@@ -158,26 +267,20 @@
 
     \section1 User Input
 
-    The Qt 5 applications can now handle multi-point touch input using QML.
-    This means, applications can gather all information about the touch points,
-    including the touch position, pressure, and velocity.
+    Qt 4 already had support for handling multi-point touch input in
+    C++.  Qt 5 extends this support to include Qt Quick, covering all
+    the information about the touch points, including the touch
+    position, pressure, and velocity.
 
-    The mouse event handling in Qt 5 is little different from it's predecessor.
-    Applications have more control to handle mouse events using QML. The
-    mouse area in a QML document can propagate the mouse wheel and click
-    events and also ignore propagated events.
+    The mouse event handling in Qt 5 has been improved from its
+    predecessor. Applications have more control to handle mouse
+    events in Qt Quick. The mouse area in a QML document can propagate
+    the mouse wheel and click events and also ignore propagated
+    events.
 
-    Besides this, all Qt applications can now receive button events from more
-    mouse buttons:
-    \list
-      \li 27 mouse buttons on X11.
-      \li 16 mouse buttons on Wayland and Mac OS X.
-    \endlist
-
-    This comes in handy for gaming applications developed using Qt.
-
-    \note: Qt on Windows continues to support only 5 mouse buttons due to the
-    Windows platform limitation.
+    Besides this, Qt 5 adds support for more mouse buttons on
+    platforms where this is supported. This comes in handy for gaming
+    applications developed using Qt.
 
    \section1 Related Topics
    \list

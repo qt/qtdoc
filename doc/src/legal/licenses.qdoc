@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -66,8 +66,6 @@
 
     The documents below list related documents, such as information about Trademark and other
     licenses used in parts of Qt.
-
-    \generatelist{related}
 */
 
 
@@ -96,37 +94,7 @@
 
     \generatelist legalese
 
-    \hr
-
-    Copyright (C) 2000-2004, International Business Machines\br
-    Corporation and others. All Rights Reserved.\br
-    Copyright (C) 2007 Apple Inc. All rights reserved.
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this
-    software and associated documentation files (the "Software"), to deal in the Software
-    without restriction, including without limitation the rights to use, copy, modify,
-    merge, publish, distribute, and/or sell copies of the Software, and to permit persons
-    to whom the Software is furnished to do so, provided that the above copyright notice(s)
-    and this permission notice appear in all copies of the Software and that both the above
-    copyright notice(s) and this permission notice appear in supporting documentation.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-    PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER
-    OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR
-    CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
-    PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
-    OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-    Except as contained in this notice, the name of a copyright holder shall not be used in
-    advertising or otherwise to promote the sale, use or other dealings in this Software
-    without prior written authorization of the copyright holder.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
+    \section1 QCrashHandler class
 
     Copyright (c) 1998 by Bjorn Reese <breese@imada.ou.dk>
 
@@ -143,7 +111,7 @@
     \li Parts of the QCrashHandler class
     \endlist
 
-    \hr
+    \section1 FreeType
 
     Parts of the FreeType projects have been modified and put into Qt
     for use in the painting subsystem. These files are ftraster.h,
@@ -166,10 +134,10 @@
     \li Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
     \endlist
 
-    See \c src/3rdparty/freetype/docs/FTL.txt and \c
-    src/3rdparty/freetype/docs/GPL.txt for license details.
+    See \c qtbase/src/3rdparty/freetype/docs/FTL.txt and \c
+    qtbase/src/3rdparty/freetype/docs/GPL.txt for license details.
 
-    \hr
+    \section1 Q3PolygonScanner class used in Qt for Embedded Linux
 
     Copyright (c) 1985, 1986, 1987  X Consortium
 
@@ -227,7 +195,7 @@
     \li Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
     \endlist
 
-    \hr
+    \section1 QKeyMapper class on X11 platforms
 
     Copyright 1985, 1987, 1998  The Open Group
 
@@ -255,7 +223,7 @@
     \li Parts of the internal QKeyMapper class on X11 platforms
     \endlist
 
-    \hr
+    \section1 pnmscale.c
 
     pnmscale.c - read a portable anymap and scale it
 
@@ -273,25 +241,7 @@
     based on pnmscale.c by Jef Poskanzer.
     \endlist
 
-    \hr
-
-    jQuery JavaScript Library v1.3.2
-    http://jquery.com/
-
-    Copyright (c) 2009 John Resig
-    Dual licensed under the MIT and GPL licenses.
-    http://docs.jquery.com/License
-
-    Sizzle CSS Selector Engine - v0.9.3
-    Copyright 2009, The Dojo Foundation
-    Released under the MIT, BSD, and GPL Licenses.
-    More information: http://sizzlejs.com/
-
-    \list
-    \li examples/webkit/fancybrowser/jquery.min.js
-    \endlist
-
-    \hr
+    \section1 qurl.cpp
 
     Copyright (C) Research In Motion Limited 2009. All rights reserved.
 
@@ -318,10 +268,248 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \li src/corelib/io/qurl.cpp
+    \li qtbase/src/corelib/io/qurl.cpp
+    \endlist
+
+    \section1 Parts of the codecs implemented by Qt
+
+    Copyright (C) 1999 Serika Kurusugawa, All rights reserved.\br
+    Copyright (C) 1999-2000 Mizi Research Inc. All rights reserved.\br
+    Copyright (C) 2004, 2005 Daniel M. Duley\br
+    Copyright (C) 2000  Ming-Che Chuang\br
+    Copyright (C) 2001, 2002  James Su, Turbolinux Inc.\br
+    Copyright (C) 2002  WU Yi, HancomLinux Inc.\br
+    Copyright (C) 2001, 2002  Anthony Fok, ThizLinux Laboratory Ltd.\br
+    Copyright (c) 2000 Hans Petter Bieker.  All rights reserved.\br
+    Copyright (C) 2001, 2002 ThizLinux Laboratory Ltd.\br
+    Copyright (C) 2001, 2002 Turbolinux, Inc.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+    \list
+    \li Parts of the codecs implemented by Qt
+    \endlist
+
+    \section1 Testlib
+
+    This file is part of Valgrind, a dynamic binary instrumentation
+    framework.
+
+    Copyright (C) 2000-2007 Julian Seward.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. The origin of this software must not be misrepresented; you must
+       not claim that you wrote the original software.  If you use this
+       software in a product, an acknowledgment in the product
+       documentation would be appreciated but is not required.
+
+    3. Altered source versions must be plainly marked as such, and must
+       not be misrepresented as being the original software.
+
+    4. The name of the author may not be used to endorse or promote
+       products derived from this software without specific prior written
+       permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li valgrind_p.h in qtbase/src/testlib/3rdparty
     \endlist
 
     \hr
+
+    Copyright (c) 2003, 2006 Matteo Frigo
+    Copyright (c) 2003, 2006 Massachusetts Institute of Technology
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    \list
+    \li cycle_p.h in qtbase/src/testlib/3rdparty
+    \endlist
+
+    \hr
+
+    This file is part of callgrind, a valgrind tool for cache simulation
+    and call tree tracing.
+
+    Copyright (C) 2003-2007 Josef Weidendorfer.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. The origin of this software must not be misrepresented; you must
+       not claim that you wrote the original software.  If you use this
+       software in a product, an acknowledgment in the product
+       documentation would be appreciated but is not required.
+
+    3. Altered source versions must be plainly marked as such, and must
+       not be misrepresented as being the original software.
+
+    4. The name of the author may not be used to endorse or promote
+       products derived from this software without specific prior written
+       permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li callgrind_p.h in qtbase/src/testlib/3rdparty
+    \endlist
+
+    \section1 ANGLE
+
+    Copyright (C) 2002-2010 The ANGLE Project Authors.
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+        Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+
+        Redistributions in binary form must reproduce the above
+        copyright notice, this list of conditions and the following
+        disclaimer in the documentation and/or other materials provided
+        with the distribution.
+
+        Neither the name of TransGaming Inc., Google Inc., 3DLabs Inc.
+        Ltd., nor the names of their contributors may be used to endorse
+        or promote products derived from this software without specific
+        prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li ANGLE library in qtbase/src/testlib/3rdparty/angle
+    \endlist
+
+    \hr
+
+    Copyright (c) 2002, NVIDIA Corporation.
+
+    NVIDIA Corporation("NVIDIA") supplies this software to you in
+    consideration of your agreement to the following terms, and your use,
+    installation, modification or redistribution of this NVIDIA software
+    constitutes acceptance of these terms.  If you do not agree with these
+    terms, please do not use, install, modify or redistribute this NVIDIA
+    software.
+
+    In consideration of your agreement to abide by the following terms, and
+    subject to these terms, NVIDIA grants you a personal, non-exclusive
+    license, under NVIDIA's copyrights in this original NVIDIA software (the
+    "NVIDIA Software"), to use, reproduce, modify and redistribute the
+    NVIDIA Software, with or without modifications, in source and/or binary
+    forms; provided that if you redistribute the NVIDIA Software, you must
+    retain the copyright notice of NVIDIA, this notice and the following
+    text and disclaimers in all such redistributions of the NVIDIA Software.
+    Neither the name, trademarks, service marks nor logos of NVIDIA
+    Corporation may be used to endorse or promote products derived from the
+    NVIDIA Software without specific prior written permission from NVIDIA.
+    Except as expressly stated in this notice, no other rights or licenses
+    express or implied, are granted by NVIDIA herein, including but not
+    limited to any patent rights that may be infringed by your derivative
+    works or by other works in which the NVIDIA Software may be
+    incorporated. No hardware is licensed hereunder.
+
+    THE NVIDIA SOFTWARE IS BEING PROVIDED ON AN "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+    INCLUDING WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF TITLE,
+    NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+    ITS USE AND OPERATION EITHER ALONE OR IN COMBINATION WITH OTHER
+    PRODUCTS.
+
+    IN NO EVENT SHALL NVIDIA BE LIABLE FOR ANY SPECIAL, INDIRECT,
+    INCIDENTAL, EXEMPLARY, CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, LOST PROFITS; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+    USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) OR ARISING IN ANY WAY
+    OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE
+    NVIDIA SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT,
+    TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF
+    NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li ANGLE preprosessor in qtbase/src/testlib/3rdparty/angle/src/compiler/preprocessor
+    \endlist
+
+    \section1 WebKit used by the QtWebKit module
 
     Copyright (c) 2007-2008, Apple, Inc.\br
     Copyright (C) 2008 Cameron Zwarich <cwzwarich@uwaterloo.ca>\br
@@ -370,79 +558,32 @@
 
     \hr
 
-    Copyright (C) 1999 Serika Kurusugawa, All rights reserved.\br
-    Copyright (C) 1999-2000 Mizi Research Inc. All rights reserved.\br
-    Copyright (C) 2004, 2005 Daniel M. Duley\br
-    Copyright (C) 2000  Ming-Che Chuang\br
-    Copyright (C) 2001, 2002  James Su, Turbolinux Inc.\br
-    Copyright (C) 2002  WU Yi, HancomLinux Inc.\br
-    Copyright (C) 2001, 2002  Anthony Fok, ThizLinux Laboratory Ltd.\br
-    Copyright (c) 2000 Hans Petter Bieker.  All rights reserved.\br
-    Copyright (C) 2001, 2002 ThizLinux Laboratory Ltd.\br
-    Copyright (C) 2001, 2002 Turbolinux, Inc.
+    Copyright (C) 2000-2004, International Business Machines\br
+    Corporation and others. All Rights Reserved.\br
+    Copyright (C) 2007 Apple Inc. All rights reserved.
 
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this
+    software and associated documentation files (the "Software"), to deal in the Software
+    without restriction, including without limitation the rights to use, copy, modify,
+    merge, publish, distribute, and/or sell copies of the Software, and to permit persons
+    to whom the Software is furnished to do so, provided that the above copyright notice(s)
+    and this permission notice appear in all copies of the Software and that both the above
+    copyright notice(s) and this permission notice appear in supporting documentation.
 
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+    PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+    OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR
+    CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+    PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+    OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-    SUCH DAMAGE.
+    Except as contained in this notice, the name of a copyright holder shall not be used in
+    advertising or otherwise to promote the sale, use or other dealings in this Software
+    without prior written authorization of the copyright holder.
 
     \list
-    \li Parts of the codecs implemented by Qt
-    \endlist
-
-    \hr
-
-    Copyright (c) 1992, 1993\br
-    The Regents of the University of California.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-    3. All advertising materials mentioning features or use of this software
-       must display the following acknowledgment:
-           This product includes software developed by the University of
-           California, Berkeley and its contributors.
-    4. Neither the name of the University nor the names of its contributors
-       may be used to endorse or promote products derived from this software
-       without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-    SUCH DAMAGE.
-
-    \list
-    \li src/corelib/tools/qlocale.cpp
+    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \hr
@@ -580,39 +721,6 @@
 
     \hr
 
-    Copyright (C) 2002 Michael Ringgaard. All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.\br
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.\br
-    3. Neither the name of the project nor the names of its contributors
-       may be used to endorse or promote products derived from this software
-       without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
-    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-    SUCH DAMAGE.
-
-    \list
-    \li src/3rdparty/ce-compat/ce_time.c
-    \endlist
-
-    \hr
-
     Copyright (c) 1997-2005 University of Cambridge. All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -720,7 +828,7 @@
     \li Parts of WebKit used by the QtWebKit module
     \endlist
 
-    \hr
+    \section1 Unicode
 
     Copyright (c) 1991-2009 Unicode, Inc. All rights reserved.
     Distributed under the Terms of Use in
@@ -767,7 +875,7 @@
     \li Parts of the \l makeqpf tool
     \endlist
 
-    \hr
+    \section1 Macros for building Qt files
 
     Copyright 2005-2011 Kitware, Inc.
     All rights reserved.
@@ -807,13 +915,62 @@
     \li qttools/src/linguist/Qt5LinguistToolsMacros.cmake
     \endlist
 
+    \section1 The PCRE library
+
+    Copyright (c) 1997-2012 University of Cambridge\br
+    All rights reserved.
+
+    Copyright(c) 2009-2012 Zoltan Herczeg\br
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+        * Redistributions of source code must retain the above copyright notice,
+          this list of conditions and the following disclaimer.
+
+        * Redistributions in binary form must reproduce the above copyright
+          notice, this list of conditions and the following disclaimer in the
+          documentation and/or other materials provided with the distribution.
+
+        * Neither the name of the University of Cambridge nor the name of Google
+          Inc. nor the names of their contributors may be used to endorse or
+          promote products derived from this software without specific prior
+          written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+
+    \list
+    \li The PCRE library in \c{qtbase/src/3rdparty/pcre}
+    \endlist
+
+    \section1 DES (\c des.cpp)
+
+    \e{Implementation of DES encryption for NTLM\br
+    Copyright 1997-2005 Simon Tatham.\br
+    This software is released under the MIT license.}
+
+    See \c qtbase/src/3rdparty/des/des.cpp for more information about the terms and
+    conditions under which the code is supplied.
+
+    \hr
+    \b Licenses that apply to tests.
     \hr
 
-    \b Licenses that apply to tests.
     The following licenses apply to some tests.
     These are not by default shipped with Qt but part of the tests directory of a source checkout.
 
-    \hr
+    \section1 V8 benchmark tests
 
     Copyright 2000 World Wide Web Consortium, (Massachusetts
     Institute of Technology, Institut National de Recherche en
@@ -840,7 +997,7 @@
     \li \c{tests/benchmarks/script/v8/tests/richards.js}
     \endlist
 
-    \hr
+    \section1 Sunspider benchmark tests
 
     Copyright (C) 2007 Apple Inc.  All rights reserved.
 
@@ -902,7 +1059,7 @@
     \li \c{benchmarks/script/sunspider/tests/math-cordic.js}
     \endlist
 
-    \hr
+    \section1 Part of the Arthur tests
 
     W3C SOFTWARE NOTICE AND LICENSE
 
@@ -960,54 +1117,6 @@
     \li Included in \c{tests/arthur/data/1.1 svg files}
     \li Part of the Arthur tests
     \endlist
-
-    \hr
-
-    Copyright (c) 1997-2012 University of Cambridge\br
-    All rights reserved.
-
-    Copyright(c) 2009-2012 Zoltan Herczeg\br
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright notice,
-          this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce the above copyright
-          notice, this list of conditions and the following disclaimer in the
-          documentation and/or other materials provided with the distribution.
-
-        * Neither the name of the University of Cambridge nor the name of Google
-          Inc. nor the names of their contributors may be used to endorse or
-          promote products derived from this software without specific prior
-          written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li The PCRE library in \c{src/3rdparty/pcre}
-    \endlist
-
-    \section1 DES (\c des.cpp)
-
-    \e{Implementation of DES encryption for NTLM\br
-    Copyright 1997-2005 Simon Tatham.\br
-    This software is released under the MIT license.}
-
-    See \c src/3rdparty/des/des.cpp for more information about the terms and
-    conditions under which the code is supplied.
 
 */
 

@@ -6,7 +6,7 @@ INSTALLS += target sources
 
 QT += widgets xml network
 
-contains(QT_CONFIG, opengl) {
+qtHaveModule(opengl) {
     DEFINES += QT_OPENGL_SUPPORT
     QT += opengl
 }
@@ -70,8 +70,6 @@ mac {
 ICON = qtdemo.icns
 QMAKE_INFO_PLIST = Info_mac.plist
 }
-
-symbian: CONFIG += qt_demo
 
 # install
 target.path = $$[QT_INSTALL_BINS]

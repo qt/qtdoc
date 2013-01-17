@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -98,8 +98,7 @@
             \li \l{external: Qt Creator Manual}{Qt Creator}
         \row
             \li Creating other kind of applications with Qt Creator
-            \li \l{external: Tutorials for Creator}
-                {Qt Creator Tutorials}
+            \li \l{external: Tutorials for Creator}{Qt Creator Tutorials}
     \endtable
 
 
@@ -453,7 +452,7 @@
 
     The static \l{QFileDialog::}{getOpenFileName()} function
     displays a modal file dialog. It returns the file path of the file
-    selected, or an empty string if the user canceled the dialog. 
+    selected, or an empty string if the user canceled the dialog.
 
     If we have a file name, we try to open the file with
     \l{QIODevice::}{open()}, which returns true if the file could be
@@ -483,7 +482,7 @@
 
     \section2 Saving Files
 
-    Now, let us move on to the the \c{on_actionSave_triggered()} slot, which
+    Now, let us move on to the \c{on_actionSave_triggered()} slot, which
     also uses QFileDialog to create a dialog in which the user can save a
     file with the specified name in the specified location.
 
@@ -541,4 +540,3 @@
     The \c make tool (or the \c nmake tool) then reads the \c Makefile and produces the executable
     binary.
 */
-

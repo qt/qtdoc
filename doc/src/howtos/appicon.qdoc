@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -199,13 +199,4 @@
     installed in the appropriate locations for GNOME.
 
     The GNOME developer website is at \l{http://developer.gnome.org/}.
-    
-    Once the icon is available in the correct format and assuming you are
-    using \c qmake to generate your makefiles, you only need to add a single
-    line to your \c .pro project file. For example, if the name of your
-    icon file is \c{myapp.svg}, and your project file is \c{myapp.pro},
-    add this line to \c{myapp.pro}:
-
-    \snippet doc/src/snippets/code/doc_src_appicon.pro 5
-    
 */

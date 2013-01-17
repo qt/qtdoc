@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -115,7 +115,7 @@
     \li \l{qmake Tutorial}{qmake} - This tutorial teaches you how to use \c
     qmake. We recommend that you read the \l{qmake Manual}{qmake user guide}
     after completing this tutorial.
-    \li \l{Qt Linguist Manual: Programmers#Tutorials}{Qt Linguist} - A guided
+    \li \l{Qt Linguist Manual: Developers#Tutorials}{Qt Linguist} - A guided
     tour through the translations process, explaining the tools provided for
     developers, translators and release managers.
     \omit broken links
@@ -146,62 +146,6 @@
    \group all-examples
    \title List of Qt Examples
    \brief Alphabetical listing of Qt Examples
-*/
-
-/*!
-    \page examples-dialogs.html
-    \ingroup all-examples
-    \title Dialog Examples
-    \brief Using Qt's standard dialogs and building and using custom dialogs.
-
-    \image dialog-examples.png
-
-    Qt includes standard dialogs for many common operations, such as file
-    selection, printing, and color selection.
-
-    Custom dialogs can also be created for specialized modal or modeless
-    interactions with users.
-
-    \list
-    \li \l{dialogs/classwizard}{Class Wizard}\raisedaster
-    \li \l{dialogs/configdialog}{Config Dialog}
-    \li \l{dialogs/extension}{Extension}\raisedaster
-    \li \l{dialogs/findfiles}{Find Files}\raisedaster
-    \li \l{dialogs/licensewizard}{License Wizard}\raisedaster
-    \li \l{dialogs/standarddialogs}{Standard Dialogs}
-    \li \l{dialogs/tabdialog}{Tab Dialog}\raisedaster
-    \li \l{dialogs/trivialwizard}{Trivial Wizard}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
-    \page examples-mainwindow.html
-    \ingroup all-examples
-    \title Main Window Examples
-    \brief Building applications around a main window.
-
-    \image mainwindow-examples.png
-
-    All the standard features of application main windows are provided by Qt.
-
-    Main windows can have pull down menus, tool bars, and dock windows. These
-    separate forms of user input are unified in an integrated action system that
-    also supports keyboard shortcuts and accelerator keys in menu items.
-
-    \list
-    \li \l{mainwindows/application}{Application}\raisedaster
-    \li \l{mainwindows/dockwidgets}{Dock Widgets}\raisedaster
-    \li \l{mainwindows/macmainwindow}{Mac Main Window}
-    \li \l{mainwindows/mainwindow}{Main Window}
-    \li \l{mainwindows/mdi}{MDI}
-    \li \l{mainwindows/menus}{Menus}\raisedaster
-    \li \l{mainwindows/recentfiles}{Recent Files}
-    \li \l{mainwindows/sdi}{SDI}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
@@ -268,58 +212,6 @@
 */
 
 /*!
-    \page examples-graphicsview.html
-    \ingroup all-examples
-    \title Graphics View Examples
-    \brief Using Qt to manage and interact with a large (potentially) number of graphics items.
-
-    \image graphicsview-examples.png
-
-    Qt is provided with a comprehensive canvas through the GraphicsView
-    classes.
-
-    These examples demonstrate the fundamental aspects of canvas programming
-    with Qt.
-
-    \list
-    \li \l{graphicsview/chip}{40000 Chips}
-    \li \l{graphicsview/boxes}{Boxes}
-    \li \l{graphicsview/collidingmice}{Colliding Mice}\raisedaster
-    \li \l{graphicsview/diagramscene}{Diagram Scene}\raisedaster
-    \li \l{graphicsview/dragdroprobot}{Drag and Drop Robot}\raisedaster
-    \li \l{graphicsview/elasticnodes}{Elastic Nodes}\raisedaster
-    \li \l{graphicsview/padnavigator}{Pad Navigator}\raisedaster
-    \li \l{graphicsview/portedasteroids}{Ported Asteroids}
-    \li \l{graphicsview/portedcanvas}{Ported Canvas}
-    \endlist
-
-    These examples show the use of graphics widgets and layouts.
-
-    \list
-    \li \l{graphicsview/anchorlayout}{Anchor Layout}
-    \li \l{graphicsview/flowlayout}{Flow Layout}
-    \li \l{graphicsview/simpleanchorlayout}{Simple Anchor Layout}
-    \li \l{graphicsview/weatheranchorlayout}{Weather Anchor Layout}
-    \li \l{graphicsview/basicgraphicslayouts}{Basic Graphics Layouts}
-    \li \l{graphicsview/embeddeddialogs}{Embedded Dialogs}
-    \endlist
-
-    Some examples demonstrate the use of graphics effects with canvas items.
-
-    \list
-    \li \l{effects/blurpicker}{Blur Picker Effect}
-    \li \l{effects/fademessage}{Fade Message Effect}
-    \li \l{effects/lighting}{Lighting Effect}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-
-
-
-
-/*!
     \page examples-draganddrop.html
     \ingroup all-examples
     \title Drag and Drop Examples
@@ -347,7 +239,6 @@
 //    \li \l{draganddrop/delayedencoding}{Delayed Encoding}\raisedaster
 
 
-
 /*!
     \page examples-threadandconcurrent.html
     \ingroup all-examples
@@ -358,20 +249,25 @@
 
     Qt makes it easy to write multithreaded applications. Signals and slots can be used
     to safely communicate between threads in your application.
-
+    \omit
+    ###Add this explicit list back if the \annotatedlist fails
     \list
     \li \l{threads/queuedcustomtype}{Queued Custom Type}\raisedaster
     \li \l{threads/mandelbrot}{Mandelbrot}\raisedaster
     \li \l{threads/semaphores}{Semaphores}\raisedaster
     \li \l{threads/waitconditions}{Wait Conditions}\raisedaster
     \endlist
+    \endomit
+
+    \annotatedlist qtconcurrent-mtexamples
 
     The QtConcurrent namespace includes a collection of classes and functions
     for straightforward concurrent programming.
 
     These examples show how to apply the basic techniques of concurrent
     programming to simple problems.
-
+    \omit
+    ###Add this explicit list back if the \annotatedlist fails
     \list
     \li \l{qtconcurrent/imagescaling}{QtConcurrent Asynchronous Image Scaling}
     \li \l{qtconcurrent/map}{QtConcurrent Map}
@@ -379,6 +275,9 @@
     \li \l{qtconcurrent/runfunction}{QtConcurrent Run Function}
     \li \l{qtconcurrent/wordcount}{QtConcurrent Word Count}
     \endlist
+    \endomit
+
+    \annotatedlist qtconcurrentexamples
 
     Examples marked with an asterisk (*) are fully documented.
 */
@@ -400,45 +299,6 @@
 */
 
 /*!
-    \page examples-network.html
-    \ingroup all-examples
-    \title Network Examples
-    \brief How to do network programming in Qt.
-
-    \image network-examples.png
-
-    Qt is provided with an extensive set of network classes to support both
-    client-based and server side network programming.
-
-    These examples demonstrate the fundamental aspects of network programming
-    with Qt.
-
-    \list
-    \li  \l{network/blockingfortuneclient}{Blocking Fortune Client}\raisedaster
-    \li  \l{network/broadcastreceiver}{Broadcast Receiver}
-    \li  \l{network/broadcastsender}{Broadcast Sender}
-    \li  \l{network/download}{Download}
-    \li  \l{network/downloadmanager}{Download Manager}
-    \li  \l{network/network-chat}{Network Chat}
-    \li  \l{network/fortuneclient}{Fortune Client}\raisedaster
-    \li  \l{network/fortuneserver}{Fortune Server}\raisedaster
-    \li  \l{network/qftp}{FTP}\raisedaster
-    \li  \l{network/http}{HTTP}
-    \li  \l{network/loopback}{Loopback}
-    \li  \l{network/threadedfortuneserver}{Threaded Fortune Server}\raisedaster
-    \li  \l{network/torrent}{Torrent}
-    \li  \l{network/googlesuggest}{Google Suggest}
-    \li  \l{network/bearercloud}{Bearer Cloud}\raisedaster
-    \li  \l{network/bearermonitor}{Bearer Monitor}
-    \li  \l{network/securesocketclient}{Secure Socket Client}
-    \li  \l{network/multicastreceiver}{Multicast Receiver}
-    \li  \l{network/multicastsender}{Multicast Sender}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
     \omit
     \group examples-ipc
     \ingroup all-examples
@@ -448,34 +308,6 @@
     \image ipc-examples.png
 
     \endomit
-*/
-
-
-/*!
-    \page examples-multimedia.html
-    \ingroup all-examples
-    \title Multimedia Examples
-    \brief Audio and Video with Qt.
-
-    \section1 Multimedia
-
-    Qt provides low-level audio support on Linux, Windows and Mac OS X by default and
-    an audio plugin API to allow developers to implement their own audio support for
-    custom devices and platforms.
-
-    \section1 Audio Handling
-
-    These examples demonstrate the basic techniques used to take advantage of the
-    Audio API in Qt applications.
-
-    \annotatedlist audio_examples
-
-    \section1 Video Output
-
-    \annotatedlist video_examples
-
-    Examples marked with an asterisk (*) are fully documented.
-
 */
 
 /*!
@@ -491,7 +323,8 @@
 
     SQL support is integrated with Qt's model/view architecture, making it easier
     to provide GUI integration for your database applications.
-
+    \omit
+    ###Add this list back if \annotatedlist fails
     \list
      \li \l {Cached Table Example}{Caches Table}
      \li \l {Drill Down Example}{Drill Down}
@@ -502,6 +335,9 @@
      \li \l {SQL Widget Mapper Example}{SQL Widget Mapper}
      \li \l {Table Model Example}{Table Model}
     \endlist
+    \endomit
+
+    \annotatedlist sql_examples
 
     Examples marked with an asterisk (*) are fully documented.
 */
@@ -512,6 +348,10 @@
     \ingroup all-examples
     \title XML Examples
     \brief Using XML with Qt.
+
+    XML parsing and handling is supported through SAX and DOM compliant APIs as well as streaming classes.
+
+    \annotatedlist xml-examples
 
     \image xml-examples.png XML
 
@@ -542,137 +382,9 @@
     \li \l{xmlpatterns/filetree}{File System Example}
     \li \l{xmlpatterns/qobjectxmlmodel}{QObject XML Model Example}
     \li \l{xmlpatterns/xquery/globalVariables}{C++ Source Code Analyzer Example}
-    \li \l{xmlpatterns/trafficinfo}{Traffic Info}\raisedaster
     \li \l{xmlpatterns/schema}{XML Schema Validation}\raisedaster
     \endlist
 
-*/
-
-/*!
-    \page examples-designer.html
-    \ingroup all-examples
-    \title Qt Designer Examples
-    \brief Using Qt Designer to build your UI.
-
-    \image designer-examples.png QtDesigner
-
-    Qt Designer is a capable graphical user interface designer that lets you
-    create and configure forms without writing code. GUIs created with
-    Qt Designer can be compiled into an application or created at run-time.
-
-    \list
-    \li \l{designer/arthurplugin}{Arthur Plugin}
-    \li \l{designer/calculatorbuilder}{Calculator Builder}\raisedaster
-    \li \l{designer/calculatorform}{Calculator Form}\raisedaster
-    \li \l{designer/customwidgetplugin}{Custom Widget Plugin}\raisedaster
-    \li \l{designer/taskmenuextension}{Task Menu Extension}\raisedaster
-    \li \l{designer/containerextension}{Container Extension}\raisedaster
-    \li \l{designer/worldtimeclockbuilder}{World Time Clock Builder}\raisedaster
-    \li \l{designer/worldtimeclockplugin}{World Time Clock Plugin}\raisedaster
-    \endlist
-*/
-
-/*!
-    \page examples-uitools.html
-    \title UiTools Examples
-    \brief Using the QtUiTools module.
-
-    \image uitools-examples.png UiTools
-
-    \list
-    \li \l{uitools/multipleinheritance}{Multiple Inheritance}\raisedaster
-    \li \l{uitools/textfinder}{Text Finder}\raisedaster
-    \endlist
-*/
-
-/*!
-    \page examples-linguist.html
-    \ingroup all-examples
-    \ingroup internationalization
-    \title Qt Linguist Examples
-    \brief Using Qt Linguist to internationalize your Qt application.
-
-    \image linguist-examples.png
-
-    Internationalization is a core feature of Qt. These examples show how to
-    access translation and localization facilities at run-time.
-
-    \list
-    \li \l{linguist/hellotr}{Hello tr()}\raisedaster
-    \li \l{linguist/arrowpad}{Arrow Pad}\raisedaster
-    \li \l{linguist/trollprint}{Troll Print}\raisedaster
-    \endlist
-*/
-
-/*!
-    \page examples-webkit.html
-    \ingroup all-examples
-    \title WebKit Examples
-    \brief Using WebKit in your Qt application.
-
-    \image webkit-examples.png WebKit
-
-    Qt provides an integrated Web browser component based on WebKit, the popular
-    open source browser engine.
-
-    These examples and demonstrations show a range of different uses for WebKit,
-    from displaying Web pages within a Qt user interface to an implementation of
-    a basic function Web browser.
-
-    \table
-    \header \li Example \li Description
-    \row \li \l{webkit/domtraversal}{DOM Traversal}\raisedaster
-    \li Shows how to use QWebElement to inspect the document structure of a Web page.
-    \row \li \l{webkit/browser}{Tab Browser}
-    \li A browser example, showing a browser with support for tabs.
-    \row \li \l{webkit/fancybrowser}{Fancy Browser}
-    \li A browser example, showing the use of jQuery to perform effects.
-    \row \li \l{webkit/formextractor}{Form Extractor}
-    \li How to use JavaScript and C++ together to read page content.
-    \row \li \l{webkit/framecapture}{Frame Capture}
-    \li How to use the WebKit browser engine to obtain images of Web pages.
-    \row \li \l{webkit/googlechat}{Google Chat}
-    \li A real-world example that shows how an existing Web-based service can be accessed
-    using QtWebKit.
-    \row \li \l{webkit/imageanalyzer}{Image Analyzer}\raisedaster
-    \li A \l{The QtWebKit Bridge}{QtWebKit bridge} application which contains a
-    web interface and client-side processing.
-    \row \li \l{webkit/previewer}{Previewer}\raisedaster
-    \li Shows how to make a simple Web page previewer by using Qt's text input widgets
-    together with a QWebView widget.
-    \row \li \l{webkit/simpleselector}{Simple Selector}\raisedaster
-    \li A basic demonstration, showing how to use QWebElement to select elements in a
-    Web page.
-    \row \li \l{webkit/simplewebplugin}{Simple Web Plugin}\raisedaster
-    \li Shows how to embed a widget into a Web page displayed using a QWebView
-    widget.
-    \row \li \l{webkit/webftpclient}{Web FTP Client}\raisedaster
-    \li Shows how to add support for a new protocol to QtWebKit-based applications.
-    \row \li \l{webkit/webplugin}{Web Plugin}\raisedaster
-    \li Shows how to communicate with a widget embedded into a Web page.
-    \endtable
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
-    \page examples-helpsystem.html
-    \title Help System Examples
-    \brief Adding interactive help to your Qt application.
-
-    \image assistant-examples.png HelpSystem
-
-    Support for interactive help is provided by the Qt Assistant application.
-    Developers can take advantages of the facilities it offers to display
-    specially-prepared documentation to users of their applications.
-
-    \list
-    \li \l{help/simpletextviewer}{Simple Text Viewer}\raisedaster
-    \li \l{help/remotecontrol}{Remote Control}
-    \li \l{help/contextsensitivehelp}{Context-Sensitive Help}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
@@ -745,6 +457,7 @@
     \page examples-dbus.html
     \title D-Bus Examples
     \brief Using D-Bus from Qt applications.
+    \ingroup all-examples
 
     \list
     \li \l{dbus/dbus-chat}{Chat}
@@ -761,6 +474,7 @@
     \page examples-activeqt.html
     \title ActiveQt Examples
     \brief Using ActiveX from Qt applications.
+    \ingroup all-examples
 
     \image activeqt-examples.png ActiveQt
 

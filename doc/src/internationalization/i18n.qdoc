@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -246,7 +246,10 @@
     application, translators won't be able to override it. The
     correct idiom is
 
-    \snippet examples/mainwindows/application/mainwindow.cpp 20
+    \code
+    exitAct = new QAction(tr("E&xit"), this);
+    exitAct->setShortcuts(QKeySequence::Quit);
+    \endcode
 
     \section2 Use QString::arg() for Dynamic Text
 
@@ -268,7 +271,7 @@
     Once you are using tr() throughout an application, you can start
     producing translations of the user-visible text in your program.
 
-    The \l{Qt Linguist manual} provides further information about
+    The \l{Qt Linguist Manual} provides further information about
     Qt's translation tools, \e{Qt Linguist}, \c lupdate and \c
     lrelease.
 
@@ -565,7 +568,14 @@
     For example, the following class definition includes the Q_OBJECT macro,
     implementing a new tr() that uses the \c MainWindow context:
 
-    \snippet mainwindows/sdi/mainwindow.h class definition with macro
+    \code
+    class MainWindow : public QMainWindow
+    {
+        Q_OBJECT
+
+    public:
+        MainWindow();
+    \endcode
     \dots
 
     If Q_OBJECT is not used in a class definition, the context will be
@@ -579,7 +589,11 @@
     The following example shows how a translation is obtained for the
     class shown in the previous section:
 
-    \snippet mainwindows/sdi/mainwindow.cpp implicit tr context
+    \code
+    void MainWindow::createMenus()
+    {
+        fileMenu = menuBar()->addMenu(tr("&File"));
+    \endcode
     \dots
 
     Here, the translation context is \c MainWindow because it is the

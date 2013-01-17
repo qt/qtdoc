@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -42,6 +42,11 @@
 
 class SliderPlugin : public QAccessiblePlugin
 {
+//! [2]
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.Accessibility.SliderPlugin" FILE "slider.json")
+//! [2]
+
 public:
     SliderPlugin() {}
 
@@ -67,8 +72,3 @@ QAccessibleInterface *SliderPlugin::create(const QString &classname, QObject *ob
     return interface;
 }
 //! [1]
-
-//! [2]
-Q_EXPORT_STATIC_PLUGIN(SliderPlugin)
-Q_EXPORT_PLUGIN2(acc_sliderplugin, SliderPlugin)
-//! [2]

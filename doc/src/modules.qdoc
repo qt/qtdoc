@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -116,6 +116,11 @@
         \li Target Platforms
         \li Description
     \row
+        \li \l{Active Qt}
+        \li Windows
+        \li
+        \li Classes for applications which use ActiveX and COM
+    \row
         \li \l{Qt Concurrent}
         \li
         \li
@@ -149,11 +154,12 @@
         \li
         \li Classes to make printing easier and more portable.
     \row
-        \li \l{Qt Declarative}
+        \li \l{Qt Quick 1 Reference Documentation}{Qt Declarative}
         \li All
         \li
-        \li Classes from Qt 4's QtDeclarative module. Provided for Qt 4.x
-            compatibility. Please use the QtQuick module for new code.
+        \li Qt Declarative is provided for \l{Qt 4.8 Reference Documentation}{Qt 4}
+        compatibility. The documentation is available through the Qt 4.8
+        \l{Qt Quick 1 Reference Documentation}{Qt Quick} documentation.
     \row
         \li \l{Qt Script}
         \li All
@@ -234,225 +240,6 @@
 */
 
 /*!
-    \module QtDesigner
-    \title QtDesigner Module
-    \ingroup modules
-
-    \brief The QtDesigner module provides classes that allow you to
-    create your own custom widget plugins for Qt Designer, and classes
-    that enable you to access Qt Designer's components.
-
-    In addition, the QFormBuilder class provides the possibility of
-    constructing user interfaces from UI files at run-time.
-
-    To include the definitions of the module's classes, use the
-    following directive:
-
-    \snippet doc/src/snippets/code/doc_src_qtdesigner.cpp 0
-
-    To link against the module, add this line to your \c qmake .pro
-    file:
-
-    \snippet doc/src/snippets/code/doc_src_qtdesigner.pro 1
-*/
-
-/*!
-    \module QtUiTools
-    \title QtUiTools Module
-    \since 4.1
-    \ingroup modules
-
-    \brief The QtUiTools module provides classes to handle forms created
-    with Qt Designer.
-
-    These forms are processed at run-time to produce dynamically-generated
-    user interfaces. In order to generate a form at run-time, a resource
-    file containing a UI file is needed. Applications that use the
-    form handling classes need to be configured to be built against the
-    QtUiTools module. This is done by including the following declaration
-    in a \c qmake project file to ensure that the application is compiled
-    and linked appropriately.
-
-    \snippet doc/src/snippets/code/doc_src_qtuiloader.pro 0
-
-    A form loader object, provided by the QUiLoader class, is used to
-    construct the user interface. This user interface can
-    be retrieved from any QIODevice; for example, a QFile object can be
-    used to obtain a form stored in a project's resources. The
-    QUiLoader::load() function takes the user interface description
-    contained in the file and constructs the form widget.
-
-    To include the definitions of the module's classes, use the following
-    directive:
-
-    \snippet doc/src/snippets/code/doc_src_qtuiloader.cpp 1
-
-    \sa {Calculator Builder Example}, {World Time Clock Builder Example}
-*/
-
-/*!
-    \module QtHelp
-    \title QtHelp Module
-    \ingroup modules
-
-    \brief The QtHelp module provides classes for integrating
-    online documentation in applications.
-
-    The classes and tools supplied with Qt to enable developers to include
-    online help and documentation in their applications are described in
-    more detail in \l{The Qt Help Framework} overview document.
-
-    To include the definitions of the module's classes, use the
-    following directive:
-
-    \snippet doc/src/snippets/code/doc_src_qthelp.cpp 0
-
-    To link against the module, add this line to your \l qmake \c
-    .pro file:
-
-    \snippet doc/src/snippets/code/doc_src_qthelp.qdoc 1
-
-    \section1 License Information
-
-    The QtHelp module uses the CLucene indexing library to provide full-text
-    searching capabilities for Qt Assistant and applications that use the
-    features of QtHelp.
-
-    Developers using the \l{Qt Commercial License} that wish to distribute applications that
-    use these features of the QtHelp module need to be aware of their
-    obligations under the GNU Lesser General Public License (LGPL).
-
-    Developers using the Open Source Edition can choose to redistribute
-    the module under the appropriate version of the GNU LGPL; version 2.1
-    for applications and libraries licensed under the GNU GPL version 2,
-    or version 3 for applications and libraries licensed under the GNU
-    GPL version 3.
-
-    \legalese
-    Copyright (C) 2003-2006 Ben van Klinken and the CLucene Team \BR
-    Changes are Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
-
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-    \endlegalese
-
-    \sa {The Qt Help Framework}
-*/
-
-/*!
-    \module QAxContainer
-    \title QAxContainer Module
-    \ingroup modules
-
-    \brief The QAxContainer module is a Windows-only extension for
-    accessing ActiveX controls and COM objects.
-
-    QAxServer is part of the \l{ActiveQt Framework}.
-
-    \section1 License Information
-
-    The QAxContainer module is not covered by the \l{GNU General Public License (GPL)},
-    the \l{GNU Lesser General Public License (LGPL)}, or the
-    \l{Qt Commercial License}. Instead, it is distributed under
-    the following license.
-
-    \legalese
-    Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).\br
-    Contact: http://www.qt-project.org/legal\br
-
-    You may use this file under the terms of the BSD license as follows:
-
-    "Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are
-    met:
-      * Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-      * Redistributions in binary form must reproduce the above copyright
-        notice, this list of conditions and the following disclaimer in
-        the documentation and/or other materials provided with the
-        distribution.
-      * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
-        of its contributors may be used to endorse or promote products derived
-        from this software without specific prior written permission.
-
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-    \endlegalese
-*/
-
-/*!
-    \module QAxServer
-    \title QAxServer Module
-    \ingroup modules
-
-    \brief The QAxServer module is a Windows-only static library that
-    you can use to turn a standard Qt binary into a COM server.
-
-    QAxServer is part of the \l{ActiveQt Framework}.
-
-    \section1 License Information
-
-    The QAxContainer module is not covered by the \l{GNU General Public License (GPL)},
-    the \l{GNU Lesser General Public License (LGPL)}, or the
-    \l{Qt Commercial License}. Instead, it is distributed under
-    the following license.
-
-    \legalese
-    Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).\br
-    Contact: http://www.qt-project.org/legal\br
-
-    You may use this file under the terms of the BSD license as follows:
-
-    "Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are
-    met:
-      * Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-      * Redistributions in binary form must reproduce the above copyright
-        notice, this list of conditions and the following disclaimer in
-        the documentation and/or other materials provided with the
-        distribution.
-      * Neither the name of Digia Plc and its Subsidiary(-ies) nor the names
-        of its contributors may be used to endorse or promote products derived
-        from this software without specific prior written permission.
-
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-    \endlegalese
-*/
-
-/*!
     \page qtmain.html
     \title The qtmain Library
     \ingroup licensing
@@ -472,7 +259,7 @@
     the following license.
 
     \legalese
-    Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).\br
+    Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).\br
     Contact: http://www.qt-project.org/legal
 
     You may use this file under the terms of the BSD license as follows:

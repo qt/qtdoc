@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -47,7 +47,3 @@ RC_FILE = myapp.rc
 ICON = myapp.icns
 #! [2]
 
-
-#! [5]
-ICON = myapp.svg
-#! [5]

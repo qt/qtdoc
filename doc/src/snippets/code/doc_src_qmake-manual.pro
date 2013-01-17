@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -133,11 +133,6 @@ QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
 #! [17]
 
 
-#! [18]
-CONFIG += x86 ppc
-#! [18]
-
-
 #! [19]
 qmake -spec macx-xcode project.pro
 #! [19]
@@ -187,7 +182,7 @@ newstuff {
 
 
 #! [27]
-DEFINES += USE_MY_STUFF QT_DLL
+DEFINES += USE_MY_STUFF
 #! [27]
 
 
@@ -568,17 +563,17 @@ TARGET = myapp
 
 
 #! [90]
-DEFINES += QT_DLL
+DEFINES += USE_MY_STUFF
 #! [90]
 
 
 #! [91]
-DEFINES -= QT_DLL
+DEFINES -= USE_MY_STUFF
 #! [91]
 
 
 #! [92]
-DEFINES *= QT_DLL
+DEFINES *= USE_MY_STUFF
 #! [92]
 
 
@@ -595,7 +590,7 @@ message($$EVERYTHING)
 
 
 #! [95]
-win32:DEFINES += QT_DLL
+win32:DEFINES += USE_MY_STUFF
 #! [95]
 
 
@@ -697,7 +692,6 @@ TARGET = helloworld
 
 
 #! [113]
-CONFIG += qt
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -715,7 +709,7 @@ qmake -tp vc hello.pro
 
 
 #! [116]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -730,7 +724,7 @@ win32 {
 
 
 #! [118]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -751,7 +745,7 @@ unix {
 
 
 #! [120]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -777,7 +771,7 @@ win32 {
 
 
 #! [122]
-CONFIG += qt debug
+CONFIG += debug
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
@@ -802,8 +796,8 @@ DESTDIR  = c:/helloapp
 HEADERS += hello.h
 SOURCES += hello.cpp
 SOURCES += main.cpp
-DEFINES += QT_DLL
-CONFIG  += qt warn_on release
+DEFINES += USE_MY_STUFF
+CONFIG  += release
 #! [123]
 
 
@@ -851,3 +845,102 @@ packagesExist(sqlite3 QtNetwork QtDeclarative) {
     // Use the fancy UI, as we have extra packages available
 #endif
 #! [158]
+
+#! [159]
+message($$absolute_path("readme.txt", "/home/johndoe/myproject"))
+#! [159]
+
+
+#! [160]
+TARGET = helloworld
+equals(TARGET, "helloworld") {
+    message("The target assignment was successful.")
+}
+#! [160]
+
+
+#! [161]
+CONTACT = firstname middlename surname phone
+message($$first(CONTACT))
+#! [161]
+
+
+#! [162]
+CONTACT = firstname middlename surname phone
+message($$last(CONTACT))
+#! [162]
+
+
+#! [163]
+message($$format_number(BAD, ibase=16 width=6 zeropad))
+#! [163]
+
+
+#! [164]
+ANSWER = 42
+greaterThan(ANSWER, 1) {
+    message("The answer might be correct.")
+}
+#! [164]
+
+
+#! [165]
+ANSWER = 42
+lessThan(ANSWER, 1) {
+    message("The answer might be wrong.")
+}
+#! [165]
+
+
+#! [166]
+if(linux-g++*|macx-g++*):CONFIG(debug, debug|release) {
+    message("We are on Linux or Mac OS, and we are in debug mode.")
+}
+#! [166]
+
+
+#! [167]
+CONTACT = firstname:middlename:surname:phone
+message($$section(CONTACT, :, 2, 2))
+#! [167]
+
+
+#! [168]
+CONTACT = firstname:middlename:surname:phone
+message($$split(CONTACT, :))
+#! [168]
+
+#! [169]
+NARF = zort
+unset(NARF)
+!defined(NARF, var) {
+    message("NARF is not defined.")
+}
+#! [169]
+
+
+#! [170]
+for(var, $$list(foo bar baz)) {
+    ...
+}
+#! [170]
+
+
+#! [171]
+values = foo bar baz
+for(var, values) {
+    ...
+}
+#! [171]
+
+
+#! [172]
+VALUE = 123
+TMP_VALUE = x$$VALUE
+greaterThan(TMP_VALUE, x456): message("Condition may be true.")
+#! [172]
+
+
+#! [173]
+message("First line$$escape_expand(\\n)Second line")
+#! [173]

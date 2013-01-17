@@ -1,9 +1,10 @@
-project                 = qtdoc
+project                 = QtDoc
 description             = Qt Reference Documentation
-url                     = http://qt-project.org/doc/qt-5.0/
-version                 = 5.0.0
+url                     = http://qt-project.org/doc/qtdoc
+version                 = 5.0.1
 
 depends += \
+    activeqt \
     qtassistant \
     qt3d \
     qtbluetooth \
@@ -14,6 +15,7 @@ depends += \
     qtdesigner \
     qtfeedback \
     qtgraphicaleffects \
+    qthelp \
     qtimageformats \
     qtgui \
     qtlocation \
@@ -35,8 +37,11 @@ depends += \
     qtsysteminfo \
     qttestlib \
     qttools \
+    qtuitools \
     qtversit \
     qtwidgets \
+    qtwebkit \
+    qtwebkitexamples \
     qtxml \
     qtxmlpatterns
 

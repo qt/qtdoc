@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -121,7 +121,7 @@ The following sections lists the API changes in each module and provides recomme
      \li \l{QString::mid}, \l{QString::midRef}, and \l{QByteArray::mid} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
          if the position passed is equal to the length (that is, right after the last character/byte).
          In Qt 4, they use to return a null \c{QString} or a null \c{QStringRef}.
-     \li The following \l{QString} functions use the the C locale instead of the default or system locale:
+     \li The following \l{QString} functions use the C locale instead of the default or system locale:
       \list
        \li \l{QString::toLongLong}{toLongLong()}
        \li \l{QString::toULongLong}{toULongLong()}
@@ -146,6 +146,7 @@ The following sections lists the API changes in each module and provides recomme
        \li Adding days to a null QDate or seconds to a null QTime will no longer return a valid QDate/QTime.
        \li The \l{QDate::addDays()} and QDateTime::addDays() functions now takes a \c{qint64} argument,
            and the \l{QDate::daysTo()} and \l{QDateTime::daysTo()} functions now returns a \c{qint64} value.
+      \endlist
        \li \l{QTextCodec} has undergone the following changes:
         \list
          \li \c{QTextCodec::codecForCStrings()} and \c{QTextCodec::setCodecForCStrings()} are removed as they were
@@ -254,6 +255,35 @@ The following sections lists the API changes in each module and provides recomme
      \li \l{QColorDialog::customColor()} now returns a \l{QColor} value instead of \c{QRgb}.
      \li The \l{QColorDialog::setCustomColor()} and \l{QColorDialog::setStandardColor()} functions now need a \l{QColor} value as
          their second parameter instead of \c{QRgb}.
+    \endlist
+
+\section1 Changes to Qt WebKit
+    \list
+     \li The WebKit module in Qt is now split in two modules, \c{webkit} and \c{webkitwidgets}, in order to allow the dependency of
+         the \c{widgets} module to be optional. The benefits will only be profitable once the QQuickWebView API are made public
+         through C++ in a future version. The \c{webkitwidgets} module adds the \c{webkit} module automatically to the project,
+         so in your application's project file, \c{QT += webkit} should now be modified to:
+         \code
+             QT += webkitwidgets
+         \endcode
+     \li The same applies to the module include, \c{#include <QtWebKit/QtWebKit>} should be modified to:
+         \code
+             #include <QtWebKitWidgets/QtWebKitWidgets>
+         \endcode
+     \li A consequence of the module split is that classes of the QtWebKit API aren't all in the new module, so for a better
+         compatibility of your application with both Qt4 and Qt5, #include <QtWebKit/QWebPage>, for example, should be included
+         directly as:
+         \code
+             #include <QWebPage>
+         \endcode
+         The include path will take care of selecting the right module.
+     \li The qwebkitversion.h header has been renamed to q\b{t}webkitversion.h to match other Qt modules, and part of its
+         contents has been moved to qwebkitglobal.h. \c{#include <qwebkitversion.h>} should be replaced with
+         two includes:
+         \code
+             #include <qtwebkitversion.h>
+             #include <qwebkitglobal.h>
+         \endcode
     \endlist
 
 \section1 Changes to Qt Print Support

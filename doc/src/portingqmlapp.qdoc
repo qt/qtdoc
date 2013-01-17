@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -26,12 +26,12 @@
 ****************************************************************************/
 /*!
 \page portingqmlapp.html
-\title Porting QML Applications to Qt 5
+\title Porting QML Applications to Qt 5 Example
 \brief Provides step-by-step instructions to port a QML application to Qt 5.
 
 The new version of Qt Quick in Qt 5 brings in some changes to the way QML
 applications are developed. For the complete list of changes that affect
-existing QML applications, refer to \l{QML Applications in Qt 5}.
+existing QML applications, refer to \l{Porting QML Applications to Qt 5}.
 
 This topic will walk through the porting process to make the \c{flickr} Qt 4
 QML demo work on Qt 5. If you have the SDK based on Qt 4.8 installed, you can
@@ -39,8 +39,6 @@ find this demo application under
 \c{<install_dir_root>/Examples/4.x/declarative/demos/}.
 
 The \c{flickr} application is a complete application that comes with a launcher.
-It handles the screen orientation changes on platforms that support different
-orientations.
 
 Follow these step-by-step instructions to make the \e{flickr} Qt 4 QML
 application work on Qt 5:
@@ -81,49 +79,7 @@ application work on Qt 5:
        macros as Symbian platform is not supported in Qt 5.
    \li Remove the code between \c{#if QT_VERSION < 0x040702} and \c{#else}, and
        \c{#endif // QT_VERSION < 0x040702} macros towards the end.
-   \li Change the \c{attribute} variable type from \c{Qt::WidgetAttribute} to
-       \c{Qt::ScreenOrientation}.
-   \li Replace \c{Qt::WA_LocKPortraitOrientation},
-       \c{Qt:WA_LockLandscapeOrientation}, and \c{Qt::WA_AutoOrientation} with
-       \c{Qt::PortraitOrientation}, \c{Qt::LandscapeOrientation}, and
-       \c{Qt::PrimaryOrientation} respectively.
-   \li Replace \c{setAttribute(attribute,true);} with the following:
-    \code
-      if (windowOrientation() != attribute)
-        if (!requestWindowOrientation(attribute))
-          qWarning() << "Not a supported orientation.";
-    \endcode
-       Orientation changes must be handled differently now as QQuickView is
-       a subclass of QWindow and not QWidget. The QWindow::
-       windowOrientation() and QWindow::requestWindowOrientation(Qt::
-       ScreenOrientation orientation) functions are meant to identify the
-       current window orientation and request for a specific orientation change
-       respectively.
   \endlist
-
-      After making all these changes, this is how the implementation for
-      \c{QmlApplicationViewer::setOrientation()} looks:
-       \code
-       void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
-       {
-        Qt::ScreenOrientation attribute;
-        switch (orientation) {
-        case ScreenOrientationLockPortrait:
-          attribute = Qt::PortraitOrientation;
-          break;
-        case ScreenOrientationLockLandscape:
-          attribute = Qt::LandscapeOrientation;
-          break;
-        default:
-        case ScreenOrientationAuto:
-          attribute = Qt::PrimaryOrientation;
-          break;
-        };
-        if (windowOrientation() != attribute)
-        if (!requestWindowOrientation(attribute))
-          qWarning() << "Not a supported orientation.";
-       }
-       \endcode
  \li Run the \c{qmake} and \c{make} utilities to build the application.
      \note Ensure that the \c{PATH} environment variable is pointing to the
      Qt 5 binaries and libraries directories, before running \c{qmake}.
@@ -134,5 +90,5 @@ snapshot of the application running on Ubuntu v12.04:
 \image flickr_application.png
 
 \section1 Related Topics
-\l{QML Applications in Qt 5}
+\l{Porting QML Applications to Qt 5}
 */
