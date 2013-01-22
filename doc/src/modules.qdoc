@@ -218,28 +218,6 @@
 */
 
 /*!
-  \module QtScriptTools
-  \title QtScriptTools Module
-  \since 4.5
-  \ingroup modules
-
-  \brief The QtScriptTools module provides additional components for applications that use Qt Script.
-
-  \section1 Configuring the Build Process
-
-  Applications that use the Qt Script Tools classes need to
-  be configured to be built against the QtScriptTools module.
-  To include the definitions of the module's classes, use the
-  following directive:
-
-  \snippet doc/src/snippets/code/doc_src_qtscripttools.cpp 0
-
-  To link against the module, add this line to your \l qmake \c .pro file:
-
-  \snippet doc/src/snippets/code/doc_src_qtscripttools.pro 1
-*/
-
-/*!
     \page qtmain.html
     \title The qtmain Library
     \ingroup licensing
