@@ -35,8 +35,6 @@ information on how to install Qt, as well as software and hardware requirements
 for using Qt on each of the supported platforms. Please follow the instructions
 for your platform from the following list.
 
-\generatelist{related}
-
 */
 
 /*! \page install-x11.html
@@ -636,9 +634,10 @@ in the \l{Qt for Windows CE Requirements} document.
                 \li Install Visual C++ 2010 SP1 Compiler Update for the Windows SDK 7.1
             \endlist
         \li Windows SDK 7.
-        \li MinGW \l{mingw.org}, TDM MinGW \l{tdm-gcc.tdragon.net}, or MinGW-builds
-            \l{http://sourceforge.net/projects/mingwbuilds/} with g++ version 4.7 or higher
-            (not supported for all modules).
+        \li A MinGW toolchain with g++ version 4.7 or higher. Qt 5 is tested regularly with a \
+            \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
+            {32 bit gcc 4.7.2 toolchain} from the \l{http://mingwbuilds.sourceforge.net}{MinGW-builds}
+            project.
 
     \endlist
 

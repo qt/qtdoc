@@ -76,7 +76,7 @@
     \li Apple clang 3.1 (Mac OS X / XCode 4)
     \li gcc 4.5 and newer (Linux)
     \li MSVC 2008 and newer
-    \li MingW 4.6
+    \li MinGW-builds GCC 4.7.2
     \li Intel CC (latest version)
     \endlist
 
@@ -181,11 +181,13 @@
     rendering is enabled. Other GL-applications may not work as expected,
     unless direct rendering is disabled.
 
-    \section2 GCC (MinGW)
+    \section2 GCC (MinGW-builds)
 
-    We have tested Qt with this compiler on Windows XP.
-    The minimal version of MinGW
-    supported is GCC 4.6. For 64 bit builds, \l{TDM-GCC} can be used.
+    We have tested Qt with this compiler on Windows 7.
+    The minimum version of MinGW-builds supported is GCC 4.7.2.
+    \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
+    {MinGW-builds GCC 4.7.2 32 bit, rev 8} and later should be able
+    to build Qt including QtWebKit.
 
     \section2 Intel C++ Compiler (Windows, Altix)
 
