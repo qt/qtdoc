@@ -223,7 +223,7 @@
         a wide range of Mac platform variants.
         \li \l{Qt for Mac OS X Requirements}{Qt for Mac OS X Requirements}
         - Software required to run Qt on Mac OS X.
-        \li \l{Installing Qt for X11 Platforms}{Installing Qt for X11 Platforms}
+        \li \l{Installing Qt for Mac OS X}{Installing Qt for Mac OS X}
         - Build Qt for Mac OS X development.
         \li \l{Platform and Compiler Notes - Mac OS X}{Platform and Compiler Notes - Mac OS X}
         - Platform specific notes.
@@ -312,7 +312,7 @@
     \list
         \li Embedded Linux (DirectFB, EGLFS, KMS, and Wayland)
         \li Windows Embedded (Compact and Standard)
-        \li Real-Time Operating Systems, such as QNX, VxWorks and INTEGRITY
+        \li Real-Time Operating Systems, such as \l{QNX}, VxWorks and INTEGRITY
     \endlist
 
     \section1 Mobile platforms
@@ -340,7 +340,7 @@
     \row    \li Microsoft Windows 7 (32-bit)
                                      \li MSVC 2010 SP1
     \row    \li Microsoft Windows 7 (32-bit)
-                                     \li MinGW 4.7
+                                     \li \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}{MinGW-builds gcc 4.7.2 (32-bit)}
     \row    \li Microsoft Windows 8 (64-bit)
                                      \li MSVC 2012
     \row    \li Apple Mac OS X 10.7 "Lion", Cocoa (64-bit)

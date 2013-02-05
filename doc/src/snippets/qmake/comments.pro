@@ -5,6 +5,6 @@
 
 #! [1]
 # To include a literal hash character, use the $$LITERAL_HASH variable:
-urlPieces = http://qt.nokia.com/doc/4.0/qtextdocument.html pageCount
+urlPieces = http://qt-project.org/doc/qt-5.0/qtgui/qtextdocument.html pageCount
 message($$join(urlPieces, $$LITERAL_HASH))
 #! [1]
