@@ -46,6 +46,15 @@ This creates the \c animatedtiles executable. Try running the executable to see 
 
 \image animatedtiles_snapshot.png "A snapshot of the \c animatedtiles application running on Ubuntu v12.04"
 
+A similar change is needed for porting Qt 4 applications using Qt WebKit to Qt 5. The following
+step-by-step instructions take you through the changes required to achieve this:
+
+\list 1
+   \li If using \c {#include <QtWebKit>}, add \c {#include <QtWebKitWidgets} in your source code.
+   \li Edit the pro file and add \c {QT += webkitwidgets} towards the end of the file.
+   \li Run qmake and make utilities to build the binary.
+\endlist
+
 \section1 Related topics
 \list
 \li \l {API Changes}
