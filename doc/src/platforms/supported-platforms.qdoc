@@ -277,6 +277,39 @@
     \endlist
 
 */
+
+/*!
+    \page android-support.html
+    \title Support for Android
+    \brief Platform support for Android.
+    \ingroup platform-specific
+    \ingroup platform-details
+
+    \section1 Qt on Android
+
+    Qt is a comprehensive application and UI framework for developing Android
+    apps that can also be deployed across many other mobile and
+    desktop operating systems without rewriting the source code. Use the
+    code from one single code-base and rebuild for all
+    \l{Supported Platforms}{supported platforms}.
+
+    Qt for Android is currently considered to be in an "experimental" state, suited for
+    development, but not for deployment.
+
+    \section1 Qt Creator
+
+    Android app development is fully integrated with \l {Qt Creator} with which you
+    can easily create and test your apps on both emulators and actual devices running Android.
+
+    \section1 Getting Started on Android
+
+    \list
+        \li \l{Getting Started Guides}{Getting started} - Getting started developing with Qt
+        \li \l{Platform and Compiler Notes - Android}
+        - Android platform specific notes.
+    \endlist
+*/
+
 /*!
     \page supported-platforms.html
     \title Supported Platforms
@@ -318,7 +351,7 @@
     \section1 Mobile platforms
     Qt 5 will support all leading mobile operating systems. There already exists work in progress support for:
     \list
-        \li Android
+        \li \l{Support for Android}{Android}
         \li iOS
         \li Windows 8 (WinRT)
         \li BlackBerry 10

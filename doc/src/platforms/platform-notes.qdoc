@@ -60,6 +60,8 @@
     \tableofcontents{1 Platform and Compiler Notes - QNX}
     \li \l{Platform and Compiler Notes - VxWorks}
     \tableofcontents{1 Platform and Compiler Notes - VxWorks}
+    \li \l{Platform and Compiler Notes - Android}
+    \tableofcontents{1 Platform and Compiler Notes - Android}
     \endlist
 
     \section1 General Compiler Notes
@@ -339,4 +341,86 @@
         }
 
     \endcode
+*/
+
+/*!
+    \page platform-notes-android.html
+    \title Platform and Compiler Notes - Android
+    \contentspage Platform and Compiler Notes
+
+    This page contains information about using Qt on the Android operating system.
+    Using Qt on Android is currently considered to be in an experimental state,
+    suited for development, but not for distribution.
+
+    \tableofcontents
+
+    \section1 General information
+
+    Qt 5 applications can be deployed on Android 2.3 and higher.
+
+    \section1 Required tools
+
+    In order to build libraries or applications for Android, you will need an
+    Android NDK and an Android SDK. You will also need the Java Development Kit
+    version 1.6.
+
+    \section1 Required tools for building on Windows
+
+    To build for Android on Windows, you will need the MinGW collection of tools. This contains
+    command-line tools needed for certain build steps and the GNU Compiler Collections which is
+    used for building tools for running on the host, such as qmake and moc.
+
+    \section1 Environment variables
+
+    If you are building on the command line, make sure the following environment
+    variables are set:
+
+    \list
+    \li ANDROID_NDK_ROOT: The path to the Android NDK.
+    \li ANDROID_SDK_ROOT: The path to the Android SDK.
+    \endlist
+
+    When building the Qt libraries themselves, you can also set the environment
+    variable ANDROID_API_VERSION for overriding the default version of the SDK used for
+    building Java code.
+
+    \section1 Making an Android app
+
+    Apps on Android are Java applications, and thus a Java-based bindings layer is required
+    in order to run Qt code on an Android device using the regular Android app launcher. By
+    default, applications configured with qmake's application template will be build as shared
+    libraries. The Java code should load all the required libraries in the correct order, including
+    the library created for the application, and then use the JNI framework to call into the native
+    code.
+
+    \l{Qt Creator} has a tools to generate and maintain this Java bindings layer, enabling you to
+    write regular native C++ code with Qt and deploy this to devices or emulators. If you prefer
+    to use another IDE for development, it is also possible to use Qt Creator to generate the
+    bindings code for your project, but edit the files in a different application. You will then
+    have to maintain and build the bindings files manually.
+
+    If you would prefer to write the Android-specific parts of your application manually, then
+    this is also possible. For some insight into how Qt Creator manages it, you can look at the
+    files under src/android in your Qt directory.
+
+    \section1 Back button on Android
+
+    Android devices have a specialized "Back" button. By default, Qt applications will quit
+    when this button is pressed. To customize the behavior, listen for the key code
+    Qt::Key_Back which will be generated whenever this button is pressed.
+
+    \section1 Structure of Qt on Android
+
+    Qt on Android consists of the following parts:
+
+    \list
+    \li The Qt libraries
+    \li The qtforandroid platform plugins: This contains the integration of Qt on Android,
+    including the JNI code required to communicate with the Java bindings. There are two
+    platform plugins: libqtforandroid.so, which is used for QtWidgets-based applications, and
+    libqtforandroidGL.so which is OpenGL-enabled and used for QtQuick 2-based applications.
+    \li QtAndroid.jar: Java library used for communicating between the Java-based environment on
+    Android and Qt's C++-code.
+    \endlist
+
 */
