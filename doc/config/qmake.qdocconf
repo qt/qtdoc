@@ -6,14 +6,14 @@ include(qt-defines.qdocconf)
 
 project                 = QMake
 description             = QMake Manual
-url                     = http://qt-project.org/doc/qtcore
+url                     = http://qt-project.org/doc/qt-$QT_VER/qtdoc
 
 indexes                 = $QT_BUILD_TREE/doc-build/html-qt/qt.index
 
 qhp.projects            = qmake
 
 qhp.qmake.file                = qmake.qhp
-qhp.qmake.namespace           = org.qt-project.qmake.501
+qhp.qmake.namespace           = org.qt-project.qmake.$QT_VERSION_TAG
 qhp.qmake.virtualFolder       = qmake
 qhp.qmake.indexTitle          = QMake Manual
 qhp.qmake.extraFiles          = images/bg_l.png \
@@ -50,7 +50,7 @@ qhp.qmake.extraFiles          = images/bg_l.png \
                              style/style_ie8.css \
                              style/style.css
 
-qhp.qmake.filterAttributes    = qt 5.0.1 tools qmake
+qhp.qmake.filterAttributes    = qt $QT_VERSION tools qmake
 qhp.qmake.customFilters.qmake.name = qmake Manual
 qhp.qmake.customFilters.qmake.filterAttributes = qt tools qmake
 qhp.qmake.subprojects         = manual

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -393,11 +393,17 @@
         \li The ExtraFilters plugin
         \li {2, 1} \c plugins\libpnp_extrafilters.so
     \row
+        \li The Qt xcb platform plugin
+        \li {2, 1} \c platforms\libqxcb.so
+    \row
         \li The Qt Core module
-        \li {2, 1} \c libQtCore.so.4
+        \li {2, 1} \c libQt5Core.so.5
     \row
         \li The Qt GUI module
-        \li {2, 1} \c libQtGui.so.4
+        \li {2, 1} \c libQt5Gui.so.5
+    \row
+        \li The Qt Widgets module
+        \li {2, 1} \c libQt5Widgets.so.5
     \endtable
 
     On most systems, the extension for shared libraries is \c .so. A
@@ -536,11 +542,8 @@
 
     \snippet doc/src/snippets/code/doc_src_deployment.qdoc 12
 
-    This will build Qt statically. Note that unlike with a dynamic build,
-    building Qt statically will result in libraries without version numbers;
-    e.g. \c QtCore5.lib will be \c QtCore.lib. Also, we have used \c nmake
-    in all the examples, but if you use MinGW you must use
-    \c mingw32-make instead.
+    This will build Qt statically. Note that we have used \c nmake
+    in all the examples, but \c mingw32-make should be used for MinGW.
 
     \note If you later need to reconfigure and rebuild Qt from the
     same location, ensure that all traces of the previous configuration are
@@ -697,16 +700,16 @@
         \li {2, 1} \c plugins\pnp_extrafilters.dll
     \row
         \li The Qt Windows platform plugin
-        \li {2, 1} \c platforms\windows.dll
+        \li {2, 1} \c platforms\qwindows.dll
     \row
         \li The Qt Core module
-        \li {2, 1} \c qtcore5.dll
+        \li {2, 1} \c Qt5Core.dll
     \row
         \li The Qt GUI module
-        \li {2, 1} \c qtgui5.dll
+        \li {2, 1} \c Qt5Gui.dll
     \row
         \li The Qt Widgets module
-        \li {2, 1} \c qtwidgets5.dll
+        \li {2, 1} \c Qt5Widgets.dll
     \endtable
 
     In addition, the archive must contain the following compiler
@@ -883,9 +886,9 @@
             \li MinGW
         \row
         \li \list
-               \li QTCORE5.DLL - The QtCore runtime
-               \li QTGUI5.DLL - The QtGui runtime
-               \li QTWIDGETS5.DLL - The QtWidgets runtime
+               \li QT5CORE.DLL - The QtCore runtime
+               \li QT5GUI.DLL - The QtGui runtime
+               \li QT5WIDGETS.DLL - The QtWidgets runtime
            \endlist
         \li \list
                \li MSVCR80.DLL - The C runtime

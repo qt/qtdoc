@@ -6,7 +6,7 @@ INSTALLS += target sources
 
 QT += widgets xml network
 
-contains(QT_CONFIG, opengl) {
+qtHaveModule(opengl) {
     DEFINES += QT_OPENGL_SUPPORT
     QT += opengl
 }

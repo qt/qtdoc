@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -80,14 +80,21 @@
       \tableofcontents{1 qmake Advanced Usage}
     \li \l{Using Precompiled Headers}
       \tableofcontents{1 Using Precompiled Headers}
-    \li \l{qmake Reference}
-      \tableofcontents{1 qmake Reference}
-    \li \l{qmake Variable Reference}
-      \tableofcontents{1 qmake Variable Reference}
-    \li \l{qmake Function Reference}
-      \tableofcontents{1 qmake Function Reference}
     \li \l{Configuring qmake's Environment}
       \tableofcontents{1 Configuring qmake's Environment}
+    \li \l{qmake Reference}
+        \list
+            \li \l{qmake Variable Reference}
+            \li \l{Replace Functions}
+            \list
+                \li \l{Built-in Replace Functions}
+           \endlist
+           \li \l{Test Functions}
+            \list
+                \li \l{Built-in Test Functions}
+                \li \l{Test Function Library}
+            \endlist
+        \endlist
     \endlist
 */
 
@@ -398,7 +405,7 @@
     Note that each of the options specified in the \c CONFIG variable can also be
     used as a scope condition.
     You can test for the presence of certain configuration options by using the
-    built-in \l{qmake Function Reference#CONFIG(config)}{CONFIG()} function.
+    built-in \l{CONFIG(config)}{CONFIG()} function.
     For example, the following lines show the function as the condition in a scope
     to test whether only the \c opengl option is in use:
 
@@ -926,7 +933,7 @@
     \page qmake-reference.html
     \title qmake Reference
     \contentspage {qmake Manual}{Contents}
-    \previouspage Using Precompiled Headers
+    \previouspage Configuring qmake's Environment
     \nextpage qmake Variable Reference
 
     This reference is a detailed index of all the variables and function that
@@ -940,8 +947,18 @@
 
     \section1 Function Reference
 
-    The \l{qmake Function Reference} describes the function that can be
-    used to process the contents of variables defined in project files.
+    There are two types of qmake functions: replace functions and test
+    functions. Replace functions return a value list, while test functions
+    return a boolean result. The functions are implemented in two places:
+    fundamental functionality is offered as built-in functions. More complex
+    functions are implemented in a library of feature files (.prf).
+
+    The functions are divided into categories according to their type:
+
+    \list
+        \li \l{Replace Functions}
+        \li \l{Test Functions}
+    \endlist
 
     \target FrequentlyUsedVariables
     \section1 Frequently Used Variables
@@ -993,7 +1010,7 @@
     \title qmake Variable Reference
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Reference
-    \nextpage qmake Function Reference
+    \nextpage Replace Functions
 
     \c{qmake}'s fundamental behavior is influenced by variable declarations that
     define the build process of each project. Some of these declare resources,
@@ -2809,43 +2826,352 @@
 
 /*!
     \page qmake-function-reference.html
-    \title qmake Function Reference
+    \title Replace Functions
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Variable Reference
-    \nextpage Configuring qmake's Environment
+    \nextpage Test Functions
 
-    \l{qmake Manual#qmake}{\c qmake} provides built-in functions to allow the
-    contents of variables to be processed, and to enable tests to be performed
-    during the configuration process. Functions that process the
-    contents of variables typically return values that can be assigned
-    to other variables, and these values are obtained by prefixing
-    function with the \c $$ operator. Functions that perform tests
-    are usually used as the conditional parts of scopes; these are
-    indicated in the function descriptions below.
+    qmake provides functions for processing the contents of variables
+    during the configuration process. These functions are called
+    \e {replace functions}. Typically, they return values that you can
+    assign to other variables. You can obtain these values by prefixing a
+    function with the \c $$ operator. Replace functions can be divided into
+    built-in functions and function libraries.
 
-    \tableofcontents{2}
+    See also \l{Test Functions}.
 
-    \section1 packagesExist(packages)
+    \section1 Built-in Replace Functions
 
-    Uses the PKGCONFIG mechanism to determine whether or not the given packages
-    exist at the time of project parsing.
+    Basic replace functions are implemented as built-in functions.
 
-    This can be useful to optionally enable or disable features. For example:
+    \section2 absolute_path(path[, base])
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 157
+    Returns the absolute path of \c path.
 
-    And then, in the code:
+    If \c base is not specified, uses the current directory as the base
+    directory.
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 158
+    For example, the following call returns the string
+    \c {"/home/johndoe/myproject/readme.txt"}:
 
-    \section1 basename(variablename)
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 159
+
+    See also \l{clean_path(path)}{clean_path()},
+    \l{relative_path(filePath[, base])}{relative_path()}.
+
+    \section2 basename(variablename)
 
     Returns the basename of the file specified. For example:
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 59
 
-    \section1 CONFIG(config)
-    [Conditional]
+    \section2 cat(filename[, mode])
+
+    Returns the contents of \c filename. You can specify the following options
+    for \c mode:
+
+    \list
+        \li \c blob returns the entire contents of the file as one value
+        \li \c lines returns each line as a separate value (without line
+            endings)
+        \li \c true (default value) and \c false return file contents as
+            separate values, split according to qmake value list splitting rules
+            (as in variable assignments). If \c mode is \c false, values that
+            contain only a newline character are inserted into the list to
+            indicate where line breaks were in the file.
+    \endlist
+
+    \section2 clean_path(path)
+
+    Returns \c path with directory separators normalized (converted to "/") and
+    redundant ones removed, and "."s and ".."s resolved (as far as possible).
+    This function is a wrapper around QDir::cleanPath.
+
+    See also \l{absolute_path(path[, base])}{absolute_path()},
+    \l{relative_path(filePath[, base])}{relative_path()},
+    \l{shell_path(path)}{shell_path()}, \l{system_path(path)}{system_path()}.
+
+    \section2 dirname(file)
+
+    Returns the directory name part of the specified file. For example:
+
+    \snippet doc/src/snippets/qmake/dirname.pro 0
+
+    \section2 enumerate_vars
+
+    Returns a list of all defined variable names.
+
+    \section2 escape_expand(arg1 [, arg2 ..., argn])
+
+    This function accepts an arbitrary number of arguments. It expands the
+    escape sequences \c {\n}, \c {\r}, \c {\t} for each argument and returns
+    the arguments as a list.
+
+    \note If you specify the string to expand literally, you need to escape the
+    backslashes, as illustrated by the following code snippet:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 173
+
+    \section2 find(variablename, substr)
+
+    Places all the values in \e variablename that match \e substr. \e
+    substr may be a regular expression, and will be matched accordingly.
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 64
+
+    MY_VAR2 will contain '-Lone -Ltwo -Lthree -Lfour -Lfive', and MY_VAR3 will
+    contains 'three two three'.
+
+    \section2 first(variablename)
+
+    Returns the first value of \c variablename.
+
+    For example, the following call returns \c firstname:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 161
+
+    See also \l{last(variablename)}{last()}.
+
+    \section2 format_number(number[, options...])
+
+    Returns \c number in the format specified by \c options. You can specify the
+    following options:
+
+    \list
+        \li \c ibase=n sets the base of the input to \c n
+        \li \c obase=n sets the base of the output to \c n
+        \li \c width=n sets the minimum width of the output to \c n. If the
+            output is shorter than \c width, it is padded with spaces
+        \li \c zeropad pads the output with zeroes instead of spaces
+        \li \c padsign prepends a space to positive values in the output
+        \li \c alwayssign prepends a plus sign to positive values in the output
+        \li \c leftalign places the padding to the right of the value in the
+            output
+    \endlist
+
+    Floating-point numbers are currently not supported.
+
+    For example, the following call converts the hexadecimal number \c BAD to
+    \c 002989:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 163
+
+    \section2 fromfile(filename, variablename)
+
+    Evaluates \c filename as a qmake project file and returns the value assigned
+    to \c variablename.
+
+    See also \l{infile(filename, var, val)}{infile()}.
+
+    \section2 join(variablename, glue, before, after)
+
+    Joins the value of \e variablename with \c glue. If this value is
+    non-empty it prefixes the value with \e before and suffix it with \e
+    after. \e variablename is the only required field, the others default
+    to empty strings. If you need to encode spaces in \e glue, \e before, or \e
+    after you must quote them.
+
+    \section2 last(variablename)
+
+    Returns the last value of \c variablename.
+
+    For example, the following call returns \c phone:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 162
+
+    See also \l{first(variablename)}{first()}.
+
+    \section2 list(arg1 [, arg2 ..., argn])
+
+    This function takes an arbitrary number of arguments. It creates a uniquely
+    named variable that contains a list of the arguments, and returns the name
+    of that variable. You can use the variable to write a loop as illustrated by
+    the following code snippet
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 170
+
+    instead of:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 171
+
+    \section2 lower(arg1 [, arg2 ..., argn])
+
+    Takes an arbitrary number of arguments and converts them to lower case.
+
+    See also \l{upper(arg1 [, arg2 ..., argn])}{upper()}.
+
+    \section2 member(variablename, position)
+
+    Returns the value at the given \e position in the list of items in
+    \e variablename.
+    If an item cannot be found at the position specified, an empty string is
+    returned. \e variablename is the only required field. If not specified,
+    \c position defaults to 0, causing the first value in the list to be
+    returned.
+
+    \section2 prompt(question)
+
+    Displays the specified \e question, and returns a value read from stdin.
+
+    \section2 quote(string)
+
+    Converts a whole \e string into a single entity and returns the result.
+    This is just a fancy way of enclosing the string into double quotes.
+
+    \section2 re_escape(string)
+
+    Returns the \c string with every special regular expression character
+    escaped with a backslash. This function is a wrapper around QRegExp::escape.
+
+    \section2 relative_path(filePath[, base])
+
+    Returns the path to \c filePath relative to \c base. If \c base is not
+    specified, it is the current project directory. This function is a wrapper
+    around QDir::relativeFilePath.
+
+    See also \l{absolute_path(path[, base])}{absolute_path()},
+    \l{clean_path(path)}{clean_path()}.
+
+    \section2 replace(string, old_string, new_string)
+
+    Replaces each instance of \c old_string with \c new_string in the
+    contents of the variable supplied as \c string. For example, the
+    code
+
+    \snippet doc/src/snippets/qmake/replace.pro 0
+
+    prints the message:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 70
+
+    \section2 sprintf(string, arguments...)
+
+    Replaces %1-%9 with the arguments passed in the comma-separated list
+    of function \e arguments and returns the processed string.
+
+    \section2 resolve_depends(variablename, prefix)
+
+    This is an internal function that you will typically not need.
+
+    \section2 reverse(variablename)
+
+    Returns the values of \c variablename in reverse order.
+
+    \section2 section(variablename, separator, begin, end)
+
+    Returns a section of the value of \c variablename. This function is a
+    wrapper around QString::section.
+
+    For example, the following call outputs \c surname:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 167
+
+    \section2 shadowed(path)
+
+    Maps the path from the project source directory to the build directory.
+    This function returns \c path for in-source builds. It returns an empty
+    string if \c path points outside of the source tree.
+
+    \section2 shell_path(path)
+
+    Converts all directory separators within \c path to separators that are
+    compatible with the shell that is used while building the project (that is,
+    the shell that is invoked by the make tool). For example, slashes are
+    converted to backslashes when the Windows shell is used.
+
+    See also \l{system_path(path)}{system_path()}.
+
+    \section2 shell_quote(arg)
+
+    Quotes \c arg for the shell that is used while building the project.
+
+    See also \l{system_quote(arg)}{system_quote()}.
+
+    \section2 size(variablename)
+
+    Returns the number of values of \c variablename.
+
+    \section2 sort_depends(variablename, prefix)
+
+    This is an internal function that you will typically not need.
+
+    \section2 split(variablename, separator)
+
+    Splits the value of \c variablename into separate values, and returns them
+    as a list. This function is a wrapper around QString::split.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 168
+
+    \section2 system(command[, mode])
+
+    You can use this variant of the \c system function to obtain stdout from the
+    command and assign it to a variable.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 72
+
+    See also the test variant of \l{system(command)}{system()}.
+
+    \section2 system_path(path)
+
+    Converts all directory separators within \c path to separators that are
+    compatible with the shell that is used by the \c{system()} functions to
+    invoke commands. For example, slashes are converted to backslashes for the
+    Windows shell.
+
+    See also \l{shell_path(path)}{shell_path()}.
+
+    \section2 system_quote(arg)
+
+    Quotes \c arg for the for the shell that is used by the \c{system()}
+    functions.
+
+    See also \l{shell_quote(arg)}{shell_quote()}.
+
+    \target unique
+    \section2 unique(variablename)
+
+    This will return a list of values in variable that are unique (that is
+    with repetitive entries removed). For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 73
+
+    \section2 upper(arg1 [, arg2 ..., argn])
+
+    Takes an arbitrary number of arguments and converts them to upper case.
+
+    See also \l{lower(arg1 [, arg2 ..., argn])}{lower()}.
+
+    \section2 val_escape(variablename)
+
+    Escapes the values of \c variablename in a way that enables parsing them as
+    qmake code.
+*/
+
+/*!
+    \page qmake-test-function-reference.html
+    \title Test Functions
+    \contentspage {qmake Manual}{Contents}
+    \previouspage Replace Functions
+
+    Test functions return a boolean value that you can test for in the
+    conditional parts of scopes. Test functions can be divided into
+    built-in functions and function libraries.
+
+    See also \l{Replace Functions}.
+
+    \section1 Built-in Test Functions
+
+    Basic test functions are implemented as built-in functions.
+
+    \section2 cache(variablename, [set|add|sub] [transient] [super], [source variablename])
+
+    This is an internal function that you will typically not need.
+
+    \section2 CONFIG(config)
 
     This function can be used to test for variables placed into the
     \c CONFIG variable. This is the same as regular old style (tmake) scopes,
@@ -2862,8 +3188,7 @@
     case a second parameter is not needed, but for specific mutual
     exclusive tests it is invaluable.
 
-    \section1 contains(variablename, value)
-    [Conditional]
+    \section2 contains(variablename, value)
 
     Succeeds if the variable \e variablename contains the value \e value;
     otherwise fails. You can check the return value of this function using
@@ -2878,8 +3203,7 @@
     appropriate files are added to the \c SOURCES and \c HEADERS
     variables.
 
-    \section1 count(variablename, number)
-    [Conditional]
+    \section2 count(variablename, number)
 
     Succeeds if the variable \e variablename contains a list with the
     specified \e number of value; otherwise fails.
@@ -2890,13 +3214,32 @@
 
     \snippet doc/src/snippets/qmake/functions.pro 2
 
-    \section1 dirname(file)
+    \section2 debug(level, message)
 
-    Returns the directory name part of the specified file. For example:
+    Checks whether qmake runs at the specified debug level. If yes, it returns
+    true and prints a debug message.
 
-    \snippet doc/src/snippets/qmake/dirname.pro 0
+    \section2 defined(name[, type])
 
-    \section1 error(string)
+    Tests whether the function or variable \c name is defined. If \c type is
+    omitted, checks all functions. To check only variables or particular type of
+    functions, specify \c type. It can have the following values:
+
+    \list
+        \li \c test only checks test functions
+        \li \c replace only checks replace functions
+        \li \c var only checks variables
+    \endlist
+
+    \section2 equals(variablename, value)
+
+    Tests whether \c variablename equals the string \c value.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 160
+
+    \section2 error(string)
 
     This function never returns a value. \l{qmake Manual#qmake}{\c qmake}
     displays the given \e string to the user, and exits. This function
@@ -2906,8 +3249,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 62
 
-    \section1 eval(string)
-    [Conditional]
+    \section2 eval(string)
 
     Evaluates the contents of the string using
     \l{qmake Manual#qmake}{\c qmake}'s syntax rules and returns true.
@@ -2920,8 +3262,7 @@
     Note that quotation marks can be used to delimit the string, and that
     the return value can be discarded if it is not needed.
 
-    \section1 exists(filename)
-    [Conditional]
+    \section2 exists(filename)
 
     Tests whether a file with the given \e filename exists.
     If the file exists, the function succeeds; otherwise it fails.
@@ -2934,17 +3275,17 @@
     Note that "/" can be used as a directory separator, regardless of the
     platform in use.
 
-    \section1 find(variablename, substr)
+    \section2 export(variablename)
 
-    Places all the values in \e variablename that match \e substr. \e
-    substr may be a regular expression, and will be matched accordingly.
+    Exports the current value of \c variablename from the local context of a
+    function to the global context.
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 64
+    \section2 files(pattern[, recursive=false])
 
-    MY_VAR2 will contain '-Lone -Ltwo -Lthree -Lfour -Lfive', and MY_VAR3 will
-    contains 'three two three'.
+    Expands the specified wildcard pattern and returns a list of filenames.
+    If \c recursive is true, this function descends into subdirectories.
 
-    \section1 for(iterate, list)
+    \section2 for(iterate, list)
 
     This special test function will cause a loop to be started that
     iterates over all values in \e list, setting \e iterate to each
@@ -2958,8 +3299,36 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 65
 
-    \section1 include(filename)
-    [Conditional]
+    \section2 greaterThan(variablename, value)
+
+    Tests that the value of \c variablename is greater than \c value. First,
+    this function attempts a numerical comparison. If at least one of the
+    operands fails to convert, this function does a string comparison.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 164
+
+    It is impossible to compare two numbers as strings directly. As a
+    workaround, construct temporary values with a non-numeric prefix and compare
+    these.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 172
+
+    See also \l{lessThan(variablename, value)}{lessThan()}.
+
+    \section2 if(condition)
+
+    This test function evaluates \c condition. It is used to group boolean
+    expressions.
+
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 166
+
+    \section2 include(filename)
 
     Includes the contents of the file specified by \e filename into the
     current project at the point where it is included. This function
@@ -2971,8 +3340,7 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 66
 
-    \section1 infile(filename, var, val)
-    [Conditional]
+    \section2 infile(filename, var, val)
 
     Succeeds if the file \e filename (when parsed by
     \l{qmake Manual#qmake}{\c qmake} itself) contains the variable \e var with
@@ -2980,8 +3348,11 @@
     (\e val), the function will only test whether \e var has been declared in
     the file.
 
-    \section1 isEmpty(variablename)
-    [Conditional]
+    \section2 isActiveConfig
+
+    This is an alias for the \c CONFIG function.
+
+    \section2 isEmpty(variablename)
 
     Succeeds if the variable \e variablename is empty; otherwise fails.
     This is the equivalent of \c{count( variablename, 0 )}.
@@ -2990,24 +3361,32 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 67
 
-    \section1 join(variablename, glue, before, after)
+    \section2 isEqual
 
-    Joins the value of \e variablename with \c glue. If this value is
-    non-empty it prefixes the value with \e before and suffix it with \e
-    after. \e variablename is the only required field, the others default
-    to empty strings. If you need to encode spaces in \e glue, \e before, or \e
-    after you must quote them.
+    This is an alias for the \c equals function.
 
-    \section1 member(variablename, position)
+    \section2 lessThan(variablename, value)
 
-    Returns the value at the given \e position in the list of items in
-    \e variablename.
-    If an item cannot be found at the position specified, an empty string is
-    returned. \e variablename is the only required field. If not specified,
-    \c position defaults to 0, causing the first value in the list to be
-    returned.
+    Tests that the value of \c variablename is less than \c value. Works as
+    \l{greaterThan(variablename, value)}{greaterThan()}.
 
-    \section1 message(string)
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 165
+
+    \section2 load(feature)
+
+    This function loads the feature file (\c .prf) specified by \c feature,
+    unless the feature has already been loaded.
+
+    \section2 log(message)
+
+    Prints a message on the console. Unlike the \c message function, neither
+    prepends text nor appends a line break.
+
+    See also \l{message(string)}{message()}.
+
+    \section2 message(string)
 
     This function simply writes a message to the console. Unlike the
     \c error() function, this function allows processing to continue.
@@ -3025,36 +3404,24 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 69
 
-    \section1 prompt(question)
+    \section2 mkpath(dirPath)
 
-    Displays the specified \e question, and returns a value read from stdin.
+    Creates the directory path \c dirPath. This function is a wrapper around the
+    QDir::makepath function.
 
-    \section1 quote(string)
+    \section2 requires(condition)
 
-    Converts a whole \e string into a single entity and returns the result.
-    This is just a fancy way of enclosing the string into double quotes.
+    Evaluates \c condition. If the condition is false, qmake skips this
+    project (and its SUBDIRS) when building.
 
-    \section1 replace(string, old_string, new_string)
+    \note You can also use the REQUIRES variable for this purpose. However, we
+    recommend using this function, instead.
 
-    Replaces each instance of \c old_string with \c new_string in the
-    contents of the variable supplied as \c string. For example, the
-    code
+    See also \l{REQUIRES}.
 
-    \snippet doc/src/snippets/qmake/replace.pro 0
+    \section2 system(command)
 
-    prints the message:
-
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 70
-
-    \section1 sprintf(string, arguments...)
-
-    Replaces %1-%9 with the arguments passed in the comma-separated list
-    of function \e arguments and returns the processed string.
-
-    \section1 system(command)
-    [Conditional]
-
-    Executes the given \c command in a secondary shell, and succeeds
+    Executes the given \c command in a secondary shell. Succeeds
     if the command returns with a zero exit status; otherwise fails.
     You can check the return value of this function using a scope:
 
@@ -3062,30 +3429,56 @@
 
     \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 71
 
-    Alternatively, you can use this function to obtain stdout and stderr
-    from the command, and assign it to a variable. For example, you can
-    use this to interrogate information about the platform:
+    See also the replace variant of \l{system(command[, mode])}{system()}.
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 72
+    \section2 touch(filename, reference_filename)
 
-    \target unique
-    \section1 unique(variablename)
+    Updates the time stamp of \c filename to match the time stamp of
+    \c reference_filename.
 
-    This will return a list of values in variable that are unique (that is
-    with repetitive entries removed). For example:
+    \section2 unset(variablename)
 
-    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 73
+    Removes \c variablename from the current context.
 
-    \section1 warning(string)
+    For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 169
+
+    \section2 warning(string)
 
     This function will always succeed, and will display the given
-    \e string to the user. message() is a synonym for warning().
+    \c string to the user. message() is a synonym for warning().
+
+    \section2 write_file(filename, [variablename, [mode]])
+
+    Writes the values of \c variablename to a file with the name \c filename,
+    each value on a separate line. If \c variablename is not specified, creates
+    an empty file. If \c mode is \c append and the file already exists, appends
+    to it instead of replacing it.
+
+    \section1 Test Function Library
+
+    Complex test functions are implemented in a library of .prf files.
+
+    \section2 packagesExist(packages)
+
+    Uses the PKGCONFIG mechanism to determine whether or not the given packages
+    exist at the time of project parsing.
+
+    This can be useful to optionally enable or disable features. For example:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 157
+
+    And then, in the code:
+
+    \snippet doc/src/snippets/code/doc_src_qmake-manual.pro 158
 */
 
 /*!
     \page qmake-environment-reference.html
     \contentspage {qmake Manual}{Contents}
-    \previouspage qmake Function Reference
+    \previouspage Using Precompiled Headers
+    \nextpage qmake Reference
 
     \title Configuring qmake's Environment
 
@@ -3583,7 +3976,7 @@
 
     In the above line, \c USE_MY_STUFF will only be added to the list of pre-processor
     defines if it is not already defined. Note that the
-    \l{qmake Function Reference#unique}{unique()}
+    \l{unique}{unique()}
     function can also be used to ensure that a variables only contains one
     instance of each value.
 
@@ -3906,7 +4299,7 @@
     \title Using Precompiled Headers
     \contentspage {qmake Manual}{Contents}
     \previouspage qmake Advanced Usage
-    \nextpage qmake Reference
+    \nextpage Configuring qmake's Environment
 
     \target Introduction
 

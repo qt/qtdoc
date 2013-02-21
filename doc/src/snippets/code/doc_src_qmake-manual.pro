@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -845,3 +845,102 @@ packagesExist(sqlite3 QtNetwork QtDeclarative) {
     // Use the fancy UI, as we have extra packages available
 #endif
 #! [158]
+
+#! [159]
+message($$absolute_path("readme.txt", "/home/johndoe/myproject"))
+#! [159]
+
+
+#! [160]
+TARGET = helloworld
+equals(TARGET, "helloworld") {
+    message("The target assignment was successful.")
+}
+#! [160]
+
+
+#! [161]
+CONTACT = firstname middlename surname phone
+message($$first(CONTACT))
+#! [161]
+
+
+#! [162]
+CONTACT = firstname middlename surname phone
+message($$last(CONTACT))
+#! [162]
+
+
+#! [163]
+message($$format_number(BAD, ibase=16 width=6 zeropad))
+#! [163]
+
+
+#! [164]
+ANSWER = 42
+greaterThan(ANSWER, 1) {
+    message("The answer might be correct.")
+}
+#! [164]
+
+
+#! [165]
+ANSWER = 42
+lessThan(ANSWER, 1) {
+    message("The answer might be wrong.")
+}
+#! [165]
+
+
+#! [166]
+if(linux-g++*|macx-g++*):CONFIG(debug, debug|release) {
+    message("We are on Linux or Mac OS, and we are in debug mode.")
+}
+#! [166]
+
+
+#! [167]
+CONTACT = firstname:middlename:surname:phone
+message($$section(CONTACT, :, 2, 2))
+#! [167]
+
+
+#! [168]
+CONTACT = firstname:middlename:surname:phone
+message($$split(CONTACT, :))
+#! [168]
+
+#! [169]
+NARF = zort
+unset(NARF)
+!defined(NARF, var) {
+    message("NARF is not defined.")
+}
+#! [169]
+
+
+#! [170]
+for(var, $$list(foo bar baz)) {
+    ...
+}
+#! [170]
+
+
+#! [171]
+values = foo bar baz
+for(var, values) {
+    ...
+}
+#! [171]
+
+
+#! [172]
+VALUE = 123
+TMP_VALUE = x$$VALUE
+greaterThan(TMP_VALUE, x456): message("Condition may be true.")
+#! [172]
+
+
+#! [173]
+message("First line$$escape_expand(\\n)Second line")
+#! [173]

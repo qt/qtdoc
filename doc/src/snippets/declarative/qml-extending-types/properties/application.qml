@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -43,7 +43,7 @@ import QtQuick 1.0
 ImageViewer {
     id: viewer
 
-    currentImage: "http://qt.nokia.com/logo.png"
+    currentImage: "http://qt-project.org/images/qtdn/doc/qt-logo.png"
 
     Text { text: viewer.currentImage }
 }
