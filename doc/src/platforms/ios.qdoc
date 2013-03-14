@@ -1,0 +1,64 @@
+/****************************************************************************
+**
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page ios_support.html
+\title iOS
+\brief Provides insight into the Qt iOS port and how to use it.
+
+The Qt for iOS preview should enable you to run Qt applications on iOS devices.
+Although it is a preview release, you can a do a lot with it. Here is a list of
+items supported:
+
+\list
+ \li Widgets
+ \li Graphics View
+ \li QtQuick 1
+ \li OpenGL
+ \li Touch and Orientation events
+\endlist
+
+\section1 Getting Started
+
+To get started with this solution, do the following:
+\list 1
+ \li Setup Xcode for development (acquire certificates, configure devices). Test and deploy one of the standard Xcode app templates to ensure that it works.
+ \li Build QtBase and other modules you intend to use, for device or simulator. Note that Qt 5 does not support multi-architecture builds like Qt 4 does.
+  \code
+   > ./configure -xplatform unsupported/macx-ios-clang -developer-build -nomake examples -nomake tests -release [-sdk iphonesimulator]
+
+   > make
+  \endcode
+ \endlist
+
+To check whether your environment is configured, try running the simple demo application.
+
+*/
+
+/*
+We should also document the end-to-end story with this iOS port. That is, how the developer can develop, build, and deploy to a device.
+*/
