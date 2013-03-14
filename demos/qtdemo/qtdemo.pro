@@ -11,7 +11,7 @@ qtHaveModule(opengl) {
     QT += opengl
 }
 
-contains(QT_CONFIG, quick1) {
+qtHaveModule(quick1) {
     QT += quick1
 } else {
     DEFINES *= QT_NO_DECLARATIVE
