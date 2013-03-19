@@ -128,4 +128,40 @@
     After an exception is thrown, the connection to the windowing server
     might already be closed. It is not safe to call a GUI related function
     after catching an exception.
+
+    \section1 Exceptions in client code
+
+    \section2 Signals and Slots
+
+    Throwing an exception from a slot invoked by Qt's \l{Signals & Slots}{signal-slot}
+    connection mechanism is considered undefined behaviour, unless it is handled within the slot:
+
+    \code
+    State state;
+    StateListener stateListener;
+
+    // OK; the exception is handled before it leaves the slot.
+    QObject::connect(&state, SIGNAL(stateChanged()), &stateListener, SLOT(throwHandledException()));
+    // Undefined behaviour; upon invocation of the slot, the exception will be propagated to the
+    // point of emission, unwinding the stack of the Qt code (which is not guaranteed to be exception safe).
+    QObject::connect(&state, SIGNAL(stateChanged()), &stateListener, SLOT(throwUnhandledException()));
+    \endcode
+
+    If the slot was invoked directly, like a regular function call, exceptions may be used.
+    This is because the connection mechanism is bypassed when invoking slots directly:
+
+    \code
+    State state;
+    StateListener stateListener;
+
+    // ...
+
+    try {
+        // OK; invoking slot directly.
+        stateListener.throwException();
+    } catch (...) {
+        qDebug() << "Handling exception not caught in slot.";
+    }
+    \endcode
+
 */

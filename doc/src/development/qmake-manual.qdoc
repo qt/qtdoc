@@ -65,6 +65,13 @@
       \tableofcontents{1 qmake Common Projects}
     \endlist
 
+    The guide to \l{Third Party Libraries} shows you how to use simple third party libraries
+    in your Qt project using qmake.
+    \list
+    \li \l{Third Party Libraries}
+      \tableofcontents{1 Third Party Libraries}
+    \endlist
+
     \section1 Table of Contents
 
     \list
@@ -1051,6 +1058,18 @@
     \row    \li warn_on  \li The compiler should output as many warnings as possible.
             This is ignored if \c warn_off is specified.
     \row    \li warn_off \li The compiler should output as few warnings as possible.
+    \row    \li exceptions \li Exception support is enabled. Set by default.
+    \row    \li exceptions_off \li Exception support is disabled.
+    \row    \li rtti \li RTTI support is enabled. By default, the compiler
+            default is used.
+    \row    \li rtti_off \li RTTI support is disabled. By default, the compiler
+            default is used.
+    \row    \li stl \li STL support is enabled. By default, the compiler
+            default is used.
+    \row    \li stl_off \li STL support is disabled. By default, the compiler
+            default is used.
+    \row    \li thread \li Thread support is enabled. This is enabled when CONFIG
+            includes \c qt, which is the default.
     \omit
     \row    \li qt_debug \li Specifies that the project should be built against
             debug versions of the Qt libraries specified using the
@@ -1154,19 +1173,6 @@
          \c LIBS variable is not reduced to a list of unique values before it is used.
     \row \li resources \li Configures qmake to run rcc on the content of \c RESOURCES
          if defined.
-    \endtable
-
-    These options are used to set the compiler flags:
-
-    \table 95%
-    \header \li Option \li Description
-    \row \li 3dnow \li AMD 3DNow! instruction support is enabled.
-    \row \li exceptions \li Exception support is enabled.
-    \row \li mmx \li Intel MMX instruction support is enabled.
-    \row \li rtti \li RTTI support is enabled.
-    \row \li stl \li STL support is enabled.
-    \row \li sse \li SSE support is enabled.
-    \row \li sse2 \li SSE2 support is enabled.
     \endtable
 
     These options define specific features on Windows only:
