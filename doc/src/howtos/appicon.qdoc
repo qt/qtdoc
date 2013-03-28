@@ -53,23 +53,29 @@
     the icon editor.)
 
     Store the ICO file in your application's source code directory,
-    for example, with the name \c myappico.ico. Then, create a text
-    file called, say, \c myapp.rc in which you put a single line of
-    text:
+    for example, with the name \c myappico.ico.
+
+    Then, assuming you are using qmake to generate your makefiles,
+    you only need to add a single line to your \c .pro project file:
+
+    \snippet doc/src/snippets/code/doc_src_appicon.pro 0
+
+    Finally, regenerate your makefile and your application. The \c .exe file
+    will now be represented by your icon in Explorer.
+
+    However, if you already have an \c .rc file, for example, with the name
+    \c myapp.rc, which you want to reuse, the following two steps will be
+    required. First, put a single line of text to the \c myapp.rc file:
 
     \snippet doc/src/snippets/code/doc_src_appicon.qdoc 0
 
-    Finally, assuming you are using \c qmake to generate your
-    makefiles, add this line to your \c myapp.pro file:
+    Then, add this line to your \c myapp.pro file:
 
     \snippet doc/src/snippets/code/doc_src_appicon.pro 1
 
-    Regenerate your makefile and your application. The \c .exe file
-    will now be represented with your icon in Explorer.
-
-    If you do not use \c qmake, the necessary steps are: first, run
-    the \c rc program on the \c .rc file, then link your application
-    with the resulting \c .res file.
+    If you do not use \c qmake, the necessary steps are: first, create an
+    \c .rc file and run the \c rc or \c windres program on the \c .rc file,
+    then link your application with the resulting \c .res file.
 
     \section1 Setting the Application Icon on Mac OS X
 
