@@ -116,6 +116,8 @@ The following sections lists the API changes in each module and provides recomme
            and \l{QAbstractItemModel::endMoveRows}{endMoveRows()} no longer emits the \c{layoutChanged} signal.
            All proxy models must connect to (and disconnect from) the \c{rowsAboutToBeMoved} and \c{rowsMoved} signals.
        \li \l{QAbstractItemModel::sibling} is virtual now to allow implementations to optimize based on internal data.
+       \li \l{QAbstractItemModel::createIndex} method now only provides the void* and quintptr overloads, making calls with a literal \c 0
+           (createIndex(row, col, 0)) ambiguous. Either cast (quintptr(0)) or omit the third argument(to get the void* overload).
       \endlist
      \li Default value of the \l{QSortFilterProxyModel::dynamicSortFilter} property is changed to \c{true}.
      \li \l{QString::mid}, \l{QString::midRef}, and \l{QByteArray::mid} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
