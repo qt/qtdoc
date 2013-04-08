@@ -58,6 +58,10 @@ The following list summarizes the changes in Qt 5:
        this module before porting your codebase to Qt 5.
    \li Qt WebKit - This module has been split into two, there is now a \l{Qt WebKit}
        and a \l{Qt WebKit Widgets} module.
+   \li Multimedia - In Qt 5, multimedia support is provided by the \l{Qt Multimedia}
+       module. Phonon framework is no longer part of Qt, but it continues to be
+       maintained by the Phonon developers and has support for Qt 5. See
+       \l{http://phonon.kde.org}.
 \endlist
 
 \section1 Related Topics
