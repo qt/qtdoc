@@ -44,8 +44,14 @@
     \keyword internationalization
     \keyword i18n
 
-    The internationalization of an application is the process of making
-    the application usable by people in countries other than one's own.
+    The \e internationalization and \e localization of an application are the
+    processes of adapting the application to different languages, regional
+    differences and technical requirements of a target market.
+    Internationalization means designing a software application so that it can
+    be adapted to various languages and regions without engineering changes.
+    Localization means adapting internationalized software for a specific region
+    or language by adding locale-specific components (such as date, time, and
+    number formats) and translating text.
 
     \tableofcontents
 
@@ -168,180 +174,45 @@
 
     \endlist
 
-    The following sections give some information on the status of the
-    internationalization (i18n) support in Qt. See also the \l{Qt
-    Linguist manual}.
+    For more information about how to internationalize source code, see
+    \l{Writing Source Code for Translation} and
+    \l{Internationalization and Localization with Qt Quick}.
 
-    \section1 Step by Step
+    \section1 Producing Translations
 
-    Writing cross-platform international software with Qt is a gentle,
-    incremental process. Your software can become internationalized in
-    the following stages:
+    Qt provides excellent support for translating Qt C++ and Qt Quick
+    applications into local languages. Release managers, translators, and
+    developers can use the Qt translation tools to accomplish their tasks.
 
-    \section2 Use QString for All User-Visible Text
-
-    Since QString uses the Unicode encoding internally, every
-    language in the world can be processed transparently using
-    familiar text processing operations. Also, since all Qt functions
-    that present text to the user take a QString as a parameter,
-    there is no \c{char *} to QString conversion overhead.
-
-    Strings that are in "programmer space" (such as QObject names
-    and file format texts) need not use QString; the traditional
-    \c{char *} or the QByteArray class will suffice.
-
-    You're unlikely to notice that you are using Unicode;
-    QString, and QChar are just like easier versions of the crude
-    \c{const char *} and char from traditional C.
-
-    \c{char *} strings in source code are assumend to be UTF-8 encoded
-    when being implicitly converted to a QString. If your C string literal
-    uses a different encoding, use QString::fromLatin1() or QTextCodec
-    to convert the literal to a Unicode encoded QString.
-
-    \section2 Use tr() for All Literal Text
-
-    Wherever your program uses "quoted text" for text that will
-    be presented to the user, ensure that it is processed by the \l
-    QCoreApplication::translate() function. Essentially all that is necessary
-    to achieve this is to use QObject::tr(). For example, assuming the
-    \c LoginWidget is a subclass of QWidget:
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 0
-
-    This accounts for 99% of the user-visible strings you're likely to
-    write.
-
-    If the quoted text is not in a member function of a
-    QObject subclass, use either the tr() function of an
-    appropriate class, or the QCoreApplication::translate() function
-    directly:
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 1
-
-    If you need to have translatable text completely
-    outside a function, there are two macros to help: QT_TR_NOOP()
-    and QT_TRANSLATE_NOOP(). They merely mark the text for
-    extraction by the \c lupdate utility described below.
-    The macros expand to just the text (without the context).
-
-    Example of QT_TR_NOOP():
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 2
-
-    Example of QT_TRANSLATE_NOOP():
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 3
-
-    If you disable the \c{const char *} to QString automatic
-    conversion by compiling your software with the macro \c
-    QT_NO_CAST_FROM_ASCII defined, you'll be very likely to catch any
-    strings you are missing. See QString::fromUtf8() and QString::fromLatin1()
-    for more information.
-
-    \section2 Use QKeySequence() for Accelerator Values
-
-    Accelerator values such as Ctrl+Q or Alt+F need to be translated
-    too. If you hardcode Qt::CTRL + Qt::Key_Q for "quit" in your
-    application, translators won't be able to override it. The
-    correct idiom is
-
-    \code
-    exitAct = new QAction(tr("E&xit"), this);
-    exitAct->setShortcuts(QKeySequence::Quit);
-    \endcode
-
-    \section2 Use QString::arg() for Dynamic Text
-
-    The QString::arg() functions offer a simple means for substituting
-    arguments:
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 4
-
-    In some languages the order of arguments may need to change, and this
-    can easily be achieved by changing the order of the % arguments. For
-    example:
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 5
-
-    produces the correct output in English and Norwegian:
-    \snippet doc/src/snippets/code/doc_src_i18n.qdoc 6
-
-    \section2 Produce Translations
-
-    Once you are using tr() throughout an application, you can start
-    producing translations of the user-visible text in your program.
-
-    The \l{Qt Linguist Manual} provides further information about
-    Qt's translation tools, \e{Qt Linguist}, \c lupdate and \c
-    lrelease.
-
-    Translation of a Qt application is a three-step process:
-
-    \list 1
-
-    \li Run \c lupdate to extract translatable text from the C++
-    source code of the Qt application, resulting in a message file
-    for translators (a TS file). The utility recognizes the tr()
-    construct and the \c{QT_TR*_NOOP()} macros described above and
-    produces TS files (usually one per language).
-
-    \li Provide translations for the source texts in the TS file, using
-    \e{Qt Linguist}. Since TS files are in XML format, you can also
-    edit them by hand.
-
-    \li Run \c lrelease to obtain a light-weight message file (a QM
-    file) from the TS file, suitable only for end use. Think of the TS
-    files as "source files", and QM files as "object files". The
-    translator edits the TS files, but the users of your application
-    only need the QM files. Both kinds of files are platform and
-    locale independent.
-
-    \endlist
-
-    Typically, you will repeat these steps for every release of your
-    application. The \c lupdate utility does its best to reuse the
-    translations from previous releases.
-
-    Before you run \c lupdate, you should prepare a project file. Here's
-    an example project file (\c .pro file):
-
-    \snippet doc/src/snippets/code/doc_src_i18n.qdoc 7
-
-    When you run \c lupdate or \c lrelease, you must give the name of the
-    project file as a command-line argument.
-
-    In this example, four languages are supported: Danish,
-    Finnish, Norwegian and Swedish. If you use \l{qmake}, you usually
-    don't need an extra project file for \c lupdate; your \c qmake
-    project file will work fine once you add the \c TRANSLATIONS
-    entry.
-
-    In your application, you must \l QTranslator::load() the translation
-    files appropriate for the user's language, and install them using \l
-    QCoreApplication::installTranslator().
-
-    \c linguist, \c lupdate and \c lrelease are installed in the \c bin
-    subdirectory of the base directory Qt is installed into. Click Help|Manual
-    in \e{Qt Linguist} to access the user's manual; it contains a tutorial
-    to get you started.
+    The Qt translation tools, Qt Linguist, \c lupdate, and \c lrelease are
+    installed in the \c bin subdirectory of the base directory Qt is installed
+    into. For more information about using them, see the \l{Qt Linguist Manual}.
 
     \target qt-itself
-    Qt itself contains over 400 strings that will also need to be
+    Qt itself contains several thousands of strings that will also need to be
     translated into the languages that you are targeting. You will find
-    a large number of translation files, as well as a template for translating
-    to other languages in the QtTranslations module.
+    a number of translation files in the qttranslations repository.
+    Before you start translating Qt, read the wiki page
+    \l{external: Translating Qt Into Other Languages}
+    {Translating Qt Into Other Languages}.
+
+    \section1 Enabling Translation
 
     Typically, your application's \c main() function will look like
     this:
 
     \snippet doc/src/snippets/code/doc_src_i18n.cpp 8
 
+    For a translation-aware application, a QTranslator object is created, then a
+    translation is loaded according to the current locale at runtime, and
+    finally, the translator object is installed into the application.
+
     Note the use of QLibraryInfo::location() to locate the Qt translations.
     Developers should request the path to the translations at run-time by
     passing QLibraryInfo::TranslationsPath to this function instead of
     using the \c QTDIR environment variable in their applications.
 
-    \section2 Support for Encodings
+    \section1 Support for Encodings
 
     The QTextCodec class and the facilities in QTextStream make it easy to
     support many legacy input and output encodings for your users' data. When an
@@ -361,7 +232,8 @@
     For converting Unicode to local 8-bit encodings, a shortcut is
     available: the QString::toLocal8Bit() function returns such 8-bit
     data. Another useful shortcut is QString::toUtf8(), which returns
-    text in the 8-bit UTF-8 encoding: this perfectly preserves
+    text in the 8-bit \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8} encoding:
+    this perfectly preserves
     Unicode information while looking like plain ASCII if the text is
     wholly ASCII.
 
@@ -393,21 +265,12 @@
 
     \keyword localization
 
-    \section2 Localize
+    \section1 Localizing Numbers, Dates, Times and Currency
 
     Localization is the process of adapting to local conventions, for
     example presenting dates and times using the locally preferred
-    formats. Such localizations can be accomplished using appropriate tr()
-    strings.
-
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 11
-
-    In the example, for the US we would leave the translation of
-    "AMPM" as it is and thereby use the 12-hour clock branch; but in
-    Europe we would translate it as something else and this will make
-    the code use the 24-hour clock branch.
-
-    For localized numbers, dates, times and currency strings use the QLocale class.
+    formats. For localized numbers, dates, times and currency strings, use the
+    QLocale class.
 
     Localizing images is not recommended. Choose clear icons that are
     appropriate for all localities, rather than relying on local puns or
@@ -419,7 +282,7 @@
 
     Some applications, such as Qt Linguist, must be able to support changes
     to the user's language settings while they are still running. To make
-    widgets aware of changes to the installed QTranslators, reimplement the
+    widgets aware of changes to the installed QTranslator objects, reimplement the
     widget's \l{QWidget::changeEvent()}{changeEvent()} function to check whether
     the event is a \l{QEvent::LanguageChange}{LanguageChange} event, and update
     the text displayed by widgets using the \l{QObject::tr()}{tr()} function
@@ -443,32 +306,6 @@
     function. Additionally, other application components can also force
     widgets to update themselves by posting LanguageChange events to them.
 
-
-    \section1 Translating Non-Qt Classes
-
-    It is sometimes necessary to provide internationalization support for
-    strings used in classes that do not inherit QObject or use the Q_OBJECT
-    macro to enable translation features. Since Qt translates strings at
-    run-time based on the class they are associated with and \c lupdate
-    looks for translatable strings in the source code, non-Qt classes must
-    use mechanisms that also provide this information.
-
-    One way to do this is to add translation support to a non-Qt class
-    using the Q_DECLARE_TR_FUNCTIONS() macro; for example:
-
-    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 0
-    \dots
-    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 1
-
-    This provides the class with \l{QObject::}{tr()} functions that can
-    be used to translate strings associated with the class, and makes it
-    possible for \c lupdate to find translatable strings in the source
-    code.
-
-    Alternatively, the QCoreApplication::translate() function can be called
-    with a specific context, and this will be recognized by \c lupdate and
-    Qt Linguist.
-
     \section1 System Support
 
     Some of the operating systems and windowing systems that Qt runs on
@@ -482,8 +319,7 @@
     \list
     \li  Locale-oriented fonts and input methods. Qt hides these and
         provides Unicode input and output.
-    \li  Filesystem conventions such as
-        \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8}
+    \li  Filesystem conventions such as UTF-8
         are today used by default in most Unix variants. All Qt file
         functions allow Unicode, but convert filenames to the local
         8-bit encoding, as this is the Unix convention (see
@@ -536,11 +372,57 @@
 
     \tableofcontents
 
-    \section1 The Basics
+    Writing cross-platform international software with Qt is a gentle,
+    incremental process. Your software can become internationalized in
+    the stages described in the following sections.
+    For more information about internalizing Qt Quick application, see
+    \l{Internationalization and Localization with Qt Quick}.
 
-    Developers use the \l{QObject::}{tr()} function to obtain translated text
-    for their classes, typically for display purposes. This function is also
-    used to indicate which text strings in an application are translatable.
+    \section1 Using QString for All User-Visible Text
+
+    Since QString uses the Unicode encoding internally, every
+    language in the world can be processed transparently using
+    familiar text processing operations. Also, since all Qt functions
+    that present text to the user take a QString as a parameter,
+    there is no \c{char *} to QString conversion overhead.
+
+    Strings that are in "programmer space" (such as QObject names
+    and file format texts) need not use QString; the traditional
+    \c{char *} or the QByteArray class will suffice.
+
+    You're unlikely to notice that you are using Unicode;
+    QString, and QChar are just easier versions of the crude
+    \c{const char *} and \c char from traditional C.
+
+    \c{char *} strings in source code are assumed to be
+    \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8} encoded when being
+    implicitly converted to a QString. If your C string literal
+    uses a different encoding, use QString::fromLatin1() or QTextCodec
+    to convert the literal to a Unicode encoded QString.
+
+    \section1 Using tr() for All Literal Text
+
+    Wherever your program uses a string literal (quoted text) that will
+    be presented to the user, ensure that it is processed by the \l
+    QCoreApplication::translate() function. Essentially all that is necessary
+    to achieve this is to use the \l{QObject::}{tr()} function to obtain
+    translated text for your classes, typically for display purposes. This
+    function is also used to indicate which text strings in an application are
+    translatable.
+
+    For example, assuming the \c LoginWidget is a subclass of QWidget:
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 0
+
+    This accounts for 99% of the user-visible strings you're likely to
+    write.
+
+    If the quoted text is not in a member function of a
+    QObject subclass, use either the tr() function of an
+    appropriate class, or the QCoreApplication::translate() function
+    directly:
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 1
 
     Qt indexes each translatable string by the \e{translation context} it is
     associated with; this is generally the name of the QObject subclass it is
@@ -551,8 +433,8 @@
 
     When tr() is called, it looks up the translatable string using a QTranslator
     object. For translation to work, one or more of these must have been
-    installed on the application object in the way described in the
-    \l{#Enabling Translation}{Enabling Translation} section below.
+    installed on the application object in the way described in
+    \l{Enabling Translation}.
 
     Translating strings in QML works exactly the same way as in C++, with the only
     difference being that you need to call qsTr() instead of \l{QObject::}{tr()}. See also
@@ -601,7 +483,8 @@
     by the tr() function is a translation of "&File" obtained from
     the \c MainWindow context.
 
-    When Qt's translation tool, \l lupdate, is used to process a set of source
+    When Qt's translation tool, \l{Using lupdate}{lupdate}, is used to process
+    a set of source
     files, the text wrapped in tr() calls is stored in a section of the translation
     file that corresponds to its translation context.
 
@@ -614,11 +497,47 @@
     context. Developers can also use the QCoreApplication::translate() function
     to obtain a translation for a particular translation context.
 
+    \section1 Using tr() to Localize Numbers
+
+    You can localize numbers by using appropriate tr() strings:
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 11
+
+    In the example, for the US we would leave the translation of
+    "AMPM" as it is and thereby use the 12-hour clock branch; but in
+    Europe we would translate it as something else to make
+    the code use the 24-hour clock branch.
+
+    \section1 Translating Non-Qt Classes
+
+    It is sometimes necessary to provide internationalization support for
+    strings used in classes that do not inherit QObject or use the Q_OBJECT
+    macro to enable translation features. Since Qt translates strings at
+    run-time based on the class they are associated with and \c lupdate
+    looks for translatable strings in the source code, non-Qt classes must
+    use mechanisms that also provide this information.
+
+    One way to do this is to add translation support to a non-Qt class
+    using the Q_DECLARE_TR_FUNCTIONS() macro; for example:
+
+    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 0
+    \dots
+    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 1
+
+    This provides the class with \l{QObject::}{tr()} functions that can
+    be used to translate strings associated with the class, and makes it
+    possible for \c lupdate to find translatable strings in the source
+    code.
+
+    Alternatively, the QCoreApplication::translate() function can be called
+    with a specific context, and this will be recognized by \c lupdate and
+    Qt Linguist.
+
     \section1 Translator Comments
 
     Developers can include information about each translatable string to
     help translators with the translation process. These are extracted
-    when \l lupdate is used to process the source files. The recommended
+    when \c lupdate is used to process the source files. The recommended
     way to add comments is to annotate the tr() calls in your code with
     comments of the form:
 
@@ -638,7 +557,7 @@
     \section1 Adding Meta-Data to Strings
 
     Additional data can be attached to each translatable message. These are
-    extracted when \l lupdate is used to process the source files. The
+    extracted when \c lupdate is used to process the source files. The
     recommended way to add meta-data is to annotate the tr() calls in your code
     with comments of the form:
 
@@ -664,7 +583,8 @@
 
     \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp meta data
 
-    Meta-data appearing right in front of a magic TRANSLATOR comment applies to
+    You can use the keyword \e TRANSLATOR for translator comments.
+    Meta-data appearing right in front of the TRANSLATOR keyword applies to
     the whole TS file.
 
     \section1 Disambiguation
@@ -681,10 +601,6 @@
 
     In Qt 4.4 and earlier, this disambiguation parameter was the preferred
     way to specify comments to translators.
-
-    \section1 Character Encodings
-
-    The encoding for the source text is assumed to be UTF-8.
 
     \section1 Handling Plurals
 
@@ -724,7 +640,15 @@
     plural forms (e.g., Irish has a special "dual" form that should
     be used when \c n is 2), and it handles the \e n == 0 case
     correctly for languages such as French that require the singular.
-    See the \l{Qt Linguist Manual} for details.
+
+    To handle plural forms in the native language, you need to load a
+    translation file for this language, too. The lupdate tool has the
+    \c -pluralonly command line option, which allows the creation of
+    TS files containing only entries with plural forms.
+
+    See the \l{Qt Quarterly} Article
+    \l{http://doc.qt.digia.com/qq/qq19-plurals.html}
+    {Plural Forms in Translations} for further details on this issue.
 
     Instead of \c %n, you can use \c %Ln to produce a localized
     representation of \a n. The conversion uses the default locale,
@@ -734,17 +658,63 @@
     A summary of the rules used to translate strings containing plurals can be
     found in the \l{Translation Rules for Plurals} document.
 
-    \section1 Enabling Translation
+    \section1 Translating Text That is Outside of a QObject Subclass
 
-    Typically, your application's \c main() function will look like
-    this:
+    \section2 Using QCoreApplication::translate()
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 8
+    If the quoted text is not in a member function of a QObject subclass,
+    use either the tr() function of an appropriate class, or the
+    QCoreApplication::translate() function directly:
 
-    Note the use of QLibraryInfo::location() to locate the Qt translations.
-    Developers should request the path to the translations at run-time by
-    passing QLibraryInfo::TranslationsPath to this function instead of
-    using the \c QTDIR environment variable in their applications.
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 13
+
+    \section2 Using QT_TR_NOOP() and QT_TRANSLATE_NOOP() in C++
+
+    If you need to have translatable text completely outside a function, there
+    are two macros to help: QT_TR_NOOP() and QT_TRANSLATE_NOOP(). They merely
+    mark the text for extraction by the \c lupdate tool. The macros expand to
+    just the text (without the context).
+
+    Example of QT_TR_NOOP():
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 2
+
+    Example of QT_TRANSLATE_NOOP():
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 3
+
+    If you disable the \c{const char *} to QString automatic
+    conversion by compiling your software with the macro \c
+    QT_NO_CAST_FROM_ASCII defined, you'll be very likely to catch any
+    strings you are missing. See QString::fromUtf8() and QString::fromLatin1()
+    for more information.
+
+    \section1 Using QKeySequence() for Accelerator Values
+
+    Accelerator values such as Ctrl+Q or Alt+F need to be translated
+    too. If you hardcode \c{Qt::CTRL + Qt::Key_Q} for "quit" in your
+    application, translators won't be able to override it. The
+    correct idiom is:
+
+    \code
+    exitAct = new QAction(tr("E&xit"), this);
+    exitAct->setShortcuts(QKeySequence::Quit);
+    \endcode
+
+    \section1 Using Numbered Arguments
+
+    The QString::arg() functions offer a simple means for substituting
+    arguments:
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 4
+
+    In some languages the order of arguments may need to change, and this
+    can easily be achieved by changing the order of the % arguments. For
+    example:
+
+    \snippet doc/src/snippets/code/doc_src_i18n.cpp 5
+
+    produces the correct output in English and Norwegian:
+    \snippet doc/src/snippets/code/doc_src_i18n.qdoc 6
 
     \section1 Further Reading
 

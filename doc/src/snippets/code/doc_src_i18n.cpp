@@ -173,3 +173,19 @@ void MyWidget::changeEvent(QEvent *event)
         QWidget::changeEvent(event);
 }
 //! [12]
+
+
+//! [13]
+void some_global_function(LoginWidget *logwid)
+{
+    QLabel *label = new QLabel(
+            LoginWidget::tr("Password:"), logwid);
+}
+
+void same_global_function(LoginWidget *logwid)
+{
+    QLabel *label = new QLabel(
+            qApp->translate("LoginWidget", "Password:"),
+            logwid);
+}
+//! [13]
