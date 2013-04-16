@@ -102,15 +102,27 @@
     \page obsoleteclasses.html
     \title Obsolete Classes
     \ingroup classlists
-    
-    \brief These classes are obsolete and should not be used in new code. 
 
-    This is a list of Qt classes that are obsolete (deprecated). These
-    classes are provided to keep old source code working but they are
-    no longer maintained. We strongly advise against using these
-    classes in new code.
+    \brief Classes and members marked obsolete that should not be used in new code.
+
+    \section1 C++ classes that are deprecated
+
+    The following Qt C++ classes are now obsolete. Obsolete classes
+    are no longer maintained. They are provided to keep old source
+    code working, but they can be removed in a future release. We
+    strongly advise against using these classes in new code.
 
     \generatelist obsoleteclasses
+
+    \section1 C++ classes that contain one or more members that are deprecated
+
+    The following Qt C++ classes contain one or more members that are
+    now obsolete. Obsolete members are no longer maintained. They are
+    provided to keep old source code working, but they can be removed
+    in a future release. We strongly advise against using these obsolete
+    members in new code. Click on a class to see its deprecated members.
+
+    \generatelist obsoletecppmembers
 
 */
 
