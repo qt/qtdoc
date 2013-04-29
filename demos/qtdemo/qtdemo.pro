@@ -1,8 +1,4 @@
 CONFIG += help x11inc
-TARGET = qtdemo
-DESTDIR = $$QT.core.bins
-INSTALLS += target sources
-
 
 QT += widgets xml network
 
@@ -15,11 +11,6 @@ qtHaveModule(quick1) {
     QT += quick1
 } else {
     DEFINES *= QT_NO_DECLARATIVE
-}
-
-build_all:!build_pass {
-    CONFIG -= build_all
-    CONFIG += release
 }
 
 RESOURCES = qtdemo.qrc
@@ -72,9 +63,12 @@ QMAKE_INFO_PLIST = Info_mac.plist
 }
 
 # install
-target.path = $$[QT_INSTALL_BINS]
 sources.files = $$SOURCES $$HEADERS $$FORMS $$RESOURCES qtdemo.pro images xml *.ico *.icns *.rc *.plist
 sources.path = $$[QT_INSTALL_DEMOS]/qtdoc/qtdemo
 
+INSTALLS += sources
+
 OTHER_FILES += \
     qmlShell.qml
+
+load(qt_app)

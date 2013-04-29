@@ -26,48 +26,73 @@
 ****************************************************************************/
 
 /*!
-    \title Getting Started Guides
+    \page gettingstarted.html
+    \title Getting Started with Qt
+    \brief A quick guide for developers
 
-	\group gettingStarted
+    \section1 Downloading and Installing Qt
 
-    \section1 Creating Applications Using Qt Is Easy
-    To help you on your way, we have created two tutorials creating two similar applications,
-    but using different approaches.
+    The \l{Opensource Downloads}{Downloads} page contains Qt download links,
+    where Qt and Qt Creator can be downloaded for different development
+    platforms.
 
-    Before starting, make sure to download either the commercial evaluation or the open source
-    version of the Qt SDK and familiarize yourself with the \l{development tools}. The Qt SDK
-    provides the \l{Qt Creator} IDE to make the development of Qt applications easy and efficient.
+    \section2 Installing with the Installation Program
 
-    \section1 User Interface Options
-    In addition to intuitive, cross-platform abstractions for anything from
-    \l{Core Internals#Threading}{threading}
-    and \l{Networking and Connectivity}{network communication} to
-    \l{Qt Multimedia Overview}{video playback and web camera access}, Qt provides two separate ways
-    of creating graphical user interfaces which favor somewhat different use cases.
+    The Qt Installation Program can download the Qt libraries and tools as well
+    as the reference documentation and code samples. The \l{Qt Installation
+    Program} page contains information about installation process.
 
-    The \l{Qt Quick} Module provides a declarative language for creating fluid and animated
-    user interfaces, suited e.g. for applications which require a very distinctive look and feel and
-    animated user interface elements, applications intended to run on small screens and applications
-    targeted for touch input devices.
+    \section2 Installing from the Qt Sources
 
-    The \l {Qt Widgets} Module provides support for the more traditional desktop applications,
-    integrating seamlessly with the target platform, whether it's Mac OS X, Windows, KDE or Gnome.
-    It is both a robust and flexible C++-based class library with existing components for many
-    typical user interface widgets, and which is convenient to extend with new functionality
-    when the need arises.
+    Qt may also be installed from the sources. Simply download the sources
+    (available from the \l{Opensource Downloads}{Downloads} page) and follow the
+    instructions according to the development platform page here:
+    \l Installation.
 
-    Which module you choose to base your application on depends on the type of application
-    you want to create. Since both approaches integrate with the rest of the Qt libraries, it
-    is also possible to write much of the application logic independently. Familiarize yourself
-    with the two options in the following tutorials before making your decision.
+    \section1 Exploring the Tools
 
-    For more detailed information, see the \l {User Interfaces} overview.
-	
-    \section1 The Tutorials
-    There are two separate tutorials for creating two similar applications. One implements the
-    user interface using Qt Quick, while the other uses Qt Widgets.
-	
-    Please click on one of the links below to start the ride.
-	
+    \l{Qt Creator}, the Qt IDE, allows quick development time by integrating
+    tools such as a code editor, a UI designer, a debugger, and other project
+    management tools such as version control.
+
+    For more information, these pages describe the tools and processes involved:
+    \list
+    \li \l{Development Tools}
+    \li \l{external: Qt Creator Manual}{Qt Creator Manual}
+    \endlist
+
+    \section1 Creating Applications Using Qt
+
+    Qt 5's modularized nature means that modules may be omitted during the
+    build process, producing libraries that are smaller in size and with
+    less complexities. Depending on their support and target platforms,
+    modules are either an \e essential or an \e add-on.
+
+    These pages explain the modules and the support level for different
+    platforms: \list \li \l{All Modules}{Qt Modules} \li \l{Supported Platforms}
+    \endlist
+
+    To help you on your way, we created two tutorials creating two similar
+    applications, but using different approaches. One implements the user
+    interface using Qt Quick, while the other uses Qt Widgets.
+
+    \list
+    \li \l{Getting Started Programming with Qt Widgets}
+    \li \l{Getting Started Programming with Qt Quick}
+    \endlist
+
+    \section1 Where to Go from Here
+
+    We invite you to explore the rest of Qt. We prepared overviews which help
+    you decide which APIs to use and our examples demonstrate how to use our
+    API.
+
+    \list
+    \li \l{Qt Overviews} - list of topics about application development
+    \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
+    \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
+    \endlist
+
+    Qt's vibrant and active community site, \l{http://qt-project.org} houses
+    a wiki, a forum, and additional learning guides and presentations.
 */
-
