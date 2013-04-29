@@ -33,63 +33,11 @@
 QML is a declarative language that allows user interfaces to be described in
 terms of their visual components and how they interact and relate with one
 another.  It is a highly readable language that was designed to enable
-components to be interconnected in a dynamic manner, and it allows components
-to be easily reused and customized within a user interface.  Using the
-\c QtQuick module, designers and developers can easily build fluid animated
-user interfaces in QML, and have the option of connecting these user
-interfaces to any back-end C++ libraries.
-
-This page links to all the information you need to start developing
-applications with \l{Qt QML}{QML} and \l{Qt Quick}.
-
-\section2 Other QML modules
-
-Qt Quick only provides basic visual types, much of Qt's functionality is exposed to QML
-through other modules. If you require the functionality of those modules, you should browse
-their QML documentation. Qt Essentials modules exposing QML types include:
-
-\list
-\li \l {Qt Multimedia} for playing and managing multimedia content and cameras.
-\li \l {Qt WebKit} for rendering web content.
-\endlist
-
-\section1 Quick Start
-
-\list
-\li \l{qtquick-quickstart-basics.html}{QML Basics}
-    \list
-    \li \l{qtquick-quickstart-basics.html#creating-a-qml-document}{Creating a QML Document}
-    \li \l{qtquick-quickstart-basics.html#loading-and-displaying-the-qml-document}{Loading and Displaying the QML Document}
-    \endlist
-\li \l{qtquick-quickstart-essentials.html}{QML Essentials}
-    \list
-    \li \l{qtquick-quickstart-essentials.html#handling-user-input}{Handling User Input}
-    \li \l{qtquick-quickstart-essentials.html#property-bindings}{Property Bindings}
-    \li \l{qtquick-quickstart-essentials.html#animations}{Animations}
-    \li \l{qtquick-quickstart-essentials.html#defining-custom-qml-types-for-re-use}{Defining Custom QML Types for Re-use}
-    \endlist
-\endlist
-
-\section1 Code Samples and Demos
-
-See \l{Qt Quick Code Samples} for examples on how to use different
-QML types, and for demonstrations of fully functional QML applications.
-
-
-\section1 Features And Use-Case Solutions
-
-\list
-\li \l{qtquick-usecase-visual.html}{Visual types in QML}
-\li \l{qtquick-usecase-userinput.html}{Responding to User Input in QML}
-\li \l{qtquick-usecase-animations.html}{Animations in QML}
-\li \l{qtquick-usecase-text.html}{Displaying Text in QML}
-\li \l{qtquick-usecase-layouts.html}{Layouts in QML}
-\li \l{qtquick-usecase-styling.html}{Style and Theme Support}
-\li \l{qtquick-usecase-integratingjs.html}{Integrating JavaScript in QML}
-\endlist
-
-
-\section1 In-Depth Documentation
+components to be interconnected in a dynamic manner, and it allows components to
+be easily reused and customized within a user interface.  Using the \c QtQuick
+module, designers and developers can easily build fluid animated user interfaces
+in QML, and have the option of connecting these user interfaces to any back-end
+C++ libraries.
 
 \section2 What is QML?
 
@@ -114,6 +62,106 @@ The \c QtQuick QML library is provided by the \l{Qt Quick} module.
 For in-depth information about the various QML types and other functionality
 provided by Qt Quick, please see the \l{Qt Quick} module documentation.
 
+\section1 Quick Start
+
+\list
+\li \l{qtquick-quickstart-basics.html}{QML Basics}
+    \list
+    \li \l{qtquick-quickstart-basics.html#creating-a-qml-document}{Creating a QML Document}
+    \li \l{qtquick-quickstart-basics.html#loading-and-displaying-the-qml-document}{Loading and Displaying the QML Document}
+    \endlist
+\li \l{qtquick-quickstart-essentials.html}{QML Essentials}
+    \list
+    \li \l{qtquick-quickstart-essentials.html#handling-user-input}{Handling User Input}
+    \li \l{qtquick-quickstart-essentials.html#property-bindings}{Property Bindings}
+    \li \l{qtquick-quickstart-essentials.html#animations}{Animations}
+    \li \l{qtquick-quickstart-essentials.html#defining-custom-qml-types-for-re-use}{Defining Custom QML Types for Re-use}
+    \li \l{qml-codingconventions.html}{QML Coding Conventions}
+    \li \l{qtquick-glossary.html}{Glossary of Terms}
+    \endlist
+\endlist
+
+\section1 QML User Interfaces
+
+For creating or customizing graphical user interfaces, Qt Quick adds visual
+types, animation types, and other QML types in addition to the standard QML
+types from Qt QML. \l{Qt Creator: Using Qt Quick Designer}{Qt Quick Designer}
+is integrated within Qt Creator and supports \c{QtQuick 2} from Qt Creator
+version 2.7 and onwards.
+
+
+\list
+\li \l{qtquick-usecase-visual.html}{Visual types in QML}
+\li \l{qtquick-usecase-userinput.html}{Responding to User Input in QML}
+\li \l{qtquick-usecase-animations.html}{Animations in QML}
+\li \l{qtquick-usecase-text.html}{Displaying Text in QML}
+\li \l{qtquick-usecase-layouts.html}{Layouts in QML}
+\li \l{qtquick-usecase-styling.html}{Style and Theme Support}
+\li \l{qtquick-usecase-integratingjs.html}{Integrating JavaScript in QML}
+\endlist
+
+\section2 Buttons, Menus, and other Controls
+
+For a set of basic UI controls, the \l{Qt Quick Controls} module implements
+several controls such as buttons, menus, and views. These controls mimic the
+native behavior found in different platforms such as Windows, OS X, and Linux.
+
+\section2 Special Effects
+
+Several Qt modules provide types for creating special effects in applications.
+Their respective pages contain more information about specific uses.
+
+\list
+\li \l{Using the Qt Quick Particle System}{Particle Effects}
+\li \l{Graphical Effects} - for creating image composition effects.
+\endlist
+
+\section2 Viewing Web Content in QML Applications
+
+The QML type, \l{WebView}, renders and displays dynamic web content. It can load
+a URL or an HTML string. To read more about WebView and view code samples, visit
+the \l{Qt WebKit} page.
+
+\section2 Sensors, Gestures, and Touch Interfaces
+
+The \l{Qt Sensors} module allows applications to read information from
+sensors such as accelerometers and tilt sensors. There is a common QML API for
+different platforms and can be extended in C++.
+
+\list
+\li \l{Qt Sensors QML Types}
+\li \l{Qt Sensors Examples}
+\li \l{Compatibility Map} - lists support level for different mobile platforms
+\endlist
+
+\section1 Multimedia Content
+
+The \l{Qt Multimedia} module enables applications to handle various media
+content with a convenient set of QML types. These QML types can be extended
+in C++.
+
+\list
+\li \l Multimedia
+    \list
+    \li \l{Audio Overview}
+    \li \l{Video Overview}
+    \li \l{Camera Overview}
+    \li \l{Radio Overview}
+    \endlist
+\endlist
+
+\section1 Code Samples and Demos
+
+To learn more about uses of QML code, there are several code samples which show
+how QML types are used. In addition, there are several demos which show how
+QML code is used in applications.
+
+\list
+\li \l{Getting Started Programming with Qt Quick} - a tutorial showing the creation of a simple QML text editor.
+\li \l{Qt Quick Code Samples}
+\li \l{QML Demos}
+\endlist
+
 \section1 Advanced Application Development Topics
 
 \list
@@ -126,9 +174,16 @@ provided by Qt Quick, please see the \l{Qt Quick} module documentation.
     \li \l{qtquick-debugging.html}{Debugging QML Applications}
     \li \l{qtquick-qtquicktest.html}{Qt Quick Test: QML Unit Testing Framework}
     \endlist
-\li \l{qml-codingconventions.html}{QML Coding Conventions}
-\li \l{qtquick-glossary.html}{Glossary of Terms}
 \endlist
+
+\section1 Other QML Modules
+
+Qt Quick only provides basic visual types and much of Qt's functionality is
+exposed to QML through other modules. If you require the functionality of those
+modules, you should browse their QML documentation.
+
+The \l{All QML APIs by Module} contains a list of all QML modules
+in Qt 5.
 
 \section1 Release Notes and Porting Guides
 
