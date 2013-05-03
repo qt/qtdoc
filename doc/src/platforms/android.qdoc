@@ -42,6 +42,16 @@ supported items:
      \l{Qt Creator Manual}{Qt Creator}
 \endlist
 
+\section1 Requirements
+
+In order to use Qt for Android, you will need the following external tools:
+
+\list
+\li The Android SDK
+\li The Android NDK
+\li The Ant build tool
+\endlist
+
 \section1 Getting Started
 
 The following step-by-step instructions guide you to set up the environment
@@ -159,7 +169,7 @@ AVDs found.
 
 \section1 Related Information
 \list
- \li Platform Notes
+ \li \l{Platform and Compiler Notes - Android}{Platform Notes}
  \li \l{Qt Creator: Deploying Applications to Android Devices}
 \endlist
 */
