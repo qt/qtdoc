@@ -29,7 +29,7 @@
     \page gettingstartedqml.html
     \title Getting Started Programming with Qt Quick
 
-    Welcome to the world of QML, the declarative UI language. In this Getting
+    Welcome to the world of \b QML, the declarative UI language. In this Getting
     Started guide, we will create a simple text editor application using QML.
     After reading this guide, you should be ready to develop your own applications
     using QML and Qt C++.
@@ -42,7 +42,7 @@
     declarative language in QML. For the second part, file loading and saving will
     be implemented using Qt C++. Using
     \l {The Meta-Object System}{Qt's Meta-Object System}, we can expose C++ functions
-    as properties that QML elements can use. Utilizing QML and Qt C++, we can
+    as properties that \l{QML Object Types}{QML object types} can use. Utilizing QML and Qt C++, we can
     efficiently decouple the interface logic from the application logic.
 
     \image qml-texteditor5_editmenu.png
@@ -65,6 +65,9 @@
         \li \l {Extending QML using Qt C++}{Extending QML using Qt C++}
     \endlist
 
+    Information about QML, such as syntax and features, is included in the
+    \l{The QML Reference}.
+
     \section1 Defining a Button and a Menu
 
     \section2 Basic Component - a Button
@@ -72,8 +75,9 @@
     We start our text editor by building a button. Functionally, a button has a mouse
     sensitive area and a label. Buttons perform actions when a user presses the button.
 
-    In QML, the basic visual item is the \l {Rectangle}{Rectangle} element. The
-    \c Rectangle element has properties to control the element's appearance and location.
+    In QML, the basic visual item is the \l {Rectangle}{Rectangle} type. The
+    \c Rectangle \l{QML Object Types}{QML object type} has
+    \l{Property Binding}{QML properties} to control its appearance and location.
 
     \code
         import QtQuick 2.0
@@ -91,20 +95,20 @@
         }
     \endcode
 
-    First, the \c { import QtQuick 2.0 } allows the \c qmlscene tool to import the QML elements
+    First, the \c { import QtQuick 2.0 } allows the \c qmlscene tool to import the QML types
     we will later use. This line must exist for every QML file. Notice that the version
     of Qt modules is included in the import statement.
 
     This simple rectangle has a unique identifier, \c simplebutton, which is bound to the
-    id property. The \c Rectangle element's properties are bound to values by listing the
+    id property. The \c Rectangle object's properties are bound to values by listing the
     property, followed by a colon, then the value. In the code sample, the color \c grey
     is bound to the Rectangle's \c color property. Similarly, we bind the \c width
     and \c height of the Rectangle.
 
-    The \l {Text}{Text} element is a non-editable text field. We name this \c Text element
+    The \l {Text}{Text} type is a non-editable text field. We name this text object
     \c buttonLabel. To set the string content of the Text field, we bind a value to the
     \c text property. The label is contained within the Rectangle and in order to center
-    it in the middle, we assign the \c anchors of the Text element to its parent, which
+    it in the middle, we assign the \c anchors of the Text object to its parent, which
     is called \c simplebutton. Anchors may bind to other items' anchors, allowing layout
     assignments simpler.
 
@@ -132,7 +136,7 @@
         }
     \endcode
 
-    We include a \l{MouseArea} element in our simplebutton. \c MouseArea elements describe
+    We include a \l{MouseArea} object in our simplebutton. \c MouseArea objects describe
     the interactive area where mouse movements are detected. For our button, we anchor the
     whole MouseArea to its parent, which is \c simplebutton. The \c anchors.fill syntax is
     one way of accessing a specific property called \c fill inside a group of properties
@@ -206,7 +210,7 @@
     We now have the basic knowledge to implement items in QML that can handle
     basic mouse movements. We created a \c Text label inside a \c Rectangle,
     customized its properties, and implemented behaviors that respond to mouse
-    movements. This idea of creating elements within elements is repeated
+    movements. This idea of creating QML objects within objects is repeated
     throughout the text editor application.
 
     This button is not useful unless used as a component to perform an action.
@@ -217,8 +221,8 @@
 
     \section2 Creating a Menu Page
 
-    Up to this stage, we covered how to create elements and assign behaviors inside
-    a single QML file. In this section, we will cover how to import QML elements and how
+    Up to this stage, we covered how to create objects and assign behaviors inside
+    a single QML file. In this section, we will cover how to import QML types and how
     to reuse some of the created components to build other components.
 
     Menus display the contents of a list, each item having the ability to perform an action.
@@ -235,7 +239,7 @@
     The syntax shown above shows how to use the \c import keyword. This is required to
     use JavaScript files, or QML files that are not within the same directory. Since
     \c Button.qml is in the same directory as \c FileMenu.qml, we do not need to import
-    the \c Button.qml file to use it. We can directly create a \c Button element by declaring
+    the \c Button.qml file to use it. We can directly create a \c Button object by declaring
     \c Button{}, similar to a \c Rectangle{} declaration.
 
     \code
@@ -265,8 +269,8 @@
         }
     \endcode
 
-    In \c FileMenu.qml, we declare three \c Button elements. They are declared
-    inside a \l {Row}{Row} element, a positioner that will position its children
+    In \c FileMenu.qml, we declare three \c Button objects. They are declared
+    inside a \l {Row}{Row} type, a positioner that will position its children
     along a vertical row. The \c Button declaration resides in Button.qml,
     which is the same as the \c Button.qml we used in the previous section.
     New property bindings can be declared within the newly created buttons,
@@ -305,9 +309,9 @@
     \l{QML Data Models}{data models}. Our menu bar will display the menus in a list,
     with a header that displays a row of menu names. The list of menus are declared
     inside a \c VisualItemModel. The \l{VisualItemModel}{\c VisualItemModel}
-    element contains items that already have views such as \c Rectangle elements
-    and imported UI elements. Other model types such as the \l{ListModel}{\c ListModel}
-    element need a delegate to display their data.
+    type contains items that already have views such as  the \c Rectangle objects.
+    Other model types such as the \l{ListModel}{\c ListModel}
+    type need a delegate to display their data.
 
     We declare two visual items in the \c menuListModel, the \c FileMenu and the
     \c EditMenu. We customize the two menus and display them using a
@@ -330,10 +334,10 @@
         }
     \endcode
 
-    The \l {ListView}{ListView} element will display a model according to a delegate.
-    The delegate may declare the model items to display in a \c Row element or display
-    the items in a grid. Our \c menuListModel already has visible items, therefore,
-    we do not need to declare a delegate.
+    The \l {ListView}{ListView} type will display a model according to a
+    delegate. The delegate can display the model items in a \c Row object or in
+    a grid. Our \c menuListModel already has visible items, therefore, we do not
+    need to declare a delegate.
 
     \code
         ListView{
@@ -414,9 +418,9 @@
     \section2 Declaring a TextArea
 
     Our text editor is not a text editor if it didn't contain an editable text area.
-    QML's \l {TextEdit}{TextEdit} element allows the declaration of a multi-line
-    editable text area. \l {TextEdit}{TextEdit} is different from a \l {Text}{Text}
-    element, which doesn't allow the user to directly edit the text.
+    QML's \l {TextEdit}{TextEdit} type allows the declaration of a multi-line
+    editable text area. \l {TextEdit}{TextEdit} is different from the \l {Text}{Text}
+    type, which doesn't allow the user to directly edit the text.
 
     \code
         TextEdit{
@@ -459,7 +463,7 @@
     us to reuse components, therefore making our code simpler, by importing components
     and customizing when necessary. Our text editor splits the window into two;
     one-third of the screen is dedicated to the menu bar and two-thirds of the screen
-    displays the text area. The menu bar is displayed in front of any other elements.
+    displays the text area. The menu bar is displayed in front of any other objects.
 
     \code
         Rectangle{
@@ -506,7 +510,7 @@
     In our implementation, we have a thin rectangle that responds to mouse clicks. The
     \c drawer, as well as the application, has two sates: the "drawer is open" state and
     the "drawer is closed" state. The \c drawer item is a strip of rectangle with a small
-    height. There is a nested \l {Image}{Image} element declaring that an arrow icon will
+    height. There is a nested \l {Image}{Image} object declaring that an arrow icon will
     be centered inside the drawer. The drawer assigns a state to the whole application,
     with the identifier \c screen, whenever a user clicks the mouse area.
 
@@ -537,11 +541,11 @@
         }
     \endcode
 
-    A state is simply a collection of configurations and it is declared in a
-    \l{State}{State} element. A list of states can be listed and bound to the
+    A state is simply a collection of configurations and it is declared with the
+    \l{State}{State} type. A list of states can be listed and bound to the
     \c states property. In our application, the two states are called
     \c DRAWER_CLOSED and \c DRAWER_OPEN. Item configurations are declared in
-    \l {PropertyChanges}{PropertyChanges} elements. In the \c DRAWER_OPEN state,
+    \l {PropertyChanges}{PropertyChanges} objects. In the \c DRAWER_OPEN state,
     there are four items that will receive property changes. The first target,
     \c menuBar, will change its \c y property to \c 0. Similarly, the \c textArea
     will lower to a new position when the state is \c DRAWER_OPEN. The \c textArea,
@@ -568,7 +572,7 @@
     \endcode
 
     State changes are abrupt and needs smoother transitions. Transitions between states
-    are defined using the \l {Transition}{Transition} element, which can then bind to
+    are defined using the \l {Transition}{Transition} type, which can then bind to
     the item's \c transitions property. Our text editor has a state transition whenever
     the state changes to either \c DRAWER_OPEN or \c DRAWER_CLOSED. Importantly, the
     transition needs a \c from and a \c to state but for our transitions, we can use
@@ -576,7 +580,7 @@
 
     During transitions, we can assign animations to the property changes. Our
     \c menuBar switches position from \c {y:0} to \c {y:-partition} and we can animate
-    this transition using the \l {NumberAnimation}{NumberAnimation} element. We declare
+    this transition using the \l {NumberAnimation}{NumberAnimation} type. We declare
     that the targets' properties will animate for a certain duration of time and using
     a certain easing curve. An easing curve controls the animation rates and
     interpolation behavior during state transitions. The easing curve we chose is
@@ -596,7 +600,7 @@
     \endcode
 
     Another way of animating property changes is by declaring a \l {Behavior}{Behavior}
-    element. A transition only works during state changes and \c Behavior can set an
+    type. A transition only works during state changes and \c Behavior can set an
     animation for a general property change. In the text editor, the arrow has a
     \c NumberAnimation animating its \c rotation property whenever the property changes.
 
@@ -628,8 +632,8 @@
 
     Additionally, we can enhance the appearances of our QML components by adding color
     effects such as gradients and opacity effects. Declaring a \l {Gradient}{Gradient}
-    element will override the \c color property of the element. You may declare a color
-    in the gradient using the \l {GradientStop}{GradientStop} element. The gradient is
+    object will override the \c color property. You may declare a color
+    in the gradient using the \l {GradientStop}{GradientStop} type. The gradient is
     positioned using a scale, between \c 0.0 and \c 1.0.
 
     \code
@@ -661,7 +665,7 @@
     functionalities in C++. Using QML with C++ enables us to create our application
     logic using Qt. We can create a QML context in a C++ application using
     \l {Using QML Bindings in C++ Applications}{Qt's Quick classes} and display the QML
-    elements using a QQuickView. Alternatively, we can export our C++ code into
+    types using a QQuickView. Alternatively, we can export our C++ code into
     a plugin that the \l {Prototyping with qmlscene}{qmlscene} tool can read. For our application,
     we shall implement the load and save functions in C++ and export it as a plugin.
     This way, we only need to load the QML file directly instead of running an executable.
@@ -753,7 +757,7 @@
 
         void DialogPlugin::registerTypes(const char *uri)
         {
-            //register the class Directory into QML as a "Directory" element version 1.0
+            //register the class Directory into QML as a "Directory" type version 1.0
             qmlRegisterType<Directory>(uri, 1, 0, "Directory");
             qmlRegisterType<File>(uri,1,0,"File");
         }
@@ -766,7 +770,7 @@
 
     \section3 Creating QML Properties in a C++ class
 
-        We can create QML elements and properties using C++ and
+        We can create QML types and properties using C++ and
         \l {The Meta-Object System}{Qt's Meta-Object System}. We can implement
         properties using slots and signals, making Qt aware of these properties.
         These properties can then be used in QML.
@@ -791,7 +795,7 @@
 
     The \c Directory class uses Qt's Meta-Object System to register properties it
     needs to accomplish file handling. The \c Directory class is exported as a plugin
-    and is useable in QML as the \c Directory element. Each of the listed properties
+    and is useable in QML as the \c Directory type. Each of the listed properties
     using the \l {Q_PROPERTY()}{Q_PROPERTY} macro is a QML property.
 
     The \l {Q_PROPERTY()} {Q_PROPERTY} declares a property as well as its read and
@@ -829,7 +833,7 @@
         };
     \endcode
 
-    The properties can then be used in QML as part of the \c Directory element's
+    The properties can then be used in QML as part of the \c Directory object's
     properties. Note that we do not have to create an identifier \c id property
     in our C++ code.
 
@@ -910,7 +914,7 @@
     the file name. \c Directory uses \l {QTextStream}{QTextStream} to read the file
     and to output the file contents to a file.
 
-    With our \c Directory element, we can retrieve the files as a list, know how many
+    With our \c Directory object, we can retrieve the files as a list, know how many
     text files is in the application directory, get the file's name and content as a
     string, and be notified whenever there are changes in the directory contents.
 
@@ -943,14 +947,14 @@
 
     \section3 Integrating a File Dialog into the File Menu
 
-        Our \c FileMenu needs to display the \c FileDialog element, containing a list of
+        Our \c FileMenu needs to display the \c FileDialog object, containing a list of
         the text files in a directory thus allowing the user to select the file by
         clicking on the list. We also need to assign the save, load, and new buttons
         to their respective actions. The FileMenu contains an editable text input to
         allow the user to type a file name using the keyboard.
 
-    The \c Directory element is used in the \c FileMenu.qml file and it notifies the
-    \c FileDialog element that the directory refreshed its contents. This notification
+    The \c Directory object is used in the \c FileMenu.qml file and it notifies the
+    \c FileDialog object that the directory refreshed its contents. This notification
     is performed in the signal handler, \c onDirectoryChanged.
 
     \code
@@ -974,9 +978,9 @@
         onNotifyRefresh: dirView.model = directory.files
     \endcode
 
-    The \c FileDialog element will display the contents of a directory by reading its
+    The \c FileDialog object will display the contents of a directory by reading its
     list property called \c files. The files are used as the model of a
-    \l {GridView}{GridView} element, which displays data items in a grid according
+    \l {GridView}{GridView} object, which displays data items in a grid according
     to a delegate. The delegate handles the appearance of the model and our file
     dialog will simply create a grid with text centered in the middle. Clicking on
     the file name will result in the appearance of a rectangle to highlight the file
