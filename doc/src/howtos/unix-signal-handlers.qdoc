@@ -30,7 +30,6 @@
     \title Calling Qt Functions From Unix Signal Handlers
     \brief You can't. But don't despair, there is a way...
 
-    \ingroup platform-specific
     \ingroup best-practices
 
     You \e can't call Qt functions from Unix signal handlers. The
@@ -58,7 +57,7 @@
     SIGTERM signals. Note: You should read the socketpair(2) and the
     sigaction(2) man pages before plowing through the following code
     snippets.
-    
+
     \snippet doc/src/snippets/code/doc_src_unix-signal-handlers.cpp 0
 
     In the MyDaemon constructor, use the socketpair(2) function to
