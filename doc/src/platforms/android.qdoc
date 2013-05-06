@@ -30,9 +30,8 @@
 \title Android
 \brief Provides information about Android support in Qt 5.
 
-The Qt 5 port for Android enables you to run Qt 5 applications on
-devices running Android v2.3.3 (API level 10) or later. Here is a list of
-supported items:
+Qt for Android enables you to run Qt 5 applications on devices with Android
+v2.3.3 (API level 10) or later. Here is a list of supported items:
 \list
  \li \l{Qt Widgets} and \l{QML Application Developer Resources}{QML}
      applications
@@ -42,58 +41,33 @@ supported items:
      \l{Qt Creator Manual}{Qt Creator}
 \endlist
 
-\section1 Requirements
+\section1 Getting Started
 
 In order to use Qt for Android, you will need the following external tools:
 
 \list
-\li The Android SDK
-\li The Android NDK
-\li The Ant build tool
+\li \l{http://developer.android.com/sdk/index.html}{The Android SDK Tools}
+\li \l{http://developer.android.com/tools/sdk/ndk/index.html}{The Android NDK}
+\li \l{http://ant.apache.org/bindownload.cgi}{Apache Ant} v1.8 or later
+\li \l{http://openjdk.java.net/install/index.html}{OpenJDK} v6 or later
 \endlist
 
-\section1 Getting Started
+After installing these tools, update the Android SDK to get the API
+and tools packages required for development. You can update the SDK using the
+\l{http://developer.android.com/tools/help/android.html}{android} tool that
+comes with the SDK Tools package. For example, on Ubuntu the following command
+starts the \l{http://developer.android.com/sdk/installing/adding-packages.html}
+{Android SDK Manager}, which enables you to select the packages you want
+to install:
 
-The following step-by-step instructions guide you to set up the environment
-on Ubuntu v12.04 and develop a simple helloworld Qt Quick 2 application:
+\code
+ ./android update sdk
+\endcode
 
-\list 1
- \li Download and install the latest Android NDK and SDK, and update the SDK to
-     get the API and tools packages needed for development. You can update the
-     SDK using the \l{http://developer.android.com/tools/help/android.html}
-     {android} tool that comes with the SDK package. For example, the following
-     command starts the \l{http://developer.android.com/sdk/installing/adding-packages.html}
-     {Android SDK Manager}, which enables you to select the packages you want
-     to install:
-
-     \code
-      ./android update sdk
-     \endcode
- \li Install the Qt 5.1 binaries and related tools using the Qt binary
-     installer. For more details, refer to \l{Qt Installation Program}.
- \li Launch Qt Creator (v2.7.1) and configure it for Android development. For
-     more details, refer to \l{Qt Creator: Connecting Android Devices}.
- \li Create a new project using the "Qt Quick 2 Application (Built-in Types)"
-     project template.
- \li Configure the project to deploy the application to an Android device. For
-     more details, refer to
-     \l{Qt Creator: Deploying Applications to Android Devices}.
-     \note You can change the default settings for application icons and
-     identifier as  described in \l{Qt Creator: Specifying Run Settings}.
- \li Enable \e{USB Debugging} under \c{Developer Options} on your Android
-     device and connect it to the PC.
-
-     \note On Android v4.2.2, the "Developer Options" is hidden. You will see
-     it after tapping the "Build number" field in "Settings->About" seven
-     times.
-\endlist
-
-When your device is detected by the PC, run the application from
-Qt Creator. Once the application is deployed on the targeted device,
-you should see the application running.
-
-\note The deployment process will take a while if the Qt libraries
-were not installed on the Android device earlier.
+After the SDK is updated, install the Qt 5.1 binaries using the
+\l{Qt Installation Program}{Qt installation program} and configure Qt Creator
+to develop for Android. For more information, see
+\l{Qt Creator: Connecting Android Devices}.
 
 \section1 Porting an Existing Qt Application
 
@@ -114,7 +88,7 @@ also a cross-platform approach, which makes porting to other platforms easier.
 
 By default, all Qt applications can access the contents of a qrc file using
 the ":/" prefix or the URL scheme prefix, "qrc:". To know more about qrc files
-and how they are handled, refer to
+and how they are handled, see
 \l{The Qt Resource System}{the Qt Resource System}.
 
 The other approach is to deploy the resources into the package's \c{assets}
@@ -128,7 +102,7 @@ application to Android using the qrc approach:
 
 \list 1
  \li Open the existing project in Qt Creator v2.7.1 or later, and configure it
-     with "Android for ARM" kit. For more details, refer to
+     with "Android for ARM" kit. For more information, see
      \l{Qt Creator: Configuring Projects}
  \li Update all local directory imports in the \c{qml} files to use a local
      namespace. For example, to import the QML documents in the "contents"
