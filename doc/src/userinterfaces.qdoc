@@ -42,16 +42,17 @@ documentation. The following sections provide brief introductions to the
 available technologies for creating user interfaces, and a comparison table
 to help choosing the best suitable technology.
 
-\section1 Qt Quick
+\section1 QML Graphical User Interfaces
 
-\l {Qt Quick} provides everything needed to create applications with fluid and dynamic
-user interfaces. It enables user interfaces to be built around the behavior of user
-interface components and how they connect with one another, and it provides a visual
-canvas with its own coordinate system and rendering engine. Animation and transition
-effects are a first class concept in \l {Qt Quick}, and visual effects can be
-supplemented through specialised components for particle and shader effects. The
-\l {Qt Quick} elements are primitive user interface building blocks, whereas the
-\l {Qt Widgets} are more feature rich standard industry widgets.
+QML allows developers to build user interfaces in a declarative way. User
+interfaces specifically benefit from the simplicity of compounding QML objects
+and configuring them using property bindings.
+
+\l{Qt Quick} is a module which supplies QML types for creating user interfaces
+such as a visual canvas with its own coordinate system and rendering engine.
+Animation and transition effects are a first class concept in Qt Quick and
+visual effects can be supplemented through specialized components for particle
+and shader effects.
 
 \section2 Important Concepts in Qt Quick
 
@@ -66,10 +67,15 @@ supplemented through specialised components for particle and shader effects. The
 \li \l{qtquick-internationalization.html}{Internationalization and Localization}
 \endlist
 
-\note The \l{Qt Quick Controls} module is new in Qt 5.1 and provides a
+\section2 Graphical Controls
+
+The \l{Qt Quick Controls} module is new in Qt 5.1 and provides a
 set of UI elements to create classic desktop-style user interfaces using \l{Qt Quick} 2.
 While the module is not mature yet, it already offers useable featured controls
 styled for the desktop. See \l{Qt Quick Controls} for more information.
+
+For more about how to create application user interfaces with QML, visit the
+\l{QML User Interfaces} page.
 
 \section1 Qt Widgets
 
