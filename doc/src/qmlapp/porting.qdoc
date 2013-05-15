@@ -52,9 +52,9 @@ There are very few changes in the QML language that affect the porting of existi
 The \c QtQuick module has been updated to version 2.0. All QML applications should update their import
 statements to use the new version:
 
-\qml
+\code
 import QtQuick 2.0
-\endqml
+\endcode
 
 
 \section2 Property and Method Changes
