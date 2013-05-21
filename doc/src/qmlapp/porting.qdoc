@@ -241,17 +241,17 @@ For the purposes of porting older applications, the \c {QtDeclarative} module is
 QDeclarativeView or QDeclarativeItem and the Graphics View integration) can use this module. Note
 that new applications should use the new \l {Qt QML} and \l {Qt Quick} modules instead.
 
-To use the \c {Qt Quick 1} module, add "quick1" to your qmake \c .pro file:
+To use the \c {Qt Quick 1} module, add "declarative" to your qmake \c .pro file:
 
 \code
-QT += quick1
+QT += declarative
 \endcode
 
-Required header files can be included from the Qt Quick 1 module:
+Required header files can be included as follows:
 
 \code
-#include <QtQuick1/QDeclarativeView>
-#include <QtQuick1/QDeclarativeItem>
+#include <QtDeclarative/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeItem>
 \endcode
 
 */
