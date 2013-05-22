@@ -23,14 +23,14 @@ unix {
 
 #! [2]
 macx {
-    debug {
+    CONFIG(debug, debug|release) {
         HEADERS += debugging.h
     }
 }
 #! [2]
 
 #! [3]
-macx:debug {
+macx:CONFIG(debug, debug|release) {
     HEADERS += debugging.h
 }
 #! [3]

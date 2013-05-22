@@ -90,7 +90,7 @@ qmake -makefile [options] files
 
 
 #! [10]
-qmake -makefile -unix -o Makefile "CONFIG+=test" test.pro
+qmake -makefile -o Makefile "CONFIG+=test" test.pro
 #! [10]
 
 
@@ -271,13 +271,6 @@ win32:OBJECTS_DIR = c:/myproject/tmp
 #! [41]
 
 
-#! [42]
-app {
-    # Conditional code for 'app' template here
-}
-#! [42]
-
-
 #! [43]
 FRAMEWORK_HEADERS.version = Versions
 FRAMEWORK_HEADERS.files = path/to/header_one.h path/to/header_two.h
@@ -294,11 +287,6 @@ QMAKE_BUNDLE_EXTENSION = .myframework
 #! [45]
 QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 #! [45]
-
-
-#! [46]
-QMAKE_UIC = uic -L /path/to/plugin
-#! [46]
 
 
 #! [47]
@@ -348,18 +336,6 @@ TARGET = mylib
 unix:UI_DIR = ../myproject/ui
 win32:UI_DIR = c:/myproject/ui
 #! [54]
-
-
-#! [55]
-unix:UI_HEADERS_DIR = ../myproject/ui/include
-win32:UI_HEADERS_DIR = c:/myproject/ui/include
-#! [55]
-
-
-#! [56]
-unix:UI_SOURCES_DIR = ../myproject/ui/src
-win32:UI_SOURCES_DIR = c:/myproject/ui/src
-#! [56]
 
 
 #! [57]
@@ -472,19 +448,14 @@ ARGS = $$unique(ARGS) #1 2 3 5
 
 
 #! [74]
-qmake -set VARIABLE VALUE
+qmake -set PROPERTY VALUE
 #! [74]
 
 
 #! [75]
-qmake -query VARIABLE
-qmake -query #queries all current VARIABLE/VALUE pairs..
+qmake -query PROPERTY
+qmake -query #queries all current PROPERTY/VALUE pairs
 #! [75]
-
-
-#! [76]
-qmake -query "1.06a/VARIABLE"
-#! [76]
 
 
 #! [77]
