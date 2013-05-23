@@ -137,6 +137,13 @@ application to Android using the qrc approach:
 
      \note You can change the default settings for application icons and
      identifier.
+ \li If your application uses imports or plugins which depend on special Qt
+     modules, these Qt modules should be added to the .pro file. For example, if
+     your app uses the \l{Qt Multimedia} import in QML, you should add the
+     following to your .pro file:
+     \code
+     QT += multimedia
+     \endcode
  \li Save the changes to your project and run the application.
 \endlist
 
