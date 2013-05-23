@@ -51,7 +51,8 @@ depends += \
     qtxmlpatterns
 
 headerdirs  += ../src
-imagedirs   += ../src/images
+imagedirs   += ../src/images \
+               ../images
 
 sourcedirs  += \
     ../.. \
@@ -59,4 +60,5 @@ sourcedirs  += \
 
 exampledirs += \
     ../.. \
-    ../src
+    ../src \
+    ../snippets

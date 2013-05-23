@@ -26,36 +26,73 @@
 ****************************************************************************/
 
 /*!
-\page ios_support.html
-\title iOS
-\brief Provides insight into the Qt iOS port and how to use it.
+    \page ios_support.html
+    \title iOS
+    \brief Provides insight into Qt's iOS port and how to use it.
 
-The Qt for iOS preview should enable you to run Qt applications on iOS devices.
-Although it is a preview release, you can a do a lot with it. Here is a list of
-items supported:
+    Qt's iOS port supports the following:
 
-\list
- \li Widgets
- \li Graphics View
- \li QtQuick 1
- \li OpenGL
- \li Touch and Orientation events
-\endlist
+    \list
+        \li Widgets
+        \li Graphics View
+        \li QtQuick 1
+        \li OpenGL
+        \li Touch and Orientation events
+    \endlist
 
-\section1 Getting Started
+    \section1 Getting Started
 
-To get started with this solution, do the following:
-\list 1
- \li Setup Xcode for development (acquire certificates, configure devices). Test and deploy one of the standard Xcode app templates to ensure that it works.
- \li Build QtBase and other modules you intend to use, for device or simulator. Note that Qt 5 does not support multi-architecture builds like Qt 4 does.
-  \code
-   > ./configure -xplatform unsupported/macx-ios-clang -developer-build -nomake examples -nomake tests -release [-sdk iphonesimulator]
+    Development and deployment is done using Xcode. The supported
+    workflow is to maintain a \c .pro file based project, export it to
+    Xcode (and re-export when the project setup changes), and then
+    build and deploy using Xcode.
 
-   > make
-  \endcode
- \endlist
+    To set up your development environment, do the following:
 
-To check whether your environment is configured, try running the simple demo application.
+    \list 1
+        \li Setup Xcode for development (acquire certificates,
+            configure devices). Test and deploy one of the standard
+            Xcode app templates to ensure that it works.
+        \li Build the modules you intend to use, for
+            device or simulator. Build instructions for Qt 5 is found
+            \l{Building Qt 5 From Git}{here}.
+            However, you don't need to build all of Qt 5.
+            After cloning Qt 5, enter the qtbase directory and
+            build from the command line like this:
+
+            \code
+                > ./configure -xplatform unsupported/macx-ios-clang -developer-build -release [-sdk iphonesimulator]
+
+                > make
+            \endcode
+
+            If you want the latest sources, you can checkout the
+            \c dev branch before building.
+
+            You also need to build the
+            \l{Qt Script} and \l{Qt Quick 1} modules if you
+            intend to use \l{Qt Quick 1}. From the Qt 5 top
+            directory, type:
+
+            \code
+                > cd qtscript; ../qtbase/bin/qmake; make; cd ..
+                > cd qtquick1; ../qtbase/bin/qmake; make; cd ..
+            \endcode
+    \endlist
+
+    To check whether your environment is configured, try running the
+    simple demo application. It lives in the \c
+    {git://github.com/msorvig/qt-ios-demo.git} repository. Here is how
+    you build it:
+
+    \list 1
+        \li ../qtbase/bin/qmake
+        \li open \c {qt-ios-demo.xcodeproj} in Xcode and build it like
+            any other Xcode project.
+    \endlist
+
+    When you develop your own applications, you follow the same
+    procedure.
 
 */
 

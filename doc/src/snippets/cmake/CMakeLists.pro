@@ -1,5 +1,5 @@
 #! [0]
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 2.8.11)
 
 project(testproject)
 
@@ -12,27 +12,19 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets)
 
 # Tell CMake to create the helloworld executable
-add_executable(helloworld main.cpp)
+add_executable(helloworld WIN32 main.cpp)
 
 # Use the Widgets module from Qt 5.
-qt5_use_modules(helloworld Widgets)
+target_link_libraries(helloworld Qt5::Widgets)
 #! [0]
 
 #! [1]
 find_package(Qt5Core)
 
-# Find the Widgets Sql and Network modules, and
-# use them in helloworld.
-qt5_use_modules(helloworld Widgets Sql Network)
+get_target_property(QtCore_location Qt5::Core LOCATION)
 #! [1]
 
 #! [2]
-find_package(Qt5Core)
-
-get_target_property(QtCore_location Qt5::Core LOCATION)
-#! [2]
-
-#! [3]
 find_package(Qt5Core)
 
 set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_RELEASE} -fprofile-arcs -ftest-coverage")
@@ -40,6 +32,14 @@ set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_RELEASE} -fprofile-arcs -ftest-c
 # set up a mapping so that the Release configuration for the Qt imported target is
 # used in the COVERAGE CMake configuration.
 set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+#! [2]
+
+#! [3]
+find_package(Qt5Widgets)
+
+add_executable(helloworld WIN32 main.cpp)
+
+qt5_use_modules(helloworld Widgets)
 #! [3]
 
 #! [4]
@@ -69,7 +69,7 @@ qt5_generate_moc(main.cpp main.moc)
 add_executable(helloworld main.cpp main.moc)
 
 #Link the helloworld executable to the Qt 5 widgets library.
-target_link_libraries(${Qt5Widgets_LIBRARIES})
+target_link_libraries(helloworld Qt5::Widgets)
 #! [4]
 
 #! [5]

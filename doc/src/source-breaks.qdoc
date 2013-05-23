@@ -292,6 +292,7 @@ The following sections lists the API changes in each module and provides recomme
     \list
      \li The \l{QPageSetupDialog::PageSetupDialogOption} enum and the corresponding set and get functions, \c{QPageSetupDialog::options()}
          and \c{QPageSetupDialog::setOptions()} are removed.
+     \li Support for printing PostScript files has been removed.
     \endlist
 
 \section1 Changes to Qt Network

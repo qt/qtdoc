@@ -30,29 +30,38 @@
 \title Integrating Web Content
 \brief Qt's WebKit integration
 
-The QtWebKit module provides a \l {http://www.webkit.org/}{WebKit}-based layout engine with support for a wide range of
-standard web techologies such as HTML, CSS and JavaScript, that make it possible to embed content from the World Wide Web
-into your Qt application.
+Qt provides a \l {http://www.webkit.org/}{WebKit}-based layout engine
+with support for a wide range of standard web techologies such as HTML, CSS and
+JavaScript, that make it possible to embed content from the World Wide Web into
+your Qt application. Qt features both WebKit-based QML and C++ APIs.
 
-QtWebKit provides the QtWebKit Widgets C++ classes to integrate web content into your QWidget and QGraphicsView based application.
-QtWebKit also includes a \l {WebView} QML component for embedding into \l {Qt Quick}.
 
-\section1 QtWebKit Widgets integration
+\section1 WebKit for QML Applications
 
-The QtWebKit Widgets module provides a number of different classes with a feature-rich C++ API that facilitates loading, viewing
-and editing web documents (\l {QGraphicsWebView}, \l {QWebView}, \l {QWebPage}, \l {QWebFrame}) or traversing the document model
-represented by a tree structure of \l {http://www.w3.org/DOM/}{DOM} elements (\l {QWebElement}).
-The \l{WebKit in Qt}{QtWebKit Widgets} classes provide traditional in-process rendering of web content.
+\l{Qt WebKit} allows WebKit 2 functionality in QML applications by
+importing the \l{WebView} QML type. \l WebView has a minimalistic QML API for
+web content visualization. While it is not as feature-rich as the C++ API of the
+widget classes, it has multi-touch support and employs a multi-process
+architecture to render web content in a separate helper process (QtWebProcess).
+WebView makes it possible to interact with content using touch gestures such as
+panning with inertia (flick), pinch-zoom, tap and double- tap-to-zoom. The
+underlying split-process model (\l
+{http://trac.webkit.org/wiki/WebKit2}{WebKit2}) assures smooth animations in the
+embedding application (UI process) as well as increases stability.
 
-\section1 QtWebKit Qt Quick integration
+These pages have more information about QML:
+\list
+\l \l{Qt Webkit Examples}
+\l \l{QML Application Developer Resources}
+\endlist
 
-The QtWebKit module can be integrated into Qt Quick by importing the \l{WebView} QML component. The WebView item has a minimalistic QML API
-for web content visualization which is not as feature-rich as the C++ API of the widget classes but it has out-of-the-box multi-touch
-support and employs a multi-process architecture to render web content in a separate helper process (QtWebProcess).
-The WebView makes it possible to interact with content using touch gestures such as panning with inertia (flick), pinch-zoom,
-tap and double-tap-to-zoom. The underlying split-process model (\l {http://trac.webkit.org/wiki/WebKit2}{WebKit2}) assures
-smooth animations in the embedding application (UI process) as well as increases stability.
+\section1 Qt WebKit Widgets
 
-Examples demonstrating how to embed web content into a Qt application can be found in the qtwebkit-examples-and-demos module.
-Specifically the QML examples flickrview and youtubeview in this module show how to integrate web content into a Qt Quick application.
+The \l{Qt WebKit Widgets} module provides a feature-rich C++ API that
+facilitates loading, viewing, and editing web documents. Qt WebKit Widgets
+provides facilities for rendering of HyperText Markup Language (HTML),
+Extensible HyperText Markup Language (XHTML) and Scalable Vector Graphics (SVG)
+documents, styled using Cascading Style Sheets (CSS) and scripted with
+JavaScript.
+
 */

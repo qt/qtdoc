@@ -29,7 +29,6 @@
     \page developing-on-mac.html
     \title Developing Qt Applications for Mac OS X
     \brief Information for developing Qt applications for Mac OS X
-    \ingroup platform-specific
 
     \tableofcontents
 
@@ -54,11 +53,11 @@
     updates to any version. We test internally against Mac OS X 10.6 and 10.7.
 
     \section2 Carbon or Cocoa?
-    
+
     Qt 5 uses Cocoa. Building for Carbon is not possible.
 
     \section2 32-bit or 64-bit
-    
+
     Qt can be built for either x86 or x86_64. 64-bit is used by default.
     To select a 32-bit build, use the macx-clang-32 (or macx-g++32) mkspec.
     This is selectable at configure time: ./configure -platform macx-clang-32
@@ -116,4 +115,3 @@
     to stay within the app store sandbox rules. macdeployqt (qttools/src/macdeployqt)
     can be used as a starting point for app store deployment.
 */
-

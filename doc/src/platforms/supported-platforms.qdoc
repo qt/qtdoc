@@ -29,7 +29,6 @@
     \page windows-support.html
     \title Support for Windows
     \brief Platform support for Windows.
-    \ingroup platform-specific
     \ingroup platform-details
 
     \section1 Qt on Windows
@@ -43,6 +42,7 @@
     \section1 Getting Started on Windows
 
     \list
+        \li \l{Getting Started with Qt}
         \li \l{Supported Platforms}{Supported Windows platforms} - Qt
         supports a wide range of Windows platforms.
         \li \l{Qt for Windows Requirements}{Qt for Windows Requirements}
@@ -51,7 +51,6 @@
         - Build Qt for Windows development.
         \li \l{Platform and Compiler Notes - Windows}{Platform and Compiler Notes - Windows}
         - Windows platform specific notes.
-        \li \l{Getting Started Guides}{Getting started} - Getting started developing for Windows
     \endlist
 
     \section1 Key Features for Windows Development
@@ -72,9 +71,9 @@
         \li \l Multimedia support
         \li \l{WebKit in Qt}{WebKit} integration
         \li \l{Network programming with Qt}{Networking}, \l{QtXml Module}
-        {XML} and \l{SQL in Qt}{database} functionality
+        {XML} and \l{Data Storage}{data storage} functionality
         \li \l{ECMAScript Reference}{ECMA standard} scripting engine
-        \li \l{Qt X11 Extras} - provides APIs for X11
+        \li \l{ActiveX in Qt}
     \endlist
 
     \section2 Integrated Development Tools
@@ -93,7 +92,7 @@
 
     \section2 Cross-Platform Development using Qt Creator
 
-    \l{external: Qt Creator Manual}{Qt Creator} is
+    \l{Qt Creator Manual}{Qt Creator} is
     a complete Cross-platform IDE included in the Qt SDK. The IDE allows
     programmers to create, build, debug and run Qt applications accross all
     supported platforms.
@@ -107,15 +106,12 @@
     the Qt Meta-Object Compiler, User Interface Compiler, and Resource
     Compiler.
 
-    Additional \l{Cross-Platform and Platform-Specific Development}
-    information.
 */
 
 /*!
     \page linuxX11-support.html
     \title Support for Linux/X11
     \brief Platform support for Linux/X11.
-    \ingroup platform-specific
     \ingroup platform-details
 
     \section1 Qt on Linux/X11
@@ -129,6 +125,7 @@
     \section1 Getting Started on Linux/X11
 
     \list
+        \li \l{Getting Started with Qt}
         \li \l{Supported Platforms}{Supported Linux/X11 platforms} - Qt
         supports a wide range of Linux/X11 platforms.
         \li \l{Qt for X11 Requirements}{Qt for X11 Requirements}
@@ -137,7 +134,6 @@
         - Build Qt for Linux/X11 development.
         \li \l{Platform and Compiler Notes - X11}{Platform and Compiler Notes - X11}
         - Platform specific notes.
-        \li \l{Getting Started Guides}{Getting started}
     \endlist
 
     \section1 Key Features for Linux/X11 Development
@@ -161,7 +157,7 @@
 
     \section2 Cross-Platform Development using Qt Creator
 
-    \l{external: Qt Creator Manual}{Qt Creator} is
+    \l{Qt Creator Manual}{Qt Creator} is
     a complete Cross-platform IDE included in the Qt SDK. The IDE allows
     programmers to create, build, debug and run Qt applications accross all
     supported platforms.
@@ -184,8 +180,9 @@
         \li \l Multimedia support
         \li \l{WebKit in Qt}{WebKit} integration
         \li \l{Network programming with Qt}{Networking}, \l{QtXml Module}
-        {XML} and \l{SQL in Qt}{database} functionality
+        {XML} and \l{Data Storage}{data storage} functionality
         \li \l{ECMAScript Reference}{ECMA standard} scripting engine
+        \li \l{Qt X11 Extras} - provides APIs for X11
     \endlist
 
     \section2 Qt is the Foundation of KDE
@@ -195,16 +192,12 @@
     Qt forms the foundation for thousands of open source KDE applications
     developed by community members worldwide.
 
-    Additional \l{Cross-Platform and Platform-Specific Development}
-    information.
-
 */
 
 /*!
     \page mac-support.html
     \title Support for Mac OS X
     \brief Platform support for Mac OS X.
-    \ingroup platform-specific
     \ingroup platform-details
 
     \section1 Qt on Mac OS X
@@ -218,15 +211,15 @@
      \section1 Getting Started on Mac
 
     \list
-        \li \l{Supported Platforms}{Supported Mac OS X platforms} - Qt supports
-        a wide range of Mac platform variants.
+        \li \l{Getting Started with Qt}
         \li \l{Qt for Mac OS X Requirements}{Qt for Mac OS X Requirements}
         - Software required to run Qt on Mac OS X.
         \li \l{Installing Qt for Mac OS X}{Installing Qt for Mac OS X}
         - Build Qt for Mac OS X development.
         \li \l{Platform and Compiler Notes - Mac OS X}{Platform and Compiler Notes - Mac OS X}
         - Platform specific notes.
-        \li \l{Getting Started Guides}{Getting started}
+        \li \l{Developing Qt Applications for Mac OS X}
+        \li \l{Qt for Mac OS X - Specific Issues}{Specific Issues}
     \endlist
 
      \section1 Key Features for Mac OS X Development
@@ -247,7 +240,7 @@
 
     \section2 Cross-Platform Development using Qt Creator
 
-    \l{external: Qt Creator Manual}{Qt Creator} is
+    \l{Qt Creator Manual}{Qt Creator} is
     a complete Cross-platform IDE included in the Qt SDK. The IDE allows
     programmers to create, build, debug and run Qt applications accross all
     supported platforms.
@@ -271,8 +264,9 @@
         module}
         \li \l{WebKit in Qt}{WebKit} integration
         \li \l{Network programming with Qt}{Networking}, \l{QtXml Module}
-        {XML} and \l{SQL in Qt}{database} functionality
+        {XML} and \l{Data Storage}{data storage} functionality
         \li \l{ECMAScript Reference}{ECMA standard} scripting engine
+        \li \l{Qt is Mac OS X Native}{Native} support
     \endlist
 
 */
@@ -280,7 +274,6 @@
     \page supported-platforms.html
     \title Supported Platforms
     \brief The platforms supported by Qt.
-    \ingroup platform-specific
     \group platform-details
 
     Qt is a cross-platform application and UI framework. Using Qt,
@@ -386,13 +379,11 @@
     \section1 Availability of Binary Installation Packages
 
     The Qt Project provides binary Qt installation packages for all of the
-    reference platforms.
+    reference platforms from \l{http://qt-project.org/downloads}. The site
+    provides download links for all supported development platforms.
 
-    To develop with Qt on other supported platforms, you need to build it from
-    source.
-
-    Fore more information about the platforms Qt runs on, and the compilers used
-    on each platform, see the \l{Platform and Compiler Notes} page.
+    The \l{Qt Installation Program} page has more information about the
+    installers.
 
     \section1 General Legal Disclaimer
 

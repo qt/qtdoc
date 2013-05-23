@@ -27,7 +27,6 @@
 
 /*!
     \page platform-notes.html
-    \ingroup platform-specific
     \title Platform and Compiler Notes
     \brief Information about the platforms on which Qt can be used.
 
@@ -49,6 +48,8 @@
     \tableofcontents{1 Platform and Compiler Notes - QNX}
     \li \l{Platform and Compiler Notes - VxWorks}
     \tableofcontents{1 Platform and Compiler Notes - VxWorks}
+    \li \l{Platform and Compiler Notes - Android}
+    \tableofcontents{1 Platform and Compiler Notes - Android}
     \endlist
 
     \section1 General Compiler Notes
@@ -330,4 +331,12 @@
         }
 
     \endcode
+
+    \section2 D-Bus
+
+    Mac OS X does not ship with a D-Bus daemon, because the operating system has
+    its own IPC mechanisms; therefore Qt binary packages don't usually include
+    the \l{Qt D-Bus} module. However you can install \c dbus via Homebrew, Fink or
+    MacPorts; then when you build Qt it will be detected, and the Qt D-Bus module
+    will be built.
 */

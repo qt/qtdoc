@@ -110,18 +110,17 @@ item views. QSqlTableModel has read/write access to a single table, whereas
 QSqlRelationalTableModel has read/write access to the main table (not to the
 table with the foreign key).
 
+The following pages contain information about incorporating SQL into
+applications:
 \list
-\li \l {Qt SQL}
-\li \l {Qt SQL C++ Classes}
-\li \l {Connecting to Databases}
-\li \l {SQL Database Drivers}
-\li \l {Creating Data-Aware Forms}
-\li \l {Using the SQL Model Classes}
-\li \l {Presenting Data in a Table View}
 \li \l {SQL Programming}
-\li \l {Executing SQL Statements}
-\li \l {Data Types for Qt-supported Database Systems}
-\li \l {Qt Quick Local Storage QML Types}
+    \list
+    \li \l{Database Classes}
+    \li \l{Executing SQL Statements}
+    \li \l{Using the SQL Model Classes}
+    \li \l{Presenting Data in a Table View}
+    \li \l{Creating Data-Aware Forms}
+    \endlist
 \endlist
 
 \section1 XML Support in Qt
