@@ -180,11 +180,14 @@ The following sections lists the API changes in each module and provides recomme
 
          The most notable difference with this change is when dealing with \l{QUrl::toString}. In earlier Qt version, this function would return percent characters
          in the URL, but now it returns "%25" like the \l{QUrl::toEncoded} does.
+    \li \l{QUrl} no longer has functions that handle individual query items and query delimiters, such as \c addQueryItem() and \c queryPairDelimiter().
+        These have been moved to the new \l{QUrlQuery} class.
     \endlist
 
 \section1 Changes to Qt GUI
     \list
      \li \l{QPainter} does not support uniting clipped regions anymore. Use \l{QRegion::united()} instead to unite clips and pass the result to \l{QPainter}.
+     \li \l{QPen} now has a default width of 1 instead of 0. Thus, it is no longer \l{QPen::isCosmetic()}{cosmetic} by default.
      \li \l{QAccessibleInterface} has undergone the following changes:
       \list
        \li The "child" integer parameters are removed to bring it more closer to \c{IAccessible2}, and this means the following functions
@@ -221,6 +224,9 @@ The following sections lists the API changes in each module and provides recomme
      \li \l{QSound} is moved to Qt Multimedia from Qt GUI.
      \li \l{QImage::fill()} on an image with format \c{Format_RGB888} now expects image data in RGB layout as opposed to BGR layout.
          This is to ensure consistency with RGB32 and other 32-bit formats.
+    \li \c QDesktopServices::storageLocation() and \c QDesktopServices::displayName() are replaced by \l{QStandardPaths::storageLocation()}
+        and \l{QStandardPaths::displayName()} respectively. They are now in the \l{Qt Core} module.
+    \li \c QPixmap::grabWindow() and \c QPixmap::grabWidget() are removed. Use \l{QScreen::grabWindow()} instead.
     \endlist
 
 \section1 Changes to Qt Widgets
@@ -229,6 +235,7 @@ The following sections lists the API changes in each module and provides recomme
          are changed to take arguments of type \c{int} instead of \l{QVariant::Type}.
      \li \c{QInputContext} is removed as related getter and setter functions in \l{QWidget} and \l{QApplication} are removed.
          Input contexts are now platform-specific.
+     \li \c QApplication::setGraphicsSystem() is removed as the introduction of \l{Qt Platform Abstraction}{QPA} made it redundant.
      \li \l{QInputDialog::getInteger()} is deprecated. Use \l{QInputDialog::getInt()} instead.
      \li \c{QStyle::standardIconImplementation()} and \c{QStyle::layoutSpacingImplementation()} are removed,
          and the \l{QStyle::standardIcon()} and \l{QStyle::layoutSpacing()} functions are made pure virtual now.
@@ -354,6 +361,7 @@ The following sections lists the API changes in each module and provides recomme
           like \c{SkipSingle}, which is skipping a non-data-driven test function or skipping
           only the current data row of a data-driven test function.  Every skipped
           data row is now reported in the test log.
+      \li \c QTest::qWaitForWindowShown() is replaced with \l{QTest::qWaitForWindowExposed()}.
      \endlist
 \section1 Changes to Qt Global
     The following source incompatible changes are made:
