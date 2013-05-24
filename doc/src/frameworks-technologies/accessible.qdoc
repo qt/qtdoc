@@ -232,7 +232,7 @@
 
     The labels in top-down order are: the QAccessibleInterface class
     name, the widget for which an interface is provided, and the
-    \l{QAccessible::}{Role} of the object. The Position, PageLeft and 
+    \l{QAccessible::}{Role} of the object. The Position, PageLeft and
     PageRight correspond to the slider handle, the slider groove left
     and the slider groove right, respectively. These accessible objects
     do not have an equivalent QObject.
@@ -358,7 +358,7 @@
 
     \list
         \li It handles the navigation of the tree and
-           hit testing of the objects. 
+           hit testing of the objects.
         \li It handles events, roles, and actions that are common for all
            \l{QWidget}s.
         \li It handles action and methods that can be performed on
