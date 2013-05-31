@@ -69,9 +69,10 @@ After the SDK is updated, install the Qt 5.1 binaries using the
 to develop for Android. For more information, see
 \l{Qt Creator: Connecting Android Devices}.
 
-\note You must manually choose at least one of the two Qt libraries for Android
-(x86 and ARMv7) from the \gui{Qt 5.1.0} component tree within the \gui{Select
-Components} page of \l{Qt Installation Program}{Qt installation program}.
+\note You must select at least one of the two Qt libraries for Android
+(x86 and ARMv7) from the \gui{Qt 5.1.0} component tree in the
+\gui{Select Components} page of \l{Qt Installation Program}
+{Qt installation program}. By default, Qt libraries for ARMv7 are selected.
 
 \section1 Porting an Existing Qt Application
 
