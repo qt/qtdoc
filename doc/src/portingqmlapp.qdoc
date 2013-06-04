@@ -38,17 +38,19 @@ QML demo work on Qt 5. If you have the SDK based on Qt 4.8 installed, you can
 find this demo application under
 \c{<install_dir_root>/Examples/4.x/declarative/demos/}.
 
-The \c{flickr} application is a complete application that comes with a launcher.
-
-Follow these step-by-step instructions to make the \e{flickr} Qt 4 QML
-application work on Qt 5:
+Follow these step-by-step instructions to port the \e{flickr} Qt 4 QML
+application work to Qt 5:
 \list 1
- \li Edit all the \c{.qml} files and replace \c{import QtQuick 1.0} statements
+ \li Open the \e{flickr} project using Qt Creator.
+ \li Edit all the \c{.qml} files and replace the \c{import QtQuick 1.0} statements
      with \c{import QtQuick 2.0}.
  \li Add the additional \c{import QtQuick.XmlListModel 2.0} statement to
      \c{qml/common/RssModel.qml}.
-     \note XmlListModel is part of a submodule under QtQuick and it must be
-           imported explicitly to use it.
+
+     \note \l{Qt Quick XmlListModel QML Types}{XmlListModel} is part of a
+     submodule under \l{QtQuick} and it must be imported explicitly in order
+     to use it.
+
  \li Make the following changes to
      \c{qmlapplicationviewer/qmlapplicationviewer.h}:
   \list
@@ -80,12 +82,10 @@ application work on Qt 5:
    \li Remove the code between \c{#if QT_VERSION < 0x040702} and \c{#else}, and
        \c{#endif // QT_VERSION < 0x040702} macros towards the end.
   \endlist
- \li Run the \c{qmake} and \c{make} utilities to build the application.
-     \note Ensure that the \c{PATH} environment variable is pointing to the
-     Qt 5 binaries and libraries directories, before running \c{qmake}.
+ \li Save changes to the project and run the application.
 \endlist
 
-Run the \c{flickr} application to see whether it behaves as expected. Here is a
+Once you see the application running, check whether it behaves as expected. Here is a
 snapshot of the application running on Ubuntu v12.04:
 \image flickr_application.png
 
