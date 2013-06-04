@@ -69,9 +69,10 @@ After the SDK is updated, install the Qt 5.1 binaries using the
 to develop for Android. For more information, see
 \l{Qt Creator: Connecting Android Devices}.
 
-\note You must manually choose at least one of the two Qt libraries for Android
-(x86 and ARMv7) from the \gui{Qt 5.1.0} component tree within the \gui{Select
-Components} page of \l{Qt Installation Program}{Qt installation program}.
+\note You must select at least one of the two Qt libraries for Android
+(x86 and ARMv7) from the \gui{Qt 5.1.0} component tree in the
+\gui{Select Components} page of \l{Qt Installation Program}
+{Qt installation program}. By default, Qt libraries for ARMv7 are selected.
 
 \section1 Porting an Existing Qt Application
 
@@ -137,6 +138,13 @@ application to Android using the qrc approach:
 
      \note You can change the default settings for application icons and
      identifier.
+ \li If your application uses imports or plugins which depend on special Qt
+     modules, these Qt modules should be added to the .pro file. For example, if
+     your app uses the \l{Qt Multimedia} import in QML, you should add the
+     following to your .pro file:
+     \code
+     QT += multimedia
+     \endcode
  \li Save the changes to your project and run the application.
 \endlist
 

@@ -3,13 +3,14 @@
 # Each of the module version specifiers can take one of the following values:
 #   - A specific Git revision.
 #   - any git symbolic ref resolvable from the module's repository (e.g. "refs/heads/master" to track master branch)
+#   - an empty string to use the same branch under test (dependencies will become "refs/heads/master" if we are in the master branch)
 #
 %dependencies = (
-    "qtbase" => "refs/heads/dev",
-    "qtscript" => "refs/heads/dev",
-    "qtsvg" => "refs/heads/dev",
-    "qtxmlpatterns" => "refs/heads/dev",
-    "qttools" => "refs/heads/dev",
-    "qtdeclarative" => "refs/heads/dev",
-    "qtjsbackend" => "refs/heads/dev",
+    "qtbase" => "",
+    "qtscript" => "",
+    "qtsvg" => "",
+    "qtxmlpatterns" => "",
+    "qttools" => "",
+    "qtdeclarative" => "",
+    "qtjsbackend" => "",
 );

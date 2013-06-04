@@ -27,36 +27,48 @@
 
 /*!
 \page testing-and-debugging.html
-\title Testing and debugging
+\title Testing and Debugging
 \brief Writing unit tests and debugging with Qt
 
-Qt provides various functionality to help you develop high quality code. There are features
-that assist in debugging to track down bugs, and testing facilities that help to keep the bugs out.
+Qt provides various functionality to help you develop high quality code. There
+are features that assist in debugging to track down bugs, and testing facilities
+that help to keep the bugs out.
 
-\section1 Testing Qt-based code
+\section1 Unit Testing
 
-The fundamental level of code testing is the unit test. Qt facilitates the creation of unit tests:
+Qt facilitates the creation of unit tests to test interfaces such as classes,
+functions, or whole libraries.
 
 \list
-\li \l {Qt Test Overview}{Qt Test Module} (also known as "testlib") provides a framework for unit tests of C++ code
-\li \l {QtQuickTest Reference Documentation}{Qt QuickTest} is a framework for unit tests of QML code
+\li \l {Qt Test Overview}{Qt Test} (also known as \e testlib) - a framework for unit tests of C++ code
+\li \l {Qt Quick Test Reference Documentation}{Qt Quick Test} - a framework for unit tests of QML code
 \endlist
 
-Qt itself has a significant number of self-tests built with the Qt Test and QuickTest frameworks. These
-self-tests are available for study in the \c tests/auto subdirectories of the source code of each Qt module.
-The self-tests are an important part of the continuous quality assurance in the development of Qt.
+\section2 Autotests
 
-For higher-level testing, powerful third-party tools are available in the Qt ecosystem.
+Qt itself has a significant number of unit tests written with the Qt Test and Qt
+Quick Test frameworks (\e autotests). These autotests are available for study in
+the \c tests/auto directories of the source code of each Qt module. The
+autotests are an important part of the continuous quality assurance in the
+development of Qt.
 
-\section1 Debugging Qt applications
+\section1 Testing with Qt Creator
 
-Qt provides many facilities to assist with debugging:
+Qt Creator's full debugging workflow supports debugging both C++ and QML code
+as well as the ability to profile code.
 
+For more information, consult the \l{Qt Creator Manual}:
 \list
-\li \l {Debugging Techniques} for Qt C++ code
+\li \l{Qt Creator: Debugging}{Debugging}
+\li \l{Qt Creator: Analyzing Code}{Analyzing Code}
+\endlist
+
+\section1 Debugging Techniques
+
+These pages contain suggestions for debugging under various circumstances:
+\list
+\li \l {Debugging Techniques} - for C++ code
 \li \l {Debugging QML Applications}
-\li The "Debugging Plugins" section of the \l {Deploying Plugins} overview
-\li The "Debugging" chapter of the Qt Creator Manual
+\li \l {Debugging Plugins}
 \endlist
 */
-

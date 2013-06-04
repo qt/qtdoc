@@ -50,6 +50,9 @@
 
     \li \l{Qt Quick Layouts} - provides layouts for \l{Qt Quick}
 
+    \li \l{Qt Quick Dialogs} - contains types for creating and
+    interacting with system dialogs
+
     \li \l{Qt X11 Extras} - adds platform specific APIs for X11
 
     \li \l{Qt Sensors} - provides access to sensor hardware and motion gesture
@@ -145,7 +148,7 @@
         \list
         \li New threaded render loop for Mac, Linux, and Embedded.
         \li New render loop for windows for smoother animations.
-        \li New \l QtQuick.Dialogs module with \l FileDialog and
+        \li New \l {Qt Quick Dialogs} submodule with \l FileDialog and
             \l ColorDialog types.
         \li New \l Window properties: activeFocusItem, minimumWidth,
             minimumHeight, maximumWidth, maximumHeight, visibility,
