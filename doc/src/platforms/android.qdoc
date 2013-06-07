@@ -52,6 +52,10 @@ In order to use Qt for Android, you will need the following external tools:
 \li \l{http://openjdk.java.net}{OpenJDK} v6 or later
 \endlist
 
+\note You must set the \c{JAVA_HOME} environment variable to the JDK install
+directory path so that Qt Creator finds the binaries required to build your
+application.
+
 After installing these tools, update the Android SDK to get the API
 and tools packages required for development. You can update the SDK using the
 \l{http://developer.android.com/tools/help/android.html}{android} tool that
