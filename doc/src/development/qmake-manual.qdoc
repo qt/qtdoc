@@ -1749,6 +1749,21 @@
 
     \note Most of the time, the default \c{Info.plist} is good enough.
 
+    \target QMAKE_INITIAL_ORIENTATION
+    \section1 QMAKE_INITIAL_ORIENTATION
+
+    Specifies the initial orientation of the application. This information
+    might be used by the operating system to launch the application into the
+    specified orientation at startup. It can be set to one of the following values:
+
+    \table
+    \header \li Option  \li Description
+    \row    \li Portrait \li The application should be launched in portrait mode
+    \row    \li InvertedPortrait \li The application should be launched in inverted portrait mode
+    \row    \li Landscape \li The application should be launched in landscape mode
+    \row    \li InvertedLandscape \li The application should be launched in inverted landscape mode
+    \endtable
+
     \section1 QMAKE_LFLAGS
 
     Specifies a general set of flags that are passed to
