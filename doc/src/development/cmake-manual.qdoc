@@ -53,7 +53,7 @@
 
     To build a helloworld GUI executable, typical usage would be:
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 0
+    \snippet snippets/cmake/CMakeLists.pro 0
 
     Note that setting the minimum required CMake version to 2.8.11 is required for
     automatic linking to the qtmain.lib library on Windows.
@@ -72,7 +72,7 @@
     using a variable like Qt5<Module>_LIBRARIES in CMake commands such as \c{target_link_libraries}.
     The actual path to the library can be obtained using the \l{CMake LOCATION Documentation}{LOCATION property}:
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 1
+    \snippet snippets/cmake/CMakeLists.pro 1
 
     Note however that it is rare to require the full location to the library in \c{CMake} code. Most
     \c{CMake} APIs are aware of imported targets and can automatically use them instead of the full path.
@@ -104,7 +104,7 @@
     The \c{qt5_use_modules} macro encapsulates all of the variable usage required to use a Qt module.
     It automatically finds the modules given to it on the command line if they have not already been found.
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 3
+    \snippet snippets/cmake/CMakeLists.pro 3
 
     \section2 Using Qt 5 with \c{CMake} older than 2.8.9
 
@@ -115,7 +115,7 @@
     \c{target_link_libraries}, \c{include_directories}, and \c{add_definitions} commands, and to manually
     specify moc requirements with either \c{qt5_generate_moc} or \c{qt5_wrap_cpp}:
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 4
+    \snippet snippets/cmake/CMakeLists.pro 4
 
     It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
     the CMAKE_CXX_FLAGS so that the -fPIE flags are added to the compile flags if necessary (as
@@ -126,14 +126,14 @@
     targets using Qt instead, or it can be set globally for all targets. Note that this is not necessary
     with CMake 2.8.11:
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 5
+    \snippet snippets/cmake/CMakeLists.pro 5
 
     Note that it may be necessary to enable POSITION_INDEPENDENT_CODE globally in order to use try_compile
     with Qt code, or any wrapper macros around it such as check_cxx_source_compiles etc.
     As position independent code is a platform-specific and Qt-configuration-specific concept, the
     Qt5_POSITION_INDEPENDENT_CODE property can be used to check whether it is required.
 
-    \snippet doc/src/snippets/cmake/CMakeLists.pro 6
+    \snippet snippets/cmake/CMakeLists.pro 6
 
     \section1 Variable Reference
 

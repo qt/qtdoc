@@ -382,7 +382,7 @@
     found in src/plugins/accessible/widgets. Here is the
     QAccessibleSlider's constructor:
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 0
+    \snippet snippets/accessibilityslidersnippet.cpp 0
 
     The slider is a complex control that functions as a
     \l{QAccessible::}{Controller} for its accessible children.
@@ -403,11 +403,11 @@
     \l{QAccessibleInterface::}{updateAccessibility()} to indicate that
     its value has changed:
 
-    \snippet doc/src/snippets/qabstractsliderisnippet.cpp 0
+    \snippet snippets/qabstractsliderisnippet.cpp 0
     \dots
-    \snippet doc/src/snippets/qabstractsliderisnippet.cpp 1
+    \snippet snippets/qabstractsliderisnippet.cpp 1
     \dots
-    \snippet doc/src/snippets/qabstractsliderisnippet.cpp 2
+    \snippet snippets/qabstractsliderisnippet.cpp 2
 
     Note that the call is made after the value of the slider has
     changed because clients may query the new value immediately after
@@ -422,9 +422,9 @@
     handle), and \c Position (the slider handle). Here is the
     implementation of \l{QAccessibleInterface::}{rect()}:
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 1
+    \snippet snippets/accessibilityslidersnippet.cpp 1
     \dots
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 2
+    \snippet snippets/accessibilityslidersnippet.cpp 2
     \dots
 
     The first part of the function, which we have omitted, uses the
@@ -435,7 +435,7 @@
     from the superclass, which is effectively the value obtained from
     QAccessibleWidget::rect().
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 3
+    \snippet snippets/accessibilityslidersnippet.cpp 3
 
     Before the rectangle is returned it must be mapped to screen
     coordinates.
@@ -447,7 +447,7 @@
     The \l{QAccessibleInterface::}{text()} function returns the
     QAccessible::Text strings for the slider:
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 4
+    \snippet snippets/accessibilityslidersnippet.cpp 4
 
     The \c slider() function returns a pointer to the interface's
     QSlider. Some values are left for the superclass's implementation.
@@ -459,7 +459,7 @@
     The implementation of the \l{QAccessibleInterface::}{role()}
     function is straightforward:
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 5
+    \snippet snippets/accessibilityslidersnippet.cpp 5
 
     The role function should be reimplemented by all objects and
     describes the role of themselves and the children that do not
@@ -470,9 +470,9 @@
     at parts of the \c state() implementation to show how just a few
     of the states are handled:
 
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 6
+    \snippet snippets/accessibilityslidersnippet.cpp 6
     \dots
-    \snippet doc/src/snippets/accessibilityslidersnippet.cpp 7
+    \snippet snippets/accessibilityslidersnippet.cpp 7
 
     The superclass implementation of
     \l{QAccessibleInterface::}{state()}, uses the
@@ -543,14 +543,14 @@
     from the \l{QAccessibleWidget Example}. We start with the \c key()
     function:
 
-    \snippet doc/src/snippets/accessibilitypluginsnippet.cpp 0
+    \snippet snippets/accessibilitypluginsnippet.cpp 0
 
     We simply need to return the class name of the single interface
     our plugin can create an accessible interface for. A plugin
     can support any number of classes; just add more class names
     to the string list. We move on to the \c create() function:
 
-    \snippet doc/src/snippets/accessibilitypluginsnippet.cpp 1
+    \snippet snippets/accessibilitypluginsnippet.cpp 1
 
     We check whether the interface requested is for QSlider; if it is,
     we create and return an interface for it. Note that \c object will
@@ -561,7 +561,7 @@
 
     Finally, you need to include macros in the cpp file:
 
-    \snippet doc/src/snippets/accessibilitypluginsnippet.cpp 2
+    \snippet snippets/accessibilitypluginsnippet.cpp 2
 
     The Q_PLUGIN_METADATA macro exports the plugin in the \c
     SliderPlugin class into the \c acc_sliderplugin library. The first
@@ -587,9 +587,9 @@
     \l{QAccessible::}{installFactory()} function. We give an example
     of how to create a factory for the \c QAccessibleSlider interface:
 
-    \snippet doc/src/snippets/accessibilityfactorysnippet.cpp 0
+    \snippet snippets/accessibilityfactorysnippet.cpp 0
     \dots
-    \snippet doc/src/snippets/accessibilityfactorysnippet.cpp 1
+    \snippet snippets/accessibilityfactorysnippet.cpp 1
 
     \omit
 

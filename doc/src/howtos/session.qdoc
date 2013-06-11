@@ -134,7 +134,7 @@
     \li Run X11R6.
     \li Create a dot file \c .xsmstartup in your home directory which
     contains the single line
-    \snippet doc/src/snippets/code/doc_src_session.qdoc 0
+    \snippet snippets/code/doc_src_session.qdoc 0
     This tells \c xsm that the default/failsafe session is just an xterm
     and nothing else. Otherwise \c xsm would try to invoke lots of
     clients including the windowmanager \c twm, which isn't very helpful.

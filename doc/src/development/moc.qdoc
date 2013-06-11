@@ -54,7 +54,7 @@
     \c moc is typically used with an input file containing class
     declarations like this:
 
-    \snippet doc/src/snippets/moc/myclass1.h 0
+    \snippet snippets/moc/myclass1.h 0
 
     In addition to the signals and slots shown above, \c moc also
     implements object properties as in the next example. The
@@ -68,14 +68,14 @@
     has a get function \c priority() and a set function \c
     setPriority().
 
-    \snippet doc/src/snippets/moc/myclass2.h 0
+    \snippet snippets/moc/myclass2.h 0
 
     The Q_FLAGS() macro declares enums that are to be used
     as flags, i.e. OR'd together. Another macro, Q_CLASSINFO(),
     allows you to attach additional name/value pairs to the class's
     meta-object:
 
-    \snippet doc/src/snippets/moc/myclass3.h 0
+    \snippet snippets/moc/myclass3.h 0
 
     The output produced by \c moc must be compiled and linked, just
     like the other C++ code in your program; otherwise, the build
@@ -108,12 +108,12 @@
     For Q_OBJECT class declarations in header files, here is a
     useful makefile rule if you only use GNU make:
 
-    \snippet doc/src/snippets/code/doc_src_moc.qdoc 0
+    \snippet snippets/code/doc_src_moc.qdoc 0
 
     If you want to write portably, you can use individual rules of
     the following form:
 
-    \snippet doc/src/snippets/code/doc_src_moc.qdoc 1
+    \snippet snippets/code/doc_src_moc.qdoc 1
 
     You must also remember to add \c moc_foo.cpp to your \c SOURCES
     (substitute your favorite name) variable and \c moc_foo.o or \c
@@ -131,12 +131,12 @@
     For Q_OBJECT class declarations in implementation (\c .cpp)
     files, we suggest a makefile rule like this:
 
-    \snippet doc/src/snippets/code/doc_src_moc.qdoc 2
+    \snippet snippets/code/doc_src_moc.qdoc 2
 
     This guarantees that make will run the moc before it compiles
     \c foo.cpp. You can then put
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 3
+    \snippet snippets/code/doc_src_moc.cpp 3
 
     at the end of \c foo.cpp, where all the classes declared in that
     file are fully known.
@@ -223,7 +223,7 @@
     file. \c moc defines the preprocessor symbol \c Q_MOC_RUN. Any
     code surrounded by
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 4
+    \snippet snippets/code/doc_src_moc.cpp 4
 
     is skipped by the \c moc.
 
@@ -245,7 +245,7 @@
     \c moc does not handle all of C++. The main problem is that class
     templates cannot have signals or slots. Here is an example:
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 5
+    \snippet snippets/code/doc_src_moc.cpp 5
 
     Less importantly, the following constructs are illegal. All of
     them have alternatives which we think are usually better, so
@@ -257,7 +257,7 @@
     first inherited class is a subclass of QObject. Also, be sure
     that only the first inherited class is a QObject.
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 6
+    \snippet snippets/code/doc_src_moc.cpp 6
 
     Virtual inheritance with QObject is \e not supported.
 
@@ -267,11 +267,11 @@
     signal or slot parameters, we think inheritance is a better
     alternative. Here is an example of illegal syntax:
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 7
+    \snippet snippets/code/doc_src_moc.cpp 7
 
     You can work around this restriction like this:
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 8
+    \snippet snippets/code/doc_src_moc.cpp 8
 
     It may sometimes be even better to replace the function pointer
     with inheritance and virtual functions.
@@ -285,13 +285,13 @@
     fully qualify the data types when declaring signals and slots,
     and when establishing connections. For example:
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 9
+    \snippet snippets/code/doc_src_moc.cpp 9
 
     \section2 Nested Classes Cannot Have Signals or Slots
 
     Here's an example of the offending construct:
 
-    \snippet doc/src/snippets/code/doc_src_moc.cpp 11
+    \snippet snippets/code/doc_src_moc.cpp 11
 
     \section2 Signal/Slot return types cannot be references
 
