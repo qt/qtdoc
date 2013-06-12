@@ -61,7 +61,7 @@ for your platform from the following list.
     if you have the \c{qt-everywhere-opensource-src-%VERSION%.tar.gz}
     package, type the following commands at a command line prompt:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 0
+\snippet snippets/code/doc_src_installation.qdoc 0
 
     This creates the directory \c{/tmp/qt-everywhere-opensource-src-%VERSION%}
     containing the files from the archive. We only support the GNU version of
@@ -76,20 +76,20 @@ for your platform from the following list.
     \c{/usr/local/Qt-%VERSION%} directory, but this can be
     changed by using the \c{-prefix} option.
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 1
+\snippet snippets/code/doc_src_installation.qdoc 1
 
     Type \c{./configure -help} to get a list of all available options.
 
     To create the library and compile all the examples, tools,
     and tutorials, type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 2
+\snippet snippets/code/doc_src_installation.qdoc 2
 
     If \c{-prefix} is outside the build directory, you need to install
     the library, examples, tools, and tutorials in the appropriate
     place. To do this (as root if necessary), type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 3
+\snippet snippets/code/doc_src_installation.qdoc 3
 
     Note that on some systems the make utility is named differently,
     e.g. gmake. The configure script tells you which make utility to
@@ -105,18 +105,18 @@ for your platform from the following list.
     In order to use Qt, some environment variables needs to be
     extended.
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 4
+\snippet snippets/code/doc_src_installation.qdoc 4
 
     This is done like this:
 
     In \c{.profile} (if your shell is bash, ksh, zsh or sh), add the
     following lines:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 5
+\snippet snippets/code/doc_src_installation.qdoc 5
 
     In \c{.login} (in case your shell is csh or tcsh), add the following line:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 6
+\snippet snippets/code/doc_src_installation.qdoc 6
 
     If you use a different shell, please modify your environment
     variables accordingly.
@@ -308,7 +308,7 @@ must be run as root.
     if you have the \c{qt-everywhere-opensource-src-%VERSION%.tar.gz}
     package, type the following commands at a command line prompt:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 11
+\snippet snippets/code/doc_src_installation.qdoc 11
 
     This creates the directory \c{/tmp/qt-everywhere-opensource-src-%VERSION%}
     containing the files from the archive.
@@ -322,7 +322,7 @@ must be run as root.
     \c{/usr/local/Qt-%VERSION%} directory, but this can be
     changed by using the \c{-prefix} option.
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 12
+\snippet snippets/code/doc_src_installation.qdoc 12
 
     Type \c{./configure -help} to get a list of all available options.
 
@@ -340,13 +340,13 @@ must be run as root.
     To create the library and compile all the examples, tools,
     and tutorials, type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 13
+\snippet snippets/code/doc_src_installation.qdoc 13
 
     If \c{-prefix} is outside the build directory, you need to install
     the library, examples, tools, and tutorials in the appropriate
     place. To do this, type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 14
+\snippet snippets/code/doc_src_installation.qdoc 14
 
     This command requires that you have administrator access
     on your machine.
@@ -364,17 +364,17 @@ must be run as root.
     In order to use Qt, some environment variables need to be
     extended.
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 15
+\snippet snippets/code/doc_src_installation.qdoc 15
 
     This is done like this:
 
     In \c{.profile} (if your shell is bash), add the following lines:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 16
+\snippet snippets/code/doc_src_installation.qdoc 16
 
     In \c{.login} (in case your shell is csh or tcsh), add the following line:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 17
+\snippet snippets/code/doc_src_installation.qdoc 17
 
     If you use a different shell, please modify your environment
     variables accordingly.
@@ -421,7 +421,7 @@ in the \l{Qt for Windows CE Requirements} document.
     In order to build and use Qt, the \c PATH environment variable needs
     to be extended:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 18
+\snippet snippets/code/doc_src_installation.qdoc 18
     This is done by adding \c{c:\Qt\%VERSION%\bin} to the \c PATH variable.
 
     For newer versions of Windows, \c PATH can be extended through
@@ -437,7 +437,7 @@ in the \l{Qt for Windows CE Requirements} document.
     To configure Qt for Windows Mobile 5.0 for Pocket PC, type the
     following:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 19
+\snippet snippets/code/doc_src_installation.qdoc 19
 
     If you want to configure Qt for another platform or with other
     options, type \c{configure -help} to get a list of all available
@@ -451,16 +451,16 @@ in the \l{Qt for Windows CE Requirements} document.
     platforms. For a default installation of the Windows Mobile 5.0
     Pocket PC SDK, this is done with the following commands:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 20
+\snippet snippets/code/doc_src_installation.qdoc 20
 
     We provide a convenience script for this purpose, called \c{setcepaths}.
     Simply type:
 
-\snippet doc/src/snippets/code/doc_src_installation.qdoc 21
+\snippet snippets/code/doc_src_installation.qdoc 21
 
     Then to build Qt type:
 
-    \snippet doc/src/snippets/code/doc_src_installation.qdoc 22
+    \snippet snippets/code/doc_src_installation.qdoc 22
 
 \b{That's all. Qt is now installed.}
 

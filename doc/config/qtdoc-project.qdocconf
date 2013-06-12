@@ -30,6 +30,8 @@ depends += \
     qtqml \
     qtquick \
     qtquickcontrols \
+    qtquickcontrolsstyles \
+    qtquickdialogs \
     qtquicklayouts \
     qtscript \
     qtscripttools \
@@ -55,10 +57,12 @@ imagedirs   += ../src/images \
                ../images
 
 sourcedirs  += \
-    ../.. \
     ../src
 
 exampledirs += \
-    ../.. \
     ../src \
     ../snippets
+
+# Don't parse files in snippets directory
+excludedirs += \
+    ../src/snippets

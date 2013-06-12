@@ -106,12 +106,12 @@
     QString provides implicit casting from \c{const char *}
     so that things like
 
-    \snippet doc/src/snippets/code/doc_src_unicode.cpp 0
+    \snippet snippets/code/doc_src_unicode.cpp 0
 
     will work. There is also a function, QObject::tr(), that provides
     translation support, like this:
 
-    \snippet doc/src/snippets/code/doc_src_unicode.cpp 1
+    \snippet snippets/code/doc_src_unicode.cpp 1
 
     QObject::tr() maps from \c{const char *} to a Unicode string, and
     uses installable QTranslator objects to do the mapping.
@@ -130,11 +130,11 @@
     fast functions for mapping to and from them. For example, to open an
     application's icon one might do this:
 
-    \snippet doc/src/snippets/code/doc_src_unicode.cpp 2
+    \snippet snippets/code/doc_src_unicode.cpp 2
 
     or
 
-    \snippet doc/src/snippets/code/doc_src_unicode.cpp 3
+    \snippet snippets/code/doc_src_unicode.cpp 3
 
     Qt supports rendering text in most languages written in the world. The detailed
     list of supported writing systems depends a bit on operating system support and

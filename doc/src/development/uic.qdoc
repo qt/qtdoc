@@ -39,7 +39,7 @@
     Designer} and creates a corresponding C++ header file.
 
     Usage:
-    \snippet doc/src/snippets/code/doc_src_uic.qdoc 0
+    \snippet snippets/code/doc_src_uic.qdoc 0
 
     \section1 Options
 
@@ -62,12 +62,12 @@
 
     Here are useful makefile rules if you only use GNU make:
 
-    \snippet doc/src/snippets/code/doc_src_uic.qdoc 1
+    \snippet snippets/code/doc_src_uic.qdoc 1
 
     If you want to write portably, you can use individual rules of the
     following form:
 
-    \snippet doc/src/snippets/code/doc_src_uic.qdoc 2
+    \snippet snippets/code/doc_src_uic.qdoc 2
 
     You must also remember to add \c{ui_foo.h} to your \c HEADERS
     (substitute your favorite name).

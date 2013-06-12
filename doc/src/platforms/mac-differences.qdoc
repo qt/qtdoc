@@ -98,7 +98,7 @@
 
     If you use \c qmake and Makefiles, use the \c QMAKE_LFLAGS_SONAME setting:
 
-    \snippet doc/src/snippets/code/doc_src_mac-differences.pro 0
+    \snippet snippets/code/doc_src_mac-differences.pro 0
 
     Alternatively, you can modify the install name using the
     install_name_tool(1) on the command line. See its manpage for more
@@ -160,7 +160,7 @@
     the bundle resides on the disk. The following code returns the
     path of the application bundle:
 
-    \snippet doc/src/snippets/code/doc_src_mac-differences.cpp 1
+    \snippet snippets/code/doc_src_mac-differences.cpp 1
 
     Note: When OS X is set to use Japanese, a bug causes this sequence
     to fail and return an empty string. Therefore, always test the
@@ -183,7 +183,7 @@
     The main thing you need to do is create a file called
     locversion.plist.  Here is an example for Norwegian:
 
-    \snippet doc/src/snippets/code/doc_src_mac-differences.qdoc 2
+    \snippet snippets/code/doc_src_mac-differences.qdoc 2
 
     Now when you run the application with your preferred language set
     to Norwegian, you should see menu items like "Avslutt" instead of

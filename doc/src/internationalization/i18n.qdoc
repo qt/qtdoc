@@ -201,7 +201,7 @@
     Typically, your application's \c main() function will look like
     this:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 8
+    \snippet snippets/code/doc_src_i18n.cpp 8
 
     For a translation-aware application, a QTranslator object is created, then a
     translation is loaded according to the current locale at runtime, and
@@ -227,7 +227,7 @@
     need to output Cyrillic in the ISO 8859-5 encoding. Code for this
     would be:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 9
+    \snippet snippets/code/doc_src_i18n.cpp 9
 
     For converting Unicode to local 8-bit encodings, a shortcut is
     available: the QString::toLocal8Bit() function returns such 8-bit
@@ -242,7 +242,7 @@
     demonstrated by this conversion from ISO 8859-5 Cyrillic to Unicode
     conversion:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 10
+    \snippet snippets/code/doc_src_i18n.cpp 10
 
     Unicode I/O should be used as this maximizes the portability
     of documents between users around the world. In many cases it is
@@ -288,7 +288,7 @@
     the text displayed by widgets using the \l{QObject::tr()}{tr()} function
     in the usual way. For example:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 12
+    \snippet snippets/code/doc_src_i18n.cpp 12
 
     All other change events should be passed on by calling the default
     implementation of the function.
@@ -412,7 +412,7 @@
 
     For example, assuming the \c LoginWidget is a subclass of QWidget:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 0
+    \snippet snippets/code/doc_src_i18n.cpp 0
 
     This accounts for 99% of the user-visible strings you're likely to
     write.
@@ -422,7 +422,7 @@
     appropriate class, or the QCoreApplication::translate() function
     directly:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 1
+    \snippet snippets/code/doc_src_i18n.cpp 1
 
     Qt indexes each translatable string by the \e{translation context} it is
     associated with; this is generally the name of the QObject subclass it is
@@ -491,7 +491,7 @@
     In some situations, it is useful to give a translation context explicitly
     by fully qualifying the call to tr(); for example:
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp explicit tr context
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp explicit tr context
 
     This call obtains the translated text for "Page up" from the \c QScrollBar
     context. Developers can also use the QCoreApplication::translate() function
@@ -501,7 +501,7 @@
 
     You can localize numbers by using appropriate tr() strings:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 11
+    \snippet snippets/code/doc_src_i18n.cpp 11
 
     In the example, for the US we would leave the translation of
     "AMPM" as it is and thereby use the 12-hour clock branch; but in
@@ -520,9 +520,9 @@
     One way to do this is to add translation support to a non-Qt class
     using the Q_DECLARE_TR_FUNCTIONS() macro; for example:
 
-    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 0
+    \snippet snippets/i18n-non-qt-class/myclass.h 0
     \dots
-    \snippet doc/src/snippets/i18n-non-qt-class/myclass.h 1
+    \snippet snippets/i18n-non-qt-class/myclass.h 1
 
     This provides the class with \l{QObject::}{tr()} functions that can
     be used to translate strings associated with the class, and makes it
@@ -549,7 +549,7 @@
 
     Examples:
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp 40
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp 40
 
     In these examples, the comments will be associated with the strings
     passed to tr() in the context of each call.
@@ -581,7 +581,7 @@
 
     Example:
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp meta data
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp meta data
 
     You can use the keyword \e TRANSLATOR for translator comments.
     Meta-data appearing right in front of the TRANSLATOR keyword applies to
@@ -596,7 +596,7 @@
 
     Example:
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp 17
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp 17
     \dots
 
     In Qt 4.4 and earlier, this disambiguation parameter was the preferred
@@ -618,7 +618,7 @@
 
     Example:
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp 18
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp 18
 
     The table below shows what string is returned depending on the
     active translation:
@@ -634,7 +634,7 @@
 
     This idiom is more flexible than the traditional approach; e.g.,
 
-    \snippet doc/src/snippets/code/src_corelib_kernel_qobject.cpp 19
+    \snippet snippets/code/src_corelib_kernel_qobject.cpp 19
 
     because it also works with target languages that have several
     plural forms (e.g., Irish has a special "dual" form that should
@@ -666,7 +666,7 @@
     use either the tr() function of an appropriate class, or the
     QCoreApplication::translate() function directly:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 13
+    \snippet snippets/code/doc_src_i18n.cpp 13
 
     \section2 Using QT_TR_NOOP() and QT_TRANSLATE_NOOP() in C++
 
@@ -677,11 +677,11 @@
 
     Example of QT_TR_NOOP():
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 2
+    \snippet snippets/code/doc_src_i18n.cpp 2
 
     Example of QT_TRANSLATE_NOOP():
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 3
+    \snippet snippets/code/doc_src_i18n.cpp 3
 
     If you disable the \c{const char *} to QString automatic
     conversion by compiling your software with the macro \c
@@ -705,16 +705,16 @@
 
     The QString::arg() functions offer a simple means for substituting
     arguments:
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 4
+    \snippet snippets/code/doc_src_i18n.cpp 4
 
     In some languages the order of arguments may need to change, and this
     can easily be achieved by changing the order of the % arguments. For
     example:
 
-    \snippet doc/src/snippets/code/doc_src_i18n.cpp 5
+    \snippet snippets/code/doc_src_i18n.cpp 5
 
     produces the correct output in English and Norwegian:
-    \snippet doc/src/snippets/code/doc_src_i18n.qdoc 6
+    \snippet snippets/code/doc_src_i18n.qdoc 6
 
     \section1 Further Reading
 

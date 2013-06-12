@@ -100,7 +100,7 @@
     archive, be aware that you will probably end up with two different
     versions of the Qt library installed on your system, which will probably
     lead to link errors, like this:
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 0
+    \snippet snippets/code/doc_src_platform-notes.qdoc 0
     Fix this by removing the old version of the library.
 
     If you have problems installing open source versions of Qt
@@ -160,7 +160,7 @@
 
     Installing Qt into a directory with spaces, e.g. C:\\Program Files, may
     cause linker errors like the following:
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 2
+    \snippet snippets/code/doc_src_platform-notes.qdoc 2
 
     Install Qt into a subdirectory without spaces to avoid this problem.
 
@@ -208,7 +208,7 @@
     \c{C:\Program files\Qt\}) so you will have to move it to another place,
     or explicitly set the path yourself; for example:
 
-    \snippet doc/src/snippets/code/doc_src_compiler-notes.qdoc 0
+    \snippet snippets/code/doc_src_compiler-notes.qdoc 0
 
     If you are experiencing strange problems with using special flags that
     modify the alignment of structure and union members (such as \c{/Zp2})
@@ -264,7 +264,7 @@
     defined when linking static C libraries into dynamic library. If you
     get the following error message when linking Qt:
 
-    \snippet doc/src/snippets/code/doc_src_platform-notes.qdoc 6
+    \snippet snippets/code/doc_src_platform-notes.qdoc 6
 
     re-link Qt using -single_module. This is only a problem when building the
     MySQL driver into Qt. It does not affect plugins or static builds.
@@ -339,4 +339,11 @@
     the \l{Qt D-Bus} module. However you can install \c dbus via Homebrew, Fink or
     MacPorts; then when you build Qt it will be detected, and the Qt D-Bus module
     will be built.
+
+   \section2 See Also
+
+   \list
+    \li \l{Qt for Mac OS X - Specific Issues}
+    \li \l{Qt is Mac OS X Native}
+   \endlist
 */

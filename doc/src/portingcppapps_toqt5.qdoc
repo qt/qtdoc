@@ -29,36 +29,42 @@
 \title Porting C++ Applications to Qt 5
 \brief Provides instructions to migrate a Qt 4 C++ application to Qt 5.
 
-This topic talks about the Qt Widgets change and provides guidance to handle it.
-The following step-by-step instructions takes you through the changes required
-to port the \l{Animated Tiles Example}{Animated Tiles} C++ application to Qt 5:
+This topic talks about the Qt Widgets and Qt WebKit changes in Qt 5. The
+following step-by-step instructions take you through the changes required to
+port the \l{Animated Tiles Example}{Animated Tiles} application to Qt 5:
 
 \list 1
-   \li Edit \c {main.cpp} and change the \c {#include <QtGui>} to \c {#include <QtWidgets>}.
-       \note You can find a perl script called fixqt4headers in the bin directory of your Qt package that will
-        automate many of the required header file changes.
-   \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the end of the file.
+   \li Open the Animated Tiles project using Qt Creator.
+   \li Edit \c {main.cpp} and replace the \c {#include <QtGui>} instance with
+       \c {#include <QtWidgets>}.
+   \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the
+       end of the file.
        \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= gui} directive in the \c{qmake} project file.
-   \li Run qmake and make utilities to build the binary.
+   \li Save the changes and run the application.
 \endlist
 
-This creates the \c animatedtiles executable. Try running the executable to see if the application behaves as expected.
+Once you see the application running, check whether it behaves as expected.
 
 \image animatedtiles_snapshot.png "A snapshot of the \c animatedtiles application running on Ubuntu v12.04"
 
-A similar change is needed for porting Qt 4 applications using Qt WebKit to Qt 5. The following
+A similar change is needed to port Qt 4 C++ applications using Qt WebKit. The following
 step-by-step instructions take you through the changes required to achieve this:
 
 \list 1
-   \li If using \c {#include <QtWebKit>}, add \c {#include <QtWebKitWidgets} in your source code.
-   \li Edit the pro file and add \c {QT += webkitwidgets} towards the end of the file.
-   \li Run qmake and make utilities to build the binary.
+   \li Open your project using Qt Creator.
+   \li Replace all \c {#include <QtWebKit>} instances with
+       \c {#include <QtWebKitWidgets>} in your project source.
+   \li Edit the \c{.pro} file and add \c {QT += webkitwidgets}.
+
+       \note If the \c {QT +=} statement already exists, append \c webkitwidgets
+       to it.
+   \li Save changes and run your application.
 \endlist
 
 \section1 Related topics
 \list
-\li \l {API Changes}
+\li \l {C++ API Changes}
 \li \l {Porting QML Applications to Qt 5 Example}
-\li \l {QML Examples and Demos}
+\li \l {Qt Examples And Tutorials}
 \endlist
 */
