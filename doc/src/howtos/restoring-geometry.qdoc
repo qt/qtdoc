@@ -51,8 +51,8 @@
     checks if the restored geometry is outside the available screen
     geometry, and modifies it as appropriate if it is:
 
-    \snippet doc/src/snippets/code/src_gui_widgets_qmainwindow.cpp 0
-    \snippet doc/src/snippets/code/src_gui_widgets_qmainwindow.cpp 1
+    \snippet snippets/code/src_gui_widgets_qmainwindow.cpp 0
+    \snippet snippets/code/src_gui_widgets_qmainwindow.cpp 1
 
     Another solution is to store both \l{QWidget::pos()}{pos()} and
     \l{QWidget::size()}{size()} and to restore the geometry using

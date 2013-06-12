@@ -777,17 +777,6 @@ It should be noted that a particle system can be disabled when not in use
 
 See the \l{Particle System Performance Guide} for more in-depth information.
 
-\section2 Shaders
-
-Shaders written in GLSL allow for complex transformations and visual effects to be written,
-however they should be used with care. Using a ShaderEffectSource causes a scene to
-prerendered into an FBO before it can be drawn. This extra overhead is quite expensive.
-
-A ShaderEffect element can imply a ShaderEffectSource (and the indirect rendering costs
-associated with that) and also involves uploading a vertex and fragment shader program
-(which is then compiled into a GLSL shader). Each fragment shader runs once for every
-pixel of the scene, and so these should be kept as simple as possible.
-
 \section1 Controlling Element Lifetime
 
 By partitioning an application into simple, modular components, each contained in a single
@@ -867,14 +856,26 @@ activated), should have their "visible" property set to \c false, in order to av
 cost of drawing them (although as previously explained, they will still incur the cost of
 any animations or bindings evaluation since they are still active).
 
-\section2 Manual Layouts
+\section2 Translucent vs Opaque
 
-The scene graph renderer is able to batch up certain operations to minimize the number of
-OpenGL state changes required. However, this optimization is only possible for the
-built-in layout elements provided by \c {QtQuick 2.0}, and cannot be applied to manual layouts.
+Opaque content is generally a lot faster to draw than translucent. The reason being
+that translucent content needs blending and that the renderer can potentially optimize
+opaque content better.
 
-Therefore, application developers should use the Row, Column, Grid, GridView, and ListView
-elements instead of manual layouts wherever possible.
+An image with one translucent pixel is treated as fully translucent, even though it
+is mostly opaque. The same is true for an \l BorderImage with transparent edges.
+
+\section2 Shaders
+
+The \l ShaderEffect type makes it possible to place GLSL code inline in a Qt Quick application with
+very little overhead. However, it is important to realize that the fragment program needs to run
+for every pixel in the rendered shape. When deploying to low-end hardware and the shader
+is covering a large amount of pixels, one should keep the fragment shader to a few instructions
+to avoid poor performance.
+
+Shaders written in GLSL allow for complex transformations and visual effects to be written,
+however they should be used with care. Using a \l ShaderEffectSource causes a scene to be
+prerendered into an FBO before it can be drawn. This extra overhead can be quite expensive.
 
 \section1 Memory Allocation And Collection
 
