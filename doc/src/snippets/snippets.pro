@@ -44,7 +44,6 @@ SUBDIRS         = brush \
                   qlistview-using \
                   qlistwidget-dnd \
                   qlistwidget-using \
-#                  qmake \                  # not designed to be built
                   qmetaobject-invokable \
                   qprocess \
                   qprocess-environment \
