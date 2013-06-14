@@ -182,6 +182,8 @@ The following sections lists the API changes in each module and provides recomme
          in the URL, but now it returns "%25" like the \l{QUrl::toEncoded} does.
     \li \l{QUrl} no longer has functions that handle individual query items and query delimiters, such as \c addQueryItem() and \c queryPairDelimiter().
         These have been moved to the new \l{QUrlQuery} class.
+    \li \l{Qt::WFlags} is deprecated, use \l{Qt::WindowFlags} instead.
+        This typedef dates from the Qt 1 days, and such abbreviations are not current Qt style.
     \endlist
 
 \section1 Changes to Qt GUI
