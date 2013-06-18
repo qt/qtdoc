@@ -78,6 +78,10 @@ to develop for Android. For more information, see
 \gui{Select Components} page of \l{Qt Installation Program}
 {Qt installation program}. By default, Qt libraries for ARMv7 are selected.
 
+Test your setup by running one of the desktop examples. You can list all the
+examples tested for Android using the \c{android} keyword in the search field
+under the \gui{Examples} tab in Qt Creator \gui{Welcome} mode.
+
 \section1 Porting an Existing Qt Application
 
 Most Qt applications should be portable to Android with ease, unless they
