@@ -50,6 +50,15 @@ In order to use Qt for Android, you will need the following external tools:
 \li \l{http://developer.android.com/tools/sdk/ndk/index.html}{The Android NDK}
 \li \l{http://ant.apache.org/bindownload.cgi}{Apache Ant} v1.8 or later
 \li \l{http://openjdk.java.net}{OpenJDK} v6 or later
+\li Android Debug Bridge (ADB) driver on the Windows platform to enable USB
+    debugging. The default USB driver on Windows does not allow debugging. You
+    can download the ADB driver from the device manufacturer's support website.
+    For example, the ADB driver for Google Nexus 7 can be downloaded from
+    \l{http://support.asus.com}.
+
+    After installing the driver, try running a few basic
+    \l{http://developer.android.com/tools/help/adb.html}{adb} commands and check
+    whether your device responds to it.
 \endlist
 
 \note You must set the \c{JAVA_HOME} environment variable to the JDK install
