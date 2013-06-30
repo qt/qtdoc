@@ -41,6 +41,7 @@
 #ifndef NOTEPAD_H
 #define NOTEPAD_H
 
+//! [all]
 #include <QMainWindow>
 
 namespace Ui {
@@ -58,5 +59,6 @@ public:
 private:
     Ui::Notepad *ui;
 };
+//! [all]
 
 #endif // NOTEPAD_H

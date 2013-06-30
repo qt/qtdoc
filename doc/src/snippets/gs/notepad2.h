@@ -38,6 +38,7 @@
 **
 ****************************************************************************/
 
+//! [all]
 namespace Ui {
 class Notepad;
 }
@@ -56,3 +57,4 @@ private slots:
 private:
     Ui::Notepad *ui;
 };
+//! [all]

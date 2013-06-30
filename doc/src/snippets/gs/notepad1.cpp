@@ -38,6 +38,7 @@
 **
 ****************************************************************************/
 
+//! [all]
 #include "notepad.h"
 #include "ui_notepad.h"
 
@@ -52,3 +53,4 @@ Notepad::~Notepad()
 {
     delete ui;
 }
+//! [all]
