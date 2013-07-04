@@ -229,6 +229,13 @@ The following sections lists the API changes in each module and provides recomme
     \li \c QDesktopServices::storageLocation() and \c QDesktopServices::displayName() are replaced by \l{QStandardPaths::storageLocation()}
         and \l{QStandardPaths::displayName()} respectively. They are now in the \l{Qt Core} module.
     \li \c QPixmap::grabWindow() and \c QPixmap::grabWidget() are removed. Use \l{QScreen::grabWindow()} instead.
+    \li QMotifStyle, QPlastiqueStyle, QCleanlooksStyle, and QCDEStyle are
+        replaced with a new style, QFusionStyle. If your application depends on
+        any of these removed styles, you can either use the
+        \l{http://qt.gitorious.org/qt/qtstyleplugins}{qtstyleplugins} project
+        to get these styles or update your application to use the new fusion style.
+        For more details about this change, see
+        \l{https://blog.qt.digia.com/blog/2012/10/30/cleaning-up-styles-in-qt5-and-adding-fusion/}.
     \endlist
 
 \section1 Changes to Qt Widgets

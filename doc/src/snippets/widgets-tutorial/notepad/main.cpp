@@ -38,6 +38,7 @@
 **
 ****************************************************************************/
 
+//! [all]
 #include "notepad.h"
 #include <QApplication>
 
@@ -49,3 +50,4 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+//! [all]
