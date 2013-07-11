@@ -59,6 +59,23 @@
 */
 
 /*!
+    \page qmltypes.html
+    \title All QML Types
+    \ingroup classlists
+
+    \brief A list of QML types in this Qt release.
+
+    This is a list of all QML types. The \l{All QML APIs by Module} contains a
+    list of the QML APIs by module. For types that have been deprecated, see the
+    \l{Obsolete QML Types} list.
+
+    \b{See also} \l{Class and Function Documentation}.
+
+    \generatelist qmltypes
+
+*/
+
+/*!
     \page annotated.html
     \title Annotated Class List
     \ingroup classlists
@@ -124,6 +141,31 @@
 
     \generatelist obsoletecppmembers
 
+*/
+
+  /*!
+    \page obsoleteqmltypes.html
+    \title Obsolete QML Types
+    \ingroup classlists
+    \brief A list of obsolete QML types that should not be used in new code.
+
+    The following QML types are now obsolete. Obsolete types
+    are no longer maintained. They are provided to keep old source
+    code working, but they can be removed in a future release. We
+    strongly advise against using these classes in new code.
+
+    \generatelist obsoleteqmltypes
+    \section1 QML Types with Obsolete Properties or Methods
+
+    The following QML types contain one or more properties or methods that are
+    now obsolete. Obsolete members are no longer maintained. They are
+    provided to keep old source code working, but they can be removed
+    in a future release. We strongly advise against using these obsolete
+    members in new code. Click on a type to see its deprecated members.
+
+    \generatelist obsoleteqmlmembers
+
+    \sa {All QML Types}, {Class and Function Documentation}
 */
 
 /*!
