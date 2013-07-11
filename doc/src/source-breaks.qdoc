@@ -229,8 +229,9 @@ The following sections lists the API changes in each module and provides recomme
      \li \l{QSound} is moved to Qt Multimedia from Qt GUI.
      \li \l{QImage::fill()} on an image with format \c{Format_RGB888} now expects image data in RGB layout as opposed to BGR layout.
          This is to ensure consistency with RGB32 and other 32-bit formats.
-    \li \c QDesktopServices::storageLocation() and \c QDesktopServices::displayName() are replaced by \l{QStandardPaths::storageLocation()}
+    \li \c QDesktopServices::storageLocation() and \c QDesktopServices::displayName() are replaced by \l{QStandardPaths::writableLocation()}
         and \l{QStandardPaths::displayName()} respectively. They are now in the \l{Qt Core} module.
+        Make sure to read the \l{QDesktopServices::storageLocation()} documentation when porting from \l{QDesktopServices::DataLocation}.
     \li \c QPixmap::grabWindow() and \c QPixmap::grabWidget() are removed. Use \l{QScreen::grabWindow()} instead.
     \li QMotifStyle, QPlastiqueStyle, QCleanlooksStyle, and QCDEStyle are
         replaced with a new style, QFusionStyle. If your application depends on
