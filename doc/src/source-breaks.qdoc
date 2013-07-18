@@ -184,6 +184,7 @@ The following sections lists the API changes in each module and provides recomme
         These have been moved to the new \l{QUrlQuery} class.
     \li \l{Qt::WFlags} is deprecated, use \l{Qt::WindowFlags} instead.
         This typedef dates from the Qt 1 days, and such abbreviations are not current Qt style.
+    \li \l{Qt::HANDLE} typedef is now defined as \c{void *} on all platforms.
     \endlist
 
 \section1 Changes to Qt GUI
