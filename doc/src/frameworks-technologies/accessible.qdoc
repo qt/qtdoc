@@ -33,27 +33,13 @@
 /*!
     \page accessible.html
     \title Accessibility
-    \warning Qt's accessibility APIs are not made public for Qt 5.0.
-
-    If you need to use Qt's \e internal accessibility APIs, there are no technical reasons
-    preventing you from using them. However, there is no generated accessibility documentation
-    available, and keep in mind that since the API is still internal it might change at some
-    point in the future which might cause your application to not compile, or even crash if
-    you decide to upgrade Qt.
-*/
-
-/*
-    \page accessible.html
-    \title Accessibility
     \brief How to make your applications accessible to those with disabilities.
-    \internal
+
     \nextpage Accessibility for QWidget Applications
 
     \ingroup best-practices
 
     \tableofcontents
-
-
 
 
     \section1 Introduction
@@ -69,9 +55,7 @@
     Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
     Qt supports Microsoft Active Accessibility (MSAA) and IAccessible2 on Windows, Mac
-    OS X Accessibility on Mac OS X, and AT-SPI via DBus on Unix/X11. On
-    Unix/X11, a plugin is currently required
-    (\l {http://gitorious.org/qt-at-spi} {Qt AT-SPI bridge on Gitorious}).
+    OS X Accessibility on Mac OS X, and AT-SPI via DBus on Unix/X11.
     The platform specific technologies are
     abstracted by Qt, so you will only have a generic interface to consider.
     Qt tries to make adding accessibility support to your application as easy
@@ -100,13 +84,6 @@
     compliant applications, the assistive technology, and the
     assistive tools.
 
-    \image accessibilityarchitecture.png
-
-    // FIXME: In the image several text snippets are wrong:
-    // QAccessibleInterface
-    // Unix: AT-SPI
-
-
     Accessibility compliant applications are called AT-Servers while
     assistive tools are called AT-Clients. A Qt application will
     typically be an AT-Server, but specialized programs might also
@@ -134,7 +111,6 @@
     \page accessible-qwidget.html
     \title Accessibility for QWidget Applications
     \brief How to make your applications accessible to those with disabilities.
-    \internal
     \previouspage Accessibility
     \nextpage Accessibility for Qt Quick Applications
 
@@ -640,7 +616,6 @@
     \page accessible-qtquick.html
     \title Accessibility for Qt Quick Applications
     \brief How to make your applications accessible to those with disabilities.
-    \internal
     \startpage Accessibility
     \previouspage Accessibility for QWidget Applications
 
