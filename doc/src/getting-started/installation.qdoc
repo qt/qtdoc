@@ -411,7 +411,7 @@ Qt for Windows CE has some requirements that are given in more detail
 in the \l{Qt for Windows CE Requirements} document.
 
 \section1 Step 1: Install the License File (commercial editions only)
-    Uncompress the files into the directory you want to install Qt into;
+    Uncompress the files to the directory where you want to build;
     e.g., \c{C:\Qt\%VERSION%}.
 
     \note The install path must not contain any spaces.
@@ -421,20 +421,12 @@ in the \l{Qt for Windows CE Requirements} document.
     In order to build and use Qt, the \c PATH environment variable needs
     to be extended:
 
-\snippet snippets/code/doc_src_installation.qdoc 18
-    This is done by adding \c{c:\Qt\%VERSION%\bin} to the \c PATH variable.
-
-    For newer versions of Windows, \c PATH can be extended through
-    "Control Panel->System->Advanced->Environment variables" and for
-    older versions by editing \c{c:\autoexec.bat}.
-
     Make sure the environment variables for your compiler are set.
-    Visual Studio includes \c{vcvars32.bat} for that purpose - or simply
-    use the "Visual Studio Command Prompt" from the Start menu.
+    Or simply use the "\gui{Visual Studio Command Prompt}" from the Start menu.
 
 \section1 Step 3: Configure Qt
 
-    To configure Qt for Windows Mobile 5.0 for Pocket PC, type the
+    To configure Qt, for a custom SDK, type the
     following:
 
 \snippet snippets/code/doc_src_installation.qdoc 19
@@ -446,25 +438,13 @@ in the \l{Qt for Windows CE Requirements} document.
 
 \section1 Step 4: Build Qt Library
 
-    Now, to build Qt you first have to update your \c PATH, \c INCLUDE
-    and \c LIB paths to point to the correct resources for your target
-    platforms. For a default installation of the Windows Mobile 5.0
-    Pocket PC SDK, this is done with the following commands:
-
-\snippet snippets/code/doc_src_installation.qdoc 20
-
-    We provide a convenience script for this purpose, called \c{setcepaths}.
-    Simply type:
-
-\snippet snippets/code/doc_src_installation.qdoc 21
-
-    Then to build Qt type:
+    To build Qt type:
 
     \snippet snippets/code/doc_src_installation.qdoc 22
 
 \b{That's all. Qt is now installed.}
 
-\section1 Qt Demos and Examples
+\section1 Qt Examples
 
     To get started with Qt, you can check out the examples found in the
     \c{examples} directory of your Qt installation. The documentation can
@@ -936,43 +916,8 @@ in the \l{Qt for Windows CE Requirements} document.
     \brief Setting up the Windows CE environment for Qt.
     \previouspage General Qt Requirements
 
-    Qt is known to work with Visual Studio 2005/2008/2010 and the following SDKs for
-    Windows CE development on Windows XP and Windows Vista:
-
-    \list
-        \li  Windows CE 5.0 Standard SDK for ARM, X86, and MIPS
-        \li  Windows CE 6.0 SDKs for ARM generated using the defaults found in
-            Platform Builder
-        \li  Windows Mobile 5.0 (\e{Pocket PC}, \e{Smartphone} and
-            \e{Pocket PC with Phone} editions)
-        \li  Windows Mobile 6.0 (\e{Standard}, \e{Classic} and
-            \e{Professional} editions)
-    \endlist
-
-    Below is a list of links to download the SDKs:
-
-    \list
-        \li \l{http://www.microsoft.com/downloads/details.aspx?familyid=fa1a3d66-3f61-4ddc-9510-ae450e2318c3&amp;displaylang=en}
-            {Windows CE 5 Standard SDK}
-        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=83A52AF2-F524-4EC5-9155-717CBE5D25ED&amp;displaylang=en}
-            {Windows Mobile 5 Pocket PC}
-        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=DC6C00CB-738A-4B97-8910-5CD29AB5F8D9&amp;displaylang=en}
-            {Windows Mobile 5 Smartphone}
-        \li  \l{http://www.microsoft.com/downloads/details.aspx?familyid=06111A3A-A651-4745-88EF-3D48091A390B&amp;displaylang=en}
-            {Windows Mobile 6 Professional/Standard}
-    \endlist
-
-    \b{Note:}
-    \table
-        \row
-            \li
-            \list 1
-                \li Currently, there is only compile support for Windows CE 5.0
-                   Standard SDK for SH-4.
-                \li There is currently no "out of the box" support for the
-                   Windows CE Automotive or Portable Media SDKs from Microsoft.
-            \endlist
-    \endtable
+    Qt is known to work with Visual Studio 2005/2008 and SDKs for
+    Windows CE 6/7 development on Windows XP and newer:
 
     Device manufacturers may prefer to make their own customized version of
     Windows CE using Platform Builder. In order for Qt for Windows CE to
@@ -987,15 +932,9 @@ in the \l{Qt for Windows CE Requirements} document.
             \li Microsoft Visual Studio 2005 (Standard Edition) or higher
             \li ActivePerl
         \endlist
-        \li Footprint
-        \list
-            \li Lean configuration - 4.8 MB
-            \li Full configuration - 8.4 MB
-        \endlist
         \li Operating Systems
         \list
-            \li Windows CE 5 or higher
-            \li Windows Mobile 5 or higher
+            \li Windows Embedded Compact  6 and 7
         \endlist
         \li Hardware Platform
         \list
