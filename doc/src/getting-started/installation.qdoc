@@ -511,12 +511,16 @@ in the \l{Qt for Windows CE Requirements} document.
     For information about the platforms that Qt supports, see the \l{Supported Platforms}
     page.
 
-    \section1 OpenSSL (version 0.9.7 or later)
+    \section1 OpenSSL (version 1.0.0 or later)
 
     Support for \l{SSL}{Secure Sockets Layer (SSL)} communication is provided by the
-    \l{OpenSSL Toolkit}, which must be obtained separately. More information about
-    enabling SSL support can be found in the \l{Secure Sockets Layer (SSL) Classes}
-    document.
+    \l{OpenSSL Toolkit}, which must be obtained separately.
+
+    From Qt version 5.2 onwards, the officially supported version for OpenSSL is 1.0.0
+    or later. Versions >= 0.9.7 and < 1.0.0 might work, but are not guaranteed to.
+
+    More information about enabling SSL support can be found in the
+    \l{Secure Sockets Layer (SSL) Classes} document.
 
     \section1 Platform-Specific Requirements
 
