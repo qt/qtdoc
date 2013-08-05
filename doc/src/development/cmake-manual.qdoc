@@ -203,6 +203,7 @@
              for more information.
 
              Note that this macro is only available if using \c{CMake} 2.8.9 or later.
+             This macro is obsolete. Use target_link_libraries with IMPORTED targets instead.
     \endtable
 
     \section2 Qt5Widgets macros
@@ -224,7 +225,7 @@
     \table
     \header \li Macro \li Description
     \row \li qt5_add_dbus_interface(outfiles interface basename)
-         \li Create a the interface header and implementation files with the
+         \li Create the interface header and implementation files with the
              given basename from the given interface xml file and add it to
              the list of sources
 
@@ -276,7 +277,7 @@
              In:  ts_files
              Generates commands to create .qm from .ts - files. The generated
              filenames can be found in qm_files. The ts_files
-             must exists and are not updated in any way.
+             must exist and are not updated in any way.
     \endtable
 
 

@@ -119,6 +119,8 @@ The following sections lists the API changes in each module and provides recomme
        \li \l{QAbstractItemModel::createIndex} method now only provides the void* and quintptr overloads, making calls with a literal \c 0
            (createIndex(row, col, 0)) ambiguous. Either cast (quintptr(0)) or omit the third argument(to get the void* overload).
       \endlist
+       \li \l{QAbstractItemModel::setRoleNames()} is deprecated. Use \l{QAbstractItemModel::roleNames()} instead.
+           \l{QAbstractItemModel::roleNames} is virtual now to allow a consistent API with the rest of QAbstractItemModel. Reimplementing the virtual methods to provide the elements is preferred to setting those directly.
      \li Default value of the \l{QSortFilterProxyModel::dynamicSortFilter} property is changed to \c{true}.
      \li \l{QString::mid}, \l{QString::midRef}, and \l{QByteArray::mid} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
          if the position passed is equal to the length (that is, right after the last character/byte).
@@ -184,6 +186,7 @@ The following sections lists the API changes in each module and provides recomme
         These have been moved to the new \l{QUrlQuery} class.
     \li \l{Qt::WFlags} is deprecated, use \l{Qt::WindowFlags} instead.
         This typedef dates from the Qt 1 days, and such abbreviations are not current Qt style.
+    \li \l{Qt::HANDLE} typedef is now defined as \c{void *} on all platforms.
     \endlist
 
 \section1 Changes to Qt GUI
