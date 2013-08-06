@@ -1,0 +1,862 @@
+/****************************************************************************
+**
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page windows-support.html
+    \title Qt for Windows
+    \brief Platform support for Windows.
+    \ingroup supportedplatform
+
+    Qt's support for different Windows platforms is extensive and mature.
+    Before you get started, ensure that your development environment fulfills
+    the \l{Qt for Windows Requirements}{requirements}.
+
+    The \e{Reference Configuration} section of the \l{Supported Platforms} page
+    contains the list of Windows version and the compiler tested to work with
+    Qt.
+
+    \section1 Downloading and Installing Qt
+
+    You can download Qt 5 installer from \l{http://qt-project.org/downloads}.
+    The download page contains the installer and the source packages for all
+    supported development platforms. Once downloaded, the installation program
+    runs like any executable on Windows. With the installer, you can select the
+    components you want to install and follow the instructions of the
+    installation program to complete the installation.
+
+    The \l{Qt Installation Program} page contains the full installation
+    procedure and the available installers for the different Windows versions.
+
+    \section2 Building Qt 5 from Source
+
+    You can also build Qt 5 from the source package and configure it according
+    to your target platform. The source packages are obtained from
+    \l{http://qt-project.org/downloads}.
+
+    Below, you will find more information about building Qt from source.
+    \list
+        \li \l{Qt for Windows - Requirements}
+        \li \l{Qt for Windows - Building from Source}
+    \endlist
+
+    \section1 Deployment and Other Issues
+
+    The pages below covers specific issues and recommendations for creating
+    Windows applications.
+
+    \list
+    \li \l{Qt for Windows - Deployment}
+    \li \l{Qt for Windows - Specific Issues}
+    \endlist
+
+    \section1 Where to Go from Here
+
+    We invite you to explore the rest of Qt. We prepared overviews which help
+    you decide which APIs to use and our examples demonstrate how to use our
+    API.
+
+    \list
+    \li \l{Qt Overviews} - list of topics about application development
+    \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
+    \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
+    \li \l{ActiveX in Qt}
+    \endlist
+
+    Qt's vibrant and active community site, \l{http://qt-project.org} houses
+    a wiki, a forum, and additional learning guides and presentations.
+
+    \section2 Visual Studio Add-in.
+
+    The Qt Visual Studio Add-in allows programmers to create, build, debug
+    and run Qt applications from within Microsoft Visual Studio 2005, 2008
+    and 2010. The add-in contains project wizards, Qt project import/export
+    support, integrated Qt resource manager and automated build setup for
+    the Qt Meta-Object Compiler, User Interface Compiler, and Resource
+    Compiler.
+
+*/
+
+/*!
+    \page windows-requirements.html
+    \title Qt for Windows - Requirements
+    \brief Requirements of the Windows environment.
+
+    This page describes the required libraries and environment for
+    \l{Qt for Windows}.
+
+    \section1 Graphics Drivers
+
+    For \l{Qt Quick} 2.0 to work, a graphics driver that provides OpenGL 2.1 or
+    higher is required. The default driver from Windows is OpenGL 1.1, which is
+    not sufficient. To work around this limitation, Qt now includes a version of
+    the \l{ANGLE} project which is included from the Windows \l{Qt Installation
+    Program}{installers}. ANGLE implements the OpenGL ES 2.0 API on top of
+    DirectX 9. ANGLE requires that the DirectX SDK is installed when building
+    Qt.
+
+    To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable
+    to point to the ANGLE source tree before building Qt.
+
+    If you installed additional OpenGL drivers from your hardware vendor, then
+    you may want to consider using this version of OpenGL instead of ANGLE. To
+    use OpenGL, pass the command line options \c{-opengl
+    desktop} to configure.
+
+    \code
+    configure -opengl
+    \endcode
+
+    To use an OpenGL ES 2.0 emulator instead of ANGLE, use the configure
+    options: \c{-opengl es2 -no-angle}.
+
+    \code
+    configure -opengl es2 -no-angle
+    \endcode
+
+    \section1 Libraries
+
+    These libraries are required when running Qt 5 applications in Windows:
+
+    \list
+        \li \l{ICU}: Qt 5 uses the ICU library for UNICODE and Globalization
+           support (required for QtWebKit). At compile time, the \e include and
+           \e lib folders of the ICU installation must be appended to the \c
+           INCLUDE and \c LIB environment variables. At run-time, the ICU DLLs
+           need to be found by copying the DLLs to the
+           application folder or by adding the \e bin folder of the ICU
+           installation to the \c PATH environment variable.
+
+        \li \l{ANGLE}: This library converts
+           OpenGL ES 2.0 API calls to DirectX 9, removing the need to install
+           graphics drivers on the target machines. Building
+           the library requires the installation of the \l{Direct X SDK}.
+           More information is available at \l{http://code.google.com/p/angleproject/wiki/DevSetup}
+
+           \note When building for 64bit environments, de-activate the
+           \c WarnAsError option in every project file, otherwise, integer
+           conversion warnings will break the build.
+    \endlist
+
+    \section1 Development tools
+
+    These tools are not needed to run Qt 5 applications, but they are required
+    for building Qt 5 from source.
+
+    \list
+        \li \l ActivePerl - Install a recent version of ActivePerl
+            (\l{http://www.activestate.com/activeperl}{download page}) and add
+           the installation location to your \c PATH.
+        \li Python - Install Python from the \l{http://www.python.org/download/}{here}
+           and add the installation location to your PATH in order to be able
+           to build QtJsBackend and QtWebKit.
+
+        \li Install \l{http://www.ruby-lang.org}{Ruby} from \l{http://rubyinstaller.org/}{here}
+           and add the installation location to your PATH in order to be able
+           to build QtWebKit.
+
+        \li \l{jom} is a replacement for \c nmake which makes use of all CPU cores
+           and thus speeds up building.
+    \endlist
+
+    \note Please make sure that the \c perl executable from ActivePerl is found
+           in the path before the perl executable provided by msysgit, since the
+           latter is outdated.
+
+
+    Qt WebKit and ANGLE depend on these extra tools from the \l{GnuWin32
+    Project} which are provided for your convenience in the \e gnuwin32/bin
+    folder:
+    \list
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
+        \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
+    \endlist
+
+    The \e gnuwin32/bin folder should be added to the PATH.
+
+    \section1 SDKs and Compilers
+
+    A Windows SDK is required to develop Qt applications on Windows.
+    Below, we have listed some potential options for SDKs and compilers.
+
+    \list
+        \li Windows SDK 8 (with Visual Studio 2012 Express).
+            As of Windows 8, the SDK no longer ships with a complete command-line build environment.
+            You must install a compiler and build environment separately. If you require a
+            complete development environment that includes compilers and a build environment,
+            you can download Visual Studio 2012 Express, which includes the appropriate
+            components of the Windows SDK.
+            (\l{http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx}{Download page})
+        \li Windows SDK 7.1.
+            Note that, as of 16.3.2012, if you use this SDK with Visual Studio 2010,
+            installing the SDK requires installing the following packages
+            in this order (see \e readme.html provided with the service pack):
+            \list 1
+                \li Install Visual Studio 2010
+                \li Install Windows SDK 7.1
+                \li Install Visual Studio 2010 SP1
+                \li Install Visual C++ 2010 SP1 Compiler Update for the Windows SDK 7.1
+            \endlist
+        \li Windows SDK 7.
+        \li A MinGW toolchain with g++ version 4.7 or higher. Qt 5 is tested regularly with a \
+            \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.8.0/32-bit/threads-posix/dwarf/x32-4.8.0-release-posix-dwarf-rev1.7z}
+            {32 bit gcc 4.8.0 toolchain} from the \l{http://mingwbuilds.sourceforge.net}{MinGW-builds}
+            project.
+
+    \endlist
+
+    For the most up to date information about the \l{Qt WebKit} dependencies,
+    please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{Qt WebKit Wiki for Windows}.
+
+*/
+
+/*!
+    \page windows-issues.html
+    \title Qt for Windows - Specific Issues
+    \brief A description of issues with Qt that are specific to Windows.
+
+    This page contains information about the \l{Qt for Windows}{Windows}
+    platforms Qt.
+
+    \section1 Windows XP
+
+    \section2 Installation location
+
+    Installing Qt into a directory with spaces, for example,
+    \e{C:\\Program Files}, may cause linker errors like the following:
+    \snippet snippets/code/doc_src_platform-notes.qdoc 2
+
+    Install Qt into a sub-directory without spaces to avoid this problem.
+
+    \section2 Possible GL conflict
+
+    There is a known issue when running Microsoft NetMeeting, Lotus SameTime,
+    and other applications that require screen grabbing while direct
+    rendering is enabled. Other GL-applications may not work as expected,
+    unless direct rendering is disabled.
+
+    \section2 GCC (MinGW-builds)
+
+    The minimum version of MinGW-builds supported is GCC 4.7.2.
+    \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
+    {MinGW-builds GCC 4.7.2 32 bit, rev 8} and later should be able
+    to build Qt including QtWebKit.
+
+    For more information about the MinGW builds, visit the
+    \e{Reference Configuration} section of the \l{Supported Platforms} page.
+
+    \section2 Intel C++ Compiler (Windows, Altix)
+
+    Qt has been tested successfully with:
+
+    \list
+    \li Windows - Intel(R) C++ Compiler for 32-bit applications,
+       Version 9.1.040.
+    \li Altix - Intel(R) C++ Itanium(R) Compiler for Itanium(R)-based
+       applications Version 8.1 Build 20050406 Package ID: l_cc_pc_8.1.030
+    \endlist
+
+    \section2 Visual Studio
+
+    The Visual C++ Linker doesn't understand filenames with spaces (as in
+    \e{C:\Program files\Qt\}) so you will have to move it to another place,
+    or explicitly set the path yourself; for example:
+
+    \snippet snippets/code/doc_src_compiler-notes.qdoc 0
+
+    If you are experiencing strange problems with using special flags that
+    modify the alignment of structure and union members (such as \c{/Zp2})
+    then you will need to recompile Qt with the flags set for the
+    application as well.
+
+    Visual Studio 2010 should be updated to Service Pack 1. Otherwise, a
+    problem when compiling Qt for 64-bit in release mode may occur (visit
+    \l{http://support.microsoft.com/kb/2280741}).
+
+    Consult the \l{Qt for Windows - Requirements} page for specific versions
+    of the Windows SDK.
+*/
+
+/*!
+    \page windows-deployment.html
+    \title Qt for Windows - Deployment
+
+    This documentation describes the deployment issues for \l{Qt for
+    Windows}{Windows}. We demonstrate the procedures in terms of
+    deploying the \l {tools/plugandpaint}{Plug & Paint} application that is
+    provided in Qt's examples directory.
+
+    \section1 Static Linking
+
+    To build static applications, build Qt statically by configuring Qt with
+    \c -static:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 11
+
+    If you later need to reconfigure and rebuild Qt from the
+    same location, ensure that all traces of the previous configuration are
+    removed by entering the build directory and running \c{nmake distclean} or
+    \c{mingw32-make distclean} before running \c configure again.
+
+    \section2 Linking the Application to the Static Version of Qt
+
+    As an example, this section will build the \l{tools/plugandpaint}{Plug & Paint}
+    example statically.
+
+    Once Qt finishes building, build the \l{tools/plugandpaint}{Plug & Paint}
+    application. First we must go into the directory that contains the
+    application:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 13
+
+    Run \c qmake to create a new makefile for the
+    application, and do a clean build to create the statically linked
+    executable:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 14
+
+    You probably want to link against the release libraries, and you
+    can specify this when invoking \c qmake. Now, provided that
+    everything compiled and linked without any errors, we should have
+    a \c plugandpaint.exe file that is ready for deployment. One easy
+    way to check that the application really can be run stand-alone is
+    to copy it to a machine that does not have Qt or any Qt
+    applications installed, and run it on that machine.
+
+    Remember that if your application depends on compiler specific
+    libraries, these must still be redistributed along with your
+    application. You can check which libraries your application is
+    linking against by using the \c depends tool. For more
+    information, read the \l {Application Dependencies} section.
+
+    The \l {tools/plugandpaint}{Plug & Paint} example consists of
+    several components: The application itself (\l
+    {tools/plugandpaint}{Plug & Paint}), and the \l
+    {tools/plugandpaintplugins/basictools}{Basic Tools} and \l
+    {tools/plugandpaintplugins/extrafilters}{Extra Filters}
+    plugins. Since we cannot deploy plugins using the static linking
+    approach, the application we have prepared is incomplete. It will
+    run, but the functionality will be disabled due to the missing
+    plugins. To deploy plugin-based applications we should use the
+    shared library approach.
+
+    \section1 Shared Libraries
+
+    We have two challenges when deploying the \l
+    {tools/plugandpaint}{Plug & Paint} application using the shared
+    libraries approach: The Qt runtime has to be correctly
+    redistributed along with the application executable, and the
+    plugins have to be installed in the correct location on the target
+    system so that the application can find them.
+
+    \section2 Building Qt as a Shared Library
+
+    We assume that you already have installed Qt as a shared library,
+    which is the default when installing Qt, in the \c C:\path\to\Qt
+    directory. For more information on how to build Qt, see the \l
+    {Installation} documentation.
+
+    \section2 Linking the Application to Qt as a Shared Library
+
+    After ensuring that Qt is built as a shared library, we can build
+    the \l {tools/plugandpaint}{Plug & Paint} application. First, we
+    must go into the directory that contains the application:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 15
+
+    Now run \c qmake to create a new makefile for the application, and
+    do a clean build to create the dynamically linked executable:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 16
+
+    This builds the core application, the following will build the
+    plugins:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 17
+
+    If everything compiled and linked without any errors, we will get
+    a \c plugandpaint.exe executable and the \c pnp_basictools.dll and
+    \c pnp_extrafilters.dll plugin files.
+
+    \section2 Creating the Application Package
+
+    To deploy the application, we must make sure that we copy the
+    relevant Qt DLL (corresponding to the Qt modules used in
+    the application) and the windows platform plugin as well as the executable
+    to the same directory in the \c release subdirectory.
+
+    In contrast to user plugins, Qt plugins have to be put into subdirectories
+    matching the plugin type. As we want to deploy the windows platform plugin
+    it has to be put into a "platforms" subdirectory. Additional information
+    about user and Qt plugins will be covered later.
+
+    Qt relies on the \l{ICU} library for unicode support. Therefore, you must
+    include the ICU DLLs that are located in the \c bin directory of your Qt
+    installation if Qt was configured to use ICU. The Qt version bundled in
+    the Qt5 package uses ICU, so deployment is needed there. The ICU DLLs are
+    version dependent and have to match the ones your Qt version was linked
+    against.
+
+    If you are using \l{ANGLE} (the default) then you additionally
+    need to include both libEGL.dll and libGLESv2.dll from Qt's 'lib'
+    directory as well as the HLSL compiler from DirectX. The HLSL
+    compiler library is called d3dcompiler_XX.dll where XX is the
+    version number that ANGLE (libGLESv2) was linked against.
+
+    Remember that if your application depends on compiler specific
+    libraries, these must be redistributed along with your
+    application. You can check which libraries your application is
+    linking against by using the \c depends tool. For more
+    information, see the \l {Application Dependencies} section.
+
+    We'll cover the plugins shortly, but first we'll check that the
+    application will work in a deployed environment: Either copy the
+    executable and the Qt DLLs to a machine that doesn't have Qt
+    or any Qt applications installed, or if you want to test on the
+    build machine, ensure that the machine doesn't have Qt in its
+    environment.
+
+    If the application starts without any problems, then we have
+    successfully made a dynamically linked version of the \l
+    {tools/plugandpaint}{Plug & Paint} application. But the
+    application's functionality will still be missing since we have
+    not yet deployed the associated plugins.
+
+    Plugins work differently to normal DLLs, so we can't just
+    copy them into the same directory as our application's executable
+    as we did with the Qt DLLs.  When looking for plugins, the
+    application searches in a \c plugins subdirectory inside the
+    directory of the application executable.
+
+    So to make the plugins available to our application, we have to
+    create the \c plugins subdirectory and copy over the relevant DLLs:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 18
+
+    An archive distributing all the Qt DLLs and application
+    specific plugins required to run the \l {tools/plugandpaint}{Plug
+    & Paint} application, would have to include the following files:
+
+    \table 100%
+    \header
+        \li Component \li {2, 1} File Name
+    \row
+        \li The executable
+        \li {2, 1} \c plugandpaint.exe
+    \row
+        \li The Basic Tools plugin
+        \li {2, 1} \c plugins\pnp_basictools.dll
+    \row
+        \li The ExtraFilters plugin
+        \li {2, 1} \c plugins\pnp_extrafilters.dll
+    \row
+        \li The Qt Windows platform plugin
+        \li {2, 1} \c platforms\qwindows.dll
+    \row
+        \li The Qt Core module
+        \li {2, 1} \c Qt5Core.dll
+    \row
+        \li The Qt GUI module
+        \li {2, 1} \c Qt5Gui.dll
+    \row
+        \li The Qt Widgets module
+        \li {2, 1} \c Qt5Widgets.dll
+    \endtable
+
+    In addition, the archive must contain the following compiler
+    specific libraries depending on your version of Visual Studio:
+
+    \table 100%
+    \header
+        \li \li VC++ 8.0 (2005) \li VC++ 9.0 (2008) \li VC++ 10.0 (2010)
+    \row
+        \li The C run-time
+        \li \c msvcr80.dll
+        \li \c msvcr90.dll
+        \li \c msvcr100.dll
+    \row
+        \li The C++ run-time
+        \li \c msvcp80.dll
+        \li \c msvcp90.dll
+        \li \c msvcp100.dll
+    \endtable
+
+    If ICU was used, the archive must contain:
+
+    \table 100%
+    \header
+        \li{3,1} File Name
+    \row
+        \li icudtXX.dll
+        \li icuinXX.dll
+        \li icuucXX.dll
+    \endtable
+
+    Finally, if ANGLE was used, then the archive must additionally
+    contain:
+
+    \table 100%
+    \header
+        \li{3,1} File Name
+    \row
+        \li libEGL.dll
+        \li libGLESv2.dll
+        \li d3dcompiler_XX.dll
+    \endtable
+
+    To verify that the application now can be successfully deployed,
+    you can extract this archive on a machine without Qt and without
+    any compiler installed, and try to run it.
+
+    An alternative to putting the plugins in the plugins subdirectory
+    is to add a custom search path when you start your application
+    using QApplication::addLibraryPath() or
+    QApplication::setLibraryPaths().
+
+    \snippet snippets/code/doc_src_deployment.cpp 19
+
+    One benefit of using plugins is that they can easily be made
+    available to a whole family of applications.
+
+    It's often most convenient to add the path in the application's \c
+    main() function, right after the QApplication object is
+    created. Once the path is added, the application will search it
+    for plugins, in addition to looking in the \c plugins subdirectory
+    in the application's own directory. Any number of additional paths
+    can be added.
+
+    \section2 Manifest files
+
+    When deploying an application compiled with Visual Studio 2005 onwards,
+    there are some additional steps to be taken.
+
+    First, we need to copy the manifest file created when linking the
+    application. This manifest file contains information about the
+    application's dependencies on side-by-side assemblies, such as the runtime
+    libraries.
+
+    The manifest file needs to be copied into the \b same folder as the
+    application executable. You do not need to copy the manifest files for
+    shared libraries (DLLs), since they are not used.
+
+    If the shared library has dependencies that are different from the
+    application using it, the manifest file needs to be embedded into the DLL
+    binary. Since Qt 4.1.3, the follwoing \c CONFIG options are available for
+    embedding manifests:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 20
+
+    To use the options, add
+
+    \snippet snippets/code/doc_src_deployment.pro 21
+
+    to your .pro file. The \c embed_manifest_dll option is enabled by default.
+    The \c embed_manifest_exe option is NOT enabled by default.
+
+    You can find more information about manifest files and side-by-side
+    assemblies at the
+    \l {http://msdn.microsoft.com/en-us/library/aa376307.aspx}{MSDN website}.
+
+    The correct way to include the runtime libraries with your application
+    is to ensure that they are installed on the end-user's system.
+
+    To install the runtime libraries on the end-user's system, you need to
+    include the appropriate Visual C++ Redistributable Package (VCRedist)
+    executable with your application and ensure that it is executed when the
+    user installs your application.
+
+    For example, on an 32-bit x86-based system, you would include the
+    \l{http://www.microsoft.com/downloads/details.aspx?FamilyId=32BC1BEE-A3F9-4C13-9C99-220B62A191EE}{vcredist_x86.exe}
+    executable. The \l{http://www.microsoft.com/downloads/details.aspx?familyid=526BF4A7-44E6-4A91-B328-A4594ADB70E5}{vcredist_IA64.exe}
+    and \l{http://www.microsoft.com/downloads/details.aspx?familyid=90548130-4468-4BBC-9673-D6ACABD5D13B}{vcredist_x64.exe}
+    executables provide the appropriate libraries for the IA64 and 64-bit x86
+    architectures, respectively.
+
+    \note The application you ship must be compiled with exactly the same
+    compiler version against the same C runtime version. This prevents
+    deploying errors caused by different versions of the C runtime libraries.
+
+    \section2 Manual installations with Visual Studio 2008 and 2010
+
+    As well as the above details for VS 2005 and onwards, Visual Studio 2008/2010
+    applications may have problems when deploying manually, say to a USB
+    stick.
+
+    The recommended procedure is to configure Qt with the \c -plugin-manifests
+    option using the 'configure' tool. Then follow the \l {http://msdn.microsoft.com/en-us/library/ms235291(VS.80).aspx}{guidelines}
+    for manually deploying private assemblies.
+
+    In brief the steps are
+
+    \list 1
+
+        \li create a folder structure on the development computer that will match the target USB stick directory structure, for example '\\app' and for your dlls, '\\app\\lib'.
+
+        \li on the development computer, from the appropriate 'redist' folder copy over Microsoft.VC80.CRT and Microsoft.VC80.MFC to the directories '\\app' and '\\app\\lib' on the development PC.
+
+        \li xcopy the \\app folder to the target USB stick.
+    \endlist
+
+    Your application should now run. Also be aware that even with a service
+    pack installed the Windows DLLs that are linked to will be the defaults. See
+    the information on \l {http://msdn.microsoft.com/en-us/library/cc664727.aspx}{how to select the appropriate target DLLs}.
+
+    \section1 Application Dependencies
+
+    \section2 Additional Libraries
+
+    Depending on configuration, compiler specific libraries must be
+    redistributed along with your application.
+
+    For example, if Qt is built using \l{ANGLE}, its shared libraries
+    and the required shared libraries of the \l{Direct X SDK} need to
+    be shipped as well.
+
+    You can check which
+    libraries your application is linking against by using the
+    \l{Dependency Walker} tool. All you need to do is to run it like
+    this:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 24
+
+    This will provide a list of the libraries that your application
+    depends on and other information.
+
+    \image deployment-windows-depends.png
+
+    When looking at the release build of the Plug & Paint executable
+    (\c plugandpaint.exe) with the \c depends tool, the tool lists the
+    following immediate dependencies to non-system libraries:
+
+    \table 100%
+        \header
+            \li Qt
+            \li VC++ 8.0 (2005)
+            \li VC++ 9.0 (2008)
+            \li VC++ 10.0 (2010)
+            \li MinGW
+        \row
+        \li \list
+               \li QT5CORE.DLL - The QtCore runtime
+               \li QT5GUI.DLL - The QtGui runtime
+               \li QT5WIDGETS.DLL - The QtWidgets runtime
+           \endlist
+        \li \list
+               \li MSVCR80.DLL - The C runtime
+               \li MSVCP80.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MSVCR90.DLL - The C runtime
+               \li MSVCP90.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MSVCR100.DLL - The C runtime
+               \li MSVCP100.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MINGWM10.DLL - The MinGW run-time
+               \li LIBGCC_S_DW2-1.DLL
+               \li LIBSTDC++-6.dll
+           \endlist
+    \endtable
+
+    When looking at the plugin DLLs the exact same dependencies
+    are listed.
+
+    \section2 Qt Plugins
+
+    Your application may also depend on one or more Qt plugins, such
+    as the print support plugin, the JPEG image format plugin or a SQL driver
+    plugin. Be sure to distribute any Qt plugins that you need with your
+    application, and note that each type of plugin should be located within a
+    specific subdirectory (such as \c printsupport, \c imageformats or
+    \c sqldrivers) within your distribution directory, as described below.
+
+    \note If you are deploying an application that uses QtWebKit to display
+    HTML pages from the World Wide Web, you should include all text codec
+    plugins to support as many HTML encodings possible.
+
+    The search path for Qt plugins is hard-coded into the QtCore library.
+    By default, the plugins subdirectory of the Qt installation is the first
+    plugin search path. However, pre-determined paths like the default one
+    have certain disadvantages. For example, they may not exist on the target
+    machine. For that reason, you need to examine various alternatives to make
+    sure that the Qt plugins are found:
+
+    \list
+
+    \li \l{qt-conf.html}{Using \c qt.conf}. This approach is the recommended
+    if you have executables in different places sharing the same plugins.
+
+    \li Using QApplication::addLibraryPath() or
+    QApplication::setLibraryPaths(). This approach is recommended if you only
+    have one executable that will use the plugin.
+
+    \li Using a third party installation utility to change the
+    hard-coded paths in the QtCore library.
+
+    \endlist
+
+    If you add a custom path using QApplication::addLibraryPath it could
+    look like this:
+
+    \snippet snippets/code/doc_src_deployment.qdoc 54
+
+    Then qApp->libraryPaths() would return something like this:
+
+    "C:/customPath/plugins"
+    "C:/Qt/%VERSION%/plugins"
+    "E:/myApplication/directory/"
+
+    The executable will look for the plugins in these directories and
+    the same order as the QStringList returned by qApp->libraryPaths().
+    The newly added path is prepended to the qApp->libraryPaths() which
+    means that it will be searched through first. However, if you use
+    qApp->setLibraryPaths(), you will be able to determine which paths
+    and in which order they will be searched.
+
+    The \l{How to Create Qt Plugins} document outlines the issues you
+    need to pay attention to when building and deploying plugins for
+    Qt applications.
+
+    \section1 Related Third Party Resources
+
+    \list
+    \li \l{http://silmor.de/29}{Cross compiling Qt/Win Apps on Linux} covers the
+    process of cross-compiling Windows applications on Linux.
+    \li \l{http://divided-mind.blogspot.com/2007/09/cross-compiling-qt4win-on-linux.html}
+    {Cross-compiling Qt4/Win on Linux} provides another Linux-to-Windows
+    cross-compilation guide.
+    \endlist
+*/
+
+/*!
+    \page windows-building.html
+    \title Qt for Windows - Building from Source
+    \ingroup installation
+    \brief Configuring and building Qt for Windows.
+
+    This page describes the process of configuring and building
+    \l{Qt for Windows}.Before building, there are some requirements that are
+    given in more detail in the \l{Qt for Windows - Requirements} document.
+    A binary package is available and the \l{Qt Installation Program} page
+    describes the installation in more detail.
+
+    \section1 Step 1: Install the License File (commercial editions only)
+
+        If you have the commercial edition of Qt, copy the license file
+        from your account on the distribution server into your home directory
+        (this may be known as the \c userprofile environment variable) and
+        rename it to \c{.qt-license}. This renaming process must be done
+        using a \e{command prompt} on Windows, \b{not} with Windows Explorer.
+        For example on Windows 2000, \c{%USERPROFILE%} should be something
+        like \c{C:\Documents and Settings\username}
+
+        For the open source version you do not need a license file.
+
+    \section1 Step 2: Unpack the Archive
+
+        Uncompress the files into the directory you want Qt installed;
+        e.g. \c{C:\Qt\%VERSION%}.
+
+        \note The install path must not contain any spaces or Windows specific
+        file system characters.
+
+    \section1 Step 3: Set the Environment variables
+
+        We recommend creating a desktop link that opens a command
+        prompt with the environment set up similar to the
+        \uicontrol{Command Prompt} menu entries provided by the Windows SDKs.
+        This is done by creating an application link passing a \c .cmd file setting
+        up the environment and the command line option \c /k (remain open)
+        to \c cmd.exe.
+
+        Assuming the file is called \c{qt5vars.cmd}
+        and the Qt folder is called \c qt-5 and located under \c C:\qt:
+
+        \code
+        REM Set up Windows SDK for 64bit
+        CALL "C:\Program Files (x86)\MSVC10\VC\vcvarsall.bat" amd64
+        set PATH=c:\qt\qt-5\qtbase\bin;c:\qt\qt-5\qtrepotools\bin;c:\qt\qt-5\gnuwin32\bin;%PATH%
+        set QMAKESPEC=win32-msvc2010
+        \endcode
+
+        A desktop link can then be created by specifying the command
+        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k c:\qt\qt5vars.cmd}
+        as application and \c{c:\qt\qt-5} as working directory.
+
+        \note Setups for MinGW are similar; they differ
+        only in that the \c bin folder of the installation should be added to the
+        path instead of calling the Windows SDK setup script. For MinGW, please make
+        sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
+
+        Settings required by the additional libraries (see \l{Qt for Windows Requirements})
+        should also go this file below the call to the Windows SDK setup script.
+
+    \section1 Step 4: Build the Qt Library
+
+        The default behavior of configure is to create an in-source build
+        of Qt 5. If you want to install Qt 5 to a separate location,
+        you need to specify the command line option \c{-prefix <location>}.
+        Alternatively, the command line option \c -developer-build creates
+        an in-source build for developer usage.
+
+        To configure the Qt library for a debug build for your machine, type
+        the following command in the command prompt:
+
+        \code
+        configure -debug -nomake examples -opensource
+        \endcode
+
+        Type \c{configure -help} to get a list of all available options.
+
+        To build Qt using \l{jom}, type:
+
+        \code
+        jom
+        \endcode
+
+        If you do not have \l{jom} installed, type:
+
+        \code
+        nmake
+        \endcode
+
+        For MinGW, type:
+
+        \code
+        mingw32-make
+        \endcode
+
+        If an installation prefix was given, type
+        \c{jom install}, \c{nmake install} or \c{mingw32-make install}.
+
+        \note If you later need to reconfigure and rebuild Qt from the
+        same location, ensure that all traces of the previous configuration are
+        removed by entering the build directory and typing \c{nmake distclean}
+        before running \c configure again.
+*/
