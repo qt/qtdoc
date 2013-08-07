@@ -693,6 +693,10 @@
         to be made available by the QML module
     \endlist
 
+    \note Since Qt 5.1, \l{Qt Quick Dialogs} module provides a file dialog component
+    that you can use for choosing files from the local file system. For illustrative
+    purposes, we write our own in this tutorial.
+
     \section3 Building a Qt Plugin
 
     To build a plugin, we need to set the following in a Qt project file. First,
@@ -727,7 +731,6 @@
     In particular, we link the project with the \c qml module and configure it as a
     \c plugin, using a \c lib template. We shall put the compiled plugin into the
     parent's \c {imports/FileDialog} directory.
-
 
     \section3 Registering a Class into QML
 
