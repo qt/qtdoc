@@ -71,21 +71,26 @@
 
     \section1 Day-to-Day Application Development on OS X
 
-    On the command-line, applications can be built using \c qmake and \c make.
-    Optionally, \c qmake can generate project files for Xcode with
-    \c{-spec macx-xcode}. If you are using the binary package, \c qmake
-    generates Xcode projects by default; use \c{-spec macx-gcc} to generate
-    makefiles.
+    You can develop Qt applications on Mac OS X using your favorite editor, but
+    we recommend using Qt Creator or
+    \l{https://developer.apple.com/xcode/}{Xcode} as they reduce your
+    development effort to some extent.
 
-    The result of the build process is an application bundle, which is a
-    directory structure that contains the actual application executable. The
+    You can build and run your Qt application from the IDE you are using, or
+    build it from the command line using \c qmake and \c make.
+
+    \note You can also use the \c{qmake -spec macx-xcode} command to generate
+    the .xcodeproj file, which is required to open your Qt project in XCode.
+
+    The output of the build process is an application bundle, which is a
+    directory structure containing the application executable. The
     application can be launched by double-clicking it in Finder, or by
-    referring directly to its executable from the command line, i. e.
+    referring directly to its executable from the command line, for example,
     \c{myApp.app/Contents/MacOS/myApp}.
 
-    If you wish to have a command-line tool that does not use the GUI (e.g.,
-    \c moc, \c uic or \c ls), you can tell \c qmake not to execute the bundle
-    creating steps by removing it from the \c{CONFIG} in your \c{.pro} file:
+    If your application is a console application that you want to run from the
+    command line only, you can disable the application bundle creation step by
+    adding the following \c{CONFIG} statement in your \c{.pro} file:
 
     \code
     CONFIG -= app_bundle
