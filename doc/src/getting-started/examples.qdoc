@@ -173,44 +173,6 @@
 */
 
 /*!
-    \page examples-itemviews.html
-    \ingroup all-examples
-    \title Item Views Examples
-    \brief Using the model/view design pattern to separate presentation from data.
-
-    \image itemview-examples.png
-
-    Item views are widgets that typically display data sets. Qt 4's model/view
-    framework lets you handle large data sets by separating the underlying data
-    from the way it is represented to the user, and provides support for
-    customized rendering through the use of delegates.
-
-    \list
-    \li \l{itemviews/addressbook}{Address Book}\raisedaster
-    \li \l{itemviews/basicsortfiltermodel}{Basic Sort/Filter Model}
-    \li \l{itemviews/chart}{Chart}
-    \li \l{itemviews/coloreditorfactory}{Color Editor Factory}\raisedaster
-    \li \l{itemviews/combowidgetmapper}{Combo Widget Mapper}\raisedaster
-    \li \l{itemviews/customsortfiltermodel}{Custom Sort/Filter Model}\raisedaster
-    \li \l{itemviews/dirview}{Dir View}
-    \li \l{itemviews/editabletreemodel}{Editable Tree Model}\raisedaster
-    \li \l{itemviews/fetchmore}{Fetch More}\raisedaster
-    \li \l{itemviews/frozencolumn}{Frozen Column}\raisedaster
-    \li \l{itemviews/interview}{Interview}
-    \li \l{itemviews/pixelator}{Pixelator}\raisedaster
-    \li \l{itemviews/puzzle}{Puzzle}
-    \li \l{itemviews/simpledommodel}{Simple DOM Model}\raisedaster
-    \li \l{itemviews/simpletreemodel}{Simple Tree Model}\raisedaster
-    \li \l{itemviews/simplewidgetmapper}{Simple Widget Mapper}\raisedaster
-    \li \l{itemviews/spinboxdelegate}{Spin Box Delegate}\raisedaster
-    \li \l{itemviews/spreadsheet}{Spreadsheet}
-    \li \l{itemviews/stardelegate}{Star Delegate}\raisedaster
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-
-/*!
     \page examples-draganddrop.html
     \ingroup all-examples
     \title Drag and Drop Examples
