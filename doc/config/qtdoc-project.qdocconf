@@ -1,0 +1,70 @@
+project                 = QtDoc
+description             = Qt Reference Documentation
+url                     = http://qt-project.org/doc/qt-$QT_VER/qtdoc
+version                 = $QT_VERSION
+
+depends += \
+    activeqt \
+    qtassistant \
+    qt3d \
+    qtbluetooth \
+    qtconcurrent \
+    qtcontacts \
+    qtcore \
+    qtdbus \
+    qtdesigner \
+    qtfeedback \
+    qtgraphicaleffects \
+    qthelp \
+    qtimageformats \
+    qtgui \
+    qtlocation \
+    qtlinguist \
+    qtmultimedia \
+    qtmultimediawidgets \
+    qtnetwork \
+    qtnfc \
+    qtopengl \
+    qtorganizer \
+    qtprintsupport \
+    qtpublishsubscribe \
+    qtqml \
+    qtquick \
+    qtquickcontrols \
+    qtquickcontrolsstyles \
+    qtquickdialogs \
+    qtquicklayouts \
+    qtscript \
+    qtscripttools \
+    qtsensors \
+    qtserialport \
+    qtserviceframework \
+    qtsql \
+    qtsvg \
+    qtsysteminfo \
+    qttestlib \
+    qttools \
+    qtuitools \
+    qtversit \
+    qtwidgets \
+    qtwebkit \
+    qtwebkitexamples \
+    qtwinextras \
+    qtx11extras \
+    qtxml \
+    qtxmlpatterns
+
+headerdirs  += ../src
+imagedirs   += ../src/images \
+               ../images
+
+sourcedirs  += \
+    ../src
+
+exampledirs += \
+    ../src \
+    ../snippets
+
+# Don't parse files in snippets directory
+excludedirs += \
+    ../src/snippets
