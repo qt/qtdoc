@@ -12,5 +12,4 @@
     "qtxmlpatterns" => "",
     "qttools" => "",
     "qtdeclarative" => "",
-    "qtjsbackend" => "",
 );
