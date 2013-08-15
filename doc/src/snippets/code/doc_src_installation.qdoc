@@ -146,7 +146,7 @@ PATH               - to locate qmake, moc and other Qt tools
 //! [19]
 C:
 cd \Qt\%VERSION%
-configure -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005
+configure -platform -xplatform wincewm70customsdk-msvc2008
 //! [19]
 
 
@@ -164,6 +164,7 @@ setcepaths wincewm50pocket-msvc2005
 
 //! [22]
 nmake
+nmake install
 //! [22]
 
 
