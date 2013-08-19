@@ -50,7 +50,7 @@ CE_ARCH       = ARMV4I
 
 
 //! [2]
-DEFINES	     += UNDER_CE WINCE _WINDOWS _UNICODE UNICODE _WIN32_WCE=0x501 $$CE_ARCH _ARMV4I_ armv4i _ARM_ ARM _M_ARM ARM _WIN32 __arm__ Q_OS_WINCE_WM QT_NO_PRINTER QT_NO_PRINTDIALOG
+DEFINES += QT_NO_CLIPBOARD QT_NO_ACCESSIBILITY QT_NO_NATIVE_GESTURES QT_NOSTANDARDSHELL_UI_MODEL _CRT_SECURE_NO_DEPRECATE _WIN32_WCE=0x700 $$CE_ARCH _AMRV7_ armv7 _ARM_
 //! [2]
 
 
@@ -61,7 +61,7 @@ set PATH=C:\Qt\mobile5-shadow\bin;%PATH%
 
 //! [4]
 cd c:\Qt\mobile5-shadow
-C:\Qt\%VERSION%\configure.exe -platform win32-msvc2005 -xplatform wincewm50pocket-msvc2005 -release
+C:\Qt\%VERSION%\configure.exe -xplatform wincewm50pocket-msvc2005 -prefix %INSTALLDIR%
 //! [4]
 
 

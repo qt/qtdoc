@@ -47,22 +47,20 @@
 
     \image qml-texteditor5_editmenu.png
 
-    The final source code is in the \c{examples/tutorials/gettingStartedQml}
-    directory. You may need to compile the C++ plugin in the
-    \c{examples/tutorials/gettingStartedQml/filedialog} first. This will put the
-    C++ plugin in a directory where the QML files may find it.
+    The complete source code is in the \c{examples/quick/tutorials/gettingStartedQml}
+    directory. If you wish to see how the finalized application looks like, you
+    can skip to chapter \l {Running the Text Editor}.
 
-    To launch the text editor, merely provide the included \l{Prototyping with qmlscene}{qmlscene}
-    tool with the QML file as the argument. The C++ portion of this tutorial assumes
-    that the reader possesses basic knowledge of Qt's compilation procedures.
+    The C++ portion of this tutorial assumes that the reader possesses basic knowledge of
+    Qt's compilation procedures.
 
     Tutorial chapters:
     \list 1
-        \li \l {Defining a Button and a Menu}{Defining a Button and a Menu}
-        \li \l {Implementing a Menu Bar}{Implementing a Menu Bar}
-        \li \l {Building a Text Editor}{Building a Text Editor}
-        \li \l {Decorating the Text Editor}{Decorating the Text Editor}
-        \li \l {Extending QML using Qt C++}{Extending QML using Qt C++}
+        \li \l {Defining a Button and a Menu}
+        \li \l {Implementing a Menu Bar}
+        \li \l {Building a Text Editor}
+        \li \l {Decorating the Text Editor}
+        \li \l {Extending QML using Qt C++}
     \endlist
 
     Information about QML, such as syntax and features, is included in the
@@ -75,7 +73,7 @@
     We start our text editor by building a button. Functionally, a button has a mouse
     sensitive area and a label. Buttons perform actions when a user presses the button.
 
-    In QML, the basic visual item is the \l {Rectangle}{Rectangle} type. The
+    In QML, the basic visual item is the \l Rectangle type. The
     \c Rectangle \l{QML Object Types}{QML object type} has
     \l{Property Binding}{QML properties} to control its appearance and location.
 
@@ -83,11 +81,11 @@
         import QtQuick 2.0
 
         Rectangle {
-            id: simplebutton
+            id: simpleButton
             color: "grey"
             width: 150; height: 75
 
-            Text{
+            Text {
                 id: buttonLabel
                 anchors.centerIn: parent
                 text: "button label"
@@ -95,22 +93,22 @@
         }
     \endcode
 
-    First, the \c { import QtQuick 2.0 } allows the \c qmlscene tool to import the QML types
-    we will later use. This line must exist for every QML file. Notice that the version
-    of Qt modules is included in the import statement.
+    First, the \c {import QtQuick 2.0} statement allows the
+    \l{Prototyping with qmlscene}{qmlscene} tool to import the QML types we will later use.
+    This line must exist for every QML file. Notice that the version of Qt modules is
+    included in the import statement.
 
-    This simple rectangle has a unique identifier, \c simplebutton, which is bound to the
-    id property. The \c Rectangle object's properties are bound to values by listing the
+    This simple rectangle has a unique identifier, \c simpleButton, which is bound to the
+    \c id property. The \c Rectangle object's properties are bound to values by listing the
     property, followed by a colon, then the value. In the code sample, the color \c grey
     is bound to the Rectangle's \c color property. Similarly, we bind the \c width
     and \c height of the Rectangle.
 
-    The \l {Text}{Text} type is a non-editable text field. We name this text object
-    \c buttonLabel. To set the string content of the Text field, we bind a value to the
-    \c text property. The label is contained within the Rectangle and in order to center
-    it in the middle, we assign the \c anchors of the Text object to its parent, which
-    is called \c simplebutton. Anchors may bind to other items' anchors, allowing layout
-    assignments simpler.
+    The \l Text type is a non-editable text field. We name this object \c buttonLabel. To set
+    the string content of the Text field, we bind a value to the \c text property. The label
+    is contained within the Rectangle and in order to center it in the middle, we assign the
+    \c anchors of the Text object to its parent, which is called \c simpleButton. Anchors may
+    bind to other items' anchors, allowing layout assignments simpler.
 
     We shall save this code as \c SimpleButton.qml. Running \c qmlscene with the file as the
     argument will display the grey rectangle with a text label.
@@ -122,23 +120,24 @@
     are emitted and the connected slot is called.
 
     \code
-        Rectangle{
-            id:simplebutton
+        Rectangle {
+            id: simpleButton
             ...
 
-            MouseArea{
+            MouseArea {
                 id: buttonMouseArea
 
-                anchors.fill: parent //anchor all sides of the mouse area to the rectangle's anchors
-                        //onClicked handles valid mouse button clicks
-                onClicked: console.log(buttonLabel.text + " clicked" )
+                // Anchor all sides of the mouse area to the rectangle's anchors
+                anchors.fill: parent
+                // onClicked handles valid mouse button clicks
+                onClicked: console.log(buttonLabel.text + " clicked")
             }
         }
     \endcode
 
-    We include a \l{MouseArea} object in our simplebutton. \c MouseArea objects describe
+    We include a \l MouseArea object in our simpleButton. \c MouseArea objects describe
     the interactive area where mouse movements are detected. For our button, we anchor the
-    whole MouseArea to its parent, which is \c simplebutton. The \c anchors.fill syntax is
+    whole \c MouseArea to its parent, which is \c simpleButton. The \c anchors.fill syntax is
     one way of accessing a specific property called \c fill inside a group of properties
     called \c anchors. QML uses \l {Anchor-Based Layout in QML}{anchor-based layouts} where
     items can anchor to another item, creating robust layouts.
@@ -163,8 +162,9 @@
             property color borderColor: "white"
 
             signal buttonClick()
+
             onButtonClick: {
-                console.log(buttonLabel.text + " clicked" )
+                console.log(buttonLabel.text + " clicked")
             }
 
             MouseArea{
@@ -174,7 +174,7 @@
                 onExited:  parent.border.color = borderColor
             }
 
-            //determines the color of the button by using the conditional operator
+            // Determines the color of the button by using the conditional operator
             color: buttonMouseArea.pressed ? Qt.darker(buttonColor, 1.5) : buttonColor
         }
     \endcode
@@ -186,7 +186,7 @@
     Custom properties are declared using the \c {property type name} syntax. In the
     code, the property \c buttonColor, of type \c color, is declared and bound to
     the value \c{"lightblue"}. The \c buttonColor is later used in a conditional
-    operation to determine the buttons's fill color. Note that property value
+    operation to determine the button's fill color. Note that property value
     assignment is possible using the \c= equals sign, in addition to value binding
     using the \c : colon character. Custom properties allow internal items to be
     accessible outside of the Rectangle's scope. There are basic
@@ -231,9 +231,9 @@
     \c FileMenu.qml.
 
     \code
-        import QtQuick 2.0                \\import the main Qt QML module
-        import "folderName"            \\import the contents of the folder
-        import "script.js" as Script        \\import a Javascript file and name it as Script
+        import QtQuick 2.0             \\ Import the main Qt QML module
+        import "folderName"            \\ import the contents of a folder
+        import "script.js" as Script   \\ Import a Javascript file and name it as Script
     \endcode
 
     The syntax shown above shows how to use the \c import keyword. This is required to
@@ -245,21 +245,21 @@
     \code
     In FileMenu.qml:
 
-        Row{
+        Row {
             anchors.centerIn: parent
-            spacing: parent.width/6
+            spacing: parent.width / 6
 
-            Button{
+            Button {
                 id: loadButton
                 buttonColor: "lightgrey"
                 label: "Load"
             }
-            Button{
+            Button {
                 buttonColor: "grey"
                 id: saveButton
                 label: "Save"
             }
-            Button{
+            Button {
                 id: exitButton
                 label: "Exit"
                 buttonColor: "darkgrey"
@@ -270,9 +270,9 @@
     \endcode
 
     In \c FileMenu.qml, we declare three \c Button objects. They are declared
-    inside a \l {Row}{Row} type, a positioner that will position its children
+    inside a \l Row type, a positioner that will position its children
     along a vertical row. The \c Button declaration resides in Button.qml,
-    which is the same as the \c Button.qml we used in the previous section.
+    which is the same as the one we used in the previous section.
     New property bindings can be declared within the newly created buttons,
     effectively overwriting the properties set in \c Button.qml. The button
     called \c exitButton will quit and close the window when it is clicked.
@@ -308,67 +308,67 @@
     QML has different \l{QML Data Models}{data views} that display
     \l{QML Data Models}{data models}. Our menu bar will display the menus in a list,
     with a header that displays a row of menu names. The list of menus are declared
-    inside a \c VisualItemModel. The \l{VisualItemModel}{\c VisualItemModel}
-    type contains items that already have views such as  the \c Rectangle objects.
-    Other model types such as the \l{ListModel}{\c ListModel}
-    type need a delegate to display their data.
+    inside a \l ObjectModel. The \c ObjectModel type contains items that already are
+    displayable, such as \c Rectangle objects. Other model types, like the
+    \l ListModel type, need a delegate to display their data.
 
     We declare two visual items in the \c menuListModel, the \c FileMenu and the
-    \c EditMenu. We customize the two menus and display them using a
-    \l {ListView}{ListView}. The \c MenuBar.qml file contains the QML declarations
-    and a simple edit menu is defined in \c EditMenu.qml.
+    \c EditMenu. We customize the two menus and display them in a \l ListView.
+    The \c MenuBar.qml file contains the QML declarations and a simple edit menu is
+    defined in \c EditMenu.qml.
 
     \code
-        VisualItemModel{
+        ObjectModel {
             id: menuListModel
-            FileMenu{
+
+            FileMenu {
                 width: menuListView.width
                 height: menuBar.height
                 color: fileColor
             }
-            EditMenu{
+
+            EditMenu {
                 color: editColor
-                width:  menuListView.width
+                width: menuListView.width
                 height: menuBar.height
             }
         }
     \endcode
 
-    The \l {ListView}{ListView} type will display a model according to a
-    delegate. The delegate can display the model items in a \c Row object or in
-    a grid. Our \c menuListModel already has visible items, therefore, we do not
-    need to declare a delegate.
+    The \l ListView type will display a model according to a delegate. The delegate
+    can display the model items in a \c Row object or in a grid. Our \c menuListModel
+    already has visible items, therefore, we do not need to declare a delegate.
 
     \code
-        ListView{
+        ListView {
             id: menuListView
 
-            //Anchors are set to react to window anchors
-            anchors.fill:parent
+            // Anchors are set to react to window anchors
+            anchors.fill: parent
             anchors.bottom: parent.bottom
-            width:parent.width
+            width: parent.width
             height: parent.height
 
-            //the model contains the data
+            // The model contains the data
             model: menuListModel
 
-            //control the movement of the menu switching
+            // Control the movement of the menu switching
             snapMode: ListView.SnapOneItem
             orientation: ListView.Horizontal
             boundsBehavior: Flickable.StopAtBounds
             flickDeceleration: 5000
             highlightFollowsCurrentItem: true
-            highlightMoveDuration:240
+            highlightMoveDuration: 240
             highlightRangeMode: ListView.StrictlyEnforceRange
         }
     \endcode
 
-    Additionally, \c ListView inherits from \l{Flickable}{\c Flickable}, making
-    the list respond to mouse drags and other gestures. The last portion of the
-    code above sets \c Flickable properties to create the desired flicking movement
-    to our view. In particular,the property \c highlightMoveDuration changes the
-    duration of the flick transition. A higher \c highlightMoveDuration value
-    results in slower menu switching.
+    Additionally, \c ListView inherits from \l Flickable, making the list respond
+    to mouse drags and other gestures. The last portion of the code above sets
+    \c Flickable properties to create the desired flicking movement to our view.
+    In particular,the property \c highlightMoveDuration changes the duration of
+    the flick transition. A higher \c highlightMoveDuration value results in
+    slower menu switching.
 
     The \c ListView maintains the model items through an \c index and each visual
     item in the model is accessible through the \c index, in the order of the
@@ -385,24 +385,27 @@
     of items with lower \c z values. The default \c z value is \c 0.
 
     \code
-        Rectangle{
+        Rectangle {
             id: labelList
             ...
             z: 1
-            Row{
+
+            Row {
                 anchors.centerIn: parent
-                spacing:40
-                Button{
+                spacing: 40
+
+                Button {
                     label: "File"
                     id: fileButton
                     ...
                     onButtonClick: menuListView.currentIndex = 0
                 }
-                Button{
+
+                Button {
                     id: editButton
                     label: "Edit"
                     ...
-                    onButtonClick:    menuListView.currentIndex = 1
+                    onButtonClick: menuListView.currentIndex = 1
                 }
             }
         }
@@ -418,16 +421,17 @@
     \section2 Declaring a TextArea
 
     Our text editor is not a text editor if it didn't contain an editable text area.
-    QML's \l {TextEdit}{TextEdit} type allows the declaration of a multi-line
-    editable text area. \l {TextEdit}{TextEdit} is different from the \l {Text}{Text}
-    type, which doesn't allow the user to directly edit the text.
+    QML's \l TextEdit type allows the declaration of a multi-line editable text area.
+    \c TextEdit is different from the \l Text type, which doesn't allow the user to
+    directly edit the text.
 
     \code
-        TextEdit{
+        TextEdit {
             id: textEditor
-            anchors.fill:parent
-            width:parent.width; height:parent.height
-            color:"midnightblue"
+            anchors.fill: parent
+            width: parent.width
+            height: parent.height
+            color: "midnightblue"
             focus: true
 
             wrapMode: TextEdit.Wrap
@@ -436,23 +440,23 @@
         }
     \endcode
 
-    The editor has its font color property set and set to wrap the text. The
-    \c TextEdit area is inside a flickable area that will scroll the text if the
+    The editor has its font \c color property set and \c wrapMode set to wrap the text.
+    The \c TextEdit area is inside a flickable item that will scroll the text if the
     text cursor is outside the visible area. The function \c ensureVisible() will
     check if the cursor rectangle is outside the visible boundaries and move the
     text area accordingly. QML uses Javascript syntax for its scripts, and as previously
     mentioned, Javascript files can be imported and used within a QML file.
 
     \code
-        function ensureVisible(r){
+        function ensureVisible(r) {
             if (contentX >= r.x)
                 contentX = r.x;
-            else if (contentX+width <= r.x+r.width)
-                contentX = r.x+r.width-width;
+            else if (contentX + width <= r.x + r.width)
+                contentX = r.x + r.width - width;
             if (contentY >= r.y)
                 contentY = r.y;
-            else if (contentY+height <= r.y+r.height)
-                contentY = r.y+r.height-height;
+            else if (contentY + height <= r.y + r.height)
+                contentY = r.y + r.height - height;
         }
     \endcode
 
@@ -466,28 +470,29 @@
     displays the text area. The menu bar is displayed in front of any other objects.
 
     \code
-        Rectangle{
-
+        Rectangle {
             id: screen
-            width: 1000; height: 1000
+            width: 1000
+            height: 1000
 
-            //the screen is partitioned into the MenuBar and TextArea. 1/3 of the screen is assigned to the MenuBar
-            property int partition: height/3
+            // The screen is partitioned into the MenuBar and TextArea.
+            // One-third of the screen is assigned to the MenuBar
+            property int partition: height / 3
 
-            MenuBar{
-                id:menuBar
+            MenuBar {
+                id: menuBar
                 height: partition
-                width:parent.width
+                width: parent.width
                 z: 1
             }
 
-            TextArea{
-                id:textArea
-                anchors.bottom:parent.bottom
+            TextArea {
+                id: textArea
+                anchors.bottom: parent.bottom
                 y: partition
                 color: "white"
-                height: partition*2
-                width:parent.width
+                width: parent.width
+                height: partition * 2
             }
         }
     \endcode
@@ -510,31 +515,30 @@
     In our implementation, we have a thin rectangle that responds to mouse clicks. The
     \c drawer, as well as the application, has two sates: the "drawer is open" state and
     the "drawer is closed" state. The \c drawer item is a strip of rectangle with a small
-    height. There is a nested \l {Image}{Image} object declaring that an arrow icon will
+    height. There is a nested \l Image object declaring that an arrow icon will
     be centered inside the drawer. The drawer assigns a state to the whole application,
     with the identifier \c screen, whenever a user clicks the mouse area.
 
     \code
-        Rectangle{
-            id:drawer
-            height:15
+        Rectangle {
+            id: drawer
+            height: 15
 
-            Image{
+            Image {
                 id: arrowIcon
                 source: "images/arrow.png"
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-            MouseArea{
+            MouseArea {
                 id: drawerMouseArea
-                anchors.fill:parent
-                onClicked:{
-                    if (screen.state == "DRAWER_CLOSED"){
+                anchors.fill: parent
+
+                onClicked: {
+                    if (screen.state == "DRAWER_CLOSED")
                         screen.state = "DRAWER_OPEN"
-                    }
-                    else if (screen.state == "DRAWER_OPEN"){
+                    else if (screen.state == "DRAWER_OPEN")
                         screen.state = "DRAWER_CLOSED"
-                    }
                 }
                 ...
             }
@@ -542,28 +546,27 @@
     \endcode
 
     A state is simply a collection of configurations and it is declared with the
-    \l{State}{State} type. A list of states can be listed and bound to the
-    \c states property. In our application, the two states are called
-    \c DRAWER_CLOSED and \c DRAWER_OPEN. Item configurations are declared in
-    \l {PropertyChanges}{PropertyChanges} objects. In the \c DRAWER_OPEN state,
-    there are four items that will receive property changes. The first target,
-    \c menuBar, will change its \c y property to \c 0. Similarly, the \c textArea
-    will lower to a new position when the state is \c DRAWER_OPEN. The \c textArea,
-    the \c drawer, and the drawer's icon will undergo property changes to meet the
-    current state.
+    \l State type. A list of states can be listed and bound to the \c states property.
+    In our application, the two states are called \c DRAWER_CLOSED and \c DRAWER_OPEN.
+    Item configurations are declared in \l PropertyChanges objects. In the
+    \c DRAWER_OPEN state, there are four items that will receive property changes.
+    The first target, \c menuBar, will change its \c y property to \c 0. Similarly,
+    the \c textArea will lower to a new position when the state is \c DRAWER_OPEN.
+    The \c textArea, the \c drawer, and the drawer's icon will undergo property
+    changes to meet the current state.
 
     \code
         states:[
             State {
                 name: "DRAWER_OPEN"
-                PropertyChanges { target: menuBar; y: 0}
-                PropertyChanges { target: textArea; y: partition + drawer.height}
-                PropertyChanges { target: drawer; y: partition}
-                PropertyChanges { target: arrowIcon; rotation: 180}
+                PropertyChanges { target: menuBar; y: 0 }
+                PropertyChanges { target: textArea; y: partition + drawer.height }
+                PropertyChanges { target: drawer; y: partition }
+                PropertyChanges { target: arrowIcon; rotation: 180 }
             },
             State {
                 name: "DRAWER_CLOSED"
-                PropertyChanges { target: menuBar; y:-height; }
+                PropertyChanges { target: menuBar; y: -height; }
                 PropertyChanges { target: textArea; y: drawer.height; height: screen.height - drawer.height }
                 PropertyChanges { target: drawer; y: 0 }
                 PropertyChanges { target: arrowIcon; rotation: 0 }
@@ -572,21 +575,21 @@
     \endcode
 
     State changes are abrupt and needs smoother transitions. Transitions between states
-    are defined using the \l {Transition}{Transition} type, which can then bind to
-    the item's \c transitions property. Our text editor has a state transition whenever
-    the state changes to either \c DRAWER_OPEN or \c DRAWER_CLOSED. Importantly, the
-    transition needs a \c from and a \c to state but for our transitions, we can use
-    the wild card \c * symbol to denote that the transition applies to all state changes.
+    are defined using the \l Transition type, which can then bind to the item's
+    \c transitions property. Our text editor has a state transition whenever the state
+    changes to either \c DRAWER_OPEN or \c DRAWER_CLOSED. Importantly, the transition
+    needs a \c from and a \c to state but for our transitions, we can use the wild card
+    \c * symbol to denote that the transition applies to all state changes.
 
-    During transitions, we can assign animations to the property changes. Our
-    \c menuBar switches position from \c {y:0} to \c {y:-partition} and we can animate
-    this transition using the \l {NumberAnimation}{NumberAnimation} type. We declare
-    that the targets' properties will animate for a certain duration of time and using
-    a certain easing curve. An easing curve controls the animation rates and
-    interpolation behavior during state transitions. The easing curve we chose is
-    \l{PropertyAnimation::easing.type}{Easing.OutQuint}, which slows the movement near
-    the end of the animation. Please read \l {qdeclarativeanimation.html}{QML's Animation}
-    article.
+    During transitions, we can assign animations to the property changes. Our \c menuBar
+    switches position from \c {y: 0} to \c {y: -partition} and we can animate this
+    transition using the \l NumberAnimation type. We declare that the targets'
+    properties will animate for a certain duration of time and using a certain easing
+    curve. An easing curve controls the animation rates and interpolation behavior
+    during state transitions. The easing curve we chose is
+    \l{PropertyAnimation::easing.type}{\c Easing.OutExpo}, which slows the movement near
+    the end of the animation. For more information, see QML's
+    \l {qdeclarativeanimation.html}{animation} article.
 
     \code
         transitions: [
@@ -599,49 +602,49 @@
         ]
     \endcode
 
-    Another way of animating property changes is by declaring a \l {Behavior}{Behavior}
+    Another way of animating property changes is by declaring a \l Behavior
     type. A transition only works during state changes and \c Behavior can set an
     animation for a general property change. In the text editor, the arrow has a
     \c NumberAnimation animating its \c rotation property whenever the property changes.
 
-    \code
-    In TextEditor.qml:
+    In \c {TextEditor.qml}:
 
-        Behavior{
-            NumberAnimation{property: "rotation";easing.type: Easing.OutExpo }
+    \code
+        Behavior {
+            NumberAnimation { property: "rotation"; easing.type: Easing.OutExpo }
         }
     \endcode
 
     Going back to our components with knowledge of states and animations, we can improve
     the appearances of the components. In \c Button.qml, we can add \c color and \c scale
     property changes when the button is clicked. Color types are animated using
-    \l {ColorAnimation}{ColorAnimation} and numbers are animated using
-    \l {NumberAnimation}{NumberAnimation}. The \c {on propertyName} syntax displayed below
-    is helpful when targeting a single property.
+    \l ColorAnimation and numbers are animated using \l NumberAnimation. The
+    \c {on propertyName} syntax displayed below is helpful when targeting a single property.
 
+    In \c {Button.qml}:
     \code
-    In Button.qml:
         ...
 
         color: buttonMouseArea.pressed ? Qt.darker(buttonColor, 1.5) : buttonColor
-        Behavior on color { ColorAnimation{ duration: 55} }
+        Behavior on color { ColorAnimation{ duration: 55 } }
 
-        scale: buttonMouseArea.pressed ? 1.1 : 1.00
-        Behavior on scale { NumberAnimation{ duration: 55} }
+        scale: buttonMouseArea.pressed ? 1.1 : 1.0
+        Behavior on scale { NumberAnimation{ duration: 55 } }
     \endcode
 
     Additionally, we can enhance the appearances of our QML components by adding color
-    effects such as gradients and opacity effects. Declaring a \l {Gradient}{Gradient}
-    object will override the \c color property. You may declare a color
-    in the gradient using the \l {GradientStop}{GradientStop} type. The gradient is
-    positioned using a scale, between \c 0.0 and \c 1.0.
+    effects such as gradients and opacity effects. Declaring a \l Gradient object will
+    override the \c color property. You may declare a color in the gradient using the
+    \l GradientStop type. The gradient is positioned using a scale, between \c 0.0 and
+    \c 1.0.
+
+    In \c {MenuBar.qml}:
 
     \code
-    In MenuBar.qml
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#8C8F8C" }
             GradientStop { position: 0.17; color: "#6A6D6A" }
-            GradientStop { position: 0.98;color: "#3F3F3F" }
+            GradientStop { position: 0.98; color: "#3F3F3F" }
             GradientStop { position: 1.0; color: "#0e1B20" }
         }
     \endcode
@@ -649,13 +652,12 @@
     This gradient is used by the menu bar to display a gradient simulating depth.
     The first color starts at \c 0.0 and the last color is at \c 1.0.
 
-
     \section3 Where to Go from Here
 
-        We are finished building the user interface of a very simple text editor.
-        Going forward, the user interface is complete, and we can implement the
-        application logic using regular Qt and C++. QML works nicely as a prototyping
-        tool, separating the application logic away from the UI design.
+    We are finished building the user interface of a very simple text editor.
+    Going forward, the user interface is complete, and we can implement the
+    application logic using regular Qt and C++. QML works nicely as a prototyping
+    tool, separating the application logic away from the UI design.
 
     \image qml-texteditor4_texteditor.png
 
@@ -664,72 +666,83 @@
     Now that we have our text editor layout, we may now implement the text editor
     functionalities in C++. Using QML with C++ enables us to create our application
     logic using Qt. We can create a QML context in a C++ application using
-    \l {Using QML Bindings in C++ Applications}{Qt's Quick classes} and display the QML
+    \l {Integrating QML and C++}{Qt's Quick classes} and display the QML
     types using a QQuickView. Alternatively, we can export our C++ code into
-    a plugin that the \l {Prototyping with qmlscene}{qmlscene} tool can read. For our application,
-    we shall implement the load and save functions in C++ and export it as a plugin.
-    This way, we only need to load the QML file directly instead of running an executable.
+    an extension plugin, and make it accessible to QML as a new
+    \l {Identified Modules}{identified module}.
+    When launching QML files with \l {Prototyping with qmlscene}{qmlscene},
+    we only need to ensure our module is found under one of the
+    \l {QML Import Path}{import paths} the QML engine searches for modules
+    to import. For our application we shall the latter approach. This way, we can
+    load the QML file directly with \c qmlscene instead of running an executable.
 
     \section3 Exposing C++ Classes to QML
 
     We will be implementing file loading and saving using Qt and C++. C++ classes
-    and functions can be used in QML by registering them. The class also needs to be
-    compiled as a Qt plugin and the QML file will need to know where the plugin is located.
+    and functions can be used in QML by registering them. They also needs to be
+    compiled as a Qt plugin and then exposed as a QML module.
 
     For our application, we need to create the following items:
     \list 1
     \li \c Directory class that will handle directory related operations
     \li \c File class which is a QObject, simulating the list of files in a directory
-    \li plugin class that will register the class to the QML context
+    \li A plugin class that will register the classes to the QML context
     \li Qt project file that will compile the plugin
-    \li A \c qmldir file telling the \c qmlscene tool where to find the plugin
+    \li A \l {Module Definition qmldir Files}{module definition qmldir file} that
+        defines the identifier (import URI) and content (in this case, our plugin)
+        to be made available by the QML module
     \endlist
+
+    \note Since Qt 5.1, \l{Qt Quick Dialogs} module provides a file dialog component
+    that you can use for choosing files from the local file system. For illustrative
+    purposes, we write our own in this tutorial.
 
     \section3 Building a Qt Plugin
 
-        To build a plugin, we need to set the following in a Qt project file. First,
-        the necessary sources, headers, and Qt modules need to be added into our
-        project file. All the C++ code and project files are in the \c filedialog
-        directory.
+    To build a plugin, we need to set the following in a Qt project file. First,
+    the necessary sources, headers, and Qt modules need to be added into our
+    project file. All the C++ code and project files are in the \c filedialog
+    directory.
+
+    In \c {filedialog.pro}:
 
     \code
-    In filedialog.pro:
-
         TEMPLATE = lib
         CONFIG += qt plugin
         QT += qml
 
-        DESTDIR +=  ../plugins
+        DESTDIR +=  ../imports/FileDialog
         OBJECTS_DIR = tmp
         MOC_DIR = tmp
 
-        TARGET = FileDialog
+        TARGET = filedialogplugin
 
-        HEADERS +=     directory.h \
+        HEADERS += \
+                directory.h \
                 file.h \
                 dialogPlugin.h
 
-        SOURCES +=    directory.cpp \
+        SOURCES += \
+                directory.cpp \
                 file.cpp \
                 dialogPlugin.cpp
     \endcode
 
     In particular, we link the project with the \c qml module and configure it as a
-    \c plugin, needing a \c lib template. We shall put the compiled plugin into the
-    parent's \c plugins directory.
-
+    \c plugin, using a \c lib template. We shall put the compiled plugin into the
+    parent's \c {imports/FileDialog} directory.
 
     \section3 Registering a Class into QML
 
-    \code
-    In dialogPlugin.h:
+    In \c {dialogPlugin.h}:
 
+    \code
         #include <QtQml/QQmlExtensionPlugin>
 
         class DialogPlugin : public QQmlExtensionPlugin
         {
             Q_OBJECT
-            Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
+            Q_PLUGIN_METADATA(IID "org.qt-project.QmlExtensionPlugin.FileDialog")
 
         public:
             // registerTypes is inherited from QQmlExtensionPlugin
@@ -739,70 +752,70 @@
     \endcode
 
     We need to export the plugin using the \l {How To Create Qt Plugins}{Q_PLUGIN_METADATA} macro.
-    Note that in our \c dialogPlugin.h file, we have the \l {Q_OBJECT}{Q_OBJECT}
+    Note that in our \c dialogPlugin.h file, we have the \l Q_OBJECT
     macro at the top of our class. As well, we need to run \c qmake on the project
     file to generate the necessary meta-object code.
 
-    Our plugin class, \c DialogPlugin is a subclass of \l{QQmlExtensionPlugin}.
-    We need to implement the inherited function, \l {QQmlExtensionPlugin::}{registerTypes()}.
-    The \c dialogPlugin.cpp file looks like this:
+    Our plugin class, \c {DialogPlugin}, is a subclass of \l{QQmlExtensionPlugin}.
+    We need to implement the inherited function,
+    \l {QQmlExtensionPlugin::registerTypes()}{registerTypes()}.
+
+    In \c {DialogPlugin.cpp}:
 
     \code
-    DialogPlugin.cpp:
-
         #include "dialogPlugin.h"
         #include "directory.h"
         #include "file.h"
-        #include <QtQml/qqml.h>
+        #include <QtQml>
 
         void DialogPlugin::registerTypes(const char *uri)
         {
-            //register the class Directory into QML as a "Directory" type version 1.0
+            // Register the class Directory into QML as a "Directory" type version 1.0
+            // @uri FileDialog
             qmlRegisterType<Directory>(uri, 1, 0, "Directory");
-            qmlRegisterType<File>(uri,1,0,"File");
+            qmlRegisterType<File>(uri, 1, 0, "File");
         }
     \endcode
 
-    The \l{QQmlExtensionPlugin::}{registerTypes()} function registers
-    our File and Directory classes into QML. This function needs the class name
-    for its template, a major version number, a minor version number, and a name
-    for our classes.
+    The \c registerTypes() function registers our File and Directory classes into
+    QML. This function needs the class name for its template, a major version number,
+    a minor version number, and a name for our classes.
+    A \c {// @uri <module identifier>} comment allows Qt Creator to be aware of the
+    registered types when editing QML files that import this module.
 
-    \section3 Creating QML Properties in a C++ class
+    \section3 Creating QML Properties in a C++ Class
 
-        We can create QML types and properties using C++ and
-        \l {The Meta-Object System}{Qt's Meta-Object System}. We can implement
-        properties using slots and signals, making Qt aware of these properties.
-        These properties can then be used in QML.
+    We can create QML types and properties using C++ and
+    \l {The Meta-Object System}{Qt's Meta-Object System}. We can implement
+    properties using slots and signals, making Qt aware of these properties.
+    These properties can then be used in QML.
 
     For the text editor, we need to be able to load and save files. Typically,
     these features are contained in a file dialog. Fortunately, we can use
-    \l {QDir}{QDir}, \l {QFile}{QFile}, and \l {QTextStream}{QTextStream} to
-    implement directory reading and input/output streams.
+    \l QDir, \l QFile, and \l QTextStream to implement directory reading and
+    input/output streams.
 
     \code
-        class Directory : public QObject{
-
+        class Directory : public QObject {
             Q_OBJECT
 
-            Q_PROPERTY(int filesCount READ filesCount CONSTANT)
-            Q_PROPERTY(QString filename READ filename WRITE setFilename NOTIFY filenameChanged)
-            Q_PROPERTY(QString fileContent READ fileContent WRITE setFileContent NOTIFY fileContentChanged)
-            Q_PROPERTY(QQmlListProperty<File> files READ files CONSTANT )
-
+            Q_PROPERTY (int filesCount READ filesCount CONSTANT)
+            Q_PROPERTY (QString filename READ filename WRITE setFilename NOTIFY filenameChanged)
+            Q_PROPERTY (QString fileContent READ fileContent WRITE setFileContent NOTIFY fileContentChanged)
+            Q_PROPERTY (QQmlListProperty<File> files READ files CONSTANT)
             ...
     \endcode
 
     The \c Directory class uses Qt's Meta-Object System to register properties it
     needs to accomplish file handling. The \c Directory class is exported as a plugin
     and is useable in QML as the \c Directory type. Each of the listed properties
-    using the \l {Q_PROPERTY()}{Q_PROPERTY} macro is a QML property.
+    using the \l Q_PROPERTY macro is a QML property.
 
-    The \l {Q_PROPERTY()} {Q_PROPERTY} declares a property as well as its read and
+    The \l {Q_PROPERTY()}{Q_PROPERTY} declares a property as well as its read and
     write functions into Qt's Meta-Object System. For example, the \c filename
-    property, of type \l {QString}{QString}, is readable using the \c filename()
+    property, of type \l QString, is readable using the \c filename()
     function and writable using the function \c setFilename(). Additionally, there
-    is a signal associated to the filename property called \c filenameChanged(),
+    is a signal associated to the filename property called \c {filenameChanged()},
     which is emitted whenever the property changes. The read and write functions
     are declared as \c public in the header file.
 
@@ -812,7 +825,7 @@
     content is stored in \c fileContent property.
 
     \code
-        Q_PROPERTY(QQmlListProperty<File> files READ files CONSTANT )
+        Q_PROPERTY(QQmlListProperty<File> files READ files CONSTANT)
     \endcode
 
     The \c files list property is a list of all the filtered files in a directory.
@@ -838,7 +851,7 @@
     in our C++ code.
 
     \code
-        Directory{
+        Directory {
             id: directory
 
             filesCount
@@ -848,21 +861,20 @@
 
             files[0].name
         }
-
     \endcode
 
     Because QML uses Javascript's syntax and structure, we can iterate through
     the list of files and retrieve its properties. To retrieve the first file's
-    name property, we can call \c { files[0].name }.
+    name property, we can call \c {files[0].name}.
 
     Regular C++ functions are also accessible from QML. The file loading and saving
-    functions are implemented in C++ and declared using the
-    \l {Q_INVOKABLE}{Q_INVOKABLE} macro. Alternatively, we can declare the functions
-    as a \c slot and the functions will be accessible from QML.
+    functions are implemented in C++ and declared using the \l Q_INVOKABLE macro.
+    Alternatively, we can declare the functions as a \c slot and the functions will
+    be accessible from QML.
+
+    In \c {directory.h}:
 
     \code
-    In Directory.h:
-
         Q_INVOKABLE void saveFile();
         Q_INVOKABLE void loadFile();
     \endcode
@@ -881,38 +893,46 @@
     is accessed, the accessor function needs to return a
     \c QQmlListProperty<File>. The template type, \c File, needs to be a
     \c QObject derivative. Further, to create the
-    \l {QQmlListProperty}{QQmlListProperty}, the list's accessor
+    \c QQmlListProperty, the list's accessor
     and modifiers need to be passed to the constructor as function pointers. The list,
-    a \c QList in our case,  also needs to be a list of \c File pointers.
+    a \c QList in our case, also needs to be a list of \c File pointers.
 
-    The constructor of \l {QQmlListProperty}{QQmlListProperty}
-    constructor and the \c Directory implementation:
+    The constructor of \l QQmlListProperty is declared
+    as follows:
     \code
-        QQmlListProperty  ( QObject * object, void * data, AppendFunction append, CountFunction count = 0, AtFunction at = 0, ClearFunction clear = 0 )
-        QQmlListProperty<File>( this, &m_fileList, &appendFiles, &filesSize, &fileAt,  &clearFilesPtr );
+        QQmlListProperty (QObject *object, void *data, AppendFunction append,
+                          CountFunction count = 0, AtFunction at = 0, ClearFunction clear = 0);
     \endcode
 
-    The constructor passes pointers to functions that will append the list, count
-    the list, retrieve the item using an index, and empty the list. Only the append
+    It takes pointers to functions that will append the list, count
+    the list, retrieve the item using an index, and empty the list. Only the \c append
     function is mandatory. Note that the function pointers must match the definition
     of \l {QQmlListProperty::AppendFunction}{AppendFunction},
     \l {QQmlListProperty::CountFunction}{CountFunction},
     \l {QQmlListProperty::AtFunction}{AtFunction}, or
     \l {QQmlListProperty::ClearFunction}{ClearFunction}.
 
+    The \c Directory class constructs a QQmlListProperty instance like this:
+
     \code
-        void appendFiles(QQmlListProperty<File> * property, File * file)
-        File* fileAt(QQmlListProperty<File> * property, int index)
-        int filesSize(QQmlListProperty<File> * property)
-        void clearFilesPtr(QQmlListProperty<File> *property)
+        QQmlListProperty<File>(this, &m_fileList, &appendFiles, &filesSize, &fileAt, &clearFilesPtr);
+    \endcode
+
+    Where the parameters are pointers to following functions:
+
+    \code
+        void appendFiles(QQmlListProperty<File> *property, File *file);
+        File* fileAt(QQmlListProperty<File> *property, int index);
+        int filesSize(QQmlListProperty<File> *property);
+        void clearFilesPtr(QQmlListProperty<File> *property);
     \endcode
 
     To simplify our file dialog, the \c Directory class filters out invalid text
     files, which are files that do not have a \c .txt extension. If a file name
     doesn't have the \c .txt extension, then it won't be seen in our file dialog.
     Also, the implementation makes sure that saved files have a \c .txt extension in
-    the file name. \c Directory uses \l {QTextStream}{QTextStream} to read the file
-    and to output the file contents to a file.
+    the file name. \c Directory uses \l {QTextStream} to read the file and to output
+    the file contents to a file.
 
     With our \c Directory object, we can retrieve the files as a list, know how many
     text files is in the application directory, get the file's name and content as a
@@ -924,25 +944,32 @@
 
     \section3 Importing a Plugin in QML
 
-        The \c qmlscene tool imports files that are in the same directory as the
-        application. We can also create a \c qmldir file containing the locations of
-        QML files we wish to import. The \c qmldir file can also store locations of
-        plugins and other resources.
+    The \c qmlscene tool imports files that are in the same directory as the
+    application. We can also create a \c qmldir file containing the locations of
+    content we wish to import. In this case, there is only the plugin, but other
+    resources (QML types, JavaScript files) can be defined in a \c qmldir as well.
 
+    Contents of the \c qmldir file:
     \code
-    In qmldir:
-
-        Button ./Button.qml
-        FileDialog ./FileDialog.qml
-        TextArea ./TextArea.qml
-        TextEditor ./TextEditor.qml
-        EditMenu ./EditMenu.qml
-
-        plugin FileDialog plugins
+        module FileDialog
+        plugin filedialogplugin
     \endcode
 
-    The plugin we just created is called \c FileDialog, as indicated by the
-    \c TARGET field in the project file. The compiled plugin is in the \c plugins directory.
+    The module we just created is called \c FileDialog, and it makes available a plugin
+    called \c filedialogplugin that matches the \c TARGET field in the project file.
+    Because we did not specify a path for the plugin, the QML engine expects to find it
+    in the same directory as the \c qmldir file.
+
+    The QML types that are registered by our plugin can now be imported in QML:
+
+    \code
+        import FileDialog 1.0
+
+        Directory {
+            id: directory
+        }
+        ...
+    \endcode
 
 
     \section3 Integrating a File Dialog into the File Menu
@@ -957,11 +984,11 @@
     \c FileDialog object that the directory refreshed its contents. This notification
     is performed in the signal handler, \c onDirectoryChanged.
 
-    \code
-    In FileMenu.qml:
+    In \c {FileMenu.qml}:
 
-        Directory{
-            id:directory
+    \code
+        Directory {
+            id: directory
             filename: textInput.text
             onDirectoryChanged: fileDialog.notifyRefresh()
         }
@@ -971,54 +998,54 @@
     visible and will not display invalid text files, which do not have a \c .txt
     extension to their filenames.
 
-    \code
-    In FileDialog.qml:
+    In \c {FileDialog.qml}:
 
+    \code
         signal notifyRefresh()
         onNotifyRefresh: dirView.model = directory.files
     \endcode
 
     The \c FileDialog object will display the contents of a directory by reading its
     list property called \c files. The files are used as the model of a
-    \l {GridView}{GridView} object, which displays data items in a grid according
+    \l {GridView} object, which displays data items in a grid according
     to a delegate. The delegate handles the appearance of the model and our file
     dialog will simply create a grid with text centered in the middle. Clicking on
     the file name will result in the appearance of a rectangle to highlight the file
     name. The \c FileDialog is notified whenever the \c notifyRefresh signal is emitted,
     reloading the files in the directory.
 
-    \code
-    In FileMenu.qml:
+    In \c {FileMenu.qml}:
 
-        Button{
+    \code
+        Button {
             id: newButton
             label: "New"
-            onButtonClick:{
+            onButtonClick: {
                 textArea.textContent = ""
             }
         }
-        Button{
+        Button {
             id: loadButton
             label: "Load"
-            onButtonClick:{
+            onButtonClick: {
                 directory.filename = textInput.text
                 directory.loadFile()
                 textArea.textContent = directory.fileContent
             }
         }
-        Button{
+        Button {
             id: saveButton
             label: "Save"
-            onButtonClick:{
+            onButtonClick: {
                 directory.fileContent = textArea.textContent
                 directory.filename = textInput.text
                 directory.saveFile()
             }
         }
-        Button{
+        Button {
             id: exitButton
             label: "Exit"
-            onButtonClick:{
+            onButtonClick: {
                 Qt.quit()
             }
         }
@@ -1035,21 +1062,26 @@
 
     \image qml-texteditor5_filemenu.png
 
-    \section2 Text Editor Completion
+    \section2 Final Text Editor Application
 
     \image qml-texteditor5_newfile.png
 
     The application can function as a simple text editor, able to accept text
-    and save the text into a file. The text editor can also load from a file and
-    perform text manipulation.
+    and save it into a file. It can also load a file and perform text manipulation.
 
     \section1 Running the Text Editor
 
-    We need to compile the file dialog C++ plugin before the text editor can run.
-    To compile, enter the \c filedialog directory, then run \c qmake and compile
-    using \c make or \c nmake, depending on your platform. To run, launch
-    \c qmlscene and open the \c texteditor.qml file.
+    We need to build the file dialog C++ plugin before the text editor can run.
+    To build it, enter the \c filedialog directory, then run \c qmake and compile
+    using \c make or \c nmake, depending on your platform.
 
-    The source code is in the \c{examples/tutorials/gettingStartedQml}
-    directory.
+    Run the text editor with \l{Prototyping with qmlscene}{qmlscene}, passing the
+    imports directory as a parameter so that the QML engine knows where to look for
+    the module that imports our file dialog plugin:
+
+    \code
+    qmlscene -I ./imports texteditor.qml
+    \endcode
+
+    The complete source code is in \c{examples/quick/tutorials/gettingStartedQml} directory.
 */

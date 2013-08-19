@@ -123,7 +123,7 @@ function f() {
 \c console.exception prints an error message together with the stack trace of JavaScript
 execution at the point where it is called.
 
-\section1 Debugging module imports
+\section1 Debugging Module Imports
 
 The \c QML_IMPORT_TRACE environment variable can be set to enable debug output
 from QML's import loading mechanisms.
@@ -147,12 +147,69 @@ QQmlImportDatabase::addToImport 0x106237370 "Qt" 4.7 Library as ""
 QQmlImportDatabase::resolveType "Rectangle" = "QDeclarativeRectangle"
 \endcode
 
+\section1 QML Debugging Infrastructure
+
+The \l{Qt QML} module provides services for debugging, inspecting, and profiling
+applications via a TCP port.
+
+\section2 Enabling the Infrastructure
+
+You have to explicitly enable the debugging infrastructure when compiling your
+application. If you use qmake, you can add the configuration parameters to
+the project .pro file:
+
+\list
+    \li Qt Quick 1: \c {CONFIG+=declarative_debug}
+    \li Qt Quick 2: \c {CONFIG+=qml_debug}
+\endlist
+
+If you use some other build system, you can pass the following defines to the
+compiler:
+
+\list
+    \li Qt Quick 1: \c {QT_DECLARATIVE_DEBUG}
+    \li Qt Quick 2: \c {QT_QML_DEBUG}
+\endlist
+
+\note Enabling the debugging infrastructure might compromise the integrity of
+the application and system, and therefore, you should only enable it in a
+controlled environment. When the infrastructure is enabled, the application
+displays the following warning:
+
+\c {QML debugging is enabled. Only use this in a safe environment.}
+
+\section2 Starting Applications
+
+Start the application with the following arguments:
+
+\c {qmljsdebugger=port:<port_from>[,port_to][,host:<ip address>][,block]}
+
+Where \c {port_from} (mandatory) specifies either the debugging port or the
+start port of a range of ports when \c {port_to} is specified, \c {ip address}
+(optional) specifies the IP address of the host where the application is
+running, and \c block (optional) prevents the application from running until the
+debug client connects to the server. This enables debugging from the start.
+
+After the application has successfully started, it displays the following
+message:
+
+\c {QML Debugger: Waiting for connection on port <port_number>}
+
+\section2 Connecting to Applications
+
+When the application is running, an IDE or a tool that implements the binary
+protocol can connect to the open port.
+
+Qt provides a \c qmlprofiler command line tool to capture profiling data in a
+file. To run the tool, enter the following command:
+
+\c {qmlprofiler -p <port> -attach <ip address>}
 
 \section1 Debugging with Qt Creator
 
-\l{http://qt-project.org/doc/qtcreator}{Qt Creator} provides built-in
-support for QML debugging. QML projects and standalone C++ applications that
-utilize QML can be debugged on desktops as well as on remote devices.
-For more information, see the Qt Creator Manual.
-
+Qt Creator uses the debugging infrastructure to debug, inspect
+and profile Qt Quick applications on the desktop as well as on remote devices.
+Qt Creator provides integrated clients for debugging JS, inspecting the object
+tree, and profiling the activities of a QML engine. For more information, see
+\l{Qt Creator: Debugging Qt Quick Projects}.
 */

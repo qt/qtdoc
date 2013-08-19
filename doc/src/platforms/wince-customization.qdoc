@@ -65,54 +65,30 @@
     \li \b{CE_ARCH} specifies information about the target architecture.
     \endlist
 
-    Following is an example configuration for the Windows Mobile 5 for 
-    Pocket PC SDK:
+    Following is an example configuration for a custom SDK we call "CustomSDK":
 
     \snippet snippets/code/doc_src_wince-customization.qdoc 1
 
-    \note \l{qmake} uses this information to build a valid Visual Studio
-    project file. You need to ensure that they are identical to the
-    configuration of the custom SDK, otherwise you might not be able to compile
-    or debug your project with Visual Studio.
+    \note Running \l qmake to generate Visual Studio project files for Windows CE currently does not produce valid output..
 
     Additionally, most Windows CE SDKs use extra compiler options. These
     can be specified by expanding the \c DEFINES value.
 
-    For example, with Windows Mobile 5 for Pocket PC, the \c DEFINES variable
+    For example, with CustomSDK, the \c DEFINES variable
     is expanded in the following way:
 
     \snippet snippets/code/doc_src_wince-customization.qdoc 2
 
-    The mkspec may require additional configuration to be used inside of Visual
-    Studio, depending on the Windows CE SDK. The above example defines
-    \c _M_ARM. This definition is available internally in Visual Studio. Hence,
-    the compiler will warn you about redefinition during the build step. These
-    warnings can be disabled by adding a \c default_post.prf file containing
-    the following lines, within the subdirectory.
-
-    \snippet snippets/code/doc_src_wince-customization.qdoc 8
-
 
     \section1 Cross-compilation Environment for a Custom SDK
 
-    Qt for Windows CE supports a convenience script, \c{setcepaths.bat}, that
-    prepares the environment in a command prompt for cross-compilation.
-    However, on custom SDKs, the \c checksdk tool is provided to identify the
-    environment, so Qt compiles successfully.
+    Qt for Windows CE only requires that the mkspec that is specified
+    with -xplatform is setup as mentioned \l{Fine-Tuning Options}{above}.
 
-    \c checksdk is generated during the \c configure step and allows for the
-    following options:
-
-    \list
-        \li  \c list: Returns a list of available Windows CE SDKs. (This list
-            may contain one or more SDKs not supported on Qt for Windows CE,
-            e.g., Pocket PC 2003.)
-        \li  \c sdk: The parameter to specify an SDK. Returns a setup of
-            environment variables that must be set to cross-compile Qt.
-        \li  \c script: Stores your setup in a \c{.bat} file. This simplifies
-            the process of switching environments when you load a command
-            prompt in future.
-    \endlist
+    The selection of the custom SDK environment will happen by concatenating \c CE_SDK
+    and \c CE_ARCH. This builds a string that can be found in "\e{%ProgramFiles%\Microsoft Visual Studio 9.0\VC\vcpackages\WCE.VCPlatform.xml}"
+    and contains the correct environment. If you are unsure about the SDK name and Arch for your
+    SDK you can find it in this file.
 
 
     \section1 Compiling Qt for a Custom SDK
@@ -120,7 +96,10 @@
     Windows CE is highly customizable, hence it is possible that some SDKs have
     feature-stripped setups. Depending on the SDK's configuration, Qt may not
     compile in its standard configuration, as Qt for Windows CE is designed to
-    be compatible with the Standard SDK setup.
+    be compatible with the Standard SDK setup. Every Makefile qmake generates
+    that is not flagged to build for the host system will build WindowsCE projects
+    for the SDK Qt was built with. There is no need to set a custom environment
+    besides the Visual Studio 2005/2008 environment.
 
     However, it is possible to exclude features of Qt and create a version that
     compiles for the desired SDK.
@@ -197,15 +176,10 @@
     \li The original Qt source package must be left untouched - configure must
     never have been run in the source tree directory.
 
-    \li The shadow build directory must be on the same level as the Qt source
-        package.\br
-    If the Qt package is in \c{C:\Qt\%VERSION%} the shadow build directory
-    could be \c{C:\Qt\shadowbuild}. A shadow build from a directory like
-    \c{C:\shadowbuild} will not compile.
+    \li With Qt5, the code has to be checked out of the git repository, otherwise
+        the out of source build will fail as syncqt is not executed.
     \li Avoid using "release" and "debug" in the path to the shadow build
     directory. (This is an internal limitation of the build system.)
-    \li The \c{\bin} directory of the shadow build directory must be added to the
-    \c PATH environment variable.
     \li Perl has been installed on your system. (\l{ActivePerl} is a popular
     distribution of Perl on Windows.)
     \endlist
@@ -214,9 +188,6 @@
     to create a shadow build in \c{C:\Qt\mobile5-shadow}:
 
     \list
-    \li First add \c{C:\Qt\mobile5-shadow\bin} to the \c PATH variable.
-
-    \snippet snippets/code/doc_src_wince-customization.qdoc 3
 
     \li Make sure the enviroment variables for your compiler are set.
 
@@ -227,18 +198,6 @@
 
     \snippet snippets/code/doc_src_wince-customization.qdoc 4
 
-    \li To build Qt, you have to update your \c{PATH, INCLUDE} and \c LIB paths
-    to point to your target platforms.
-
-    For a default installation of the Windows Mobile 5.0 Pocket PC SDK, you
-    can do the following:
-
-    \snippet snippets/code/doc_src_wince-customization.qdoc 5
-
-    We have provided a convenience script for this called \c{setcepaths}. Simply
-    type:
-
-    \snippet snippets/code/doc_src_wince-customization.qdoc 6
 
     \li Finally, to build the shadow build type:
 
@@ -246,5 +205,8 @@
 
     \li That's all. You have successfully created a shadow build of Qt in
     \c{C:\Qt\mobile5-shadow}.
+
+    \li Now you can call \c{nmake install} and get a clean installation of Qt
+        in \e{%INSTALLDIR%}.
     \endlist
 */

@@ -76,9 +76,6 @@
     with Windows CE support. You will need the Professional Edition,
     if you're using Visual Studio 2008.
 
-    We recommend the \e{Windows Mobile 5.0 SDK for Pocket PC} SDK available
-    \l{http://www.microsoft.com/downloads/details.aspx?FamilyID=83a52af2-f524-4ec5-9155-717cbe5d25ed&amp;DisplayLang=en}{here}.
-
     \section1 Installing Qt
 
     Follow the instructions found in \l{Installing Qt for Windows CE}.
@@ -90,18 +87,9 @@
     developing Qt applications for Windows CE compared to any of the
     other platforms supported by Qt.
 
-    Once you have a \c .pro file, there are two ways of building your
-    application. You can either do it on the command line or inside of
-    Visual Studio. To do it on the command line, simply write:
+    Once you have a \c .pro file, you can build from the command line. Simply write:
 
     \snippet snippets/code/doc_src_wince-introduction.qdoc 0
-
-    To build the project inside of Visual Studio, on the command line write:
-
-    \snippet snippets/code/doc_src_wince-introduction.qdoc 1
-
-    then start Visual Studio with the generated \c .vcproj or \c .sln file and
-    select \e{Build project}.
 
     For more information on how to use qmake have a look at the \l
     {qmake Tutorial}.
@@ -118,12 +106,6 @@
     start the program. You can either use the \e Explorer found in
     ActiveSync or the \e{Remote File Viewer} found in Visual Studio to do
     this.
-
-    Visual Studio can do this step automatically for you as well. If you have
-    built the project inside Visual Studio, simply select \e Deploy and then
-    \e Debug to deploy and then run the application. You can change the
-    device type by changing the \e{Target Device} specified in the
-    Visual Studio toolbar.
 
     Further information on deploying Qt applications for Windows can
     be found in the \l{Deploying an Application on Windows}
