@@ -108,42 +108,13 @@
     This page describes the required libraries and environment for
     \l{Qt for Windows}.
 
-    \section1 Graphics Drivers
-
-    For \l{Qt Quick} 2.0 to work, a graphics driver that provides OpenGL 2.1 or
-    higher is required. The default driver from Windows is OpenGL 1.1, which is
-    not sufficient. To work around this limitation, Qt now includes a version of
-    the \l{ANGLE} project which is included from the Windows \l{Qt Installation
-    Program}{installers}. ANGLE implements the OpenGL ES 2.0 API on top of
-    DirectX 9. ANGLE requires that the DirectX SDK is installed when building
-    Qt.
-
-    To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable
-    to point to the ANGLE source tree before building Qt.
-
-    If you installed additional OpenGL drivers from your hardware vendor, then
-    you may want to consider using this version of OpenGL instead of ANGLE. To
-    use OpenGL, pass the command line options \c{-opengl
-    desktop} to configure.
-
-    \code
-    configure -opengl
-    \endcode
-
-    To use an OpenGL ES 2.0 emulator instead of ANGLE, use the configure
-    options: \c{-opengl es2 -no-angle}.
-
-    \code
-    configure -opengl es2 -no-angle
-    \endcode
-
     \section1 Libraries
 
     These libraries are required when running Qt 5 applications in Windows:
 
     \list
         \li \l{ICU}: Qt 5 uses the ICU library for UNICODE and Globalization
-           support (required for QtWebKit). At compile time, the \e include and
+           support (required for Qt WebKit). At compile time, the \e include and
            \e lib folders of the ICU installation must be appended to the \c
            INCLUDE and \c LIB environment variables. At run-time, the ICU DLLs
            need to be found by copying the DLLs to the
@@ -156,12 +127,40 @@
            the library requires the installation of the \l{Direct X SDK}.
            More information is available at \l{http://code.google.com/p/angleproject/wiki/DevSetup}
 
-           \note When building for 64bit environments, de-activate the
+           \note When building for 64-bit environments, de-activate the
            \c WarnAsError option in every project file, otherwise, integer
            conversion warnings will break the build.
     \endlist
 
-    \section1 Development tools
+    \section2 Graphics Drivers
+
+    For \l{Qt Quick} 2.0 to work, a graphics driver that provides OpenGL 2.1 or
+    higher is required. The default driver from Windows is OpenGL 1.1. Qt
+    includes a version of the \l{ANGLE} project which is included from the
+    Windows \l{Qt Installation Program}{Qt installers}. ANGLE implements the
+    OpenGL ES 2.0 API on top of DirectX 9. ANGLE requires that the DirectX SDK
+    is installed when building Qt.
+
+    To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable
+    to point to the ANGLE source tree before building Qt.
+
+    If you installed additional OpenGL drivers from your hardware vendor, then
+    you may want to consider using this version of OpenGL instead of ANGLE. To
+    use OpenGL, pass the command line options \c{-opengl desktop} to the
+    the configure script.
+
+    \code
+    configure -opengl desktop
+    \endcode
+
+    To use an OpenGL ES 2.0 emulator instead of ANGLE, use the configure
+    options: \c{-opengl es2 -no-angle}.
+
+    \code
+    configure -opengl es2 -no-angle
+    \endcode
+
+    \section1 Building from Source
 
     These tools are not needed to run Qt 5 applications, but they are required
     for building Qt 5 from source.
@@ -172,14 +171,12 @@
            the installation location to your \c PATH.
         \li Python - Install Python from the \l{http://www.python.org/download/}{here}
            and add the installation location to your PATH in order to be able
-           to build QtJsBackend and QtWebKit.
+           to build QtJsBackend and Qt WebKit.
 
         \li Install \l{http://www.ruby-lang.org}{Ruby} from \l{http://rubyinstaller.org/}{here}
            and add the installation location to your PATH in order to be able
-           to build QtWebKit.
+           to build Qt WebKit.
 
-        \li \l{jom} is a replacement for \c nmake which makes use of all CPU cores
-           and thus speeds up building.
     \endlist
 
     \note Please make sure that the \c perl executable from ActivePerl is found
@@ -196,12 +193,14 @@
         \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
     \endlist
 
-    The \e gnuwin32/bin folder should be added to the PATH.
+    The \e gnuwin32/bin folder should be added to the \c PATH variable.
+
+    For instructions for building the Qt 5 source,read
+    the \l{Qt for Windows - Building from Source} page.
 
     \section1 SDKs and Compilers
 
     A Windows SDK is required to develop Qt applications on Windows.
-    Below, we have listed some potential options for SDKs and compilers.
 
     \list
         \li Windows SDK 8 (with Visual Studio 2012 Express).
@@ -264,7 +263,7 @@
     The minimum version of MinGW-builds supported is GCC 4.7.2.
     \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
     {MinGW-builds GCC 4.7.2 32 bit, rev 8} and later should be able
-    to build Qt including QtWebKit.
+    to build Qt including Qt WebKit.
 
     For more information about the MinGW builds, visit the
     \e{Reference Configuration} section of the \l{Supported Platforms} page.
@@ -282,9 +281,9 @@
 
     \section2 Visual Studio
 
-    The Visual C++ Linker doesn't understand filenames with spaces (as in
+    The Visual C++ Linker doesn't understand filenames with spaces (for example,
     \e{C:\Program files\Qt\}) so you will have to move it to another place,
-    or explicitly set the path yourself; for example:
+    or explicitly set the path yourself.
 
     \snippet snippets/code/doc_src_compiler-notes.qdoc 0
 
@@ -305,7 +304,7 @@
     \page windows-deployment.html
     \title Qt for Windows - Deployment
 
-    This documentation describes the deployment issues for \l{Qt for
+    This documentation describes deployment issues for \l{Qt for
     Windows}{Windows}. We demonstrate the procedures in terms of
     deploying the \l {tools/plugandpaint}{Plug & Paint} application that is
     provided in Qt's examples directory.
@@ -334,17 +333,16 @@
     \snippet snippets/code/doc_src_deployment.qdoc 13
 
     Run \c qmake to create a new makefile for the
-    application, and do a clean build to create the statically linked
+    application, and perform a clean build to create the statically linked
     executable:
 
     \snippet snippets/code/doc_src_deployment.qdoc 14
 
-    You probably want to link against the release libraries, and you
-    can specify this when invoking \c qmake. Now, provided that
-    everything compiled and linked without any errors, we should have
-    a \c plugandpaint.exe file that is ready for deployment. One easy
-    way to check that the application really can be run stand-alone is
-    to copy it to a machine that does not have Qt or any Qt
+    You probably want to link against the release libraries, and you can specify
+    this when invoking \c qmake. Now, provided that everything compiled and
+    linked without any errors, we should have a \c plugandpaint.exe file that is
+    ready for deployment. To check that the application has the required
+    libraries, copy the executable to a machine that does not have Qt or any Qt
     applications installed, and run it on that machine.
 
     Remember that if your application depends on compiler specific
@@ -353,12 +351,7 @@
     linking against by using the \c depends tool. For more
     information, read the \l {Application Dependencies} section.
 
-    The \l {tools/plugandpaint}{Plug & Paint} example consists of
-    several components: The application itself (\l
-    {tools/plugandpaint}{Plug & Paint}), and the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} and \l
-    {tools/plugandpaintplugins/extrafilters}{Extra Filters}
-    plugins. Since we cannot deploy plugins using the static linking
+    Since we cannot deploy plugins using the static linking
     approach, the application we have prepared is incomplete. It will
     run, but the functionality will be disabled due to the missing
     plugins. To deploy plugin-based applications we should use the
@@ -375,10 +368,9 @@
 
     \section2 Building Qt as a Shared Library
 
-    We assume that you already have installed Qt as a shared library,
-    which is the default when installing Qt, in the \c C:\path\to\Qt
-    directory. For more information on how to build Qt, see the \l
-    {Installation} documentation.
+    For this example, we assume that Qt is installed as a shared library,
+    which is the default when installing Qt, in the \e{C:\path\to\Qt}
+    directory.
 
     \section2 Linking the Application to Qt as a Shared Library
 
@@ -696,7 +688,7 @@
     specific subdirectory (such as \c printsupport, \c imageformats or
     \c sqldrivers) within your distribution directory, as described below.
 
-    \note If you are deploying an application that uses QtWebKit to display
+    \note If you are deploying an application that uses Qt WebKit to display
     HTML pages from the World Wide Web, you should include all text codec
     plugins to support as many HTML encodings possible.
 
@@ -728,9 +720,10 @@
 
     Then qApp->libraryPaths() would return something like this:
 
-    "C:/customPath/plugins"
-    "C:/Qt/%VERSION%/plugins"
-    "E:/myApplication/directory/"
+    \list
+    \li \c{C:/customPath/plugins}
+    \li \c{C:/Qt/%VERSION%/plugins}
+    \li \c{E:/myApplication/directory}
 
     The executable will look for the plugins in these directories and
     the same order as the QStringList returned by qApp->libraryPaths().
@@ -743,15 +736,6 @@
     need to pay attention to when building and deploying plugins for
     Qt applications.
 
-    \section1 Related Third Party Resources
-
-    \list
-    \li \l{http://silmor.de/29}{Cross compiling Qt/Win Apps on Linux} covers the
-    process of cross-compiling Windows applications on Linux.
-    \li \l{http://divided-mind.blogspot.com/2007/09/cross-compiling-qt4win-on-linux.html}
-    {Cross-compiling Qt4/Win on Linux} provides another Linux-to-Windows
-    cross-compilation guide.
-    \endlist
 */
 
 /*!
@@ -859,4 +843,10 @@
         same location, ensure that all traces of the previous configuration are
         removed by entering the build directory and typing \c{nmake distclean}
         before running \c configure again.
+
+    \section1 Parallel Builds
+
+        \l{jom} is a replacement for \c nmake which makes use of all CPU cores
+        and thus speeds up building.
+
 */
