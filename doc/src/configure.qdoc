@@ -1,0 +1,263 @@
+/****************************************************************************
+**
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Contact: http://www.qt-project.org/legal
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and Digia.  For licensing terms and
+** conditions see http://qt.digia.com/licensing.  For further information
+** use the contact form at http://qt.digia.com/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file.  Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: http://www.gnu.org/copyleft/fdl.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page configure-options.html
+    \title Qt Configure Options
+    \brief Configuring Qt's compile options
+
+    \c configure is a command-line tool which determines how to build Qt for a
+    particular platform. Configure can exclude a feature in Qt as well
+    as determine how Qt builds and deploys applications onto host platforms.
+    This page discusses some of the configure options, but for
+    the full list of options, enter the command \c{configure -h}. Configure
+    is located in \e qtbase but is also available from the main Qt source
+    directory.
+
+    Unless stated otherwise, the commands in this page are for the Linux
+    platforms. On Mac OS X and on Windows, the \c PATH and directory structure
+    are different, therefore the commands will vary. Also, on Windows systems,
+    the configure script is called \e configure.bat.
+
+    \section1 Paths, Prefixes, and Shadow-Building
+
+    Qt's default installation directory depends on the platform but can be
+    set with the \c -prefix option. Configure always prints the installation
+    directory when it finishes.
+
+    \code
+    ./configure -prefix ~/home/user/Qt-5.1
+    \endcode
+
+    \e{Shadow building} is when the Makefiles and libraries are built in a
+    separate directory. Shadow building preserves the source directory contents.
+    Note that the default installation directory is not modified when shadow
+    building. To shadow build, run configure in a clean directory.
+
+    \code
+    mkdir ~/Qt-builds
+    cd ~/Qt-builds
+    ~/qt-source/configure
+    \endcode
+
+    Setting both the shadow build and prefix to a directory outside of the Qt
+    sources allows multiple Qt configurations to exist. For example, one
+    installation can contain a statically-linked Qt while another installation
+    contains a dynamically-linked Qt.
+
+    \code
+    cd ~/Qt-static
+    ~/qt/configure -prefix $PWD/qtbase -static
+
+    cd ~/Qt-dynamic
+    ~/qt/configure -prefix $PWD/qtbase -shared
+    \endcode
+
+    It is also possible to set the shadow build directory and the installation
+    directory (set by the prefix option) in separate directories. This setup
+    will build Qt in a separate directory and install it into a different
+    directory.
+
+    \section1 Including and Excluding Qt Modules
+
+    With configure, it is possible to include or exclude particular
+    \l{All Qt Modules}{Qt modules} in a Qt build. However, keep in mind that
+    many modules depend on other modules, therefore, dependency issues
+    can arise with some build configurations.
+
+    \section2 Excluding a Qt Submodule
+
+    Configure's \c -skip option allows certain Qt submodules to be excluded from
+    the Qt build. These submodules correspond to the Git submodules in the
+    standard Qt 5 repository. Note that many packages contain multiple Qt
+    modules. For example, to exclude Qt NFC and Qt Bluetooth from the Qt build,
+    provide \c{-skip qtconnectivity} as the argument to configure.
+
+    \code
+    ./configure -skip qtconnectivity
+    \endcode
+
+    \section2 Including or Excluding Features
+
+    The \c{-feature-}\e{<feature>} and \c{-no-feature-}\e{<feature>} options
+    include and exclude specific features, respectively, where \e{<feature>}
+    is listed in the file \e{qtbase/src/corelib/global/qfeatures.txt}.
+
+    For example, to disable \l Accessibility, provide \c ACCESSIBILITY as the
+    argument:
+    \code
+    ./configure -no-feature ACCESSIBILITY
+    \endcode
+
+    \note Features outside of \e qtbase are not included in the features list.
+
+    \section1 Third-Party Libraries
+
+    The Qt source packages include third-party libraries. To set whether Qt
+    should use the system's versions of the libraries or to use the bundled
+    version, pass either \c -system or \c -qt before the name of the library to
+    configure.
+
+    The table below summarizes the third-party options:
+    \table
+    \header
+        \li Library Name
+        \li Bundled in Qt
+        \li Installed in System
+    \row
+        \li zlib
+        \li \c -qt-zlib
+        \li \c -system-zlib
+    \row
+        \li libjpeg
+        \li \c -qt-libjpeg
+        \li \c -system-libjpeg
+    \row
+        \li libpng
+        \li \c -qt-libpng
+        \li \c -system-libpng
+    \row
+        \li xcb
+        \li \c -qt-xcb
+        \li \c -system-xcb
+    \row
+        \li xkbcommon
+        \li \c -qt-xkbcommon
+        \li \c -system-xkbcommon
+    \row
+        \li freetype
+        \li \c -qt-freetype
+        \li \c -system-freetype
+    \row
+        \li PCRE
+        \li \c -qt-pcre
+        \li \c -system-pcre
+    \row
+        \li HarfBuzz-NG (experimental)
+        \li \c -qt-harfbuzz
+        \li \c -system-harfbuzz
+    \endtable
+
+    It is also possible to disable support for these libraries by using
+    \c -no-qt instead of \c{-qt}. For example, to use the system's xcb library
+    and disable zlib support, enter the following:
+
+    \code
+    ./configure -no-qt-zlib -qt-libjpeg -qt-libpng -system-xcb
+    \endcode
+
+    For a full list of options, consult the help with \c {configure -help}.
+
+    \section1 Compiler Options
+
+    The \c -platform option sets the host platform and the compiler for building
+    the Qt sources. The list of supported platforms and compilers is found in
+    the \l{Supported Platforms} page while the full list is listed in
+    \e{qtbase/mkspecs}.
+
+    For example, on Ubuntu Linux systems, Qt can be compiled by several
+    compilers such as clang or g++:
+
+    \code
+    ./configure -platform linux-clang
+    ./configure -platform linux-g++
+    ./configure -platform linux-g++-32
+    \endcode
+
+    For \l{Qt for Windows}{Windows} machines, either MinGW or Visual Studio
+    toolchains can be used to compile Qt.
+
+    \code
+    configure.bat -platform win32-g++
+    configure.bat -platform win32-msvc2010
+    \endcode
+
+    Afterwards, the generated Makefiles will use the appropriate compiler
+    commands.
+
+    \section1 Cross-Platform Options
+
+    To configure Qt for cross-platform development and deployment, the
+    development toolchain for the target platform needs to be set up. This
+    set up varies among the \l{Supported Platforms}.
+
+    Common options are:
+    \list
+    \li \c -xplatform - the target platform. Valid xplatform options are the same
+    as the \c -platform options which are found in \e{qtbase/mkspecs}.
+    \li \c -device - a specific device or chipsets. The list of devices that configure is compatible with are
+    found in \e{qtbase/mkspecs/devices}. For more information, visit the \l{http://qt-project.org/wiki/Category:Devices}{Devices}
+    Wiki page.
+    \li \c -device-option - accepts specific environment variables. For example, \c{-device-option CROSS_COMPILE=}\e{<path-to-toolchain>} provides
+    the environment variable, \c{CROSS_COMPILE}, as needed by certain devices.
+    \endlist
+
+    \note Depending on the platform, specific Qt features must be disabled or
+    configured with different library versions or paths. For example, in Linux
+    host platforms, the sysroot and related environment variables depend on the
+    toolchain supported by the devices.
+
+    \section2 Specific Options for Platforms
+
+    The following pages provide guidelines on how to configure Qt for specific
+    platform development:
+    \list
+    \li \l{http://qt-project.org/wiki/Qt5ForAndroidBuilding}{Building Qt 5 for Android} Wiki page
+    \li \l{iOS}{Qt for iOS}
+    \li \l{Qt for BlackBerry} - a community-driven site for BlackBerry and
+    QNX devices
+    \li \l{http://qt-project.org/wiki/Qt-RaspberryPi}{Qt for Raspberry Pi} - a community-driven site for
+    Raspberry devices
+    \li \l{http://qt-project.org/wiki/Category:Devices}{Devices} - a list of other devices and chipsets
+    \endlist
+
+    \section1 OpenGL Options for Windows
+
+    On Windows, Qt can be configured with the system OpenGL or with \l{ANGLE}.
+    By default, configure uses ANGLE, which is bundled with the Qt
+    sources, but requires the DirectX SDK. Through ANGLE, OpenGL ES 2.0 is
+    mapped to DirectX APIs. OpenGL applications can then be deployed to Windows
+    computers with older OpenGL APIs, without requiring that the latest
+    OpenGL version be installed in the system.
+
+    The \c -opengl option configures Qt to use the OpenGL in the target system
+    or a different version of OpenGL ES.
+
+    \code
+    configure.bat -opengl desktop
+    \endcode
+
+    With the \c desktop option, Qt uses the OpenGL installed in Windows,
+    requiring that the OpenGL in the target Windows machine is compatible with
+    the application. The \c -opengl option accepts two versions of OpenGL ES, \c
+    es2 for OpenGL ES 2.0 or \c es1 for OpenGL ES Common Profile.
+
+    \code
+    configure.bat -opengl es2
+    \endcode
+
+*/
