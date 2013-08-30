@@ -193,6 +193,15 @@
     \li Undefine macro.
 
     \row
+    \li \c{-M<key=value>}
+    \li Append additional meta data to plugins. If a class
+        has Q_PLUGIN_METADATA specified, the key-value pair will be added
+        to its meta data. This will end up in the Json object that gets
+        resolved for the plugin at run time (accessible from QPluginLoader).
+        This argument is typically used for tagging static plugins with
+        information resolved by the build system.
+
+    \row
     \li \c{@<file>}
     \li Read additional command-line options from \c{<file>}.
     Each line of the file is treated as a single option. Empty lines
