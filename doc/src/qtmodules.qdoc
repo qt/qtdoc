@@ -99,11 +99,13 @@
         \li Classes to extend Qt GUI with C++ widgets.
     \endtable
 
-    If you use \l qmake to build your projects, the QtCore and QtGui
-    modules are included by default. To link only against QtCore, add
+    If you use \l qmake to build your projects, the \l{Qt Core} and \l{Qt GUI}
+    modules are included by default. To link only against Qt Core, add
     the following line to your \c .pro file:
 
-    \snippet doc/src/snippets/code/doc_src_modules.pro 0
+    \code
+    QT -= gui
+    \endcode
 
     On Windows, if you do not use \l qmake
     or other build tools such as \l{CMake Manual}{CMake}, you also need to link against
