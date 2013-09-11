@@ -113,7 +113,7 @@
 
     \section1 Qt Add-Ons
 
-    Qt add-on modules bring additional value for specific purposes. These
+    \e{Qt Add-On} modules bring additional value for specific purposes. These
     modules may only be available on some development platform for some target
     platforms. Some of them are included in the Qt releases on particular
     platforms. Each add-on module specifies its compatibility promise
@@ -129,13 +129,13 @@
         \li Description
     \row
         \li \l{Active Qt}
-        \li Windows
+        \li \l{Qt for Windows}{Windows}
         \li
         \li Classes for applications which use ActiveX and COM
     \row
         \li \l{Qt Bluetooth}
         \li All
-        \li Linux, \l{BlackBerry}
+        \li \l{Qt for Linux}, \l{BlackBerry}
         \li Provides access to Bluetooth hardware.
     \row
         \li \l{Qt Concurrent}
@@ -145,7 +145,7 @@
             threading primitives.
     \row
         \li \l{Qt D-Bus}
-        \li Unix
+        \li Unix-based
         \li
         \li Classes for inter-process communication over the D-Bus protocol.
     \row
@@ -169,7 +169,7 @@
         \li
         \li OpenGL support classes.
         \note Provided to ease porting from Qt 4.x. Please use the QOpenGL
-        classes in QtGui for new code.
+        classes in \l{Qt GUI} for new code.
     \row
         \li \l{Qt Print Support}
         \li All
@@ -212,7 +212,7 @@
     \row
         \li \l{Qt Windows Extras}
         \li All
-        \li \l{Support for Windows}{Windows}
+        \li \l{Qt for Windows}{Windows}
         \li Provides classes and functions for using miscellaneous
             Windows-specific functions.
     \row
@@ -236,8 +236,8 @@
 
     \section1 Qt Tools
 
-    Tools that are officially a part of Qt. The official tools run on all the
-    supported development platforms.
+    \e{Qt Tools} run on all the supported development platforms and facilitate
+    the development and design of applications.
 
     The following table lists the Qt tools:
 
@@ -256,6 +256,16 @@
         \li Classes for UI tools.
     \endtable
 
-    \sa {Class and Function Documentation}
+    \section1 Where to Go from Here
+
+    We invite you to explore the rest of Qt. We prepared overviews which help
+    you decide which APIs to use and our examples demonstrate how to use our
+    API.
+
+    \list
+    \li \l{Qt Overviews} - list of topics about application development
+    \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
+    \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
+    \endlist
 
 */
