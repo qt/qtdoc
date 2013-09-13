@@ -91,6 +91,12 @@
 
     \snippet snippets/cmake/CMakeLists.pro 2
 
+    Plugins are also available as \c IMPORTED targets in CMake. The \l{QtNetwork}, \l{QtSql}, \l{QtGui}
+    and \l{QtWidgets} modules have plugins associated. They provide a list of plugins in the
+    \l{Qt5}\e{<Module>}\c{_PLUGINS} variable.
+
+    \snippet snippets/cmake/CMakeLists.pro 7
+
     \section2 Using Qt 5 with \c{CMake} older than 2.8.11
 
     The recommended way to use Qt libraries and headers with \c{CMake} prior to 2.8.11 is to use

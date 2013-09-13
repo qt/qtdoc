@@ -91,3 +91,10 @@ if (Qt5_POSITION_INDEPENDENT_CODE)
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 #! [6]
+
+#! [7]
+foreach(plugin ${Qt5Network_PLUGINS})
+  get_target_property(_loc ${plugin} LOCATION)
+  message("Plugin ${plugin} is at location ${_loc}")
+endforeach()
+#! [7]
