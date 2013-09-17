@@ -112,31 +112,31 @@ The following sections lists the API changes in each module and provides recomme
          enum value is returned for unassigned codepoints now.
      \li \l{QAbstractItemModel} has undergone the following changes:
       \list
-       \li \l{QAbstractItemModel::beginMoveRows}{beginMoveRows()} no longer emits the \c{layoutAboutToBeChanged} signal,
-           and \l{QAbstractItemModel::endMoveRows}{endMoveRows()} no longer emits the \c{layoutChanged} signal.
+       \li \l{QAbstractItemModel::beginMoveRows()}{beginMoveRows()} no longer emits the \c{layoutAboutToBeChanged} signal,
+           and \l{QAbstractItemModel::endMoveRows()}{endMoveRows()} no longer emits the \c{layoutChanged} signal.
            All proxy models must connect to (and disconnect from) the \c{rowsAboutToBeMoved} and \c{rowsMoved} signals.
-       \li \l{QAbstractItemModel::sibling} is virtual now to allow implementations to optimize based on internal data.
-       \li \l{QAbstractItemModel::createIndex} method now only provides the void* and quintptr overloads, making calls with a literal \c 0
+       \li \l{QAbstractItemModel::sibling()} is virtual now to allow implementations to optimize based on internal data.
+       \li \l{QAbstractItemModel::createIndex()} method now only provides the void* and quintptr overloads, making calls with a literal \c 0
            (createIndex(row, col, 0)) ambiguous. Either cast (quintptr(0)) or omit the third argument(to get the void* overload).
       \endlist
        \li \l{QAbstractItemModel::setRoleNames()} is deprecated. Use \l{QAbstractItemModel::roleNames()} instead.
-           \l{QAbstractItemModel::roleNames} is virtual now to allow a consistent API with the rest of QAbstractItemModel. Reimplementing the virtual methods to provide the elements is preferred to setting those directly.
+           \l{QAbstractItemModel::roleNames()} is virtual now to allow a consistent API with the rest of QAbstractItemModel. Reimplementing the virtual methods to provide the elements is preferred to setting those directly.
      \li Default value of the \l{QSortFilterProxyModel::dynamicSortFilter} property is changed to \c{true}.
-     \li \l{QString::mid}, \l{QString::midRef}, and \l{QByteArray::mid} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
+     \li \l{QString::mid()}, \l{QString::midRef()}, and \l{QByteArray::mid()} now return an empty \c{QString}, \c{QStringRef}, and \c{QByteArray} respectively,
          if the position passed is equal to the length (that is, right after the last character/byte).
          In Qt 4, they use to return a null \c{QString} or a null \c{QStringRef}.
      \li The following \l{QString} functions use the C locale instead of the default or system locale:
       \list
-       \li \l{QString::toLongLong}{toLongLong()}
-       \li \l{QString::toULongLong}{toULongLong()}
-       \li \l{QString::toLong}{toLong()}
-       \li \l{QString::toULong}{toULong()}
-       \li \l{QString::toInt}{toInt()}
-       \li \l{QString::toUInt}{toUInt()}
-       \li \l{QString::toShort}{toShort()}
-       \li \l{QString::toUShort}{toUShort()}
-       \li \l{QString::toDouble}{toDouble()}
-       \li \l{QString::toFloat}{toFloat()}
+       \li \l{QString::toLongLong()}{toLongLong()}
+       \li \l{QString::toULongLong()}{toULongLong()}
+       \li \l{QString::toLong()}{toLong()}
+       \li \l{QString::toULong()}{toULong()}
+       \li \l{QString::toInt()}{toInt()}
+       \li \l{QString::toUInt()}{toUInt()}
+       \li \l{QString::toShort()}{toShort()}
+       \li \l{QString::toUShort()}{toUShort()}
+       \li \l{QString::toDouble()}{toDouble()}
+       \li \l{QString::toFloat()}{toFloat()}
       \endlist
       This is to guarantee consistent default conversion of strings. For locale-aware conversions
       use the equivalent \l{QLocale} functions.
@@ -198,9 +198,9 @@ The following sections lists the API changes in each module and provides recomme
        \li The "child" integer parameters are removed to bring it more closer to \c{IAccessible2}, and this means the following functions
            lose the integer parameter:
         \list
-         \li text(Text t, int child) is now \l{QAccessibleInterface::text(Text t)}{text(Text t)}
+         \li text(Text t, int child) is now \l{QAccessibleInterface::text(QAccessible::Text t)}{text(Text t)}
          \li rect(int child) is now \l{QAccessibleInterface::rect()}{rect()}
-         \li setText(Text t, int child, const QString &text) is now \l{QAccessibleInterface::setText(Text t, const QString &text)}{setText(Text t, const QString &text)}
+         \li setText(Text t, int child, const QString &text) is now \l{QAccessibleInterface::setText(QAccessible::Text t, const QString &text)}{setText(Text t, const QString &text)}
          \li role(int child) is now \l{QAccessibleInterface::role()}{role()}
          \li state(int child) is now \l{QAccessibleInterface::state()}{state()}
         \endlist

@@ -282,7 +282,7 @@
     \section2 Visual Studio
 
     The Visual C++ Linker doesn't understand filenames with spaces (for example,
-    \e{C:\Program files\Qt\}) so you will have to move it to another place,
+    \e{C:\\Program files\\Qt\\}) so you will have to move it to another place,
     or explicitly set the path yourself.
 
     \snippet snippets/code/doc_src_compiler-notes.qdoc 0
@@ -369,7 +369,7 @@
     \section2 Building Qt as a Shared Library
 
     For this example, we assume that Qt is installed as a shared library,
-    which is the default when installing Qt, in the \e{C:\path\to\Qt}
+    which is the default when installing Qt, in the \e{C:\\path\\to\\Qt}
     directory.
 
     \section2 Linking the Application to Qt as a Shared Library

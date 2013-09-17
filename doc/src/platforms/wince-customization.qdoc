@@ -86,7 +86,7 @@
     with -xplatform is setup as mentioned \l{Fine-Tuning Options}{above}.
 
     The selection of the custom SDK environment will happen by concatenating \c CE_SDK
-    and \c CE_ARCH. This builds a string that can be found in "\e{%ProgramFiles%\Microsoft Visual Studio 9.0\VC\vcpackages\WCE.VCPlatform.xml}"
+    and \c CE_ARCH. This builds a string that can be found in "\e{%ProgramFiles%\\Microsoft Visual Studio 9.0\\VC\\vcpackages\\WCE.VCPlatform.xml}"
     and contains the correct environment. If you are unsure about the SDK name and Arch for your
     SDK you can find it in this file.
 

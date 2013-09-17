@@ -364,7 +364,7 @@
     QMetaObject \l{designer-using-a-ui-file.html#automatic-connections}
     {auto-connection facilities} to connect the button's clicked() signal to a
     slot in the Notepad class. The \c uic tool automatically generates code in
-    the dialog's \l{setupUi()} function to do this, so Qt Designer only needs to
+    the dialog's \c{setupUi()} function to do this, so Qt Designer only needs to
     declare and implement a slot with a name that follows a standard convention.
 
     The corresponding code in the source file, notepad.cpp, looks as follows:

@@ -144,7 +144,7 @@
     register to receive the events. The available events are defined
     by the QAccessible::Event enum. The clients may then query for
     the object that generated the event through
-    QAccessible::queryAccessibleInterface().
+    \l QAccessible::queryAccessibleInterface().
 
     The members and enums in QAccessible are used to describe
     accessible objects:
@@ -183,22 +183,18 @@
 
     AT-Clients have access to the accessibility object tree through
     the root object in the tree, which is the QApplication. They can
-    query other objects through QAccessible::navigate(), which fetches
-    objects based on \l{QAccessible::}{Relation}s. The children of any
-    node is 1-based numbered. The child numbered 0 is the object
-    itself. The children of all interfaces are numbered this way,
-    i.e., it is not a fixed numbering from the root node in the entire
-    tree.
+    navigate the tree with the QAccessibleInterface::parent(), QAccessibleInterface::childCount()
+    and QAccessibleInterface::child() functions.
 
-    Qt provides accessible interfaces for its widgets. Interfaces for
-    any QObject subclass can be requested through
+    Qt provides accessible interfaces for its widgets and for Qt Quick Controls.
+    Interfaces for any QObject subclass can be requested through
     QAccessible::queryInterface(). A default implementation is
     provided if a more specialized interface is not defined. An
     AT-Client cannot acquire an interface for accessible objects that
     do not have an equivalent QObject, e.g., scroll bar handles, but
     they appear as normal objects through interfaces of parent
     accessible objects, e.g., you can query their relationships with
-    QAccessible::relationTo().
+    QAccessibleInterface::relations().
 
     To illustrate, we present an image of an accessible object tree.
     Beneath the tree is a table with examples of object relationships.
@@ -507,10 +503,10 @@
     convenient to distribute interfaces as plugins since they will only
     be loaded when required.
 
-    Creating an accessible plugin is achieved by inheriting
-    QAccessiblePlugin, reimplementing \l{QAccessiblePlugin::}{keys()}
-    and \l{QAccessiblePlugin::}{create()} from that class, and adding
-    one or two macros. The \c .pro file must be altered to use the
+    Creating an accessible plugin is achieved by inheriting QAccessiblePlugin,
+    defining the supported class names in the plugin's JSON description and
+    reimplementing \l{QAccessiblePlugin::}{create()} from QAccessiblePlugin.
+    The \c .pro file must be altered to use the
     plugin template, and the library containing the plugin must be
     placed on a path where Qt searches for accessible plugins.
 
