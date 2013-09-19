@@ -97,3 +97,7 @@ qhp.QtDoc.subprojects.qmltypes.sortPages = true
 qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
 qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
 qhp.QtDoc.subprojects.examples.selectors = fake:example
+
+# Add an image used in example manifests to qhp
+HTML.extraimages             += images/qt-codesample.png
+qhp.QtDoc.extraFiles         += images/qt-codesample.png
