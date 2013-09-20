@@ -45,22 +45,56 @@
     \section1 Introduction
 
     Accessibility in computer software is making applications usable
-    for people with disabilities. This can be achieved by providing
+    for people with different abilities.
+    It is important to take different people's needs into account, for example
+    low vision, hearing, dexterity or cognitive problems.
+    Some examples of accessibility measures are
     keyboard shortcuts, a high-contrast user interface that uses
     specially selected colors and fonts, or support for assistive tools
     such as screen readers and braille displays.
 
-    An application does not usually communicate directly with the
-    assistive tools but through a platform specific API, which uses an IPC mechanism.
+    A basic checklist that any application should aim for:
+    \list
+        \li \c {Usability} Usability and user centric design generally lead to
+        more usable applications, including imporvements for people with various abilities.
+        \li \c {Fonts} Font settings should follow the system/platform. This allows users to select
+        fonts for readability and increasing the font size.
+        \li \c {Colors} Provide enough contrast and consider the most common cases of low
+        vision and color blindness. Make sure that the application is usable for people
+        with red/green blindness for example, don't depend on colors only.
+        \li \c {Scalable UI} A user interface that works in various sizes and properly supports
+        different fonts and accommodates size changes.
+        \li \c {Sounds} Do not exclusively rely on sound notifications, provide a visual alternative
+        when a sound signal is imperative to using the application.
+        \li \c {Spelling} Offer spell checking wherever it makes sense, even when only a single word is expected.
+        \li \c {Assistive Technology} Support the use of assistive tools (AT). Either use standard widgets/controls
+        which support ATs out of the box or make sure that your custom widgets and controls support
+        accessibility properly. In order to learn more about this read on below.
+    \endlist
+
+    This part of the documentation assumes that the basics for accessibility
+    which go hand in hand with usability are already in good shape.
+    The rest of this document focuses more specifically on supporting assistive technology.
+
+    Assistive Tools (or ATs) come in great variety and help users with different tasks.
+    For this reason what individual applications offer (with the help of Qt) is a generic
+    API that allows to inspect what is on screen in a semantic way and offers the typical
+    interactions with the UI elements.
+
+    Applications do not usually communicate directly with the
+    assistive tools but through a platform specific API.
+    Generally the communication with the ATs works though an IPC mechanism.
     Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
     Qt supports Microsoft Active Accessibility (MSAA) and IAccessible2 on Windows, Mac
     OS X Accessibility on Mac OS X, and AT-SPI via DBus on Unix/X11.
-    The platform specific technologies are
-    abstracted by Qt, so you will only have a generic interface to consider.
-    Qt tries to make adding accessibility support to your application as easy
-    as possible, so that only few changes from your side may be required to
-    allow even more users to enjoy it.
+    The platform specific technologies are abstracted by Qt,
+    so that applications do not need any platform specific changes to work with the different
+    native APIs. Qt tries to make adding accessibility support to your application as easy
+    as possible, only a few changes from your side may be required to allow even more users to enjoy it.
+
+    The main reason to consult this coumentation is to learn how to make custom \l QWidget subclasses
+    and \l {QQuickItem}s accessible.
 
     In this overview document, we will examine the overall Qt
     accessibility architecture, and how to implement accessibility for
@@ -75,35 +109,8 @@
 
     \l{Accessibility for Qt Quick Applications}
 
-    \section1 Architecture
-
-    If you want a deeper understanding how the cross platform accessibility
-    support is implemented, this section is for you.
-
-    Providing accessibility is a collaboration between accessibility
-    compliant applications, the assistive technology, and the
-    assistive tools.
-
-    Accessibility compliant applications are called AT-Servers while
-    assistive tools are called AT-Clients. A Qt application will
-    typically be an AT-Server, but specialized programs might also
-    function like AT-Clients. We will refer to clients and servers
-    when talking about AT-Clients and AT-Servers in the rest of this
-    document.
-
-
-    \section1 Further Reading
-
-    \l{Accessibility for QWidget Applications}
-
-    \l{Accessibility for Qt Quick Applications}
-
     These classes provide support for accessible applications:
     \annotatedlist accessibility
-
-    The \l{Cross-Platform Accessibility Support in Qt 4} document contains a more
-    general overview of Qt's accessibility features and discusses how it is
-    used on each platform.
 */
 
 
