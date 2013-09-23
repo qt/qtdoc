@@ -105,7 +105,7 @@ application might freeze until one transaction commits or rolls back.
 
 Once the driver part is set up, the data is accessible using the classes,
 QSqlQueryModel, QSqlTableModel, and QSqlRelationalTableModel. QSqlTableModel
-and QtSqlRelationalTableModel provide editable models that can used with Qt's
+and QSqlRelationalTableModel provide editable models that can used with Qt's
 item views. QSqlTableModel has read/write access to a single table, whereas
 QSqlRelationalTableModel has read/write access to the main table (not to the
 table with the foreign key).
