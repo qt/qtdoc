@@ -27,7 +27,7 @@
 
 /*!
 \page android_support.html
-\title Android
+\title Qt for Android
 \brief Provides information about Android support in Qt 5.
 
 Qt for Android enables you to run Qt 5 applications on devices with Android
@@ -77,9 +77,9 @@ to install:
  ./android update sdk
 \endcode
 
-After the SDK is updated, install the Qt 5.1 binaries using the
-\l{Qt Installation Program}{Qt installation program} and configure Qt Creator
-to develop for Android. For more information, see
+After the Android SDK is updated, install the Qt 5.1 binaries using the
+\l{Qt Installation Program}{Qt installation program} or build the binaries from
+source and configure Qt Creator to develop for Android. For more information, see
 \l{Qt Creator: Connecting Android Devices}.
 
 \note You must select at least one of the two Qt libraries for Android
@@ -123,7 +123,7 @@ The following step-by-step instructions guide you to port an existing Qt Quick
 application to Android using the qrc approach:
 
 \list 1
- \li Open the existing project in Qt Creator v2.7.1 or later, and configure it
+ \li Open the existing project in Qt Creator and configure it
      with "Android for ARM" kit. For more information, see
      \l{Qt Creator: Configuring Projects}
  \li Update all local directory imports in the \c{qml} files to use a local
