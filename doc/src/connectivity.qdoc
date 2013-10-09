@@ -47,8 +47,8 @@ can start or stop network interfaces and roam between access points. It does
 however not take care of the network configurations itself. The platform needs
 to take care of that.
 
-Qt Webkit offers a web browser engine that makes it possible to use web
-content in your application. Qt Webkit can render HTML, XHTML,
+\l{Qt WebKit} offers a web browser engine that makes it possible to use web
+content in your application. \l{Qt WebKit} can render HTML, XHTML,
 and SVG documents, and execute Javascript.
 
 Qt also offers functionalities for \e{inter-process communication} (IPC). The
@@ -111,7 +111,7 @@ Qt makes it easy to embed web content into your Qt application using features of
 the Qt WebKit layout engine. The Qt WebKit module equips Qt with support for a
 broad range of standard web technologies that make it possible to embed HTML
 content styled with CSS and scripted with JavaScript into your Qt application.
-QtWebKit facilitates both integration with traditional QWidget based desktop
+\l{Qt WebKit} facilitates both integration with traditional QWidget based desktop
 applications as well as embedding into Qt Quick QML applications.
 
 For more information see \l {Integrating Web Content}.
@@ -156,12 +156,12 @@ Related Topics:
 \list
 \li \l {Qt D-Bus} - module documentation
     \list
-    \li \l {Using QtDBus Adaptors}
+    \li \l {Using Qt D-Bus Adaptors}
     \li \l {QLocalSocket}
     \li \l {Declaring Signals in D-Bus Adaptors}
     \li \l {Declaring Slots in D-Bus Adaptors}
-    \li \l {The QtDBus Type System}
-    \li \l {QtDBus XML Compiler (qdbusxml2cpp)}
+    \li \l {The Qt D-Bus Type System}
+    \li \l {Qt D-Bus XML Compiler (qdbusxml2cpp)}
     \endlist
 \endlist
 

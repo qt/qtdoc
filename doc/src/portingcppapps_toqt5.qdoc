@@ -39,7 +39,7 @@ port the \l{Animated Tiles Example}{Animated Tiles} application to Qt 5:
        \c {#include <QtWidgets>}.
    \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the
        end of the file.
-       \note QtGui is included by default in all Qt applications unless excluded using the \c {QT -= gui} directive in the \c{qmake} project file.
+       \note \l{Qt GUI} is included by default in all Qt applications unless excluded using the \c {QT -= gui} directive in the \c{qmake} project file.
    \li Save the changes and run the application.
 \endlist
 

@@ -53,15 +53,15 @@
     faster than QRegExp, and supports more features such as lazy and possessive
     quantifiers, lookbehinds, named capturing groups, and iteration of matches.
 
-    \section1 Qt Gui Changes
+    \section1 Qt GUI Changes
     \section2 New Classes for Windowing and Rendering
     A new set of enabler classes have been added, most importantly QWindow,
     QScreen, QSurfaceFormat, and QOpenGLContext. These are now used as backends
-    for the QtWidgets module and by QtQuick 2.
+    for the \l{Qt Widgets} module and by l\{Qt Quick} 2.
 
     \section2 OpenGL Classes
-    Most of the useful QtOpenGL classes have been polished and moved into
-    QtGui. A few important ones are, QOpenGLFramebufferObject,
+    Most of the useful l\{Qt OpenGL} classes have been polished and moved into
+    \l{Qt GUI}. A few important ones are, QOpenGLFramebufferObject,
     QOpenGLShaderProgram, QOpenGLFunctions, and so on. For the complete list,
     refer to \l{Qt GUI C++ API}.
 
@@ -115,7 +115,7 @@
     This allows applications to read private keys from devices such as PKCS#11
     dongles, as illustrated by the \l{qsslkey example}
 
-    \section1 Qt Qml Changes
+    \section1 Qt QML Changes
     This is a new module in Qt 5 that provides the QML engine and the backend
     infrastructure.
 
@@ -166,7 +166,7 @@
 
     \section1 Qt Quick Changes
     This is a new module in Qt 5 which provides the visual canvas and
-    scenegraph backend as well as the QtQuick QML module for QML-based
+    scenegraph backend as well as the \c QtQuick QML module for QML-based
     application development.
 
     The module replaces the QDeclarative* equivalents in \e {QtQuick 1} with the

@@ -44,7 +44,7 @@
     decoration frame.  Although X provides a way to avoid this shift,
     some window managers fail to implement this feature.
 
-    When using QtWidgets, Qt provides functions that saves and restores a
+    When using \l{Qt Widgets}, Qt provides functions that saves and restores a
     widget window's geometry and state for you. QWidget::saveGeometry()
     saves the window geometry and maximized/fullscreen state, while
     QWidget::restoreGeometry() restores it. The restore function also
