@@ -53,10 +53,12 @@
     ./configure -prefix ~/home/user/Qt-5.1
     \endcode
 
-    \e{Shadow building} is when the Makefiles and libraries are built in a
-    separate directory. Shadow building preserves the source directory contents.
-    Note that the default installation directory is not modified when shadow
-    building. To shadow build, run configure in a clean directory.
+    \e{Shadow building} is when the Makefiles and libraries are not built in the
+    same directory as the source directory. Shadow building keeps the source
+    directory contents free of generated Makefiles and other intermediate
+    compilation files. Note that the default installation directory is not
+    modified when shadow building. To shadow build, run configure in a clean
+    directory.
 
     \code
     mkdir ~/Qt-builds
@@ -78,7 +80,7 @@
     \endcode
 
     It is also possible to set the shadow build directory and the installation
-    directory (set by the prefix option) in separate directories. This setup
+    directory (set by the prefix option) to separate directories. This setup
     will build Qt in a separate directory and install it into a different
     directory.
 
@@ -107,10 +109,10 @@
     include and exclude specific features, respectively, where \e{<feature>}
     is listed in the file \e{qtbase/src/corelib/global/qfeatures.txt}.
 
-    For example, to disable \l Accessibility, provide \c ACCESSIBILITY as the
-    argument:
+    For example, to disable \l Accessibility, provide \c -no-feature-accessibility
+    as the argument:
     \code
-    ./configure -no-feature ACCESSIBILITY
+    ./configure -no-feature-accessibility
     \endcode
 
     \note Features outside of \e qtbase are not included in the features list.
@@ -163,11 +165,11 @@
     \endtable
 
     It is also possible to disable support for these libraries by using
-    \c -no-qt instead of \c{-qt}. For example, to use the system's xcb library
+    \c -no instead of \c{-qt}. For example, to use the system's xcb library
     and disable zlib support, enter the following:
 
     \code
-    ./configure -no-qt-zlib -qt-libjpeg -qt-libpng -system-xcb
+    ./configure -no-zlib -qt-libjpeg -qt-libpng -system-xcb
     \endcode
 
     For a full list of options, consult the help with \c {configure -help}.
@@ -199,7 +201,7 @@
     Afterwards, the generated Makefiles will use the appropriate compiler
     commands.
 
-    \section1 Cross-Platform Options
+    \section1 Cross-Compilation Options
 
     To configure Qt for cross-platform development and deployment, the
     development toolchain for the target platform needs to be set up. This
@@ -212,14 +214,12 @@
     \li \c -device - a specific device or chipsets. The list of devices that configure is compatible with are
     found in \e{qtbase/mkspecs/devices}. For more information, visit the \l{http://qt-project.org/wiki/Category:Devices}{Devices}
     Wiki page.
-    \li \c -device-option - accepts specific environment variables. For example, \c{-device-option CROSS_COMPILE=}\e{<path-to-toolchain>} provides
+    \li \c -device-option - sets additional qmake variables. For example, \c{-device-option CROSS_COMPILE=}\e{<path-to-toolchain>} provides
     the environment variable, \c{CROSS_COMPILE}, as needed by certain devices.
     \endlist
 
-    \note Depending on the platform, specific Qt features must be disabled or
-    configured with different library versions or paths. For example, in Linux
-    host platforms, the sysroot and related environment variables depend on the
-    toolchain supported by the devices.
+    \note Toolchains for non-desktop targets often come with a so-called \e
+    sysroot which Qt needs to be configured against.
 
     \section2 Specific Options for Platforms
 
