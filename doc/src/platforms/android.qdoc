@@ -28,37 +28,52 @@
 /*!
 \page android_support.html
 \title Qt for Android
-\brief Provides information about Android support in Qt 5.
+\brief Provides information about Android support in Qt.
 
 Qt for Android enables you to run Qt 5 applications on devices with Android
-v2.3.3 (API level 10) or later. Here is a list of supported items:
+v2.3.3 (API level 10) or later. All Qt modules (essential and add-on) are
+supported except Qt WebKit, Qt Bluetooth, Qt NFC, Qt Positioning,
+Qt Serial Port, and the platform-specific ones (Qt Mac Extras,
+Qt Windows Extras, and Qt X11 Extras).
+
+The following list summarizes what you can do with Qt for Android:
+
 \list
- \li \l{Qt Widgets} and \l{QML Application Developer Resources}{QML}
-     applications
- \li QML media player functionality in \l{Qt Multimedia}
- \li A set of commonly used sensors with \l{Qt Sensors}
- \li Deploying your application to a device from
-     \l{Qt Creator Manual}{Qt Creator}
+ \li Run \l{Qt Widgets}{Widget} and
+     \l{QML Application Developer Resources}{QML} applications on the device
+     or emulator.
+ \li Handle \l{Qt Multimedia}{Multimedia} content in your Qt Quick 2
+     applications.
+ \li Get \l{Qt Sensors}{sensor} readings and react to the changes.
+ \li Develop secure applications using OpenSSL library.
+ \li Create and deploy Application Package (APK) using Qt Creator or the
+     command-line tool, \c{androiddeployqt}.
 \endlist
 
 \section1 Getting Started
 
-In order to use Qt for Android, you will need the following external tools:
+\section2 Requirements
+
+In order to use Qt for Android, you need the following:
 
 \list
 \li \l{http://developer.android.com/sdk/index.html}{The Android SDK Tools}
 \li \l{http://developer.android.com/tools/sdk/ndk/index.html}{The Android NDK}
 \li \l{http://ant.apache.org/bindownload.cgi}{Apache Ant} v1.8 or later
 \li \l{http://openjdk.java.net}{OpenJDK} v6 or later
-\li Android Debug Bridge (ADB) driver on the Windows platform to enable USB
-    debugging. The default USB driver on Windows does not allow debugging. You
-    can download the ADB driver from the device manufacturer's support website.
-    For example, the ADB driver for Google Nexus 7 can be downloaded from
-    \l{http://support.asus.com}.
+\li On Windows, you need the following additional installations:
+  \list
+    \li MinGW v4.8.0
+    \li Android Debug Bridge (ADB) driver on the Windows platform to enable USB
+        debugging. The default USB driver on Windows does not allow debugging.
+        You can download the ADB driver from the device manufacturer's support
+        website. For example, the ADB driver for Google Nexus 7 can be
+        downloaded from \l{http://support.asus.com}.
 
-    After installing the driver, try running a few basic
-    \l{http://developer.android.com/tools/help/adb.html}{adb} commands and check
-    whether your device responds to it.
+        After installing the driver, try running a few basic
+        \l{http://developer.android.com/tools/help/adb.html}{adb} commands and
+        check whether your device responds to it.
+  \endlist
 \endlist
 
 \note You must set the \c{JAVA_HOME} environment variable to the JDK install
@@ -77,21 +92,85 @@ to install:
  ./android update sdk
 \endcode
 
-After the Android SDK is updated, install the Qt 5.1 binaries using the
-\l{Qt Installation Program}{Qt installation program} or build the binaries from
-source and configure Qt Creator to develop for Android. For more information, see
-\l{Qt Creator: Connecting Android Devices}.
+\section2 Installing Qt for Android
 
-\note You must select at least one of the two Qt libraries for Android
-(x86 and ARMv7) from the \gui{Qt 5.1.0} component tree in the
-\gui{Select Components} page of \l{Qt Installation Program}
-{Qt installation program}. By default, Qt libraries for ARMv7 are selected.
+You can install the binary package for Qt 5.1 or later to get
+Qt for Android. The \l{Qt Installation Program}{installer} containing the
+binary packages are available for download from the
+\l{Opensource Downloads}{Qt project Downloads} page.
 
-Test your setup by running one of the desktop examples. You can list all the
-examples tested for Android using the \c{android} keyword in the search field
-under the \gui{Examples} tab in Qt Creator \gui{Welcome} mode.
+You can also choose to build the binaries from the Qt sources, that is,
+cross-compile Qt 5.x for Android on \l{Qt for Linux/X11}{Linux (X11)}
+, \l{Qt for Windows}{Windows}, and \l{Qt for Mac OS X}{Mac OS X} platforms.
+If you chose to do so, here is how you can do it:
+
+\list 1
+ \li Install the required tools, SDK, and the compiler toolchains listed in the
+     \l{Requirements} section.
+
+     \note Ensure that your build environment fulfills the requirement for the
+     platform (\l{Qt for Linux/X11}{Linux}, \l{Qt for Mac OS X}{Mac OS X}, and
+     \l{Qt for Windows}{Windows}) you have chosen.
+ \li Set the following environment variables if your build platform is Windows:
+     \list
+       \li \c{ANDROID_NDK_HOST=windows} or \c{windows-x86-64} depending on
+           which NDK you are using.
+       \li \c{PATH=%JAVA_HOME%\bin;<MINGW_ROOT>\bin;%PATH%}
+     \endlist
+ \li Download the Qt 5 sources either from the
+     \l{Opensource Downloads}{Downloads} page or from the Git
+     repository.
+
+     \note If you are downloading the sources from the Git repository, you
+     must initialize your Git clone using the \c{perl init-repository} command
+     to pull the latest sources for all the Qt 5.x modules. Ensure that you
+     have perl v5.14 or later installed.
+ \li Run the following command to configure the Qt 5.x sources to cross-compile
+     Qt for Android:
+
+     On Linux/X11 and Mac OS X:
+
+     \code
+        ./configure -developer-build -xplatform android-g++ -nomake tests -nomake examples -android-ndk <path/to/ndk> -android-sdk <path/to/sdk>
+        -android-toolchain-version <e.g. 4.8> -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
+     \endcode
+
+     On Windows:
+
+    \code
+        configure.bat -developer-build -platform win32-g++ -xplatform android-g++ -android-ndk <ANDROID_NDK_ROOT>
+        -android-sdk <ANDROID_SDK> -opensource -confirm-license -nomake tests -nomake examples -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
+    \endcode
+ \li Start the build by using the \c {make} or \c{mingw32-make} (on Windows)
+     utility with the \c{-j<N>} switch (used to speedup building).
+\endlist
+
+The binaries are installed to the \e{qtbase/bin} directory by default for the
+developer builds. You can check the install paths using the \c{qmake -query}
+command.
+
+\section2 Configuring Qt Creator
+
+After installing the Qt for Android binaries either using the installer or by
+cross-compiling, Qt Creator must be configured to start developing your first
+Qt application for Android.
+
+\note You must install Qt Creator separately (either using the stand-alone
+or Qt 5 installer provided by Qt project, or by building it from the source)
+if you built the Qt 5.x binaries from the sources. Use the 3.0 git branch if
+you are building it from the source.
+
+See \l{Qt Creator: Connecting Android Devices}{Qt Creator Manual} for
+instructions to configure and test your setup by creating a simple
+Qt Quick application. You can also try running an example on the Android target
+to test the setup. Use the \c{android} keyword in the search field under the
+\gui{Examples} tab in Qt Creator \gui{Welcome} mode to list all the examples
+tested for Android.
 
 \section1 Porting an Existing Qt Application
+
+In this section, we are going to port an existing Qt Application to Android
+and deploy it to the device.
 
 Most Qt applications should be portable to Android with ease, unless they
 depend on a specific hardware or software feature not supported by Android.
@@ -157,8 +236,8 @@ application to Android using the qrc approach:
      identifier.
  \li If your application uses imports or plugins which depend on special Qt
      modules, these Qt modules should be added to the .pro file. For example, if
-     your app uses the \l{Qt Multimedia} import in QML, you should add the
-     following to your .pro file:
+     your application uses the \l{Qt Multimedia} import in QML, you should add
+     the following to your .pro file:
      \code
      QT += multimedia
      \endcode
@@ -175,5 +254,6 @@ AVDs found.
  \li \l{Platform and Compiler Notes - Android}{Platform Notes}
  \li \l{Qt Creator: Deploying Applications to Android Devices}
  \li \l{Android GNU C++ run-time licensing}
+ \li \l{Deploying an Application on Android}
 \endlist
 */

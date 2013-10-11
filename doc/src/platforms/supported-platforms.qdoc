@@ -65,8 +65,7 @@
     Qt 5 will support all leading mobile operating systems. There already exists work in progress support for:
     \list
         \li \l{Qt for Android}{Android}
-        \li \l{iOS}
-        \li Windows 8 (WinRT)
+        \li \l{Qt for iOS}{iOS}
         \li \l{Qt for BlackBerry}{BlackBerry 10}
     \endlist
 
@@ -130,14 +129,16 @@
     are able to provide assistance with various different supported
     platforms and configurations.
 
-    \section1 Availability of Binary Installation Packages
+    \section1 Availability of Packages
 
     The Qt Project provides binary Qt installation packages for all of the
     reference platforms from \l{http://qt-project.org/downloads}. The site
-    provides download links for all supported development platforms.
+    provides download links for all supported development platforms. The
+    \l{Qt Installation Program} page has more information about the installers.
 
-    The \l{Qt Installation Program} page has more information about the
-    installers.
+    Source packages are also found in the downloads page.
+    The \l{Building Qt Sources} page has more information about compiling
+    Qt from the source packages.
 
     \section1 Deployment of Qt Applications
 
@@ -147,10 +148,11 @@
     \list
     \li \l{Deploying Qt Applications}
         \list
-            \li \l{Deploying an Application on X11 Platforms}
-            \li \l{Deploying an Application on Windows}
-            \li \l{Deploying an Application on Mac OS X}
-            \li \l{Qt Creator: Deploying Applications to Android Devices}{Deploying Applications to Android Devices}
+            \li \l{Platform and Compiler Notes - Android#Deployment}{Android}
+            \li \l{Qt for iOS}{iOS}
+            \li \l{Qt for Linux/X11 - Deployment}{Linux/X11}
+            \li \l{Qt for Mac OS X - Deployment}{Mac OS X}
+            \li \l{Qt for Windows - Deployment}{Windows}
         \endlist
     \endlist
 

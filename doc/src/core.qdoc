@@ -38,17 +38,27 @@ provided by Qt.
 
 \section1 Objects, Properties, and Events
 
-The QObject class forms the foundation of Qt's \l{object model} and is the
-parent class of many Qt classes. The object model introduces many mechanisms such
-as a \l{The Meta-Object System}{meta-object system} which allows run-time
-introspection, manipulation, and invocation of \l{The property
-system}{properties} and methods in the object. It also serves as the basis for
-Qt's \l{The Event System}{event system}, which is a low-level way of
-communicating between QObject-based objects. Another high-level form of
-communication is provided in Qt's \l{Signals & Slots} mechanism. These features
-can also be used in combination with \l{The State Machine Framework} which
-provides a formally defined and predictable way of managing the states of your
-application.
+The QObject class forms the foundation of Qt's object model and is the
+parent class of many Qt classes. The object model introduces many mechanisms
+such as a meta-object system which allows run-time introspection, manipulation,
+and invocation of properties and methods in the object. It also serves as the
+basis for Qt's event system, which is a low-level way of communicating between
+QObject-based objects. Another high-level form of communication is provided in
+Qt's signals and slots mechanism. These features can also be used in combination
+with the State Machine Framework which provides a formally defined and
+predictable way of managing the states of your application. In addition, QObject
+provides a simple timing mechanism with \l QObject::startTimer(). Alternatively,
+the QTimer class provides a high-level interface for timers.
+
+\list
+\li \l{Object Model}
+\li \l{The Meta-Object System}
+\li \l{The Property System}
+\li \l{The Event System}
+\li \l{Signals & Slots}
+\li \l{The State Machine Framework}
+\li \l{Timers}
+\endlist
 
 \section1 Container Classes
 
@@ -56,27 +66,40 @@ A \e container is a data structure whose instances are collections of other
 objects. Some examples of containers are: dynamic arrays, queues, linked
 lists, and associative arrays. Qt provides a set of general purpose,
 template-based container classes for structuring data in memory.
+
 See the full list of \l {Container Classes} for more details.
 
 \section1 Internationalization
 
-Qt uses \l{Unicode in Qt}{Unicode} for the encoding of displayable text strings.
-Unicode provides support for all commonly used writing systems in the world and
-is ideal for cross-platform development. Applications can also be written to
-support any number of different languages with one code base using Qt's powerful
-\l{Internationalization with Qt}{internationalization system}.
+Qt uses Unicode for the encoding of displayable text strings. Unicode provides
+support for all commonly used writing systems in the world and is ideal for
+cross-platform development. Applications can also be written to support any
+number of different languages with one code base using Qt's powerful
+internationalization system.
+
+\list
+\li \l{Unicode in Qt}
+\li \l{Internationalization with Qt}
+\endlist
 
 \section1 Inter-Process Communication
 
-Qt provides several classes to support \l{Inter-Process Communication in
-Qt}{communication between processes}. You can also launch and manage external
-processes using the \l{QProcess} class.
+Qt provides several classes to support communication between processes. You can
+also launch and manage external processes using the QProcess class.
+
+\list
+\li \l{Inter-Process Communication in Qt}
+\endlist
 
 \section1 Threading
 
-Qt supports \l{Thread Support in Qt}{primitives and convenience functionality}
-to manage \l{Threading Basics}{threads and parallelized code} in a safe and
+Qt provides functionality to manage threads and parallelized code in a safe and
 platform-independent way.
+
+\list
+\li \l{Threading Basics}
+\li \l{Thread Support in Qt}
+\endlist
 
 \section1 Platform Support
 
@@ -85,15 +108,22 @@ be compiled for and deployed on different platforms without any changes. In
 cases where you need to use platform-specific features and integrate with system
 libraries, Qt also provides solutions for this.
 
-Qt integrates with the windowing system on the target platform using \l{Qt
-Platform Abstraction} (QPA). QPA is an abstraction of a windowing system which
+Qt integrates with the windowing system on the target platform using Qt
+Platform Abstraction (QPA). QPA is an abstraction of a windowing system which
 makes porting Qt to new platforms simple and quick. One such system is the
-Wayland protocol. Qt can be used together with \l{Wayland Support in Qt}{
-Wayland} as light-weight windowing system on embedded hardware to support a
-multi-process graphical user interface.
+Wayland protocol. Qt can be used together with Wayland as a light-weight
+windowing system on embedded hardware to support a multi-process graphical user
+interface.
 
-The Qt Platform Abstraction uses \l{How to Create Qt Plugins}{Qt's plugin
-system}. This system provides APIs to extend Qt in specific areas (such as
-adding support for new image formats, database drivers, and so on) and also for
-writing your own extensible Qt applications which support third-party plugins.
+The Qt Platform Abstraction uses Qt's plugin system. This plugin system provides
+APIs to extend Qt in specific areas (such as adding support for new image
+formats, database drivers, and so on) and also for writing your own extensible
+Qt applications which support third-party plugins.
+
+\list
+\li \l{Qt Platform Abstraction}
+\li \l{Wayland Support in Qt}
+\li \l{Implementing Atomic Operations} - for new architectures
+\li \l{How to Create Qt Plugins}
+\endlist
 */

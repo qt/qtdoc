@@ -26,21 +26,75 @@
 ****************************************************************************/
 
 /*!
-\group installation
-\title Installation
-\brief Installing Qt on supported platforms.
+\page build-sources.html
+\title Building Qt Sources
+\brief Building Qt from the source packages
 
-The installation procedure is different on each Qt platform. This page provides
-information on how to install Qt, as well as software and hardware requirements
-for using Qt on each of the supported platforms. Please follow the instructions
-for your platform from the following list.
+There are two ways to install Qt:
+\list 1
+\li through the \l{Qt Installation Program} - downloads and installs Qt
+\li through the \e{Qt sources}. You can download the Qt 5 sources from \l{http://qt-
+project.org/downloads}.
+\endlist
+
+This page lists the relevant information for installing Qt by building the Qt
+sources. The installation procedure is different on each Qt platform. This page
+collects the relevant information for the \l{Supported Platforms}.
+
+\section1 General Installation Information
+
+Building Qt revolves around using \c configure to configure Qt for a particular
+platform with a particular set of Qt features or modules. For more information,
+visit the following page:
+
+\list
+\li \l{Qt Configure Options}
+\endlist
+
+\section1 Windows
+
+\list
+\li \l{Qt for Windows - Requirements}
+\li \l{Qt for Windows - Building from Source}
+\endlist
+
+\section1 Mac OSX
+
+\list
+\li \l{Qt for Mac OS X - Requirements}
+\li \l{Qt for Mac OS X - Building from Source}
+\endlist
+
+\section1 Linux/X11
+
+\list
+\li \l{Qt for X11 Requirements}
+\li \l{Qt for Linux/X11 - Building from Source}
+\endlist
+
+\section1 Windows CE
+
+\list
+\li \l{Qt for Windows CE Requirements}
+\li \l{Installing Qt for Windows CE}
+\endlist
+
+\section1 OpenSSL (version 1.0.0 or later)
+
+Support for \l{SSL}{Secure Sockets Layer (SSL)} communication is provided by the
+\l{OpenSSL Toolkit}, which must be obtained separately.
+
+From Qt version 5.2 onwards, the officially supported version for OpenSSL is 1.0.0
+or later. Versions >= 0.9.7 and < 1.0.0 might work, but are not guaranteed to.
+
+More information about enabling SSL support can be found in the
+\l{Secure Sockets Layer (SSL) Classes} document.
 
 */
 
 /*!
 \page install-wince.html
 \title Installing Qt for Windows CE
-\ingroup installation
 \ingroup qtce
 \brief How to install Qt for Windows CE.
 \previouspage Installation
@@ -119,46 +173,8 @@ in the \l{Qt for Windows CE Requirements} document.
 */
 
 /*!
-    \page requirements.html
-    \title General Qt Requirements
-    \ingroup installation
-    \brief Outlines the general requirements and dependencies needed to install Qt.
-
-    This page describes the specific requirements of libraries and components on which
-    Qt depends. For information about installing Qt, see the \l{Installation} page.
-
-    For information about the platforms that Qt supports, see the \l{Supported Platforms}
-    page.
-
-    \section1 OpenSSL (version 1.0.0 or later)
-
-    Support for \l{SSL}{Secure Sockets Layer (SSL)} communication is provided by the
-    \l{OpenSSL Toolkit}, which must be obtained separately.
-
-    From Qt version 5.2 onwards, the officially supported version for OpenSSL is 1.0.0
-    or later. Versions >= 0.9.7 and < 1.0.0 might work, but are not guaranteed to.
-
-    More information about enabling SSL support can be found in the
-    \l{Secure Sockets Layer (SSL) Classes} document.
-
-    \section1 Platform-Specific Requirements
-
-    Each platform has its own specific set of dependencies. Please see the relevant
-    page for more details about the components that are required to build and install
-    Qt on your platform.
-
-    \list
-    \li \l{Qt for Mac OS X Requirements}
-    \li \l{Qt for Windows CE Requirements}
-    \li \l{Qt for Windows Requirements}
-    \li \l{Qt for X11 Requirements}
-    \endlist
-*/
-
-/*!
     \page requirements-wince.html
     \title Qt for Windows CE Requirements
-    \ingroup installation
     \brief Setting up the Windows CE environment for Qt.
     \previouspage General Qt Requirements
 

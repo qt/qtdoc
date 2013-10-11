@@ -36,7 +36,7 @@
 
     \section1 TCP/IP
 
-    The cross-platform \l{QtNetwork} module provides classes that make
+    The cross-platform \l{Qt Network} module provides classes that make
     network programming portable and easy. It offers high-level
     classes (e.g., QNetworkAccessManager, QFtp) that communicate using
     specific application-level protocols, and lower-level classes
@@ -54,7 +54,7 @@
 
     \section1 D-Bus protocol
 
-    The \l{QtDBus} module is a Unix-only library you can use to
+    The \l{Qt D-Bus} module is a Unix-only library you can use to
     implement IPC using the D-Bus protocol. It extends Qt's
     \l{signalsandslots.html} {Signals and Slots} mechanism to the IPC
     level, allowing a signal emitted by one process to be connected to
@@ -69,5 +69,16 @@
     an API for monitoring and controlling the state of the child
     process. QProcess gives access to the input/output channels of child
     process by inheriting from QIODevice.
+
+    \section1 Session Management
+
+    In Linux/X11 platforms, Qt provides support for session management.
+    Sessions allow events to be propagated to processes, for example, to
+    notify when a shutdown occurs. The process and applications can then
+    perform any necessary operations such as save open documents.
+
+    \list
+    \li \l{Session Management}
+    \endlist
 
 */
