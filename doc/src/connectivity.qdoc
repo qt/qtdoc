@@ -165,24 +165,62 @@ Related Topics:
     \endlist
 \endlist
 
-*/
 
-/*
+\section1 Serial Port Communication
 
-  ### Add bluetooth back once we have bluetooth in qt5.git.
+The \l{Qt Serial Port} module provides a C++ API for communicating
+through serial ports, using the RS-232 standard. It works with physical
+ports and also with drivers that emulate these ports. Examples of serial
+port emulators include virtual COM ports, com0com emulators, and the
+Bluetooth SPP.
+
+This module is designed to make serial port programming easier and portable.
+As of Qt 5.2, it is supported on \l{Qt for Windows}{Windows}, \l{Qt for Mac
+OS X}{Mac OS X}, and \l{Qt for Linux/X11}{Linux}.
+
+Related topics:
+\list
+\li \l {Qt Serial Port} - module documentation
+\li \l {Qt Serial Port C++ Classes}
+\endlist
 
 \section1 Bluetooth Communication
 
-### Introduction to bluetooth support in Qt.
+The \l{Qt Bluetooth} module provides both C++ and QML APIs for the
+short-range (less than 100 meters) wireless protocol developed by the
+\l{http://www.bluetooth.org}{Bluetooth Special Interest Group}.
 
-Make sure the following links are reachable from this section, either directly or indirectly:
+As of Qt 5.2, this module is only available on \l{Qt for Linux/X11}{Linux}
+and \l{Qt for BlackBerry}{BlackBerry 10}.
 
+Related topics:
 \list
-\li \l {Qt Bluetooth C++ API}
-\li \l {Qt Bluetooth QML API}
-\li \l {Qt Bluetooth}
-\li \l {Qt Bluetooth Overview}
-\li \l {QBluetooth Namespace}
+\li \l {Qt Bluetooth} - module documentation
+    \list
+    \li \l {Qt Bluetooth Overview}
+    \li \l {Qt Bluetooth C++ Classes}
+    \li \l {Qt Bluetooth QML Types}
+    \endlist
+\endlist
+
+
+\section1 Near Field Communication
+
+The \l{Qt NFC} module provides both C++ and QML APIs for the extremely
+short-range (less than 20 centimeters) wireless protocol developed by the
+\l{http://www.nfc-forum.org}{NFC Forum}.
+
+As of Qt 5.2, this module is only available on \l{Qt for BlackBerry}
+{BlackBerry 10}.
+
+Related topics:
+\list
+\li \l {Qt NFC} - module documentation
+    \list
+    \li \l {Qt NFC Overview}
+    \li \l {Qt NFC C++ Classes}
+    \li \l {Qt NFC QML Types}
+    \endlist
 \endlist
 
 */
