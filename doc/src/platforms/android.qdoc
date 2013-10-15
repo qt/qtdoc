@@ -63,7 +63,7 @@ In order to use Qt for Android, you need the following:
 \li \l{http://openjdk.java.net}{OpenJDK} v6 or later
 \li On Windows, you need the following additional installations:
   \list
-    \li MinGW v4.8.0
+    \li MinGW v4.8.0 revision 2
     \li Android Debug Bridge (ADB) driver on the Windows platform to enable USB
         debugging. The default USB driver on Windows does not allow debugging.
         You can download the ADB driver from the device manufacturer's support
@@ -89,7 +89,7 @@ starts the \l{http://developer.android.com/sdk/installing/adding-packages.html}
 to install:
 
 \code
- ./android update sdk
+./android update sdk
 \endcode
 
 \section2 Installing Qt for Android
@@ -102,7 +102,7 @@ binary packages are available for download from the
 You can also choose to build the binaries from the Qt sources, that is,
 cross-compile Qt 5.x for Android on \l{Qt for Linux/X11}{Linux (X11)}
 , \l{Qt for Windows}{Windows}, and \l{Qt for Mac OS X}{Mac OS X} platforms.
-If you chose to do so, here is how you can do it:
+If you chose to do so, follow these instructions:
 
 \list 1
  \li Install the required tools, SDK, and the compiler toolchains listed in the
@@ -131,16 +131,21 @@ If you chose to do so, here is how you can do it:
      On Linux/X11 and Mac OS X:
 
      \code
-        ./configure -developer-build -xplatform android-g++ -nomake tests -nomake examples -android-ndk <path/to/ndk> -android-sdk <path/to/sdk>
-        -android-toolchain-version <e.g. 4.8> -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
+     ./configure -developer-build -xplatform android-g++ -nomake tests -nomake examples -android-ndk <path/to/ndk> -android-sdk <path/to/sdk>
+     -android-toolchain-version <e.g. 4.8> -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
      \endcode
 
      On Windows:
 
     \code
-        configure.bat -developer-build -platform win32-g++ -xplatform android-g++ -android-ndk <ANDROID_NDK_ROOT>
-        -android-sdk <ANDROID_SDK> -opensource -confirm-license -nomake tests -nomake examples -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
+    configure.bat -developer-build -platform win32-g++ -xplatform android-g++ -android-ndk <ANDROID_NDK_ROOT>
+    -android-sdk <ANDROID_SDK> -opensource -confirm-license -nomake tests -nomake examples -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
     \endcode
+
+     \note If you want to use OpenSSL in your application, use the \c{-openssl}
+     option with your \c configure command to build Qt binaries with runtime
+     support for OpenSSL. For more information about how to add OpenSSL support
+     to your application, see \l{Adding OpenSSL Support}.
  \li Start the build by using the \c {make} or \c{mingw32-make} (on Windows)
      utility with the \c{-j<N>} switch (used to speedup building).
 \endlist
@@ -167,7 +172,7 @@ to test the setup. Use the \c{android} keyword in the search field under the
 \gui{Examples} tab in Qt Creator \gui{Welcome} mode to list all the examples
 tested for Android.
 
-\section1 Porting an Existing Qt Application
+\section1 Porting a Qt Application
 
 In this section, we are going to port an existing Qt Application to Android
 and deploy it to the device.
@@ -210,7 +215,7 @@ application to Android using the qrc approach:
      directory relative to \c{main.qml}, use the following import statement:
 
      \code
-      import "contents" as Contents
+     import "contents" as Contents
      \endcode
  \li Identify all the resources used by your application and add them to one
      or more qrc files.
@@ -221,9 +226,9 @@ application to Android using the qrc approach:
      the \c{main.qml} file from \c{resources.qrc}, you can use the following
      code in your \c{main} function:
      \code
-      QQuickView viewer;
-      viewer.setSource(QUrl("qrc:qml/main.qml"));
-      viewer.show();
+     QQuickView viewer;
+     viewer.setSource(QUrl("qrc:qml/main.qml"));
+     viewer.show();
      \endcode
 
      \note QML documents can refer to the contents in qrc files using the
@@ -248,6 +253,50 @@ Qt Creator deploys your application on the Android device, if the
 device is detected by the PC. Otherwise, it tries to run the application on an
 AVD (Android Virtual Device). You will be prompted to create one if there are no
 AVDs found.
+
+\section1 Adding OpenSSL Support
+
+The Qt installation package does not ship the OpenSSL libraries due to legal
+restrictions in some countries. If you want to use OpenSSL in your application,
+you must build the OpenSSL libraries for Android and bundle them with your
+Application Package (APK) to ensure that your application behaves as expected
+on the device.
+
+\note If your development platform is Windows, you need \c msys with
+\c perl v5.14 or later to build OpenSSL.
+
+The following instructions guide you to add OpenSSL support to your application:
+\list 1
+ \li Download the latest OpenSSL sources from \l{ http://www.openssl.org/source}
+ \li Extract the sources to a folder and navigate to that folder using
+     the CLI (\c msys shell on Windows).
+ \li Set the following environment variables to point to the ARM compiler
+     toolchain and sysroot you want to use:
+     \code
+     CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
+     AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
+     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/android-<API_VER>/arch-arm/usr
+     \endcode
+ \li Configure the OpenSSL sources to build for Android (ARMv5 or ARMv7) using
+     the following command:
+
+     \code
+     ./Configure shared android or android-armv7
+     \endcode
+
+     \note You can also configure it for \e mips or \e x86 architectures.
+ \li Run \c{make build_libs} to build the \c libcrypto and \c libssl shared
+     libraries.
+ \li Open your Qt project using Qt Creator and update the
+     "Deployment Configuration" under run settings to add \e libcrypto and
+     \e libssl as additional libraries required for your project.
+ \li Run your application to see it running on the device.
+\endlist
+
+Qt Creator builds your application and creates an application package (APK)
+with the OpenSSL libraries bundled in it. Once the APK is ready, Qt Creator
+prompts you to choose the device to install the APK, and then you should
+see your application running on the device you selected.
 
 \section1 Related Information
 \list
