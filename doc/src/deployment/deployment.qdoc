@@ -477,10 +477,6 @@
     library folder and loaded on start-up. This can be used, for instance, to enable OpenSSL
     in your application. Simply set the paths to the required \c{libssl.so} and \c{libcrypto.so}
     libraries here and OpenSSL should be enabled automatically.
-    \li \c{QMAKE_SUPPORTED_ORIENTATIONS}: Used to set the supported orientation of your application.
-    You can set a single orientation to lock the orientation of the application, or you can leave
-    this blank to use the target's default. The supported values are: \e Portrait, \e Landscape,
-    \e InvertedLandscape and \e InvertedPortrait.
     \endlist
 
     \section1 Qt Creator
