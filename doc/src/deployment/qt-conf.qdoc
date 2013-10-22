@@ -30,17 +30,13 @@
 
     \title Using qt.conf
 
-    The \c qt.conf file overrides the hard-coded paths that are
-    compiled into the Qt library. These paths are accessible using the
-    QLibraryInfo class. Without \c qt.conf, the functions in
-    QLibraryInfo return these hard-coded paths; otherwise they return
-    the paths as specified in \c qt.conf.
+    You can use the \c qt.conf file to override paths or to specify arguments
+    to be passed to the platform plugins.
 
-    Without \c qt.conf, the Qt libraries will use the hard-coded paths
-    to look for plugins, translations, and so on. These paths may not
-    exist on the target system, or they may not be
-    accesssible. Because of this, you need \c qt.conf to make the Qt
-    libraries look elsewhere.
+    \section1 Format and Location
+
+    The \c qt.conf file is an INI text file, as described in the
+    \l {QSettings::Format}{QSettings} documentation.
 
     QLibraryInfo will load \c qt.conf from one of the following locations:
 
@@ -56,8 +52,21 @@
 
     \endlist
 
-    The \c qt.conf file is an INI text file, as described in the \l
-    {QSettings::Format}{QSettings} documentation. The file should have
+    \section1 Overriding Paths
+
+    The \c qt.conf file can be used to override the hard-coded paths that are
+    compiled into the Qt library. These paths are accessible using the
+    QLibraryInfo class. Without \c qt.conf, the functions in
+    QLibraryInfo return these hard-coded paths; otherwise they return
+    the paths as specified in \c qt.conf.
+
+    Without \c qt.conf, the Qt libraries will use the hard-coded paths
+    to look for plugins, translations, and so on. These paths may not
+    exist on the target system, or they may not be
+    accessible. Because of this, you may need \c qt.conf to make the Qt
+    libraries look elsewhere.
+
+    The file should have
     a \c Paths group which contains the entries that correspond to
     each value of the QLibraryInfo::LibraryLocation enum. See the
     QLibraryInfo documentation for details on the meaning of the
@@ -97,4 +106,16 @@
 
     \snippet snippets/code/doc_src_qt-conf.qdoc 0
 
+    \section1 Configuring Arguments to the Platform Plugins
+
+    The \c qt.conf may contain a \c Platforms group, whose keys are
+    comma-delimited lists of arguments to be passed to the platform
+    plugin. The key name is the name of the platform plugin with the
+    first letter upper-cased followed by \c Arguments.
+
+    For example:
+
+    \snippet snippets/code/doc_src_qt-conf.qdoc 1
+
+    would cause the Windows platform plugin to use the FreeType font engine.
 */
