@@ -91,8 +91,8 @@
 
     \snippet snippets/cmake/CMakeLists.pro 2
 
-    Plugins are also available as \c IMPORTED targets in CMake. The \l{QtNetwork}, \l{QtSql}, \l{QtGui}
-    and \l{QtWidgets} modules have plugins associated. They provide a list of plugins in the
+    Plugins are also available as \c IMPORTED targets in CMake. The \l{Qt Network}, \l{Qt SQL}, \l{Qt GUI}
+    and \l{Qt Widgets} modules have plugins associated. They provide a list of plugins in the
     \l{Qt5}\e{<Module>}\c{_PLUGINS} variable.
 
     \snippet snippets/cmake/CMakeLists.pro 7

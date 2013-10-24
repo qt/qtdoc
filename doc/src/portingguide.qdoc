@@ -48,8 +48,8 @@ The following list summarizes the changes in Qt 5:
        from the codebase.
    \li Platform defines - All platform-specific code must be wrapped using the
        preprocessor macro, \c{Q_OS_*} instead of \c{Q_WS_*}.
-   \li Qt Widgets - These are now part of a separate module,
-       \l{Qt Widgets}{QtWidgets}. They were part of \l{QtGui} earlier.
+   \li Widgets - These are now part of a separate module,
+       \l{Qt Widgets}. They were part of \l{Qt GUI} earlier.
    \li Qt Quick - The older Qt Quick version (1.0) is now part of a separate
        \l{http://qt-project.org/doc/qt-4.8/qtdeclarative.html}{Qt Declarative}
        add-on module for compatibility purposes. We recommend using the new Qt

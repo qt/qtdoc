@@ -57,7 +57,7 @@ The following sections lists the API changes in each module and provides recomme
        \li \c{QMetaType::unregisterType()} is removed.
        \li \l{QMetaType} now records whether the type argument inherits QObject.
             Such information can be useful for scripting APIs, so that custom QObject subclasses
-            are treated as QObject pointers. For example, in QtScript this
+            are treated as QObject pointers. For example, in \l{Qt Script} this
             means \l{QScriptValue.isQObject} can be true, where it was false before.
        \li \c{QMetaType::QWidgetStar} is removed. Use \l{qMetaTypeId<QWidget*>()}
            or \l{QVariant::canConvert<QWidget*>()} instead.
@@ -292,7 +292,7 @@ The following sections lists the API changes in each module and provides recomme
          \code
              #include <QtWebKitWidgets/QtWebKitWidgets>
          \endcode
-     \li A consequence of the module split is that classes of the QtWebKit API aren't all in the new module, so for a better
+     \li A consequence of the module split is that classes of the \l{Qt WebKit} API aren't all in the new module, so for a better
          compatibility of your application with both Qt4 and Qt5, #include <QtWebKit/QWebPage>, for example, should be included
          directly as:
          \code

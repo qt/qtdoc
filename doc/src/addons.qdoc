@@ -40,70 +40,70 @@ platforms supported by Qt.
 
 The following are the add-on modules available in the Qt SDK.
 
-\section1 Qt ActiveQt Module
+\section1 Active Qt Module
 
-The \l {Qt ActiveQt} Module provides support for ActiveX and COM on Windows platforms.
+The \l {Active Qt} module provides support for ActiveX and COM on Windows platforms.
 
 \section1 Qt Concurrent Module
 
-The \l {Qt Concurrent} Module provides APIs to make it simpler and safer to
-\l{Concurrent Programming}{write multi-threaded code} in a structured manner, enabling your
+The \l {Qt Concurrent} module provides APIs to make it simpler and safer to
+write multi-threaded code in a structured manner, enabling your
 application to better exploit the hardware resources of the platform where it is running.
 
 \section1 Qt Declarative Module
 
-The \l {Qt Declarative} Module provides APIs and tools to support code written in Qt Quick 1.
+The \l {Qt Declarative} module provides APIs and tools to support code written in Qt Quick 1.
 
 \section1 Qt Graphical Effects Module
 
-The \l {Qt Graphical Effects} Module is an extension to QtQuick which provides a ready-made set
+The \l {Qt Graphical Effects} module is an extension to \l{Qt Quick} which provides a ready-made set
 of shader effects to be used in QML. The module provides graphical effects such as blurring,
 colorization, drop shadows, and more.
 
 \section1 Qt Image Formats Module
 
-The \l {Qt Image Formats} Module contains plugins that provide support for an extended set of
+The \l {Qt Image Formats} module contains plugins that provide support for an extended set of
 image formats to Qt applications.
 
 \section1 Qt OpenGL Module
 
-The \l{Qt OpenGL} Module is primarily provided for compatibility with Qt 4. The essential
-\l{Qt Gui} Module provides a set of OpenGL classes which cover most use cases where you want to
+The \l{Qt OpenGL} module is primarily provided for compatibility with Qt 4. The essential
+\l{Qt GUI} module provides a set of OpenGL classes which cover most use cases where you want to
 mix Qt- and OpenGL-based code.
 
 \section1 Qt Print Support Module
 
-The \l {Qt Print Support} Module provides cross-platform APIs to make printing easy and portable.
+The \l {Qt Print Support} module provides cross-platform APIs to make printing easy and portable.
 Printing with Qt is done by using the same \l {QPainter} APIs which can also be used to
 paint on screen or on a \l {QImage}.
 
 \section1 Qt Script Module
 
-The \l {Qt Script} Module provides APIs to
+The \l {Qt Script} module provides APIs to
 \l{Making Applications Scriptable}{make Qt applications scriptable}. This
 module is primarily provided for compatibility with Qt 4, and to support applications that
-use the \l {Qt Declarative} Module. An alternative API is provided by the essential
-\l {Qt Qml} Module. For more information, see
-\l{Scripting Classes and Overviews}{the list of QtScript APIs}, or
-\l{Creating QtScript Extensions}{learn how to make your own extensions} to QtScript.
+use the \l {Qt Declarative} module. An alternative API is provided by the essential
+\l {Qt QML} module. For more information, see
+\l{Scripting Classes and Overviews}{the list of Qt Script APIs}, or
+\l{Creating Qt Script Extensions}{learn how to make your own extensions} to \l{Qt Script}.
 
 \section1 Qt SVG Module
 
 Scalable Vector Graphics, or "SVG", is an XML-based format for storing vector-based graphics.
-The \l {Qt SVG} Module provides APIs to render and save files in the SVG format, and supports
+The \l {Qt SVG} module provides APIs to render and save files in the SVG format, and supports
 a subset of the SVG 1.2 Tiny standard.
 
 \section1 Qt Tools Module
 
-The \l {Qt Tools} Module provides APIs related to the specific tools provided to make development
-with Qt easier. In particular there is the \l {Qt UI Tools} Module which provides classes to handle
-the forms created in Qt Designer and the \l {Qt Help} Module which can be used to integrate online
+The \l {Qt Tools} module provides APIs related to the specific tools provided to make development
+with Qt easier. In particular there is the \l {Qt UI Tools} module which provides classes to handle
+the forms created in Qt Designer and the \l {Qt Help} module which can be used to integrate online
 documentation in applications, similar to Qt Assistant.
 
 \section1 Qt XML Module
 
 The \l {Qt XML} Module is provided for compatibility with older code. It has been superseded by
-the QXmlStreamReader and QXmlStreamWriter classes in the \l {Qt Core} Module.
+the QXmlStreamReader and QXmlStreamWriter classes in the \l {Qt Core} module.
 
 For more information, read the section "XML Support in Qt" in the \l {Data Structure and Storage}
 overview.

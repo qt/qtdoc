@@ -289,7 +289,7 @@
     \section1 OpenGL Dependencies
 
     The configure script will autodetect if OpenGL headers and libraries are
-    installed on your system, and if so, it will include the QtOpenGL module
+    installed on your system, and if so, it will include the \l{Qt OpenGL} module
     in the Qt library.
 
     If your OpenGL headers or libraries are placed in a non-standard directory,
@@ -311,9 +311,9 @@
     distributions; try searching for \c gstreamer or \c libgstreamer in your
     distribution's package repository to find suitable packages.
 
-    \section1 QtWebKit Dependencies
+    \section1 WebKit Dependencies
 
-    QtWebKit depends on some extra development tools in addition to those required for the rest of Qt.
+    \l{Qt WebKit} depends on some extra development tools in addition to those required for the rest of Qt.
 
     \note These dependencies are only needed if you use a source version of Qt.
           They are not required when using a prebuilt library.
@@ -330,7 +330,7 @@
 
     These should be available in most major Linux distributions, but the exact install instructions will vary.
 
-    For the most up to date information about QtWebKit dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnLinux}{QtWebKit wiki for Linux}
+    For the most up to date information about \l{Qt WebKit} dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnLinux}{Qt WebKit wiki for Linux}
 
 */
 
@@ -712,7 +712,7 @@
     specific subdirectory (such as \c imageformats or \c sqldrivers)
     within your distribution directory, as described below.
 
-    \note If you are deploying an application that uses QtWebKit to display
+    \note If you are deploying an application that uses \l{Qt WebKit} to display
     HTML pages from the World Wide Web, you should include all text codec
     plugins to support as many HTML encodings possible.
 
@@ -795,7 +795,7 @@
        mode.
     \li Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
        known crash with "(0): internal error: 0_47021" when compiling
-       QtXmlPatterns, QtWebKit, and Designer in release mode. Version
+       \l{Qt XML Patterns}, \l{Qt WebKit}, and \l{Qt Designer} in release mode. Version
        10.1.017 compiles these modules correctly in release mode.
     \endlist
 
