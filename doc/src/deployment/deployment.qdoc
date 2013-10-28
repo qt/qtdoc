@@ -126,9 +126,9 @@
     Depending on configuration, compiler-specific libraries must be
     redistributed as well. For more information, see the
     platform-specific application dependencies for
-    \l{deployment-x11.html#application-dependencies}{X11},
-    \l{deployment-windows.html#application-dependencies}{Windows},
-    and \l{deployment-mac.html#application-dependencies}{Mac}.
+    \l{Qt for Linux/X11 - Deployment#Application Dependencies}{X11},
+    \l{Qt for Windows - Deployment#Application Dependencies}{Windows},
+    and \l{Qt for Mac OS X}{Mac OS X}.
 
     \section1 Licensing
 
@@ -144,12 +144,11 @@
     \table
     \header \li Qt Library \li Dependency
             \li Licensing Issue
-    \row    \li \l{QtHelp}     \li CLucene
+    \row    \li \l{QtHelp} \li CLucene
     \li The version of clucene distributed with Qt is licensed
     under the GNU LGPL version 2.1 or later. This has implications for
-    developers of closed source applications. Please see
-    \l{Qt Help Module#License Information}{the Qt Help module documentation}
-    for more information.
+    developers of closed source applications. Please see the
+    \l{Qt Help#License Information}{Qt Help} documentation for more information.
 
     \row    \li \l{QtNetwork}  \li OpenSSL
     \li Some configurations of QtNetwork use OpenSSL at run-time. Deployment
@@ -160,8 +159,8 @@
     \row    \li \l{QtWebKit}   \li WebKit
     \li WebKit is licensed under the GNU LGPL version 2 or later.
     This has implications for developers of closed source applications.
-    Please see \l{WebKit in Qt#License Information}{the Qt WebKit module
-    documentation} for more information.
+    Please see the \l{Qt WebKit Widgets#License Information}{Qt WebKit Widgets}
+    documentation for more information.
 
     \endtable
 
@@ -171,13 +170,13 @@
     various platforms:
 
     \list
-        \li \l{Deploying an Application on X11 Platforms}{Qt for X11 Platforms}
-        \li \l{Deploying an Application on Windows}{Qt for Windows}
-        \li \l{Deploying an Application on Mac OS X}{Qt for Mac OS X}
+        \li \l{Qt for Linux/X11 - Deployment}{Qt for X11 Platforms}
+        \li \l{Qt for Windows - Deployment}{Qt for Windows}
+        \li \l{Qt for Mac OS X#Deploying Applications on Mac OS X}{Qt for Mac OS X}
         \li \l{Deploying an Application on Android}{Qt for Android}
     \endlist
 
-    \sa {Deploying Translations}, Installation
+    \sa {Deploying Translations}
 */
 
 /*!

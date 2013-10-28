@@ -724,6 +724,7 @@
     \li \c{C:/customPath/plugins}
     \li \c{C:/Qt/%VERSION%/plugins}
     \li \c{E:/myApplication/directory}
+    \endlist
 
     The executable will look for the plugins in these directories and
     the same order as the QStringList returned by qApp->libraryPaths().

@@ -302,7 +302,7 @@
 
     \section1 Multimedia Dependencies
 
-    As described in the \l{Multimedia Overview}, Qt Multimedia uses the GStreamer multimedia
+    As described in the \l Multimedia overview, Qt Multimedia uses the GStreamer multimedia
     framework as the backend for audio and video playback on Linux. The minimum required
     version of GStreamer is 0.10.
 
@@ -311,7 +311,7 @@
     distributions; try searching for \c gstreamer or \c libgstreamer in your
     distribution's package repository to find suitable packages.
 
-    \section1 WebKit Dependencies
+    \section1 Qt WebKit Dependencies
 
     \l{Qt WebKit} depends on some extra development tools in addition to those required for the rest of Qt.
 
@@ -522,8 +522,7 @@
 
     We assume that you already have installed Qt as a shared library,
     which is the default when installing Qt, in the \c /path/to/Qt
-    directory. For more information on how to build Qt, see the \l
-    {Installation} documentation.
+    directory.
 
     \section2 Linking the Application to Qt as a Shared Library
 
