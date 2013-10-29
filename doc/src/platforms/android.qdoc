@@ -46,8 +46,7 @@ The following list summarizes what you can do with Qt for Android:
      applications.
  \li Get \l{Qt Sensors}{sensor} readings and react to the changes.
  \li Develop secure applications using OpenSSL library.
- \li Create and deploy Application Package (APK) using Qt Creator or the
-     command-line tool, \c{androiddeployqt}.
+ \li Create and deploy Application Package (APK) using Qt Creator.
 \endlist
 
 \section1 Getting Started
@@ -60,15 +59,14 @@ In order to use Qt for Android, you need the following:
 \li \l{http://developer.android.com/sdk/index.html}{The Android SDK Tools}
 \li \l{http://developer.android.com/tools/sdk/ndk/index.html}{The Android NDK}
 \li \l{http://ant.apache.org/bindownload.cgi}{Apache Ant} v1.8 or later
-\li \l{http://openjdk.java.net}{OpenJDK} v6 or later
+\li \l{http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html}{Java SE Development Kit} (JDK) v6 or later. You can also use \l{http://openjdk.java.net}{OpenJDK} on Linux.
 \li On Windows, you need the following additional installations:
   \list
     \li MinGW v4.8.0 revision 2
     \li Android Debug Bridge (ADB) driver on the Windows platform to enable USB
         debugging. The default USB driver on Windows does not allow debugging.
-        You can download the ADB driver from the device manufacturer's support
-        website. For example, the ADB driver for Google Nexus 7 can be
-        downloaded from \l{http://support.asus.com}.
+        For details about how to get the USB driver, see
+        \l{http://developer.android.com/sdk/win-usb.html}.
 
         After installing the driver, try running a few basic
         \l{http://developer.android.com/tools/help/adb.html}{adb} commands and
@@ -267,7 +265,7 @@ on the device.
 
 The following instructions guide you to add OpenSSL support to your application:
 \list 1
- \li Download the latest OpenSSL sources from \l{ http://www.openssl.org/source}
+ \li Download the latest OpenSSL sources from \l{ http://www.openssl.org/source}.
  \li Extract the sources to a folder and navigate to that folder using
      the CLI (\c msys shell on Windows).
  \li Set the following environment variables to point to the ARM compiler
@@ -275,7 +273,7 @@ The following instructions guide you to add OpenSSL support to your application:
      \code
      CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
      AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
-     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/android-<API_VER>/arch-arm/usr
+     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/android-9/arch-arm/usr
      \endcode
  \li Configure the OpenSSL sources to build for Android (ARMv5 or ARMv7) using
      the following command:
