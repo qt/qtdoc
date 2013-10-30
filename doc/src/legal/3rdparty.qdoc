@@ -51,7 +51,7 @@
 
     \tableofcontents
 
-    \section1 FreeType 2 (\c freetype) version 2.3.9
+    \section1 FreeType 2 (\c freetype) version 2.3.12
 
     \e{The FreeType project is a team of volunteers who develop free, portable
     and high-quality software solutions for digital typography. We specifically
@@ -189,10 +189,10 @@
     with respect to this software, its quality, accuracy, merchantability, or
     fitness for a particular purpose.  This software is provided "AS IS", and you,
     its user, assume the entire risk as to its quality and accuracy.
-    
+
     This software is copyright (C) 1991-2010, Thomas G. Lane, Guido Vollbeding.
     All Rights Reserved except as specified below.
-    
+
     Permission is hereby granted to use, copy, modify, and distribute this
     software (or portions thereof) for any purpose, without fee, subject to these
     conditions:\br
@@ -206,20 +206,20 @@
     (3) Permission for use of this software is granted only if the user accepts
     full responsibility for any undesirable consequences; the authors accept
     NO LIABILITY for damages of any kind.
-    
+
     These conditions apply to any software derived from or based on the IJG code,
     not just to the unmodified library.  If you use our work, you ought to
     acknowledge us.
-    
+
     Permission is NOT granted for the use of any IJG author's name or company name
     in advertising or publicity relating to this software or products derived from
     it.  This software may be referred to only as "the Independent JPEG Group's
     software".
-    
+
     We specifically permit and encourage the use of this software as the basis of
     commercial products, provided that all warranty or liability claims are
     assumed by the product vendor.
-    
+
     \hr
 
     The Graphics Interchange Format(c) is the Copyright property of
@@ -228,17 +228,16 @@
 
     \hr
 
-    See \c qtbase/src/3rdparty/libjpeg/README for license details.
-
     \section1 MD4 (\c md4.cpp and \c md4.h)
 
     \e{MD4 (RFC-1320) message digest.}\br
     \e{Modified from MD5 code by Andrey Panin <pazke@donpac.ru>
-    Written by Solar Designer <solar@openwall.com> in 2001, and placed in
-    the public domain.  There's absolutely no warranty.}
 
-    See \c qtbase/src/3rdparty/md4/md4.cpp and \c qtbase/src/3rdparty/md4/md4.h for more
-    information about the terms and conditions under which the code is
+    Written by Solar Designer <solar@openwall.com> in 2001, and placed in
+    the public domain.  There's absolutely no warranty.
+
+    See \c qtbase/src/3rdparty/md4/md4.cpp and \c qtbase/src/3rdparty/md4/md4.h
+    for more information about the terms and conditions under which the code is
     supplied.
 
     \section1 MD5 (\c md5.cpp and \c md5.h)
@@ -277,60 +276,60 @@
     Copyright (c) 2004, 2006-2011 Glenn Randers-Pehrson, and are
     distributed according to the same disclaimer and license as libpng-1.2.5
     with the following individual added to the list of Contributing Authors
-    
+
        Cosmin Truta
-    
+
     libpng versions 1.0.7, July 1, 2000, through 1.2.5 - October 3, 2002, are
     Copyright (c) 2000-2002 Glenn Randers-Pehrson, and are
     distributed according to the same disclaimer and license as libpng-1.0.6
     with the following individuals added to the list of Contributing Authors
-    
+
        Simon-Pierre Cadieux\br
        Eric S. Raymond\br
        Gilles Vollant
-    
+
     and with the following additions to the disclaimer:
-    
+
        There is no warranty against interference with your enjoyment of the
        library or against infringement.  There is no warranty that our
        efforts or the library will fulfill any of your particular purposes
        or needs.  This library is provided with all faults, and the entire
        risk of satisfactory quality, performance, accuracy, and effort is with
        the user.
-    
+
     libpng versions 0.97, January 1998, through 1.0.6, March 20, 2000, are
     Copyright (c) 1998, 1999 Glenn Randers-Pehrson, and are
     distributed according to the same disclaimer and license as libpng-0.96,
     with the following individuals added to the list of Contributing Authors:
-    
+
        Tom Lane\br
        Glenn Randers-Pehrson\br
        Willem van Schaik
-    
+
     libpng versions 0.89, June 1996, through 0.96, May 1997, are
     Copyright (c) 1996, 1997 Andreas Dilger
     Distributed according to the same disclaimer and license as libpng-0.88,
     with the following individuals added to the list of Contributing Authors:
-    
+
        John Bowler\br
        Kevin Bracey\br
        Sam Bushell\br
        Magnus Holmgren\br
        Greg Roelofs\br
        Tom Tanner
-    
+
     libpng versions 0.5, May 1995, through 0.88, January 1996, are
     Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.
-    
+
     For the purposes of this copyright and license, "Contributing Authors"
     is defined as the following set of individuals:
-    
+
        Andreas Dilger\br
        Dave Martindale\br
        Guy Eric Schalnat\br
        Paul Schmidt\br
        Tim Wegner
-    
+
     The PNG Reference Library is supplied "AS IS".  The Contributing Authors
     and Group 42, Inc. disclaim all warranties, expressed or implied,
     including, without limitation, the warranties of merchantability and of
@@ -338,25 +337,25 @@
     assume no liability for direct, indirect, incidental, special, exemplary,
     or consequential damages, which may result from the use of the PNG
     Reference Library, even if advised of the possibility of such damage.
-    
+
     Permission is hereby granted to use, copy, modify, and distribute this
     source code, or portions hereof, for any purpose, without fee, subject
     to the following restrictions:
-    
+
     1. The origin of this source code must not be misrepresented.
-    
+
     2. Altered versions must be plainly marked as such and must not
        be misrepresented as being the original source.
-    
+
     3. This Copyright notice may not be removed or altered from any
        source or altered source distribution.
-    
+
     The Contributing Authors and Group 42, Inc. specifically permit, without
     fee, and encourage the use of this source code as a component to
     supporting the PNG file format in commercial products.  If you use this
     source code in a product, acknowledgment is not required but would be
     appreciated.
-    
+
     \hr
 
     See \c qtbase/src/3rdparty/libpng/LICENSE for license details.
@@ -369,11 +368,22 @@
     See \c qtbase/src/3rdparty/sha1/sha1.cpp for more information about the terms and
     conditions under which the code is supplied.
 
+    \section1 SHA-3, originally known as Keccak.
+
+    \e{SHA-3, originally known as Keccak, is a cryptographic hash function designed
+    by Guido Bertoni, Joan Daemen, Michaël Peeters, and Gilles Van Assche,
+    building upon RadioGatún.}
+
+    Implementation by the designers, hereby denoted as "the implementer".
+
+    To the extent possible under law, the implementer has waived all copyright
+    and related or neighboring rights to the source code.
+    http://creativecommons.org/publicdomain/zero/1.0/
+
     \section1 SQLite (\c sqlite) version 3.7.17.0
 
     \e{SQLite is a small C library that implements a
     self-contained, embeddable, zero-configuration SQL database engine.}
-    -- quoted from \l{http://www.sqlite.org/}{www.sqlite.org}.
 
     According to the comments in the source files, the code is in the public
     domain. See the
@@ -383,8 +393,8 @@
     \section1 TIFF Software Distribution (\c libtiff) version 3.9.2
 
     \e {libtiff is a set of C functions (a library) that support the
-    manipulation of TIFF image files.} -- quoted from \c
-    qtimageformats/src/libtiff/html/libtiff.html
+    manipulation of TIFF image files.}
+    -- quoted from \c qtimageformats/src/libtiff/html/libtiff.html
 
     \hr
 
@@ -434,7 +444,7 @@
     Copyright (c( 1996 USAF Phillips Laboratory\br
     Additions (c) Richard Nolde 2006-2009
 
-    Permission to use, copy, modify, distribute, and sell this software and 
+    Permission to use, copy, modify, distribute, and sell this software and
     its documentation for any purpose is hereby granted without fee, provided
     that (i) the above copyright notices and this permission notice appear in
     all copies of the software and related documentation, and (ii) the names of
@@ -442,15 +452,15 @@
     publicity relating to the software without the specific, prior written
     permission of Sam Leffler and Silicon Graphics.
 
-    THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
-    EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
-    WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+    THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+    WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 
     IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
     ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
     OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-    WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
-    LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+    WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+    LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
     OF THIS SOFTWARE.
 
     \hr
@@ -479,7 +489,7 @@
     Copyright (c) 1996-1997 Sam Leffler\br
     Copyright (c) 1996 Pixar
 
-    Permission to use, copy, modify, distribute, and sell this software and 
+    Permission to use, copy, modify, distribute, and sell this software and
     its documentation for any purpose is hereby granted without fee, provided
     that (i) the above copyright notices and this permission notice appear in
     all copies of the software and related documentation, and (ii) the names of
@@ -487,15 +497,15 @@
     publicity relating to the software without the specific, prior written
     permission of Pixar, Sam Leffler and Silicon Graphics.
 
-    THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
-    EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
-    WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+    THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+    WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 
     IN NO EVENT SHALL PIXAR, SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
     ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
     OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-    WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
-    LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+    WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+    LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
     OF THIS SOFTWARE.
 
     \hr
@@ -517,17 +527,17 @@
     qtbase/src/3rdparty/zlib/README.
 
     \hr
-    
+
     Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler
-  
+
     This software is provided 'as-is', without any express or implied
     warranty.  In no event will the authors be held liable for any damages
     arising from the use of this software.
-  
+
     Permission is granted to anyone to use this software for any purpose,
     including commercial applications, and to alter it and redistribute it
     freely, subject to the following restrictions:
-  
+
     1. The origin of this software must not be misrepresented; you must not
        claim that you wrote the original software. If you use this software
        in a product, an acknowledgment in the product documentation would be
@@ -556,7 +566,8 @@
     REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
     OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
 
-    See \c qtscript/src/3rdparty/javascriptcore/JavaScriptCore/wtf/dtoa.cpp for license details.
+    See \c qtscript/src/3rdparty/javascriptcore/JavaScriptCore/wtf/dtoa.cpp
+    for license details.
 
     \hr
 
@@ -847,7 +858,6 @@
           interface}
     \li \e{Accurately sort history entries by site}
     \endlist
-    -- quoted from \l{publicsuffix.org}.
 
     The public suffix list is used inside Qt to avoid such "supercookies"
     mentioned above being set in the cookie jar supported by Qt (by the
@@ -870,7 +880,8 @@
        Workplace productivity editors and web browsers such as Firefox. The
        additional functionality includes support for rich text, tables,
        spreadsheets, Web 2.0 applications, and other large mainstream
-       applications.} -- quoted from \l{http://www.linuxfoundation.org/collaborate/workgroups/accessibility/iaccessible2}.
+       applications.}
+       -- quoted from \l{http://www.linuxfoundation.org/collaborate/workgroups/accessibility/iaccessible2}.
 
     \hr
 
@@ -1008,4 +1019,736 @@
     \list
     \li The ANGLE project in \c{qtbase/src/3rdparty/angle}
     \endlist
+    \hr
+
+    \hr
+    \section1 OpenGL (ES) 2.0
+
+    1.  “OpenGL” is not a generic name for a 3D graphics library or any
+        other product. OpenGL® is a trademark for specific application
+        programming interface software from Silicon Graphics, Inc. (“SGI”).
+    2.  Only SGI and its Conforming Licensees are authorized to use the
+        OpenGL® trademark and oval logo to identify their products.
+    3.  Others can use the OpenGL® trademark (but not the oval logo) to
+        refer to their products by following the “fair descriptive use” rules contained
+        in these guidelines.
+    4.  Use of the OpenGL® trademark and oval logo should always follow
+        the rules of proper trademark usage and acknowledgment contained in these
+        guidelines.
+    5.  All questions regarding use of the OpenGL® trademark and oval logo
+        should be referred to the SGI Legal Department.
+
+    \hr
+    \section1 Shift-JIS Text Codec
+
+    \c{Shift JIS (Shift Japanese Industrial Standards, also SJIS, MIME name Shift_JIS)
+    is a character encoding for Japanese. It was originally developed by
+    ASCII Corporation in conjunction with Microsoft.}
+
+    Copyright (C) 1999 Serika Kurusugawa. All rights reserved.
+    Redistribution and use in source and binary forms, with or without modifica-
+    tion, are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS". ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+    OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+    EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLI-
+    GENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 ISO 2022-JP (JIS) Text Codec
+
+    \e{ISO/IEC 2022 is an ISO standard specifying:
+    - a technique for including multiple character sets in a single character encoding
+      system, and
+    - a technique for representing these character sets in both 7 and 8 bit systems
+      using the same encoding.}
+
+    ISO-2022-JP is a widely used encoding for Japanese.
+
+    Copyright (C) 1999 Serika Kurusugawa. All rights reserved.
+    Redistribution and use in source and binary forms, with or without modifica-
+    tion, are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS". ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+    OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+    EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLI-
+    GENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 EUC-JP Text Codec
+
+    \e{EUC-JP is a variable-width encoding used to represent the elements of three
+    Japanese character set standards, namely JIS X 0208, JIS X 0212, and JIS X 0201.}
+
+    Copyright (C) 1999 Serika Kurusugawa. All rights reserved.
+    Redistribution and use in source and binary forms, with or without modifica-
+    tion, are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS". ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+    OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+    EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+    OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLI-
+    GENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 EUC-KR TextCodec
+
+    \e{Extended Unix Code (EUC) is a multibyte character encoding system used
+    primarily for Japanese, Korean, and simplified Chinese.
+    KR is a variable-width encoding to represent Korean text using two coded
+    character sets, KS X 1001 and KS X 1003.}
+
+    Copyright (C) 1999-2000 Mizi Research Inc. All rights reserved.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation and/or
+    other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+    SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 GBK Text Codec
+
+    \e{GBK is an extension of the GB2312 character set for simplified Chinese characters,
+    used in the People's Republic of China. GB is the abbreviation of Guojia Biaozhun
+    (国家标准), which means national standard in Chinese, while K stands for Extension
+    ("Kuozhan"). GBK not only extended the old standard GB2312 with Traditional Chinese
+    characters, but also with Chinese characters that were simplified after the establishment
+    of GB2312 in 1981. With the arrival of GBK, certain names with characters formerly
+    unrepresentable, like the "rong" (镕) character in former Chinese Premier Zhu Rongji's
+    name, are now representable.}
+
+    Copyright (C) 2000 TurboLinux, Inc. Written by Justin Yu and Sean Chen.
+    Copyright (C) 2001, 2002 Turbolinux, Inc. Written by James Su.
+    Copyright (C) 2001, 2002 ThizLinux Laboratory Ltd. Written by Anthony Fok.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation and/or
+    other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+    SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+    \hr
+    \section1 Big5 Text Codec
+
+    \e{Big5, or BIG-5, is a Chinese character encoding method used in Taiwan, Hong Kong,
+    and Macau for Traditional Chinese characters.  Mainland China, which uses
+    Simplified Chinese Characters, uses the GB character set instead.}
+
+    Copyright (C) 2000 Ming-Che Chuang
+    Copyright (C) 2002 James Su, Turbolinux Inc.
+    Copyright (C) 2002 Anthony Fok, ThizLinux Laboratory Ltd.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation and/or
+    other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+    SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 FFTReal version 2.11
+
+    This library is free software; you can redistribute it and/or modify it un-
+    der the terms of the GNU Library General Public License as published by the
+    Free Software Foundation; either version 2 of the License, or (at your option)
+    any later version.
+    This library is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more
+    details.
+    You should have received a copy of the GNU Library General Public License
+    along with this library; see the file COPYING.LIB. If not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+    \hr
+    \section1 DES (des.cpp)
+
+    Implementation of DES encryption for NTLM
+    Copyright 1997-2005 Simon Tatham.
+    This software is released under the MIT license.
+
+    \hr
+    \section1 Bison Parser 2.3a
+
+    A Bison parser, made by GNU Bison 2.3a.
+
+    Skeleton implementation for Bison's Yacc-like parsers in C
+
+    Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+    Free Software Foundation, Inc.
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2, or (at your option)
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110-1301, USA.
+
+    As a special exception, you may create a larger work that contains part or
+    all of the Bison parser skeleton and distribute that work under terms of your
+    choice, so long as that work isn't itself a parser generator using the skeleton
+    or a modified version thereof as a parser skeleton. Alternatively, if you modify
+    or redistribute the parser skeleton itself, you may (at your option) remove this
+    special exception, which will cause the skeleton and the resulting Bison output
+    files to be licensed under the GNU General Public License without this special
+    exception.
+
+    This special exception was added by the Free Software Foundation in
+    version 2.2 of Bison.
+    -- quoted from qtxmlpatterns/src/xmlpatterns/parser/qquerytransformparser.cpp
+
+    \hr
+    \section1 PowerVR
+
+    Copyright : Copyright (c) Imagination Technologies Limited.
+    This specification is protected by copyright laws and contains material proprietary
+    to Imagination Technologies Limited.
+    You may use and distribute this specification free of charge for implementing
+    the functionality therein, without altering or removing any trademark, copyright,
+    or other notice from the specification.
+
+    \hr
+    \section1 Cycle
+
+    Copyright (c) 2003, 2006 Matteo Frigo
+    Copyright (c) 2003, 2006 Massachusetts Institute of Technology
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+    of the Software, and to permit persons to whom the Software is furnished to do
+    so, subject to the following conditions:
+      The above copyright notice and this permission notice shall be included in
+      all copies or substantial portions of the Software.
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+      WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+      CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    \hr
+    \section1 TSCII Text Codec
+
+    The TSCII codec provides conversion to and from the Tamil TSCII encoding.
+
+    TSCII, formally the Tamil Standard Code Information Interchange specification,
+    is a commonly used charset for Tamils.
+
+    This codec uses the mapping table found at http://www.geocities.com/Athens/5180/tsciiset.html.
+    Tamil uses composed Unicode which might cause some problems if you are using
+    Unicode fonts instead of TSCII fonts.
+
+    Copyright (c) 2000 Hans Petter Bieker. All rights reserved.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS" AND ANY
+    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR
+    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+    USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    \hr
+    \section1 Drag and Drop
+
+    Copyright 1996 Daniel Dardailler.
+    Permission to use, copy, modify, distribute, and sell this software for any
+    purpose is hereby granted without fee, provided that the above copyright
+    notice appear in all copies and that both that copyright notice and this
+    permission notice appear in supporting documentation, and that the name of
+    Daniel Dardailler not be used in advertising or publicity pertaining to
+    distribution of the software without specific, written prior permission.
+    Daniel Dardailler makes no representations about the suitability of this
+    software for any purpose. It is provided "as is" without express or implied
+    warranty.
+    Modifications Copyright 1999 Matt Koss, under the same license as above.
+
+    \hr
+    \section1 TestLib\Valgrind:
+
+    Copyright (C) 2000-2007 Julian Seward.  All rights reserved.
+    License:
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+    2. The origin of this software must not be misrepresented; you must not claim
+    that you wrote the original software. If you use this software in a product, an
+    acknowledgment in the product documentation would be appreciated but is not
+    required.
+    3. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+    4. The name of the author may not be used to endorse or promote products derived
+    from this software without specific prior written permission.
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIEDWARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+    SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+    OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+    IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+    OF SUCH DAMAGE.
+
+    \hr
+    \section1 valgrind.h specific license
+
+    Notice that the following BSD-style license applies to this one
+    file (valgrind.h) only.  The rest of Valgrind is licensed under the
+    terms of the GNU General Public License, version 2, unless
+    otherwise indicated.  See the COPYING file in the source
+    distribution for details.
+
+    ----------------------------------------------------------------
+
+    This file is part of Valgrind, a dynamic binary instrumentation
+    framework.
+
+    Copyright (C) 2000-2007 Julian Seward.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. The origin of this software must not be misrepresented; you must
+       not claim that you wrote the original software.  If you use this
+       software in a product, an acknowledgment in the product
+       documentation would be appreciated but is not required.
+
+    3. Altered source versions must be plainly marked as such, and must
+       not be misrepresented as being the original software.
+
+    4. The name of the author may not be used to endorse or promote
+       products derived from this software without specific prior written
+       permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    ----------------------------------------------------------------
+
+    Notice that the above BSD-style license applies to this one file
+    (valgrind.h) only.  The entire rest of Valgrind is licensed under
+    the terms of the GNU General Public License, version 2.  See the
+    COPYING file in the source distribution for details.
+
+    \hr
+    \section1 Callgrind
+
+    Callgrind, an extension to Cachegrind created by Josef Weidendorfer which
+    produces more information about callgraphs. It was folded into the mainline
+    version of Valgrind in version 3.2.0. KCacheGrind is capable of visualizing
+    output from Callgrind as well as Cachegrind.
+
+    \hr
+    \section1 callgrind.h specific license
+
+    Notice that the following BSD-style license applies to this one
+    file (callgrind.h) only.  The rest of Valgrind is licensed under the
+    terms of the GNU General Public License, version 2, unless
+    otherwise indicated.  See the COPYING file in the source
+    distribution for details.
+
+    ----------------------------------------------------------------
+
+    This file is part of callgrind, a valgrind tool for cache simulation
+    and call tree tracing.
+
+    Copyright (C) 2003-2007 Josef Weidendorfer.  All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. The origin of this software must not be misrepresented; you must
+       not claim that you wrote the original software.  If you use this
+       software in a product, an acknowledgment in the product
+       documentation would be appreciated but is not required.
+
+    3. Altered source versions must be plainly marked as such, and must
+       not be misrepresented as being the original software.
+
+    4. The name of the author may not be used to endorse or promote
+       products derived from this software without specific prior written
+       permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+
+    \hr
+    \section1 Stack-less Just-In-Time compiler
+
+    Copyright 2009-2012 Zoltan Herczeg (hzmester@freemail.hu). All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification, are
+    permitted provided that the following conditions are met:
+
+      1. Redistributions of source code must retain the above copyright notice, this list of
+         conditions and the following disclaimer.
+
+      2. Redistributions in binary form must reproduce the above copyright notice, this list
+         of conditions and the following disclaimer in the documentation and/or other materials
+         provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER(S) AND CONTRIBUTORS ``AS IS'' AND ANY
+    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+    OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+    SHALL THE COPYRIGHT HOLDER(S) OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    --quoted from qtbase/src/3rdparty/pcre/sljit/sljitLir.c
+
+    \hr
+    \section1 xcb
+
+    Copyright (C) 2001-2006 Bart Massey, Jamey Sharp, and Josh Triplett.
+    All Rights Reserved.
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    Except as contained in this notice, the names of the authors or their
+    institutions shall not be used in advertising or otherwise to promote the
+    sale, use or other dealings in this Software without prior written
+    authorization from the authors
+
+    \hr
+    \section1 Botan version 1.8.8
+
+    \{Botan is a C++ crypto library.}
+
+    Copyright (C) 1999-2004 The Botan Project. All rights reserved.
+    Copyright (C) 1999-2009 Jack Lloyd
+    2001 Peter J Jones
+    2004-2007 Justin Karneges
+    2005 Matthew Gregan
+    2005-2006 Matt Johnston
+    2006 Luca Piccarreta
+    2007 Yves Jerschow
+    2007-2008 FlexSecure GmbH
+    2007-2008 Technische Universitat Darmstadt
+    2007-2008 Falko Strenzke
+    2007-2008 Martin Doering
+    2007 Manuel Hartl
+    2007 Christoph Ludwig
+    2007 Patrick Sona
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions, and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions, and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY THE AUTHOR(S) "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO
+    EVENT SHALL THE AUTHOR(S) OR CONTRIBUTOR(S) BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    The source code of Botan C++ crypto library can be found in
+    QtCreator/src/libs/3rdparty
+
+    \hr
+    \section1 at-spi and at-spi2
+
+    \e{at-spi provides a Service Provider Interface for the Assistive Technologies
+    available on the GNOME platform and a library against which applications
+    can be linked.}
+
+    The AT-SPI package is a part of the GNOME Accessibility Project.
+    (http://developer.gnome.org/projects/gap)
+
+    Copyright 2010, 2011 Novell, Inc.
+    Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public
+    License along with this library; if not, write to the
+    Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+    \hr
+    \section1 Poly2tri
+    \e{Poly2Tri is a sweepline constrained Delaunay Polygon Triangulation Library.}
+
+    \code
+    Poly2Tri Copyright (c) 2009-2010, Poly2Tri Contributors
+    http://code.google.com/p/poly2tri/
+
+    All rights reserved.
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    * Neither the name of Poly2Tri nor the names of its contributors may be
+      used to endorse or promote products derived from this software without specific
+      prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    \endcode
+
+    -- quoted from qtlocation/src/3rdparty/poly2tri/LICENSE
+
+
+    \hr
+    \section1 Easing Equations
+
+    \e{Easing Equations is a collection of swappable functions that add
+    flavor to motion.}
+
+    Disclaimer for Robert Penner's Easing Equations license:
+
+    TERMS OF USE - EASING EQUATIONS
+
+    Open source under the BSD License.
+
+    Copyright © 2001 Robert Penner
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without modification,
+    are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    * Neither the name of the author nor the names of contributors may be used
+      to endorse or promote products derived from this software without specific
+      prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    -- quoted from qtbase/src/3rdparty/easing/easing.cpp
+
+    \hr
+    \section1  xkbcommon
+
+    \e{xkbcommon is a library to handle keyboard descriptions, including loading
+    them from disk, parsing them and handling their state. It's mainly meant
+    for client toolkits, window systems, and other system applications}
+
+    Copyright © 2013 Auke Booij
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice (including the next
+    paragraph) shall be included in all copies or substantial portions of the
+    Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+    -- quoted from libxkbcommon.0.3.1.tar.xz, the latest package available
+       on xkbcommon.org
+    \hr
+    \section1 Clucene Core Library
+
+    \e{CLucene is a C++ port of Lucene.  It is a high-performance, full-
+    featured text search engine written in C++. CLucene is faster than lucene
+    as it is written in C++.}
+    -- quoted from \c qttools/src/assistant/3rdparty/clucene/README.
+
+
+    The CLucene Core Library uses a dual license strategy for the source code.
+    These licenses are the GNU Lesser General Public License (LGPL) and the Apache
+    License (Version 2.0). Users can choose the license they wish to distribute
+    their software under. This means that you do not need to abide by *both*
+    licenses, but rather than you can choose the license which most suits your
+    needs.
+
+    To rephrase this and to make it perfectly clear:
+    CLucene is distributed under the GNU Lesser General Public License (LGPL)
+            *or*
+    the Apache License, Version 2.0
+
+    However, we are an open source project, and we encourage users to use the LGPL
+    license and participate fully in the free software community. Dual licensing
+    of the CLucene source code provides open and free access to the technology both
+    for the GPL community and for other developers or companies that cannot use the
+    GPL.
+
+    You can freely modify, extend, and improve the CLucene source code. The only
+    question is whether or not you must provide the source code and contribute
+    modifications to the community. The GNU and Apache licenses allow different
+    ranges of flexibility in this regard, but in the end, regardless of the license
+    used, we highly recommend that you submit any bugs, incompatibilities or
+    added features.
+
+    Note that this same license does *not* apply to the CLucene Contributions
+    package. You should read the COPYING file in that directory or package for
+    more information.
 */
