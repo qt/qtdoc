@@ -467,15 +467,6 @@
      AndroidManifest.xml, etc.) to your project, make sure you copy them from the package template,
      which is located in \c{$QT/src/android/java}. You should never copy any files from the build
      directory, as these files have been altered to match the current build settings.
-    \li \c{ANDROID_PACKAGE}: The package name of the application, used to uniquely identify it on
-    devices and in market places. A default will be generated if this is left out.
-    \li \c{ANDROID_MINIMUM_VERSION}: The minimum API level required to run the application. The
-    default is API level 9, which is the minimum version required by Qt.
-    \li \c{ANDROID_TARGET_VERSION}: The targeted API level of the application. This affects the
-    activation of some compatibility features in the OS. The default is 14, which means that the
-    overflow button in the system navigation bar will not be enabled by default.
-    \li \c{ANDROID_APP_NAME}: The name of the application as it appears in the application menu on
-    the target.
     \li \c{ANDROID_EXTRA_LIBS}: A list of external libraries that will be copied into your application's
     library folder and loaded on start-up. This can be used, for instance, to enable OpenSSL
     in your application. Simply set the paths to the required \c{libssl.so} and \c{libcrypto.so}
