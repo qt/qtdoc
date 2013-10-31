@@ -463,6 +463,10 @@
     instance, want to make a custom \c{AndroidManifest.xml} for your application, then place this
     directly into the folder specified in this variable. You can also add custom Java files in
     \c{ANDROID_PACKAGE_SOURCE_DIR/src}.
+    \note When adding custom versions of the build files (like strings.xml, libs.xml,
+     AndroidManifest.xml, etc.) to your project, make sure you copy them from the package template,
+     which is located in \c{$QT/src/android/java}. You should never copy any files from the build
+     directory, as these files have been altered to match the current build settings.
     \li \c{ANDROID_PACKAGE}: The package name of the application, used to uniquely identify it on
     devices and in market places. A default will be generated if this is left out.
     \li \c{ANDROID_MINIMUM_VERSION}: The minimum API level required to run the application. The
