@@ -116,7 +116,7 @@
     \section1 OpenGL Special Considerations
 
     Qt for Android provides two separate platform plugins: One which is suited for traditional
-    \l{Qt Widget}{widget-based} apps that do not require OpenGL support, and one which will be used
+    \l{Qt Widgets}{widget-based} apps that do not require OpenGL support, and one which will be used
     when OpenGL is required. When building and deploying your app, Qt Creator will detect whether the
     OpenGL-enabled plugin is required by checking if your app depends on either the \l{Qt OpenGL}
     module or the \l{Qt Quick} module.
