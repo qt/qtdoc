@@ -65,25 +65,26 @@
     applications on a device and publishing your applications in the
     App Store, you must join the iOS Developer Program, see
     \l{https://developer.apple.com/programs/ios/} for further
-    information.
+    information. This includes setting up developer certificates and
+    provisioning profiles. The easiest solution is to use a profile
+    that takes any App ID (a \c *).
 
-    After testing that Xcode is set up correctly, for example, by
-    running one of the standard Xcode app templates, we can build Qt.
-    This is done from the Qt 5 top directory, like so:
+    Before building Qt or any applications, you should test that Xcode
+    is set up correctly, for example, by running one of the standard
+    Xcode app templates.
+
+    We can then build Qt. This is done from the Qt 5 top directory,
+    like so:
 
     \code
         > ./configure -xplatform macx-ios-clang -developer-build -release
     \endcode
 
-    It is currently not possible with a single build for use
-    with both the simulator and devices. If you want to build for the
-    simulator, use the \c{-sdk} argument.
-
-    \code
-        > ./configure -xplatform macx-ios-clang -developer-build -release -sdk iphonesimulator
-    \endcode
-
     Then simply run \c{make}.
+
+    \note A default build will include both simulator and device
+    libraries. If you want to build for a single target, use the \c
+    -sdk argument with either \c iphoneos or \c iphonesimulator.
 
     \section2 Building Applications
 
@@ -114,6 +115,19 @@
     In Qt Creator, tested examples on iOS can be looked up. Use the \c ios
     keyword to search for examples in the Qt Creator Welcome mode. Note that
     some examples may have limited functionality.
+
+    \section1 Using Objective-C Code in Qt Applications
+
+    Clang, the compiler used for iOS applications, allows mixing C++
+    and Objective-C code; you only have to suffix files containing
+    both languages with \c .mm. Note that this makes it possible to
+    use frameworks from Apple's iOS Developer Library in Qt
+    applications. Most useful is perhaps the possibility for adding
+    In-App Purchasing with the StoreKit framework.
+
+    We currently have one example that mixes Objective-C and C++ code.
+    You can check it out
+    \l{https://github.com/richardmg/qtdd13_qmlapp}{here}.
 
 */
 
