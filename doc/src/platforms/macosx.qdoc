@@ -141,7 +141,7 @@
     can be used as a starting point for app store deployment.
 
     \list
-    \li {Qt for Mac OS X - Deployment}
+    \li \l{Qt for Mac OS X - Deployment}
     \endlist
 
     \section1 Mac OS X Issues
@@ -915,7 +915,8 @@
     best location is to put them under Contents/Plugins. When we built
     the Plug & Paint plugins, based on the \c DESTDIR variable in their \c .pro
     file, the plugins' \c .dylib files are in the \c plugins subdirectory
-    under the \c plugandpaint directory. We just have to move this director.
+    under the \c plugandpaint directory. We just have to move this directory
+    to the correct location.
 
     \snippet snippets/code/doc_src_deployment.qdoc 43
 
@@ -1007,11 +1008,18 @@
 
     \section2 Qt Plugins
 
+    All Qt GUI applications require a plugin that implements the \l {Qt
+    Platform Abstraction} (QPA) layer in Qt 5. For Mac OS X, the name of the
+    platform plugin is \c {libqcocoa.dylib}. This file must be located within a
+    specific subdirectory (by default, \c platforms) under your distribution
+    directory. Alternatively, it is possible to adjust the search path Qt
+    uses to find its plugins, as described below.
+
     Your application may also depend on one or more Qt plugins, such as the JPEG
     image format plugin or a SQL driver plugin. Be sure to distribute any Qt
-    plugins that you need with your application. Each type of plugin must be
-    located within a specific subdirectory (such as \c imageformats or \c
-    sqldrivers) in your distribution directory, as described below.
+    plugins that you need with your application. Similar to the platform plugin,
+    each type of plugin must be located within a specific subdirectory (such as
+    \c imageformats or \c sqldrivers) in your distribution directory.
 
     When deploying an application that uses Qt WebKit to display HTML pages from
     the World Wide Web, you must include all text codec plugins to support as
@@ -1090,14 +1098,16 @@
     frameworks.
 
     The mac deployment tool also deploys the Qt plugins, according
-    to the following rules:
+    to the following rules (unless \c {-no-plugins} option is used):
     \list
+    \li The platform plugin is always deployed.
     \li Debug versions of the plugins are not deployed.
     \li The designer plugins are not deployed.
-    \li The Image format plugins are always deployed.
+    \li The image format plugins are always deployed.
+    \li The print support plugin is always deployed.
     \li SQL driver plugins are deployed if the application uses the \l{Qt SQL} module.
     \li Script plugins are deployed if the application uses the \l{Qt Script} module.
-    \li The svg icon plugin is deployed if the application uses the \l{Qt SVG} module.
+    \li The SVG icon plugin is deployed if the application uses the \l{Qt SVG} module.
     \li The accessibility plugin is always deployed.
     \endlist
 
@@ -1105,11 +1115,33 @@
     into the bundle manually, after the bundle is created.
 
     \c macdeployqt supports the following options:
-    \list
-    \li \c{-no-plugins}: Skip plugin deployment
-    \li \c{-dmg}       : Create a .dmg disk image
-    \li \c{-no-strip}  : Don't run 'strip' on the binaries
-    \endlist
+    \table
+    \header
+        \li Option
+        \li Description
+    \row
+        \li \c{-verbose=<0-3>}
+        \li 0 = no output, 1 = error/warning (default), 2 = normal, 3 = debug
+    \row
+        \li \c{-no-plugins}
+        \li Skip plugin deployment
+    \row
+        \li \c{-dmg}
+        \li Create a .dmg disk image
+    \row
+        \li \c{-no-strip}
+        \li Don't run 'strip' on the binaries
+    \row
+        \li \c{-use-debug-libs}
+        \li Deploy with debug versions of frameworks and plugins (implies
+            \c{-no-strip})
+    \row
+        \li \c{-executable=<path>}
+        \li Let the given executable also use the deployed frameworks
+    \row
+        \li \c{-qmldir=<path>}
+        \li Deploy imports used by .qml files in the given path
+    \endtable
 */
 
 /*!
