@@ -789,7 +789,7 @@ The QML engine does some tricky things to try to ensure that loading and initial
 components doesn't cause frames to be skipped. However, there is no better way to reduce
 startup time than to avoid doing work you don't need to do, and delaying the work until
 it is necessary. This may be achieved by using either \l Loader or creating components
-\l {qtqml-javascript-dynamicobjects.html}{dynamically}.
+\l {Dynamic QML Object Creation from JavaScript}{dynamically}.
 
 \section3 Using Loader
 
@@ -808,8 +808,8 @@ The Loader is an element which allows dynamic loading and unloading of component
 Developers can use the Qt.createComponent() function to create a component dynamically at
 runtime from within JavaScript, and then call createObject() to instantiate it. Depending
 on the ownership semantics specified in the call, the developer may have to delete the
-created object manually. See \l{qtqml-javascript-dynamicobjects.html}
-{Dynamic Object Management in QML} for more information.
+created object manually. See \l{Dynamic QML Object Creation from JavaScript} for more
+information.
 
 \section2 Destroy Unused Elements
 

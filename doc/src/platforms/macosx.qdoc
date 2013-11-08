@@ -135,13 +135,14 @@
     A common way to distribute applications is to provide a compressed disk
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c
     macdeployqt (available from the Mac OS X installers), can be used to create
-    the self-contained bundles, and optionally also create a .dmg archive. See
-    the \l{Deploying an Application on Mac OS X}{Mac deployment guide} for more
-    information about deployment.
-
+    the self-contained bundles, and optionally also create a .dmg archive.
     Applications can also be distributed through the Mac App store. Qt 5 aims
     to stay within the app store sandbox rules. macdeployqt (bin/macdeployqt)
     can be used as a starting point for app store deployment.
+
+    \list
+    \li {Qt for Mac OS X - Deployment}
+    \endlist
 
     \section1 Mac OS X Issues
 
@@ -172,7 +173,6 @@
     \page macosx-requirements.html
     \title Qt for Mac OS X - Requirements
     \brief Setting up the Mac OS X environment for Qt.
-    \previouspage General Qt Requirements
 
     Qt requires Xcode to be installed on the system. You can get it from:
 
@@ -428,7 +428,7 @@
     deployment of applications.
 
     Qt provides a deploy tool, \l{The Mac Deployment Tool}{macdeployqt}, to
-    simplify the deployment process. The \l{Deploying an Application on Mac OS X}
+    simplify the deployment process. The \l{Qt for Mac OS X - Deployment}
     article covers the deployment process in more detail.
 
     \section2 Qt Libraries as Frameworks

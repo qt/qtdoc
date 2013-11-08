@@ -126,9 +126,9 @@
     Depending on configuration, compiler-specific libraries must be
     redistributed as well. For more information, see the
     platform-specific application dependencies for
-    \l{deployment-x11.html#application-dependencies}{X11},
-    \l{deployment-windows.html#application-dependencies}{Windows},
-    and \l{deployment-mac.html#application-dependencies}{Mac}.
+    \l{Qt for Linux/X11 - Deployment#Application Dependencies}{X11},
+    \l{Qt for Windows - Deployment#Application Dependencies}{Windows},
+    and \l{Qt for Mac OS X}{Mac OS X}.
 
     \section1 Licensing
 
@@ -144,12 +144,11 @@
     \table
     \header \li Qt Library \li Dependency
             \li Licensing Issue
-    \row    \li \l{QtHelp}     \li CLucene
+    \row    \li \l{QtHelp} \li CLucene
     \li The version of clucene distributed with Qt is licensed
     under the GNU LGPL version 2.1 or later. This has implications for
-    developers of closed source applications. Please see
-    \l{Qt Help Module#License Information}{the Qt Help module documentation}
-    for more information.
+    developers of closed source applications. Please see the
+    \l{Qt Help#License Information}{Qt Help} documentation for more information.
 
     \row    \li \l{QtNetwork}  \li OpenSSL
     \li Some configurations of QtNetwork use OpenSSL at run-time. Deployment
@@ -160,8 +159,8 @@
     \row    \li \l{QtWebKit}   \li WebKit
     \li WebKit is licensed under the GNU LGPL version 2 or later.
     This has implications for developers of closed source applications.
-    Please see \l{WebKit in Qt#License Information}{the Qt WebKit module
-    documentation} for more information.
+    Please see the \l{Qt WebKit Widgets#License Information}{Qt WebKit Widgets}
+    documentation for more information.
 
     \endtable
 
@@ -171,13 +170,13 @@
     various platforms:
 
     \list
-        \li \l{Deploying an Application on X11 Platforms}{Qt for X11 Platforms}
-        \li \l{Deploying an Application on Windows}{Qt for Windows}
-        \li \l{Deploying an Application on Mac OS X}{Qt for Mac OS X}
+        \li \l{Qt for Linux/X11 - Deployment}{Qt for X11 Platforms}
+        \li \l{Qt for Windows - Deployment}{Qt for Windows}
+        \li \l{Qt for Mac OS X#Deploying Applications on Mac OS X}{Qt for Mac OS X}
         \li \l{Deploying an Application on Android}{Qt for Android}
     \endlist
 
-    \sa {Deploying Translations}, Installation
+    \sa {Deploying Translations}
 */
 
 /*!
@@ -464,15 +463,10 @@
     instance, want to make a custom \c{AndroidManifest.xml} for your application, then place this
     directly into the folder specified in this variable. You can also add custom Java files in
     \c{ANDROID_PACKAGE_SOURCE_DIR/src}.
-    \li \c{ANDROID_PACKAGE}: The package name of the application, used to uniquely identify it on
-    devices and in market places. A default will be generated if this is left out.
-    \li \c{ANDROID_MINIMUM_VERSION}: The minimum API level required to run the application. The
-    default is API level 9, which is the minimum version required by Qt.
-    \li \c{ANDROID_TARGET_VERSION}: The targeted API level of the application. This affects the
-    activation of some compatibility features in the OS. The default is 14, which means that the
-    overflow button in the system navigation bar will not be enabled by default.
-    \li \c{ANDROID_APP_NAME}: The name of the application as it appears in the application menu on
-    the target.
+    \note When adding custom versions of the build files (like strings.xml, libs.xml,
+     AndroidManifest.xml, etc.) to your project, make sure you copy them from the package template,
+     which is located in \c{$QT/src/android/java}. You should never copy any files from the build
+     directory, as these files have been altered to match the current build settings.
     \li \c{ANDROID_EXTRA_LIBS}: A list of external libraries that will be copied into your application's
     library folder and loaded on start-up. This can be used, for instance, to enable OpenSSL
     in your application. Simply set the paths to the required \c{libssl.so} and \c{libcrypto.so}

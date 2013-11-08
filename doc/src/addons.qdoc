@@ -50,9 +50,15 @@ The \l {Qt Concurrent} module provides APIs to make it simpler and safer to
 write multi-threaded code in a structured manner, enabling your
 application to better exploit the hardware resources of the platform where it is running.
 
+\list
+\li \l{Threading Basics}
+\li \l{Thread Support in Qt}
+\endlist
+
+\target Qt Declarative
 \section1 Qt Declarative Module
 
-The \l {Qt Declarative} module provides APIs and tools to support code written in Qt Quick 1.
+The Qt Declarative module provides APIs and tools to support code written in Qt Quick 1. For more information, visit the \l{Qt Quick 1} page.
 
 \section1 Qt Graphical Effects Module
 
@@ -68,8 +74,7 @@ image formats to Qt applications.
 \section1 Qt OpenGL Module
 
 The \l{Qt OpenGL} module is primarily provided for compatibility with Qt 4. The essential
-\l{Qt GUI} module provides a set of OpenGL classes which cover most use cases where you want to
-mix Qt- and OpenGL-based code.
+\l{Qt GUI} module provides a set of OpenGL classes which cover most use cases where you want to mix Qt and OpenGL-based code.
 
 \section1 Qt Print Support Module
 
@@ -79,13 +84,13 @@ paint on screen or on a \l {QImage}.
 
 \section1 Qt Script Module
 
-The \l {Qt Script} module provides APIs to
-\l{Making Applications Scriptable}{make Qt applications scriptable}. This
-module is primarily provided for compatibility with Qt 4, and to support applications that
-use the \l {Qt Declarative} module. An alternative API is provided by the essential
-\l {Qt QML} module. For more information, see
-\l{Scripting Classes and Overviews}{the list of Qt Script APIs}, or
-\l{Creating Qt Script Extensions}{learn how to make your own extensions} to \l{Qt Script}.
+The \l {Qt Script} module provides APIs to \l{Making Applications
+Scriptable}{make Qt applications scriptable}. This module is primarily provided
+for compatibility with Qt 4, and to support applications that use the \l{Qt
+Declarative} module. An alternative API is provided by QJSEngine from the
+essential \l {Qt QML} module.
+
+For more information, see \l{Scripting Classes and Overviews}.
 
 \section1 Qt SVG Module
 
@@ -105,6 +110,6 @@ documentation in applications, similar to Qt Assistant.
 The \l {Qt XML} Module is provided for compatibility with older code. It has been superseded by
 the QXmlStreamReader and QXmlStreamWriter classes in the \l {Qt Core} module.
 
-For more information, read the section "XML Support in Qt" in the \l {Data Structure and Storage}
+For more information, read the section "XML Support in Qt" in the \l {Data Storage}
 overview.
 */

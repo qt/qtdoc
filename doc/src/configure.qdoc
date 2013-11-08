@@ -73,7 +73,7 @@
 
     \code
     cd ~/Qt-static
-    ~/qt/configure -prefix $PWD/qtbase -static
+    ~/qt/configure -prefix $PWD/qtbase -static
 
     cd ~/Qt-dynamic
     ~/qt/configure -prefix $PWD/qtbase -shared
@@ -87,7 +87,7 @@
     \section1 Including and Excluding Qt Modules
 
     With configure, it is possible to include or exclude particular
-    \l{All Qt Modules}{Qt modules} in a Qt build. However, keep in mind that
+    \l{All Modules}{Qt modules} in a Qt build. However, keep in mind that
     many modules depend on other modules, therefore, dependency issues
     can arise with some build configurations.
 
