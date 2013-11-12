@@ -57,27 +57,28 @@
     \section1 Qt Everywhere on Mobile
 
     Qt 5.2 introduces the production-ready ports of Qt on Android
-    and iOS. Extensive work has gone into these two platforms and these ports
-    now extend Qt’s multi-platform promise to cover desktop, embedded, and
-    mobile platforms with just one framework, Qt.
+    and iOS. Extensive work has gone into these two platforms and these
+    ports now extend Qt’s multi-platform promise to cover desktop,
+    embedded, and mobile platforms with just one framework, Qt.
 
-    With full support for Android, iOS, and Blackberry 10, Qt 5.2 is a great
-    solution for targeting the mobile markets with one Qt-based mobile
-    application code. It is fast and easy to bring existing desktop or
-    embedded application to mobile, by simply recompiling it.
+    With full support for Android, iOS, and Blackberry 10, Qt 5.2 is a
+    great solution for targeting the mobile markets with one Qt-based
+    mobile application code. It is fast and easy to bring existing
+    desktop or embedded application to mobile, by simply recompiling it.
 
-    You can install several demo applications that show Qt on iOS and Android
-    from the iTunes and Google Play. On Android, we have a new \e{Qt Everywhere}
-    demo as well as the Qt 5 launch demo available in Google Play. For iOS, we
-    have \e SubAttack, a small Qt based game and \e QtQuicksand published in
-    iTunes.
+    You can install several demo applications that show Qt on iOS and
+    Android from the App Store and Google Play. On Android, we have a new
+    \e{Qt Everywhere} demo as well as the Qt 5 launch demo available in
+    Google Play. For iOS, we have \e SubAttack and \e QtQuicksand published
+    in the App Store.
 
     Demo applications:
     \list
-    \li \l{Google Play: Introduction to Qt 5}{Introduction to Qt 5} (Google Play)
+    \li \l{Google Play: Introduction to Qt 5}{Introduction to Qt 5}
+        (Google Play)
     \li \l{Google Play: Qt 5 Everywhere}{Qt 5 Everywhere} (Google Play)
-    \li \l{iTunes: SubAttack}{SubAttack} (iTunes)
-    \li \l{iTunes: QtQuicksand}{QtQuicksand} (iTunes)
+    \li \l{iTunes: SubAttack}{SubAttack} (App Store)
+    \li \l{iTunes: QtQuicksand}{QtQuicksand} (App Store)
     \endlist
 
     Platform pages:
@@ -87,9 +88,16 @@
     \li \l{Qt for iOS}
     \endlist
 
+    \table
+    \header
+    \li Qt Everywhere demo on Nexus 7
+    \row
+    \li \image qt5_everywhere_demo.jpg
+    \endtable
+
     \section1 Amazing Graphics Capability and Performance
 
-    Qt 5 uses an OpenGL based scene graph to accelerate the graphics
+    Qt 5 uses an OpenGL-based scene graph to accelerate the graphics
     of Qt Quick, making it possible to do visually appealing user
     interfaces with animations, impressive graphical effects and
     particle systems, even on the constrained hardware environments of
@@ -97,74 +105,119 @@
 
     \table
     \header
-      \li \l ShaderEffect on an \l Image
+    \li ShaderEffect on an \l Image
     \row
-      \li \image qt5_shadereffect.jpg
-    \row
+    \li \image qt5_shadereffect.jpg
     \endtable
 
-    The benefits of this architectural change in the rendering engine is well
-    demonstrated by the following projects:
+    The benefits of this architectural change in the rendering engine are
+    well demonstrated by the following projects:
     \list
     \li \l{Livecoding video effects with Qt5} - The Big Buck Bunny you
-        never saw before. Video effects created using Qt Quick.
-    \li \l{Pimp my video} - Video effects implemented using the shader language
-        with QML.
+    never saw before. Video effects created using Qt Quick.
+    \li \l{Pimp my video} - Video effects implemented using the shader
+    language with QML.
     \li \l{QtMediaHub} - The power and convenience of Qt Quick.
     \li \l{QtonPi} - Good example of Qt 5 running on the low cost hardware,
-        Raspberry PI.
+    Raspberry PI.
     \endlist
-
-
 
     \section1 Qt Quick in Qt 5
 
-    \l {Qt Quick} provides the necessary infrastructure to develop QML
+    \l{Qt Quick} provides the necessary infrastructure to develop QML
     applications. The latest version (v2.0) of this technology also
     introduces a set of new C++ classes as a replacement for the
     QDeclarative* equivalents in Qt Quick 1. New features in Qt Quick
     include:
     \list
     \li \l Canvas for drawing. Canvas provides an API that is similar to
-        the HTML5 Canvas API, along with some additional features.
-    \li \l {ShaderEffect} {Shader Effects} which enable GLSL shader programs to be
-        integrated directly into QML code and applied to items and
-        images.
-    \li \l {Using the Qt Quick Particle System}{Particle Effects} for creating a variety of 2D particle systems.
-    \li \l {Sprite Animations}{Sprites} can be used in animating 2D graphical objects and as a source
-    for particle systems.
-    \li \l {Qt Quick Local Storage QML Types}{Offline storage} is a HTML5 Web Database API conformant JavaScript API
-    for storing data in Qt Quick applications.
+    the HTML5 Canvas API, along with some additional features.
 
-    \li \l {Qt Quick Window QML Types}{Window} provides a
-    top-level window and the Screen type for accessing a screen's
-    resolution and other details. This is useful for desktop
-    applications developed using Qt Quick.
+    \li \l{ShaderEffect}{Shader Effects} which enable GLSL shader programs
+    to be integrated directly into QML code and applied to items and images.
 
-    \li \l {Qt Quick Scene Graph} {New rendering architecture} based on OpenGL for optimal performance.
+    \li \l{Using the Qt Quick Particle System}{Particle Effects} for
+    creating a variety of 2D particle systems.
+
+    \li \l{Sprite Animations}{Sprites} can be used in animating 2D
+    graphical objects and as a source for particle systems.
+
+    \li \l{Qt Quick Local Storage QML Types}{Offline storage} is a JavaScript
+    API that conforms with the HTML5 Web Database API for storing data in
+    Qt Quick applications.
+
+    \li \l{Qt Quick Window QML Types}{Window} provides a top-level window
+    and the Screen type for accessing a screen's resolution and other
+    details. This is useful for desktop applications developed using
+    Qt Quick.
+
+    \li \l{Qt Quick Scene Graph}{OpenGL-based rendering architecture} for
+    optimal performance.
     \endlist
 
     \table
     \header
-      \li Qt Quick's \l {Using the Qt Quick Particle System}{Particle System}
+    \li Qt Quick's \l{Qt Quick Particles QML Types}{Particle System}
     \row
-      \li \image qt5_particles.jpg
-    \row
+    \li \image qt5_particles.jpg
     \endtable
 
-    The \l {qtgraphicaleffects-index.html}{Qt Graphical Effects} module provides a number of
-    ready-made effects for use in Qt Quick applications, including
-    soft drop shadow, blur, glow and colorize.
+    Qt Quick's \l {Using the Qt Quick Particle System}{Particle System}
+
+    The \l {qtgraphicaleffects-index.html}{Qt Graphical Effects} module
+    provides a number of ready-made effects for use in Qt Quick
+    applications, including soft drop shadow, blur, glow and colorize.
 
     \table
     \header
-      \li Excerpts from the Qt Graphical Effects module.
+    \li Excerpts from the Qt Graphical Effects module
     \row
-      \li \image qt5_graphicaleffects.jpg
-    \row
+    \li \image qt5_graphicaleffects.jpg
     \endtable
 
+    \section1 Designing UI Made Simpler
 
+    UI designing can be time consuming if there are not enough tools to help.
+    Qt Quick does reduce the effort considerably compared to the traditional
+    native (C or C++) approach, but the new \l{Qt Quick Controls} and
+    \l{Qt Quick Layouts} take it a step further. These new modules provide
+    ready-to-use UI controls and layouts to enable faster application
+    development and with less code.
+
+    Qt Quick Controls and Qt Quick Layouts provide a vast set of UI controls
+    ranging from the most basic TextField and Button to the more complex
+    TableView and TabView. These controls are also made available in
+    \l{Qt Creator: Using Qt Quick Designer}{Qt Quick Designer}.
+
+    \table
+    \header
+    \li Controls touch example on Nexus 7
+    \row
+    \li \image quick_controls_touch_ex.jpg
+    \endtable
+
+    \table
+    \header
+    \li Component gallery example on Ubuntu 12.04
+    \row
+    \li \image qtquickcontrols-example-gallery.jpg
+    \endtable
+
+    \section1 Sensor and Location
+
+    Reacting to sensor value changes and locating a place on the world map
+    are the common use cases supported on most portable devices. Now you
+    can support such use cases in your Qt application using the
+    \l{Qt Sensors} and \l{Qt Positioning} modules.
+
+    \table
+    \header
+    \li Accelerating SVG image
+    \li Location-based weather information
+    \row
+    \li \image qtsensors_accelbubble_ex.jpg
+    \li \image qtpositioning_weatherinfo_ex.jpg
+    \endtable
 
     \section1 WebKit and HTML5
 
@@ -172,27 +225,46 @@
     source WebKit project featuring broad support for standard web
     technologies. The Qt WebKit module provides integration with both
     Qt Quick and traditional widgets. The module brings the latest in
-    HTML5 advancements to Qt 5, including CSS filters and animations
-    and Video, Canvas and WebGL, Canvas support and HTML video.
-
-
+    HTML5 advancements to Qt 5, including CSS filters, animations
+    and video, and Canvas and WebGL.
 
     \section1 Multimedia
 
     \l {Qt Multimedia} provides a rich set of QML types and C++ classes to
-    handle multimedia content. It also provides necessary APIs to
-    access the camera and radio functionality. Qt 5 brings the Qt
-    Multimedia module into the set of essential modules with support
-    on all major platforms.
+    handle multimedia content. It also provides necessary APIs to access
+    the camera and radio functionality. Qt 5 brings the Qt Multimedia
+    module into the set of essential modules with support on all major
+    platforms.
 
     \table
     \header
-      \li \l Video embedded into a Qt Quick application with a displacement effect
+    \li Video embedded into a Qt Quick application with a displacement effect
     \row
-      \li \image qt5_video.jpg
+    \li \image qt5_video.jpg
     \endtable
 
+    \section1 Platform-specific Extras
 
+    Qt is a cross-platform development framework enabling you to target
+    multiple platforms with a single codebase. It provides common APIs across
+    all supported platforms to access a feature without having to worry about
+    how that feature is implemented on a platform. In some applications there
+    will be a need to use a platform-specific feature, and that's
+    when the following modules can be useful:
+
+    \list
+
+    \li \l{Qt Android Extras} enables you to integrate Java code into your Qt
+    application.
+
+    \li \l{Qt Mac Extras} enables you to access specific features on Mac OS X.
+
+    \li \l{Qt Windows Extras} enables you to use Windows-specific features
+    such as jump lists, progress indicator on a taskbar button, and so on.
+
+    \li \l{Qt X11 Extras} enables you to access the display configuration on
+    Linux (X11).
+    \endlist
 
     \section1 Modularized Qt Libraries
 
@@ -205,17 +277,18 @@
 
     \section2 Widgets in Qt 5
 
-    The \l {Qt Widgets} have been separated into their own module in Qt 5,
-    the Qt Widgets module. It is part of the essential modules.
+    The \l {Qt Widgets} have been separated into their own module in
+    Qt 5, the Qt Widgets module. It is part of the essential modules.
 
     \table
     \header
-      \li Screenshots of widget based applications running Qt 5.
+    \li Screen capture of a widget application.
     \row
-      \li \image qt5_widgets.jpg
+    \li \image qt5_widgets.jpg
     \endtable
 
-
+    Designing the UI for widget-based applications can be quick with
+    \l{Qt Designer Manual}{Qt Designer}.
 
     \section1 Qt Platform Abstraction
 
@@ -227,15 +300,15 @@
 
     \list
 
-      \li Centralize the windowing system integration codebase into
-      classes shared for all platforms.
+    \li Centralize the windowing system integration codebase into
+    classes shared for all platforms.
 
-      \li Simplify the work required when porting Qt to new platforms.
+    \li Simplify the work required when porting Qt to new platforms.
 
-      \li Remove the windowing system dependency from Qt, making it
-      possible to have the same Qt binaries run against multiple
-      windowing systems. For instance, the Qt Linux binaries can run
-      against both X11 and Wayland.
+    \li Remove the windowing system dependency from Qt, making it
+    possible to have the same Qt binaries run against multiple
+    windowing systems. For instance, the Qt Linux binaries can run
+    against both X11 and Wayland.
 
     \endlist
 
@@ -274,16 +347,25 @@
     Qt 5 also provides better ways to handle TCP socket-based connections and
     SSL certificates. This means developers can now:
     \list
-      \li bind a TCP socket to an IP address before connecting,
-      \li verify an SSL certificate chain,
-      \li and access legacy systems.
+    \li bind a TCP socket to an IP address before connecting,
+    \li verify an SSL certificate chain,
+    \li and access legacy systems.
     \endlist
 
     Stricter client authentication is one of the primary concerns for many
-    applications handling confidential/critical data. The opaque Private Keys
-    support in Qt 5 enables applications to read private keys from devices such
-    as PKCS#11 dongles for stricter client authentication. The \l{qsslkey
+    applications handling confidential or critical data. The opaque Private
+    Keys support in Qt 5 enables applications to read private keys from devices
+    such as PKCS#11 dongles for stricter client authentication. The \l{qsslkey
     example} illustrates reading private keys from a device.
+
+    \section2 Extended Connectivity
+
+    The connectivity options are endless with Qt 5. We now have
+    \l{Qt Bluetooth}{Bluetooth} and \l{Qt NFC}{NFC} enabling you to connect and
+    and share information in more sophisticated ways such as tap and share,
+    auto-paring two Bluetooth-enabled devices, and so on. These connectivity
+    options are supported on Linux (with BlueZ 4.x) and
+    \l{Qt for BlackBerry}{BlackBerry 10} platforms.
 
     \section1 JSON Support
 
@@ -315,11 +397,12 @@
     platforms where this is supported. This comes in handy for gaming
     applications developed using Qt.
 
-   \section1 Related Topics
-   \list
+    \section1 Related Topics
+    \list
     \li \l{What's New in Qt 5.2}
     \li \l{What's New in Qt 5.1}
     \li \l{What's New in Qt 5.0}
     \li \l{Porting Guide}
-   \endlist
+    \endlist
+    \l text
 */
