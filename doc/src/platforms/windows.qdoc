@@ -398,13 +398,14 @@
 
     To deploy the application, we must make sure that we copy the
     relevant Qt DLL (corresponding to the Qt modules used in
-    the application) and the windows platform plugin as well as the executable
-    to the same directory in the \c release subdirectory.
+    the application) and the Windows platform plugin, \c {qwindows.dll},
+    as well as the executable to the same directory tree in the \c release
+    subdirectory.
 
     In contrast to user plugins, Qt plugins have to be put into subdirectories
-    matching the plugin type. As we want to deploy the windows platform plugin
-    it has to be put into a "platforms" subdirectory. Additional information
-    about user and Qt plugins will be covered later.
+    matching the plugin type. The correct location for the platform plugin
+    is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
+    additional information about plugins and how Qt searches for them.
 
     Qt relies on the \l{ICU} library for unicode support. Therefore, you must
     include the ICU DLLs that are located in the \c bin directory of your Qt
@@ -681,12 +682,19 @@
 
     \section2 Qt Plugins
 
+    All Qt GUI applications require a plugin that implements the \l {Qt
+    Platform Abstraction} (QPA) layer in Qt 5. For Windows, the name of the
+    platform plugin is \c {qwindows.dll}. This file must be located within a
+    specific subdirectory (by default, \c platforms) under your distribution
+    directory. Alternatively, it is possible to adjust the search path Qt
+    uses to find its plugins, as described below.
+
     Your application may also depend on one or more Qt plugins, such
     as the print support plugin, the JPEG image format plugin or a SQL driver
     plugin. Be sure to distribute any Qt plugins that you need with your
-    application, and note that each type of plugin should be located within a
-    specific subdirectory (such as \c printsupport, \c imageformats or
-    \c sqldrivers) within your distribution directory, as described below.
+    application. Similar to the platform plugin, each type of plugin must
+    be located within a specific subdirectory (such as \c printsupport,
+    \c imageformats or \c sqldrivers) within your distribution directory.
 
     \note If you are deploying an application that uses Qt WebKit to display
     HTML pages from the World Wide Web, you should include all text codec

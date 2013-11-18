@@ -97,6 +97,9 @@ native behavior found in different platforms such as Windows, OS X, and Linux.
 
 \list
 \li \l{Qt Quick Controls Overview}
+\li \l{Qt Quick Controls Styles}{Styles}
+\li \l{Qt Quick Dialogs}{Dialogs}
+\li \l{Qt Quick Layouts}{Layouts}
 \endlist
 
 \section2 Special Effects
@@ -140,8 +143,25 @@ in C++.
     \li \l{Video Overview}
     \li \l{Camera Overview}
     \li \l{Radio Overview}
+    \li \l{Qt Audio Engine QML Types}{Qt Audio Engine} - for 3D positional audio
+    playback and content management.
     \endlist
 \endlist
+
+\section1 Mobile Devices
+
+Several Qt modules provide QML APIs for networked and mobile devices. The QML
+types access Bluetooth, Near-Field Communications (NFC), and GPS-enabled
+devices.
+
+\list
+\li \l{Qt Positioning}
+\li \l{Qt Bluetooth}
+\li \l{Qt NFC}
+\endlist
+
+For more information, visit the \l{Networking and Connectivity} and
+\l{Mobile APIs} pages.
 
 \section1 Code Samples and Demos
 

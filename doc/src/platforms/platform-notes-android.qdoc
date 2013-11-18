@@ -42,17 +42,18 @@
     The easiest way to develop with Qt for Android is to use
     \l{http://qt-project.org/doc/qtcreator/creator-developing-android.html}{Qt Creator}. When you apply
     a \b{Qt for Android Kit} to a Qt Creator project, it will create and maintain a set of files which
-    are required to make your app run on Android.
+    are required to make your application run on Android.
 
     The files added to your project are:
     \list
-    \li Java files which serve as the entry point into your app and which will automatically load Qt
-        and execute the native code in your app
-    \li AndroidManifest.xml which provides meta-information about your app
-    \li Other XML files detailing the dependencies of your app
+    \li \e .java files will serve as the entry point into your application and
+    automatically load Qt to execute the native code in your application
+    \li \e AndroidManifest.xml which provides meta-information about your
+    application
+    \li Other XML files detailing the dependencies of your application
     \li Resource files
-    \li Depending on the deployment method selected in Qt Creator, additional files like libraries
-    and QML files can be included in the project.
+    \li Depending on the deployment method selected in Qt Creator, additional
+    files like libraries and QML files can be included in the project.
     \endlist
 
     Qt Creator adds these files in a subdirectory of your project called \b android. The contents of
@@ -60,10 +61,11 @@
 
     \section1 Application Package
 
-    On Android, apps are distributed in packages called APK. Qt Creator will manage building the
-    APK for you, but if you for some reason want to do this manually, you must first make sure
-    that the appropriate packaging and build files are in place. As mentioned, Qt Creator will
-    place these files in the \b android subfolder in your project.
+    On Android, apps are distributed in packages called \e APK. Qt Creator
+    builds the \e APK for you, but if you for some reason want to do this
+    manually, you must first make sure that the appropriate packaging and build
+    files are in place. For more detailed information about how the packaging
+    is done, see \l{Deploying an Application on Android}.
 
     \section1 Deployment
 

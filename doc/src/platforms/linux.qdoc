@@ -554,10 +554,10 @@
 
     To deploy the application, we must make sure that we copy the
     relevant Qt libraries (corresponding to the Qt modules used in the
-    application) as well as the executable to the same
-    directory. Remember that if your application depends on compiler
-    specific libraries, these must also be redistributed along with
-    your application. For more information, see the \l {Application
+    application), the \l {Qt Plugins}{platform plugin}, and the executable
+    to the same directory tree. Remember that if your application depends
+    on compiler specific libraries, these must also be redistributed along
+    with your application. For more information, see the \l {Application
     Dependencies} section.
 
     We'll cover the plugins shortly, but the main issue with shared
@@ -704,12 +704,19 @@
 
     \section2 Qt Plugins
 
+    All Qt GUI applications require a plugin that implements the \l {Qt
+    Platform Abstraction} (QPA) layer in Qt 5. For Linux/X11, the name of the
+    platform plugin is \c {libqxcb.so}. This file must be located within a
+    specific subdirectory (by default, \c platforms) under your distribution
+    directory. Alternatively, it is possible to adjust the search path Qt
+    uses to find its plugins, as described below.
+
     Your application may also depend on one or more Qt plugins, such
     as the JPEG image format plugin or a SQL driver plugin. Be sure
-    to distribute any Qt plugins that you need with your application,
-    and note that each type of plugin should be located within a
-    specific subdirectory (such as \c imageformats or \c sqldrivers)
-    within your distribution directory, as described below.
+    to distribute any Qt plugins that you need with your application.
+    Similar to the platform plugin, each type of plugin must be located
+    within a specific subdirectory (such as \c imageformats or \c sqldrivers)
+    within your distribution directory.
 
     \note If you are deploying an application that uses \l{Qt WebKit} to display
     HTML pages from the World Wide Web, you should include all text codec

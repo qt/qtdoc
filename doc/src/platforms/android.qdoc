@@ -49,9 +49,22 @@ The following list summarizes what you can do with Qt for Android:
  \li Create and deploy Application Package (APK) using Qt Creator.
 \endlist
 
-\section1 Getting Started
+The following topics provide more details about how to use Qt for Android:
+\list
+ \li \l{Getting Started with Qt for Android}{Getting Started}
+ \li \l{Porting to Android}{Porting a Qt Application}
+ \li \l{Adding OpenSSL Support}
+ \li \l{Qt Creator: Deploying Applications to Android Devices}{Deploying to the Device}
+ \li \l{Publishing to Google Play}
+ \li \l{Platform and Compiler Notes - Android}{Platform Notes}
+ \li \l{Android GNU C++ run-time licensing}
+\endlist
+*/
 
-\section2 Requirements
+/*!
+\page androidgs.html
+\title Getting Started with Qt for Android
+\brief Provides instructions to install and configure your development environment.
 
 In order to use Qt for Android, you need the following:
 
@@ -90,7 +103,7 @@ to install:
 ./android update sdk
 \endcode
 
-\section2 Installing Qt for Android
+\section1 Installing Qt for Android
 
 You can install the binary package for Qt 5.1 or later to get
 Qt for Android. The \l{Qt Installation Program}{installer} containing the
@@ -152,7 +165,7 @@ The binaries are installed to the \e{qtbase/bin} directory by default for the
 developer builds. You can check the install paths using the \c{qmake -query}
 command.
 
-\section2 Configuring Qt Creator
+\section1 Configuring Qt Creator
 
 After installing the Qt for Android binaries either using the installer or by
 cross-compiling, Qt Creator must be configured to start developing your first
@@ -170,7 +183,11 @@ to test the setup. Use the \c{android} keyword in the search field under the
 \gui{Examples} tab in Qt Creator \gui{Welcome} mode to list all the examples
 tested for Android.
 
-\section1 Porting a Qt Application
+*/
+/*!
+\page portingtoandroid.html
+\title Porting to Android
+\brief Provides instructions to port your existing Qt application to Android.
 
 In this section, we are going to port an existing Qt Application to Android
 and deploy it to the device.
@@ -251,8 +268,12 @@ Qt Creator deploys your application on the Android device, if the
 device is detected by the PC. Otherwise, it tries to run the application on an
 AVD (Android Virtual Device). You will be prompted to create one if there are no
 AVDs found.
+*/
 
-\section1 Adding OpenSSL Support
+/*!
+\page opensslsupport.html
+\title Adding OpenSSL Support
+\brief Provides instructions to bundle OpenSSL libraries with your Qt application for Android.
 
 The Qt installation package does not ship the OpenSSL libraries due to legal
 restrictions in some countries. If you want to use OpenSSL in your application,
@@ -296,11 +317,62 @@ with the OpenSSL libraries bundled in it. Once the APK is ready, Qt Creator
 prompts you to choose the device to install the APK, and then you should
 see your application running on the device you selected.
 
-\section1 Related Information
-\list
- \li \l{Platform and Compiler Notes - Android}{Platform Notes}
- \li \l{Qt Creator: Deploying Applications to Android Devices}
- \li \l{Android GNU C++ run-time licensing}
- \li \l{Deploying an Application on Android}
+*/
+
+/*!
+\page publishtogoogleplay.html
+\title Publishing to Google Play
+\brief Provides instructions to prepare your application for publishing.
+
+Qt for Android provides a complete solution to develop, build, and package your
+applications for Android. Most of these tasks, especially packaging and
+deployment are handled by Qt Creator providing rich developer experience.
+
+Every time you run the application using Qt Creator, an Android Application
+Package (APK) is created and deployed onto the target (device or emulator) you
+choose. With some minor changes to how the \e .apk is created, you can publish
+your application on Google Play and monetize from it. The following
+step-by-step instructions guide you to create an \e{.apk} that can go live
+on Google Play:
+\list 1
+ \li Open your application project using Qt Creator v3.0 or later and change
+ its \uicontrol Build settings to build release version.
+
+ \li Open \uicontrol Run settings of your project and select
+ \uicontrol {Create AndroidManifest.xml}. Qt Creator adds the manifest XML
+ based on the application's \e .pro file and opens it in \uicontrol General
+ mode.
+
+ \note You can edit the \e AndroidManifest.xml in \uicontrol General or
+ \uicontrol {XML Source} mode.
+
+ \li Check for the following in \e AndroidManifest.xml:
+ \list
+  \li \uicontrol{Minimum required SDK} is set to API 9 or above.
+
+  \note Qt for Android is supported on devices with API 9 and above.
+
+  \li Add \uicontrol{Application name} and \uicontrol{Application icon}.
+
+  \li \uicontrol Permissions list has all the required permissions.
+ \endlist
+
+ \li Set up a \uicontrol keystore to sign the \e .apk. You can create a new
+ keystore if you do not have one.
+
+ \li Select \uicontrol{Open package location after build} and run your
+ application to build the \e .apk. Qt Creator builds the \e .apk and opens the
+ folder containing the \e .apk.
+
+ \li Login into the \l{Google Play Developer Console} and upload the \e .apk
+ file, few screen captures of the application, and a description.
 \endlist
+
+Now your application is available to other Android device users via
+Google Play. You can also choose to publish the application to a smaller
+group, so that you can test and improve the application before publishing it to
+a larger audience.
+
+See \l{Deploying an Application on Android} for more information about how the
+packaging is done and how you can influence it.
 */
