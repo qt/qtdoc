@@ -104,17 +104,13 @@
     However, it is possible to exclude features of Qt and create a version that
     compiles for the desired SDK.
 
-    Further information on stripping features can be found in the
-    \l{Fine-Tuning Features in Qt}{QFeatures} documentation.
-
-
     \section1 Making Qt Applications Start on a Custom Device
 
     Sometimes, a Windows CE device has been created with a configuration
     different from the corresponding SDK's configuration. In this case, symbols
     that were available at linking stage will be missing from the run-time
     libraries.
-    
+
     Unfortunately, the operating system will not provide an error message that
     mentions which symbols are absent. Instead, a message box with the following
     message will appear:
@@ -124,7 +120,7 @@
     To identify the missing symbols, you need to create a temporary
     application that attempts to dynamically load the Qt for Windows CE
     libraries using \c LoadLibrary. The following code can be used for this:
-    
+
     \snippet snippets/code/doc_src_wince-customization.cpp 9
 
     Once you have compiled and deployed the application as well as the Qt
@@ -132,7 +128,7 @@
     ordinal number of the unresolved symbol.
 
     Search for parts of Qt that rely on these functions and disable them using
-    the \l{Fine-Tuning Features in Qt}{QFeatures} functionality.
+    the QFeatures functionality.
 
     In our experience, when Qt applications do not start on Windows CE, it is
     usually the result of missing symbols for the following classes or
@@ -151,7 +147,7 @@
 
 */
 
-/*! 
+/*!
     \page shadow builds-wince.html
     \ingroup qtce
     \title Windows CE - Using shadow builds
