@@ -431,6 +431,26 @@
     doing.
     \endlist
 
+    \section1 Dependencies detection
+
+    Qt comes with a number of plugins which are loaded at run-time when they are needed. These
+    can handle anything from connecting to SQL databases to loading specific image formats.
+    Detecting plugin dependencies is impossible as the plugins are loaded at run-time, but
+    androiddeployqt tries to guess such dependencies based on the Qt dependencies
+    of your application. If the plugin has any Qt dependencies which are not also dependencies of
+    your application, it will not be included by default. For instance, in order to ensure that
+    the SVG image format plugin is included, you will need to add \c{QT += svg} to your \c .pro file
+    so that the \l{Qt SVG} module becomes a dependency of your application.
+
+    If you are wondering why a particular plugin is not included automatically, you can run androiddeployqt
+    with the \c --verbose option to get the list of missing dependencies for each excluded plugin. You
+    can achieve the same in Qt Creator by ticking the \gui{Verbose output} check box in the
+    \gui{Deployment configurations}. This is located in the \gui{Run} tab of your \gui{Projects}
+    settings.
+
+    It's also possible to manually specify the dependencies of your application. See the documentation
+    for the \c{ANDROID_DEPLOYMENT_DEPENDENCIES} qmake variable below.
+
     \section1 qmake variables
 
     Unless the project has special requirements such as third party libraries, it should be
