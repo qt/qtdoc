@@ -39,7 +39,7 @@
 ****************************************************************************/
 
 //! [1]
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
     CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
                                            kCFURLPOSIXPathStyle);
