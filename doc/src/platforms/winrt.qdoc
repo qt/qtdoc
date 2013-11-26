@@ -91,9 +91,25 @@
     copies Qt libraries and plugins to the appropriate directories, as
     necessary.
 
+    In order to be able to run debug builds of your applications you have to
+    register the correct VCLib debug framework. This framework provides the
+    \b{C++ Runtime} for Modern UI applications and its files can usually be found in
+    \b{<Path to Microsoft SDKs>\<Windows version>\ExtensionSDKs\Microsoft.VCLibs\<VC Version>\AppX\Debug\<CPU architecture>}
+    To register the debug VCLibs for x64 for Visual Studio 2013
+    on Windows 8.1, run the following command in PowerShell:
+    \code
+        > Add-AppxPackage 'C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.12.00.appx'
+    \endcode
+
     Because all resources are placed to one directory, you can register the
-    directory using an XML file (AppxManifest.xml) and Windows Powershell. In
-    PowerShell, change into your \e packaged directory and call:
+    directory using an XML file (AppxManifest.xml) and Windows Powershell. The reference
+    for these manifest files can be found
+    \l{http://msdn.microsoft.com/en-us/library/windows/apps/br211473.aspx}{here}.
+    If you are using a debug build, your AppxManifest has to provide information about
+    its dependency on the just added VCLibs. Additionally, the target processor
+    architecture must be specified (as opposed to the default, 'neutral').
+    As soon as these requirements are met, change into your \e packaged directory in
+    PowerShell and call:
     \code
         > Add-AppxPackage -Register AppxManifest.xml
     \endcode
