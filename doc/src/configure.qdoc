@@ -43,46 +43,54 @@
     are different, therefore the commands will vary. Also, on Windows systems,
     the configure script is called \e configure.bat.
 
-    \section1 Paths, Prefixes, and Shadow-Building
+    After running \c configure, build the sources with the \c make tool
+    belonging to the chosen toolchain.
 
-    Qt's default installation directory depends on the platform but can be
-    set with the \c -prefix option. Configure always prints the installation
-    directory when it finishes.
+    \section1 Source, Build, and Install Directories
 
-    \code
-    ./configure -prefix ~/home/user/Qt-5.1
-    \endcode
+    With configure, it is possible to configure Qt to install to a different
+    directory than the source directory or the build directory. The \e source
+    directory contains the source code and it is obtained from the source
+    package. The \e build directory is where the build related files such as
+    Makefiles, object files, and other intermediate files are stored. The \e
+    install directory is where the binaries and libraries are installed, for use
+    either by the system or by the application.
 
-    \e{Shadow building} is when the Makefiles and libraries are not built in the
-    same directory as the source directory. Shadow building keeps the source
-    directory contents free of generated Makefiles and other intermediate
-    compilation files. Note that the default installation directory is not
-    modified when shadow building. To shadow build, run configure in a clean
-    directory.
+    It is often convenient to use a \e{shadow build}, when the build directory
+    is not the same as the source directory. This method allows the source
+    directory to be free from intermediate or generated files, and allows for
+    multiple simultaneous builds with different configurations. To shadow-build,
+    run \c configure from a separate directory:
 
-    \code
-    mkdir ~/Qt-builds
-    cd ~/Qt-builds
+   \code
+    mkdir ~/qt-build
+    cd ~/qt-build
     ~/qt-source/configure
     \endcode
 
-    Setting both the shadow build and prefix to a directory outside of the Qt
-    sources allows multiple Qt configurations to exist. For example, one
-    installation can contain a statically-linked Qt while another installation
-    contains a dynamically-linked Qt.
+    The Makefiles are at \e ~/qt-build and not in the source directory.
+
+    After building, it may be necessary to install the libraries and binaries
+    into the install directory. The default for the installation directory
+    depends on the platform; \c configure's output mentions it. To modify the
+    installation directory, use the \c -prefix option:
 
     \code
-    cd ~/Qt-static
-    ~/qt/configure -prefix $PWD/qtbase -static
-
-    cd ~/Qt-dynamic
-    ~/qt/configure -prefix $PWD/qtbase -shared
+    ./configure -prefix /opt/Qt-5.1
     \endcode
 
-    It is also possible to set the shadow build directory and the installation
-    directory (set by the prefix option) to separate directories. This setup
-    will build Qt in a separate directory and install it into a different
-    directory.
+    The installation directory serves as the parent directory of the \e bin, \e
+    lib, and other installed Qt subdirectories.
+
+    It is possible to set the install directory to the same directory as the
+    build directory (this is termed a \e non-prefix build). In this case, Qt can
+    be used straight out of the build directory, and \e must \e not be
+    installed. This is the default under Windows, and when Qt is configured with
+    the \c -developer-build option.
+
+    \note When you are explicitly requesting a non-prefix configuration for a
+    top-level build of Qt (all modules at once), set the prefix to
+    \c{$builddir/qtbase}, not \c{$builddir}.
 
     \section1 Including and Excluding Qt Modules
 

@@ -53,20 +53,37 @@
         \li \l{Qt for Mac OS X}{Mac OS X}
     \endlist
 
-    \section1 Embedded platforms
+    \section1 Embedded Platforms
     You can develop with Qt for the following embedded platforms:
     \list
+        \li \l{Qt Enterprise Embedded}{Embedded Android}
         \li Embedded Linux (DirectFB, EGLFS, KMS, and Wayland)
         \li \l{Windows CE - Introduction to using Qt}{Windows Embedded (Compact and Standard)}
         \li Real-Time Operating Systems, such as \l{QNX}, VxWorks and INTEGRITY
     \endlist
 
-    \section1 Mobile platforms
-    Qt 5 will support all leading mobile operating systems. There already exists work in progress support for:
+    \section1 Mobile Platforms
+
+    You can develop with Qt for the following mobile platforms supported
+    by Digia:
+
     \list
         \li \l{Qt for Android}{Android}
         \li \l{Qt for iOS}{iOS}
+    \endlist
+
+    The following platforms also support Qt:
+
+    \list
         \li \l{Qt for BlackBerry}{BlackBerry 10}
+        \li \l{Sailfish OS}
+    \endlist
+
+    Work in progress ports of Qt exist for:
+
+    \list
+        \li WinRT (including Windows Phone)
+        \li \l{Tizen}
     \endlist
 
     For more information about the Qt modules for mobile platforms, visit
@@ -91,10 +108,18 @@
                                      \li \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.8.0/32-bit/threads-posix/dwarf/x32-4.8.0-release-posix-dwarf-rev1.7z}{MinGW-builds gcc 4.8.0 (32-bit)}
     \row    \li Microsoft Windows 8 (32-bit and 64-bit)
                                      \li MSVC 2012 SP2
+    \row    \li Microsoft Windows 8.1 (32-bit and 64-bit)
+                                     \li MSVC 2012 SP2
     \row    \li Apple Mac OS X 10.7 "Lion", Cocoa (64-bit)
                                      \li Clang as provided by Apple
     \row    \li Apple Mac OS X 10.8 "Mountain Lion", Cocoa (64-bit)
                                      \li Clang as provided by Apple
+    \row    \li Apple Mac OS X 10.9 "Mavericks", Cocoa (64-bit)
+                                     \li Clang as provided by Apple
+    \row    \li Apple iOS 6
+                                     \li Clang as provided by Apple
+    \row    \li Google Android 4.2
+                                     \li As provided by Google (Android NDK 4.8)
     \endtable
 
     These reference configurations are run on the continuous integration (CI)

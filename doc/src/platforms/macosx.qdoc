@@ -50,6 +50,9 @@
     runs like any executable on Mac OS X. With the installer, you can select the
     components you want.
 
+    \note Qt Enterprise packages are available from the \l{Try Qt Enterprise}
+    page.
+
     The \l{Qt Installation Program} page contains the full installation
     procedure and the available installers.
 
@@ -809,8 +812,8 @@
 
     We assume that you already have installed Qt as frameworks, which
     is the default when installing Qt, in the /path/to/Qt
-    directory. For more information on how to build Qt, see the \l
-    Installation documentation.
+    directory. For more information on how to build Qt without Frameworks,
+    visit the \l{Qt for Mac OS X - Specific Issues} documentation.
 
     When installing, the identification name of the frameworks is set. This
     name is used by the dynamic linker (\c dyld) to find the libraries for your
@@ -1056,14 +1059,12 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 50
 
-    Unlike the deployment processes on \l {Deploying an Application on
-    X11 Platforms}{X11} and \l {Deploying an Application on
-    Windows}{Windows}, compiler-specific libraries rarely have to
-    be redistributed with your application. But there are several ways to
-    deploy applications, as Qt can be configured, built, and installed in
-    several ways on Mac OS X. Typically your goals help determine how you
-    are going to deploy the application. The last sections describe a few
-    things that you must be aware of while deploying your application.
+    Compiler-specific libraries rarely have to be redistributed with your
+    application. But there are several ways to deploy applications, as Qt can be
+    configured, built, and installed in several ways on Mac OS X. Typically your
+    goals help determine how you are going to deploy the application. The last
+    sections describe a few things that you must be aware of while deploying
+    your application.
 
     \section2 Mac OS X Version Dependencies
 
