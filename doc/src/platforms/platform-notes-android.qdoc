@@ -134,6 +134,15 @@
     \note Embedding a QGLWidget inside a widget hierarchy is not supported. When QGLWidget is in use,
     it must be the top-level widget.
 
+    \section1 Multimedia Special Considerations
+
+    \l{Qt Multimedia}, like the rest of Qt, supports Android versions 2.3.3 (API level 10) or later.
+    There is however an exception for video output which requires Android versions 3.0 (API level 11)
+    or later. This affects camera preview and video player features.
+
+    Additionally, the \l{Qt Multimedia Widgets} module is not supported on Android, which means
+    video display is only available using the VideoOutput and \l{QtMultimedia::Video}{Video} QML items.
+
     \section1 Assets File System
 
     Qt for Android provides a special, virtual file system which is based on the \e assets mechanism
