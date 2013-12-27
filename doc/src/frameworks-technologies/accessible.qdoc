@@ -46,8 +46,8 @@
 
     Accessibility in computer software is making applications usable
     for people with different abilities.
-    It is important to take different people's needs into account, for example
-    low vision, hearing, dexterity or cognitive problems.
+    It is important to take different people's needs into account, for example,
+    in case of low vision, hearing, dexterity, or cognitive problems.
     Some examples of accessibility measures are
     keyboard shortcuts, a high-contrast user interface that uses
     specially selected colors and fonts, or support for assistive tools
@@ -55,25 +55,25 @@
 
     A basic checklist that any application should aim for:
     \list
-        \li \c {Usability} Usability and user centric design generally lead to
-        more usable applications, including imporvements for people with various abilities.
-        \li \c {Fonts} Font settings should follow the system/platform. This allows users to select
+        \li \b {Usability} - Usability and user centric design generally lead to
+        more usable applications, including improvements for people with various abilities.
+        \li \b {Fonts} - Font settings should follow the system/platform. This allows users to select
         fonts for readability and increasing the font size.
-        \li \c {Colors} Provide enough contrast and consider the most common cases of low
-        vision and color blindness. Make sure that the application is usable for people
-        with red/green blindness for example, don't depend on colors only.
-        \li \c {Scalable UI} A user interface that works in various sizes and properly supports
+        \li \b {Colors} - Provide enough contrast and consider the most common cases of low
+        vision and color blindness. Make sure that the application is usable, for example,
+        for people with red/green blindness, and don't depend on colors only.
+        \li \b {Scalable UI} - A user interface that works in various sizes and properly supports
         different fonts and accommodates size changes.
-        \li \c {Sounds} Do not exclusively rely on sound notifications, provide a visual alternative
+        \li \b {Sounds} - Do not exclusively rely on sound notifications, provide a visual alternative
         when a sound signal is imperative to using the application.
-        \li \c {Spelling} Offer spell checking wherever it makes sense, even when only a single word is expected.
-        \li \c {Assistive Technology} Support the use of assistive tools (AT). Either use standard widgets/controls
-        which support ATs out of the box or make sure that your custom widgets and controls support
+        \li \b {Spelling} - Offer spell checking wherever it makes sense, even when only a single word is expected.
+        \li \b {Assistive Technology} - Support the use of assistive tools (AT). Either use standard widgets/controls
+        which support ATs out of the box, or make sure that your custom widgets and controls support
         accessibility properly. In order to learn more about this read on below.
     \endlist
 
-    This part of the documentation assumes that the basics for accessibility
-    which go hand in hand with usability are already in good shape.
+    This part of the documentation assumes that the basics for accessibility,
+    which go hand in hand with usability, are already in good shape.
     The rest of this document focuses more specifically on supporting assistive technology.
 
     Assistive Tools (or ATs) come in great variety and help users with different tasks.
@@ -82,7 +82,7 @@
     interactions with the UI elements.
 
     Applications do not usually communicate directly with the
-    assistive tools but through a platform specific API.
+    assistive tools, but through a platform specific API.
     Generally the communication with the ATs works though an IPC mechanism.
     Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
@@ -93,7 +93,7 @@
     native APIs. Qt tries to make adding accessibility support to your application as easy
     as possible, only a few changes from your side may be required to allow even more users to enjoy it.
 
-    The main reason to consult this coumentation is to learn how to make custom \l QWidget subclasses
+    The main reason to consult this documentation is to learn how to make custom \l QWidget subclasses
     and \l {QQuickItem}s accessible.
 
     In this overview document, we will examine the overall Qt
