@@ -67,6 +67,217 @@
     \row \li Phone, Norway office (for sales in the rest of the world): \li \b{+47 2108 0420}
     \endtable
 
+    \section1 Licenses Used in Qt
+
+    The following table lists the \l{ Licenses Used in Qt}{other licenses used in Qt},
+    not provided under the \l{GNU General Public License (GPL)},
+    \l{GNU Lesser General Public License (LGPL)} or the \l{Qt Commercial License}.
+    \l{Third-Party Licenses Used in Qt}{Third-party licenses} used in libraries that
+    are supplied alongside Qt modules are also listed.
+
+    \note Cross-module dependencies are also described on a general level. All Qt
+    modules depend on \l{Qt Core}.
+
+    \table 80%
+    \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
+
+    \row \li {1,25} Qt Core
+
+    \row \li \l{QCrashHandler class}{QCrashHandler}
+         \li Parts of implementation of QCrashHandler class \li BSD-style \li
+    \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput() \li Modified BSD \li
+    \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
+         \li Specific parts of the Qt for Mac OS X Cocoa port \li BSD-style \li \l{Qt for Mac OS X}
+    \row \li \l{The qtmain Library}{qtmain library}
+         \li A helper library for writing a cross-platform main() function on Windows \li Modified BSD \li \l{Qt for Windows}
+    \row \li \l{DES (des.cpp)}{DES}
+         \li Implementation of DES encryption (des.cpp) \li MIT \li
+    \row \li \l{Shift-JIS Text Codec}
+         \li A character encoding for Japanese.\li BSD-style\li
+    \row \li \l{ISO-2022-JP (JIS) Text Codec}
+         \li A widely used encoding for Japanese.\li BSD-style  \li
+    \row \li \l{EUC-JP Text Codec}
+         \li EUC-JP is a variable-width encoding used to represent the elements of three Japanese character set standards.\li BSD-style \li
+    \row \li \l{EUC-KR TextCodec}
+         \li Extended Unix Code (EUC) is a multibyte character encoding system used primarily for Japanese, Korean, and simplified Chinese.\li BSD-style\li
+    \row \li \l{GBK Text Codec}
+         \li GBK is an extension of the GB2312 character set for simplified Chinese characters, used mainland China.\li BSD-style \li
+    \row \li \l{Big5 Text Codec}
+         \li Big5, or BIG-5, is a Chinese character encoding method used for Traditional Chinese characters.\li BSD-style \li \li
+    \row \li \l{TSCII Text Codec}
+         \li The TSCII codec provides conversion to and from the Tamil TSCII encoding.\li BSD-style \li \li
+    \row \li \l{Stack-less Just-In-Time compiler}
+         \li A platform-independent compiler or assembler\li BSD \li \li
+    \row \li \l{Parts of the codecs implemented by Qt}
+         \li \li BSD \li \li
+    \row \li{Unicode}
+         \li \li \li \li
+    \row \li{Macros for building Qt files}
+         \li \li \li \li
+    \row \li \l{The PCRE library}
+         \li The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5
+         \li BSD-style \li \li
+
+    \row \li {4,1} \b{Third-party Licenses}
+
+    \row \li \l{Android GNU C++ Run-time Licensing}{Android C++ Run-time}
+         \li GNU C++ run-time library (libstdc++) for Android \li GPLv3 with exception \li \l{Qt for Android} \li
+    \row \li \l {MD4 (md4.cpp and md4.h)}{MD4}
+         \li implements the MD4 message-digest algorithm\li BSD \li \li
+    \row \li \l{MD5 (md5.cpp and md5.h)}{MD5}
+         \li implements the MD5 message-digest algorithm\li BSD \li \li
+    \row \li \l{SHA-1 (sha1.cpp)}{SHA-1}
+         \li implements the SHA-1 encryption algorithm \li BSD \li \li
+    \row \li \l{SHA-3, originally known as Keccak}{SHA-3}
+         \li implements the SHA-3 encryption algorithm \li BSD \li \li
+    \row \li \l{Data Compression Library (zlib)}{zlib}
+         \li zlib is a general purpose data compression library.\li BSD-style \li
+
+    \row \li {1,11} Qt Gui
+    \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
+         \li Internal class for key mapping \li Custom, BSD-style \li {Qt for Linux}
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
+         \li Parts of FreeType project used in font rendering \li GPLv2, FreeType Project License \li
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine \li BSD-style \li
+    \row \li \l{FreeType 2 (freetype) version 2.3.12}{FreeType 2}
+         \li Parts of FreeType project used in font rendering \li GPLv2, FreeType Project License \li
+    \row \li \l{PNG Reference Library (libpng)}{PNG Reference Library}
+         \li A library for reducing the time and effort it takes to support the PNG format \li BSD-style \li \li
+    \row \li \l{Pixman (pixman)}{Pixman}
+         \li Pixman is a library that provides low-level pixel manipulation features such as image compositing and trapezoid rasterization.\li BSD-style \li \li
+    \row \li \l{Drag and Drop}
+         \li Allows users to transfer information between and within applications.\li BSD-style \li \li
+    \row \li \l{ANGLE (angle)}{ANGLE}
+         \li Opensource project to map OpenGL ES API calls to DirectX API\li BSD-style\li {Qt for Windows} \li
+
+    \row \li {1,3} Qt Location
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Poly2Tri}
+         \li Poly2Tri is a sweepline constrained Delaunay Polygon Triangulation Library \li BSD-style \li
+
+    \row \li {1,3} Qt Network
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{The Public Suffix List}
+         \li List allowing browsers to avoid privacy-damaging "supercookies", to highlight the most important part of a domain name \li Mozilla Public License \li
+
+    \row \li {1,3} Qt Multimedia
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{FFTReal}
+         \li Fast Fourier transform of real-valued arrays.\li LGPL \li
+
+    \row \li {1,2} Qt SVG
+
+    \row \li \l{Qt SVG License Information}
+         \li Parts of code for arc handling in Qt SVG module \li BSD-style \li
+
+    \row \li {1,3} Qt Quick
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Easing Equations}
+         \li Easing Equations is a collection of swappable functions that add flavor to motion.\li BSD-style \li
+
+    \row \li {1,5} Qt Script
+         \li \li \li (Provided for Qt 4 compatibility) \li
+
+    \row \li \l{V8 benchmark tests}
+         \li V8 benchmark tests used in Qt Script \li BSD-style \li \li
+    \row \li \l{Sunspider benchmark tests}
+         \li Sunspider benchmark tests used in Qt Script \li BSD-style \li \li \li
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{JavaScriptCore}
+         \li  \li BSD-style \li \li
+
+    \row \li {1,6} Qt Test
+
+    \row \li \l{Other Licenses Used in Qt#Testlib}{Testlib}
+         \li Parts of implementation of Qt Test library \li BSD, MIT \li \li
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Valgrind}
+         \li A code analysis tool for detecting memory leaks\li GPLv2 \li \li
+    \row \li \l {valgrind.h specific license}
+         \li \li BSD-style \li \li
+    \row \li \l{Callgrind}
+         \li A performance profiling tool \li GPL v2 \li \li
+
+    \row \li {1,2} Qt Print Support
+         \li \li \li Depends on Qt Gui and Qt Widgets \li
+
+    \row \li \l{Notes about PDF Licensing}{PDF Licensing}
+         \li Notes about PDF Licensing \li \li \li
+
+    \row \li {1,4} Qt WebKit
+
+    \row \li \l{WebKit used by the QtWebKit module}
+         \li Parts of WebKit used by the QtWebKit module \li BSD-style \li Depends on Qt Gui, Qt Network, Qt SQL, Qt QML, and Qt Quick \li
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{WebCore}
+         \li A layout, rendering, and Document Object Model (DOM) library for HTML and SVG \li BSD \li \li
+
+    \row \li {1,2} Qt Designer
+
+    \row \li \l{Qt Designer License Information}
+         \li Implementation of the recursive shadow casting algorithm in Qt Designer \li BSD (MIT) \li \li
+
+    \row \li {1,3} Qt Creator
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Botan version}{Botan}
+         \li A C++ crypto library used in Qt Creator \li BSD \li \li
+
+    \row \li {1,4} Qt Image Formats
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{TIFF Software Distribution (libtiff)}{TIFF}
+         \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files.\li BSD\li \li
+    \row \li \l{MNG Library (libmng)}{MNG Library}
+         \li Support decoding and displaying of MNG format image files \li BSD-style \li
+
+    \row \li {1,2} Qt SQL
+
+    \row \li \l{SQLite (sqlite)}{SQLite}
+         \li A C library that implements a self-contained, embeddable, zero-configuration SQL database engine.\li BSD-style \li
+
+    \row \li {1,2} Qt XML Patterns
+
+    \row \li \l{Bison Parser}
+         \li Bison is a parser generator\li GPL \li \li
+
+    \row \li {1,8} Plugins
+
+    \row \li \l{JPEG Software (libjpeg)}{JPEG}
+         \li C software to implement JPEG image compression and decompression \li BSD-style \li \li
+    \row \li \l{IAccessible2 IDL Specification}{IAccessible2}
+         \li An accessibility API for Microsoft Windows applications.\li BSD \li \l {Qt for Windows} \li
+    \row \li \l{Cycle}
+         \li A CPU tick counter\li MIT \li \li
+    \row \li \l{callgrind.h specific license}
+         \li \li BSD-style \li \li
+    \row \li \l{xcb}
+         \li A C language binding for the X Window System\li BSD-style \li {Qt for Windows} \li
+    \row \li \l{at-spi and at-spi2}
+         \li A toolkit-neutral way of providing accessibility facilities in application\li LGPL \li {Qt for Linux} \li
+    \row \li \l{xkbcommon}
+         \li Keymap handling library for toolkits and window systems. \li BSD-style \li{Qt for Linux}\li
+
+
+    \row \li {1,3} Qt Tools
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{Clucene Core Library}
+         \li It is a high-performance, full-featured text search engine written in C++ \li  BSD (MIT) \li \li \li
+
+    \endtable
+
     \section1 Additional information
 
     The documents below list related documents, such as information about Trademark and other
@@ -77,7 +288,6 @@
 /*!
     \page licenses.html
     \title Other Licenses Used in Qt
-    \ingroup licensing
     \brief Information about other licenses used for Qt components and third-party code.
 
     Qt contains some code that is not provided under the
@@ -142,64 +352,6 @@
     See \c qtbase/src/3rdparty/freetype/docs/FTL.txt and \c
     qtbase/src/3rdparty/freetype/docs/GPL.txt for license details.
 
-    \section1 Q3PolygonScanner class used in Qt for Embedded Linux
-
-    Copyright (c) 1985, 1986, 1987  X Consortium
-
-    Permission is hereby granted, free of charge, to any person obtaining
-    a copy of this software and associated documentation files (the
-    "Software"), to deal in the Software without restriction, including
-    without limitation the rights to use, copy, modify, merge, publish,
-    distribute, sublicense, and/or sell copies of the Software, and to
-    permit persons to whom the Software is furnished to do so, subject to
-    the following conditions:
-
-    The above copyright notice and this permission notice shall be included
-    in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR
-    OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-    OTHER DEALINGS IN THE SOFTWARE.
-
-    Except as contained in this notice, the name of the X Consortium shall
-    not be used in advertising or otherwise to promote the sale, use or
-    other dealings in this Software without prior written authorization
-    from the X Consortium.
-
-    \list
-    \li Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
-    \endlist
-
-    \hr
-
-    Copyright 1987 by Digital Equipment Corporation, Maynard, Massachusetts.
-
-                            All Rights Reserved
-
-    Permission to use, copy, modify, and distribute this software and its
-    documentation for any purpose and without fee is hereby granted,
-    provided that the above copyright notice appear in all copies and that
-    both that copyright notice and this permission notice appear in
-    supporting documentation, and that the name of Digital not be
-    used in advertising or publicity pertaining to distribution of the
-    software without specific, written prior permission.
-
-    DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
-    ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
-    DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
-    ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-    WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-    ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
-    SOFTWARE.
-
-    \list
-    \li Parts of the Q3PolygonScanner class used in Qt for Embedded Linux
-    \endlist
-
     \section1 QKeyMapper class on X11 platforms
 
     Copyright 1985, 1987, 1998  The Open Group
@@ -226,24 +378,6 @@
 
     \list
     \li Parts of the internal QKeyMapper class on X11 platforms
-    \endlist
-
-    \section1 pnmscale.c
-
-    pnmscale.c - read a portable anymap and scale it
-
-    Copyright (C) 1989, 1991 by Jef Poskanzer.
-
-    Permission to use, copy, modify, and distribute this software and its
-    documentation for any purpose and without fee is hereby granted, provided
-    that the above copyright notice appear in all copies and that both that
-    copyright notice and this permission notice appear in supporting
-    documentation.  This software is provided "as is" without express or
-    implied warranty.
-
-    \list
-    \li Parts of the internal QImageSmoothScaler::scale() function use code
-    based on pnmscale.c by Jef Poskanzer.
     \endlist
 
     \section1 QUrl::fromUserInput
@@ -1064,63 +1198,5 @@
     \li \c{benchmarks/script/sunspider/tests/math-cordic.js}
     \endlist
 
-    \section1 Part of the Arthur tests
-
-    W3C SOFTWARE NOTICE AND LICENSE
-
-    Copyright (c) 1994-2002 World Wide Web Consortium, (Massachusetts
-    Institute of Technology, Institut National de Recherche en
-    Informatique et en Automatique, Keio University). All Rights
-    Reserved. http://www.w3.org/Consortium/Legal/
-
-    This W3C work (including software, documents, or other related items)
-    is being provided by the copyright holders under the following
-    license. By obtaining, using and/or copying this work, you (the
-    licensee) agree that you have read, understood, and will comply with
-    the following terms and conditions:
-
-    Permission to use, copy, modify, and distribute this software and its
-    documentation, with or without modification, for any purpose and
-    without fee or royalty is hereby granted, provided that you include
-    the following on ALL copies of the software and documentation or
-    portions thereof, including modifications, that you make:
-
-        1. The full text of this NOTICE in a location viewable to users of
-        the redistributed or derivative work.
-
-        2. Any pre-existing intellectual property disclaimers, notices, or
-        terms and conditions. If none exist, a short notice of the
-        following form (hypertext is preferred, text is permitted) should
-        be used within the body of any redistributed or derivative code:
-        "Copyright (c) [$date-of-software] World Wide Web Consortium,
-        (Massachusetts Institute of Technology, Institut National de
-        Recherche en Informatique et en Automatique, Keio University). All
-        Rights Reserved. http://www.w3.org/Consortium/Legal/"
-
-        3. Notice of any changes or modifications to the W3C files, including
-        the date changes were made. (We recommend you provide URIs to the
-        location from which the code is derived.)
-
-    THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
-    HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
-    INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS
-    FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR
-    DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS,
-    TRADEMARKS OR OTHER RIGHTS.
-
-    COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL
-    OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR
-    DOCUMENTATION.
-
-    The name and trademarks of copyright holders may NOT be used in
-    advertising or publicity pertaining to the software without specific,
-    written prior permission. Title to copyright in this software and any
-    associated documentation will at all times remain with copyright
-    holders.
-
-    \list
-    \li Included in \c{tests/arthur/data/1.1 svg files}
-    \li Part of the Arthur tests
-    \endlist
 
 */
