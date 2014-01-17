@@ -110,9 +110,9 @@
 
         class MyDevice {
         private:
-	    FOOTRONICS_DEVICE_HANDLE handle;
+            FOOTRONICS_DEVICE_HANDLE handle;
         };
-    \endcode  
+    \endcode
 
     A similar situation arises with forms created by Qt Designer when using
     aggregation or multiple inheritance:
@@ -122,9 +122,9 @@
 
         class MyWidget : public QWidget {
         private:
-	    Ui::MyWidget m_ui;
+            Ui::MyWidget m_ui;
         };
-    \endcode  
+    \endcode
 
     When deploying the library, there should be no dependency to the internal
     headers \c{footronics/device.h} or \c{ui_widget.h}.

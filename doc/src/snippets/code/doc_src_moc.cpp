@@ -45,7 +45,7 @@
 
 //! [4]
 #ifndef Q_MOC_RUN
-    ... 
+    ...
 #endif
 //! [4]
 

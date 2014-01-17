@@ -25,19 +25,19 @@
 **
 ****************************************************************************/
 
-/* NOT DOCUMENTED ! 
+/* NOT DOCUMENTED !
   \page qmsdev.html
 
   \title The QMsDev Plugin
 
   The Visual Studio Integration Plugin is currently available only to users of
   Visual Studio 6. It offers simple ways of doing common tasks when writing a
-  Qt application. 
+  Qt application.
 
   \tableofcontents
 
   \section1 How to install the Visual Studio Integration Plugin
-   
+
   When you install Qt, the integration plugin should be installed for you,
   however, sometimes this does  not happen, so to install the integration
   plugin manually just carry out the following steps.
@@ -52,7 +52,7 @@
   Now the integration plugin should be installed. If this doesn't
   work, then contact Qt technical support giving details of
   what went wrong.
-  
+
   \section1 How to uninstall the Visual Studio Integration Plugin
 
   When you want to uninstall the integration plugin, just carry out the
@@ -64,7 +64,7 @@
   \endlist
 
   \section1 What can the Visual Studio Integration Plugin do?
-  
+
   The integration plugin adds the following options to Visual Studio:
 
   \list
@@ -78,7 +78,7 @@
   \endlist
 
   \section2 Using the 'New Qt Project' button
-  
+
   The 'New Qt Project' button allows you to create a simple Qt project
   ready for development. Simply fill in the form and if you select
   'Dialog' or 'Main Window' without MDI support then it will
@@ -142,7 +142,7 @@
   The 'Add MOC' button will add in the custom build step for the selected file
   so that it creates any needed MOC files and it will add these generated
   files to the project. All you need to do to use it is click on a file that
-  has Q_OBJECT and click the button. 
+  has Q_OBJECT and click the button.
 
   You only need to use this button if you added a file that has
   Q_OBJECT in it by hand, you don't need to use this if you used any

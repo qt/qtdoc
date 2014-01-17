@@ -47,7 +47,7 @@
     session may include applications running on different computers and
     may span multiple displays.
 
-    \section1 Shutting a Session Down 
+    \section1 Shutting a Session Down
 
     A session is shut down by the session manager, usually on behalf of
     the user when they want to log out. A system might also perform an
@@ -73,7 +73,7 @@
 
     X11 has supported complete session management since X11R6.
 
-    \section1 Getting Session Management to Work with Qt 
+    \section1 Getting Session Management to Work with Qt
 
     Start by reimplementing QApplication::commitData() to
     enable your application to take part in the graceful logout process. If
@@ -105,12 +105,12 @@
 
     \b{Important:} In order to allow the window manager to
     restore window attributes such as stacking order or geometry
-    information, you must identify your top level widgets with 
+    information, you must identify your top level widgets with
     unique application-wide object names (see QObject::setObjectName()). When
     restoring the application, you must ensure that all restored
     top level widgets are given the same unique names they had before.
 
-    \section1 Testing and Debugging Session Management 
+    \section1 Testing and Debugging Session Management
 
     Session management support on Mac OS X and Windows is fairly limited
     due to the lack of this functionality in the operating system

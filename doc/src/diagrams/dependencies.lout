@@ -67,27 +67,27 @@ macro @GlibColour { rgb { 0.7 0.7 0.7 } }
     @Rowe A { FREETYPE:: @Node paint { @OptionalColour } FreeType }
           B { QTCORE:: @Node paint { @TTPurpleColour } QtCore }
           D { XFIXES:: @Node paint { @OptionalColour } Xfixes }
-	  E { XEXT:: @Node paint { @DefaultColour } Xext }
+          E { XEXT:: @Node paint { @DefaultColour } Xext }
           G { SM:: @Node paint { @SMColour } SM }
     @Rowf B { PTHREAD:: @Node paint { @PthreadColour } pthread }
           C { GLIB:: @Node paint { @GlibColour } Glib }
           E { X:: @Node paint { @DefaultColour } X11 }
           G { ICE:: @Node paint { @SMColour } ICE }
     @Rowg F {
-	@Tbl
-	    font { -2p }
-	    margin { 0.15f }
-	    cmarginabove { 0c }
-	    iv { top }
-	    bformat { @Cell A | @Cell B | @Cell C }
-	    cformat { @Cell A | @Cell B | @Cell C }
-	    aformat { @StartHSpan @Cell A | @HSpan | @HSpan }
-	{
-	    @Rowb A { C:: @BNode {} } B { D:: @BNode {} }
-	          C { some configurations only }
+        @Tbl
+            font { -2p }
+            margin { 0.15f }
+            cmarginabove { 0c }
+            iv { top }
+            bformat { @Cell A | @Cell B | @Cell C }
+            cformat { @Cell A | @Cell B | @Cell C }
+            aformat { @StartHSpan @Cell A | @HSpan | @HSpan }
+        {
+            @Rowb A { C:: @BNode {} } B { D:: @BNode {} }
+                  C { some configurations only }
             @Rowb B { * } C { Xt intrinsics only }
-	}
-	} 
+        }
+    }
 }
 //
 @VHVCurveArrow from { QTGUI } to { XINERAMA } pathstyle { dotted }

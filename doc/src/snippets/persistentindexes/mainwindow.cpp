@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(selectionModel,
             SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(updateMenus(const QModelIndex &)));
-    
+
     setCentralWidget(view);
     setWindowTitle("View onto a string list model");
 }

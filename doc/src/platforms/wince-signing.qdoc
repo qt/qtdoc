@@ -35,11 +35,11 @@
 
 Windows CE provides a security mechanism to ask the user to confirm
 that they want to use an application/library that is unknown to the
-system. This process gets repeated for each dependency of an 
+system. This process gets repeated for each dependency of an
 application, meaning each library the application links to, which is
 not recognized yet.
 
-To simplify this process you can use signatures and certificates. A 
+To simplify this process you can use signatures and certificates. A
 certificate gets installed on the device and each file which is
 signed with the according certificate can be launched without the
 security warning.
@@ -50,7 +50,7 @@ location of the .pfx file and qmake adds the signing step to the
 build rules.
 
 If you need to select a separate signature for a specific project,
-or you only want to sign a single project, you can use the 
+or you only want to sign a single project, you can use the
 "SIGNATURE_FILE = foo.pfx" rule inside the project file.
 
 The above described rules apply for command line makefiles as well as

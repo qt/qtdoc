@@ -79,7 +79,7 @@ void MainWindow::selectOpenFile()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
         tr("Select a file to open"), "", tr("Sound files (*.wav)"));
-    
+
     if (!fileName.isEmpty())
         openFile(fileName);
 }

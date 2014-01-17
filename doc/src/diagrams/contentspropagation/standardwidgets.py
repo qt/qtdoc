@@ -51,7 +51,7 @@ def createGroupBox(parent, attributes = None, fill = False, fake = False):
     backgroundLayout = QVBoxLayout()
     backgroundLayout.setMargin(4)
     background.setLayout(backgroundLayout)
-    
+
     groupBox = QGroupBox("&Options")
     layout = QGridLayout()
     groupBox.setLayout(layout)
@@ -61,30 +61,30 @@ def createGroupBox(parent, attributes = None, fill = False, fake = False):
     checkedBox.setChecked(True)
     layout.addWidget(checkedBox, 1, 0)
     layout.addWidget(QCheckBox("From &start of text"), 1, 1)
-    
+
     backgroundLayout.addWidget(groupBox)
-    
+
     if attributes:
         for attr in attributes:
             groupBox.setAttribute(attr, True)
             if not fake:
                 background.setAttribute(attr, True)
-    
+
     groupBox.setAutoFillBackground(fill)
     background.setAutoFillBackground(fill)
-    
+
     return background
-    
+
 class CustomWidget(QWidget):
 
     def __init__(self, parent, fake = False):
-    
+
         QWidget.__init__(self, parent)
         self.fake = fake
         self.fakeBrush = QBrush(Qt.red, Qt.DiagCrossPattern)
 
     def paintEvent(self, event):
-    
+
         painter = QPainter()
         painter.begin(self)
         painter.setRenderHint(QPainter.Antialiasing)
@@ -100,16 +100,16 @@ if __name__ == "__main__":
         qt = sys.argv[1]
     except IndexError:
         qt = "4.1"
-    
+
     if qt != "4.0" and qt != "4.1":
         sys.stderr.write("Usage: %s [4.0|4.1]\n" % sys.argv[0])
         sys.exit(1)
-    
+
     app = QApplication(sys.argv)
     exec_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
     label = QLabel()
     label.setPixmap(QPixmap(os.path.join(exec_dir, "lightbackground.png")))
-    
+
     layout = QGridLayout()
     label.setLayout(layout)
     if qt == "4.0":
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         caption.setAutoFillBackground(True)
         caption.setMargin(2)
         layout.addWidget(caption, 1, 0, Qt.AlignCenter | Qt.AlignTop)
-    
+
     if qt == "4.0":
         contentsWidget = createGroupBox(label)
         contentsWidget.setAttribute(Qt.WA_ContentsPropagated, True)
@@ -138,7 +138,7 @@ if __name__ == "__main__":
         caption.setAutoFillBackground(True)
         caption.setMargin(2)
         layout.addWidget(caption, 1, 1, Qt.AlignCenter | Qt.AlignTop)
-    
+
 #    if qt == "4.0":
 #        noBackgroundWidget = createGroupBox(
 #            label, attributes = [Qt.WA_NoBackground], fake = True)
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 #        caption.setAutoFillBackground(True)
 #        caption.setMargin(2)
 #        layout.addWidget(caption, 3, 0, Qt.AlignCenter | Qt.AlignTop)
-#    
+#
 #    if qt == "4.0":
 #        contentsNoBackgroundWidget = createGroupBox(
 #            label, attributes = [Qt.WA_ContentsPropagated, Qt.WA_NoBackground],
@@ -173,12 +173,12 @@ if __name__ == "__main__":
 #        caption.setAutoFillBackground(True)
 #        caption.setMargin(2)
 #        layout.addWidget(caption, 3, 1, Qt.AlignCenter | Qt.AlignTop)
-    
+
     if qt == "4.0":
         label.setWindowTitle("Qt 4.0: Painting Standard Qt Widgets")
     elif qt == "4.1":
         label.setWindowTitle("Qt 4.1: Painting Standard Qt Widgets")
-    
+
     label.resize(480, 140)
     label.show()
     sys.exit(app.exec_())

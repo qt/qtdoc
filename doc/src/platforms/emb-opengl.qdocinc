@@ -33,9 +33,9 @@ To translate QPainter operations into OpenGL ES calls (there are actually
 two subclasses, one for OpenGL/ES 1.1 and another for OpenGL/ES 2.0), Qt
 uses a subclass of QPaintEngine.  This specialized paint engine can be used
 to improve 2D rendering performance on appropriate hardware.  It can also
-overlay controls and decorations onto 3D scenes drawn using OpenGL. 
+overlay controls and decorations onto 3D scenes drawn using OpenGL.
 
-\tableofcontents 
+\tableofcontents
 
 \section1 Using OpenGL ES with Qt
 To use OpenGL-enabled widgets in a Qt for Embedded application, all that is
@@ -74,7 +74,7 @@ application requires them.
 \note OpenGL ES 2.X does not support PBuffers, so QGLPixelBuffer will not
 work. In this case, QGLFramebufferObject should be used instead. However,
 OpenGL ES 1.X does not support Framebuffer objects, with the exception of
-some OpenGL ES 1.X extensions. In this case, please use QGLPixelBuffer. 
+some OpenGL ES 1.X extensions. In this case, please use QGLPixelBuffer.
 
 \note On most embedded hardware, the OpenGL implementation is
 actually \l{http://www.khronos.org/opengles/1_X/}{OpenGL/ES 1.1} or

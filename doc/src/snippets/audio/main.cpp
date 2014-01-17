@@ -118,7 +118,7 @@ public slots:
                 break;
 //![3]
 
-            // Handle 
+            // Handle
             case QAudio::ActiveState:
                 // Handle active state...
                 break;
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     Window window;
     window.show();
 
-    return app.exec();        
+    return app.exec();
 }
 
 

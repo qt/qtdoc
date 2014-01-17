@@ -47,7 +47,7 @@ from PyQt4.QtGui import *
 class CustomWidget(QWidget):
 
     def __init__(self, parent, fake = False):
-    
+
         QWidget.__init__(self, parent)
         gradient = QLinearGradient(QPointF(0, 0), QPointF(100.0, 100.0))
         baseColor = QColor(0xa6, 0xce, 0x39, 0x7f)
@@ -56,7 +56,7 @@ class CustomWidget(QWidget):
         self.brush = QBrush(gradient)
         self.fake = fake
         self.fakeBrush = QBrush(Qt.red, Qt.DiagCrossPattern)
-        
+
         qtPath = QPainterPath()
         qtPath.setFillRule(Qt.OddEvenFill)
         qtPath.moveTo(-45.0, -20.0)
@@ -81,7 +81,7 @@ class CustomWidget(QWidget):
         self.path = qtPath
 
     def paintEvent(self, event):
-    
+
         painter = QPainter()
         painter.begin(self)
         painter.setRenderHint(QPainter.Antialiasing)
@@ -92,13 +92,13 @@ class CustomWidget(QWidget):
         painter.translate(60, 60)
         painter.drawPath(self.path)
         painter.end()
-    
+
     def sizeHint(self):
-    
+
         return QSize(120, 120)
-    
+
     def minimumSizeHint(self):
-    
+
         return QSize(120, 120)
 
 
@@ -108,16 +108,16 @@ if __name__ == "__main__":
         qt = sys.argv[1]
     except IndexError:
         qt = "4.1"
-    
+
     if qt != "4.0" and qt != "4.1":
         sys.stderr.write("Usage: %s [4.0|4.1]\n" % sys.argv[0])
         sys.exit(1)
-    
+
     app = QApplication(sys.argv)
     exec_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
     label = QLabel()
     label.setPixmap(QPixmap(os.path.join(exec_dir, "background.png")))
-    
+
     layout = QGridLayout()
     label.setLayout(layout)
     if qt == "4.0":
@@ -131,7 +131,7 @@ if __name__ == "__main__":
         caption.setAutoFillBackground(True)
         caption.setMargin(2)
         layout.addWidget(caption, 1, 0, Qt.AlignCenter | Qt.AlignTop)
-    
+
     if qt == "4.0":
         contentsWidget = CustomWidget(label)
         contentsWidget.setAttribute(Qt.WA_ContentsPropagated, True)
@@ -147,7 +147,7 @@ if __name__ == "__main__":
         caption.setAutoFillBackground(True)
         caption.setMargin(2)
         layout.addWidget(caption, 1, 1, Qt.AlignCenter | Qt.AlignTop)
-    
+
     if qt == "4.0":
         noBackgroundWidget = CustomWidget(label, fake = True)
         noBackgroundWidget.setAttribute(Qt.WA_NoBackground, True)
@@ -164,12 +164,12 @@ if __name__ == "__main__":
         caption.setAutoFillBackground(True)
         caption.setMargin(2)
         layout.addWidget(caption, 1, 2, Qt.AlignCenter | Qt.AlignTop)
-    
+
     if qt == "4.0":
         label.setWindowTitle("Qt 4.0: Painting Custom Widgets")
     elif qt == "4.1":
         label.setWindowTitle("Qt 4.1: Painting Custom Widgets")
-    
+
     label.resize(404, 160)
     label.show()
     sys.exit(app.exec_())

@@ -344,7 +344,7 @@ void MenuManager::launchExample(const QString &name)
 #ifdef Q_OS_WIN
     //make sure it finds the dlls on windows
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert(QLatin1String("PATH"), QLibraryInfo::location(QLibraryInfo::BinariesPath) 
+    env.insert(QLatin1String("PATH"), QLibraryInfo::location(QLibraryInfo::BinariesPath)
                + QLatin1Char(';') + env.value(QLatin1String("Path")));
     process->setProcessEnvironment(env);
 #endif

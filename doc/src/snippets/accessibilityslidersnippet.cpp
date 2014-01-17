@@ -199,7 +199,7 @@ static const char * const actionTexts[][5] =
 QString QAccessibleSlider::actionText(int action, Text text, int child) const
 {
     if (action != Press || child < 1 || child > 2)
-        return QAccessibleAbstractSlider::actionText(action, text, child);        
+        return QAccessibleAbstractSlider::actionText(action, text, child);
 
     return actionTexts[child - 1][t];
 }
@@ -208,7 +208,7 @@ bool QAccessibleSlider::doAction(int action, int child)
 {
     if (action != Press || child < 1 || child > 2)
         return false;
-    
+
     if (child == PageLeft)
         slider()->setValue(slider()->value() - slider()->pageStep());
     else

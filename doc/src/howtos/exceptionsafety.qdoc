@@ -48,7 +48,7 @@
     \section1 Exception safe modules
 
     \section2 Containers
-    
+
     Qt's \l{container classes} are generally exception neutral. They pass any
     exception that happens within their contained type \c T to the user
     while keeping their internal state valid.
@@ -107,7 +107,7 @@
     \section1 Recovering from exceptions
 
     Currently, the only supported use case for recovering from exceptions thrown
-    within Qt (for example due to out of memory) is to exit the event loop and do 
+    within Qt (for example due to out of memory) is to exit the event loop and do
     some cleanup before exiting the application.
 
     Typical use case:
