@@ -29,40 +29,39 @@
 \page index.html
 \keyword Qt Reference Documentation
 
-\div {class="col-group"}
+\div {class="landing"}
     \div {class="col-1"}
-    \div {class="indexbox tools"}
-        \div {class="indexboxcont indexboxbar"}
-            \div {class="sectionlist normallist"}
-                \div {class="heading"}
-                    \title Qt 5.3
-                \enddiv
+            \div {class="heading"}
+                \title Qt 5.3
+            \enddiv
 
                 Qt is a full development framework with tools designed to streamline
                 the creation of applications and user interfaces for desktop,
                 embedded, and mobile platforms.
-
-                \list
-
-                \li \b{Qt Framework} - intuitive APIs for C++ and JavaScript-like
-                programming with Qt Quick for rapid UI creation
-
-                \li \b{Qt Creator IDE} - a powerful cross-platform integrated
-                development environment, including UI designer tools and on-
-                device debugging
-
-                \li \b{Tools and toolchains} - internationalization support,
-                embedded toolchains, and more.
-                \endlist
-
-                With Qt, you can reuse code efficiently to target multiple platforms
-                with one code base. The modular C++ class library and developer
-                tools easily enables developers to create applications for one
-                platform and easily build and run to deploy on another platform.
+                \div {class="landingicons"}
+                \div {class="icons1of3"}
+                    \image landing/icon_Qt_60x60px.png
+                    \section1 Qt Framework
+                    Intuitive APIs for C++ and JavaScript-like
+                    programming with Qt Quick for rapid UI creation.
+                \enddiv
+                \div {class="icons1of3"}
+                    \image landing/icon_QtCreator_60x60px.png
+                    \section1 Qt Creator IDE
+                    A powerful cross-platform integrated development
+                    environment, including UI designer tools and on-device
+                    debugging.
+                \enddiv
+                \div {class="icons1of3"}
+                    \image landing/icon_Tools.png
+                    \section1 Tools and Toolchains
+                    Internationalization support, embedded toolchains, and more.
+                \enddiv
+                \enddiv
+                \section1 Licenses Used in Qt
 
                 Qt Framework and tools are available under both open-source and
                 commercial licenses.
-
                 \list
                     \li \l{Qt Homepage}{Qt Open-source}
                     \li \l{Qt Enterprise}
@@ -72,8 +71,12 @@
                 The commercially licensed Qt Enterprise and Qt Mobile products
                 contain additional functionality and productivity tools. For
                 details, see \l{Qt Enterprise}{qt.digia.com}.
-
+    \enddiv
+    \div {class="col-2"}
+        \div {class="sectionlist normallist"}
+            \div {class="heading"}
                 \section1 Getting Started
+            \enddiv
                 \list
                 \li \l{Getting Started with Qt}
                 \li \l{What's New in Qt 5}
@@ -81,14 +84,7 @@
                 \li \l{Supported Platforms}
                 \li \l{Qt Licensing}
                 \endlist
-            \enddiv
-        \enddiv
-    \enddiv
-    \enddiv
-
-    \div {class="col-2"}
-    \div {class="indexbox tools"}
-        \div {class="indexboxcont indexboxbar"}
+                \enddiv
             \div {class="sectionlist normallist"}
                 \div {class="heading"}
                      \section1 Overviews
@@ -124,8 +120,6 @@
                     \endlist
                 \enddiv
             \enddiv
-        \enddiv
-    \enddiv
     \enddiv
 \enddiv
 */
