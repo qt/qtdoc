@@ -366,8 +366,8 @@
     The slider is a complex control that functions as a
     \l{QAccessible::}{Controller} for its accessible children.
     This relationship must be known by the interface (for
-    \l{QAccessibleInterface::}{relationTo()} and
-    \l{QAccessibleInterface::}{navigate()}). This can be done
+    \l{QAccessibleInterface::}{parent()}, \l{QAccessibleInterface::}{child()} and
+    \l{QAccessibleInterface::}{relations()}). This can be done
     using a controlling signal, which is a mechanism provided by
     QAccessibleWidget. We do this in the constructor:
 
@@ -379,7 +379,7 @@
     When an accessible object is changed in a way that users need
     to know about, it notifies clients of the change by sending them
     an event via the accessible interface. This is how QSlider calls
-    \l{QAccessibleInterface::}{updateAccessibility()} to indicate that
+    \l{QAccessible::}{updateAccessibility()} to indicate that
     its value has changed:
 
     \snippet snippets/qabstractsliderisnippet.cpp 0

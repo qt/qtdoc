@@ -43,7 +43,7 @@ a pre-rendered image using the \l Image type.
 \section1 The Image Type
 
 \l {Qt Quick} provides an \l Image type which may be used to display images.  The
-\l Image type has a \l source property whose value can be a remote or local
+\l Image type has a \l {Image::}{source} property whose value can be a remote or local
 URL, or the URL of an image file embedded in a compiled resource file.
 
 \snippet qmlapp/usecases/visual.qml image

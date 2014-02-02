@@ -134,11 +134,9 @@
 
     \section2 Type System
     \list
-     \li New \l{QML Basic Type: var}{var} property type can hold JavaScript
-         references.
-     \li QML properties of type \l{QML Basic Type: var}{var} and \l{QML Basic
-         Type: variant}{variant} can now hold pixmaps. See \l{Scarce Resources
-         in JavaScript} for more information.
+     \li New \l{var} property type can hold JavaScript references.
+     \li QML properties of type \l{var} and \l{variant} can now hold pixmaps.
+         See \l{Scarce Resources in JavaScript} for more information.
      \li Value type improvements:
       \list
        \li QColor is now a value type. The red, green, blue and alpha channels
@@ -204,9 +202,8 @@
      \endlist
     \li Image type now has:
      \list
-      \li New horizontal and vertical alignment properties, \l{Image::
-          Horizontal}{horizontalAlignment} and \l{Image::Horizontal}
-          {verticalAlignment}.
+      \li New horizontal and vertical alignment properties, \l{Image::}
+          {horizontalAlignment} and \l{Image::}{verticalAlignment}.
       \li \l{Image::fillMode}{Image.Pad} enum value for \c {fillMode}
           property does not transform the image unlike the other \c {fillMode}
           enum values.
@@ -240,9 +237,8 @@
            lines.
        \li \l{Text::fontSizeMode}{fontSizeMode} property now supports wrapping
            the text to the item size.
-       \li \l{Text::minimumPixelSize}{minimumPixelSize} and \l{Text::
-           minimumPointSize}{minimumPointSize} properties can be used to
-           specify a lower bound when auto-fitting.
+       \li \l{Text::}{minimumPixelSize} and \l{Text::}{minimumPointSize} properties
+           can be used to specify a lower bound when auto-fitting.
       \endlist
      \li \c {TextEdit::textFormat}{TextEdit.textFormat} property now defaults
          to \c PlainText instead  of \c AutoText.
@@ -307,7 +303,7 @@
            moving of items in a view. For details, see \l{ViewTransition},
            \l{ListView::add}{ListView.add}, \l {ListView::addDisplaced}
            {ListView.addDisplaced}, \l{GridView::add}{GridView.add}, and
-           \l{GridView.addDisplaced}.
+           \l{GridView::addDisplaced}{GridView.addDisplaced}.
        \li New \c verticalLayoutDirection property enables items to be laid out
            from bottom-to-top using the \c BottomToTop enum value.
        \li The \c cacheBuffer property now has a non-zero default and delegates
