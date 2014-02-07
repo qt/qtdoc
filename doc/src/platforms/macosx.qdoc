@@ -625,13 +625,20 @@
     re-link Qt using -single_module. This is only a problem when building the
     MySQL driver into Qt. It does not affect plugins or static builds.
 
-    \section2 D-Bus
+    \section2 D-Bus and Mac OS X
 
-    Mac OS X does not ship with a D-Bus daemon, because the operating system has
-    its own IPC mechanisms; therefore. Qt binary packages don't usually include
-    the \l{Qt D-Bus} module. However, you can install D-Bus via Homebrew, Fink,
-    or MacPorts. These will be detected when you configure Qt again and the Qt
-    D-Bus module will be built.
+    The QtDBus module defaults to dynamically loading the libdbus-1 library on
+    Mac OS X. That means applications linking against the QtDBus module will
+    load even on Mac OS X systems that do not have the libraries, but they
+    will fail to connect to any D-Bus server and they will fail to open a
+    server using QDBusServer.
+
+    To use D-Bus functionality, you need to install the libdbus-1 library, for
+    example through Homebrew, Fink or MacPorts. You may want to include those
+    libraries in your application's bundle if you're deploying to other
+    systems. Additionally, note that there is no system bus on Mac OS X and
+    that the session bus will only be started after launchd is configured to
+    manage it.
 
     \section2 Menu Actions
 
