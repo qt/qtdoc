@@ -155,11 +155,11 @@ three hundred and twenty one point fifty six); with English regional settings,
 
 There are no special in-string modifiers for formatting dates and times.
 Instead, you need to query the current locale (geographical region) and use the
-methods of \l {QtQuick2::Date}{Date} to format the string.
+methods of \l {QtQml::}{Date} to format the string.
 
-\c Qt.locale() returns a \l {QtQuick2::Locale}{Locale} object which contains all
+\c Qt.locale() returns a \l {QtQml::}{Locale} object which contains all
 kinds of information about the locale. In particular, the \l
-{QtQuick2::Locale::name}{Locale.name} property contains the language and country
+{QtQml::Locale::name}{Locale.name} property contains the language and country
 information for the current locale. You can use the value as is, or you can
 parse it to determine the appropriate content for the current locale.
 
@@ -174,7 +174,7 @@ Text {
 \endcode
 
 To make sure currency numbers are localized, use the \l
-{QtQuick2::Number}{Number} type. This type has similar functions as the Date
+{QtQml::}{Number} type. This type has similar functions as the Date
 type for converting numbers into localized currency strings.
 
 \section2 7. Use QT_TR_NOOP() for Translatable Data Text Strings
