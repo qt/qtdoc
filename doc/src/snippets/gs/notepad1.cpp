@@ -39,18 +39,31 @@
 ****************************************************************************/
 
 //! [all]
+//! [0]
 #include "notepad.h"
 #include "ui_notepad.h"
+//! [0]
 
+//! [1]
 Notepad::Notepad(QWidget *parent) :
+//! [1]
+//! [2]
     QMainWindow(parent),
+//! [2]
+//! [3]
     ui(new Ui::Notepad)
+//! [3]
 {
+
+//! [4]
     ui->setupUi(this);
+//! [4]
 }
 
+//! [5]
 Notepad::~Notepad()
 {
     delete ui;
 }
+//! [5]
 //! [all]

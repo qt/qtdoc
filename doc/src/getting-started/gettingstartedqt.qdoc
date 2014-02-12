@@ -107,37 +107,51 @@
 
     \snippet snippets/widgets-tutorial/notepad/main.cpp all
 
-    Let us go through the code line by line. On the first two lines, we include
+    Let us go through the code line by line. The following lines include
     the header files for the Notepad widget and QApplication. All Qt classes
     have a header file named after them.
 
-    Line 4 defines the main function that is the entry point for all C and C++
-    based applications.
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 1
 
-    Line 6 creates a QApplication object. This object manages
+    The following line defines the main function that is the entry point for
+    all C and C++  based applications:
+
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 2
+
+    The following line creates a QApplication object. This object manages
     application-wide resources and is necessary to run any Qt program
     that uses Qt Widgets. It constructs an application object with \c argc command
     line arguments run in \c argv. (For GUI applications that do not use Qt Widgets, you can use
     QGuiApplication instead.)
 
-    Line 7 creates the Notepad object. This is the object for which the wizard
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 3
+
+    The following line creates the Notepad object. This is the object for
+    which the wizard
     created the class and the UI file. The user interface contains visual
     elements that are called \c widgets in Qt. Examples of widgets are text
     edits, scroll bars, labels, and radio buttons. A widget can also be a
     container for other widgets; a dialog or a main application window, for
     example.
 
-    Line 8 shows the Notepad widget on the screen in its own window.
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 4
+
+    The following line shows the Notepad widget on the screen in its own
+    window.
     Since widgets also function as containers (for instance a
     QMainWindow, which has toolbars, menus, a status bar, and a few
     other widgets), it is possible to show a single widget in its own
     window. Widgets are not visible by default; the function
     \l{QWidget::}{show()} makes the widget visible.
 
-    Line 10 makes the QApplication enter its event loop. When a Qt
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 5
+
+    The following line makes the QApplication enter its event loop. When a Qt
     application is running, events are generated and sent to the
     widgets of the application. Examples of events are mouse presses
     and key strokes.
+
+    \snippet snippets/widgets-tutorial/notepad/main.cpp 6
 
     \b{Learn More}
 
@@ -206,17 +220,41 @@
     \printuntil QMenuBar
     \dots
 
-    Line 1 contains the XML declaration, which specifies the XML version and
-    character encoding used in the document.
+    The following line contains the XML declaration, which specifies the XML
+    version and character encoding used in the document:
 
-    Line 2 creates an \c ui element that defines a Notepad widget.
+    \code
+    <?xml version="1.0" encoding="UTF-8"?>
+    \endcode
 
-    Line 26 creates a QVBoxLayout widget that contains a QTextEdit
+    The rest of the file specifies an \c ui element that defines a Notepad
+    widget:
+
+    \code
+    <ui version="4.0">
+    \endcode
+
+    The following snippet creates a QVBoxLayout widget that contains a QTextEdit
     and QPushButton widget. As mentioned, widgets can contain
     other widgets. It is possible to set the bounds (the location and
     size) of child widgets directly, but it is usually easier to use a
     layout. A layout manages the bounds of a widget's children.
     QVBoxLayout, for instance, places the children in a vertical row.
+
+    \code
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTextEdit" name="textEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quitButton">
+       <property name="text">
+        <string>Quit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+    \endcode
 
     The UI file is used together with the header and source file of the Notepad
     class. We will look at the rest of the UI file in the later sections.
@@ -229,33 +267,47 @@
 
     \snippet snippets/gs/notepad1.h all
 
-    Line 4 includes QMainWindow that provides a main application window.
+    The following line includes QMainWindow that provides a main application
+    window:
 
-    Line 6 declares the Notepad class in the Ui namespace, which is the
+    \snippet snippets/gs/notepad1.h 1
+
+    The following lines declare the Notepad class in the Ui namespace, which is the
     standard namespace for the UI classes generated from .ui files by the
-    \c uic tool.
+    \c uic tool:
 
-    Line 10 contains the \c Q_OBJECT macro. It must come first in the class
+    \snippet snippets/gs/notepad1.h 2
+
+    The class declaration contains the \c Q_OBJECT macro. It must come first in the class
     definition, and declares our class as a QObject. Naturally, it must also
     inherit from QObject. A QObject adds several abilities to a normal C++
     class. Notably, the class name and slot names can be
     queried at run-time. It is also possible to query a slot's
     parameter types and invoke it.
 
-    Line 15 declares a constructor that has a default argument called \c parent.
+    \snippet snippets/gs/notepad1.h 3
+
+    The following lines declare a constructor that has a default argument
+    called \c parent.
     The value 0 indicates that the widget has no parent (it is a top-level
     widget).
 
-    Line 16 declares a virtual destructor to free the resources that were
+    \snippet snippets/gs/notepad1.h 4
+
+    The following line declares a virtual destructor to free the resources that were
     acquired by the object during its life-cycle. According to the C++
     naming convention, destructors have the same name as the class they are
     associated with, prefixed with a tilde (~). In QObject, destructors are
     virtual to ensure that the destructors of derived classes are invoked
     properly when an object is deleted through a pointer-to-base-class.
 
-    Line 19 declares a member variable which is a pointer to the Notepad UI
+    \snippet snippets/gs/notepad1.h 5
+
+    The following lines declare a member variable which is a pointer to the Notepad UI
     class. A member variable is associated with a specific class, and accessible
     for all its methods.
+
+    \snippet snippets/gs/notepad1.h 6
 
     \section2 Notepad Source File
 
@@ -264,19 +316,32 @@
 
     \snippet snippets/gs/notepad1.cpp all
 
-    The first two lines include the Notepad class header file that was generated
-    by the wizard and the UI header file that was generated by the \c uic tool.
+    The following lines include the Notepad class header file that was generated
+    by the wizard and the UI header file that was generated by the \c uic tool:
 
-    Line 4 defines the \c {Notepad} constructor and sets up the UI file.
+    \snippet snippets/gs/notepad1.cpp 0
 
-    Line 5 calls the QMainWindow constructor, which is the base class for the
-    Notepad class.
+    The following line  defines the \c {Notepad} constructor:
 
-    Line 6 creates the UI class instance and assigns it to the \c ui member.
+    \snippet snippets/gs/notepad1.cpp 1
 
-    Line 8 sets up the UI.
+    The following line  calls the QMainWindow constructor, which is the base
+    class for the Notepad class:
 
-    Line 11 destructs the \c ui.
+    \snippet snippets/gs/notepad1.cpp 2
+
+    The following line  creates the UI class instance and assigns it to the
+    \c ui member:
+
+    \snippet snippets/gs/notepad1.cpp 3
+
+    The following line  sets up the UI:
+
+    \snippet snippets/gs/notepad1.cpp 4
+
+    In the destructor, we delete the \c ui:
+
+    \snippet snippets/gs/notepad1.cpp 5
 
     \section2 Project File
 
@@ -359,13 +424,15 @@
 
     \snippet snippets/gs/notepad2.h all
 
-    Line 14 uses Qt's signals and slots mechanism to make the
+    The following code uses Qt's signals and slots mechanism to make the
     application exit when the \b {Quit button} is pushed. Qt Designer uses
     QMetaObject \l{designer-using-a-ui-file.html#automatic-connections}
     {auto-connection facilities} to connect the button's clicked() signal to a
     slot in the Notepad class. The \c uic tool automatically generates code in
     the dialog's \c{setupUi()} function to do this, so Qt Designer only needs to
     declare and implement a slot with a name that follows a standard convention.
+
+    \snippet snippets/gs/notepad2.h 1
 
     The corresponding code in the source file, notepad.cpp, looks as follows:
 
