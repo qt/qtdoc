@@ -161,11 +161,15 @@
     \section2 K Desktop Environment (KDE)
 
     Application icons can be installed for use by all users, or on a per-user basis.
-    A user currently logged into their KDE desktop can discover these locations
-    by using \l{http://developer.kde.org/documentation/other/kde-config.html}{kde-config},
-    for example, by typing the following in a terminal window:
+    A user currently logged into their KDE 4 desktop can discover these locations
+    by using kde4-config, for example, by typing the following in a terminal window:
 
     \snippet snippets/code/doc_src_appicon.qdoc 3
+
+    Applications using Qt 5 and KDE Frameworks 5 will find their icons in the list
+    returned by this command:
+
+    \snippet snippets/code/doc_src_appicon.qdoc 5
 
     Typically, the list of colon-separated paths printed to stdout includes the
     user-specific icon path and the system-wide path. Beneath these
@@ -175,11 +179,11 @@
 
     If you are developing exclusively for KDE, you may wish to take
     advantage of the \link
-    http://developer.kde.org/documentation/other/makefile_am_howto.html
+    http://techbase.kde.org/Development/CMake/Addons_for_KDE
     KDE build system\endlink to configure your application. This ensures
     that your icons are installed in the appropriate locations for KDE.
 
-    The KDE developer website is at \l{http://developer.kde.org/}.
+    The KDE developer website is at \l{http://techbase.kde.org/}.
 
     \section2 GNOME
 

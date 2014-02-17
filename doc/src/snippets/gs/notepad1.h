@@ -42,22 +42,34 @@
 #define NOTEPAD_H
 
 //! [all]
+//! [1]
 #include <QMainWindow>
+//! [1]
 
+//! [2]
 namespace Ui {
 class Notepad;
 }
+//! [2]
 
+//! [3]
 class Notepad : public QMainWindow
 {
     Q_OBJECT
+//! [3]
 
+//! [4]
 public:
     explicit Notepad(QWidget *parent = 0);
+//! [4]
+//! [5]
     ~Notepad();
+//! [5]
 
+//! [6]
 private:
     Ui::Notepad *ui;
+//! [6]
 };
 //! [all]
 

@@ -39,15 +39,27 @@
 ****************************************************************************/
 
 //! [all]
+//! [1]
 #include "notepad.h"
 #include <QApplication>
+//! [1]
 
+//! [2]
 int main(int argc, char *argv[])
 {
+//! [2]
+//! [3]
     QApplication a(argc, argv);
+//! [3]
+//! [4]
     Notepad w;
+//! [4]
+//! [5]
     w.show();
+//! [5]
 
+//! [6]
     return a.exec();
+//! [6]
 }
 //! [all]

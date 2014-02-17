@@ -51,8 +51,10 @@ public:
     explicit Notepad(QWidget *parent = 0);
     ~Notepad();
 
+//! [1]
 private slots:
     void on_quitButton_clicked();
+//! [1]
 
 private:
     Ui::Notepad *ui;
