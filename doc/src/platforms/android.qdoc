@@ -363,7 +363,16 @@ on Google Play:
   \li Add \uicontrol{Application name} and \uicontrol{Application icon}.
 
   \li \uicontrol Permissions list has all the required permissions.
+
+  \li \uicontrol Features list has the software or hardware features that your
+      application depends on. For example, NFC.
  \endlist
+
+ \note Qt adds the default permissions and features based on the module
+ dependencies of your application. If you do not want these default permissions
+ and features, remove the \c{<!-- %%INSERT_PERMISSIONS -->} and
+ \c{<!-- %%INSERT_FEATURES -->} comments from \e AndroidManifest.xml. For
+ information on the manifest XML format, see \l{Android: App Manifest}.
 
  \li Set up a \uicontrol keystore to sign the \e .apk. You can create a new
  keystore if you do not have one.
@@ -372,7 +381,7 @@ on Google Play:
  application to build the \e .apk. Qt Creator builds the \e .apk and opens the
  folder containing the \e .apk.
 
- \li Login into the \l{Google Play Developer Console} and upload the \e .apk
+ \li Log in to the \l{Google Play Developer Console} and upload the \e .apk
  file, few screen captures of the application, and a description.
 \endlist
 
