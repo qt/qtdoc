@@ -165,7 +165,7 @@ void Clock::setTime(const QTime &time)
 //! [12]
 void MyWidget::changeEvent(QEvent *event)
 {
-    if (e->type() == QEvent::LanguageChange) {
+    if (event->type() == QEvent::LanguageChange) {
         titleLabel->setText(tr("Document Title"));
         ...
         okPushButton->setText(tr("&OK"));
