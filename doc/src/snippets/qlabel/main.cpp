@@ -71,9 +71,9 @@ int main(int argc, char *argv[])
     QLineEdit *editor = new QLineEdit("New text");
     QWidget window;
     //Updater updater(&label);
-    QObject::connect(editor, SIGNAL(textChanged(const QString &)),
-                     label, SLOT(setText(const QString &)));
-    //QObject::connect(editor, SIGNAL(textChanged(const QString &)),
+    QObject::connect(editor, SIGNAL(textChanged(QString)),
+                     label, SLOT(setText(QString)));
+    //QObject::connect(editor, SIGNAL(textChanged(QString)),
     //                 &updater, SLOT(adjustSize()));
     //editor.show();
     //label.show();

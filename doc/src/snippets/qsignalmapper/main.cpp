@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     ButtonWidget *buttons = new ButtonWidget(texts, mw);
     mw->setCentralWidget(buttons);
     mw->show();
-    QObject::connect(buttons, SIGNAL(clicked(const QString &)),
-                     mw, SLOT(buttonPressed(const QString &)));
+    QObject::connect(buttons, SIGNAL(clicked(QString)),
+                     mw, SLOT(buttonPressed(QString)));
     return app.exec();
 }
