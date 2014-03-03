@@ -130,7 +130,7 @@
     \li qDebug() is used for writing custom debug output.
     \li qWarning() is used to report warnings and recoverable errors in
        your application.
-    \li qCritical() is used for writing critical error mesages and
+    \li qCritical() is used for writing critical error messages and
        reporting system errors.
     \li qFatal() is used for writing fatal error messages shortly before exiting.
     \endlist
@@ -226,7 +226,7 @@
 
     If this code is compiled with \c QT_NO_DEBUG defined, the code in
     the Q_CHECK_PTR() expression is not executed and \e alloc returns
-    an unitialized pointer.
+    an uninitialized pointer.
 
     The Qt library contains hundreds of internal checks that will
     print warning messages when a programming error is detected. We

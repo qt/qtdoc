@@ -84,7 +84,7 @@
     list.removeAt(2);
     \endcode
 
-    If the assignment throws, the container still contains the value, no data loss occured.
+    If the assignment throws, the container will still contain the value; no data loss occurred.
 
     Note that implicitly shared Qt classes will not throw in their assignment
     operators or copy constructors, so the limitation above does not apply.
