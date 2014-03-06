@@ -491,6 +491,9 @@
     library folder and loaded on start-up. This can be used, for instance, to enable OpenSSL
     in your application. Simply set the paths to the required \c{libssl.so} and \c{libcrypto.so}
     libraries here and OpenSSL should be enabled automatically.
+    \li \c{ANDROID_EXTRA_PLUGINS}: This variable can be used to specify different resources that your
+    project has to bundle but cannot be delivered through the assets system, such as qml plugins. When
+    using this variable, \c androiddeployqt will make sure everything is packaged and deployed properly.
     \endlist
 
     \section1 Qt Creator
