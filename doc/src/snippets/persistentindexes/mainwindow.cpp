@@ -79,8 +79,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(insertAction, SIGNAL(triggered()), this, SLOT(insertItem()));
     connect(removeAction, SIGNAL(triggered()), this, SLOT(removeItem()));
     connect(selectionModel,
-            SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(updateMenus(const QModelIndex &)));
+            SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+            this, SLOT(updateMenus(QModelIndex)));
 
     setCentralWidget(view);
     setWindowTitle("View onto a string list model");

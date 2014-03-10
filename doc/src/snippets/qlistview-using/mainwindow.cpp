@@ -77,8 +77,8 @@ MainWindow::MainWindow()
     connect(insertAction, SIGNAL(triggered()), this, SLOT(insertItem()));
     connect(removeAction, SIGNAL(triggered()), this, SLOT(removeItem()));
     connect(listView->selectionModel(),
-            SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(updateMenus(const QModelIndex &)));
+            SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+            this, SLOT(updateMenus(QModelIndex)));
 
     updateMenus(listView->selectionModel()->currentIndex());
 
