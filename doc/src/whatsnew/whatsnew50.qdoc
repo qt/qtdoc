@@ -228,7 +228,7 @@
       \list
        \li \l{Text::textFormat}{AutoText} format now switches to \c StyledText
            instead of \c{RichText}.
-       \li \l{Text::onLineLaidOut}{onLineLaidOut} handler is called for every
+       \li \l{Text::}{lineLaidOut} signal is emitted for every
            line during the layout process to give the option of positioning
            and/or resizing text as they are laid out.
        \li \l{Text::doLayout}{doLayout()} method can now trigger the text

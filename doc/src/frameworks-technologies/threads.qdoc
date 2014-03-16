@@ -318,7 +318,7 @@
             WorkerScript instance. Call \l{WorkerScript::}{sendMessage()} to start the
             computation in a new thread. Let the script call WorkerScript::sendMessage()
             too, to pass the result back to the GUI thread. Handle the result in
-            \l{WorkerScript::}{onMessage} and update the GUI there.
+            \c onMessage and update the GUI there.
     \row
         \li Permanent
         \li Have an object living in another thread that can perform different
