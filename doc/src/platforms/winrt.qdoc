@@ -87,8 +87,8 @@
     As WinRT applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
 
-    The \c deployqt convenience tool looks up the application's dependencies and
-    copies Qt libraries and plugins to the appropriate directories, as
+    The \c windeployqt convenience tool looks up the application's dependencies
+    and copies Qt libraries and plugins to the appropriate directories, as
     necessary.
 
     In order to be able to run debug builds of your applications you have to
