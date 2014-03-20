@@ -91,12 +91,6 @@ online/offline status or whether Wifi or 3G is used).
 Qt also offers HTTP support in QML by either using HTTP explicitly via
 XmlHttpRequest, or by transparently using HTTP URLs in e.g. Image sources.
 
-For browser-based applications requiring two-way communication, Qt WebSockets provides
-a communication mode between a client running untrusted code in a controlled environment
-to a remote host that has opted-in to communications from that code.
-The protocol consists of an opening handshake followed by basic message framing,
-layered over TCP.
-
 Related Topics:
 \list
 \li \l{Qt Network} - module documentation
