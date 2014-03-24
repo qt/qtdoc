@@ -114,10 +114,13 @@
     \section1 Qt Add-Ons
 
     \e{Qt Add-On} modules bring additional value for specific purposes. These
-    modules may only be available on some development platform for some target
-    platforms. Some of them are included in the Qt releases on particular
-    platforms. Each add-on module specifies its compatibility promise
-    separately.
+    modules may only be available on some development platform. Many add-on
+    modules are either feature-complete and exist for backwards compatibility,
+    or are only applicable to certain platforms. Each add-on module specifies
+    its compatibility promise separately.
+
+    The Qt installers include the option of downloading the add-ons. For more
+    information, visit the \l{Getting Started with Qt} page.
 
     The following table lists the Qt add-ons:
 
@@ -140,7 +143,7 @@
     \row
         \li \l{Qt Bluetooth}
         \li All
-        \li \l{Qt for Linux/X11}, \l{BlackBerry}
+        \li \l{Qt for Android}{Android}, \l{Qt for Linux/X11}{Linux}, \l{Qt for BlackBerry}{Blackberry}
         \li Provides access to Bluetooth hardware.
     \row
         \li \l{Qt Concurrent}
@@ -171,7 +174,7 @@
     \row
         \li \l{Qt NFC}
         \li All
-        \li \l{BlackBerry}
+        \li \l{Qt for BlackBerry}{Blackberry}
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
         \li \l{Qt OpenGL}
@@ -212,7 +215,7 @@
     \row
         \li \l{Qt Sensors}
         \li All
-        \li \l{Qt for Android}{Android}, \l{BlackBerry}, \l{Qt for iOS}, and Mer.
+        \li \l{Qt for Android}{Android}, \l{Qt for BlackBerry}{Blackberry}, \l{Qt for iOS}, \l{Qt for WinRT}{WinRT} and Mer.
         \li Provides access to sensor hardware and motion gesture recognition.
     \row
         \li \l{Qt Serial Port}
@@ -223,7 +226,13 @@
         \li \l{Qt SVG}
         \li All
         \li
-        \li Classes for displaying the contents of SVG files.
+        \li Classes for displaying the contents of SVG files. Supports a subset of the
+            \l{http://www.w3.org/TR/SVGTiny12/}{SVG 1.2 Tiny} standard.
+    \row
+        \li \l{Qt WebSockets}
+        \li All
+        \li All
+        \li Provides WebSocket communication compliant with \l{http://tools.ietf.org/html/rfc6455} {RFC 6455}.
     \row
         \li \l{Qt Windows Extras}
         \li All
@@ -264,10 +273,10 @@
         \li Classes for extending \QD.
     \row
         \li \l{Qt Help}
-        \li Classes for online help.
+        \li Classes for integrating online documentation into applications, similar to Qt Assistant.
     \row
         \li \l{Qt UI Tools}
-        \li Classes for UI tools.
+        \li Classes to handle the forms created in \QD.
     \endtable
 
     \section1 Where to Go from Here

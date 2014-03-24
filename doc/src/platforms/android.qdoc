@@ -32,9 +32,8 @@
 
 Qt for Android enables you to run Qt 5 applications on devices with Android
 v2.3.3 (API level 10) or later. All Qt modules (essential and add-on) are
-supported except Qt WebKit, Qt Bluetooth, Qt NFC, Qt Positioning,
-Qt Serial Port, and the platform-specific ones (Qt Mac Extras,
-Qt Windows Extras, and Qt X11 Extras).
+supported except Qt WebKit, Qt NFC, Qt Serial Port, and the
+platform-specific ones (Qt Mac Extras, Qt Windows Extras, and Qt X11 Extras).
 
 The following list summarizes what you can do with Qt for Android:
 
@@ -45,6 +44,10 @@ The following list summarizes what you can do with Qt for Android:
  \li Handle \l{Qt Multimedia}{Multimedia} content in your Qt Quick 2
      applications.
  \li Get \l{Qt Sensors}{sensor} readings and react to the changes.
+ \li Retrieve current position data using satellite and network
+     information.
+ \li Establish a serial connection to other \l{Qt Bluetooth}{Bluetooth}
+     devices.
  \li Develop secure applications using OpenSSL library.
  \li Create and deploy Application Package (APK) using Qt Creator.
 \endlist
@@ -106,10 +109,8 @@ to install:
 
 \section1 Installing Qt for Android
 
-You can install the binary package for Qt 5.1 or later to get
-Qt for Android. The \l{Qt Installation Program}{installer} containing the
-open-source binary packages are available for download from the
-\l{Opensource Downloads}{Qt project Downloads} page.
+You can download the Qt 5 installers and sources from the \l Downloads page.
+For more information, visit the \l{Getting Started with Qt} page.
 
 \note Enterprise packages are available from the \l{Try Qt Enterprise}
 page. Qt for Android is also available as part of Qt Mobile Edition,
@@ -360,7 +361,16 @@ on Google Play:
   \li Add \uicontrol{Application name} and \uicontrol{Application icon}.
 
   \li \uicontrol Permissions list has all the required permissions.
+
+  \li \uicontrol Features list has the software or hardware features that your
+      application depends on. For example, NFC.
  \endlist
+
+ \note Qt adds the default permissions and features based on the module
+ dependencies of your application. If you do not want these default permissions
+ and features, remove the \c{<!-- %%INSERT_PERMISSIONS -->} and
+ \c{<!-- %%INSERT_FEATURES -->} comments from \e AndroidManifest.xml. For
+ information on the manifest XML format, see \l{Android: App Manifest}.
 
  \li Set up a \uicontrol keystore to sign the \e .apk. You can create a new
  keystore if you do not have one.
@@ -369,7 +379,7 @@ on Google Play:
  application to build the \e .apk. Qt Creator builds the \e .apk and opens the
  folder containing the \e .apk.
 
- \li Login into the \l{Google Play Developer Console} and upload the \e .apk
+ \li Log in to the \l{Google Play Developer Console} and upload the \e .apk
  file, few screen captures of the application, and a description.
 \endlist
 
