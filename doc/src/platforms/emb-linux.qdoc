@@ -119,13 +119,21 @@
 
   \li \c {QT_QPA_EGLFS_WIDTH} and \c {QT_QPA_EGLFS_HEIGHT} - Contain the screen
   width and height in pixels. While eglfs will try to determine the dimensions
-  from the framebuffer device, this will not always work and manually specifying
-  the sizes may become necessary.
+  from the framebuffer device \e{/dev/fb0}, this will not always work and
+  manually specifying the sizes may become necessary.
 
   \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT} -
-  Physical screen width and height in millimeters.
+  Physical screen width and height in millimeters. On platforms where the
+  framebuffer device \e{/dev/fb0} is not available or the query is not
+  successful, the values are calculated based on a default DPI of 100. This
+  variable can be used to override any such defaults.
 
-  \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth.
+  \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth for the screen. On
+  platforms where the framebuffer device \e{/dev/fb0} is not available or the
+  query is not successful, the default of 32 is used. This variable can be used
+  to override any such defaults. Note that this affects only the color depth
+  value reported by QScreen. It has no connection to EGL configurations and the
+  color depth used for OpenGL rendering.
 
   \li \c {QT_QPA_EGLFS_SWAPINTERVAL} - By default a swap interval of \c 1 will
   be requested. This enables synchronizing to the displays vertical refresh. The
@@ -135,6 +143,22 @@
 
   \li \c {QT_QPA_EGLFS_FORCEVSYNC} - When set, eglfs requests \c
   FBIO_WAITFORVSYNC on the framebuffer device.
+
+  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green and blue color
+  channel sizes are ignored whenever creating a new context, window or offscreen
+  surface. Instead, the plugin will request a configuration with 8 bits per
+  channel. This can be helpful on devices where configurations with less than 32
+  or 24 bits per pixel are chosen by default but are known not to be suitable,
+  for example, due to banding effects. Instead of changing all the applications,
+  this variable provides an easier shortcut to force 24/32 bpp configurations
+  for a given device.
+
+  \li \c {QT_QPA_EGLFS_DEBUG} - When set, some debugging information is printed
+  on the debug output. For example, the input QSurfaceFormat and the properties
+  of the chosen EGL configuration are printed whenever creating a new
+  context. Together with Qt Quick's \c {QSG_INFO} variable, this can provide
+  useful information for troubleshooting issues related to the EGL
+  configuration.
 
   \endlist
 
@@ -170,7 +194,9 @@
   top-left corner of the screen. The default position is at \c{(0, 0)}.
 
   \li \c {nographicsmodeswitch} - Do not switch the virtual terminal to graphics
-  mode (\c KD_GRAPHICS).
+  mode (\c KD_GRAPHICS). In addition to switching to graphics mode, the blinking
+  cursor and screen blanking are normally disabled too. When this parameter is
+  set, these are also skipped.
 
   \li \c {tty=/dev/ttyN} - Overrides the virtual console. Only used when \c
   {nographicsmodeswitch} is not set.
@@ -220,7 +246,9 @@
   EGLFS, LinuxFB and KMS are disabling the terminal keyboard on application
   startup. This prevents keystrokes from going to the terminal \e underneath the
   application. If the old behavior needs to be restored for some reason, set the
-  environment variable \c QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1.
+  environment variable \c QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1. Note that
+  this will not work when the application is launched from a remote console (for
+  example, via \c ssh) and the terminal keyboard input will remain enabled.
 
   For some resistive, single-touch touch screens it may be necessary to fall
   back to using tslib instead of relying on the Linux multitouch protocol and
