@@ -210,7 +210,7 @@ Alternatively, the QQuickPaintedItem provides a \c paint() method and can be use
 a convenient way to port QDeclarativeItem-based classes that use the QPainter API. Note this method
 is less performant than using the \c QSG* classes.
 
-When porting from QDeclarativeView to QQuickView, note that QDeclarativeItem inherited from
+When porting from QDeclarativeView to QQuickView, note that QDeclarativeView inherited from
 QGraphicsView. In contrast, QQuickView inherits from QQuickWindow and uses the QWindow
 infrastructure introduced in Qt 5; any QGraphicsView-specific functionality is no longer available.
 
