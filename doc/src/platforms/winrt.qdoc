@@ -149,7 +149,7 @@
     libraries and plugins. Note that Qt plugins have to be put into a folder
     named after their category (platforms, imageformats, and so on) without
     using a \c plugins folder as root. For more information, see
-    \l{Deploying an Application on Windows}.
+    \l{Qt for Windows - Deployment}.
 
     As WinRT applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
@@ -161,7 +161,7 @@
     In order to be able to run debug builds of your applications you have to
     register the correct VCLib debug framework. This framework provides the
     \b{C++ Runtime} for Modern UI applications and its files can usually be found in
-    \b{<Path to Microsoft SDKs>\<Windows version>\ExtensionSDKs\Microsoft.VCLibs\<VC Version>\AppX\Debug\<CPU architecture>}
+    \b{<Path to Microsoft SDKs>\\<Windows version>\\ExtensionSDKs\\Microsoft.VCLibs\\<VC Version>\\AppX\\Debug\\<CPU architecture>}
     To register the debug VCLibs for x64 for Visual Studio 2013
     on Windows 8.1, run the following command in PowerShell:
     \code
