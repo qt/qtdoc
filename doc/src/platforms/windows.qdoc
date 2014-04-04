@@ -115,10 +115,11 @@
     These libraries are required when running Qt 5 applications in Windows:
 
     \list
-        \li \l{ICU}: Qt 5 uses the ICU library for UNICODE and Globalization
-           support (required for Qt WebKit). At compile time, the \e include and
-           \e lib folders of the ICU installation must be appended to the \c
-           INCLUDE and \c LIB environment variables. At run-time, the ICU DLLs
+        \li \l{ICU}: Qt 5 can make use of the ICU library for enhanced UNICODE and Globalization
+           support (see QTextCodec, QCollator::setNumericMode()).
+
+           At compile time, the \e include and \e lib folders of the ICU installation must
+           be appended to the \c INCLUDE and \c LIB environment variables. At run-time, the ICU DLLs
            need to be found by copying the DLLs to the
            application folder or by adding the \e bin folder of the ICU
            installation to the \c PATH environment variable.
