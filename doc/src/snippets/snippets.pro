@@ -69,8 +69,6 @@ SUBDIRS         = brush \
                   qtreewidgetitemiterator-using \
                   qtreewidget-using \
                   quiloader \
-                  qx11embedcontainer \
-                  qx11embedwidget \
                   qxmlschema \
                   qxmlschemavalidator \
                   reading-selections \
