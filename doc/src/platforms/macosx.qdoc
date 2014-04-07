@@ -446,17 +446,23 @@
 
     \section2 Qt Libraries as Frameworks
 
-    By default, Qt is built as a set of frameworks. Frameworks is the
-    Mac OS X preferred way of distributing libraries.The
+    By default, Qt is built as a set of frameworks. Frameworks are the
+    Mac OS X preferred way of distributing libraries. The
     \l{http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/index.html}
-    {Apple's Framework Programming Guide} site has for more information about
+    {Apple's Framework Programming Guide} site has far more information about
     Frameworks.
 
-    It is important to remember that Frameworks always links with \e release
+    It is important to remember that Frameworks always link with \e release
     versions of libraries. If the \e{debug} version of a Qt framework is
     desired, use the \c DYLD_IMAGE_SUFFIX environment variables to ensure that
-    the debug version is loaded. Alternatively, you can temporarily swap your
-    debug and release versions, which is documented in
+    the debug version is loaded:
+
+    \code
+    export DYLD_IMAGE_SUFFIX=_debug
+    \endcode
+
+    Alternatively, you can temporarily swap your debug and release versions,
+    which is documented in
     \l{http://developer.apple.com/technotes/tn2004/tn2124.html#SECJUSTONELIB}
     {Apple's "Debugging Magic" technical note}.
 
