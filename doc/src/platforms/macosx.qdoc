@@ -398,6 +398,20 @@
     and so on. Qt handles these conventions, although it does not provide a
     means of interacting directly with the application menu.
 
+    Each \l QAction has a \l{QAction::menuRole}{menuRole} property which
+    controls the special placement of application menu items; however by
+    default the \c menuRole is \l{QAction::TextHeuristicRole}{TextHeuristicRole}
+    which mean the menu items will be auto-detected by their \l{QAction::text}{text}.
+
+    Other standard menu items such as \gui Cut, \gui Copy, \gui Paste and
+    \gui{Select All} are applicable both in your application and in some
+    native dialogs such as \l QFileDialog. It's important that you create these
+    menu items with the standard shortcuts so that the corresponding editing
+    features will be enabled in the dialogs. At this time there are no
+    \c MenuRole identifiers for them, but they will be auto-detected
+    just like the application menu items when the \c QAction has the default
+    \l{QAction::TextHeuristicRole}{TextHeuristicRole}.
+
     \section2 Special Keys
 
     To provide the expected behavior for Qt applications on Mac OS X,
