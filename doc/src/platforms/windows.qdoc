@@ -112,7 +112,9 @@
 
     \section1 Libraries
 
-    These libraries are required when running Qt 5 applications in Windows:
+    The following libraries may be used when running Qt 5 applications in Windows.
+    These are not mandatory, but some components (for example, Qt WebKit) may depend
+    on them.
 
     \list
         \li \l{ICU}: Qt 5 can make use of the ICU library for enhanced UNICODE and Globalization
@@ -165,7 +167,7 @@
     configure -icu
     \endcode
 
-    \section2 Graphics Drivers
+    \section1 Graphics Drivers
 
     For \l{Qt Quick} 2 to work, a graphics driver that provides OpenGL 2.1 or
     higher is required. The default driver from Windows is OpenGL 1.1. Qt
@@ -192,6 +194,77 @@
     \code
     configure -opengl es2 -no-angle
     \endcode
+
+    \section2 Dynamically Loading Graphics Drivers
+
+    In addition to the build time configuration, Qt supports choosing
+    and loading the OpenGL implementation at runtime. To use this
+    mode, pass \c{-opengl dynamic} to the configure script.
+
+    \code
+    configure -opengl dynamic
+    \endcode
+
+    This configuration is the most flexible because no dependencies or
+    assumptions are hardcoded about the OpenGL implementation during build
+    time. It allows robust application deployment: When a given environment
+    fails to provide a proper OpenGL 2.0 implementation, for example a Windows
+    7 PC with no additional graphics drivers installed, an automatic fallback
+    to ANGLE will take place, completely transparently to the application,
+    allowing Qt Quick or other OpenGL code to function by translating to
+    Direct3D. On other machines, where there is sufficient OpenGL support, the
+    normal desktop OpenGL drivers will be used. Additionally, pure
+    software-based OpenGL implementations may be available as additional
+    fallbacks in the future, allowing running Qt Quick applications without a
+    GPU.
+
+    When configured with -c{-opengl dynamic}, neither Qt nor the applications
+    built using \c qmake will link to the opengl32 (standard desktop OpenGL) or
+    libGLESv2 (ANGLE) libraries. Instead, the appropriate library is chosen at
+    runtime. By default, Qt will determine whether the system's opengl32.dll
+    provides OpenGL 2 functions. If these are present, opengl32.dll is used,
+    otherwise the ANGLE libraries will be used. In case the ANGLE libraries are
+    missing or initialization fails for some reason, an additional fallback is
+    attempted by trying to load \c{QtSoftwareOpenGL.dll}. See below for details.
+
+    The loading mechanism can be configured through the \c{QT_OPENGL}
+    environment variable and the following application attributes:
+
+    \list
+    \li \cQt::AA_UseDesktopOpenGL Equivalent to setting \c{QT_OPENGL} to \c{desktop}.
+    \li \cQt::AA_UseOpenGLES Equivalent to setting \c{QT_OPENGL} to \c{angle}.
+    \li \cQt::AA_UseSoftwareOpenGL Equivalent to setting \c{QT_OPENGL} to \c{software}.
+    \endlist
+
+    When a certain configuration is requested explicitly, no checks are done at
+    application startup, that is, the system-provided opengl32.dll will not be
+    examined.
+
+    The dynamic loading has a significant impact on applications that contain
+    native OpenGL calls: they may fail to link since \c qmake no longer
+    automatically adds opengl32.lib or libglesv2.lib. Instead, applications are
+    expected to use the OpenGL functions via the QOpenGLFunctions class. Thus
+    the direct dependency on the OpenGL library is removed and all calls will be
+    routed during runtime to the implementation chosen by Qt.
+
+    Applications that require a certain OpenGL implementation (for example,
+    desktop OpenGL due to relying on features provided by OpenGL 3.0 or higher)
+    should set the application attributes \c Qt::AA_UseOpenGLES or \c
+    Qt::AA_UseDesktopOpenGL before instantiating QGuiApplication or
+    QApplication. When these attributes are set, no other OpenGL implementations
+    are considered. Additionally, if they wish to, such applications are free to
+    make direct OpenGL function calls by adding opengl32.lib to their .pro
+    project files: \e{LIBS += opengl32.lib} (Visual Studio) or \e{LIBS +=
+    -lopengl32} (MinGW). The result is, from the application's perspective,
+    equivalent to the \c{-opengl desktop} build configuration of Qt.
+
+    \cQt::AA_UseSoftwareOpenGL is special in the sense that it will try to load
+    an OpenGL implementation with a non-standard name. The default name is
+    \c{QtSoftwareOpenGL.dll}. This allows shipping a software-only OpenGL
+    implementation, for example a build of
+    \l{http://www.mesa3d.org/llvmpipe.html}{Mesa with llvmpipe}, under this
+    name. If necessary, the filename can be overridden by setting the
+    \c{QT_OPENGL_DLL} environment variable.
 
     \section1 Building from Source
 
