@@ -60,6 +60,7 @@ The following topics provide more details about how to use Qt for Android:
  \li \l{Qt Creator: Deploying Applications to Android Devices}{Deploying to the Device}
  \li \l{Publishing to Google Play}
  \li \l{Platform and Compiler Notes - Android}{Platform Notes}
+ \li \l{Building Qt 5 for Android}{Building from Sources}
  \li \l{Android GNU C++ run-time licensing}
 \endlist
 */
@@ -109,86 +110,32 @@ to install:
 
 \section1 Installing Qt for Android
 
-You can download the Qt 5 installers and sources from the \l Downloads page.
-For more information, visit the \l{Getting Started with Qt} page.
+The Qt 5 installers for different platforms are available from the \l Downloads
+page. Choose the one that is appropriate.
 
 \note Enterprise packages are available from the \l{Try Qt Enterprise}
 page. Qt for Android is also available as part of Qt Mobile Edition,
 see \l{Qt Enterprise}{qt.digia.com} for details.
 
-You can also choose to build the binaries from the Qt sources, that is,
-cross-compile Qt 5.x for Android on \l{Qt for Linux/X11}{Linux (X11)}
-, \l{Qt for Windows}{Windows}, and \l{Qt for Mac OS X}{Mac OS X} platforms.
-If you chose to do so, follow these instructions:
+Once you have the installer, follow these steps:
 
 \list 1
- \li Install the required tools, SDK, and the compiler toolchains listed in the
-     \l{Requirements} section.
-
-     \note Ensure that your build environment fulfills the requirement for the
-     platform (\l{Qt for Linux/X11}{Linux}, \l{Qt for Mac OS X}{Mac OS X}, and
-     \l{Qt for Windows}{Windows}) you have chosen.
- \li Set the following environment variables if your build platform is Windows:
-     \list
-       \li \c{ANDROID_NDK_HOST=windows} or \c{windows-x86-64} depending on
-           which NDK you are using.
-       \li \c{PATH=%JAVA_HOME%\bin;<MINGW_ROOT>\bin;%PATH%}
-     \endlist
- \li Download the Qt 5 sources either from the
-     \l{Opensource Downloads}{Downloads} page or from the Git
-     repository.
-
-     \note If you are downloading the sources from the Git repository, you
-     must initialize your Git clone using the \c{perl init-repository} command
-     to pull the latest sources for all the Qt 5.x modules. Ensure that you
-     have perl v5.14 or later installed.
- \li Run the following command to configure the Qt 5.x sources to cross-compile
-     Qt for Android:
-
-     On Linux/X11 and Mac OS X:
-
-     \code
-     ./configure -developer-build -xplatform android-g++ -nomake tests -nomake examples -android-ndk <path/to/ndk> -android-sdk <path/to/sdk>
-     -android-toolchain-version <e.g. 4.8> -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
-     \endcode
-
-     On Windows:
-
-    \code
-    configure.bat -developer-build -platform win32-g++ -xplatform android-g++ -android-ndk <ANDROID_NDK_ROOT>
-    -android-sdk <ANDROID_SDK> -opensource -confirm-license -nomake tests -nomake examples -skip qttranslations -skip qtwebkit -skip qtserialport -skip qtwebkit-examples
-    \endcode
-
-     \note If you want to use OpenSSL in your application, use the \c{-openssl}
-     option with your \c configure command to build Qt binaries with runtime
-     support for OpenSSL. For more information about how to add OpenSSL support
-     to your application, see \l{Adding OpenSSL Support}.
- \li Start the build by using the \c {make} or \c{mingw32-make} (on Windows)
-     utility with the \c{-j<N>} switch (used to speedup building).
+ \li Run the installer to begin installing Qt 5 on your development platform.
+ \li Select the components you need in the \uicontrol{Select Components}
+     screen and click \uicontrol Next.
+ \li After the installation is complete, the installer lets you open Qt Creator
+     and the README. Select to open Qt Creator and click \uicontrol Finish.
+ \li Select \uicontrol{Tools > Options > Android} in Qt Creator to add
+     the Android NDK and SDK paths. For more details, see
+     \l{Qt Creator: Connecting Android Devices}{Qt Creator Manual}.
 \endlist
 
-The binaries are installed to the \e{qtbase/bin} directory by default for the
-developer builds. You can check the install paths using the \c{qmake -query}
-command.
+Now you can test your development setup by running the examples that came
+with the Qt 5 package installed earlier. You can browse the examples in
+Qt Creator \uicontrol Welcome mode. Use the \c android filter in the search
+field to list all the examples tested on Android.
 
-\section1 Configuring Qt Creator
-
-After installing the Qt for Android binaries either using the installer or by
-cross-compiling, Qt Creator must be configured to start developing your first
-Qt application for Android.
-
-\note You must install Qt Creator separately (either using the stand-alone
-or Qt 5 installer provided by Qt project, or by building it from the source)
-if you built the Qt 5.x binaries from the sources. Use the 3.0 git branch if
-you are building it from the source.
-
-See \l{Qt Creator: Connecting Android Devices}{Qt Creator Manual} for
-instructions to configure and test your setup by creating a simple
-Qt Quick application. You can also try running an example on the Android target
-to test the setup. Use the \c{android} keyword in the search field under the
-\gui{Examples} tab in Qt Creator \gui{Welcome} mode to list all the examples
-tested for Android.
-
+To develop a simple application from scratch, see \l{Creating a Mobile Application}.
 */
 /*!
 \page portingtoandroid.html
