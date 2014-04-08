@@ -140,12 +140,15 @@
 
     \section1 Running Applications from Command Line
 
-    Unfortunately, running WinRT applications is not as easy, yet. Applications
-    can only be started as part of an application package or by registering them
-    internally. The easiest way of registering your application
-    is to copy its content to a dedicated directory. The package content
+    WinRT applications must be packaged (including all dependencies) and
+    installed or registered with the application service in order to be
+    launched. \l{winrtrunner}{The WinRT Runner Tool} can be used to
+    launch these applications from the command line.
+
+    \section2 Package Content
+    Package content
     consists of the application executable and its dependencies, as for every
-    other non-WinRT Windows application. The dependencies are the needed (Qt)
+    Windows application. The dependencies are the needed (Qt)
     libraries and plugins. Note that Qt plugins have to be put into a folder
     named after their category (platforms, imageformats, and so on) without
     using a \c plugins folder as root. For more information, see
@@ -154,7 +157,8 @@
     As WinRT applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
 
-    The \c windeployqt convenience tool looks up the application's dependencies
+    The \l{The Windows Deployment Tool}{windeployqt} convenience tool looks up
+    the application's dependencies
     and copies Qt libraries and plugins to the appropriate directories, as
     necessary.
 
@@ -167,6 +171,7 @@
     \code
         > Add-AppxPackage 'C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.12.00.appx'
     \endcode
+    \note \l{winrtrunner}{The WinRT Runner Tool} installs these dependencies automatically.
 
     Because all resources are placed to one directory, you can register the
     directory using an XML file (AppxManifest.xml) and Windows Powershell. The reference
@@ -180,9 +185,67 @@
     \code
         > Add-AppxPackage -Register AppxManifest.xml
     \endcode
+    \note \l{winrtrunner}{The WinRT Runner Tool} can perform the same operation with the --install option.
 
     If that worked, you should be able to find your application in Windows 8's
     start screen. To remove your application, use Windows' built-in way to
     uninstall applications (right-click or tap and hold the application and
     choose \c{Uninstall}).
+    \note \l{winrtrunner}{The WinRT Runner Tool} can perform the same operation with the --remove option.
+
+    \section2 WinRT Runner Tool
+    \target winrtrunner
+    The WinRT Runner Tool can be found in QTDIR/bin/winrtrunner. It is
+    intended to aid in the deployment, launching, and debugging of Qt for WinRT
+    applications. It can be used from the command line, or invoked by the IDE.
+
+    \badcode
+    Usage: winrtrunner.exe [options] package [arguments]
+    winrtrunner installs, runs, and collects test results for packages made with Qt.
+
+    Options:
+      --test                            Installs, starts, collects output, stops (if
+                                        needed), and uninstalls the package. This is
+                                        the default action of winrtrunner.
+      --start                           Starts the package. The package is installed
+                                        if it is not already installed. Pass
+                                        --install to force reinstallation.
+      --debug <debugger>                Starts the package with the debugger
+                                        attached. The package is installed if it is
+                                        not already installed. Pass --install to
+                                        force reinstallation.
+      --debugger-arguments <arguments>  Sets the arguments to be passed to the
+                                        debugger when --debug is used. If no
+                                        debugger was provided, this option is ignored.
+      --suspend                         Suspends a running package. When combined
+                                        with --stop or --test, the app will be
+                                        suspended before being terminated.
+      --stop                            Terminates a running package. Can be be
+                                        combined with --start and --suspend.
+      --wait <seconds>                  If the package is running, waits the given
+                                        number of seconds before continuing to the
+                                        next task. Passing 0 causes the runner to
+                                        wait indefinitely.
+      --install                         (Re)installs the package.
+      --remove                          Uninstalls the package.
+      --device <name|index>             Specifies the device to target as a device
+                                        name or index. Use --list-devices to find
+                                        available devices. The default device is the
+                                        first device found for the active run
+                                        profile.
+      --profile <name>                  Forces a particular run profile.
+      --list-devices                    Lists the available devices (for use with
+                                        --device).
+      --verbose <level>                 Sets the verbosity level of the message output
+                                        (0 - silent, 1 - info, 2 - debug). Defaults
+                                        to 1.
+      --ignore-errors                   Always exits with code 0, regardless of the
+                                        error state.
+      -?, -h, --help                    Displays this help.
+
+    Arguments:
+      package [arguments]               The executable or package manifest to act
+                                        upon. Arguments after the package name will
+                                        be passed to the application when it starts.
+    \endcode
 */
