@@ -154,6 +154,9 @@
     using a \c plugins folder as root. For more information, see
     \l{Qt for Windows - Deployment}.
 
+    Additionally, any pre-compiled shaders used by OpenGL applications must
+    also be packaged. See \l{OpenGL Shaders on WinRT}.
+
     As WinRT applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
 
@@ -248,4 +251,69 @@
                                         upon. Arguments after the package name will
                                         be passed to the application when it starts.
     \endcode
+
+    \section1 OpenGL Shaders on WinRT
+    Qt for WinRT uses \l{ANGLE} to provide its OpenGL implementation, which generates
+    Direct3D HLSL from OpenGL shader source code, and this source code must be
+    compiled before it can be used by OpenGL APIs, such as those used by the
+    \l{Qt Quick Scene Graph}. This is normally accomodated at runtime by the
+    D3D Compiler DLL. However, the traditional D3D Compiler DLL is not available
+    for use by Windows Phone 8.0 applications. Therefore, a proxy drop-in replacement,
+    \c{d3dcompiler_qt.dll}, was created to provide precompiled shader binaries
+    from a service running on the host machine, or from a local file path or
+    \l{The Qt Resource System}{resource file}.
+    \note The D3D Compiler API is allowed in Windows 8.1 and Windows Phone 8.1, so
+    shader precompilation is not required (but may still be used) on those platforms.
+
+    \section2 Using the Qt D3D Shader Service
+    \target qtd3dservice
+    The Qt D3D Shader Service can be found in QTDIR/bin/qtd3dservice. It is designed
+    to automatically detect Qt applications running locally and on connected
+    Windows Phone devices and emulators. To use it, simply start the \c{qtd3dservice}
+    executable with no arguments. It will then run indefinitely, servicing applications
+    until it is stopped. Other options may be passed to get additional debug output
+    or collect information on previously observed shader sources and binaries.
+
+    \badcode
+    Usage: qtd3dservice.exe [options]
+
+    Options:
+      --output <file>    Writes output to a file.
+      --verbose <level>  Sets the verbosity level of the message output (0 - silent,
+                         1 -info, 2 - debug). Defaults to 1.
+      --list-source      Lists the known shader sources. Use with --app and/or
+                         --device to narrow the scope.
+      --list-binary      Lists the known shader binaries. Use with --app and/or
+                         --device to narrow the scope.
+      --app <name>       Specifies the application to act upon.
+      --device <name>    Specifies the device to act upon.
+      --qrc              Outputs the content of --list-source/--list-binary in Qt
+                         resource file format.
+      -?, -h, --help     Displays this help.
+    \endcode
+
+    \section2 Packaging Shaders for Deployment
+    While \l{qtd3dservice} will pick up shader sources and generate shader binaries
+    during runtime, it obviously cannot be used in published applications. It is
+    the responsibility of the developer to package these shader "blobs" with the
+    application before publishing. To do so, first run through your application
+    on the target device to make sure all shader sources have been compiled. You
+    can confirm this by running the application without the shader service
+    running, as the blobs will be picked up from the local device cache.
+
+    Once this has been done, generate a QRC for packaging the shader blobs into
+    the application. For example, to get a QRC for a Windows Phone device and an
+    application ID of {975735f9-70ac-4593-b1cb-a9bec8cad348}, you would use the
+    following command:
+    \code
+        > qtd3dservice --list-binary --qrc --device 0 --app {975735f9-70ac-4593-b1cb-a9bec8cad348} --output /path/to/project/shaders.qrc
+    \endcode
+
+    You may then include this file in your qmake project file using the following
+    line:
+    \code
+        RESOURCES += shaders.qrc
+    \endcode
+    The precompiled shaders will be used by ANGLE when encountered in your
+    application.
 */
