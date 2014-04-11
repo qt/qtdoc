@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -203,20 +203,7 @@ depend on a specific hardware or software feature not supported by Android.
 If your application is not using any such feature, deployment is probably the
 only step that demands some changes to your application.
 
-Like most UI applications, Qt applications also depend on resources such as
-images, icons, translation files, and so on. These resources must be made
-available on the device as they are required for the application to function
-effectively.
-
-The most convenient option is to bundle the resources into a qrc file,
-which gets built into the application binary. This approach reduces the porting
-effort considerably and provides faster access to the resources. It is
-also a cross-platform approach, which makes porting to other platforms easier.
-
-By default, all Qt applications can access the contents of a qrc file using
-the ":/" prefix or the URL scheme prefix, "qrc:". To know more about qrc files
-and how they are handled, see
-\l{The Qt Resource System}{the Qt Resource System}.
+\include porting-notes.qdocinc using resources
 
 The other approach is to deploy the resources into the package's \c{assets}
 directory. It is the best option if you want to achieve better
