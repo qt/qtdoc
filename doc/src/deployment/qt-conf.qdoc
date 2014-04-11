@@ -109,6 +109,15 @@
 
     \snippet snippets/code/doc_src_qt-conf.qdoc 0
 
+    \note The backslash character is treated as a special character
+    in INI files (see QSettings). It is therefore recommended to
+    use forward slashes for paths on Windows as well. Otherwise,
+    an escape character is required:
+
+    \code
+    Prefix = c:\\SomePath
+    \endcode
+
     \section1 Configuring Arguments to the Platform Plugins
 
     The \c qt.conf may contain a \c Platforms group, whose keys are

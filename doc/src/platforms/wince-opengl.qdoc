@@ -54,16 +54,11 @@ profile.  Ensure that the \c{lib} and \c{includes} paths include the OpenGL ES
 headers and libararies from your SDK. The OpenGL ES lib should be called
 either \c{libGLES_CM.lib} for the Common profile.
 
-To start programming with Qt and OpenGL ES on Windows CE, you can start
-with the \l{Hello GL ES Example}. This example shows how to use QGLWidget
-and QGLPainter with OpenGL ES. It also provides some hints on how to port
-OpenGL code to OpenGL ES.
-
 \section2 Using OpenGL to Accelerate Normal 2D Painting
 
 Qt provides QOpenGLPaintEngine, a subclass of QPaintEngine that translates
 QPainter operations into OpenGL calls. This is especially convenient for
 drawing text or QImage objects in an OpenGL ES context. For further
-details, refer to the \l{Hello GL ES Example}.
+details, refer to the \l{OpenGL Window Example}.
 
 */

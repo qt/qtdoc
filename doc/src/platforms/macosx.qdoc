@@ -398,6 +398,20 @@
     and so on. Qt handles these conventions, although it does not provide a
     means of interacting directly with the application menu.
 
+    Each \l QAction has a \l{QAction::menuRole}{menuRole} property which
+    controls the special placement of application menu items; however by
+    default the \c menuRole is \l{QAction::TextHeuristicRole}{TextHeuristicRole}
+    which mean the menu items will be auto-detected by their \l{QAction::text}{text}.
+
+    Other standard menu items such as \gui Cut, \gui Copy, \gui Paste and
+    \gui{Select All} are applicable both in your application and in some
+    native dialogs such as \l QFileDialog. It's important that you create these
+    menu items with the standard shortcuts so that the corresponding editing
+    features will be enabled in the dialogs. At this time there are no
+    \c MenuRole identifiers for them, but they will be auto-detected
+    just like the application menu items when the \c QAction has the default
+    \l{QAction::TextHeuristicRole}{TextHeuristicRole}.
+
     \section2 Special Keys
 
     To provide the expected behavior for Qt applications on Mac OS X,
@@ -432,17 +446,23 @@
 
     \section2 Qt Libraries as Frameworks
 
-    By default, Qt is built as a set of frameworks. Frameworks is the
-    Mac OS X preferred way of distributing libraries.The
+    By default, Qt is built as a set of frameworks. Frameworks are the
+    Mac OS X preferred way of distributing libraries. The
     \l{http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/index.html}
-    {Apple's Framework Programming Guide} site has for more information about
+    {Apple's Framework Programming Guide} site has far more information about
     Frameworks.
 
-    It is important to remember that Frameworks always links with \e release
+    It is important to remember that Frameworks always link with \e release
     versions of libraries. If the \e{debug} version of a Qt framework is
     desired, use the \c DYLD_IMAGE_SUFFIX environment variables to ensure that
-    the debug version is loaded. Alternatively, you can temporarily swap your
-    debug and release versions, which is documented in
+    the debug version is loaded:
+
+    \code
+    export DYLD_IMAGE_SUFFIX=_debug
+    \endcode
+
+    Alternatively, you can temporarily swap your debug and release versions,
+    which is documented in
     \l{http://developer.apple.com/technotes/tn2004/tn2124.html#SECJUSTONELIB}
     {Apple's "Debugging Magic" technical note}.
 
@@ -625,13 +645,20 @@
     re-link Qt using -single_module. This is only a problem when building the
     MySQL driver into Qt. It does not affect plugins or static builds.
 
-    \section2 D-Bus
+    \section2 D-Bus and Mac OS X
 
-    Mac OS X does not ship with a D-Bus daemon, because the operating system has
-    its own IPC mechanisms; therefore. Qt binary packages don't usually include
-    the \l{Qt D-Bus} module. However, you can install D-Bus via Homebrew, Fink,
-    or MacPorts. These will be detected when you configure Qt again and the Qt
-    D-Bus module will be built.
+    The QtDBus module defaults to dynamically loading the libdbus-1 library on
+    Mac OS X. That means applications linking against the QtDBus module will
+    load even on Mac OS X systems that do not have the libraries, but they
+    will fail to connect to any D-Bus server and they will fail to open a
+    server using QDBusServer.
+
+    To use D-Bus functionality, you need to install the libdbus-1 library, for
+    example through Homebrew, Fink or MacPorts. You may want to include those
+    libraries in your application's bundle if you're deploying to other
+    systems. Additionally, note that there is no system bus on Mac OS X and
+    that the session bus will only be started after launchd is configured to
+    manage it.
 
     \section2 Menu Actions
 
