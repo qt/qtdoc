@@ -54,21 +54,14 @@
 
     \section2 Setting Up the Development Environment
 
-    You have two options to set up the Qt development environment:
-
-    \list 1
-    \li through the \e{Qt Installers} - downloads and installs Qt
-    \li through the \e{Qt sources}.
-    \endlist
-
-    You can download the Qt 5 installers and sources from the \l Downloads page.
-    For more information, visit the \l{Getting Started with Qt} page.
+    You can download the Qt 5 installers from the \l Downloads page.
+    For more information, see \l{Getting Started with Qt}.
 
     \note Qt Enterprise packages are available from the \l{Try Qt Enterprise}
     page. Qt for iOS is also available as part of the Qt Mobile Edition,
     see \l{Qt Enterprise}{qt.digia.com} for details.
 
-    Regardless of which approach you choose, you first need to install
+    Before installing Qt, you first need to install
     Xcode. You will find it in the App Store \l{Xcode}{here}. For
     running Qt applications in the simulator that comes with Xcode,
     this is all you need. However, for running applications on a
@@ -78,29 +71,9 @@
     developer certificates and provisioning profiles. The easiest
     solution is to use a profile that takes any App ID (a \c *).
 
-    Before building Qt or any Qt applications, you should test that Xcode
+    Before building any Qt applications, you should test that Xcode
     is set up correctly, for example, by running one of the standard
     Xcode application templates on your device.
-
-    \section3 Building From Source
-
-    We assume that you have cloned the Qt 5 repositories (or obtained
-    the Qt sources elsewhere) and followed the platform independent
-    requirements for building Qt. The process of building Qt is found
-    in the \l{Building Qt Sources} page.
-
-    We can then build Qt. This is done from the Qt 5 top directory,
-    like so:
-
-    \badcode
-        > ./configure -xplatform macx-ios-clang -release
-    \endcode
-
-    Then simply run \c{make}.
-
-    \note A default build will include both simulator and device
-    libraries. If you want to build for a single target, use the \c
-    -sdk argument with either \c iphoneos or \c iphonesimulator.
 
     \section2 Building Applications From the Command Line
 
@@ -155,9 +128,40 @@
     The following topics provide more details about Qt for iOS:
     \list
         \li \l {Porting to iOS}{Porting a Qt Quick Application}
-        \li \l {Platform Notes -iOS}{Platform Notes}
+        \li \l {Platform Notes - iOS}{Platform Notes}
+        \li \l {Qt for iOS - Building from Source}
     \endlist
 */
+
+/*!
+    \page building-from-source-ios.html
+    \title Qt for iOS - Building from Source
+    \brief Provides instructions to build Qt from source for iOS platform.
+
+    Building \l {Qt for iOS} from sources requires \l Xcode with
+    command-line tools installed. This can be done within Xcode from
+    \gui Preferences > \gui Downloads > \gui Components >
+    \gui {Command Line Tools}.
+
+    Qt 5 sources can be obtained either by cloning the repositories or
+    downloading the source package(s).
+
+    We can then configure and build Qt. This is done from the Qt 5 top
+    directory:
+
+    \badcode
+        > ./configure -xplatform macx-ios-clang -release
+    \endcode
+
+    For other configure options, see \l{Qt Configure Options}.
+
+    Then, simply run \c{make}.
+
+    \note A default build will include both simulator and device
+    libraries. If you want to build for a single target, use the \c
+    -sdk argument with either \c iphoneos or \c iphonesimulator.
+*/
+
 /*!
     \page porting-to-ios.html
     \title Porting to iOS
