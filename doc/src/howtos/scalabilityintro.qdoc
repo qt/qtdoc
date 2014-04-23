@@ -28,217 +28,206 @@
 /*!
     \title Scalability
     \page scalability.html
-    \preliminary
+    \brief How to develop applications that scale well on devices that offer
+    different screen sizes.
 
-    \omit preliminary docs for next SDK release \endomit
-    \omit Somewhere I need to mention applications with more than
-          one page (top-level layouts). \endomit
+    \ingroup best-practices
 
-    A scalable application is an application that can run on more than
-    one form factor. In particular, it can cope with different screen
-    sizes, DPI, and aspect ratios. You need to consider scalability
-    when:
+    Qt Quick enables you to develop applications that can run on different types
+    of devices, such as tablets and handsets. In particular, they can cope
+    with different screen configurations: size, density, orientation,
+    resolution, and aspect ratio.
 
-    \list
-        \li your application will be deployed to more than one device
-           handset, or more than one device form factor.
-        \li your application will be deployed for a long period of time,
-           so that new device handsets might appear on the market after
-           your initial deployment.
-    \endlist
-
-    This document discusses how scalable applications can be created.
-
-    \section1 Developing Scalable UIs
-
-    This section shows the basics of how we advice scalable
-    applications to be implemented using QML. We recommend that you
-    follow these techniques:
+    You need to consider scalability when:
 
     \list
-        \li Create separate top-level layout
-           definitions for each form factor.
-        \li Keep the layouts small and let components
-           scale relative to their immediate parent.
-        \li Define device independent measurements, such as dp
-           (device independent pixels), and use
-           these to scale components and for layout measurement.
-        \li Define layouts in a
-           proportional way using the built-in layout features of QML.
+        \li You want to deploy your application to more than one device
+            platform, such as Android, BlackBerry, and iOS, or more than one
+            device screen configuration or form factor.
+        \li Your want to be prepared for new devices that might appear on the
+            market after your initial deployment.
     \endlist
 
-    Using small top-level layouts makes your codebase smaller and
-    easier to maintain. Also, components that scales relative to their
-    parent are more reusable. The layouts should be children of the
-    application's root item. You can change between them by, for
-    instance, using the opacity property of Item; that is, if your
-    application has more tham one top-level layout. Such a top-level
-    layout is also often referred to as a page, i.e., a layout that
-    uses the entire screen. For instance, an organizer application
-    will typically have separate pages for showing the calendar and
-    editing todo items.
-
-    You should define the measurements separate from the UI, for
-    instance by using a JavaScript object that you fill in with a
-    script on application start up.
-
-    QML provides several ways of laying out components, e.g, using
-    anchor based layout, the more classic Grid; Column; and Row
-    elements, and by setting the dimensions of Items directly. When
-    laying out components in scalable applications, you should
-    generally prefer using anchors and set width and height based on
-    parent size where possible. Layouts are not only relevant to
-    top-level layouts; components often contain child Items.
-
-    The following sections describe in more detail the different
-    aspects of scalability that should be considered in order to
-    achieve the desired level of flexibility within your application.
-
-    \section1 Implementing the Top-Level Layouts
-
-    As mentioned, each application should use separate top-level
-    layout QML definitions to support separate layout configurations /
-    form factors.
-
-    Consider an application that has to be deployed to at least two
-    devices, which both have very different screen sizes and DPI
-    values. The two form factors of the application will share many
-    common components and attributes, and will most likely connect to
-    the same data model.
-
-    Therefore, the top-level definitions should be quite
-    straightforward and short, with the majority of the functionality
-    refactored into contained Components. It is important to try to
-    avoid unnecessary duplication between these top-level definitions,
-    in order to improve maintainability.
-
-    There are some patterns that you might consider when designing
-    your top level layouts:
+    To implement scalable applications using \l{Qt Quick}:
 
     \list
-    \li In some cases, the contents of an entire page in a smaller
-     handset could form a component element of a layout in a
-     larger device. Therefore, consider making that a separate
-     component (i.e. defined in a separate QML file), and in the
-     smaller handset, the Page will simply contain an instance of
-     that component. On the larger device, there may be enough
-     space to show two separate items. For example, in an email
-     viewer, if the screen is large enough, it may be possible to
-     show the email list view, and the email reader view side by
-     side.
-    \li In some cases, the contents of a view might be quite similar
-     on all screen sizes, but with an expanded content area. In
-     this case, it may be possible to re-use the same layout
-     definition, if defined appropriately using anchors.
+        \li Design UIs using \e {Qt Quick Controls} that provide a set of UI
+            controls.
+        \li Define layouts using \e {Qt Quick Layouts}, which can resize their
+            items.
+        \li Use \e {property binding} to implement use cases
+            not covered by the layouts. For example, to display alternative
+            versions of images on screens with low and high pixel density or
+            automatically rotate view contents according to the current screen
+            orientation.
+        \li Load platform-specific assets using \e {file selectors}.
+        \li Load components on demand by using a \e {Loader}.
     \endlist
 
-    The \l{Loader} component can be used to load separate QML files
-    based on some criteria, such as Device Profile (configuration of
-    screen pixel resolution and DPI density). In the case of form
-    factor, this information will not change during the application's
-    lifetime, therefore there is no issue with memory usage or
-    performance.
-
-    \section1 Defining Measurements
-
-    When you are defining the measurements within an application or
-    component layout, there are a number aspects to consider:
+    Consider an application that has to be deployed to devices that have
+    different screen configurations, form factors, or UI conventions. There are
+    some patterns that you might consider when designing your application:
 
     \list
-    \li The layout structure, the high-level relationship between
-     items. Which item is the parent? How are the items arranged
-     relatively on the screen? Are they in a grid or column?
-    \li The layout measurements. How big is an item, or a margin
-     inside the edge of an item, or an anchor between items?
-    \li The implicit size of contained items. Some child items will
-     require a certain amount of space, such as a button
-     containing a text. That may also depend on the current
-     platform and style. How do you ensure that you leave enough
-     space, and what happens if your children change size?
+    \li The contents of a view might be quite similar on all
+        screen sizes, but with an expanded content area. If you use the
+        ApplicationWindow QML type from Qt Quick Controls, it will
+        automatically calculate the window size based on the sizes of its
+        content items. If you use Qt Quick Layouts to position the content
+        items, they will automatically resize the items pushed to them.
+    \li The contents of an entire page in a smaller
+        device could form a component element of a layout in a
+        larger device. Therefore, consider making that a separate
+        component (that is, defined in a separate QML file), and in the
+        smaller device, the view will simply contain an instance of
+        that component. On the larger device, there may be enough
+        space to use loaders to show additional items. For example, in an
+        email viewer, if the screen is large enough, it may be possible to
+        show the email list view, and the email reader view side by
+        side.
+    \li The screen size and form factors of two devices might be quite similar,
+        but the UI conventions might be totally different.
     \endlist
 
-    These aspects combine together to resolve the final layout for a
-    given Device Profile. However, although there are dependencies
-    between them, it is important to manage and control the different
-    aspects separately.
+    \section1 Resizing Screens Dynamically
 
-    It is strongly recommended that Layout measurements should be
-    stored in a separate place from the component layout structure
-    definition files. The reason for this is that layout structure,
-    for a given form factor, can be re-used for different Device
-    Profiles. However, measurements will almost always vary between
-    Device Profiles or Device Categories.
+    \l{Qt Quick Controls} provide a set of UI controls to create user interfaces
+    in Qt Quick. Typically, you declare an ApplicationWindow control as the root
+    item of your application. The ApplicationWindow adds convenience for
+    positioning other controls, such as MenuBar, ToolBar, and StatusBar in a
+    platform independent manner. The ApplicationWindow uses the size constraints
+    of the content items as input when calculating the effective size
+    constraints of the actual window.
 
-    If the opposite approach (complete duplication of entire QML
-    files) was taken, then all of the layout states and structure
-    definitions would be duplicated between the copied QML files, and
-    only the measurement values would change.
+    In addition to controls that define standard parts of application windows,
+    controls are provided for creating views and menus, as well as presenting or
+    receiving input from users. You can use \l{Qt Quick Controls Styles} to
+    apply custom styling to the predefined controls.
 
-    The main benefit of using separate measurement definition files
-    are:
+    Qt Quick Controls, such as the ToolBar, do not provide a layout
+    of their own, but require you to position their contents. For this, you can
+    use Qt Quick Layouts.
 
-    \list
-    \li To reduce the amount of duplication, and hence increase
-      maintainability.
-    \li It becomes much easier to change the layout structure,
-     perhaps due to subsequent specification changes. In that
-     case, the layout structure can be modified once, and many or
-     all of the layout measurements would remain unchanged.
-    \li It becomes much easier to add support for additional Device
-     Profiles, simply by adding another measurement definition
-     file.
-    \endlist
+    \section1 Laying out Screens Dynamically
 
-    \section1 Using QML's Layout Features
+    \l{Qt Quick Layouts} provide ways of laying out screen controls in a row,
+    column, or grid, using the RowLayout, ColumnLayout, and GridLayout QML
+    types. The properties for these QML types hold their layout direction and
+    spacing between the cells.
 
-    For a given form factor, top-level Layouts structure definitions,
-    or component layout structure definitions, should in general be
-    defined in a proportional way using a combination of
+    You can use the \l{Layout} QML type to attach additional properties to the
+    items pushed to the layouts. For example, you can specify mininum, maximum,
+    and preferred values for item height, width, and size.
 
-    \list
-    \li \l{Item::anchors.top}{anchors} within an Item
-    \li \l{Row} / \l{Column} / \l{Grid}
-    \li simple JavaScript expressions such as width: Math.round(parent.width / 3.0).
-    \endlist
+    The layouts ensure that your UIs are scaled properly when windows and
+    screens are resized and always use the maximum amount of space available.
 
-    These basic building blocks, along with the powerful evaluation
-    capabilities of JavaScript expressions within every QML binding,
-    are designed to allow the majority of the layout structure
-    definition to be defined in a Device Profile independent way.
-
-    There are some limitations of the basic grid type layouts. They
-    are designed to accommodate a number of Items, but use the current
-    sizes of those items. There is a similar issue with the basic
-    anchor type layout. In particular, it can be difficult to spread a
-    number of child items proportionately across an area of their
-    container.
-
-    By combining the features of the layout managers with simple
-    JavaScript expressions, a richer variety of designs can be
-    expressed, without having to resort to additional layout
-    measurement parameters or measurement values.
+    Constantly resizing and recalculating screens comes with a performance cost.
+    Mobile and embedded devices might not have the power required to recalculate
+    the size and position of animated objects for every frame, for example. If
+    you run into performance problems when using layouts, consider using some
+    other methods, such as bindings, instead.
 
     Here are some things not to do with layouts:
 
     \list
-    \li Don't define complex JavaScript functions that are regularly
-     evaluated. This will cause poor performance, particularly
-     during animated transitions.
-    \li Don't define all of your layouts using x, y, width and
-     height. Reserve this for items that cannot easily be defined
-     using anchors (anchors are evaluated in a more efficient
-     way).
-    \li Don't make assumptions about the container size, or about
-     the size of child items. Try to make flexible layout
-     definitions that can absorb changes in the available space.
+
+    \li Do not have bindings to the x, y, width, or height properties of items
+        in a Layout, since this would conflict with the goal of the Layout, and
+        also cause binding loops.
+    \li Do not define complex JavaScript functions that are regularly
+        evaluated. This will cause poor performance, particularly
+        during animated transitions.
+    \li Do not make assumptions about the container size, or about
+        the size of child items. Try to make flexible layout
+        definitions that can absorb changes in the available space.
+    \li Do not use layouts if you want the design to be pixel perfect. Content
+        items will be automatically resized and positioned depending on the
+        space available.
     \endlist
 
-    \section1 Orientation Switches
+    \section1 Handling Pixel Density
 
-    Application top-level page definitions, and reusable component
-    definitions, should use one QML layout definition for the layout
+    If Qt Quick Layouts do not fit your needs, you can fall back to using
+    \l{Property Binding}{property binding}. Binding enables objects to
+    automatically update their properties in response to changing attributes in
+    other objects or the occurrence of some external event.
+
+    When an object's property is assigned a value, it can either be assigned a
+    static value, or bound to a JavaScript expression. In the former case, the
+    property's value will not change unless a new value is assigned to the
+    property. In the latter case, a property binding is created and the
+    property's value is automatically updated by the QML engine whenever the
+    value of the evaluated expression changes.
+
+    This type of positioning is the most highly dynamic. However, constantly
+    evaluating JavaScript expressions comes with a performance cost.
+
+    For example, bindings are a good way to handle low and high pixel density.
+    The following code snippet uses the \l{Screen}{Screen.logicalPixelDensity}
+    attached property to specify different images to display on screens with
+    low, high, or normal pixel density:
+
+    \code
+    Image {
+        source: {
+            if (Screen.logicalPixelDensity < 40)
+            "image_low_dpi.png"
+            else if (Screen.logicalPixelDensity > 300)
+            "image_high_dpi.png"
+            else
+            "image.png"
+            }
+        }
+    \endcode
+
+    \section1 Loading Files Depending on Platform
+
+    You can use the QQmlFileSelector to apply a QFileSelector to QML file
+    loading. This enables you to load altenative resources depending on the
+    platform on which the application is run. For example, you can use the
+    \c +android and \c +blackberry file selectors to load different image files
+    when run on Android and BlackBerry devices.
+
+    You can use file selectors together with singleton objects to access a
+    single instance of an object on a particular platform.
+
+    File selectors are static and enforce a file structure where
+    platform-specific files are stored in subfolders named after the platform.
+    If you need a more dynamic solution for loading parts of your UI on demand,
+    you can use a Loader.
+
+    \section1 Loading Components on Demand
+
+    A \l{Loader} can load a QML file (using the source property) or a Component
+    object (using the sourceComponent property). It is useful for delaying the
+    creation of a component until it is required. For example, when a component
+    should be created on demand, or when a component should not be created
+    unnecessarily for performance reasons.
+
+    You can also use loaders to react to situations where parts of your UI are
+    not needed on a particular platform, because the platform does not support
+    some functionality. Instead of displaying a view that is not needed
+    on the device the application is running on, you can determine that the
+    view is hidden and use loaders to display something else in its place.
+
+    \section1 Switching Orientation
+
+    The \l{Screen}{Screen.orientation} attached property contains the current
+    orientation of the screen, from the accelerometer (if available). On a
+    desktop computer, this value typically does not change.
+
+    If \c primaryOrientation follows \c orientation, it means that the screen
+    automatically rotates all content that is displayed, depending on how you
+    hold the device. If orientation changes even though \c primaryOrientation
+    does not change, the device might not rotate its own display. In that case,
+    you may need to use \l{QtQuick::Item::rotation}{Item.rotation} or
+    \l{QtQuick::Item::transform}{Item.transform} to rotate your content.
+
+    Application top-level page definitions and reusable component
+    definitions should use one QML layout definition for the layout
     structure. This single definition should include the layout design
-    for separate Device Orientations and Aspect Ratios. The reason for
+    for separate device orientations and aspect ratios. The reason for
     this is that performance during an orientation switch is critical,
     and it is therefore a good idea to ensure that all of the
     components needed by both orientations are loaded when the
