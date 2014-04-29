@@ -182,7 +182,7 @@ displays the following warning:
 
 Start the application with the following arguments:
 
-\c {qmljsdebugger=port:<port_from>[,port_to][,host:<ip address>][,block]}
+\c {-qmljsdebugger=port:<port_from>[,port_to][,host:<ip address>][,block]}
 
 Where \c {port_from} (mandatory) specifies either the debugging port or the
 start port of a range of ports when \c {port_to} is specified, \c {ip address}
