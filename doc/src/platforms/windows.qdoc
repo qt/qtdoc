@@ -135,6 +135,11 @@
            conversion warnings will break the build.
     \endlist
 
+    Support for Secure Sockets Layer (SSL) communication is provided by the
+    \l {OpenSSL Toolkit}, which must be obtained separately. See
+    \l {Secure Sockets Layer (SSL) Classes} for instructions on building Qt with
+    SSL support.
+
     \section2 Graphics Drivers
 
     For \l{Qt Quick} 2.0 to work, a graphics driver that provides OpenGL 2.1 or
