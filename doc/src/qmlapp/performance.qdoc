@@ -164,7 +164,7 @@ multiple times:
 
 \qml
 // bad.qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     width: 400
@@ -197,7 +197,7 @@ We could instead resolve the common base just once in the block:
 
 \qml
 // good.qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     width: 400
@@ -234,7 +234,7 @@ property resolution out of the loop, as follows:
 
 \qml
 // better.qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     width: 400
@@ -281,7 +281,7 @@ The following contrived example illustrates this point:
 
 \qml
 // bad.qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     id: root
@@ -315,7 +315,7 @@ It could be rewritten as follows:
 
 \qml
 // good.qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     id: root
@@ -399,7 +399,7 @@ tight loop, resulting in bad performance:
 
 \qml
 // bad.qml
-import QtQuick 2.0
+import QtQuick 2.3
 import Qt.example 1.0
 
 SequenceTypeExample {
@@ -427,7 +427,7 @@ something functionally equivalent but much faster would be:
 
 \qml
 // good.qml
-import QtQuick 2.0
+import QtQuick 2.3
 import Qt.example 1.0
 
 SequenceTypeExample {
@@ -462,7 +462,7 @@ aware of, in case you find yourself doing something like this:
 
 \qml
 // bad.qml
-import QtQuick 2.0
+import QtQuick 2.3
 import Qt.example 1.0
 
 SequenceTypeExample {
@@ -490,7 +490,7 @@ sometimes be beneficial:
 
 \qml
 // good.qml
-import QtQuick 2.0
+import QtQuick 2.3
 import Qt.example 1.0
 
 SequenceTypeExample {
@@ -1002,7 +1002,7 @@ to be of the type explicitly defined by the component, rather than its own impli
 
 Consider the following example:
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     id: root

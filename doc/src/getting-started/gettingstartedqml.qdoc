@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -78,7 +78,7 @@
     \l{Property Binding}{QML properties} to control its appearance and location.
 
     \code
-        import QtQuick 2.0
+        import QtQuick 2.3
 
         Rectangle {
             id: simpleButton
@@ -93,7 +93,7 @@
         }
     \endcode
 
-    First, the \c {import QtQuick 2.0} statement allows the
+    First, the \c {import QtQuick 2.3} statement allows the
     \l{Prototyping with qmlscene}{qmlscene} tool to import the QML types we will later use.
     This line must exist for every QML file. Notice that the version of Qt modules is
     included in the import statement.
@@ -231,7 +231,7 @@
     \c FileMenu.qml.
 
     \code
-        import QtQuick 2.0             \\ Import the main Qt QML module
+        import QtQuick 2.3             \\ Import the main Qt QML module
         import "folderName"            \\ import the contents of a folder
         import "script.js" as Script   \\ Import a Javascript file and name it as Script
     \endcode
