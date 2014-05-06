@@ -140,6 +140,31 @@
     \l {Secure Sockets Layer (SSL) Classes} for instructions on building Qt with
     SSL support.
 
+    \section2 ICU
+
+    Qt WebKit, and applications using it, always need the ICU libraries. Qt Core
+    can be configured to either rely on ICU functionality, or fall back to Windows API
+    and internal algorithms with somewhat reduced functionality.
+
+    From Qt 5.3 and onwards, configure does not link Qt Core against ICU libraries
+    anymore by default. This reduces the size of a self-contained
+    application package considerably, as long as Qt WebKit is not used.
+
+    Letting Qt Core utilize the ICU libraries however has following advantages:
+    \list
+      \li Behavior matches other platforms more closely.
+      \li Extended set of text codecs (see \l QTextCodec).
+      \li QLocale::toUpper(), QLocale::toLower() always use case conversion rules
+      specific to the locale.
+      \li QCollator::setNumericMode() does work consistently on all Windows versions.
+    \endlist
+
+    To explicitly enable the use of ICU in Qt Core, pass \c -icu to \c configure:
+
+    \code
+    configure -icu
+    \endcode
+
     \section2 Graphics Drivers
 
     For \l{Qt Quick} 2 to work, a graphics driver that provides OpenGL 2.1 or
