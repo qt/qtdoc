@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -39,7 +39,7 @@
 ****************************************************************************/
 
 //! [imports]
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Particles 2.0
 import "subdirectory"
 import "script.js"

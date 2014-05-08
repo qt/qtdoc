@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -124,8 +124,8 @@ the new classes in the \l {Qt GUI} module.
 
 \section1 Qt Quick scene graph
 
-Qt Quick 2.0 introduces an OpenGL (ES) 2.0 scene graph for
-rendering. It generally improves the performance of Qt Quick 2.0
+Qt Quick 2 introduces an OpenGL (ES) 2.0 scene graph for
+rendering. It generally improves the performance of Qt Quick 2
 significantly compared to the QGraphicsView/QPainter-based apprach
 used in earlier versions.
 
@@ -137,7 +137,7 @@ state of the items. On many platforms, the scene graph will even be
 rendered on a dedicated render thread while the GUI thread is
 preparing the next frame's state.
 
-The scene graph is used when you import QtQuick 2.0 in your QML
+The scene graph is used when you import QtQuick 2.x in your QML
 file, and use QQuickView to run it.
 
 \list
