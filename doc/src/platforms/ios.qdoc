@@ -62,8 +62,14 @@
     see \l{Qt Enterprise}{qt.digia.com} for details.
 
     Before installing Qt, you first need to install
-    Xcode. You will find it in the App Store \l{Xcode}{here}. For
-    running Qt applications in the simulator that comes with Xcode,
+    Xcode. You will find it in the Mac App Store \l{Xcode}{here}.
+
+    \note As \l{Xcode5Req}{required by Apple}, you should always use the latest
+    Xcode 5 version when building your applications for the App Store.
+    In practice this means you need OS X 10.8 or 10.9 to do iOS development
+    with Qt, as those are the only platforms where Xcode 5 will run.
+
+    For running Qt applications in the simulator that comes with Xcode,
     this is all you need. However, for running applications on a
     device and publishing your applications in the App Store, you must
     join the iOS Developer Program (see
