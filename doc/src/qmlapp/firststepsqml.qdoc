@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -43,7 +43,7 @@ To use the \l{Qt Quick} module, a QML document needs to
 import it. The import syntax looks like this:
 
 \code
-import QtQuick 2.0
+import QtQuick 2.3
 \endcode
 
 The types and functionality that \l{Qt Quick} provides can now
@@ -84,7 +84,7 @@ by the \c{QtQuick} import. Putting the import and object declaration
 together, we get a complete QML document:
 
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     width: 200
@@ -125,7 +125,7 @@ as \l{Signal and Handler Event System}{signals} and these signals are handled by
 
 For example, consider the following example:
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     width: 200
@@ -152,7 +152,7 @@ signal for touch events, so this code will also work on a mobile device.
 Keyboard user input can be similarly handled with a simple expression:
 
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     width: 200
@@ -189,7 +189,7 @@ were to change, the geometry of each child \l Rectangle would automatically
 update due to the property bindings.
 
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     width: 400
@@ -216,7 +216,7 @@ to a property's value. In the following example, a property is animated which
 then gets displayed in a \l Text area:
 
 \qml
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     color: "lightgray"

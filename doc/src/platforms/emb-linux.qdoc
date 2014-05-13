@@ -214,7 +214,10 @@
   read directly via \c evdev or using helper libraries like \c tslib. Note that
   this requires that devices nodes \c {/dev/input/event*} are readable by the
   user. eglfs has all the evdev input handling code built-in, while linuxfb
-  relies on the traditional \c -plugin command-line parameters.
+  relies on the traditional and somewhat limited \c -plugin command-line
+  parameters.
+
+  \section2 Input on linuxfb
 
   To enable keyboard, mouse, touch or tablet support with linuxfb, pass \c
   {-plugin evdevkeyboard}, \c {-plugin evdevmouse}, \c{-plugin evdevtouch}, or
@@ -223,13 +226,17 @@
   Qt's automatic device discovery (based either on \e libudev or a walkthrough
   of \c {/dev/input/event*}) is not functional or misbehaving.
 
-  For eglfs, these parameters, like the device node name, can be set in the
+  \section2 Input on eglfs
+
+  For eglfs, parameters like the device node name can be set in the
   environment variables \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c
   QT_QPA_EVDEV_KEYBOARD_PARAMETERS and \c
   QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS. Additionally, the built-in input handlers
   can be disabled by setting \c QT_QPA_EGLFS_DISABLE_INPUT to \c 1. On some
   touch screens the coordinates will need to be rotated. This can be enabled by
   setting \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS to \c {rotate=180}.
+
+  \section2 Mouse
 
   The mouse cursor will show up whenever \c QT_QPA_EGLFS_HIDECURSOR (for eglfs)
   or \c QT_QPA_FB_HIDECURSOR (for linuxfb) is not set and Qt's libudev-based
@@ -243,12 +250,67 @@
   the application is running. On eglfs the mouse cursor will disappear and
   reappear appropriately.
 
+  \section2 Keyboard
+
+  The evdev keyboard handler supports the following extra parameters:
+
+  \list
+
+  \li \c {/dev/input/...} - Specifies the name of the input device. When not
+  given, Qt will look for a suitable device either via \e libudev or by walking
+  through the available nodes.
+  \li \c {grab} - Enables grabbing the input device.
+  \li \c {keymap} - Specifies the name of a custom keyboard map file.
+  \li \c {enable-compose} - Enables compositing.
+  \li \c {repeat-delay} - Sets a custom key repeat delay.
+  \li \c {repeat-rate} - Sets a custom key repeat rate.
+  \endlist
+
   EGLFS, LinuxFB and KMS are disabling the terminal keyboard on application
-  startup. This prevents keystrokes from going to the terminal \e underneath the
-  application. If the old behavior needs to be restored for some reason, set the
-  environment variable \c QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1. Note that
-  this will not work when the application is launched from a remote console (for
-  example, via \c ssh) and the terminal keyboard input will remain enabled.
+  startup by setting the tty's keyboard mode to \c K_OFF. This prevents
+  keystrokes from going to the terminal \e underneath the application. If the
+  standard behavior needs to be restored for some reason, set the environment
+  variable \c QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1. Note that this will not
+  work when the application is launched from a remote console (for example, via
+  \c ssh) and the terminal keyboard input will remain enabled.
+
+  An alternative approach is to use the evdev keyboard handler's \c grab
+  parameter by passing \e{grab=1} in \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS. This
+  results in trying to get a grab on the input device which, if successful,
+  means that no other components in the system receive events from it as long as
+  the Qt application is running. This approach is more suitable for applications
+  started remotely as it does not need access to the tty device.
+
+  \note Special system key combinations, such as console switching
+  (\e{Ctrl+Alt+Fx}) or zap (\e{Ctrl+Alt+Backspace}) are not currently supported
+  and will get ignored.
+
+  To generate a custom keymap, the \e kmap2qmap utility can be used. This can be
+  found in the \e qttools module. The source files have to be in standard Linux
+  \c kmap format that is e.g. understood by the kernel's \c loadkeys command.
+  This means one can use the following sources to generate \c qmap files:
+
+  \list
+  \li The \l {http://lct.sourceforge.net/}{Linux Console Tools (LCT)} project.
+  \li \l {http://www.x.org/}{Xorg} X11 keymaps can be converted to the \c
+  kmap format with the \c ckbcomp utility.
+  \li As \c kmap files are plain text files, they can also be hand crafted.
+  \endlist
+
+  \c kmap2qmap is a command line program, that needs at least 2 files as
+  parameters.  The last one will be the generated \c .qmap file, while all the
+  others will be parsed as input \c .kmap files.  For example:
+
+  \badcode
+  kmap2qmap i386/qwertz/de-latin1-nodeadkeys.kmap include/compose.latin1.inc de-latin1-nodeadkeys.qmap
+  \endcode
+
+  \note \c kmap2qmap does not support all the (pseudo) symbols that the Linux
+  kernel supports.  When converting a standard keymap, a number of warnings will
+  be shown regarding \c Show_Registers, \c Hex_A, and so on; these messages can
+  safely be ignored.
+
+  \section2 Touch
 
   For some resistive, single-touch touch screens it may be necessary to fall
   back to using tslib instead of relying on the Linux multitouch protocol and
