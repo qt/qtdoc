@@ -270,20 +270,36 @@
   \li \c {repeat-rate} - Sets a custom key repeat rate.
   \endlist
 
-  EGLFS, LinuxFB and KMS are disabling the terminal keyboard on application
-  startup by setting the tty's keyboard mode to \c K_OFF. This prevents
-  keystrokes from going to the terminal \e underneath the application. If the
-  standard behavior needs to be restored for some reason, set the environment
-  variable \c QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1. Note that this will not
-  work when the application is launched from a remote console (for example, via
-  \c ssh) and the terminal keyboard input will remain enabled.
+  On Embedded Linux systems that do not have their terminal sessions disabled,
+  the behavior when pressing a key can be confusing due to having the input
+  event processed both by the Qt application and the tty. To overcome this, the
+  following options are available:
 
-  An alternative approach is to use the evdev keyboard handler's \c grab
+  \list
+
+  \li EGLFS, LinuxFB and KMS attempt to disable the terminal keyboard on
+  application startup by setting the tty's keyboard mode to \c K_OFF. This
+  prevents keystrokes from going to the terminal. If the standard behavior needs
+  to be restored for some reason, set the environment variable \c
+  QT_QPA_ENABLE_TERMINAL_KEYBOARD to \c 1. Note that this will not work when the
+  application is launched from a remote console (for example, via \c ssh) and
+  the terminal keyboard input will remain enabled.
+
+  \li An alternative approach is to use the evdev keyboard handler's \c grab
   parameter by passing \e{grab=1} in \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS. This
   results in trying to get a grab on the input device which, if successful,
   means that no other components in the system receive events from it as long as
   the Qt application is running. This approach is more suitable for applications
   started remotely as it does not need access to the tty device.
+
+  \li Finally, for many specialized Embedded Linux images it will not make sense
+  to have the standard terminal sessions enabled in the first place. Refer to
+  your build environment's documentation on how to disable them. For example,
+  when generating images using the \l {http://www.yoctoproject.org}{Yocto
+  Project}, unsetting \c SYSVINIT_ENABLED_GETTYS will result in having no \c
+  getty process running, and thus no input, on any of the virtual terminals.
+
+  \endlist
 
   \note Special system key combinations, such as console switching
   (\e{Ctrl+Alt+Fx}) or zap (\e{Ctrl+Alt+Backspace}) are not currently supported
