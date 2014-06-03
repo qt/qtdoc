@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -247,7 +247,8 @@ void QAbstractSlider::setValue(int value)
     }
 #ifndef QT_NO_ACCESSIBILITY
 //! [1]
-    QAccessible::updateAccessibility(this, 0, QAccessible::ValueChanged);
+    QAccessibleValueChangeEvent event(this, d->value);
+    QAccessible::updateAccessibility(&event);
 //! [1]
 #endif
     sliderChange(SliderValueChange);
