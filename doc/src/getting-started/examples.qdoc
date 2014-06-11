@@ -39,21 +39,22 @@
 
     \image layout-examples.png
 
-    Qt uses a layout-based approach to widget management. Widgets are arranged in
-    the optimal positions in windows based on simple layout rules, leading to a
-    consistent look and feel.
+    Qt uses a layout-based approach to widget management. Widgets are arranged
+    in the optimal positions in windows based on simple layout rules, leading to
+    a consistent look and feel. Custom layouts provide more control over the
+    positions and sizes of child widgets.
 
-    Custom layouts can be used to provide more control over the positions and
-    sizes of child widgets.
+    These \l{Qt Examples and Tutorials}{Qt Examples} demonstrate various
+    ways of setting widgets in layouts.
 
     \list
-    \li \l{layouts/basiclayouts}{Basic Layouts}\raisedaster
-    \li \l{layouts/borderlayout}{Border Layout}
-    \li \l{layouts/dynamiclayouts}{Dynamic Layouts}
-    \li \l{layouts/flowlayout}{Flow Layout}
+    \li \l{Basic Layouts Example}{Basic Layouts}
+    \li \l{Border Layout Example}{Border Layout}
+    \li \l{Dynamic Layouts Example}{Dynamic Layouts}
+    \li \l{Flow Layout Example}{Flow Layout}
     \endlist
 
-    Examples marked with an asterisk (*) are fully documented.
+    \sa {Layout Management}
 */
 
 /*!
