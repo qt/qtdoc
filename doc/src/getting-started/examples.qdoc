@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -39,21 +39,22 @@
 
     \image layout-examples.png
 
-    Qt uses a layout-based approach to widget management. Widgets are arranged in
-    the optimal positions in windows based on simple layout rules, leading to a
-    consistent look and feel.
+    Qt uses a layout-based approach to widget management. Widgets are arranged
+    in the optimal positions in windows based on simple layout rules, leading to
+    a consistent look and feel. Custom layouts provide more control over the
+    positions and sizes of child widgets.
 
-    Custom layouts can be used to provide more control over the positions and
-    sizes of child widgets.
+    These \l{Qt Examples and Tutorials}{Qt Examples} demonstrate various
+    ways of setting widgets in layouts.
 
     \list
-    \li \l{layouts/basiclayouts}{Basic Layouts}\raisedaster
-    \li \l{layouts/borderlayout}{Border Layout}
-    \li \l{layouts/dynamiclayouts}{Dynamic Layouts}
-    \li \l{layouts/flowlayout}{Flow Layout}
+    \li \l{Basic Layouts Example}{Basic Layouts}
+    \li \l{Border Layout Example}{Border Layout}
+    \li \l{Dynamic Layouts Example}{Dynamic Layouts}
+    \li \l{Flow Layout Example}{Flow Layout}
     \endlist
 
-    Examples marked with an asterisk (*) are fully documented.
+    \sa {Layout Management}
 */
 
 /*!
@@ -291,23 +292,6 @@
     \list
     \li \l{gestures/imagegestures}{Image Gestures}
     \endlist
-*/
-
-/*!
-    \page examples-dbus.html
-    \title D-Bus Examples
-    \brief Using D-Bus from Qt applications.
-    \ingroup all-examples
-
-    \list
-    \li \l{dbus/dbus-chat}{Chat}
-    \li \l{dbus/complexpingpong}{Complex Ping Pong}
-    \li \l{dbus/listnames}{List Names}
-    \li \l{dbus/pingpong}{Ping Pong}
-    \li \l{dbus/remotecontrolledcar}{Remote Controlled Car}
-    \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
