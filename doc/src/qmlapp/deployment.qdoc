@@ -31,7 +31,6 @@
 \brief Deploying QML applications
 
 
-
 QML documents are loaded and executed by the QML runtime. This includes the
 Declarative UI engine along with the built-in QML types and plugin modules,
 and it also provides access to third-party QML types and modules.
@@ -43,11 +42,36 @@ package includes the qmlscene tool, which loads \c .qml files. This tool is
 useful for developing and testing QML code without the need to write
 a C++ application to load the QML runtime.
 
+\section1 Deploying Applications with Qt Creator
 
+\l{Qt Creator Manual}{Qt Creator} deploys and packages QML applications to
+various platforms. For mobile devices, Qt Creator can directly bundle
+applications to the respective platform package formats such as APK and BAR.
 
-\section1 Deploying QML-based applications
+For more information, visit:
+\list
+\li \l{Deploying Qt Applications}
+\li \l{Qt Creator: Running on Multiple Platforms}{Running on Multiple Platforms}
+\li \l{Qt Creator: Deploying to Mobile Devices}{Deploying to Mobile Devices}
+\endlist
 
-To deploy an application that uses QML, the QML runtime must be invoked by
+When running applications on the target platform, the application needs to
+access the location of the QML libraries. When using \l{qmake Manual}{qmake},
+the \c QT_INSTALL_QML environment points to the location of the libraries.
+The \l{Downloads}{Qt Installers} install the QML libraries in
+\e{<version>}\c{/}\e{<compiler>}\c{/qml} directory.
+
+\section1 Prototyping with QML Scene
+
+The Declarative UI package includes a QML runtime tool,
+\l{qtquick-qmlscene.html}{qmlscene}, which loads and displays QML documents.
+This is useful during the application development phase for prototyping
+QML-based applications without writing your own C++ applications to invoke
+the QML runtime.
+
+\section1 Initializing the QML Runtime in Applications
+
+To run an application that uses QML, the QML runtime must be invoked by
 the application. This is done by writing a Qt C++ application that loads the
 QQmlEngine by either:
 
@@ -57,7 +81,7 @@ QQmlEngine by either:
 \endlist
 
 
-\section2 Deploying with QQuickView
+\section2 Initializing with QQuickView
 
 QQuickView is a QWindow-based class that is able to load QML files.
 For example, if there is a QML file, \c application.qml, it will
@@ -137,19 +161,7 @@ See \l{qtqml-cppintegration-data.html}{qtqml-cppintegration-exposecppattributes.
 for more information about using QQmlEngine, QQmlContext and QQmlComponent, as well
 as details on including QML files through \l{The Qt Resource System}{Qt's Resource system}.
 
-
-
-\section1 Developing and Prototyping with QML Scene
-
-The Declarative UI package includes a QML runtime tool,
-\l{qtquick-qmlscene.html}{qmlscene}, which loads and displays QML documents.
-This is useful during the application development phase for prototyping
-QML-based applications without writing your own C++ applications to invoke
-the QML runtime.
-
-
-
-\section1 Managing resource files with the Qt resource system
+\section1 Managing Resource Files with the Qt Resource System
 
 The \l {The Qt Resource System}{Qt resource system} allows resource files to be stored as
 binary files in an application executable. This can be useful when building a mixed
