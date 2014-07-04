@@ -89,6 +89,10 @@ The most important rendering targets for QPainter are:
     interface classes. QPainter will render widgets using a
     QBackingStore.
 
+    \li \l {QOpenGLWidget}{QOpenGLWidget} - A painter can also be
+    opened on a QOpenGLWidget. This is provided as a convenience, since
+    technically this is no different than using QOpenGLPaintDevice.
+
 \endlist
 
 QPainter and related classes are part of the \l {Qt GUI} module.
@@ -108,6 +112,9 @@ OpenGL into their applications.
     in Qt GUI} - An overview of how OpenGL integrates with the \l{Qt GUI}
     module.
 
+    \li \l {QOpenGLWidget}{QOpenGLWidget} is a widget that allows adding OpenGL
+    scenes into QWidget-based user interfaces.
+
     \li \l {Mixing Scene Graph and OpenGL}{OpenGL and Qt Quick 2.0} -
     How to integrate OpenGL into a the Qt Quick 2.0 scene graph.
 
@@ -118,7 +125,9 @@ OpenGL into their applications.
 
 Prior to Qt 5.0, OpenGL support in Qt was handled by the \l {Qt OpenGL}
 module. This module is still present, but new code should aim to use
-the new classes in the \l {Qt GUI} module.
+the new classes in the \l {Qt GUI} module. The classes are easily distinguisible
+based on their names: Classes with the \c QGL prefix should not be used. Instead,
+prefer the ones starting with \c QOpenGL.
 
 
 
