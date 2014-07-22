@@ -183,11 +183,12 @@
 
     You can implement the stream operator used by qDebug() to provide
     debugging support for your classes. The class that implements the
-    stream is \c QDebug. The functions you need to know about in \c
-    QDebug are \c space() and \c nospace(). They both return a debug
-    stream; the difference between them is whether a space is inserted
-    between each item. Here is an example for a class that represents
-    a 2D coordinate.
+    stream is \c QDebug. Use \c QDebugStateSaver to temporarily
+    save the formatting options of the stream. Use
+    \l{QDebug::nospace()}{nospace()} and \l{QTextStream manipulators}
+    to further customize the formatting.
+
+    Here is an example for a class that represents a 2D coordinate.
 
     \snippet snippets/qdebug/qdebugsnippet.cpp 0
 
