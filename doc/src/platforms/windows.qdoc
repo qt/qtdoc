@@ -231,9 +231,9 @@
     environment variable and the following application attributes:
 
     \list
-    \li \cQt::AA_UseDesktopOpenGL Equivalent to setting \c{QT_OPENGL} to \c{desktop}.
-    \li \cQt::AA_UseOpenGLES Equivalent to setting \c{QT_OPENGL} to \c{angle}.
-    \li \cQt::AA_UseSoftwareOpenGL Equivalent to setting \c{QT_OPENGL} to \c{software}.
+    \li \c Qt::AA_UseDesktopOpenGL Equivalent to setting \c{QT_OPENGL} to \c{desktop}.
+    \li \c Qt::AA_UseOpenGLES Equivalent to setting \c{QT_OPENGL} to \c{angle}.
+    \li \c Qt::AA_UseSoftwareOpenGL Equivalent to setting \c{QT_OPENGL} to \c{software}.
     \endlist
 
     When a certain configuration is requested explicitly, no checks are done at
@@ -258,7 +258,7 @@
     -lopengl32} (MinGW). The result is, from the application's perspective,
     equivalent to the \c{-opengl desktop} build configuration of Qt.
 
-    \cQt::AA_UseSoftwareOpenGL is special in the sense that it will try to load
+    \c Qt::AA_UseSoftwareOpenGL is special in the sense that it will try to load
     an OpenGL implementation with a non-standard name. The default name is
     \c{QtSoftwareOpenGL.dll}. This allows shipping a software-only OpenGL
     implementation, for example a build of
