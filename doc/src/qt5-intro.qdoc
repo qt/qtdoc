@@ -350,6 +350,9 @@
     connect(sender, &QObject::destroyed, [=](){ this->m_objects.remove(sender); });
     \endcode
 
+    For a detailed comparison with the original string-based syntax, see \l{Differences
+    between String-Based and Functor-Based Connections}.
+
     \section1 Connectivity and Networking
 
     Qt 5 provides better support for IPv6 and dual mode networks. Most

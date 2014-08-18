@@ -45,7 +45,11 @@
 
     This syntax allows connecting a signal to any kind of C++ receiver,
     including C++11 lambdas, member functions, or static functions. The
-    receivers no longer need to be declared as slots.
+    receivers no longer need to be declared as slots, but such declarations
+    are still recommended for readability.
+
+    See \l{Differences between String-Based and Functor-Based Connections}
+    for more details.
 
     \section2 Perl-Compatible Regular Expressions
     QRegularExpression is introduced to provide better support for regular
