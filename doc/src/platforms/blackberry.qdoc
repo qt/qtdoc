@@ -94,7 +94,7 @@
     \section2 Install Momentics
 
     Install the Momentics IDE by executing
-    \code
+    \badcode
      cd ~/Downloads/
      chmod +x momentics-<your-version>.bin
      ./momentics-<your-version>.bin
@@ -136,12 +136,12 @@
 
     If you work on the command line and use Qt 5.2 or later you have change the CPUVARDIR
     environment variable to switch to Simulator as target:
-    \code
+    \badcode
     export CPUVARDIR=x86
     \endcode
 
     Going back to the device target:
-    \code
+    \badcode
     export CPUVARDIR=armle-v7
     \endcode
 
@@ -215,7 +215,7 @@
     needed.
 
     First create a directory to hold the source code:
-    \code
+    \badcode
         cd $HOME/development
         mkdir qt5
         cd qt5
@@ -247,7 +247,7 @@
     \endlist
 
     Then clone:
-    \code
+    \badcode
         git clone git://gitorious.org/qt/qtbase.git
         git clone git://gitorious.org/qt/qtxmlpatterns.git
         git clone git://gitorious.org/qt/qtsensors.git
@@ -278,13 +278,13 @@
     in the raw console output of the \c qtbase build.
     See this \l{http://qtlab.blackberry.com/job/qt-5-qtbase-stable/}{link} and then open the
     raw \e{Console Output} for the last successful build for ARM or for x86.
-    \code
+    \badcode
         cd qtbase
         ./configure -prefix $HOME/development/qnx/qt5 -xplatform blackberry-armle-v7-qcc -opengl es2 -nomake examples -nomake tests  -opensource -confirm-license -release
     \endcode
 
     Afterwards we simply build it by calling make and make install.
-    \code
+    \badcode
         make -j<N>
         make install
     \endcode
@@ -292,7 +292,7 @@
     where \c{<N>} is the number of parallel make jobs to run. This is often set to \c{<No. of CPU cores + 1>}.
 
     \section2 Windows
-    \code
+    \badcode
         C:\dev> cd qtbase
         C:\dev\qtbase> configure -prefix C:\dev\qt5install -xplatform blackberry-armle-v7-qcc -opengl es2 -nomake examples -nomake tests -opensource -confirm-license -release
     \endcode
@@ -302,13 +302,13 @@
     \section2 Mac OS X
 
     This is almost the same as on Linux:
-    \code
+    \badcode
         $ cd qtbase
         $ ./configure -prefix $HOME/development/qnx/qt5 -xplatform blackberry-armle-v7-qcc -opengl es2 -nomake examples  -nomake tests  -opensource -confirm-license -release -no-neon
     \endcode
 
     After this process, you should have a basic Qt 5 installation located in \c{$HOME/development/qnx/qt5}
-    or in \e{C:\dev\qt5install}, depending on your operating system.
+    or in \c{C:\dev\qt5install}, depending on your operating system.
 
     You may now either move on to building your applications or continue here to install
     some additional git submodules to gain access to additional features of Qt 5.
@@ -328,7 +328,7 @@
     Now for each of the additional git submodules that you wish to build, do the following:
 
     \section2 Linux and Mac OS X
-    \code
+    \badcode
         cd <sub_module_name>
         qmake
         make -j<N>
@@ -336,7 +336,7 @@
     \endcode
 
     \section2 Windows
-    \code
+    \badcode
         C:\dev> cd <sub_module_name>
         C:\dev\submodule> qmake
         C:\dev\submodule> mingw32-make -j
@@ -415,24 +415,24 @@
     beginning how paths can actually be referred in the application code.
 
     This line is the universal way to add any other content to the app package:
-    \code
+    \badcode
     <asset path="<local_path_to_files>/<local_file_name>"><on_device_path_to_files>/<on_device_file_name></asset>
     \endcode
 
     or even shorter:
-    \code
+    \badcode
     <asset path="<SOURCE>"><TARGET></asset>
     \endcode
 
     Lets assume you have an app which loads an image with Qt Quick . The application code is
     located in the subfolder \e test_assets in your \e projects folder. The following line
     adds this image to the BAR application descriptor file:
-    \code
+    \badcode
     <asset path="/Users/johndoe/projects/test_assets/qt-logo.png">qt-logo.png</asset>
     \endcode
 
     You also have to add QML files:
-    \code
+    \badcode
     <asset path="/Users/johndoe/projects/test_assets/qml">qml</asset>
     \endcode
 
@@ -443,22 +443,22 @@
     \e app/native in the application working directory (referred by QDir::currentPath(),
     for example a \c . folder in the BAR application descriptor file maps to the \e{app/native/}.
     folder. Our app would be installed for example in:
-    \code
+    \badcode
     /accounts/1000/appdata/com.example.test_assets.testDev_test_assetscd80795f
     \endcode
 
     The \e qt-logo.png lands here:
-    \code
+    \badcode
     /accounts/1000/appdata/com.example.test_assets.testDev_test_assetscd80795f/app/native/qt-logo.png
     \endcode
 
     The \e qml folder will be recursively copied to
-    \code
+    \badcode
     /accounts/1000/appdata/com.example.test_assets.testDev_test_assetscd80795f/app/native/qml/
     \endcode
 
     Our app has only one QML file which lands here:
-    \code
+    \badcode
     /accounts/1000/appdata/com.example.test_assets.testDev_test_assetscd80795f/app/native/qml/main.qml
     \endcode
 
