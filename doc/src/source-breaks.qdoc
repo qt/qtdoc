@@ -240,6 +240,9 @@ The following sections lists the API changes in each module and provides recomme
         to get these styles or update your application to use the new fusion style.
         For more details about this change, see
         \l{https://blog.qt.digia.com/blog/2012/10/30/cleaning-up-styles-in-qt5-and-adding-fusion/}.
+    \li The session management API has been simplified. commitData() has been obsoleted and removed.
+        The signal \l{QGuiApplication::commitDataRequest()} replaces it.
+        Q(Gui)Application will emit this signal from 5.2 onward on supported platforms (Linux and Windows)
     \endlist
 
 \section1 Changes to Qt Widgets
