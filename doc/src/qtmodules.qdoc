@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -194,6 +194,13 @@
         \note Provided to ease porting from Qt 4.x. Please use the QOpenGL
         classes in \l{Qt GUI} for new code
     \row
+        \li \l{Qt Platform Headers}
+        \li
+        \li
+        \li Provides classes that encapsulate platform-specific information,
+            tied to a given runtime configuration of a \l {Qt Platform Abstraction}
+            {platform plugin}.
+    \row
         \li \l {Qt Positioning}
         \li All
         \li
@@ -238,6 +245,12 @@
         \li
         \li Classes for displaying the contents of SVG files. Supports a subset of the
             \l{http://www.w3.org/TR/SVGTiny12/}{SVG 1.2 Tiny} standard.
+    \row
+        \li \l{Qt WebChannel}
+        \li All
+        \li All
+        \li Provides access to QObject or QML objects from HTML clients for seamless
+            integration of Qt applications with HTML/JavaScript clients.
     \row
         \li \l{Qt WebSockets}
         \li All
