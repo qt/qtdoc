@@ -392,7 +392,7 @@ The following sections lists the API changes in each module and provides recomme
     \list
      \li Avoid using \c{qttest_p4.prf} file. We recommend that you explicitly enable the preferences you want.
          Autotest \c{.pro} files must stop using \c{'load(qttest_p4)'} and use \c{'CONFIG+=testcase'} instead.
-     \li The \c{-dwarf2} configure argument is removed. DWARF2 is always used on Mac OS X now.
+     \li The \c{-dwarf2} configure argument is removed. DWARF2 is always used on OS X now.
     \endlist
 
 \section1 Related Topics

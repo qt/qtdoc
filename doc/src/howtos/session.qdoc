@@ -62,7 +62,7 @@
 
     \section1 Protocols and Support on Different Platforms
 
-    On Mac OS X, and Microsoft Windows versions prior to Windows 2000,
+    On OS X, and Microsoft Windows versions prior to Windows 2000,
     there is nothing like complete session management for applications
     yet, i.e. no restoring of previous sessions. (Windows 2000 and XP
     provide "hibernation" where the entire memory is saved to disk and
@@ -112,7 +112,7 @@
 
     \section1 Testing and Debugging Session Management
 
-    Session management support on Mac OS X and Windows is fairly limited
+    Session management support on OS X and Windows is fairly limited
     due to the lack of this functionality in the operating system
     itself. Simply shut the session down and verify that your application
     behaves as expected. It may be useful to launch another application,

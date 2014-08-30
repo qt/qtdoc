@@ -271,7 +271,7 @@
     \section1 Deployment
 
     Developing, building, running, and debugging a Qt for iOS application can all be done
-    with Qt Creator on Mac OS X. The toolchain is provided by Apple's Xcode,
+    with Qt Creator on OS X. The toolchain is provided by Apple's Xcode,
     and running qmake on a project targeted for iOS will also generate an
     Xcode project file (.xcodeproj), with initial application settings. As Qt
     Creator does not provide an interface for managing all of the settings specific
@@ -282,7 +282,7 @@
     \target Info.plist
     \section2 Information Property List Files
 
-    Information property list file (Info.plist) on iOS and Mac OS X is used for configuring
+    Information property list file (Info.plist) on iOS and OS X is used for configuring
     an application bundle. These configuration settings include:
 
     \list
