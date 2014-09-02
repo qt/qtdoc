@@ -130,7 +130,7 @@
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c
     macdeployqt (available from the OS X installers), can be used to create
     the self-contained bundles, and optionally also create a .dmg archive.
-    Applications can also be distributed through the Mac App store. Qt 5 aims
+    Applications can also be distributed through the Mac App Store. Qt 5 aims
     to stay within the app store sandbox rules. macdeployqt (bin/macdeployqt)
     can be used as a starting point for app store deployment.
 
@@ -515,7 +515,9 @@
     \list
     \li \c Q_OS_DARWIN is defined when Qt detects you are on a
     Darwin-based system (including the Open Source version)
-    \li \c Q_OS_MAC is defined when you are on OS X
+    \li \c Q_OS_MAC is defined when you are on an Apple Darwin-based system such OS X
+    or iOS.
+    \li \c Q_OS_OSX is defined when you are on an OS X system.
     \endlist
 
     \note \c Q_WS_MAC is no longer defined in Qt 5.
@@ -697,7 +699,7 @@
 
     \section1 The Bundle
 
-    On Mac, a GUI application must be built and run from a bundle, which is a
+    On OS X, a GUI application must be built and run from a bundle, which is a
     directory structure that appears as a single  entity when viewed in the
     Finder. A bundle for an application typically contains the executable and
     all the resources it needs. Here is the snapshot of an application bundle
