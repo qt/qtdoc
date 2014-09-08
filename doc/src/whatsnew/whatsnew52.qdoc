@@ -104,7 +104,7 @@
 
     \section1 New Features in Qt 5.2
 
-        \section2  Qt Core
+        \section2 Qt Core Module
         \list
         \li Added class QCommandLineParser for command-line arguments parsing
         \li Added new overload to QObject::connect()  to add a context object when connecting to a lambda
@@ -119,13 +119,13 @@
         \li Added QFileSelector to ease the selection of files when running in a different platform
         \endlist
 
-        \section2  Qt GUI
+        \section2  Qt GUI Module
         \list
         \li Added applicationState() function and applicationStateChanged() signal to QGuiApplication
         \li Added QOpenGLTexture class
         \endlist
 
-        \section2  Qt Widgets
+        \section2  Qt Widgets Module
         \list
         \li Added support for embedded clear button commonly used for item view filtering and side actions to QLineEdit
         \li Added methods based on QUrl to QFileDialog
@@ -137,7 +137,7 @@
         \li Added tabBarClicked and tabBarDoubleClicked signals to QTabBar
         \endlist
 
-        \section2  Qt Print Support
+        \section2  Qt Print Support Module
 
         \list
         \li Added advanced CUPS features on Linux including server-side page
@@ -145,7 +145,7 @@
         scheduling, and banner pages.
         \endlist
 
-        \section2  Qt QML
+        \section2  Qt QML Module
         \list
         \li Added new property to \l{QtQml::Qt::application}{Qt.application}: state
         \li Added ability to define QML singletons with QML files
@@ -154,7 +154,7 @@
         \li New V4 JS engine
         \endlist
 
-        \section2  Qt Quick
+        \section2  Qt Quick Module
         \list
         \li Added a new \l{Qt Quick Scene Graph}{scenegraph} renderer for improved performance
         \li Added texture atlas support in SceneGraph
@@ -162,7 +162,7 @@
         \li Support for external drag-and-drop
         \endlist
 
-        \section2  Qt Quick Controls
+        \section2  Qt Quick Controls Module
         \list
         \li Added support for an editable combo box
         \li Added support for multi-selection in \l TableView
@@ -172,17 +172,17 @@
         \li Simplified deployment
         \endlist
 
-        \section2  Qt Quick Dialogs
+        \section2  Qt Quick Dialogs Module
         \list
         \li Added a new FontDialog type
         \endlist
 
-        \section2  Qt Quick Layouts
+        \section2  Qt Quick Layouts Module
         \list
         \li Added baseline support to layout
         \endlist
 
-        \section2  Qt Network
+        \section2  Qt Network Module
         \list
         \li Added public methods to pre-TCP and pre-SSL-connect to QNetworkAccessManager
         \li Added API to persist and resume SSL sessions to QSslConfiguration
@@ -190,19 +190,19 @@
         \li Add public member bearerTypeFamily() to QNetworkConfiguration
         \endlist
 
-        \section2  moc
+        \section2  moc New Features
         \list
         \li Added \c -M argument to add plugin metadata from the command line
         \endlist
 
-        \section2  Accessibility
+        \section2  Accessibility New Features
         \list
         \li Enabled accessibility on Mac
         \li Made the APIs public so that it is possible to implement accessibility for custom widgets
         \li Basic accessibility support for Android
         \endlist
 
-        \section2 WebKit
+        \section2 WebKit New Features
         \list
         \li Added CSS blending
         \li Improved the threaded garbage collection

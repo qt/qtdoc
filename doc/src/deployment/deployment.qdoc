@@ -195,7 +195,7 @@
 
     \tableofcontents
 
-    \section1 The APK package
+    \section1 The APK Package
 
     Applications on Android are packaged in a specially structured type of ZIP file called \c APK.
     When you build a Qt application using \c qmake and \c make, the result will be a binary file
@@ -205,7 +205,7 @@
     In order to turn this into a runnable application, it has to be put into a special directory
     structure with some other files and packaged into an APK package.
 
-    \section1 Package template
+    \section1 Package Template
 
     A template for the other sources of an APK package is contained in \c{$QTDIR/src/android/java}.
     The first step of making an APK is to copy these files into an empty directory. In this
@@ -251,7 +251,7 @@
     Other variables in the manifest refer to resources, and more information about these can
     be found in the \l{Resources}{documentation for the resources} below.
 
-    \section2 Java code
+    \section2 Java Code
 
     Under \c{$BUILD_TARGET/src} are the files comprising the Java code of the Android application.
     The regular Android application launcher is a Java process, so Qt applications have a
@@ -354,7 +354,7 @@
     \c{"bundled"} should be put into the libs directory. It is also required that the necessary
     shared libraries and plugins are placed in the appropriate subdirectory of libs.
 
-    \section1 Building the Android application package
+    \section1 Building the Android Application Package
 
     Once all the pieces are in place, a few steps are required to build the application package.
     First, a build script needs to be generated. This is done using the \c android tool which is
@@ -376,7 +376,7 @@
     Building an application package is complex, so Qt comes with a tool which handles the work for
     you. The steps described in this document so far are handled automatically by the tool.
 
-    \section2 Required steps before running androiddeployqt
+    \section2 Required Steps Before Running androiddeployqt
 
     Before running the tool, you need run \c qmake and \c make your project. Running \c qmake
     creates the \c Makefile, and it will also generate a \c JSON file containing important settings
@@ -391,7 +391,7 @@
     % make install INSTALL_ROOT=$BUILD_TARGET
     \endcode
 
-    \section2 Command line arguments
+    \section2 Command Line Arguments
 
     The only required command line argument when running the tool is \c{--output}. This should
     be set to \c{$BUILD_TARGET}, that is: the build directory where you installed your application
@@ -431,7 +431,7 @@
     doing.
     \endlist
 
-    \section1 Dependencies detection
+    \section1 Dependencies Detection
 
     Qt comes with a number of plugins which are loaded at run-time when they are needed. These
     can handle anything from connecting to SQL databases to loading specific image formats.
@@ -451,7 +451,7 @@
     It's also possible to manually specify the dependencies of your application. See the documentation
     for the \c{ANDROID_DEPLOYMENT_DEPENDENCIES} qmake variable below.
 
-    \section1 qmake variables
+    \section1 Android-specific qmake Variables
 
     Unless the project has special requirements such as third party libraries, it should be
     possible to run \c androiddeployqt on it with no modifications and get a working Qt for Android
@@ -496,7 +496,7 @@
     using this variable, \c androiddeployqt will make sure everything is packaged and deployed properly.
     \endlist
 
-    \section1 Qt Creator
+    \section1 Deployment in Qt Creator
 
     Qt Creator will run the \c androiddeployqt tool for you, and provides easy and intuitive user
     interfaces to specify many of the options. For more information, see
