@@ -84,7 +84,7 @@
     executable, another library file, etc. The next sections explain the syntax
     with which \c qmake expects you to provide this information.
 
-    \section1 Source code
+    \section1 Source Code
 
     To be able to write
 
@@ -105,7 +105,7 @@
     INCLUDEPATH += 3rdparty/CatWhisperer/include
     \endcode
 
-    \section1 Library files
+    \section1 Library Files
 
     To let \c qmake know where to find the \c CatWhisperer library files,
     use the \l{qmake Variable Reference#LIBS}{LIBS} variable:
@@ -125,7 +125,7 @@
     to specify the \c .lib extension, nor the \c lib prefix
     (on UNIX platforms).
 
-    \section1 Destination directory
+    \section1 Destination Directory
 
     By default, \c qmake creates the executable in the same directory as the
     \c .pro file. We can choose our own directory using the
