@@ -77,19 +77,19 @@
 
     \section1 Summary of Changes
 
-    \section2 moc
+    \section2 moc Changes
         \list
         \li New keyword in \l Q_PROPERTY(), \c MEMBER, lets you bind a property
         to a class member without requiring to have a getter or a setter.
         \endlist
 
-    \section2 qmake
+    \section2 qmake Changes
         \list
         \li On Windows: Added support for specifying application icon
             (via \c{RC_ICONS}).
         \endlist
 
-    \section2 Qt Core
+    \section2 Qt Core Changes
         \list
         \li Added support for SHA3 to QCryptographicHash
         \li Added toInt(), toUInt(), and similar functions to QStringRef
@@ -101,7 +101,7 @@
         \li A new class, QSaveFile, provides transaction such as file writing.
         \endlist
 
-    \section2 Qt GUI
+    \section2 Qt GUI Changes
         \list
         \li Support for embedding and reparenting of windows created from other
             processes, via QWindow::fromWinId().
@@ -124,7 +124,7 @@
         \li New QOpenGLVertexArrayObject class.
         \endlist
 
-    \section2 Qt Network
+    \section2 Qt Network Changes
         \list
         \li New encrypted() signal to QNetworkAccessManager and QNetworkReply so
             that applications can perform additional checks on the certificate
@@ -135,7 +135,7 @@
             servers.
         \endlist
 
-    \section2 Qt QML
+    \section2 Qt QML Changes
         \list
         \li New QQmlApplicationEngine convenience class for QML applications.
         \li New Instantiatior type for generic, dynamic object creation.
@@ -144,7 +144,7 @@
         \li New properties for \l Qt.application: arguments, name, and version.
         \endlist
 
-    \section2 Qt Quick
+    \section2 Qt Quick Changes
         \list
         \li New threaded render loop for Mac, Linux, and Embedded.
         \li New render loop for windows for smoother animations.
@@ -161,7 +161,7 @@
             automatically be transient for (centered upon) the outer window.
         \endlist
 
-    \section2 Qt WebKit
+    \section2 Qt WebKit Changes
         \list
         \li JavaScript JIT on Windows 64 bit.
         \li Improved font rendering, kerning enabled by default.
@@ -173,7 +173,7 @@
             prefetch.
         \endlist
 
-    \section2 Qt Widgets
+    \section2 Qt Widgets Changes
         \list
         \li Added property toolTipsVisible in QMenu.
         \endlist

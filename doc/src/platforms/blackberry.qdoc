@@ -269,7 +269,7 @@
     the right values in $PATH to pickup tools and the cross-compile tool-chain
     provided in the NDK.
 
-    \section2 Linux and Mac OS X
+    \section2 Linux and OS X
 
     First we need to configure Qt.
 
@@ -299,7 +299,7 @@
 
     If you want to work with the HTTPS protocol, add the \c{-openssl} option.
 
-    \section2 Mac OS X
+    \section2 OS X
 
     This is almost the same as on Linux:
     \badcode
@@ -321,13 +321,13 @@
     To build additional git submodules we need to use the qmake from our new Qt 5 installation
     so we adjust the PATH environment variable accordingly:
 
-    \b{Linux and Mac OS X}: \c{export PATH=$HOME/development/qnx/qt5/bin:$PATH}
+    \b{Linux and OS X}: \c{export PATH=$HOME/development/qnx/qt5/bin:$PATH}
 
     \b Windows: \c{C:\dev> set PATH=C:\dev\qt5install\bin;%PATH%}
 
     Now for each of the additional git submodules that you wish to build, do the following:
 
-    \section2 Linux and Mac OS X
+    \section2 Linux and OS X
     \badcode
         cd <sub_module_name>
         qmake

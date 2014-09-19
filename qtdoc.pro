@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = doc # demos
+SUBDIRS = doc

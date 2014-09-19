@@ -63,7 +63,7 @@
 
     Specifies whether mnemonics for menu items, labels, etc., should
     be honored or not. On Windows and X11, this feature is
-    on by default; on Mac OS X, it is off. When this feature is off,
+    on by default; on OS X, it is off. When this feature is off,
     the QKeySequence::mnemonic() function always returns an empty
     string. This feature is also enabled on embedded Linux.
 
@@ -74,7 +74,7 @@
 
     \section1 void qt_mac_secure_keyboard(bool \e{enable})
 
-    Turns the Mac OS X secure keyboard feature on or off. QLineEdit
+    Turns the OS X secure keyboard feature on or off. QLineEdit
     uses this when the echo mode is QLineEdit::Password or
     QLineEdit::NoEcho to guard the editor against keyboard sniffing.
     If you implement your own password editor, you might want to turn
@@ -84,7 +84,7 @@
 
     \section1 void qt_mac_set_dock_menu(QMenu *\e{menu})
 
-    Sets the menu to display in the Mac OS X Dock for the
+    Sets the menu to display in the OS X Dock for the
     application. This menu is shown when the user attempts a
     press-and-hold operation on the application's dock icon or
     \key{Ctrl}-clicks on it while the application is running.
@@ -97,8 +97,8 @@
     \section1 void qt_mac_set_menubar_icons(bool \e{enable})
 
     Specifies whether icons associated to menu items for the
-    application's menu bar should be shown on Mac OS X. By default,
-    icons are shown on Mac OS X just like on the other platforms.
+    application's menu bar should be shown on OS X. By default,
+    icons are shown on OS X just like on the other platforms.
 
     In Qt 4.4, this is equivalent to
     \c { QApplication::instance()->setAttribute(Qt::AA_DontShowIconsInMenus); }.
@@ -107,14 +107,14 @@
 
     Specifies whether Qt should attempt to relocate standard menu
     items (such as \gui Quit, \gui Preferences, and \gui About) to
-    the application menu on Mac OS X. This feature is on by default.
-    See \l{Qt for Mac OS X - Specific Issues} for the list of menu items for
+    the application menu on OS X. This feature is on by default.
+    See \l{Qt for OS X - Specific Issues} for the list of menu items for
     which this applies.
 
     \section1 void qt_mac_set_native_menubar(bool \e{enable})
 
     Specifies whether the application should use the native menu bar
-    on Mac OS X or be part of the main window. This feature is on by
+    on OS X or be part of the main window. This feature is on by
     default.
 
     In Qt 4.6, this is equivalent to

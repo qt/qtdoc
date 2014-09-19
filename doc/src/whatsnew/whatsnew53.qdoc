@@ -62,7 +62,7 @@
 
     \section1 New Features
 
-    \section2 Qt Core
+    \section2 Qt Core Module
     \list
     \li Logging: It is now possible to configure logging rules (for example, the
     message types for which categories are printed) on the filesystem or in
@@ -70,7 +70,7 @@
     printf-style way, in addition to the streaming operator syntax.
     \endlist
 
-    \section2 Qt GUI
+    \section2 Qt GUI Module
     \list
     \li Qt's iOS plugin now implements support for input methods, spell checking
     and word completion.
@@ -78,20 +78,20 @@
     now documented.
     \endlist
 
-    \section2 Qt Quick
+    \section2 Qt Quick Module
     \list
     \li Introduced QQuickWidget for easy and flexibe integration of views
     with QWidget-based UIs.
     \endlist
 
-    \section2 Qt Quick Controls
+    \section2 Qt Quick Controls Module
     \list
     \li The \l Calendar control was added. Calendar allows selection of dates from
     a grid of days, similar to QCalendarWidget.
     \li \l MenuStyle and \l MenuBarStyle controls introduced.
     \endlist
 
-    \section2 Qt Quick Dialogs
+    \section2 Qt Quick Dialogs Module
     \list
 
     \li The QML implementations are now built with QtQuick.Controls (and
@@ -104,12 +104,12 @@
     types of input dialogs and pickers.
     \endlist
 
-    \section2 Qt Network
+    \section2 Qt Network Module
     \list
     \li Support for the SPDY protocol (version 3.0) was added.
     \endlist
 
-    \section2 Qt Multimedia
+    \section2 Qt Multimedia Module
     \list
     \li A new QCameraInfo class was added. It allows to get static information
     about cameras such as physical position and sensor orientation. In addition,
@@ -117,24 +117,24 @@
     deprecates QCamera::availableDevices().
     \endlist
 
-    \section2 Qt WebKit
+    \section2 Qt WebKit Module
     \list
     \li Support for HTML5 Video Track. Subtitles and captions for HTML5 video.
     \li Support for Indexed DB API. See \l{http://www.w3.org/TR/IndexedDB/}.
     \endlist
 
-    \section2 Qt Positioning
+    \section2 Qt Positioning Module
     \list
     \li The module has been ported to Android and iOS. Android supports position
     and satellite updates while iOS supports position updates only.
     \endlist
 
-    \section2 Qt Bluetooth
+    \section2 Qt Bluetooth Module
     \list
     \li The module has been ported to Android.
     \endlist
 
-    \section2 Qt QML
+    \section2 Qt QML Module
     \list
     \li Profiling support for V4, using the same event types as the QML profiler.
     \li Profile or debug multiple QML engines in one application with the new EngineControl debug service.

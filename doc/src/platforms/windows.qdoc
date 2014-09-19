@@ -207,18 +207,18 @@
 
     This configuration is the most flexible because no dependencies or
     assumptions are hardcoded about the OpenGL implementation during build
-    time. It allows robust application deployment: When a given environment
-    fails to provide a proper OpenGL 2.0 implementation, for example a Windows
-    7 PC with no additional graphics drivers installed, an automatic fallback
-    to ANGLE will take place, completely transparently to the application,
-    allowing Qt Quick or other OpenGL code to function by translating to
-    Direct3D. On other machines, where there is sufficient OpenGL support, the
-    normal desktop OpenGL drivers will be used. Additionally, pure
-    software-based OpenGL implementations may be available as additional
-    fallbacks in the future, allowing running Qt Quick applications without a
-    GPU.
+    time. It allows robust application deployment. When a given environment
+    fails to provide a proper OpenGL 2.0 implementation, it will fall back
+    automatically to ANGLE. This fallback will be completely transparent to the
+    application, and will allow Qt Quick or other OpenGL code to function by
+    translating to Direct3D. Such a fallback could, for example, take place on a
+    Windows 7 PC with no additional graphics drivers installed. On other
+    machines, where there is sufficient OpenGL support, the normal desktop
+    OpenGL drivers will be used. Additionally, pure software-based OpenGL
+    implementations may be available as additional fallbacks in the future,
+    allowing running Qt Quick applications without a GPU.
 
-    When configured with -c{-opengl dynamic}, neither Qt nor the applications
+    When configured with \c{-opengl dynamic}, neither Qt nor the applications
     built using \c qmake will link to the opengl32 (standard desktop OpenGL) or
     libGLESv2 (ANGLE) libraries. Instead, the appropriate library is chosen at
     runtime. By default, Qt will determine whether the system's opengl32.dll

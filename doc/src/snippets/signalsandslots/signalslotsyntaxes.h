@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Sze Howe Koh <szehowe.koh@gmail.com>
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -38,40 +38,64 @@
 **
 ****************************************************************************/
 
-#include "lcdnumber.h"
+#include <QtWidgets>
 
-LcdNumber::LcdNumber(QWidget *parent)
-{
-}
+class DemoWidget : public QWidget {
+    Q_OBJECT
 
-void LcdNumber::display(int)
-{
-}
+public:
+    DemoWidget(QWidget *parent = nullptr);
 
-void LcdNumber::display(double)
-{
-}
+    void demoImplicitConversion();
+    void demoTypeResolution();
+    void demoCrossLanguageConnect();
+    void demoOverloadConnect();
 
-void LcdNumber::display(const QString &)
-{
-}
+//! [defaultparams]
+public slots:
+    void printNumber(int number = 42) {
+        qDebug() << "Lucky number" << number;
+    }
+//! [defaultparams]
+};
 
-void LcdNumber::setHexMode()
-{
-}
 
-void LcdNumber::setDecMode()
-{
-}
+//! [lambda]
+class TextSender : public QWidget {
+    Q_OBJECT
 
-void LcdNumber::setOctMode()
-{
-}
+    QLineEdit *lineEdit;
+    QPushButton *button;
 
-void LcdNumber::setBinMode()
-{
-}
+signals:
+    void textCompleted(const QString& text) const;
 
-void LcdNumber::setSmallDecimalPoint(bool)
-{
-}
+public:
+    TextSender(QWidget *parent = nullptr);
+};
+//! [lambda]
+
+
+//! [crosslanguage]
+class CppGui : public QWidget {
+    Q_OBJECT
+
+    QPushButton *button;
+
+signals:
+    void cppSignal(const QVariant& sentMsg) const;
+
+public slots:
+    void cppSlot(const QString& receivedMsg) const {
+        qDebug() << "C++ received:" << receivedMsg;
+    }
+
+public:
+    CppGui(QWidget *parent = nullptr) : QWidget(parent) {
+        button = new QPushButton("Click Me!", this);
+        connect(button, &QPushButton::clicked, [=] {
+            emit cppSignal("Hello from C++!");
+        });
+    }
+};
+//! [crosslanguage]
