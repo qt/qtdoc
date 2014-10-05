@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -104,6 +104,14 @@ Related Topics:
 \li \l {Resource Loading and Network Transparency} - network and URL transparency in QML
 \endlist
 
+\section1 WebSockets
+
+An alternative to direct TCP or HTTP communication is to use the WebSocket
+protocol (\l{http://tools.ietf.org/html/rfc6455}{RFC 6455}). It is a
+two-way communication protocol on top of the TCP protocol to utilize existing
+web infrastructure without having to create additional client-server based
+communication. The \l{Qt WebSockets} module provides both a QML and C++ API,
+in addition to several examples to demonstrate its use.
 
 \section1 World Wide Web Support
 
