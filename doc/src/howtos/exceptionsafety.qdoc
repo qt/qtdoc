@@ -45,7 +45,7 @@
 
     \tableofcontents
 
-    \section1 Exception safe modules
+    \section1 Exception Safe Modules
 
     \section2 Containers
 
@@ -104,7 +104,7 @@
     create a \l{QImage::isNull()}{null} image if not enough memory exists instead
     of throwing an exception.
 
-    \section1 Recovering from exceptions
+    \section1 Recovering from Exceptions
 
     Currently, the only supported use case for recovering from exceptions thrown
     within Qt (for example due to out of memory) is to exit the event loop and do
@@ -129,7 +129,7 @@
     might already be closed. It is not safe to call a GUI related function
     after catching an exception.
 
-    \section1 Exceptions in client code
+    \section1 Exceptions in Client Code
 
     \section2 Signals and Slots
 

@@ -225,7 +225,7 @@
     provides OpenGL 2 functions. If these are present, opengl32.dll is used,
     otherwise the ANGLE libraries will be used. In case the ANGLE libraries are
     missing or initialization fails for some reason, an additional fallback is
-    attempted by trying to load \c{QtSoftwareOpenGL.dll}. See below for details.
+    attempted by trying to load \c{opengl32sw.dll}. See below for details.
 
     The loading mechanism can be configured through the \c{QT_OPENGL}
     environment variable and the following application attributes:
@@ -260,7 +260,7 @@
 
     \c Qt::AA_UseSoftwareOpenGL is special in the sense that it will try to load
     an OpenGL implementation with a non-standard name. The default name is
-    \c{QtSoftwareOpenGL.dll}. This allows shipping a software-only OpenGL
+    \c{opengl32sw.dll}. This allows shipping a software-only OpenGL
     implementation, for example a build of
     \l{http://www.mesa3d.org/llvmpipe.html}{Mesa with llvmpipe}, under this
     name. If necessary, the filename can be overridden by setting the
@@ -928,7 +928,7 @@ Arguments:
     more information, visit the \l{Getting Started with Qt} page.
 
 
-    \section1 Step 1: Install the License File (commercial editions only)
+    \section1 Step 1: Install the License File (Commercial Editions Only)
 
         If you have the commercial edition of Qt, copy the license file
         from your account on the distribution server into your home directory
@@ -948,7 +948,7 @@ Arguments:
         \note The install path must not contain any spaces or Windows specific
         file system characters.
 
-    \section1 Step 3: Set the Environment variables
+    \section1 Step 3: Set the Environment Variables
 
         We recommend creating a desktop link that opens a command
         prompt with the environment set up similar to the

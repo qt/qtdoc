@@ -179,6 +179,10 @@ to QApplication::aboutToQuit(), even though the latter has no arguments. The
 functor-based connection will produce a compile-time error:
 \snippet snippets/signalsandslots/signalslotsyntaxes.cpp defaultparams
 
+To work around this limitation with the functor-based syntax, connect the signal to
+a lambda function that calls the slot. See the section above, \l{Making Connections
+to Lambda Expressions}.
+
 
 \section1 Selecting Overloaded Signals and Slots
 
