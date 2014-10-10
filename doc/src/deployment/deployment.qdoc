@@ -473,7 +473,10 @@
     automatic detection using the \c{ANDROID_DEPLOYMENT_DEPENDENCIES} variable. This should contain
     a list of all Qt files which need to be included, with paths relative to the Qt install root.
     Note that only the Qt files specified here will be included. Failing to include the correct
-    files can result in crashes.
+    files can result in crashes. It's also important to make sure the files are listed in the
+    correct loading order. This variable provides a way to override the automatic detection
+    entirely, so if a library is listed before its dependencies, it will fail to load on
+    some devices.
     \li \c{ANDROID_PACKAGE_SOURCE_DIR}: This variable can be used to specify a directory where
     additions and modifications can be made to the default Android package template. The
     \c androiddeployqt tool will copy the application template from Qt into the build directory, and
