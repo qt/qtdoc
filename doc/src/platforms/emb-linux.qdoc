@@ -335,9 +335,13 @@
   For some resistive, single-touch touch screens it may be necessary to fall
   back to using tslib instead of relying on the Linux multitouch protocol and
   the event devices. For modern touch screens this should not be
-  necessary. tslib support can be enabled by passing \c{-plugin tslib} instead
-  of \c evdevtouch. To change the device, set the environment variable \c
-  TSLIB_TSDEVICE or pass the device name on the command-line.
+  necessary. tslib support can be enabled for linuxfb by passing \c{-plugin
+  tslib} instead of \c evdevtouch. With eglfs, simply set the environment
+  variable \c QT_QPA_EGLFS_TSLIB to 1. To change the device, set the environment
+  variable \c TSLIB_TSDEVICE or pass the device name on the command-line. Note
+  that the tslib input handler generates mouse events and supports single touch
+  only, as opposed to evdevtouch which generates true multi-touch QTouchEvent
+  events too.
 
   \section2 Debugging Input Devices
 
