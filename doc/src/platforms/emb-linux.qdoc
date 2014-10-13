@@ -339,6 +339,13 @@
   of \c evdevtouch. To change the device, set the environment variable \c
   TSLIB_TSDEVICE or pass the device name on the command-line.
 
+  \section2 Debugging Input Devices
+
+  It is possible to print some information to the debug output by enabling
+  the \c qt.qpa.input logging rule, for example by setting the \c QT_LOGGING_RULES
+  environment variable to \c{qt.qpa.input=true}. This is useful for detecting
+  which device is being used, or to troubleshoot device discovery issues.
+
   \section1 Platform Plugins for Windowing Systems on Embedded Linux Devices
 
   \section2 XCB
