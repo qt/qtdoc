@@ -307,6 +307,13 @@
 
   \endlist
 
+  If the default, built-in keymap is not sufficient, a different one can be
+  specified either via the \c keymap parameter or by using the eglfs-specific
+  \l{QEglFSFunctions::loadKeymap()}{loadKeymap()} function. The latter allows
+  switching the keymap at runtime. Note however that this requires using eglfs'
+  built-in keyboard handler; it is not supported when the keyboard handler is
+  loaded via the \c -plugin command-line parameter.
+
   \note Special system key combinations, such as console switching
   (\e{Ctrl+Alt+Fx}) or zap (\e{Ctrl+Alt+Backspace}) are not currently supported
   and will get ignored.
