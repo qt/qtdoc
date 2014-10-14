@@ -115,6 +115,18 @@
     \gui Run settings of your project, expanding \gui{Package configurations} and selecting the
     \gui Libraries tab. Manually check the libraries that are dependencies of your project.
 
+    \section1 Text Special Considerations
+
+    Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache text glyphs does
+    not work as expected on all Android devices, causing text to appear scrambled. To remedy this,
+    a workaround is in place, which increases memory consumption and can also affect text rendering
+    performance. Before Qt 5.3.2, the workaround was enabled only for a particular set of devices.
+    It is now used by default on all devices.
+
+    You can disable the workaround by setting the \c QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND
+    environment variable to \c 1. You should do so only after verifying that text appears correctly
+    on all targeted devices.
+
     \section1 OpenGL Special Considerations
 
     Qt for Android provides two separate platform plugins: One which is suited for traditional
