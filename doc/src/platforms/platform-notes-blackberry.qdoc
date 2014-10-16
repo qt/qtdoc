@@ -104,6 +104,51 @@
     parts of Qt. It is not possible to mix Qt and Cascades APIs to access the screen in
     one application.
 
+    \section1 Qt Widgets Style
+
+    If the UI of your application is based on \l[QtWidgets]{Qt Widgets}, you should consider
+    using the BlackBerry 10 specific Qt widget style. This style matches the system-wide UI
+    appearance and improves usability. The BlackBerry 10 style is implemented as proxy style
+    in C++ and is loaded as a style plug-in on demand. The style is available only on Qt
+    builds for BlackBerry 10 and is not available in builds for other platforms.
+
+    There are two variants of the style fitting the dark and bright themes on the
+    BlackBerry 10.1.x and 10.2.x releases:
+
+    \table 50%
+    \header
+        \li Style key \c{bb10bright}
+        \li Style key \c{bb10dark}
+    \row
+        \li \image bb10bright-style.png
+        \li \image bb10dark-style.png
+    \endtable
+
+
+    You can activate one of the styles with \l{ QApplication::setStyle() }, e.g.
+
+    \code
+    QApplication::setStyle(QStringLiteral("bb10dark"));
+    \endcode
+
+    The BlackBerry 10 style only covers those \l[QtWidgets]{Qt Widgets} which fit well on
+    small screens and can be controlled with touch input in a comfortable way:
+
+    \list
+        \li \l{QCheckBox}
+        \li \l{QComboBox}
+        \li \l{QLineEdit}
+        \li \l{QPushButton}
+        \li \l{QProgressBar}
+        \li \l{QRadioButton}
+        \li \l{QSlider}
+        \li \l{QScrollBar}
+        \li \l{QTextEdit}
+        \li item view widgets
+    \endlist
+
+    Consider using \l{Qt Quick} for more complex UIs.
+
     \section1 References
 
     \list
