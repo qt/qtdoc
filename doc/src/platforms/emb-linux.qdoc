@@ -210,6 +210,12 @@
   An experimental platform plugin using kernel modesetting and \l
   {http://dri.freedesktop.org/wiki/DRM}{drm} (Direct Rendering Manager).
 
+  \note This plugin is obsolete. eglfs has its own KMS/DRM support
+  which provides all the functionality of the kms plugin and also adds
+  features, like multiple display support, that were not previously
+  available in the standalone plugin. Using the kms plugin is
+  therefore strongly discouraged.
+
   \section1 Input
 
   When no windowing system is present, the mouse, keyboard and touch input are
@@ -349,6 +355,38 @@
   the \c qt.qpa.input logging rule, for example by setting the \c QT_LOGGING_RULES
   environment variable to \c{qt.qpa.input=true}. This is useful for detecting
   which device is being used, or to troubleshoot device discovery issues.
+
+  \section1 Display output
+
+  When having multiple displays connected, the level of support for targeting
+  one or more of these from one single Qt application varies between the
+  platform plugins and often depends on the device and its graphics stack.
+
+  \section2 eglfs
+
+  When the KMS/DRM backend is in use, eglfs will report all available screens in
+  QGuiApplication::screens(). Applications can target different screens with
+  different windows via QWindow::setScreen(). Note however that the restriction
+  of one single fullscreen window per screen still applies.
+
+  When getting started with developing on a given embedded device, it is often
+  necessary to verify the behavior of the device and drivers, and that the
+  connected displays are working as they should. One easy way is to use the
+  hellowindow example. Launching it with \c{-platform eglfs --multiscreen
+  --timeout} will show a rotating Qt logo on each connected screen for a few
+  seconds.
+
+  Other backends, that are typically based on targeting the framebuffer
+  directly via the vendor's EGL implementation, will usually provide limited or
+  no support for multiple displays. In some cases the \c {QT_QPA_EGLFS_FB}
+  environment variable can be used to control which framebuffer to target,
+  similarly to linuxfb. Alternatively, driver-specific environment variables or
+  kernel parameters may also be available to control the used framebuffer. Refer
+  to the embedded board's documentation.
+
+  \section2 linuxfb
+
+  Use the \c fb plugin parameter to specify the framebuffer device to use.
 
   \section1 Platform Plugins for Windowing Systems on Embedded Linux Devices
 
