@@ -47,9 +47,6 @@ function f(a, b) {
 The output is generated using the qDebug, qWarning, qCritical methods in C++
 (see also \l {Debugging Techniques}).
 
-Setting the environment variable QML_CONSOLE_EXTENDED also prints the source
-code location of the call.
-
 \section2 Assert
 
 \c console.assert tests that an expression is true. If not, it will write an optional message

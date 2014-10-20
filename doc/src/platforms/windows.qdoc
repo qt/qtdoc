@@ -50,14 +50,11 @@
     You can download the Qt 5 installers and sources from the \l Downloads page.
     For more information, visit the \l{Getting Started with Qt} page.
 
-    \note Qt Enterprise packages are available from the \l{Try Qt Enterprise}
-    page.
-
     \section2 Building Qt 5 from Source
 
     You can also build Qt 5 from the source package and configure it according
     to your target platform. The source packages are obtained from
-    \l{http://qt-project.org/downloads}.
+    \l{http://www.qt.io/download/}.
 
     Below, you will find more information about building Qt from source.
     \list
@@ -88,7 +85,7 @@
     \li \l{ActiveX in Qt}
     \endlist
 
-    Qt's vibrant and active community site, \l{http://qt-project.org} houses
+    Qt's vibrant and active community site, \l{http://qt.io} houses
     a wiki, a forum, and additional learning guides and presentations.
 
     \section2 Visual Studio Add-in
@@ -349,6 +346,34 @@
 
     \section1 Windows XP
 
+    \section2 Targeting XP with Visual Studio 2012 and later
+
+    Visual Studio 2012 and later do not support building for Windows XP out of the box.
+    However, support for targeting XP was added in an
+    \l{http://blogs.msdn.com/b/vcblog/archive/2012/10/08/windows-xp-targeting-with-c-in-visual-studio-2012.aspx}
+    {update of Visual Studio 2012}. This works also with Visual Studio 2013.
+
+    You need to compile Qt from sources. Set up an environment on the command line, for example
+
+    \code
+    "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
+    set PATH=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin;%PATH%
+    set INCLUDE=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;%INCLUDE%
+    set LIB=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;%LIB%
+    set CL=/D_USING_V110_SDK71_
+    \endcode
+
+    Then run \c configure with the \c{-target xp} argument:
+
+    \code
+    configure -target xp <other arguments>
+    nmake
+    \endcode
+
+    Also compile your own application in the above environment if compiling
+    on the command line. If you use Visual Studio, set the \c v110_xp toolset in the project's
+    property pages.
+
     \section2 Installation location
 
     Installing Qt into a directory with spaces, for example,
@@ -357,14 +382,14 @@
 
     Install Qt into a sub-directory without spaces to avoid this problem.
 
-    \section2 Possible GL conflict
+    \section1 Possible GL conflict
 
     There is a known issue when running Microsoft NetMeeting, Lotus SameTime,
     and other applications that require screen grabbing while direct
     rendering is enabled. Other GL-applications may not work as expected,
     unless direct rendering is disabled.
 
-    \section2 GCC (MinGW-builds)
+    \section1 GCC (MinGW-builds)
 
     The minimum version of MinGW-builds supported is GCC 4.7.2.
     \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
@@ -374,7 +399,7 @@
     For more information about the MinGW builds, visit the
     \e{Reference Configuration} section of the \l{Supported Platforms} page.
 
-    \section2 Intel C++ Compiler (Windows, Altix)
+    \section1 Intel C++ Compiler (Windows, Altix)
 
     Qt has been tested successfully with:
 
@@ -385,7 +410,7 @@
        applications Version 8.1 Build 20050406 Package ID: l_cc_pc_8.1.030
     \endlist
 
-    \section2 Visual Studio
+    \section1 Visual Studio
 
     The Visual C++ Linker doesn't understand filenames with spaces (for example,
     \e{C:\\Program files\\Qt\\}) so you will have to move it to another place,

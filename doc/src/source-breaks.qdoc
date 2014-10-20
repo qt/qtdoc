@@ -177,6 +177,8 @@ The following sections lists the API changes in each module and provides recomme
          the \l{QPointer} was cleared by the \l{QWidget} destructor. In Qt 5, the \l{QPointer} is cleared by the \l{QObject} destructor along with
          the \l{QWeakPointer}s. Any \l{QPointer}s tracking a widget is not cleared before the \l{QWidget} destructor destroys the children
          for the widget being tracked.
+     \li \l{QUrl} changed considerably in Qt 5 to comply better with the URL specifications and with brokenness out there.
+     \li \l{QUrl} setPath not longer handles relative path. They are by definition invalid.
      \li \l{QUrl} has been changed to operate only on percent-encoded forms. Fully-decoded forms where the percent character stands for itself,
          can no longer be encoded, as the getters and setters with "encoded" in the name are deprecated (except \l{QUrl::toEncoded()} and \l{QUrl::fromEncoded()}).
 

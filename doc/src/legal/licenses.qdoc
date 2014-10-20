@@ -33,45 +33,54 @@
     Qt is available under three different licensing options designed to accommodate
     the needs of our various users.
 
+    \list
+        \li Qt Commercial License
+        \li GNU Lesser General Public License (LGPL) version 3
+        \li GNU Lesser General Public License (LGPL) version 2.1
+    \endlist
+
+    \note Some specific parts (modules) of the Qt framework are not available
+    under the GNU LGPL version 2.1. See \l {Licenses Used in Qt} for details.
+
     Qt licensed under our \l{Qt Commercial License}{commercial license agreement}
     is appropriate for development
     of proprietary/commercial software where you do not want to share any source code
     with third parties or otherwise cannot comply with the terms of the GNU LGPL
-    version 2.1 or GNU GPL version 3.0.
+    version 3 or the GNU LGPL version 2.1.
+
+    Qt licensed under the \l{GNU Lesser General Public License (LGPL)} version 3
+    is appropriate for the development of Qt applications provided you can comply
+    with the terms and conditions of the GNU LGPL version 3 (or GNU GPL version 3).
 
     Qt licensed under the \l{GNU Lesser General Public License (LGPL)} version 2.1
     is appropriate for the development of Qt applications provided you can comply
     with the terms and conditions of the GNU LGPL version 2.1.
-
-    Qt licensed under the \l{GNU General Public License (GPL)} version 3.0 is
-    appropriate for the development of Qt applications where you wish to use such
-    applications in combination with software subject to the terms of the GNU GPL
-    version 3.0 or where you are otherwise willing to comply with the terms of the
-    GNU GPL version 3.0.
 
     Qt documentation is licensed under the terms of the \l{GNU Free Documentation
     License (FDL)} version 1.3, as published by the Free Software Foundation.
     Alternatively, you may use the documentation in accordance with the terms
     contained in a written agreement between you and Digia.
 
-    Please see \l{http://qt.digia.com/licensing} for an overview of Qt licensing.
+    Please see \l{http://qt.io/licensing/} for an overview of Qt licensing.
 
     \section1 Purchasing and Sales Information
 
     To purchase or further information and assistance about Qt commercial licensing,
-    please contact Digia Qt sales via one of the following channels:
+    please contact our sales via one of the following channels:
 
     \table
-    \row \li Web: \li \l{http://qt.digia.com/contact-us}
+    \row \li Web: \li \l{http://qt.io/contact-us/}
     \row \li Phone, U.S. office (for sales in North America): \li \b{+1 408 433 9320}
     \row \li Phone, Norway office (for sales in the rest of the world): \li \b{+47 2108 0420}
     \endtable
 
     \section1 Licenses Used in Qt
 
-    The following table lists the \l{ Licenses Used in Qt}{other licenses used in Qt},
-    not provided under the \l{GNU General Public License (GPL)},
-    \l{GNU Lesser General Public License (LGPL)} or the \l{Qt Commercial License}.
+    The following table lists parts of Qt that incorporate code licensed under
+    licenses other than \l{GNU Lesser General Public License (LGPL)} or the
+    commercial license, as well as Qt modules that are only available under a
+    specific license or a version of a license.
+
     \l{Third-Party Licenses Used in Qt}{Third-party licenses} used in libraries that
     are supplied alongside Qt modules are also listed.
 
@@ -81,7 +90,7 @@
     \table 80%
     \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
 
-    \row \li {1,25} Qt Core
+    \row \li {1,26} Qt Core
 
     \row \li \l{QCrashHandler class}{QCrashHandler}
          \li Parts of implementation of QCrashHandler class. \li BSD-style \li
@@ -132,17 +141,15 @@
          \li implements the SHA-3 encryption algorithm. \li BSD \li
     \row \li \l{Data Compression Library (zlib) version 1.2.5}{zlib}
          \li zlib is a general purpose data compression library. \li BSD-style \li
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,11} Qt Gui
+    \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
          \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
          \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
-
-    \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine. \li BSD-style \li
     \row \li \l{FreeType 2 (freetype) version 2.3.12}{FreeType 2}
          \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
@@ -154,43 +161,51 @@
          \li Allows users to transfer information between and within applications. \li BSD-style \li
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
-    \row \li \li \li \li \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,3} Qt Location
+    \row \li {1,4} Qt Location
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Poly2Tri}
          \li Poly2Tri is a sweepline constrained Delaunay Polygon Triangulation Library. \li BSD-style \li
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,3} Qt Network
+    \row \li {1,4} Qt Network
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{The Public Suffix List}
          \li A list of all known public Internet suffixes. \li Mozilla Public License \li
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,3} Qt Multimedia
+    \row \li {1,4} Qt Multimedia
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{FFTReal version 2.11}{FFTReal}
          \li Fast Fourier transform of real-valued arrays. \li LGPL \li (Used in example code).
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,2} Qt SVG
+    \row \li {1,4} Qt SVG
 
     \row \li \l{Qt SVG License Information}
          \li Parts of code for arc handling in Qt SVG module. \li BSD-style \li Depends on Qt Gui, Qt Widgets
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,3} Qt Quick
+    \row \li {1,4} Qt Quick
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Easing Equations}
          \li Easing Equations is a collection of swappable functions that add flavor to motion. \li BSD-style \li Depends on Qt QML, Qt Gui, Qt Network
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,5} Qt Script
-         \li \li \li (Provided for Qt 4 compatibility) \li
+    \row \li {1,4} Qt Quick Controls
+    \row \li \l {Native Style for Android} \li \li Apache License 2.0 \li \l {Qt for Android}
+    \row \li \li \li \li
+    \row \li \li \li \li
+
+    \row \li {1,6} Qt Script
+         \li \li \li \li (Provided for Qt 4 compatibility)
 
     \row \li \l{V8 benchmark tests}
          \li V8 benchmark tests used in Qt Script. \li BSD-style \li
@@ -199,10 +214,10 @@
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{JavaScriptCore}
-         \li  \li BSD-style \li
-    \row \li \li \li \li \li
+         \li \li LGPL v2 \li
+    \row \li \li \li \li
 
-    \row \li {1,6} Qt Test
+    \row \li {1,8} Qt Test
 
     \row \li \l{Other Licenses Used in Qt#Testlib}{Testlib}
          \li Parts of implementation of Qt Test library. \li BSD, MIT \li
@@ -214,14 +229,31 @@
          \li \li BSD-style \li
     \row \li \l{Callgrind}
          \li A performance profiling tool. \li GPL v2 \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,2} Qt Print Support
-         \li \li \li Depends on Qt Gui and Qt Widgets \li
+    \row \li {1,4} Qt Print Support
+         \li \li \li \li Depends on Qt Gui and Qt Widgets
 
     \row \li \l{Notes about PDF Licensing}{PDF Licensing}
          \li Notes about PDF Licensing. \li \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,4} Qt WebKit
+    \row \li {1,4} Qt Wayland
+
+    \row \li \l {Wayland Protocol} \li \li MIT \li
+    \row \li \li \li \li
+    \row \li \li \li \li
+
+    \row \li {1,4} Qt WebEngine
+
+    \row \li \l {Qt WebEngine Widgets#License Information}{License information}
+         \li \li LGPL v3 or\br LGPL v2.1 + Qt commercial license \li
+    \row \li \li \li \li
+    \row \li \li \li \li
+
+    \row \li {1,6} Qt WebKit
 
     \row \li \l{WebKit used by the QtWebKit module}
          \li Parts of WebKit used by the QtWebKit module \li BSD-style \li Depends on Qt Gui, Qt Network, Qt SQL, Qt QML, and Qt Quick
@@ -229,38 +261,48 @@
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{WebCore (WebKit)}{WebCore}
          \li A layout, rendering, and Document Object Model (DOM) library for HTML and SVG. \li LGPL, MIT, BSD-style \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,2} Qt Designer
+    \row \li {1,4} Qt Designer
 
     \row \li \l{Qt Designer License Information}
          \li Implementation of the recursive shadow casting algorithm in Qt Designer. \li BSD (MIT) \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,3} Qt Creator
+    \row \li {1,4} Qt Creator
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Botan version 1.8.8}{Botan}
          \li A C++ crypto library used in Qt Creator. \li BSD \li
-    \row \li \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,4} Qt Image Formats
+    \row \li {1,6} Qt Image Formats
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{TIFF Software Distribution (libtiff) version 3.9.2}{TIFF}
          \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files. \li BSD \li
     \row \li \l{MNG Library (libmng) version 1.0.10}{MNG}
          \li Support decoding and displaying of MNG format image files. \li BSD-style \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,2} Qt SQL
+    \row \li {1,4} Qt SQL
 
     \row \li \l{SQLite (sqlite) version 3.7.17.0}{SQLite}
          \li A C library that implements a self-contained, embeddable, zero-configuration SQL database engine. \li BSD-style \li
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,2} Qt XML Patterns
+    \row \li {1,4} Qt XML Patterns
 
     \row \li \l {Bison Parser 2.3a}{Bison Parser}
          \li Bison is a parser generator. \li GPL with exception \li Depends on Qt Network
+    \row \li \li \li \li
+    \row \li \li \li \li
 
-    \row \li {1,8} Plugins
+    \row \li {1,10} Plugins
 
     \row \li \l{JPEG Software (libjpeg) version 8c}{JPEG}
          \li C software to implement JPEG image compression and decompression. \li BSD-style \li
@@ -276,7 +318,8 @@
          \li A toolkit-neutral way of providing accessibility facilities in application. \li LGPL \li \l {Qt for Linux/X11}
     \row \li \l{Third-Party Licenses Used in Qt#xkbcommon}{xkbcommon}
          \li Keymap handling library for toolkits and window systems. \li BSD-style \li \l {Qt for Linux/X11}
-
+    \row \li \li \li \li
+    \row \li \li \li \li
 
     \row \li {1,3} Qt Tools
 
@@ -299,7 +342,6 @@
     \brief Information about other licenses used for Qt components and third-party code.
 
     Qt contains some code that is not provided under the
-    \l{GNU General Public License (GPL)},
     \l{GNU Lesser General Public License (LGPL)} or the
     \l{Qt Commercial License}, but rather under
     specific licenses from the original authors.
@@ -316,6 +358,28 @@
     \hr
 
     \generatelist legalese
+
+    \section1 Native Style for Android
+
+    \legalese
+    Copyright (C) 2005 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    \endlegalese
+
+    \list
+        \li \c {src/3rdparty/android/extract.h}
+    \endlist
 
     \section1 QCrashHandler class
 
