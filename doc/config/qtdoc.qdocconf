@@ -99,3 +99,6 @@ qhp.QtDoc.subprojects.examples.sortPages = true
 # Add an image used in example manifests to qhp
 HTML.extraimages             += images/qt-codesample.png
 qhp.QtDoc.extraFiles         += images/qt-codesample.png
+
+# Add an .html file with sidebar content, used in the online style
+HTML.stylesheets             += style/qt5-sidebar.html
