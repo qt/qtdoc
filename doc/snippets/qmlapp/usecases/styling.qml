@@ -38,28 +38,28 @@
 **
 ****************************************************************************/
 
-//![0]
 import QtQuick 2.3
+import QtQuick.Controls 1.2
+import QtQuick.Window 2.2
+import QtQuick.Controls.Styles 1.2
 
-Item {
-    width: 320
-    height: 480
+ApplicationWindow {
 
-    Rectangle {
-        color: "#272822"
-        width: 320
-        height: 480
+    //![0]
+    Button {
+        text: qsTr("Hello World")
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 25
+                border.width: control.activeFocus ? 2 : 1
+                border.color: "#FFF"
+                radius: 4
+                gradient: Gradient {
+                    GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#fff" }
+                    GradientStop { position: 1 ; color: control.pressed ? "#000" : "#fff" }
+                }
+            }
     }
-
-    Column {
-        width: childrenRect.width
-        anchors.centerIn: parent
-        spacing: 8
-        // Each of these is a Button as styled in Button.qml
-        Button { caption: "Eeny"; onClicked: console.log("Eeny");}
-        Button { caption: "Meeny"; onClicked: console.log("Meeny");}
-        Button { caption: "Miny"; onClicked: console.log("Miny");}
-        Button { caption: "Mo"; onClicked: console.log("Mo");}
-    }
+    //![0]
 }
-//![0]

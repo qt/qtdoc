@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -29,35 +29,36 @@
 \title Use Case - Style And Theme Support
 \brief Example of how to style user interface components in QML
 
-The types provided in the \l {Qt Quick} module are not complete user interface components on their own. A common use case is to
-develop a set of custom styled user interface components out of the types in the \l {Qt Quick} module. This is easily
-accomplished by creating your own reusable components.
+Styling with QML involves creating a visual type and binding that to a property
+or by directly assigning a value to a property. For types that incorporate
+Qt Quick's \l{Models and Views in Qt Quick}{delegates} the visual type attaches
+to the \e delegate property.
 
-With the reusable components approach, you define your own type with the appearance you want to have in your
-application and style that type directly. You then use that type in your application instead of the unstyled type. For
-example, you could create a MyText.qml which is a Text type with certain properties set by default, and use MyText
-instead of Text elsewhere in your application.
+When using \l{Qt Quick Controls}, the controls automatically set
+the appropriate style from the respective \l{Supported Platforms}{platforms}.
 
-\section1 Example Themed Text
-\section2 Button Definition
-\snippet qmlapp/usecases/MyText.qml 0
-\section2 Using the Text
-\snippet qmlapp/usecases/styling-text.qml texts
-\image qmlapp/qml-uses-styling-text.png
+\section1 Using the Styling QML Types
 
-Because the root item in MyText.qml is a Text item it will behave as a
-Text item, and the properties can be overridden in specific uses. However, the properties will be set to the values
-specified in MyText when the item is first generated, thus applying your style by default.
+The \l{Qt Quick Controls}{controls} have a \c style property to which the
+\e{styling types} bind. The controls have a corresponding styling type from the
+\l{Qt Quick Controls Styles QML Types}{Qt Quick Controls Styles} module.
+For example, \l Button has a \l ButtonStyle type and \l Menu has a
+\l MenuStyle type. The styling types provide properties applicable to their
+respective controls such as the background, label, or for some controls, the
+cursor appearance.
 
-For pre-styled user interface components, see the \c{Qt Components} add-on which provides a set of components.
-For accessing the system theme, see the \l{SystemPalette} type documentation.
-
-\section1 Example Themed Button
-\section2 Button Definition
-\snippet qmlapp/usecases/Button.qml 0
-\section2 Using the Button
 \snippet qmlapp/usecases/styling.qml 0
-\image qmlapp/qml-uses-styling.png
 
-For more examples of creating custom UI components in QML, see the tutorials.
+\note \l{Qt Quick Controls Styles QML Types}{Qt Quick Controls Styles} was
+introduced in Qt 5.1 and requires \l{Qt Quick} 2.1.
+
+\section1 Accessing the System Palette
+
+The \l{SystemPalette} type provides information about the system's palette
+information. QML applications can use this information to set the appearance
+of visual types to match the native look-and-feel. In addition, on
+\l{Desktop Platforms}{desktop} platforms, different color palettes are employed
+when changing states, for example, when the application loses keyboard focus.
+
+When using the \l{Qt Quick Controls}{controls}, the system colors are already used.
 */
