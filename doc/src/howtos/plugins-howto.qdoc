@@ -226,30 +226,7 @@
     functionality from plugins can be added without a complete rebuild
     and redistribution of the application.
 
-    When compiled as a static library, Qt provides the following
-    static plugins:
-
-    \table
-    \header \li Plugin name                  \li Type               \li Description
-    \row    \li \c qtaccessiblewidgets       \li Accessibility      \li Accessibility for Qt widgets
-    \row    \li \c qgif                      \li Image formats      \li GIF
-    \row    \li \c qjpeg                     \li Image formats      \li JPEG
-    \row    \li \c qmng                      \li Image formats      \li MNG
-    \row    \li \c qico                      \li Image formats      \li ICO
-    \row    \li \c qsvg                      \li Image formats      \li SVG
-    \row    \li \c qtiff                     \li Image formats      \li TIFF
-    \row    \li \c qsqldb2                   \li SQL driver         \li IBM DB2
-    \row    \li \c qsqlibase                 \li SQL driver         \li Borland InterBase
-    \row    \li \c qsqlite                   \li SQL driver         \li SQLite version 3
-    \row    \li \c qsqlite2                  \li SQL driver         \li SQLite version 2
-    \row    \li \c qsqlmysql                 \li SQL driver         \li MySQL
-    \row    \li \c qsqloci                   \li SQL driver         \li Oracle (OCI)
-    \row    \li \c qsqlodbc                  \li SQL driver         \li Open Database Connectivity (ODBC)
-    \row    \li \c qsqlpsql                  \li SQL driver         \li PostgreSQL
-    \row    \li \c qsqltds                   \li SQL driver         \li Sybase Adaptive Server (TDS)
-    \endtable
-
-    To link those plugins statically, you need to add
+    To link plugins statically, you need to add
     the required plugins to your build using \c QTPLUGIN.
 
     In the \c .pro file for your application, you need the following
