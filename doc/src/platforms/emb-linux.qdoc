@@ -365,9 +365,6 @@
   system; or more precisely, it is a protocol for clients to talk to a display
   server.
 
-  The Qt Wayland module is not currently part of Qt 5. Development snapshots can
-  be downloaded from the \l{http://qt.gitorious.org/qt/qtwayland}{Qt Wayland git
-  repository}. \note The sources checked out from the repository may have
-  dependencies on not-yet-released changes in Qt 5's qtbase and qtdeclarative
-  repositories.
+  The Qt Wayland module provides a \c wayland platform plugin that allows Qt
+  application to connect to a Wayland compositor.
 */
