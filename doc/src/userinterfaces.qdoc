@@ -107,22 +107,12 @@ type applications.
 \section1 Displaying Web Content
 
 
-Qt provides a \l{http://www.webkit.org/}{WebKit}-based layout engine
-with support for a wide range of standard web techologies such as HTML, CSS and
-JavaScript, that make it possible to embed content from the World Wide Web into
-your Qt application. Qt features both WebKit-based QML and C++ APIs.
+Qt provides both \l{http://www.webkit.org/}{WebKit}-based and Chromium-based
+(\l{Qt WebEngine}{WebEngine}) layout engines, which enable you to embed web content
+into the Qt application. These engines provide both QML and C++ alternatives.
 
-
-\l{Qt WebKit} displays web content through the \l WebView QML type while the
-\l{Qt WebKit Widgets} features a C++ API to render and interact with web
-content.
-
-The main difference between the two APIs is that WebView utilizes a multi-
-process architecture, \l{http://trac.webkit.org/wiki/WebKit2}{WebKit2}, with a
-separate web rendering process. The C++ API uses the previous version of WebKit,
-which has a single-process architecture.
-
-See also \l {Integrating Web Content}.
+For more information about support for web content in Qt, see
+\l{Integrating Web Content}.
 
 \section1 Comparison
 
