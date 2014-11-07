@@ -41,6 +41,8 @@ The following list summarizes what you can do with Qt for Android:
  \li Run \l{Qt Widgets}{Widget} and
      \l{QML Applications}{QML} applications on the device
      or emulator.
+ \li Support for native \l{Android Style}{Android style} with
+     Qt Quick Controls.
  \li Handle \l{Qt Multimedia}{Multimedia} content in your Qt Quick 2
      applications.
  \li Get \l{Qt Sensors}{sensor} readings and react to the changes.
@@ -267,6 +269,12 @@ application to Android using the qrc approach:
  \li Save the changes to your project and run the application.
 \endlist
 
+\note Qt Quick Controls in the application will use native
+\l{Android Style}{Android style} if the target device is running
+Android 3.0 (API 11) or later. The application should function normally on
+devices with Android versions earlier than v3.0, but without native style for
+controls.
+
 Qt Creator deploys your application on the Android device, if the
 device is detected by the PC. Otherwise, it tries to run the application on an
 AVD (Android Virtual Device). You will be prompted to create one if there are no
@@ -311,7 +319,7 @@ the APK:
      ./Configure shared android or android-armv7
      \endcode
 
-     \note You must consider enabling/disabling the SSL featurs based on the
+     \note You must consider enabling/disabling the SSL features based on the
      legal restrictions in the region where your application is available.
      See the \l{SSL Configure Options}{SSL configure options} for details about
      the configurable features.
@@ -361,9 +369,10 @@ on Google Play:
 
  \li Check for the following in \e AndroidManifest.xml:
  \list
-  \li \uicontrol{Minimum required SDK} is set to API 9 or above.
+  \li \uicontrol{Minimum required SDK} is set to API 9 or later.
 
-  \note Qt for Android is supported on devices with API 9 and above.
+  \note Qt Quick Controls with native \l{Android Style}{Android style}
+  require API 11 (Android v3.0) or later.
 
   \li Add \uicontrol{Application name} and \uicontrol{Application icon}.
 
