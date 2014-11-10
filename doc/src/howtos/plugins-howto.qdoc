@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -66,27 +66,141 @@
     subclassing the appropriate plugin base class, implementing a few
     functions, and adding a macro.
 
-    Below you will find a list with the plugin base classes.
-
     There are several plugin base classes. Derived plugins are stored
     by default in sub-directories of the standard plugin directory. Qt
-    will not find plugins if they are not stored in the right directory.
+    will not find plugins if they are not stored in the appropriate directory.
+
+    The following table summarizes the plugin base classes. Some of the classes
+    are private, and are therefore not documented. You can use them, but there
+    is no compatibility promise with later Qt versions.
 
     \table
-    \header \li Base Class              \li Key Case Sensitivity
+    \header
+        \li Base Class
+        \li Directory Name
+        \li Qt Module
+        \li Key Case Sensitivity
+    \row
+        \li QAccessibleBridgePlugin
+        \li \c accessiblebridge
+        \li \l{Qt GUI}
+        \li Case Sensitive
 
-    \row    \li QGenericPlugin,         \li Case-insensitive
-    \row    \li QGenericPluginFactory,  \li Case-insensitive
-    \row    \li QAccessiblePlugin       \li Case-sensitive
-    \row    \li QIconEnginePlugin       \li Case-insensitive
-    \row    \li QImageIOPlugin          \li Case-sensitive
-    \row    \li QMediaServiceProviderPlugin,
-    \row    \li QQmlExtensionPlugin,
-    \row    \li QSensorPluginInterface,
-    \row    \li QScriptExtensionPlugin  \li Case-sensitive
-    \row    \li QSqlDriverPlugin        \li Case-sensitive
-    \row    \li QStylePlugin            \li Case-insensitive
-
+    \row
+        \li QImageIOPlugin
+        \li \c imageformats
+        \li \l{Qt GUI}
+        \li Case Sensitive
+    \row
+        \li QPictureFormatPlugin
+        \li \c pictureformats
+        \li \l{Qt GUI}
+        \li Case Sensitive
+    \row
+        \li QAudioSystemPlugin
+        \li \c audio
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QDeclarativeVideoBackendFactoryInterface
+        \li \c video/declarativevideobackend
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QGstBufferPoolPlugin
+        \li \c video/bufferpool
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QMediaPlaylistIOPlugin
+        \li \c playlistformats
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QMediaResourcePolicyPlugin
+        \li \c resourcepolicy
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QMediaServiceProviderPlugin
+        \li \c mediaservice
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QSGVideoNodeFactoryPlugin
+        \li \c video/videonode
+        \li \l{Qt Multimedia}
+        \li Case Insensitive
+    \row
+        \li QBearerEnginePlugin
+        \li \c bearer
+        \li \l{Qt Network}
+        \li Case Sensitive
+    \row
+        \li QPlatformInputContextPlugin
+        \li \c platforminputcontexts
+        \li \l{Qt Platform Abstraction}
+        \li Case Insensitive
+    \row
+        \li QPlatformIntegrationPlugin
+        \li \c platforms
+        \li \l{Qt Platform Abstraction}
+        \li Case Insensitive
+    \row
+       \li QPlatformThemePlugin
+        \li \c platformthemes
+        \li \l{Qt Platform Abstraction}
+        \li Case Insensitive
+    \row
+        \li QGeoPositionInfoSourceFactory
+        \li \c position
+        \li \l{Qt Positioning}
+        \li Case Sensitive
+    \row
+        \li QPlatformPrinterSupportPlugin
+        \li \c printsupport
+        \li \l{Qt Print Support}
+        \li Case Insensitive
+    \row
+        \li QSGContextPlugin
+        \li \c scenegraph
+        \li \l{Qt Quick}
+        \li Case Sensitive
+    \row
+        \li QScriptExtensionPlugin
+        \li \c script
+        \li \l{Qt Script}
+        \li Case Sensitive
+    \row
+        \li QSensorGesturePluginInterface
+        \li \c sensorgestures
+        \li \l{Qt Sensors}
+        \li Case Sensitive
+    \row
+        \li QSensorPluginInterface
+        \li \c sensors
+        \li \l{Qt Sensors}
+        \li Case Sensitive
+    \row
+        \li QSqlDriverPlugin
+        \li \c sqldrivers
+        \li \l{Qt SQL}
+        \li Case Sensitive
+    \row
+        \li QIconEnginePlugin
+        \li \c iconengines
+        \li \l{Qt SVG}
+        \li Case Insensitive
+    \row
+        \li QAccessiblePlugin
+        \li \c accessible
+        \li \l{Qt Widgets}
+        \li Case Sensitive
+    \row
+        \li QStylePlugin
+        \li \c styles
+        \li \l{Qt Widgets}
+        \li Case Insensitive
     \endtable
 
     If you have a new style class called \c MyStyle that you
@@ -226,30 +340,7 @@
     functionality from plugins can be added without a complete rebuild
     and redistribution of the application.
 
-    When compiled as a static library, Qt provides the following
-    static plugins:
-
-    \table
-    \header \li Plugin name                  \li Type               \li Description
-    \row    \li \c qtaccessiblewidgets       \li Accessibility      \li Accessibility for Qt widgets
-    \row    \li \c qgif                      \li Image formats      \li GIF
-    \row    \li \c qjpeg                     \li Image formats      \li JPEG
-    \row    \li \c qmng                      \li Image formats      \li MNG
-    \row    \li \c qico                      \li Image formats      \li ICO
-    \row    \li \c qsvg                      \li Image formats      \li SVG
-    \row    \li \c qtiff                     \li Image formats      \li TIFF
-    \row    \li \c qsqldb2                   \li SQL driver         \li IBM DB2
-    \row    \li \c qsqlibase                 \li SQL driver         \li Borland InterBase
-    \row    \li \c qsqlite                   \li SQL driver         \li SQLite version 3
-    \row    \li \c qsqlite2                  \li SQL driver         \li SQLite version 2
-    \row    \li \c qsqlmysql                 \li SQL driver         \li MySQL
-    \row    \li \c qsqloci                   \li SQL driver         \li Oracle (OCI)
-    \row    \li \c qsqlodbc                  \li SQL driver         \li Open Database Connectivity (ODBC)
-    \row    \li \c qsqlpsql                  \li SQL driver         \li PostgreSQL
-    \row    \li \c qsqltds                   \li SQL driver         \li Sybase Adaptive Server (TDS)
-    \endtable
-
-    To link those plugins statically, you need to add
+    To link plugins statically, you need to add
     the required plugins to your build using \c QTPLUGIN.
 
     In the \c .pro file for your application, you need the following
