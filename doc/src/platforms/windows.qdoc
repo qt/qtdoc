@@ -325,8 +325,8 @@
             \endlist
         \li Windows SDK 7.
         \li A MinGW toolchain with g++ version 4.7 or higher. Qt 5 is tested regularly with a \
-            \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.8.0/32-bit/threads-posix/dwarf/x32-4.8.0-release-posix-dwarf-rev1.7z}
-            {32 bit gcc 4.8.0 toolchain} from the \l{http://mingwbuilds.sourceforge.net}{MinGW-builds}
+            \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}
+            {32 bit gcc 4.9.1 toolchain} from the \l{http://mingw-w64.sourceforge.net/}{MinGW-w64}
             project.
 
     \endlist
@@ -779,9 +779,9 @@
     \table 100%
         \header
             \li Qt
-            \li VC++ 8.0 (2005)
-            \li VC++ 9.0 (2008)
             \li VC++ 10.0 (2010)
+            \li VC++ 11.0 (2012)
+            \li VC++ 12.0 (2013)
             \li MinGW
         \row
         \li \list
@@ -790,21 +790,21 @@
                \li QT5WIDGETS.DLL - The QtWidgets runtime
            \endlist
         \li \list
-               \li MSVCR80.DLL - The C runtime
-               \li MSVCP80.DLL - The C++ runtime
-           \endlist
-        \li \list
-               \li MSVCR90.DLL - The C runtime
-               \li MSVCP90.DLL - The C++ runtime
-           \endlist
-        \li \list
                \li MSVCR100.DLL - The C runtime
                \li MSVCP100.DLL - The C++ runtime
            \endlist
         \li \list
-               \li MINGWM10.DLL - The MinGW run-time
+               \li MSVCR110.DLL - The C runtime
+               \li MSVCP110.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li MSVCR120.DLL - The C runtime
+               \li MSVCP120.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li LIBWINPTHREAD-1.DLL
                \li LIBGCC_S_DW2-1.DLL
-               \li LIBSTDC++-6.dll
+               \li LIBSTDC++-6.DLL
            \endlist
     \endtable
 

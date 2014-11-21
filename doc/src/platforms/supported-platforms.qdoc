@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -102,24 +102,32 @@
                                      \li As provided by Ubuntu
     \row    \li Ubuntu Linux 12.04, X11 (64-bit)
                                      \li As provided by Ubuntu
+    \row    \li RedHat 6.5, X11 (64-bit)
+                                     \li As provided by Red Hat
+    \row    \li openSUSE 13.1, X11 (64-bit)
+                                     \li As provided by SUSE
     \row    \li Microsoft Windows 7 (32-bit)
                                      \li MSVC 2010 SP1
     \row    \li Microsoft Windows 7 (32-bit)
-                                     \li \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.8.0/32-bit/threads-posix/dwarf/x32-4.8.0-release-posix-dwarf-rev1.7z}{MinGW-builds gcc 4.8.0 (32-bit)}
-    \row    \li Microsoft Windows 8 (32-bit and 64-bit)
-                                     \li MSVC 2012 SP2
+                                     \li \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}{MinGW-builds gcc 4.9.1 (32-bit)}
     \row    \li Microsoft Windows 8.1 (32-bit and 64-bit)
                                      \li MSVC 2012 SP2
-    \row    \li Apple OS X 10.7 "Lion", Cocoa (64-bit)
-                                     \li Clang as provided by Apple
+    \row    \li Microsoft Windows 8.1 (32-bit and 64-bit)
+                                     \li MSVC 2013 SP3
+    \row    \li Microsoft Windows Phone 8.1 (64-bit)
+                                     \li MSVC 2013 SP3
+    \row    \li Microsoft Windows Runtime 8.1 (64-bit)
+                                     \li MSVC 2013 SP3
     \row    \li Apple OS X 10.8 "Mountain Lion", Cocoa (64-bit)
                                      \li Clang as provided by Apple
     \row    \li Apple OS X 10.9 "Mavericks", Cocoa (64-bit)
                                      \li Clang as provided by Apple
-    \row    \li Apple iOS 6
+    \row    \li Apple OS X 10.10 "Yosemite", Cocoa (64-bit)
                                      \li Clang as provided by Apple
-    \row    \li Google Android 4.2
-                                     \li As provided by Google (Android NDK 4.8)
+    \row    \li Apple iOS 8 (64-bit)
+                                     \li Clang as provided by Apple
+    \row    \li Google Android 4.4
+                                     \li As provided by Google (Android NDK Revision 10c)
     \endtable
 
     These reference configurations are run on the continuous integration (CI)
@@ -145,9 +153,11 @@
     \row    \li Ubuntu Linux 10.04, X11 (32-bit)
                                      \li As provided by Ubuntu
     \row    \li Microsoft Windows XP (32-bit)
-                                     \li MSVC 2008
-    \row    \li Apple OS X 10.6 "Snow Leopard", Cocoa (32-bit)
-                                     \li GCC as provided by Apple
+                                     \li MSVC 2008 SP1
+    \row    \li Microsoft Windows CE 7.0
+                                     \li MSVC 2008 SP1
+    \row    \li Apple OS X 10.7 "Lion", Cocoa (64-bit)
+                                     \li Clang as provided by Apple
     \endtable
 
     Digia, Qt partners, open source projects and community users
