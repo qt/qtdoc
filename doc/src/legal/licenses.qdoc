@@ -138,13 +138,14 @@
          \li implements the MD4 message-digest algorithm. \li BSD \li
     \row \li \l{MD5 (md5.cpp and md5.h)}{MD5}
          \li implements the MD5 message-digest algorithm. \li BSD \li
+    \row \li \l {Mesa 3D Graphics Library}{Mesa llvmpipe}
+         \li Mesa llvmpipe software rasterizer backend (\c opengl32sw.dll) for Windows builds. \li MIT \li \l {Qt for Windows}
     \row \li \l{SHA-1 (sha1.cpp)}{SHA-1}
          \li implements the SHA-1 encryption algorithm. \li BSD \li
     \row \li \l{SHA-3, originally known as Keccak}{SHA-3}
          \li implements the SHA-3 encryption algorithm. \li BSD \li
     \row \li \l{Data Compression Library (zlib) version 1.2.5}{zlib}
          \li zlib is a general purpose data compression library. \li BSD-style \li
-    \row \li \li \li \li
 
     \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
@@ -284,6 +285,8 @@
     \row \li {1,6} Qt Image Formats
 
     \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{JasPer (libjasper) version 2.0}{JasPer}
+         \li A collection of software for the coding and manipulation of images. \li BSD-style \li
     \row \li \l{TIFF Software Distribution (libtiff) version 3.9.2}{TIFF}
          \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files. \li BSD \li
     \row \li \l{MNG Library (libmng) version 1.0.10}{MNG}
@@ -359,10 +362,6 @@
     appendix to the documentation.
 
     See also: \l{Licenses for Fonts Used in Qt for Embedded Linux}
-
-    \hr
-
-    \generatelist legalese
 
     \section1 Native Style for Android
 
