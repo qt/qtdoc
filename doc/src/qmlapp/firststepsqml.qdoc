@@ -294,7 +294,7 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        text: animatedValue
+        text: parent.animatedValue
     }
 }
 \endqml

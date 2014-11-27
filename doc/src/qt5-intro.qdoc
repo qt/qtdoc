@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
@@ -38,8 +38,8 @@
 
     Developers can be more productive and flexible with the improved support
     for JavaScript and QML in Qt 5, while still having the C++ foundation
-    and Qt Widget support. The JavaScript backend powered by V8
-    and Qt WebKit 2 will make HTML5 developers feel at home.
+    and Qt Widget support. HTML5 developers will feel at home with the Web
+    offering that includes Chromium-based Qt WebEngine and Qt WebChannel.
 
     Qt 5 is highly compatible with Qt 4. It is possible for developers
     of Qt 4 applications to seamlessly move on to Qt 5 with their current
@@ -56,21 +56,18 @@
 
     \section1 Qt Everywhere on Mobile
 
-    Qt 5.2 introduces the production-ready ports of Qt on Android
-    and iOS. Extensive work has gone into these two platforms and these
-    ports now extend Qt’s multi-platform promise to cover desktop,
+    Qt now comes with production-ready ports of for Android, iOS, and WinRT
+    (including Windows Phone 8). Extensive work has gone into these platform
+    ports, which now extend Qt’s multi-platform promise to cover desktop,
     embedded, and mobile platforms with just one framework, Qt.
 
-    With full support for Android, iOS, and Blackberry 10, Qt 5.2 is a
-    great solution for targeting the mobile markets with one Qt-based
-    mobile application code. It is fast and easy to bring existing
-    desktop or embedded application to mobile, by simply recompiling it.
+    With full support for Android, iOS, WinRT, and Blackberry 10, Qt is a
+    great solution for targeting the mobile markets with a single codebase.
+    It is fast and easy to bring existing desktop or embedded application
+    to mobile, by simply recompiling it.
 
-    You can install several demo applications that show Qt on iOS and
-    Android from the App Store and Google Play. On Android, we have a new
-    \e{Qt Everywhere} demo as well as the Qt 5 launch demo available in
-    Google Play. For iOS, we have \e SubAttack and \e QtQuicksand published
-    in the App Store.
+    You can install several demo applications that showcase the power of Qt
+    on these mobile platforms. Here is a small list of such applications:
 
     Demo applications:
     \list
@@ -79,10 +76,13 @@
     \li \l{Google Play: Qt 5 Everywhere}{Qt 5 Everywhere} (Google Play)
     \li \l{iTunes: SubAttack}{SubAttack} (App Store)
     \li \l{iTunes: QtQuicksand}{QtQuicksand} (App Store)
-    \li Quick Forecast on \l{iTunes: Quick Forecast}{App Store} and
-        \l{Google Play: Quick Forecast}{Google Play}
+    \li Quick Forecast on \l{iTunes: Quick Forecast}{App Store},
+        \l{Google Play: Quick Forecast}{Google Play}, and
+        \l{Windows Store: QuickForeCast}{Windows Store}.
     \li Qt Hangman on \l{iTunes: Qt Hangman}{App Store} and
         \l{Google Play: Qt Hangman}{Google Play}
+    \li Flyingbus on \l{iTunes: Flyingbus}{App Store} and
+        \l{Google Play: Flyingbus}{Google Play}
     \endlist
 
     Platform pages:
@@ -90,6 +90,7 @@
     \li \l{Qt for Android}
     \li \l{Qt for BlackBerry}
     \li \l{Qt for iOS}
+    \li \l{Qt for WinRT}
     \endlist
 
     \table
@@ -223,27 +224,31 @@
     \li \image qtpositioning_weatherinfo_ex.jpg
     \endtable
 
-    \section1 Enginio Data Storage
+    \section1 Qt Cloud Backend
 
-    Enginio is a storage service for applications. New in Qt 5.3,
-    \l{Enginio Manual}{Enginio} combines a \e{no-SQL} object approach with JSON
-    and Qt APIs to provide applications reliable and powerful storage
-    capabilities. The C++ and QML APIs interact with the
-    \l{Enginio Data Storage} servers from Digia.
+    Enginio is the backend for Qt Cloud Services. New in Qt 5.3, the
+    \l{Enginio Manual}{Enginio} module combines a \e{no-SQL} object
+    approach with JSON and Qt APIs to provide applications a reliable and
+    powerful storage capability. The C++ and QML APIs provided by the new
+    module interact with the Qt Cloud servers from Digia.
 
     \list
-    \li \l{Enginio Data Storage}{Enginio by Digia}
+    \li \l{Enginio Data Storage}{Qt Cloud Services} by Digia
     \li \l{Enginio Manual}{Enginio} - API for developers
     \endlist
 
-    \section1 WebKit and HTML5
+    \section1 Web Engine and HTML5
 
-    \l {Qt WebKit} is a web content rendering engine based on the open
-    source WebKit project featuring broad support for standard web
-    technologies. The Qt WebKit module provides integration with both
-    Qt Quick and traditional widgets. The module brings the latest in
-    HTML5 advancements to Qt 5, including CSS filters, animations
-    and video, and Canvas and WebGL.
+    \l{Qt WebEngine} is a web content rendering engine based on Chromium
+    featuring broad support for standard web technologies. It provides
+    integration with both Qt Quick and traditional widgets. The module brings
+    the latest in  HTML5 advancements to Qt 5, including CSS filters, animations
+    and video, and Canvas.
+
+    This Chromium-based Web Engnine support in Qt is complemented with
+    \l{Qt WebChannel}, which bridges the gap between QML/C++ and
+    HTML/JavaScript. It enables sharing QObjects from QML/C++ with
+    HTML/JavaScript-based clients.
 
     \section1 Multimedia
 
