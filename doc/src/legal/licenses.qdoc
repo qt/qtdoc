@@ -138,13 +138,14 @@
          \li implements the MD4 message-digest algorithm. \li BSD \li
     \row \li \l{MD5 (md5.cpp and md5.h)}{MD5}
          \li implements the MD5 message-digest algorithm. \li BSD \li
+    \row \li \l {Mesa 3D Graphics Library}{Mesa llvmpipe}
+         \li Mesa llvmpipe software rasterizer backend (\c opengl32sw.dll) for Windows builds. \li MIT \li \l {Qt for Windows}
     \row \li \l{SHA-1 (sha1.cpp)}{SHA-1}
          \li implements the SHA-1 encryption algorithm. \li BSD \li
     \row \li \l{SHA-3, originally known as Keccak}{SHA-3}
          \li implements the SHA-3 encryption algorithm. \li BSD \li
     \row \li \l{Data Compression Library (zlib) version 1.2.5}{zlib}
          \li zlib is a general purpose data compression library. \li BSD-style \li
-    \row \li \li \li \li
 
     \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
@@ -284,16 +285,20 @@
     \row \li {1,6} Qt Image Formats
 
     \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{JasPer (libjasper) version 2.0}{JasPer}
+         \li A collection of software for the coding and manipulation of images. \li BSD-style \li
     \row \li \l{TIFF Software Distribution (libtiff) version 3.9.2}{TIFF}
          \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files. \li BSD \li
     \row \li \l{MNG Library (libmng) version 1.0.10}{MNG}
          \li Support decoding and displaying of MNG format image files. \li BSD-style \li
+    \row \li \l{WebP (libwebp) version 0.4.0}{WebP}
+         \li Support decoding and displaying of WebP format image files. \li BSD-style \li
     \row \li \li \li \li
     \row \li \li \li \li
 
     \row \li {1,4} Qt SQL
 
-    \row \li \l{SQLite (sqlite) version 3.7.17.0}{SQLite}
+    \row \li \l{SQLite (sqlite) version 3.8.5.0}{SQLite}
          \li A C library that implements a self-contained, embeddable, zero-configuration SQL database engine. \li BSD-style \li
     \row \li \li \li \li
     \row \li \li \li \li
@@ -357,10 +362,6 @@
     appendix to the documentation.
 
     See also: \l{Licenses for Fonts Used in Qt for Embedded Linux}
-
-    \hr
-
-    \generatelist legalese
 
     \section1 Native Style for Android
 
@@ -638,7 +639,7 @@
 
     \section1 ANGLE
 
-    Copyright (C) 2002-2010 The ANGLE Project Authors.
+    Copyright (C) 2002-2013 The ANGLE Project Authors.
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -672,56 +673,9 @@
     POSSIBILITY OF SUCH DAMAGE.
 
     \list
-    \li ANGLE library in qtbase/src/testlib/3rdparty/angle
+    \li ANGLE library in qtbase/src/3rdparty/angle
     \endlist
 
-    \hr
-
-    Copyright (c) 2002, NVIDIA Corporation.
-
-    NVIDIA Corporation("NVIDIA") supplies this software to you in
-    consideration of your agreement to the following terms, and your use,
-    installation, modification or redistribution of this NVIDIA software
-    constitutes acceptance of these terms.  If you do not agree with these
-    terms, please do not use, install, modify or redistribute this NVIDIA
-    software.
-
-    In consideration of your agreement to abide by the following terms, and
-    subject to these terms, NVIDIA grants you a personal, non-exclusive
-    license, under NVIDIA's copyrights in this original NVIDIA software (the
-    "NVIDIA Software"), to use, reproduce, modify and redistribute the
-    NVIDIA Software, with or without modifications, in source and/or binary
-    forms; provided that if you redistribute the NVIDIA Software, you must
-    retain the copyright notice of NVIDIA, this notice and the following
-    text and disclaimers in all such redistributions of the NVIDIA Software.
-    Neither the name, trademarks, service marks nor logos of NVIDIA
-    Corporation may be used to endorse or promote products derived from the
-    NVIDIA Software without specific prior written permission from NVIDIA.
-    Except as expressly stated in this notice, no other rights or licenses
-    express or implied, are granted by NVIDIA herein, including but not
-    limited to any patent rights that may be infringed by your derivative
-    works or by other works in which the NVIDIA Software may be
-    incorporated. No hardware is licensed hereunder.
-
-    THE NVIDIA SOFTWARE IS BEING PROVIDED ON AN "AS IS" BASIS, WITHOUT
-    WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED,
-    INCLUDING WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF TITLE,
-    NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
-    ITS USE AND OPERATION EITHER ALONE OR IN COMBINATION WITH OTHER
-    PRODUCTS.
-
-    IN NO EVENT SHALL NVIDIA BE LIABLE FOR ANY SPECIAL, INDIRECT,
-    INCIDENTAL, EXEMPLARY, CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-    TO, LOST PROFITS; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
-    USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) OR ARISING IN ANY WAY
-    OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE
-    NVIDIA SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT,
-    TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF
-    NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li ANGLE preprosessor in qtbase/src/testlib/3rdparty/angle/src/compiler/preprocessor
-    \endlist
 
     \section1 WebKit used by the QtWebKit module
 

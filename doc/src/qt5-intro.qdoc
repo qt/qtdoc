@@ -56,19 +56,30 @@
 
     \section1 Qt Everywhere on Mobile
 
-    Qt now comes with production-ready ports of for Android, iOS, and WinRT
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td style="width:50%; border: none; vertical-align: top">
+    \endraw
+    Qt now comes with production-ready ports for Android, iOS, and WinRT
     (including Windows Phone 8). Extensive work has gone into these platform
     ports, which now extend Qt’s multi-platform promise to cover desktop,
-    embedded, and mobile platforms with just one framework, Qt.
-
+    embedded, and mobile platforms.
+    \raw HTML
+     <br>
+    \endraw
     With full support for Android, iOS, WinRT, and Blackberry 10, Qt is a
     great solution for targeting the mobile markets with a single codebase.
     It is fast and easy to bring existing desktop or embedded application
     to mobile, by simply recompiling it.
-
+    \raw HTML
+     <br>
+    \endraw
     You can install several demo applications that showcase the power of Qt
     on these mobile platforms. Here is a small list of such applications:
-
+    \raw HTML
+     <br>
+    \endraw
     Demo applications:
     \list
     \li \l{Google Play: Introduction to Qt 5}{Introduction to Qt 5}
@@ -92,29 +103,37 @@
     \li \l{Qt for iOS}
     \li \l{Qt for WinRT}
     \endlist
-
-    \table
-    \header
-    \li Qt Everywhere demo on Nexus 7
-    \row
-    \li \image qt5_everywhere_demo.jpg
-    \endtable
+    \raw HTML
+      </td><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qt5_everywhere_demo.jpg
+    \caption Qt Everywhere demo on Nexus 7
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Amazing Graphics Capability and Performance
 
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qt5_shadereffect.jpg
+    \caption ShaderEffect on an \l Image
+    \raw HTML
+      </td><td style="width:50%; border: none; vertical-align: top">
+    \endraw
     Qt 5 uses an OpenGL-based scene graph to accelerate the graphics
     of Qt Quick, making it possible to do visually appealing user
     interfaces with animations, impressive graphical effects and
     particle systems, even on the constrained hardware environments of
     mobile and embedded devices.
-
-    \table
-    \header
-    \li ShaderEffect on an \l Image
-    \row
-    \li \image qt5_shadereffect.jpg
-    \endtable
-
+    \raw HTML
+     <br>
+    \endraw
     The benefits of this architectural change in the rendering engine are
     well demonstrated by the following projects:
     \list
@@ -126,9 +145,19 @@
     \li \l{QtonPi} - Good example of Qt 5 running on the low cost hardware,
     Raspberry PI.
     \endlist
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Qt Quick in Qt 5
 
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none;">
+      <tr><td style="width:50%; border-bottom:0px;">
+    \endraw
     \l{Qt Quick} provides the necessary infrastructure to develop QML
     applications. The latest version (v2.0) of this technology also
     introduces a set of new C++ classes as a replacement for the
@@ -159,54 +188,66 @@
     \li \l{Qt Quick Scene Graph}{OpenGL-based rendering architecture} for
     optimal performance.
     \endlist
-
-    \table
-    \header
-    \li Qt Quick's \l{Qt Quick Particles QML Types}{Particle System}
-    \row
-    \li \image qt5_particles.jpg
-    \endtable
-
-    Qt Quick's \l {Using the Qt Quick Particle System}{Particle System}
-
+    \raw HTML
+      </td><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qt5_particles.jpg
+    \caption Qt Quick's \l{Qt Quick Particles QML Types}{Particle System}
+    \raw HTML
+      </td></tr><tr><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
     The \l {qtgraphicaleffects-index.html}{Qt Graphical Effects} module
     provides a number of ready-made effects for use in Qt Quick
     applications, including soft drop shadow, blur, glow and colorize.
-
-    \table
-    \header
-    \li Excerpts from the Qt Graphical Effects module
-    \row
-    \li \image qt5_graphicaleffects.jpg
-    \endtable
+    \raw HTML
+      </td><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qt5_graphicaleffects.jpg
+    \caption Excerpts from the Qt Graphical Effects module
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Designing UI Made Simpler
 
+
+
+
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td style="width:25%; border: none; vertical-align: top">
+    \endraw
+    \image qtquickcontrols-example-gallery-android.png
+    \caption Controls gallery example on Android
+    \raw HTML
+      </td><td style="width:30%; border: none; vertical-align: top">
+    \endraw
+    \image qtquickcontrols-example-gallery-osx.png
+    \caption Controls gallery example on OS X
+    \raw HTML
+      </td><td style="width:45%; border: none; vertical-align: top">
+    \endraw
     UI designing can be time consuming if there are not enough tools to help.
     Qt Quick does reduce the effort considerably compared to the traditional
     native (C or C++) approach, but the new \l{Qt Quick Controls} and
     \l{Qt Quick Layouts} take it a step further. These new modules provide
     ready-to-use UI controls and layouts to enable faster application
     development and with less code.
-
+    \raw HTML
+      <br>
+    \endraw
     Qt Quick Controls and Qt Quick Layouts provide a vast set of UI controls
     ranging from the most basic TextField and Button to the more complex
     TableView and TabView. These controls are also made available in
     \l{Qt Creator: Using Qt Quick Designer}{Qt Quick Designer}.
-
-    \table
-    \header
-    \li Controls touch example on Nexus 7
-    \row
-    \li \image quick_controls_touch_ex.jpg
-    \endtable
-
-    \table
-    \header
-    \li Component gallery example on Ubuntu 12.04
-    \row
-    \li \image qtquickcontrols-example-gallery.jpg
-    \endtable
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Sensor and Location
 
@@ -215,14 +256,23 @@
     can support such use cases in your Qt application using the
     \l{Qt Sensors} and \l{Qt Positioning} modules.
 
-    \table
-    \header
-    \li Accelerating SVG image
-    \li Location-based weather information
-    \row
-    \li \image qtsensors_accelbubble_ex.jpg
-    \li \image qtpositioning_weatherinfo_ex.jpg
-    \endtable
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qtsensors_accelbubble_ex.jpg
+    \caption Accelerating SVG image
+    \raw HTML
+      </td><td style="width:50%; vertical-align:top;border: none;">
+    \endraw
+    \image qtpositioning_weatherinfo_ex.jpg
+    \caption Location-based weather information
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Qt Cloud Backend
 
@@ -239,31 +289,56 @@
 
     \section1 Web Engine and HTML5
 
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td colspan=2 style="width:50%; border: none; vertical-align: top">
+    \endraw
+    \image qtwebengine_quicknanobrowser.jpg
+    \caption Qt Quick nano browser
+    \raw HTML
+      </td><td style="width:50%; border: none; vertical-align: top">
+    \endraw
     \l{Qt WebEngine} is a web content rendering engine based on Chromium
     featuring broad support for standard web technologies. It provides
     integration with both Qt Quick and traditional widgets. The module brings
     the latest in  HTML5 advancements to Qt 5, including CSS filters, animations
     and video, and Canvas.
-
-    This Chromium-based Web Engnine support in Qt is complemented with
+    \raw HTML
+     <br>
+    \endraw
+    This Chromium-based Web Engine support in Qt is complemented with
     \l{Qt WebChannel}, which bridges the gap between QML/C++ and
     HTML/JavaScript. It enables sharing QObjects from QML/C++ with
     HTML/JavaScript-based clients.
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Multimedia
 
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td colspan=2 style="width:50%; border: none; vertical-align: top">
+    \endraw
     \l {Qt Multimedia} provides a rich set of QML types and C++ classes to
     handle multimedia content. It also provides necessary APIs to access
     the camera and radio functionality. Qt 5 brings the Qt Multimedia
     module into the set of essential modules with support on all major
     platforms.
-
-    \table
-    \header
-    \li Video embedded into a Qt Quick application with a displacement effect
-    \row
-    \li \image qt5_video.jpg
-    \endtable
+    \raw HTML
+      </td><td style="width:50%; border: none;">
+    \endraw
+    \image qt5_video.jpg
+    \caption Video embedded into a Qt Quick application with a displacement effect
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     \section1 Platform-specific Extras
 
@@ -303,12 +378,18 @@
     The \l {Qt Widgets} have been separated into their own module in
     Qt 5, the Qt Widgets module. It is part of the essential modules.
 
-    \table
-    \header
-    \li Screen capture of a widget application.
-    \row
-    \li \image qt5_widgets.jpg
-    \endtable
+    \raw HTML
+    <div class="table">
+     <table style="background:transparent; border: none">
+      <tr><td colspan=2 style="width:50%; border: none; vertical-align: top">
+    \endraw
+    \image qt5_widgets.jpg
+    \caption Screen capture of a widget application.
+    \raw HTML
+      </td></tr>
+     </table>
+    </div>
+    \endraw
 
     Designing the UI for widget-based applications can be quick with
     \l{Qt Designer Manual}{Qt Designer}.
