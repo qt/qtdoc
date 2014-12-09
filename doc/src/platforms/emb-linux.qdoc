@@ -221,26 +221,12 @@
   When no windowing system is present, the mouse, keyboard and touch input are
   read directly via \c evdev or using helper libraries like \c tslib. Note that
   this requires that devices nodes \c {/dev/input/event*} are readable by the
-  user. eglfs has all the evdev input handling code built-in, while linuxfb
-  relies on the traditional and somewhat limited \c -plugin command-line
-  parameters.
+  user. eglfs and linuxfb has all the evdev input handling code built-in.
 
-  \section2 Input on linuxfb
+  \section2 Input on eglfs and linuxfb
 
-  To enable keyboard, mouse, touch or tablet support with linuxfb, pass \c
-  {QT_QPA_GENERIC_PLUGINS=evdevkeyboard,evdevmouse,evdevtouch,...} in the
-  environment or, alternatively, \c {-plugin evdevkeyboard}, \c {-plugin
-  evdevmouse}, \c{-plugin evdevtouch}, or \c {-plugin evdevtablet} on the
-  command-line. Most of these can take a device node parameter, for example \c
-  {QT_QPA_GENERIC_PLUGINS=evdevmouse:/dev/event1}, in case the Qt's automatic
-  device discovery (based either on \e libudev or a walkthrough of \c
-  {/dev/input/event*}) is not functional or misbehaving.
-
-  \section2 Input on eglfs
-
-  For eglfs, parameters like the device node name can be set in the
-  environment variables \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c
-  QT_QPA_EVDEV_KEYBOARD_PARAMETERS and \c
+  Parameters like the device node name can be set in the environment variables
+  \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS and \c
   QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS. Additionally, the built-in input handlers
   can be disabled by setting \c QT_QPA_EGLFS_DISABLE_INPUT to \c 1. On some
   touch screens the coordinates will need to be rotated. This can be enabled by
@@ -348,13 +334,23 @@
   For some resistive, single-touch touch screens it may be necessary to fall
   back to using tslib instead of relying on the Linux multitouch protocol and
   the event devices. For modern touch screens this should not be
-  necessary. tslib support can be enabled for linuxfb by passing \c{-plugin
-  tslib} instead of \c evdevtouch. With eglfs, simply set the environment
-  variable \c QT_QPA_EGLFS_TSLIB to 1. To change the device, set the environment
-  variable \c TSLIB_TSDEVICE or pass the device name on the command-line. Note
-  that the tslib input handler generates mouse events and supports single touch
-  only, as opposed to evdevtouch which generates true multi-touch QTouchEvent
-  events too.
+  necessary. tslib support can be enabled by setting the environment variable \c
+  QT_QPA_EGLFS_TSLIB or \c QT_QPA_FB_TSLIB to 1. To change the device, set the
+  environment variable \c TSLIB_TSDEVICE or pass the device name on the
+  command-line. Note that the tslib input handler generates mouse events and
+  supports single touch only, as opposed to evdevtouch which generates true
+  multi-touch QTouchEvent events too.
+
+  \section2 Pen-based tablets
+
+  The \c evdevtablet plugin provides basic support for Wacom and similar,
+  pen-based tablets. It will only generate QTabletEvent events. To enable it,
+  pass \c {QT_QPA_GENERIC_PLUGINS=evdevtablet} in the environment or,
+  alternatively, \c {-plugin evdevtablet} on the command-line. The plugin can
+  take a device node parameter, for example \c
+  {QT_QPA_GENERIC_PLUGINS=evdevtablet:/dev/event1}, in case the Qt's automatic
+  device discovery (based either on \e libudev or a walkthrough of \c
+  {/dev/input/event*}) is not functional or misbehaving.
 
   \section2 Debugging Input Devices
 
