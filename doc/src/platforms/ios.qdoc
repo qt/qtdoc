@@ -36,9 +36,9 @@
     \section1 Getting Started
 
     Development and deployment is done using Xcode. The supported
-    workflow is to maintain a \c .pro file based project, export it to
-    Xcode (and re-export when the project setup changes), and then
-    build and deploy using Xcode. We will look at that in more
+    workflow is to maintain a \c .pro file based project, which
+    generates an Xcode project. Building and deploying can be done
+    using either Xcode or Qt Creator. We will look at that in more
     detail in the next section.
 
     The minimum deployment target for Qt applications is iOS 5.0. Qt
@@ -83,7 +83,7 @@
     of maintaining a normal \c .pro file project and export it to
     Xcode.
 
-    Here is how to build a project:
+    Here is how to build a project with Xcode:
 
     \list
         \li run qmake (if you have not done so previously)
@@ -254,7 +254,7 @@
     Qt Creator deploys your application on the iOS device, if the
     device is detected and configured correctly in Xcode. It is also possible to
     test the application in iOS Simulator. For more information, see
-    \l {http://qt-project.org/doc/qtcreator/creator-developing-ios.html}{Connecting iOS Devices}.
+    \l {http://doc.qt.io/qtcreator/creator-developing-ios.html}{Connecting iOS Devices}.
 
     \sa {Platform Notes - iOS}
 */
@@ -271,7 +271,7 @@
     and running qmake on a project targeted for iOS will also generate an
     Xcode project file (.xcodeproj), with initial application settings. As Qt
     Creator does not provide an interface for managing all of the settings specific
-    to iOS platform, it is often necessary to adjust them in Xcode directly.
+    to iOS platform, it is sometimes necessary to adjust them in Xcode directly.
     Checking that the application is configured correctly is especially important
     before submitting an application for publishing in Apple's App Store.
 
@@ -288,18 +288,18 @@
         \li Icons and launch images
     \endlist
 
-    See the documentation on \l {https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/App-RelatedResources/App-RelatedResources.html}
+    See the documentation on \l {https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html}
     {Information Property List File} in iOS Developer Library for details.
 
     When qmake is run, an \c Info.plist file is generated with appropriate default values.
 
     It is advisable to replace the generated Info.plist with your own copy, to prevent
     it from being overwritten the next time qmake is run. You can define a custom information
-    property list with \l QMAKE_INFO_PLIST variable in your .pro file:
+    property list with \l QMAKE_INFO_PLIST variable in your .pro file.
 
     \badcode
     ios {
-        QMAKE_INFO_PLIST = ios/AppInfo.plist
+        QMAKE_INFO_PLIST = ios/Info.plist
     }
     \endcode
 
@@ -318,13 +318,246 @@
     \endcode
 
     For image resources, an alternative way is to make use of \l {https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html}
-    {asset catalogs} in Xcode.
+    {asset catalogs} in Xcode, which can be added in a similar way:
+    \badcode
+    ios {
+        assets_catalogs.files = $$files($$PWD/*.xcassets)
+        QMAKE_BUNDLE_DATA += assets_catalogs
+    }
+    \endcode
+    Important: resources are compiled only if the .path variable is not set.
+    It is possible to recursively copy and compile directories though.
+
+    \section2 Icons
+
+    Icons need to be set in the Info.plist and copied to the application bundle.
+    Xcode has special support for icons, but when using Qt, it is usually better
+    to set them in the .pro file.
+
+    To support all resolutions and devices, several images should be created.
+    A detailed list of what is required is available at \l {https://developer.apple.com/library/ios/qa/qa1686/_index.html}{Icon files}.
+    The filename is not important, but the actual pixel size is.
+    Just a few icons are required, especially if one does not support iOS 6.1 or earlier.
+    However, to support both iPhone and iPad, and iOS 6.1 or earlier, the following images
+    are required:
+
+    \list
+        \li AppIcon29x29.png: 29 x 29
+        \li AppIcon29x29@2x.png: 58 x 58
+        \li AppIcon29x29@2x~ipad.png: 58 x 58
+        \li AppIcon29x29~ipad.png: 29 x 29
+        \li AppIcon40x40@2x.png: 80 x 80
+        \li AppIcon40x40@2x~ipad.png: 80 x 80
+        \li AppIcon40x40~ipad.png: 40 x 40
+        \li AppIcon50x50@2x~ipad.png: 100 x 100
+        \li AppIcon50x50~ipad.png: 50 x 50
+        \li AppIcon57x57.png: 57 x 57
+        \li AppIcon57x57@2x.png: 114 x 114
+        \li AppIcon60x60@2x.png: 120 x 120
+        \li AppIcon72x72@2x~ipad.png: 144 x 144
+        \li AppIcon72x72~ipad.png: 72 x 72
+        \li AppIcon76x76@2x~ipad.png: 152 x 152
+        \li AppIcon76x76~ipad.png: 76 x 76
+    \endlist
+
+    These files should be copied to the application bundle by adding something
+    like the following code snippet to the .pro file:
+
+    \badcode
+    ios {
+        ios_icon.files = $$files($$PWD/ios/AppIcon*.png)
+        QMAKE_BUNDLE_DATA += ios_icon
+    }
+    \endcode
+
+    For the icons to be used, the filenames also have to be listed in the Info.plist. The best way is to list all icon files
+    using the \c CFBundleIconFiles key.
+    The iPad specific version can be given using the \c CFBundleIcons~ipad key, by adding something
+    like the following code snippet to Info.plist:
+
+    \badcode
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>AppIcon29x29.png</string>
+                <string>AppIcon29x29@2x.png</string>
+                <string>AppIcon40x40@2x.png</string>
+                <string>AppIcon57x57.png</string>
+                <string>AppIcon57x57@2x.png</string>
+                <string>AppIcon60x60@2x.png</string>
+            </array>
+        </dict>
+    </dict>
+    <key>CFBundleIcons~ipad</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>AppIcon29x29.png</string>
+                <string>AppIcon29x29@2x.png</string>
+                <string>AppIcon40x40@2x.png</string>
+                <string>AppIcon57x57.png</string>
+                <string>AppIcon57x57@2x.png</string>
+                <string>AppIcon60x60@2x.png</string>
+                <string>AppIcon29x29~ipad.png</string>
+                <string>AppIcon29x29@2x~ipad.png</string>
+                <string>AppIcon40x40~ipad.png</string>
+                <string>AppIcon40x40@2x~ipad.png</string>
+                <string>AppIcon50x50~ipad.png</string>
+                <string>AppIcon50x50@2x~ipad.png</string>
+                <string>AppIcon72x72~ipad.png</string>
+                <string>AppIcon72x72@2x~ipad.png</string>
+                <string>AppIcon76x76~ipad.png</string>
+                <string>AppIcon76x76@2x~ipad.png</string>
+            </array>
+        </dict>
+    </dict>
+    \endcode
+
+    This ensures that the appropriate files are copied to the right place and the correct icons are
+    used as required by the Apple App Store.
+    Ad-hoc distributions should also include the following filenames in the application bundle
+    to visualize the application in iTunes:
+    \list
+        \li iTunesArtwork 512x512
+        \li iTunesArtwork@2x 1024x1024
+    \endlist
+
+    \section2 Launch Images
+
+    Like icons, launch images consist of images that need to be copied to the application bundle
+    and keys that have to be set in the Info.plist.
+
+    To support the iPhone 6, a launch file (an interface builder .xib file or a storyboard file) should be provided.
+    For more information, see \l{https://developer.apple.com/library/ios/documentati on/userexperience/conceptual/MobileHIG/LaunchImages.html}{Launch Images}.
+    Assuming that you called the launch file Launch.xib, it can be added to the Info.plist as follows:
+    \badcode
+    <key>UILaunchStoryboardName</key>
+    <string>Launch</string>
+    \endcode
+    It is possible to use launch images (PNG files), as described below, to support the iPhone 6, but it is not recommended.
+    Qmake generates a default LaunchScreen.xib, so it is better to use another name for a custom launch screen to avoid clashes.
+
+    Starting with iOS 7, the launch images are defined using the \c UILaunchImages key.
+    To support these devices, you need to prepare the following images:
+    \list
+        \li LaunchImage-iOS7-568h@2x.png: 640 x 1136
+        \li LaunchImage-iOS7-Landscape.png: 1024 x 768
+        \li LaunchImage-iOS7-Landscape@2x.png: 2048 x 1536
+        \li LaunchImage-iOS7-Portrait.png: 768 x 1024
+        \li LaunchImage-iOS7-Portrait@2x.png: 1536 x 2048
+        \li LaunchImage-iOS7@2x.png: 640 x 960
+    \endlist
+
+    The images can be added to the Info.plist as follows:
+    \badcode
+    <key>UILaunchImages</key>
+    <array>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{320, 568}</string>
+        </dict>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{320, 480}</string>
+        </dict>
+    </array>
+    <key>UILaunchImages~ipad</key>
+    <array>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7-Landscape</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Landscape</string>
+            <key>UILaunchImageSize</key>
+            <string>{768, 1024}</string>
+        </dict>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7-Portrait</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{768, 1024}</string>
+        </dict>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{320, 568}</string>
+        </dict>
+        <dict>
+            <key>UILaunchImageMinimumOSVersion</key>
+            <string>7.0</string>
+            <key>UILaunchImageName</key>
+            <string>LaunchImage-iOS7</string>
+            <key>UILaunchImageOrientation</key>
+            <string>Portrait</string>
+            <key>UILaunchImageSize</key>
+            <string>{320, 480}</string>
+        </dict>
+    </array>
+    \endcode
+
+    To support earlier iOS versions, one can use the \c UILaunchImageFile string in the Info.plist:
+    \badcode
+    <key>UILaunchImageFile</key>
+    <string>LaunchImage</string>
+    \badcode
+    The name defaults to \c Default, but qmake generates some of the images, so it is easier to use another name (for example LaunchImage as we did) to avoid clashes.
+    \list
+        \li LaunchImage.png: 320 x 480
+        \li LaunchImage@2x.png: 640 x 960
+        \li LaunchImage-568h@2x.png: 640 x 1136
+        \li LaunchImage-Landscape.png: 1024 x 748
+        \li LaunchImage-Landscape@2x.png: 2048 x 1496
+        \li LaunchImage-Portrait.png: 768 x 1004
+        \li LaunchImage-Portrait@2x.png: 1536 x 2008
+    \endlist
+
+    You can change the filenames as long as the Info.plist and filenames stay in sync.
+
+    Finally, all these files have to be copied to the application bundle by adding something
+    like the following code snippet to the .pro file:
+    \badcode
+    ios {
+        launch_images.files = $$PWD/ios/Launch.xib $$files($$PWD/ios/LaunchImage*.png)
+        QMAKE_BUNDLE_DATA += launch_images
+    }
+    \endcode
+
+    This allows you to produce universal applications with valid LaunchImages as required by the Apple App Store.
 
     \section1 Publishing to Apple App Store
 
-    Verifying that your Qt for iOS application is ready for publishing to App Store is done
-    directly in Xcode. Qt Creator does not provide an interface for managing all of the
-    settings in an Xcode project configuration.
+    Verifying that your Qt for iOS application is ready for publishing to App Store can be done
+    as described in \l {https://developer.apple.com/Library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html} {Submitting the Application}.
+    To submit the application, you can use Xcode, or the Application Loader (installed with Xcode).
+    Qt Creator does not provide an interface for managing all of the settings in an Xcode project configuration.
 
     The application should be tested on a variety of iOS versions and devices, depending on what
     it's targeted to support. The minimum deployment target for Qt applications is iOS 5.0.
