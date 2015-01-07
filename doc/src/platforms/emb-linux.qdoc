@@ -228,9 +228,10 @@
   Parameters like the device node name can be set in the environment variables
   \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS and \c
   QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS. Additionally, the built-in input handlers
-  can be disabled by setting \c QT_QPA_EGLFS_DISABLE_INPUT to \c 1. On some
-  touch screens the coordinates will need to be rotated. This can be enabled by
-  setting \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS to \c {rotate=180}.
+  can be disabled by setting \c QT_QPA_EGLFS_DISABLE_INPUT or
+  \c QT_QPA_FB_DISABLE_INPUT to \c 1. On some touch screens the coordinates will
+  need to be rotated. This can be enabled by setting
+  \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS to \c {rotate=180}.
 
   \section2 Mouse
 
@@ -243,8 +244,7 @@
   Hot plugging is supported, but only if Qt was configured with libudev support
   (that is, if the \e libudev development headers are present in the sysroot at
   configure time). This allows connecting or disconnecting an input device while
-  the application is running. On eglfs the mouse cursor will disappear and
-  reappear appropriately.
+  the application is running.
 
   \section2 Keyboard
 
@@ -334,8 +334,8 @@
   For some resistive, single-touch touch screens it may be necessary to fall
   back to using tslib instead of relying on the Linux multitouch protocol and
   the event devices. For modern touch screens this should not be
-  necessary. tslib support can be enabled by setting the environment variable \c
-  QT_QPA_EGLFS_TSLIB or \c QT_QPA_FB_TSLIB to 1. To change the device, set the
+  necessary. tslib support can be enabled by setting the environment variable
+  \c QT_QPA_EGLFS_TSLIB or \c QT_QPA_FB_TSLIB to 1. To change the device, set the
   environment variable \c TSLIB_TSDEVICE or pass the device name on the
   command-line. Note that the tslib input handler generates mouse events and
   supports single touch only, as opposed to evdevtouch which generates true
@@ -351,6 +351,17 @@
   {QT_QPA_GENERIC_PLUGINS=evdevtablet:/dev/event1}, in case the Qt's automatic
   device discovery (based either on \e libudev or a walkthrough of \c
   {/dev/input/event*}) is not functional or misbehaving.
+
+  \section2 Using libinput
+
+  \l{http://www.freedesktop.org/wiki/Software/libinput}{libinput} is a library to
+  handle input devices. It offers an alternative to the default evdev input
+  support. To switch to using libinput, first make sure the development files
+  for libudev and libinput are available when configuring and building Qt. This
+  will result in building the libinput plugin. Then, if using eglfs or linuxfb,
+  disable the built-in input handlers by setting \c QT_QPA_EGLFS_DISABLE_INPUT
+  or \c QT_QPA_FB_DISABLE_INPUT to \c 1. Finally, launch the application with
+  \c{-plugin libinput}.
 
   \section2 Debugging Input Devices
 
