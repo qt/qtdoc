@@ -123,10 +123,10 @@
            application folder or by adding the \e bin folder of the ICU
            installation to the \c PATH environment variable.
 
-        \li \l{ANGLE}: This library converts
-           OpenGL ES 2.0 API calls to DirectX 9, removing the need to install
-           graphics drivers on the target machines. Building
-           the library requires the installation of the \l{Direct X SDK}.
+        \li \l{ANGLE}: This library converts OpenGL ES 2.0 API calls to DirectX 11 or DirectX 9
+           calls (depending on availability), removing the need to install graphics drivers on
+           the target machines.
+           Building the library requires the installation of the \l{Direct X SDK}.
            More information is available at \l{http://code.google.com/p/angleproject/wiki/DevSetup}
 
            \note When building for 64-bit environments, de-activate the
@@ -170,8 +170,14 @@
     higher is required. The default driver from Windows is OpenGL 1.1. Qt
     includes a version of the \l{ANGLE} project which is included from the
     Windows Qt installers. ANGLE implements the
-    OpenGL ES 2.0 API on top of DirectX 9. ANGLE requires that the DirectX SDK
-    is installed when building Qt.
+    OpenGL ES 2.0 API on top of DirectX 11 or DirectX 9.
+    ANGLE requires that the DirectX SDK is installed when building Qt.
+
+    ANGLE chooses the render backend depending on availability. DirectX 11
+    is usually preferable. However, some graphics cards may not fully
+    support it. For these cases, the environment variable \c QT_ANGLE_PLATFORM
+    (introduced in Qt 5.4) can be used to control the render backend. Possible
+    values are \c d3d11, \c d3d9 and \c warp.
 
     To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable
     to point to the ANGLE source tree before building Qt.
