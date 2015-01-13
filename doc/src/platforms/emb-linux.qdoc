@@ -390,6 +390,51 @@
   --timeout} will show a rotating Qt logo on each connected screen for a few
   seconds.
 
+  The KMS/DRM backend also supports custom configurations via a JSON file.  Set
+  the environment variable \c QT_QPA_EGLFS_KMS_CONFIG to the name of the file to
+  enable this. The file can also be embedded in the application via the Qt
+  resource system. An example configuration is below:
+
+  \badcode
+    {
+      "device": "/dev/dri/card1",
+      "hwcursor": false,
+      "pbuffers": true,
+      "outputs": [
+        {
+          "name": "VGA1",
+          "mode": "off"
+        },
+        {
+          "name": "HDMI1",
+          "mode": "1024x768"
+        }
+      ]
+    }
+  \endcode
+
+  Here we configure the specified device so that
+
+  \list
+
+  \li it will not use the hardware cursor (falls back to rendering the mouse
+  cursor via OpenGL; by default hardware cursors are enabled since they are more
+  efficient),
+
+  \li it will back QOffscreenSurface with standard EGL pbuffer surfaces (by
+  default this is disabled and a gbm surface is used instead),
+
+  \li output on the VGA connector is disabled, while HDMI is active with a
+  resolution of 1024x768.
+
+  \endlist
+
+  Additionally, such a configuration will also disable looking for a device via
+  \c libudev and instead the specified device will be used.
+
+  For troubleshooting it might be useful to enable debug logs from the KMS/DRM
+  backend. To do this, enable the categorized logging rule \c qt.qpa.eglfs.kms.
+
   Other backends, that are typically based on targeting the framebuffer
   directly via the vendor's EGL implementation, will usually provide limited or
   no support for multiple displays. In some cases the \c {QT_QPA_EGLFS_FB}
