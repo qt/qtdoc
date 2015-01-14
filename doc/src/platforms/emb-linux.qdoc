@@ -370,6 +370,34 @@
   environment variable to \c{qt.qpa.input=true}. This is useful for detecting
   which device is being used, or to troubleshoot device discovery issues.
 
+  \section2 Using custom mouse cursor images
+
+  eglfs comes with its own set of 32x32 sized mouse cursor images. If these are
+  not sufficient, a custom cursor atlas can be provided by setting the \c
+  QT_QPA_EGLFS_CURSOR environment variable to the name of a JSON file. The file
+  can also be embedded into the application via Qt's resource system.
+
+  For example, an embedded cursor atlas with 8 cursor images per row can be
+  specified like the following:
+
+  \badcode
+    {
+      "image": ":/cursor-atlas.png",
+      "cursorsPerRow": 8,
+      "hotSpots": [
+          [7, 2],
+          [12, 3],
+          [12, 12],
+          ...
+      ]
+    }
+  \endcode
+
+  Note that the images are expected to be tightly packed in the atlas: the
+  width and height of the cursors are decided based on the total image size and
+  the \c cursorsPerRow setting. Atlases have to provide an image for all the
+  supported cursors.
+
   \section1 Display output
 
   When having multiple displays connected, the level of support for targeting
