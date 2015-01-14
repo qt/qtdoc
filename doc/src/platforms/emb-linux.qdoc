@@ -162,6 +162,17 @@
   useful information for troubleshooting issues related to the EGL
   configuration.
 
+  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
+  it is also possible to provide device or vendor-specific adaptation in the
+  form of dynamically loaded plugins. This environment variable enforces a
+  specific plugin. For example, setting it to \e{eglfs_kms} will use the KMS/DRM
+  backend. This is only an option when no static, compiled-in hooks were
+  specified in the device makespecs. Note that this variable is rarely needed in
+  practice: for embedded devices it is expected that the device makespecs define
+  the plugin to use, similarly to how the static hooks are defined, while in a
+  desktop environment the KMS or the X11 backends are prioritized, depending on
+  the presence of the \c DISPLAY environment variable.
+
   \endlist
 
   \section2 LinuxFB
