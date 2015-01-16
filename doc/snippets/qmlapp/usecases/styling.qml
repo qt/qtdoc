@@ -60,6 +60,7 @@ ApplicationWindow {
                     GradientStop { position: 1 ; color: control.pressed ? "#000" : "#fff" }
                 }
             }
-    }
+       }
     //![0]
+    }
 }

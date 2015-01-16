@@ -721,7 +721,7 @@ recommendations for handling those changes.
       \li \c{QTest::qt_snprintf()} is removed. This was an
           internal test library function that was exposed in the public API due to its use
           in a public macro. Any calls to this function must be replaced with
-          \l{QByteArray::qsnprintf()}.
+          \l{qbytearray-qsnprintf()}{QByteArray::qsnprintf()}.
       \li c{QTest::pixmapsAreEqual()} is removed. Comparison of \l{QPixmap} objects must
           be done using the \c{QCOMPARE} macro, which provides more informative output in the event of a failure.
       \li The \c{"mode"} parameter in \c{QSKIP} macro is removed. This parameter caused problems
@@ -791,7 +791,7 @@ recommendations for handling those changes.
      \li Configure no longer calls \c{qmake -recursive} by default, because the
          subsequent build invokes qmake as needed. Use \c{-fully-process} to
          restore the old behavior.
-     \li The \l lupdate \c CODECFORTR variable is deprecated, because source
+     \li The \l {Using lupdate}{lupdate} \c CODECFORTR variable is deprecated, because source
          code written with Qt 5 is expected to use UTF-8 encoding.
     \endlist
 
