@@ -193,7 +193,13 @@
     \row \li qt5_add_resources(outfiles inputfile ... OPTIONS ...)
          \li Create code from a list of Qt resource files.
              Options may be given to rcc, such as those found
-             when executing "rcc -help"
+             when executing "rcc -help".
+    \row \li qt5_add_binary_resources(target inputfile ... OPTIONS ... DESTINATION ...)
+         \li Create an RCC file from a list of Qt resource files.
+             Options may be given to rcc, such as those found
+             when executing "rcc -help".
+             A destination may be given to use a different filename
+             or path for the RCC file.
     \row \li qt5_generate_moc(inputfile outputfile )
          \li Creates a rule to run moc on infile and create outfile.
              Use this if for some reason QT5_WRAP_CPP() isn't appropriate, e.g.
