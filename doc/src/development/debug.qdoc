@@ -152,19 +152,8 @@
     QT_MESSAGE_PATTERN="[%{type}] %{appname} (%{file}:%{line}) - %{message}"
     \endcode
 
-    \table
-    \header \li Placeholder \li Description
-    \row \li \c %{appname} \li QCoreApplication::applicationName()
-    \row \li \c %{file} \li Path to source file
-    \row \li \c %{function} \li Function
-    \row \li \c %{line} \li Line in source file
-    \row \li \c %{message} \li The actual message
-    \row \li \c %{pid} \li QCoreApplication::applicationPid()
-    \row \li \c %{threadid} \li ID of current thread
-    \row \li \c %{type} \li "debug", "warning", "critical" or "fatal"
-    \endtable
-
-    You can also install your own message handler using qInstallMessageHandler().
+    The format is documented in qSetMessagePattern(). You can also install your
+    own message handler using qInstallMessageHandler().
 
     If the \c QT_FATAL_WARNINGS environment variable is set,
     qWarning() exits after printing the warning message. This makes
