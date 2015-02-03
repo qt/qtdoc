@@ -123,7 +123,7 @@
 
     \section1 Warning and Debugging Messages
 
-    Qt includes global functions for writing out warning and debug
+    Qt includes global macros for writing out warning and debug
     text. You can use them for the following purposes:
 
     \list
@@ -136,12 +136,12 @@
     \li qFatal() is used for writing fatal error messages shortly before exiting.
     \endlist
 
-    If you include the <QtDebug> header file, the \c qDebug() function
+    If you include the <QtDebug> header file, the \c qDebug() macro
     can also be used as an output stream. For example:
 
     \snippet snippets/code/doc_src_debug.cpp 0
 
-    The Qt implementation of these functions prints to the
+    The Qt implementation of these macros prints to the
     \c stderr output under Unix/X11 and OS X. With Windows, if it
     is a console application, the text is sent to console; otherwise, it
     is sent to the debugger.
