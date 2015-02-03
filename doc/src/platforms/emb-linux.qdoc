@@ -482,6 +482,17 @@
   kernel parameters may also be available to control the used framebuffer. Refer
   to the embedded board's documentation.
 
+  \section2 Video Memory
+
+  Systems with a fixed amount of dedicated video memory may need extra care
+  before running Qt application based on Qt Quick or classes like
+  QOpenGLWidget. The default setting may be insufficient for such applications,
+  especially when they are displayed on a high resolution (for example, full HD)
+  screen. In this case they may start failing in unexpected ways. It is
+  therefore recommended to ensure that there is at least 128 MB of GPU memory
+  available. For systems that do not have a fixed amount of memory reserved for
+  the GPU this is not an issue.
+
   \section2 linuxfb
 
   Use the \c fb plugin parameter to specify the framebuffer device to use.
