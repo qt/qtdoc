@@ -26,26 +26,43 @@
 ****************************************************************************/
 
 /*!
+    \keyword Supported Platforms
     \page supported-platforms.html
-    \title Supported Platforms
+    \title Community Supported Platforms
     \brief The platforms supported by Qt.
 
-    Qt is a cross-platform application and UI framework. Using Qt,
-    you can write GUI applications once and deploy them
+    Qt is a commercial and open source licensed cross-platform application
+    and UI framework. It is developed by The Qt Company, a solely owned
+    entity of Digia Plc, together with the Qt Project Community under an
+    open source governance model.
+
+    Using Qt, you can write GUI applications once and deploy them
     across desktop, mobile and embedded operating systems without
-    rewriting the source code.In Qt 5 all platforms are created using
-    the new \l{Qt Platform Abstraction} (QPA), which makes it easier
-    than before to port Qt into a new operating system.
+    rewriting the source code.
 
     Qt is supported on a variety of 32-bit and 64-bit platforms,
     and can usually be built on each platform with GCC, a vendor-supplied
-    compiler, or a third party compiler. Open GL (ES) 2.0 or
-    DirectX 9 (with ANGLE) is required for Qt Quick 2. Widgets and
-    Qt Quick 1 can be used also without hardware acceleration.
+    compiler, or a third party compiler. Open GL (ES) 2.0,
+    DirectX 9 (with ANGLE), or an \l {Qt Quick 2D Renderer} {alternative
+    renderer} is required for \l [QtQuick] {Qt Quick} 2.
+    \l [QtWidgets] {Qt Widgets}{Widgets} can be used also without
+    hardware acceleration.
+
+    Not all platforms supported by the Community are supported by The
+    Qt Company, and vice versa.
+
+    \list
+        \li \l {Officially Supported Platforms} - Platforms supported
+        by The Qt Company.
+    \endlist
+
+    In Qt 5 all platforms are created using the
+    \l{Qt Platform Abstraction} (QPA), which makes it easier
+    than before to port Qt into a new operating system.
 
     \section1 Desktop Platforms
 
-    You can develop with Qt on the following desktop platforms:
+    You can develop with Qt for the following desktop platforms:
 
     \list
         \li \l{Qt for Windows}{Windows}
@@ -65,7 +82,7 @@
     \section1 Mobile Platforms
 
     You can develop with Qt for the following mobile platforms supported
-    by Digia:
+    by The Qt Company:
 
     \list
         \li \l{Qt for Android}{Android}
@@ -160,7 +177,7 @@
                                      \li Clang as provided by Apple
     \endtable
 
-    Digia, Qt partners, open source projects and community users
+    The Qt Company, Qt partners, open source projects and community users
     are able to provide assistance with various different supported
     platforms and configurations.
 
@@ -190,7 +207,7 @@
 
     Please note that Qt is offered on an "as is" basis without warranty
     of any kind and that our products are not error or bug free. To the maximum extent
-    permitted by applicable law, Digia on behalf of itself and its suppliers, disclaims all
+    permitted by applicable law, The Qt Company on behalf of itself and its suppliers, disclaims all
     warranties and conditions, either express or implied, including, but not limited to,
     implied warranties of merchantability, fitness for a particular purpose, title and
     non-infringement with regard to the Licensed Software.
