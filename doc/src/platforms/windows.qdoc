@@ -263,6 +263,49 @@
     name. If necessary, the filename can be overridden by setting the
     \c{QT_OPENGL_DLL} environment variable.
 
+    It is possible to provide a JSON-format configuration file specifying which
+    OpenGL implementation to use depending on the graphics card and driver version.
+    The location is given by the environment variable \c{QT_OPENGL_BUGLIST}. Relative
+    paths are resolved using \c {QLibraryInfo::SettingsPath} or
+    \c {QStandardPaths::ConfigLocation}. The file utilizes the format of the
+    driver bug list used in \l{The Chromium Projects}. It consists of a list of
+    entries each of which specifies a set of conditions and a list of feature keywords.
+    Typically, device id and vendor id are used to match a specific graphics card.
+    They can be found in the output of the \c qtdiag or \c dxdiag tool.
+
+    The following feature keywords are relevant for choosing the OpenGL implementation:
+
+    \list
+        \li \c disable_desktopgl - Disables Desktop OpenGL
+        \li \c disable_angle - Disables ANGLE
+        \li \c disable_d3d11 - Disables the D3D11 rasterizer in ANGLE
+        \li \c disable_d3d9 - Disables the D3D9 rasterizer in ANGLE
+    \endlist
+
+    A sample file looks like:
+
+    \badcode
+    {
+    "entries": [
+    {
+      "id": 1,
+      "description": "Disable D3D11 on older nVidia drivers",
+      "os": {
+        "type": "win"
+      },
+      "vendor_id": "0x10de",
+      "device_id": ["0x0DE9"],
+      "driver_version": {
+        "op": "<=",
+        "value": "8.17.12.6973"
+      },
+      "features": [
+        "disable_d3d11"
+      ]
+    },
+    ...
+    \endcode
+
     \section1 Building from Source
 
     These tools are not needed to run Qt 5 applications, but they are required
