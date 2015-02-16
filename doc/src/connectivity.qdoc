@@ -148,7 +148,7 @@ and processes. Additionally, QSystemSemaphore can be used to control
 access to resources shared by the system, as well as to communicate
 between processes.
 
-The \l{Qt D-Bus} module is a Unix-only library you can use to
+The \l{Qt D-Bus} module is a cross-platform library you can use to
 implement IPC using the D-Bus protocol. It extends Qt's
 \l{Signals & Slots}{signals and slots} mechanism to the IPC
 level, allowing a signal emitted by one process to be connected to
@@ -166,18 +166,19 @@ The \l{QLocalServer} class provides a local socket based server. This
 class makes it possible to accept incoming local socket connections.
 
 Related Topics:
+
 \list
 \li \l {Qt D-Bus} - module documentation
     \list
     \li \l {Using Qt D-Bus Adaptors}
-    \li \l {QLocalSocket}
     \li \l {Declaring Signals in D-Bus Adaptors}
     \li \l {Declaring Slots in D-Bus Adaptors}
     \li \l {The Qt D-Bus Type System}
-    \li \l {Qt D-Bus XML Compiler (qdbusxml2cpp)}
+    \li \l {Qt D-Bus XML compiler (qdbusxml2cpp)}
     \endlist
+\li \l {QLocalSocket}
+\li \l {QSharedMemory}
 \endlist
-
 
 \section1 Serial Port Communication
 

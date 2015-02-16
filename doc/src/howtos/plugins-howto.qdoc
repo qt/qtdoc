@@ -349,7 +349,7 @@
     \snippet plugins/doc_src_plugins-howto.pro 5
 
     qmake automatically adds the plugins to QTPLUGIN that are typically
-    needed by the Qt modules used (see \c QT), while more specialized
+    needed by the Qt modules used (see \l QT), while more specialized
     plugins need to be added manually.
     The default list of automatically added plugins can be overridden
     per type.
@@ -388,6 +388,8 @@
     \list 1
     \li Add \c{CONFIG += static} to your plugin's \c .pro file.
     \li Use the Q_IMPORT_PLUGIN() macro in your application.
+    \li Use the Q_INIT_RESOURCE() macro in your application if the plugin ships
+       qrc files.
     \li Link your application with your plugin library using \c LIBS
        in the \c .pro file.
     \endlist
