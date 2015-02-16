@@ -163,7 +163,7 @@
             threading primitives.
     \row
         \li \l[QtDBus]{Qt D-Bus}
-        \li Unix-based
+        \li All
         \li
         \li Classes for inter-process communication over the D-Bus protocol.
     \row
@@ -255,7 +255,12 @@
         \li \l[QtWebEngine]{Qt WebEngine}
         \li All
         \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
-        \li Provides support for web applications using the \l{http://www.chromium.org/Home}{Chromium browser project}.
+        \li Provides a QML API to run web applications using the \l{http://www.chromium.org/Home}{Chromium browser project}.
+    \row
+        \li \l[QtWebEngineWidgets]{Qt WebEngine Widgets}
+        \li All
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
+        \li Provides a C++ API to run web applications using the \l{http://www.chromium.org/Home}{Chromium browser project}.
     \row
         \li \l[QtWebSockets]{Qt WebSockets}
         \li All
@@ -283,6 +288,56 @@
         \li
         \li
         \li Support for XPath, XQuery, XSLT and XML schema validation.
+    \endtable
+
+    \section1 Value-Add Modules
+
+    In addition to the modules released as part of Qt 5, the following modules
+    and tooling build on top of the Qt libraries to provide additional value. They
+    have their own release schedule, and are available under different Qt licenses.
+    See the \l {Downloads} page for more information.
+
+    \table 80%
+    \header
+        \li Feature
+        \li Description
+
+    \row \li \l{Qt for Device Creation}
+         \li Tools for fast, easy, and fully-integrated embedded device application development.
+             Includes most other Value-Add features.
+    \row \li \l{Qt Charts}
+         \li UI Components for displaying visually pleasing charts, driven by static or dynamic
+             data models.
+    \row \li \l{Qt Quick Compiler}
+         \li Enables compiling .qml source files into application binaries, improving load times
+             and security for code assets.
+    \row \li \l{Qt Quick Enterprise Controls}
+         \li A set of advanced UI controls with an industry-specific look-and-feel.
+    \row \li \l{Qt Data Visualization}
+         \li UI Components for creating stunning 3D data visualizations.
+    \row \li \l{Qt Purchasing}
+         \li Enables in-app purchase of products in Qt applications on mobile platforms.
+    \row \li \l{Qt Virtual Keyboard}
+         \li A framework for implementing different input methods as well as a QML virtual keyboard.
+             Supports localized keyboard layouts and custom visual themes.
+    \row \li \l{Qt Quick 2D Renderer}
+         \li Enables the use of Qt Quick UI on devices without OpenGL capability.
+    \endtable
+
+    \section1 Technology Preview Modules
+
+    The following modules are still in development but are available as technology previews.
+
+    \table 80%
+    \header
+        \li Module
+        \li Description
+
+    \row \li \l{Qt WebView}
+         \li Displays web content in a QML application by using APIs native to the platform,
+             without the need to include a full web browser stack.
+    \row \li \l{Qt Canvas 3D}
+         \li Enables OpenGL-like 3D drawing calls from Qt Quick applications using JavaScript.
     \endtable
 
     \section1 Qt Tools
