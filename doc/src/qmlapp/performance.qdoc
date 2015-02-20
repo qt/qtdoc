@@ -40,10 +40,10 @@ the draw primitives to the graphics hardware.
 
 In practice, this means that the application developer should:
 \list
-   \li use asynchronous,event driven programming wherever possible
+   \li use asynchronous, event-driven programming wherever possible
    \li use worker threads to do significant processing
    \li never manually spin the event loop
-   \li never spend more than a couple of milliseconds per frame within blocking functions.
+   \li never spend more than a couple of milliseconds per frame within blocking functions
 \endlist
 
 Failure to do so will result in skipped frames, which has a drastic effect on the
@@ -51,7 +51,7 @@ user experience.
 
 \note A pattern which is tempting, but should \e never be used, is creating your
 own QEventLoop or calling QCoreApplication::processEvents() in order to avoid
-blocking within a C++ code block invoked from QML. This is dangerous because
+blocking within a C++ code block invoked from QML. This is dangerous, because
 when an event loop is entered in a signal handler or binding, the QML engine
 continues to run other bindings, animations, transitions, etc. Those bindings
 can then cause side effects which, for example, destroy the hierarchy containing
@@ -76,9 +76,9 @@ improvements.
 Most QML applications will have a large amount of JavaScript code in them, in the
 form of dynamic functions, signal handlers, and property binding expressions.
 This is generally not a problem. Thanks to some optimizations in the QML engine,
-such as to the bindings compiler, it can for some use-cases be faster than calling a C++
-function. However, care must be taken to ensure that unnecessary processing isn't
-triggered accidentally.
+such as those done to the bindings compiler, it can (in some use-cases) be faster
+than calling a C++ function. However, care must be taken to ensure that unnecessary
+processing isn't triggered accidentally.
 
 \section2 Bindings
 

@@ -610,14 +610,20 @@
     implementing the \l{Mandelbrot Example} and
     the \l{Blocking Fortune Client Example}.
 
+    In general, creating QObjects before the QApplication is not supported
+    and can lead to weird crashes on exit, depending on the platform.
+    This means static instances of QObject are also not supported. A
+    properly structured single or multi-threaded application should make
+    the QApplication be the first created, and last destroyed QObject.
+
     \section1 Per-Thread Event Loop
 
-    Each thread can have its own event loop. The initial thread
-    starts its event loops using QCoreApplication::exec(); other
-    threads can start an event loop using QThread::exec(). Like
-    QCoreApplication, QThread provides an
-    \l{QThread::exit()}{exit(int)} function and a
-    \l{QThread::quit()}{quit()} slot.
+    Each thread can have its own event loop. The initial thread starts
+    its event loop using QCoreApplication::exec(), or for
+    single-dialog GUI applications, sometimes QDialog::exec().
+    Other threads can start an event loop using QThread::exec().
+    Like QCoreApplication, QThread provides an \l{QThread::exit()}{exit(int)}
+    function and a \l{QThread::quit()}{quit()} slot.
 
     An event loop in a thread makes it possible for the thread to use
     certain non-GUI Qt classes that require the presence of an event
@@ -633,11 +639,7 @@
     event loop. The thread in which a QObject lives is available using
     QObject::thread().
 
-    Note that for QObjects that are created before QApplication,
-    QObject::thread() returns zero. This means that the main thread
-    will only handle posted events for these objects; other event
-    processing is not done at all for objects with no thread. Use the
-    QObject::moveToThread() function to change the thread affinity for
+    The QObject::moveToThread() function changes the thread affinity for
     an object and its children (the object cannot be moved if it has a
     parent).
 
