@@ -202,16 +202,15 @@ Related topics:
 
 The \l{Qt Bluetooth} module provides both C++ and QML APIs for the
 short-range (less than 100 meters) wireless protocol developed by the
-\l{http://www.bluetooth.org}{Bluetooth Special Interest Group}.
-
-As of Qt 5.3, this module is only available on \l{Qt for Android}{Android},
-\l{Qt for Linux/X11}{Linux} and \l{Qt for BlackBerry}{BlackBerry 10}.
+\l{Bluetooth SIG}{Bluetooth Special Interest Group}. It provides
+classic Bluetooth and Bluetooth Low Energy features.
 
 Related topics:
 \list
 \li \l {Qt Bluetooth} - module documentation
     \list
-    \li \l {Qt Bluetooth Overview}
+    \li \l {Qt Bluetooth Overview} {Bluetooth Classic}
+    \li \l {Bluetooth Low Energy Overview} {Bluetooth Low Energy}
     \li \l {Qt Bluetooth C++ Classes}
     \li \l {Qt Bluetooth QML Types}
     \endlist
@@ -223,9 +222,6 @@ Related topics:
 The \l{Qt NFC} module provides both C++ and QML APIs for the extremely
 short-range (less than 20 centimeters) wireless protocol developed by the
 \l{http://www.nfc-forum.org}{NFC Forum}.
-
-As of Qt 5.2, this module is only available on \l{Qt for BlackBerry}
-{BlackBerry 10}.
 
 Related topics:
 \list

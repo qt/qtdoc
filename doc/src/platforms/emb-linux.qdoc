@@ -52,22 +52,41 @@
   OpenGL nor Qt Quick 2 will be functional in such a setup.
 
   The directory \e qtbase/mkspecs/devices contains configuration and graphics
-  adaptation code for a number of devices. For example, \c linux-rasp-pi-g++
-  contains build settings for the \l {http://www.raspberrypi.org}{Raspberry Pi}
-  and an implementation of the eglfs hooks (vendor-specific adaptation
-  code). This means that the eglfs platform plugin will be automatically built
-  with the correct, Raspberry Pi-specific adaptation code. The device is
-  selected through the \l{Qt Configure Options}{configure} tool's \c -device
-  parameter. The name that follows after this argument must, at least partially,
-  match one of the subdirectories under \e devices.
+  adaptation code for a number of devices. For example, \c linux-rasp-pi2-g++
+  contains build settings, such as the optimal compiler and linker flags, for
+  the \l {http://www.raspberrypi.org}{Raspberry Pi 2} and an implementation of
+  the eglfs hooks (vendor-specific adaptation code). This means that the eglfs
+  platform plugin will be automatically built with the correct, Raspberry
+  Pi-specific adaptation code. The device is selected through the \l{Qt
+  Configure Options}{configure} tool's \c -device parameter. The name that
+  follows after this argument must, at least partially, match one of the
+  subdirectories under \e devices.
 
-  Below is an example configuration for the Raspberry Pi. For most Embedded
-  Linux boards the configure command will look very similar. The most important
-  parameters are \c -device and \c -sysroot.
+  Below is an example configuration for the Raspberry Pi 2. For most Embedded
+  Linux boards the configure command will look very similar.
 
   \code
-    ./configure -release -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$TOOLCHAIN/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- -sysroot $ROOTFS -prefix /usr/local/qt5
+    ./configure -release -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$TOOLCHAIN/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- -sysroot $ROOTFS -prefix /usr/local/qt5
   \endcode
+
+  The most important parameters are \c -device and \c -sysroot. By specifying
+  \c -sysroot, the include files and libraries used by \c {configure}'s feature
+  detection tests, as well as Qt itself, will be taken from the specified
+  location, instead of the host PC's standard locations. This means that
+  installing development packages on the host machine has no relevance: for
+  example, to get libinput support it is not sufficient or necessary to have the
+  libinput development headers and libraries installed on the host
+  environment. Instead, the headers and the libraries for the target
+  architecture (e.g. ARM) have to be present in the sysroot.
+
+  \c pkg-config is supported also when performing cross-compilation.
+  \c configure will automatically set \c PKG_CONFIG_LIBDIR to make \c pkg-config
+  report compiler and linker settings based on the sysroot instead of the host
+  machine. This will usually function well without any further
+  adjustments. However, environment variables such as \c PKG_CONFIG_PATH should
+  be unset for the host machine before running \c configure. Otherwise the Qt
+  build may attempt to use inappropriate headers and libraries from the host
+  system.
 
   See \l {Qt Configure Options} for more information.
 
