@@ -54,13 +54,12 @@
   The directory \e qtbase/mkspecs/devices contains configuration and graphics
   adaptation code for a number of devices. For example, \c linux-rasp-pi2-g++
   contains build settings, such as the optimal compiler and linker flags, for
-  the \l {http://www.raspberrypi.org}{Raspberry Pi 2} and an implementation of
-  the eglfs hooks (vendor-specific adaptation code). This means that the eglfs
-  platform plugin will be automatically built with the correct, Raspberry
-  Pi-specific adaptation code. The device is selected through the \l{Qt
-  Configure Options}{configure} tool's \c -device parameter. The name that
-  follows after this argument must, at least partially, match one of the
-  subdirectories under \e devices.
+  the \l {http://www.raspberrypi.org}{Raspberry Pi 2}, and either an
+  implementation of the eglfs hooks (vendor-specific adaptation code), or a
+  reference to a suitable eglfs device integration plugin. The device is
+  selected through the \l{Qt Configure Options}{configure} tool's \c -device
+  parameter. The name that follows after this argument must, at least partially,
+  match one of the subdirectories under \e devices.
 
   Below is an example configuration for the Raspberry Pi 2. For most Embedded
   Linux boards the configure command will look very similar.
@@ -98,8 +97,10 @@
   native windowing system. Qt can use EGL for context and surface management,
   however the API contains no platform specifics: The creation of a \e {native
   window} (which will not necessarily be an actual window on the screen) must
-  still be done by platform-specific means. Hence the need for the board and
-  vendor-specific adaptation code (the so-called \e {eglfs hooks}).
+  still be done by platform-specific means. Hence the need for the board or GPU
+  specific adaptation code. Such adaptations are provided either as \e {eglfs
+  hooks}, a single source file compiled in to the platform plugin, or as
+  dynamically loaded \e {EGL device integration} plugins.
 
   EGLFS is a platform plugin for running Qt5 applications on top of EGL and
   OpenGL ES 2.0 without an actual windowing system (like X11 or Wayland). In
@@ -186,11 +187,31 @@
   form of dynamically loaded plugins. This environment variable enforces a
   specific plugin. For example, setting it to \e{eglfs_kms} will use the KMS/DRM
   backend. This is only an option when no static, compiled-in hooks were
-  specified in the device makespecs. Note that this variable is rarely needed in
-  practice: for embedded devices it is expected that the device makespecs define
-  the plugin to use, similarly to how the static hooks are defined, while in a
+  specified in the device makespecs. In practice the traditional compiled-in
+  hooks are rarely used, almost all backends are now migrated to plugins. The
+  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
+  the name of the preferred backend for that particular device. This is
+  optional, but very useful to avoid the need to set this environment variable
+  in case there are more than one plugins present in the target system. In a
   desktop environment the KMS or the X11 backends are prioritized, depending on
   the presence of the \c DISPLAY environment variable.
+
+  \endlist
+
+  In addition to \c {QT_QPA_EGLFS_DEBUG}, eglfs also supports the more modern
+  categorized logging system of Qt. The following logging categories are
+  available:
+
+  \list
+
+    \li \c qt.qpa.egldeviceintegration – Enables logging for dynamically loaded
+    backends. Very useful to check what backend is in use.
+
+    \li \c qt.qpa.input – Enables debug output both from the evdev and libinput
+    input handlers. Very useful to check if a given input device was correctly
+    recognized and opened.
+
+    \li \c qt.qpa.eglfs.kms – Enables verbose logging in the KMS/DRM backend.
 
   \endlist
 
