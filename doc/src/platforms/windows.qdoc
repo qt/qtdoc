@@ -209,6 +209,14 @@
     configure -opengl dynamic
     \endcode
 
+    \note As of Qt 5.5 this is the configuration used by the official, pre-built
+    binary packages of Qt. It is strongly recommended to use it also in custom
+    builds, especially for Qt binaries that are deployed alongside applications.
+
+    \note Combining \c{-opengl dynamic} with \c{-static} is also possible, but
+    be aware that ANGLE will not be statically linked into the applications in
+    this case, it will still be built as a shared library.
+
     This configuration is the most flexible because no dependencies or
     assumptions are hardcoded about the OpenGL implementation during build
     time. It allows robust application deployment. When a given environment
@@ -312,6 +320,11 @@
     },
     ...
     \endcode
+
+    When \c{QT_OPENGL_BUGLIST} is not specified, a built-in list will be
+    used. This typically includes some older, less-capable graphics cards with
+    \c disable_desktopgl set, in order to prevent Qt from using their unstable
+    desktop OpenGL implementations and instead fall back to ANGLE right away.
 
     \section1 Building from Source
 
