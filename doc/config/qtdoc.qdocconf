@@ -65,11 +65,13 @@ imagedirs   += ../src/images \
                ../images
 
 sourcedirs  += \
-    ../src
+    ../src \
+    ../../examples
 
 exampledirs += \
     ../src \
-    ../snippets
+    ../snippets \
+    ../../examples
 
 # Don't parse files in snippets directory
 excludedirs += \
