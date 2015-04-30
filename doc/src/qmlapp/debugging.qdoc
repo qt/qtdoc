@@ -34,6 +34,7 @@
 \section1 Console API
 
 \section2 Log
+\keyword console log
 
 \c console.log, console.debug, console.info, console.warn and console.error can be used to print
 debugging information to the console. For example:
@@ -48,6 +49,7 @@ The output is generated using the qDebug, qWarning, qCritical methods in C++
 (see also \l {Debugging Techniques}).
 
 \section2 Assert
+\keyword console assert
 
 \c console.assert tests that an expression is true. If not, it will write an optional message
 to the console and print the stack trace.
@@ -61,7 +63,8 @@ function f() {
 \endcode
 
 \section2 Timer
-
+\keyword console time
+\keyword console timeEnd
 \c console.time and console.timeEnd log the time (in milliseconds) that was spent between
 the calls. Both take a string argument that identifies the measurement. For example:
 
@@ -77,13 +80,14 @@ function f() {
 \endcode
 
 \section2 Trace
+\keyword console trace
 
 \c console.trace prints the stack trace of the JavaScript execution at the point where
 it was called. The stack trace info contains the function name, file name, line number
 and column number. The stack trace is limited to last 10 stack frames.
 
 \section2 Count
-
+\keyword console count
 \c console.count prints the current number of times a particular piece of code has been executed,
 along with a message. That is,
 
@@ -96,10 +100,11 @@ function f() {
 will print \c{f called: 1}, \c{f called: 2} ... whenever \c{f()} is executed.
 
 \section2 Profile
-
+\keyword console profile
 \c console.profile turns on the QML and JavaScript profilers. Nested calls are not
 supported and a warning will be printed to the console.
 
+\keyword console profileEnd
 \c console.profileEnd turns off the QML and JavaScript profilers. Calling this function
 without a previous call to console.profile will print a warning to the console. A
 profiling client should have been attached before this call to receive and store the
@@ -116,7 +121,7 @@ function f() {
 \endcode
 
 \section2 Exception
-
+\keyword console exception
 \c console.exception prints an error message together with the stack trace of JavaScript
 execution at the point where it is called.
 
@@ -145,7 +150,8 @@ QQmlImportDatabase::resolveType "Rectangle" = "QDeclarativeRectangle"
 \endcode
 
 \section1 QML Debugging Infrastructure
-
+\keyword declarative_debug
+\keyword qml debug
 The \l{Qt QML} module provides services for debugging, inspecting, and profiling
 applications via a TCP port.
 
