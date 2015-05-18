@@ -95,8 +95,8 @@
 
     \row \li {1,28} Qt Core
 
-    \row \li \l{QCrashHandler class}{QCrashHandler}
-         \li Parts of implementation of QCrashHandler class. \li BSD-style \li
+    \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
+         \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
     \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput(). \li Modified BSD \li
     \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
          \li Specific parts of the Qt for OS X Cocoa port. \li BSD-style \li \l{Qt for OS X}
@@ -392,7 +392,7 @@
         \li \c {src/3rdparty/android/extract.h}
     \endlist
 
-    \section1 QCrashHandler class
+    \section1 QSegfaultHandler Class
 
     Copyright (c) 1998 by Bjorn Reese <breese@imada.ou.dk>
 
@@ -406,7 +406,8 @@
     CONTRIBUTORS ACCEPT NO RESPONSIBILITY IN ANY CONCEIVABLE MANNER.
 
     \list
-    \li Parts of the QCrashHandler class
+    \li Parts of the QSegfaultHandler class in
+        \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
     \endlist
 
     \section1 FreeType
