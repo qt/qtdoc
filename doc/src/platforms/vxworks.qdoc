@@ -34,25 +34,19 @@
   Contact The Qt Company for more information:
   http://www.qt.io/contact-us
 
-  With the release of Qt 5.0, Qt no longer contains its own window system
-  implementation: QWS is no longer a supported platform. For single-process use
-  cases, the \l{Qt Platform Abstraction} is a superior solution.
+  \section1 Supported Architectures and VxWorks Releases
 
-  There are two platform plugins that are usable on VxWorks: EGLFS and VxWorksFB.
-  The availability of these plugins depends on the configuration of Qt. The default
-  platform plugin is also device specific. For instance, on many boards eglfs will be
-  chosen as the default one. If the default is not suitable, the \c QT_QPA_PLATFORM
-  environment variable parameter can be used to request another plugin.
-  Alternatively, for quick tests, the \c -platform command-line option can be used
-  with the same syntax.
+  Qt5 is currently tested and supported on VxWorks 7. As VxWorks 7 does
+  not have released versions, current minimum required release is the one dated May 8th, 2015.
+  Supported architecture is ARM-v7.
 
-  \section1 Requirements for VxWorks 7
+  \section1 Requirements for VxWorks
 
   \section2 QtWidget Applications
 
   \list
   \li Framebuffer device (FBDEV)
-  \li Evdev support (for input handling: mouse, keyboard and touch)
+  \li Evdev support (compatibility mode)
   \li POSIX support
   \li C++11 support
   \endlist
@@ -64,6 +58,91 @@
   \list
   \li GPU device (GPUDEV) for OpenGL ES 2.0
   \endlist
+
+  \section1 Supported Modules
+
+  Almost all essential \l{All Modules}{Qt modules} and some add-on modules supported.
+
+  \section2 Limitations for Essential modules
+
+  \table 80%
+  \header
+      \li Qt Module
+      \li Supported features
+      \li Notes
+
+  \row
+      \li Qt Multimedia
+      \li Audio
+      \li \l [QML] {QtMultimedia::SoundEffect}{SoundEffect},
+      \li \l [CPP] {QtMultimedia::QSoundEffect}{QSoundEffect} and
+      \li \l [CPP] {QtMultimedia::QAudioOutput}{QAudioOutput}
+
+  \row
+      \li Qt Multimedia Widgets
+      \li Not supported
+      \li
+
+  \row
+      \li Qt Webkit
+      \li Not supported
+      \li
+
+  \row
+      \li Qt Webkit Widgets
+      \li Not supported
+      \li
+
+  \endtable
+
+  \section2 Supported Add-ons
+
+  \table 80%
+  \header
+      \li Qt Add-on
+      \li Notes
+
+  \row
+      \li Qt Concurrent
+      \li
+  \row
+      \li Qt Graphical Effects
+      \li
+  \row
+      \li Qt Image Formats
+      \li
+  \row
+      \li Qt OpenGL
+      \li Only OpenGL ES 2 \note Provided to ease porting from Qt 4.x.
+      Use the QOpenGL classes in \l{Qt GUI} for new code
+  \row
+      \li Qt Platform Headers
+      \li
+  \row
+      \li Qt SVG
+      \li
+  \row
+      \li Qt XML Patterns
+      \li
+
+  \endtable
+
+  \note You can explicitly exclude unsupported or unused modules from the
+  build via the -skip <module> option when running the configure tool.
+
+  \section1 Platform Notes
+
+  With the release of Qt 5.0, Qt no longer contains its own window system
+  implementation: QWS is no longer a supported platform. For single-process use
+  cases, the \l{Qt Platform Abstraction} is a superior solution.
+
+  There are two platform plugins that are usable on VxWorks: EGLFS and VxWorksFB.
+  The availability of these plugins depends on the configuration of Qt. The default
+  platform plugin is also device-specific. For instance, on many boards \c eglfs will be
+  chosen as the default one. If the default is not suitable, the \c QT_QPA_PLATFORM
+  environment variable parameter can be used to request another plugin.
+  Alternatively, for quick tests, the \c -platform command-line option can be used
+  with the same syntax.
 
   \section1 Configuring for a Specific Device
 
