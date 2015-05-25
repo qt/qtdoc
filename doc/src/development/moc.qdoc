@@ -252,7 +252,7 @@
     \section1 Limitations
 
     \c moc does not handle all of C++. The main problem is that class
-    templates cannot have signals or slots. Here is an example:
+    templates cannot have the Q_OBJECT macro. Here is an example:
 
     \snippet snippets/code/doc_src_moc.cpp 5
 
