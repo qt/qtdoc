@@ -73,28 +73,8 @@ target_link_libraries(helloworld Qt5::Widgets)
 #! [4]
 
 #! [5]
-find_package(Qt5Core)
-
-add_executable(exe1 ${exe1_SRCS})
-# Set the POSITION_INDEPENDENT_CODE property for the exe1 target...
-set_target_properties(exe1 PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-# Or set it globally for all targets:
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-add_executable(exe2 ${exe2_SRCS})
-
-add_executable(exe3 ${exe3_SRCS})
-#! [5]
-
-#! [6]
-if (Qt5_POSITION_INDEPENDENT_CODE)
-  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif()
-#! [6]
-
-#! [7]
 foreach(plugin ${Qt5Network_PLUGINS})
   get_target_property(_loc ${plugin} LOCATION)
   message("Plugin ${plugin} is at location ${_loc}")
 endforeach()
-#! [7]
+#! [5]

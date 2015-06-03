@@ -129,22 +129,25 @@
 
     \section1 OpenGL Special Considerations
 
-    Qt for Android provides two separate platform plugins: One which is suited for traditional
-    \l{Qt Widgets}{widget-based} apps that do not require OpenGL support, and one which will be used
-    when OpenGL is required. When building and deploying your app, Qt Creator will detect whether the
-    OpenGL-enabled plugin is required by checking if your app depends on either the \l{Qt OpenGL}
-    module or the \l{Qt Quick} module.
-
-    There are some special considerations to be made when the OpenGL-enabled platform plugin is in
-    use. The plugin only supports full screen top-level windows. This means that even dialogs and popups
-    will be shown as full screen. There may also be drawing errors if you try to stack windows that
-    have animations or otherwise require updating their UI while they are obscured by another window.
+    There are some special considerations to be made when OpenGL is used. The platform plugin only
+    supports full screen top-level OpenGL windows. This means that even dialogs and popups will be
+    shown as full screen. There may also be drawing errors if you try to stack windows that have
+    animations or otherwise require updating their UI while they are obscured by another window.
 
     It is recommended that you try to avoid multiple top-level windows in the case of Android apps, as
     there is no traditional window system on this platform.
 
     \note Embedding a QGLWidget inside a widget hierarchy is not supported. When QGLWidget is in use,
     it must be the top-level widget.
+
+    \note Avoid using the legacy QGLWidget. For embedding OpenGL or Qt Quick content into a
+    widget-based user interface, prefer using QOpenGLWidget and QQuickWidget.
+
+    Modern devices often support OpenGL ES 3.0 or 3.1 in addition to 2.0. To get a suitable OpenGL
+    context, set the requested version via QSurfaceFormat::setVersion(). Note however that the
+    header files are only available in recent API levels, for example to include gl31.h, you need to
+    target API level 21. Keep in mind also that using OpenGL ES 3.x features will result in the
+    application breaking on older devices that only support 2.0.
 
     \section1 Multimedia Special Considerations
 

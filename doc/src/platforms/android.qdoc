@@ -253,18 +253,6 @@ application to Android using the qrc approach:
      \note QML documents can refer to the contents in qrc files using the
      relative path to the document. Such references do not require the
      "\c{qrc:}" or "\c{:/}" prefix.
- \li Update the "Run" settings for your project as described in the
-     \l{Qt Creator: Specifying Run Settings}
-
-     \note You can change the default settings for application icons and
-     identifier.
- \li If your application uses imports or plugins which depend on special Qt
-     modules, these Qt modules should be added to the .pro file. For example, if
-     your application uses the \l{Qt Multimedia} import in QML, you should add
-     the following to your .pro file:
-     \code
-     QT += multimedia
-     \endcode
  \li Save the changes to your project and run the application.
 \endlist
 
@@ -326,9 +314,9 @@ the APK:
  \li Run \c{make build_libs} to build the \c libcrypto and \c libssl shared
      libraries.
 
- \li Open your Qt project using Qt Creator and update the
-     "Deployment Configuration" under run settings to add \e libcrypto and
-     \e libssl as additional libraries required for your project.
+ \li Open your Qt project using Qt Creator and update the "Build Android APK"
+     settings to add \e libcrypto and \e libssl as additional libraries for
+     your project.
 
  \li Run your application to see it running on the device.
 \endlist
@@ -358,10 +346,9 @@ on Google Play:
  \li Open your application project using Qt Creator v3.0 or later and change
  its \uicontrol Build settings to build release version.
 
- \li Open \uicontrol Run settings of your project and select
- \uicontrol {Create AndroidManifest.xml}. Qt Creator adds the manifest XML
- based on the application's \e .pro file and opens it in \uicontrol General
- mode.
+ \li Select \uicontrol {Create Templates} under \uicontrol Build settings to
+ create the template files such as \e AndroidManifest.xml and other
+ resources.
 
  \note You can edit the \e AndroidManifest.xml in \uicontrol General or
  \uicontrol {XML Source} mode.
@@ -388,7 +375,8 @@ on Google Play:
  information on the manifest XML format, see \l{Android: App Manifest}.
 
  \li Set up a \uicontrol keystore to sign the \e .apk. You can create a new
- keystore if you do not have one.
+ keystore if you do not have one. For more details, see
+ \l{Android APK}{QtCreator: Specifying Settings for Packages}.
 
  \li Select \uicontrol{Open package location after build} and run your
  application to build the \e .apk. Qt Creator builds the \e .apk and opens the
