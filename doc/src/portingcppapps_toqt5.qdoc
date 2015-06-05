@@ -37,6 +37,8 @@ port the \l{Animated Tiles Example}{Animated Tiles} application to Qt 5:
    \li Open the Animated Tiles project using Qt Creator.
    \li Edit \c {main.cpp} and replace the \c {#include <QtGui>} instance with
        \c {#include <QtWidgets>}.
+       The Perl-script \c fixqt4headers.pl can be used to scan the source files
+       of a project and perform the replacements.
    \li Edit the \c {animatedtiles.pro} and add \c {QT += widgets} towards the
        end of the file.
        \note \l{Qt GUI} is included by default in all Qt applications unless excluded using the \c {QT -= gui} directive in the \c{qmake} project file.
@@ -59,6 +61,31 @@ step-by-step instructions take you through the changes required to achieve this:
        \note If the \c {QT +=} statement already exists, append \c webkitwidgets
        to it.
    \li Save changes and run your application.
+\endlist
+
+For larger projects, we recommend initially enabling deprecated API by adding the define
+\code
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
+\endcode
+to the \c{.pro} file. In a second step, the define can be removed.
+
+It is possible to keep the project compiling with Qt 4 and Qt 5. This requires:
+
+\list 1
+   \li Omitting the module name from all includes. This is done by passing
+       the command line option \c --strip-modules to \c fixqt4headers.pl.
+   \li Adding scopes depending on the version of Qt to the \c{.pro} files:
+       \code
+       greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+       \endcode
+   \li Introducing \c #if scopes around code using modified API:
+       \code
+       #if QT_VERSION >= 0x050000
+           headerView->setSectionResizeMode(QHeaderView::ResizeToContents);
+       #else
+           headerView->setResizeMode(QHeaderView::ResizeToContents);
+       #endif
+       \endcode
 \endlist
 
 \section1 Related Topics

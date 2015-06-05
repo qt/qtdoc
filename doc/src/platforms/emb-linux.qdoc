@@ -194,7 +194,10 @@
   optional, but very useful to avoid the need to set this environment variable
   in case there are more than one plugins present in the target system. In a
   desktop environment the KMS or the X11 backends are prioritized, depending on
-  the presence of the \c DISPLAY environment variable.
+  the presence of the \c DISPLAY environment variable. Note that on some boards
+  the special value of \c none will be used instead of an actual plugin. This
+  indicates that no special integration is necessary to use EGL with the
+  framebuffer and so no plugins should be loaded.
 
   \endlist
 

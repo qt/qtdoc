@@ -38,6 +38,7 @@ depends += \
     qtquick \
     qtquickcontrols \
     qtquickdialogs \
+    qtquickextras \
     qtquicklayouts \
     qtscript \
     qtscripttools \
@@ -58,7 +59,9 @@ depends += \
     qtwebkitexamples \
     qtx11extras \
     qtxml \
-    qtxmlpatterns
+    qtxmlpatterns \
+    qt3dcore \
+    qt3drender
 
 headerdirs  += ../src
 imagedirs   += ../src/images \
@@ -91,12 +94,15 @@ qhp.QtDoc.customFilters.Qt.filterAttributes = qtdoc $QT_VERSION
 qhp.QtDoc.subprojects         = classes qmltypes examples
 qhp.QtDoc.subprojects.classes.title = Classes
 qhp.QtDoc.subprojects.classes.indexTitle = All Classes
+qhp.QtDoc.subprojects.classes.selectors = class fake:headerfile
 qhp.QtDoc.subprojects.classes.sortPages = true
 qhp.QtDoc.subprojects.qmltypes.title = QML Types
 qhp.QtDoc.subprojects.qmltypes.indexTitle = All QML Types
+qhp.QtDoc.subprojects.qmltypes.selectors = qmlclass
 qhp.QtDoc.subprojects.qmltypes.sortPages = true
 qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
 qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
+qhp.QtDoc.subprojects.examples.selectors = fake:example
 qhp.QtDoc.subprojects.examples.sortPages = true
 
 # Add an image used in example manifests to qhp

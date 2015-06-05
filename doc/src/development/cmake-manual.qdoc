@@ -96,7 +96,13 @@
     associated. They provide a list of plugins in the
     \c{Qt5}\e{<Module>}\c{_PLUGINS} variable.
 
-    \snippet snippets/cmake/CMakeLists.pro 7
+    \snippet snippets/cmake/CMakeLists.pro 5
+
+    \section2 Using Qt 5 with \c{CMake} older than 2.8.12
+
+    It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
+    the CMAKE_CXX_FLAGS so that the -fPIC flags are added to the compile flags if necessary (as
+    is the default with Qt 5).
 
     \section2 Using Qt 5 with \c{CMake} older than 2.8.11
 
@@ -123,24 +129,6 @@
     specify moc requirements with either \c{qt5_generate_moc} or \c{qt5_wrap_cpp}:
 
     \snippet snippets/cmake/CMakeLists.pro 4
-
-    It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
-    the CMAKE_CXX_FLAGS so that the -fPIE flags are added to the compile flags if necessary (as
-    is the default with Qt 5).
-
-    If not using the \c{qt5_use_modules} macro, and if using CMake 2.8.9 or later, the
-    \l{CMake POSITION_INDEPENDENT_CODE Documentation}{POSITION_INDEPENDENT_CODE property} can be set on
-    targets using Qt instead, or it can be set globally for all targets. Note that this is not necessary
-    with CMake 2.8.11:
-
-    \snippet snippets/cmake/CMakeLists.pro 5
-
-    Note that it may be necessary to enable POSITION_INDEPENDENT_CODE globally in order to use try_compile
-    with Qt code, or any wrapper macros around it such as check_cxx_source_compiles etc.
-    As position independent code is a platform-specific and Qt-configuration-specific concept, the
-    Qt5_POSITION_INDEPENDENT_CODE property can be used to check whether it is required.
-
-    \snippet snippets/cmake/CMakeLists.pro 6
 
     \section1 Variable Reference
 
@@ -276,7 +264,7 @@
              In:  Directories sources ts_files
              Options: flags to pass to lupdate, such as -extensions to specify
              Extensions for a directory scan.
-             Generates commands to create .ts (vie lupdate) and .qm
+             Generates commands to create .ts (via lupdate) and .qm
              (via lrelease) - files from directories and/or sources. The ts files are
              created and/or updated in the source tree (unless given with full paths).
              The qm files are generated in the build tree.

@@ -93,10 +93,10 @@
     \table
     \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
 
-    \row \li {1,26} Qt Core
+    \row \li {1,28} Qt Core
 
-    \row \li \l{QCrashHandler class}{QCrashHandler}
-         \li Parts of implementation of QCrashHandler class. \li BSD-style \li
+    \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
+         \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
     \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput(). \li Modified BSD \li
     \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
          \li Specific parts of the Qt for OS X Cocoa port. \li BSD-style \li \l{Qt for OS X}
@@ -146,6 +146,9 @@
          \li implements the SHA-3 encryption algorithm. \li BSD \li
     \row \li \l{Data Compression Library (zlib) version 1.2.5}{zlib}
          \li zlib is a general purpose data compression library. \li BSD-style \li
+    \row \li \l{The Public Suffix List}
+         \li A list of all known public Internet suffixes. \li Mozilla Public License \li
+    \row \li \li \li \li
 
     \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
@@ -157,7 +160,7 @@
     \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine. \li BSD-style \li
     \row \li \l{FreeType 2 (freetype) version 2.3.12}{FreeType 2}
          \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
-    \row \li \l{PNG Reference Library (libpng) version 1.5.10}{PNG Reference Library}
+    \row \li \l{PNG Reference Library (libpng) version 1.6.17}{PNG Reference Library}
          \li A library for reducing the time and effort it takes to support the PNG format. \li BSD-style \li
     \row \li \l{Pixman (pixman) version 0.17.11}{Pixman}
          \li Pixman is a library that provides low-level pixel manipulation features such as image compositing and trapezoid rasterization. \li BSD-style \li
@@ -173,13 +176,6 @@
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Poly2Tri}
          \li Poly2Tri is a sweepline constrained Delaunay Polygon Triangulation Library. \li BSD-style \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Network
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{The Public Suffix List}
-         \li A list of all known public Internet suffixes. \li Mozilla Public License \li
     \row \li \li \li \li
 
     \row \li {1,4} Qt Multimedia
@@ -302,7 +298,7 @@
          \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files. \li BSD \li
     \row \li \l{MNG Library (libmng) version 1.0.10}{MNG}
          \li Support decoding and displaying of MNG format image files. \li BSD-style \li
-    \row \li \l{WebP (libwebp) version 0.4.0}{WebP}
+    \row \li \l{WebP (libwebp) version 0.4.3}{WebP}
          \li Support decoding and displaying of WebP format image files. \li BSD-style \li
     \row \li \li \li \li
     \row \li \li \li \li
@@ -396,7 +392,7 @@
         \li \c {src/3rdparty/android/extract.h}
     \endlist
 
-    \section1 QCrashHandler class
+    \section1 QSegfaultHandler Class
 
     Copyright (c) 1998 by Bjorn Reese <breese@imada.ou.dk>
 
@@ -410,7 +406,8 @@
     CONTRIBUTORS ACCEPT NO RESPONSIBILITY IN ANY CONCEIVABLE MANNER.
 
     \list
-    \li Parts of the QCrashHandler class
+    \li Parts of the QSegfaultHandler class in
+        \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
     \endlist
 
     \section1 FreeType
