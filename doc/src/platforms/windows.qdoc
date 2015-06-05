@@ -91,7 +91,7 @@
 
     \section2 Visual Studio Add-in
 
-    The Qt Visual Studio Add-in allows programmers to create, build, debug
+    The \l {Qt Visual Studio Add-in} allows programmers to create, build, debug
     and run Qt applications from within non-Express versions of Microsoft Visual Studio
     2008, 2010, and 2012. The add-in contains project wizards, Qt project import/export
     support, integrated Qt resource manager and automated build setup for
@@ -628,8 +628,8 @@
 
     \note To support HTML5 videos, you must additionally deploy
     \c ffmpegsumo.dll (WebM codec plugin) into the \c qtwebengine directory
-    under the application install path, and ensure that \c Prefix or
-    \c PluginsPath variable is set to "." in
+    under the application install path or under the path that the
+    \c PluginsPath variable was set to in
     \c{<Qt install path>/<Qt version>/msvc2013/qt.conf}.
 
     Remember that if your application depends on compiler specific
