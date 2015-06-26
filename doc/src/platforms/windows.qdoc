@@ -291,9 +291,17 @@
     The following feature keywords are relevant for choosing the OpenGL implementation:
 
     \list
-        \li \c disable_desktopgl - Disables Desktop OpenGL
-        \li \c disable_angle - Disables ANGLE
-        \li \c disable_d3d11 - Disables the D3D11 rasterizer in ANGLE
+        \li \c disable_desktopgl - Disables OpenGL. This ensures that Qt does not attempt
+        to use regular OpenGL (opengl32.dll), and that it starts with ANGLE right
+        away. This is useful to prevent bad OpenGL drivers from crashing the application.
+
+        \li \c disable_angle - Disables ANGLE. Ensures that Qt does not attempt to use
+        ANGLE (and so Direct3D).
+
+        \li \c disable_d3d11 - Disables the D3D11 rasterizer in ANGLE. Instead, the next
+        D3D rendering option is tried first. The default order is: D3D11, D3D9, WARP,
+        reference implementation.
+
         \li \c disable_d3d9 - Disables the D3D9 rasterizer in ANGLE
     \endlist
 
@@ -325,6 +333,42 @@
     used. This typically includes some older, less-capable graphics cards with
     \c disable_desktopgl set, in order to prevent Qt from using their unstable
     desktop OpenGL implementations and instead fall back to ANGLE right away.
+
+    In practice the most common combinations are expected to be the following:
+
+    \list
+        \li \c disable_desktopgl - In case the system provides OpenGL 2.0 or newer, but
+        the driver is known to be unstable and prone to crash.
+
+        \li \c disable_desktopgl, disable_angle - When no accelerated path is
+        desired. This ensures that the only option Qt tries is the sofware rasterizer
+        (opengl32sw.dll). Can be useful in virtual machines and applications that are
+        deployed on a wide range of old systems.
+
+        \li \c disable_d3d11, disable_d3d9 - When the accelerated D3D options are known to
+        be unstable and WARP is desired (when available). Can be useful in virtual machines.
+    \endlist
+
+    The supported keys for matching a given card or driver are the following. Note that
+    some of these are specific to Qt.
+
+    \list
+        \li \c os.type - Operating system: \c win, \c linux, \c macosx, \c android
+        \li \c os.version - Kernel version
+        \li \c os.release - Specifies a list of operating system releases on Windows:
+        \c xp, \c vista, \c 7, \c 8, \c 8.1, \c 10.
+
+        \li \c vendor_id - Vendor from the adapter identifier
+
+        \li \c device_id - List of PCI device IDs.
+
+        \li \c driver_version - Driver version from the adapter identifier
+
+        \li \c driver_description - Matches when the value is a substring of the driver
+        description from the adapter identifier
+
+        \li \c gl_vendor - Matches when the value is a substring of the \c GL_VENDOR string
+    \endlist
 
     \section1 Building from Source
 
