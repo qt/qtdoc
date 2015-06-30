@@ -53,7 +53,7 @@
 
     \list
         \li You want to deploy your application to more than one device
-            platform, such as Android, BlackBerry, and iOS, or more than one
+            platform, such as Android and iOS, or more than one
             device screen configuration.
         \li Your want to be prepared for new devices that might appear on the
             market after your initial deployment.
@@ -426,8 +426,8 @@
     You can use the QQmlFileSelector to apply a QFileSelector to QML file
     loading. This enables you to load altenative resources depending on the
     platform on which the application is run. For example, you can use the
-    \c +android and \c +blackberry file selectors to load different image files
-    when run on Android and BlackBerry devices.
+    \c +android file selector to load different image files
+    when run on Android devices.
 
     You can use file selectors together with singleton objects to access a
     single instance of an object on a particular platform.

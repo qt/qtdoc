@@ -93,7 +93,7 @@
     \table
     \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
 
-    \row \li {1,28} Qt Core
+    \row \li {1,30} Qt Core
 
     \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
          \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
@@ -134,6 +134,10 @@
 
     \row \li \l{Android GNU C++ Run-time Licensing}{Android C++ Run-time}
          \li GNU C++ run-time library (libstdc++) for Android. \li GPLv3 with exception \li \l{Qt for Android}
+    \row \li \l{forkfd}
+         \li A tool to facilitate spawning sub-processes. \li MIT \li Unix systems
+    \row \li \l{FreeBSD strtoll and strtoull}
+         \li Functions for converting a string to long long integer. \li BSD \li
     \row \li \l {MD4 (md4.cpp and md4.h)}{MD4}
          \li implements the MD4 message-digest algorithm. \li BSD \li
     \row \li \l{MD5 (md5.cpp and md5.h)}{MD5}
@@ -153,6 +157,8 @@
     \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
          \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
+    \row \li \l{qimage-legalese}{QImage}
+         \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
@@ -168,7 +174,6 @@
          \li Allows users to transfer information between and within applications. \li BSD-style \li
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
-    \row \li \li \li \li
     \row \li \li \li \li
 
     \row \li {1,4} Qt Location
@@ -363,7 +368,7 @@
     This page lists the licenses used, names the authors, and links
     to the places where it is used.
 
-    Digia gratefully acknowledges these and other contributions
+    The Qt Company gratefully acknowledges these and other contributions
     to Qt. We recommend that programs that use Qt also acknowledge
     these contributions, and quote these license statements in an
     appendix to the documentation.

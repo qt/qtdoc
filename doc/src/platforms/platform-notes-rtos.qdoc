@@ -33,8 +33,8 @@
 
     Qt for VxWorks is available only under a commercial license.
 
-    Please contact Qt sales at Digia to find out more:
-    http://info.qt.digia.com/contact-qt
+    Please contact Qt sales to find out more:
+    \l http://www.qt.io/contact-us/
 
 */
 
@@ -58,7 +58,7 @@
         \li \l {http://www.qnx.com/download/group.html?programid=26076}{QNX CAR Platform 2.1}.
     \endlist
 
-    Qt 5 is currently tested and supported on QNX SDP 6.5 SP1 and on SDP 6.6 with QNX SDK for
+    Qt 5 is currently tested and supported on QNX SDP 6.6 with QNX SDK for
     Apps and Media, see the section \l {Build Requirements} for more details. Supported
     architectures are ARMle-v7 and x86. Older QNX SDP releases and other architectures may also
     work, but are not subject to regular builds and testing.
@@ -98,12 +98,6 @@
         \l{http://www.qnx.com/download/group.html?programid=26072}{QNX SDK for Apps and Media 1.0} which provides
         \c{fontconfig} and multimedia support along with other features. In this case, Qt will use the
         internal font database instead of \c{fontconfig}, and \l{Multimedia}{multimeida} will be not functional.
-        \li \l {http://www.qnx.com/download/group.html?programid=20905}{SDP 6.5.0 SP1}
-        supplemented by the \l {http://www.qnx.com/developers/docs/660/topic/com.qnx.doc.screen/topic/manual/cscreen_about.html}
-        {QNX Screen Graphics Subsystem} (also called just "Screen") as an add-on. The Screen is
-        a standard component of SDP 6.6 and newer, but for SDP 6.5 it is available upon a request
-        only, contact QNX Software Systems (info@qnx.com). You should also install possibly all
-        patches for SDP 6.5 as provided by QNX Software Systems.
     \endlist
 
     The compiler and other parts of the tool chain are provided in the SDP packages. You do not need
@@ -133,16 +127,6 @@
     option with \c{configure} as well, for example, \c{-prefix <Qt-install-path>}. This specifies the
     target folder where Qt will be installed and places all build artifacts outside of the
     source code tree.
-
-    As noted above, building Qt 5 with QNX SDP 6.5.0 SP1 requires the Screen. Qt 5 needs
-    related headers and libraries and will not build if they are not available. QNX SDP 6.5.0 SP1
-    contains an older version of SQLite which is not supported by Qt 5 anymore. You should use the
-    SQLite provided with the Qt 5 source code. This is the default behavior of \c{configure} anyway,
-    just do not force the system SQLite with \c{-system-sqlite}. QNX SDP 6.5.0 SP1 does not provide
-    fontconfig. Qt will fall back to its internal font database. This limits the flexibility with
-    handling fonts, but it is not a serious issue for most projects. Many other Qt 5 add-on modules
-    will probably not build with QNX SDP 6.5.0 SP1, since their development has advanced too far
-    to support that older release of SDP.
 
     \section1 Qt Runtime Target Requirements
 
@@ -338,13 +322,6 @@
     impossible. Make sure that you use a destination folder which meets your needs. You can
     set it in the \c{install.path} variable in the \c{.pro} file of your project, see
     \l{Installing Files} in the \l {QMake} documentation for more details.
-
-    \section1 Take a look at the Qt port for BlackBerry 10
-
-    The BlackBerry 10 platform is based on the QNX Neutrino RTOS. Even though BlackBerry 10
-    devices and other embedded device running QNX Neutrino RTOS are very different, Qt on
-    BlackBerry 10 and Qt on QNX Neutrino RTOS have a lot in common. Take a look at
-     \l{Platform and Compiler Notes - BlackBerry} to learn more.
 
 */
 
