@@ -32,8 +32,8 @@
 
     Qt for WinRT allows you to run Qt applications on devices supporting the
     Windows Store App APIs. This includes Modern UI applications in Windows 8.1
-    and up, as well as devices running the Windows RT and Windows
-    Phone 8.
+    and up, as well as devices running Windows RT 8.1 and Windows Phone 8.1
+    and up.
 
     Microsoft introduced a new design paradigm with the Windows 8 Modern UI. A
     core part of this new approach is Windows Runtime (WinRT) that supports
@@ -63,12 +63,18 @@
         \li Windows RT
         \li Visual Studio 2013 for Windows
     \row
-        \li Windows Phone 8
-        \li Visual Studio 2012 for Windows Phone
+        \li Windows Phone 8.1
+        \li Visual Studio 2013 for Windows Phone
+    \row
+        \li Windows 10
+        \li Visual Studio 2015
     \endtable
 
     If you are targeting a remote device, please follow all instructions by
     Visual Studio to set it up correctly.
+
+    If you are targeting an emulator for Windows Phone, Windows 8.1 Pro is
+    required by Microsoft to launch the emulator itself.
 
     \section1 Getting Started
 
@@ -134,7 +140,7 @@
     \c arm, \c x86, or \c x64. The following is an example of building qtbase
     for WinRT:
     \code
-        > ./configure -xplatform winrt-x64-msvc2012 -developer-build -release
+        > ./configure -xplatform winrt-x64-msvc2013 -release
         > nmake/jom
     \endcode
 
@@ -154,9 +160,6 @@
     using a \c plugins folder as root. For more information, see
     \l{Qt for Windows - Deployment}.
 
-    Additionally, any pre-compiled shaders used by OpenGL applications must
-    also be packaged. See \l{OpenGL Shaders on WinRT}.
-
     As WinRT applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
 
@@ -165,24 +168,12 @@
     and copies Qt libraries and plugins to the appropriate directories, as
     necessary.
 
-    In order to be able to run debug builds of your applications you have to
-    register the correct VCLib debug framework. This framework provides the
-    \b{C++ Runtime} for Modern UI applications and its files can usually be found in
-    \b{<Path to Microsoft SDKs>\\<Windows version>\\ExtensionSDKs\\Microsoft.VCLibs\\<VC Version>\\AppX\\Debug\\<CPU architecture>}
-    To register the debug VCLibs for x64 for Visual Studio 2013
-    on Windows 8.1, run the following command in PowerShell:
-    \code
-        > Add-AppxPackage 'C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.12.00.appx'
-    \endcode
-    \note \l{winrtrunner}{The WinRT Runner Tool} installs these dependencies automatically.
-
     Because all resources are placed to one directory, you can register the
     directory using an XML file (AppxManifest.xml) and Windows Powershell. The reference
     for these manifest files can be found
     \l{http://msdn.microsoft.com/en-us/library/windows/apps/br211473.aspx}{here}.
-    If you are using a debug build, your AppxManifest has to provide information about
-    its dependency on the just added VCLibs. Additionally, the target processor
-    architecture must be specified (as opposed to the default, 'neutral').
+    The target processor architecture must be specified (as opposed to the default,
+    'neutral').
     As soon as these requirements are met, change into your \e packaged directory in
     PowerShell and call:
     \code
@@ -190,7 +181,7 @@
     \endcode
     \note \l{winrtrunner}{The WinRT Runner Tool} can perform the same operation with the --install option.
 
-    If that worked, you should be able to find your application in Windows 8's
+    If that worked, you should be able to find your application in Windows 8.1's
     start screen. To remove your application, use Windows' built-in way to
     uninstall applications (right-click or tap and hold the application and
     choose \c{Uninstall}).
@@ -251,69 +242,4 @@
                                         upon. Arguments after the package name will
                                         be passed to the application when it starts.
     \endcode
-
-    \section1 OpenGL Shaders on WinRT
-    Qt for WinRT uses \l{ANGLE} to provide its OpenGL implementation, which generates
-    Direct3D HLSL from OpenGL shader source code, and this source code must be
-    compiled before it can be used by OpenGL APIs, such as those used by the
-    \l{Qt Quick Scene Graph}. This is normally accomodated at runtime by the
-    D3D Compiler DLL. However, the traditional D3D Compiler DLL is not available
-    for use by Windows Phone 8.0 applications. Therefore, a proxy drop-in replacement,
-    \c{d3dcompiler_qt.dll}, was created to provide precompiled shader binaries
-    from a service running on the host machine, or from a local file path or
-    \l{The Qt Resource System}{resource file}.
-    \note The D3D Compiler API is allowed in Windows 8.1 and Windows Phone 8.1, so
-    shader precompilation is not required (but may still be used) on those platforms.
-
-    \section2 Using the Qt D3D Shader Service
-    \target qtd3dservice
-    The Qt D3D Shader Service can be found in QTDIR/bin/qtd3dservice. It is designed
-    to automatically detect Qt applications running locally and on connected
-    Windows Phone devices and emulators. To use it, simply start the \c{qtd3dservice}
-    executable with no arguments. It will then run indefinitely, servicing applications
-    until it is stopped. Other options may be passed to get additional debug output
-    or collect information on previously observed shader sources and binaries.
-
-    \badcode
-    Usage: qtd3dservice.exe [options]
-
-    Options:
-      --output <file>    Writes output to a file.
-      --verbose <level>  Sets the verbosity level of the message output (0 - silent,
-                         1 -info, 2 - debug). Defaults to 1.
-      --list-source      Lists the known shader sources. Use with --app and/or
-                         --device to narrow the scope.
-      --list-binary      Lists the known shader binaries. Use with --app and/or
-                         --device to narrow the scope.
-      --app <name>       Specifies the application to act upon.
-      --device <name>    Specifies the device to act upon.
-      --qrc              Outputs the content of --list-source/--list-binary in Qt
-                         resource file format.
-      -?, -h, --help     Displays this help.
-    \endcode
-
-    \section2 Packaging Shaders for Deployment
-    While \l{qtd3dservice} will pick up shader sources and generate shader binaries
-    during runtime, it obviously cannot be used in published applications. It is
-    the responsibility of the developer to package these shader "blobs" with the
-    application before publishing. To do so, first run through your application
-    on the target device to make sure all shader sources have been compiled. You
-    can confirm this by running the application without the shader service
-    running, as the blobs will be picked up from the local device cache.
-
-    Once this has been done, generate a QRC for packaging the shader blobs into
-    the application. For example, to get a QRC for a Windows Phone device and an
-    application ID of {975735f9-70ac-4593-b1cb-a9bec8cad348}, you would use the
-    following command:
-    \code
-        > qtd3dservice --list-binary --qrc --device 0 --app {975735f9-70ac-4593-b1cb-a9bec8cad348} --output /path/to/project/shaders.qrc
-    \endcode
-
-    You may then include this file in your qmake project file using the following
-    line:
-    \code
-        RESOURCES += shaders.qrc
-    \endcode
-    The precompiled shaders will be used by ANGLE when encountered in your
-    application.
 */
