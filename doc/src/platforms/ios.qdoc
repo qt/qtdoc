@@ -545,12 +545,13 @@
     like the following code snippet to the .pro file:
     \badcode
     ios {
-        launch_images.files = $$PWD/ios/Launch.xib $$files($$PWD/ios/LaunchImage*.png)
-        QMAKE_BUNDLE_DATA += launch_images
+        app_launch_images.files = $$PWD/ios/Launch.xib $$files($$PWD/ios/LaunchImage*.png)
+        QMAKE_BUNDLE_DATA += app_launch_images
     }
     \endcode
 
     This allows you to produce universal applications with valid LaunchImages as required by the Apple App Store.
+    \important \c "launch_images" is used internally by Qt, so it will be overwritten if used in your .pro file.
 
     \section1 Publishing to Apple App Store
 
