@@ -53,6 +53,11 @@
     \row \li \c{-p} \li Don't generate guards against multiple inclusion (\c #ifndef FOO_H ...).
     \row \li \c{-h} \li Display the usage and the list of options.
     \row \li \c{-v} \li Display \c{uic}'s version number.
+    \row \li \c{-d} \li Display the dependencies for the UI.
+    \row \li \c{-n} \li Don't generate any #include directives.
+    \row \li \c{--postfix <postfix>} \li Append \c <postfix> to all generated classnames.
+    \row \li \c{--include <file>} \li Add #include \c <file> to the output.
+
     \endtable
 
     \section1 Examples
