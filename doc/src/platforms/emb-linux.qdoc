@@ -273,11 +273,23 @@
   \section1 Input
 
   When no windowing system is present, the mouse, keyboard and touch input are
-  read directly via \c evdev or using helper libraries like \c tslib. Note that
-  this requires that devices nodes \c {/dev/input/event*} are readable by the
-  user. eglfs and linuxfb has all the evdev input handling code built-in.
+  read directly via \c evdev or using helper libraries like \c libinput or
+  \c tslib.  Note that this requires that devices nodes \c {/dev/input/event*} are
+  readable by the user. eglfs and linuxfb have all the input handling code
+  compiled-in.
 
-  \section2 Input on eglfs and linuxfb
+  \section2 Using libinput
+
+  \l{http://www.freedesktop.org/wiki/Software/libinput}{libinput} is a library
+  to handle input devices. It offers an alternative to the Qt's own evdev input
+  support. To enable using libinput, make sure the development files for libudev
+  and libinput are available when configuring and building Qt. xkbcommon is also
+  necessary if keyboard support is desired. With eglfs and linuxfb no further
+  actions are necessary as libinput will be used by default. If libinput support
+  is not available or the environment variable \c QT_QPA_EGLFS_NO_LIBINPUT is
+  set, Qt's own evdev handlers will be used as described below.
+
+  \section2 Input on eglfs and linuxfb without libinput
 
   Parameters like the device node name can be set in the environment variables
   \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS and
@@ -405,17 +417,6 @@
   \c{QT_QPA_GENERIC_PLUGINS=evdevtablet:/dev/event1}, in case the Qt's automatic
   device discovery (based either on \e libudev or a walkthrough of
   \c{/dev/input/event*}) is not functional or misbehaving.
-
-  \section2 Using libinput
-
-  \l{http://www.freedesktop.org/wiki/Software/libinput}{libinput} is a library to
-  handle input devices. It offers an alternative to the default evdev input
-  support. To switch to using libinput, first make sure the development files
-  for libudev and libinput are available when configuring and building Qt. This
-  will result in building the libinput plugin. Then, if using eglfs or linuxfb,
-  disable the built-in input handlers by setting \c QT_QPA_EGLFS_DISABLE_INPUT
-  or \c QT_QPA_FB_DISABLE_INPUT to \c 1. Finally, launch the application with
-  \c{-plugin libinput}.
 
   \section2 Debugging Input Devices
 
