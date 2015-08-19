@@ -568,4 +568,9 @@
 
   The Qt Wayland module provides a \c wayland platform plugin that allows Qt
   application to connect to a Wayland compositor.
+
+  \note Please note that you may experience issues with touch screen input with
+  the \l{http://wayland.freedesktop.org/}{Weston} reference compositor. Please
+  refer to the \l{https://wiki.qt.io/WestonTouchScreenIssues}{Qt Wiki} for
+  further information.
 */
