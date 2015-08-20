@@ -367,6 +367,13 @@
     \row \li \l[QtSerialBus]{Qt Serial Bus}
          \li Provides access to the SocketCAN serial bus interface. However, the module is designed
              so that it can be extended with access to any serial bus backend.
+    \row \li \l{Qt Quick Controls 2}
+         \li Provides lightweight QML types for creating performant user
+             interfaces for embedded and mobile devices. These controls achieve
+             improved efficiency by employing a simplified styling architecture
+             when compared to \l {Qt Quick Controls}, on which the module is based.
+             These types work in conjunction with \l{Qt Quick} and \l{Qt Quick
+             Layouts}.
     \endtable
 
     \section1 Qt Tools
