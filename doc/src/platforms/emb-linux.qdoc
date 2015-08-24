@@ -540,6 +540,21 @@
 
   Use the \c fb plugin parameter to specify the framebuffer device to use.
 
+  \section1 Fonts
+
+  Qt normally uses \c fontconfig to provide access to system fonts. If
+  \c fontconfig is not available, Qt will fall back to using
+  \c QBasicFontDatabase. In this case, Qt applications will look for fonts in Qt's
+  \c lib/fonts directory. Qt will automatically detect pre-rendered fonts and
+  TrueType fonts. This directory can be overridden by setting the \c
+  QT_QPA_FONTDIR environment variable.
+
+  For more information on the supported formats, see \l{Qt for Embedded Linux Fonts}.
+
+  \note Qt no longer ships any fonts in the \c lib/fonts directory. This
+  means that it is up to the platform (the system image) to provide the
+  necessary fonts.
+
   \section1 Platform Plugins for Windowing Systems on Embedded Linux Devices
 
   \section2 XCB
