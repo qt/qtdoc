@@ -95,8 +95,8 @@
 
     \row \li {1,30} Qt Core
 
-    \row \li \l{QCrashHandler class}{QCrashHandler}
-         \li Parts of implementation of QCrashHandler class. \li BSD-style \li
+    \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
+         \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
     \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput(). \li Modified BSD \li
     \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
          \li Specific parts of the Qt for OS X Cocoa port. \li BSD-style \li \l{Qt for OS X}
@@ -157,6 +157,8 @@
     \row \li {1,12} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
          \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
+    \row \li \l{qimage-legalese}{QImage}
+         \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
@@ -172,7 +174,6 @@
          \li Allows users to transfer information between and within applications. \li BSD-style \li
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
-    \row \li \li \li \li
     \row \li \li \li \li
 
     \row \li {1,4} Qt Location
@@ -367,7 +368,7 @@
     This page lists the licenses used, names the authors, and links
     to the places where it is used.
 
-    Digia gratefully acknowledges these and other contributions
+    The Qt Company gratefully acknowledges these and other contributions
     to Qt. We recommend that programs that use Qt also acknowledge
     these contributions, and quote these license statements in an
     appendix to the documentation.
@@ -396,7 +397,7 @@
         \li \c {src/3rdparty/android/extract.h}
     \endlist
 
-    \section1 QCrashHandler class
+    \section1 QSegfaultHandler Class
 
     Copyright (c) 1998 by Bjorn Reese <breese@imada.ou.dk>
 
@@ -410,7 +411,8 @@
     CONTRIBUTORS ACCEPT NO RESPONSIBILITY IN ANY CONCEIVABLE MANNER.
 
     \list
-    \li Parts of the QCrashHandler class
+    \li Parts of the QSegfaultHandler class in
+        \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
     \endlist
 
     \section1 FreeType

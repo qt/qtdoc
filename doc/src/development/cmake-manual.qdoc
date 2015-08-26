@@ -143,10 +143,12 @@
     \c{find_package}(Qt5Widgets) will make the following variables available if successfully found:
 
     \list
-    \li Qt5Widgets_VERSION_STRING
-    \li Qt5Widgets_LIBRARIES List of libraries for use with the target_link_libraries command, for example.
-    \li Qt5Widgets_INCLUDE_DIRS List of libraries for use with the include_directories command, for example.
-    \li Qt5Widgets_DEFINITIONS List of definitions for use with add_definitions, for example.
+    \li Qt5Widgets_VERSION String describing the version of the module.
+    \li Qt5Widgets_VERSION_STRING Same as Qt5Widgets_VERSION.
+        Deprecated, use Qt5Widgets_VERSION instead.
+    \li Qt5Widgets_LIBRARIES List of libraries for use with the target_link_libraries command.
+    \li Qt5Widgets_INCLUDE_DIRS List of directories for use with the include_directories command.
+    \li Qt5Widgets_DEFINITIONS List of definitions for use with add_definitions.
     \li Qt5Widgets_COMPILE_DEFINITIONS List of definitions for use with the COMPILE_DEFINITIONS target property.
     \li Qt5Widgets_FOUND Boolean describing whether the module was found successfully.
     \li Qt5Widgets_EXECUTABLE_COMPILE_FLAGS String of flags to be used when building executables.
