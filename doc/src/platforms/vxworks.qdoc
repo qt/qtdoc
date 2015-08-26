@@ -36,7 +36,7 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
-  Qt5 is currently tested and supported on VxWorks 7. As VxWorks 7 does
+  Qt 5 is currently tested and supported on VxWorks 7. As VxWorks 7 does
   not have released versions, current minimum required release is the one dated May 8th, 2015.
   Supported architecture is ARM-v7.
 
@@ -162,11 +162,29 @@
   parameter. The name that follows after this argument must, at least partially,
   match one of the subdirectories under \e devices.
 
+  Before running configure and building Qt 5 it is required to open \e {VxWorks 7
+  Development Shell} in command prompt.
+
+  \list
+  \li Linux:
+  \badcode
+  cd <VxWorks 7 installation directory>
+  ./wrenv.sh -p vxworks-7
+  \endcode
+
+  \li Windows:
+  \badcode
+  cd <VxWorks 7 installation directory>
+  wrenv -p vxworks-7
+  \endcode
+  \endlist
+
   Below is an example configuration for the BD-SL-i.MX6. For most VxWorks boards
-  the configure command will look very similar.
+  the configure command will look very similar. By default, Qt 5 is configured to
+  use shared libraries. To build Qt 5 statically, add \c -static option for configure.
 
   \badcode
-    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd0:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_4_1_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -static
+    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd0:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_4_1_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl
   \endcode
 
   The most important parameters are \c -device, \c -device-option CROSS_COMPILE=<arch>,
@@ -177,7 +195,15 @@
   host machine has no relevance. Instead, the headers and the libraries for the
   target architecture (e.g. ARM) have to be present in the sysroot.
 
-  See \l {Qt Configure Options} for more information.
+  It is recommended to build Qt 5 using a \e{shadow build}. See \l {Qt Configure Options}
+  for more information.
+
+  \section1 Building and Installing Qt 5
+
+  \badcode
+  make -j<N>
+  make install
+  \endcode
 
   \section1 Platform Plugins for VxWorks Devices
 
@@ -192,7 +218,7 @@
   hooks}, a single source file compiled in to the platform plugin, or as
   dynamically loaded \e {EGL device integration} plugins.
 
-  EGLFS is a platform plugin for running Qt5 applications on top of EGL and
+  EGLFS is a platform plugin for running Qt 5 applications on top of EGL and
   OpenGL ES 2.0 without an actual windowing system (like X11 or Wayland). In
   addition to Qt Quick 2 and native OpenGL applications it supports
   software-rendered windows (for example QWidget) too. In the latter case the
@@ -438,10 +464,24 @@
   the \c cursorsPerRow setting. Atlases have to provide an image for all the
   supported cursors.
 
+  \section1 Running Qt Applications
+
+  Following example shows how to start an application when Qt 5 is built using
+  shared libraries. With a statically build Qt 5, there is no need to use the
+  LD_LIBRARY_PATH environment variable. This variable is only needed to point
+  the location of VxWorks shared libraries (for example libc and OpenGL ES 2.0).
+  It is not needed for Qt 5 shared libraries.
+
+  \badcode
+  putenv "LD_LIBRARY_PATH=/sd0:1/lib"
+  cd "/sd0:1"
+  rtpSp("<Qt5_app>", 200, 0x100000, 0, 0x01000000)
+  \endcode
+
   \section1 Limitations
 
-  \section2 OpenSSl Support
-  Qt5 does not support OpenSSL for VxWorks as it does not support using OpenSSL
+  \section2 OpenSSL Support
+  Qt 5 does not support OpenSSL for VxWorks as it does not support using OpenSSL
   in RTP mode.
 
   \section2 Video Memory
