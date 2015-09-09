@@ -135,6 +135,13 @@
     this will only create binaries for WinRT. You will need Visual Studio for
     Windows Desktop as well to create those desktop tools.
 
+    Please make sure to use an x86 command prompt (either use the \e {VS x86 Native
+    Tools Command Prompt} or call \e vcvarsall.bat without any parameter or with \c x86)
+    for every WinRT/Windows Phone build. While the toolchain which is used for the
+    target is set automatically, the command prompt decides what will be used for the
+    host tools like \e qmake or \e moc. Building these tools might fail if another
+    command prompt is used.
+
     The WinRT mkspec format is \c {<platform>-<architecture>-<toolchain>}
     where \e platform can be \c winrt or \c winphone and architecture can be
     \c arm, \c x86, or \c x64. The following is an example of building qtbase
