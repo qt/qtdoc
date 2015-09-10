@@ -1011,7 +1011,7 @@
 
     \badcode
 Usage: windeployqt [options] [files]
-Qt Deploy Tool 5.4.0
+Qt Deploy Tool 5.6.0
 
 The simplest way to use windeployqt is to add the bin directory of your Qt
 installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
@@ -1028,6 +1028,7 @@ Options:
   --debug                    Assume debug binaries.
   --release                  Assume release binaries.
   --release-with-debug-info  Assume release binaries with debug information.
+  --pdb                      Deploy .pdb files (MSVC).
   --force                    Force updating files.
   --dry-run                  Simulation mode. Behave normally, but do not
                              copy/update any files.
@@ -1044,6 +1045,7 @@ Options:
   --json                     Print to stdout in JSON format.
   --angle                    Force deployment of ANGLE.
   --no-angle                 Disable deployment of ANGLE.
+  --no-opengl-sw             Do not deploy the software rasterizer library.
   --list <option>            Print only the names of the files copied.
                              Available options:
                               source:   absolute path of the source files
@@ -1062,7 +1064,8 @@ enginio gui qthelp multimedia multimediawidgets multimediaquick network nfc
 opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
 script scripttools sensors serialport sql svg test webkit webkitwidgets
 websockets widgets winextras xml xmlpatterns webenginecore webengine
-webenginewidgets
+webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput geoservices
+webchannel
 
 Arguments:
   [files]                    Binaries or directory containing the binary.
