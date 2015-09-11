@@ -441,7 +441,7 @@
     The code defines the private function that is executed when QPushButton
     emits the \l{QPushButton::}{clicked()} signal.
 
-    We now complement the code to have the \l{QApplication::}{quit()} slot of
+    We now complement the code to have the \l{QCoreApplication::}{quit()} slot of
     QApplication exit Notepad:
 
     \snippet snippets/widgets-tutorial/notepad/notepad.cpp 1

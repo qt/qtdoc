@@ -94,7 +94,7 @@
         \li Added support for SHA3 to QCryptographicHash
         \li Added toInt(), toUInt(), and similar functions to QStringRef
         \li A new threadsafe initialization of global statics through refactored
-            \l Q_GLOBAL_STATIC().
+            \l Q_GLOBAL_STATIC.
         \li A new class, QLockFile, provides locking between processes using a
         file. This lock enables applications to check that there is only one
         instance of it running.

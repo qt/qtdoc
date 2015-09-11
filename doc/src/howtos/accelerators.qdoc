@@ -43,7 +43,7 @@
 
     The emboldened letter plus Alt is Microsoft's recommended choice, and
     we recommend supporting it. For an Apply button, for example, we
-    recommend QAbstractButton::setText(\link QWidget::tr() tr \endlink("&Apply"));
+    recommend QAbstractButton::setText(\link QObject::tr() tr \endlink("&Apply"));
 
     If you have conflicting commands (e.g. About and Apply buttons in the
     same dialog), you must decide for yourself.
