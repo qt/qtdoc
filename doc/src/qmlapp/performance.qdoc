@@ -1084,14 +1084,12 @@ or by utilizing a memory-managed runtime with garbage collection (such as JavaSc
 
 JavaScript provides garbage collection. Memory which is allocated on the JavaScript
 heap (as opposed to the C++ heap) is owned by the JavaScript engine. The engine will
-periodically collect all unreferenced data on the JavaScript heap, and if fragmentation
-becomes an issue, it will compact its heap by moving all "living" data into a contiguous
-region of memory (allowing the freed memory to be returned to the operating system).
+periodically collect all unreferenced data on the JavaScript heap.
 
 \section4 Implications of Garbage Collection
 
-Garbage collection has advantages and disadvantages. It ensures that fragmentation is
-less of an issue, and it means that manually managing object lifetime is less important.
+Garbage collection has advantages and disadvantages. It means that manually managing
+object lifetime is less important.
 However, it also means that a potentially long-lasting operation may be initiated by the
 JavaScript engine at a time which is out of the application developer's control. Unless
 JavaScript heap usage is considered carefully by the application developer, the frequency
@@ -1117,7 +1115,7 @@ garbage collection since the user will not notice any degradation of user experi
 collector while activity is occurring.
 
 The garbage collector may be invoked manually by calling \c{gc()} within JavaScript.
-This will cause a comprehensive collection and compaction cycle to be performed, which
+This will cause a comprehensive collection cycle to be performed, which
 may take from between a few hundred to more than a thousand milliseconds to complete, and
 so should be avoided if at all possible.
 
