@@ -177,11 +177,11 @@
     computation across all available processor cores, so applications written today
     will continue to scale when deployed later on a system with more cores.
 
-    This module also provides the QtConcurrent::run() function, which can run any
-    function in another thread. However, QtConcurrent::run() only supports a subset
+    This module also provides the \l {QtConcurrent::run}() function, which can run any
+    function in another thread. However, \l {QtConcurrent::run}() only supports a subset
     of features available to the map, filter and reduce functions. The QFuture
     can be used to retrieve the function's return value and to check if the thread
-    is running. However, a call to QtConcurrent::run() uses one thread only, cannot
+    is running. However, a call to \l{QtConcurrent::run}() uses one thread only, cannot
     be paused/resumed/canceled, and cannot be queried for progress.
 
     See the \l{Qt Concurrent} module documentation for details on the individual functions.
@@ -219,7 +219,7 @@
         \li Feature
         \li QThread
         \li QRunnable and QThreadPool
-        \li QtConcurrent::run()
+        \li \l {QtConcurrent::run}()
         \li Qt Concurrent (Map, Filter, Reduce)
         \li WorkerScript
     \row
@@ -292,13 +292,13 @@
               \li Place the function in a reimplementation of QRunnable::run() and
                   add the QRunnable to a QThreadPool. Write to a \l{Synchronizing
                   Threads}{thread-safe variable} to update progress. OR
-              \li Run the function using QtConcurrent::run(). Write to a \l{Synchronizing
+              \li Run the function using \l {QtConcurrent::run}(). Write to a \l{Synchronizing
                   Threads}{thread-safe variable} to update progress.
             \endlist
     \row
         \li One call
         \li Run an existing function within another thread and get its return value.
-        \li Run the function using QtConcurrent::run(). Have a QFutureWatcher emit
+        \li Run the function using \l{QtConcurrent::run}(). Have a QFutureWatcher emit
             the \l{QFutureWatcher::}{finished()} signal when the function has
             returned, and call QFutureWatcher::result() to get the function's return
             value.
@@ -306,11 +306,11 @@
         \li One call
         \li Perform an operation on all items of a container, using all available
             cores. For example, producing thumbnails from a list of images.
-        \li Use Qt Concurrent's \l{QtConcurrent::}{filter()} function to select
-            container elements, and the \l{QtConcurrent::}{map()} function to apply
+        \li Use Qt Concurrent's \l{QtConcurrent::filter}() function to select
+            container elements, and the \l{QtConcurrent::map}() function to apply
             an operation to each element. To fold the output into a single result,
-            use \l{QtConcurrent::}{filteredReduced()} and
-            \l{QtConcurrent::}{mappedReduced()} instead.
+            use \l{QtConcurrent::filteredReduced}() and
+            \l{QtConcurrent::mappedReduced}() instead.
     \row
         \li One call/Permanent
         \li Perfrom a long computation in a pure QML application, and update the GUI
