@@ -32,7 +32,7 @@
 
 Qt for Android enables you to run Qt 5 applications on devices with Android
 v2.3.3 (API level 10) or later. All Qt modules (essential and add-on) are
-supported except Qt WebKit, Qt NFC, Qt Serial Port, and the
+supported except Qt WebKit, Qt Serial Port, and the
 platform-specific ones (Qt Mac Extras, Qt Windows Extras, and Qt X11 Extras).
 
 The following list summarizes what you can do with Qt for Android:
@@ -48,8 +48,10 @@ The following list summarizes what you can do with Qt for Android:
  \li Get \l{Qt Sensors}{sensor} readings and react to the changes.
  \li Retrieve current position data using satellite and network
      information.
- \li Establish a serial connection to other \l{Qt Bluetooth}{Bluetooth}
-     devices.
+ \li Connect and exchange data with \l{Qt Bluetooth}{Bluetooth}
+     and \l{Qt NFC}{NFC}-enabled devices.
+ \li Integrate Java code into your application using
+     \l{Qt Android Extras}.
  \li Develop secure applications using OpenSSL library.
  \li Create and deploy Application Package (APK) using Qt Creator.
 \endlist
@@ -339,7 +341,7 @@ deployment are handled by Qt Creator providing rich developer experience.
 Every time you run the application using Qt Creator, an Android Application
 Package (APK) is created and deployed onto the target (device or emulator) you
 choose. With some minor changes to how the \e .apk is created, you can publish
-your application on Google Play and monetize from it. The following
+your application on Google Play and monetize. The following
 step-by-step instructions guide you to create an \e{.apk} that can go live
 on Google Play:
 \list 1

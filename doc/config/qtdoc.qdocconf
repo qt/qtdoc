@@ -63,7 +63,10 @@ depends += \
     qtxml \
     qtxmlpatterns \
     qt3dcore \
-    qt3drender
+    qt3drender \
+    qtcanvas3d \
+    qtwebview \
+    qtquickcontrols2
 
 headerdirs  += ../src
 imagedirs   += ../src/images \

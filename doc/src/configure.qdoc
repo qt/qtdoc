@@ -35,8 +35,7 @@
     as determine how Qt builds and deploys applications onto host platforms.
     This page discusses some of the configure options, but for
     the full list of options, enter the command \c{configure -h}. Configure
-    is located in \e qtbase but is also available from the main Qt source
-    directory.
+    should be run from the main Qt source directory.
 
     Unless stated otherwise, the commands in this page are for the Linux
     platforms. On OS X and on Windows, the \c PATH and directory structure
@@ -167,7 +166,7 @@
         \li \c -qt-pcre
         \li \c -system-pcre
     \row
-        \li HarfBuzz-NG (experimental)
+        \li HarfBuzz-NG
         \li \c -qt-harfbuzz
         \li \c -system-harfbuzz
     \endtable

@@ -59,7 +59,7 @@ the application.
 The files are part of the Qt package and are available when searched for
 \uicontrol{Qt Quick Text Editor} in Qt Creator's \uicontrol{Welcome mode}.
 All files used in the application are listed for viewing in the
-\l{Qt Quick Controls Text Editor Example} page.
+\l{Qt Quick Controls - Text Editor Example} page.
 
 \section1 Setting Up the Environment and Project
 
@@ -105,7 +105,7 @@ later in the guide:
 The text editor uses several icons to represent various actions. The icons are
 in the \e images directory which is directly under the \e TextEditor project
 directory. The images as well as the project files are also listed in the
-reference documentation on the \l{Qt Quick Controls Text Editor Example} page.
+reference documentation on the \l{Qt Quick Controls - Text Editor Example} page.
 
 We first need to register the image files into the project's resource file,
 \e qml.qrc. The resource files compact the images into the binary packages.
@@ -128,13 +128,13 @@ We will use these images later in the guide.
 Qt Creator then packages the images alongside your application in a single
 binary. For more information about resource files, see the
 \l{Managing Resource Files with the Qt Resource System} and the
-\l{Qt Resource System} pages.
+\l{The Qt Resource System} pages.
 
 \section1 Example Files
 
 The accompanying examples files are listed in the following page:
 \list
-\li \l{Qt Quick Controls Text Editor Example}
+\li \l{Qt Quick Controls - Text Editor Example}
 \endlist
 
 */
@@ -244,7 +244,7 @@ In the \uicontrol Navigator window, make sure that the tool bar is a child of th
 application window. To make the tool bar a child of the window, simply drag the tool bar
 underneath the application window.
 
-Within the tool bar, we need a \e{row} layout. Drag the \l{Row Layout} into the
+Within the tool bar, we need a \e{row} layout. Drag the \e{Row Layout} into the
 \uicontrol Navigator window and set it to be a child of the tool bar.
 
 Similarly, set these layout properties:
@@ -331,7 +331,7 @@ QML type and \l{Signal and Handler Event System}.
 
 The accompanying examples files are found in the following page:
 \list
-\li \l{Qt Quick Controls Text Editor Example}
+\li \l{Qt Quick Controls - Text Editor Example}
 \endlist
 
 */
@@ -345,7 +345,7 @@ The accompanying examples files are found in the following page:
 
 This part of the guide is about adding logic and backend to the
 text editor example. At this stage, the user interface is
-set up from the \l{Qt Quick Text Editor - Logic}{previous} stage.
+set up from the \l{Qt Quick Text Editor Guide - Logic}{previous} stage.
 
 \section1 Implementing the Logic and C++ Backend
 
@@ -374,7 +374,7 @@ The wizard creates a \uicontrol DocumentHandler class in two files,
 
 There are two functionalities we can expose to QML, the file loading and
 saving. We can do this by creating \e properties and binding them to C++
-functions through \l{Qt Property System}.
+functions through \l{Qt's Property System}.
 
 In the \e documenthandler.h header file, add the following functions with their
 respective access modifier:
@@ -521,7 +521,7 @@ these C++ functions in QML files.
 
 The accompanying examples files are found in the following page:
 \list
-\li \l{Qt Quick Controls Text Editor Example}
+\li \l{Qt Quick Controls - Text Editor Example}
 \endlist
 
 */
@@ -679,7 +679,7 @@ and QML file are already packaged into the binary file.
 
 The accompanying examples files are found in the following page:
 \list
-\li \l{Qt Quick Controls Text Editor Example}
+\li \l{Qt Quick Controls - Text Editor Example}
 \endlist
 
 */

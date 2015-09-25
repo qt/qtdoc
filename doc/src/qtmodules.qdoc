@@ -215,7 +215,8 @@
     \row
         \li \l[QtPositioning]{Qt Positioning}
         \li All
-        \li
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}[iOS}, \l{Qt for OS X}OS X,
+        \l{Qt for Linux/X11}{Linux}, \l{Qt for WinRT}{WinRT}.
         \li Provides access to position, satellite and area monitoring classes.
     \row
         \li \l[QtPrintSupport]{Qt Print Support}
@@ -367,6 +368,13 @@
     \row \li \l[QtSerialBus]{Qt Serial Bus}
          \li Provides access to the SocketCAN serial bus interface. However, the module is designed
              so that it can be extended with access to any serial bus backend.
+    \row \li \l{Qt Quick Controls 2}
+         \li Provides lightweight QML types for creating performant user
+             interfaces for embedded and mobile devices. These controls achieve
+             improved efficiency by employing a simplified styling architecture
+             when compared to \l {Qt Quick Controls}, on which the module is based.
+             These types work in conjunction with \l{Qt Quick} and \l{Qt Quick
+             Layouts}.
     \endtable
 
     \section1 Qt Tools
