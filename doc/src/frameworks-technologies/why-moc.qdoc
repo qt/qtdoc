@@ -39,16 +39,16 @@
     impossible to express with templates. A generic vector container class
     is easily expressible, even with partial specialisation for pointer
     types, while a function that sets up a graphical user interface based
-    on a XML description given as a string is not expressible as
-    template. And then there is gray area in between. Things that you can
+    on an XML description given as a string is not expressible as a
+    template. And then there is a gray area in between. Things that you can
     hack with templates at the cost of code size, readability,
     portability, usability, extensability, robustness and ultimately
     design beauty. Both templates and the C preprocessor can be stretched
     to do incredibility smart and mind boggling things. But just because
-    those things can be done, does not necessarily mean doing them is the
-    right design choice. Code unfortunately is not meant to be published in
+    those things can be done, it does not necessarily mean doing them is the
+    right design choice. Code, unfortunately, is not meant to be published in
     books, but compiled with real-world compilers on real-world operating
-    system.
+    systems.
 
     Here are some reasons why Qt uses the moc:
 

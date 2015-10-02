@@ -394,18 +394,22 @@
            latter is outdated.
 
 
-    Qt WebKit and ANGLE depend on these extra tools from the \l{GnuWin32
-    Project} which are provided for your convenience in the \e gnuwin32/bin
+    Qt WebKit and ANGLE depend on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
+    \l {http://sourceforge.net/projects/winflexbison/}{Win flex-bison}
+    projects, which are provided for your convenience in the \e gnuwin32/bin
     folder:
     \list
-        \li \l{http://gnuwin32.sourceforge.net/downlinks/bison.php}{Bison}
         \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
-        \li \l{http://gnuwin32.sourceforge.net/downlinks/flex.php}{Flex}
+        \li \l{http://sourceforge.net/projects/winflexbison/files/win_flex_bison-2.5.5.zip/download}{Bison, Flex}
     \endlist
 
     The \e gnuwin32/bin folder should be added to the \c PATH variable.
 
-    For instructions for building the Qt 5 source,read
+    \note If you are building qtbase outside of qt5.git, you will need to
+    download \e win_bison and \e win_flex from the link above and rename
+    them to \e bison and \e flex.
+
+    For instructions for building the Qt 5 source, read
     the \l{Qt for Windows - Building from Source} page.
 
     \section1 SDKs and Compilers
