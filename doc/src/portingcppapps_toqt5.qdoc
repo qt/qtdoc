@@ -29,7 +29,7 @@
 \title Porting C++ Applications to Qt 5
 \brief Provides instructions to migrate a Qt 4 C++ application to Qt 5.
 
-This topic talks about the Qt Widgets and Qt WebKit changes in Qt 5. The
+This topic talks about the Qt Widgets changes in Qt 5. The
 following step-by-step instructions take you through the changes required to
 port the \l{Animated Tiles Example}{Animated Tiles} application to Qt 5:
 
@@ -49,31 +49,11 @@ Once you see the application running, check whether it behaves as expected.
 
 \image animatedtiles_snapshot.png "A snapshot of the \c animatedtiles application running on Ubuntu v12.04"
 
-A similar change is needed to port Qt 4 C++ applications using Qt WebKit. The following
-step-by-step instructions take you through the changes required to achieve this:
+It is also possible to keep the project compiling with Qt 4 and Qt 5. This requires:
 
 \list 1
-   \li Open your project using Qt Creator.
-   \li Replace all \c {#include <QtWebKit>} instances with
-       \c {#include <QtWebKitWidgets>} in your project source.
-   \li Edit the \c{.pro} file and add \c {QT += webkitwidgets}.
-
-       \note If the \c {QT +=} statement already exists, append \c webkitwidgets
-       to it.
-   \li Save changes and run your application.
-\endlist
-
-For larger projects, we recommend initially enabling deprecated API by adding the define
-\code
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
-\endcode
-to the \c{.pro} file. In a second step, the define can be removed.
-
-It is possible to keep the project compiling with Qt 4 and Qt 5. This requires:
-
-\list 1
-   \li Omitting the module name from all includes. This is done by passing
-       the command line option \c --strip-modules to \c fixqt4headers.pl.
+   \li Omitting the module name from all includes by running the
+       \c fixqt4headers.pl script with the \c --strip-modules option.
    \li Adding scopes depending on the version of Qt to the \c{.pro} files:
        \code
        greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -87,6 +67,10 @@ It is possible to keep the project compiling with Qt 4 and Qt 5. This requires:
        #endif
        \endcode
 \endlist
+
+if you are using Qt WebKit, see
+\l{Porting from Qt WebKit to Qt WebEngine}{Qt WebKit to Qt WebEngine} porting
+instructions.
 
 \section1 Related Topics
 \list

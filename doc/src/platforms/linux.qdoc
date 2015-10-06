@@ -339,26 +339,16 @@
     distributions; try searching for \c gstreamer or \c libgstreamer in your
     distribution's package repository to find suitable packages.
 
-    \section1 Qt WebKit Dependencies
+    \section1 Qt WebEngine Dependencies
 
-    \l{Qt WebKit} depends on some extra development tools in addition to those required for the rest of Qt.
+    \l{Qt WebEngine} depends on some extra development tools in addition to
+    those required for the rest of Qt.
 
     \note These dependencies are only needed if you use a source version of Qt.
           They are not required when using a prebuilt library.
 
-    \list
-        \li gperf
-        \li bison
-        \li flex (v2.5.33 or later)
-        \li sqlite (development version)
-        \li fontconfig (development version)
-        \li xrender (development version)
-        \li gstreamer (development version)
-    \endlist
-
-    These should be available in most major Linux distributions, but the exact install instructions will vary.
-
-    For the most up to date information about \l{Qt WebKit} dependencies, please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnLinux}{Qt WebKit wiki for Linux}
+    For the most up-to-date information about \l{Qt WebEngine} dependencies,
+    see the \l{Qt WebEngine Wiki}{Qt WebEngine} wiki.
 
 */
 
@@ -747,10 +737,6 @@
     within a specific subdirectory (such as \c imageformats or \c sqldrivers)
     within your distribution directory.
 
-    \note If you are deploying an application that uses \l{Qt WebKit} to display
-    HTML pages from the World Wide Web, you should include all text codec
-    plugins to support as many HTML encodings possible.
-
     The search path for Qt plugins (as well as a few other paths) is
     hard-coded into the QtCore library. By default, the first plugin
     search path will be hard-coded as \c /path/to/Qt/plugins. As
@@ -830,7 +816,7 @@
        mode.
     \li Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
        known crash with "(0): internal error: 0_47021" when compiling
-       \l{Qt XML Patterns}, \l{Qt WebKit}, and \l{Qt Designer} in release mode. Version
+       \l{Qt XML Patterns} and \l{Qt Designer} in release mode. Version
        10.1.017 compiles these modules correctly in release mode.
     \endlist
 

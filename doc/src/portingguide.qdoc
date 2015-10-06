@@ -56,8 +56,7 @@ The following list summarizes the changes in Qt 5:
        Quick (2.0) from now on to avoid binary breaks in the future.
    \li Qt3Support - This module is removed in Qt 5, so you must move away from
        this module before porting your codebase to Qt 5.
-   \li Qt WebKit - This module has been split into two, there is now a \l{Qt WebKit}
-       and a \l{Qt WebKit Widgets} module.
+   \li Qt WebKit - This module has been replaced with \l{Qt WebEngine}.
    \li Multimedia - In Qt 5, multimedia support is provided by the \l{Qt Multimedia}
        module. Phonon framework is no longer part of Qt, but it continues to be
        maintained by the Phonon developers and has support for Qt 5. See
