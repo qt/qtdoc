@@ -244,7 +244,7 @@ In the \uicontrol Navigator window, make sure that the tool bar is a child of th
 application window. To make the tool bar a child of the window, simply drag the tool bar
 underneath the application window.
 
-Within the tool bar, we need a \e{row} layout. Drag the \e{Row Layout} into the
+Within the tool bar, we need a \e{row} layout. Drag the \e{row} layout into the
 \uicontrol Navigator window and set it to be a child of the tool bar.
 
 Similarly, set these layout properties:
@@ -374,7 +374,7 @@ The wizard creates a \uicontrol DocumentHandler class in two files,
 
 There are two functionalities we can expose to QML, the file loading and
 saving. We can do this by creating \e properties and binding them to C++
-functions through \l{Qt's Property System}.
+functions through the \l{The Property System}{Qt Property System}.
 
 In the \e documenthandler.h header file, add the following functions with their
 respective access modifier:
