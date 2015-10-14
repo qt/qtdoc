@@ -66,20 +66,18 @@ depends += \
     qt3drender \
     qtcanvas3d \
     qtwebview \
-    qtquickcontrols2
+    qtlabscontrols
 
 headerdirs  += ../src
 imagedirs   += ../src/images \
                ../images
 
 sourcedirs  += \
-    ../src \
-    ../../examples
+    ../src
 
 exampledirs += \
     ../src \
-    ../snippets \
-    ../../examples
+    ../snippets
 
 # Don't parse files in snippets directory
 excludedirs += \

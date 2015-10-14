@@ -169,15 +169,15 @@ Qt Quick scene graph is rendered, respectively.  There signals are
 emitted from the render thread (when applicable), and the connections
 need to be direct.
 
-
+Qt Quick can also be rendered using \l{Qt Quick 2D Renderer}. This raster
+paint engine enables rendering Qt Quick applications on platforms that
+do not have OpenGL.
 
 \section1 Printing
 
 Qt supports printing both directly to actual printers, locally or on the
 network, as well as producing PDF output. How to do printing with
 Qt is described in detail on the \l {Qt Print Support} page.
-
-
 
 \section1 Images
 
