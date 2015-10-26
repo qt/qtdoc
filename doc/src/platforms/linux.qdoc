@@ -332,12 +332,15 @@
 
     As described in the \l Multimedia overview, Qt Multimedia uses the GStreamer multimedia
     framework as the backend for audio and video playback on Linux. The minimum required
-    version of GStreamer is 0.10.
+    version of GStreamer is 0.10.24. The 1.x series is also supported.
 
     To build Qt Multimedia, you need the GStreamer library, base plugins, and development
-    files for your system. The package names for GStreamer vary between Linux
-    distributions; try searching for \c gstreamer or \c libgstreamer in your
-    distribution's package repository to find suitable packages.
+    files for your system. To run applications that use Qt Multimedia, you might also need to
+    install the following GStreamer plugins: 'good', 'ugly', 'bad', ffmpeg (0.10), and libav (1.x).
+    These additional plugins contain various codecs for audio and video decoding, as well as the
+    necessary components for using the camera APIs. The package names for GStreamer vary between
+    Linux distributions; try searching for \c gstreamer or \c libgstreamer in your distribution's
+    package repository to find suitable packages.
 
     \section1 Qt WebKit Dependencies
 
