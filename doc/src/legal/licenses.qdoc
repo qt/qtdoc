@@ -116,6 +116,8 @@
          \li GBK is an extension of the GB2312 character set for simplified Chinese characters, used mainland China. \li BSD-style \li
     \row \li \l{Big5 Text Codec}
          \li Big5, or BIG-5, is a Chinese character encoding method used for Traditional Chinese characters. \li BSD-style \li
+    \row \li \l{Big5-HKSCS Text Codec}
+         \li Big5-HKSCS is a Chinese character set with more than 4700 characters. \li BSD-style \li
     \row \li \l{TSCII Text Codec}
          \li The TSCII codec provides conversion to and from the Tamil TSCII encoding. \li BSD-style \li
     \row \li \l{Stack-less Just-In-Time compiler}
@@ -266,7 +268,7 @@
     \row \li {1,4} Qt WebEngine
 
     \row \li \l[QtWebEngineCore]{Qt WebEngine Core}
-         \li \li LGPL v3 or\br LGPL v2.1 + Qt commercial license \li
+         \li \li LGPL v3 or\br GPL v2 + Qt commercial license \li
     \row \li \li \li \li
     \row \li \li \li \li
 
@@ -1099,10 +1101,13 @@
 
     \section1 The PCRE library
 
-    Copyright (c) 1997-2012 University of Cambridge\br
+    Copyright (c) 1997-2015 University of Cambridge\br
     All rights reserved.
 
-    Copyright(c) 2009-2012 Zoltan Herczeg\br
+    Copyright(c) 2009-2015 Zoltan Herczeg\br
+    All rights reserved.
+
+    Copyright (c) 2007-2012, Google Inc.
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

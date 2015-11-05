@@ -47,8 +47,8 @@ can start or stop network interfaces and roam between access points. It does
 however not take care of the network configurations itself. The platform needs
 to take care of that.
 
-\l{Qt WebKit} offers a web browser engine that makes it possible to use web
-content in your application. \l{Qt WebKit} can render HTML, XHTML,
+\l{Qt WebEngine} offers a Chromium-based web engine that enables using
+web content in your application. \l{Qt WebEngine} can render HTML5, XHTML,
 and SVG documents, and execute Javascript.
 
 Qt also offers functionalities for \e{inter-process communication} (IPC). The
@@ -116,11 +116,12 @@ in addition to several examples to demonstrate its use.
 \section1 World Wide Web Support
 
 Qt makes it easy to embed web content into your Qt application using features of
-the Qt WebKit layout engine. The Qt WebKit module equips Qt with support for a
-broad range of standard web technologies that make it possible to embed HTML
-content styled with CSS and scripted with JavaScript into your Qt application.
-\l{Qt WebKit} facilitates both integration with traditional QWidget based desktop
-applications as well as embedding into Qt Quick QML applications.
+the Qt WebEngine layout engine. The Qt WebEngine module equips Qt with support
+for a broad range of standard web technologies that make it possible to embed
+HTML content styled with CSS and scripted with JavaScript into your Qt
+application. \l{Qt WebEngine} facilitates both integration with traditional
+QWidget based desktop applications as well as embedding into Qt Quick QML
+applications.
 
 For more information see \l {Integrating Web Content}.
 

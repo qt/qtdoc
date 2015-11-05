@@ -117,9 +117,11 @@ Their respective pages contain more information about specific uses.
 
 \section2 Viewing Web Content in QML Applications
 
-The QML type, \l{WebView}, renders and displays dynamic web content. It can load
-a URL or an HTML string. To read more about WebView and view code samples, visit
-the \l{Qt WebKit} page.
+The QML types, \l WebEngineView and \l WebView, render and display dynamic
+web content. The only difference between the two is that the later uses a
+native web view if available. Both these types can load a URL or an HTML
+string. To read more about them and view code
+samples, see \l{Qt WebEngine} and \l{Qt WebView}.
 
 \section2 Sensors, Gestures, and Touch Interfaces
 

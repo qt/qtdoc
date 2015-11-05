@@ -1037,10 +1037,6 @@
     each type of plugin must be located within a specific subdirectory (such as
     \c imageformats or \c sqldrivers) in your distribution directory.
 
-    When deploying an application that uses Qt WebKit to display HTML pages from
-    the World Wide Web, you must include all text codec plugins to support as
-    many HTML encodings possible.
-
     The search path for Qt plugins (as well as a few other paths) is
     hard-coded into the QtCore library. By default, the first plugin
     search path will be hard-coded as \c /path/to/Qt/plugins. But

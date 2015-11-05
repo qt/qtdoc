@@ -28,6 +28,8 @@
 /*!
   \page embedded-linux.html
   \title Qt for Embedded Linux
+  \brief Provides information about Embedded Linux support in Qt.
+  \ingroup supportedplatform
 
   Since the Qt 5.0 release, Qt no longer contains its own window system (QWS)
   implementation. For single-process use cases, the \l{Qt Platform Abstraction}
@@ -262,7 +264,7 @@
   results however, and therefore it may become necessary to explicitly specify
   the values.
 
-  \li \c{mmSize=}\e{<width>}\c{x}\e{<height>} - Physical width and height in
+  \li \c{mmsize=}\e{<width>}\c{x}\e{<height>} - Physical width and height in
   millimeters.
 
   \li \c{offset=}\e{<width>}\c{x}\e{<height>} - Offset in pixels specifying the

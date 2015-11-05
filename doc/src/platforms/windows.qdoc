@@ -110,9 +110,8 @@
 
     \section1 Libraries
 
-    The following libraries may be used when running Qt 5 applications in Windows.
-    These are not mandatory, but some components (for example, Qt WebKit) may depend
-    on them.
+    The following third-party libraries may be used when running Qt 5
+    applications on Windows.
 
     \list
         \li \l{ICU}: Qt 5 can make use of the ICU library for enhanced UNICODE and Globalization
@@ -127,13 +126,7 @@
         \li \l{ANGLE}: This library converts OpenGL ES 2.0 API calls to DirectX 11 or DirectX 9
            calls (depending on availability), removing the need to install graphics drivers on
            the target machines.
-           Building the library requires the installation of the \l{Direct X SDK}.
-           More information is available at \l{http://code.google.com/p/angleproject/wiki/DevSetup}
-
-           \note When building for 64-bit environments, de-activate the
-           \c WarnAsError option in every project file, otherwise, integer
-           conversion warnings will break the build.
-    \endlist
+     \endlist
 
     Support for Secure Sockets Layer (SSL) communication is provided by the
     \l {OpenSSL Toolkit}, which must be obtained separately. See
@@ -142,13 +135,9 @@
 
     \section2 ICU
 
-    Qt WebKit, and applications using it, always need the ICU libraries. Qt Core
-    can be configured to either rely on ICU functionality, or fall back to Windows API
-    and internal algorithms with somewhat reduced functionality.
-
     From Qt 5.3 and onwards, configure does not link Qt Core against ICU libraries
     anymore by default. This reduces the size of a self-contained
-    application package considerably, as long as Qt WebKit is not used.
+    application package considerably.
 
     Letting Qt Core utilize the ICU libraries however has following advantages:
     \list
@@ -380,13 +369,7 @@
             (\l{http://www.activestate.com/activeperl}{download page}) and add
            the installation location to your \c PATH.
         \li Python - Install Python from the \l{http://www.python.org/download/}{here}
-           and add the installation location to your PATH in order to be able
-           to build Qt WebKit.
-
-        \li Install \l{http://www.ruby-lang.org}{Ruby} from \l{http://rubyinstaller.org/}{here}
-           and add the installation location to your PATH in order to be able
-           to build Qt WebKit.
-
+           and add the installation location to your PATH.
     \endlist
 
     \note Please make sure that the \c perl executable from ActivePerl is found
@@ -394,7 +377,7 @@
            latter is outdated.
 
 
-    Qt WebKit and ANGLE depend on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
+    ANGLE depends on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
     \l {http://sourceforge.net/projects/winflexbison/}{Win flex-bison}
     projects, which are provided for your convenience in the \e gnuwin32/bin
     folder:
@@ -442,8 +425,8 @@
 
     \endlist
 
-    For the most up to date information about the \l{Qt WebKit} dependencies,
-    please refer to the \l{http://trac.webkit.org/wiki/BuildingQtOnWindows}{Qt WebKit Wiki for Windows}.
+    For the most up-to-date information about the \l{Qt WebEngine} dependencies,
+    see the \l{Qt WebEngine on Windows}{Qt WebEngine} wiki for Windows.
 
 */
 
@@ -504,7 +487,7 @@
     The minimum version of MinGW-builds supported is GCC 4.7.2.
     \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
     {MinGW-builds GCC 4.7.2 32 bit, rev 8} and later should be able
-    to build Qt including Qt WebKit.
+    to build Qt.
 
     For more information about the MinGW builds, visit the
     \e{Reference Configuration} section of the
@@ -956,10 +939,6 @@
     be located within a specific subdirectory (such as \c printsupport,
     \c imageformats or \c sqldrivers) within your distribution directory.
 
-    \note If you are deploying an application that uses Qt WebKit to display
-    HTML pages from the World Wide Web, you should include all text codec
-    plugins to support as many HTML encodings possible.
-
     The search path for Qt plugins is hard-coded into the QtCore library.
     By default, the plugins subdirectory of the Qt installation is the first
     plugin search path. However, pre-determined paths like the default one
@@ -1044,8 +1023,6 @@ Options:
   --no-system-d3d-compiler   Skip deployment of the system D3D compiler.
   --compiler-runtime         Deploy compiler runtime (Desktop only).
   --no-compiler-runtime      Do not deploy compiler runtime (Desktop only).
-  --webkit2                  Deployment of WebKit2 (web process).
-  --no-webkit2               Skip deployment of WebKit2.
   --json                     Print to stdout in JSON format.
   --angle                    Force deployment of ANGLE.
   --no-angle                 Disable deployment of ANGLE.
@@ -1066,7 +1043,7 @@ the name prepended by --no- (--no-xml). Available libraries:
 bluetooth clucene concurrent core declarative designer designercomponents
 enginio gui qthelp multimedia multimediawidgets multimediaquick network nfc
 opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
-script scripttools sensors serialport sql svg test webkit webkitwidgets
+script scripttools sensors serialport sql svg test
 websockets widgets winextras xml xmlpatterns webenginecore webengine
 webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput geoservices
 webchannel
