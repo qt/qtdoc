@@ -314,6 +314,27 @@ the APK:
      See the \l{OpenSSL Configure Options}{SSL configure options} for details about
      the configurable features.
 
+ \li Edit the \e Makefile created by \e Configure to avoid having shared
+     library names with the version number. Android does not load a library
+     with version number in the \c .so file name.
+
+     \list a
+       \li Open the \e Makefile using an editor.
+       \li Replace the following two lines that appear under "\e{link-shared}"
+           and "\e{do_$(SHLIB_TARGET)}" make targets:
+           \badcode
+LIBNAME=$$i LIBVERSION=$(SHLIB_MAJOR).$(SHLIB_MINOR) \
+LIBCOMPATVERSIONS=";$(SHLIB_VERSION_HISTORY)" \
+           \endcode
+
+           with
+
+          \badcode
+LIBNAME=$$i \
+          \endcode
+       \li Save changes to the \e Makefile and close it.
+     \endlist
+
  \li Run \c{make build_libs} to build the \c libcrypto and \c libssl shared
      libraries.
 
