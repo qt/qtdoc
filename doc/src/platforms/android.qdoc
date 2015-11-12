@@ -120,7 +120,7 @@ The following topics provide more details about how to use Qt for Android:
   In our example, we would create \c{$PROJECT_ROOT/android/project.properties} and add the
   following contents:
 
-  \code
+  \badcode
   android.library.reference.1=google-play-services_lib/
   \endcode
 
@@ -167,7 +167,7 @@ starts the \l{http://developer.android.com/sdk/installing/adding-packages.html}
 {Android SDK Manager}, which enables you to select the packages you want
 to install:
 
-\code
+\badcode
 ./android update sdk
 \endcode
 
@@ -175,7 +175,7 @@ to install:
 following dependencies in order to run 32-bit executables like \c adb, which
 allows Qt Creator to find devices to deploy to:
 
-\code
+\badcode
 sudo apt-get install libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386
 \endcode
 
@@ -296,7 +296,7 @@ the APK:
 
  \li Set the following environment variables to point to the ARM compiler
      toolchain and sysroot you want to use:
-     \code
+     \badcode
      CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
      AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
      ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/android-9/arch-arm/usr
@@ -305,7 +305,7 @@ the APK:
  \li Configure the OpenSSL sources to build for Android (ARMv5 or ARMv7) using
      the following command:
 
-     \code
+     \badcode
      ./Configure shared android or android-armv7
      \endcode
 
