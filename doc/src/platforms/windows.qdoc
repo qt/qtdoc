@@ -463,6 +463,10 @@
     nmake
     \endcode
 
+    \note The \c configure option -qtlibinfix cannot take a version number as an argument.
+    For example:
+    \c{-qtlibinfix 5.6.0} should be specified as \c{-qtlibinfix QtCore5.6.dll}.
+
     Also compile your own application in the above environment if compiling
     on the command line. If you use Visual Studio, set the \c v110_xp toolset in the project's
     property pages.

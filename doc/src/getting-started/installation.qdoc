@@ -157,6 +157,10 @@ in the \l{Qt for Windows CE Requirements} document.
     options. See the \c README file for the list of supported
     platforms.
 
+    \note The \c configure option -qtlibinfix cannot take a version number as an argument.
+    For example:
+    \c{-qtlibinfix 5.6.0} should be specified as \c{-qtlibinfix QtCore5.6.0.dll}.
+
 \section1 Step 4: Build Qt Library
 
     To build Qt type:
