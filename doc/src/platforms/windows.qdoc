@@ -292,6 +292,11 @@
         reference implementation.
 
         \li \c disable_d3d9 - Disables the D3D9 rasterizer in ANGLE
+
+        \li \c disable_rotation - Forces the application to run in landscape orientation
+        always. It applies to OpengGL only and has no effect when using ANGLE or Software
+        OpenGL implementations. This is intended for drivers that have issues with rotation.
+        This feature keyword was introduced in Qt 5.6.
     \endlist
 
     A sample file looks like:
