@@ -101,9 +101,6 @@ Things to avoid in binding expressions to maximize optimizability:
   \li writing to other properties as side effects
 \endlist
 
-The QML_COMPILER_STATS environment variable may be set when running a QML application
-to print statistics about how many bindings were able to be optimized.
-
 Bindings are quickest when they know the type of objects and properties they are working
 with. This means that non-final property lookup in a binding expression can be slower
 in some cases, where it is possible that the type of the property being looked up has
