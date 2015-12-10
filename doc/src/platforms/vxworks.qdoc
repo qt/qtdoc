@@ -37,7 +37,7 @@
   \section1 Supported Architectures and VxWorks Releases
 
   Qt 5 is currently tested and supported on VxWorks 7. As VxWorks 7 does
-  not have released versions, current minimum required release is the one dated May 8th, 2015.
+  not have released versions, current minimum required release is the one dated December 15th, 2015.
   Supported architecture is ARM-v7.
 
   \section1 Requirements for VxWorks
@@ -422,12 +422,8 @@
 
   \section2 Touch
 
-  Using touch enabled display (either single or multitouch) requires setting
-  touchscreen (or touch device) resolution set to environment variable \c
-  QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS to \c size=<width>x<height>.
-
-  Multitouch support can be enabled by setting setting argument \c multitouch
-  to the environment variable \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS.
+  Both single and multitouch devices are supported and require that VxWorks
+  has been properly configured to support touch devices.
 
   \section2 Debugging Input Devices
 
