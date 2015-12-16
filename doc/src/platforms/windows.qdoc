@@ -536,30 +536,33 @@
 
     \section1 Fullscreen OpenGL Based Windows
 
-    When a window is using an OpenGL based surface and is appearing in full screen mode,
-    problems can occur with other top-level windows which are part of the application.
-    When going into full screen mode, compositing is not handled correctly for OpenGL based
-    windows. As a result, other top-level windows are not placed on top of the full screen
-    window when they are made visible. For example, menus may not appear correctly, or
-    dialogs fail to show up.
+    When a window is using an OpenGL based surface and is appearing in full
+    screen mode, problems can occur with other top-level windows which are
+    part of the application. Due to limitations of the Windows DWM,
+    compositing is not handled correctly for OpenGL based windows when going
+    into full screen mode. As a result, other top-level windows are not placed
+    on top of the full screen window when they are made visible. For example,
+    menus may not appear correctly, or dialogs fail to show up.
 
-    A window can use an OpenGL based surface either explicitly when setSurfaceType() is
-    called or when something that requires OpenGL is used inside the window which causes
-    the whole window to be OpenGL based. For example, QOpenGLWidget or QQuickWidget can
-    trigger this. However, if it is contained in a QWindow which is hosted with
-    createWindowContainer() or the obsoleted QGLWidget is used and it does cover the
-    entire full screen window, then this problem does not occur.
+    A window can use an OpenGL based surface either explicitly when
+    \l {QWindow::}{setSurfaceType()} is called, or when something that
+    requires OpenGL is used inside the window, causing the whole window to be
+    OpenGL based. For example, QOpenGLWidget or QQuickWidget can trigger this.
+    However, if the surface is contained in a QWindow which is hosted with
+    \l {QWidget::}{createWindowContainer()}, or the obsoleted QGLWidget is
+    used and it does cover the entire full screen window, then this problem
+    does not occur.
 
-    To solve this problem, there is a QWindowsWindowFunction which can be used to enable
-    a native Windows flag which will set WS_BORDER when showing in fullscreen mode. This
-    can be utilized like:
+    To solve this problem, a QWindowsWindowFunction can be used to enable a
+    native Windows flag which will set \c WS_BORDER when showing in full
+    screen mode. This can be utilized as follows:
 
     \code
     QWindowsWindowFunctions::setHasBorderInFullScreen(tlwWindow->windowHandle(), true);
     \endcode
 
-    This will make the fullscreen window have a 1 pixel border thus enabling the other top
-    level windows to appear on top.
+    This will give the full screen window a 1-pixel border, thus enabling the
+    other top level windows to appear on top.
 */
 
 /*!
