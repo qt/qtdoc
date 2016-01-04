@@ -464,6 +464,14 @@
   the \c cursorsPerRow setting. Atlases have to provide an image for all the
   supported cursors.
 
+  \section1 QML Component loader thread
+
+  In some cases, a complex application (for example, using a lot of custom
+  QML components) may cause the QML loader thread to consume stack memory
+  more than the 32 KB available by default. Using the environment variable
+  \c QML_LOADERTHREAD_STACK_SIZE, it is possible to increase the stack
+  size available for the QML loader thread.
+
   \section1 Running Qt Applications
 
   Following example shows how to start an application when Qt 5 is built using
