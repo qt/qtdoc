@@ -339,8 +339,8 @@
   In some cases when application is complex e.g. it's scene graph contains
   lot's of Items, scene graph can consume more stack memory than what is
   available by default for the render thread. Default stack memory size is
-  64KB. Using environment varialbe QSG_RENDERTHREAD_STACK_SIZE, it is possible
-  to increase availabe stack memory for the scene graph render thread.
+  64KB. Using the environment variable QSG_RENDERTHREAD_STACK_SIZE, it is possible
+  to increase the stack size available for the scene graph render thread.
 
   \section2 VxWorksFB
 
