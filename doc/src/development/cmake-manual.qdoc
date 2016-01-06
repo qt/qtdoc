@@ -98,6 +98,13 @@
 
     \snippet snippets/cmake/CMakeLists.pro 5
 
+    \section2 Using Qt 5 with \c{CMake} older than 3.1.0
+
+    Qt 5.7 requires C++11 support. \c{CMake} starting from version 3.1.0 implicitly adds the
+    minimum required compiler flags (e.g. \c{-std=gnu++11}) to the Qt5 module targets. If you use
+    \c{CMake} version older than 3.1.0, you need to add the needed \c{-std=...} to the targets
+    linking against Qt5 modules yourself.
+
     \section2 Using Qt 5 with \c{CMake} older than 2.8.12
 
     It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
