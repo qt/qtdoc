@@ -34,12 +34,22 @@
 
     \list
     \li \l{Qt Labs Controls}
+        \list
+        \li Included as a technology preview.
+        \li Provides lightweight QML types for creating performant user interfaces
+            for embedded and mobile devices.
+        \endlist
+
     \li \l{Qt Speech}
-    \li \l{Qt SerialBus}
+        \list
+        \li Included as a technology preview.
+        \li Provides support for accessibility features such as text-to-speech.
+        \endlist
+    \li \l{Qt Serial Bus}
      \list
          \li Included as a technology preview.
-         \li Provides a framework for accessing serial bus backends in general, and a plugin for
-             accessing the SocketCAN backend in particular.
+         \li Provides a framework for accessing serial bus backends in general, and
+             implementations for Controller Area Network (CAN) bus and Modbus.
      \endlist
     \li \l{Qt Wayland Compositor}{Qt Compositor}(Qt Wayland)
      \list
