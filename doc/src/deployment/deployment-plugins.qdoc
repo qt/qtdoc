@@ -60,6 +60,8 @@
     is to set the \c QT_PLUGIN_PATH environment variable before running
     the application. If set, Qt will look for plugins in the
     paths (separated by the system path separator) specified in the variable.
+    \note \c QT_PLUGIN_PATH should not be exported as a system-wide
+    environment variable since it can interfere with other Qt installations.
 
     \section1 Loading and Verifying Plugins Dynamically
 

@@ -195,15 +195,6 @@
     You can download the Qt 5 sources from the \l{Downloads} page. For
     more information, visit the \l{Getting Started with Qt} page.
 
-    For the binary package, simply double-click on the Qt.mpkg
-    and follow the instructions to install Qt. You can later run the \c{uninstall-qt.py}
-    script to uninstall the binary package. The script is located in /Developer/Tools and
-    must be run as root.
-
-    \note Do not run the iPhone simulator while installing Qt. The
-    \l{http://openradar.appspot.com/7214991}
-    {iPhone simulator conflicts with the package installer}.
-
     \section1 Step 1: Install the License File (Commercial Editions Only)
         If you have the commercial edition of Qt, install your license
         file as \c{$HOME/.qt-license}.
@@ -230,11 +221,9 @@
 
     \snippet snippets/code/doc_src_installation.qdoc 12
 
-        Specify \c{-universal} if you want to build universal binaries, and also
-        supply a path to the \c{-sdk} option if your development machine has a
-        PowerPC CPU. By default, Qt is built as a framework, but you can built
-        it as a set of dynamic libraries (dylibs) by specifying the \c{-no-
-        framework} option.
+        By default, Qt is built as a framework, but you can built
+        it as a set of dynamic libraries (dylibs) by specifying the
+        \c{-no-framework} option.
 
         Qt can also be configured to be built with debugging symbols. This
         process is described in detail in the \l{Debugging Techniques}
@@ -243,14 +232,13 @@
         The \l{Qt Configure Options}{Configure Options} page contains more
         information about the configure options.
 
-        To create the library and compile all the examples, tools,
-        and tutorials, type:
+        To create the library and compile all the examples and tools, type:
 
     \snippet snippets/code/doc_src_installation.qdoc 13
 
         If \c{-prefix} is outside the build directory, you need to install
-        the library, examples, tools, and tutorials in the appropriate
-        place. To do this, type:
+        the library, examples, and tools in the appropriate place. To do this,
+        type:
 
     \snippet snippets/code/doc_src_installation.qdoc 14
 
@@ -259,11 +247,6 @@
 
         \note There is a potential race condition when running make install with multiple
         jobs. It is best to only run one make job (-j1) for the install.
-
-        If you later need to reconfigure and rebuild Qt from the
-        same location, ensure that all traces of the previous configuration are
-        removed by entering the build directory and typing \c{make confclean}
-        before running \c configure again.
 
     \section1 Step 3: Set the Environment Variables
 

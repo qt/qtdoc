@@ -90,12 +90,11 @@
     platform-dependent technique.
 
     Although many programs can create icon files (\c .icns), the
-    recommended approach is to use the \e{Icon Composer} program
-    supplied by Apple (in the \c Developer/Application folder).
-    \e{Icon Composer} allows you to import several different sized
-    icons (for use in different contexts) as well as the masks that
-    go with them. Save the set of icons to a file in your project
-    directory.
+    recommended approach is to use the \e{iconutil} program
+    supplied by Apple.  \e{iconutil} is a command-line tool that
+    converts iconset folders to deployment-ready, high-resolution
+    icns files. Using this tool also compresses the resulting icns file,
+    so there is no need for you to perform additional compression.
 
     If you are using qmake to generate your makefiles, you only need
     to add a single line to your \c .pro project file. For example,

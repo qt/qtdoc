@@ -79,6 +79,21 @@
 
     \row \li \c{-help} \li \li Display usage information.
 
+    \row \li \c{-t, --temp <file>} \li \li Use temporary <file> for big resources.
+
+    \row \li \c{--namespace} \li \li Turn off namespace macros.
+
+    \row \li \c{--verbose} \li \li Enable verbose mode.
+
+    \row \li \c{--list} \li \li Only list .qrc file entries, do not generate code.
+
+    \row \li \c{-project} \li \li Output a resource file containing all files from the
+                                  current directory.
+
+
+
+
+
     \endtable
 
     See also \l{The Qt Resource System} for more information about embedding

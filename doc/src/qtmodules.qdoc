@@ -208,7 +208,7 @@
     \row
         \li \l[QtPositioning]{Qt Positioning}
         \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}[iOS}, \l{Qt for OS X}OS X,
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for OS X}{OS X},
         \l{Qt for Linux/X11}{Linux}, \l{Qt for WinRT}{WinRT}.
         \li Provides access to position, satellite and area monitoring classes.
     \row
@@ -361,8 +361,8 @@
          \li Functionality for near-realtime simulation systems with support
              for 2D and 3D rendering.
     \row \li \l[QtSerialBus]{Qt Serial Bus}
-         \li Provides access to the SocketCAN serial bus interface. However, the module is designed
-             so that it can be extended with access to any serial bus backend.
+         \li Provides access to serial industrial bus interface. Currently the module supports
+             the CAN bus and Modbus protocols.
     \row \li \l{Qt Labs Controls}
          \li Provides lightweight QML types for creating performant user
              interfaces for embedded and mobile devices. These controls achieve
@@ -370,6 +370,10 @@
              when compared to \l {Qt Quick Controls}, on which the module is based.
              These types work in conjunction with \l{Qt Quick} and \l{Qt Quick
              Layouts}.
+    \row \li \l{Qt Speech}
+         \li Provides support for accessibility features such as text-to-speech.
+    \row \li \l{Qt Wayland Compositor}
+         \li Provides a framework to develop a Wayland compositor.
     \endtable
 
     \section1 Qt Tools

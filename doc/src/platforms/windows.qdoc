@@ -292,6 +292,11 @@
         reference implementation.
 
         \li \c disable_d3d9 - Disables the D3D9 rasterizer in ANGLE
+
+        \li \c disable_rotation - Forces the application to run in landscape orientation
+        always. It applies to OpengGL only and has no effect when using ANGLE or Software
+        OpenGL implementations. This is intended for drivers that have issues with rotation.
+        This feature keyword was introduced in Qt 5.6.
     \endlist
 
     A sample file looks like:
@@ -463,6 +468,10 @@
     nmake
     \endcode
 
+    \note The \c configure option -qtlibinfix cannot take a version number as an argument.
+    For example:
+    \c{-qtlibinfix 5.6.0} should be specified as \c{-qtlibinfix QtCore5.6.dll}.
+
     Also compile your own application in the above environment if compiling
     on the command line. If you use Visual Studio, set the \c v110_xp toolset in the project's
     property pages.
@@ -524,6 +533,36 @@
 
     Consult the \l{Qt for Windows - Requirements} page for specific versions
     of the Windows SDK.
+
+    \section1 Fullscreen OpenGL Based Windows
+
+    When a window is using an OpenGL based surface and is appearing in full
+    screen mode, problems can occur with other top-level windows which are
+    part of the application. Due to limitations of the Windows DWM,
+    compositing is not handled correctly for OpenGL based windows when going
+    into full screen mode. As a result, other top-level windows are not placed
+    on top of the full screen window when they are made visible. For example,
+    menus may not appear correctly, or dialogs fail to show up.
+
+    A window can use an OpenGL based surface either explicitly when
+    \l {QWindow::}{setSurfaceType()} is called, or when something that
+    requires OpenGL is used inside the window, causing the whole window to be
+    OpenGL based. For example, QOpenGLWidget or QQuickWidget can trigger this.
+    However, if the surface is contained in a QWindow which is hosted with
+    \l {QWidget::}{createWindowContainer()}, or the obsoleted QGLWidget is
+    used and it does cover the entire full screen window, then this problem
+    does not occur.
+
+    To solve this problem, a QWindowsWindowFunction can be used to enable a
+    native Windows flag which will set \c WS_BORDER when showing in full
+    screen mode. This can be utilized as follows:
+
+    \code
+    QWindowsWindowFunctions::setHasBorderInFullScreen(tlwWindow->windowHandle(), true);
+    \endcode
+
+    This will give the full screen window a 1-pixel border, thus enabling the
+    other top level windows to appear on top.
 */
 
 /*!
@@ -922,6 +961,10 @@
 
     When looking at the plugin DLLs the exact same dependencies
     are listed.
+
+    From Qt version 5.2 onwards, the officially supported version
+    for OpenSSL is 1.0.0 or later. Versions >= 0.9.7 and < 1.0.0 might
+    work, but are not guaranteed to.
 
     \section2 Qt Plugins
 
