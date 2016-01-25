@@ -845,12 +845,11 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 20
 
-    To use the options, add
+    Both options are enabled by default. To remove \c{embed_manifest_exe}, add
 
     \snippet snippets/code/doc_src_deployment.pro 21
 
-    to your .pro file. The \c embed_manifest_dll option is enabled by default.
-    The \c embed_manifest_exe option is NOT enabled by default.
+    to your .pro file.
 
     You can find more information about manifest files and side-by-side
     assemblies at the
