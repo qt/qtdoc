@@ -321,9 +321,9 @@
     \li \c qt.qpa.egldeviceintegration – Enables logging for dynamically loaded
     backends. Very useful to check what backend is in use.
 
-    \li \c qt.qpa.input – Enables debug output both from the evdev and libinput
-    input handlers. Very useful to check if a given input device was correctly
-    recognized and opened.
+    \li \c qt.qpa.input – Enables debug output from the evdev input handler.
+    Very useful to check if a given input device was correctly recognized and
+    opened.
 
   \endlist
 
@@ -380,7 +380,7 @@
 
   When no windowing system is present, the mouse, keyboard and touch input are
   read directly via \c evdev. Note that this requires that devices nodes
-  \c {/dev/input/event*} are readable by the user. eglfs and vxworksfb has all
+  \c {/input/event*} are readable by the user. eglfs and vxworksfb has all
   the evdev input handling code built-in.
 
   \section2 Input on eglfs and vxworksfb
@@ -407,11 +407,9 @@
 
   \list
 
-  \li \c {/dev/input/...} - Specifies the name of the input device. When not
-  given, Qt will look for a suitable device either via \e libudev or by walking
-  through the available nodes.
-  \li \c {repeat-delay} - Sets a custom key repeat delay.
-  \li \c {repeat-rate} - Sets a custom key repeat rate.
+  \li \c {/input/...} - Specifies the name of the input device. When not
+  given, Qt will look for a suitable device by walking through the available
+  nodes.
   \endlist
 
   If the default, built-in keymap is not sufficient, a different one can be
