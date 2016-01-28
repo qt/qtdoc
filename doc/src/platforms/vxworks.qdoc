@@ -467,6 +467,16 @@
   \c QML_LOADERTHREAD_STACK_SIZE, it is possible to increase the stack
   size available for the QML loader thread.
 
+  \section1  Preventing Timeouts in QEventDispatcher
+
+  Default system clock rate (SYS_CLK_RATE) for VxWorks 7 is 1/60s or ~16,67ms.
+  In some cases this may cause a drop in the application frame rate;
+  in QEventDispatcher, the select function is blocking for the entire system
+  clock interval because a timeout is used. By defining an environment variable
+  \c QT_FORCE_SELECT_NOTIMEOUT=1, the select function returns immediately
+  if no new events are available and the resolution of the system clock is higher
+  than 10ms, which is true with default value.
+
   \section1 Running Qt Applications
 
   Following example shows how to start an application when Qt 5 is built using
