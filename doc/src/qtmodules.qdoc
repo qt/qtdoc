@@ -192,12 +192,11 @@
         \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux}
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
-        \li \l[QtOpenGL]{Qt OpenGL}
+        \li \l[QtOpenGL]{Qt OpenGL} (Deprecated)
         \li
         \li
-        \li OpenGL support classes.
-        \note Provided to ease porting from Qt 4.x. Please use the QOpenGL
-        classes in \l{Qt GUI} for new code
+        \li OpenGL support classes. Deprecated in favor of the \c{QOpenGL*}
+            classes in the \l{Qt GUI} module.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li
@@ -231,9 +230,8 @@
         \li \l[QtScript]{Qt Script} (Deprecated)
         \li All
         \li
-        \li Classes for making Qt applications scriptable. Provided for Qt 4.x
-            compatibility. Please use the QJS* classes in the \l{Qt QML} module for
-            new code.
+        \li Classes for making Qt applications scriptable. Deprecated in favor
+            of the \c{QJS*} classes in the \l{Qt QML} module.
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
@@ -301,8 +299,8 @@
         \li
         \li
         \li C++ implementations of SAX and DOM.
-            \note Deprecated, please use QXmlStreamReader and QXmlStreamWriter
-            for new functionality.
+            \note This module is not required to use QXmlStreamReader and
+            QXmlStreamWriter. They are already part of \l{Qt Core}.
     \row
         \li \l[QtXmlPatterns]{Qt XML Patterns}
         \li
