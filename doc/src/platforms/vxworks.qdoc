@@ -185,7 +185,7 @@
   use shared libraries. To build Qt 5 statically, add \c -static option for configure.
 
   \badcode
-    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd0:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_4_1_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl
+    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd0:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_6_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
   \endcode
 
   The most important parameters are \c -device, \c -device-option CROSS_COMPILE=<arch>,
