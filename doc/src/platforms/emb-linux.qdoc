@@ -470,7 +470,7 @@
   one or more of these from one single Qt application varies between the
   platform plugins and often depends on the device and its graphics stack.
 
-  \section2 eglfs
+  \section2 eglfs with eglfs_kms backend
 
   When the KMS/DRM backend is in use, eglfs reports all available screens in
   QGuiApplication::screens(). Applications can target different screens with
@@ -528,6 +528,29 @@
 
   For troubleshooting it might be useful to enable debug logs from the KMS/DRM
   backend. To do this, enable the categorized logging rule, \c qt.qpa.eglfs.kms.
+
+  \section2 eglfs with eglfs_kms_egldevice backend
+
+  This backend, typically used on Tegra devices, is similar to the KMS/DRM
+  backend mentioned above, except that it relies on the EGLDevice and EGLStream
+  extensions instead of GBM.
+
+  For technical details about this approach, check out
+  \l {https://wiki.qt.io/Qt_for_Embedded_Linux/XDC2014RitgerEGLNonMesa}{this presentation}.
+
+  Multiple screens are not currently supported by this backend. Instead, it will
+  find the first available display and pick the EGL layer that corresponds to
+  it. When necessary, this can be overridden by setting the
+  \c QT_QPA_EGLFS_LAYER_INDEX environment variable to the index of the desired
+  layer. To see which layers are available, and to debug potential startup
+  issues, enable the logging category \c qt.qpa.eglfs.kms. In some cases it may
+  be necessary to perform a video mode set on application startup even when the
+  screen reports that the desired resolution is already set. This is normally
+  optimized away, but if the screen stays powered down, try setting the
+  environment variable \c QT_QPA_EGLFS_ALWAYS_SET_MODE to a non-zero value and
+  relaunch the application.
+
+  \section2 eglfs with other backends
 
   Other backends, that are typically based on targeting the framebuffer
   directly via the vendor's EGL implementation, usually provides limited or
