@@ -32,7 +32,7 @@
   Qt for VxWorks is available only under a commercial license.
 
   Contact The Qt Company for more information:
-  http://www.qt.io/contact-us
+  \l {https://www.qt.io/contact-us/}
 
   \section1 Supported Architectures and VxWorks Releases
 
@@ -68,16 +68,16 @@
   \table 80%
   \header
       \li Qt Module
-      \li Supported features
+      \li Supported Features
       \li Notes
 
   \row
       \li Qt Multimedia
       \li Audio
       \li \l [QML] {QtMultimedia::SoundEffect}{SoundEffect},
-      \li \l [CPP] {QtMultimedia::QSound}{QSound},
-      \li \l [CPP] {QtMultimedia::QSoundEffect}{QSoundEffect} and
-      \li \l [CPP] {QtMultimedia::QAudioOutput}{QAudioOutput}
+          \l [QtMultimedia] {QSound},
+          \l [QtMultimedia] {QSoundEffect} and
+          \l [QtMultimedia] {QAudioOutput}
 
   \row
       \li Qt Multimedia Widgets
@@ -459,7 +459,7 @@
   the \c cursorsPerRow setting. Atlases have to provide an image for all the
   supported cursors.
 
-  \section1 QML Component loader thread
+  \section1 QML Component Loader Thread
 
   In some cases, a complex application (for example, using a lot of custom
   QML components) may cause the QML loader thread to consume stack memory
