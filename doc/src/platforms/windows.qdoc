@@ -569,10 +569,82 @@
     \page windows-deployment.html
     \title Qt for Windows - Deployment
 
-    This documentation describes deployment issues for \l{Qt for
-    Windows}{Windows}. We demonstrate the procedures in terms of
-    deploying the \l {tools/plugandpaint}{Plug & Paint} application that is
-    provided in Qt's examples directory.
+    This documentation describes deployment process for \l{Qt for
+    Windows}{Windows}. We refer to the \{Plug & Paint Example}{plug & paint}
+    example application through out the document to demonstrate the deployment
+    process.
+
+    \section1 The Windows Deployment Tool
+    \target windeployqt
+    The Windows deployment tool is designed to automate the process of creating
+    a deployable folder containing the dependencies (libraries, QML imports,
+    plugins, and translations) that are required to run the application from
+    that folder. It creates a sandbox for \l{Qt for WinRT}{Windows Runtime}
+    or an installation tree for Windows desktop applications, which can be
+    easily bundled into an installation package. The tool can be found in
+    QTDIR/bin/windeployqt.
+
+    \badcode
+    Usage: windeployqt [options] [files]
+    Qt Deploy Tool 5.6.0
+
+    The simplest way to use windeployqt is to add the bin directory of your Qt
+    installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
+      windeployqt <path-to-app-binary>
+    If ICU, ANGLE, etc. are not in the bin directory, they need to be in the PATH
+    variable. If your application uses Qt Quick, run:
+      windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
+
+    Options:
+      -?, -h, --help             Displays this help.
+      -v, --version              Displays version information.
+      --dir <directory>          Use directory instead of binary directory.
+      --libdir <path>            Copy libraries to path.
+      --plugindir <path>         Copy plugins to path.
+      --debug                    Assume debug binaries.
+      --release                  Assume release binaries.
+      --pdb                      Deploy .pdb files (MSVC).
+      --force                    Force updating files.
+      --dry-run                  Simulation mode. Behave normally, but do not
+                                 copy/update any files.
+      --no-plugins               Skip plugin deployment.
+      --no-libraries             Skip library deployment.
+      --qmldir <directory>       Scan for QML-imports starting from directory.
+      --no-quick-import          Skip deployment of Qt Quick imports.
+      --no-translations          Skip deployment of translations.
+      --no-system-d3d-compiler   Skip deployment of the system D3D compiler.
+      --compiler-runtime         Deploy compiler runtime (Desktop only).
+      --no-compiler-runtime      Do not deploy compiler runtime (Desktop only).
+      --webkit2                  Deployment of WebKit2 (web process).
+      --no-webkit2               Skip deployment of WebKit2.
+      --json                     Print to stdout in JSON format.
+      --angle                    Force deployment of ANGLE.
+      --no-angle                 Disable deployment of ANGLE.
+      --no-opengl-sw             Do not deploy the software rasterizer library.
+      --list <option>            Print only the names of the files copied.
+                                 Available options:
+                                  source:   absolute path of the source files
+                                  target:   absolute path of the target files
+                                  relative: paths of the target files, relative
+                                            to the target directory
+                                  mapping:  outputs the source and the relative
+                                            target, suitable for use within an
+                                            Appx mapping file
+      --verbose <level>          Verbose level.
+
+    Qt libraries can be added by passing their name (-xml) or removed by passing
+    the name prepended by --no- (--no-xml). Available libraries:
+    bluetooth clucene concurrent core declarative designer designercomponents
+    enginio gui qthelp multimedia multimediawidgets multimediaquick network nfc
+    opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
+    script scripttools sensors serialport sql svg test
+    websockets widgets winextras xml xmlpatterns webenginecore webengine
+    webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput geoservices
+    webchannel
+
+    Arguments:
+      [files]                    Binaries or directory containing the binary.
+\endcode
 
     \section1 Static Linking
 
@@ -1025,74 +1097,6 @@
     The \l{How to Create Qt Plugins} document outlines the issues you
     need to pay attention to when building and deploying plugins for
     Qt applications.
-
-    \section1 The Windows Deployment Tool
-    \target windeployqt
-    The Windows deployment tool can be found in QTDIR/bin/windeployqt. It is
-    designed to automate the process of creating a deployable folder that contains
-    all libraries, QML imports, plugins, translations that are required to run the application
-    from that folder. This is used to create the sandbox for \l{Qt for WinRT}{Windows Runtime}
-    or an installation tree for Windows desktop applications that can be easily bundled by an installer.
-
-    \badcode
-Usage: windeployqt [options] [files]
-Qt Deploy Tool 5.6.0
-
-The simplest way to use windeployqt is to add the bin directory of your Qt
-installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
-  windeployqt <path-to-app-binary>
-If ICU, ANGLE, etc. are not in the bin directory, they need to be in the PATH
-variable. If your application uses Qt Quick, run:
-  windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
-
-Options:
-  -?, -h, --help             Displays this help.
-  -v, --version              Displays version information.
-  --dir <directory>          Use directory instead of binary directory.
-  --libdir <path>            Copy libraries to path.
-  --debug                    Assume debug binaries.
-  --release                  Assume release binaries.
-  --release-with-debug-info  Assume release binaries with debug information.
-  --pdb                      Deploy .pdb files (MSVC).
-  --force                    Force updating files.
-  --dry-run                  Simulation mode. Behave normally, but do not
-                             copy/update any files.
-  --no-plugins               Skip plugin deployment.
-  --no-libraries             Skip library deployment.
-  --qmldir <directory>       Scan for QML-imports starting from directory.
-  --no-quick-import          Skip deployment of Qt Quick imports.
-  --no-translations          Skip deployment of translations.
-  --no-system-d3d-compiler   Skip deployment of the system D3D compiler.
-  --compiler-runtime         Deploy compiler runtime (Desktop only).
-  --no-compiler-runtime      Do not deploy compiler runtime (Desktop only).
-  --json                     Print to stdout in JSON format.
-  --angle                    Force deployment of ANGLE.
-  --no-angle                 Disable deployment of ANGLE.
-  --no-opengl-sw             Do not deploy the software rasterizer library.
-  --list <option>            Print only the names of the files copied.
-                             Available options:
-                              source:   absolute path of the source files
-                              target:   absolute path of the target files
-                              relative: paths of the target files, relative
-                                        to the target directory
-                              mapping:  outputs the source and the relative
-                                        target, suitable for use within an
-                                        Appx mapping file
-  --verbose <level>          Verbose level.
-
-Qt libraries can be added by passing their name (-xml) or removed by passing
-the name prepended by --no- (--no-xml). Available libraries:
-bluetooth clucene concurrent core declarative designer designercomponents
-enginio gui qthelp multimedia multimediawidgets multimediaquick network nfc
-opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
-script scripttools sensors serialport sql svg test
-websockets widgets winextras xml xmlpatterns webenginecore webengine
-webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput geoservices
-webchannel
-
-Arguments:
-  [files]                    Binaries or directory containing the binary.
-\endcode
 
 */
 
