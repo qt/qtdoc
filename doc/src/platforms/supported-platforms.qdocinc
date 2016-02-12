@@ -27,14 +27,14 @@
 
 /*!
 //! [embedded]
-\l {Qt for Embedded Linux}{Embedded Linux},
+Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux},
 \l {Windows CE - Introduction to using Qt}{Windows Embedded (Compact and Standard)},
 \l {QNX},
 VxWorks
 //! [embedded]
 
 //! [mobile]
-\l {Qt for Android}{Android},
+Mobile Platforms: \l {Qt for Android}{Android},
 \l {Qt for iOS}{iOS},
 \l {Qt for WinRT}{WinRT}
 //! [mobile]
@@ -85,14 +85,13 @@ VxWorks
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X} \li
+    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
     \row \li Apple OS X \b 10.8, \b 10.9, \b 10.10, 10.11
          \li \b {Clang as provided by Apple}
          \li
 
-    \row \li {3,1} \header \li {3,1} Embedded Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
-         \li
     \row \li Embedded Linux (iMX.6-armv7a)
          \li \b {arm-poky-linux-gnueabi-gcc 4.9.1}
          \li Yocto Project 1.7 'Dizzy', Ubuntu 14.04 (64-bit) host
@@ -106,9 +105,8 @@ VxWorks
          \li MSVC 2008
          \li Windows 7 host
 
-    \row \li {3,1} \header \li {3,1} Mobile Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
-         \li
     \row \li Windows Phone (arm)
          \li \b {MSVC 2013}
          \li Windows 8.1 host
@@ -170,7 +168,7 @@ VxWorks
          \li i686-apple-darwin11-llvm-gcc-4.2
          \li
 
-    \row \li {3,1} \header \li {3,1} Embedded Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
     \row \li Embedded Linux (arm-gnueabi)
          \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
@@ -185,7 +183,7 @@ VxWorks
          \li \b {MSVC 2008}
          \li Windows 7 host
 
-    \row \li {3,1} \header \li {3,1} Mobile Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
     \row \li Windows Phone (arm)
          \li \b {MSVC 2013}
@@ -253,7 +251,7 @@ VxWorks
          \li \b i686-apple-darwin11-llvm-gcc-4.2
          \li
 
-    \row \li {3,1} \header \li {3,1} Embedded Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
     \row \li Embedded Linux (arm-gnueabi)
          \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
@@ -268,7 +266,7 @@ VxWorks
          \li \b {MSVC 2008}
          \li Windows 7 host
 
-    \row \li {3,1} \header \li {3,1} Mobile Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
     \row \li Windows Phone (arm)
          \li \b {MSVC 2013}
@@ -338,7 +336,7 @@ VxWorks
     \row \li OS X 10.6
          \li \li Deployment only
 
-    \row \li {3,1} \header \li {3,1} Embedded Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
     \row \li Embedded Linux (arm-gnueabi)
          \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
@@ -353,7 +351,7 @@ VxWorks
          \li \b {MSVC 2008}
          \li Windows 7 host
 
-    \row \li {3,1} \header \li {3,1} Mobile Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
     \row \li Windows Phone (arm)
          \li \b {MSVC 2013}
@@ -417,7 +415,7 @@ VxWorks
     \row \li OS X 10.6
          \li \li Deployment only
 
-    \row \li {3,1} \header \li {3,1} Embedded Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
     \row \li Embedded Linux (arm-gnueabi)
          \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
@@ -429,7 +427,7 @@ VxWorks
          \li \b {MSVC 2008}
          \li Windows 7 host
 
-    \row \li {3,1} \header \li {3,1} Mobile Platforms:
+    \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
     \row \li Windows Phone (arm)
          \li \b {MSVC 2013}
