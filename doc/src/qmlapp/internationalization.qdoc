@@ -182,7 +182,7 @@ type for converting numbers into localized currency strings.
 If the user changes the system language without a reboot, depending on the
 system, the strings in arrays and list models and other data structures might
 not be refreshed automatically. To force the texts to be refreshed when they are
-displayed in the user interface, you need declare the strings with the
+displayed in the user interface, you need to declare the strings with the
 QT_TR_NOOP() macro. Then, when you populate the objects for display, you need to
 explicitly retrieve the translation for each text. For example:
 

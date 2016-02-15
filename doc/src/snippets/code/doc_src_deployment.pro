@@ -44,13 +44,8 @@ DESTDIR = /path/to/Qt/plugandpaint/plugins
 
 
 #! [21]
-CONFIG += embed_manifest_exe
+CONFIG -= embed_manifest_exe
 #! [21]
-
-
-#! [23]
-CONFIG-=embed_manifest_dll
-#! [23]
 
 
 #! [26]

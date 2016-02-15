@@ -133,7 +133,7 @@
         \li
         \li Classes for applications which use ActiveX and COM
     \row
-        \li \l{Enginio Manual}{Enginio}
+        \li \l{Enginio Manual}{Enginio} (Deprecated)
         \li All
         \li All
         \li A Backend-as-a-Service solution to ease the backend development for
@@ -192,12 +192,11 @@
         \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux}
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
-        \li \l[QtOpenGL]{Qt OpenGL}
+        \li \l[QtOpenGL]{Qt OpenGL} (Deprecated)
         \li
         \li
-        \li OpenGL support classes.
-        \note Provided to ease porting from Qt 4.x. Please use the QOpenGL
-        classes in \l{Qt GUI} for new code
+        \li OpenGL support classes. Deprecated in favor of the \c{QOpenGL*}
+            classes in the \l{Qt GUI} module.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li
@@ -217,13 +216,6 @@
         \li
         \li Classes to make printing easier and more portable.
     \row
-        \li \l{Qt Quick 1 Reference Documentation}{Qt Declarative} (Deprecated)
-        \li All
-        \li
-        \li Qt Declarative is provided for \l{Qt 4.8 Reference Documentation}{Qt 4}
-        compatibility. The documentation is available through the Qt 4.8
-        \l{Qt Quick 1 Reference Documentation}{Qt Quick} documentation.
-    \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
         \li
@@ -238,9 +230,8 @@
         \li \l[QtScript]{Qt Script} (Deprecated)
         \li All
         \li
-        \li Classes for making Qt applications scriptable. Provided for Qt 4.x
-            compatibility. Please use the QJS* classes in the \l{Qt QML} module for
-            new code.
+        \li Classes for making Qt applications scriptable. Deprecated in favor
+            of the \c{QJS*} classes in the \l{Qt QML} module.
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
@@ -308,8 +299,8 @@
         \li
         \li
         \li C++ implementations of SAX and DOM.
-            \note Deprecated, please use QXmlStreamReader and QXmlStreamWriter
-            for new functionality.
+            \note This module is not required to use QXmlStreamReader and
+            QXmlStreamWriter. They are already part of \l{Qt Core}.
     \row
         \li \l[QtXmlPatterns]{Qt XML Patterns}
         \li
@@ -370,8 +361,6 @@
              when compared to \l {Qt Quick Controls}, on which the module is based.
              These types work in conjunction with \l{Qt Quick} and \l{Qt Quick
              Layouts}.
-    \row \li \l{Qt Speech}
-         \li Provides support for accessibility features such as text-to-speech.
     \row \li \l{Qt Wayland Compositor}
          \li Provides a framework to develop a Wayland compositor.
     \endtable
