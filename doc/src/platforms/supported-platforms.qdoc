@@ -26,9 +26,9 @@
 ****************************************************************************/
 
 /*!
-    \keyword Supported Platforms
+    \keyword Community Supported Platforms
     \page supported-platforms.html
-    \title Community Supported Platforms
+    \title Supported Platforms
     \brief The platforms supported by Qt.
 
     Qt is a commercial and open source licensed cross-platform application
@@ -48,102 +48,24 @@
     \l [QtWidgets] {Qt Widgets}{Widgets} can be used without
     hardware acceleration.
 
-    Not all platforms supported by the Community are supported by The
-    Qt Company, and vice versa.
-
-    \list
-        \li \l {Officially Supported Platforms} - Platforms supported
-        by The Qt Company.
-    \endlist
-
     In Qt 5 all platforms are created using the
     \l{Qt Platform Abstraction} (QPA), which makes it easier
     than before to port Qt into a new operating system.
 
-    \section1 Desktop Platforms
+    \section1 Supported Configurations
 
-    You can develop with Qt for the following desktop platforms:
+    The following table lists configurations supported by The Qt Company.
+    A \e {configuration} is a combination of an operating system version,
+    a compiler version, and a graphics system.
 
-    \list
-        \li \l{Qt for Windows}{Windows}
-        \li \l{Qt for Linux/X11}{Linux/X11}
-        \li \l{Qt for OS X}{OS X}
-    \endlist
 
-    \section1 Embedded Platforms
-    You can develop with Qt for the following embedded platforms:
-    \list
-        \li \l{Qt for Embedded Linux}{Embedded Linux}
-        \li \l{Windows CE - Introduction to using Qt}{Windows Embedded (Compact and Standard)}
-        \li Real-Time Operating Systems, such as \l{QNX}, VxWorks and INTEGRITY
-    \endlist
+    \include supported-platforms.qdocinc latest
+    In the above table, the configurations in \b bold are \e {reference
+    configurations}.
 
-    \section1 Mobile Platforms
+    \section2 Reference Configurations
 
-    You can develop with Qt for the following mobile platforms supported
-    by The Qt Company:
-
-    \list
-        \li \l{Qt for Android}{Android}
-        \li \l{Qt for iOS}{iOS}
-        \li \l{Qt for WinRT}{WinRT} (including Windows Phone)
-    \endlist
-
-    The following platforms also support Qt:
-
-    \list
-        \li \l{Sailfish OS}
-    \endlist
-
-    Work in progress ports of Qt exist for:
-
-    \list
-        \li \l{Tizen}
-    \endlist
-
-    For more information about the Qt modules for mobile platforms, visit
-    the \l{Mobile APIs} page.
-
-    \section1 Reference Configurations
-
-    A \e {reference configuration} is a combination of an operating system version,
-    a compiler version, and a graphics system. The following table lists the
-    configurations that are tested by the Qt Project:
-
-    \table
-    \header \li Platform
-                                     \li Compiler
-    \row    \li Ubuntu Linux 14.04, X11 (64-bit)
-                                     \li As provided by Ubuntu
-    \row    \li RedHat 6.6, X11 (64-bit)
-                                     \li As provided by Red Hat
-    \row    \li openSUSE 13.1, X11 (64-bit)
-                                     \li As provided by SUSE
-    \row    \li Microsoft Windows 7 (32-bit)
-                                     \li MSVC 2010 SP1
-    \row    \li Microsoft Windows 7 (32-bit)
-                                     \li \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}{MinGW-builds gcc 4.9.1 (32-bit)}
-    \row    \li Microsoft Windows 8.1 (32-bit and 64-bit)
-                                     \li MSVC 2012 SP2
-    \row    \li Microsoft Windows 8.1 (32-bit and 64-bit)
-                                     \li MSVC 2013 SP3
-    \row    \li Microsoft Windows Phone 8.1 (64-bit)
-                                     \li MSVC 2013 SP3
-    \row    \li Microsoft Windows Runtime 8.1 (64-bit)
-                                     \li MSVC 2013 SP3
-    \row    \li Apple OS X 10.8 "Mountain Lion", Cocoa (64-bit)
-                                     \li Clang as provided by Apple
-    \row    \li Apple OS X 10.9 "Mavericks", Cocoa (64-bit)
-                                     \li Clang as provided by Apple
-    \row    \li Apple OS X 10.10 "Yosemite", Cocoa (64-bit)
-                                     \li Clang as provided by Apple
-    \row    \li Apple iOS 8 (64-bit)
-                                     \li Clang as provided by Apple
-    \row    \li Google Android 4.4
-                                     \li As provided by Google (Android NDK Revision 10c)
-    \endtable
-
-    These reference configurations are run on the continuous integration (CI)
+    The reference configurations are run on the continuous integration (CI)
     system within Qt Project. In addition, they are subjected to unit test suite
     and other internal testing tools on a frequent basis (prior to new version
     releases, source tree branching, and at other significant period points in
@@ -157,19 +79,12 @@
     sufficient effort is made to bring continuous integration to an acceptable
     state for that particular configuration.
 
-    In addition to the reference platforms Qt is occasionally tested on other
-    configurations in which it is known to run well. These include, for example:
+    The following page lists the configurations supported by The
+    Qt Company for each released Qt version:
 
-    \table
-    \header \li Platform
-                                     \li Compiler
-    \row    \li Ubuntu Linux 11.10, X11 (32-bit and 64-bit)
-                                     \li As provided by Ubuntu
-    \row    \li Microsoft Windows CE 7.0
-                                     \li MSVC 2008 SP1
-    \row    \li Apple OS X 10.7 "Lion", Cocoa (64-bit)
-                                     \li Clang as provided by Apple
-    \endtable
+    \list
+        \li \l {Supported Platforms and Configurations}
+    \endlist
 
     The Qt Company, Qt partners, open source projects and community users
     are able to provide assistance with various different supported
@@ -205,4 +120,23 @@
     implied warranties of merchantability, fitness for a particular purpose, title and
     non-infringement with regard to the Licensed Software.
 
+*/
+
+/*!
+    \page supported-platforms-and-configurations.html
+    \title Supported Platforms and Configurations
+
+    Qt is supported on a variety of 32-bit and 64-bit platforms, and can be
+    built on each platform with GCC, a vendor-supplied compiler, or a third
+    party compiler as indicated in the table below.
+
+    Configurations in \b bold are run on the continuous integration (CI) system;
+    they are tested automatically for every change submitted on that
+    platform/compiler combination against the test suite available as part of
+    Qt.
+
+    \b {See also}: \l {http://doc.qt.io/QtForDeviceCreation/qtee-supported-platforms.html}
+                      {Qt for Device Creation: Supported Platforms}.
+
+    \include supported-platforms.qdocinc all
 */
