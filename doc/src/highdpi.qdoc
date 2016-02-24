@@ -31,10 +31,17 @@
 
     \section1 High DPI Displays
 
-    High DPI monitors and displays with superb image quality and crisp font rendering
-    are becoming increasingly popular. For example, 4K monitors may have 3840x2160 pixels,
-    resulting in a logical resolution of 192 DPI, whereas older monitors have around 1920x1080
-    pixels at 96 DPI.
+    High DPI Displays are displays with increased pixel density compared to standard
+    DPI displays.
+
+    This pixel density is measured in Dots per Inch (DPI) or Pixels Per Inch (PPI),
+    and is determined by the number of display pixels and physical size. This means that
+    the number of pixels alone is not enough to determine if a display falls into the
+    high-DPI category.
+
+    A 4K monitor has a fixed number of pixels (~8M), however the DPI varies between 185
+    (23 inch) and 110 (40 inch). The former is around 2x standard 96 DPI desktop resolution,
+    while the latter is barely over it.
 
     \section2 Issues with High DPI
 
@@ -50,26 +57,54 @@
             to be clipped.
 
         \li Applications must adapt to situations where users have multiple displays with
-            varying resolution.  For example, they might use a 4K monitor for the
+            varying resolution. For example, they might use a 4K monitor for the
             document window of an image editor and a low resolution monitor for the
             tool box.
-
-        \li Backing store and pixmap buffers become quite large so that
-            rendering may slow down.
     \endlist
+
+    The traditional approach to supporting high DPI has been one where Qt scaled fonts
+    automatically, and then provided a DPI value that application code could use
+    to scale the rest of the UI.
+
+    \section2 Qt High DPI Support Overview
+
+    Qt supports a high DPI mode where the main coordinate system is virtualized and
+    made independent of the display pixel density. This mode is implemented by some
+    operating systems (OS X, iOS). In addition, Qt contains an implementation which
+    may be used where operating system support is missing.
+
+    Geometry is now specified in device independent pixels. This includes widget and
+    item geometry, event geometry, desktop, window and screen geometry, and animation
+    velocities. Rendered output is in device pixels, which corresponds to the display
+    resolution. The ratio between the device independent and device pixel coordinate
+    systems is the devicePixelRatio.
+
+    Applications mostly work with device independent pixels. Notable exceptions are
+    OpenGL and code that works with raster graphics.
 
     \section2 Operating System Support
 
     The operating systems supported by Qt offer the following support for high DPI displays:
 
-    \section3 OS X
+    \section3 OS X and iOS
 
-    On OS X, there is a separate, float-based user coordinate system (as opposed
-    to Device Pixels). For high DPI monitors, the operating system will scale the
-    contents using an efficient scaling algorithm that will make everything look
-    very crisp (Retina Display).
+    The Apple platforms implement scaling and coordinate system virtualization in the
+    in the operating system. Normally, no special configuration is required.
 
-    \note The scaling is not applied to Open GL windows.
+    \note On OS X, high-DPI support is enabled by settings in the Info.plist file.
+    Make sure they are present.
+    \code
+        <key>NSPrincipalClass</key>
+        <string>NSApplication</string>
+        <key>NSHighResolutionCapable</key>
+        <string>True</string>
+    \endcode
+    Never versions of qmake will generate Info.plist's with the NSPrincipalClass key,
+    which is sufficient since NSHighResolutionCapable is true by default.
+
+    \note OS X and iOS may apply further virtualization such that device pixels do not
+    correspond 1:1 to display pixels. This happens on the iPhone 6+ and on OS X configured
+    with 'display scaling' enabled.
 
     \section3 Microsoft Windows
 
