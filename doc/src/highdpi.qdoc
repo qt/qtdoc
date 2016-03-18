@@ -157,9 +157,13 @@
             \note Non-integer scale factors may cause significant
             scaling/painting artifacts.
 
+         \li The application attribute \c Qt::AA_EnableHighDpiScaling, introduced in Qt 5.6,
+             enables automatic scaling based on the pixel density of the monitor.
+
          \li The application attribute \c Qt::AA_DisableHighDpiScaling, introduced in Qt 5.6,
              turns off all scaling. This is intended for applications that need to use
-             actual window system coordinates, regardless of environment variables.
+             actual window system coordinates, regardless of environment variables. This
+             attribute takes priority over Qt::AA_EnableHighDpiScaling.
 
         \li An experimental implementation of high-DPI scaling was introduced in Qt 5.4.
             It was enabled by the environment variable \c QT_DEVICE_PIXEL_RATIO, which
