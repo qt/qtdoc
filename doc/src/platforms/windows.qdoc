@@ -563,6 +563,13 @@
 
     This will give the full screen window a 1-pixel border, thus enabling the
     other top level windows to appear on top.
+
+    \section1 Clang(clang-cl)
+
+    Qt has been tested successfully with Clang 3.8(llvm svn rev. 256453 and clang
+    svn rev. 256453). Visual Studio 2015 Update 1 was used to build clang. Mkspec is
+    using the clang-cl tool to build Qt. Clang 3.8 does not support precompiled
+    headers.
 */
 
 /*!
