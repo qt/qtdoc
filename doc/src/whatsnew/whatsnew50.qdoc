@@ -61,10 +61,10 @@
     \section2 New Classes for Windowing and Rendering
     A new set of enabler classes have been added, most importantly QWindow,
     QScreen, QSurfaceFormat, and QOpenGLContext. These are now used as backends
-    for the \l{Qt Widgets} module and by l\{Qt Quick} 2.
+    for the \l{Qt Widgets} module and by \l {Qt Quick} 2.
 
     \section2 OpenGL Classes
-    Most of the useful l\{Qt OpenGL} classes have been polished and moved into
+    Most of the useful \l {Qt OpenGL} classes have been polished and moved into
     \l{Qt GUI}. A few important ones are, QOpenGLFramebufferObject,
     QOpenGLShaderProgram, QOpenGLFunctions, and so on. For the complete list,
     refer to \l{Qt GUI C++ Classes}.
@@ -197,8 +197,8 @@
      \li New Canvas type for drawing, provides a HTML5 canvas-like API along
          with the following additional features:
      \list
-      \li Two render targets: \c{Canvas::Image}{Canvas.Image} and
-          \c{Canvas::FrameBufferObject}{Canvas.FramebufferObject}.
+      \li Two render targets: \l{QtQuick::Canvas::renderTarget}{Canvas.Image} and
+          \l{QtQuick::Canvas::renderTarget}{Canvas.FramebufferObject}.
       \li Background thread rendering.
       \li Tiled canvas rendering.
       \li Support for most of the HTML5 context2d APIs.
@@ -243,7 +243,7 @@
        \li \l{Text::}{minimumPixelSize} and \l{Text::}{minimumPointSize} properties
            can be used to specify a lower bound when auto-fitting.
       \endlist
-     \li \c {TextEdit::textFormat}{TextEdit.textFormat} property now defaults
+     \li \l {QtQuick::TextEdit::textFormat}{TextEdit.textFormat} property now defaults
          to \c PlainText instead  of \c AutoText.
      \li \l{TextInput} now has \c wrapMode and verticalAlignment properties.
      \li \c{TextInput.positionAt()} now takes \c y value.
@@ -345,8 +345,8 @@
       \li New \c{active} property delays instantiation of a Loader object’s
           item.
       \li New \c {setSource(JSObject)} method to specify initial property
-          values for the loaded item, similar to \c{Component::createObject}
-          {Component.createObject()}.
+          values for the loaded item, similar to
+          \l {QtQml::Component::createObject()} {Component.createObject()}.
       \li \c sourceChanged signal is now only emitted when the source changes
           and the \c sourceComponentChanged signal is now emitted when the
           \c sourceComponent is changed. Ealier, these signals were emitted by
