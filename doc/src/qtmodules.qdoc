@@ -263,17 +263,8 @@
         \li \l[QtWebEngine]{Qt WebEngine}
         \li All
         \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
-        \li Provides a QML API to run web applications using the \l{http://www.chromium.org/Home}{Chromium browser project}.
-    \row
-        \li \l[QtWebEngineWidgets]{Qt WebEngine Widgets}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
-        \li Provides a C++ API to run web applications using the \l{http://www.chromium.org/Home}{Chromium browser project}.
-    \row
-        \li \l[QtWebEngineCore]{Qt WebEngine Core}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
-        \li Provides a public API shared by both \l[QtWebEngine]{Qt WebEngine} and \l[QtWebEngineWidgets]{Qt WebEngine Widgets}.
+        \li Classes and functions for embedding web content in applications using the
+            \l{http://www.chromium.org/Home}{Chromium browser project}.
     \row
         \li \l[QtWebSockets]{Qt WebSockets}
         \li All
@@ -354,7 +345,7 @@
     \row \li \l[QtSerialBus]{Qt Serial Bus}
          \li Provides access to serial industrial bus interface. Currently the module supports
              the CAN bus and Modbus protocols.
-    \row \li \l{Qt Labs Controls}
+    \row \li \l{Qt Quick Controls 2}
          \li Provides lightweight QML types for creating performant user
              interfaces for embedded and mobile devices. These controls achieve
              improved efficiency by employing a simplified styling architecture
@@ -363,6 +354,8 @@
              Layouts}.
     \row \li \l{Qt Wayland Compositor}
          \li Provides a framework to develop a Wayland compositor.
+    \row \li \l{Qt SCXML}
+         \li Provides functionality to create state machines from SCXML files.
     \endtable
 
     \section1 Qt Tools

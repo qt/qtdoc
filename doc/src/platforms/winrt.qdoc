@@ -79,6 +79,32 @@
 
     \section1 Getting Started
 
+    \section2 Notes to Desktop Users
+
+    As WinRT applications run in a sandboxed environment, some restrictions should be taken
+    into account when considering porting or writing cross-platform applications:
+
+    \list
+        \li The class QProcess is not implemented (indicated by the macro \c QT_NO_PROCESS
+            being defined) as no subprocesses can be launched.
+        \li Some paths returned by QStandardPaths::writableLocation() may be empty.
+        \li A WinRT application may not do socket-based communication with another application
+            running on the same host (as this would violate the sandboxing).
+        \li Applications run in fullscreen mode only (see QStyleHints). On desktop,
+            the screen size varies as the application is resized.
+        \li There are no environment variables. Qt emulates the functionality
+            by maintaining the values locally, so that qputenv() and related
+            functions continue to work. All known variables influencing Qt can
+            be set in source code.
+        \li WinRT applications are UI applications by nature. This implies that
+            console type applications will have a window created internally,
+            which is always visible.
+        \li Applications should not exit programmatically. In particular, calling
+            exit() before the UI is shown causes a crash.
+        \li The WinRT clipboard is local to the application; it cannot be retrieved
+            by a desktop application.
+    \endlist
+
     \section2 Building Applications
 
     You can develop applications for WinRT just as any other Qt applications.
