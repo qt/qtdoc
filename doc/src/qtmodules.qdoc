@@ -297,38 +297,59 @@
         \li
         \li
         \li Support for XPath, XQuery, XSLT and XML schema validation.
+    \row
+    \header
+        \li {4,1} Add-ons available under GPLv3 license
+    \row
+        \li \l{Qt Charts}
+        \li All
+        \li
+        \li UI Components for displaying visually pleasing charts,
+            driven by static or dynamic data models.
+    \row
+        \li \l{Qt Data Visualization}
+        \li
+        \li
+        \li UI Components for creating stunning 3D data visualizations.
+    \row
+        \li \l{Qt Purchasing}
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, and
+            \l{Qt for OS X}{OS X}.
+        \li
+        \li Enables in-app purchase of products in Qt applications.
+    \row
+        \li \l{Qt Virtual Keyboard}
+        \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
+            desktop, and \l{Boot2Qt}{Boot to Qt} targets.
+        \li
+        \li A framework for implementing different input methods as
+            well as a QML virtual keyboard. Supports localized keyboard
+            layouts and custom visual themes.
+    \row
+        \li \l{Qt Quick 2D Renderer}
+        \li All
+        \li
+        \li Enables the use of Qt Quick UI on devices without OpenGL
+            capability.
     \endtable
 
     \section1 Value-Add Modules
 
     In addition to the modules released as part of Qt 5, the following modules
-    and tooling build on top of the Qt libraries to provide additional value. They
-    have their own release schedule, and are available under different Qt licenses.
-    See the \l {Downloads} page for more information.
+    and tooling build on top of the Qt libraries to provide additional value.
+    They have their own release schedule, and are available under the
+    commercial license.
 
     \table 80%
     \header
         \li Feature
         \li Description
-
     \row \li \l{Qt for Device Creation}
          \li Tools for fast, easy, and fully-integrated embedded device application development.
              Includes most other Value-Add features.
-    \row \li \l{Qt Charts}
-         \li UI Components for displaying visually pleasing charts, driven by static or dynamic
-             data models.
     \row \li \l{Qt Quick Compiler}
          \li Enables compiling .qml source files into application binaries, improving load times
              and security for code assets.
-    \row \li \l{Qt Data Visualization}
-         \li UI Components for creating stunning 3D data visualizations.
-    \row \li \l{Qt Purchasing}
-         \li Enables in-app purchase of products in Qt applications on mobile platforms.
-    \row \li \l{Qt Virtual Keyboard}
-         \li A framework for implementing different input methods as well as a QML virtual keyboard.
-             Supports localized keyboard layouts and custom visual themes.
-    \row \li \l{Qt Quick 2D Renderer}
-         \li Enables the use of Qt Quick UI on devices without OpenGL capability.
     \endtable
 
     \section1 Technology Preview Modules
