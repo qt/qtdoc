@@ -29,8 +29,7 @@
 //! [embedded]
 Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux},
 \l {Windows CE - Introduction to using Qt}{Windows Embedded (Compact and Standard)},
-\l {QNX},
-VxWorks
+\l {QNX}
 //! [embedded]
 
 //! [mobile]
@@ -43,6 +42,8 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \section1 Qt 5.6
 
 //! [5.6] //! [latest]
+    \b {Supported until Mar. 16, 2019}
+
     \table 80%
     \header \li Platform \li Compiler \li Notes
     \header \li {3,1} \l {Qt for Windows}{Windows}
@@ -94,15 +95,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
-    \row \li Embedded Linux (iMX.6-armv7a)
-         \li \b {arm-poky-linux-gnueabi-gcc 4.9.1}
-         \li Yocto Project 1.7 'Dizzy', Ubuntu 14.04 (64-bit) host
-    \row \li Embedded Linux (arm-gnueabi)
-         \li arm-none-linux-gnueabi-gcc-4.4.1
-         \li Sourcery G++ Lite 2010q1-202, Ubuntu 14.04 (32-bit) host
+    \row \li \l {Qt for Embedded Linux}{Embedded Linux}
+         \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
     \row \li QNX 6.6.0 (armv7le and x86)
          \li \b {As provided by QNX}
-         \li Ubuntu 14.04 (64-bit) host
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, Windows
     \row \li Windows Embedded 7 (armv4i)
          \li MSVC 2008
          \li Windows 7 host
@@ -126,6 +123,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \section1 Qt 5.5
 //! [5.5]
+    \b {Supported until Mar. 16, 2018}
 
     \table 80%
     \header \li Platform \li Compiler \li Notes
@@ -172,6 +170,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc embedded
+         and VxWorks (under a commercial license)
     \row \li Embedded Linux (arm-gnueabi)
          \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
          \li Sourcery G++ Lite 2010q1-202, Ubuntu 14.04 (32-bit) host
@@ -180,7 +179,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Sourcery G++ Lite 2010q1-202, Ubuntu 14.04 (64-bit) host
     \row \li QNX 6.6.0 (armv7le and x86)
          \li \b {As provided by QNX}
-         \li Ubuntu 14.04 host (64-bit)
+         \li Hosts: \b {Ubuntu 14.04 host (64-bit)}, Windows
     \row \li Windows Embedded 7 (armv4i)
          \li \b {MSVC 2008}
          \li Windows 7 host
@@ -205,7 +204,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \section1 Qt 5.4
 //! [5.4]
-    \b {Supported until 01.07.2017}
+    \b {Supported until July 01, 2017}
 
     \table 80%
     \header \li Platform \li Compiler \li Notes
@@ -263,7 +262,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li ourcery G++ Lite 2010q1-202, Ubuntu 12.04 (64-bit) host
     \row \li QNX 6.6.0 (armv7le and x86)
          \li \b {As provided by QNX}
-         \li Ubuntu 12.04 (64-bit) host
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, Windows
     \row \li Windows Embedded 7 (armv4i)
          \li \b {MSVC 2008}
          \li Windows 7 host
@@ -288,7 +287,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \section1 Qt 5.3
 //! [5.3]
-    \b {Supported until 10.12.2016}
+    \b {Supported until Dec. 10, 2016}
 
     \table 80%
     \header \li Platform \li Compiler \li Notes
@@ -348,7 +347,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Sourcery G++ Lite 2010q1-202, Ubuntu 12.04 host (64-bit)
     \row \li QNX 6.6.0 (armv7le and x86)
          \li \b {As provided by QNX}
-         \li Ubuntu 12.04 host (64-bit)
+         \li Hosts: \b {Ubuntu 12.04 host (64-bit)}, Windows
     \row \li Windows Embedded 7 (armv4i)
          \li \b {MSVC 2008}
          \li Windows 7 host
@@ -373,7 +372,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \section1 Qt 5.2
 //! [5.2]
-    \b {Supported until 20.05.2016}
+    \b {Supported until May 20, 2016}
 
     \table 80%
     \header \li Platform \li Compiler \li Notes
