@@ -668,7 +668,7 @@
     This document describes how to create a \l{Qt for OS X}{OS X} bundle
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint}{Plug & Paint} example application that comes with the
+    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with the
     Qt installation package.
 
     The Qt installers for OS X include a \l
@@ -745,7 +745,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 30
 
     Here is what the output looks like for the statically linked
-    \l {tools/plugandpaint}{Plug & Paint}:
+    \l {tools/plugandpaint/app}{Plug & Paint}:
 
     \snippet snippets/code/doc_src_deployment.qdoc 31
 
@@ -768,11 +768,11 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 33
 
-    The \l {tools/plugandpaint}{Plug & Paint} example consists of
+    The \l {tools/plugandpaint/app}{Plug & Paint} example consists of
     several components: The core application (\l
-    {tools/plugandpaint}{Plug & Paint}), and the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} and \l
-    {tools/plugandpaintplugins/extrafilters}{Extra Filters}
+    {tools/plugandpaint/app}{Plug & Paint}), and the \l
+    {tools/plugandpaint/plugins/basictools}{Basic Tools} and \l
+    {tools/plugandpaint/plugins/extrafilters}{Extra Filters}
     plugins. As we cannot deploy plugins using the static linking
     approach, the bundle we have prepared so far is incomplete. The
     application will run, but the functionality will be disabled due
@@ -814,7 +814,7 @@
     \section2 Linking the Application to Qt as Frameworks
 
     After building Qt as frameworks, we can build the \l
-    {tools/plugandpaint}{Plug & Paint} application. First, we must go
+    {tools/plugandpaint/app}{Plug & Paint} application. First, we must go
     to the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 34
@@ -895,7 +895,7 @@
     After this, we run \c otool again and see that the
     application can find the libraries.
 
-    The plugins for the \l {tools/plugandpaint}{Plug &
+    The plugins for the \l {tools/plugandpaint/app}{Plug &
     Paint} example makes it interesting. The basic steps we
     need to follow with plugins are:
 
@@ -916,7 +916,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 43
 
     For example, If we run \c otool on the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} plugin's \c
+    {tools/plugandpaint/plugins/basictools}{Basic Tools} plugin's \c
     .dylib file, we get the following information.
 
     \snippet snippets/code/doc_src_deployment.qdoc 44

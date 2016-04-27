@@ -660,10 +660,10 @@
 
     \section2 Linking the Application to the Static Version of Qt
 
-    As an example, this section will build the \l{tools/plugandpaint}{Plug & Paint}
+    As an example, this section will build the \l{tools/plugandpaint/app}{Plug & Paint}
     example statically.
 
-    Once Qt finishes building, build the \l{tools/plugandpaint}{Plug & Paint}
+    Once Qt finishes building, build the \l{tools/plugandpaint/app}{Plug & Paint}
     application. First we must go into the directory that contains the
     application:
 
@@ -697,7 +697,7 @@
     \section1 Shared Libraries
 
     We have two challenges when deploying the \l
-    {tools/plugandpaint}{Plug & Paint} application using the shared
+    {tools/plugandpaint/app}{Plug & Paint} application using the shared
     libraries approach: The Qt runtime has to be correctly
     redistributed along with the application executable, and the
     plugins have to be installed in the correct location on the target
@@ -712,7 +712,7 @@
     \section2 Linking the Application to Qt as a Shared Library
 
     After ensuring that Qt is built as a shared library, we can build
-    the \l {tools/plugandpaint}{Plug & Paint} application. First, we
+    the \l {tools/plugandpaint/app}{Plug & Paint} application. First, we
     must go into the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 15
@@ -789,7 +789,7 @@
 
     If the application starts without any problems, then we have
     successfully made a dynamically linked version of the \l
-    {tools/plugandpaint}{Plug & Paint} application. But the
+    {tools/plugandpaint/app}{Plug & Paint} application. But the
     application's functionality will still be missing since we have
     not yet deployed the associated plugins.
 
@@ -805,7 +805,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 18
 
     An archive distributing all the Qt DLLs and application
-    specific plugins required to run the \l {tools/plugandpaint}{Plug
+    specific plugins required to run the \l {tools/plugandpaint/app}{Plug
     & Paint} application, would have to include the following files:
 
     \table 100%

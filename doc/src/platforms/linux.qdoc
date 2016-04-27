@@ -450,7 +450,7 @@
 
     This documentation discusses specific deployment issues for \l{Qt for
     Linux/X11}. We will demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint}{Plug & Paint} application that is provided in Qt's
+    \l{tools/plugandpaint/app}{Plug & Paint} application that is provided in Qt's
     examples directory.
 
     Due to the proliferation of Unix systems (such as commercial Unixes, Linux
@@ -520,11 +520,11 @@
     application. For more information, see the \l {Application
     Dependencies} section.
 
-    The \l {tools/plugandpaint}{Plug & Paint} example consists of
+    The \l {tools/plugandpaint/app}{Plug & Paint} example consists of
     several components: The core application (\l
-    {tools/plugandpaint}{Plug & Paint}), and the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} and \l
-    {tools/plugandpaintplugins/extrafilters}{Extra Filters}
+    {tools/plugandpaint/app}{Plug & Paint}), and the \l
+    {tools/plugandpaint/plugins/basictools}{Basic Tools} and \l
+    {tools/plugandpaint/plugins/extrafilters}{Extra Filters}
     plugins. Since we cannot deploy plugins using the static linking
     approach, the executable we have prepared so far is
     incomplete. The application will run, but the functionality will
@@ -534,7 +534,7 @@
     \section1 Shared Libraries
 
     We have two challenges when deploying the \l
-    {tools/plugandpaint}{Plug & Paint} application using the shared
+    {tools/plugandpaint/app}{Plug & Paint} application using the shared
     libraries approach: The Qt runtime has to be correctly
     redistributed along with the application executable, and the
     plugins have to be installed in the correct location on the target
@@ -549,7 +549,7 @@
     \section2 Linking the Application to Qt as a Shared Library
 
     After ensuring that Qt is built as a shared library, we can build
-    the \l {tools/plugandpaint}{Plug & Paint} application. First, we
+    the \l {tools/plugandpaint/app}{Plug & Paint} application. First, we
     must go into the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 4
@@ -631,7 +631,7 @@
     \snippet snippets/code/doc_src_deployment.pro 8
 
     An archive distributing all the Qt libraries, and all the plugins,
-    required to run the \l {tools/plugandpaint}{Plug & Paint}
+    required to run the \l {tools/plugandpaint/app}{Plug & Paint}
     application, would have to include the following files:
 
     \table 100%
