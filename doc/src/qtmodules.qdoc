@@ -215,6 +215,14 @@
         \li All
         \li
         \li Classes to make printing easier and more portable.
+    \row \li \l{Qt Quick Controls 2}
+         \li All
+         \li
+         \li Provides lightweight QML types for creating performant user
+             interfaces for embedded and mobile devices. These controls achieve
+             improved efficiency by employing a simplified styling architecture
+             when compared to \l {Qt Quick Controls}. These types work in conjunction
+             with \l{Qt Quick} and \l{Qt Quick Layouts}.
     \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
@@ -366,13 +374,6 @@
     \row \li \l[QtSerialBus]{Qt Serial Bus}
          \li Provides access to serial industrial bus interface. Currently the module supports
              the CAN bus and Modbus protocols.
-    \row \li \l{Qt Quick Controls 2}
-         \li Provides lightweight QML types for creating performant user
-             interfaces for embedded and mobile devices. These controls achieve
-             improved efficiency by employing a simplified styling architecture
-             when compared to \l {Qt Quick Controls}, on which the module is based.
-             These types work in conjunction with \l{Qt Quick} and \l{Qt Quick
-             Layouts}.
     \row \li \l{Qt Wayland Compositor}
          \li Provides a framework to develop a Wayland compositor.
     \row \li \l{Qt SCXML}
