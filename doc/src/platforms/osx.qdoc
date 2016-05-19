@@ -59,10 +59,7 @@
 
     \section1 OS X Versions
 
-    OS X 10.7 "Lion" and 10.8 "Mountain Lion" are considered \l{Reference
-    Configurations}{reference configurations}, meaning they are tested by a
-    continuous integration (CI) system. Qt 5 applications may be deployed to Mac
-    OS X versions 10.6 "Snow Leopard", but support is limited.
+    See \l{Supported Platforms} for the list of OS X versions supported by Qt.
 
     Qt can be built for either x86 or x86_64. 64-bit is used by default.
     To select a 32-bit build, use the \c macx-clang-32 or \c macx-g++32 mkspec.
@@ -113,8 +110,7 @@
     \section1 Deploying Applications on OS X
 
     In general, Qt supports building on one OS X version and deploying to
-    earlier or later OS X versions. You can build on 10.7 Lion and run
-    the same binary on 10.6. The recommended way is to build on the
+    earlier or later OS X versions. The recommended way is to build on the
     latest version and deploy to an earlier OS X version.
 
     OS X applications are typically deployed as self-contained application
@@ -672,7 +668,7 @@
     This document describes how to create a \l{Qt for OS X}{OS X} bundle
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint}{Plug & Paint} example application that comes with the
+    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with the
     Qt installation package.
 
     The Qt installers for OS X include a \l
@@ -749,7 +745,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 30
 
     Here is what the output looks like for the statically linked
-    \l {tools/plugandpaint}{Plug & Paint}:
+    \l {tools/plugandpaint/app}{Plug & Paint}:
 
     \snippet snippets/code/doc_src_deployment.qdoc 31
 
@@ -772,11 +768,11 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 33
 
-    The \l {tools/plugandpaint}{Plug & Paint} example consists of
+    The \l {tools/plugandpaint/app}{Plug & Paint} example consists of
     several components: The core application (\l
-    {tools/plugandpaint}{Plug & Paint}), and the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} and \l
-    {tools/plugandpaintplugins/extrafilters}{Extra Filters}
+    {tools/plugandpaint/app}{Plug & Paint}), and the \l
+    {tools/plugandpaint/plugins/basictools}{Basic Tools} and \l
+    {tools/plugandpaint/plugins/extrafilters}{Extra Filters}
     plugins. As we cannot deploy plugins using the static linking
     approach, the bundle we have prepared so far is incomplete. The
     application will run, but the functionality will be disabled due
@@ -818,7 +814,7 @@
     \section2 Linking the Application to Qt as Frameworks
 
     After building Qt as frameworks, we can build the \l
-    {tools/plugandpaint}{Plug & Paint} application. First, we must go
+    {tools/plugandpaint/app}{Plug & Paint} application. First, we must go
     to the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 34
@@ -899,7 +895,7 @@
     After this, we run \c otool again and see that the
     application can find the libraries.
 
-    The plugins for the \l {tools/plugandpaint}{Plug &
+    The plugins for the \l {tools/plugandpaint/app}{Plug &
     Paint} example makes it interesting. The basic steps we
     need to follow with plugins are:
 
@@ -920,7 +916,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 43
 
     For example, If we run \c otool on the \l
-    {tools/plugandpaintplugins/basictools}{Basic Tools} plugin's \c
+    {tools/plugandpaint/plugins/basictools}{Basic Tools} plugin's \c
     .dylib file, we get the following information.
 
     \snippet snippets/code/doc_src_deployment.qdoc 44
@@ -1060,8 +1056,8 @@
 
     \section2 OS X Version Dependencies
 
-    Qt 5 applications can be built and deployed on OS X 10.6
-    (Snow Leopard) and higher. This is achieved using \e{weak linking}. In
+    Qt 5 applications can be built on the latest OS X version and deployed to
+    previous versions. This is achieved using \e{weak linking}. In
     \e{weak linking}, Qt tests whether a function added in a newer
     version of OS X is available on the computer it is running
     on. This allows Qt to use newer features when it runs on a newer
