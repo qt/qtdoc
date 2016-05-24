@@ -105,6 +105,14 @@
     \c{CMake} version older than 3.1.0, you need to add the needed \c{-std=...} to the targets
     linking against Qt5 modules yourself.
 
+    If you use Qt 5.7 and a \c{CMake} version above 3.1.0, plus require a more recent C++ standard
+    version, use the CMake way of selecting the standard version, or specify features required and
+    let CMake compute the flags. Example:
+
+    \snippet snippets/cmake/CMakeLists.pro 6
+
+    Also see: \l{https://cmake.org/cmake/help/v3.1/manual/cmake-compile-features.7.html}{CMake cmake-compile-features Documentation}
+
     \section2 Using Qt 5 with \c{CMake} older than 2.8.12
 
     It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to

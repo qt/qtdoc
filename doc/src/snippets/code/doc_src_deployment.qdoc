@@ -56,7 +56,7 @@ make
 
 
 //! [1]
-cd /path/to/Qt/examples/tools/plugandpaint
+cd /path/to/Qt/examples/widgets/tools/plugandpaint/app
 //! [1]
 
 
@@ -87,7 +87,7 @@ make
 
 
 //! [6]
-cd ../plugandpaintplugins
+cd ../plugandpaint/plugins
 make clean
 qmake -config release
 make
@@ -151,7 +151,7 @@ nmake
 
 
 //! [17]
-cd ..\plugandpaintplugins
+cd ..\plugandpaint/plugins
 nmake clean
 qmake -config release
 nmake
@@ -170,34 +170,9 @@ embed_manifest_exe
 //! [20]
 
 
-//! [21]
-CONFIG += embed_manifest_exe
-//! [21]
-
-
-//! [22]
-<Visual Studio Install Path>\VC\redist\<Architecture>\Microsoft.VC80.CRT
-//! [22]
-
-
-//! [23]
-CONFIG-=embed_manifest_dll
-//! [23]
-
-
 //! [24]
 depends <application executable>
 //! [24]
-
-
-//! [25]
-C:<path to Qt>\plugins
-//! [25]
-
-
-//! [26]
-CONFIG-=app_bundle
-//! [26]
 
 
 //! [27]
@@ -208,7 +183,7 @@ make sub-src
 
 
 //! [28]
-cd /path/to/Qt/examples/tools/plugandpaint
+cd /path/to/Qt/examples/widgets/tools/plugandpaint/app
 //! [28]
 
 
@@ -256,7 +231,7 @@ plugandpaint.app/Contents/MacOS/plugandpaint:
 
 
 //! [34]
-cd /path/to/Qt/examples/tools/plugandpaint
+cd /path/to/Qt/examples/widgets/tools/plugandpaint/app
 //! [34]
 
 
@@ -268,7 +243,7 @@ make
 
 
 //! [36]
-cd ../plugandpaintplugins
+cd ../plugandpaint/plugins
 make clean
 qmake -config release
 make
@@ -411,52 +386,6 @@ otool -L MyApp.app/Contents/MacOS/MyApp
 //! [50]
 
 
-//! [51]
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
-//! [51]
-
-//! [51a]
-install_name_tool -change /System/Library/Frameworks/CoreVideo.framework/
-Versions/A/CoreVideo /System/Library/Frameworks/QuartzCore.framework/
-//! [51a]
-
-//! [51b]
-./CONFIGURE - SDK MacOSX10.4u.sdk
-//! [51b]
-
-
 //! [54]
 qApp->addLibraryPath("C:/customPath/plugins");
 //! [54]
-
-//! [55]
-cd examples\widgets\wiggly
-//! [55]
-
-//! [56]
-vendorinfo = \
-    "%{\"Example Localized Vendor\"}" \
-    ":\"Example Vendor\""
-
-my_deployment.pkg_prerules = vendorinfo
-DEPLOYMENT += my_deployment
-//! [56]
-
-//! [57]
-supported_platforms = \
-    "; This demo only supports S60 5.0" \
-    "[0x1028315F],0,0,0,{\"S60ProductID\"}"
-
-default_deployment.pkg_prerules -= pkg_platform_dependencies
-my_deployment.pkg_prerules += supported_platforms
-DEPLOYMENT += my_deployment
-//! [57]
-
-//! [58]
-qmake
-make release-gcce
-//! [58]
-
-//! [59]
-make installer_sis
-//! [59]

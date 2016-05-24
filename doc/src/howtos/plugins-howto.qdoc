@@ -288,7 +288,7 @@
 
     \snippet plugins/extrafiltersplugin.h 0
 
-    The \l{tools/plugandpaint}{Plug & Paint} example documentation
+    The \l{tools/plugandpaint/app}{Plug & Paint} example documentation
     explains this process in detail. See also \l{Creating Custom
     Widgets for Qt Designer} for information about issues that are
     specific to Qt Designer. You can also take a look at the
@@ -394,8 +394,8 @@
        in the \c .pro file.
     \endlist
 
-    See the \l{tools/plugandpaint}{Plug & Paint} example and the
-    associated \l{tools/plugandpaintplugins/basictools}{Basic Tools}
+    See the \l{tools/plugandpaint/app}{Plug & Paint} example and the
+    associated \l{tools/plugandpaint/plugins/basictools}{Basic Tools}
     plugin for details on how to do this.
 
     \note If you are not using qmake to build your plugin you need

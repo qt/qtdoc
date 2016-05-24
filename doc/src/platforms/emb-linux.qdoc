@@ -538,15 +538,19 @@
   For technical details about this approach, check out
   \l {https://wiki.qt.io/Qt_for_Embedded_Linux/XDC2014RitgerEGLNonMesa}{this presentation}.
 
-  Multiple screens are not currently supported by this backend. Instead, it will
-  find the first available display and pick the EGL layer that corresponds to
-  it. When necessary, this can be overridden by setting the
-  \c QT_QPA_EGLFS_LAYER_INDEX environment variable to the index of the desired
-  layer. To see which layers are available, and to debug potential startup
-  issues, enable the logging category \c qt.qpa.eglfs.kms. In some cases it may
-  be necessary to perform a video mode set on application startup even when the
-  screen reports that the desired resolution is already set. This is normally
-  optimized away, but if the screen stays powered down, try setting the
+  As of Qt 5.7 this backend shares many of its internal implementation with the
+  GBM-based backend. This means that multiple screens and the advanced
+  configuration via \c QT_QPA_EGLFS_KMS_CONFIG are supported. Some settings,
+  like hardware cursors, may not be applicable however.
+
+  By default the backend will find the first available display and pick the EGL
+  layer that corresponds to it. When necessary, this can be overridden by
+  setting the \c QT_QPA_EGLFS_LAYER_INDEX environment variable to the index of
+  the desired layer. To see which layers are available, and to debug potential
+  startup issues, enable the logging category \c qt.qpa.eglfs.kms. In some cases
+  it may be necessary to perform a video mode set on application startup even
+  when the screen reports that the desired resolution is already set. This is
+  normally optimized away, but if the screen stays powered down, try setting the
   environment variable \c QT_QPA_EGLFS_ALWAYS_SET_MODE to a non-zero value and
   relaunch the application.
 
