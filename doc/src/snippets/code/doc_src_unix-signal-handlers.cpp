@@ -95,14 +95,14 @@ static int setup_unix_signal_handlers()
     hup.sa_flags = 0;
     hup.sa_flags |= SA_RESTART;
 
-    if (sigaction(SIGHUP, &hup, 0) > 0)
+    if (sigaction(SIGHUP, &hup, 0))
        return 1;
 
     term.sa_handler = MyDaemon::termSignalHandler;
     sigemptyset(&term.sa_mask);
     term.sa_flags |= SA_RESTART;
 
-    if (sigaction(SIGTERM, &term, 0) > 0)
+    if (sigaction(SIGTERM, &term, 0))
        return 2;
 
     return 0;
