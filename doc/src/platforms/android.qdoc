@@ -427,15 +427,15 @@ packaging is done and how you can influence it.
 \title Android Services
 \brief Provides information about Android Services support in Qt.
 
-Starting with Qt 5.7 you can use Qt to create Android services. A service
+Starting with Qt 5.7, you can create Android services using Qt. A service
 is a component that runs in background, so, it has no user interface. It is
-useful to perform long-time operations (for example log GPS, wait for social
-media notifications, and so on). A service will continue to run even if the
+useful to perform long-term operations such as logging GPS, waiting for social
+media notifications, and so on. A service will continue to run even if the
 application that started it exits.
 
-To create a service, you need to do the following steps:
+To create a service, do the following steps:
 \list 1
- \li Uncomment the service part of your AndroidManifest.xml
+ \li Uncomment the service part of your \c AndroidManifest.xml.
 
  \li Make sure the \c service tag contains an \c android:process=":some_name"
      attribute. It is needed to force the \c service to run in a separate
@@ -446,15 +446,15 @@ To create a service, you need to do the following steps:
      pass some arguments to your \c main function in order to know which one
      is which.
 
- \li Enable background running. Uncomment \c android.app.background_running
+ \li To enable background running, uncomment \c android.app.background_running
      \c meta-data and set it to true (\c android:value="true" ).
 
 \endlist
 
-Qt will load the \c .so file defined in \c android.app.lib_name \c meta-data,
-will call the \c main function with all the arguments set in
+Qt loads the \c .so file defined in \c android.app.lib_name \c meta-data,
+and calls the \c main function with all the arguments set in
 \c android.app.arguments \c meta-data.
 
 See \l{http://developer.android.com/guide/components/services.html}{Android Services}
-documentation for more info on this matter.
+documentation for more information.
 */
