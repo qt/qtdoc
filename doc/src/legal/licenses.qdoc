@@ -37,22 +37,18 @@
       \li Qt licensed under \e commercial licenses are appropriate for
           development of proprietary/commercial software where you do not want
           to share any source code with third parties or otherwise cannot
-          comply with the terms of the GNU LGPL version 3 or the GNU LGPL
-          version 2.1.
+          comply with the terms of the GNU LGPL version 3.
 
       \li Qt licensed under the \l{GNU Lesser General Public License (LGPL)}
           version 3 is appropriate for the development of Qt applications
           provided you can comply with the terms and conditions of the GNU LGPL
           version 3 (or GNU GPL version 3).
-
-      \li Qt licensed under the \l{GNU Lesser General Public License (LGPL)}
-          version 2.1 is appropriate for the development of Qt applications
-          provided you can comply with the terms and conditions of the GNU LGPL
-          version 2.1.
     \endlist
 
     \note Some specific parts (modules) of the Qt framework are not available
-    under the GNU LGPL version 2.1. See \l {Licenses Used in Qt} for details.
+    under the GNU LGPL version 3, but under the
+    \l {GNU General Public License (GPL)} instead. See \l {Licenses Used in Qt}
+    for details.
 
     \e {Qt documentation} is licensed under the terms of the \l{GNU Free
     Documentation License (FDL)} version 1.3, as published by the Free Software
@@ -183,8 +179,8 @@
     \row \li \li \li \li
 
     \row \li {1,6} Qt Canvas 3D
-    \row \li \l{GNU Lesser General Public License (LGPL)} version 3 \li \li LGPL v3 \li
     \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{three.js} \li JavaScript 3D library \li MIT \li (Used in example code)
     \row \li \l{Three.js Loader}
          \li A parser for loading 3D models from JSON data structures.
          \li MIT \li (Used in example code).
@@ -258,19 +254,10 @@
 
     \row \li \l[QtWebEngineCore]{Qt WebEngine Core}
          \li \li LGPL v3 or\br GPL v2 + Qt commercial license \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,6} Qt WebKit
-
-    \row \li \l{WebKit used by the QtWebKit module}
-         \li Parts of WebKit used by the QtWebKit module \li BSD-style \li Depends on Qt Gui, Qt Network, Qt SQL, Qt QML, and Qt Quick
-
     \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{WebCore (WebKit)}{WebCore}
-         \li A layout, rendering, and Document Object Model (DOM) library for HTML and SVG. \li LGPL, MIT, BSD-style \li
-    \row \li \li \li \li
-    \row \li \li \li \li
+    \row \li \l {Qt WebEngine Licensing}{Chromium} \li Third-party licenses in Chromium
+         \li LGPLv2.1, BSD, BSL, Apache, APSL, MIT, MPL, others
+         \li See \l {Qt WebEngine Licensing} for details.
 
     \row \li {1,4} Qt Designer
 
@@ -314,6 +301,12 @@
     \row \li \li \li \li
     \row \li \li \li \li
 
+    \row \li {1,4} Qt 3D
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l {assimp 3.1.1}{assimp}
+         \li Open Asset Import Library \li BSD \li
+    \row \li \li \li \li
+
     \row \li {1,10} Plugins
 
     \row \li \l{JPEG Software (libjpeg) version 8c}{JPEG}
@@ -339,43 +332,57 @@
     \row \li \l{Clucene Core Library}
          \li A high-performance, full-featured text search engine written in C++. \li LGPL/Apache \li
 
-    \row \li {1,6} Qt Virtual Keyboard
+    \endtable
 
+    The following modules are available under the GNU GPL version 3 and commercial licenses:
+
+    \table
+    \header \li Qt Module/Tool \li Component \li Description \li License Type
+
+    \row \li {1,2} Qt Charts \li \li \li GPLv3 or commercial license
+    \row \li \li \li
+
+    \row \li {1,2} Qt Data Visualization \li \li \li GPLv3 or commercial license
+    \row \li \li \li
+
+    \row \li {1,2} Qt Purchasing \li \li \li GPLv3 or commercial license
+    \row \li \li \li
+
+    \row \li {1,6} Qt Virtual Keyboard \li \li \li GPLv3 or commercial license
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{Lipi Toolkit (LipiTk)}{Lipi Toolkit}
          \li An open source toolkit for online Handwriting  Recognition (HWR).
-         \li MIT-Style License \li
+         \li MIT-Style License
 
     \row \li \l{OpenWnn}
          \li A Japanese IME
-         \li Apache License \li
+         \li Apache License
 
     \row \li \l{Pinyin}
          \li An IME for Standard Chinese input.
-         \li Apache License \li
+         \li Apache License
 
     \row \li \l{Traditional Chinese IME (tcime)}{tcime}
          \li A traditional Chinese IME.
-         \li Apache License \li
+         \li Apache License
 
-    \row \li {1,6} Qt Quick 2D Renderer
-
+    \row \li {1,6} Qt Quick 2D Renderer \li \li \li GPLv3 or commercial license
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{EGL 1.5 Headers}
          \li These headers are based on EGL 1.5 specification.
-         \li MIT License \li
+         \li MIT License
 
     \row \li \l{OpenGL ES 2.0 Headers}
          \li These headers are based on OpenGL ES 2.0 specification.
-         \li MIT and SGI License \li
+         \li MIT and SGI License
 
     \row \li \l{OpenGL ES 3.1 Headers}
          \li These headers are based on OpenGL ES 3.1 specification.
-         \li MIT and SGI License \li
+         \li MIT and SGI License
 
     \row \li \l{OpenKODE Core 1.0 Header}
          \li The header is based on OpenKODE Core 1.0 specification.
-         \li MIT License \li
+         \li MIT License
 
     \endtable
 
@@ -397,6 +404,9 @@
     specific licenses from the original authors.
     This page lists the licenses used, names the authors, and links
     to the places where it is used.
+
+    For an overview of Qt licensing and a list of all third-party code in Qt,
+    see \l {Qt Licensing}.
 
     The Qt Company gratefully acknowledges these and other contributions
     to Qt. We recommend that programs that use Qt also acknowledge
@@ -717,326 +727,6 @@
 
     \list
     \li ANGLE library in qtbase/src/3rdparty/angle
-    \endlist
-
-
-    \section1 WebKit used by the QtWebKit module
-
-    Copyright (c) 2007-2008, Apple, Inc.\br
-    Copyright (C) 2008 Cameron Zwarich <cwzwarich@uwaterloo.ca>\br
-    Copyright (C) 2009 Google Inc. All rights reserved.\br
-    Copyright (C) 2008, 2009 Paul Pedriana <ppedriana@ea.com>. All rights reserved.\br
-    Copyright (C) 2007 Justin Haygood (jhaygood@reaktix.com)\br
-    Copyright (C) 2009 Jian Li <jianli@chromium.org>\br
-    Copyright (C) 2007 Staikos Computing Services Inc.\br
-    Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies)\br
-    Copyright (C) 2008 Nuanti Ltd.\br
-    Copyright (C) 2007 David Smith (catfish.man@gmail.com)\br
-    Copyright (C) 2008 Tony Chang <idealisms@gmail.com>\br
-    Copyright (C) 2007 Graham Dennis (graham.dennis@gmail.com)
-
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-      * Redistributions of source code must retain the above copyright notice,
-        this list of conditions and the following disclaimer.
-
-      * Redistributions in binary form must reproduce the above copyright notice,
-        this list of conditions and the following disclaimer in the documentation
-        and/or other materials provided with the distribution.
-
-      * Neither the name of Apple, Inc. nor the names of its contributors
-        may be used to endorse or promote products derived from this software
-        without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (C) 2000-2004, International Business Machines\br
-    Corporation and others. All Rights Reserved.\br
-    Copyright (C) 2007 Apple Inc. All rights reserved.
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this
-    software and associated documentation files (the "Software"), to deal in the Software
-    without restriction, including without limitation the rights to use, copy, modify,
-    merge, publish, distribute, and/or sell copies of the Software, and to permit persons
-    to whom the Software is furnished to do so, provided that the above copyright notice(s)
-    and this permission notice appear in all copies of the Software and that both the above
-    copyright notice(s) and this permission notice appear in supporting documentation.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-    PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER
-    OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR
-    CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
-    PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
-    OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-    Except as contained in this notice, the name of a copyright holder shall not be used in
-    advertising or otherwise to promote the sale, use or other dealings in this Software
-    without prior written authorization of the copyright holder.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,\br
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without modification,
-    are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright notice,
-          this list of conditions and the following disclaimer.\br
-        * Redistributions in binary form must reproduce the above copyright notice,
-          this list of conditions and the following disclaimer in the documentation
-          and/or other materials provided with the distribution.\br
-        * Neither the name of the author nor the names of contributors may be used
-          to endorse or promote products derived from this software without specific
-          prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-    ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (C) 2006 Apple Computer, Inc.  All rights reserved.\br
-    Copyright (C) 2007 Eric Seidel <eric@webkit.org>\br
-    Copyright (C) 2008 Kelvin W Sherlock (ksherlock@gmail.com)\br
-    Copyright (C) 2008 Alp Toker <alp@atoker.com>\br
-    Copyright (C) 2009 University of Szeged\br
-    Copyright (C) 2007 Alexey Proskuryakov (ap@nypop.com)\br
-    Copyright (C) 2009 Daniel Bates (dbates@intudata.com)\br
-    Copyright (C) 2008 Nikolas Zimmermann <zimmermann@kde.org>\br
-    Copyright (C) 2006 Michael Emmel mike.emmel@gmail.com\br
-    Copyright (C) 2007 Holger Hans Peter Freyther\br
-    Copyright (C) 2008 Collabora Ltd.  All rights reserved.\br
-    Copyright (C) 2006 Dirk Mueller <mueller@kde.org>\br
-    Copyright (C) 2006 Zack Rusin <zack@kde.org>\br
-    Copyright (C) 2006 George Staikos <staikos@kde.org>\br
-    Copyright (C) 2006 Simon Hausmann <hausmann@kde.org>\br
-    Copyright (C) 2006 Rob Buis <buis@kde.org>\br
-    Copyright (C) 2008 Julien Chaffraix <jchaffraix@webkit.org>\br
-    Copyright (C) 2007 Henry Mason (hmason@mac.com)\br
-    Copyright (C) 1999 Lars Knoll (knoll@kde.org)\br
-    Copyright (C) 1999 Antti Koivisto (koivisto@kde.org)\br
-    Copyright (c) 2009 The Android Open Source Project\br
-    Copyright (C) 2008 Dirk Schulze <krit@webkit.org>\br
-    Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies)\br
-    Copyright (C) 2008 Matt Lilek <webkit@mattlilek.com>\br
-    Copyright (C) 2009 280 North Inc. All Rights Reserved.\br
-    Copyright (C) 2009 Joseph Pecoraro\br
-    Copyright (C) 2008 Anthony Ricaud (rik24d@gmail.com)\br
-    Copyright (C) 2006 Samuel Weinig <sam.weinig@gmail.com>\br
-    Copyright (C) 2008 Christian Dywan <christian@imendio.com>\br
-    Copyright (C) 2006 Michael Emmel mike.emmel@gmail.com \br
-    Copyright (C) 2009 Holger Hans Peter Freyther\br
-    Copyright (C) 2008 Google Inc. All rights reserved.\br
-    Copyright (C) 2006 Friedemann Kleint <fkleint@trolltech.com>\br
-    Copyright (C) 2007 Nicholas Shanks <webkit@nickshanks.com>\br
-    Copyright (C) 2008 Collin Jackson  <collinj@webkit.org>\br
-    Copyright (C) 2007 Staikos Computing Services Inc. <info@staikos.net>\br
-    Copyright (C) 2008 Kevin Ollivier <kevino@theolliviers.com> All Rights Reserved.\br
-    Copyright (C) 2005 Frerich Raabe <raabe@kde.org>\br
-    Copyright (C) 2005 Maksim Orlovich <maksim@kde.org>\br
-    Copyright (C) 2005, 2006 Kimmo Kinnunen <kimmo.t.kinnunen@nokia.com>.\br
-    Copyright (C) 2007-2009 Torch Mobile, Inc.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.\br
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY APPLE COMPUTER, INC. ``AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-    PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE COMPUTER, INC. OR
-    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-    OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (C) 2009 University of Szeged\br
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.\br
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY UNIVERSITY OF SZEGED ``AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-    PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL UNIVERSITY OF SZEGED OR
-    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-    OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (c) 1997-2005 University of Cambridge. All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright notice,
-          this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce the above copyright
-          notice, this list of conditions and the following disclaimer in the
-          documentation and/or other materials provided with the distribution.
-
-        * Neither the name of the University of Cambridge nor the name of Apple
-          Inc. nor the names of their contributors may be used to endorse or
-          promote products derived from this software without specific prior
-          written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-                         Originally written by Philip Hazel\br
-               Copyright (c) 1997-2006 University of Cambridge\br
-      Copyright (C) 2007 Eric Seidel <eric@webkit.org>\br
-     Copyright (C) 2002, 2004, 2006, 2007, 2008, 2009 Apple Inc.  All rights reserved.
-
-    -----------------------------------------------------------------------------\br
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright notice,
-          this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce the above copyright
-          notice, this list of conditions and the following disclaimer in the
-          documentation and/or other materials provided with the distribution.
-
-        * Neither the name of the University of Cambridge nor the names of its
-          contributors may be used to endorse or promote products derived from
-          this software without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
-    \endlist
-
-    \hr
-
-    Copyright (C) 2006 Apple Computer, Inc.  All rights reserved.\br
-    Copyright (C) 2008 Google Inc. All rights reserved.\br
-    Copyright (C) 2008 Matt Lilek <webkit@mattlilek.com>
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are
-    met:
-
-        * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.\br
-        * Redistributions in binary form must reproduce the above
-    copyright notice, this list of conditions and the following disclaimer
-    in the documentation and/or other materials provided with the
-    distribution.\br
-        * Neither the name of Google Inc. nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-    A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-    OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li Parts of WebKit used by the QtWebKit module
     \endlist
 
     \section1 Unicode
