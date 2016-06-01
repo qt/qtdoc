@@ -301,7 +301,7 @@ the APK:
      \badcode
      CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
      AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
-     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/android-9/arch-arm/usr
+     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/<ANDROID-PLATFORM>/arch-arm/usr
      \endcode
 
  \li Configure the OpenSSL sources to build for Android (ARMv5 or ARMv7) using

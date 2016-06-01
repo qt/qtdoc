@@ -266,21 +266,19 @@
     For example, lets say the code contains the following:
 
     \code
-//@ANDROID-12
+//@ANDROID-21
     @Override
-    public boolean dispatchGenericMotionEvent(MotionEvent ev)
+    public void onActivityReenter(int resultCode, Intent data)
     {
-        if (QtApplication.m_delegateObject != null  && QtApplication.dispatchGenericMotionEvent != null)
-            return (Boolean) QtApplication.invokeDelegateMethod(QtApplication.dispatchGenericMotionEvent, ev);
-        else
-            return super.dispatchGenericMotionEvent(ev);
+        // Do something
+        return super.onActivityReenter(resultCode, data);
     }
-//@ANDROID-12
+//@ANDROID-21
     \endcode
 
-    If your minimum Android API level is 11 or lower, then the code should be removed before
-    building, since it's not a supported API on Android API level 11. However, if your minimum API
-    level is 12 or higher, it should be left in.
+    If your minimum Android API level is 20 or lower, then the code should be removed before
+    building, since it's not a supported API on Android API level 20. However, if your minimum API
+    level is 21 or higher, it should be left in.
 
     \section2 Resources
 
@@ -356,11 +354,11 @@
 
     Example:
     \code
-    % android update project --path $BUILD_TARGET --target android-9 --name QtApp
+    % android update project --path $BUILD_TARGET --target android-16 --name QtApp
     \endcode
 
     This example will create build files in \c{$BUILD_TARGET} for an \c APK named \c QtApp. The Java
-    code will be compiled against the \c{android-9} platform.
+    code will be compiled against the \c{android-16} platform.
 
     The project can then be built using the ant tool. If a release package is built it can
     be signed and aligned using \c jarsigner and \c zipalign.
