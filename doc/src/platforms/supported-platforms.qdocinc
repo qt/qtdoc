@@ -39,9 +39,83 @@ Mobile Platforms: \l {Qt for Android}{Android},
 //! [mobile]
 
 //! [all]
+    \section1 Qt 5.7
+
+//! [5.7] //! [latest]
+    \b {Supported until June 15, 2017}
+
+    \table 80%
+    \header \li Platform \li Compiler \li Notes
+    \header \li {3,1} \l {Qt for Windows}{Windows}
+    \row \li Windows 10 (64-bit)
+         \li \b {MSVC 2015}
+         \li
+    \row \li Windows 10 (32-bit)
+         \li MSVC 2015
+         \li
+    \row \li Windows 8.1 (64-bit)
+         \li MSVC 2015, \b {MSVC 2013}, MinGW 4.9,
+             MinGW 4.8
+         \li
+    \row \li Windows 8.1 (32-bit)
+         \li MSVC 2015, MSVC 2013, MinGW 4.9, MinGW 4.8
+         \li
+    \row \li Windows 7 (64-bit)
+         \li MSVC 2015, MSVC 2013, MinGW 4.9, MinGW 4.8
+         \li
+    \row \li Windows 7 (32-bit)
+         \li MSVC 2015, MSVC 2013, \b {MinGW 4.9},
+             MinGW 4.8
+         \li \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}{MinGW-builds gcc 4.9.1 (32-bit)}
+
+    \row \li {3,1} \header \li {3,1} \l {Qt for Linux/X11}{Linux/X11}
+    \row \li openSUSE 13.1 (64-bit)
+         \li \b {GCC 4.8.1}
+         \li SUSE Linux 20130909
+    \row \li Red Hat Enterprise Linux 6.6 (64-bit)
+         \li \b {GCC 4.9.1}
+         \li Red Hat 4.9.1-10 20140922
+    \row \li Ubuntu 14.04 (64-bit)
+         \li \b {GCC 4.6.3}
+         \li Ubuntu/Linaro 4.6.3-1ubuntu5
+    \row \li (Linux 32/64-bit)
+         \li GCC 4.8.1, GCC 4.9.1
+         \li
+
+    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
+    \row \li OS X \b 10.8, \b 10.9, \b 10.10, \b 10.11
+         \li \b {Clang as provided by Apple}
+         \li
+
+    \row \li {3,1} \header \li {3,1}
+         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}
+    \row \li \l {Qt for Embedded Linux}{Embedded Linux}
+         \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
+    \row \li QNX 6.6.0 (armv7le and x86)
+         \li \b {As provided by QNX}
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, Windows
+
+    \row \li {3,1} \header \li {3,1}
+         \include supported-platforms.qdocinc mobile
+    \row \li Windows Phone 8.1 (arm)
+         \li \b {MSVC 2013}
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li Windows Runtime (x86, \b x86_64, arm)
+         \li MSVC 2015, \b {MSVC 2013}
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li iOS 6 and above
+         \li \b {Clang as provided by Apple}
+         \li \b {OS X host}
+    \row \li Android (API Level: 16)
+         \li \b {GCC as provided by Google}
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
+    \endtable
+
+//! [5.7] //! [latest]
+
     \section1 Qt 5.6
 
-//! [5.6] //! [latest]
+//! [5.6]
     \b {Supported until Mar. 16, 2019}
 
     \table 80%
@@ -87,10 +161,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li
 
     \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li Apple OS X \b 10.8, \b 10.9, \b 10.10, 10.11
+    \row \li OS X \b 10.8, \b 10.9, \b 10.10, \b 10.11
          \li \b {Clang as provided by Apple}
          \li
-    \row \li Apple OS X 10.7
+    \row \li OS X 10.7
          \li \li Deployment only
 
     \row \li {3,1} \header \li {3,1}
@@ -106,20 +180,21 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
-    \row \li Windows Phone (arm)
+    \row \li Windows Phone 8.1 (arm)
          \li \b {MSVC 2013}
-         \li Windows 8.1 host
-    \row \li Windows Runtime (64-bit)
-         \li \b {MSVC 2013}
-         \li Windows 8.1 host
-    \row \li iOS 8.1 - OS X 10.9 host
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li Windows Runtime (x86, \b x86_64, arm)
+         \li MSVC 2015, \b {MSVC 2013}
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li iOS 6 and above
          \li \b {Clang as provided by Apple}
-    \row \li Google Android (API Level: 22)
-         \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li \b {OS X host}
+    \row \li Android (API Level: 9)
+         \li \b {GCC as provided by Google}
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
     \endtable
 
-//! [5.6] //! [latest]
+//! [5.6]
 
     \section1 Qt 5.5
 //! [5.5]
@@ -186,18 +261,18 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
-    \row \li Windows Phone (arm)
+    \row \li Windows Phone 8.1 (arm)
          \li \b {MSVC 2013}
-         \li Windows 8.1 host
-    \row \li Windows Runtime (64-bit)
-         \li \b {MSVC 2013}
-         \li Windows 8.1 host
-    \row \li iOS 8.1
-         \li \b clang-600.0.54
-         \li OS X 10.9 host
-    \row \li Google Android
-         \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li Windows Runtime (x86, \b x86_64, arm)
+         \li MSVC 2015, \b {MSVC 2013}
+         \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li iOS 5.1.1 and above
+         \li \b {Clang as provided by Apple}
+         \li \b {OS X host}
+    \row \li Android
+         \li \b {GCC as provided by Google}
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
     \endtable
 
 //! [5.5]
@@ -269,18 +344,18 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
-    \row \li Windows Phone (arm)
+    \row \li Windows Phone 8.1 (arm)
          \li \b {MSVC 2013}
-         \li Windows 8 host
-    \row \li Windows Runtime (64-bit)
+         \li \b {Windows 8.1 host}
+    \row \li Windows Runtime (x86, \b x86_64, arm)
          \li \b {MSVC 2013}
-         \li Windows 8 host
-    \row \li iOS 8.1
-         \li \b clang-600.0.54
-         \li OS X 10.9 host
-    \row \li Google Android
-         \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li \b {Windows 8.1 host}
+    \row \li iOS 5.1.1 and above
+         \li \b {Clang as provided by Apple}
+         \li \b {OS X host}
+    \row \li Android
+         \li \b {GCC as provided by Google}
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X, Windows
     \endtable
 
 //! [5.4]
@@ -354,18 +429,18 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
     \row \li {3,1} \header \li {3,1}
          \include supported-platforms.qdocinc mobile
-    \row \li Windows Phone (arm)
+    \row \li Windows Phone 8.1 (arm)
          \li \b {MSVC 2013}
-         \li Windows 8 host
-    \row \li Windows Runtime (64-bit)
+         \li \b {Windows 8.1 host}
+    \row \li Windows Runtime (x86, \b x86_64, arm)
          \li \b {MSVC 2013}
-         \li Windows 8 host
-    \row \li iOS 8.1
-         \li \b clang-600.0.54
-         \li OS X 10.9 host
-    \row \li Google Android
-         \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li \b {Windows 8.1 host}
+    \row \li iOS 5.0 and above
+         \li \b {Clang as provided by Apple}
+         \li \b {OS X host}
+    \row \li Android
+         \li \b {GCC as provided by Google}
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X, Windows
     \endtable
 
 //! [5.3]
@@ -436,12 +511,12 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \row \li Windows Runtime (64-bit)
          \li \b {MSVC 2013}
          \li Windows 8 host
-    \row \li iOS 7
-         \li \b clang-600.0.54
-         \li OS X 10.9 host
-    \row \li Google Android
+    \row \li iOS 5.0 and above
+         \li \b {Clang as provided by Apple}
+         \li \b {OS X host}
+    \row \li Android
          \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X, Windows
     \endtable
 //! [5.2]
 //! [all]
