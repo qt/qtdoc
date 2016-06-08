@@ -827,4 +827,26 @@
        10.1.017 compiles these modules correctly in release mode.
     \endlist
 
+    \section2 Known Issues with GCC Compilers
+
+    Building Qt with certain versions of GCC has the following known issues:
+
+    \list
+      \li GCC 4.9.2 fails to build Qt:
+      \list
+        \li \l {https://gcc.gnu.org/bugzilla/show_bug.cgi?id=65309}{Related bug}
+            in GCC's bug tracker
+        \li \l {http://lists.qt-project.org/pipermail/development/2015-March/020632.html}{Discussion}
+            on \l{mailto://development@qt-project.org}{development@qt-project.org} mailing list
+      \endlist
+
+      \li GCC 5.2.1: Nested structs do not get their constructors called under
+          some circumstances:
+      \list
+        \li \l {https://gcc.gnu.org/bugzilla/show_bug.cgi?id=67550}{Related bug}
+            in GCC's bug tracker
+        \li \l {https://codereview.qt-project.org/161071}{A possible workaround}
+      \endlist
+    \endlist
+
 */
