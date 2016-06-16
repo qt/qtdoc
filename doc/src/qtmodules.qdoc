@@ -133,6 +133,12 @@
         \li
         \li Classes for applications which use ActiveX and COM
     \row
+         \li \l[Qt3D]{Qt 3D}
+         \li All
+         \li
+         \li Functionality for near-realtime simulation systems with support
+             for 2D and 3D rendering.
+    \row
         \li \l{Enginio Manual}{Enginio} (Deprecated)
         \li All
         \li All
@@ -215,6 +221,12 @@
         \li All
         \li
         \li Classes to make printing easier and more portable.
+    \row
+        \li \l{Qt Purchasing}
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, and
+            \l{Qt for OS X}{OS X}.
+        \li
+        \li Enables in-app purchase of products in Qt applications.
     \row \li \l{Qt Quick Controls 2}
          \li All
          \li
@@ -320,12 +332,6 @@
         \li
         \li UI Components for creating stunning 3D data visualizations.
     \row
-        \li \l{Qt Purchasing}
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, and
-            \l{Qt for OS X}{OS X}.
-        \li
-        \li Enables in-app purchase of products in Qt applications.
-    \row
         \li \l{Qt Virtual Keyboard}
         \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
             desktop, and \l{Boot2Qt}{Boot to Qt} targets.
@@ -368,9 +374,8 @@
     \header
         \li Module
         \li Description
-    \row \li \l[Qt3D]{Qt 3D}
-         \li Functionality for near-realtime simulation systems with support
-             for 2D and 3D rendering.
+    \row \li \l{Qt Gamepad}
+         \li Enables Qt applications to support the use of gamepad hardware.
     \row \li \l[QtSerialBus]{Qt Serial Bus}
          \li Provides access to serial industrial bus interface. Currently the module supports
              the CAN bus and Modbus protocols.
