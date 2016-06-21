@@ -412,7 +412,7 @@
         e.g. gmake. The configure script tells you which make utility to
         use.
 
-        \b{Note:} If you later need to reconfigure and rebuild Qt from the
+        \note If you later need to reconfigure and rebuild Qt from the
         same location, ensure that all traces of the previous configuration are
         removed by entering the build directory and typing \c{make confclean}
         before running \c configure again.
