@@ -39,18 +39,18 @@
 ****************************************************************************/
 
 //! [9]
-qApp->addLibraryPath("/some/other/path");
+QCoreApplication::addLibraryPath("/some/other/path");
 //! [9]
 
 
 //! [19]
-qApp->addLibraryPath("C:\some\other\path");
+QCoreApplication::addLibraryPath("C:/some/other/path");
 //! [19]
 
 
 //! [49]
-QDir dir(QApplication::applicationDirPath());
+QDir dir(QCoreApplication::applicationDirPath());
 dir.cdUp();
 dir.cd("plugins");
-QApplication::setLibraryPaths(QStringList(dir.absolutePath()));
+QCoreApplication::setLibraryPaths(QStringList(dir.absolutePath()));
 //! [49]

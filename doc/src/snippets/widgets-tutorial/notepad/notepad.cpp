@@ -63,7 +63,7 @@ Notepad::~Notepad()
 //! [1]
 void Notepad::on_quitButton_clicked()
 {
-    qApp->quit();
+    QCoreApplication::quit();
 }
 //! [1]
 

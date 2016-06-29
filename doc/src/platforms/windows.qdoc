@@ -881,8 +881,8 @@
 
     An alternative to putting the plugins in the plugins subdirectory
     is to add a custom search path when you start your application
-    using QApplication::addLibraryPath() or
-    QApplication::setLibraryPaths().
+    using QCoreApplication::addLibraryPath() or
+    QCoreApplication::setLibraryPaths().
 
     \snippet snippets/code/doc_src_deployment.cpp 19
 
@@ -1079,7 +1079,7 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 54
 
-    Then qApp->libraryPaths() would return something like this:
+    Then QCoreApplication::libraryPaths() would return something like this:
 
     \list
     \li \c{C:/customPath/plugins}
@@ -1088,10 +1088,10 @@
     \endlist
 
     The executable will look for the plugins in these directories and
-    the same order as the QStringList returned by qApp->libraryPaths().
-    The newly added path is prepended to the qApp->libraryPaths() which
+    the same order as the QStringList returned by QCoreApplication::libraryPaths().
+    The newly added path is prepended to the QCoreApplication::libraryPaths() which
     means that it will be searched through first. However, if you use
-    qApp->setLibraryPaths(), you will be able to determine which paths
+    QCoreApplication::setLibraryPaths(), you will be able to determine which paths
     and in which order they will be searched.
 
     The \l{How to Create Qt Plugins} document outlines the issues you

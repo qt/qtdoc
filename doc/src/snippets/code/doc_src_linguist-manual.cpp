@@ -107,7 +107,7 @@ void some_global_function(LoginWidget *logwid)
 void same_global_function(LoginWidget *logwid)
 {
     QLabel *label = new QLabel(
-            qApp->translate("LoginWidget", "Password:"),
+            QCoreApplication::translate("LoginWidget", "Password:"),
             logwid);
 }
 //! [14]
@@ -138,8 +138,8 @@ QString FriendlyConversation::greeting(int greet_type)
 
 QString global_greeting(int greet_type)
 {
-    return qApp->translate("FriendlyConversation",
-                            greeting_strings[greet_type]);
+    return QCoreApplication::translate("FriendlyConversation",
+                                       greeting_strings[greet_type]);
 }
 //! [16]
 

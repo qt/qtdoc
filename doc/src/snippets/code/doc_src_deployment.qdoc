@@ -377,5 +377,5 @@ otool -L MyApp.app/Contents/MacOS/MyApp
 
 
 //! [54]
-qApp->addLibraryPath("C:/customPath/plugins");
+QCoreApplication::addLibraryPath("C:/customPath/plugins");
 //! [54]
