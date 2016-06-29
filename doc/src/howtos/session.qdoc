@@ -147,7 +147,7 @@
     itself automatically to the session manager. You can check with the \e
     ClientList push button whether the connect was successful.
 
-    \b{Note:} Never keep the \e ClientList open when you
+    \note Never keep the \e ClientList open when you
     start or end session managed clients! Otherwise \c xsm is likely to
     crash.
     \li Use the session manager's \e Checkpoint and \e Shutdown buttons
