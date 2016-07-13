@@ -383,9 +383,9 @@
     \section2 Special Keys
 
     To provide the expected behavior for Qt applications on OS X,
-    the Qt::Meta, Qt::MetaModifier, and Qt::META enum values
+    the Qt::Key_Meta, Qt::MetaModifier, and Qt::META enum values
     correspond to the Control keys on the standard Apple keyboard,
-    and the Qt::Control, Qt::ControlModifier, and Qt::CTRL enum values
+    and the Qt::Key_Control, Qt::ControlModifier, and Qt::CTRL enum values
     correspond to the Command keys.
 
     \section2 Dock
