@@ -36,14 +36,13 @@
   is a superior solution. Multiple graphical processes can be supported
   through Wayland.
 
-  There are multiple platform plugins that are potentially usable on Embedded
-  Linux systems: EGLFS, LinuxFB, KMS, DirectFB, Wayland. The availability of
-  these depend on the configuration of Qt. The default platform plugin is also
-  device-specific. For instance, on many boards \e eglfs is chosen as the
-  default one. If the default is not suitable, the \c QT_QPA_PLATFORM
-  environment variable parameter can be used to request another
-  plugin. Alternatively, for quick tests, the \c -platform command-line can be
-  used with the same syntax.
+  There are multiple platform plugins that are potentially usable on
+  Embedded Linux systems: EGLFS, LinuxFB, KMS, DirectFB, Wayland. The
+  availability of these depend on the configuration of Qt.  On many
+  boards \e eglfs is chosen as the default one. If the default is not
+  suitable, the \c QT_QPA_PLATFORM environment variable parameter can
+  be used to request another plugin. Alternatively, for quick tests,
+  the \c -platform command-line can be used with the same syntax.
 
   \section1 Configuring a Specific Device
 
@@ -51,8 +50,7 @@
   Additionally, some devices require vendor-specific adaptation code for EGL
   and OpenGL ES 2.0 support. This is not relevant for non-accelerated
   platforms, for example the ones using the LinuxFB plugin, which is meant for
-  software-based rendering only. This means Qt Quick 2 is not functional in
-  such a setup as it depends on OpenGL for rendering.
+  software-based rendering only.
 
   The directory \e qtbase/mkspecs/devices contains configuration and graphics
   adaptation code for a number of devices. For example, the
@@ -153,6 +151,40 @@
 
   \list
 
+  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
+  it is also possible to provide device or vendor-specific adaptation in the
+  form of dynamically loaded plugins. This environment variable enforces a
+  specific plugin. For example, setting it to \e{eglfs_kms} uses the KMS/DRM
+  backend. This is only an option when no static or compiled-in hooks were
+  specified in the device makespecs. In practice, the traditional compiled-in
+  hooks are rarely used, almost all backends are now migrated to plugins. The
+  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
+  the name of the preferred backend for that particular device. This is
+  optional, but very useful to avoid the need to set this environment variable
+  in case there are more than one plugins present in the target system. In a
+  desktop environment the KMS or X11 backends are prioritized, depending on
+  the presence of the \c DISPLAY environment variable. Note that on some boards
+  the special value of \c none is used instead of an actual plugin. This
+  indicates that no special integration is necessary to use EGL with the
+  framebuffer and so no plugins must be loaded.
+
+  \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c
+  {QT_QPA_EGLFS_PHYSICAL_HEIGHT} - Physical screen width and height in
+  millimeters. On platforms where the value cannot be queried from the
+  framebuffer device \e{/dev/fb0} or via other means, a default DPI of
+  100 is used. This variable can be used to override any such
+  defaults. Setting this is important because QWidget or Qt Quick
+  Controls based applications rely on these values. Running with the
+  hard-coded settings may result in user interface element sizes
+  unsuitable for the display in use.
+
+  \endlist
+
+  In addition, the following - less commonly used - variables are
+  available as well:
+
+  \list
+
   \li \c {QT_QPA_EGLFS_FB} - Overrides the framebuffer device. The default is
   \c /dev/fb0. On most embedded platforms this is not very relevant because the
   framebuffer is used only for querying settings like the display dimensions.
@@ -164,12 +196,6 @@
   width and height in pixels. While \c eglfs tries to determine the dimensions
   from the framebuffer device \e{/dev/fb0}, but this does not work always and
   manually specifying the sizes may become necessary.
-
-  \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT} -
-  Physical screen width and height in millimeters. On platforms where the
-  framebuffer device \e{/dev/fb0} is not available or the query is not
-  successful, the values are calculated based on a default DPI of 100. This
-  variable can be used to override any such defaults.
 
   \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth for the screen. On
   platforms where the framebuffer device \e{/dev/fb0} is not available or the
@@ -203,23 +229,6 @@
   useful information for troubleshooting issues related to the EGL
   configuration.
 
-  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
-  it is also possible to provide device or vendor-specific adaptation in the
-  form of dynamically loaded plugins. This environment variable enforces a
-  specific plugin. For example, setting it to \e{eglfs_kms} uses the KMS/DRM
-  backend. This is only an option when no static or compiled-in hooks were
-  specified in the device makespecs. In practice, the traditional compiled-in
-  hooks are rarely used, almost all backends are now migrated to plugins. The
-  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
-  the name of the preferred backend for that particular device. This is
-  optional, but very useful to avoid the need to set this environment variable
-  in case there are more than one plugins present in the target system. In a
-  desktop environment the KMS or X11 backends are prioritized, depending on
-  the presence of the \c DISPLAY environment variable. Note that on some boards
-  the special value of \c none is used instead of an actual plugin. This
-  indicates that no special integration is necessary to use EGL with the
-  framebuffer and so no plugins must be loaded.
-
   \endlist
 
   In addition to \c {QT_QPA_EGLFS_DEBUG}, \c eglfs also supports the more modern
@@ -238,6 +247,38 @@
     \li \c qt.qpa.eglfs.kms – Enables verbose logging in the KMS/DRM backend.
 
   \endlist
+
+  After running \c configure, make sure to inspect the output of
+  it. Not having the necessary eglfs backend, libudev, or libinput
+  enabled due to the corresponding configure tests failing are fairly
+  common issues that can be easily and quickly recognized this
+  way. When there is an undesired "no" result, run \c configure with
+  \c{-v} to turn on verbose output in order to see the compiler and
+  linker invocations for each configure test.
+
+  \note Errors about missing headers, libraries or seemingly cryptic
+  linker failures are often a sign of an incomplete or broken sysroot
+  and have nothing to do with and cannot be solved by Qt.
+
+  As an example, when targeting the Raspberry Pi with the Broadcom
+  proprietary graphics drivers, the output should contain something
+  like the following. If this is not the case, there is no point in
+  proceeding further with the build since accelerated graphics will
+  not be functional without the Raspberry Pi-specific backend, even if
+  the rest of Qt compiles successfully.
+
+  \badcode
+    QPA backends:
+    EGLFS ................................ yes
+    EGLFS details:
+      EGLFS i.Mx6 ........................ no
+      EGLFS i.Mx6 Wayland ................ no
+      EGLFS EGLDevice .................... no
+      EGLFS GBM .......................... no
+      EGLFS Mali ......................... no
+      EGLFS Rasberry Pi .................. yes
+      EGL on X11 ......................... no
+  \endcode
 
   \section2 LinuxFB
 
