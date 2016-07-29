@@ -178,6 +178,17 @@
   hard-coded settings may result in user interface element sizes
   unsuitable for the display in use.
 
+  \li \c {QT_QPA_EGLFS_ROTATION} - Specifies the rotation applied to
+  software-rendered content. This is targeted at QWidget-based applications
+  only, which cannot easily apply transformations. A value of 180, 90, or -90
+  will result in rotated output. This does not apply to OpenGL-based windows,
+  for example Qt Quick. Qt Quick applications can apply transformations in their
+  QML scene themselves. The standard eglfs mouse cursor takes the value into
+  account always, regardless of the application type, resulting an appropriately
+  positioned and rotated pointer image at all times. The special cursor
+  implementations, like the KMS/DRM backend's hardware cursor, may not support
+  rotation, however.
+
   \endlist
 
   In addition, the following - less commonly used - variables are
