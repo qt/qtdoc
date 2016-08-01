@@ -127,7 +127,7 @@ DemoWidget::DemoWidget(QWidget *parent) : QWidget(parent) {
             this, SLOT(printNumber()));
 
     // ERROR: Compiler requires compatible arguments
-    connect(qApp, &QApplication::aboutToQuit,
+    connect(qApp, &QCoreApplication::aboutToQuit,
             this, &DemoWidget::printNumber);
 }
 //! [defaultparams]
