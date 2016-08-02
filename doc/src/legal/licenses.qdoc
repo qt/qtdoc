@@ -175,6 +175,16 @@
          \li Clip2Tri is an open source polygon triangulation library based on Poly2Tri. \li MIT  \li
     \row \li \li \li \li
 
+    \row \li {1,4} Qt Bluetooth
+
+    \row \li {4,1} \b{Third-party Licenses}
+    \row \li \l{BlueZ}{BlueZ}
+         \li BlueZ is a Bluetooth stack for Linux based operating systems
+         \li GPL v2
+         \li Used by sdpscanner tool which is called by \l {Qt Bluetooth} on BlueZ 5 systems.
+             Qt applications do \e not link to GPL code.
+    \row \li \li \li \li
+
     \row \li {1,4} Qt Multimedia
 
     \row \li {4,1} \b{Third-party Licenses}
@@ -395,6 +405,10 @@
          \li The assembly code generated use by the JIT.
          \li BSD-style \li
     \row \li \li \li \li
+
+    \row \li \l{V8 double/string conversion library}
+         \li String conversion routines for IEEE doubles.
+         \li BSD-style \li
 
     \endtable
     \section1 Additional information

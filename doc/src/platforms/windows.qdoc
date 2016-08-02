@@ -400,39 +400,47 @@
     For instructions for building the Qt 5 source, read
     the \l{Qt for Windows - Building from Source} page.
 
-    \section1 SDKs and Compilers
+    \section1 Compilers
 
-    A Windows SDK is required to develop Qt applications on Windows.
+    \section2 Visual Studio
+
+    Qt can be built with Visual Studio 2013 (Update 1), Visual Studio 2015 (Update 2)
+    and Visual C++ Build Tools 2015.
+
+    \section2 Intel C++ Compiler (Windows, Altix)
+
+    Qt has been tested successfully with:
 
     \list
-        \li Windows SDK 8 (with Visual Studio 2012 Express).
-            As of Windows 8, the SDK no longer ships with a complete command-line build environment.
-            You must install a compiler and build environment separately. If you require a
-            complete development environment that includes compilers and a build environment,
-            you can download Visual Studio 2012 Express, which includes the appropriate
-            components of the Windows SDK.
-            (\l{http://msdn.microsoft.com/en-us/windows/desktop/hh852363.aspx}{Download page})
-        \li Windows SDK 7.1.
-            Note that, as of 16.3.2012, if you use this SDK with Visual Studio 2010,
-            installing the SDK requires installing the following packages
-            in this order (see \e readme.html provided with the service pack):
-            \list 1
-                \li Install Visual Studio 2010
-                \li Install Windows SDK 7.1
-                \li Install Visual Studio 2010 SP1
-                \li Install Visual C++ 2010 SP1 Compiler Update for the Windows SDK 7.1
-            \endlist
-        \li Windows SDK 7.
-        \li A MinGW toolchain with g++ version 4.7 or higher. Qt 5 is tested regularly with a \
-            \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}
-            {32 bit gcc 4.9.1 toolchain} from the \l{http://mingw-w64.sourceforge.net/}{MinGW-w64}
-            project.
-
+    \li Windows - Intel(R) C++ Compiler for 32-bit applications,
+       Version 9.1.040.
+    \li Altix - Intel(R) C++ Itanium(R) Compiler for Itanium(R)-based
+       applications Version 8.1 Build 20050406 Package ID: l_cc_pc_8.1.030
     \endlist
 
-    For the most up-to-date information about the \l{Qt WebEngine} dependencies,
-    see the \l{Qt WebEngine on Windows}{Qt WebEngine} wiki for Windows.
+    \section2 GCC (MinGW-builds)
 
+    The minimum version of MinGW-builds supported is GCC 4.9.1
+    (\l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.1/threads-posix/sjlj/x86_64-4.9.1-release-posix-sjlj-rt_v3-rev3.7z/download}{64bit},
+     \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/sjlj/i686-4.9.1-release-posix-sjlj-rt_v3-rev3.7z/download}{32bit}),
+     available from its \l{https://sourceforge.net/projects/mingw-w64/files}{download page}.
+
+    For more information about the MinGW builds, visit the
+    \e{Reference Configuration} section of the
+    \l{Community Supported Platforms#Reference Configurations}{supported platforms}
+    page.
+
+    \section2 Clang(clang-cl)
+
+    Qt has been tested successfully with Clang 3.8(llvm svn rev. 256453 and clang
+    svn rev. 256453). Visual Studio 2015 Update 1 was used to build clang. Mkspec is
+    using the clang-cl tool to build Qt. Clang 3.8 does not support precompiled
+    headers.
+
+    \section2 Building Qt WebEngine
+
+    \l{Qt WebEngine} has additional build requirements which are listed in the
+    \l{Qt WebEngine Platform Notes}.
 */
 
 /*!
@@ -442,41 +450,13 @@
 
     This page contains information about \l{Qt for Windows}.
 
-    \section1 Windows XP
+    \section1 Library Naming
 
-    \section2 Targeting XP with Visual Studio 2012 and later
-
-    Visual Studio 2012 and later do not support building for Windows XP out of the box.
-    However, support for targeting XP was added in an
-    \l{http://blogs.msdn.com/b/vcblog/archive/2012/10/08/windows-xp-targeting-with-c-in-visual-studio-2012.aspx}
-    {update of Visual Studio 2012}. This works also with Visual Studio 2013.
-
-    You need to compile Qt from sources. Set up an environment on the command line, for example
-
-    \code
-    "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
-    set PATH=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin;%PATH%
-    set INCLUDE=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;%INCLUDE%
-    set LIB=C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;%LIB%
-    set CL=/D_USING_V110_SDK71_
-    \endcode
-
-    Then run \c configure with the \c{-target xp} argument:
-
-    \code
-    configure -target xp <other arguments>
-    nmake
-    \endcode
-
-    \note The \c configure option -qtlibinfix cannot take a version number as an argument.
+    The \c configure option -qtlibinfix cannot take a version number as an argument.
     For example:
     \c{-qtlibinfix 5.6.0} should be specified as \c{-qtlibinfix QtCore5.6.dll}.
 
-    Also compile your own application in the above environment if compiling
-    on the command line. If you use Visual Studio, set the \c v110_xp toolset in the project's
-    property pages.
-
-    \section2 Installation location
+    \section1 Installation location
 
     Installing Qt into a directory with spaces, for example,
     \e{C:\\Program Files}, may cause linker errors like the following:
@@ -491,29 +471,6 @@
     rendering is enabled. Other GL-applications may not work as expected,
     unless direct rendering is disabled.
 
-    \section1 GCC (MinGW-builds)
-
-    The minimum version of MinGW-builds supported is GCC 4.7.2.
-    \l{http://sourceforge.net/projects/mingwbuilds/files/host-windows/releases/4.7.2/32-bit/threads-posix/sjlj/x32-4.7.2-release-posix-sjlj-rev8.7z}
-    {MinGW-builds GCC 4.7.2 32 bit, rev 8} and later should be able
-    to build Qt.
-
-    For more information about the MinGW builds, visit the
-    \e{Reference Configuration} section of the
-    \l{Community Supported Platforms#Reference Configurations}{supported platforms}
-    page.
-
-    \section1 Intel C++ Compiler (Windows, Altix)
-
-    Qt has been tested successfully with:
-
-    \list
-    \li Windows - Intel(R) C++ Compiler for 32-bit applications,
-       Version 9.1.040.
-    \li Altix - Intel(R) C++ Itanium(R) Compiler for Itanium(R)-based
-       applications Version 8.1 Build 20050406 Package ID: l_cc_pc_8.1.030
-    \endlist
-
     \section1 Visual Studio
 
     The Visual C++ Linker doesn't understand filenames with spaces (for example,
@@ -526,13 +483,6 @@
     modify the alignment of structure and union members (such as \c{/Zp2})
     then you will need to recompile Qt with the flags set for the
     application as well.
-
-    Visual Studio 2010 should be updated to Service Pack 1. Otherwise, a
-    problem when compiling Qt for 64-bit in release mode may occur (visit
-    \l{http://support.microsoft.com/kb/2280741}).
-
-    Consult the \l{Qt for Windows - Requirements} page for specific versions
-    of the Windows SDK.
 
     \section1 Fullscreen OpenGL Based Windows
 
@@ -563,13 +513,6 @@
 
     This will give the full screen window a 1-pixel border, thus enabling the
     other top level windows to appear on top.
-
-    \section1 Clang(clang-cl)
-
-    Qt has been tested successfully with Clang 3.8(llvm svn rev. 256453 and clang
-    svn rev. 256453). Visual Studio 2015 Update 1 was used to build clang. Mkspec is
-    using the clang-cl tool to build Qt. Clang 3.8 does not support precompiled
-    headers.
 */
 
 /*!
@@ -751,12 +694,10 @@
     is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
-    Qt relies on the \l{ICU} library for unicode support. You must
-    include the ICU DLLs that are located in the \c bin directory of your Qt
-    installation if Qt was configured to use ICU. The Qt version bundled in
-    the Qt5 package uses ICU, so deployment is needed there. The ICU DLLs are
-    version dependent and have to match the ones your Qt version was linked
-    against.
+    If Qt was configured to use the \l{ICU} library for unicode support, the ICU
+    DLLs located in the \c bin directory of your Qt installation must be included.
+    The ICU DLLs are version dependent and have to match the ones your Qt version
+    was linked against.
 
     If \l{ANGLE} (the default) is used, you additionally need to include both
     \c libEGL.dll and \c libGLESv2.dll from Qt's 'lib' directory as well as
@@ -846,17 +787,15 @@
 
     \table 100%
     \header
-        \li \li VC++ 8.0 (2005) \li VC++ 9.0 (2008) \li VC++ 10.0 (2010)
+        \li \li VC++ 12.0 (2013) \li VC++ 14.0 (2015)
     \row
         \li The C run-time
-        \li \c msvcr80.dll
-        \li \c msvcr90.dll
-        \li \c msvcr100.dll
+        \li \c msvcr120.dll
+        \li \c vccorlib140.dll, \c vcruntime140.dll
     \row
         \li The C++ run-time
-        \li \c msvcp80.dll
-        \li \c msvcp90.dll
-        \li \c msvcp100.dll
+        \li \c msvcp120.dll
+        \li \c msvcp140.dll
     \endtable
 
     If ICU was used, the archive must contain:
@@ -888,8 +827,8 @@
 
     An alternative to putting the plugins in the plugins subdirectory
     is to add a custom search path when you start your application
-    using QApplication::addLibraryPath() or
-    QApplication::setLibraryPaths().
+    using QCoreApplication::addLibraryPath() or
+    QCoreApplication::setLibraryPaths().
 
     \snippet snippets/code/doc_src_deployment.cpp 19
 
@@ -905,8 +844,8 @@
 
     \section2 Manifest files
 
-    When deploying an application compiled with Visual Studio 2005 onwards,
-    there are some additional steps to be taken.
+    When deploying an application compiled with Visual Studio, there are some
+    additional steps to be taken.
 
     First, we need to copy the manifest file created when linking the
     application. This manifest file contains information about the
@@ -942,41 +881,17 @@
     executable with your application and ensure that it is executed when the
     user installs your application.
 
-    For example, on an 32-bit x86-based system, you would include the
-    \l{http://www.microsoft.com/downloads/details.aspx?FamilyId=32BC1BEE-A3F9-4C13-9C99-220B62A191EE}{vcredist_x86.exe}
-    executable. The \l{http://www.microsoft.com/downloads/details.aspx?familyid=526BF4A7-44E6-4A91-B328-A4594ADB70E5}{vcredist_IA64.exe}
-    and \l{http://www.microsoft.com/downloads/details.aspx?familyid=90548130-4468-4BBC-9673-D6ACABD5D13B}{vcredist_x64.exe}
-    executables provide the appropriate libraries for the IA64 and 64-bit x86
-    architectures, respectively.
+    They are named \c vcredist_x64.exe (IA64 and 64-bit) or
+    \c vcredist_x86.exe (32-bit) and can be found in the folder
+    c{Visual Studio install path>/VC/redist/<language-code>}.
+
+    Alternatively, they can be downloaded from the web, for example
+    \l{https://www.microsoft.com/download/details.aspx?id=48145}
+    {vcredist_x64.exe for Visual Studio 2015}.
 
     \note The application you ship must be compiled with exactly the same
     compiler version against the same C runtime version. This prevents
     deploying errors caused by different versions of the C runtime libraries.
-
-    \section2 Manual installations with Visual Studio 2008 and 2010
-
-    As well as the above details for VS 2005 and onwards, Visual Studio 2008/2010
-    applications may have problems when deploying manually, say to a USB
-    stick.
-
-    The recommended procedure is to configure Qt with the \c -plugin-manifests
-    option using the 'configure' tool. Then follow the \l {http://msdn.microsoft.com/en-us/library/ms235291(VS.80).aspx}{guidelines}
-    for manually deploying private assemblies.
-
-    In brief the steps are
-
-    \list 1
-
-        \li create a folder structure on the development computer that will match the target USB stick directory structure, for example '\\app' and for your dlls, '\\app\\lib'.
-
-        \li on the development computer, from the appropriate 'redist' folder copy over Microsoft.VC80.CRT and Microsoft.VC80.MFC to the directories '\\app' and '\\app\\lib' on the development PC.
-
-        \li xcopy the \\app folder to the target USB stick.
-    \endlist
-
-    Your application should now run. Also be aware that even with a service
-    pack installed the Windows DLLs that are linked to will be the defaults. See
-    the information on \l {http://msdn.microsoft.com/en-us/library/cc664727.aspx}{how to select the appropriate target DLLs}.
 
     \section1 Application Dependencies
 
@@ -986,8 +901,7 @@
     redistributed along with your application.
 
     For example, if Qt is built using \l{ANGLE}, its shared libraries
-    and the required shared libraries of the \l{Direct X SDK} need to
-    be shipped as well.
+    and the HLSL compiler from DirectX to be shipped as well.
 
     You can check which
     libraries your application is linking against by using the
@@ -1008,9 +922,8 @@
     \table 100%
         \header
             \li Qt
-            \li VC++ 10.0 (2010)
-            \li VC++ 11.0 (2012)
             \li VC++ 12.0 (2013)
+            \li VC++ 14.0 (2015)
             \li MinGW
         \row
         \li \list
@@ -1019,16 +932,12 @@
                \li QT5WIDGETS.DLL - The QtWidgets runtime
            \endlist
         \li \list
-               \li MSVCR100.DLL - The C runtime
-               \li MSVCP100.DLL - The C++ runtime
-           \endlist
-        \li \list
-               \li MSVCR110.DLL - The C runtime
-               \li MSVCP110.DLL - The C++ runtime
-           \endlist
-        \li \list
                \li MSVCR120.DLL - The C runtime
                \li MSVCP120.DLL - The C++ runtime
+           \endlist
+        \li \list
+               \li VCCORLIB140.DLL, VCRUNTIME140D.DLL - The C runtime
+               \li MSVCP140.DLL - The C++ runtime
            \endlist
         \li \list
                \li LIBWINPTHREAD-1.DLL
@@ -1086,7 +995,7 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 54
 
-    Then qApp->libraryPaths() would return something like this:
+    Then QCoreApplication::libraryPaths() would return something like this:
 
     \list
     \li \c{C:/customPath/plugins}
@@ -1095,10 +1004,10 @@
     \endlist
 
     The executable will look for the plugins in these directories and
-    the same order as the QStringList returned by qApp->libraryPaths().
-    The newly added path is prepended to the qApp->libraryPaths() which
+    the same order as the QStringList returned by QCoreApplication::libraryPaths().
+    The newly added path is prepended to the QCoreApplication::libraryPaths() which
     means that it will be searched through first. However, if you use
-    qApp->setLibraryPaths(), you will be able to determine which paths
+    QCoreApplication::setLibraryPaths(), you will be able to determine which paths
     and in which order they will be searched.
 
     The \l{How to Create Qt Plugins} document outlines the issues you
