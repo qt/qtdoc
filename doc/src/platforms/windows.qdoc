@@ -580,8 +580,18 @@
     plugins, and translations) that are required to run the application from
     that folder. It creates a sandbox for \l{Qt for WinRT}{Windows Runtime}
     or an installation tree for Windows desktop applications, which can be
-    easily bundled into an installation package. The tool can be found in
-    QTDIR/bin/windeployqt.
+    easily bundled into an installation package.
+
+    The tool can be found in \c{QTDIR/bin/windeployqt}. It takes an \c .exe file or
+    a directory that contains an \c .exe file as an argument, and scans the executable
+    for dependencies. If a directory is passed with the \c{--qmldir} argument,
+    \c windeployqt uses the \c qmlimportscanner tool to scan QML
+    files inside the directory for QML import dependencies.
+    Identified dependencies are then copied to the executable's
+    directory. The hardcoded local paths in Qt5Core.dll are furthermore replaced
+    with relative ones.
+
+    Additional arguments are described in the tools' help output:
 
     \badcode
     Usage: windeployqt [options] [files]
