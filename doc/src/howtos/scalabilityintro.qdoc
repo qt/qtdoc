@@ -340,10 +340,10 @@
     qreal refDpi = 216.;
     qreal refHeight = 1776.;
     qreal refWidth = 1080.;
-    QRect rect = qApp->primaryScreen()->geometry();
+    QRect rect = QGuiApplication::primaryScreen()->geometry();
     qreal height = qMax(rect.width(), rect.height());
     qreal width = qMin(rect.width(), rect.height());
-    qreal dpi = qApp->primaryScreen()->logicalDotsPerInch();
+    qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
     m_ratio = qMin(height/refHeight, width/refWidth);
     m_ratioFont = qMin(height*refDpi/(dpi*refHeight), width*refDpi/(dpi*refWidth));
     \endcode
@@ -446,7 +446,7 @@
     code to actually use the @2x versions:
 
     \code
-    if ( qApp->primaryScreen()->devicePixelRatio() >= 2 ) {
+    if ( QGuiApplication::primaryScreen()->devicePixelRatio() >= 2 ) {
         imageVariant = "@2x";
     } else {
         imageVariant = "";

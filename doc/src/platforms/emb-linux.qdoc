@@ -631,6 +631,20 @@
 
   Use the \c fb plugin parameter to specify the framebuffer device to use.
 
+  \section1 Unix Signal Handlers
+
+  The console-oriented platform plugins like eglfs and linuxfb install signal
+  handlers by default to capture interrupt (\c SIGINT), suspend and continue
+  (\c SIGTSTP, \c SIGCONT) and termination (\c SIGTERM). This way the keyboard,
+  terminal cursor, and possibly other graphics state can be restored when the
+  application terminates or gets suspended due to \c kill, or \c{Ctrl+C} or
+  \c{Ctrl+Z}. (although terminating or suspending via the keyboard is only
+  possible when \c{QT_QPA_ENABLE_TERMINAL_KEYBOARD} is set, as outlined above in
+  the Input section). However, in some cases capturing \c SIGINT can be
+  undesirable as it may conflict with remote debugging for instance. Therefore,
+  the environment variable \c{QT_QPA_NO_SIGNAL_HANDLER} is provided to opt out
+  from all built-in signal handling.
+
   \section1 Fonts
 
   Qt normally uses \c fontconfig to provide access to system fonts. If
