@@ -743,18 +743,14 @@
     is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
-    Qt relies on the \l{ICU} library for unicode support. You must
-    include the ICU DLLs that are located in the \c bin directory of your Qt
-    installation if Qt was configured to use ICU. The Qt version bundled in
-    the Qt5 package uses ICU, so deployment is needed there. The ICU DLLs are
-    version dependent and have to match the ones your Qt version was linked
-    against.
-
     If \l{ANGLE} (the default) is used, you additionally need to include both
     \c libEGL.dll and \c libGLESv2.dll from Qt's 'lib' directory as well as
     the HLSL compiler from DirectX. The HLSL compiler library,
     d3dcompiler_XX.dll, where XX is the version number that ANGLE (libGLESv2)
     was linked against.
+
+    If Qt was configured to link against ICU or OpenSSL, the respective DLL's
+    need to be added to the \c release folder, too.
 
     If your application depends on Qt WebEngine, you must deploy
     \c{<Qt install path>/bin/QtWebEngineProcess.exe} to the application install
@@ -851,7 +847,7 @@
         \li \c msvcp100.dll
     \endtable
 
-    If ICU was used, the archive must contain:
+    If Qt was configured to use ICU, the archive must contain:
 
     \table 100%
     \header
