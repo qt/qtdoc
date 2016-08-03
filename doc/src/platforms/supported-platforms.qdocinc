@@ -87,11 +87,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li Apple OS X \b 10.8, \b 10.9, \b 10.10, 10.11
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos \b 10.8, \b 10.9, \b 10.10, 10.11
          \li \b {Clang as provided by Apple}
          \li
-    \row \li Apple OS X 10.7
+    \row \li \macos 10.7
          \li \li Deployment only
 
     \row \li {3,1} \header \li {3,1}
@@ -113,11 +113,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \row \li Windows Runtime (64-bit)
          \li \b {MSVC 2013}
          \li Windows 8.1 host
-    \row \li iOS 8.1 - OS X 10.9 host
+    \row \li iOS 8.1 - \macos 10.9 host
          \li \b {Clang as provided by Apple}
     \row \li Google Android (API Level: 22)
          \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, \macos 10.9, Windows 7, Windows 8
     \endtable
 
 //! [5.6] //! [latest]
@@ -162,11 +162,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X 10.8, \b 10.9, \b 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos 10.8, \b 10.9, \b 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li i686-apple-darwin11-llvm-gcc-4.2
          \li
 
@@ -196,10 +196,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Windows 8.1 host
     \row \li iOS 8.1
          \li \b clang-600.0.54
-         \li OS X 10.9 host
+         \li \macos 10.9 host
     \row \li Google Android
          \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, \macos 10.9, Windows 7, Windows 8
     \endtable
 
 //! [5.5]
@@ -247,11 +247,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X 10.8, \b 10.9, \b 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos 10.8, \b 10.9, \b 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li \b i686-apple-darwin11-llvm-gcc-4.2
          \li
 
@@ -280,10 +280,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Windows 8 host
     \row \li iOS 8.1
          \li \b clang-600.0.54
-         \li OS X 10.9 host
+         \li \macos 10.9 host
     \row \li Google Android
          \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, \macos 10.9, Windows 7, Windows 8
     \endtable
 
 //! [5.4]
@@ -331,14 +331,14 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.6.1, GCC 4.6.3, GCC 4.8.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X \b 10.8, \b 10.9, 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos \b 10.8, \b 10.9, 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li \b i686-apple-darwin11-llvm-gcc-4.2
          \li
-    \row \li OS X 10.6
+    \row \li \macos 10.6
          \li \li Deployment only
 
     \row \li {3,1} \header \li {3,1}
@@ -366,10 +366,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Windows 8 host
     \row \li iOS 8.1
          \li \b clang-600.0.54
-         \li OS X 10.9 host
+         \li \macos 10.9 host
     \row \li Google Android
          \li \b {As provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X 10.9, Windows 7, Windows 8
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, \macos 10.9, Windows 7, Windows 8
     \endtable
 
 //! [5.3]

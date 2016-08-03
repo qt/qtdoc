@@ -88,7 +88,7 @@
     Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
     Qt supports Microsoft Active Accessibility (MSAA) and IAccessible2 on Windows,
-    OS X Accessibility on OS X, and AT-SPI via DBus on Unix/X11.
+    \macos Accessibility on \macos, and AT-SPI via DBus on Unix/X11.
     The platform specific technologies are abstracted by Qt,
     so that applications do not need any platform specific changes to work with the different
     native APIs. Qt tries to make adding accessibility support to your application as easy

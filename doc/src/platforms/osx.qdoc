@@ -27,15 +27,17 @@
 
 /*!
     \page osx.html
-    \title Qt for OS X
-    \brief Platform support for OS X.
+    \title Qt for macOS
+    \brief Platform support for \macos.
     \ingroup supportedplatform
+    \keyword Qt for OS X
 
-    OS X is a UNIX platform and behaves similarly to other Unix-like
-    platforms. The main difference is that X11 is not used as the windowing
-    system. Instead, OS X uses its own native windowing system that is
-    accessible through the Cocoa API. Application development on OS X is
-    done using Xcode, which is available from \l{https://developer.apple.com/xcode/}.
+    \macos (previously known as OS X or Mac OS X) is a UNIX platform and
+    behaves similarly to other Unix-like platforms. The main difference is
+    that X11 is not used as the windowing system. Instead, \macos uses its own
+    native windowing system that is accessible through the Cocoa API.
+    Application development on \macos is done using Xcode, which is available
+    from \l{https://developer.apple.com/xcode/}.
 
     \section1 Downloading and Installing Qt
 
@@ -52,14 +54,14 @@
 
     Below, you will find more information about building Qt from source.
     \list
-        \li \l{Qt for OS X - Building from Source} - building and installing from source
+        \li \l{Qt for macOS - Building from Source} - building and installing from source
     \endlist
 
     \note Qt 5 uses Cocoa, therefore, building for Carbon is not possible.
 
-    \section1 OS X Versions
+    \section1 \macos Versions
 
-    See \l{Supported Platforms} for the list of OS X versions supported by Qt.
+    See \l{Supported Platforms} for the list of \macos versions supported by Qt.
 
     Qt can be built for either x86 or x86_64. 64-bit is used by default.
     To select a 32-bit build, use the \c macx-clang-32 or \c macx-g++32 mkspec.
@@ -107,13 +109,13 @@
     CONFIG -= app_bundle
     \endcode
 
-    \section1 Deploying Applications on OS X
+    \section1 Deploying Applications on \macos
 
-    In general, Qt supports building on one OS X version and deploying to
-    earlier or later OS X versions. The recommended way is to build on the
-    latest version and deploy to an earlier OS X version.
+    In general, Qt supports building on one \macos version and deploying to
+    earlier or later \macos versions. The recommended way is to build on the
+    latest version and deploy to an earlier \macos version.
 
-    OS X applications are typically deployed as self-contained application
+    \macos applications are typically deployed as self-contained application
     bundles. The application bundle contains the application executable as well
     as dependencies such as the Qt libraries, plugins, translations and other
     resources you may need. Third party libraries like Qt are normally not
@@ -121,22 +123,22 @@
 
     A common way to distribute applications is to provide a compressed disk
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c
-    macdeployqt (available from the OS X installers), can be used to create
+    macdeployqt (available from the \macos installers), can be used to create
     the self-contained bundles, and optionally also create a .dmg archive.
     Applications can also be distributed through the Mac App Store. Qt 5 aims
     to stay within the app store sandbox rules. macdeployqt (bin/macdeployqt)
     can be used as a starting point for app store deployment.
 
     \list
-    \li \l{Qt for OS X - Deployment}
+    \li \l{Qt for macOS - Deployment}
     \endlist
 
-    \section1 OS X Issues
+    \section1 \macos Issues
 
     The page below covers specific issues and recommendations for creating
-    OS X applications.
+    \macos applications.
     \list
-    \li \l{Qt for OS X - Specific Issues}
+    \li \l{Qt for macOS - Specific Issues}
     \endlist
 
     \section1 Where to Go from Here
@@ -158,8 +160,8 @@
 
 /*!
     \page osx-requirements.html
-    \title Qt for OS X - Requirements
-    \brief Setting up the OS X environment for Qt.
+    \title Qt for macOS - Requirements
+    \brief Setting up the \macos environment for Qt.
 
     Qt requires Xcode to be installed on the system. You can get it from:
 
@@ -167,7 +169,7 @@
 
     \section1 Required Compiler Versions
 
-    Qt for OS X is tested and compatible with several versions of GCC (GNU
+    Qt for macOS is tested and compatible with several versions of GCC (GNU
     Compiler Collection) and Clang (as available from Xcode). For a list of
     tested configurations, refer to the \e{Reference Configuration} section of
     the \l{Community Supported Platforms#Reference Configurations}{supported platforms}
@@ -181,11 +183,11 @@
 
 /*!
     \page osx-building.html
-    \title Qt for OS X - Building from Source
-    \brief How to install Qt on OS X.
+    \title Qt for macOS - Building from Source
+    \brief How to install Qt on \macos.
 
-    Qt for OS X has some requirements that are given in more detail
-    in the \l{Qt for OS X Requirements} document.
+    Qt for macOS has some requirements that are given in more detail
+    in the \l{Qt for macOS Requirements} document.
 
     The following instructions describe how to install Qt from the source package.
     You can download the Qt 5 sources from the \l{Downloads} page. For
@@ -270,30 +272,30 @@
 
 /*!
     \page osx-issues.html
-    \title Qt for OS X - Specific Issues
-    \brief A description of issues with Qt that are specific to OS X.
+    \title Qt for macOS - Specific Issues
+    \brief A description of issues with Qt that are specific to \macos.
 
-    This page outlines the main issues regarding OS X support in Qt.
-    OS X terminologies and specific processes are found at
+    This page outlines the main issues regarding \macos support in Qt.
+    \macos terminologies and specific processes are found at
     \l{https://developer.apple.com/}.
 
     \section1 Aqua
 
-    Aqua is an essential part of the OS X platform. As with Cocoa and
+    Aqua is an essential part of the \macos platform. As with Cocoa and
     Carbon, Qt provides widgets that look like those described in the Human
     Interface Descriptions. Qt's widgets use HIThemes to implement the look and
     feel. In other words, we use Apple's own APIs for doing the rendering. More
     documentation about Aqua is found at the
      \l{http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html#//apple_ref/doc/uid/20000957}
-     {OS X Human Interface Guidelines}.
+     {\macos Human Interface Guidelines}.
 
     The \l{Macintosh Style Widget Gallery} page
-    contains sample images of widgets using the OS X platform theme.
+    contains sample images of widgets using the \macos platform theme.
 
-    \section2 Qt Attributes for OS X
+    \section2 Qt Attributes for \macos
 
     The following lists a set of useful attributes that can be used to tweak
-    applications on OS X:
+    applications on \macos:
 
     \list
     \li Qt::AA_MacPluginApplication
@@ -316,17 +318,17 @@
     \li QMainWindow::unifiedTitleAndToolBarOnMac
     \endlist
 
-    OS X always double buffers the screen, therefore, the
+    \macos always double buffers the screen, therefore, the
     Qt::WA_PaintOnScreen attribute has no effect. Also it is impossible to paint
     outside of a paint event so Qt::WA_PaintOutsidePaintEvent has no effect
     either.
 
     \section2 Right Mouse Clicks
 
-    The QContextMenuEvent class provides right mouse click support for OS X
+    The QContextMenuEvent class provides right mouse click support for \macos
     applications. This will map to a context menu event, for example, a menu
     that will display a pop-up selection. This is the most common use of right
-    mouse clicks, and maps to a control-click with the OS X one-button mouse
+    mouse clicks, and maps to a control-click with the \macos one-button mouse
     support.
 
     \section2 Menu Bar
@@ -358,7 +360,7 @@
     section with the \l{#Limitations}{list of limitations} below has more
     information.
 
-    Qt provides support for the Global Menu Bar with QMenuBar. OS X users
+    Qt provides support for the Global Menu Bar with QMenuBar. \macos users
     expect to have a menu bar at the top of the screen and Qt honors this.
 
     Additionally, users expect certain conventions to be respected, for example
@@ -382,7 +384,7 @@
 
     \section2 Special Keys
 
-    To provide the expected behavior for Qt applications on OS X,
+    To provide the expected behavior for Qt applications on \macos,
     the Qt::Meta, Qt::MetaModifier, and Qt::META enum values
     correspond to the Control keys on the standard Apple keyboard,
     and the Qt::Control, Qt::ControlModifier, and Qt::CTRL enum values
@@ -397,25 +399,25 @@
 
     \section2 Accessiblity
 
-    Many users interact with OS X with assistive devices. With Qt the aim is
+    Many users interact with \macos with assistive devices. With Qt the aim is
     to make this automatic in your application so that it conforms to accepted
     practice on its platform. Qt uses Apple's accessibility framework to provide
     access to users with disabilities.
 
     \section1 Library and Deployment Support
 
-    Qt provides support for OS X structures such as Frameworks and bundles.
+    Qt provides support for \macos structures such as Frameworks and bundles.
     It is important to be aware of these structure as they directly affect the
     deployment of applications.
 
     Qt provides a deploy tool, \l{The Mac Deployment Tool}{macdeployqt}, to
-    simplify the deployment process. The \l{Qt for OS X - Deployment}
+    simplify the deployment process. The \l{Qt for macOS - Deployment}
     article covers the deployment process in more detail.
 
     \section2 Qt Libraries as Frameworks
 
     By default, Qt is built as a set of frameworks. Frameworks are the
-    OS X preferred way of distributing libraries. The
+    \macos preferred way of distributing libraries. The
     \l{http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/index.html}
     {Apple's Framework Programming Guide} site has far more information about
     Frameworks.
@@ -443,7 +445,7 @@
 
     \section2 Bundle-Based Libraries
 
-    If you want to use some dynamic libraries in the OS X
+    If you want to use some dynamic libraries in the \macos
     application bundle (the application directory), create a
     subdirectory named \e Frameworks in the application bundle
     directory and place your dynamic libraries there. The application
@@ -486,36 +488,34 @@
 
     \section1 Compile-Time Flags
 
-    The following flags are helpful when you want to define OS X specific
+    The following flags are helpful when you want to define \macos specific
     code:
 
     \list
     \li \c Q_OS_DARWIN is defined when Qt detects you are on a
-    Darwin-based system (including the Open Source version)
-    \li \c Q_OS_MAC is defined when you are on an Apple Darwin-based system such OS X
-    or iOS.
-    \li \c Q_OS_OSX is defined when you are on an OS X system.
+    Darwin-based system such as \macos or iOS.
+    \li \c Q_OS_MACOS is defined when you are on an \macos system.
     \endlist
 
     \note \c Q_WS_MAC is no longer defined in Qt 5.
 
-    If you want to define code for specific versions of OS X, use
+    If you want to define code for specific versions of \macos, use
     the availability macros defined in \e{/usr/include/AvailabilityMacros.h}.
 
     The QSysInfo documentation has information about runtime version checking.
 
-    \section1 OS X Native API Access
+    \section1 \macos Native API Access
 
     \section2 Accessing the Bundle Path
 
-    OS X applications are structured as a directory (ending with \e .app).
+    \macos applications are structured as a directory (ending with \e .app).
     This directory contains sub-directories and files. It may be useful to place
     items, such as plugins and online documentation, inside this bundle. The
     following code returns the path of the application bundle:
 
     \snippet snippets/code/doc_src_mac-differences.cpp 1
 
-    \note When OS X is set to use Japanese, a bug causes this sequence
+    \note When \macos is set to use Japanese, a bug causes this sequence
     to fail and return an empty string. Therefore, always test the
     returned string.
 
@@ -600,11 +600,11 @@
 
     If you have installed the Qt for X11 package from \l{Fink}, it will set the
     \c QMAKESPEC environment variable to \c darwin-g++. This will cause problems when
-    you build the Qt for OS X package. To fix this, simply unset your \c
+    you build the Qt for macOS package. To fix this, simply unset your \c
     QMAKESPEC or set it to \c macx-g++ before you run \c configure. To get a
     fresh Qt distribution, run \c{make confclean} in the command-line.
 
-    \section2 MySQL and OS X
+    \section2 MySQL and \macos
 
     There seems to be a issue when both \c -prebind and \c -multi_module are
     defined when linking static C libraries into dynamic libraries. If you
@@ -615,18 +615,18 @@
     re-link Qt using -single_module. This is only a problem when building the
     MySQL driver into Qt. It does not affect plugins or static builds.
 
-    \section2 D-Bus and OS X
+    \section2 D-Bus and \macos
 
     The QtDBus module defaults to dynamically loading the libdbus-1 library on
-    OS X. That means applications linking against the QtDBus module will
-    load even on OS X systems that do not have the libraries, but they
+    \macos. That means applications linking against the QtDBus module will
+    load even on \macos systems that do not have the libraries, but they
     will fail to connect to any D-Bus server and they will fail to open a
     server using QDBusServer.
 
     To use D-Bus functionality, you need to install the libdbus-1 library, for
     example through Homebrew, Fink or MacPorts. You may want to include those
     libraries in your application's bundle if you're deploying to other
-    systems. Additionally, note that there is no system bus on OS X and
+    systems. Additionally, note that there is no system bus on \macos and
     that the session bus will only be started after launchd is configured to
     manage it.
 
@@ -652,7 +652,7 @@
 
     Qt has support for sheets, represented by the window flag, Qt::Sheet.
 
-    Usually, when referring to a native OS X application, \e native means an
+    Usually, when referring to a native \macos application, \e native means an
     application that interfaces directly to the underlying window system, rather
     than one that uses some intermediary layer. Qt applications run as first
     class citizens, just like Cocoa and Carbon applications. We use Cocoa
@@ -662,21 +662,21 @@
 
 /*!
     \page osx-deployment.html
-    \title Qt for OS X - Deployment
-    \brief Describes the deployment process for OS X.
+    \title Qt for macOS - Deployment
+    \brief Describes the deployment process for \macos.
 
-    This document describes how to create a \l{Qt for OS X}{OS X} bundle
+    This document describes how to create a \l{Qt for macOS}{\macos} bundle
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
     \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with the
     Qt installation package.
 
-    The Qt installers for OS X include a \l
+    The Qt installers for \macos include a \l
     {macdeploy}{deployment tool} that automates the procedures described here.
 
     \section1 The Bundle
 
-    On OS X, a GUI application must be built and run from a bundle, which is a
+    On \macos, a GUI application must be built and run from a bundle, which is a
     directory structure that appears as a single  entity when viewed in the
     Finder. A bundle for an application typically contains the executable and
     all the resources it needs. Here is the snapshot of an application bundle
@@ -689,7 +689,7 @@
      \li It is easily installable as it is identified as a single entity.
      \li Information about a bundle is accessible from code.
     \endlist
-    This is specific to OS X and beyond the scope of this document. For
+    This is specific to \macos and beyond the scope of this document. For
     more information about bundles, see
     \l {http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFBundles/index.html}{Apple's Developer Website}.
 
@@ -736,7 +736,7 @@
 
     Now, provided that everything compiled and linked without any
     errors, we should have a \c plugandpaint.app bundle ready
-    for deployment. Try installing the bundle on a machine running OS X
+    for deployment. Try installing the bundle on a machine running \macos
     that does not have Qt or any Qt applications installed.
 
     You can check what other libraries your application links to using
@@ -777,7 +777,7 @@
     approach, the bundle we have prepared so far is incomplete. The
     application will run, but the functionality will be disabled due
     to the missing plugins. To deploy plugin-based applications we
-    should use the framework approach, which is specific to OS X.
+    should use the framework approach, which is specific to \macos.
 
     \section1 Frameworks
 
@@ -805,7 +805,7 @@
     We assume that you already have installed Qt as frameworks, which
     is the default when installing Qt, in the /path/to/Qt
     directory. For more information on how to build Qt without Frameworks,
-    visit the \l{Qt for OS X - Specific Issues} documentation.
+    visit the \l{Qt for macOS - Specific Issues} documentation.
 
     When installing, the identification name of the frameworks is set. This
     name is used by the dynamic linker (\c dyld) to find the libraries for your
@@ -865,7 +865,7 @@
     \snippet snippets/code/doc_src_deployment.qdoc 39
 
     First we create a \c Frameworks directory inside the bundle. This
-    follows the OS X application convention. We then copy the
+    follows the \macos application convention. We then copy the
     frameworks into the new directory. As frameworks contain
     symbolic links, we use the \c -R option.
 
@@ -978,7 +978,7 @@
     making your application link to the correct Qt frameworks in the bundle
     using \c install_name_tool.
 
-    Now you should be able to move the application to another OS X
+    Now you should be able to move the application to another \macos
     machine and run it without Qt installed. Alternatively, you can
     move your frameworks that live outside of the bundle to another
     directory and see if the application still runs.
@@ -997,14 +997,14 @@
 
     Although the process of deploying an application do have some
     pitfalls, once you know the various issues you can easily create
-    packages that all your OS X users will enjoy.
+    packages that all your \macos users will enjoy.
 
     \section1 Application Dependencies
 
     \section2 Qt Plugins
 
     All Qt GUI applications require a plugin that implements the \l {Qt
-    Platform Abstraction} (QPA) layer in Qt 5. For OS X, the name of the
+    Platform Abstraction} (QPA) layer in Qt 5. For \macos, the name of the
     platform plugin is \c {libqcocoa.dylib}. This file must be located within a
     specific subdirectory (by default, \c platforms) under your distribution
     directory. Alternatively, it is possible to adjust the search path Qt
@@ -1049,25 +1049,25 @@
 
     Compiler-specific libraries rarely have to be redistributed with your
     application. But there are several ways to deploy applications, as Qt can be
-    configured, built, and installed in several ways on OS X. Typically your
+    configured, built, and installed in several ways on \macos. Typically your
     goals help determine how you are going to deploy the application. The last
     sections describe a few things that you must be aware of while deploying
     your application.
 
-    \section2 OS X Version Dependencies
+    \section2 \macos Version Dependencies
 
-    Qt 5 applications can be built on the latest OS X version and deployed to
+    Qt 5 applications can be built on the latest \macos version and deployed to
     previous versions. This is achieved using \e{weak linking}. In
     \e{weak linking}, Qt tests whether a function added in a newer
-    version of OS X is available on the computer it is running
+    version of \macos is available on the computer it is running
     on. This allows Qt to use newer features when it runs on a newer
-    version of OS X, while remaining compatible on the older versions.
+    version of \macos, while remaining compatible on the older versions.
 
-    For more information about cross development issues on OS X,
+    For more information about cross development issues on \macos,
     see \l
     {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{Apple's Developer Website}.
 
-    The linker is set to be compatible with all OS X versions,
+    The linker is set to be compatible with all \macos versions,
     so you must change the \c MACOSX_DEPLOYMENT_TARGET environment
     variable to get \e{weak linking} to work for your application. You
     can add the following:
@@ -1139,7 +1139,7 @@
     \title Contributions to the Cocoa Platform Plugin Files
     \contentspage {Other Licenses Used in Qt}{Contents}
     \ingroup licensing
-    \brief License information for contributions by Apple, Inc. to specific parts of the Qt for OS X Cocoa port.
+    \brief License information for contributions by Apple, Inc. to specific parts of the Qt for macOS Cocoa port.
 
     This page is about the contributions to the following files
     \list

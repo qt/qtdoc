@@ -63,7 +63,7 @@
 
     \note As \l{Xcode5Req}{required by Apple}, you should always use the latest
     Xcode version when building your applications for the App Store.
-    In practice this means you also need the latest version of OS X to develop
+    In practice this means you also need the latest version of \macos to develop
     iOS apps with Qt, due to Xcode's system requirements.
 
     For running Qt applications in the simulator that comes with Xcode,
@@ -268,7 +268,7 @@
     \section1 Deployment
 
     Developing, building, running, and debugging a Qt for iOS application can all be done
-    with Qt Creator on OS X. The toolchain is provided by Apple's Xcode,
+    with Qt Creator on \macos. The toolchain is provided by Apple's Xcode,
     and running qmake on a project targeted for iOS will also generate an
     Xcode project file (.xcodeproj), with initial application settings. As Qt
     Creator does not provide an interface for managing all of the settings specific
@@ -279,7 +279,7 @@
     \target Info.plist
     \section2 Information Property List Files
 
-    Information property list file (Info.plist) on iOS and OS X is used for configuring
+    Information property list file (Info.plist) on iOS and \macos is used for configuring
     an application bundle. These configuration settings include:
 
     \list

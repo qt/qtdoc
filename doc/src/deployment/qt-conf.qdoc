@@ -44,7 +44,7 @@
 
     \li \c :/qt/etc/qt.conf using the resource system
 
-    \li on OS X, in the Resource directory inside the application
+    \li on \macos, in the Resource directory inside the application
     bundle, for example \c assistant.app/Contents/Resources/qt.conf
 
     \li in the directory containing the application executable, i.e.
@@ -97,7 +97,7 @@
     Absolute paths are used as specified in the \c qt.conf file. All
     paths are relative to the \c Prefix. On Windows and X11, the \c
     Prefix is relative to the directory containing the application
-    executable (QCoreApplication::applicationDirPath()). On OS X,
+    executable (QCoreApplication::applicationDirPath()). On \macos,
     the \c Prefix is relative to the \c Contents in the application
     bundle. For example, \c application.app/Contents/plugins/ is the
     default location for loading Qt plugins. Note that the plugins

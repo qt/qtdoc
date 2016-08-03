@@ -787,7 +787,7 @@ recommendations for handling those changes.
     \list
      \li The \c {qttest_p4.prf} file is removed. Use \c{CONFIG+=testcase} and
          other flags instead.
-     \li The \c{-dwarf2} configure argument is removed. DWARF2 is always used on OS X now.
+     \li The \c{-dwarf2} configure argument is removed. DWARF2 is always used on \macos now.
      \li Configure no longer calls \c{qmake -recursive} by default, because the
          subsequent build invokes qmake as needed. Use \c{-fully-process} to
          restore the old behavior.

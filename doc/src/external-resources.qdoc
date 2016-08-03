@@ -299,3 +299,12 @@
     \externalpage http://doc.qt.io/archives/qt-5.3/enginio-index.html
     \title Enginio Manual
 */
+
+/*
+    This prevents autolinking of each occurrence of 'macOS'
+*/
+/*!
+    \externalpage nolink
+    \title macOS
+    \internal
+*/
