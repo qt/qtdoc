@@ -81,6 +81,9 @@
     require, including those for accessibility.
     For more information about plugins, see \l{How to Create Qt Plugins}.
 
+    Applications using \l{Qt QML} also need to ship the
+    \l{All QML Modules}{QML modules} they use.
+
     While deploying an application using the shared library approach,
     you must ensure that the Qt libraries use the correct path to
     find the Qt plugins, documentation, translation, and so on. To do this, you
