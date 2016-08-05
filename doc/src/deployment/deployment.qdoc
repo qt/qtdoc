@@ -67,8 +67,8 @@
 
     \section1 Deploying Qt's Libraries
 
-    Qt is not a system library, so it must be redistributed with your
-    application. The minimum is to redistribute the run-time
+    Unless Qt is part of the system libraries it must be redistributed
+    with your application. The minimum is to redistribute the run-time
     of the libraries used by the application.  However, with static linking,
     the Qt run-times can be compiled into the executable.
 
