@@ -534,6 +534,10 @@
   --timeout} arguments shows a rotating Qt logo on each connected screen for a few
   seconds.
 
+  \note Most of the configuration options described below apply to all
+  KMS/DRM-based backends, regardless of the buffer management technology (GBM or
+  EGLStreams).
+
   The KMS/DRM backend also supports custom configurations via a JSON file.  Set
   the environment variable \c QT_QPA_EGLFS_KMS_CONFIG to the name of the file to
   enable this. The file can also be embedded into the application via the Qt
@@ -576,8 +580,104 @@
   Additionally, such a configuration also disables looking for a device via
   \c libudev and instead the specified device is used.
 
+  When \c mode is not defined, the mode that is reported as preferred by the
+  system is chosen. The accepted values for \c mode are: \c off, \c current,
+  \c preferred, width\c{x}height, or a modeline string.
+
+  All screens reported by the DRM layer will be treated as one big virtual
+  desktop by default. The mouse cursor implementation will take this into
+  account and move across the screens as expected. Although not recommended, the
+  virtual desktop mode can be disabled by setting \c separateScreens to \c false
+  in the configuration, if desired.
+
+  By default, the virtual desktop is formed left to right, based on the order of
+  connectors as reported by the system. This can be changed by setting
+  \c virtualIndex to a value starting from 0. For example, the following
+  configuration uses the preferred resolution but ensures that the left side in
+  the virtual desktop is the screen connected to the HDMI port, while the right
+  side is the screen connected to the DisplayPort:
+
+  \badcode
+    {
+      "device": "drm-nvdc",
+      "outputs": [
+        {
+          "name": "HDMI1",
+          "virtualIndex": 0
+        },
+        {
+          "name": "DP1",
+          "virtualIndex": 1
+        }
+      ]
+    }
+  \endcode
+
+  The order of elements in the array is not relevant. Outputs with unspecified
+  virtual indices will be placed after the others, with the original order in
+  the DRM connector list preserved.
+
+  To create a vertical desktop space (that is, to stack top to bottom instead of
+  left to right), add a \c virtualDesktopLayout property after \c device
+  with the value of \c vertical.
+
+  \note It is recommended that all screens in the virtual desktop use the same
+  resolution, otherwise elements like the mouse cursor may behave in unexpected
+  ways when entering areas that only exist on one given screen.
+
+  In some cases the automatic querying of the physical screen size via DRM may
+  fail. Normally the \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
+  \c QT_QPA_EGLFS_PHYSICAL_HEIGHT environment variable would be used to provide the
+  missing values, however this is not suitable anymore when multiple screens are
+  present. Instead, use the \c physicalWidth and \c physicalHeight properties
+  in the \c outputs list to specify the sizes in millimeters.
+
+  \note Different physical sizes and thus differing logical DPIs are discouraged
+  because it may lead to unexpected issues due to some graphics stack components
+  not knowing about multiple screens and relying solely on the first screen's
+  values.
+
   For troubleshooting it might be useful to enable debug logs from the KMS/DRM
   backend. To do this, enable the categorized logging rule, \c qt.qpa.eglfs.kms.
+
+  \note In an embedded environment virtual desktops are more limited than with a
+  full windowing system. Windows overlapping multiple screens, non-fullscreen
+  windows and moving windows between screens should be avoided and may not
+  function as expected.
+
+  The most common and best supported use case for a multi-screen setup is to
+  open a dedicated QQuickWindow or QQuickView for each screen. With the default
+  \c threaded render loop of the Qt Quick scenegraph, each of these windows will
+  get its own dedicated render thread. This is good because the threads can be
+  throttled independently based on vsync, and will not interfere with each
+  other. With the \c basic loop this can get problematic and animations may
+  degrade as a result.
+
+  As an example, discovering all connected screens and creating a QQuickView for
+  each of them can be done like this:
+
+  \badcode
+    int main(int argc, char **argv)
+    {
+        QGuiApplication app(argc, argv);
+
+        QVector<QQuickView *> views;
+        for (QScreen *screen : app.screens()) {
+            QQuickView *view = new QQuickView;
+            view->setScreen(screen);
+            view->setResizeMode(QQuickView::SizeRootObjectToView);
+            view->setSource(QUrl("qrc:/main.qml"));
+            QObject::connect(view->engine(), &QQmlEngine::quit, qGuiApp, &QCoreApplication::quit);
+            views.append(view);
+            view->showFullScreen();
+        }
+
+        int result = app.exec();
+
+        qDeleteAll(views);
+        return result;
+    }
+  \endcode
 
   \section2 eglfs with eglfs_kms_egldevice backend
 
@@ -591,7 +691,7 @@
   As of Qt 5.7 this backend shares many of its internal implementation with the
   GBM-based backend. This means that multiple screens and the advanced
   configuration via \c QT_QPA_EGLFS_KMS_CONFIG are supported. Some settings,
-  like hardware cursors, may not be applicable however.
+  such as \c hwcursor and \c pbuffers are not applicable however.
 
   By default the backend will find the first available display and pick the EGL
   layer that corresponds to it. When necessary, this can be overridden by
@@ -603,6 +703,53 @@
   normally optimized away, but if the screen stays powered down, try setting the
   environment variable \c QT_QPA_EGLFS_ALWAYS_SET_MODE to a non-zero value and
   relaunch the application.
+
+  \section2 Touch input in systems with multiple screens on KMS/DRM
+
+  Touchscreens require additional considerations in multi-display systems
+  because touch events have to be routed to the correct virtual screen, and this
+  requires a correct mapping between touchscreens and display outputs.
+
+  The mapping is done via the JSON configuration file specified in
+  \c QT_QPA_EGLFS_KMS_CONFIG and described in the previous sections. When a
+  \c touchDevice property is present in an element of the \c outputs array, the
+  value is treated as a device node and the touch device is associated with the
+  display output in question. Note that this can only function when all elements
+  in the \c outputs array have an explicit \c virtualIndex.
+
+  For example, assuming our touchscreen has a device node of /dev/input/event5
+  and is a touchscreen integrated into the monitor connected via HDMI as the
+  secondary screen, the following configuration ensures correct touch (and
+  synthesized mouse) event translation:
+
+  \badcode
+     {
+        "device": "drm-nvdc",
+        "outputs": [
+          {
+            "name": "HDMI1",
+            "touchDevice": "/dev/input/event5",
+            "virtualIndex": 1
+          },
+          {
+            "name": "DP1",
+            "virtualIndex": 0
+          }
+        ]
+    }
+  \endcode
+
+  \note When in doubt, enable logging from both the graphics and input
+  subsystems by setting the environment variable
+  \c{QT_LOGGING_RULES=qt.qpa.*=true} before launching the application. This will
+  help identifying the correct input device nodes and may uncover output
+  configuration issues that can be difficult to debug otherwise.
+
+  \note As of Qt 5.8, the above is only supported for the evdevtouch input
+  backend. Other variants, such as the libinput-based one, will continue to
+  route events to the primary screen. To force the usage of evdevtouch on
+  systems where multiple input backends are available, set the environment
+  variable \c QT_QPA_EGLFS_NO_LIBINPUT to \c 1.
 
   \section2 eglfs with other backends
 
