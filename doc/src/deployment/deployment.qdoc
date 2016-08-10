@@ -32,9 +32,7 @@
     Deploying an Qt application does not require any C++
     programming. All you need to do is to build Qt and your
     application in release mode, following the procedures described in
-    this documentation. We will demonstrate the procedures in terms of
-    deploying the \l {tools/plugandpaint/app}{Plug & Paint} application
-    that is provided in Qt's examples directory.
+    this documentation.
 
     \section1 Static vs. Shared Libraries
 
@@ -69,42 +67,8 @@
 
     \section1 Deploying Qt's Libraries
 
-    \table
-    \header
-        \li {4,1} Qt Libraries
-    \row
-        \li \l{Qt Core}{QtCore}
-        \li \l{Qt Network}{QtNetwork}
-        \li \l{Qt GUI}{QtGui}
-        \li \l{Qt SQL}{QtSql}
-    \row
-        \li \l{Qt Test}{QtTest}
-        \li \l{Qt Widgets}{QtWidgets}
-        \li \l{Qt QML}{QtQml}
-        \li \l{Qt Quick}{QtQuick}
-    \row
-        \li \l{Qt Multimedia}{QtMultimedia}
-        \li \l{Qt WebEngine}{QtWebEngine}
-        \li \l{Qt WebEngine Widgets}{QtWebEngineWidgets}
-        \li \l{Qt XML}{QtXml}
-    \row
-        \li \l{Qt XML Patterns}{QtXmlPatterns}
-        \li \l{Qt SVG}{QtSvg}
-        \li \l{Qt Concurrent}{QtConcurrent}
-        \li \l{Qt Print Support}{QtPrintSupport}
-    \row
-        \li \l{Qt D-Bus}{QtDBus}
-        \li \l{Qt OpenGL}{QtOpenGL}
-        \li \l{ActiveQt}{QtActiveQt}
-        \li \l{Qt Graphical Effects}{QtGraphicalEffects}
-    \row
-        \li \l{Qt Script}{QtScript}
-        \li \l{Qt Quick 1}{QtDeclarative}
-        \li \l{Qt Image Formats}{QtImageFormats}
-    \endtable
-
-    Qt is not a system library, so it must be redistributed with your
-    application. The minimum is to redistribute the run-time
+    Unless Qt is part of the system libraries it must be redistributed
+    with your application. The minimum is to redistribute the run-time
     of the libraries used by the application.  However, with static linking,
     the Qt run-times can be compiled into the executable.
 
@@ -116,6 +80,9 @@
     SQL drivers, but you should also deploy plugins that your users may
     require, including those for accessibility.
     For more information about plugins, see \l{How to Create Qt Plugins}.
+
+    Applications using \l{Qt QML} also need to ship the
+    \l{All QML Modules}{QML modules} they use.
 
     While deploying an application using the shared library approach,
     you must ensure that the Qt libraries use the correct path to
@@ -157,6 +124,8 @@
     documentation.
 
     \endtable
+
+    For more information, see \l{Third-Party Licenses Used in Qt}.
 
     \section1 Platform-Specific Notes
 
