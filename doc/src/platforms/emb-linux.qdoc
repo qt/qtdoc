@@ -753,13 +753,18 @@
 
   \section2 eglfs with other backends
 
-  Other backends, that are typically based on targeting the framebuffer
-  directly via the vendor's EGL implementation, usually provides limited or
-  no support for multiple displays. In some cases the \c {QT_QPA_EGLFS_FB}
-  environment variable can be used to specify the framebuffer to target,
-  similarly to linuxfb. Alternatively, driver-specific environment variables or
-  kernel parameters may also be available to control the used framebuffer. Refer
-  to the embedded board's documentation.
+  Other backends, that are typically based on targeting the framebuffer or a
+  composition API directly via the vendor's EGL implementation, usually provide
+  limited or no support for multiple displays. On i.MX6-based boards with
+  Vivante GPUs the \c{QT_QPA_EGLFS_FB} environment variable can be used to
+  specify the framebuffer to target, similarly to linuxfb. On the Raspberry Pi
+  the \c{QT_QPA_EGLFS_DISPMANX_ID} environment variable can be used to specify
+  the screen to output to. The value corresponds to one of the \c{DISPMANX_ID_}
+  constants, refer to the Dispmanx documentation. Note that these approaches,
+  unlike KMS/DRM, will not typically allow to output to multiple screens from
+  the same application. Alternatively, driver-specific environment variables or
+  kernel parameters may also be available as well to control the used
+  framebuffer. Refer to the embedded board's documentation.
 
   \section2 Video Memory
 

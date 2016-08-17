@@ -531,8 +531,18 @@
     plugins, and translations) that are required to run the application from
     that folder. It creates a sandbox for \l{Qt for WinRT}{Windows Runtime}
     or an installation tree for Windows desktop applications, which can be
-    easily bundled into an installation package. The tool can be found in
-    QTDIR/bin/windeployqt.
+    easily bundled into an installation package.
+
+    The tool can be found in \c{QTDIR/bin/windeployqt}. It takes an \c .exe file or
+    a directory that contains an \c .exe file as an argument, and scans the executable
+    for dependencies. If a directory is passed with the \c{--qmldir} argument,
+    \c windeployqt uses the \c qmlimportscanner tool to scan QML
+    files inside the directory for QML import dependencies.
+    Identified dependencies are then copied to the executable's
+    directory. The hardcoded local paths in Qt5Core.dll are furthermore replaced
+    with relative ones.
+
+    Additional arguments are described in the tools' help output:
 
     \badcode
     Usage: windeployqt [options] [files]
@@ -694,33 +704,17 @@
     is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
-    If Qt was configured to use the \l{ICU} library for unicode support, the ICU
-    DLLs located in the \c bin directory of your Qt installation must be included.
-    The ICU DLLs are version dependent and have to match the ones your Qt version
-    was linked against.
-
     If \l{ANGLE} (the default) is used, you additionally need to include both
     \c libEGL.dll and \c libGLESv2.dll from Qt's 'lib' directory as well as
     the HLSL compiler from DirectX. The HLSL compiler library,
     d3dcompiler_XX.dll, where XX is the version number that ANGLE (libGLESv2)
     was linked against.
 
-    If your application depends on Qt WebEngine, you must deploy
-    \c{<Qt install path>/bin/QtWebEngineProcess.exe} to the application install
-    path. If you chose to deploy the binary to a different path, set the
-    \c QTWEBENGINEPROCESS_PATH environment variable to the binary's absolute
-    path (including its file name). This enables the application to find the
-    binary and execute it for every instance of QWebEngineView or
-    WebEngineView created. For example, a browser application with two tabs
-    open should have two separate processes of \c QtWebEngineProcess.exe
-    running. This is a common approach used by most modern web engines to
-    provide a stable browsing experience.
+    If Qt was configured to link against ICU or OpenSSL, the respective DLL's
+    need to be added to the \c release folder, too.
 
-    \note To support HTML5 videos, you must additionally deploy
-    \c ffmpegsumo.dll (WebM codec plugin) into the \c qtwebengine directory
-    under the application install path or under the path that the
-    \c PluginsPath variable was set to in
-    \c{<Qt install path>/<Qt version>/msvc2013/qt.conf}.
+    \note \l{Qt WebEngine} applications have additional requirements that are
+    listed in \l{Deploying Qt WebEngine Applications}.
 
     Remember that if your application depends on compiler specific
     libraries, these must be redistributed along with your
@@ -798,7 +792,7 @@
         \li \c msvcp140.dll
     \endtable
 
-    If ICU was used, the archive must contain:
+    If Qt was configured to use ICU, the archive must contain:
 
     \table 100%
     \header
