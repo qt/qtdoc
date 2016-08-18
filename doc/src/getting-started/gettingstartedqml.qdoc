@@ -367,14 +367,14 @@
     Additionally, \c ListView inherits from \l Flickable, making the list respond
     to mouse drags and other gestures. The last portion of the code above sets
     \c Flickable properties to create the desired flicking movement to our view.
-    In particular,the property \c highlightMoveDuration changes the duration of
+    In particular, the property \c highlightMoveDuration changes the duration of
     the flick transition. A higher \c highlightMoveDuration value results in
     slower menu switching.
 
     The \c ListView maintains the model items through an \c index and each visual
     item in the model is accessible through the \c index, in the order of the
     declaration. Changing the \c currentIndex effectively changes the highlighted
-    item in the \c ListView. The header of our menu bar exemplify this effect.
+    item in the \c ListView. The header of our menu bar exemplifies this effect.
     There are two buttons in a row, both changing the current menu when clicked.
     The \c fileButton changes the current menu to the file menu when clicked,
     the \c index being \c 0 because \c FileMenu is declared first in the
