@@ -232,9 +232,9 @@
     \c FileMenu.qml.
 
     \code
-        import QtQuick 2.3             \\ Import the main Qt QML module
-        import "folderName"            \\ import the contents of a folder
-        import "script.js" as Script   \\ Import a Javascript file and name it as Script
+        import QtQuick 2.3             // Import the main Qt QML module
+        import "folderName"            // import the contents of a folder
+        import "script.js" as Script   // Import a Javascript file and name it as Script
     \endcode
 
     The syntax shown above shows how to use the \c import keyword. This is required to
