@@ -187,7 +187,10 @@
 
                 \endlist
 
-            It is recommended to use the \c Fusion style.
+            While the macOS style fully supports high-DPI, the Windows desktop style
+            currently has some limitations with certain scale factors. In these cases,
+            consider using the Fusion style instead, which aims to support high-DPI in
+            all cases.
 
             \note Non-integer scale factors may cause significant
             scaling/painting artifacts.
