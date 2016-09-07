@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2014 Sze Howe Koh <szehowe.koh@gmail.com>
+** Copyright (C) 2017 Sze Howe Koh <szehowe.koh@gmail.com>
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -192,16 +192,17 @@ result, the desired instance of an overloaded signal or slot is unambiguous.
 In contrast, with the functor-based syntax, an overloaded signal or slot must
 be casted to tell the compiler which instance to use.
 
-For example, \l QSignalMapper has four versions of the \c mapped() signal:
+For example, \l QLCDNumber has three versions of the \c display() slot:
 \list 1
-\li \c QSignalMapper::mapped(int)
-\li \c QSignalMapper::mapped(QString)
-\li \c QSignalMapper::mapped(QWidget*)
-\li \c QSignalMapper::mapped(QObject*)
+\li \c QLCDNumber::display(int)
+\li \c QLCDNumber::display(double)
+\li \c QLCDNumber::display(QString)
 \endlist
 
-To connect the \c int version to QSpinBox::setValue(), the two syntaxes are:
+To connect the \c int version to QSlider::valueChanged(), the two syntaxes are:
 
 \snippet snippets/signalsandslots/signalslotsyntaxes.cpp overload
+
+\sa qOverload()
 
 */
