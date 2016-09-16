@@ -678,6 +678,28 @@
   resolution, otherwise elements like the mouse cursor may behave in unexpected
   ways when entering areas that only exist on one given screen.
 
+  When \c virtualIndex is not sufficient, the property \c virtualPos can be used
+  to explicitly specify the top-left position of the screen in question. Taking
+  the previous example and assuming a resolution of 1080p for HDMI1, the
+  following places a second HDMI-based screen below the first one:
+
+  \badcode
+    {
+       ...
+      "outputs": [
+        ...
+        {
+          "name": "HDMI2",
+          "virtualPos": "0, 1080"
+        }
+      ]
+    }
+  \endcode
+
+  \note Avoid such configurations when mouse support is desired. The mouse
+  cursor's behavior may be unexpected with non-linear layouts. Touch should
+  present no issues however.
+
   In some cases the automatic querying of the physical screen size via DRM may
   fail. Normally the \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
   \c QT_QPA_EGLFS_PHYSICAL_HEIGHT environment variable would be used to provide the
@@ -767,8 +789,7 @@
   \c QT_QPA_EGLFS_KMS_CONFIG and described in the previous sections. When a
   \c touchDevice property is present in an element of the \c outputs array, the
   value is treated as a device node and the touch device is associated with the
-  display output in question. Note that this can only function when all elements
-  in the \c outputs array have an explicit \c virtualIndex.
+  display output in question.
 
   For example, assuming our touchscreen has a device node of /dev/input/event5
   and is a touchscreen integrated into the monitor connected via HDMI as the
