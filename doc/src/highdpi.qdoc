@@ -70,7 +70,7 @@
 
     Qt supports a high DPI mode where the main coordinate system is virtualized and
     made independent of the display pixel density. This mode is implemented by some
-    operating systems (OS X, iOS). In addition, Qt contains an implementation which
+    operating systems (\macos, iOS). In addition, Qt contains an implementation which
     may be used where operating system support is missing.
 
     Geometry is now specified in device independent pixels. This includes widget and
@@ -86,12 +86,12 @@
 
     The operating systems supported by Qt offer the following support for high DPI displays:
 
-    \section3 OS X and iOS
+    \section3 \macos and iOS
 
     The Apple platforms implement scaling and coordinate system virtualization in the
     in the operating system. Normally, no special configuration is required.
 
-    \note On OS X, high-DPI support is enabled by settings in the Info.plist file.
+    \note On \macos, high-DPI support is enabled by settings in the Info.plist file.
     Make sure they are present.
     \code
         <key>NSPrincipalClass</key>
@@ -102,8 +102,8 @@
     Never versions of qmake will generate Info.plist's with the NSPrincipalClass key,
     which is sufficient since NSHighResolutionCapable is true by default.
 
-    \note OS X and iOS may apply further virtualization such that device pixels do not
-    correspond 1:1 to display pixels. This happens on the iPhone 6+ and on OS X configured
+    \note \macos and iOS may apply further virtualization such that device pixels do not
+    correspond 1:1 to display pixels. This happens on the iPhone 6+ and on \macos configured
     with 'display scaling' enabled.
 
     \section3 Microsoft Windows
@@ -160,7 +160,7 @@
             see \l{Drawing High Resolution Versions of Pixmaps and Images}.
 
         \li Qt 5.6 supports cross-platform high-DPI scaling for legacy applications,
-            similar to the scaling done natively by OS X. This allows applications written
+            similar to the scaling done natively by \macos. This allows applications written
             for low-DPI screens to run unchanged on high-DPI devices. This feature is
             opt-in, and can be enabled by the following environment variables:
             \list

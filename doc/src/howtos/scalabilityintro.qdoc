@@ -228,7 +228,7 @@
     evaluating JavaScript expressions comes with a performance cost.
 
     You can use bindings to handle low and high pixel density on platforms that
-    do not have automatic support for it (like OS X and iOS do).
+    do not have automatic support for it (like \macos and iOS do).
     The following code snippet uses the \l{Screen}{Screen.PixelDensity}
     attached property to specify different images to display on screens with
     low, high, or normal pixel density:
@@ -246,7 +246,7 @@
         }
     \endcode
 
-    On OS X and iOS, you can provide alternative resources with double the size
+    On \macos and iOS, you can provide alternative resources with double the size
     and the \e @2x identifier for icons and images and place them in the
     resource file. On Retina displays, the @2x versions are used automatically.
 
@@ -291,9 +291,9 @@
     For more information about high DPI support in Qt and the supported
     platforms, see \l{High DPI Displays}.
 
-    \section2 High DPI Scaling on OS X and iOS
+    \section2 High DPI Scaling on \macos and iOS
 
-    On OS X and iOS, applications use high DPI scaling that is an alternative to
+    On \macos and iOS, applications use high DPI scaling that is an alternative to
     the traditional DPI scaling. In the traditional approach, the application is
     presented with an DPI value used to multiply font sizes, layouts, and so on.
     In the new approach, the operating system provides Qt with a scaling ratio

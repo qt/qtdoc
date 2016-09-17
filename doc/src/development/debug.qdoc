@@ -42,7 +42,7 @@
     platforms, building Qt in debug mode will cause applications to be larger
     than desirable.
 
-    \section2 Debugging in OS X and Xcode
+    \section2 Debugging in \macos and Xcode
 
     \section3 Debugging With/Without Frameworks
 
@@ -142,7 +142,7 @@
     \snippet snippets/code/doc_src_debug.cpp 0
 
     The Qt implementation of these macros prints to the
-    \c stderr output under Unix/X11 and OS X. With Windows, if it
+    \c stderr output under Unix/X11 and \macos. With Windows, if it
     is a console application, the text is sent to console; otherwise, it
     is sent to the debugger.
 
