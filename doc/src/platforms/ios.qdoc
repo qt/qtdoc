@@ -42,12 +42,12 @@
     using either Xcode or Qt Creator. We will look at that in more
     detail in the next section.
 
-    The minimum deployment target for Qt applications is iOS 5.0. Qt
+    The minimum deployment target for Qt applications is iOS 7.0. Qt
     then supports the following devices (iOS might need to be upgraded
     on some devices).
 
     \list
-        \li iPhone 3GS and later
+        \li iPhone 5 and later
         \li iPod Touch third and later generations
         \li iPad 2 and later
         \li iPad Mini
@@ -338,8 +338,8 @@
     To support all resolutions and devices, several images should be created.
     A detailed list of what is required is available at \l {https://developer.apple.com/library/ios/qa/qa1686/_index.html}{Icon files}.
     The filename is not important, but the actual pixel size is.
-    Just a few icons are required, especially if one does not support iOS 6.1 or earlier.
-    However, to support both iPhone and iPad, and iOS 6.1 or earlier, the following images
+    Just a few icons are required.
+    However, to support both iPhone and iPad, the following images
     are required:
 
     \list
@@ -562,7 +562,7 @@
     Qt Creator does not provide an interface for managing all of the settings in an Xcode project configuration.
 
     The application should be tested on a variety of iOS versions and devices, depending on what
-    it's targeted to support. The minimum deployment target for Qt applications is iOS 5.0.
+    it's targeted to support. The minimum deployment target for Qt applications is iOS 7.0.
 
     The actual publishing process involves creating a distribution certificate and a provision profile,
     creating a signed archive of your application, and running a set of validation tests on it.
