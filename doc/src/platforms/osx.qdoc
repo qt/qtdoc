@@ -62,14 +62,17 @@
     See \l{Supported Platforms} for the list of OS X versions supported by Qt.
 
     Qt can be built for either x86 or x86_64. 64-bit is used by default.
-    To select a 32-bit build, use the \c macx-clang-32 or \c macx-g++32 mkspec.
+    To select a 32-bit build, use the \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
     This is selectable at configure time:
     \code
-    ./configure -platform macx-clang-32
+    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS=i386
     \endcode
 
-    The Qt build system does not support building unversal binaries directly.
-    Instead, use the \c lipo tool to glue two Qt builds together.
+    \c QMAKE_APPLE_DEVICE_ARCHS can also be specified as a space-delimited list
+    in order to build for multiple architectures simultaneously:
+    \code
+    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS="i386 x86_64 x86_64h"
+    \endcode
 
     \note Qt 5 does not support OS X on PowerPC.
     \note Static builds are not tested.
