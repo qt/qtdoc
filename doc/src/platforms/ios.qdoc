@@ -42,15 +42,14 @@
     using either Xcode or Qt Creator. We will look at that in more
     detail in the next section.
 
-    The minimum deployment target for Qt applications is iOS 5.0. Qt
-    then supports the following devices (iOS might need to be upgraded
-    on some devices).
+    The minimum deployment target for Qt applications is specified in
+    \l {Supported Platforms}. Qt then supports the following device types
+    (iOS might need to be upgraded on some devices).
 
     \list
-        \li iPhone 3GS and later
-        \li iPod Touch third and later generations
-        \li iPad 2 and later
-        \li iPad Mini
+        \li iPhone
+        \li iPod Touch
+        \li iPad
     \endlist
 
     \section2 Setting Up the Development Environment
