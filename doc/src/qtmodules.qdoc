@@ -252,6 +252,11 @@
         \li
         \li Classes for making Qt applications scriptable. Deprecated in favor
             of the \c{QJS*} classes in the \l{Qt QML} module.
+    \row \li \l[QtScxml]{Qt SCXML}
+         \li All
+         \li All
+         \li Provides classes and tools for creating state machines from SCXML
+             files and embedding them in applications.
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
@@ -383,8 +388,6 @@
          \li Provides support for accessibility features such as text-to-speech.
     \row \li \l{Qt Wayland Compositor}
          \li Provides a framework to develop a Wayland compositor.
-    \row \li \l{Qt SCXML}
-         \li Provides functionality to create state machines from SCXML files.
     \endtable
 
     \section1 Qt Tools
