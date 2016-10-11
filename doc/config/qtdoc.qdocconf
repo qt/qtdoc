@@ -65,12 +65,13 @@ depends += \
     qtcanvas3d \
     qtwebview \
     qtquickcontrols2 \
-    qtwaylandcompositor\
+    qtwaylandcompositor \
     qtcharts \
     qtdatavisualization \
     qtpurchasing \
     qtvirtualkeyboard \
-    qtspeech
+    qtspeech \
+    qtnetworkauth
 
 headerdirs  += ../src
 imagedirs   += ../src/images \
