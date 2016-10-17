@@ -33,11 +33,10 @@
 Qt features multiple technologies for creating user interfaces. While it is
 possible to mix and match these different technologies as needed, one approach
 is often better suitable for a certain type of user interface than the others.
-\l {Qt Creator Manual}{Qt Creator} is a good example of an application that mixes different user
-interface technologies. In fact, it uses the two different approaches
-described below. \l {Qt Creator Manual}{Qt Creator} uses the traditional \l {Qt Widgets} such as
-menus and dialogs as a basis of the user interface, \l {Qt Quick} amongst others
-for the welcome screen. The following sections provide brief introductions to the
+\l {Qt Creator Manual}{Qt Creator} is a good example of an application that
+combines traditional \l {Qt Widgets} with \l {Qt Quick}. Widgets form the basis
+of the user interface, whereas Qt Quick is used to implement the Welcome mode,
+for example. The following sections provide brief introductions to the
 available technologies for creating user interfaces, and a comparison table
 to help choosing the best suitable technology.
 
@@ -118,7 +117,7 @@ data visualization using 2D and 3D models a reality.
 \section1 Displaying Web Content
 
 Qt provides the Chromium-based
-\l{Qt WebEngine}{WebEngine} layout engine, which enable you to embed web content
+\l{Qt WebEngine}{WebEngine} layout engine, which enables you to embed web content
 into the Qt application. The engine can be integrated into both Qt Widget-based
 and Qt Quick-based applications.
 
@@ -127,12 +126,12 @@ For more information about support for web content in Qt, see
 
 \section1 Comparison
 
-Notice that choosing the appropriate technology for building an user interface
-is not always black and white. It depends on several criteria, such as other
-existing technologies used in a project or even target platform constraints. To
+Choosing the appropriate technology for building a user interface
+is not always easy. It depends on several variables, such as other
+technologies used in a project or target platform constraints. To
 some extent, many items in the following table can be implemented using any of
 the three available technologies. The following table aims to help you
-choose the best suited tool for the job.
+choose the tool best suited for the job.
 
 \table
     \header
@@ -235,7 +234,7 @@ choose the best suited tool for the job.
         \li \inlineimage ok
         \li Both Qt Quick and Qt Widgets provide components for presenting
             \l {richtext-html-subset.html}{simple rich text}, but Qt WebEngine
-            is the right choice for presenting full-blown web content.
+            is the best choice for presenting full-blown web content.
 
 \endtable
 
