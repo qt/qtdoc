@@ -316,17 +316,13 @@
 
     \section1 OpenGL Dependencies
 
-    The configure script will autodetect if OpenGL headers and libraries are
-    installed on your system, and if so, it will include the \l{Qt OpenGL} module
-    in the Qt library.
+    Configure attempts to automatically detect OpenGL ES 2.0, or later, or
+    regular desktop OpenGL. You can disable OpenGL support by using the
+    \c -no-opengl option.
 
-    If your OpenGL headers or libraries are placed in a non-standard directory,
-    you may need to change the \c QMAKE_INCDIR_OPENGL and/or
-    \c QMAKE_LIBDIR_OPENGL in the config file for your system.
-
-    The QGL documentation assumes that you are familiar with OpenGL
-    programming. If you're new to the subject a good starting point is
-    \l{http://www.opengl.org/}.
+    \note The Qt OpenGL module (which contains classes that start with \e QGL)
+    has been deprecated in favor of the \l{Qt GUI} module (which contains
+    classes that start with \e QOpenGL).
 
     \section1 Multimedia Dependencies
 
