@@ -26,7 +26,7 @@
 ****************************************************************************/
 
 /*!
-    \group licensing
+    \page licensing.html
     \title Qt Licensing
     \brief Information about licenses and licensing issues.
 
@@ -47,8 +47,8 @@
 
     \note Some specific parts (modules) of the Qt framework are not available
     under the GNU LGPL version 3, but under the
-    \l {GNU General Public License (GPL)} instead. See \l {Licenses Used in Qt}
-    for details.
+    \l {GNU General Public License (GPL)} instead. See
+    \l {All Modules#Qt Add-Ons}{Qt Modules} for details.
 
     \e {Qt documentation} is licensed under the terms of the \l{GNU Free
     Documentation License (FDL)} version 1.3, as published by the Free Software
@@ -64,748 +64,76 @@
     For further information and assistance about Qt licensing, contact our
     sales; see \l{http://www.qt.io/locations/} for contact details.
 
-    \section1 Licenses Used in Qt
+    \section1 Third-party Licenses Used in Qt
 
-    The following table lists parts of Qt that incorporate code licensed under
-    licenses other than \l{GNU Lesser General Public License (LGPL)} or the
-    commercial license, as well as Qt modules that are only available under a
-    specific license or a version of a license.
+    The following page documents the third-party open-source licenses used
+    in different parts of Qt:
 
-    \l{Third-Party Licenses Used in Qt}{Third-party licenses} used in libraries that
-    are supplied alongside Qt modules are also listed.
-
-    \note Cross-module dependencies are also described on a general level. All Qt
-    modules depend on \l{Qt Core}.
-
-    \table
-    \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
-
-    \row \li {1,30} Qt Core
-
-    \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
-         \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
-    \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput(). \li Modified BSD \li
-    \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
-         \li Specific parts of the Qt for OS X Cocoa port. \li BSD-style \li \l{Qt for OS X}
-    \row \li \l{The qtmain Library}{qtmain library}
-         \li A helper library for writing a cross-platform main() function on Windows. \li Modified BSD \li \l{Qt for Windows}
-    \row \li \l{Shift-JIS Text Codec}
-         \li A character encoding for Japanese. \li BSD-style\li
-    \row \li \l{ISO-2022-JP (JIS) Text Codec}
-         \li A widely used encoding for Japanese. \li BSD-style  \li
-    \row \li \l{EUC-JP Text Codec}
-         \li EUC-JP is a variable-width encoding used to represent the elements of three Japanese character set standards. \li BSD-style \li
-    \row \li \l{EUC-KR TextCodec}
-         \li Extended Unix Code (EUC) is a multibyte character encoding system used primarily for Japanese, Korean, and simplified Chinese. \li BSD-style \li
-    \row \li \l{GBK Text Codec}
-         \li GBK is an extension of the GB2312 character set for simplified Chinese characters, used mainland China. \li BSD-style \li
-    \row \li \l{Big5 Text Codec}
-         \li Big5, or BIG-5, is a Chinese character encoding method used for Traditional Chinese characters. \li BSD-style \li
-    \row \li \l{Big5-HKSCS Text Codec}
-         \li Big5-HKSCS is a Chinese character set with more than 4700 characters. \li BSD-style \li
-    \row \li \l{TSCII Text Codec}
-         \li The TSCII codec provides conversion to and from the Tamil TSCII encoding. \li BSD-style \li
-    \row \li \l{Stack-less Just-In-Time compiler}
-         \li A platform-independent JIT compiler. \li BSD \li
-    \row \li \l{Parts of the codecs implemented by Qt}
-         \li \li BSD \li
-    \row \li \l {Unicode}
-         \li Unicode character data. \li Permissive, GPL-compatible \li
-    \row \li \l {Macros for building Qt files}
-         \li Macros used in CMake files for building Qt. \li BSD \li
-    \row \li \l{The PCRE library}
-         \li The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5.
-         \li BSD-style \li
-
-    \row \li {4,1} \b{Third-party Licenses}
-
-    \row \li \l{Android GNU C++ Run-time Licensing}{Android C++ Run-time}
-         \li GNU C++ run-time library (libstdc++) for Android. \li GPLv3 with exception \li \l{Qt for Android}
-    \row \li \l{forkfd}
-         \li A tool to facilitate spawning sub-processes. \li MIT \li Unix systems
-    \row \li \l{FreeBSD strtoll and strtoull}
-         \li Functions for converting a string to long long integer. \li BSD \li
-    \row \li \l{V8 double/string conversion library}
-         \li Functions for converting between strings and doubles. \li BSD \li
-    \row \li \l {MD4 (md4.cpp and md4.h)}{MD4}
-         \li implements the MD4 message-digest algorithm. \li BSD \li
-    \row \li \l{MD5 (md5.cpp and md5.h)}{MD5}
-         \li implements the MD5 message-digest algorithm. \li BSD \li
-    \row \li \l {Mesa 3D Graphics Library}{Mesa llvmpipe}
-         \li Mesa llvmpipe software rasterizer backend (\c opengl32sw.dll) for Windows builds. \li MIT \li \l {Qt for Windows}
-    \row \li \l{SHA-1 (sha1.cpp)}{SHA-1}
-         \li implements the SHA-1 encryption algorithm. \li BSD \li
-    \row \li \l{SHA-3, originally known as Keccak}{SHA-3}
-         \li implements the SHA-3 encryption algorithm. \li BSD \li
-    \row \li \l{Data Compression Library (zlib) version 1.2.5}{zlib}
-         \li zlib is a general purpose data compression library. \li BSD-style \li
-    \row \li \l{The Public Suffix List}
-         \li A list of all known public Internet suffixes. \li Mozilla Public License \li
-
-    \row \li {1,12} Qt Gui
-    \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
-         \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
-    \row \li \l{qimage-legalese}{QImage}
-         \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
-         \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
-    \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine. \li BSD-style \li
-    \row \li \l{FreeType 2 (freetype) version 2.3.12}{FreeType 2}
-         \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
-    \row \li \l{PNG Reference Library (libpng) version 1.6.17}{PNG Reference Library}
-         \li A library for reducing the time and effort it takes to support the PNG format. \li BSD-style \li
-    \row \li \l{Pixman (pixman) version 0.17.11}{Pixman}
-         \li Pixman is a library that provides low-level pixel manipulation features such as image compositing and trapezoid rasterization. \li BSD-style \li
-    \row \li \l{Drag and Drop}
-         \li Allows users to transfer information between and within applications. \li BSD-style \li
-    \row \li \l{ANGLE (angle)}{ANGLE}
-         \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
-    \row \li \li \li \li
-
-    \row \li {1,6} Qt Location
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Poly2Tri}
-         \li Poly2Tri is a sweepline constrained Delaunay Polygon Triangulation Library. \li BSD-style \li
-    \row \li \l{Clipper}
-         \li Clipper is a freeware library for clipping and offsetting lines and polygons. \li BSD-style \li
-    \row \li \l{Clip2Tri}
-         \li Clip2Tri is an open source polygon triangulation library based on Poly2Tri. \li MIT  \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Bluetooth
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{BlueZ}{BlueZ}
-         \li BlueZ is a Bluetooth stack for Linux based operating systems
-         \li GPL v2
-         \li Used by sdpscanner tool which is called by \l {Qt Bluetooth} on BlueZ 5 systems.
-             Qt applications do \e not link to GPL code.
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Multimedia
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{FFTReal version 2.11}{FFTReal}
-         \li Fast Fourier transform of real-valued arrays. \li LGPL \li (Used in example code).
-    \row \li \li \li \li
-
-    \row \li {1,6} Qt Canvas 3D
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{three.js} \li JavaScript 3D library \li MIT \li (Used in example code)
-    \row \li \l{Three.js Loader}
-         \li A parser for loading 3D models from JSON data structures.
-         \li MIT \li (Used in example code).
-    \row \li \l{gl-matrix.js version 2.2.2}{gl-matrix.js}
-         \li High performance matrix and vector operations
-         \li MIT \li (Used in example code).
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt SVG
-
-    \row \li \l{Qt SVG License Information}
-         \li Parts of code for arc handling in Qt SVG module. \li BSD-style \li Depends on Qt Gui, Qt Widgets
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt QML
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{JavaScriptCore Macro Assembler}
-         \li The assembly code generated use by the JIT.
-         \li BSD-style \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Quick
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Easing Equations}
-         \li Easing Equations is a collection of swappable functions that add flavor to motion. \li BSD-style \li Depends on Qt QML, Qt Gui, Qt Network
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Quick Controls
-    \row \li \l {Native Style for Android} \li \li Apache License 2.0 \li \l {Qt for Android}
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,6} Qt Script
-         \li \li \li \li (Provided for Qt 4 compatibility)
-
-    \row \li \l{V8 benchmark tests}
-         \li V8 benchmark tests used in Qt Script. \li BSD-style \li
-    \row \li \l{Sunspider benchmark tests}
-         \li Sunspider benchmark tests used in Qt Script. \li BSD-style \li
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{JavaScriptCore}
-         \li \li LGPL v2 \li
-    \row \li \li \li \li
-
-    \row \li {1,8} Qt Test
-
-    \row \li \l{Other Licenses Used in Qt#Testlib}{Testlib}
-         \li Parts of implementation of Qt Test library. \li BSD, MIT \li
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Valgrind}
-         \li A code analysis tool for detecting memory leaks. \li GPL v2 \li
-    \row \li \l {valgrind.h specific license}
-         \li \li BSD-style \li
-    \row \li \l{Callgrind}
-         \li A performance profiling tool. \li GPL v2 \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Print Support
-         \li \li \li \li Depends on Qt Gui and Qt Widgets
-
-    \row \li \l{Notes about PDF Licensing}{PDF Licensing}
-         \li Notes about PDF Licensing. \li \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Wayland
-
-    \row \li \l {Wayland Protocol} \li \li MIT \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt WebEngine
-
-    \row \li \l[QtWebEngineCore]{Qt WebEngine Core}
-         \li \li LGPL v3 or\br GPL v2 + Qt commercial license \li
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l {Qt WebEngine Licensing}{Chromium} \li Third-party licenses in Chromium
-         \li LGPLv2.1, BSD, BSL, Apache, APSL, MIT, MPL, others
-         \li See \l {Qt WebEngine Licensing} for details.
-
-    \row \li {1,4} Qt Designer
-
-    \row \li \l{Qt Designer License Information}
-         \li Implementation of the recursive shadow casting algorithm in Qt Designer. \li BSD (MIT) \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Creator
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Botan version 1.8.8}{Botan}
-         \li A C++ crypto library used in Qt Creator. \li BSD \li
-    \row \li \li \li \li
-
-    \row \li {1,6} Qt Image Formats
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{JasPer (libjasper) version 2.0}{JasPer}
-         \li A collection of software for the coding and manipulation of images. \li BSD-style \li
-    \row \li \l{TIFF Software Distribution (libtiff) version 3.9.2}{TIFF}
-         \li libtiff is a set of C functions (a library) that support the manipulation of TIFF image files. \li BSD \li
-    \row \li \l{MNG Library (libmng) version 1.0.10}{MNG}
-         \li Support decoding and displaying of MNG format image files. \li BSD-style \li
-    \row \li \l{WebP (libwebp) version 0.4.3}{WebP}
-         \li Support decoding and displaying of WebP format image files. \li BSD-style \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt SQL
-
-    \row \li \l{SQLite (sqlite) version 3.8.5.0}{SQLite}
-         \li A C library that implements a self-contained, embeddable, zero-configuration SQL database engine. \li BSD-style \li
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt XML Patterns
-
-    \row \li \l {Bison Parser 2.3a}{Bison Parser}
-         \li Bison is a parser generator. \li GPL with exception \li Depends on Qt Network
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt 3D
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l {assimp 3.1.1}{assimp}
-         \li Open Asset Import Library \li BSD \li
-    \row \li \li \li \li
-
-    \row \li {1,10} Plugins
-
-    \row \li \l{JPEG Software (libjpeg) version 8c}{JPEG}
-         \li C software to implement JPEG image compression and decompression. \li BSD-style \li
-    \row \li \l{IAccessible2 IDL Specification}{IAccessible2}
-         \li An accessibility API for Microsoft Windows applications. \li BSD \li \l {Qt for Windows}
-    \row \li \l{Cycle}
-         \li A CPU tick counter. \li MIT \li
-    \row \li \l{callgrind.h specific license}
-         \li \li BSD-style \li
-    \row \li \l{Third-Party Licenses Used in Qt#xcb}{xcb}
-         \li A C language binding for the X Window System. \li BSD-style \li \l {Qt for Linux/X11}
-    \row \li \l{at-spi and at-spi2}
-         \li A toolkit-neutral way of providing accessibility facilities in application. \li LGPL \li \l {Qt for Linux/X11}
-    \row \li \l{Third-Party Licenses Used in Qt#xkbcommon}{xkbcommon}
-         \li Keymap handling library for toolkits and window systems. \li BSD-style \li \l {Qt for Linux/X11}
-    \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,3} Qt Tools
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Clucene Core Library}
-         \li A high-performance, full-featured text search engine written in C++. \li LGPL/Apache \li
-
-    \endtable
-
-    The following modules are available under the GNU GPL version 3 and commercial licenses:
-
-    \table
-    \header \li Qt Module/Tool \li Component \li Description \li License Type
-
-    \row \li {1,2} Qt Charts \li \li \li GPLv3 or commercial license
-    \row \li \li \li
-
-    \row \li {1,2} Qt Data Visualization \li \li \li GPLv3 or commercial license
-    \row \li \li \li
-
-    \row \li {1,2} Qt Purchasing \li \li \li GPLv3 or commercial license
-    \row \li \li \li
-
-    \row \li {1,6} Qt Virtual Keyboard \li \li \li GPLv3 or commercial license
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Lipi Toolkit (LipiTk)}{Lipi Toolkit}
-         \li An open source toolkit for online Handwriting  Recognition (HWR).
-         \li MIT-Style License
-
-    \row \li \l{OpenWnn}
-         \li A Japanese IME
-         \li Apache License
-
-    \row \li \l{Pinyin}
-         \li An IME for Standard Chinese input.
-         \li Apache License
-
-    \row \li \l{Traditional Chinese IME (tcime)}{tcime}
-         \li A traditional Chinese IME.
-         \li Apache License
-
-    \row \li {1,6} Qt Quick 2D Renderer \li \li \li GPLv3 or commercial license
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{EGL 1.5 Headers}
-         \li These headers are based on EGL 1.5 specification.
-         \li MIT License
-
-    \row \li \l{OpenGL ES 2.0 Headers}
-         \li These headers are based on OpenGL ES 2.0 specification.
-         \li MIT and SGI License
-
-    \row \li \l{OpenGL ES 3.1 Headers}
-         \li These headers are based on OpenGL ES 3.1 specification.
-         \li MIT and SGI License
-
-    \row \li \l{OpenKODE Core 1.0 Header}
-         \li The header is based on OpenKODE Core 1.0 specification.
-         \li MIT License
-
-    \row \li \l{V8 double/string conversion library}
-         \li String conversion routines for IEEE doubles.
-         \li BSD-style \li
-
-    \endtable
-    \section1 Additional information
-
-    The documents below list related documents, such as information about Trademark and other
-    licenses used in parts of Qt.
+    \list
+        \li \l {Licenses Used in Qt}
+    \endlist
 */
 
-
 /*!
-    \page licenses.html
-    \title Other Licenses Used in Qt
-    \brief Information about other licenses used for Qt components and third-party code.
+    \page licenses-used-in-qt.html
+    \title Licenses Used in Qt
+    \brief Information about other licenses and third-party code used in Qt.
 
     Qt contains some code that is not provided under the
     \l{GNU Lesser General Public License (LGPL)} or the
-    \l{Qt Commercial License}, but rather under
-    specific licenses from the original authors.
-    This page lists the licenses used, names the authors, and links
-    to the places where it is used.
+    \l{Qt Commercial License}, but rather under specific licenses from the
+    original authors.
 
-    For an overview of Qt licensing and a list of all third-party code in Qt,
-    see \l {Qt Licensing}.
+    The Qt Company gratefully acknowledges these and other contributions to Qt.
+    We recommend that programs that use Qt also acknowledge these contributions,
+    and quote these license statements in an appendix to the documentation.
 
-    The Qt Company gratefully acknowledges these and other contributions
-    to Qt. We recommend that programs that use Qt also acknowledge
-    these contributions, and quote these license statements in an
-    appendix to the documentation.
+    \note You only need to comply with (and acknowledge) the licenses of the
+          third-party components that you are using with your application.
+          Click the name of the component to see the licensing details.
 
-    See also: \l{Licenses for Fonts Used in Qt for Embedded Linux}
+    The following table lists parts (modules) of Qt that incorporate code licensed
+    under third-party open-source licenses:
 
-    \section1 Native Style for Android
+    \div {class="fixed"}
+    \generatelist annotatedattributions
 
-    \legalese
-    Copyright (C) 2005 The Android Open Source Project
+    \raw HTML
+    <h2 id="additional-information">Additional Information</h2>
+    \endraw
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+    The following table lists related documents, such as information about Trademarks
+    and other licenses used in parts of Qt.
 
-         http://www.apache.org/licenses/LICENSE-2.0
+    \annotatedlist licensing
+    \enddiv
+*/
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-    \endlegalese
+/*!
+    \page qt-attribution-cmake-macros.html
+    \title Macros for Building with CMake
+    \ingroup licensing
+    \brief BSD 3-clause "New" or "Revised" License
 
-    \list
-        \li \c {src/3rdparty/android/extract.h}
-    \endlist
-
-    \section1 QSegfaultHandler Class
-
-    Copyright (c) 1998 by Bjorn Reese <breese@imada.ou.dk>
-
-    Permission to use, copy, modify, and distribute this software for any
-    purpose with or without fee is hereby granted, provided that the above
-    copyright notice and this permission notice appear in all copies.
-
-    THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED
-    WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
-    MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE AUTHORS AND
-    CONTRIBUTORS ACCEPT NO RESPONSIBILITY IN ANY CONCEIVABLE MANNER.
+    The following files contain macros that enable users to build Qt-based
+    projects using CMake.
 
     \list
-    \li Parts of the QSegfaultHandler class in
-        \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
+        \li \c qtbase/src/corelib/Qt5CoreMacros.cmake
+        \li \c qtbase/src/dbus/Qt5DBusMacros.cmake
+        \li \c qtbase/src/widgets/Qt5WidgetsMacros.cmake
+        \li \c qttools/src/linguist/Qt5LinguistToolsMacros.cmake
     \endlist
 
-    \section1 FreeType
-
-    Parts of the FreeType projects have been modified and put into Qt
-    for use in the painting subsystem. These files are ftraster.h,
-    ftraster.c, ftgrays.h and ftgrays.c. The following modifications
-    has been made to these files:
-
-    \list
-    \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
-    conflicts in \c{qrasterdefs_p.h}.
-    \li Removed parts of code not relevant when compiled with
-    _STANDALONE_ defined.
-    \li Changed behavior in \c{ftraster.c} to follow X polygon filling
-    rules.
-    \li Implemented support in \c{ftraster.c} for winding / odd even
-    polygon fill rules.
-    \li Replaced bitmap generation with span generation in \c{ftraster.c}.
-    \li Renamed \c{ftraster.h} as \c{qblackraster_p.h}.
-    \li Renamed \c{ftraster.c} as \c{qblackraster.c}.
-    \li Renamed \c{ftgrays.h} as \c{qgrayraster_p.h}.
-    \li Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
-    \endlist
-
-    See \c qtbase/src/3rdparty/freetype/docs/FTL.txt and \c
-    qtbase/src/3rdparty/freetype/docs/GPL.txt for license details.
-
-    \section1 QKeyMapper class on X11 platforms
-
-    Copyright 1985, 1987, 1998  The Open Group
-
-    Permission to use, copy, modify, distribute, and sell this software and its
-    documentation for any purpose is hereby granted without fee, provided that
-    the above copyright notice appear in all copies and that both that
-    copyright notice and this permission notice appear in supporting
-    documentation.
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-    OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-    AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-    Except as contained in this notice, the name of The Open Group shall not be
-    used in advertising or otherwise to promote the sale, use or other dealings
-    in this Software without prior written authorization from The Open Group.
-
-    \list
-    \li Parts of the internal QKeyMapper class on X11 platforms
-    \endlist
-
-    \section1 QUrl::fromUserInput
-
-    Copyright (C) Research In Motion Limited 2009. All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:\br
-      * Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.\br
-      * Redistributions in binary form must reproduce the above copyright
-        notice, this list of conditions and the following disclaimer in the
-        documentation and/or other materials provided with the distribution.\br
-      * Neither the name of Research In Motion Limited nor the
-        contributors may be used to endorse or promote products derived
-        derived from this software without specific prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY Research In Motion Limited ''AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL Research In Motion Limited BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li qtbase/src/corelib/io/qurl.cpp
-    \endlist
-
-    \section1 Parts of the codecs implemented by Qt
-
-    Copyright (C) 1999 Serika Kurusugawa, All rights reserved.\br
-    Copyright (C) 1999-2000 Mizi Research Inc. All rights reserved.\br
-    Copyright (C) 2004, 2005 Daniel M. Duley\br
-    Copyright (C) 2000  Ming-Che Chuang\br
-    Copyright (C) 2001, 2002  James Su, Turbolinux Inc.\br
-    Copyright (C) 2002  WU Yi, HancomLinux Inc.\br
-    Copyright (C) 2001, 2002  Anthony Fok, ThizLinux Laboratory Ltd.\br
-    Copyright (c) 2000 Hans Petter Bieker.  All rights reserved.\br
-    Copyright (C) 2001, 2002 ThizLinux Laboratory Ltd.\br
-    Copyright (C) 2001, 2002 Turbolinux, Inc.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-    SUCH DAMAGE.
-
-    \list
-    \li Parts of the codecs implemented by Qt
-    \endlist
-
-    \section1 Testlib
-
-    This file is part of Valgrind, a dynamic binary instrumentation
-    framework.
-
-    Copyright (C) 2000-2007 Julian Seward.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-
-    2. The origin of this software must not be misrepresented; you must
-       not claim that you wrote the original software.  If you use this
-       software in a product, an acknowledgment in the product
-       documentation would be appreciated but is not required.
-
-    3. Altered source versions must be plainly marked as such, and must
-       not be misrepresented as being the original software.
-
-    4. The name of the author may not be used to endorse or promote
-       products derived from this software without specific prior written
-       permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
-    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li valgrind_p.h in qtbase/src/testlib/3rdparty
-    \endlist
-
-    \hr
-
-    Copyright (c) 2003, 2006 Matteo Frigo
-    Copyright (c) 2003, 2006 Massachusetts Institute of Technology
-
-    Permission is hereby granted, free of charge, to any person obtaining
-    a copy of this software and associated documentation files (the
-    "Software"), to deal in the Software without restriction, including
-    without limitation the rights to use, copy, modify, merge, publish,
-    distribute, sublicense, and/or sell copies of the Software, and to
-    permit persons to whom the Software is furnished to do so, subject to
-    the following conditions:
-
-    The above copyright notice and this permission notice shall be
-    included in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-    \list
-    \li cycle_p.h in qtbase/src/testlib/3rdparty
-    \endlist
-
-    \hr
-
-    This file is part of callgrind, a valgrind tool for cache simulation
-    and call tree tracing.
-
-    Copyright (C) 2003-2007 Josef Weidendorfer.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-
-    2. The origin of this software must not be misrepresented; you must
-       not claim that you wrote the original software.  If you use this
-       software in a product, an acknowledgment in the product
-       documentation would be appreciated but is not required.
-
-    3. Altered source versions must be plainly marked as such, and must
-       not be misrepresented as being the original software.
-
-    4. The name of the author may not be used to endorse or promote
-       products derived from this software without specific prior written
-       permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
-    OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-    GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li callgrind_p.h in qtbase/src/testlib/3rdparty
-    \endlist
-
-    \section1 ANGLE
-
-    Copyright (C) 2002-2013 The ANGLE Project Authors.
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-
-        Redistributions of source code must retain the above copyright
-        notice, this list of conditions and the following disclaimer.
-
-        Redistributions in binary form must reproduce the above
-        copyright notice, this list of conditions and the following
-        disclaimer in the documentation and/or other materials provided
-        with the distribution.
-
-        Neither the name of TransGaming Inc., Google Inc., 3DLabs Inc.
-        Ltd., nor the names of their contributors may be used to endorse
-        or promote products derived from this software without specific
-        prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-    COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li ANGLE library in qtbase/src/3rdparty/angle
-    \endlist
-
-    \section1 Unicode
-
-    Copyright (c) 1991-2009 Unicode, Inc. All rights reserved.
-    Distributed under the Terms of Use in
-    http://www.unicode.org/copyright.html.
-
-    Permission is hereby granted, free of charge, to any person
-    obtaining a copy of the Unicode data files and any associated
-    documentation (the "Data Files") or Unicode software and any
-    associated documentation (the "Software") to deal in the Data
-    Files or Software without restriction, including without
-    limitation the rights to use, copy, modify, merge, publish,
-    distribute, and/or sell copies of the Data Files or Software,
-    and to permit persons to whom the Data Files or Software are
-    furnished to do so, provided that (a) the above copyright
-    notice(s) and this permission notice appear with all copies
-    of the Data Files or Software, (b) both the above copyright
-    notice(s) and this permission notice appear in associated
-    documentation, and (c) there is clear notice in each modified
-    Data File or in the Software as well as in the documentation
-    associated with the Data File(s) or Software that the data or
-    software has been modified.
-
-    THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT
-    WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-    PARTICULAR PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS.
-    IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED
-    IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT
-    OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING
-    FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
-    CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA FILES
-    OR SOFTWARE.
-
-    Except as contained in this notice, the name of a copyright
-    holder shall not be used in advertising or otherwise to promote
-    the sale, use or other dealings in these Data Files or Software
-    without prior written authorization of the copyright holder.
-
-    \list
-    \li Included in \c{util/unicode/data},
-    \c{tests/auto/qtextboundaryfinder/data} and
-    \c{tests/auto/qchar}
-    \li Parts of the \l makeqpf tool
-    \endlist
-
-    \section1 Macros for building Qt files
-
+    \badcode
     Copyright 2005-2011 Kitware, Inc.
     All rights reserved.
+    \endcode
 
+    \l {https://spdx.org/licenses/BSD-3-Clause.html}
+       {BSD 3-clause "New" or "Revised" License}
+
+    \badcode
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions
     are met:
@@ -832,152 +160,5 @@
     THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-    \list
-    \li qtbase/src/corelib/Qt5CoreMacros.cmake
-    \li qtbase/src/dbus/Qt5DBusMacros.cmake
-    \li qtbase/src/widgets/Qt5WidgetsMacros.cmake
-    \li qttools/src/linguist/Qt5LinguistToolsMacros.cmake
-    \endlist
-
-    \section1 The PCRE library
-
-    Copyright (c) 1997-2015 University of Cambridge\br
-    All rights reserved.
-
-    Copyright(c) 2009-2015 Zoltan Herczeg\br
-    All rights reserved.
-
-    Copyright (c) 2007-2012, Google Inc.
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-
-        * Redistributions of source code must retain the above copyright notice,
-          this list of conditions and the following disclaimer.
-
-        * Redistributions in binary form must reproduce the above copyright
-          notice, this list of conditions and the following disclaimer in the
-          documentation and/or other materials provided with the distribution.
-
-        * Neither the name of the University of Cambridge nor the name of Google
-          Inc. nor the names of their contributors may be used to endorse or
-          promote products derived from this software without specific prior
-          written permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-    POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li The PCRE library in \c{qtbase/src/3rdparty/pcre}
-    \endlist
-
-    \hr
-    \b Licenses that apply to tests.
-    \hr
-
-    The following licenses apply to some tests.
-    These are not by default shipped with Qt but part of the tests directory of a source checkout.
-
-    \section1 V8 benchmark tests
-
-    Copyright 2000 World Wide Web Consortium, (Massachusetts
-    Institute of Technology, Institut National de Recherche en
-    Informatique et en Automatique, Keio University). All Rights
-    Reserved.
-    Copyright 2008 Google Inc. All Rights Reserved.
-    Copyright 2006-2008 the V8 project authors. All rights reserved.
-    JavaScript MD5 Copyright (c) 1998 - 2009, Paul Johnston & Contributors
-
-    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-    - Redistributions of works must retain the original copyright notice, this list of
-    conditions and the following disclaimer.
-    - Redistributions in binary form must reproduce the original copyright notice, this
-    list of conditions and the following disclaimer in the documentation and/or other
-    materials provided with the distribution.
-    - Neither the name of the copyright holder nor the names of the contributors may be used to
-    endorse or promote products derived from this work without specific prior written
-    permission.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li \c{tests/benchmarks/script/v8/tests/richards.js}
-    \endlist
-
-    \section1 Sunspider benchmark tests
-
-    Copyright (C) 2007 Apple Inc.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY APPLE COMPUTER, INC. ``AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-    PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE COMPUTER, INC. OR
-    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-    OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-    \list
-    \li \c{tests/benchmarks/script/sunspider/tests/3d-morph.js},
-       \c{tests/benchmarks/script/sunspider/tests/3d-raytrace.js},
-       \c{tests/benchmarks/script/sunspider/tests/bitops-bitwise-and.js} and
-       \c{tests/benchmarks/script/sunspider/tests/string-tagcloud.js}
-    \endlist
-
-    \hr
-
-    Copyright (C) Rich Moore.  All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions
-    are met:
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY CONTRIBUTORS ``AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-    PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE COMPUTER, INC. OR
-    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-    OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-    \list
-    \li \c{benchmarks/script/sunspider/tests/math-cordic.js}
-    \endlist
-
-
+    \endcode
 */
