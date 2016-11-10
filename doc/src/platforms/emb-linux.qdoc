@@ -37,7 +37,7 @@
   through Wayland.
 
   There are multiple platform plugins that are potentially usable on
-  Embedded Linux systems: EGLFS, LinuxFB, KMS, DirectFB, Wayland. The
+  Embedded Linux systems: EGLFS, LinuxFB, DirectFB, Wayland. The
   availability of these depend on the configuration of Qt.  On many
   boards \e eglfs is chosen as the default one. If the default is not
   suitable, the \c QT_QPA_PLATFORM environment variable parameter can
@@ -291,9 +291,9 @@
 
   \section2 LinuxFB
 
-  This plugin writes directly to the framebuffer. Only software-rendered content
-  is supported. Note that on some setups the display performance is expected to
-  be limited.
+  This plugin writes directly to the framebuffer via the fbdev subsystem of
+  Linux. Only software-rendered content is supported. Note that on some setups
+  the display performance is expected to be limited.
 
   The \c linuxfb plugin allows specifying additional settings by passing them
   in the \c QT_QPA_PLATFORM environment variable or \c -platform command-line
@@ -329,6 +329,12 @@
   \c{nographicsmodeswitch} is not set.
 
   \endlist
+
+  As of Qt 5.9, the behavior of eglfs and linuxfb has been synchronized when it
+  comes to the window sizing policy: the first top-level window is forced to
+  cover the entire screen with both platform plugins. If this is not desired,
+  set the environment variable \c{QT_QPA_FB_FORCE_FULLSCREEN} to \c 0 in order
+  to restore the behavior of earlier Qt versions.
 
   \section1 Input
 
