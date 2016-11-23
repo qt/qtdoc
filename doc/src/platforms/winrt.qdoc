@@ -170,9 +170,8 @@
     command prompt is used.
 
     The WinRT mkspec format is \c {<platform>-<architecture>-<toolchain>}
-    where \e platform can be \c winrt or \c winphone and architecture can be
-    \c arm, \c x86, or \c x64. The following is an example of building qtbase
-    for WinRT:
+    where architecture can be \c arm, \c x86, or \c x64. The following is an
+    example of building qtbase for WinRT:
     \code
         > ./configure -xplatform winrt-x64-msvc2013 -release
         > nmake/jom
