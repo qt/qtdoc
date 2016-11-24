@@ -34,7 +34,7 @@
     the needs of our various users:
 
     \list
-      \li Qt licensed under \e commercial licenses are appropriate for
+      \li Qt licensed under \e commercial licenses is appropriate for
           development of proprietary/commercial software where you do not want
           to share any source code with third parties or otherwise cannot
           comply with the terms of the GNU LGPL version 3.
@@ -87,8 +87,6 @@
     \row \li \l{QUrl::fromUserInput}{QUrl} \li Implementation of QUrl::fromUserInput(). \li Modified BSD \li
     \row \li \l{Contributions to the Cocoa Platform Plugin Files}{Cocoa Platform Plugin}
          \li Specific parts of the Qt for macOS Cocoa port. \li BSD-style \li \l{Qt for macOS}
-    \row \li \l{The qtmain Library}{qtmain library}
-         \li A helper library for writing a cross-platform main() function on Windows. \li Modified BSD \li \l{Qt for Windows}
     \row \li \l{Shift-JIS Text Codec}
          \li A character encoding for Japanese. \li BSD-style\li
     \row \li \l{ISO-2022-JP (JIS) Text Codec}
@@ -115,6 +113,9 @@
          \li Macros used in CMake files for building Qt. \li BSD \li
     \row \li \l{The PCRE library}
          \li The PCRE library is a set of functions that implement regular expression pattern matching using the same syntax and semantics as Perl 5.
+         \li BSD-style \li
+    \row \li \l{Google Type Traits}
+         \li Custom implementation of templated type traits as defined by C++11.
          \li BSD-style \li
 
     \row \li {4,1} \b{Third-party Licenses}
@@ -405,10 +406,6 @@
     \row \li \l{OpenKODE Core 1.0 Header}
          \li The header is based on OpenKODE Core 1.0 specification.
          \li MIT License
-
-    \row \li \l{V8 double/string conversion library}
-         \li String conversion routines for IEEE doubles.
-         \li BSD-style \li
 
     \endtable
     \section1 Additional information
