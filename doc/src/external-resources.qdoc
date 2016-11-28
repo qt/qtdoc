@@ -80,6 +80,12 @@
     \title GNU Lesser General Public License, version 3
 */
 
+
+/*!
+    \externalpage https://spdx.org/licenses/BSD-3-Clause.html
+    \title BSD 3-clause "New" or "Revised" License
+*/
+
 /*!
     \externalpage http://qt-project.org/faq/answer/how_to_compress_data_with_qt
     \title How to compress data with Qt?
@@ -239,13 +245,13 @@
 */
 
 /*!
-    \externalpage http://www.qt.io/qt-account/
+    \externalpage https://account.qt.io/
     \title Qt Account
 */
 
 /*!
-    \externalpage http://doc.qt.io/vs-addin
-    \title Qt Visual Studio Add-in
+    \externalpage http://doc.qt.io/qtvstools/index.html
+    \title Qt VS Tools
 */
 /*!
     \externalpage http://doc.qt.io/emulator/index.html
@@ -283,4 +289,18 @@
 /*!
     \externalpage https://qmlbook.github.io/
     \title QML Book
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/vxworks.html
+    \title ext: Qt for VxWorks
+*/
+
+/*
+    This prevents autolinking of each occurrence of 'macOS'
+*/
+/*!
+    \externalpage nolink
+    \title macOS
+    \internal
 */

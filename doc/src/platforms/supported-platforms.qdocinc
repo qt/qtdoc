@@ -54,19 +54,19 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li MSVC 2015
          \li
     \row \li Windows 8.1 (64-bit)
-         \li MSVC 2015, \b {MSVC 2013}, MinGW 4.9,
+         \li MSVC 2015, \b {MSVC 2013}, MinGW 5.3, MinGW 4.9,
              MinGW 4.8
          \li
     \row \li Windows 8.1 (32-bit)
-         \li MSVC 2015, MSVC 2013, MinGW 4.9, MinGW 4.8
+         \li MSVC 2015, MSVC 2013, MinGW 5.3, MinGW 4.9, MinGW 4.8
          \li
     \row \li Windows 7 (64-bit)
-         \li MSVC 2015, MSVC 2013, MinGW 4.9, MinGW 4.8
+         \li MSVC 2015, MSVC 2013, MinGW 5.3, MinGW 4.9, MinGW 4.8
          \li
     \row \li Windows 7 (32-bit)
-         \li MSVC 2015, MSVC 2013, \b {MinGW 4.9},
+         \li MSVC 2015, MSVC 2013, \b {MinGW 5.3}, MinGW 4.9,
              MinGW 4.8
-         \li \l{http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/4.9.1/threads-posix/dwarf/i686-4.9.1-release-posix-dwarf-rt_v3-rev2.7z/download}{MinGW-builds gcc 4.9.1 (32-bit)}
+         \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z/download}{MinGW-builds gcc 5.3.0 (32-bit)}
 
     \row \li {3,1} \header \li {3,1} \l {Qt for Linux/X11}{Linux/X11}
     \row \li openSUSE 13.1 (64-bit)
@@ -82,8 +82,8 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X \b 10.8, \b 10.9, \b 10.10, \b 10.11
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos \b 10.8, \b 10.9, \b 10.10, \b 10.11
          \li \b {Clang as provided by Apple}
          \li
 
@@ -101,14 +101,17 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li \b {MSVC 2013}
          \li Hosts: \b {Windows 8.1}, Windows 10
     \row \li Windows Runtime (x86, \b x86_64, arm)
-         \li MSVC 2015, \b {MSVC 2013}
+         \li \b {MSVC 2013}
          \li Hosts: \b {Windows 8.1}, Windows 10
+    \row \li Universal Windows Platform (x86, \b x86_64, arm)
+         \li \b {MSVC 2015}
+         \li Hosts: \b {Windows 10}
     \row \li iOS 6 and above
          \li \b {Clang as provided by Apple}
-         \li \b {OS X host}
+         \li \b {\macos host}
     \row \li Android (API Level: 16)
          \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, \macos, Windows
     \endtable
 
 //! [5.7] //! [latest]
@@ -122,10 +125,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \header \li Platform \li Compiler \li Notes
     \header \li {3,1} \l {Qt for Windows}{Windows}
     \row \li Windows 10 (64-bit)
-         \li \b {MSVC 2015}
+         \li \b {MSVC 2015}, MSVC 2013, MSVC 2012, MSVC 2010, MinGW 4.9,
+             MinGW 4.8
          \li
     \row \li Windows 10 (32-bit)
-         \li MSVC 2015
+         \li MSVC 2015, MSVC 2013, MSVC 2012, MSVC 2010, MinGW 4.9, MinGW 4.8
          \li
     \row \li Windows 8.1 (64-bit)
          \li MSVC 2015, \b {MSVC 2013}, \b {MSVC 2012}, MSVC 2010, MinGW 4.9,
@@ -161,11 +165,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X \b 10.8, \b 10.9, \b 10.10, \b 10.11
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos \b 10.8, \b 10.9, \b 10.10, 10.11
          \li \b {Clang as provided by Apple}
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li \li Deployment only
 
     \row \li {3,1} \header \li {3,1}
@@ -189,10 +193,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Hosts: \b {Windows 8.1}, Windows 10
     \row \li iOS 6 and above
          \li \b {Clang as provided by Apple}
-         \li \b {OS X host}
+         \li \b {\macos host}
     \row \li Android (API Level: 9)
          \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, \macos, Windows
     \endtable
 
 //! [5.6]
@@ -237,11 +241,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1, GCC 4.9.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X 10.8, \b 10.9, \b 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos 10.8, \b 10.9, \b 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li i686-apple-darwin11-llvm-gcc-4.2
          \li
 
@@ -271,10 +275,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Hosts: \b {Windows 8.1}, Windows 10
     \row \li iOS 5.1.1 and above
          \li \b {Clang as provided by Apple}
-         \li \b {OS X host}
+         \li \b {\macos host}
     \row \li Android
          \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, OS X, Windows
+         \li Hosts: \b {Ubuntu 14.04 (64-bit)}, \macos, Windows
     \endtable
 
 //! [5.5]
@@ -322,11 +326,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.8.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X 10.8, \b 10.9, \b 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos 10.8, \b 10.9, \b 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li \b i686-apple-darwin11-llvm-gcc-4.2
          \li
 
@@ -355,10 +359,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li \b {Windows 8.1 host}
     \row \li iOS 5.1.1 and above
          \li \b {Clang as provided by Apple}
-         \li \b {OS X host}
+         \li \b {\macos host}
     \row \li Android
          \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X, Windows
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, \macos, Windows
     \endtable
 
 //! [5.4]
@@ -406,14 +410,14 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li GCC 4.6.1, GCC 4.6.3, GCC 4.8.1
          \li
 
-    \row \li {3,1} \header \li {3,1} \l {Qt for OS X}{OS X}
-    \row \li OS X \b 10.8, \b 10.9, 10.10
+    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
+    \row \li \macos \b 10.8, \b 10.9, 10.10
          \li \b clang-600.0.54
          \li
-    \row \li OS X 10.7
+    \row \li \macos 10.7
          \li \b i686-apple-darwin11-llvm-gcc-4.2
          \li
-    \row \li OS X 10.6
+    \row \li \macos 10.6
          \li \li Deployment only
 
     \row \li {3,1} \header \li {3,1}
@@ -441,10 +445,10 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li \b {Windows 8.1 host}
     \row \li iOS 5.0 and above
          \li \b {Clang as provided by Apple}
-         \li \b {OS X host}
+         \li \b {\macos host}
     \row \li Android
          \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, OS X, Windows
+         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, \macos, Windows
     \endtable
 
 //! [5.3]

@@ -520,7 +520,7 @@
     \title Qt for Windows - Deployment
 
     This documentation describes deployment process for \l{Qt for
-    Windows}{Windows}. We refer to the \{Plug & Paint Example}{plug & paint}
+    Windows}{Windows}. We refer to the \l{Plug & Paint Example}{plug & paint}
     example application through out the document to demonstrate the deployment
     process.
 
@@ -1034,17 +1034,11 @@
     more information, visit the \l{Getting Started with Qt} page.
 
 
-    \section1 Step 1: Install the License File (Commercial Editions Only)
+    \section1 Step 1: Install the License File (Commercially Licensed Qt Only)
 
-        If you have the commercial edition of Qt, copy the license file
-        from your account on the distribution server into your home directory
-        (this may be known as the \c userprofile environment variable) and
-        rename it to \c{.qt-license}. This renaming process must be done
-        using a \e{command prompt} on Windows, \b{not} with Windows Explorer.
-        For example on Windows 2000, \c{%USERPROFILE%} should be something
-        like \c{C:\Documents and Settings\username}
-
-        For the open source version you do not need a license file.
+        If you have a commercial Qt license, download the license file
+        from your \l {Qt Account} Web portal and save it to your home directory
+        as \c{.qt-license}.
 
     \section1 Step 2: Unpack the Archive
 

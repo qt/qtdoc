@@ -131,7 +131,7 @@
 
     \section2 Qt Platform Abstraction (QPA)
     \list
-        \li Optional support for using FreeType on OS X.
+        \li Optional support for using FreeType on \macos.
         \li Added support for NVIDIA Jetson TK1 Pro boards running Vibrante
             Linux via a new eglfs backend utilizing DRM, EGLDevice, and
             EGLStream.
@@ -146,7 +146,7 @@
 
     \section2 Qt Positioning Module
     \list
-        \li Added support for OS X.
+        \li Added support for \macos.
         \li Added support for GPS receivers exposed as a serial port on Windows
             desktop (all versions).
         \li Removed libgeoclue dependency for the GeoClue backend.
