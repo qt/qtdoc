@@ -149,17 +149,15 @@
          \li A list of all known public Internet suffixes. \li Mozilla Public License \li
     \row \li \li \li \li
 
-    \row \li {1,12} Qt Gui
+    \row \li {1,10} Qt Gui
     \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
          \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
     \row \li \l{qimage-legalese}{QImage}
          \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
 
     \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Other Licenses Used in Qt#FreeType}{FreeType}
-         \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
     \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine. \li BSD-style \li
-    \row \li \l{FreeType 2 (freetype) version 2.3.12}{FreeType 2}
+    \row \li \l{FreeType 2}{FreeType 2}
          \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
     \row \li \l{PNG Reference Library (libpng) version 1.6.17}{PNG Reference Library}
          \li A library for reducing the time and effort it takes to support the PNG format. \li BSD-style \li
@@ -169,7 +167,6 @@
          \li Allows users to transfer information between and within applications. \li BSD-style \li
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
-    \row \li \li \li \li
 
     \row \li {1,4} Qt Location
 
@@ -461,32 +458,6 @@
     \li Parts of the QSegfaultHandler class in
         \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
     \endlist
-
-    \section1 FreeType
-
-    Parts of the FreeType projects have been modified and put into Qt
-    for use in the painting subsystem. These files are ftraster.h,
-    ftraster.c, ftgrays.h and ftgrays.c. The following modifications
-    has been made to these files:
-
-    \list
-    \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
-    conflicts in \c{qrasterdefs_p.h}.
-    \li Removed parts of code not relevant when compiled with
-    _STANDALONE_ defined.
-    \li Changed behavior in \c{ftraster.c} to follow X polygon filling
-    rules.
-    \li Implemented support in \c{ftraster.c} for winding / odd even
-    polygon fill rules.
-    \li Replaced bitmap generation with span generation in \c{ftraster.c}.
-    \li Renamed \c{ftraster.h} as \c{qblackraster_p.h}.
-    \li Renamed \c{ftraster.c} as \c{qblackraster.c}.
-    \li Renamed \c{ftgrays.h} as \c{qgrayraster_p.h}.
-    \li Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
-    \endlist
-
-    See \c qtbase/src/3rdparty/freetype/docs/FTL.txt and \c
-    qtbase/src/3rdparty/freetype/docs/GPL.txt for license details.
 
     \section1 QKeyMapper class on X11 platforms
 
