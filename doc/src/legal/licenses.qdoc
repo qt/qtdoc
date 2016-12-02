@@ -150,8 +150,6 @@
     \row \li \li \li \li
 
     \row \li {1,10} Qt Gui
-    \row \li \l{QKeyMapper class on X11 platforms}{QKeyMapper}
-         \li Internal class for key mapping. \li Custom, BSD-style \li \l {Qt for Linux/X11}
     \row \li \l{qimage-legalese}{QImage}
          \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
 
@@ -167,6 +165,7 @@
          \li Allows users to transfer information between and within applications. \li BSD-style \li
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
+    \row \li \li \li \li
 
     \row \li {1,4} Qt Location
 
@@ -457,34 +456,6 @@
     \list
     \li Parts of the QSegfaultHandler class in
         \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
-    \endlist
-
-    \section1 QKeyMapper class on X11 platforms
-
-    Copyright 1985, 1987, 1998  The Open Group
-
-    Permission to use, copy, modify, distribute, and sell this software and its
-    documentation for any purpose is hereby granted without fee, provided that
-    the above copyright notice appear in all copies and that both that
-    copyright notice and this permission notice appear in supporting
-    documentation.
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-    OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-    AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-    Except as contained in this notice, the name of The Open Group shall not be
-    used in advertising or otherwise to promote the sale, use or other dealings
-    in this Software without prior written authorization from The Open Group.
-
-    \list
-    \li Parts of the internal QKeyMapper class on X11 platforms
     \endlist
 
     \section1 QUrl::fromUserInput
