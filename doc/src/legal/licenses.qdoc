@@ -48,7 +48,7 @@
     \note Some specific parts (modules) of the Qt framework are not available
     under the GNU LGPL version 3, but under the
     \l {GNU General Public License (GPL)} instead. See
-    \l {All Modules#Qt Add-Ons}{Qt Modules} for details.
+    \l {Licenses Used in Qt} for details.
 
     \e {Qt documentation} is licensed under the terms of the \l{GNU Free
     Documentation License (FDL)} version 1.3, as published by the Free Software
@@ -64,10 +64,10 @@
     For further information and assistance about Qt licensing, contact our
     sales; see \l{http://www.qt.io/locations/} for contact details.
 
-    \section1 Third-party Licenses Used in Qt
+    \section1 Licensed Code in Qt
 
-    The following page documents the third-party open-source licenses used
-    in different parts of Qt:
+    The following page documents the open-source licenses used in different
+    parts of Qt:
 
     \list
         \li \l {Licenses Used in Qt}
@@ -91,6 +91,24 @@
     \note You only need to comply with (and acknowledge) the licenses of the
           third-party components that you are using with your application.
           Click the name of the component to see the licensing details.
+
+    \b {Modules Licensed Under GPLv3}
+
+    A number of Qt modules are only licensed under the \l{Qt Commercial License}
+    or the \l{GNU General Public License (GPL)} version 3:
+
+    \div {class="fixed"}
+    \table
+        \row \li \l {Qt Charts}
+             \li Commercial Licenses, or GNU General Public License v3
+        \row \li \l {Qt Data Visualization}
+             \li Commercial Licenses, or GNU General Public License v3
+        \row \li \l {Qt Virtual Keyboard}
+             \li Commercial Licenses, or GNU General Public License v3
+    \endtable
+    \enddiv
+
+    \b {Third-party Licenses}
 
     The following table lists parts (modules) of Qt that incorporate code licensed
     under third-party open-source licenses:
