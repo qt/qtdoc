@@ -268,6 +268,12 @@
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}, \l{Qt for WinRT}{WinRT} and Mer.
         \li Provides access to sensor hardware and motion gesture recognition.
     \row
+        \li \l[QtSerialBus]{Qt Serial Bus}
+        \li \l{Qt for Linux/X11}{Linux}
+        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
+        \li Provides access to serial industrial bus interface. Currently the
+            module supports the CAN bus and Modbus protocols.
+    \row
         \li \l[QtSerialPort]{Qt Serial Port}
         \li All
         \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
@@ -323,6 +329,11 @@
         \li
         \li Support for XPath, XQuery, XSLT and XML schema validation.
     \row
+        \li \l{Qt Wayland Compositor}
+        \li \l{Qt for Linux/X11}{Linux}
+        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
+        \li Provides a framework to develop a Wayland compositor.
+    \row
     \header
         \li {4,1} Add-ons available under GPLv3 license
     \row
@@ -337,12 +348,6 @@
         \li All
         \li UI Components for creating stunning 3D data visualizations.
     \row
-        \li \l[QtSerialBus]{Qt Serial Bus}
-        \li \l{Qt for Linux/X11}{Linux}
-        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
-        \li Provides access to serial industrial bus interface. Currently the
-            module supports the CAN bus and Modbus protocols.
-    \row
         \li \l{Qt Virtual Keyboard}
         \li All
         \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
@@ -350,11 +355,6 @@
         \li A framework for implementing different input methods as
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
-    \row
-        \li \l{Qt Wayland Compositor}
-        \li \l{Qt for Linux/X11}{Linux}
-        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
-        \li Provides a framework to develop a Wayland compositor.
     \endtable
 
     \section1 Value-Add Modules
