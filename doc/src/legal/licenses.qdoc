@@ -84,7 +84,7 @@
     \table
     \header \li Qt Module/Tool \li Component \li Description \li License Type \li Notes
 
-    \row \li {1,30} Qt Core
+    \row \li {1,32} Qt Core
 
     \row \li \l{QSegfaultHandler Class}{QSegfaultHandler}
          \li Parts of implementation of QSegfaultHandler class. \li BSD-style \li
@@ -121,6 +121,9 @@
     \row \li \l{Google Type Traits}
          \li Custom implementation of templated type traits as defined by C++11.
          \li BSD-style \li
+    \row \li \l{Easing Equations}
+         \li Easing Equations is a collection of swappable functions that add flavor to motion. \li BSD-style \li.
+    \row \li \li \li \li
 
     \row \li {4,1} \b{Third-party Licenses}
 
@@ -207,13 +210,6 @@
     \row \li \l{Qt SVG License Information}
          \li Parts of code for arc handling in Qt SVG module. \li BSD-style \li Depends on Qt Gui, Qt Widgets
     \row \li \li \li \li
-    \row \li \li \li \li
-
-    \row \li {1,4} Qt Quick
-
-    \row \li {4,1} \b{Third-party Licenses}
-    \row \li \l{Easing Equations}
-         \li Easing Equations is a collection of swappable functions that add flavor to motion. \li BSD-style \li Depends on Qt QML, Qt Gui, Qt Network
     \row \li \li \li \li
 
     \row \li {1,4} Qt Quick Controls
