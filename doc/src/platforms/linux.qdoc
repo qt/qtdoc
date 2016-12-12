@@ -316,17 +316,13 @@
 
     \section1 OpenGL Dependencies
 
-    The configure script will autodetect if OpenGL headers and libraries are
-    installed on your system, and if so, it will include the \l{Qt OpenGL} module
-    in the Qt library.
+    Configure attempts to automatically detect OpenGL ES 2.0, or later, or
+    regular desktop OpenGL. You can disable OpenGL support by using the
+    \c -no-opengl option.
 
-    If your OpenGL headers or libraries are placed in a non-standard directory,
-    you may need to change the \c QMAKE_INCDIR_OPENGL and/or
-    \c QMAKE_LIBDIR_OPENGL in the config file for your system.
-
-    The QGL documentation assumes that you are familiar with OpenGL
-    programming. If you're new to the subject a good starting point is
-    \l{http://www.opengl.org/}.
+    \note The Qt OpenGL module (which contains classes that start with \e QGL)
+    has been deprecated in favor of the \l{Qt GUI} module (which contains
+    classes that start with \e QOpenGL).
 
     \section1 Multimedia Dependencies
 
@@ -359,11 +355,11 @@
     Qt for X11 has some requirements that are given in more detail
     in the \l{Qt for X11 Requirements} document.
 
-    \section1 Step 1: Installing the License File (Commercial Editions Only)
-        If you have the commercial edition of Qt, install your license
-        file as \c{$HOME/.qt-license}.
+    \section1 Step 1: Installing the License File (Commercially Licensed Qt Only)
 
-        For the open source version you do not need a license file.
+        If you have a commercial Qt license, download the license file
+        from your \l {Qt Account} Web portal and save it as
+        \c{$HOME/.qt-license}.
 
     \section1 Step 2: Unpacking the Archive
         Unpack the archive if you have not done so already. For example,

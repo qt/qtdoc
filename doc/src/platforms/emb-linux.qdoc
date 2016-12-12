@@ -187,6 +187,23 @@
   application type. The special cursor implementations, such as the KMS/DRM
   backend's hardware cursor, may not support rotation.
 
+  \li \c {QT_QPA_EGLFS_FORCEVSYNC} - When set, \c eglfs requests
+  \c FBIO_WAITFORVSYNC on the framebuffer device after each call to
+  eglSwapBuffers(). This is only relevant for backends relying on the legacy
+  \c fbdev subsystem of Linux. Normally, with a default swap interval of 1, Qt
+  assumes that calling eglSwapBuffers() takes care of vsync; if it doesn't (for
+  example, due to driver bugs), try setting \c QT_QPA_EGLFS_FORCEVSYNC to a
+  non-zero value.
+
+  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green, and blue color
+  channel sizes are ignored whenever creating a new context, window or offscreen
+  surface. Instead, the plugin requests a configuration with 8 bits per
+  channel. This can be helpful on devices where configurations with less than 32
+  or 24 bits per pixel (for example, 5-6-5 or 4-4-4) are chosen by default but
+  are known not to be ideal, for example, due to banding effects. Instead of
+  changing application code, this variable provides an easier shortcut to force
+  24 or 32 bpp configurations.
+
   \endlist
 
   In addition, the following - less commonly used - variables are
@@ -218,18 +235,6 @@
   value can be overridden with this environment variable. For instance, passing
   0 will disable blocking on swap, resulting in running as fast as possible
   without any synchronization.
-
-  \li \c {QT_QPA_EGLFS_FORCEVSYNC} - When set, \c eglfs requests
-  \c FBIO_WAITFORVSYNC on the framebuffer device.
-
-  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green, and blue color
-  channel sizes are ignored whenever creating a new context, window or offscreen
-  surface. Instead, the plugin requests a configuration with 8 bits per
-  channel. This can be helpful on devices where configurations with less than 32
-  or 24 bits per pixel are chosen by default but are known to be not suitable,
-  for example, due to banding effects. Instead of changing all the applications,
-  this variable provides an easier shortcut to force 24/32 bpp configurations
-  for a given device.
 
   \li \c {QT_QPA_EGLFS_DEBUG} - When set, some debugging information is printed
   on the debug output. For example, the input QSurfaceFormat and the properties
@@ -360,11 +365,14 @@
 
   Parameters like the device node name can be set in the environment variables
   \c QT_QPA_EVDEV_MOUSE_PARAMETERS, \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS and
-  \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS. Additionally, the built-in input handlers
-  can be disabled by setting \c QT_QPA_EGLFS_DISABLE_INPUT or
-  \c QT_QPA_FB_DISABLE_INPUT to \c 1. On some touch screens the coordinates must
-  be rotated, which is done by setting
-  \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS to \c {rotate=180}.
+  \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS. Separate the entries with colons.  These
+  parameters act as an alternative to passing the settings in the \c{-plugin}
+  command-line argument, and with some backends they are essential: eglfs and
+  linuxfb use built-in input handlers so there is no separate \c {-plugin}
+  argument in use.
+
+  Additionally, the built-in input handlers can be disabled by setting
+  \c QT_QPA_EGLFS_DISABLE_INPUT or \c QT_QPA_FB_DISABLE_INPUT to \c 1.
 
   \section2 Mouse
 
@@ -378,6 +386,29 @@
   (that is, if the \e libudev development headers are present in the sysroot at
   configure time). This allows connecting or disconnecting an input device while
   the application is running.
+
+  The \e evdev mouse handler supports the following extra parameters:
+
+  \list
+
+  \li \c {/dev/input/...} - Specifies the name of the input device. When not
+  given, Qt looks for a suitable device either via \e libudev or by walking
+  through the available nodes.
+
+  \li \c nocompress - By default, input events that do not lead to changing the
+  position compared to the last Qt mouse event are compressed; a new Qt mouse
+  event is sent only after a change in the position or button state.  This can
+  be disabled by setting the \c nocompress parameter.
+
+  \li \c dejitter - Specifies a jitter limit. By default dejittering is disabled.
+
+  \li \c grab - When 1, Qt will grab the device for exclusive use.
+
+  \li \c abs - Some touchscreens report absolute coordinates and cannot be
+  differentiated from touchpads.  In this special situation pass \c abs to
+  indicate that the device is using absolute events.
+
+  \endlist
 
   \section2 Keyboard
 
@@ -473,6 +504,28 @@
   command-line. Note that the \c tslib input handler generates mouse events and
   supports single touch only, as opposed to \c evdevtouch which generates true
   multi-touch QTouchEvent events too.
+
+  The \e evdev touch handler supports the following extra parameters:
+
+  \list
+
+  \li \c {/dev/input/...} - Specifies the name of the input device. When not
+  given, Qt looks for a suitable device either via \e libudev or by walking
+  through the available nodes.
+
+  \li \c rotate - On some touch screens the coordinates must be rotated, which
+  is done by setting \c rotate to 90, 180, or 270.
+
+  \li \c invertx and \c inverty - To invert the X or Y coordinates in the input
+  events, pass \c invertx or \c inverty.
+
+  \endlist
+
+  For example, doing \c{export
+  QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS=/dev/input/event5:rotate=180} before
+  launching applications results in an explicitly specified touch device and
+  flipping the coordinates - useful when the orientation of the actual
+  screen and the touch screen do not match.
 
   \section2 Pen-based tablets
 
@@ -631,6 +684,28 @@
   resolution, otherwise elements like the mouse cursor may behave in unexpected
   ways when entering areas that only exist on one given screen.
 
+  When \c virtualIndex is not sufficient, the property \c virtualPos can be used
+  to explicitly specify the top-left position of the screen in question. Taking
+  the previous example and assuming a resolution of 1080p for HDMI1, the
+  following places a second HDMI-based screen below the first one:
+
+  \badcode
+    {
+       ...
+      "outputs": [
+        ...
+        {
+          "name": "HDMI2",
+          "virtualPos": "0, 1080"
+        }
+      ]
+    }
+  \endcode
+
+  \note Avoid such configurations when mouse support is desired. The mouse
+  cursor's behavior may be unexpected with non-linear layouts. Touch should
+  present no issues however.
+
   In some cases the automatic querying of the physical screen size via DRM may
   fail. Normally the \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
   \c QT_QPA_EGLFS_PHYSICAL_HEIGHT environment variable would be used to provide the
@@ -720,8 +795,7 @@
   \c QT_QPA_EGLFS_KMS_CONFIG and described in the previous sections. When a
   \c touchDevice property is present in an element of the \c outputs array, the
   value is treated as a device node and the touch device is associated with the
-  display output in question. Note that this can only function when all elements
-  in the \c outputs array have an explicit \c virtualIndex.
+  display output in question.
 
   For example, assuming our touchscreen has a device node of /dev/input/event5
   and is a touchscreen integrated into the monitor connected via HDMI as the

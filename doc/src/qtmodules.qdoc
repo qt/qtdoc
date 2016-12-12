@@ -153,7 +153,7 @@
         \li \l[QtBluetooth]{Qt Bluetooth}
         \li All
         \li \l{Qt for Android}{Android},
-        \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux} and \l{Qt for OS X}{OS X}
+        \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux} and \l{Qt for macOS}{\macos}
         \li Provides access to Bluetooth hardware.
     \row
         \li \l[QtCanvas3D]{Qt Canvas 3D}
@@ -190,8 +190,8 @@
     \row
         \li \l[QtMacExtras]{Qt Mac Extras}
         \li All
-        \li \l{Qt for OS X}{OS X}
-        \li Provides platform-specific APIs for OS X.
+        \li \l{Qt for macOS}{\macos}
+        \li Provides platform-specific APIs for \macos.
     \row
         \li \l[QtNfc]{Qt NFC}
         \li All
@@ -213,7 +213,7 @@
     \row
         \li \l[QtPositioning]{Qt Positioning}
         \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for OS X}{OS X},
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{\macos},
         \l{Qt for Linux/X11}{Linux}, \l{Qt for WinRT}{WinRT}.
         \li Provides access to position, satellite and area monitoring classes.
     \row
@@ -252,6 +252,11 @@
         \li
         \li Classes for making Qt applications scriptable. Deprecated in favor
             of the \c{QJS*} classes in the \l{Qt QML} module.
+    \row \li \l[QtScxml]{Qt SCXML}
+         \li All
+         \li All
+         \li Provides classes and tools for creating state machines from SCXML
+             files and embedding them in applications.
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
@@ -265,7 +270,7 @@
     \row
         \li \l[QtSerialPort]{Qt Serial Port}
         \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
         \li Provides access to hardware and virtual serial ports.
     \row
         \li \l[QtSvg]{Qt SVG}
@@ -282,7 +287,7 @@
     \row
         \li \l[QtWebEngine]{Qt WebEngine}
         \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for OS X}{OS X}.
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
         \li Classes and functions for embedding web content in applications using the
             \l{http://www.chromium.org/Home}{Chromium browser project}.
     \row
@@ -328,23 +333,28 @@
             driven by static or dynamic data models.
     \row
         \li \l{Qt Data Visualization}
-        \li
-        \li
+        \li All
+        \li All
         \li UI Components for creating stunning 3D data visualizations.
     \row
+        \li \l[QtSerialBus]{Qt Serial Bus}
+        \li \l{Qt for Linux/X11}{Linux}
+        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
+        \li Provides access to serial industrial bus interface. Currently the
+            module supports the CAN bus and Modbus protocols.
+    \row
         \li \l{Qt Virtual Keyboard}
+        \li All
         \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
             desktop, and \l{Boot2Qt}{Boot to Qt} targets.
-        \li
         \li A framework for implementing different input methods as
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
     \row
-        \li \l{Qt Quick 2D Renderer}
-        \li All
-        \li
-        \li Enables the use of Qt Quick UI on devices without OpenGL
-            capability.
+        \li \l{Qt Wayland Compositor}
+        \li \l{Qt for Linux/X11}{Linux}
+        \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
+        \li Provides a framework to develop a Wayland compositor.
     \endtable
 
     \section1 Value-Add Modules
@@ -376,13 +386,11 @@
         \li Description
     \row \li \l{Qt Gamepad}
          \li Enables Qt applications to support the use of gamepad hardware.
-    \row \li \l[QtSerialBus]{Qt Serial Bus}
-         \li Provides access to serial industrial bus interface. Currently the module supports
-             the CAN bus and Modbus protocols.
-    \row \li \l{Qt Wayland Compositor}
-         \li Provides a framework to develop a Wayland compositor.
-    \row \li \l{Qt SCXML}
-         \li Provides functionality to create state machines from SCXML files.
+    \row \li \l{Qt Network Authorization}
+         \li Provides support for OAuth-based authorization to online services.
+    \row \li \l{Qt Speech}
+         \li Provides support for accessibility features such as text-to-speech.
+
     \endtable
 
     \section1 Qt Tools

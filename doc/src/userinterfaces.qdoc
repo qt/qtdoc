@@ -33,11 +33,10 @@
 Qt features multiple technologies for creating user interfaces. While it is
 possible to mix and match these different technologies as needed, one approach
 is often better suitable for a certain type of user interface than the others.
-\l {Qt Creator Manual}{Qt Creator} is a good example of an application that mixes different user
-interface technologies. In fact, it uses the two different approaches
-described below. \l {Qt Creator Manual}{Qt Creator} uses the traditional \l {Qt Widgets} such as
-menus and dialogs as a basis of the user interface, \l {Qt Quick} amongst others
-for the welcome screen. The following sections provide brief introductions to the
+\l {Qt Creator Manual}{Qt Creator} is a good example of an application that
+combines traditional \l {Qt Widgets} with \l {Qt Quick}. Widgets form the basis
+of the user interface, whereas Qt Quick is used to implement the Welcome mode,
+for example. The following sections provide brief introductions to the
 available technologies for creating user interfaces, and a comparison table
 to help choosing the best suitable technology.
 
@@ -74,8 +73,13 @@ and shader effects.
 
 \section2 Graphical Controls
 
-The \l{Qt Quick Controls} module is new in Qt 5.1 and provides a
-set of UI elements to create user interfaces using \l{Qt Quick} 2.
+The \l{Qt Quick Controls} module (since Qt 5.1) provides a set of UI elements to
+create user interfaces for desktop and mobile platforms using \l{Qt Quick} 2.
+The \l{Qt Quick Controls 2} module (since Qt 5.7) provides lightweight QML types
+for creating performant user interfaces for embedded and mobile devices. These
+controls achieve improved efficiency by employing a simplified styling
+architecture when compared to the first set of controls. For a comparison
+of the two sets of controls, see \l {Differences between Qt Quick Controls}.
 
 For more about how to create application user interfaces with QML, visit the
 \l{QML User Interfaces} page.
@@ -107,13 +111,13 @@ type applications.
 
 Qt provides ready-made C++ classes and QML types for visualizing data in the
 form of charts and graphs, which are known to be best ways of analyzing data.
-\l{Qt Charts} and \{Qt Data Visualization} are the two Qt add-ons that make
+\l{Qt Charts} and \l{Qt Data Visualization} are the two Qt add-ons that make
 data visualization using 2D and 3D models a reality.
 
 \section1 Displaying Web Content
 
 Qt provides the Chromium-based
-\l{Qt WebEngine}{WebEngine} layout engine, which enable you to embed web content
+\l{Qt WebEngine}{WebEngine} layout engine, which enables you to embed web content
 into the Qt application. The engine can be integrated into both Qt Widget-based
 and Qt Quick-based applications.
 
@@ -122,12 +126,12 @@ For more information about support for web content in Qt, see
 
 \section1 Comparison
 
-Notice that choosing the appropriate technology for building an user interface
-is not always black and white. It depends on several criteria, such as other
-existing technologies used in a project or even target platform constraints. To
+Choosing the appropriate technology for building a user interface
+is not always easy. It depends on several variables, such as other
+technologies used in a project or target platform constraints. To
 some extent, many items in the following table can be implemented using any of
 the three available technologies. The following table aims to help you
-choose the best suited tool for the job.
+choose the tool best suited for the job.
 
 \table
     \header
@@ -144,32 +148,32 @@ choose the best suited tool for the job.
         \li
     \row
         \li Native look'n'feel
-        \li X
-        \li X
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li
         \li Qt Widgets and Qt Quick Controls integrate well to the underlying
-            platform, providing a native look'n'feel on Windows, Linux, and OS X.
+            platform, providing a native look'n'feel on Windows, Linux, and \macos.
     \row
         \li Custom look'n'feel
-        \li X
-        \li (X)
-        \li (X)
+        \li \inlineimage ok
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li Qt Widgets provide means for customization via style sheets,
             but Qt Quick is a better performing choice for user interfaces
             that do not aim to look native.
     \row
         \li Fluid animated UIs
-        \li X
+        \li \inlineimage ok
         \li
-        \li X
+        \li \inlineimage ok
         \li Qt Widgets do not scale well for animations. Qt Quick
             offers a convenient and natural way to implement animations in a
             declarative manner.
     \row
         \li Touch screen
-        \li X
+        \li \inlineimage ok
         \li
-        \li X
+        \li \inlineimage ok
         \li Qt Widgets often require a mouse cursor for good interaction, whereas
             Qt Quick only provides primitive building blocks that were designed
             with touch interaction in mind.
@@ -178,7 +182,7 @@ choose the best suited tool for the job.
     \row
         \li Standard industry widgets
         \li
-        \li X
+        \li \inlineimage ok
         \li
         \li Qt Widgets provide all the bells and whistles, developed over two
             decades, needed for building standard industry type applications.
@@ -186,38 +190,38 @@ choose the best suited tool for the job.
             and interact with web content.
     \row
         \li Model/View programming
-        \li (X)
-        \li X
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li
         \li Qt Quick provides convenient views, but Qt Widgets provide more
             convenient and complete framework. In addition to Qt Quick views,
             Qt Quick Controls provide a TableView.
     \row
         \li Rapid UI development
-        \li X
-        \li (X)
-        \li (X)
+        \li \inlineimage ok
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li Qt Quick is an excellent choice for rapid UI prototyping and development.
     \row
         \li HW accelerated graphics
-        \li X
-        \li (X)
-        \li X
+        \li \inlineimage ok
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li Qt Widgets provide QGLWidget for rendering OpenGL graphics,
             and Qt WebEngine supports WebGL, but the OpenGL ES 2.0 or OpenGL 2.0
             based \l {Qt Quick Scene Graph} has proven to provide the best
             performance for UIs and for integrating with OpenGL content.
     \row
         \li Graphical effects
-        \li X
+        \li \inlineimage ok
         \li
         \li
         \li The particle system and shader effects available in Qt Quick
             are more flexible. Qt Widgets offer very little in this area.
     \row
         \li Rich text processing
-        \li (X)
-        \li X
+        \li \inlineimage ok
+        \li \inlineimage ok
         \li
         \li Qt Widgets currently provide the most comprehensive base for implementing
             text editors. Qt's rich text document classes can also be utilized in
@@ -227,10 +231,10 @@ choose the best suited tool for the job.
         \li Existing web content
         \li
         \li
-        \li X
+        \li \inlineimage ok
         \li Both Qt Quick and Qt Widgets provide components for presenting
             \l {richtext-html-subset.html}{simple rich text}, but Qt WebEngine
-            is the right choice for presenting full-blown web content.
+            is the best choice for presenting full-blown web content.
 
 \endtable
 

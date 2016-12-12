@@ -95,7 +95,7 @@ version 2.7 and onwards.
 
 For a set of basic UI controls, the \l{Qt Quick Controls} module implements
 several controls such as buttons, menus, and views. These controls mimic the
-native behavior found in different platforms such as Windows, OS X, and Linux.
+native behavior found in different platforms such as Windows, \macos, and Linux.
 
 \list
 \li \l{Qt Quick Controls Overview}
@@ -103,6 +103,15 @@ native behavior found in different platforms such as Windows, OS X, and Linux.
 \li \l{Qt Quick Dialogs}{Dialogs}
 \li \l{Qt Quick Layouts}{Layouts}
 \li \l{Qt Quick Extras}{Extras}
+\endlist
+
+A second set of UI controls, \e {Qt Quick Controls 2}, was designed for use
+on embedded systems, where the hardware has limited resources. For a comparison
+of the two sets of controls, see \l {Differences between Qt Quick Controls}.
+
+\list
+\li \l{Qt Quick Controls 2 Guidelines}
+\li \l{Qt Quick Templates 2}
 \endlist
 
 \section2 Special Effects

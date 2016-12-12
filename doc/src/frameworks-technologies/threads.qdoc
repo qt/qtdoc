@@ -763,7 +763,7 @@
 
     QPainter can be used in a thread to paint onto QImage, QPrinter, and
     QPicture paint devices. Painting onto QPixmaps and QWidgets is \e not
-    supported. On OS X the automatic progress dialog will not be
+    supported. On \macos the automatic progress dialog will not be
     displayed if you are printing from outside the GUI thread.
 
     Any number of threads can paint at any given time, however only

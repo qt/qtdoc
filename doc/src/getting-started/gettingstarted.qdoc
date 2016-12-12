@@ -30,14 +30,22 @@
     \title Getting Started with Qt
     \brief A quick guide for developers
 
+    \section1 Install Qt
+
     You can install the Qt Framework and tools by using an online or offline
-    installer or by building the source packages yourself. In the
-    \e{online installer}, you can select the Qt versions, tools, and Add-On
-    components to download and install depending on the license attached to your
-    \l{Qt Account}.
+    installer or by building the source packages yourself.
+
+    In the \e{online installer}, you can select commercial or open source
+    versions of Qt, tools, and Add-On components to install. Using the online
+    installer requires signing in to your \l{Qt Account}. The installer
+    retrieves the license attached to the account from a server and provides a
+    list of available components corresponding to the license.
 
     An \e{offline installer} is a single package that contains all of Qt and
-    Add-Ons relevant for a target platform.
+    Add-Ons relevant for a target platform. Users with a commercial license
+    can either sign in with their Qt account or with their Qt license key
+    during the installation process. The license key is available in the
+    \l {Qt Account} Web portal.
 
     You can download Qt 5 installers from the \l Downloads page.
 
@@ -77,12 +85,27 @@
     \li \l{Qt for iOS}{iOS}
     \li \l{Qt for Windows}{Windows}
     \li \l{Qt for Linux/X11}{Linux/X11}
-    \li \l{Qt for OS X}{OS X}
+    \li \l{Qt for macOS}{\macos}
     \li \l{Qt for WinRT}{Windows Runtime}
     \endlist
 
     For more information, visit the \l{Community Supported Platforms}
     {supported platforms} page.
+
+    \section1 Create Your First Applications
+
+    Learn the basics of Qt and Qt Quick development by following two tutorials
+    that illustrate how to create simple applications and build and run them on
+    target platforms:
+
+    \list
+    \li \l {Getting Started Programming with Qt Widgets}
+    \li \l {Getting Started Programming with Qt Quick}
+    \endlist
+
+    For a more thorough walkthrough of the different aspects of developing
+    applications with Qt 5, see the \l {QML Book}. It focuses on Qt Quick,
+    but also provides the information needed to use QML together with C++.
 
     \section1 Explore Qt
 

@@ -84,7 +84,7 @@ Qt's SQL classes can be divided in 3 layers:
 \endtable
 
 With the MySQL driver, it is possible to connect to a MySQL server. In order to
-build the QMYSQL Plugin for Unix or OS X, you need the MySQL header files
+build the QMYSQL Plugin for Unix or \macos, you need the MySQL header files
 as well as the shared library, libmysqlclient.so. To compile the plugin
 for Windows, install MySQL.
 
@@ -236,7 +236,7 @@ The QSettings class provides persistent storage of application settings.
 An application usually remembers its settings from the previous session.
 
 Settings are stored differently on different platforms. For example,
-on Windows they are stored in the registry, whereas, on OS X they are
+on Windows they are stored in the registry, whereas on \macos they are
 stored in XML files.
 
 QSettings enable you to save and restore application settings in a portable

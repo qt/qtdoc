@@ -38,7 +38,7 @@
     should be run from the main Qt source directory.
 
     Unless stated otherwise, the commands in this page are for the Linux
-    platforms. On OS X and on Windows, the \c PATH and directory structure
+    platforms. On \macos and on Windows, the \c PATH and directory structure
     are different, therefore the commands will vary. Also, on Windows systems,
     the configure script is called \e configure.bat.
 
@@ -47,49 +47,47 @@
 
     \section1 Source, Build, and Install Directories
 
-    With configure, it is possible to configure Qt to install to a different
-    directory than the source directory or the build directory. The \e source
-    directory contains the source code and it is obtained from the source
-    package. The \e build directory is where the build related files such as
-    Makefiles, object files, and other intermediate files are stored. The \e
-    install directory is where the binaries and libraries are installed, for use
-    either by the system or by the application.
+    The \e source directory contains the source code that is obtained from
+    the source package or git repository. The \e build directory is where the
+    build-related files such as Makefiles, object files, and other intermediate
+    files are stored. The \e install directory is where the binaries and
+    libraries are installed, for use either by the system or by the
+    application.
 
-    It is often convenient to use a \e{shadow build}, when the build directory
-    is not the same as the source directory. This method allows the source
-    directory to be free from intermediate or generated files, and allows for
-    multiple simultaneous builds with different configurations. To shadow-build,
-    run \c configure from a separate directory:
+    It is recommended to keep these directories separate by shadow-building and
+    using the \c -prefix option. This enables you to keep the Qt \e source tree
+    clean from the build artifacts and binaries, which are stored in a separate
+    directory. This method is very convenient if you want to have multiple
+    builds from the same source tree, but for different configurations. To
+    shadow-build, run \c configure from a separate directory:
 
-   \code
+    \badcode
     mkdir ~/qt-build
     cd ~/qt-build
-    ~/qt-source/configure
+    ~/qt-source/configure -prefix /opt/Qt5.6
+    qmake
     \endcode
 
-    The Makefiles are at \e ~/qt-build and not in the source directory.
+    Configuring with the \c -prefix option means that the Qt binaries and
+    libraries are installed into another directory, which is \c /opt/Qt5.6 in
+    this case. Running \c qmake generates the Makefiles in the \e ~/qt-build
+    directory and not in the \e source directory. After the Makefiles are in
+    place, run the following commands to build the Qt binaries and libraries,
+    and install them:
 
-    After building, it may be necessary to install the libraries and binaries
-    into the install directory. The default for the installation directory
-    depends on the platform; \c configure's output mentions it. To modify the
-    installation directory, use the \c -prefix option:
-
-    \code
-    ./configure -prefix /opt/Qt-5.1
+    \badcode
+    make
+    make install
     \endcode
 
-    The installation directory serves as the parent directory of the \e bin, \e
-    lib, and other installed Qt subdirectories.
+    \note The 'make install' step is required only if Qt is configured with a
+    \e -prefix, which is the default on Unix-based platforms unless the
+    \e -developer-build configure option is used. On Windows, Qt is configured
+    as a non-prefix build by default.
 
-    It is possible to set the install directory to the same directory as the
-    build directory (this is termed a \e non-prefix build). In this case, Qt can
-    be used straight out of the build directory, and \e must \e not be
-    installed. This is the default under Windows, and when Qt is configured with
-    the \c -developer-build option.
-
-    \note When you are explicitly requesting a non-prefix configuration for a
-    top-level build of Qt (all modules at once), set the prefix to
-    \c{$builddir/qtbase}, not \c{$builddir}.
+    \note The \c -developer-build is meant for developing Qt and not for
+    shipping applications. Such a build contains more exported symbols than
+    a standard build and compiles with a higher warning level.
 
     \section1 Including and Excluding Qt Modules
 

@@ -214,30 +214,26 @@
     \raw HTML
     <div class="table">
      <table style="background:transparent; border: none">
-      <tr><td style="width:25%; border: none; vertical-align: top">
+      <tr><td style="width:50%; border: none; vertical-align: top">
     \endraw
-    \image qtquickcontrols-example-gallery-android.png
-    \caption Controls gallery example on Android
+    \image qtquickcontrols2-material.png
+    \caption Qt Quick Controls 2 Material style
     \raw HTML
-      </td><td style="width:30%; border: none; vertical-align: top">
-    \endraw
-    \image qtquickcontrols-example-gallery-osx.png
-    \caption Controls gallery example on OS X
-    \raw HTML
-      </td><td style="width:45%; border: none; vertical-align: top">
+      </td><td style="width:50%; border: none; vertical-align: top">
     \endraw
     UI designing can be time consuming if there are not enough tools to help.
-    Qt Quick does reduce the effort considerably compared to the traditional
-    native (C or C++) approach, but the new \l{Qt Quick Controls} and
-    \l{Qt Quick Layouts} take it a step further. These new modules provide
-    ready-to-use UI controls and layouts to enable faster application
-    development and with less code.
+    Qt Quick reduces the effort considerably compared to the traditional
+    native (C or C++) approach, especially if the \l{Qt Quick Controls} or
+    \l{Qt Quick Controls 2} and \l{Qt Quick Layouts} modules are used. These
+    modules provide ready-to-use UI controls and layouts to enable faster
+    application development with less code. For a comparison of the two sets of
+    controls, see \l {Differences between Qt Quick Controls}.
     \raw HTML
       <br>
     \endraw
     Qt Quick Controls and Qt Quick Layouts provide a vast set of UI controls
-    ranging from the most basic TextField and Button to the more complex
-    TableView and TabView. These controls are also made available in
+    ranging from the most basic text field and button to the more complex
+    stack view and tumbler. The controls are also made available in
     \l{Qt Creator: Using Qt Quick Designer}{Qt Quick Designer}.
     \raw HTML
       </td></tr>
@@ -337,7 +333,7 @@
     \li \l{Qt Android Extras} enables you to integrate Java code into your Qt
     application.
 
-    \li \l{Qt Mac Extras} enables you to access specific features on OS X and
+    \li \l{Qt Mac Extras} enables you to access specific features on \macos and
     iOS.
 
     \li \l{Qt Windows Extras} enables you to use Windows-specific features
@@ -512,6 +508,7 @@
 
     \section1 Related Topics
     \list
+    \li \l{What's New in Qt 5.8}
     \li \l{What's New in Qt 5.7}
     \li \l{What's New in Qt 5.6}
     \li \l{What's New in Qt 5.5}
