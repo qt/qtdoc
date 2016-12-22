@@ -300,6 +300,19 @@
   Linux. Only software-rendered content is supported. Note that on some setups
   the display performance is expected to be limited.
 
+  As of Qt 5.9, DRM dumb buffer support is also available due to fbdev being
+  deprecated in the Linux kernel. This must be requested by setting the
+  \c QT_QPA_FB_DRM environment variable to a non-zero value. When set, provided
+  that dumb buffers are supported by the system, legacy framebuffer devices like
+  \c{/dev/fb0} are never accessed. Instead, rendering is set up via the DRM
+  APIs, similarly to the \c{eglfs_kms} backend of eglfs. The output will be
+  double-buffered and page flipped, providing proper vsync for software-rendered
+  content as well.
+
+  \note when dumb buffers are in use, none of the options described below are
+  applicable since properties like physical and logical screen sizes are all
+  queried automatically.
+
   The \c linuxfb plugin allows specifying additional settings by passing them
   in the \c QT_QPA_PLATFORM environment variable or \c -platform command-line
   option. For example, \c {QT_QPA_PLATFORM=linuxfb:fb=/dev/fb1} specifies that
