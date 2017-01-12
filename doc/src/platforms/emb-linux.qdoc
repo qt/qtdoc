@@ -577,8 +577,12 @@
 
   When the KMS/DRM backend is in use, eglfs reports all available screens in
   QGuiApplication::screens(). Applications can target different screens with
-  different windows via QWindow::setScreen(). Note however that the restriction
-  of one single fullscreen window per screen still applies.
+  different windows via QWindow::setScreen().
+
+  \note The restriction of one single fullscreen window per screen still
+  applies. Changing screens after making the QWindow visible is not supported
+  either. Therefore, it is essential that embedded applications make all the
+  necessary QWindow::setScreen() calls before calling QWindow::show().
 
   When getting started with developing on a given embedded device, it is often
   necessary to verify the behavior of the device and drivers, and that the
