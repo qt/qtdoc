@@ -731,6 +731,26 @@
   not knowing about multiple screens and relying solely on the first screen's
   values.
 
+  Each active output from the \c outputs array corresponds to one QScreen
+  instance reported from QGuiApplication::screens(). The primary screen reported
+  by QGuiApplication::primaryScreen() is by default the screen that gets
+  registered first. When not using \c virtualIndex, this means the decision is
+  based on the DRM connector order. To override this, set the property
+  \c primary to \c true on the desired entry in the \c outputs list. For example,
+  to ensure the screen corresponding to the VGA output will be the primary even
+  when the system happens to report the HDMI one first, one can do the following:
+
+  \badcode
+    {
+      "device": "/dev/dri/card0",
+      "outputs": [
+          { "name": "HDMI1" },
+          { "name": "VGA1", "mode": "1280x720", "primary": true },
+          { "name": "LVDS1", "mode": "off" }
+      ]
+    }
+  \endcode
+
   For troubleshooting it might be useful to enable debug logs from the KMS/DRM
   backend. To do this, enable the categorized logging rule, \c qt.qpa.eglfs.kms.
 
