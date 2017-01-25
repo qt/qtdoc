@@ -596,8 +596,12 @@
 
   When the KMS/DRM backend is in use, eglfs reports all available screens in
   QGuiApplication::screens(). Applications can target different screens with
-  different windows via QWindow::setScreen(). Note however that the restriction
-  of one single fullscreen window per screen still applies.
+  different windows via QWindow::setScreen().
+
+  \note The restriction of one single fullscreen window per screen still
+  applies. Changing screens after making the QWindow visible is not supported
+  either. Therefore, it is essential that embedded applications make all the
+  necessary QWindow::setScreen() calls before calling QWindow::show().
 
   When getting started with developing on a given embedded device, it is often
   necessary to verify the behavior of the device and drivers, and that the
@@ -807,16 +811,35 @@
   configuration via \c QT_QPA_EGLFS_KMS_CONFIG are supported. Some settings,
   such as \c hwcursor and \c pbuffers are not applicable however.
 
-  By default the backend will find the first available display and pick the EGL
-  layer that corresponds to it. When necessary, this can be overridden by
+  By default the backend will automatically choose the correct EGL layer for the
+  default plane of each output. When necessary, this can be overridden by
   setting the \c QT_QPA_EGLFS_LAYER_INDEX environment variable to the index of
-  the desired layer. To see which layers are available, and to debug potential
-  startup issues, enable the logging category \c qt.qpa.eglfs.kms. In some cases
-  it may be necessary to perform a video mode set on application startup even
-  when the screen reports that the desired resolution is already set. This is
-  normally optimized away, but if the screen stays powered down, try setting the
-  environment variable \c QT_QPA_EGLFS_ALWAYS_SET_MODE to a non-zero value and
-  relaunch the application.
+  the desired layer. This approach does not currently support multiple outputs,
+  so its usage should be limited to systems with a single screen. To see which
+  layers are available, and to debug potential startup issues, enable the
+  logging category \c qt.qpa.eglfs.kms.
+
+  In some cases it may be necessary to perform a video mode set on application
+  startup even when the screen reports that the desired resolution is already
+  set. This is normally optimized away, but if the screen stays powered down,
+  try setting the environment variable \c QT_QPA_EGLFS_ALWAYS_SET_MODE to a
+  non-zero value and relaunch the application.
+
+  To configure the behavior of the EGLStream object used by the backend, use the
+  \c QT_QPA_EGLFS_STREAM_FIFO_LENGTH environment variable. This assumes that
+  \c KHR_stream_fifo is supported by the target system. By default the stream
+  operates in mailbox mode. To switch to FIFO mode, set a value of 1 or
+  greater. The value specifies the maximum number of frames the stream can hold.
+
+  On some systems it may become necessary to target a specific overlay plane
+  through a pre-defined connector. Just forcing a layer index via
+  \c QT_QPA_EGLFS_LAYER_INDEX does not perform plane configuration and is therefore
+  not suitable in itself. Instead, in such special scenarios use the
+  \c QT_QPA_EGLFS_KMS_CONNECTOR_INDEX and \c QT_QPA_EGLFS_KMS_PLANE_INDEX
+  environment variables. When these are set, only the specified connector and
+  plane will be in use, all other outputs will get ignored. The backend will
+  take care of picking the EGL layer that corresponds to the desired plane, and
+  the configuring of the plane.
 
   \section2 Touch input in systems with multiple screens on KMS/DRM
 

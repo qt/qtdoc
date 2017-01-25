@@ -89,11 +89,11 @@
     Qt's vibrant and active community site, \l{http://qt.io} houses
     a wiki, a forum, and additional learning guides and presentations.
 
-    \section2 Visual Studio Add-in
+    \section2 Visual Studio Tools
 
-    The \l {Qt Visual Studio Add-in} allows programmers to create, build, debug
+    The \l {Qt VS Tools} allows programmers to create, build, debug
     and run Qt applications from within non-Express versions of Microsoft Visual Studio
-    2008, 2010, and 2012. The add-in contains project wizards, Qt project import/export
+    2013 and later. The add-in contains project wizards, Qt project import/export
     support, integrated Qt resource manager and automated build setup for
     the Qt Meta-Object Compiler, User Interface Compiler, and Resource
     Compiler.
@@ -1067,7 +1067,6 @@
         SET PATH=%_ROOT%\qtbase\bin;%_ROOT%\gnuwin32\bin;%PATH%
         REM Uncomment the below line when using a git checkout of the source repository
         REM SET PATH=%_ROOT%\qtrepotools\bin;%PATH%
-        SET QMAKESPEC=win32-msvc2013
         SET _ROOT=
         \endcode
 

@@ -59,7 +59,7 @@
     In addition to the signals and slots shown above, \c moc also
     implements object properties as in the next example. The
     Q_PROPERTY() macro declares an object property, while
-    Q_ENUMS() declares a list of enumeration types within the class
+    Q_ENUM() declares a list of enumeration types within the class
     to be usable inside the \l{Qt's Property System}{property
     system}.
 
