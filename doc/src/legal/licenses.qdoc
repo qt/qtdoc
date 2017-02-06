@@ -149,14 +149,14 @@
          \li A list of all known public Internet suffixes. \li Mozilla Public License \li
     \row \li \li \li \li
 
-    \row \li {1,10} Qt Gui
+    \row \li {1,12} Qt Gui
     \row \li \l{qimage-legalese}{QImage}
          \li Code used for smooth scaling in QImage::transformed(). \li BSD \li
 
     \row \li {4,1} \b{Third-party Licenses}
     \row \li \l{HarfBuzz (harfbuzz)}{HarfBuzz} \li OpenType layout engine. \li BSD-style \li
-    \row \li \l{FreeType 2}{FreeType 2}
-         \li Parts of FreeType project used in font rendering. \li GPLv2, FreeType Project License \li
+    \row \li \l {FreeType 2 (freetype) version 2.3.12} \li \li GPLv2, FreeType Project License \li
+    \row \li \l {Anti-aliasing rasterizer from FreeType 2} \li \li GPLv2, FreeType Project License \li
     \row \li \l{PNG Reference Library (libpng) version 1.6.17}{PNG Reference Library}
          \li A library for reducing the time and effort it takes to support the PNG format. \li BSD-style \li
     \row \li \l{Pixman (pixman) version 0.17.11}{Pixman}
@@ -166,6 +166,7 @@
     \row \li \l{ANGLE (angle)}{ANGLE}
          \li Opensource project to map OpenGL ES API calls to DirectX API. \li BSD-style \li \l {Qt for Windows}
     \row \li \l {Native Style for Android} \li \li Apache License 2.0 \li \l {Qt for Android}
+    \row \li \li \li \li
 
 
     \row \li {1,4} Qt Location
@@ -453,6 +454,66 @@
     \li Parts of the QSegfaultHandler class in
         \c {qtbase/src/corelib/kernel/qcrashhandler.cpp}.
     \endlist
+
+    \section1 Anti-aliasing rasterizer from FreeType 2
+
+    Parts of the FreeType project have been modified and put into Qt
+    for use in the painting subsystem. These files are ftraster.h,
+    ftraster.c, ftgrays.h and ftgrays.c. The following modifications
+    has been made to these files:
+
+    \list
+        \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
+            conflicts in \c{qrasterdefs_p.h}.
+        \li Removed parts of code not relevant when compiled with
+            _STANDALONE_ defined.
+        \li Changed behavior in \c{ftraster.c} to follow X polygon filling
+            rules.
+        \li Implemented support in \c{ftraster.c} for winding / odd even
+            polygon fill rules.
+        \li Replaced bitmap generation with span generation in \c{ftraster.c}.
+        \li Renamed \c{ftgrays.h} as \c{qgrayraster_p.h}.
+        \li Renamed \c{ftgrays.c} as \c{qgrayraster.c}.
+        \li Renamed \c{ftimage.h} as \c{qrasterdefs_p.h}.
+    \endlist
+
+    \legalese
+    Copyright 1996-2004 by David Turner, Robert Wilhelm, and Werner Lemberg.
+
+    The  FreeType 2  font  engine is  copyrighted  work and  cannot be  used
+    legally  without a  software license.   In  order to  make this  project
+    usable  to a vast  majority of  developers, we  distribute it  under two
+    mutually exclusive open-source licenses.
+
+    This means  that *you* must choose  *one* of the  two licenses described
+    below, then obey  all its terms and conditions when  using FreeType 2 in
+    any of your projects or products.
+
+      - The FreeType License, found in  the file `FTL.TXT', which is similar
+        to the original BSD license *with* an advertising clause that forces
+        you  to  explicitly cite  the  FreeType  project  in your  product's
+        documentation.  All  details are in the license  file.  This license
+        is  suited  to products  which  don't  use  the GNU  General  Public
+        License.
+
+        Note that  this license  is  compatible  to the  GNU General  Public
+        License version 3, but not version 2.
+
+      - The GNU General Public License version 2, found in  `GPLv2.TXT' (any
+        later version can be used  also), for programs which already use the
+        GPL.  Note  that the  FTL is  incompatible  with  GPLv2 due  to  its
+        advertisement clause.
+
+    The contributed BDF and PCF drivers come with a license similar  to that
+    of the X Window System.  It is compatible to the above two licenses (see
+    file src/bdf/README and src/pcf/README).
+
+    The gzip module uses the zlib license (see src/gzip/zlib.h) which too is
+    compatible to the above two licenses.
+
+    The MD5 checksum support (only used for debugging in development builds)
+    is in the public domain.
+    \endlegalese
 
     \section1 QUrl::fromUserInput
 

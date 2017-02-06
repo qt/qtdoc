@@ -202,27 +202,6 @@
     See also the files in \c qtbase/src/3rdparty/harfbuzz, which are used by
     FreeType.
 
-    Parts of the FreeType projects have been modified and put into Qt
-    for use in the painting subsystem. These files are ftraster.h,
-    ftraster.c, ftgrays.h and ftgrays.c. The following modifications
-    has been made to these files:
-
-    \list
-    \li Renamed FT_ and ft_ symbols to QT_FT_ and qt_ft_ to avoid name
-    conflicts.
-    \li Removed parts of code not relevant when compiled with
-    _STANDALONE_ defined.
-    \li Changed behavior in ftraster.c to follow X polygon filling
-    rules.
-    \li Implemented support in ftraster.c for winding / odd even
-    polygon fill rules.
-    \li Replaced bitmap generation with span generation in ftraster.c
-    \li Renamed: ftraster.h to qblackraster_p.h
-    \li Renamed: ftraster.c to qblackraster.c
-    \li Renamed: ftgrays.h to qgrayraster_p.h
-    \li Renamed: ftgrays.c to qgrayraster.c
-    \endlist
-
     \hr
 
     Copyright (C) 2005, 2007, 2008 by George Williams
