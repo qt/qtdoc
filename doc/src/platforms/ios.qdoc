@@ -317,7 +317,7 @@
     }
     \endcode
 
-    For image resources, an alternative way is to make use of \l {https://developer.apple.com/library/ios/recipes/xcode_help-image_catalog-1.0/Recipe.html}
+    For image resources, an alternative way is to make use of \l {Create asset catalogs and sets}
     {asset catalogs} in Xcode, which can be added in a similar way:
     \badcode
     ios {
@@ -335,7 +335,7 @@
     to set them in the .pro file.
 
     To support all resolutions and devices, several images should be created.
-    A detailed list of what is required is available at \l {https://developer.apple.com/library/ios/qa/qa1686/_index.html}{Icon files}.
+    A detailed list of what is required is available at \l {App Icons on iPhone, iPad and Apple Watch}{Icon files}.
     The filename is not important, but the actual pixel size is.
     Just a few icons are required.
     However, to support both iPhone and iPad, the following images
