@@ -39,7 +39,7 @@ Items can be placed at specific x,y coordinates on the screen by setting their x
 setup their position relative to the top left corner of their parent, according to the
 \l {Concepts - Visual Coordinates in Qt Quick}{visual coordinate system} rules.
 
-Combined with using \l{Property Binding}{bindings} instead of constant valudes for these properties, relative positioning is also easily
+Combined with using \l{Property Binding}{bindings} instead of constant values for these properties, relative positioning is also easily
 accomplished by setting the x and y coordinates to the appropriate bindings.
 
 \snippet qmlapp/usecases/layouts.qml import
