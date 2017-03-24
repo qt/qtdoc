@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -221,7 +221,7 @@
 
     When configured with \c{-opengl dynamic}, neither Qt nor the applications
     built using \c qmake will link to the opengl32 (standard desktop OpenGL) or
-    libGLESv2 (ANGLE) libraries. Instead, the appropriate library is chosen at
+    QtANGLE libraries. Instead, the appropriate library is chosen at
     runtime. By default, Qt will determine whether the system's opengl32.dll
     provides OpenGL 2 functions. If these are present, opengl32.dll is used,
     otherwise the ANGLE libraries will be used. In case the ANGLE libraries are
@@ -243,7 +243,7 @@
 
     The dynamic loading has a significant impact on applications that contain
     native OpenGL calls: they may fail to link since \c qmake no longer
-    automatically adds opengl32.lib or libglesv2.lib. Instead, applications are
+    automatically adds opengl32.lib or QtANGLE.lib. Instead, applications are
     expected to use the OpenGL functions via the QOpenGLFunctions class. Thus
     the direct dependency on the OpenGL library is removed and all calls will be
     routed during runtime to the implementation chosen by Qt.
@@ -717,9 +717,9 @@
     additional information about plugins and how Qt searches for them.
 
     If \l{ANGLE} (the default) is used, you additionally need to include both
-    \c libEGL.dll and \c libGLESv2.dll from Qt's 'lib' directory as well as
+    \c QtANGLE.dll from Qt's 'lib' directory as well as
     the HLSL compiler from DirectX. The HLSL compiler library,
-    d3dcompiler_XX.dll, where XX is the version number that ANGLE (libGLESv2)
+    d3dcompiler_XX.dll, where XX is the version number that ANGLE
     was linked against.
 
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
@@ -820,10 +820,9 @@
 
     \table 100%
     \header
-        \li{3,1} File Name
+        \li{2,1} File Name
     \row
-        \li libEGL.dll
-        \li libGLESv2.dll
+        \li QtANGLE.dll
         \li d3dcompiler_XX.dll
     \endtable
 
