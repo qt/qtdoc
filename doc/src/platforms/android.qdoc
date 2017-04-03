@@ -288,28 +288,83 @@ support on the target.
 The following instructions guide you to build and add the OpenSSL libraries to
 the APK:
 \list 1
- \li Download the latest OpenSSL sources from
-     \l{http://www.openssl.org/source}.
+ \li Download the \l{OpenSSL: Build Setup Script}{setup script} to configure
+     the build environment.
+
+     \note Ensure that you save the script with Unix line-endings if your
+     build host is Unix or Linux.
+
+ \li Make the following changes in the setup script:
+     \list
+      \li Set appropriate values to the \c _ANDROID_EABI and
+          \c _ANDROID_ARCH variables. For example, to build for 64-bit ARM
+          architecture using toolchain version v4.9, set
+          \c aarch64-linux-android-4.9 and \c arch-arm64 values to
+          \c _ANDROID_EABI and \c _ANDROID_ARCH respectively.
+      \li Add the \c windows-x86 or \c windows-x86_64 to the \c hosts list on
+          line \c 107, if your build host is Windows.
+      \li Add the following after line \c 128 to build for 64-bit ARM
+          architecture:
+
+          \badcode
+            arch-arm64)
+          ANDROID_TOOLS="aarch64-linux-android-gcc aarch64-linux-android-ranlib aarch64-linux-android-ld"
+              ;;
+          \endcode
+      \li Add the following after line \c 213 if \c _ANDROID_ARCH is set
+          to \c arch-arm64:
+
+          \badcode
+          if [ "$_ANDROID_ARCH" == "arch-arm64" ]; then
+                  export MACHINE=armv8
+                  export RELEASE=2.6.37
+                  export SYSTEM=android64
+                  export ARCH=arm
+                  export CROSS_COMPILE="aarch64-linux-android-"
+          fi
+          \endcode
+      \li Comment out the \c FIPS section if it is not used or define the
+          \c FIPS_SIG environment variable with the FIPS signature
+          location.
+     \endlist
+
+ \li Define \c ANDROID_NDK_ROOT environment variable with the NDK
+     location.
+
+ \li Provide executable rights for the setup script and run it:
+
+     \badcode
+     chmod a+x Setenv-android.sh
+     . ./Setenv-android.sh
+     \endcode
+
+     The script prints the following configuration details to the prompt when it
+     completes:
+
+     \badcode
+     ANDROID_NDK_ROOT: /home/user1/android-ndk-r10d
+     ANDROID_ARCH: arch-arm64
+     ANDROID_EABI: aarch64-linux-android-4.9
+     ANDROID_API: android-21
+     ANDROID_SYSROOT: /home/user1/android-ndk-r10d/platforms/android-21/arch-arm64
+     ANDROID_TOOLCHAIN: /home/user1/android-ndk-r10d/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/bin
+     FIPS_SIG:
+     CROSS_COMPILE: aarch64-linux-androideabi-
+     ANDROID_DEV: /home/user1/android-ndk-r10d/platforms/android-21/arch-arm64/usr
+     \endcode
+
+ \li Download the latest OpenSSL sources from \l{http://www.openssl.org/source}.
 
  \li Extract the sources to a folder and navigate to that folder using
      the CLI.
      \note If your development platform is Windows, you need \c msys with
      \c perl v5.14 or later to build OpenSSL.
 
- \li Set the following environment variables to point to the ARM compiler
-     toolchain and sysroot you want to use:
-     \badcode
-     CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
-     AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
-     RANLIB=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ranlib
-     ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/<ANDROID-PLATFORM>/arch-arm/usr
-     \endcode
-
- \li Configure the OpenSSL sources to build for Android (ARMv5 or ARMv7) using
+ \li Configure the OpenSSL sources to build for Android using
      the following command:
 
      \badcode
-     ./Configure shared android or android-armv7
+     ./Configure shared android
      \endcode
 
      \note You must consider enabling/disabling the SSL features based on the
@@ -317,29 +372,10 @@ the APK:
      See the \l{OpenSSL Configure Options}{SSL configure options} for details about
      the configurable features.
 
- \li Edit the \e Makefile created by \e Configure to avoid having shared
-     library names with the version number. Android does not load a library
-     with version number in the \c .so file name.
+ \li Run \c{make CALC_VERSIONS="SHLIB_COMPAT=; SHLIB_SOVER=" build_libs} to
+     build the \c libcrypto and \c libssl shared libraries that are not versioned.
 
-     \list a
-       \li Open the \e Makefile using an editor.
-       \li Replace the following two lines that appear under "\e{link-shared}"
-           and "\e{do_$(SHLIB_TARGET)}" make targets:
-           \badcode
-LIBNAME=$$i LIBVERSION=$(SHLIB_MAJOR).$(SHLIB_MINOR) \
-LIBCOMPATVERSIONS=";$(SHLIB_VERSION_HISTORY)" \
-           \endcode
-
-           with
-
-          \badcode
-LIBNAME=$$i \
-          \endcode
-       \li Save changes to the \e Makefile and close it.
-     \endlist
-
- \li Run \c{make build_libs} to build the \c libcrypto and \c libssl shared
-     libraries.
+     \note Android does not load versioned libraries.
 
  \li Open your Qt project using Qt Creator and update the "Build Android APK"
      settings to add \e libcrypto and \e libssl as additional libraries for
@@ -349,8 +385,8 @@ LIBNAME=$$i \
 \endlist
 
 Qt Creator builds your application and creates an application package (APK)
-with the OpenSSL libraries bundled in it. Once the APK is ready, it uses adb to
-deploy the APK on the target you chose and launch the application.
+with the OpenSSL libraries bundled in it. Once the APK is ready, it uses \c adb
+to deploy the APK on the target you chose and launch the application.
 
 */
 
