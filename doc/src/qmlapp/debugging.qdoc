@@ -45,8 +45,9 @@ function f(a, b) {
 }
 \endcode
 
-The output is generated using the qDebug, qWarning, qCritical methods in C++
-(see also \l {Debugging Techniques}).
+The output is generated using the qCDebug, qCWarning, qCCritical methods in C++,
+with a category of "qml" or "js", depending on the type of file doing the logging.
+See also \l {Debugging Techniques}.
 
 \section2 Assert
 \keyword console assert
