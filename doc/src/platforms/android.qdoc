@@ -62,7 +62,7 @@ The following topics provide more details about how to use Qt for Android:
 \list
  \li \l{Getting Started with Qt for Android}{Getting Started}
  \li \l{Porting to Android}{Porting a Qt Application}
- \li \l{Adding OpenSSL Support}
+ \li \l{Adding OpenSSL Support for Android}
  \li \l{Android Services}{Creating Android Services}
  \li \l{Third-party Android Libraries}{Including third-party Android libraries in an application}
  \li \l{Qt Creator: Deploying Applications to Android Devices}{Deploying to the Device}
@@ -275,7 +275,7 @@ AVDs found.
 
 /*!
 \page opensslsupport.html
-\title Adding OpenSSL Support
+\title Adding OpenSSL Support for Android
 \brief Provides instructions to package OpenSSL libraries with your Qt application for Android.
 
 The Qt installation package comes with OpenSSL support but the OpenSSL libraries
@@ -301,6 +301,7 @@ the APK:
      \badcode
      CC=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-gcc
      AR=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ar
+     RANLIB=<ANDROID_NDK_PATH>/toolchains/arm-linux-androideabi-<VER>/prebuilt/<NDK_HOST>/bin/arm-linux-androideabi-ranlib
      ANDROID_DEV=<ANDROID_NDK_PATH>/platforms/<ANDROID-PLATFORM>/arch-arm/usr
      \endcode
 
