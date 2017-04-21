@@ -32,9 +32,8 @@
     \ingroup supportedplatform
 
     Qt for WinRT allows you to run Qt applications on devices supporting the
-    Windows Store App APIs. This includes Modern UI applications in Windows 8.1
-    and up, as well as devices running Windows RT 8.1 and Windows Phone 8.1
-    and up.
+    Windows Store App APIs. This covers Modern UI applications on Windows 10,
+    Windows 10 Mobile and Windows 10 IoT.
 
     Microsoft introduced a new design paradigm with the Windows 8 Modern UI. A
     core part of this new approach is Windows Runtime (WinRT) that supports
@@ -48,7 +47,7 @@
     \section1 Requirements
 
     Development for Windows Runtime requires a Microsoft Windows development host.
-    The minimum version supported is Windows 8.1.
+    The minimum version supported is Windows 10.
 
     Depending on your device target you will need the following tools provided
     by Microsoft to be installed:
@@ -58,24 +57,21 @@
         \li Device Target
         \li Environment
     \row
-        \li Windows 8.1 Modern UI
-        \li Visual Studio 2013 for Windows
+        \li Windows 10 Mobile
+        \li Visual Studio 2015
     \row
-        \li Windows RT
-        \li Visual Studio 2013 for Windows
+        \li Windows 10 Desktop
+        \li Visual Studio 2015
     \row
-        \li Windows Phone 8.1
-        \li Visual Studio 2013 for Windows Phone
+        \li Windows 10 IoT
+        \li Visual Studio 2015
     \row
-        \li Windows 10
+        \li XBox One
         \li Visual Studio 2015
     \endtable
 
     If you are targeting a remote device, please follow all instructions by
     Visual Studio to set it up correctly.
-
-    If you are targeting an emulator for Windows Phone, Windows 8.1 Pro is
-    required by Microsoft to launch the emulator itself.
 
     \section1 Getting Started
 
@@ -164,7 +160,7 @@
 
     Please make sure to use an x86 command prompt (either use the \e {VS x86 Native
     Tools Command Prompt} or call \e vcvarsall.bat without any parameter or with \c x86)
-    for every WinRT/Windows Phone build. While the toolchain which is used for the
+    for every WinRT build. While the toolchain which is used for the
     target is set automatically, the command prompt decides what will be used for the
     host tools like \e qmake or \e moc. Building these tools might fail if another
     command prompt is used.
@@ -214,7 +210,7 @@
     \endcode
     \note \l{winrtrunner}{The WinRT Runner Tool} can perform the same operation with the --install option.
 
-    If that worked, you should be able to find your application in Windows 8.1's
+    If that worked, you should be able to find your application in Windows'
     start screen. To remove your application, use Windows' built-in way to
     uninstall applications (right-click or tap and hold the application and
     choose \c{Uninstall}).

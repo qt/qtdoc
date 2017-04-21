@@ -39,7 +39,7 @@ Items can be placed at specific x,y coordinates on the screen by setting their x
 setup their position relative to the top left corner of their parent, according to the
 \l {Concepts - Visual Coordinates in Qt Quick}{visual coordinate system} rules.
 
-Combined with using \l{Property Binding}{bindings} instead of constant valudes for these properties, relative positioning is also easily
+Combined with using \l{Property Binding}{bindings} instead of constant values for these properties, relative positioning is also easily
 accomplished by setting the x and y coordinates to the appropriate bindings.
 
 \snippet qmlapp/usecases/layouts.qml import
@@ -50,9 +50,11 @@ accomplished by setting the x and y coordinates to the appropriate bindings.
 
 \section1 Anchors
 
-The \c Item type provides the abilitiy to anchor to other \l Item types. There are six anchor lines for each item: \e left,
-\e right, \e{vertical center}, \e top, \e bottom and \e{horizontal center}. The three vertical anchor lines can be anchored to any of
-the three vertical anchor lines of another item, and the three horizontal anchor lines can be anchored to the
+The \c Item type provides the abilitiy to anchor to other \l Item types. There
+are seven anchor lines for each item: \e left, \e right, \e{vertical center},
+\e top, \e bottom, \e baseline and \e{horizontal center}. The three vertical
+anchor lines can be anchored to any of the three vertical anchor lines of
+another item, and the four horizontal anchor lines can be anchored to the
 horizontal anchor lines of another item.
 
 For full details, see \l {Positioning with Anchors} and the documentation of the \l{Item::anchors.top}{anchors property}.

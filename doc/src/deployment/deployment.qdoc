@@ -104,28 +104,11 @@
     care must be taken when deploying applications that use these
     libraries, particularly when the application is statically linked
     to them.
-
-    The following table summarizes a few issues that
-    you should be aware of.
-
-    \table
-    \header \li Qt Library \li Dependency
-            \li Licensing Issue
-    \row    \li \l{QtHelp} \li CLucene
-    \li The version of clucene distributed with Qt is licensed
-    under the GNU LGPL version 2.1 or later. This has implications for
-    developers of closed source applications. Please see the
-    \l{Qt Help#License Information}{Qt Help} documentation for more information.
-
-    \row    \li \l{QtNetwork}  \li OpenSSL
-    \li Some configurations of QtNetwork use OpenSSL at run-time. Deployment
-    of OpenSSL libraries is subject to both licensing and export restrictions.
-    More information can be found in the \l{Secure Sockets Layer (SSL) Classes}
-    documentation.
-
-    \endtable
-
     For more information, see \l{Third-Party Licenses Used in Qt}.
+
+    Some configurations of QtNetwork use OpenSSL at run-time. Deployment
+    of OpenSSL libraries is subject to both licensing and export restrictions.
+    For more information, see \l{Secure Sockets Layer (SSL) Classes}.
 
     \section1 Platform-Specific Notes
 

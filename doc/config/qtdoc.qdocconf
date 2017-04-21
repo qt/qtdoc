@@ -71,7 +71,8 @@ depends += \
     qtpurchasing \
     qtvirtualkeyboard \
     qtspeech \
-    qtnetworkauth
+    qtnetworkauth \
+    qtremoteobjects
 
 headerdirs  += ../src
 imagedirs   += ../src/images \
@@ -121,3 +122,4 @@ qhp.QtDoc.extraFiles         += images/qt-codesample.png
 HTML.stylesheets             += style/qt5-sidebar.html
 
 macro.indextitle              = "\\title Qt $QT_VER"
+macro.qtver                   = "$QT_VER"

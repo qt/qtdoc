@@ -56,25 +56,32 @@ time. However, there are two example plugins shipped with Qt5:
 \list
 \li QPlatformIntegration
     \list
-    \li QPlatformWindow
-    \li QPlatformBackingStore
-    \li QPlatformOpenGLContext
-    \li QPlatformSharedGraphicsCache
-    \li QPlatformFontDatabase
-    \li QPlatformClipboard
-    \li QPlatformDrag
     \li QAbstractEventDispatcher
-    \li QPlatformInputContext
     \li QPlatformAccessibility
+    \li QPlatformBackingStore
+    \li QPlatformClipboard
+    \li QPlatformCursor
+    \li QPlatformDrag
+    \li QPlatformFontDatabase
+    \li QPlatformGraphicsBuffer
+    \li QPlatformInputContext
     \li QPlatformNativeInterface
+    \li QPlatformOffscreenSurface
+    \li QPlatformOpenGLContext
+    \li QPlatformScreen
     \li QPlatformServices
+    \li QPlatformSharedGraphicsCache
+    \li QPlatformSurface
+    \li QPlatformWindow
     \endlist
 
 \li QPlatformTheme
     \list
+    \li QPlatformDialogHelper
     \li QPlatformMenu
     \li QPlatformMenuBar
-    \li QPlatformDialogHelper
+    \li QPlatformMenuItem
+    \li QPlatformSystemTrayIcon
     \li platform palettes
     \li platform fonts
     \li theme hints
