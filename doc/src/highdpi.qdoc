@@ -126,7 +126,7 @@
 
         \row
             \li DPI Unaware
-            \li This level has been introduced in Windows-Vista. Windows will pretend to the
+            \li This level has been introduced in Windows Vista. Windows will pretend to the
                 application that it is running on a standard display of 96 DPI of 1920x1080
                 and scale the application accordingly. It is intended to accommodate older
                 applications designed for low DPI displays. Some artifacts may result from
@@ -134,7 +134,7 @@
 
         \row
             \li System-DPI Aware
-            \li This level has been introduced in Windows-Vista. It differs from
+            \li This level has been introduced in Windows Vista. It differs from
                 \e{Per-Monitor DPI Aware} only when multiple monitors are connected.
                 Windows will calculate a scaling suitable for all connected monitors.
 
