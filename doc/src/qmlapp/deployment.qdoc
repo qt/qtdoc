@@ -61,6 +61,87 @@ the \c QT_INSTALL_QML environment points to the location of the libraries.
 The \l{Downloads}{Qt Installers} install the QML libraries in
 \e{<version>}\c{/}\e{<compiler>}\c{/qml} directory.
 
+\section1 QML Caching
+
+The QML runtime loads QML documents by parsing them and generating native code.
+Most of the time the document hasn't changed since the last time it was loaded.
+In order to speed up this loading process, the QML runtime maintains a cache
+file for each qml document. This cache file contains the native code and a
+binary representation of the QML document structure. In addition, when multiple
+applications use the same QML document, the memory needed for the code is
+shared between application processes. The cache files are loaded via the \c
+mmap() system call on POSIX compliant operating systems or \c
+CreateFileMapping() on Windows, resulting in significant memory savings.
+
+Each time you load a changed QML document, the cache is automatically
+re-created. Cache files are located in the same directory as the source code,
+if the directory is writable. Otherwise they will be placed in a sub-directory
+of QStandardPaths::CacheLocation with the name "qmlcache". The file extension
+is \c .qmlc for QML documents and \c .jsc for imported JavaScript modules.
+
+\section1 QML Caching for Deployment (Preview)
+
+The automatic caching of QML documents into cache files result in significantly
+faster load times of applications. However, the initial creation of cache files
+can still take time, especially when the application starts first. To avoid
+that initial step and provide faster start-up times from the very beginning,
+Qt's build system allows you to create these cache files in advance.
+
+If you would like to deploy your application with cache files generated ahead
+of time, you must satisfy four conditions in your \c .pro file:
+
+\list
+\li All QML documents (including JavaScript files) must be added to the
+\c QML_FILES variable.
+\li Your .pro file must use the \c load(qml_module) or \c load(qml_plugin)
+directive at the end, to activate the processing of \c QML_FILES and generation
+of install rules.
+\li The \c TARGETPATH variable must contain the import name of your QML
+module with forward slashes as separators.
+\li You must enable Ahead-of-Time caching using the \c CONFIG+=qmlcache directive.
+\endlist
+
+For example if you are developing the module \c MyCompany.CommonComponents,
+then your \c .pro file could look like this:
+
+\code
+TARGETPATH = MyCompany/CommonComponents
+QML_FILES = BlueButton.qml RedSlider.qml qmldir
+CONFIG += qmlcache
+load(qml_module)
+\endcode
+
+Similarly, if your module contains a C++ plugin then you use \c qml_plugin:
+
+\code
+TARGETPATH = MyCompany/CommonComponents
+QML_FILES = BlueButton.qml RedSlider.qml qmldir
+CONFIG += qmlcache
+SOURCES = plugin.cpp
+QT += quick
+load(qml_plugin)
+\endcode
+
+In these examples the QML module consisting of the QML documents, the \c qmldir
+file, and optionally the C++ plugin, will be installed into the
+MyCompany/CommonComponents sub-directory of \c $$[QT_INSTALL_QML]. By enabling
+the \c qmlcache configuration, the cache files will be created at build time
+and also installed into the same directory for deployment.
+
+\section2 Limitations
+
+Currently this feature has some limitations:
+
+\list
+\li Only QML and JavaScript documents that are part of a QML module can be
+compiled ahead of time.
+\li For cross-compilation, only the ARMv7 and ARMv8 target architectures are
+supported.
+\li For native compilation, Ahead-of-Time caching is limited to architectures
+where the QML runtime supports Just-in-Time compilation. This includes x86, x86-64,
+ARMv7, ARMv8 and MIPS32.
+\endlist
+
 \section1 Prototyping with QML Scene
 
 The Declarative UI package includes a QML runtime tool,
