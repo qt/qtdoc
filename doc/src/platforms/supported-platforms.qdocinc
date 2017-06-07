@@ -40,7 +40,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 
 //! [all]
 \section1 Qt 5.9
-\b {Supported until one year after release}
+\b {Long-term support (LTS)}: Supported until three years after release
 
 //! [5.9] //! [latest]
 
@@ -76,9 +76,6 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \row \li Red Hat Enterprise Linux 7.2 (64-bit)
          \li \b {GCC 5.3.1}
          \li devtoolset-4
-    \row \li Ubuntu 14.04 (64-bit)
-         \li GCC 4.8.2
-         \li Ubuntu 4.8.2-19ubuntu1
     \row \li Ubuntu 16.04 (64-bit)
          \li \b {GCC as provided by Canonical}
          \li
@@ -92,22 +89,26 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li
 
     \row \li {3,1} \header \li {3,1}
-         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}
+         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY}
     \row \li \l {Qt for Embedded Linux}{Embedded Linux}
          \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
     \row \li QNX 6.6.0, 7.0 (armv7le and x86)
-         \li \b {QCC as provided by QNX)
-         \li Hosts: \b {RHEL 6.6 (64-bit)}, \b {RHEL 7.2 (64-bit)}, Windows
+         \li \b {GCC as provided by QNX}
+         \li Hosts: \b {RHEL 6.6 (64-bit)}, \b {RHEL 7.2 (64-bit)},
+             \b {Windows 10 (64-bit)}, \b {Windows 7 (32-bit)}
+    \row \li \l {INTEGRITY} {INTEGRITY 11.4.x}
+         \li As provided by Green Hills INTEGRITY
+         \li Hosts: 64-bit Linux
 
     \row \li {3,1} \header \li {3,1}
           Mobile Platforms: \l {Qt for Android}{Android}, \l {Qt for iOS}{iOS},
-          Ubuntu Touch, Universal Windows Platform (UWP)
+          Universal Windows Platform (UWP)
     \row \li Universal Windows Platform (UWP) (x86, \b x86_64, armv7)
-         \li \b {MSVC 2017}, \b {MSVC 2015}
+         \li MSVC 2017, \b {MSVC 2015}
          \li Hosts: \b {Windows 10}
     \row \li iOS 8, 9, 10 (armv7, arm64)
          \li \b {Clang as provided by Apple}
-         \li \b {\macos 10.12 host}
+         \li \b {\macos 10.10 host}
     \row \li Android (API Level: 16)
          \li \b {GCC as provided by Google}, \b {MinGW 5.3}
          \li Hosts: \b {RHEL 7.2 (64-bit)}, \b{\macos 10.12}, \b {Windows 7 (64-bit)}
@@ -275,7 +276,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \section1 Qt 5.6
 
 //! [5.6]
-    \b {Supported until Mar. 16, 2019}
+    \b {Long-term support (LTS)}: Supported until Mar. 16, 2019
 
     \table 80%
     \header \li Platform \li Compiler \li Notes
