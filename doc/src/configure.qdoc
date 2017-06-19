@@ -64,12 +64,12 @@
     \badcode
     mkdir ~/qt-build
     cd ~/qt-build
-    ~/qt-source/configure -prefix /opt/Qt5.6
+    ~/qt-source/configure -prefix /opt/Qt5.9
     qmake
     \endcode
 
     Configuring with the \c -prefix option means that the Qt binaries and
-    libraries are installed into another directory, which is \c /opt/Qt5.6 in
+    libraries are installed into another directory, which is \c /opt/Qt5.9 in
     this case. Running \c qmake generates the Makefiles in the \e ~/qt-build
     directory and not in the \e source directory. After the Makefiles are in
     place, run the following commands to build the Qt binaries and libraries,
@@ -200,7 +200,7 @@
 
     \code
     configure.bat -platform win32-g++
-    configure.bat -platform win32-msvc2010
+    configure.bat -platform win32-msvc
     \endcode
 
     Afterwards, the generated Makefiles will use the appropriate compiler
