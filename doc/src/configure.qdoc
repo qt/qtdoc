@@ -248,14 +248,25 @@
     \section1 OpenGL Options for Windows
 
     On Windows, Qt can be configured with the system OpenGL or with \l{ANGLE}.
-    By default, Qt is configured to use ANGLE, which is bundled with Qt and
-    depends on the DirectX SDK. ANGLE enables running Qt applications that
-    depend on OpenGL, without installing the latest OpenGL libraries.
+    By default, Qt is configured to use dynamic OpenGL. This means that it tries
+    to use system OpenGL and falls back to ANGLE, which is bundled with Qt and
+    depends on the DirectX SDK, if native OpenGL does not work. ANGLE enables
+    running Qt applications that depend on OpenGL, without installing the latest
+    OpenGL drivers. If ANGLE also fails, Qt will fall back to software rendering,
+    which is the slowest but most safe of the rendering methods.
 
     The \c -opengl option can be used to configure Qt to use
     the OpenGL in the target system, a different version of OpenGL ES (with or
     without ANGLE), or dynamically switch between the available OpenGL
     implementations.
+
+    \code
+    configure.bat -opengl dynamic
+    \endcode
+
+    With the \c dynamic option, Qt will try to use native OpenGL first. If that
+    fails, it will fall back to ANGLE and finally to software rendering in case
+    of ANGLE failing as well.
 
     \code
     configure.bat -opengl desktop

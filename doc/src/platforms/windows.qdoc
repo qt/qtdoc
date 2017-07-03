@@ -224,9 +224,10 @@
     QtANGLE libraries. Instead, the appropriate library is chosen at
     runtime. By default, Qt will determine whether the system's opengl32.dll
     provides OpenGL 2 functions. If these are present, opengl32.dll is used,
-    otherwise the ANGLE libraries will be used. In case the ANGLE libraries are
-    missing or initialization fails for some reason, an additional fallback is
-    attempted by trying to load \c{opengl32sw.dll}. See below for details.
+    otherwise the ANGLE libraries (libEGL.dll and libGLESv2.dll) will be used.
+    In case the ANGLE libraries are missing or initialization fails for some
+    reason, an additional fallback is attempted by trying to load
+    \c{opengl32sw.dll}. See below for details.
 
     The loading mechanism can be configured through the \c{QT_OPENGL}
     environment variable and the following application attributes:
@@ -243,7 +244,7 @@
 
     The dynamic loading has a significant impact on applications that contain
     native OpenGL calls: they may fail to link since \c qmake no longer
-    automatically adds opengl32.lib or QtANGLE.lib. Instead, applications are
+    automatically adds opengl32.lib or libGLESv2.lib. Instead, applications are
     expected to use the OpenGL functions via the QOpenGLFunctions class. Thus
     the direct dependency on the OpenGL library is removed and all calls will be
     routed during runtime to the implementation chosen by Qt.
@@ -716,11 +717,11 @@
     is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
-    If \l{ANGLE} (the default) is used, you additionally need to include both
-    \c QtANGLE.dll from Qt's 'lib' directory as well as
-    the HLSL compiler from DirectX. The HLSL compiler library,
-    d3dcompiler_XX.dll, where XX is the version number that ANGLE
-    was linked against.
+    If \l{ANGLE} or dynamic OpenGL (the default) is used, you additionally
+    need to include both \c libEGL.dll and \c libGLESv2.dll from Qt's \c lib
+    directory as well as the HLSL compiler from DirectX. The HLSL compiler
+    library, d3dcompiler_XX.dll, where XX is the version number that ANGLE
+    (libGLESv2) was linked against.
 
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
     need to be added to the \c release folder, too.
@@ -822,7 +823,8 @@
     \header
         \li{2,1} File Name
     \row
-        \li QtANGLE.dll
+        \li libEGL.dll
+        \li libGLESv2.dll
         \li d3dcompiler_XX.dll
     \endtable
 
