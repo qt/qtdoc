@@ -51,29 +51,62 @@
 #ifndef NOTEPAD_H
 #define NOTEPAD_H
 
+//! [all]
+//! [1]
 #include <QMainWindow>
+//! [1]
 
+//! [2]
 namespace Ui {
 class Notepad;
 }
+//! [2]
 
+//! [3]
 class Notepad : public QMainWindow
 {
     Q_OBJECT
+//! [3]
 
+//! [4]
 public:
     explicit Notepad(QWidget *parent = 0);
+//! [4]
+//! [5]
     ~Notepad();
+//! [5]
 
 private slots:
-    void on_quitButton_clicked();
+    void on_actionNew_triggered();
 
     void on_actionOpen_triggered();
 
     void on_actionSave_triggered();
 
+    void on_actionSave_as_triggered();
+
+    void on_actionPrint_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionCopy_triggered();
+
+    void on_actionCut_triggered();
+
+    void on_actionPaste_triggered();
+
+    void on_actionUndo_triggered();
+
+    void on_actionRedo_triggered();
+
+    void on_actionFont_triggered();
+
+//! [6]
 private:
     Ui::Notepad *ui;
+    QString CurrentFile;
+//! [6]
 };
+//! [all]
 
 #endif // NOTEPAD_H
