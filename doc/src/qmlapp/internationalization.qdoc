@@ -227,6 +227,19 @@ Component.onCompleted: {
 }
 \endcode
 
+\section2 9. Prepare for Dynamic Language Changes
+
+You can change the language that Qt translation functions use by adding and
+removing translators with QCoreApplication::installTranslator() and
+QCoreApplication::removeTranslator(). Afterwards you can call
+QQmlEngine::retranslate() to trigger a refresh of all bindings that use
+translations. As a result, your user interface will switch, dynamically, to the
+newly selected language.
+
+Alternatively, you can also forward a QEvent::LanguageChange event to your
+application's QQmlEngine instance or connect your own signal to
+QQmlEngine::retranslate().
+
 \section1 Localizing Your Application
 
 Qt Quick applications use the same underlying localization system as Qt C++
