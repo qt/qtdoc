@@ -74,7 +74,7 @@ Item {
             numVertices: 64
             radius: 155
             fillWidth: 5
-            color: "#EF2973"
+            color: speedometer.actualSpeed < 100 ? "green" : "#EF2973"
             opacity: 0.6
             minAngle: speedometer.minValueAngle
             maxAngle: speedometer.maxValueAngle
@@ -89,8 +89,8 @@ Item {
         height: 7
         rotation: speedFiller.angle - 35
 
-        x: 120
-        y: 241
+        x: 121
+        y: 243
 
         Image {
             opacity: 0.75
@@ -98,7 +98,7 @@ Item {
             height: 7
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            source: "image://etc/SpeedometerNeedle.png"
+            source: speedometer.actualSpeed < 100 ? "image://etc/SpeedometerNeedleGreen.png" : "image://etc/SpeedometerNeedle.png"
         }
     }
 

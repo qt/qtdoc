@@ -38,9 +38,10 @@
 **
 ****************************************************************************/
 import QtQuick 2.6
+import ClusterDemo 1.0
 import "gauges"
 
-Image {
+DashboardBackground {
     id: dashboardEntity
     property alias bottompanel: bottompanel
     property alias speedometer: speedometer
@@ -49,35 +50,47 @@ Image {
     property alias bottomPanelY: bottompanel.y
     property alias needleRotation: tachometer.tachometerNeedleRotation
 
-    source: "image://etc/Cluster8Gauges.png"
+    property real meterOpacity: 1
+
+    gadget2.green: tachometer.actualRPM < 4000
+    gadget.green: speedometer.actualSpeed < 100
+
     anchors.fill: parent
 
     // Speedometer
     SpeedoMeter {
+        opacity: dashboardEntity.meterOpacity
         id: speedometer
     }
     // Tachometer
     TachoMeter {
         id: tachometer
+        opacity: dashboardEntity.meterOpacity
         anchors.fill: parent
     }
     // Fuelmeter
     FuelMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Batterymeter
     BatteryMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Consumptionmeter
     ConsumptionMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Temperaturemeter
     TemperatureMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Turbometer
     TurboMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Fpsmeter
     FpsMeter {
+        opacity: dashboardEntity.meterOpacity
     }
     // Bottom Panel
     BottomPanel {

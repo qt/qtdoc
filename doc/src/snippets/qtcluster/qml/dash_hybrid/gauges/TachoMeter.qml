@@ -73,7 +73,7 @@ Item {
             numVertices: 64
             radius: 155
             fillWidth: 5
-            color: "#EF2973"
+            color: tachometer.actualRPM < 4000 ? "green" : "#EF2973"
             opacity: 0.6
             minAngle: tachometer.minValueAngle
             maxAngle: tachometer.maxValueAngle
@@ -87,7 +87,7 @@ Item {
         width: 312
         height: 7
         rotation: rpmFiller.angle - 35
-        x: 850
+        x: 854
         y: 242
 
         Image {
@@ -97,7 +97,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 2
             anchors.verticalCenter: parent.verticalCenter
-            source: "image://etc/SpeedometerNeedle.png"
+            source: tachometer.actualRPM < 4000 ? "image://etc/SpeedometerNeedleGreen.png" : "image://etc/SpeedometerNeedle.png"
         }
     }
 

@@ -44,7 +44,11 @@ import "gauges"
 DashboardForm
 {
     id: dashboardEntity
-    source: "image://etc/Cluster8Gauges.png"
+
+    state: "start"
+
+    meterOpacity: 0.0
+
     anchors.fill: parent
 
     property real timeScaleMultiplier: 1.5
@@ -69,6 +73,18 @@ DashboardForm
             to: 402
             duration: 1000 * timeScaleMultiplier
             easing.type: Easing.InCirc
+        }
+
+        PauseAnimation {
+            duration: 1000
+        }
+
+        NumberAnimation {
+            target: dashboardEntity
+            property: "meterOpacity"
+            from: 0
+            to: 1
+            duration: 2000
         }
 
         SmoothedAnimation {

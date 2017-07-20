@@ -38,55 +38,80 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import ClusterDemo 1.0
+import QtQuick 2.4
 
 Item {
-    id: consumtionMeter
-    property real consumptionValue: 2.0 + ValueSource.rpm / 444.45
+    id: gadget
 
-    property real minValueAngle: 378
-    property real maxValueAngle: 291
-    property real minimumValue: 0
-    property real maximumValue: 20
+    width: 240
+    height: 240
 
-    anchors.right: parent.right
-    anchors.top: parent.top
-    anchors.topMargin: 243
-    anchors.rightMargin: 276
+    property bool green: true
 
-    GaugeFiller {
-        id: consumptionFiller
-        value: consumtionMeter.consumptionValue
-        anchors.fill: parent
-        numVertices: 32
-        radius: 155
-        fillWidth: 20
-        color: ValueSource.rpm < 4000 ? "green" : "#EF2973"
-        opacity: 0.3
-        minAngle: consumtionMeter.minValueAngle
-        maxAngle: consumtionMeter.maxValueAngle
-        minValue: consumtionMeter.minimumValue
-        maxValue: consumtionMeter.maximumValue
-        Behavior on value {
-            enabled: !ValueSource.runningInDesigner && !ValueSource.automaticDemoMode && startupAnimationsFinished
-            PropertyAnimation { duration: 250 }
+    SequentialAnimation {
+        running: true
+        loops: -1
+        PropertyAnimation {
+
+            target: glow
+            from: 0.96
+            to: 0.94
+            property: "scale"
+            duration: 600
+        }
+        PropertyAnimation {
+            target: glow
+            from: 0.94
+            to: 0.96
+            property: "scale"
+            duration: 600
         }
     }
 
     Item {
-        width: 322
-        height: 7
-        rotation: consumptionFiller.angle - 72
-        anchors.centerIn: parent
+        id: glow
+
+        x: 53
+        y: 52
+        width: 145
+        height: 145
 
         Image {
-            width: 95
-            height: 3
-            //opacity: 0.75
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            source: ValueSource.rpm < 4000 ? "image://etc/SpeedometerNeedleGreen.png" : "image://etc/SpeedometerNeedle.png"
+            id: green
+            x: 0
+            y: -1
+
+            source: "image://etc/greenglow.png"
+        }
+
+        Image {
+            id: red
+            x: -1
+            y: 0
+
+            source: "image://etc/redglow.png"
         }
     }
+
+    Image {
+        id: knob
+        x: 68
+        y: 65
+        source: "image://etc/knob.png"
+    }
+    states: [
+        State {
+            name: "red"
+            when: !gadget.green
+        },
+        State {
+            name: "green"
+            when: gadget.green
+
+            PropertyChanges {
+                target: red
+                opacity: 0
+            }
+        }
+    ]
 }
