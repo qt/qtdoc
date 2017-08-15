@@ -77,11 +77,15 @@ Item {
             // For text to wrap, a width has to be explicitly provided
             width: root.width
 
-            // This setting makes the text wrap at word boundaries when it goes past the width of the Text object
+            // This setting makes the text wrap at word boundaries when it goes
+            // past the width of the Text object
             wrapMode: Text.WordWrap
 
-            // You can use \ to escape quotation marks, or to add new lines (\n). Use \\ to get a \ in the string
-            text: 'I am the very model of a modern major general. I\'ve information vegetable, animal and mineral. I know the kings of england and I quote the fights historical; from Marathon to Waterloo in order categorical.'
+            // You can use \ to escape quotation marks, or to add new lines (\n).
+            //  Use \\ to get a \ in the string
+            text: 'I am the very model of a modern major general. I\'ve information \
+                  vegetable, animal and mineral. I know the kings of england and I \
+                  quote the fights historical; from Marathon to Waterloo in order categorical.'
 
             // color can be set on the entire element with this property
             color: "white"
@@ -108,7 +112,6 @@ Item {
 
             // StyledText format supports fewer tags, but is more efficient than RichText
             textFormat: Text.StyledText
-
         }
     }
 }

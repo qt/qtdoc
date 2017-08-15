@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -470,6 +470,10 @@
     This allows you to produce universal applications with valid LaunchImages as required by the Apple App Store.
     \important \c "launch_images" is used internally by Qt, so it will be overwritten if used in your .pro file.
 
+    \section2 Expressing Supported iOS Versions
+
+    \include expressing-apple-os-versions.qdocinc expressing os versions
+
     \section1 Publishing to Apple App Store
 
     Verifying that your Qt for iOS application is ready for publishing to App Store can be done
@@ -477,8 +481,10 @@
     To submit the application, you can use Xcode, or the Application Loader (installed with Xcode).
     Qt Creator does not provide an interface for managing all of the settings in an Xcode project configuration.
 
-    The application should be tested on a variety of iOS versions and devices, depending on what
-    it's targeted to support. The minimum deployment target for Qt applications is iOS 7.0.
+    The application should be tested on the iOS versions and devices that it is
+    targeted to support. The minimum deployment target for Qt applications
+    varies by Qt version. For more information, see
+    \l{Supported Platforms and Configurations}.
 
     The actual publishing process involves creating a distribution certificate and a provision profile,
     creating a signed archive of your application, and running a set of validation tests on it.

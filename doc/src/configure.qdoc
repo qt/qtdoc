@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -64,12 +64,12 @@
     \badcode
     mkdir ~/qt-build
     cd ~/qt-build
-    ~/qt-source/configure -prefix /opt/Qt5.6
+    ~/qt-source/configure -prefix /opt/Qt5.9
     qmake
     \endcode
 
     Configuring with the \c -prefix option means that the Qt binaries and
-    libraries are installed into another directory, which is \c /opt/Qt5.6 in
+    libraries are installed into another directory, which is \c /opt/Qt5.9 in
     this case. Running \c qmake generates the Makefiles in the \e ~/qt-build
     directory and not in the \e source directory. After the Makefiles are in
     place, run the following commands to build the Qt binaries and libraries,
@@ -89,18 +89,18 @@
     shipping applications. Such a build contains more exported symbols than
     a standard build and compiles with a higher warning level.
 
-    \section1 Including and Excluding Qt Modules
+    \section1 Modules and Features
 
-    With configure, it is possible to include or exclude particular
-    \l{All Modules}{Qt modules} in a Qt build. However, keep in mind that
-    many modules depend on other modules, therefore, dependency issues
-    can arise with some build configurations.
+    Qt consists of different \l{All Modules}{modules} whose sources can be
+    found in different directories inside the top-level source directory.
+    Users can explicitly exclude specific top-level directories to limit build
+    times. Furthermore, each Qt module might have features that can also be
+    explicitly enabled or disabled.
 
-    \section2 Excluding a Qt Submodule
+    \section2 Excluding Qt Modules
 
-    Configure's \c -skip option allows certain Qt submodules to be excluded from
-    the Qt build. These submodules correspond to the Git submodules in the
-    standard Qt 5 repository. Note that many packages contain multiple Qt
+    Configure's \c -skip option allows top-level source directories to be
+    excluded from the Qt build. Note that many directories contain multiple Qt
     modules. For example, to exclude Qt NFC and Qt Bluetooth from the Qt build,
     provide \c{-skip qtconnectivity} as the argument to configure.
 
@@ -111,16 +111,21 @@
     \section2 Including or Excluding Features
 
     The \c{-feature-}\e{<feature>} and \c{-no-feature-}\e{<feature>} options
-    include and exclude specific features, respectively, where \e{<feature>}
-    is listed in the file \e{qtbase/src/corelib/global/qfeatures.txt}.
+    include and exclude specific features, respectively.
 
-    For example, to disable \l Accessibility, provide \c -no-feature-accessibility
-    as the argument:
+    For example, to disable \l Accessibility, provide
+    \c -no-feature-accessibility as the argument:
     \code
     ./configure -no-feature-accessibility
     \endcode
 
-    \note Features outside of \e qtbase are not included in the features list.
+    Use \c{configure -list-features} to show a list of all available features
+    on the command line. Note that features can depend on other features, so
+    disabling a feature might have side-effects on other features.
+
+    The \l{Qt Configuration Tool} that is part of \l{Qt for Device Creation}
+    allows the tweaking of features and dependencies through a convenient user
+    interface.
 
     \section1 Third-Party Libraries
 
@@ -200,7 +205,7 @@
 
     \code
     configure.bat -platform win32-g++
-    configure.bat -platform win32-msvc2010
+    configure.bat -platform win32-msvc
     \endcode
 
     Afterwards, the generated Makefiles will use the appropriate compiler
@@ -243,14 +248,25 @@
     \section1 OpenGL Options for Windows
 
     On Windows, Qt can be configured with the system OpenGL or with \l{ANGLE}.
-    By default, Qt is configured to use ANGLE, which is bundled with Qt and
-    depends on the DirectX SDK. ANGLE enables running Qt applications that
-    depend on OpenGL, without installing the latest OpenGL libraries.
+    By default, Qt is configured to use dynamic OpenGL. This means that it tries
+    to use system OpenGL and falls back to ANGLE, which is bundled with Qt and
+    depends on the DirectX SDK, if native OpenGL does not work. ANGLE enables
+    running Qt applications that depend on OpenGL, without installing the latest
+    OpenGL drivers. If ANGLE also fails, Qt will fall back to software rendering,
+    which is the slowest but most safe of the rendering methods.
 
     The \c -opengl option can be used to configure Qt to use
     the OpenGL in the target system, a different version of OpenGL ES (with or
     without ANGLE), or dynamically switch between the available OpenGL
     implementations.
+
+    \code
+    configure.bat -opengl dynamic
+    \endcode
+
+    With the \c dynamic option, Qt will try to use native OpenGL first. If that
+    fails, it will fall back to ANGLE and finally to software rendering in case
+    of ANGLE failing as well.
 
     \code
     configure.bat -opengl desktop

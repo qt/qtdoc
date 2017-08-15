@@ -32,24 +32,31 @@
 The Qt Platform Abstraction (QPA) is the platform abstraction layer for Qt 5
 and replaces Qt for Embedded Linux and the platform ports from Qt 4.
 
-QPA plugins are implemented by subclassing various QPlatform* classes. There
-are two “root” classes: QPlatformIntegration for window system integration
-and QPlatformTheme for deeper platform theming and integration. QStyle is not
-a part of QPA.
+QPA plugins are implemented by subclassing various \c QPlatform* classes. There
+are several \e root classes, such as \c QPlatformIntegration and
+\c QPlatformWindow for window system integration and \c QPlatformTheme for
+deeper platform theming and integration. QStyle is not a part of QPA.
 
 There are no source or binary compatibility guarantees for the QPA classes,
 meaning that a platform plugin is only guaranteed to work with the Qt version
 it was developed against. API changes will however only be made in minor
 releases. (5.1, 5.2, and so on.)
 
+\section1 QPA Minimal Plugins
 
 There is no detailed tutorial documentation for writing QPA plugins at this
-time. However, there are two example plugins shipped with Qt5:
+time. However, there are two minimal plugins shipped with Qt 5 for testing and
+other special purposes that you can use as examples:
 
 \list
 \li \c{qtbase/src/plugins/platforms/minimal/}
 \li \c{qtbase/src/plugins/platforms/minimalegl/}
 \endlist
+
+The \c qminimal plugin is used for tools that link against \l{Qt GUI}, but do
+not require window system integration (for example, \c qmlplugindump).
+It also has diagnostic support for dumping window contents to image files
+as determined by environment variables.
 
 \section1 Class Overview
 
@@ -91,5 +98,90 @@ time. However, there are two example plugins shipped with Qt5:
 \c{qtbase/src/platformsupport} contains several helper classes for implementing
 platform plugins on Unix-like systems.
 
+\section1 QPA Plugins
 
+The following table summarizes the platform plugins available for QPA:
+
+\table
+\header
+    \li Plugin Name
+    \li Plugin Class Name
+    \li Description
+\row
+    \li \c qandroid
+    \li QAndroidPlatformIntegration
+    \li \l{Qt for Android}{Android support}
+\row
+    \li \c qbsdfb
+    \li QBsdFbIntegration
+    \li BsdFb support
+\row
+    \li \c qcocoa
+    \li QCocoaIntegrationPlugin
+    \li \l{Qt for macOS}{Cocoa support}
+\row
+    \li \c qdirect2d
+    \li QWindowsDirect2DIntegrationPlugin
+    \li Similar to the \c qwindows plugin, but replaces the raster paint engine
+        with a Direct2D-based paint engine for QPixmap and QBackingStore.
+\row
+    \li \c qdirectfb
+    \li QDirectFbIntegrationPlugin
+    \li DirectFB is centered around \e surfaces, which are the equivalent of a
+        QPaintDevice.
+\row
+    \li \c qeglfs
+    \li QEglFSIntegrationPlugin
+    \li \l EGLFS support for embedded Linux devices.
+\row
+    \li \c qhaiku
+    \li QHaikuIntegration
+    \li Haiku support
+\row
+    \li \c qios
+    \li QIOSIntegrationPlugin
+    \li \l{Qt for iOS}{iOS support}
+\row
+    \li \c qlinuxfb
+    \li QLinuxFbIntegrationPlugin
+    \li \l LinuxFB support for embedded Linux devices.
+\row
+    \li \c qmirclient
+    \li QMirClientIntegration
+    \li Mir client support
+\row
+    \li \c qopenwf
+    \li QOpenWFDIntegrationPlugin
+    \li OpenWF Display support for managing display control hardware.
+\row
+    \li \c qqnx
+    \li QQnxIntegrationPlugin
+    \li \l{Platform and Compiler Notes - QNX}{QNX support}
+\row
+    \li \c qvnc
+    \li QVncIntegration
+    \li VNC support
+\row
+    \li \c qwayland
+    \li \list
+            \li QWaylandIntegrationPlugin
+            \li QWaylandBrcmEglPlatformIntegrationPlugin
+            \li QWaylandEglPlatformIntegrationPlugin
+            \li QWaylandXCompositeEglPlatformIntegrationPlugin
+            \li QWaylandXCompositeGlxPlatformIntegrationPlugin
+        \endlist
+    \li \l{Qt Wayland Compositor}{Wayland support}
+\row
+    \li \c qwindows
+    \li QWindowsIntegrationPlugin
+    \li \l{Qt for Windows}{Windows support}
+\row
+    \li \c qwinrt
+    \li QWinRTIntegrationPlugin
+    \li \l{Qt for WinRT}{WinRT and Windows Phone support}
+\row
+    \li \c qxcb
+    \li QXcbIntegrationPlugin
+    \li \l{Qt for Linux/X11}{X Window System (X11) support}
+\endtable
 */

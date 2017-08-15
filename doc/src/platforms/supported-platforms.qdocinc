@@ -127,7 +127,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
 //! [5.10] //! [latest]
 
 \section1 Qt 5.9
-\b {Long-term support (LTS)}: Supported until three years after release
+\b {Long-term support (LTS)}: Supported until May 31, 2020
 
 //! [5.9]
 
@@ -526,90 +526,6 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \endtable
 
 //! [5.5]
-
-    \section1 Qt 5.4
-//! [5.4]
-    \b {Supported until July 01, 2017}
-
-    \table 80%
-    \header \li Platform \li Compiler \li Notes
-    \header \li {3,1} \l {Qt for Windows}{Windows}
-    \row \li Windows 8 (64-bit)
-         \li \b {MSVC 2013}, \b {MSVC 2012}, MSVC 2010, MinGW 4.8, MinGW 4.7
-         \li
-    \row \li Windows 8 (32-bit)
-         \li MSVC 2013, MSVC 2012, MSVC 2010, MinGW 4.8, MinGW 4.7
-         \li
-    \row \li Windows 7 (64-bit)
-         \li MSVC 2013, MSVC 2012, MSVC 2010, MinGW 4.8, MinGW 4.7
-         \li
-    \row \li Windows 7 (32-bit)
-         \li MSVC 2013, MSVC 2012, \b {MSVC 2010}, \b {MinGW 4.8}, \b {MinGW 4.7}
-         \li
-    \row \li Windows Vista 32/64bit
-         \li MSVC 2013, MSVC 2012, MSVC 2010, MinGW 4.8, MinGW 4.7
-         \li
-    \row \li Windows XP (32-bit)
-         \li \li Deployment only
-
-    \row \li {3,1} \header \li {2,1} \l {Qt for Linux/X11}{Linux/X11}
-         \li \l {Known Issues with GCC Compilers}{Known Issues}
-    \row \li openSUSE 13.1 (64-bit)
-         \li \b {GCC 4.8.1}
-         \li SUSE Linux 20130909
-    \row \li Red Hat Enterprise Linux 6.5 (64-bit)
-         \li \b {GCC 4.4.7}
-         \li Red Hat 4.4.7-4 20120313
-    \row \li Ubuntu 12.04 (64-bit)
-         \li \b {GCC 4.6.3}
-         \li Ubuntu/Linaro 4.6.3-1ubuntu5
-    \row \li Ubuntu 11.10 (32/64-bit)
-         \li \b {GCC 4.6.1}
-         \li Ubuntu/Linaro 4.6.1-9ubuntu3
-    \row \li Linux (32/64-bit)
-         \li GCC 4.8.1
-         \li
-
-    \row \li {3,1} \header \li {3,1} \l {Qt for macOS}{\macos}
-    \row \li \macos 10.8, \b 10.9, \b 10.10
-         \li \b clang-600.0.54
-         \li
-    \row \li \macos 10.7
-         \li \b i686-apple-darwin11-llvm-gcc-4.2
-         \li
-
-    \row \li {3,1} \header \li {3,1}
-         \include supported-platforms.qdocinc embedded
-    \row \li Embedded Linux (arm-gnueabi)
-         \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
-         \li Sourcery G++ Lite 2010q1-202, Ubuntu 11.10 (32-bit) host
-    \row \li Embedded Linux (iMX.6-armv7a)
-         \li \b {arm-none-linux-gnueabi-gcc-4.4.1}
-         \li ourcery G++ Lite 2010q1-202, Ubuntu 12.04 (64-bit) host
-    \row \li QNX 6.6.0 (armv7le and x86)
-         \li \b {As provided by QNX}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, Windows
-    \row \li Windows Embedded 7 (armv4i)
-         \li \b {MSVC 2008}
-         \li Windows 7 host
-
-    \row \li {3,1} \header \li {3,1}
-         \include supported-platforms.qdocinc mobile
-    \row \li Windows Phone 8.1 (arm)
-         \li \b {MSVC 2013}
-         \li \b {Windows 8.1 host}
-    \row \li Windows Runtime (x86, \b x86_64, arm)
-         \li \b {MSVC 2013}
-         \li \b {Windows 8.1 host}
-    \row \li iOS 5.1.1 and above
-         \li \b {Clang as provided by Apple}
-         \li \b {\macos host}
-    \row \li Android
-         \li \b {GCC as provided by Google}
-         \li Hosts: \b {Ubuntu 12.04 (64-bit)}, \macos, Windows
-    \endtable
-
-//! [5.4]
 
 //! [all]
 */

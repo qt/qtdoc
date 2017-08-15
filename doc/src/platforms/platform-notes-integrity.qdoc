@@ -28,9 +28,11 @@
 
 /*!
     \page platform-notes-integrity.html
-    \title Platform Notes - INTEGRITY
+    \title Qt for INTEGRITY
     \contentspage Platform Notes
     \keyword INTEGRITY
+    \ingroup supportedplatform
+    \brief Platform support for INTEGRITY.
 
     From Qt 5.9 onwards, the Green Hills Software
     \l {http://www.ghs.com/products/rtos/integrity.html} {INTEGRITY}
@@ -66,7 +68,11 @@
 
     \section1 Supported Development Hosts and Boards
 
-    Qt for INTEGRITY can be built on 64-bit Linux distributions.
+    Qt for INTEGRITY can be built on the following hosts:
+    \list
+        \li 64-bit Linux distributions
+        \li 32-bit and 64-bit Windows 10
+    \endlist
 
     Qt for INTEGRITY supports building and developing applications for the
     following development boards:

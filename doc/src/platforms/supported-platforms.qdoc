@@ -42,7 +42,7 @@
     Qt is supported on a variety of 32-bit and 64-bit platforms,
     and can usually be built on each platform with GCC, a vendor-supplied
     compiler, or a third party compiler. Open GL (ES) 2.0,
-    DirectX 9 (with ANGLE), or an \l {Qt Quick 2D Renderer} {alternative
+    DirectX 9 or 11 (with ANGLE), or an \l {Qt Quick 2D Renderer} {alternative
     renderer} is required for \l [QtQuick] {Qt Quick} 2.
     \l [QtWidgets] {Qt Widgets}{Widgets} can be used without
     hardware acceleration.
@@ -64,6 +64,9 @@
 
     In the above table, the configurations in \b bold are \e {reference
     configurations}.
+
+    \b {See also}: \l {http://doc.qt.io/QtForDeviceCreation/qtee-supported-platforms.html}
+                      {Qt for Device Creation: Supported Target Devices and Development Hosts}.
 
     \section2 Reference Configurations
 
