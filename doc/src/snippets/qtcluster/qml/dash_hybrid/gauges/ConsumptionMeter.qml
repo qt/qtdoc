@@ -62,7 +62,7 @@ Item {
         numVertices: 32
         radius: 155
         fillWidth: 20
-        color: ValueSource.rpm < 4000 ? "green" : "#EF2973"
+        color: ValueSource.rpm < 4000 ? "#0098c3" : "#a31e21"
         opacity: 0.3
         minAngle: consumtionMeter.minValueAngle
         maxAngle: consumtionMeter.maxValueAngle

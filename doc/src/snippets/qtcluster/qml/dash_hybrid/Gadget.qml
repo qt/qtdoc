@@ -46,24 +46,34 @@ Item {
     width: 240
     height: 240
 
+    property real value: 0
+    property real minValue: 0
+    property real maxValue: 200
+
+    property real __t: value / (maxValue - minValue)
+
+    property real __scale: __t * 1.04 + (1 - __t) * 0.85 * __scaleAnimation
+    property real __scaleAnimation: 1
+
     property bool green: true
+
 
     SequentialAnimation {
         running: true
         loops: -1
         PropertyAnimation {
 
-            target: glow
-            from: 0.96
-            to: 0.94
-            property: "scale"
+            target: gadget
+            from: 1
+            to: 0.95
+            property: "__scaleAnimation"
             duration: 600
         }
         PropertyAnimation {
-            target: glow
-            from: 0.94
-            to: 0.96
-            property: "scale"
+            target: gadget
+            from: 0.95
+            to: 1
+            property: "__scaleAnimation"
             duration: 600
         }
     }
@@ -76,12 +86,19 @@ Item {
         width: 145
         height: 145
 
+        scale: gadget.__scale
+
         Image {
             id: green
             x: 0
             y: -1
 
             source: "image://etc/greenglow.png"
+            Behavior on opacity {
+                NumberAnimation {
+
+                }
+            }
         }
 
         Image {
@@ -90,7 +107,14 @@ Item {
             y: 0
 
             source: "image://etc/redglow.png"
+            Behavior on opacity {
+                NumberAnimation {
+
+                }
+            }
         }
+
+
     }
 
     Image {

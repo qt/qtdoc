@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 import QtQuick 2.6
+import ClusterDemo 1.0
 import "gauges"
 
 DashboardForm
@@ -54,7 +55,16 @@ DashboardForm
     property real timeScaleMultiplier: 1.5
     property bool startupAnimationsFinished: false
 
-    onNeedleRotationChanged: speedometer.speedometerNeedleRotation = needleRotation / 40.
+    //onNeedleRotationChanged: speedometer.speedometerNeedleRotation = needleRotation / 40.
+
+    property bool animationStopped: ValueSource.runningInDesigner ? true : startupAnimationsFinished
+
+    speedometer.actualValue: animationStopped ? ValueSource.kph : -needleRotation / 40
+
+    tachometer.actualValue: animationStopped ? ValueSource.rpm : -needleRotation
+
+    speedText.text: speedometer.actualValue.toFixed().toString()
+
 
     //
     // Startup animations

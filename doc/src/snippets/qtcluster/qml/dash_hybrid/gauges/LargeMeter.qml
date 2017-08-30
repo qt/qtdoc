@@ -42,72 +42,82 @@ import QtQuick 2.6
 import ClusterDemo 1.0
 
 Item {
-    id: tachometer
+    width: 480
+    height: 480
 
-    property real tachometerNeedleRotation: 0.0
-    property string rpm: actualRPM.toFixed().toString()
+    id: speedometer
 
-    property bool animationStoped: ValueSource.runningInDesigner ? true : startupAnimationsFinished
+    property real speedometerNeedleRotation: 0.0
 
-    property real actualRPM: animationStoped
-                             ? ValueSource.rpm : -tachometerNeedleRotation
+    property bool animationStopped: ValueSource.runningInDesigner ? true : startupAnimationsFinished
+
+    property real actualValue: 20
 
     property real minValueAngle: 55
-    property real maxValueAngle: 255
-    property real minimumRPM: 0
-    property real maximumRPM: 8000
+    property real maxValueAngle: 305
+    property real minimumValue: 0
+    property real maximumValue: 200
 
-    Item {
-        anchors.right: parent.right
-        anchors.rightMargin: 20
-        width: 480
-        height: 480
+    property real limitValue: 100
 
-        GaugeFiller {
-            id: rpmFiller
-            value: tachometer.actualRPM
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: 246
-            anchors.rightMargin: 253
-            numVertices: 64
-            radius: 155
-            fillWidth: 5
-            color: tachometer.actualRPM < 4000 ? "green" : "#EF2973"
-            opacity: 0.6
-            minAngle: tachometer.minValueAngle
-            maxAngle: tachometer.maxValueAngle
-            minValue: tachometer.minimumRPM
-            maxValue: tachometer.maximumRPM
+    property real angleOffset: 35
+
+    GaugeFiller {
+        anchors.fill: parent
+        id: speedFiller
+        value: speedometer.actualValue
+        numVertices: 64
+        radius: 155
+        fillWidth: 5
+        color: speedometer.actualValue < speedometer.limitValue ? "#0098c3" : "#a31e21"
+        opacity: 0.6
+        minAngle: speedometer.minValueAngle
+        maxAngle: speedometer.maxValueAngle
+        minValue: speedometer.minimumValue
+        maxValue: speedometer.maximumValue
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 1000
+            }
         }
     }
 
-    Item {
-        id: tachometerNeedle
-        width: 312
-        height: 7
-        rotation: rpmFiller.angle - 35
-        x: 854
-        y: 242
 
-        Image {
-            opacity: 0.75
-            width: 98
+    Item {
+        id: speedometerNeedle
+        width: 309
+        height: 7
+        rotation: speedFiller.angle - speedometer.angleOffset
+
+        anchors.centerIn: parent
+
+        Item {
+            width: 97
             height: 7
             anchors.left: parent.left
-            anchors.leftMargin: 2
             anchors.verticalCenter: parent.verticalCenter
-            source: tachometer.actualRPM < 4000 ? "image://etc/SpeedometerNeedleGreen.png" : "image://etc/SpeedometerNeedle.png"
-        }
-    }
+            Image {
+                anchors.fill: parent
+                source: "image://etc/SpeedometerNeedleGreen.png"
+                opacity: speedometer.actualValue < speedometer.limitValue ? 0.75 : 0
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 1000
+                    }
+                }
+            }
+            Image {
+                opacity: speedometer.actualValue < speedometer.limitValue ? 0 : 0.75
+                anchors.fill: parent
+                source: "image://etc/SpeedometerNeedle.png"
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 1000
+                    }
+                }
+            }
 
-    Text {
-        id: textEco
-        anchors.top: tachometerNeedle.top
-        anchors.topMargin: -7
-        anchors.horizontalCenter: tachometerNeedle.horizontalCenter
-        text: tachometer.actualRPM > 4000 ? "POWER" : "ECO"
-        font.pixelSize: 18
-        color: tachometer.actualRPM <= 4000 ? "white" : "red"
+        }
     }
 }

@@ -114,7 +114,6 @@ Item {
         anchors.right: textTime.left
         anchors.rightMargin: 3
 
-        color: ValueSource.parkingBrake ? bottomPanel.iconRed : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_0238.dat"
     }
 
@@ -137,7 +136,6 @@ Item {
         anchors.left: textTime.right
         anchors.leftMargin: bottomPanel.iconMargin
 
-        color: ValueSource.lowBeam ? bottomPanel.iconGreen : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_0456.dat"
     }
 
@@ -162,7 +160,6 @@ Item {
         anchors.verticalCenter: textTime.verticalCenter
         anchors.left: iconTyre.right
 
-        color: ValueSource.lightFailure ? bottomPanel.iconYellow : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_1555.dat"
     }
 

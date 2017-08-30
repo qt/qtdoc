@@ -40,42 +40,55 @@
 import QtQuick 2.6
 import ClusterDemo 1.0
 import "gauges"
+import QtQuick.Extras 1.4
+import ".."
 
 DashboardBackground {
     id: dashboardEntity
     property alias bottompanel: bottompanel
-    property alias speedometer: speedometer
-    property alias tachometer: tachometer
 
     property alias bottomPanelY: bottompanel.y
-    property alias needleRotation: tachometer.tachometerNeedleRotation
+    property alias needleRotation: tachometer.speedometerNeedleRotation
 
     property real meterOpacity: 1
+    property alias speedometer: speedometer
+    property alias tachometer: tachometer
+    property alias speedText: speedText
+    property alias smallMeter: smallMeter
 
-    gadget2.green: tachometer.actualRPM < 4000
-    gadget.green: speedometer.actualSpeed < 100
+    gadget2.green: tachometer.actualValue < 4000
+    gadget2.value: tachometer.actualValue
+    gadget2.maxValue: 8000
+    gadget.green: speedometer.actualValue < 100
+    gadget.value: speedometer.actualValue
 
     anchors.fill: parent
 
-    // Speedometer
-    SpeedoMeter {
-        opacity: dashboardEntity.meterOpacity
-        id: speedometer
-    }
-    // Tachometer
-    TachoMeter {
-        id: tachometer
-        opacity: dashboardEntity.meterOpacity
-        anchors.fill: parent
-    }
     // Fuelmeter
-    FuelMeter {
+    SmallMeter {
+        id: fuelMeter
+        x: 432
+        y: 47
+        value: ValueSource.fuelLevel
         opacity: dashboardEntity.meterOpacity
     }
+
     // Batterymeter
-    BatteryMeter {
+    SmallMeter {
+        id: batteryMeter
+        x: 433
+        y: 47
+        value: ValueSource.batteryLevel
         opacity: dashboardEntity.meterOpacity
+        maxValueAngle: 317
+        minValueAngle: 225
+        maximumValue: 100
+        degreesPerValue: Math.abs(
+                             (maxValueAngle - minValueAngle) / maximumValue)
+        rotationOffset: 135
+        direction: -1
     }
+
     // Consumptionmeter
     ConsumptionMeter {
         opacity: dashboardEntity.meterOpacity
@@ -85,16 +98,82 @@ DashboardBackground {
         opacity: dashboardEntity.meterOpacity
     }
     // Turbometer
-    TurboMeter {
+    SmallMeter {
+        id: smallMeter
+        x: 741
+        y: 47
         opacity: dashboardEntity.meterOpacity
+
+        value: ValueSource.rpm / 2000.
+
+        maxValueAngle: 270
+        minValueAngle: 0
+        maximumValue: 4.0
+        degreesPerValue: Math.abs(
+                             (maxValueAngle - minValueAngle) / maximumValue)
     }
+
     // Fpsmeter
     FpsMeter {
         opacity: dashboardEntity.meterOpacity
     }
+
     // Bottom Panel
     BottomPanel {
         id: bottompanel
         y: 402
+    }
+
+    LargeMeter {
+        id: speedometer
+
+        opacity: dashboardEntity.meterOpacity
+        x: 35
+        y: 8
+        actualValue: ValueSource.kph
+    }
+
+    LargeMeter {
+        id: tachometer
+        opacity: dashboardEntity.meterOpacity
+        x: 768
+        y: 8
+        minValueAngle: 55
+        maxValueAngle: 255
+        minimumValue: 0
+        maximumValue: 8000
+        limitValue: 4000
+    }
+
+    Text {
+        id: speedText
+        x: 74
+        y: 330
+
+        font.pixelSize: 40
+        color: "lightGray"
+        text: "10"
+        anchors.horizontalCenter: speedometer.horizontalCenter
+        opacity: dashboardEntity.meterOpacity
+    }
+
+    Text {
+        id: speedUnitText
+        anchors.top: speedText.bottom
+        font.pixelSize: 18
+        color: "lightGray"
+        text: "KM/H"
+        anchors.horizontalCenter: speedText.horizontalCenter
+        opacity: dashboardEntity.meterOpacity
+    }
+    Text {
+        id: textEco
+
+        anchors.horizontalCenter: tachometer.horizontalCenter
+        text: tachometer.actualValue > 4000 ? "POWER" : "ECO"
+        anchors.verticalCenter: tachometer.verticalCenter
+        font.pixelSize: 18
+        color: tachometer.actualValue <= 4000 ? "white" : "red"
+        opacity: dashboardEntity.meterOpacity
     }
 }

@@ -42,31 +42,46 @@ import QtQuick 2.6
 import ClusterDemo 1.0
 
 Item {
-    property real batterymeterNeedleRotation: -batteryValue * batteryDegreesPerValue
-    property real batteryValue: ValueSource.batteryLevel
-    property real maxValueAngle: 317
-    property real minValueAngle: 225
+    id: meter
+    width: 100
+    height: 100
+
+    property real meterNeedleRotation: direction * value * degreesPerValue
+    //property real fuelValue: ValueSource.fuelLevel
+    property real value: 20
+
+    property real maxValueAngle: 170
+    property real minValueAngle: 10
     property real maximumValue: 100
-    property real batteryDegreesPerValue: Math.abs((maxValueAngle - minValueAngle) / maximumValue)
+    property real degreesPerValue: Math.abs((maxValueAngle - minValueAngle) / maximumValue)
 
-    anchors.right: parent.right
-    anchors.top: parent.top
-    anchors.rightMargin: 436
-    anchors.topMargin: 93
-    width: 108
-    height: 7
-    rotation: batterymeterNeedleRotation - 135
+    property real rotationOffset: 80
 
-    Image {
-        width: 36
-        height: 3
-        //opacity: 0.75
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        source: "image://etc/SpeedometerNeedle.png"
+    property real direction: 1
+
+
+    Item {
+
+
+
+        width: 100
+        height: 100
+
+        rotation: meter.meterNeedleRotation - meter.rotationOffset
+
+        Image {
+            width: 37
+            height: 3
+            //opacity: 0.75
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            source: "image://etc/SpeedometerNeedle.png"
+
+        }
+
     }
-    Behavior on batteryValue {
-        enabled: !ValueSource.runningInDesigner && !ValueSource.automaticDemoMode && startupAnimationsFinished
+    Behavior on value {
+        enabled: !ValueSource.automaticDemoMode && startupAnimationsFinished
         PropertyAnimation { duration: 250 }
     }
 }
