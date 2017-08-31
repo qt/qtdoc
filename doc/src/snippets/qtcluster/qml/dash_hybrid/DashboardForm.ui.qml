@@ -65,6 +65,7 @@ DashboardBackground {
     anchors.fill: parent
 
     // Fuelmeter
+
     SmallMeter {
         id: fuelMeter
         x: 432
@@ -74,6 +75,7 @@ DashboardBackground {
     }
 
     // Batterymeter
+
     SmallMeter {
         id: batteryMeter
         x: 433
@@ -90,14 +92,17 @@ DashboardBackground {
     }
 
     // Consumptionmeter
+
     ConsumptionMeter {
         opacity: dashboardEntity.meterOpacity
     }
     // Temperaturemeter
+
     TemperatureMeter {
         opacity: dashboardEntity.meterOpacity
     }
     // Turbometer
+
     SmallMeter {
         id: smallMeter
         x: 741
@@ -114,14 +119,24 @@ DashboardBackground {
     }
 
     // Fpsmeter
+
     FpsMeter {
         opacity: dashboardEntity.meterOpacity
     }
 
     // Bottom Panel
+
     BottomPanel {
         id: bottompanel
         y: 402
+    }
+
+    SpeedometerNumbers {
+        id: speedometerNumbers
+        x: 103
+        y: 73
+        value: speedometer.actualValue
+        opacity: dashboardEntity.meterOpacity
     }
 
     LargeMeter {
@@ -176,4 +191,5 @@ DashboardBackground {
         color: tachometer.actualValue <= 4000 ? "white" : "red"
         opacity: dashboardEntity.meterOpacity
     }
+
 }
