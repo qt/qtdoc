@@ -1,0 +1,166 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page whatsnew510.html
+    \title What's New in Qt 5.10
+    \brief Lists the new features in Qt 5.10.
+
+    \section1 New Features in Qt 5.10
+
+    \section2 Qt GUI Module
+    \list
+        \li Added the cross-platform Vulkan enablers, QVulkanInstance, QWindow
+            with type VulkanSurface, and QVulkanWindow. These enablers are for
+            Windows, Linux (xcb), and Android (level 23+).
+        \li Added new flags and functions to QSurfaceFormat and QOpenGLWidget,
+            to request sRGB-capable default/backing framebuffers.
+        \li Added the cross-platform enablers for OpenGL ES 3.2 API, which are
+            now accessible through QOpenGLExtraFunctions.
+        \li Added support for more than 2 Gigabyte of pixel data in QImage.
+    \endlist
+
+    \section2 Qt Widgets Module
+    \list
+        \li Added support for embedding a window into a QWidget on Android
+            using \l{QWidget::createWindowContainer}().
+        \li Added support for rendering and reading back (grabbing) offscreen
+            content using QOpenGLWidget.
+    \endlist
+
+    \section2 Qt Quick Module
+    \list
+        \li Added a shapes plugin, providing a Shape type under
+            QtQuick.Shapes 1.0, which enables adding stroked and filled paths
+            into Qt Quick scenes. Such shapes are rendered either by generating
+            geometry or by using the GL_NV_path_rendering extension.
+        \li Added the Qt.labs.handlers plugin (tech. preview), providing
+            TapHandler, PinchHandler, and DragHandler. These are lightweight
+            objects for handling events from the mouse or the touchscreen in a
+            device-agnostic way.
+            \note The plugin is available as a technology preview so it could
+            could change in future releases.
+        \li Added support for multi-sample framebuffers to QQuickItem layers
+            using the layer.samples property.
+    \endlist
+
+    \section2 Qt Graphical Effects Module
+    \list
+        \li Added support for effects in core profile OpenGL contexts.
+    \endlist
+
+    \section2 Qt WebEngine Module
+    \list
+        \li Updated to be based on Chromium 60.
+        \li Added pause/resume functionality to download items.
+        \li Added settings for blocking JavaScript focus and hiding scrollbars.
+        \li Updated QWebEnginePage with more WebActions, which were supported
+            by QWebPage earlier.
+        \li Added QWebEnginePage::download for triggering downloads.
+    \endlist
+
+    \section2 Qt SerialBus Module
+    \list
+        \li Added local echo flag to QCanBusFrame to mark frames that are sent
+            from the local system to the CAN bus.
+    \endlist
+
+    \section1 New Modules
+    \list
+        \li \l {Qt Network Authentication} - Provides support for OAuth1 and OAuth2.
+        \li \l {Qt Speech} - Enables text-to-speech in Qt Applications.
+     \endlist
+
+    These modules were previously released as technology preview and are
+    now fully supported Qt add-on modules.
+
+    \section1 Technology Preview Modules
+    \list
+        \li \l {Qt Remote Objects} (TP2) - Sharing QObject interfaces (signals, slots,
+            and properties) between processes or devices,
+     \endlist
+
+    \section1 Deprecated Functionality
+    \list
+        \li Qt Script
+    \endlist
+
+    Deprecated modules are still included in Qt 5.10, but are considered for
+    removal in future releases.
+
+    \section1 List of API Changes
+
+    The pages below contain a list of API changes in Qt 5.10:
+    \list
+    \li \l{New Classes and Functions in Qt 5.10}
+    \li \l{Obsolete Classes}
+    \endlist
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+
+*/
+
+/*!
+    \page newclasses510.html
+    \title New Classes and Functions in Qt 5.10
+    \brief A list of new APIs in Qt 5.10.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 5.10. Links to new APIs in previous Qt 5 releases are found
+    at the bottom of this page.
+
+    \sincelist 5.10
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/
+
