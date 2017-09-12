@@ -110,18 +110,6 @@ DashboardBackgroundForm {
 
                         ParallelAnimation {
                             PropertyAnimation {
-                                target: dashboard.gadget
-                                properties: "opacity, scale"
-                                duration: 1000
-                            }
-                            PropertyAnimation {
-                                target: dashboard.gadget2
-                                properties: "opacity, scale"
-                                duration: 1000
-                            }
-                        }
-                        ParallelAnimation {
-                            PropertyAnimation {
                                 target: dashboard.leftGadget
                                 properties: "opacity, scale"
                                 duration: 400

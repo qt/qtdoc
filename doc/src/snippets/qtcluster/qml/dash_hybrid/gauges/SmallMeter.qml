@@ -47,7 +47,6 @@ Item {
     height: 100
 
     property real meterNeedleRotation: direction * value * degreesPerValue
-    //property real fuelValue: ValueSource.fuelLevel
     property real value: 20
 
     property real maxValueAngle: 170
@@ -59,24 +58,26 @@ Item {
 
     property real direction: 1
 
+    Rectangle {
+        visible: false
+        color: "red"
+        width: 10
+        height: 10
+        anchors.centerIn: parent
+    }
+
 
     Item {
-
-
-
-        width: 100
-        height: 100
+        width: image.width
+        height: image.height
 
         rotation: meter.meterNeedleRotation - meter.rotationOffset
+        anchors.centerIn: parent
 
         Image {
-            width: 37
-            height: 3
-            //opacity: 0.75
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            source: "image://etc/SpeedometerNeedle.png"
-
+            id: image
+            x: -23
+            source: "image://etc/SpeedometerNeedleSmall.png"
         }
 
     }

@@ -56,6 +56,8 @@ Item {
 
     property bool runningInDesigner: false
 
+    property bool seatBelt: false
+
     property var consumption: [300, 600, 700, 800, 900, 700, 600, 300, 50, 50, -100, 50, -100, -150,
         -200, 50, 150, 200, 300, 200, 300, 200, 500, 50, -100, -100, -150, -80, 50, 300, 600, 700, 800,
         600,  700, 300, 50, 50]
@@ -283,7 +285,7 @@ Item {
     }
 
     property int simuRpm: fastBootDemo ? kph * 40 : kph * 150
-    property double simuTemperature: fastBootDemo ? kph * .25 + 60. : kph * .5 + 50.
+    property double simuTemperature: kph * .25 + 60.
 
     // In normal Car UI mode only speed is animated based on gps data
     // In automatic demo mode rpm, turbo, consumption and engine temperature are based on speed

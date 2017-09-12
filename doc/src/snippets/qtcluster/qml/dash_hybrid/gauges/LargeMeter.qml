@@ -40,8 +40,20 @@
 
 import QtQuick 2.6
 import ClusterDemo 1.0
+import QtGraphicalEffects 1.0
 
 Item {
+
+    Rectangle {
+        visible: false
+        width: 86
+        height: 86
+        radius: 43
+        color: "#3a5fe1"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
     width: 480
     height: 480
 
@@ -51,7 +63,7 @@ Item {
 
     property bool animationStopped: ValueSource.runningInDesigner ? true : startupAnimationsFinished
 
-    property real actualValue: 20
+    property real actualValue: 90
 
     property real minValueAngle: 55
     property real maxValueAngle: 305
@@ -62,15 +74,17 @@ Item {
 
     property real angleOffset: 35
 
+    property alias fillWidth: speedFiller.fillWidth
+
     GaugeFiller {
         anchors.fill: parent
         id: speedFiller
         value: speedometer.actualValue
         numVertices: 64
         radius: 155
-        fillWidth: 5
+        fillWidth: 10
         color: speedometer.actualValue < speedometer.limitValue ? "#0098c3" : "#a31e21"
-        opacity: 0.6
+        opacity: 0.4
         minAngle: speedometer.minValueAngle
         maxAngle: speedometer.maxValueAngle
         minValue: speedometer.minimumValue
@@ -86,21 +100,23 @@ Item {
 
     Item {
         id: speedometerNeedle
-        width: 309
-        height: 7
+        width: needleImage.width
+        height: needleImage.height
         rotation: speedFiller.angle - speedometer.angleOffset
 
         anchors.centerIn: parent
 
         Item {
-            width: 97
-            height: 7
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
+
             Image {
-                anchors.fill: parent
-                source: "image://etc/SpeedometerNeedleGreen.png"
-                opacity: speedometer.actualValue < speedometer.limitValue ? 0.75 : 0
+                x: -59
+                y: -0.5
+                source: "image://etc/SpeedometerNeedle.png"
+                opacity: 1
+                layer.enabled: true
+                layer.effect: Colorize {
+                    hue: 0.5
+                }
                 Behavior on opacity {
                     NumberAnimation {
                         duration: 1000
@@ -108,16 +124,23 @@ Item {
                 }
             }
             Image {
+                x: -59
+                y: -0.5
+                id: needleImage
                 opacity: speedometer.actualValue < speedometer.limitValue ? 0 : 0.75
-                anchors.fill: parent
                 source: "image://etc/SpeedometerNeedle.png"
                 Behavior on opacity {
                     NumberAnimation {
                         duration: 1000
                     }
                 }
+                layer.enabled: true
+                layer.effect: Colorize {
+                    hue: 0.95
+                }
             }
 
         }
     }
+
 }

@@ -42,6 +42,7 @@ Item {
     property int defaultYPos: 400
 
     Rectangle {
+        y: 10
         id: image
         width: 124
         height: 124
@@ -61,7 +62,7 @@ Item {
     Text {
         id: title
         anchors.top: image.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 6
         anchors.horizontalCenter: image.horizontalCenter
         text: musicContainer.currentSong
         color: "gray"

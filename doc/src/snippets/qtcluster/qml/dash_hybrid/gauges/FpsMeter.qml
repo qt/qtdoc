@@ -51,20 +51,16 @@ Item {
     property real maximumValue: 60
     property real fpsDegreesPerValue: Math.abs((maxValueAngle - minValueAngle) / maximumValue)
 
-    anchors.right: parent.right
-    anchors.top: parent.top
-    anchors.rightMargin: 591
-    anchors.topMargin: 83
+
     width: 107
     height: 7
     rotation: fpsmeterNeedleRotation - 45
 
     Image {
-        width: 37
-        height: 3
         anchors.left: parent.left
+        anchors.leftMargin: -12
         anchors.verticalCenter: parent.verticalCenter
-        source: "image://etc/SpeedometerNeedle.png"
+        source: "image://etc/SpeedometerNeedleSmall.png"
     }
 
     FpsCounter {

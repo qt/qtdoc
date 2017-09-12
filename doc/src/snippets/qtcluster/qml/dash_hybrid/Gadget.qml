@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 import QtQuick 2.4
+import QtGraphicalEffects 1.0
 
 Item {
     id: gadget
@@ -81,40 +82,32 @@ Item {
     Item {
         id: glow
 
-        x: 53
-        y: 52
-        width: 145
-        height: 145
+        x: 34
+        y: 31
+        width: 185
+        height: 185
 
         scale: gadget.__scale
 
-        Image {
-            id: green
-            x: 0
-            y: -1
-
-            source: "image://etc/greenglow.png"
-            Behavior on opacity {
-                NumberAnimation {
-
+        Rectangle {
+            width: 115
+            height: width
+            radius: width / 2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: green ? "#0098c3" : "#a31e21"
+            Behavior on color {
+                ColorAnimation {
+                    duration: 400
                 }
             }
+
         }
 
-        Image {
-            id: red
-            x: -1
-            y: 0
-
-            source: "image://etc/redglow.png"
-            Behavior on opacity {
-                NumberAnimation {
-
-                }
-            }
+        layer.enabled: true
+        layer.effect: FastBlur {
+              radius: 32
         }
-
-
     }
 
     Image {
@@ -123,19 +116,4 @@ Item {
         y: 65
         source: "image://etc/knob.png"
     }
-    states: [
-        State {
-            name: "red"
-            when: !gadget.green
-        },
-        State {
-            name: "green"
-            when: gadget.green
-
-            PropertyChanges {
-                target: red
-                opacity: 0
-            }
-        }
-    ]
 }

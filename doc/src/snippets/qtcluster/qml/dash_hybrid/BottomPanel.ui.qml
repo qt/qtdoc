@@ -41,6 +41,7 @@ import QtQuick 2.6
 import ClusterDemo 1.0
 import ".."
 import QtQuick.Extras 1.4
+import QtGraphicalEffects 1.0
 
 Item {
     id: bottomPanel
@@ -52,10 +53,11 @@ Item {
 
     anchors.horizontalCenter: parent.horizontalCenter
     width: bottomPanelImage.width
-    height: bottomPanelImage.height
+    height: bottomPanelImage.height - 24
 
     Image {
         id: bottomPanelImage
+        y: -24
         source: "image://etc/BottomPanel.png"
     }
 
@@ -79,6 +81,15 @@ Item {
 
         color: ValueSource.engineTemperature >= 100.0 ? bottomPanel.iconRed : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_0246.dat"
+
+        layer.enabled: ValueSource.engineTemperature >= 100.0
+        layer.effect: Glow {
+            radius: 5
+            samples: 16
+            color: bottomPanel.iconRed
+            cached: true
+            spread: 0.15
+        }
     }
 
     SafeRendererPicture {
@@ -91,6 +102,14 @@ Item {
 
         color: ValueSource.batteryLevel <= 25.0 ? bottomPanel.iconRed : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_0247.dat"
+        layer.enabled: ValueSource.batteryLevel <= 25.0
+        layer.effect: Glow {
+            radius: 5
+            samples: 16
+            color: bottomPanel.iconRed
+            cached: true
+            spread: 0.15
+        }
     }
 
     SafeRendererPicture {
@@ -102,7 +121,15 @@ Item {
         anchors.right: iconParkingBrake.left
 
         color: ValueSource.fuelLevel <= 20.0 ? bottomPanel.iconRed : bottomPanel.iconDark
-        source: "qrc:/iso-icons/iso_grs_7000_4_0245.dat"
+        source: "qrc:/iso-icons/iso_grs_7000_4_0245.dat" // This is available in all editors.
+        layer.enabled: ValueSource.fuelLevel <= 20.0
+        layer.effect: Glow {
+            radius: 5
+            samples: 16
+            color: bottomPanel.iconRed
+            cached: true
+            spread: 0.15
+        }
     }
 
     SafeRendererPicture {
@@ -113,6 +140,8 @@ Item {
         anchors.verticalCenter: textTime.verticalCenter
         anchors.right: textTime.left
         anchors.rightMargin: 3
+
+        color: bottomPanel.iconDark
 
         source: "qrc:/iso-icons/iso_grs_7000_4_0238.dat"
     }
@@ -136,6 +165,8 @@ Item {
         anchors.left: textTime.right
         anchors.leftMargin: bottomPanel.iconMargin
 
+        color: bottomPanel.iconDark
+
         source: "qrc:/iso-icons/iso_grs_7000_4_0456.dat"
     }
 
@@ -150,6 +181,14 @@ Item {
 
         color: ValueSource.flatTire ? bottomPanel.iconYellow : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_1434A.dat"
+        layer.enabled: ValueSource.flatTire
+        layer.effect: Glow {
+            radius: 6
+            samples: 16
+            color: bottomPanel.iconYellow
+            cached: true
+            spread: 0.2
+        }
     }
 
     SafeRendererPicture {
@@ -159,6 +198,7 @@ Item {
         height: 30
         anchors.verticalCenter: textTime.verticalCenter
         anchors.left: iconTyre.right
+        color: bottomPanel.iconDark
 
         source: "qrc:/iso-icons/iso_grs_7000_4_1555.dat"
     }
@@ -173,6 +213,14 @@ Item {
 
         color: ValueSource.seatBelt ? bottomPanel.iconRed : bottomPanel.iconDark
         source: "qrc:/iso-icons/iso_grs_7000_4_0249.dat"
+        layer.enabled: ValueSource.seatBelt
+        layer.effect: Glow {
+            radius: 5
+            samples: 16
+            color: bottomPanel.iconRed
+            cached: true
+            spread: 0.15
+        }
     }
 
     TurnIndicator {

@@ -60,7 +60,6 @@ Item {
     Image {
         width: 38
         height: 3
-        //opacity: 0.75
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         source: "image://etc/SpeedometerNeedle.png"

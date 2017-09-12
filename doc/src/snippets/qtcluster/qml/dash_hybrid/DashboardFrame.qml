@@ -45,11 +45,8 @@ Rectangle
 {
     width: 1280
     height: 480
-    gradient: Gradient {
-        GradientStop { position: 0.0; color: "#ffffff" }
-        GradientStop { position: 0.4; color: "#1e2127" }
-        GradientStop { position: 1.0; color: "#0c0f17" }
-    }
+    color: "black"
+
 
     Image {
         id: logo

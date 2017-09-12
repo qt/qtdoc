@@ -54,7 +54,7 @@ Item {
 
         CarInfoField {
             title: "Total distance"
-            value: carinfoContainer.total.toString()
+            value: carinfoContainer.total.toFixed().toString()
             unit: "km"
         }
 

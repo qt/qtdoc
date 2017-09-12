@@ -42,30 +42,26 @@ import QtQuick 2.6
 import ClusterDemo 1.0
 
 Item {
+    id: root
     property real temperatureValue: ValueSource.engineTemperature
     property real minValueAngle: 42.5
     property real maxValueAngle: -42.5
     property real minimumValue: 40
     property real maximumValue: 120
 
-    anchors.right: parent.right
-    anchors.top: parent.top
-    anchors.rightMargin: 643
-    anchors.topMargin: 60
-
     GaugeFiller {
         id: temperatureFiller
-        value: temperatureValue
+        value: root.temperatureValue
         anchors.fill: parent
         numVertices: 32
         radius: 140
         fillWidth: 25
         color: "#EF2973"
         opacity: 0.3
-        minAngle: minValueAngle
-        maxAngle: maxValueAngle
-        minValue: minimumValue
-        maxValue: maximumValue
+        minAngle: root.minValueAngle
+        maxAngle: root.maxValueAngle
+        minValue: root.minimumValue
+        maxValue: root.maximumValue
         Behavior on value {
             enabled: !ValueSource.automaticDemoMode && startupAnimationsFinished
             PropertyAnimation { duration: 250 }
@@ -75,16 +71,24 @@ Item {
     Item {
         width: 280
         height: 7
-        rotation: temperatureFiller.angle - 47.5
+        rotation: temperatureFiller.angle - 48
         anchors.centerIn: parent
 
-        Image {
-            width: 25
-            height: 3
-            //opacity: 0.75
+        Item {
+            id: item1
+            width: 34
+            height: 7
+            opacity: 0.75
             anchors.left: parent.left
+            anchors.leftMargin: -4
             anchors.verticalCenter: parent.verticalCenter
-            source: "image://etc/SpeedometerNeedle.png"
+            clip: true
+
+            Image {
+                x: -4
+                anchors.verticalCenter: parent.verticalCenter
+                source: "image://etc/SpeedometerNeedleSmall.png"
+            }
         }
     }
 }

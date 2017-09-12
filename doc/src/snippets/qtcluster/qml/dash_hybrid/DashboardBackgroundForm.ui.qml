@@ -1,4 +1,3 @@
-
 /****************************************************************************
 **
 ** Copyright (C) 2015 The Qt Company Ltd.
@@ -45,7 +44,6 @@ Item {
     id: root
     width: 1280
     height: 480
-    property alias gadget2: gadget2
 
     property alias center: center
     property alias rightGadget: rightGadget
@@ -54,7 +52,6 @@ Item {
     property alias image: image
     property alias rightGauge: rightGauge
     property alias leftGauge: leftGauge
-    property alias gadget: gadget
 
     property real gaugeOpacity: 1
 
@@ -64,29 +61,38 @@ Item {
 
         Image {
             id: center
-            x: 574
-            y: 30
+            x: 568
+            y: 19
             source: "image://etc/center.png"
+
+            Image {
+                x: -140
+                y: -122
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+
+                source: "image://etc/knob_small.png"
+            }
         }
 
         Image {
             id: rightGadget
-            x: 732
-            y: 34
+            x: 718
+            y: 29
             source: "image://etc/right.png"
         }
 
         Image {
             id: leftGadget
-            x: 419
-            y: 32
+            x: 417
+            y: 28
             source: "image://etc/left.png"
         }
 
         Image {
             id: bar
-            x: 534
-            y: 143
+            x: 531
+            y: 159
             source: "image://etc/temperature.png"
         }
     }
@@ -96,12 +102,6 @@ Item {
         x: 318
         y: 393
         source: "image://etc/leftgauge.png"
-
-        Gadget {
-            id: gadget
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-        }
     }
 
     Image {
@@ -109,12 +109,6 @@ Item {
         x: 652
         y: 394
         source: "image://etc/rightgauge.png"
-
-        Gadget {
-            id: gadget2
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-        }
     }
     states: [
         State {
@@ -152,12 +146,6 @@ Item {
             }
 
             PropertyChanges {
-                target: gadget
-                scale: 0.8
-                opacity: 0
-            }
-
-            PropertyChanges {
                 target: leftGadget
                 scale: 0.8
                 opacity: 0
@@ -180,11 +168,6 @@ Item {
                 scale: 0.8
                 opacity: 0
             }
-
-            PropertyChanges {
-                target: gadget2
-                opacity: 0
-            }
         },
         State {
             name: "normal"
@@ -197,8 +180,8 @@ Item {
 
             PropertyChanges {
                 target: rightGauge
-                x: 841
-                y: 74
+                x: 832
+                y: 71
             }
         }
     ]

@@ -64,6 +64,7 @@ DashboardForm
     tachometer.actualValue: animationStopped ? ValueSource.rpm : -needleRotation
 
     speedText.text: speedometer.actualValue.toFixed().toString()
+    consumptionMeter.actualValue: 2.0 + ValueSource.rpm / 320.45
 
 
     //
@@ -80,7 +81,7 @@ DashboardForm
             target: dashboardEntity
             property: "bottomPanelY"
             from: 480
-            to: 402
+            to: 412
             duration: 1000 * timeScaleMultiplier
             easing.type: Easing.InCirc
         }
