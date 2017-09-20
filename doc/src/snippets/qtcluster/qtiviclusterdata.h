@@ -174,7 +174,7 @@ private Q_SLOTS:
     void onGearChanged(int gear, const QString &zone);
 
 protected:
-    //    virtual QtIVIAbstractZonedFeature* createZoneFeature(const QString &zone) Q_DECL_OVERRIDE;
+    //    QtIVIAbstractZonedFeature* createZoneFeature(const QString &zone) override;
     //    QtIVIClusterData* zonedFeature(const QString &zone);
 
 

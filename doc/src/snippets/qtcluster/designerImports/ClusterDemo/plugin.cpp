@@ -52,14 +52,14 @@ class ClusterDemoPlugin : public QQmlExtensionPlugin
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 public:
     ClusterDemoPlugin(QObject *parent = 0) : QQmlExtensionPlugin(parent) {}
-    void registerTypes(const char *) Q_DECL_OVERRIDE
+    void registerTypes(const char *) override
     {
         qmlRegisterType<CircularIndicator>("ClusterDemo", 1, 0, "CircularIndicator");
         qmlRegisterType<Gauge>("ClusterDemo", 1, 0, "GaugeFiller");
         qmlRegisterSingletonType(QUrl("qrc:/ValueSource.qml"), "ClusterDemo", 1, 0, "ValueSource");
     }
 
-    void initializeEngine(QQmlEngine *engine, const char *uri) Q_DECL_OVERRIDE
+    void initializeEngine(QQmlEngine *engine, const char *uri) override
     {
         EtcProvider *etcProvider = new EtcProvider();
         etcProvider->setBaseUrl(QUrl("qrc:///images/"));
