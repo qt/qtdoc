@@ -78,7 +78,7 @@ void SceneHelper::removeFromScene(Qt3DRender::QSceneLoader *loader, const QStrin
 
     foreach (QString name, names) {
         QObject *entity = root->findChild<Qt3DCore::QEntity *>(name);
-        entity->setParent(Q_NULLPTR);
+        entity->setParent(nullptr);
     }
 }
 
