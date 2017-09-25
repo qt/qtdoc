@@ -51,6 +51,7 @@
 
 import QtQuick 2.4
 
+//! [0]
 BrewingForm {
     id: root
     function start() {
@@ -96,5 +97,4 @@ BrewingForm {
         }
     }
 }
-
-
+//! [0]

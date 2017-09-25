@@ -86,10 +86,12 @@ SideBarForm {
         sideBar.coffeeSelected()
     }
 
+//! [0]
     cappuccinoButton.onClicked: {
         sideBar.currentCoffee = qsTr("Cappucino")
         sideBar.currentMilk = 7
         sideBar.currentCoffeeAmount = 3.5
         sideBar.coffeeSelected()
     }
+//! [0]
 }

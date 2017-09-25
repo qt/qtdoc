@@ -48,112 +48,67 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.4
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.3
-import Coffee 1.0
+/*!
 
-Image {
-    id: root
-    source: "images/icons/coffees/cappucino.png"
-    signal clicked
+    \example coffee
+    \title Coffee Machine Example
+    \ingroup examples-tutorials
 
-    property int duration: 250
-    property alias text: label.text
-//! [0]
-    MouseArea {
-        anchors.fill: parent
-        onClicked: root.clicked()
-        onPressed: {
-            glow.visible = true
-            animation1.start()
-            animation2.start()
-        }
-    }
-//! [0]
+    \borderedimage coffee_machine_overview.png
 
-    Rectangle {
-        id: glow
-        visible: false
+    The coffee machine application lets you choose a type of coffee on the
+    left side of the main screen. After selection, the app displays what
+    the coffee blend will contain (ratio coffee/hot milk/milk foam).
+    This can be modified with two sliders. When the brew has been started,
+    the app shows an animated display of the brewing process, then returns
+    to the start screen.
 
-        width: 250
-        height: 250
-        color: "#00000000"
-        radius: 125
-        scale: 1.05
-        border.color: "#ffffff"
-    }
+    First the start screen \c Animationflowform is displayed, showing a
+    sidebar with several types of coffee, and an empty cup on the right
+    screen.
 
-    Label {
-        id: label
-        x: 292
-        y: 252
-        text: qsTr("Label")
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: "#443224"
-        font.family: Constants.fontFamily
-        font.pixelSize: 28
-    }
+    Selecting a coffee type - for example, cappuccino - triggers \c animation1
+    and \c animation2 in CoffeeButton.qml.  On the right side, you will see
+    the coffee blend you selected.
 
-    PropertyAnimation {
-        target: glow
-        id: animation1
-        duration: root.duration
-        loops: 1
-        from: 1.05
-        to: 1.2
-        property: "scale"
-    }
+    \snippet coffee/CoffeeButton.qml 0
 
-    ParallelAnimation {
-        id: animation2
-        SequentialAnimation {
-            PropertyAnimation {
-                target: glow
-                duration: root.duration
-                loops: 1
-                from: 0.2
-                to: 1.0
-                property: "opacity"
-            }
-            PropertyAnimation {
-                target: glow
-                duration: root.duration
-                loops: 1
-                from: 1.0
-                to: 0.0
-                property: "opacity"
-            }
+    It also triggers cappuccinoButton.onClicked(), which sets the default
+    mix for the coffee type selected:
 
-            PropertyAction {
-                target: glow
-                property: "visible"
-                value: false
-            }
-        }
+    \snippet coffee/SideBar.qml 0
 
-        SequentialAnimation {
-            PropertyAction {
-                target: glow
-                property: "border.width"
-                value: 20
-            }
+    \borderedimage coffee_machine_selection.png
+    \caption Coffee blend cappuccino
 
-            PauseAnimation {
-                duration: 200
-            }
+    \c sideBar.coffeeSelected() \c sets applicationFlow.state to "selection"
 
-            PropertyAnimation {
-                target: glow
-                duration: root.duration
-                loops: 1
-                from: 20
-                to: 10
-                property: "border.width"
-            }
-        }
-    }
+    If you click "Brew me a cup", choosingCoffee.brewButtonSelection.onClicked
+    is triggered:
 
+    \snippet coffee/ApplicationFlow.qml 0
 
+    On the right side of the screen, you will see two sliders, one for
+    the amount of milk, and one for sugar. They will have default values,
+    but can be modified by the user.
 
-}
+    \borderedimage coffee_machine_modify.png
+
+    If you click on \c Brew, \c choosingCoffee.brewButton.onClicked() is triggered,
+    which displays a screen with the message "Please insert cup into tray".
+
+    \snippet coffee/ApplicationFlow.qml 2
+
+    \borderedimage coffee_machine_emptycup.png
+
+    Clicking on \c Continue starts the brewing of the coffee type you
+    selected.
+
+    \snippet coffee/ApplicationFlow.qml 1
+
+    The brewing process is defined as follows in \c Brewing.qml:
+
+    \snippet coffee/Brewing.qml 0
+
+    After completion, the application returns to the start screen.
+*/
