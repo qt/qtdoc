@@ -89,7 +89,8 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li
 
     \row \li {3,1} \header \li {3,1}
-         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY}
+         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY},
+         \l{Qt for VxWorks}{VxWorks}
     \row \li \l {Qt for Embedded Linux}{Embedded Linux}
          \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
     \row \li QNX 6.6.0, 7.0 (armv7le and x86)
@@ -99,6 +100,9 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \row \li \l {INTEGRITY} {INTEGRITY 11.4.x}
          \li As provided by Green Hills INTEGRITY
          \li Hosts: 64-bit Linux
+    \row \li \l{Qt for VxWorks}{VxWorks 7}
+         \li As provided by Wind River
+         \li Hosts: 64-bit Linux, Windows
 
     \row \li {3,1} \header \li {3,1}
           Mobile Platforms: \l {Qt for Android}{Android}, \l {Qt for iOS}{iOS},
