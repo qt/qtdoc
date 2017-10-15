@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -59,17 +59,17 @@ int main(int argc, char *argv[])
 {
 //! [2]
 //! [3]
-    QApplication a(argc, argv);
+    QApplication EditorApp(argc, argv);
 //! [3]
 //! [4]
-    Notepad w;
+    Notepad Editor;
 //! [4]
 //! [5]
-    w.show();
+    Editor.show();
 //! [5]
 
 //! [6]
-    return a.exec();
+    return EditorApp.exec();
 //! [6]
 }
 //! [all]
