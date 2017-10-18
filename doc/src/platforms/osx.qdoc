@@ -198,9 +198,18 @@
 
     \section1 Step 1: Install the License File (Commercially Licensed Qt Only)
 
-        If you have a commercial Qt license, download the license file
-        from your \l {Qt Account} Web portal and save it as
-        \c{$HOME/.qt-license}.
+    If you use Qt with a commercial license, the Qt tools look for a local license file.
+    If you are using a binary installer or the commercial Qt Creator, your licenses
+    are automatically fetched and stored in your local user profile
+    (\c{$HOME/Library/Application Support/Qt/qtlicenses.ini} file).
+
+    If you do not use any binary installer or Qt Creator, you can download
+    the respective license file from your \l {Qt Account} Web portal and save
+    it to your user profile as \c{$HOME/.qt-license}. If you prefer a
+    different location or file name, you need to set the \c{QT_LICENSE_FILE}
+    environment variable to the respective file path.
+
+    \section1 Step 2: Unpack the Archive
 
         Unpack the archive if you have not done so already. For example,
         if you have the \c{qt-everywhere-opensource-src-%VERSION%.tar.gz}
@@ -211,7 +220,7 @@
         This creates the directory \c{/tmp/qt-everywhere-opensource-src-%VERSION%}
         containing the files from the archive.
 
-    \section1 Step 2: Build the Qt Library
+    \section1 Step 3: Build the Qt Library
 
         To configure the Qt library for your machine type, run the
         \c{./configure} script in the package directory.
@@ -249,7 +258,7 @@
         \note There is a potential race condition when running make install with multiple
         jobs. It is best to only run one make job (-j1) for the install.
 
-    \section1 Step 3: Set the Environment Variables
+    \section1 Step 4: Set the Environment Variables
 
         In order to use Qt, some environment variables need to be
         extended.
