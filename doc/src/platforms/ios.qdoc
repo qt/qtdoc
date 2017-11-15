@@ -238,12 +238,9 @@
     {asset catalogs} in Xcode, which can be added in a similar way:
     \badcode
     ios {
-        assets_catalogs.files = $$files($$PWD/*.xcassets)
-        QMAKE_BUNDLE_DATA += assets_catalogs
+        QMAKE_ASSET_CATALOGS += ios/Assets.xcassets
     }
     \endcode
-    Important: resources are compiled only if the .path variable is not set.
-    It is possible to recursively copy and compile directories though.
 
     \section2 Icons
 
