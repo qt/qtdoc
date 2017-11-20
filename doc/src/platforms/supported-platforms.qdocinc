@@ -1,7 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2015 The Qt Company Ltd.
-** Contact: http://www.qt.io/licensing/
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
 **
@@ -11,8 +11,8 @@
 ** accordance with the commercial license agreement provided with the
 ** Software or, alternatively, in accordance with the terms contained in
 ** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see http://www.qt.io/terms-conditions. For further
-** information use the contact form at http://www.qt.io/contact-us.
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
 **
 ** GNU Free Documentation License Usage
 ** Alternatively, this file may be used under the terms of the GNU Free
@@ -20,7 +20,7 @@
 ** Foundation and appearing in the file included in the packaging of
 ** this file. Please review the following information to ensure
 ** the GNU Free Documentation License version 1.3 requirements
-** will be met: http://www.gnu.org/copyleft/fdl.html.
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
@@ -176,7 +176,8 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li
 
     \row \li {3,1} \header \li {3,1}
-         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY}
+         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY},
+         \l{Qt for VxWorks}{VxWorks}
     \row \li \l {Qt for Embedded Linux}{Embedded Linux}
          \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
     \row \li QNX 6.6.0, 7.0 (armv7le and x86)
@@ -186,6 +187,9 @@ Mobile Platforms: \l {Qt for Android}{Android},
     \row \li \l {INTEGRITY} {INTEGRITY 11.4.x}
          \li As provided by Green Hills INTEGRITY
          \li Hosts: 64-bit Linux
+    \row \li \l{Qt for VxWorks}{VxWorks 7}
+         \li As provided by Wind River
+         \li Hosts: 64-bit Linux, Windows
 
     \row \li {3,1} \header \li {3,1}
           Mobile Platforms: \l {Qt for Android}{Android}, \l {Qt for iOS}{iOS},

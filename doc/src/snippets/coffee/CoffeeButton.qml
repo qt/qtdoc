@@ -60,7 +60,7 @@ Image {
 
     property int duration: 250
     property alias text: label.text
-
+//! [0]
     MouseArea {
         anchors.fill: parent
         onClicked: root.clicked()
@@ -70,6 +70,7 @@ Image {
             animation2.start()
         }
     }
+//! [0]
 
     Rectangle {
         id: glow

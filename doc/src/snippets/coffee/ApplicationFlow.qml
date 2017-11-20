@@ -57,11 +57,13 @@ ApplicationFlowForm {
 
     property int animationDuration: 400
 
+//! [0]
     choosingCoffee.brewButtonSelection.onClicked: {
         applicationFlow.state = "settings"
         applicationFlow.choosingCoffee.milkSlider.value = applicationFlow.choosingCoffee.sideBar.currentMilk
         applicationFlow.choosingCoffee.sugarSlider.value = 2
     }
+//! [0]
 
 
     choosingCoffee.sideBar.onCoffeeSelected: {
@@ -72,15 +74,19 @@ ApplicationFlowForm {
         applicationFlow.state = "selection"
     }
 
+//! [2]
     choosingCoffee.brewButton.onClicked: {
         applicationFlow.state = "empty cup"
     }
+//! [2]
 
+//! [1]
     emptyCup.continueButton.onClicked: {
         applicationFlow.state = "brewing"
         brewing.coffeeName = choosingCoffee.sideBar.currentCoffee
         brewing.start()
     }
+//! [1]
 
     brewing.onFinished: {
         finalAnimation.start()
