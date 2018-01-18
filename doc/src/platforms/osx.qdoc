@@ -1146,7 +1146,28 @@
     \row
         \li \c{-qmldir=<path>}
         \li Deploy imports used by .qml files in the given path
+    \row
+        \li \c{-always-overwrite}
+        \li Copy files even if the target file exists
+    \row
+        \li \c{-codesign=<ident>}
+        \li Run \c codesign with the given identity on all executables
+    \row
+        \li \c{-appstore-compliant}
+        \li Skip deployment of components that use private API
+    \row
+        \li \c{-libpath=<path>}
+        \li Add the given path to the library search path
+    \row
+        \li \c{-fs=<filesystem>}
+        \li Set the filesystem used for the .dmg disk image (defaults to HFS+)
     \endtable
+
+    \note macOS High Sierra introduced the new Apple File System (APFS). Older
+    versions of macOS cannot read .dmg files that are formatted with APFS. By
+    default, \c macdeployqt uses the older HFS+ file system for compatibility
+    with all versions of macOS currently supported by Qt. Use the \c{-fs} option
+    to specify a different file system.
 */
 
 /*!
