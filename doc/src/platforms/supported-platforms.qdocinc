@@ -153,6 +153,11 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li MSVC 2017, MSVC 2015, MSVC 2013, MinGW 5.3
          \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z/download}{MinGW-builds gcc 5.3.0 (32-bit)}
 
+    \row \li {3,1} \header \li {3,1} Universal Windows Platform (UWP)
+    \row \li UWP 10 (x86, \b x86_64, armv7)
+         \li MSVC 2017, \b {MSVC 2015}
+         \li Hosts: \b {Windows 10}
+
     \row \li {3,1} \header \li {3,1} \l {Qt for Linux/X11}{Linux/X11}
     \row \li openSUSE 42.1 (64-bit)
          \li \b {GCC 4.8.5}
@@ -180,7 +185,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \l{Qt for VxWorks}{VxWorks}
     \row \li \l {Qt for Embedded Linux}{Embedded Linux}
          \li GCC \li ARM Cortex-A, Intel boards with GCC-based toolchains
-    \row \li QNX 6.6.0, 7.0 (armv7le and x86)
+    \row \li QNX 6.6 (armv7le and x86), 7.0 (armv7le, arm64 and x86)
          \li \b {GCC as provided by QNX}
          \li Hosts: \b {RHEL 6.6 (64-bit)}, \b {RHEL 7.2 (64-bit)},
              \b {Windows 10 (64-bit)}, \b {Windows 7 (32-bit)}
@@ -192,11 +197,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li Hosts: 64-bit Linux, Windows
 
     \row \li {3,1} \header \li {3,1}
-          Mobile Platforms: \l {Qt for Android}{Android}, \l {Qt for iOS}{iOS},
-          Universal Windows Platform (UWP)
-    \row \li Universal Windows Platform (UWP) (x86, \b x86_64, armv7)
-         \li MSVC 2017, \b {MSVC 2015}
-         \li Hosts: \b {Windows 10}
+          Mobile Platforms: \l {Qt for Android}{Android}, \l {Qt for iOS}{iOS}
     \row \li iOS 8, 9, 10 (armv7, arm64)
          \li \b {Clang as provided by Apple}
          \li \b {\macos 10.10 host}
