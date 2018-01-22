@@ -63,10 +63,10 @@ The \l{Downloads}{Qt Installers} install the QML libraries in
 
 \section1 QML Caching
 
-The QML runtime loads QML documents by parsing them and generating native code.
+The QML runtime loads QML documents by parsing them and generating byte code.
 Most of the time the document hasn't changed since the last time it was loaded.
 In order to speed up this loading process, the QML runtime maintains a cache
-file for each qml document. This cache file contains the native code and a
+file for each qml document. This cache file contains the byte code and a
 binary representation of the QML document structure. In addition, when multiple
 applications use the same QML document, the memory needed for the code is
 shared between application processes. The cache files are loaded via the \c
@@ -130,17 +130,8 @@ and also installed into the same directory for deployment.
 
 \section2 Limitations
 
-Currently this feature has some limitations:
-
-\list
-\li Only QML and JavaScript documents that are part of a QML module can be
-compiled ahead of time.
-\li For cross-compilation, only the ARMv7 and ARMv8 target architectures are
-supported.
-\li For native compilation, Ahead-of-Time caching is limited to architectures
-where the QML runtime supports Just-in-Time compilation. This includes x86, x86-64,
-ARMv7, ARMv8 and MIPS32.
-\endlist
+Currently this feature has the limitation that only QML and JavaScript
+documents that are part of a QML module can be compiled ahead of time.
 
 \section1 Prototyping with QML Scene
 
