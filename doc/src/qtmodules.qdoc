@@ -73,10 +73,10 @@
         \li \l[QtQuick]{Qt Quick}
         \li A declarative framework for building highly dynamic applications
             with custom user interfaces.
-    \row
-        \li \l[QtQuickControls]{Qt Quick Controls}
-        \li Reusable Qt Quick based UI controls to create classic desktop-style
-            user interfaces.
+    \row \li \l{Qt Quick Controls 2}
+         \li Provides lightweight QML types for creating performant user
+             interfaces for desktop, embedded, and mobile devices. These
+             types employ a simple styling architecture and are very efficient.
     \row
         \li \l[QtQuickDialogs]{Qt Quick Dialogs}
         \li Types for creating and interacting with system dialogs from a
@@ -234,14 +234,12 @@
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, and
             \l{Qt for macOS}{\macos}.
         \li Enables in-app purchase of products in Qt applications.
-    \row \li \l{Qt Quick Controls 2}
-         \li All
-         \li
-         \li Provides lightweight QML types for creating performant user
-             interfaces for embedded and mobile devices. These controls achieve
-             improved efficiency by employing a simplified styling architecture
-             when compared to \l {Qt Quick Controls}. These types work in conjunction
-             with \l{Qt Quick} and \l{Qt Quick Layouts}.
+    \row
+        \li \l[QtQuickControls]{Qt Quick Controls}
+        \li All
+        \li All
+        \li Reusable Qt Quick based UI controls to create classic desktop-style
+            user interfaces.
     \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
