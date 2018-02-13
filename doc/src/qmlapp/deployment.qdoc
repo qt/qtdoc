@@ -78,6 +78,7 @@ re-created. Cache files are located in the same directory as the source code,
 if the directory is writable. Otherwise they will be placed in a sub-directory
 of QStandardPaths::CacheLocation with the name "qmlcache". The file extension
 is \c .qmlc for QML documents and \c .jsc for imported JavaScript modules.
+On the Android platform, cache files are always stored in the cache directory.
 
 \section1 QML Caching for Deployment (Preview)
 
