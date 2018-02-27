@@ -76,6 +76,13 @@
     Use the Maintenance Tool under \e{<install_dir>} to add components and to
     update or remove installed components.
 
+    \note From Qt 5.11, \l{QDoc Manual}{QDoc}, the Qt documentation generation
+    tool, requires \l{http://clang.llvm.org}{clang} from LLVM 3.9 or greater for
+    parsing C++ code. If you intend to use \l{QDoc Manual}{QDoc} to generate
+    documentation for your own projects, or if you intend to build the Qt
+    documentation locally from your Qt sources, see \l{Getting Started with QDoc}
+    for details.
+
     \section2 Platform Requirements
 
     Developing applications on different platforms are covered in the platform
