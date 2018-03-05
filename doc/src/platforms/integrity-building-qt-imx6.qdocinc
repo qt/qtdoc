@@ -106,7 +106,7 @@
 
     \badcode
     cd <Qt installation directory>
-    ./configure -developer-build -xplatform integrity-armv7-imx6 -confirm-license
+    ./configure -prefix $PWD/qtbase -xplatform integrity-armv7-imx6 -confirm-license
     -opensource -nomake examples -nomake tests -no-dbus -silent -opengl es2 -static
     \endcode
 
@@ -123,8 +123,7 @@
 
     \section1 Installing Qt
 
-    If you have not used the configure options
-    \c {-developer-build} or \c {-prefix $PWD/qtbase} in \l {Configuring Qt},
+    If you have not used the configure option \c {-prefix $PWD/qtbase} in \l {Configuring Qt},
     run the following command in a terminal:
 
     \badcode
@@ -132,9 +131,9 @@
     make install
     \endcode
 
-    If you have used the configure options \c {-developer-build} or
-    \c {-prefix $PWD/qtbase}, you can use Qt from the build
-    directory, without running the \c {make install} command.
+    If you have used the configure option \c {-prefix $PWD/qtbase},
+    you can use Qt from the build directory, without running the
+    \c {make install} command.
 
     Qt is now configured and built for the i.MX6 Quad board.
 //! [building qt for imx6quad]
