@@ -39,9 +39,96 @@ Mobile Platforms: \l {Qt for Android}{Android},
 //! [mobile]
 
 //! [all]
+\section1 Qt 5.11
+\b {Supported until one year after release}
+//! [5.11] //! [latest]
+    \table 80%
+    \header \li Platform \li Compiler \li Notes
+    \header \li {3,1} \l {Qt for Windows}{Windows}
+    \row \li Windows 10 (x86_64)
+         \li \b {MSVC 2017}, \b {MSVC 2015}, MinGW 5.3
+         \li Tested on \e {Windows 10 Creators Update}
+    \row \li Windows 10 (x86)
+         \li \b {MSVC 2017}, \b {MSVC 2015}, MinGW 5.3
+         \li Tested on \e {Windows 10 Creators Update}
+    \row \li Windows 8.1 (x86_64)
+         \li MSVC 2017, \b {MSVC 2015}, MinGW 5.3
+         \li
+    \row \li Windows 8.1 (x86)
+         \li MSVC 2017, \b {MSVC 2015}, MinGW 5.3
+         \li
+    \row \li Windows 7 (x86_64)
+         \li MSVC 2017, MSVC 2015, \b {MinGW 5.3}
+         \li
+    \row \li Windows 7 (x86)
+         \li MSVC 2017, MSVC 2015, \b {MinGW 5.3}
+         \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z/download}{MinGW-builds gcc 5.3.0 (x86)}
+
+    \row \li {3,1} \header \li {3,1} Universal Windows Platform (UWP)
+    \row \li UWP 10 (\b x86, \b x86_64, \b armv7)
+         \li \b {MSVC 2017}, \b {MSVC 2015}
+         \li Host: \b {Windows 10 (x86_64)} \e {Creators Update}
+
+    \row \li {3,1} \header \li {3,1} \l {Qt for Linux/X11}{Linux/X11}
+    \row \li openSUSE 42.2 (x86_64)
+         \li GCC 4.8, \b {GCC 7}, \b {ICC}
+         \li
+    \row \li Red Hat Enterprise Linux 6.6 (x86_64)
+         \li GCC 4.9.1
+         \li devtoolset-3
+    \row \li Red Hat Enterprise Linux 7.2 (x86_64)
+         \li \b {GCC 5.3.1}
+         \li devtoolset-4
+    \row \li Ubuntu 16.04 (x86_64)
+         \li GCC as provided by Canonical, \b {GCC 6}
+         \li
+    \row \li Linux (x86 and x86_64)
+         \li GCC 4.8, GCC 4.9, GCC 5, GCC 6, GCC 7
+         \li
+
+    \row \li {3,1} \header \li {3,1} \l {Qt for Android}{Android}
+    \row \li Android 4.1, 5, 6, 7, 8 (armv7, x86)\br
+             API Level 16
+         \li \b {GCC as provided by Google}, \b {MinGW 5.3}
+         \li Hosts: \b {RHEL 7.2 (x86_64)}, \b{\macos 10.12 (x86_64)}, \b {Windows 7 (x86_64)}
+
+    \row \li {3,1} \header \li {3,1} Darwin Platforms: \l {Qt for macOS}{\macos},
+         \l {Qt for iOS}{iOS}, tvOS, watchOS
+    \row \li \l {Qt for macOS}{\macos} \b 10.11, \b 10.12, \b 10.13 (x86_64)
+         \li \b {Clang as provided by Apple}
+         \li \b {Xcode 8.2 (\macos 10.11)}, \b {Xcode 8.3.3 (\macos 10.12)}, \b {Xcode 9 (\macos 10.13)}
+    \row \li \l {Qt for iOS}{iOS} 10, \b {iOS 11} (armv8)
+         \li \b {Clang as provided by Apple}
+         \li \b {Xcode 9 (\macos 10.13)}
+    \row \li tvOS 10, \b {tvOS 11} (armv8) (Technology Preview)
+         \li \b {Clang as provided by Apple}
+         \li \b {Xcode 9 (\macos 10.13)}
+    \row \li watchOS 3, \b {watchOS 4} (armv7k) (Technology Preview)
+         \li \b {Clang as provided by Apple}
+         \li \b {Xcode 9 (\macos 10.13)}
+
+    \row \li {3,1} \header \li {3,1}
+         Embedded Platforms: \l {Qt for Embedded Linux}{Embedded Linux}, \l {QNX}, \l {INTEGRITY}
+    \row \li \l {Qt for Embedded Linux}{Embedded Linux}
+         \li GCC
+         \li ARM Cortex-A, Intel boards with GCC-based toolchains
+    \row \li \l {Qt for Device Creation}{Embedded Linux (Boot2Qt)} (armv7, armv8, x86, x86_64)
+         \li \b {GCC 6.2}
+         \li \b {Yocto 2.3}, Hosts: RHEL 7.2 (x86_64), Windows 7 (x86_64)
+    \row \li \b {QNX 6.6.0}, 7.0 (armv7 and x86)
+         \li \b {QCC as provided by QNX}
+         \li Hosts: \b {RHEL 7.2 (x86_64)}, \b {Windows 7 (x86_64)},
+             \b {Windows 10 (x86_64)}, \b {Windows 7 (x86)},
+             \b {\macos 10.12}
+    \row \li \l {INTEGRITY} {INTEGRITY 11.4.4}
+         \li As provided by Green Hills INTEGRITY
+         \li Host: RHEL 7.2 (x86_64)
+    \endtable
+//! [5.11] //! [latest]
+
 \section1 Qt 5.10
 \b {Supported until one year after release}
-//! [5.10] //! [latest]
+//! [5.10]
     \table 80%
     \header \li Platform \li Compiler \li Notes
     \header \li {3,1} \l {Qt for Windows}{Windows}
@@ -124,7 +211,7 @@ Mobile Platforms: \l {Qt for Android}{Android},
          \li As provided by Green Hills INTEGRITY
          \li Host: RHEL 7.2 (x86_64)
     \endtable
-//! [5.10] //! [latest]
+//! [5.10]
 
 \section1 Qt 5.9
 \b {Long-term support (LTS)}: Supported until May 31, 2020
