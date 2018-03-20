@@ -38,7 +38,7 @@
 
     \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}.
     The rest of this manual details the specifics of how to use Qt 5 with \c{CMake}.
-    The minimum version required to use Qt5 is \c{CMake} 2.8.3, but 3.1.0 is recommended.
+    The minimum version required to use Qt5 is \c{CMake} 3.1.0.
 
     \section1 Getting Started
 
@@ -46,17 +46,14 @@
     and header files shipped with Qt. These libraries and header files can then be used
     to build libraries and applications based on Qt.
 
-    The recommended way to use Qt libraries and headers with \c{CMake} 2.8.11 is to use
-    the \c{target_link_libraries} command. In \c{CMake} 2.8.11 and later versions, this
+    The recommended way to use Qt libraries and headers with \c{CMake} is to use
+    the \c{target_link_libraries} command. This
     command automatically adds appropriate include directories, compile definitions, the
     position-independent-code flag, and links to the qtmain.lib library on Windows.
 
     To build a helloworld GUI executable, typical usage would be:
 
     \snippet snippets/cmake/CMakeLists.pro 0
-
-    Note that setting the minimum required CMake version to 2.8.11 is required for
-    automatic linking to the qtmain.lib library on Windows.
 
     In order for \c{find_package} to be successful, Qt 5 must be found below the CMAKE_PREFIX_PATH,
     or the Qt5<Module>_DIR must be set in the \c{CMake} cache to the location of the
@@ -98,53 +95,6 @@
 
     \snippet snippets/cmake/CMakeLists.pro 5
 
-    \section2 Using Qt 5 with \c{CMake} older than 3.1.0
-
-    Qt 5.7 requires C++11 support. \c{CMake} starting from version 3.1.0 implicitly adds the
-    minimum required compiler flags (e.g. \c{-std=gnu++11}) to the Qt5 module targets. If you use
-    \c{CMake} version older than 3.1.0, you need to add the needed \c{-std=...} to the targets
-    linking against Qt5 modules yourself.
-
-    If you use Qt 5.7 and a \c{CMake} version above 3.1.0, plus require a more recent C++ standard
-    version, use the CMake way of selecting the standard version, or specify features required and
-    let CMake compute the flags. Example:
-
-    \snippet snippets/cmake/CMakeLists.pro 6
-
-    Also see: \l{https://cmake.org/cmake/help/v3.1/manual/cmake-compile-features.7.html}{CMake cmake-compile-features Documentation}
-
-    \section2 Using Qt 5 with \c{CMake} older than 2.8.12
-
-    It is also necessary when using an older \c{CMake} to add Qt5<Module>_EXECUTABLE_COMPILE_FLAGS to
-    the CMAKE_CXX_FLAGS so that the -fPIC flags are added to the compile flags if necessary (as
-    is the default with Qt 5).
-
-    \section2 Using Qt 5 with \c{CMake} older than 2.8.11
-
-    The recommended way to use Qt libraries and headers with \c{CMake} prior to 2.8.11 is to use
-    the \c{qt5_use_modules} macro.
-
-    Note that it is necessary to use \c{find_package} to find a Qt module before using the macro.
-    See the documentation for the
-    \l{CMake find_package Documentation}
-    command for the full options it supports.
-
-    The \c{qt5_use_modules} macro encapsulates all of the variable usage required to use a Qt module.
-    It automatically finds the modules given to it on the command line if they have not already been found.
-
-    \snippet snippets/cmake/CMakeLists.pro 3
-
-    \section2 Using Qt 5 with \c{CMake} older than 2.8.9
-
-    If using \c{CMake} older than 2.8.9, the \c{qt5_use_modules} macro is not available. Attempting to use it
-    will result in an error.
-
-    To use Qt 5 with versions of \c{CMake} older than 2.8.9, it is necessary to use the
-    \c{target_link_libraries}, \c{include_directories}, and \c{add_definitions} commands, and to manually
-    specify moc requirements with either \c{qt5_generate_moc} or \c{qt5_wrap_cpp}:
-
-    \snippet snippets/cmake/CMakeLists.pro 4
-
     \section1 Variable Reference
 
     \section2 Module variables
@@ -159,8 +109,6 @@
 
     \list
     \li Qt5Widgets_VERSION String describing the version of the module.
-    \li Qt5Widgets_VERSION_STRING Same as Qt5Widgets_VERSION.
-        Deprecated, use Qt5Widgets_VERSION instead.
     \li Qt5Widgets_LIBRARIES List of libraries for use with the target_link_libraries command.
     \li Qt5Widgets_INCLUDE_DIRS List of directories for use with the include_directories command.
     \li Qt5Widgets_DEFINITIONS List of definitions for use with add_definitions.
