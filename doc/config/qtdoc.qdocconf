@@ -6,6 +6,9 @@ project                 = QtDoc
 description             = Qt Reference Documentation
 version                 = $QT_VERSION
 
+# Instruct Clang not to look for a module header
+moduleheader =
+
 depends += \
     activeqt \
     qdoc \
