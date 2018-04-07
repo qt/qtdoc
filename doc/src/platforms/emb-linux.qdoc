@@ -890,6 +890,19 @@
   KMS backend will by default use the legacy API, but you can enable the DRM
   atomic API with \c QT_QPA_EGLFS_KMS_ATOMIC environment variable set to 1.
 
+  Using a smaller framebuffer than screen resolution can also be useful.
+  This is possible with DRM atomic using the \c size parameter in the JSON file.
+  The example below uses a 1280x720 framebuffer on a 3840x2160 videomode :
+
+  \badcode
+    {
+      "device": "/dev/dri/card0",
+      "outputs": [
+        { "name": "HDMI1", "mode": "3840x2160", "size": "1280x720", "format": "argb8888" }
+      ]
+    }
+  \endcode
+
   \section2 eglfs with eglfs_kms_egldevice backend
 
   This backend, typically used on Tegra devices, is similar to the KMS/DRM
