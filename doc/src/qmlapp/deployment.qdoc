@@ -66,7 +66,7 @@ The \l{Downloads}{Qt Installers} install the QML libraries in
 The QML runtime loads QML documents by parsing them and generating byte code.
 Most of the time the document hasn't changed since the last time it was loaded.
 In order to speed up this loading process, the QML runtime maintains a cache
-file for each qml document. This cache file contains the byte code and a
+file for each qml document. This cache file contains the compiled byte code and a
 binary representation of the QML document structure. In addition, when multiple
 applications use the same QML document, the memory needed for the code is
 shared between application processes. The cache files are loaded via the \c
@@ -80,59 +80,49 @@ of QStandardPaths::CacheLocation with the name "qmlcache". The file extension
 is \c .qmlc for QML documents and \c .jsc for imported JavaScript modules.
 On the Android platform, cache files are always stored in the cache directory.
 
-\section1 QML Caching for Deployment (Preview)
+\section1 Compiling QML Ahead of Time
 
-The automatic caching of QML documents into cache files result in significantly
-faster load times of applications. However, the initial creation of cache files
-can still take time, especially when the application starts first. To avoid
-that initial step and provide faster start-up times from the very beginning,
-Qt's build system allows you to create these cache files in advance.
+The automatic caching of compiled QML documents into cache files results in
+significantly faster load times of applications. However, the initial creation
+of cache files can still take time, especially when the application starts for
+the very first time. To avoid that initial step and provide faster start-up
+times from the very beginning, Qt's build system allows you to perform the
+compilation step for QML files at the same time as the rest of your
+application.
 
-If you would like to deploy your application with cache files generated ahead
-of time, you must satisfy four conditions in your \c .pro file:
+If you would like to deploy your application with QML files compiled ahead of
+time, then you must organize the files and the build system in a specific way:
 
 \list
-\li All QML documents (including JavaScript files) must be added to the
-\c QML_FILES variable.
-\li Your .pro file must use the \c load(qml_module) or \c load(qml_plugin)
-directive at the end, to activate the processing of \c QML_FILES and generation
-of install rules.
-\li The \c TARGETPATH variable must contain the import name of your QML
-module with forward slashes as separators.
-\li You must enable Ahead-of-Time caching using the \c CONFIG+=qmlcache directive.
+\li All QML documents (including JavaScript files) must be included as resources
+through \l{The Qt Resource System}{Qt's Resource system}.
+\li Your application must load the QML documents via the \c qrc:/// URL scheme.
+\li You can enable Ahead-of-Time compilation using the \c CONFIG+=qtquickcompiler directive.
+\li If you are using the CMake build system, then you can achieve this inserting a
+\c find_package(Qt5QuickCompiler) call into your \c CMakeLists.txt and replace the use of
+of \c qt5_add_resources with \c qtquick_compiler_add_resources .
 \endlist
 
-For example if you are developing the module \c MyCompany.CommonComponents,
-then your \c .pro file could look like this:
-
-\code
-TARGETPATH = MyCompany/CommonComponents
-QML_FILES = BlueButton.qml RedSlider.qml qmldir
-CONFIG += qmlcache
-load(qml_module)
-\endcode
-
-Similarly, if your module contains a C++ plugin then you use \c qml_plugin:
-
-\code
-TARGETPATH = MyCompany/CommonComponents
-QML_FILES = BlueButton.qml RedSlider.qml qmldir
-CONFIG += qmlcache
-SOURCES = plugin.cpp
-QT += quick
-load(qml_plugin)
-\endcode
-
-In these examples the QML module consisting of the QML documents, the \c qmldir
-file, and optionally the C++ plugin, will be installed into the
-MyCompany/CommonComponents sub-directory of \c $$[QT_INSTALL_QML]. By enabling
-the \c qmlcache configuration, the cache files will be created at build time
-and also installed into the same directory for deployment.
+One added benefit of this way of developing and deploying the application is
+that you will be notified of syntax errors in your QML documents at application
+compile time, instead of run-time when loading the file.
 
 \section2 Limitations
 
-Currently this feature has the limitation that only QML and JavaScript
-documents that are part of a QML module can be compiled ahead of time.
+Currently this feature will tie your application to the Qt version you are
+compiling against, because it will replace the QML document source code in the
+resources with the compiled binary version. The source files are not present
+anymore. That means that when using the same application against a different
+version of Qt without recompiling it, loading the QML documents will fail with
+an error message.
+
+The Ahead-of-Time compilation is implemented this way because the feature
+originates from an add-on for use in commercial application environments, where
+the deployment of source code is not desirable and requiring a recompilation
+when changing Qt is usually acceptable.
+
+We plan to implement support for retaining the source documents in a future
+version of Qt.
 
 \section1 Prototyping with QML Scene
 
