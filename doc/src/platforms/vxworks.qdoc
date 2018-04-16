@@ -39,6 +39,8 @@
   Qt 5.5 is currently tested and supported on VxWorks 7 release SR0480 2016-09-16.
   Supported architecture is ARM-v7.
 
+  If you are interested in later Qt releases, please \l {https://www.qt.io/contact-us/}{contact} Qt professional services.
+
   \section1 Qt for VxWorks Source Package
 
   Qt for VxWorks is delivered via the \l {Qt Account}, under the name
@@ -199,7 +201,7 @@
   use shared libraries. To build Qt 5 statically, add \c -static option for configure.
 
   \badcode
-    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd0:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_6_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
+    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
   \endcode
 
   The most important parameters are \c -device, \c -device-option CROSS_COMPILE=<arch>,
