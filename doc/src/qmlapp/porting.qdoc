@@ -233,8 +233,8 @@ an overview of creating QML plugins in Qt 5.
 
 \section2 QtDeclarative module in Qt 5
 
-For the purposes of porting older applications, the \c {QtDeclarative} module is still available in Qt
-5 but has been renamed to \c {Qt Quick 1}. Applications that required Qt Quick 1 specific API (e.g.
+For the purposes of porting older applications, the \c {QtDeclarative} module has been available until
+Qt 5.6 but has been renamed to \c {Qt Quick 1}. Applications that required Qt Quick 1 specific API (e.g.
 QDeclarativeView or QDeclarativeItem and the Graphics View integration) can use this module. Note
 that new applications should use the new \l {Qt QML} and \l {Qt Quick} modules instead.
 
