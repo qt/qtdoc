@@ -467,6 +467,24 @@
     This allows you to produce universal applications with valid LaunchImages as required by the Apple App Store.
     \important \c "launch_images" is used internally by Qt, so it will be overwritten if used in your .pro file.
 
+    \section2 Native Image Picker
+
+    If your \c Info.plist file contains an entry for \c NSPhotoLibraryUsageDescription, qmake will
+    automatically include an extra plugin which enables access to the native image picker. If the directory
+    in your QFileDialog is set to:
+
+    \badcode
+    QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).last();
+    \endcode
+
+    or alternatively the folder in a FileDialog in QML to:
+
+    \badcode
+    shortcuts.pictures
+    \endcode
+
+    then the native image picker is shown to allow access to the user's photo album.
+
     \section2 Expressing Supported iOS Versions
 
     \include expressing-apple-os-versions.qdocinc expressing os versions
