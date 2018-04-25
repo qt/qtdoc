@@ -36,6 +36,17 @@
 
     \section1 Qt 5.11
 
+    \section2 Qt 3D Module
+
+    \list
+        \li The \l{Open Asset Import Library} got updated to upstream version
+            4.1.0.
+        \li Examples use some assets from \l{Substance Share} that are available
+            under the \e {Creative Commons Attribution 4.0} license. This is now
+            documented.
+    \endlist
+
+
     \section2 Qt Core Module
     \list
         \li \e{Parts of QTemporaryFile} got removed from documentation.
@@ -78,17 +89,43 @@
 
     \section2 Qt Quick Controls 2 Module
 
-    Use of \l{Shadow values from Angular Material} under MIT License
+    Use of \l{Shadow values from Angular Material} under \e{MIT License}
     in the Material Style is now documented.
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to version 3.22.0.
+    \l{SQLite} got updated to upstream version 3.23.1.
 
     \section2 Qt Test Module
 
-    The License of \l{Linux Performance Events} got updated to say
+    The concluded license of \l{Linux Performance Events} changed to
     \e{GNU General Public License v2.0 only with Linux Syscall Note}.
+
+    \section2 Qt WebEngine Module
+
+    \list
+        \li \l{(Components of) Bazel} got added under the
+            \e {Apache License 2.0}.
+        \li \l{Breakpad, An open-source multi-platform crash reporting system}
+            got added under a \e{New BSD, Apple PSL 2.0 and Apache 2.0} license.
+        \li \l{BoringSSL} got updated.
+        \li \l{CRC32C} got added under a \e{New BSD} license.
+        \li \e{Error Prone} got removed.
+        \li \l{Fiat-Crypto: Synthesizing Correct-by-Construction Code for
+            Cryptographic Primitives} got added under a \e{MIT} license.
+        \li \l{OpenVR SDK} got added under a \e{BSD 3-Clause} license.
+        \li \l{Perfetto} got added under a \e{Apache 2} license.
+        \li \e{The library to input, validate, and display addresses} got
+            removed.
+        \li \l{content_shell_fonts} got added under
+            \e{SIL OPEN FONT LICENSE, GPL v2, Bitstream Vera Fonts Copyright}.
+        \li \e{libcxx} got removed.
+        \li \e{libcxxabi} got removed.
+        \li \e{libunwind} got removed.
+        \li \e{libva} got removed.
+        \li \e{libxslt} got added under a \e{MIT} license.
+        \li \e{open-vcdiff} got removed.
+    \endlist
 
     \section2 Qt XML Patterns Module
 
