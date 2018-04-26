@@ -183,10 +183,12 @@
     thread.
 
     Each WorkerScript instance can have one \c{.js} script attached to it. When
-    WorkerScript::sendMessage() is called, the script will run in a separate thread
-    (and a separate \l{QQmlContext}{QML context}). When the script finishes
-    running, it can send a reply back to the GUI thread which will invoke the
-    WorkerScript::onMessage() signal handler.
+    \l {QtQml::WorkerScript::sendMessage()}{WorkerScript.sendMessage}() is
+    called, the script will run in a separate thread (and a separate
+    \l{QQmlContext}{QML context}). When the script finishes running, it can
+    send a reply back to the GUI thread which will invoke the
+    \l {QtQml::WorkerScript::message()}{WorkerScript.onMessage}() signal
+    handler.
 
     Using a WorkerScript is similar to using a worker QObject that has been moved
     to another thread. Data is transferred between threads via signals.
@@ -306,10 +308,11 @@
         \li Perfrom a long computation in a pure QML application, and update the GUI
             when the results are ready.
         \li Place the computation code in a \c{.js} script and attach it to a
-            WorkerScript instance. Call \l{WorkerScript::}{sendMessage()} to start the
-            computation in a new thread. Let the script call WorkerScript::sendMessage()
-            too, to pass the result back to the GUI thread. Handle the result in
-            \c onMessage and update the GUI there.
+            WorkerScript instance. Call
+            \l{QtQml::WorkerScript::sendMessage()}{WorkerScript.sendMessage}()
+            to start the computation in a new thread. Let the script call
+            sendMessage() too, to pass the result back to the GUI thread.
+            Handle the result in \c onMessage and update the GUI there.
     \row
         \li Permanent
         \li Have an object living in another thread that can perform different
