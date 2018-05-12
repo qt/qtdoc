@@ -162,6 +162,9 @@
         \li On Windows Desktop, the accessibility support was updated and
             vastly improved. The implementation is now based on Microsoft UI
             Automation (it was formerly based on Microsoft Active Accessibility).
+        \li The widgets themes available on Windows Desktop were updated to
+            better support High-DPI displays, including fixes for several
+            rendering issues, providing improved appearance and functionality.
         \li Linux Printing now supports more CUPS options with the advanced tab
             in QPrintPropertiesDialog, allowing many additional settings
             (amongst them arbitrary page ranges).
@@ -170,6 +173,11 @@
     \endlist
 
     \section2 Qt Widgets Module
+    \list
+        \li Added quick text selection by mouse to QLineEdit.
+    \endlist
+
+    \section2 Qt Serial Bus Module
     \list
         \li Added J2534 Pass-Thru CAN plugin for communication between a
             computer and a vehicle.
@@ -194,6 +202,7 @@
     \section1 Platform Changes
     \list
         \li MSVC2013 support removed from the code base.
+        \li Qt WebEngine now requires MSVC 2017 on Windows.
         \li QNX 6.6 no longer supported (note: QNX 7 remains fully supported).
         \li macOS 10.10 no longer supported.
         \li Improved Accessibility support on Win32 by adopting the Windows UI
