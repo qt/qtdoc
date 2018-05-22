@@ -81,11 +81,14 @@ sourcedirs  += \
 
 exampledirs += \
     ../src \
-    ../snippets
+    ../snippets \
+    ../../examples/demos
 
 # Don't parse files in snippets directory
 excludedirs += \
     ../src/snippets
+
+examplesinstallpath           = demos
 
 qhp.projects            = QtDoc
 
