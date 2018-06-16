@@ -1,2 +1,3 @@
-TEMPLATE = subdirs
-SUBDIRS = doc
+load(qt_parts)
+
+SUBDIRS += doc
