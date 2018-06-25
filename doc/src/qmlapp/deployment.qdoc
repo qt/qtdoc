@@ -74,11 +74,9 @@ mmap() system call on POSIX compliant operating systems or \c
 CreateFileMapping() on Windows, resulting in significant memory savings.
 
 Each time you load a changed QML document, the cache is automatically
-re-created. Cache files are located in the same directory as the source code,
-if the directory is writable. Otherwise they will be placed in a sub-directory
-of QStandardPaths::CacheLocation with the name "qmlcache". The file extension
-is \c .qmlc for QML documents and \c .jsc for imported JavaScript modules.
-On the Android platform, cache files are always stored in the cache directory.
+re-created. Cache files are located in a sub-directory of
+QStandardPaths::CacheLocation with the name "qmlcache". The file extension is \c
+.qmlc for QML documents and \c .jsc for imported JavaScript modules.
 
 \section1 Compiling QML Ahead of Time
 
