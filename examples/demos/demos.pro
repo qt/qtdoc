@@ -1,6 +1,20 @@
 TEMPLATE = subdirs
 
 qtHaveModule(quick) {
-    SUBDIRS += coffee
-}
+    SUBDIRS += \
+        samegame \
+        calqlatr \
+        clocks \
+        tweetsearch \
+        maroon \
+        photosurface \
+        stocqt
 
+    qtHaveModule(quickcontrols2) {
+        SUBDIRS += coffee
+    }
+
+    qtHaveModule(xmlpatterns) {
+        SUBDIRS += rssnews photoviewer
+    }
+}
