@@ -65,7 +65,9 @@ Rectangle {
     }
 
     color: "gray"                                           // object properties
-    x: 20; y: 20; height: 150                               // try to group related properties together
+    x: 20                                                   // try to group related properties together
+    y: 20
+    height: 150
     width: {                                                // large bindings
         if (photoImage.width > 200) {
             photoImage.width;
@@ -78,7 +80,10 @@ Rectangle {
         id: border
         anchors.centerIn: parent; color: "white"
 
-        Image { id: photoImage; anchors.centerIn: parent }
+        Image {
+            id: photoImage
+            anchors.centerIn: parent
+        }
     }
 
     states: State {                                         // states
@@ -87,7 +92,8 @@ Rectangle {
     }
 
     transitions: Transition {                               // transitions
-        from: ""; to: "selected"
+        from: ""
+        to: "selected"
         ColorAnimation { target: border; duration: 200 }
     }
 }
