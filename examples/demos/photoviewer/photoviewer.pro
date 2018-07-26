@@ -14,6 +14,8 @@ SOURCES = *.qml \
 TRANSLATIONS += i18n/qml_fr.ts \
                 i18n/qml_de.ts
 
+EXTRA_TRANSLATIONS += i18n/qml_en.ts
+
 RESOURCES += qml.qrc
 
 target.path = $$[QT_INSTALL_EXAMPLES]/demos/photoviewer
