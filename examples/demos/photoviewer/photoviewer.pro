@@ -1,10 +1,11 @@
 TEMPLATE = app
 
 QT += qml quick xmlpatterns
+CONFIG += lrelease embed_translations
 
 SOURCES += main.cpp
 
-lupdate_only{
+lupdate_only {
 SOURCES = *.qml \
           PhotoViewerCore/*.qml \
           PhotoViewerCore/script/*.js
