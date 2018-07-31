@@ -99,7 +99,7 @@
         <key>NSHighResolutionCapable</key>
         <string>True</string>
     \endcode
-    Never versions of qmake will generate Info.plist's with the NSPrincipalClass key,
+    Newer versions of qmake will generate Info.plist's with the NSPrincipalClass key,
     which is sufficient since NSHighResolutionCapable is true by default.
 
     \note \macos and iOS may apply further virtualization such that device pixels do not
