@@ -4,7 +4,7 @@ QT += qml quick
 SOURCES += main.cpp
 
 RESOURCES += calqlatr.qrc \
-    ../../shared/shared.qrc
+    ../shared/shared.qrc
 
 OTHER_FILES = calqlatr.qml \
     content/Button.qml \

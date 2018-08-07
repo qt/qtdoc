@@ -47,5 +47,5 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include "../../shared/shared.h"
+#include "../shared/shared.h"
 DECLARATIVE_EXAMPLE_MAIN(demos/calqlatr/calqlatr)
