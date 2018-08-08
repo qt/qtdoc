@@ -15,6 +15,9 @@ qtHaveModule(quick) {
     }
 
     qtHaveModule(xmlpatterns) {
-        SUBDIRS += rssnews photoviewer
+        SUBDIRS += rssnews
+        qtHaveModule(quickcontrols) {
+            SUBDIRS += photoviewer
+        }
     }
 }
