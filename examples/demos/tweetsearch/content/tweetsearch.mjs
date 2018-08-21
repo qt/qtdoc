@@ -48,15 +48,13 @@
 **
 ****************************************************************************/
 
-.pragma library
-
-function formatDate(date)
+export function formatDate(date)
 {
     var da = new Date(date)
     return da.toDateString()
 }
 
-function demoToken()
+export function demoToken()
 {
     var a = new Array(22).join('A')
     return a + String.fromCharCode(0x44, 0x69, 0x4a, 0x52, 0x51, 0x41, 0x41, 0x41, 0x41,
@@ -83,7 +81,7 @@ function textForEntity(entity)
            (entity.screen_name ? entity.screen_name : entity.text))
 }
 
-function insertLinks(text, entities)
+export function insertLinks(text, entities)
 {
     if (typeof text !== 'string')
         return "";

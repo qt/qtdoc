@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import "tweetsearch.js" as Helper
+import "tweetsearch.mjs" as Helper
 
 Item {
     id: container

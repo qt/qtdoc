@@ -6,7 +6,7 @@ RESOURCES += tweetsearch.qrc
 
 OTHER_FILES = tweetsearch.qml \
               content/*.qml \
-              content/*.js \
+              content/*.mjs \
               content/resources/*
 
 target.path = $$[QT_INSTALL_EXAMPLES]/demos/tweetsearch

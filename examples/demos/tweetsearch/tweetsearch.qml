@@ -50,7 +50,7 @@
 
 import QtQuick 2.0
 import "content"
-import "content/tweetsearch.js" as Helper
+import "content/tweetsearch.mjs" as Helper
 
 Rectangle {
     id: main
