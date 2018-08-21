@@ -67,7 +67,6 @@ Item {
     property string phrase : ""
 
     property int status: XMLHttpRequest.UNSENT
-    property bool isLoading: status === XMLHttpRequest.LOADING
     property bool wasLoading: false
     signal isLoaded
 
