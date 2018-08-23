@@ -28,7 +28,7 @@ RESOURCES += main.qml \
              PhotoViewerCore/images/box-shadow.png \
              PhotoViewerCore/images/busy.png \
              PhotoViewerCore/images/cardboard.png \
-             PhotoViewerCore/script/script.js \
+             PhotoViewerCore/script/script.mjs \
 
 
 target.path = $$[QT_INSTALL_EXAMPLES]/demos/photoviewer
