@@ -50,7 +50,7 @@
 
 import QtQuick 2.0
 import "content"
-import "content/tweetsearch.js" as Helper
+import "content/tweetsearch.mjs" as Helper
 
 Rectangle {
     id: main
@@ -60,7 +60,6 @@ Rectangle {
 
     property int inAnimDur: 250
     property int counter: 0
-    property alias isLoading: tweetsModel.isLoading
     property var idx
     property var ids
 

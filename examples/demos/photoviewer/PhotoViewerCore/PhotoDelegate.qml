@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import "script/script.js" as Script
+import "script/script.mjs" as Script
 
 Package {
     Item { id: stackItem; Package.name: 'stack'; width: 160; height: 153; z: stackItem.PathView.z }

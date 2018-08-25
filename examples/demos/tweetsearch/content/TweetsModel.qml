@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import "tweetsearch.js" as Helper
+import "tweetsearch.mjs" as Helper
 
 Item {
     id: wrapper
@@ -66,9 +66,6 @@ Item {
     property string from : ""
     property string phrase : ""
 
-    property int status: XMLHttpRequest.UNSENT
-    property bool isLoading: status === XMLHttpRequest.LOADING
-    property bool wasLoading: false
     signal isLoaded
 
     ListModel { id: tweets }
@@ -86,22 +83,17 @@ Item {
         req.open("GET", "https://api.twitter.com/1.1/search/tweets.json?from=" + from +
                         "&count=10&q=" + encodePhrase(phrase));
         req.setRequestHeader("Authorization", "Bearer " + bearerToken);
-        req.onreadystatechange = function() {
-            status = req.readyState;
-            if (status === XMLHttpRequest.DONE) {
-                var objectArray = JSON.parse(req.responseText);
-                if (objectArray.errors !== undefined)
-                    console.log("Error fetching tweets: " + objectArray.errors[0].message)
-                else {
-                    for (var key in objectArray.statuses) {
-                        var jsonObject = objectArray.statuses[key];
-                        tweets.append(jsonObject);
-                    }
+        req.onload = function() {
+            var objectArray = JSON.parse(req.responseText);
+            if (objectArray.errors !== undefined) {
+                console.log("Error fetching tweets: " + objectArray.errors[0].message)
+            } else {
+                for (var key in objectArray.statuses) {
+                    var jsonObject = objectArray.statuses[key];
+                    tweets.append(jsonObject);
                 }
-                if (wasLoading == true)
-                    wrapper.isLoaded()
             }
-            wasLoading = (status === XMLHttpRequest.LOADING);
+            wrapper.isLoaded()
         }
         req.send();
 //! [requesting]
