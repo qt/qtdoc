@@ -50,7 +50,7 @@
 
 /*!
 
-    \example coffee
+    \example demos/coffee
     \title Coffee Machine Example
     \ingroup examples-tutorials
 
@@ -71,12 +71,12 @@
     and \c animation2 in CoffeeButton.qml.  On the right side, you will see
     the coffee blend you selected.
 
-    \snippet coffee/CoffeeButton.qml 0
+    \snippet demos/coffee/CoffeeButton.qml 0
 
     It also triggers cappuccinoButton.onClicked(), which sets the default
     mix for the coffee type selected:
 
-    \snippet coffee/SideBar.qml 0
+    \snippet demos/coffee/SideBar.qml 0
 
     \borderedimage coffee_machine_selection.png
     \caption Coffee blend cappuccino
@@ -86,7 +86,7 @@
     If you click "Brew me a cup", choosingCoffee.brewButtonSelection.onClicked
     is triggered:
 
-    \snippet coffee/ApplicationFlow.qml 0
+    \snippet demos/coffee/ApplicationFlow.qml 0
 
     On the right side of the screen, you will see two sliders, one for
     the amount of milk, and one for sugar. They will have default values,
@@ -97,18 +97,18 @@
     If you click on \c Brew, \c choosingCoffee.brewButton.onClicked() is triggered,
     which displays a screen with the message "Please insert cup into tray".
 
-    \snippet coffee/ApplicationFlow.qml 2
+    \snippet demos/coffee/ApplicationFlow.qml 2
 
     \borderedimage coffee_machine_emptycup.png
 
     Clicking on \c Continue starts the brewing of the coffee type you
     selected.
 
-    \snippet coffee/ApplicationFlow.qml 1
+    \snippet demos/coffee/ApplicationFlow.qml 1
 
     The brewing process is defined as follows in \c Brewing.qml:
 
-    \snippet coffee/Brewing.qml 0
+    \snippet demos/coffee/Brewing.qml 0
 
     After completion, the application returns to the start screen.
 */

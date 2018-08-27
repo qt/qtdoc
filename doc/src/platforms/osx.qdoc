@@ -163,15 +163,22 @@
 */
 
 /*!
-    \page osx-requirements.html
-    \title Qt for macOS - Requirements
-    \brief Setting up the \macos environment for Qt.
+    \page osx-building.html
+    \title Qt for macOS - Building from Source
+    \brief How to install Qt on \macos.
 
-    Qt requires Xcode to be installed on the system. You can get it from:
+    \section1 Requirements
 
-    \l{http://developer.apple.com/xcode/}
+    Qt requires a macOS platform SDK and corresponding toolchain to be installed
+    on the system. You can get this by installing the Xcode command line tools:
 
-    \section1 Required Compiler Versions
+    \code
+    xcode-select --install
+    \endcode
+
+    Or by downloading and installing \l{https://developer.apple.com/xcode/}{Xcode}.
+
+    \section2 Compiler Versions
 
     Qt for macOS is tested and compatible with several versions of GCC (GNU
     Compiler Collection) and Clang (as available from Xcode). For a list of
@@ -179,25 +186,13 @@
     the \l{Community Supported Platforms#Reference Configurations}{supported platforms}
     page.
 
-    \section2 OS X on PowerPC hardware
+    \section1 Steps for Building
 
-    Qt 5 does not support OS X on PowerPC.
-
-*/
-
-/*!
-    \page osx-building.html
-    \title Qt for macOS - Building from Source
-    \brief How to install Qt on \macos.
-
-    Qt for macOS has some requirements that are given in more detail
-    in the \l{Qt for macOS Requirements} document.
-
-    The following instructions describe how to install Qt from the source package.
+    The following instructions describe how to build Qt from the source package.
     You can download the Qt 5 sources from the \l{Downloads} page. For
     more information, visit the \l{Getting Started with Qt} page.
 
-    \section1 Step 1: Install the License File (Commercially Licensed Qt Only)
+    \section2 Step 1: Install the License File (Commercially Licensed Qt Only)
 
     If you use Qt with a commercial license, the Qt tools look for a local license file.
     If you are using a binary installer or the commercial Qt Creator, your licenses
@@ -210,7 +205,7 @@
     different location or file name, you need to set the \c{QT_LICENSE_FILE}
     environment variable to the respective file path.
 
-    \section1 Step 2: Unpack the Archive
+    \section2 Step 2: Unpack the Archive
 
         Unpack the archive if you have not done so already. For example,
         if you have the \c{qt-everywhere-opensource-src-%VERSION%.tar.gz}
@@ -221,7 +216,7 @@
         This creates the directory \c{/tmp/qt-everywhere-opensource-src-%VERSION%}
         containing the files from the archive.
 
-    \section1 Step 3: Build the Qt Library
+    \section2 Step 3: Build the Qt Library
 
         To configure the Qt library for your machine type, run the
         \c{./configure} script in the package directory.
@@ -259,7 +254,7 @@
         \note There is a potential race condition when running make install with multiple
         jobs. It is best to only run one make job (-j1) for the install.
 
-    \section1 Step 4: Set the Environment Variables
+    \section2 Step 4: Set the Environment Variables
 
         In order to use Qt, some environment variables need to be
         extended.
@@ -281,6 +276,19 @@
 
     \b {That's all. Qt is now installed.}
 
+    \section1 Limitations
+
+    \section2 PowerPC hardware
+
+    Qt 5 does not support macOS on PowerPC.
+
+    \section2 Fink
+
+    If you have installed the Qt for X11 package from \l{http://www.finkproject.org/}{Fink},
+    it will set the \c QMAKESPEC environment variable to \c darwin-g++. This will cause
+    problems when you build the Qt for macOS package. To fix this, simply unset your \c
+    QMAKESPEC or set it to \c macx-g++ before you run \c configure. To get a
+    fresh Qt distribution, run \c{make confclean} on the command-line.
 */
 
 /*!
@@ -608,14 +616,6 @@
     \endcode
 
     \section1 Limitations
-
-    \section2 Fink
-
-    If you have installed the Qt for X11 package from \l{Fink}, it will set the
-    \c QMAKESPEC environment variable to \c darwin-g++. This will cause problems when
-    you build the Qt for macOS package. To fix this, simply unset your \c
-    QMAKESPEC or set it to \c macx-g++ before you run \c configure. To get a
-    fresh Qt distribution, run \c{make confclean} in the command-line.
 
     \section2 MySQL and \macos
 
