@@ -183,6 +183,11 @@
 
     Qt 5 does not support OS X on PowerPC.
 
+    \section1 QDoc Dependencies
+    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
+    for specific build requirements.
+
 */
 
 /*!

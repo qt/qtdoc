@@ -438,10 +438,18 @@
     using the clang-cl tool to build Qt. Clang 3.8 does not support precompiled
     headers.
 
+    \sa {QDoc Dependencies}
+
     \section2 Building Qt WebEngine
 
     \l{Qt WebEngine} has additional build requirements which are listed in the
     \l{Qt WebEngine Platform Notes}.
+
+    \section1 QDoc Dependencies
+    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
+    for specific build requirements.
+
 */
 
 /*!
