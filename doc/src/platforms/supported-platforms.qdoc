@@ -41,7 +41,7 @@
 
     Qt is supported on a variety of 32-bit and 64-bit platforms,
     and can usually be built on each platform with GCC, a vendor-supplied
-    compiler, or a third party compiler. Open GL (ES) 2.0,
+    compiler, or a third-party compiler. Open GL (ES) 2.0,
     DirectX 9 or 11 (with ANGLE), or an \l {Qt Quick 2D Renderer} {alternative
     renderer} is required for \l [QtQuick] {Qt Quick} 2.
     \l [QtWidgets] {Qt Widgets}{Widgets} can be used without
@@ -140,12 +140,22 @@
     platform/compiler combination against the test suite available as part of
     Qt.
 
-    \note Individual modules might be available only on some platforms, or
-    they might not support all configurations. For more information, see the
-    documentation for each module.
+    \section2 Exceptions
+    Individual modules might be available only on some platforms, or they might
+    not support all configurations. For example, as Qt WebEngine has Chromium
+    as a third-party dependency, platform or configuration limitations upstream
+    also apply to Qt WebEngine.
 
-    \b {See also}: \l {http://doc.qt.io/QtForDeviceCreation/qtee-supported-platforms.html}
-                      {Qt for Device Creation: Supported Platforms}.
+    The documentation for each module contains detailed information about any
+    exceptions the module has from the general platform and configuration
+    support as described on this page.
+
+    \b {See also}:
+    \list
+        \li \l {http://doc.qt.io/QtForDeviceCreation/qtee-supported-platforms.html}
+               {Qt for Device Creation: Supported Platforms}
+        \li \l {Qt WebEngine Platform Notes}
+    \endlist
 
     \include supported-platforms.qdocinc all
 */
