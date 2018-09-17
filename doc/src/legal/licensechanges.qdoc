@@ -34,6 +34,41 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 5.11.2
+
+    \section2 Qt Core Module
+
+    \l{PCRE2} got updated to upstream version 10.31.
+
+    \section2 Qt GUI Module
+
+    \list
+        \li The copyright information for \l{HarfBuzz} got updated.
+        \li The copyright information for
+            \l{Anti-aliasing rasterizer from FreeType 2} got updated.
+    \endlist
+
+    \section2 Qt Location Module
+
+    The copyright information and description of
+    \l{Clipper Polygon Clipping Library} got updated.
+
+    \section2 Qt SQL Module
+
+    \l{SQLite} got updated to upstream version 3.24.0.
+
+    \section2 Qt WebEngine Module
+
+    \list
+        \li Chromium received backported security fixes from Chromium up to version
+            68.0.3440.75.
+        \li The \l{WebEngine StyleSheet Browser Example}, \l{WebEngine Widgets Simple Browser Example},
+            \l{WebEngine Quick Nano Browser}, and \l{WebEngine Cookie Browser Example}
+            use images from the Tango Icon Library. This is now documented.
+        \li \l{Marked (WebEngine RecipeBrowser example)} got updated to upstream
+            version 0.4.0.
+    \endlist
+
     \section1 Qt 5.11.1
 
     \section2 Qt 3D Module
