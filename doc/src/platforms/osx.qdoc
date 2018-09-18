@@ -186,6 +186,12 @@
     the \l{Community Supported Platforms#Reference Configurations}{supported platforms}
     page.
 
+    \section1 QDoc Dependencies
+
+    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
+    for specific build requirements.
+
     \section1 Steps for Building
 
     The following instructions describe how to build Qt from the source package.
