@@ -29,33 +29,35 @@
 \title Use Case - Responding To User Input in QML
 \brief Example of how to accept user input and respond to it in a QML application
 
-\section1 Supported Types of User Input
+\section1 Supported types of user input
 
 The \l {Qt Quick} module provides support for the most common types of user input,
-including mouse and touch events, text input and key-press events.  Other
-modules provide support for other types of user input (for example, the
-\l {Qt Sensors} module provides support for shake-gestures in QML applications).
+including mouse and touch events, text input, and key-press events.  Other
+modules provide support for other types of user input for example, the
+\l {Qt Sensors} module provides support for shake-gestures in QML applications.
 
 This article covers how to handle basic user input; for further information
-about motion-gesture support, please see the \l {Qt Sensors} documentation. For
-information about audio-visual input, please see the \l {Qt Multimedia} documentation.
+about motion-gesture support, see the \l {Qt Sensors} documentation. For
+information about audio-visual input, see the \l {Qt Multimedia} documentation.
 
-\section2 Mouse and Touch Events
+\section2 Mouse and touch events
 
-The \l MouseArea type allows mouse and touch events to be handled in a QML
-application.  A \l MouseArea can be combined with either an \l Image or a
-\l Rectangle and \l Text object to implement a simple button.
+The \l{Input Handlers}{input handlers} let QML applications handle mouse and
+touch events. For example, you could create a button by adding a
+\l TapHandler to an Image, or to a \l Rectangle with a \l Text object inside.
+The \l TapHandler responds to taps or clicks on any type of pointing device.
 
 \snippet qmlapp/usecases/userinput.qml 0
 
-For more advanced use cases requiring multiple touch points, please read the
-documentation for the \l MultiPointTouchArea type and the \l PinchArea type.
+For more advanced use cases such as, drag, pinch and zoom gestures, see
+documentation for the \l DragHandler and \l PinchHandler types.
 
-Note that some types have their own built in input handling. For example,
-\l Flickable responds to mouse dragging, mouse wheel scrolling, touch dragging,
-and touch flicking by default.
+\note Some types have their own built-in input handling. For example,
+\l Flickable responds to mouse dragging and mouse wheel scrolling. It handles
+touch dragging and flicking via synthetic mouse events that are created when
+the touch events are not handled.
 
-\section2 Keyboard and Button Events
+\section2 Keyboard and button events
 
 Button and key presses, from buttons on a device, a keypad, or a keyboard,
 can all be handled using the \l Keys attached property. This attached property
@@ -65,19 +67,12 @@ to true on a single \l Item and do all your key handling there.
 
 \snippet qmlapp/usecases/userinput-keys.qml 0
 
-For text input the \l {Qt Quick} module provides several built-in types.
-In particular, the \l TextInput and \l TextEdit types allow for single-line
-entry and multi-line editing respectively.
+For text input, we have several QML types to choose from. TextInput provides an
+unstyled single-line editable text, while TextField is more suitable for
+form fields in applications. TextEdit can handle multi-line editable text,
+but TextArea is a better alternative as it adds styling.
 
-Here is all you need to get a working TextInput:
+The following snippet demonstrates how to use these types in your application:
 
-\code
-import QtQuick 2.3
-
-TextInput {
-    focus: true
-    text: "Initial Text"
-}
-\endcode
-
+\snippet qmlapp/usecases/userinput-text.qml 0
 */

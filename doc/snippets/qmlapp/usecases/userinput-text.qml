@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2018 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -50,29 +50,42 @@
 
 //![0]
 import QtQuick 2.12
+import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.3
 
-Item {
-    id: root
+ApplicationWindow {
+    width: 300
+    height: 200
+    visible: true
 
-    width: 320
-    height: 480
+    ColumnLayout {
+        anchors.fill: parent
+        TextField {
+            id: singleline
+            text: "Initial Text"
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.margins: 5
+            background: Rectangle {
+               implicitWidth: 200
+               implicitHeight: 40
+               border.color: singleline.focus ? "#21be2b" : "lightgray"
+               color: singleline.focus ? "lightgray" : "transparent"
+            }
+        }
 
-    Rectangle {
-        color: "#272822"
-        width: 320
-        height: 480
-    }
-
-    Rectangle {
-        id: rectangle
-        x: 40
-        y: 20
-        width: 120
-        height: 120
-        color: "red"
-
-        TapHandler {
-            onTapped: rectangle.width += 10
+        TextArea {
+            id: multiline
+            placeholderText: "Initial text\n...\n...\n"
+            Layout.alignment: Qt.AlignLeft
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.margins: 5
+            background: Rectangle {
+               implicitWidth: 200
+               implicitHeight: 100
+               border.color: multiline.focus ? "#21be2b" : "lightgray"
+               color: multiline.focus ? "lightgray" : "transparent"
+            }
         }
     }
 }
