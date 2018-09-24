@@ -281,21 +281,44 @@
 
     \section2 Other Utilities on the Target Device
 
-    Most of the OS build scripts include a set of standard command line utilities.
-    A few more utilities are expected by Qt Creator and should be provided on a target:
+    QNX provides board support packages (BSPs) for many common platforms and
+    their individual variants. However, if you need a BSP for a board that QNX
+    does not provide, you can modify an existing one or develop your own.
+
+    When you develop a BSP for your board, you should include the following
+    utilities to enable Qt Creator to run, debug, and stop applications on QNX
+    devices:
 
     \list
-        \li \c printf
         \li \c awk
+        \li \c cat
+        \li \c grep
+        \li \c kill
+        \li \c netstat
+        \li \c print
+        \li \c printf
         \li \c ps
+        \li \c read
+        \li \c sed
+        \li \c sleep
+        \li \c slog2info
         \li \c tar
         \li \c zip
+        \li \c uname
         \li \c unzip
-        \li \c sed
     \endlist
+
+    The utilities need to be in a standard location, such as \c /bin or
+    \c /usr/bin. Alternatively, you can use the \c {~/.ssh/environment} file
+    to set variables for remote commands, such as \c PATH. In addition, you must
+    set \c{enable PermitUserEnvironment} in the SSH Daemon configuration.
 
     Run the test when you configure a new target device in Qt Creator to verify that all
     required components are available and running.
+
+    For more information about modifying or developing a BSP for you board, see
+    \l{http://www.qnx.com/developers/docs/7.0.0/index.html#com.qnx.doc.neutrino.custom_bsp/topic/about.html}
+    {Customizing a BSP} in the QNX developer documentation.
 
     \section2 Deployment Destination Folder
 
@@ -309,5 +332,4 @@
     impossible. Make sure that you use a destination folder which meets your needs. You can
     set it in the \c{install.path} variable in the \c{.pro} file of your project, see
     \l{Installing Files} in the \l {QMake} documentation for more details.
-
 */
