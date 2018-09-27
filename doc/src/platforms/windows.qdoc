@@ -33,7 +33,7 @@
 
     Qt's support for different Windows platforms is extensive and mature.
     Before you get started, ensure that your development environment fulfills
-    the \l{Qt for Windows Requirements}{requirements}.
+    the \l{Qt for Windows - Requirements}{requirements}.
 
     The \e{Reference Configuration} section of the
     \l{Community Supported Platforms#Reference Configurations}{supported platforms}
@@ -1100,7 +1100,7 @@
         path instead of calling the Windows SDK setup script. For MinGW, please make
         sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
 
-        Settings required by the additional libraries (see \l{Qt for Windows Requirements})
+        Settings required by the additional libraries (see \l{Qt for Windows - Requirements})
         should also go this file below the call to the Windows SDK setup script.
 
     \section1 Step 4: Build the Qt Library
