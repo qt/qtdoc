@@ -175,8 +175,8 @@
 
     \quotefromfile tutorials/alarms/AlarmDialog.qml
     \skipto contentItem
-    \printuntil "model: years"
-    \printuntil }
+    \printuntil /model\: years/
+    \printuntil /^}/
 
     If you click on \b OK in the dialog, the entered data will be
     added to \c alarmModel:
@@ -233,7 +233,7 @@
 
     \quotefromfile tutorials/alarms/AlarmDialog.qml
     \skipto contentItem
-    \printuntil "        }"
+    \printuntil /^\}/
 
     \section1 Editing alarms
 
