@@ -64,7 +64,7 @@ ApplicationWindow {
     ListView {
         id: alarmListView
         anchors.fill: parent
-        model: AlarmModel {}
+        model: AlarmModel { id: alarmModel }
         delegate: AlarmDelegate {}
     }
 
