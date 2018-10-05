@@ -34,6 +34,13 @@
     Qt's iOS port allows you to run Qt applications on iOS devices,
     such as iPhones, iPads, and iPod Touches.
 
+    \target ios-supported-configurations
+    \section1 Supported Configurations
+
+    The following configurations are supported.
+
+    \include supported-platforms.qdocinc ios
+
     \include apple-getting-started.qdocinc getting started
 
     \section1 Examples for iOS
@@ -499,7 +506,7 @@
     The application should be tested on the iOS versions and devices that it is
     targeted to support. The minimum deployment target for Qt applications
     varies by Qt version. For more information, see
-    \l{Supported Platforms and Configurations}.
+    \l{ios-supported-configurations}{supported configurations}.
 
     The actual publishing process involves creating a distribution certificate and a provision profile,
     creating a signed archive of your application, and running a set of validation tests on it.

@@ -44,12 +44,17 @@
 
     \note Qt 5 uses Cocoa, therefore, building for Carbon is not possible.
 
-    \section1 \macos Versions
+    \target macos-supported-versions
+    \section1 Supported Versions
 
-    See \l{Supported Platforms} for the list of \macos versions supported by Qt.
+    The following macOS versions are supported.
 
-    Qt can be built for either x86_64 or x86_64h (Haswell). x86_64 is used by default.
-    To select a x86_64h build, use the \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
+    \include supported-platforms.qdocinc macos
+
+    \section1 Supported Architectures
+
+    By default, Qt is built for x86_64. To build for x86_64h (Haswell). use the
+    \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
     This is selectable at configure time:
     \code
     ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS=x86_64h
@@ -60,10 +65,6 @@
     \code
     ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS="x86_64 x86_64h"
     \endcode
-
-    \note Qt 5.10+ does not support 32-bit builds.
-    \note Qt 5 does not support OS X on PowerPC.
-    \note Static builds are not tested.
 
     \section1 Additional Command-Line Options
 

@@ -32,16 +32,20 @@
     \ingroup supportedplatform
 
     Qt's support for different Windows platforms is extensive and mature.
-    Before you get started, ensure that your development environment fulfills
-    the \l{Qt for Windows - Requirements}{requirements}.
 
-    The \e{Reference Configuration} section of the
-    \l{Community Supported Platforms#Reference Configurations}{supported platforms}
-    page contains a list of Windows versions and compilers tested to work with
-    Qt.
+    Before you get started,
+    ensure that your development environment fulfills
+    the \l{Qt for Windows - Requirements}{requirements}.
 
     To download and install Qt for Windows, follow the instructions on the
     \l{Getting Started with Qt} page.
+
+    \target windows-supported-configurations
+    \section1 Supported Configurations
+
+    The following configurations are supported.
+
+    \include supported-platforms.qdocinc windows
 
     \section1 Deployment and Other Issues
 
