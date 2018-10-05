@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2018 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the documentation of the Qt Toolkit.
+** This file is part of the examples of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
@@ -47,33 +47,19 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
-//![0]
-import QtQuick 2.12
+int main(int argc, char *argv[])
+{
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-Item {
-    id: root
+    QGuiApplication app(argc, argv);
 
-    width: 320
-    height: 480
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
 
-    Rectangle {
-        color: "#272822"
-        width: 320
-        height: 480
-    }
-
-    Rectangle {
-        id: rectangle
-        x: 40
-        y: 20
-        width: 120
-        height: 120
-        color: "red"
-
-        TapHandler {
-            onTapped: rectangle.width += 10
-        }
-    }
+    return app.exec();
 }
-//![0]

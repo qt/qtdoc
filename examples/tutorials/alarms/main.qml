@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2018 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the documentation of the Qt Toolkit.
+** This file is part of the examples of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
@@ -48,32 +48,39 @@
 **
 ****************************************************************************/
 
-//![0]
-import QtQuick 2.12
+import QtQuick 2.11
+import QtQuick.Controls 2.4
+import QtQuick.Controls.Material 2.4
+import QtQuick.Layouts 1.11
+import QtQuick.Window 2.11
+import Qt.labs.calendar 1.0
 
-Item {
-    id: root
+ApplicationWindow {
+    id: window
+    width: 400
+    height: 500
+    visible: true
 
-    width: 320
-    height: 480
-
-    Rectangle {
-        color: "#272822"
-        width: 320
-        height: 480
+    ListView {
+        id: alarmListView
+        anchors.fill: parent
+        model: AlarmModel { id: alarmModel }
+        delegate: AlarmDelegate {}
     }
 
-    Rectangle {
-        id: rectangle
-        x: 40
-        y: 20
-        width: 120
-        height: 120
-        color: "red"
+    RoundButton {
+        id: addAlarmButton
+        text: "+"
+        anchors.bottom: alarmListView.bottom
+        anchors.bottomMargin: 8
+        anchors.horizontalCenter: parent.horizontalCenter
+        onClicked: alarmDialog.open()
+    }
 
-        TapHandler {
-            onTapped: rectangle.width += 10
-        }
+    AlarmDialog {
+        id: alarmDialog
+        x: Math.round((parent.width - width) / 2)
+        y: Math.round((parent.height - height) / 2)
+        alarmModel: alarmListView.model
     }
 }
-//![0]

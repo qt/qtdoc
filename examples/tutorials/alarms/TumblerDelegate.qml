@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2018 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the documentation of the Qt Toolkit.
+** This file is part of the examples of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
@@ -48,32 +48,15 @@
 **
 ****************************************************************************/
 
-//![0]
-import QtQuick 2.12
+import QtQuick 2.11
+import QtQuick.Controls 2.4
+import QtQuick.Controls.Material 2.4
 
-Item {
-    id: root
-
-    width: 320
-    height: 480
-
-    Rectangle {
-        color: "#272822"
-        width: 320
-        height: 480
-    }
-
-    Rectangle {
-        id: rectangle
-        x: 40
-        y: 20
-        width: 120
-        height: 120
-        color: "red"
-
-        TapHandler {
-            onTapped: rectangle.width += 10
-        }
-    }
+Text {
+    text: modelData
+    color: Tumbler.tumbler.Material.foreground
+    font: Tumbler.tumbler.font
+    opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+    horizontalAlignment: Text.AlignHCenter
+    verticalAlignment: Text.AlignVCenter
 }
-//![0]
