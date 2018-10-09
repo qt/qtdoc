@@ -38,7 +38,8 @@
 
     Qt Essentials define the foundation of Qt on all platforms. They are
     available on all supported development platforms and on the tested target
-    platforms. They will remain source and binary compatible during Qt 5.
+    platforms. Except the testing modules, which will remain source compatible,
+    these modules will remain source and binary compatible throughout Qt 5.
 
     Essential modules are general and useful for a majority of Qt applications.
     A module that is used for a special purpose is considered an add-on module
@@ -89,12 +90,16 @@
         \li \l[QtQuickTest]{Qt Quick Test}
         \li A unit test framework for QML applications, where the test cases
             are written as JavaScript functions.
+            \note The binary compatibility guarantee does not apply to Qt Quick
+                  Test. However, it will remain source compatible.
     \row
         \li \l[QtSql]{Qt SQL}
         \li Classes for database integration using SQL.
     \row
         \li \l[QtTestLib]{Qt Test}
         \li Classes for unit testing Qt applications and libraries.
+            \note The binary compatibility guarantee does not apply to Qt Test.
+                  However, it will remain source compatible.
     \row
         \li \l[QtWidgets]{Qt Widgets}
         \li Classes to extend Qt GUI with C++ widgets.
