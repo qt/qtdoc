@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 //![0]
-import QtQuick 2.3
+import QtQuick 2.12
 
 Item {
 
@@ -76,9 +76,8 @@ Item {
                 width: 120
                 height: 120
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: container.state == 'other' ? container.state = '' : container.state = 'other'
+                TapHandler {
+                    onTapped: container.state === '' ? container.state = 'other' : container.state = ''
                 }
             }
             states: [
@@ -124,9 +123,8 @@ Item {
                     }
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: parent.x == 0 ? parent.x = 200 : parent.x = 0
+                TapHandler {
+                    onTapped: parent.x == 0 ? parent.x = 200 : parent.x = 0
                 }
             }
         }
@@ -153,10 +151,9 @@ Item {
                     PauseAnimation { duration: 250 } // This puts a bit of time between the loop
                 }
 
-                MouseArea {
-                    anchors.fill: parent
+                TapHandler {
                     // The animation starts running when you click within the rectangle
-                    onClicked: xAnim.running = true
+                    onTapped: xAnim.running = true
                 }
             }
         }
@@ -173,10 +170,9 @@ Item {
                 width: 120
                 height: 120
 
-                MouseArea {
-                    anchors.fill: parent
+                TapHandler {
                     // The animation starts running when you click within the rectange
-                    onClicked: anim.running = true;
+                    onTapped: anim.running = true;
                 }
             }
 
