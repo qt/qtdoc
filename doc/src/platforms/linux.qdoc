@@ -33,18 +33,17 @@
 
     Qt's support for different Linux platforms is extensive and mature.
 
-    \section1 Downloading and Installing Qt
+    To download and install Qt for Linux, follow the instructions on the
+    \l{Getting Started with Qt} page.
 
-    There are two ways to install Qt:
-    \list 1
-    \li through the Qt Installers - downloads and installs Qt
-    \li through the \e{Qt sources}.
-    \endlist
+    \target linux-supported-configurations
+    \section1 Supported Configurations
 
-    You can download the Qt 5 installers and sources from the \l Downloads page.
-    For more information, visit the \l{Getting Started with Qt} page.
+    The following configurations are supported.
 
-    \section2 Requirements for Development Host
+    \include supported-platforms.qdocinc linux
+
+    \section1 Requirements for Development Host
 
     The Qt installers for Linux assume that a C++ compiler, debugger,
     make, and other development tools are provided by the host
@@ -75,7 +74,7 @@
     sudo zypper install -t pattern devel_basis
     \endcode
 
-    \section2 Building Qt 5 from Source
+    \section1 Building Qt 5 from Source
 
     You can also build Qt 5 from the source package and configure it according
     to your target platform. The source packages are obtained from
@@ -785,7 +784,7 @@
     Linux/x86, Linux/ppc, Linux/amd64 and Linux/ia64 (including Altix(R)).
 
     For information about the specific compilers supported, visit the
-    \l{Community Supported Platforms#Reference Configurations}{supported platforms} page.
+    \l{Supported Platforms#Reference Configurations}{supported platforms} page.
 
     \section2 Installation problems
 

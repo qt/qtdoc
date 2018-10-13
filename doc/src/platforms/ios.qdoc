@@ -26,13 +26,20 @@
 ****************************************************************************/
 
 /*!
-    \page ios_support.html
+    \page ios.html
     \title Qt for iOS
     \brief Provides insight into Qt's iOS port and how to use it.
     \ingroup supportedplatform
 
     Qt's iOS port allows you to run Qt applications on iOS devices,
     such as iPhones, iPads, and iPod Touches.
+
+    \target ios-supported-configurations
+    \section1 Supported Configurations
+
+    The following configurations are supported.
+
+    \include supported-platforms.qdocinc ios
 
     \include apple-getting-started.qdocinc getting started
 
@@ -56,7 +63,7 @@
 */
 
 /*!
-    \page building-from-source-ios.html
+    \page ios-building-from-source.html
     \title Qt for iOS - Building from Source
     \brief Provides instructions to build Qt from source for iOS platform.
 
@@ -177,7 +184,7 @@
 */
 
 /*!
-    \page platform-notes-ios.html
+    \page ios-platform-notes.html
     \title Platform Notes - iOS
     \brief This page contains information about building Qt applications for and running them on the iOS platform.
 
@@ -499,7 +506,7 @@
     The application should be tested on the iOS versions and devices that it is
     targeted to support. The minimum deployment target for Qt applications
     varies by Qt version. For more information, see
-    \l{Supported Platforms and Configurations}.
+    \l{ios-supported-configurations}{supported configurations}.
 
     The actual publishing process involves creating a distribution certificate and a provision profile,
     creating a signed archive of your application, and running a set of validation tests on it.

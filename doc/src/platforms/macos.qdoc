@@ -26,11 +26,11 @@
 ****************************************************************************/
 
 /*!
-    \page osx.html
+    \page macos.html
     \title Qt for macOS
     \brief Platform support for \macos.
+    \keyword Qt for macOS
     \ingroup supportedplatform
-    \keyword Qt for OS X
 
     \macos (previously known as OS X or Mac OS X) is a UNIX platform and
     behaves similarly to other Unix-like platforms. The main difference is
@@ -39,32 +39,22 @@
     Application development on \macos is done using Xcode, which is available
     from \l{https://developer.apple.com/xcode/}.
 
-    \section1 Downloading and Installing Qt
-
-    There are two ways to install Qt:
-    \list 1
-    \li through the \e{Qt Installers} - downloads and installs Qt
-    \li through the \e{Qt sources}.
-    \endlist
-
-    You can download the Qt 5 installers and sources from the \l Downloads page.
-    For more information, visit the \l{Getting Started with Qt} page.
-
-    \section2 Building Qt 5 from Source
-
-    Below, you will find more information about building Qt from source.
-    \list
-        \li \l{Qt for macOS - Building from Source} - building and installing from source
-    \endlist
+    To download and install Qt for \macos, follow the instructions on the
+    \l{Getting Started with Qt} page.
 
     \note Qt 5 uses Cocoa, therefore, building for Carbon is not possible.
 
-    \section1 \macos Versions
+    \target macos-supported-versions
+    \section1 Supported Versions
 
-    See \l{Supported Platforms} for the list of \macos versions supported by Qt.
+    The following macOS versions are supported.
 
-    Qt can be built for either x86_64 or x86_64h (Haswell). x86_64 is used by default.
-    To select a x86_64h build, use the \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
+    \include supported-platforms.qdocinc macos
+
+    \section1 Supported Architectures
+
+    By default, Qt is built for x86_64. To build for x86_64h (Haswell). use the
+    \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
     This is selectable at configure time:
     \code
     ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS=x86_64h
@@ -75,10 +65,6 @@
     \code
     ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS="x86_64 x86_64h"
     \endcode
-
-    \note Qt 5.10+ does not support 32-bit builds.
-    \note Qt 5 does not support OS X on PowerPC.
-    \note Static builds are not tested.
 
     \section1 Additional Command-Line Options
 
@@ -163,7 +149,7 @@
 */
 
 /*!
-    \page osx-building.html
+    \page macos-building.html
     \title Qt for macOS - Building from Source
     \brief How to install Qt on \macos.
 
@@ -183,7 +169,7 @@
     Qt for macOS is tested and compatible with several versions of GCC (GNU
     Compiler Collection) and Clang (as available from Xcode). For a list of
     tested configurations, refer to the \e{Reference Configuration} section of
-    the \l{Community Supported Platforms#Reference Configurations}{supported platforms}
+    the \l{Supported Platforms#Reference Configurations}{supported platforms}
     page.
 
     \section1 QDoc Dependencies
@@ -298,7 +284,7 @@
 */
 
 /*!
-    \page osx-issues.html
+    \page macos-issues.html
     \title Qt for macOS - Specific Issues
     \brief A description of issues with Qt that are specific to \macos.
 
@@ -680,7 +666,7 @@
 */
 
 /*!
-    \page osx-deployment.html
+    \page macos-deployment.html
     \title Qt for macOS - Deployment
     \brief Describes the deployment process for \macos.
 
