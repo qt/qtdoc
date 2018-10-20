@@ -136,7 +136,7 @@ ItemDelegate {
             width: 40
             height: 40
             visible: root.checked
-            onClicked: alarmModel.remove(alarmListView.currentIndex, 1)
+            onClicked: root.ListView.view.model.remove(root.ListView.view.currentIndex, 1)
         }
     }
 }
