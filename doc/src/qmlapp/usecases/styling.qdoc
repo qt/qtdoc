@@ -27,29 +27,30 @@
 /*!
 \page qtquick-usecase-styling.html
 \title Use Case - Style And Theme Support
-\brief Example of how to style user interface components in QML
+\brief Example of how to style user interface components in QML.
 
 Styling with QML involves creating a visual type and binding that to a property
 or by directly assigning a value to a property. For types that incorporate
 Qt Quick's \l{Models and Views in Qt Quick}{delegates} the visual type attaches
 to the \e delegate property.
 
-When using \l{Qt Quick Controls}, the controls automatically set
+When using \l{Qt Quick Controls 1}, the controls automatically set
 the appropriate style from the respective \l{Supported Platforms}{platforms}.
 
 \section1 Using the Styling QML Types
 
-The \l{Qt Quick Controls}{controls} have a \c style property to which the
+The \l{Qt Quick Controls 1}{controls} have a \c style property to which the
 \e{styling types} bind. The controls have a corresponding styling type from the
-\l{Qt Quick Controls Styles QML Types}{Qt Quick Controls Styles} module.
-For example, \l Button has a \l ButtonStyle type and \l Menu has a
-\l MenuStyle type. The styling types provide properties applicable to their
-respective controls such as the background, label, or for some controls, the
-cursor appearance.
+\l{Qt Quick Controls 1 Styles QML Types}{Qt Quick Controls 1 Styles} module.
+For example, \l [QtQuickControls1] Button has a
+\l [QtQuickControls1] ButtonStyle type and \l [QtQuickControls1] Menu has a
+\l [QtQuickControls1] MenuStyle type. The styling types provide properties
+applicable to their respective controls such as the background, label, or for
+some controls, the cursor appearance.
 
 \snippet qmlapp/usecases/styling.qml 0
 
-\note \l{Qt Quick Controls Styles QML Types}{Qt Quick Controls Styles} was
+\note \l{Qt Quick Controls 1 Styles QML Types}{Qt Quick Controls 1 Styles} was
 introduced in Qt 5.1 and requires \l{Qt Quick} 2.1.
 
 \section1 Accessing the System Palette
@@ -60,5 +61,6 @@ of visual types to match the native look-and-feel. In addition, on
 \l{Desktop Platforms}{desktop} platforms, different color palettes are employed
 when changing states, for example, when the application loses keyboard focus.
 
-When using the \l{Qt Quick Controls}{controls}, the system colors are already used.
+When using the \l{Qt Quick Controls 1}{controls}, the system colors are already
+used.
 */
