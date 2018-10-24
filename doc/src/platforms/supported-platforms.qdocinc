@@ -61,7 +61,7 @@
 \section2 \l{Qt for macOS}{\macos}
 //! [macos]
 \table 80%
-    \header \li Deployment Platform \li Architecture \li Development Environment
+    \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.12, 10.13, \b 10.14
         \li \c x86_64 and \c x86_64h
         \li \b {Xcode 10} (10.14 SDK)
@@ -99,7 +99,7 @@
 \section2 \l{Qt for Android}{Android}
 //! [android]
 \table 80%
-    \header \li Platform Version \li Architecture \li Compiler \li Development Environment
+    \header \li Platform Version \li Architecture \li Compiler \li Build Environment
     \row \li Android 4.1, 5, 6, 7, 8 (API Level 16)
         \li \c armv7 and \c x86
         \li \b {GCC as provided by Google}, \b {MinGW 5.3}
@@ -110,7 +110,7 @@
 \section2 \l{Qt for iOS}{iOS/tvOS/watchOS}
 //! [ios]
 \table 80%
-    \header \li Deployment Platform \li Architecture \li Development Environment \li Notes
+    \header \li Target Platform \li Architecture \li Build Environment \li Notes
     \row \li iOS 11, \b{iOS 12}
         \li \c armv8 (\c arm64)
         \li \b {Xcode 10} (iOS 12 SDK)
@@ -129,7 +129,7 @@
 \section2 \l{Qt for WinRT}{WinRT}
 //! [winrt]
 \table 80%
-    \header \li Platform Version \li Architecture \li Compiler \li Development Environment
+    \header \li Platform Version \li Architecture \li Compiler \li Build Environment
     \row \li Universal Windows Platform 10
         \li \c x86, \c x86_64, and \c armv7
         \li \b{MSVC 2017}, \b{MSVC 2015}
