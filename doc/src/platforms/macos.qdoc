@@ -45,11 +45,105 @@
     \target macos-supported-versions
     \section1 Supported Versions
 
-    The following macOS versions are supported.
+    When talking about version support on \macos, it's important to distinguish
+    between the  \l {Build Environment}{build environment}; the platform you're building on
+    or with, and the  \l {Target Platforms}{target platforms}; the platforms you are building
+    for. The following macOS versions are supported.
 
     \include supported-platforms.qdocinc macos
 
-    \section1 Supported Architectures
+    \section2 Build Environment
+
+    The build environment on \macos is defined \e entirely by the Xcode version used
+    to build your application. Xcode contains both a toolchain (compiler, linker, and other
+    tools), and a \macos platform-SDK (headers and libraries). Together these define how
+    your application is built.
+
+    \note The version of \macos that you are \e running Xcode on does not matter. As long as
+    Apple ships a given Xcode version that runs on your operating system, the build
+    environment will be defined by that Xcode version.
+
+    Xcode can be downloaded from Apple's \l{https://developer.apple.com/download/}{developer
+    website} (including older versions of Xcode). Once installed, choosing an Xcode installation
+    is done using the \c{xcode-select} tool.
+
+    \code
+    $ sudo xcode-select --switch /Applications/Xcode.app
+    \endcode
+
+    You can inspect the globally selected Xcode installation using the same tool.
+
+    \code
+    $ xcode-select -print-path
+    /Applications/Xcode.app/Contents/Developer
+    \endcode
+
+    The \c xcrun command can then be used to find a particular tool in the toolchain.
+
+    \code
+    $ xcrun -sdk macosx -find clang
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+    \endcode
+
+    or show the platform SDK path used when building.
+
+    \code
+    $ xcrun -sdk macosx --show-sdk-path
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk
+    \endcode
+
+    \section2 Target Platforms
+
+    Building for \macos utilizes a technique called \e{weak linking} that allows you to build
+    your application against the headers and libraries of the latest platform SDK, while still
+    allowing your application to be deployed to \macos versions lower than the SDK version.
+    When the binary is run on a \macos version lower than the SDK it was built with, Qt will
+    check at runtime whether or not a platform feature is available before utilizing it.
+
+    In theory this would allow running your application on every single \macos version released,
+    but for practical (and technical) reasons there is a lower limit to this range, known as
+    the \e{deployment target} of your application. If the binary is launched on a \macos version
+    below the deployment target macOS or Qt will give an error message and the application will
+    not run.
+
+    Qt expresses the deployment target via the \c QMAKE_MACOSX_DEPLOYMENT_TARGET qmake
+    variable, which has a default value set via the makespec for \macos. You should not
+    need to change this default, but if needed you can increase it in your project file:
+
+    \code
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
+    \endcode
+
+    \note You should not lower the deployment target beyond the default value set by Qt.
+    Doing so will likely lead to crashes at runtime if the binary is then deployed to a
+    \macos version lower than what Qt expected to run on.
+
+    By always building against the latest available platform SDK, you ensure that
+    Qt can take advantage of new features introduced in recent versions of \macos.
+
+    For more information about SDK-based development on \macos, see Apple's \l
+    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{developer documentation}.
+
+    \section3 Opting out of \macos behavior changes
+
+    One caveat to using the latest Xcode version and SDK to build your application
+    is that \macos's system frameworks will sometimes decide whether or not to
+    enable behavior changes based on the SDK you built your application with.
+
+    For example, when dark-mode was introduced in \macos 10.14 Mojave, \macos would
+    only treat applications built against the 10.14 SDK as supporting dark-mode, and
+    would leave applications built against earlier SDKs with the default light mode
+    look. This technique allows Apple to ensure that binaries built long before
+    the new SDK and operating system was released will still continue to run without
+    regressions on new \macos releases.
+
+    A consequence of this is that if Qt has problems dealing with some of these
+    \macos features (dark-mode, layer-backed views), the only way to opt out of
+    them is building with an earlier SDK (the 10.13 SDK, available through
+    Xcode 9). This is a last-resort solution, and should only be applied if your
+    application has no other ways of working around the problem.
+
+    \section2 Architectures
 
     By default, Qt is built for x86_64. To build for x86_64h (Haswell). use the
     \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
@@ -98,10 +192,6 @@
     \endcode
 
     \section1 Deploying Applications on \macos
-
-    In general, Qt supports building on one \macos version and deploying to
-    earlier or later \macos versions. The recommended way is to build on the
-    latest version and deploy to an earlier \macos version.
 
     \macos applications are typically deployed as self-contained application
     bundles. The application bundle contains the application executable as well
@@ -1058,31 +1148,6 @@
     your application.
 
     \section2 \macos Version Dependencies
-
-    Qt 5 applications can be built on the latest \macos version and deployed to
-    previous versions. This is achieved using \e{weak linking}. In
-    \e{weak linking}, Qt tests whether a function added in a newer
-    version of \macos is available on the computer it is running
-    on. This allows Qt to use newer features when it runs on a newer
-    version of \macos, while remaining compatible on the older versions.
-
-    For more information about cross development issues on \macos,
-    see \l
-    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{Apple's Developer Website}.
-
-    The linker is set to be compatible with all \macos versions,
-    so you must change the \c MACOSX_DEPLOYMENT_TARGET environment
-    variable to get \e{weak linking} to work for your application. You
-    can add the following:
-
-    \snippet snippets/code/doc_src_deployment.pro 51
-
-    to your .pro file, and qmake will take care of this for you.
-
-    For more information about C++ runtime environment, see \l
-    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/CppRuntimeEnv/CPPRuntimeEnv.html}{Apple's Developer Website}
-
-    \section3 Expressing Supported \macos Versions
 
     \include expressing-apple-os-versions.qdocinc expressing os versions
 
