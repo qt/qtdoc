@@ -64,8 +64,11 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.12, 10.13, \b 10.14
         \li \c x86_64 and \c x86_64h
-        \li \b {Xcode 10} (10.14 SDK)
+        \li \b {Xcode 10} (10.14 SDK), Xcode 9\raisedaster (10.13 SDK)
 \endtable
+    \br
+    \b{Note:} Xcode 9 is only supported for application development (to be able to opt out
+    of features such as layer-backing and dark mode), not for development of Qt itself.
 //! [macos]
 
 \section2 \l{Qt for Windows}{Windows}
