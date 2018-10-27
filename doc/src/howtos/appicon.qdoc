@@ -52,6 +52,14 @@
     to load your application into Visual C++; here we are only using
     the icon editor.)
 
+    Alternatively, an \c .ico file can be created from a set of images using
+    ImageMagick's \l {https://imagemagick.org/script/convert.php}{convert}
+    tool:
+
+    \badcode
+    magick.exe convert icon-16.png icon-32.png icon-256.png icon.ico
+    \endcode
+
     Store the ICO file in your application's source code directory,
     for example, with the name \c myappico.ico.
 

@@ -40,16 +40,16 @@ accessible to remote clients.
 
 \section1 WebEngine in Qt
 
-Qt provides the Chromium-based Qt WebEngine module for applications
+Qt provides the Chromium-based \l{Qt WebEngine} module for applications
 targeting desktop and embedded platforms. For example, a web browser
 application for Linux platform.
 
-It also provides the Qt WebView module, which uses the native web engine
+It also provides the \l {Qt WebView} module, which uses the native web engine
 of the platform. For example, a RSS feed reader Qt Quick application for
 Android and iOS.
 
-These pages contain information about porting applications to use Qt WebEngine
-and the various APIs:
+These pages contain information about porting applications to use
+ \l{Qt WebEngine} and the various APIs:
 \list
 \li \l{Qt WebEngine Overview}
 \li \l{Qt WebView}
