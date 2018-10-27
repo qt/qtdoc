@@ -25,16 +25,16 @@
 **
 ****************************************************************************/
 /*!
-//! [webgl]
+\page webgl.html
+\title Qt Quick WebGL
+\brief A platform plugin that enables streaming or Qt Quick user interfaces
+       using WebGL™.
+\ingroup supportedplatform
 
-\section1 Qt Quick WebGL
-
-The \e {Qt Quick WebGL} platform plugin allows for remote access by streaming
-Qt Quick user interfaces over the network. The UI is rendered in a
-WebGL™-enabled client browser.
-
-\note The Qt Quick WebGL plugin is currently provided as a
-      \e {Technology Preview}.
+The \e {Qt Quick WebGL} is a \l {Qt Platform Abstraction} {platform plugin}
+that allows for single-user remote access by streaming \l [QtQuick] {Qt Quick}
+user interfaces over the network. The UI is rendered in a
+\l {https://www.khronos.org/webgl/}{WebGL™}-enabled client browser.
 
 \section2 Configuration and Use
 
@@ -45,9 +45,9 @@ OpenGL ES 2 support:
 ./configure [...] -opengl es2
 \endcode
 
-The plugin depends on \l {Qt WebSockets}.
+The plugin has a dependency to \l {Qt WebSockets}.
 
-You launch a Qt Quick application with the \e webgl platform plugin as
+Any Qt Quick application can be launched with the \e webgl platform plugin as
 follows:
 
 \badcode
@@ -62,7 +62,8 @@ port can be configured as follows:
 ./qmlapplication -platform webgl:port=80
 \endcode
 
-Keyboard, mouse, touch, and multi-touch events from the client are supported.
+Keyboard, mouse, touch, and multi-touch events from the client are passed to
+the application.
 
 \section2 Limitations
 
@@ -92,6 +93,4 @@ Keyboard, mouse, touch, and multi-touch events from the client are supported.
 \badcode
 set QSG_RENDER_LOOP=threaded
 \endcode
-
-//! [webgl]
 */
