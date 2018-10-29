@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 //![0]
-import QtQuick 2.3
+import QtQuick 2.12
 import "myscript.js" as Logic
 
 Item {
@@ -62,10 +62,9 @@ Item {
         height: 480
     }
 
-    MouseArea {
-        anchors.fill: parent
+    TapHandler {
         // This line uses the JS function from the separate JS file
-        onClicked: rectangle.rotation = Logic.getRandom(rectangle.rotation);
+        onTapped: rectangle.rotation = Logic.getRandom(rectangle.rotation);
     }
 
     Rectangle {

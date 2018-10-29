@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 //![0]
-import QtQuick 2.3
+import QtQuick 2.12
 
 Item {
     id: container
@@ -64,10 +64,9 @@ Item {
         return container.randomNumber();
     }
 
-    MouseArea {
-        anchors.fill: parent
+    TapHandler {
         // This line uses the JS function from the item
-        onClicked: rectangle.rotation = container.getNumber();
+        onTapped: rectangle.rotation = container.getNumber();
     }
 
     Rectangle {
