@@ -160,7 +160,7 @@
             \l{Qt for WinRT}{WinRT}
         \li Provides access to Bluetooth hardware.
     \row
-        \li \l[QtCanvas3D]{Qt Canvas 3D}
+        \li \l[QtCanvas3D]{Qt Canvas 3D} (Deprecated)
         \li All
         \li
         \li Enables OpenGL-like 3D drawing calls from Qt Quick applications
@@ -253,7 +253,8 @@
         \li All
         \li All
         \li Reusable Qt Quick based UI controls to create classic desktop-style
-            user interfaces.
+            user interfaces. Deprecated in favor of \l{Qt Quick Controls} 2, which
+            are better and easier to use.
     \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
@@ -272,6 +273,12 @@
         \li All
         \li
         \li Provides a C++ widget class for displaying a Qt Quick user interface.
+    \row
+        \li \l{Qt Remote Objects}
+        \li All
+        \li
+        \li Provides an easy to use mechanism for sharing a QObject's API
+             (Properties/Signals/Slots) between processes or devices.
     \row
         \li \l[QtScript]{Qt Script} (Deprecated)
         \li All
@@ -421,18 +428,17 @@
              Included in most other value-add solutions.
     \endtable
 
-    \section1 Technology Preview Modules
+    \section1 Technology Preview Features
 
-    The following modules are still in development but are available as technology previews.
+    The following features are still in development but are available as technology previews.
 
     \table 80%
     \header
-        \li Module
+        \li Feature
         \li Description
-    \row \li \l{Qt Remote Objects}
-         \li Provides an easy to use mechanism for sharing a QObject's API
-             (Properties/Signals/Slots) between processes or devices.
-
+    \row
+        \li \l{Qt for WebAssembly} (Technology Preview)
+        \li A platform target to compile Qt applications for the web browsers using WebAssembly.
     \endtable
 
     \section1 Qt Tools
