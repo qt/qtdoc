@@ -73,13 +73,9 @@ and shader effects.
 
 \section2 Graphical Controls
 
-The \l{Qt Quick Controls} module (since Qt 5.1) provides a set of UI elements to
-create user interfaces for desktop and mobile platforms using \l{Qt Quick} 2.
-The \l{Qt Quick Controls 2} module (since Qt 5.7) provides lightweight QML types
-for creating performant user interfaces for embedded and mobile devices. These
-controls achieve improved efficiency by employing a simplified styling
-architecture when compared to the first set of controls. For a comparison
-of the two sets of controls, see \l {Differences between Qt Quick Controls}.
+The \l{Qt Quick Controls} module (since Qt 5.7) provides lightweight QML types
+for creating performant user interfaces. These controls achieve improved
+efficiency by employing a simplified styling architecture.
 
 For more about how to create application user interfaces with QML, visit the
 \l{QML User Interfaces} page.
@@ -151,7 +147,7 @@ choose the tool best suited for the job.
         \li \inlineimage ok
         \li \inlineimage ok
         \li
-        \li Qt Widgets and Qt Quick Controls integrate well to the underlying
+        \li Qt Widgets and Qt Quick Controls 1 integrate well to the underlying
             platform, providing a native look'n'feel on Windows, Linux, and \macos.
     \row
         \li Custom look'n'feel
