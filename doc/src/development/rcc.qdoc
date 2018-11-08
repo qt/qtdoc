@@ -57,16 +57,22 @@
                            which are 30% or less of their original size are
                            stored as compressed data.
 
-    \row \li \c{-compress} \li \c{level} \li Compress input files to the given
-                                          compression \c{level}, which is an
-                                          integer in the range 1 to 9. Level 1
-                                          does the least compression but is
-                                          fastest. Level 9 does the most
-                                          compression but is slowest. To turn
-                                          off compression, use \c{-no-compress}.
-                                          The default value for \c{level} is -1,
-                                          which means use zlib's default
-                                          compression level.
+    \row \li \c{-compress-algo} \li \c{algorithm} \li The algorithm to compress files with.
+                            Supported algorithms are \c{zstd}, \c{zlib}, and \c{none}, which
+                            respectively mean to compress the content using the
+                            \l{Zstandard}{https://zstd.net} library, \l{zlib}{https://zlib.net}
+                            library, and no compression. The default is \c{zstd} if that
+                            library was found at compile time, \c{zlib} if not.
+
+    \row \li \c{-compress} \li \c{level} \li Compress input files to the given compression
+                            \c{level}, which is algorithm-dependent. If the algorithm is
+                            \c{zstd}, the valid levels are 1 to 19, with the special values of
+                            0 and -1 meaning \c{libzstd}'s and \c {rcc}'s default compressions.
+                            If the algorithm is \c{zlib}, the level is an integer in the range
+                            1 to 9. For both algorithms, level 1 does the least compression
+                            but is fastest. Levels 9 or 19 do the most compression but are
+                            slowest. To turn off compression, use \c{-no-compress}. The default
+                            value for \c{level} is -1.
 
     \row \li \c{-root} \li \c{path} \li Prefix the resource access path with \c{path}.
                                      The default is no prefix.
