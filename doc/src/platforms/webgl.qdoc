@@ -36,16 +36,7 @@ that allows for single-user remote access by streaming \l [QtQuick] {Qt Quick}
 user interfaces over the network. The UI is rendered in a
 \l {https://www.khronos.org/webgl/}{WebGL™}-enabled client browser.
 
-\section2 Configuration and Use
-
-In order to use the Qt Quick WebGL plugin, Qt must be configured with
-OpenGL ES 2 support:
-
-\badcode
-./configure [...] -opengl es2
-\endcode
-
-The plugin has a dependency to \l {Qt WebSockets}.
+\section2 Using Qt Quick WebGL
 
 Any Qt Quick application can be launched with the \e webgl platform plugin as
 follows:
