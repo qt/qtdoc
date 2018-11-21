@@ -261,13 +261,6 @@
         \li Provides a specialized set of controls that can be used to build
             interfaces in Qt Quick.
     \row
-        \li \l {Qt Quick WebGL}
-        \li All
-        \li WebGL-enabled web browsers
-        \li Provides a \l {Qt Platform Abstraction} {platform plugin} that
-            allows streaming Qt Quick user interfaces over the network using
-            WebGL™.
-    \row
         \li \l{Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li All
         \li
@@ -393,7 +386,14 @@
         \li A framework for implementing different input methods as
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
-    \endtable
+    \row
+        \li \l {Qt Quick WebGL}
+        \li All
+        \li WebGL-enabled web browsers
+        \li Provides a \l {Qt Platform Abstraction} {platform plugin} that
+            allows streaming Qt Quick user interfaces over the network using
+            WebGL™.
+   \endtable
 
     \section1 Value-Add Modules
 
