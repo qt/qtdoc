@@ -1057,7 +1057,7 @@
 
         We recommend creating a desktop link that opens a command
         prompt with the environment set up similar to the
-        \uicontrol{Command Prompt} menu entries provided by the Windows SDKs.
+        \uicontrol{Command Prompt} menu entries provided by Visual Studio.
         This is done by creating an application link passing a \c .cmd file setting
         up the environment and the command line option \c /k (remain open)
         to \c cmd.exe.
@@ -1081,7 +1081,7 @@
 
         \note Setups for MinGW are similar; they differ
         only in that the \c bin folder of the installation should be added to the
-        path instead of calling the Windows SDK setup script. For MinGW, please make
+        path instead of calling the Visual Studio setup script. For MinGW, please make
         sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
 
         Settings required by the additional libraries (see \l{Qt for Windows - Requirements})
