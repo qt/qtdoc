@@ -34,6 +34,82 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 5.12.0
+
+    \section2 Qt 3D Module
+
+    Use of \l{Miramar Skybox Textures} is now documented.
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles}
+            got updated to upstream version 3.1.1.
+        \li \l{PCRE2} got updated to upstream version 10.32.
+        \li Use of \l{PCRE2 - Stack-less Just-In-Time Compiler} under the
+            \e{BSD 2-clause "Simplified"} license is now documented.
+        \li \l{Secure Hash Algorithm SHA-3 - brg_endian} got updated to version
+            https://github.com/BrianGladman/sha/ commit 4b9e13ead2c5b5e41ca27c65de4dd69ae0bac228.
+            License got updated to \e{BSD 2-clause "Simplified"} license.
+        \li Use of \l{TinyCBOR} under the \e{MIT} license is now documented.
+        \li \l{Unicode Common Locale Data Repository (CLDR)} got updated to
+            upstream version v34.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li The version information for \l{Freetype 2} got updated.
+        \li The Qt usage documentation for \l{HarfBuzz} got updated.
+        \li The Qt usage documentation for \l{HarfBuzz-NG} got updated.
+        \li The version information for \l{IAccessible2 IDL Specification} got updated.
+        \li \l{LibJPEG-turbo} got updated to upstream version 2.0.0.
+        \li \l{LibPNG} got updated to upstream version 1.6.35.
+        \li Use of \l{Bitstream Vera Font} under the \e{Bitstream Vera Font}
+            license is now documented.
+        \li \l{DejaVu Fonts} got updated to upstream version 2.37 and their use
+            under the \e{Bitstream DejaVu Font} license is now documented.
+        \li \l{xkbcommon} got updated to upstream version 0.8.2 + subsequent
+            commits up to 31f1f355700870c6615399fbfa7934934b3a9a57.
+        \li Use of \l{WebGradients} under the \e{MIT} license is now documented.
+    \endlist
+
+    \section2 Qt DBUS Module
+
+    \l{libdus-1 headers} got updated to upstream version 1.12.
+
+    \section2 Qt Image Formats
+
+    \list
+        \li \e{JasPer} got removed.
+        \li \e{MNG reference library} got removed.
+    \endlist
+
+    \section2 Qt Location Module
+
+    \list
+        \li Use of \l{Tango Weather Icon Pack by Darkobra} is now documented.
+        \li Use of \l{Tango Icons} is now documented.
+    \endlist
+
+    \section2 Qt Test Module
+
+    \l{Valgrind} got updated to upstream version 3.14.0.
+
+    \section2 Qt Wayland Compositor Module
+
+    \list
+        \li Use of \l{Wayland xdg-decoration Protocol} under the \e{MIT} license
+            is now documented.
+        \li Use of \l{Wayland XDG Output Protocol} under the \e{MIT} license is
+            now documented.
+    \endlist
+
+    \section2 Qt WebEngine Module
+
+    \l Chromium and third-party components bundled with it were updated to
+    version 69.0.3497.
+
     \section1 Qt 5.11.2
 
     \section2 Qt Core Module
