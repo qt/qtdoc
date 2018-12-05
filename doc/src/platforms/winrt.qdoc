@@ -230,27 +230,27 @@
     applications. It can be used from the command line, or invoked by the IDE.
 
     \badcode
-    Usage: winrtrunner.exe [options] package [arguments]
+    Usage: winrtrunner [options] package [arguments]
     winrtrunner installs, runs, and collects test results for packages made with Qt.
 
     Options:
-      --test                            Installs, starts, collects output, stops (if
-                                        needed), and uninstalls the package. This is
+      --test                            Install, start, collect output, stop (if
+                                        needed), and uninstall the package. This is
                                         the default action of winrtrunner.
-      --start                           Starts the package. The package is installed
+      --start                           Start the package. The package is installed
                                         if it is not already installed. Pass
                                         --install to force reinstallation.
-      --debug <debugger>                Starts the package with the debugger
+      --debug <debugger>                Start the package with the debugger
                                         attached. The package is installed if it is
                                         not already installed. Pass --install to
                                         force reinstallation.
-      --debugger-arguments <arguments>  Sets the arguments to be passed to the
-                                        debugger when --debug is used. If no
-                                        debugger was provided, this option is ignored.
-      --suspend                         Suspends a running package. When combined
+      --debugger-arguments <arguments>  Arguments that are passed to the debugger
+                                        when --debug is used. If no debugger was
+                                        provided this option is ignored.
+      --suspend                         Suspend a running package. When combined
                                         with --stop or --test, the app will be
                                         suspended before being terminated.
-      --stop                            Terminates a running package. Can be be
+      --stop                            Terminate a running package. Can be be
                                         combined with --start and --suspend.
       --wait <seconds>                  If the package is running, waits the given
                                         number of seconds before continuing to the
@@ -263,14 +263,20 @@
                                         available devices. The default device is the
                                         first device found for the active run
                                         profile.
-      --profile <name>                  Forces a particular run profile.
-      --list-devices                    Lists the available devices (for use with
+      --profile <name>                  Force a particular run profile.
+      --list-devices                    List the available devices (for use with
                                         --device).
-      --verbose <level>                 Sets the verbosity level of the message output
+      --verbose <level>                 The verbosity level of the message output
                                         (0 - silent, 1 - info, 2 - debug). Defaults
                                         to 1.
-      --ignore-errors                   Always exits with code 0, regardless of the
+      --ignore-errors                   Always exit with code 0, regardless of the
                                         error state.
+      --loopbackexempt <mode>           Enables localhost communication for
+                                        clients,servers or both. Adding this
+                                        possibility for servers needs elevated
+                                        rights and might ask for these in a
+                                        dialog.Possible values: client, server,
+                                        clientserver
       -?, -h, --help                    Displays this help.
 
     Arguments:
