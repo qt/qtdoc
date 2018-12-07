@@ -48,16 +48,38 @@
 **
 ****************************************************************************/
 //![0]
-// Button.qml
-import QtQuick 2.3
+// MessageLabel.qml
+import QtQuick 2.12
 
 Rectangle {
-    width: 100; height: 100
-    color: "red"
+    height: 50
+    property string message: "debug message"
+    property var msgType: ["debug", "warning" , "critical"]
+    color: "black"
 
-    MouseArea {
+    Column {
         anchors.fill: parent
-        onClicked: console.log("Button clicked!")
+        padding: 5.0
+        spacing: 2
+        Text {
+            text: msgType.toString().toUpperCase() + ":"
+            font.bold: msgType == "critical"
+            font.family: "Terminal Regular"
+            color: msgType === "warning" || msgType === "critical" ? "red" : "yellow"
+            ColorAnimation on color {
+                running: msgType == "critical"
+                from: "red"
+                to: "black"
+                duration: 1000
+                loops: msgType == "critical" ? Animation.Infinite : 1
+            }
+        }
+        Text {
+            text: message
+            color: msgType === "warning" || msgType === "critical" ? "red" : "yellow"
+            font.family: "Terminal Regular"
+        }
     }
+
 }
 //![0]
