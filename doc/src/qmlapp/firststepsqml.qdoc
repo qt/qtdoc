@@ -122,20 +122,19 @@ the following pages:
 While Qt Quick provides basic graphical elements, \l{Qt Quick Controls} provides
 ready-made QML types for use within an application.
 
-Inserting the \l ApplicationWindow type is a good starting point for creating
-applications. An application UI has this basic layout:
+Inserting the \l[QtQuickControls2]{ApplicationWindow} type is a good starting
+point for creating applications. An application UI has this basic layout:
 
 \image applicationwindow.png
 
 Within each area, different \e controls may be added and connected to form
 an application. For example, the following snippet is a basic application that
-uses the previous layout:
+demonstrates the use of available space:
 
 \qml
 //import related modules
-import QtQuick 2.3
-import QtQuick.Controls 1.2
-import QtQuick.Window 2.2
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 //window containing the application
 ApplicationWindow {
@@ -170,16 +169,17 @@ ApplicationWindow {
     }
 }
 \endqml
+
 The application has two menu items and a button in the middle. Clicking on the
 \uicontrol Exit menu item closes the application.
 
 There are also different navigation methods and different controls such as
-buttons and sliders available. The following examples are available from
+buttons and sliders. The following examples are available from
 Qt Creator and demonstrate different controls and layouts.
 
 \list
 \li \l{Qt Quick Layouts - Basic Example}{Basic Layouts}
-\li \l{Qt Quick Controls 1 - Touch Gallery}{Touch Gallery}
+\li \l{Qt Quick Controls - Gallery}
 \endlist
 
 Feel free to copy and paste the snippets onto this simple Hellow World
@@ -195,6 +195,8 @@ as \l{Signal and Handler Event System}{signals} and these signals are handled by
 
 For example, consider the following example:
 \qml
+import QtQuick 2.12
+
 Rectangle {
     width: 200
     height: 100
@@ -205,17 +207,18 @@ Rectangle {
         text: "Hello, World!"
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: parent.color = "blue"
+    TapHandler {
+        onTapped: parent.color = "blue"
     }
 }
 \endqml
 
 This example can be saved as "ClickableHelloWorld.qml" and run with qmlscene.
 Whenever the user clicks anywhere in the window, the rectangle will change
-from red to blue. Note that the \l MouseArea type also emits the clicked
-signal for touch events, so this code will also work on a mobile device.
+from red to blue.
+
+\note \l TapHandler also emits the tapped signal for touch events, so this
+code will also work on a mobile device.
 
 Keyboard user input can be similarly handled with a simple expression:
 
@@ -310,17 +313,17 @@ application will probably have multiple visual types which are all similar
 be defined as re-usable, custom types, to minimize code duplication and
 maximize readability.
 
-For example, imagine that the developer defines a new \c Button type in the
-\c Button.qml file:
+For example, imagine that the developer defines a new \c MessageLabel type in the
+\c MessageLabel.qml file:
 
-\snippet qmlapp/qml-extending-types/components/Button.qml 0
+\snippet qmlapp/qml-extending-types/components/MessageLabel.qml 0
 
 That type may now be re-used multiple times in the application, as follows:
 
 \table
 \row
 \li \snippet qmlapp/qml-extending-types/components/application.qml 0
-\li \image qmlapp/qml-extending-types.png
+\li \borderedimage qmlapp/qml-extending-types.gif
 \endtable
 
 

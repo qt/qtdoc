@@ -35,18 +35,18 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li openSUSE 42.2
+    \row \li openSUSE 42.3
         \li \c x86_64
         \li GCC 4.8, \b {GCC 7}, \b {ICC}
         \li
-    \row \li Red Hat Enterprise Linux 6.6
-        \li \c x86_64
-        \li GCC 4.9.1
-        \li devtoolset-3
-    \row \li Red Hat Enterprise Linux 7.2
+    \row \li Red Hat Enterprise Linux 7.4
         \li \c x86_64
         \li \b {GCC 5.3.1}
         \li devtoolset-4
+    \row \li Ubuntu 18.04
+        \li \c x86_64
+        \li GCC as provided by Canonical, \b {GCC 7.3.0}
+        \li
     \row \li Ubuntu 16.04
         \li \c x86_64
         \li GCC as provided by Canonical, \b {GCC 5.4.0}
@@ -77,20 +77,17 @@
     \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2017}, \b {MSVC 2015}, MinGW 5.3
+        \li \b {MSVC 2017}, \b {MSVC 2015}, MinGW 7.3
         \li Tested on \e {Windows 10 Creators Update}
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
-        \li MSVC 2017, \b {MSVC 2015}, MinGW 5.3
+        \li MSVC 2017, \b {MSVC 2015}, MinGW 7.3
         \li
     \row \li Windows 7
         \li \c x86 and \c x86_64
-        \li MSVC 2017, MSVC 2015, \b {MinGW 5.3}
-        \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z/download}{MinGW-builds gcc 5.3.0 (x86)}
+        \li MSVC 2017, MSVC 2015, \b {MinGW 7.3}
+        \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/7.3.0/threads-posix/dwarf/i686-7.3.0-release-posix-dwarf-rt_v5-rev0.7z/download}{MinGW-builds GCC 7.3.0 (x86)}
 \endtable
-
-\br
-\l{Qt for WinRT} can also be used to build applications for Window desktop platforms.
 
 //! [windows]
 
@@ -105,8 +102,8 @@
     \header \li Platform Version \li Architecture \li Compiler \li Build Environment
     \row \li Android 4.1, 5, 6, 7, 8 (API Level 16)
         \li \c armv7 and \c x86
-        \li \b {GCC as provided by Google}, \b {MinGW 5.3}
-        \li \b {RHEL 7.2 (x86_64)}, \b{\macos 10.12}, \b {Windows 7 (x86_64)}
+        \li \b {Clang as provided by Google}, \b {MinGW 7.3}
+        \li \b {RHEL 7.4 (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)}
 \endtable
 //! [android]
 
@@ -138,6 +135,11 @@
         \li \b{MSVC 2017}, \b{MSVC 2015}
         \li \b{Windows 10} Creators Update
 \endtable
+
+\br
+Universal Windows Platforms include Windows 10, Windows 10 IoT devices, Xbox
+One, and HoloLens.
+
 //! [winrt]
 
 //! [mobile]
