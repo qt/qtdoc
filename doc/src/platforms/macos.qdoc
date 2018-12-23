@@ -446,7 +446,7 @@
     \endlist
 
     These tests are followed all the way up the parent window chain
-    until one of the above rules is satisifed. If all else fails, a
+    until one of the above rules is satisfied. If all else fails, a
     default menu bar will be created. The default menu bar on
     Qt is an empty menu bar. However, you can create a different
     default menu bar by creating a parentless QMenuBar. The first one
@@ -735,6 +735,12 @@
        and QMenu::aboutToHide() signals to keep track of menu visibility;
        these provide a solution that should work on all platforms
        supported by Qt.
+
+    \li By default, Qt creates a native \b Quit menu item that will react
+       to the \c {CMD+Q} shortcut. Creating a QAction for the QAction::QuitRole
+       role will replace that menu item. Therefore, the replacement action
+       should be connected to either the QCoreApplication::quit slot, or a
+       custom slot that stops the application.
     \endlist
 
     \section2 Native Widgets
