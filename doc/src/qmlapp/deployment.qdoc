@@ -105,9 +105,7 @@ One added benefit of this way of developing and deploying the application is
 that you will be notified of syntax errors in your QML documents at application
 compile time, instead of run-time when loading the file.
 
-\section2 Limitations
-
-Currently this feature will tie your application to the Qt version you are
+By default this feature will tie your application to the Qt version you are
 compiling against, because it will replace the QML document source code in the
 resources with the compiled binary version. The source files are not present
 anymore. That means that when using the same application against a different
@@ -119,8 +117,13 @@ originates from an add-on for use in commercial application environments, where
 the deployment of source code is not desirable and requiring a recompilation
 when changing Qt is usually acceptable.
 
-We plan to implement support for retaining the source documents in a future
-version of Qt.
+You can retain the QML and JavaScript documents in the resources by passing a
+list of resource (*.qrc) files in the \c QTQUICK_COMPILER_RETAINED_RESOURCES
+qmake variable. These resource files will then not be filtered, and any QML and
+JavaScript files specified in them will be readable in full source by your
+application. If you then run the application with a different version of Qt,
+the QML and JavaScript files will be recompiled at runtime, slowing down the
+initial start of the application.
 
 \section1 Prototyping with QML Scene
 
