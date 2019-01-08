@@ -1226,5 +1226,37 @@
     default, \c macdeployqt uses the older HFS+ file system for compatibility
     with all versions of macOS currently supported by Qt. Use the \c{-fs} option
     to specify a different file system.
+
+    \section1 Volume Name
+
+    The volume name of a disk image (the text displayed in the window title of
+    an opened \c .dmg file) created with \c -dmg is based on the path to the
+    application when \c macdeployqt is run. For example, consider the following
+    command that creates a disk image for a Qt Quick application:
+
+    \badcode
+    macdeployqt /Users/foo/myapp-build/MyApp.app -qmldir=/Users/foo/myapp/qml -dmg
+    \endcode
+
+    The resulting volume name will be:
+
+    \badcode
+    /Users/foo/myapp-build/MyApp.app
+    \endcode
+
+    To ensure that the volume name only contains the application name and not
+    the path on the deployment machine, run \c macdeployqt in the same
+    directory:
+
+    \badcode
+    cd /Users/foo/myapp-build
+    macdeployqt MyApp.app -qmldir=/Users/foo/myapp/qml -dmg
+    \endcode
+
+    The resulting volume name will then be:
+
+    \badcode
+    MyApp.app
+    \endcode
 */
 
