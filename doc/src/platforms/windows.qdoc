@@ -145,7 +145,11 @@
     includes a version of the \l{ANGLE} project which is included from the
     Windows Qt installers. ANGLE implements the
     OpenGL ES 2.0 API on top of DirectX 11 or DirectX 9.
+
     ANGLE requires that the DirectX SDK is installed when building Qt.
+    If MSVC is used, the DirectX SDK will be provided by the Windows SDK. In
+    this case, you will need at least Windows SDK 10.
+    For MinGW builds, you have to install the DirectX SDK provided by Microsoft.
 
     ANGLE chooses the render backend depending on availability. DirectX 11
     is usually preferable. However, some graphics cards may not fully
