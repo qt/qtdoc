@@ -523,20 +523,23 @@
 
     \section1 The Windows Deployment Tool
     \target windeployqt
-    The Windows deployment tool is designed to automate the process of creating
-    a deployable folder containing the \l{Qt}-related dependencies
-    (libraries, QML imports, plugins, and translations) required to run
-    the application from that folder.
+    The Windows deployment tool \c windeployqt is designed to automate the
+    process of creating a deployable folder containing the \l{Qt}-related
+    dependencies (libraries, QML imports, plugins, and translations) required
+    to run the application from that folder.
     It creates a sandbox for \l{Qt for WinRT}{Windows Runtime}
     or an installation tree for Windows desktop applications, which can be
     easily bundled into an installation package.
 
-    The tool can be found in \c{QTDIR/bin/windeployqt}. It takes an \c .exe file or
-    a directory that contains an \c .exe file as an argument, and scans the executable
-    for dependencies. If a directory is passed with the \c{--qmldir} argument,
-    \c windeployqt uses the \c qmlimportscanner tool to scan QML
-    files inside the directory for QML import dependencies.
-    Identified dependencies are then copied to the executable's
+    The tool can be found in \c{QTDIR/bin/windeployqt}. It needs to be run
+    within the build environment in order to function correctly. When using
+    Qt Installer, the script \c{QTDIR/bin/qtenv2.bat} should be used to set it up.
+
+    \c windeployqt takes an \c .exe file or a directory that contains an \c .exe
+    file as an argument, and scans the executable for dependencies. If a
+    directory is passed with the \c{--qmldir} argument, \c windeployqt uses the
+    \c qmlimportscanner tool to scan QML files inside the directory for QML import
+    dependencies. Identified dependencies are then copied to the executable's
     directory. The hardcoded local paths in Qt5Core.dll are furthermore replaced
     with relative ones.
 
@@ -554,7 +557,7 @@
 
     \badcode
     Usage: windeployqt [options] [files]
-    Qt Deploy Tool 5.9.0
+    Qt Deploy Tool 5.12.2
 
     The simplest way to use windeployqt is to add the bin directory of your Qt
     installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
@@ -600,17 +603,17 @@
                                  mapping:  outputs the source and the relative
                                            target, suitable for use within an
                                            Appx mapping file
-      --verbose <level>         Verbose level.
+      --verbose <level>         Verbose level (0-2).
 
     Qt libraries can be added by passing their name (-xml) or removed by passing
     the name prepended by --no- (--no-xml). Available libraries:
-    bluetooth concurrent core declarative designer designercomponents
-    enginio gui qthelp multimedia multimediawidgets multimediaquick network nfc
+    bluetooth concurrent core declarative designer designercomponents enginio
+    gamepad gui qthelp multimedia multimediawidgets multimediaquick network nfc
     opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
     script scripttools sensors serialport sql svg test webkit webkitwidgets
     websockets widgets winextras xml xmlpatterns webenginecore webengine
-    webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput geoservices
-    webchannel texttospeech serialbus
+    webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput 3danimation
+    3dextras geoservices webchannel texttospeech serialbus webview
 
     Arguments:
       [files]                   Binaries or directory containing the binary.
