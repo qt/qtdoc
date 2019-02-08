@@ -28,7 +28,7 @@
 /*!
     \example tutorials/alarms
     \title Getting Started Programming with Qt Quick
-    \brief A tutorial for Qt Quick based on an alarms application
+    \brief A tutorial for Qt Quick based on an alarms application.
 
     This tutorial shows how to develop a simple alarm application as
     an introduction to Qt Quick and Qt Quick Controls2.
@@ -161,7 +161,7 @@
     \printto RoundButton
 
     New alarms can be added by clicking RoundButton \c addAlarmButton.
-    Clicking it opens a \l {Dialog: QtQuickControls2}{dialog} screen \c alarmDialog.
+    Clicking it opens a \l [QtQuickControls2] {Dialog} screen \c alarmDialog.
 
     \printuntil alarmDialog.open
     \printuntil alarmListView.model
@@ -176,7 +176,7 @@
     \quotefromfile tutorials/alarms/AlarmDialog.qml
     \skipto contentItem
     \printuntil /model\: years/
-    \printuntil /^}/
+    \printuntil /^\}/
 
     If you click on \b OK in the dialog, the entered data will be
     added to \c alarmModel:
@@ -267,7 +267,7 @@
     When \c onClicked is emitted, the current ListElement is deleted
     from \c alarmModel.
 
-    \printuntil alarmModel.remove
+    \printuntil root.ListView.view.model.remove
     \printuntil }
 
     \section2 Summary
