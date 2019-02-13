@@ -139,12 +139,12 @@
     \row
         \li \l[ActiveQt]{Active Qt}
         \li \l{Qt for Windows}{Windows}
-        \li
+        \li \l{Qt for Windows}{Windows}
         \li Classes for applications which use ActiveX and COM
     \row
          \li \l[Qt3D]{Qt 3D}
          \li All
-         \li
+         \li All
          \li Functionality for near-realtime simulation systems with support
              for 2D and 3D rendering.
     \row
@@ -162,19 +162,19 @@
     \row
         \li \l[QtCanvas3D]{Qt Canvas 3D} (Deprecated)
         \li All
-        \li
+        \li All
         \li Enables OpenGL-like 3D drawing calls from Qt Quick applications
             using JavaScript.
     \row
         \li \l[QtConcurrent]{Qt Concurrent}
-        \li
-        \li
+        \li All
+        \li All
         \li Classes for writing multi-threaded programs without using low-level
             threading primitives.
     \row
         \li \l[QtDBus]{Qt D-Bus}
         \li All
-        \li
+        \li All
         \li Classes for inter-process communication over the D-Bus protocol.
     \row
         \li \l[QtGamepad]{Qt Gamepad}
@@ -186,7 +186,7 @@
     \row
         \li \l[QtGraphicalEffects]{Qt Graphical Effects}
         \li All
-        \li
+        \li All
         \li Graphical effects for use with Qt Quick 2.
     \row
         \li \l{Qt Help}
@@ -196,7 +196,7 @@
     \row
         \li \l[QtImageFormats]{Qt Image Formats}
         \li All
-        \li
+        \li All
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
     \row
         \li \l[QtLocation]{Qt Location}
@@ -215,14 +215,14 @@
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
         \li \l[QtOpenGL]{Qt OpenGL} (Deprecated)
-        \li
-        \li
+        \li All
+        \li All
         \li OpenGL support classes. Deprecated in favor of the \c{QOpenGL*}
             classes in the \l{Qt GUI} module.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
-        \li
-        \li
+        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}
+        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, \l{Qt for Android}{Android}
         \li Provides classes that encapsulate platform-specific information,
             tied to a given runtime configuration of a \l {Qt Platform Abstraction}
             {platform plugin}.
@@ -235,7 +235,7 @@
     \row
         \li \l[QtPrintSupport]{Qt Print Support}
         \li All
-        \li
+        \li All
         \li Classes to make printing easier and more portable.
     \row
         \li \l{Qt Purchasing}
@@ -253,13 +253,13 @@
     \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
-        \li
+        \li All
         \li Provides a specialized set of controls that can be used to build
             interfaces in Qt Quick.
     \row
         \li \l{Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li All
-        \li
+        \li All
         \li Provides a C++ widget class for displaying a Qt Quick user interface.
     \row
         \li \l{Qt Remote Objects}
@@ -270,7 +270,7 @@
     \row
         \li \l[QtScript]{Qt Script} (Deprecated)
         \li All
-        \li
+        \li All
         \li Classes for making Qt applications scriptable. Deprecated in favor
             of the \c{QJS*} classes in the \l{Qt QML} module.
     \row \li \l[QtScxml]{Qt SCXML}
@@ -281,7 +281,7 @@
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
-        \li
+        \li All
         \li Additional components for applications that use \l{Qt Script}.
     \row
         \li \l[QtSensors]{Qt Sensors}
@@ -302,12 +302,12 @@
     \row
         \li \l[QtSpeech]{Qt Speech}
         \li All
-        \li
+        \li All
         \li Provides support for accessibility features such as text-to-speech.
     \row
         \li \l[QtSvg]{Qt SVG}
         \li All
-        \li
+        \li All
         \li Classes for displaying the contents of SVG files. Supports a subset of the
             \l{http://www.w3.org/TR/SVGTiny12/}{SVG 1.2 Tiny} standard.
     \row
@@ -349,15 +349,15 @@
         \li Provides platform-specific APIs for X11.
     \row
         \li \l[QtXml]{Qt XML}
-        \li
-        \li
+        \li All
+        \li All
         \li C++ implementations of SAX and DOM.
             \note This module is not required to use QXmlStreamReader and
             QXmlStreamWriter. They are already part of \l{Qt Core}.
     \row
         \li \l[QtXmlPatterns]{Qt XML Patterns}
-        \li
-        \li
+        \li All
+        \li All
         \li Support for XPath, XQuery, XSLT and XML schema validation.
     \row
         \li \l{Qt Wayland Compositor}
@@ -372,7 +372,7 @@
     \row
         \li \l{Qt Charts}
         \li All
-        \li
+        \li All
         \li UI Components for displaying visually pleasing charts,
             driven by static or dynamic data models.
     \row
