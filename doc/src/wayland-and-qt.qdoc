@@ -1,0 +1,259 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+  \page wayland-and-qt.html
+  \title Wayland and Qt
+  \brief An overview of the Wayland protocol and how it fits into Qt.
+
+  \l {https://wayland.freedesktop.org/}{Wayland} is a display server protocol
+  that helps you to create multi-process systems. Multiple client applications
+  ("clients") can render their own content to off-screen buffers. These buffers
+  are then passed to a display server, often called a compositor, using the
+  Wayland protocol. Finally, the compositor composites and positions the
+  content on a physical display.
+
+  \section1 Why Use Multi-Process
+
+  In a single-process system, all parts of the UI run in one, single process.
+  In a multi-process system, all clients run in their own, dedicated process.
+  With Qt, at any point in your development process, you can choose to switch
+  between single-process and multi-process.
+
+  \image ../images/wayland-multi-process.png
+  \caption Multi-Process Client Architecture
+
+  \image ../images/wayland-single-process-eglfs.png
+  \caption Single Process Client Architecture
+
+  The use of multi-process has the following benefits:
+
+  \list
+    \li \l{stability}{Stability}
+    \li \l{security}{Security}
+    \li \l{performance}{Performance}
+    \li \l{interoperability}{Interoperability}
+  \endlist
+
+  \target stability
+  \table 100%
+    \header
+      \li {2,1} Stability
+    \row
+      \li Easier to recover when clients hang or crash
+      \li If you have a complex UI, then multi-process is useful because if one
+          part of the UI crashes, it doesn't affect the entire system.
+          Similarly, the display won't freeze, even when one client freezes.
+
+          \note If your client is mandated by law to render safety-critical
+          information, consider using
+          \l{https://doc.qt.io/QtSafeRenderer/qtsr-overview.html}{Qt Safe Renderer Overview}.
+    \row
+      \li Protection against possible memory leaks
+      \li In a multi-process system, if one client has a memory leak and
+          consumes lots of memory, that memory is recovered when that client
+          exits. In contrast with single-process, the memory leak remains until
+          the entire system restarts.
+  \endtable
+
+  \target security
+  \table 100%
+    \header
+      \li Security
+    \row
+      \li In a single-process system, all clients can access each other's
+          memory. For example, there's no isolation for sensitive data
+          transfer; every line of code must be equally trustworthy. This
+          isolation is there, by design, in multi-process systems.
+  \endtable
+
+  \target performance
+  \table 100%
+    \header
+      \li Performance
+    \row
+      \li If you have a CPU with multiple cores, a multi-process system can
+          help distribute the load evenly across different cores, making more
+          efficient use of your CPU.
+  \endtable
+
+  \target interoperability
+  \table 100%
+    \header
+      \li Interoperability
+    \row
+      \li You can interface with non-Qt clients in a multi-process system, as
+          long as your clients understand Wayland or X11. For example, if you
+          use gstreamer for video or if you want to use a navigation
+          application built with another UI toolkit, you can run these clients
+          alongside your other Qt-based clients.
+  \endtable
+
+  \section1 Why Use Wayland Instead of X11 or Custom Solutions
+
+  X11, a desktop protocol from the 80s, no longer fits with how graphics
+  hardware works today. It is large, complex, and lacks customizability. In
+  fact, it is difficult to run a client fluidly with X11, and reach 60 fps
+  without tearing. Wayland, in contrast, is easier to implement, has better
+  performance, and contains all the necessary parts to run efficiently on
+  modern graphics hardware. For embedded, multi-process systems on Linux,
+  Wayland is the standard.
+
+  However, if you are working with old hardware or legacy applications,
+  then Wayland may not be a good option. The Wayland protocol is designed with
+  security and isolation in mind, and is strict/conservative about what
+  information and functionality is available to clients. While this leads to a
+  cleaner and more secure interface, some functionality that legacy
+  applications expect may no longer be available on Wayland.
+
+  Particularly, there are three common use cases where Wayland may not be the
+  best option:
+  \list 1
+    \li The hardware or platform is old and only supports X11; in which case
+        you have no choice.
+    \li You have to support legacy applications that depend on features that
+        are absent in the Wayland protocol for security and simplicity.
+    \li You have to support legacy applications that use a UI toolkit that
+        doesn't run on Wayland at all. In some cases, you may be able to work
+        around this by running those applications on
+        \l{https://wayland.freedesktop.org/xserver.html}{XWayland} instead.
+  \endlist
+
+  Back when X11 was very popular, developers wrote their own custom solutions
+  to circumvent X11 issues. Older Qt versions had the Qt Windowing System
+  (QWS), which is now discontinued. Today, most of these use cases are covered
+  by Wayland, and custom solutions are becoming less and less common.
+
+  \section1 Possible Trade-Offs with Multi-Process
+
+  Use of multi-process systems do bring about the following trade-offs:
+
+    \list
+    \li \l{increased-video-memory}{Increased video memory consumption}
+    \li \l{increased-main-memory}{Increased main memory consumption}
+    \li \l{repeated-storage}{Repeated storage of graphical resources}
+  \endlist
+
+  \target increased-video-memory
+  \table 100%
+    \header
+      \li Increased video memory consumption
+    \row
+      \li This can be a constraint for embedded devices. In multi-process, each
+          client needs to have its own graphics buffer, which it sends to the
+          compositor. Consequently, you use more video memory compared to the
+          single-process case: where everything is drawn at once and there is
+          no need to store the different parts in intermediary buffers.
+  \endtable
+
+  \target increased-main-memory
+  \table 100%
+    \header
+      \li Increased main memory consumption
+    \row
+      \li Apart from some extra overhead at the OS level, running multiple
+          clients may also use more main memory as some parts need to be
+          duplicated once per client. For example, if you run QML, each client
+          requires a separate QML engine. Consequently, if you run a single
+          client that uses Qt Quick Controls, it's loaded once. If you then
+          split this client into multiple clients, you're loading Qt Quick
+          Controls multiple times, resulting in a higher startup cost to
+          initialize your clients.
+  \endtable
+
+  \target repeated-storage
+  \table 100%
+    \header
+      \li Repeated storage of graphical resources
+    \row
+      \li In a single-process system, if you're using the same textures,
+          background, or icons in many places, those images are only stored
+          once. In contrast, if you use these images in a multi-process system,
+          then you have to store them multiple times. In this case, one
+          solution is to share graphical resource between clients. Qt already
+          allows sharing image resources in main memory across processes
+          without involving Wayland. Sharing GPU textures across processes, on
+          the other hand, requires more intricate solutions. Such solutions are
+          currently in development for the Qt Wayland Compositor.
+  \endtable
+
+  \section1 What Qt Wayland Offers
+
+  \b{For Clients}
+  \br
+  Qt clients can run on any Wayland compositor, including Weston, the reference
+  compositor developed as part of the Wayland project.
+
+  Any Qt program can run as a Wayland client (as part of a multi-process system)
+  or a standalone client (single-process). This is determined on startup, where
+  you can choose between the different backends. During the development process,
+  you can develop the client on the desktop first, then test it on the target
+  hardware later. You don't need to run your clients on the actual target
+  hardware all the time.
+
+  \image ../images/wayland-single-process-develop.png
+  \caption Single-Process Client Development
+
+  If you develop on a Linux machine, you can also run the compositor within a
+  window on your development machine. This lets you run clients in an
+  environment that closely resembles the target device. Without rebuilding the
+  client, you can also run it with \c{-platform wayland} to run it inside the
+  compositor. If you use \c{-platform xcb} (for X11), you can run the client on
+  the desktop. In other words, you can start developing your clients before the
+  compositor is ready for use.
+
+  \b{For Servers}
+  \br
+  The server, or compositor, connects to the display and shows the contents of
+  each client on the screen. The compositor handles input and sends input
+  events to the corresponding client. In turn, each client connects to the
+  compositor and sends the content of its windows. It's up to the compositor to
+  decide:
+
+  \list
+    \li How and where to show the content
+    \li Which content to show
+    \li What to do with the different client graphics buffers
+  \endlist
+
+  This means, it's up to the compositor to decide what a multi-process system
+  is. For instance, the clients could be part of a 3D scene with windows on the
+  walls, on a VR system, mapped to a sphere, and so on.
+
+  The Qt Wayland Compositor is an API for building your own compositor. It
+  gives you full freedom to build a custom compositor UI and manage the windows
+  of various clients. You can combine both Qt Quick and QML with the Qt Wayland
+  Compositor to create impressive, imaginative UIs. For more information, see
+  \l{Qt Wayland Compositor}.
+
+  \section2 Related Content
+  \list
+    \li \l{https://resources.qt.io/qt-world-summit-2017/qtws17-qt-wayland-compositor-creating-multi-process-user-interface-johan-helsing-the-qt-company}{QtWS17 - Qt Wayland Compositor: Creating multi-process user interface}
+    \li \l{https://doc.qt.io/QtApplicationManager/introduction.html}{Qt Application Manager}
+  \endlist
+
+*/
