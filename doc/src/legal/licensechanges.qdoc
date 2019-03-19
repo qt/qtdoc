@@ -34,6 +34,53 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 5.12.2
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{Freetype 2} got updated to upstream version 2.9.1.
+        \li \l{LibPNG} got updated to upstream version 1.6.36. libpng License 2
+        added at same time.
+    \endlist
+
+    \section2 Qt Image Formats
+
+    \l{WebP (libwebp)} got updated to upstream version 1.0.2.
+
+    \section1 Qt 5.12.1
+
+    \section2 Qt Core Module
+
+    \list
+        \li The version information for \l{FreeBSD} got updated.
+        \li The version information for \l{Secure Hash Algorithm SHA-3 - Keccak} got updated.
+        \li \l{UCD} got updated to upstream version 20.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \l{xkbcommon} was removed from 3rd party sources and we are not bundling that library any more.
+
+    \section2 Qt Image Formats
+
+    \list
+        \l{WebP (libwebp)} got updated to upstream version 1.0.1.
+        \l{libtiff} got updated to upstream version 4.0.10.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \l{SQLite} got updated to upstream version 3.26.0.
+
+    \section2 Qt Virtual Keyboard Module
+
+    The version information for \l{Lipi Toolkit} got updated.
+
+    \section2 Qt Wayland Compositor Module
+
+    The usage of \l{Wayland EGLStream Controller Protocol} under MIT license is now documented.
+
     \section1 Qt 5.12.0
 
     \section2 Qt 3D Module
