@@ -104,6 +104,11 @@ public:
     {
         nodeStack.removeLast();
     }
+
+    void throwRecursionDepthError()
+    {
+        QFAIL("Maximum statement or expression depth exceeded");
+    }
 };
 
 }
