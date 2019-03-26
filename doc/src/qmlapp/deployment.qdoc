@@ -105,6 +105,16 @@ One added benefit of this way of developing and deploying the application is
 that you will be notified of syntax errors in your QML documents at application
 compile time, instead of run-time when loading the file.
 
+If you have \c .qml or \c .js files which should not be compiled but just
+bundled by the resource system (for example, \c .js files used with \l{Qt
+WebEngine}), then you can omit them from the compilation by specifying the
+resources files that contain them in the \c QTQUICK_COMPILER_SKIPPED_RESOURCES
+variable in your project file, like below:
+
+\code
+QTQUICK_COMPILER_SKIPPED_RESOURCES += bundle_only.qrc
+\endcode
+
 \section2 Limitations
 
 Currently this feature will tie your application to the Qt version you are
