@@ -175,7 +175,7 @@ by installing the latest \c build-tools, \c platform-tools, \c emulator, and \c 
 packages:
 
 \badcode
-./android update sdk
+./bin/sdkmanager --update
 \endcode
 
 To install a specific package, use \c sdkmanager from
