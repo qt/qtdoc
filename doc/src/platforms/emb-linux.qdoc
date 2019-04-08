@@ -1092,13 +1092,14 @@
   system; or more precisely, it is a protocol for clients to talk to a display
   server.
 
-  The Qt Wayland module provides a \c wayland platform plugin that allows Qt
-  application to connect to a Wayland compositor.
+  Qt Wayland provides a \c wayland platform plugin that allows Qt applications
+  to connect to a Wayland compositor.
 
-  \note You may experience issues with touch screen input while using
-  the \l{http://wayland.freedesktop.org/}{Weston} reference compositor.
-  Refer to the \l{https://wiki.qt.io/WestonTouchScreenIssues}{Qt Wiki} for
-  further information.
+  For more details, see \l{Wayland and Qt}.
+
+  \note You may experience issues with touch screen input while using the
+  \l{http://wayland.freedesktop.org/}{Weston} reference compositor. For more
+  information, see \l{https://wiki.qt.io/WestonTouchScreenIssues}.
 
   \section1 Related Topics
 
