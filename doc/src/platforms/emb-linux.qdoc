@@ -31,28 +31,27 @@
   \brief Provides information about Embedded Linux support in Qt.
   \ingroup supportedplatform
 
-  Since the Qt 5.0 release, Qt no longer contains its own window system (QWS)
+  Since the Qt 5.0 release, Qt no longer has its own window system (QWS)
   implementation. For single-process use cases, the \l{Qt Platform Abstraction}
-  is a superior solution. Multiple graphical processes can be supported
-  through Wayland.
+  is a superior solution; multi-process use cases are supported through
+  Wayland.
 
-  There are multiple platform plugins that are potentially usable on
-  Embedded Linux systems: EGLFS, LinuxFB, DirectFB, Wayland. The
-  availability of these depend on the configuration of Qt.  On many
-  boards \e eglfs is chosen as the default one. If the default is not
-  suitable, the \c QT_QPA_PLATFORM environment variable parameter can
-  be used to request another plugin. Alternatively, for quick tests,
-  the \c -platform command-line can be used with the same syntax.
+  There are multiple platform plugins that you can use on Embedded Linux
+  systems: EGLFS, LinuxFB, DirectFB, or Wayland. However, the availability of
+  these plugins depend on how Qt is configured. On many boards \e eglfs is the
+  default plugin. If the default is not suitable, use the \c QT_QPA_PLATFORM
+  environment variable to request another plugin. Alternatively, for quick
+  tests, the \c -platform command-line can be used with the same syntax.
 
-  \section1 Configuring a Specific Device
+  \section1 Configure a Specific Device
 
   Building Qt for a given device requires a toolchain and a sysroot.
   Additionally, some devices require vendor-specific adaptation code for EGL
   and OpenGL ES 2.0 support. This is not relevant for non-accelerated
-  platforms, for example the ones using the LinuxFB plugin, which is meant for
+  platforms, such as those that use the LinuxFB plugin, which is meant for
   software-based rendering only.
 
-  The directory \e qtbase/mkspecs/devices contains configuration and graphics
+  The \e qtbase/mkspecs/devices directory contains configuration and graphics
   adaptation code for a number of devices. For example, the
   \c linux-rasp-pi2-g++ mkspec contains build settings such as the optimal
   compiler and linker flags for the
@@ -73,13 +72,13 @@
 
   The most important parameters are \c -device and \c -sysroot. By specifying
   \c -sysroot, the include files and libraries used by \c {configure}'s feature
-  detection tests, as well as Qt itself, is taken from the specified
-  location, instead of the host PC's standard locations. This means that
-  installing development packages on the host machine has no relevance. For
-  example, to get \c libinput support it is not sufficient or necessary to have
-  the \c libinput development headers and libraries installed on the host
+  detection tests, as well as Qt itself, are taken from the specified location,
+  instead of the host PC's standard locations. Consequently, installing
+  development packages on the host machine has no relevance. For example, to
+  get \c libinput support, it is not sufficient or necessary to have the
+  \c libinput development headers and libraries installed on the host
   environment. Instead, the headers and the libraries for the target
-  architecture (e.g. ARM) must be present in the \c sysroot.
+  architecture, such as ARM, must be present in the \c sysroot.
 
   \c pkg-config is supported also when performing cross-compilation.
   \c configure automatically sets \c PKG_CONFIG_LIBDIR to make \c pkg-config
@@ -93,7 +92,7 @@
   argument when invoking the compiler. In some cases this is not desirable and
   can be disabled by passing \c -no-gcc-sysroot to \c configure.
 
-  \c -prefix, \c -extprefix and \c -hostprefix control the intended destination
+  \c -prefix, \c -extprefix, and \c -hostprefix control the intended destination
   directory of the Qt build. In the above example the ARM build of Qt is
   expected to be placed in \c{/usr/local/qt5} on the target device. Note that
   running \c{make install} does not deploy anything to the device. Instead, the
@@ -104,7 +103,7 @@
   qmake, rcc, uic from the binaries for the target. When given, such tools will
   be installed under the specified directory instead of \c extprefix.
 
-  See \l {Qt Configure Options} for more information.
+  For more information, see \l {Qt Configure Options}.
 
   \section1 Platform Plugins for Embedded Linux Devices
 
@@ -113,137 +112,152 @@
   \l {http://www.khronos.org/egl}{EGL} is an interface between OpenGL and the
   native windowing system. Qt can use EGL for context and surface management,
   however the API contains no platform-specifics: The creation of a \e {native
-  window} (which will not necessarily be an actual window on the screen) must
+  window}, which will not necessarily be an actual window on the screen, must
   still be done by platform-specific means. Hence the need for the board or
   GPU-specific adaptation code. Such adaptations are provided either as
   \e {eglfs hooks}, which can be a single source file compiled into the
   platform plugin, or as dynamically loaded \e {EGL device integration}
   plugins.
 
-  \e EGLFS is a platform plugin for running Qt5 applications on top of EGL
-  and OpenGL ES 2.0 without an actual windowing system (like X11 or Wayland).
-  In addition to Qt Quick 2 and native OpenGL applications, it supports
-  software-rendered windows (for example QWidget) too. In the latter case the
+  \e EGLFS is a platform plugin for running Qt5 applications on top of EGL and
+  OpenGL ES 2.0 without an actual windowing system like X11 or Wayland. In
+  addition to Qt Quick 2 and native OpenGL applications, EGLS supports
+  software-rendered windows, like QWidget, too. In the latter case, the
   widgets' contents are rendered using the CPU into images, which are then
   uploaded into textures and composited by the plugin.
 
-  This is the recommended plugin for modern Embedded Linux devices that include
-  a GPU.
+  EGLFS is the recommended plugin for modern Embedded Linux devices that
+  include a GPU.
 
-  \e EGLFS forces the first top-level window (be it either a QWidget or a
-  QQuickView) to become fullscreen. This window is also chosen to be the \e root
-  widget window into which all other top-level widgets (for example dialogs,
-  popup menus or combobox dropdowns) are composited. This is necessary because
-  with \e EGLFS there is always exactly one native window and EGL window surface,
-  and these belong to the widget or window that is created first. This approach
-  works well when there is a main window that exists for the entire lifetime of
-  the application and all other widgets are either non top-levels or are created
-  afterwards, once the main window is shown.
+  \e EGLFS forces the first top-level window - either a QWidget or a QQuickView
+  - to become fullscreen. This window is also chosen to be the \e root
+  widget window into which all other top-level widgets are composited. For
+  example, dialogs, popup menus, or combo boxes. This behavior is necessary
+  because with \e EGLFS there is always exactly one native window and one EGL
+  window surface; these belong to the widget or window that is created first.
+  This approach works well when there is a main window that exists for the
+  application's lifetime and all other widgets are either non top-levels or are
+  created afterwards, once the main window is shown.
 
-  There are further restrictions for OpenGL-based windows. As of Qt 5.3, \c eglfs
-  supports a single fullscreen GL window (for example, an OpenGL-based QWindow,
-  a QQuickView or a QGLWidget). Opening additional OpenGL windows or mixing such
-  windows with QWidget-based content is not supported and terminates the
-  application with an error message.
+  There are further restrictions for OpenGL-based windows. As of Qt 5.3,
+  \c eglfs supports a single fullscreen GL window: such as an
+  OpenGL-based QWindow, a QQuickView, or a QOpenGLWidget. Opening additional
+  OpenGL windows or mixing such windows with QWidget-based content is not
+  supported; Qt terminates the application with an error message.
 
   If necessary, \c eglfs can be configured using the following environment
   variables:
 
-  \list
+  \table 100%
+    \header
+      \li Environment Variable
+      \li Description
+    \row
+      \li \c {QT_QPA_EGLFS_INTEGRATION}
+      \li In addition to the compiled-in \e hooks, it is also possible to use
+          dynamically loaded plugins to provide device or vendor-specific
+          adaptation. This environment variable enforces a specific plugin.
+          For example, setting it to \e{eglfs_kms} uses the KMS/DRM backend.
+          This is only an option when no static or compiled-in hooks were
+          specified in the device makespecs. In practice, the traditional
+          compiled-in hooks are rarely used, almost all backends are now
+          migrated to plugins. The device makespecs still contain a relevant
+          \c EGLFS_DEVICE_INTEGRATION entry: the name of the preferred backend
+          for that particular device. This is optional, but very useful to
+          avoid the need to set this environment variable if there are more
+          than one plugin present in the target system. In a desktop
+          environment the KMS or X11 backends are prioritized, depending on
+          the presence of the \c DISPLAY environment variable.
+          \note On some boards a special value of \c none is used instead
+          of an actual plugin. This indicates that no special integration is
+          necessary to use EGL with the framebuffer; no plugins must be loaded.
+    \row
+      \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT}
+      \li Specifies the physical screen's width and height in millimeters. On
+          platforms where the value cannot be queried from the framebuffer
+          device \e{/dev/fb0} or via other means, a default DPI of 100 is used.
+          Use this variable to override any such defaults. Setting this variable
+          is important because QWidget- or Qt Quick Controls-based applications
+          rely on these values. Running these applications with the hard-coded
+          settings may result in user interface elements with sizes that are
+          unsuitable for the display in use.
+    \row
+      \li \c {QT_QPA_EGLFS_ROTATION}
+      \li Specifies the rotation applied to software-rendered content in
+          QWidget-based applications. Supported values are 180, 90, and -90.
+          This variable does not apply to OpenGL-based windows, including Qt
+          Quick. Qt Quick applications can apply transformations in their QML
+          scene instead. The standard \c eglfs mouse cursor always takes the
+          value into account, with an appropriately positioned and rotated
+          pointer image, regardless of the application type. However, special
+          cursor implementations, such as the KMS/DRM backend's hardware
+          cursor, may not support rotation.
+    \row
+      \li \c {QT_QPA_EGLFS_FORCEVSYNC}
+      \li When set, \c eglfs requests \c FBIO_WAITFORVSYNC on the framebuffer
+          device after each call to eglSwapBuffers(). This variable is only
+          relevant for backends relying on the legacy Linux \c fbdev subsystem.
+          Normally, with a default swap interval of 1, Qt assumes that calling
+          eglSwapBuffers() takes care of vsync; if it doesn't (for example,
+          due to driver bugs), try setting \c QT_QPA_EGLFS_FORCEVSYNC to a
+          non-zero value.
+    \row
+      \li \c {QT_QPA_EGLFS_FORCE888}
+      \li When set, the red, green, and blue color channel sizes are ignored
+          when \c eglfs creates a new context, window or offscreen surface.
+          Instead, the plugin requests a configuration with 8 bits per channel.
+          This can be helpful on devices where configurations with less than 32
+          or 24 bits per pixel (for example, 5-6-5 or 4-4-4) are chosen by
+          default despite knowing they are not ideal, for example, due to
+          banding effects. Instead of changing application code, this variable
+          provides a shortcut to force 24 or 32 bpp configurations.
+  \endtable
 
-  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
-  it is also possible to provide device or vendor-specific adaptation in the
-  form of dynamically loaded plugins. This environment variable enforces a
-  specific plugin. For example, setting it to \e{eglfs_kms} uses the KMS/DRM
-  backend. This is only an option when no static or compiled-in hooks were
-  specified in the device makespecs. In practice, the traditional compiled-in
-  hooks are rarely used, almost all backends are now migrated to plugins. The
-  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
-  the name of the preferred backend for that particular device. This is
-  optional, but very useful to avoid the need to set this environment variable
-  in case there are more than one plugins present in the target system. In a
-  desktop environment the KMS or X11 backends are prioritized, depending on
-  the presence of the \c DISPLAY environment variable. Note that on some boards
-  the special value of \c none is used instead of an actual plugin. This
-  indicates that no special integration is necessary to use EGL with the
-  framebuffer and so no plugins must be loaded.
+  Additionally, the following less commonly used variables are available:
 
-  \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c
-  {QT_QPA_EGLFS_PHYSICAL_HEIGHT} - Physical screen width and height in
-  millimeters. On platforms where the value cannot be queried from the
-  framebuffer device \e{/dev/fb0} or via other means, a default DPI of
-  100 is used. This variable can be used to override any such
-  defaults. Setting this is important because QWidget or Qt Quick
-  Controls based applications rely on these values. Running with the
-  hard-coded settings may result in user interface element sizes
-  unsuitable for the display in use.
-
-  \li \c {QT_QPA_EGLFS_ROTATION} - Specifies the rotation applied to
-  software-rendered content in QWidget-based applications. Supported values are
-  180, 90, and -90. This does not apply to OpenGL-based windows, including Qt
-  Quick. Qt Quick applications can apply transformations in their QML scene
-  instead. The standard eglfs mouse cursor always takes the value into account,
-  with appropriately positioned and rotated pointer image, regardless of the
-  application type. The special cursor implementations, such as the KMS/DRM
-  backend's hardware cursor, may not support rotation.
-
-  \li \c {QT_QPA_EGLFS_FORCEVSYNC} - When set, \c eglfs requests
-  \c FBIO_WAITFORVSYNC on the framebuffer device after each call to
-  eglSwapBuffers(). This is only relevant for backends relying on the legacy
-  \c fbdev subsystem of Linux. Normally, with a default swap interval of 1, Qt
-  assumes that calling eglSwapBuffers() takes care of vsync; if it doesn't (for
-  example, due to driver bugs), try setting \c QT_QPA_EGLFS_FORCEVSYNC to a
-  non-zero value.
-
-  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green, and blue color
-  channel sizes are ignored whenever creating a new context, window or offscreen
-  surface. Instead, the plugin requests a configuration with 8 bits per
-  channel. This can be helpful on devices where configurations with less than 32
-  or 24 bits per pixel (for example, 5-6-5 or 4-4-4) are chosen by default but
-  are known not to be ideal, for example, due to banding effects. Instead of
-  changing application code, this variable provides an easier shortcut to force
-  24 or 32 bpp configurations.
-
-  \endlist
-
-  In addition, the following - less commonly used - variables are
-  available as well:
-
-  \list
-
-  \li \c {QT_QPA_EGLFS_FB} - Overrides the framebuffer device. The default is
-  \c /dev/fb0. On most embedded platforms this is not very relevant because the
-  framebuffer is used only for querying settings like the display dimensions.
-  On certain devices however, this parameter provides the ability to specify
-  the display to be used in multiple display setups, similarly to the \c fb
-  parameter in LinuxFB.
-
-  \li \c {QT_QPA_EGLFS_WIDTH} and \c {QT_QPA_EGLFS_HEIGHT} - Contain the screen
-  width and height in pixels. While \c eglfs tries to determine the dimensions
-  from the framebuffer device \e{/dev/fb0}, but this does not work always and
-  manually specifying the sizes may become necessary.
-
-  \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth for the screen. On
-  platforms where the framebuffer device \e{/dev/fb0} is not available or the
-  query is not successful, the default of \c 32 is used. This variable can be used
-  to override any such defaults. Note that this affects only the color depth
-  value reported by QScreen. It has no connection to EGL configurations and the
-  color depth used for OpenGL rendering.
-
-  \li \c {QT_QPA_EGLFS_SWAPINTERVAL} - By default a swap interval of \c 1 will
-  be requested. This enables synchronizing to the displays vertical refresh. The
-  value can be overridden with this environment variable. For instance, passing
-  0 will disable blocking on swap, resulting in running as fast as possible
-  without any synchronization.
-
-  \li \c {QT_QPA_EGLFS_DEBUG} - When set, some debugging information is printed
-  on the debug output. For example, the input QSurfaceFormat and the properties
-  of the chosen EGL configuration are printed while creating a new
-  context. Together with Qt Quick's \c {QSG_INFO} variable, this can provide
-  useful information for troubleshooting issues related to the EGL
-  configuration.
-
-  \endlist
+  \table 100%
+    \header
+      \li Environment Variable
+      \li Description
+    \row
+      \li \c {QT_QPA_EGLFS_FB}
+      \li Overrides the framebuffer device. The default is \c /dev/fb0. On most
+          embedded platforms this variable isn't very relevant because the
+          framebuffer is used only to query settings like the display
+          dimensions. However, on certain devices, this variable provides the
+          ability to specify which display to use in multiple display setups,
+          similar to the \c fb parameter in LinuxFB.
+    \row
+      \li \c {QT_QPA_EGLFS_WIDTH} and \c {QT_QPA_EGLFS_HEIGHT}
+      \li Contains the screen's width and height in pixels. While \c eglfs
+          tries to determine the dimensions from the framebuffer device
+          \e{/dev/fb0}, this doesn't always work. It may be necessary to
+          manually specify the sizes.
+    \row
+      \li \c {QT_QPA_EGLFS_DEPTH}
+      \li Overrides the color depth for the screen. On platforms where the
+          framebuffer device \e{/dev/fb0} is not available or the query is not
+          successful, a default of \c 32 is used. Use this variable to override
+          any such defaults.
+          \note This variable only affects the color depth value reported by
+          QScreen. It has no connection to EGL configurations and the color
+          depth used for OpenGL rendering.
+    \row
+      \li \c {QT_QPA_EGLFS_SWAPINTERVAL}
+      \li By default, a swap interval of \c 1 is requested. This variable
+          enables synchronizing to the display's vertical refresh. Use this
+          variable to override the swap interval's value. For instance, passing
+          0 disables blocking on swap, resulting in running as fast as possible
+          without any synchronization.
+    \row
+      \li \c {QT_QPA_EGLFS_DEBUG}
+      \li When set, some debugging information is printed on the debug output.
+          For example, the input QSurfaceFormat and the properties of the
+          chosen EGL configuration are printed while creating a new context.
+          When used together with Qt Quick's \c {QSG_INFO} variable, you can
+          get useful information for troubleshooting issues related to the EGL
+          configuration.
+  \endtable
 
   In addition to \c {QT_QPA_EGLFS_DEBUG}, \c eglfs also supports the more modern
   categorized logging system of Qt. The following logging categories are
@@ -348,11 +362,11 @@
 
   \endlist
 
-  As of Qt 5.9, the behavior of eglfs and linuxfb has been synchronized when it
-  comes to the window sizing policy: the first top-level window is forced to
-  cover the entire screen with both platform plugins. If this is not desired,
-  set the environment variable \c{QT_QPA_FB_FORCE_FULLSCREEN} to \c 0 in order
-  to restore the behavior of earlier Qt versions.
+  As of Qt 5.9, the behavior of \c eglfs and \c linuxfb have been synchronized
+  in regards to window sizing policy: the first top-level window is forced to
+  cover the entire screen, with both platform plugins. If this is not desired,
+  set the \c{QT_QPA_FB_FORCE_FULLSCREEN} environment variable to \c 0 to
+  restore the behavior from earlier Qt versions.
 
   \section1 Input
 
