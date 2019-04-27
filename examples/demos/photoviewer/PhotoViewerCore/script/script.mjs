@@ -57,8 +57,9 @@ export function getHeight(string) {
 }
 
 export function getImagePath(string) {
-    var pattern = /src=\"http:\/\/(\S+)\"/
-    return (string.match(pattern))[1]
+    var pattern = /src=\"https?:\/\/(\S+)\"/
+    var match = string.match(pattern)
+    return match ? match[1] : ""
 }
 
 export function calculateScale(width, height, cellSize) {
