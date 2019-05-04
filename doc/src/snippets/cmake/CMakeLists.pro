@@ -11,7 +11,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Find the QtWidgets library
-find_package(Qt5Widgets CONFIG REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 # Populate a CMake variable with the sources
 set(helloworld_SRCS
@@ -26,13 +26,13 @@ target_link_libraries(helloworld Qt5::Widgets)
 #! [0]
 
 #! [1]
-find_package(Qt5Core)
+find_package(Qt5 COMPONENTS Core REQUIRED)
 
 get_target_property(QtCore_location Qt5::Core LOCATION)
 #! [1]
 
 #! [2]
-find_package(Qt5Core)
+find_package(Qt5 COMPONENTS Core REQUIRED)
 
 set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_RELEASE} -fprofile-arcs -ftest-coverage")
 

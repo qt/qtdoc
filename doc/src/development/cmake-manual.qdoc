@@ -29,7 +29,8 @@
 
 /*!
     \page cmake-manual.html
-    \title CMake Manual
+    \target CMake Manual
+    \title Building with CMake
 
     \c {CMake} is a tool that helps simplify the build process for
     development projects across different platforms.  \c{CMake}
@@ -37,7 +38,7 @@
     files.
 
     \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}.
-    The rest of this manual details the specifics of how to use Qt 5 with \c{CMake}.
+    The rest of this topic details the specifics of how to use Qt 5 with \c{CMake}.
     The minimum version required to use Qt5 is \c{CMake} 3.1.0.
 
     \section1 Getting Started
@@ -56,8 +57,8 @@
     \snippet snippets/cmake/CMakeLists.pro 0
 
     In order for \c{find_package} to be successful, Qt 5 must be found below the CMAKE_PREFIX_PATH,
-    or the Qt5<Module>_DIR must be set in the \c{CMake} cache to the location of the
-    Qt5WidgetsConfig.cmake file. The easiest way to use \c{CMake} is to set the CMAKE_PREFIX_PATH
+    or the \c{Qt5_DIR} must be set in the \c{CMake} cache to the location of the
+    \c{Qt5Config.cmake} file. The easiest way to use \c{CMake} is to set the CMAKE_PREFIX_PATH
     environment variable to the install prefix of Qt 5.
 
     The CMAKE_AUTOMOC setting runs moc automatically when required. For more on this feature see
@@ -105,7 +106,8 @@
     for use. The name of the imported target for each module matches the name of the module with a
     prefix of 'Qt5::', for example Qt5::Widgets. All of the package-specific variables have a
     consistent name with a prefix of the name of the package. For example,
-    \c{find_package}(Qt5Widgets) will make the following variables available if successfully found:
+    \c{find_package(Qt5 COMPONENTS Widgets)} will make the following variables available
+    if successfully found:
 
     \list
     \li Qt5Widgets_VERSION String describing the version of the module.
