@@ -1,0 +1,85 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page configure-linux-device.html
+    \title Configure an Embedded Linux Device
+    \brief Provides information about how to configure an embedded Linux device in Qt.
+
+    Building Qt for a given device requires a toolchain and a \c sysroot. Additionally, some
+    devices require vendor-specific adaptation code for EGL and OpenGL ES 2.0 support. This is
+    not relevant for non-accelerated platforms, such as those that use the LinuxFB plugin, which is
+    meant for software-based rendering only.
+
+    The \e qtbase/mkspecs/devices directory contains configuration and graphics adaptation code for
+    a number of devices. For example, the \c linux-rasp-pi2-g++ mkspec contains build settings such
+    as the optimal compiler and linker flags for the \l{http://www.raspberrypi.org}{Raspberry Pi 2}
+    device. The mkspec also contains information about either an implementation of the \e eglfs
+    hooks (vendor-specific adaptation code), or a reference to the suitable \e eglfs device
+    integration plugin. The device is selected through the \l{Qt Configure Options}{configure}
+    tool's \c -device parameter. The name that follows after this argument must, at least
+    partially, match one of the subdirectories under \e devices.
+
+    The following is an example configuration for the Raspberry Pi 2. For most Embedded Linux
+    boards, the configure command looks similar:
+
+    \badcode
+    ./configure -release -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$TOOLCHAIN/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- -sysroot $ROOTFS -prefix /usr/local/qt5
+    \endcode
+
+    The most important parameters are \c -device and \c -sysroot. By specifying \c -sysroot, the
+    include files and libraries used by \c {configure}'s feature detection tests, as well as Qt
+    itself, are taken from the specified location, instead of the host PC's standard locations.
+    Consequently, installing development packages on the host machine has no relevance. For
+    example, to get \c libinput support, it is not sufficient or necessary to have the \c libinput
+    development headers and libraries installed on the host environment. Instead, the headers and
+    the libraries for the target architecture, such as ARM, must be present in the \c sysroot.
+
+    \c pkg-config is supported also when performing cross-compilation. \c configure automatically
+    sets \c PKG_CONFIG_LIBDIR to make \c pkg-config report compiler and linker settings based on
+    the \c sysroot instead of the host machine. This usually functions well without any further
+    adjustments. However, environment variables such as \c PKG_CONFIG_PATH must be unset for the
+    host machine before running \c configure. Otherwise, the Qt build may attempt to use
+    inappropriate headers and libraries from the host system.
+
+    Specifying \c -sysroot results in automatically setting the \c --sysroot argument when invoking
+    the compiler. In some cases this is not desirable and can be disabled by passing
+    \c -no-gcc-sysroot to \c configure.
+
+    \c -prefix, \c -extprefix, and \c -hostprefix control the intended destination directory of the
+    Qt build. In the above example the ARM build of Qt is expected to be placed in
+    \c{/usr/local/qt5} on the target device. Note that running \c{make install} does not deploy
+    anything to the device. Instead, the \c install step targets the directory specified by
+    \c extprefix which defaults to \c sysroot + \c prefix and is therefore optional. However, in
+    many cases "polluting" the sysroot is not desirable and thus specifying \c -extprefix becomes
+    important. Finally, \c -hostprefix allows separating host tools like qmake, rcc, uic from the
+    binaries for the target. When given, such tools will be installed under the specified directory
+    instead of \c extprefix.
+
+    For more information, see \l {Qt Configure Options}.
+
+*/
