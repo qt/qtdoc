@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -157,31 +157,31 @@
         \li All
         \li \l{Qt for Android}{Android},
             \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, and
-            \l{Qt for WinRT}{WinRT}
+            \l{Qt for WinRT}{WinRT} (*)
         \li Provides access to Bluetooth hardware.
     \row
         \li \l[QtCanvas3D]{Qt Canvas 3D} (Deprecated)
         \li All
-        \li All
+        \li All (*)
         \li Enables OpenGL-like 3D drawing calls from Qt Quick applications
             using JavaScript.
     \row
         \li \l[QtConcurrent]{Qt Concurrent}
         \li All
-        \li All
+        \li All (*)
         \li Classes for writing multi-threaded programs without using low-level
             threading primitives.
     \row
         \li \l[QtDBus]{Qt D-Bus}
         \li All
-        \li All
+        \li All (*)
         \li Classes for inter-process communication over the D-Bus protocol.
     \row
         \li \l[QtGamepad]{Qt Gamepad}
         \li All
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{\macos},
             tvOS (including the tvOS remote), \l{Qt for Linux/X11}{Linux},
-            \l{Qt for Windows}{Windows}
+            \l{Qt for Windows}{Windows}, and \l{Qt for QNX}{QNX}
         \li Enables Qt applications to support the use of gamepad hardware.
     \row
         \li \l[QtGraphicalEffects]{Qt Graphical Effects}
@@ -191,7 +191,7 @@
     \row
         \li \l{Qt Help}
         \li All
-        \li All
+        \li All (*)
         \li Classes for integrating documentation into applications, similar to Qt Assistant.
     \row
         \li \l[QtImageFormats]{Qt Image Formats}
@@ -211,18 +211,19 @@
     \row
         \li \l[QtNfc]{Qt NFC}
         \li All
-        \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux}
+        \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux} (*)
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
         \li \l[QtOpenGL]{Qt OpenGL} (Deprecated)
         \li All
-        \li All
+        \li All (*)
         \li OpenGL support classes. Deprecated in favor of the \c{QOpenGL*}
             classes in the \l{Qt GUI} module.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}
-        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, \l{Qt for Android}{Android}
+        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, \l{Qt for Android}{Android} (*)
+
         \li Provides classes that encapsulate platform-specific information,
             tied to a given runtime configuration of a \l {Qt Platform Abstraction}
             {platform plugin}.
@@ -230,12 +231,12 @@
         \li \l[QtPositioning]{Qt Positioning}
         \li All
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{\macos},
-        \l{Qt for Linux/X11}{Linux}, \l{Qt for WinRT}{WinRT}.
+        \l{Qt for Linux/X11}{Linux}, \l{Qt for WinRT}{WinRT} (*).
         \li Provides access to position, satellite and area monitoring classes.
     \row
         \li \l[QtPrintSupport]{Qt Print Support}
         \li All
-        \li All
+        \li All (*)
         \li Classes to make printing easier and more portable.
     \row
         \li \l{Qt Purchasing}
@@ -246,20 +247,20 @@
     \row
         \li \l[QtQuickControls1]{Qt Quick Controls 1} (Deprecated)
         \li All
-        \li All
+        \li All (*)
         \li Reusable Qt Quick based UI controls to create classic desktop-style
             user interfaces. Deprecated in favor of \l{Qt Quick Controls} 2, which
             are better and easier to use.
     \row
         \li \l[QtQuickExtras]{Qt Quick Extras}
         \li All
-        \li All
+        \li All (*)
         \li Provides a specialized set of controls that can be used to build
             interfaces in Qt Quick.
     \row
         \li \l{Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li All
-        \li All
+        \li All (*)
         \li Provides a C++ widget class for displaying a Qt Quick user interface.
     \row
         \li \l{Qt Remote Objects}
@@ -281,28 +282,31 @@
     \row
         \li \l[QtScriptTools]{Qt Script Tools} (Deprecated)
         \li All
-        \li All
+        \li All (*)
         \li Additional components for applications that use \l{Qt Script}.
     \row
         \li \l[QtSensors]{Qt Sensors}
         \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}, \l{Qt for WinRT}{WinRT} and Mer.
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}, \l{Qt for WinRT}{WinRT}, Mer,
+            and \l{Qt for QNX}{QNX}.
         \li Provides access to sensor hardware and motion gesture recognition.
     \row
         \li \l[QtSerialBus]{Qt Serial Bus}
         \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux},
+            \l{Boot2Qt}{Boot to Qt} targets, and \l{Qt for QNX}{QNX}.
         \li Provides access to serial industrial bus interface. Currently the
             module supports the CAN bus and Modbus protocols.
     \row
         \li \l[QtSerialPort]{Qt Serial Port}
         \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos},
+            and \l{Qt for QNX}{QNX}.
         \li Provides access to hardware and virtual serial ports.
     \row
         \li \l[QtSpeech]{Qt Speech}
         \li All
-        \li All
+        \li All except \l{Qt for QNX}{QNX}.
         \li Provides support for accessibility features such as text-to-speech.
     \row
         \li \l[QtSvg]{Qt SVG}
@@ -313,7 +317,7 @@
     \row
         \li \l[QtUITools]{Qt UI Tools}
         \li All
-        \li All
+        \li All (*)
         \li Classes for loading QWidget based forms created in \QD dynamically, at runtime.
     \row
         \li \l[QtWebChannel]{Qt WebChannel}
@@ -350,7 +354,7 @@
     \row
         \li \l[QtXml]{Qt XML}
         \li All
-        \li All
+        \li All (*)
         \li C++ implementations of SAX and DOM.
             \note This module is not required to use QXmlStreamReader and
             QXmlStreamWriter. They are already part of \l{Qt Core}.
@@ -401,6 +405,8 @@
             allows streaming Qt Quick user interfaces over the network using
             WebGL™.
    \endtable
+
+   (*) The QNX status is not known.
 
     \section1 Value-Add Modules
 
