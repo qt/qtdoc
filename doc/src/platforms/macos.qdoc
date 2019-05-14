@@ -211,6 +211,15 @@
     \li \l{Qt for macOS - Deployment}
     \endlist
 
+    \note For selling applications in the macOS App Store, special rules apply.
+    In order to pass validation, the application must verify the existence of
+    a valid receipt before executing any code. Since this is a copy protection
+    mechanism, steps should be taken to avoid common patterns and obfuscate the
+    code that validates the receipt as much as possible. Thus, this cannot be
+    automated by Qt, but requires some platform-specific code written
+    specifically for the application itself. More information can be found in
+    \l{https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html}{Apple's documentation}.
+
     \section1 \macos Issues
 
     The page below covers specific issues and recommendations for creating
