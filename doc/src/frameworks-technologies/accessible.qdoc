@@ -137,15 +137,12 @@
     individual UI elements. Currently, Qt provides support for its widgets
     and widget parts, e.g., slider handles, but the interface could
     also be implemented for any QObject if necessary. QAccessible
-    contains enums that describe the UI. The description is mainly
-    based on MSAA and is independent of Qt. We will examine the enums
+    contains enums that describe the UI. We will examine the enums
     in the course of this document.
 
     The structure of the UI is represented as a tree of
-    QAccessibleInterface subclasses. You can think of this as a
-    representation of a UI like the QObject tree built by Qt. Objects
-    can be widgets or widget parts (such as scroll bar handles). We
-    examine the tree in detail in the next section.
+    QAccessibleInterface subclasses. This is often a mirror of the
+    hierarchy of QWidgets that make up the UI of the application.
 
     Servers notify clients through \l{QAccessible::}{updateAccessibility()}
     about changes in objects by sending events, and the clients
