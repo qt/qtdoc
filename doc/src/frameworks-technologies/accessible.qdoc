@@ -356,7 +356,7 @@
     in turn inherits QAccessibleWidget. You do not need to examine the
     QAccessibleAbstractSlider class to read this section. If you want
     to take a look, the code for all of Qt's accessible interfaces are
-    found in src/plugins/accessible/widgets. Here is the
+    found in qtbase/src/widgets/accessible. Here is the
     QAccessibleSlider's constructor:
 
     \snippet snippets/accessibilityslidersnippet.cpp 0
