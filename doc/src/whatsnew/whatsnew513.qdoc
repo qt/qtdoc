@@ -67,7 +67,7 @@
     \section2 Qt Location Module
 
     \list
-      \li Added support for \l [QML]{GeoPolygon}{GeoPolygons} with holes,
+      \li Added support for \l [QML]{geopolygon}{geopolygons} with holes,
           reflected in \l [QML]{MapPolygon}{MapPolygons} and
           \l [QML]{MapPolygonObject}{MapPolygonObjects}.
       \li Introduced interoperability with \e GeoJSON, adding import/export
@@ -197,7 +197,6 @@
         \li \l{Obsolete Classes}
     \endlist
 
-    //! [whatsnew-previous]
     \section1 Additions to Other Qt 5 Releases
 
     \list
@@ -215,7 +214,6 @@
         \li \l{What's New in Qt 5.1}
         \li \l{What's New in Qt 5.0}
     \endlist
-    //! [whatsnew-previous]
 */
 
 /*!
@@ -229,5 +227,21 @@
 
     \sincelist 5.13
 
-    \include whatsnew513.qdoc whatsnew-previous
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.12}
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
 */
