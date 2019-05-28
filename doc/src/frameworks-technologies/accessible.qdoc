@@ -87,7 +87,7 @@
     Generally the communication with the ATs works though an IPC mechanism.
     Semantic information about user interface elements, such as
     buttons and scroll bars, is exposed to the assistive technologies.
-    Qt supports Microsoft Active Accessibility (MSAA) and IAccessible2 on Windows,
+    Qt supports UI Automation on Windows,
     \macos Accessibility on \macos, and AT-SPI via DBus on Unix/X11.
     The platform specific technologies are abstracted by Qt,
     so that applications do not need any platform specific changes to work with the different
@@ -137,15 +137,12 @@
     individual UI elements. Currently, Qt provides support for its widgets
     and widget parts, e.g., slider handles, but the interface could
     also be implemented for any QObject if necessary. QAccessible
-    contains enums that describe the UI. The description is mainly
-    based on MSAA and is independent of Qt. We will examine the enums
+    contains enums that describe the UI. We will examine the enums
     in the course of this document.
 
     The structure of the UI is represented as a tree of
-    QAccessibleInterface subclasses. You can think of this as a
-    representation of a UI like the QObject tree built by Qt. Objects
-    can be widgets or widget parts (such as scroll bar handles). We
-    examine the tree in detail in the next section.
+    QAccessibleInterface subclasses. This is often a mirror of the
+    hierarchy of QWidgets that make up the UI of the application.
 
     Servers notify clients through \l{QAccessible::}{updateAccessibility()}
     about changes in objects by sending events, and the clients
@@ -359,7 +356,7 @@
     in turn inherits QAccessibleWidget. You do not need to examine the
     QAccessibleAbstractSlider class to read this section. If you want
     to take a look, the code for all of Qt's accessible interfaces are
-    found in src/plugins/accessible/widgets. Here is the
+    found in qtbase/src/widgets/accessible. Here is the
     QAccessibleSlider's constructor:
 
     \snippet snippets/accessibilityslidersnippet.cpp 0
