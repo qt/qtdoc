@@ -337,14 +337,18 @@
     does not provide, you can modify an existing one or develop your own.
 
     When you develop a BSP for your board, you should include the following
-    utilities to enable Qt Creator to run, debug, and stop applications on QNX
-    devices:
+    utilities to enable Qt Creator to deploy, run, debug, and stop applications
+    on QNX devices:
 
     \list
         \li \c awk
         \li \c cat
+        \li \c cut
+        \li \c df
         \li \c grep
         \li \c kill
+        \li \c ln
+        \li \c mkdir
         \li \c netstat
         \li \c print
         \li \c printf
@@ -353,6 +357,7 @@
         \li \c sed
         \li \c sleep
         \li \c slog2info
+        \li \c tail
         \li \c tar
         \li \c zip
         \li \c uname
