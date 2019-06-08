@@ -611,14 +611,17 @@
 
   When \c mode is not defined, the mode that is reported as preferred by the
   system is chosen. The accepted values for \c mode are: \c off, \c current,
-  \c preferred, width\c{x}height, width\c{x}height\c{@}vrefresh, or a modeline
-  string.
+  \c preferred, \c skip, width\c{x}height, width\c{x}height\c{@}vrefresh, or a
+  modeline string.
 
   Specifying \c current will choose a mode with a resolution matching the
   current one. Due to the fact that modesetting is done only when the desired
   mode is actually different from the active one (unless forced via the
   \c QT_QPA_EGLFS_ALWAYS_SET_MODE environment variable), this value is useful to
-  keep the current mode and any content in the planes not touched by Qt.
+  keep the current mode and any content in the planes not touched by Qt. \c skip
+  causes the connector for the output to be ignored, just as if it was
+  disconnected. \c off is similar, but it changes the mode as well to turn off
+  the display.
 
   All screens reported by the DRM layer will be treated as one big virtual
   desktop by default. The mouse cursor implementation will take this into

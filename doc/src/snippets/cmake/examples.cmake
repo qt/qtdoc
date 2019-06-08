@@ -1,27 +1,25 @@
 #! [0]
 cmake_minimum_required(VERSION 3.1.0)
 
-project(testproject)
+project(helloworld)
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
-# Create code from a list of Qt designer ui files
+set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-# Find the QtWidgets library
+if(CMAKE_VERSION VERSION_LESS "3.7.0")
+    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+endif()
+
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-# Populate a CMake variable with the sources
-set(helloworld_SRCS
+add_executable(helloworld
     mainwindow.ui
     mainwindow.cpp
     main.cpp
+    resources.qrc
 )
-# Tell CMake to create the helloworld executable
-add_executable(helloworld WIN32 ${helloworld_SRCS})
-# Use the Widgets module from Qt 5
+
 target_link_libraries(helloworld Qt5::Widgets)
 #! [0]
 
