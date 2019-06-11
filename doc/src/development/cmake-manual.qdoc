@@ -54,7 +54,7 @@
 
     To build a helloworld GUI executable, typical usage would be:
 
-    \snippet snippets/cmake/CMakeLists.pro 0
+    \snippet snippets/cmake/examples.cmake 0
 
     In order for \c{find_package} to be successful, Qt 5 must be found below the CMAKE_PREFIX_PATH,
     or the \c{Qt5_DIR} must be set in the \c{CMake} cache to the location of the
@@ -70,7 +70,7 @@
     using a variable like Qt5<Module>_LIBRARIES in CMake commands such as \c{target_link_libraries}.
     The actual path to the library can be obtained using the \l{CMake LOCATION Documentation}{LOCATION property}:
 
-    \snippet snippets/cmake/CMakeLists.pro 1
+    \snippet snippets/cmake/examples.cmake 1
 
     Note however that it is rare to require the full location to the library in \c{CMake} code. Most
     \c{CMake} APIs are aware of imported targets and can automatically use them instead of the full path.
@@ -87,14 +87,14 @@
     If your project has custom CMake build configurations, it may be necessary to set a mapping from your
     custom configuration to either the debug or release Qt configuration.
 
-    \snippet snippets/cmake/CMakeLists.pro 2
+    \snippet snippets/cmake/examples.cmake 2
 
     Plugins are also available as \c IMPORTED targets in CMake. The \l{Qt
     Network}, \l{Qt SQL}, \l{Qt GUI}, and \l{Qt Widgets} modules have plugins
     associated. They provide a list of plugins in the
     \c{Qt5}\e{<Module>}\c{_PLUGINS} variable.
 
-    \snippet snippets/cmake/CMakeLists.pro 5
+    \snippet snippets/cmake/examples.cmake 5
 
     \section1 Variable Reference
 
