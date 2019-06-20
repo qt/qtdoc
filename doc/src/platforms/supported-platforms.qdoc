@@ -56,6 +56,11 @@
 
     Configurations in \b bold are \l {Reference Configurations}.
 
+    \note Support for specific configurations or operating system versions may
+          end before the support for Qt \qtver does. A subsequent patch release
+          of Qt \qtver may drop support for a configuration as a \e {reference
+          configuration} or replace it with a currently-supported version.
+
     \include supported-platforms.qdocinc all
 
     \section1 Reference Configurations

@@ -35,11 +35,11 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li openSUSE 42.3
+    \row \li openSUSE 15.x
         \li \c x86_64
-        \li GCC 4.8, \b {GCC 7}, \b {ICC}
+        \li \b {GCC 7}, \b {ICC}
         \li
-    \row \li Red Hat Enterprise Linux 7.4
+    \row \li Red Hat Enterprise Linux 7.x
         \li \c x86_64
         \li \b {GCC 5.3.1}
         \li devtoolset-4
@@ -49,7 +49,7 @@
         \li
     \row \li Ubuntu 16.04
         \li \c x86_64
-        \li GCC as provided by Canonical, \b {GCC 5.4.0}
+        \li GCC as provided by Canonical, GCC 5.4.0
         \li
     \row \li Generic Linux
         \li \c x86 and \c x86_64
@@ -77,11 +77,11 @@
     \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2017}, \b {MSVC 2015}, MinGW 7.3
-        \li Tested on \e {Windows 10 Creators Update}
+        \li \b {MSVC 2017}, \b {MSVC 2015}, \b {MinGW 7.3}
+        \li Tested on \e {Windows 10 (1809) October 2018 Update}
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
-        \li MSVC 2017, \b {MSVC 2015}, MinGW 7.3
+        \li MSVC 2017, MSVC 2015, MinGW 7.3
         \li
     \row \li Windows 7
         \li \c x86 and \c x86_64
@@ -100,10 +100,10 @@
 //! [android]
 \table 80%
     \header \li Platform Version \li Architecture \li Compiler \li Build Environment
-    \row \li Android 4.1, 5, 6, 7, 8 (API Level 16)
+    \row \li Android 5, 6, 7, 8 (API Level 21)
         \li \c armv7 and \c x86
         \li \b {Clang as provided by Google}, \b {MinGW 7.3}
-        \li \b {RHEL 7.4 (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)}
+        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)}
 \endtable
 //! [android]
 
@@ -133,7 +133,7 @@
     \row \li Universal Windows Platform 10
         \li \c x86, \c x86_64, and \c armv7
         \li \b{MSVC 2017}, \b{MSVC 2015}
-        \li \b{Windows 10} Creators Update
+        \li \b{Windows 10} (1809) October 2018 Update
 \endtable
 
 \br

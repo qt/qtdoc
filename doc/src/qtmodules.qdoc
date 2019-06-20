@@ -160,12 +160,6 @@
             \l{Qt for WinRT}{WinRT} (*)
         \li Provides access to Bluetooth hardware.
     \row
-        \li \l[QtCanvas3D]{Qt Canvas 3D} (Deprecated)
-        \li All
-        \li All (*)
-        \li Enables OpenGL-like 3D drawing calls from Qt Quick applications
-            using JavaScript.
-    \row
         \li \l[QtConcurrent]{Qt Concurrent}
         \li All
         \li All (*)
@@ -359,7 +353,7 @@
             \note This module is not required to use QXmlStreamReader and
             QXmlStreamWriter. They are already part of \l{Qt Core}.
     \row
-        \li \l[QtXmlPatterns]{Qt XML Patterns}
+        \li \l[QtXmlPatterns]{Qt XML Patterns} (deprecated)
         \li All
         \li All
         \li Support for XPath, XQuery, XSLT and XML schema validation.

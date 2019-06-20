@@ -44,7 +44,7 @@ resource usage.
 
 \section2 Install Emscripten
 
-\l {https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten} is a toolchain for compiling to asm.js and Webassembly.
+\l{https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten} is a toolchain for compiling to asm.js and Webassembly.
 It lets you run Qt on the web at near-native speed without plugins.
 
 Refer to the \l{http://kripken.github.io/emscripten-site/docs/getting_started/index.html}{emscripten documentation} for the installation procedure.
@@ -55,19 +55,67 @@ Check this with the following command:
     em++ --version
 \endcode
 
-\section2 Build Qt from the sources
 
-Download the Qt 5.12 sources and build Qt from source. Specify that
-we are cross-compiling for \c wasm using \c emscripten:
+Each minor release of Qt supports a known-good Emscripten version. That Emscripten
+version will be supported for the lifetime of that Qt version.
+
+The known-good versions are:
+\list
+   \li Qt 5.12: 1.38.16
+   \li Qt 5.13: 1.38.27 (multithreading: 1.38.30)
+\endlist
+
+Use \c emsdk to install specific \c emscripten versions:
+\list
+    \li ./emsdk install sdk-1.38.16-64bit
+    \li ./emsdk activate --embedded sdk-1.38.16-64bit
+\endlist
+
+The \c --embedded option is useful if you want to install multiple versions of the SDK.
+It locates all configuration and cache files inside the SDK so that multiple versions
+do not conflict.
+
+After installation, you should have emscripten in your path.  Check this with the following command:
 
 \badcode
-    $ ~/Qt/5.12.0/Src/configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase
-    $ make module-qtbase module-qtdeclarative [other modules]
+    em++ --version
+\endcode
+
+\section3 Download the binaries
+
+The binary builds can be downloaded in the Downloads section using your Qt
+account.
+
+\section3 Build Qt from the sources
+
+Alternatively, you could download the Qt sources in the Downloads section,
+and build Qt from it.
+
+Configure Qt as a cross-compile build for the \c wasm-emscripten platform.
+This will implicitly set the "-static" and "-no-feature-thread" options.
+Pass the \c-compile-examples option to enable examples.
+
+\badcode
+    ./configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase
+\endcode
+
+On Windows, make sure you have \c MinGW as well as \c sed in your \c PATH
+and configure with the following:
+
+\badcode
+    configure -no-warnings-are-errors -xplatform wasm-emscripten -platform win32-g++ -nomake examples -prefix %CD%\qtbase
+\endcode
+
+Build required modules:
+
+\badcode
+    make module-qtbase module-qtdeclarative [other modules]
 \endcode
 
 The Qt build is a static build, and does not support threads.
 
-\section2 Build your application
+\section3 Build and run your application
+
 
 \badcode
    $ /path/to/qt-wasm/qtbase/bin/qmake
@@ -98,7 +146,16 @@ This generates the following files:
     this typically reduces the size of the binary by 50 %.
 
     \sa {WebAssembly Resource site},{Getting Started with Qt for WebAssembly},
-        {Remote UIs with WeBGL and WebAssembly}
+        {Remote UIs with WebGL and WebAssembly}
+
+\section1 Test-run your application
+
+You can test-run your application in the following way:
+
+\badcode
+    /path/to/emscripten/emrun --browser=firefox appname.html
+\endcode
+
 \section1 Some examples
 
 \list
@@ -120,6 +177,7 @@ and does not support threads.
 For further info, refer to \l { https://wiki.qt.io/Qt_for_WebAssembly#Known_issues_and_platform_notes}{Known_issues_and_platform_notes}.
 
 \section1 External resources
+
 \list
         \li \l {Qt for WebAssembly Technology Preview}
         \li \l {Qt and WebAssembly}
@@ -128,9 +186,22 @@ For further info, refer to \l { https://wiki.qt.io/Qt_for_WebAssembly#Known_issu
         \li \l {Remote UIs with WebGL and WebAssembly}
         \li \l {WebAssembly Resource site}
 \endlist
+
 \section1 Licenses
 
 Qt for WebAssembly is available under commercial licenses from \l{The Qt Company}.
 In addition, it is available under the \l{GNU General Public License, version 3}.
 See \l{Qt Licensing} for further details.
 */
+--------------------------
+
+A couple of comments:
+
+1. We should have a point about installing the 1.38.27 Emscripten SDK like in the wiki. Unfortunately there are sometimes changes in the SDK that breaks Qt, so we need to make sure everyone is on the same version as us.
+
+2. It has instructions for "build Qt from sources". Starting with Qt 5.13.0, we will have binary packages, so this will be the main way people use it. We could have a section about how to build as an optional step but mention that it is optional. Also, it currently says "5.12", but this should probably not specify version number.
+
+3. Two additional things it would be useful to have there: The instructions on how to test-run an application (/path/to/emscripten/emrun --browser=firefox appname.html) and Supported Qt Modules.
+
+
+
