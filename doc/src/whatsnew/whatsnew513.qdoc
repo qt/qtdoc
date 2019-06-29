@@ -1,0 +1,247 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page whatsnew513.html
+    \title What's New in Qt 5.13
+    \brief Lists the new features in Qt.
+
+    \section1 New Features in Qt 5.13
+
+    \section2 Qt 3D Module
+
+    \list
+      \li Added support for importing and exporting \OpenGL texture handles.
+      \li Added framegraph nodes for fence objects.
+      \li Added priority based picking.
+      \li Added initial glTF 2.0 scene import support.
+    \endlist
+
+    \section2 Qt Bluetooth Module
+
+    \list
+      \li Windows: Removed the need for pairing in order to discover and
+          connect.
+    \endlist
+
+    \section2 Qt Core Module
+
+    \list
+      \li Clang: Added a new configure switch \c {-coverage}, useful for
+          fuzzing.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+      \li Added QImage::convertTo(), a new function for converting an image
+          in-place.
+      \li QPainterPath: Added support for clear, reserve and capacity methods
+          with the same semantics as QVector::clear() (preserving allocations).
+    \endlist
+
+    \section2 Qt Location Module
+
+    \list
+      \li Added support for \l [QML]{geopolygon}{geopolygons} with holes,
+          reflected in \l [QML]{MapPolygon}{MapPolygons} and
+          \l [QML]{MapPolygonObject}{MapPolygonObjects}.
+      \li Introduced interoperability with \e GeoJSON, adding import/export
+          functionality.
+    \endlist
+
+    \section2 Qt Network Module
+
+    \list
+      \li Windows: Added secure channel support for SSL sockets.
+      \li Added support for Online Certificate Status Protocol (OCSP) stapling.
+    \endlist
+
+    \section2 Qt QML Module
+
+    \list
+      \li Improved support for enums declared in C++.
+      \li JavaScript \e null as a binding value is now optimized at compile time.
+      \li Implemented the generation of function tables on 64-bit Windows, making
+          it possible to unwind the stack through JITed functions.
+    \endlist
+
+    \section2 Qt Quick Module
+
+    \list
+      \li Added support to \l [QML] TableView for hiding rows and columns.
+    \endlist
+
+    \section2 Qt Quick Controls 2 Module
+
+    \list
+      \li Added \l [QML] SplitView QML type.
+      \li Added a cache property to icons.
+    \endlist
+
+    \section2 Qt Wayland Module
+
+    \list
+      \li Added a new client buffer integration for \c linux-dmabuf-unstable-v1.
+          Qt clients already had support through \c wayland-egl integration.
+      \li Added support for the \c wp_viewporter protocol.
+    \endlist
+
+    \section2 Qt WebEngine Module
+
+    \list
+      \li Updated to Chromium 73.
+      \li Added support for application-local client certificate store.
+      \li Added support for client certificates from QML.
+      \li Added support for viewing PDF files via an internal Chromium extension.
+      \li Introduced the Web Notifications API.
+    \endlist
+
+    \section1 Platform Changes
+
+    \b Android
+
+    \list
+      \li Android 5.0 (API level 21) is now the minimum supported version.
+      \li Added support for content: URLs to QFile.
+      \li Added native file dialog support.
+    \endlist
+
+    \b Wayland
+
+    \list
+      \li Added a new shell integration for \c fullscreen-shell-unstable-v1.
+    \endlist
+
+    \section1 Technology Preview Modules
+
+    \list
+      \li \l {Qt Lottie Animation}
+    \endlist
+
+    \section1 New Platforms
+
+    \list
+      \li \l {Qt for WebAssembly}
+    \endlist
+
+    \section1 Qt for Automation Modules
+
+    \b {Qt KNX}
+    \list
+      \li Added a secure client API.
+    \endlist
+
+    \b {Qt OPC UA}
+    \list
+      \li Added a QML API (as technology preview).
+      \li C++ API is now out of technology preview.
+      \li Added a secure client C++ API (as technology preview).
+      \li \c UaCpp and \c Open62542 backends now have feature parity.
+    \endlist
+
+    \b {Qt CoAP (Technology Preview)}
+    \list
+      \li Added DTLS support.
+    \endlist
+
+    \section1 Deprecated Modules
+
+    The following modules are part of Qt 5.13, but are deprecated and
+    considered for removal in subsequent releases of Qt:
+
+    \list
+      \li Qt Script
+      \li Qt Quick Controls 1
+      \li Qt XML Patterns
+    \endlist
+
+    \section1 Removed Modules
+
+    The following modules were deprecated earlier and are no longer part of
+    the Qt 5.13 release:
+
+    \list
+      \li Qt Canvas 3D
+    \endlist
+
+    \section1 List of API Changes
+
+    The pages below contain a list of API changes in Qt 5.13:
+    \list
+        \li \l{New Classes and Functions in Qt 5.13}
+        \li \l{Obsolete Classes}
+    \endlist
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.12}
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/
+
+/*!
+    \page newclasses513.html
+    \title New Classes and Functions in Qt 5.13
+    \brief A list of new APIs in Qt 5.13.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 5.13. Links to new APIs in previous Qt 5 releases are found
+    at the bottom of this page.
+
+    \sincelist 5.13
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.12}
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/

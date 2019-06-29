@@ -1,0 +1,164 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtwebassembly-platform-notes.html
+    \title Qt WebAssembly Platform Notes
+
+    \brief Contains information about issues that are specific to the Qt WebAssembly module.
+
+    \section1 Supported target browsers and devices
+
+    \section2 Desktop
+
+    \list
+        \li Chrome
+        \li FireFox
+        \li Safari
+        \li Edge(Chrome)
+    \endlist
+
+    If the browser supports WebAssembly, then Qt should run.
+
+    \note Qt has a fixed WebGL requirement, also for apps that do not
+    use WebGL directly. Browsers often blacklist WebGL for older/unsupported
+    GPUs.
+
+    \section2 Mobile
+
+    \list
+        \li Android Browser
+        \li Mobile Safari
+    \endlist
+
+    \note There is currently no support for text input using the virtual
+    keyboard. Safari currently does not support wasm modules of the size
+    Qt produces.
+
+    Qt does not make direct use of operating system features and it makes
+    no difference if, for example, FireFox runs on Windows or macOS. Qt
+    does use some operating system adaptations, for example for ctrl/cmd
+    key handling on macOS.
+
+    \section2 Supported Qt Modules
+
+    Qt for WebAssembly supports a subset of the Qt modules. The list below
+    lists the currently tested modules. The list can be pasted as arguments
+    to \c make.
+
+    \badcode
+        module-qtbase module-qtdeclarative module-qtquickcontrols2 module-qtwebsockets module-qtsvg module-qtcharts module-qtmqtt
+    \endcode
+
+    Other modules are untested and may work.  Are not supported: QtMultimedia
+    and QtWebView
+
+    \section3 Known issues
+
+    Refer to the section "Known issues" in the wiki : \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{Known issues}.
+
+    \section3 General notes
+
+    \list
+    \li Debugging: Qt debug and logging output is printed on the JavaScript
+        console, which can be accessed via browser "Developer Tools" or similar.
+    \li Nested event loops are not supported. Applications should not call, for
+        example, QDialog::exec() or create a new QEventLoop object.
+    \li Qt renders application content to a canvas element, and does not use
+        (other) native DOM elements. This means accessibility (screen readers)
+        are not supported and that text inputs won't trigger virtual keyboards.
+    \li WebGL is required, even for applications which do not use OpenGL themselves.
+        Most modern browsers support WebGL, but note that some browsers blacklist
+        certain older GPUs. The Qt loader will detect this and display an error message.
+    \li Child OpenGL windows are not supported. The window compositor (in the Qt
+        for Wasm platform plugin) supports raster windows only.
+    \li Qt will detect OpenGL support as OpenGL ES. In reality the browser will
+        be providing WebGL. WebGL is based on ES and is very similar, but there
+        are some incompatibilities. See WebGL and OpenGL Differences.
+    \li Applications do not have access to system fonts. Font files must be
+        distributed with the application, for example in Qt resources. Qt for
+        WebAssembly itself embeds one such font.
+    \li High-DPI and scaling: High-DPI rendering is supported, and so is setting
+        the overall UI visual size using the browser zoom feature. Browser font
+        size (and type) settings have no effect on Qt applications.
+    \li There may be artifacts of uninitialized graphics memory on some Qt Quick
+        Controls 2 components, such as checkboxes.
+    \li Network access: the web sandbox limits network access to a subset of what
+        is available for native apps.
+        \list
+        \li QNetworkAccessManager http requests to the web page origin server, or
+            to a server which supports CORS.
+        \li QWebScoket connections to any host.
+        \li TCP and UDP socked tunneling using over WebSockets using a websockify
+            server [implemented by Emscripten, not tested].
+            \list
+            \li Websockify v0.8.0 can be used to tunnel TCP connections with QT5.12
+                but it is MANDATORY to specify the base64 or binary subprotocols before
+                calling QWebSocket::open().
+            \li For example:
+
+                QWebSocket socket;
+
+                QUrl url{QString("ws://server:port")};
+
+                QNetworkRequest request{url};
+
+                request.setRawHeader("Sec-WebSocket-Protocol", "binary");
+
+                socket.open(request);
+            \endlist
+        \endlist
+
+    \li Link-time warnings of the form: "cannot represent a NaN literal '0x7fdae4bde910'
+        with custom bit pattern", are expected.
+    \li Expected footprint (download size): Wasm modules as produced by the compiler can
+        be large, but compress well.
+
+        \table
+        \header
+            \li Example
+            \li gzip
+            \li brotli
+        \row
+            \li helloglwindow (QtCore + QtGui)
+            \li 2.8M
+            \li 2.1M
+        \row
+            \li wiggly widget (QtCore + QtGui + QtWidgets)
+            \li 4.3M
+            \li 3.2M
+        \row
+            \li SensorTag (QtCore + QtGui + QtWidgets + QtQuick + QtCharts)
+            \li 8.6M
+            \li 6.3M
+        \endtable
+
+        Compression is typically handled on the web server side, using standard compression
+        features: the server compresses automatically or picks up pre-compressed versions of
+        the files. There's generally no need to have special handling of wasm files.
+    \endlist
+*/

@@ -721,7 +721,7 @@ recommendations for handling those changes.
       \li \c{QTest::qt_snprintf()} is removed. This was an
           internal test library function that was exposed in the public API due to its use
           in a public macro. Any calls to this function must be replaced with
-          \l{bytearray-qsnprintf}{QByteArray::qsnprintf()}.
+          \l{QByteArray::qsnprintf()}.
       \li c{QTest::pixmapsAreEqual()} is removed. Comparison of \l{QPixmap} objects must
           be done using the \c{QCOMPARE} macro, which provides more informative output in the event of a failure.
       \li The \c{"mode"} parameter in \c{QSKIP} macro is removed. This parameter caused problems
