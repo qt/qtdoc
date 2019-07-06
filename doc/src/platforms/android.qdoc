@@ -341,8 +341,13 @@ the APK:
      See the \l{OpenSSL Configure Options}{SSL configure options} for details about
      the configurable features.
 
- \li Run \c{make CALC_VERSIONS="SHLIB_COMPAT=; SHLIB_SOVER=" build_libs} to
-     build the \c libcrypto and \c libssl shared libraries that are not versioned.
+ \li Run \c{make SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs} to
+     build \c libcrypto and \c libssl shared libraries that are not versioned,
+     but with a \e _1_1 suffix. If you want to use a different suffix, then you must
+     set the \c ANDROID_OPENSSL_SUFFIX environment variable before you access the
+     Qt Network API. Without a suffix, Android 5 (API 21) will load the system
+     libraries \e libcrypto.so and \e libssl.so, which are OpenSSL 1.0, rather than
+     your libraries.
 
      \note Android does not load versioned libraries.
 
