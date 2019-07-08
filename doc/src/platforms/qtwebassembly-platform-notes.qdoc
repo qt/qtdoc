@@ -31,6 +31,14 @@
 
     \brief Contains information about issues that are specific to the Qt WebAssembly module.
 
+    WebAssembly (or webasm) is a bytecode format intended to be executed
+    in a virtual machine inside a web browser. This allows an application
+    to be deployed to a device with a compliant web browser without going
+    through any installation steps. The application will run inside a
+    secure sandbox in the web browser. This makes it appropriate for
+    applications that do not need full access to the device capabilities,
+    but benefits from a swift and uncomplicated installation process.
+
     \section1 Supported target browsers and devices
 
     \section2 Desktop
@@ -79,9 +87,9 @@
 
     \section3 Known issues
 
-    Refer to \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{Known issues} in the wiki.
+    Refer to the \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{wiki}.
 
-    \section3 General notes
+    \section3 Known limitations
 
     \list
     \li Debugging: Qt debug and logging output is printed on the JavaScript
