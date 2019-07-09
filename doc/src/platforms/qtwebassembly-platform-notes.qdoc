@@ -79,7 +79,7 @@
 
     \section3 Known issues
 
-    Refer to the section "Known issues" in the wiki : \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{Known issues}.
+    Refer to \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{Known issues} in the wiki.
 
     \section3 General notes
 
@@ -137,28 +137,27 @@
         with custom bit pattern", are expected.
     \li Expected footprint (download size): Wasm modules as produced by the compiler can
         be large, but compress well.
-
-        \table
-        \header
-            \li Example
-            \li gzip
-            \li brotli
-        \row
-            \li helloglwindow (QtCore + QtGui)
-            \li 2.8M
-            \li 2.1M
-        \row
-            \li wiggly widget (QtCore + QtGui + QtWidgets)
-            \li 4.3M
-            \li 3.2M
-        \row
-            \li SensorTag (QtCore + QtGui + QtWidgets + QtQuick + QtCharts)
-            \li 8.6M
-            \li 6.3M
-        \endtable
-
-        Compression is typically handled on the web server side, using standard compression
-        features: the server compresses automatically or picks up pre-compressed versions of
-        the files. There's generally no need to have special handling of wasm files.
     \endlist
+    \table
+    \header
+        \li Example
+        \li gzip
+        \li brotli
+    \row
+        \li helloglwindow (QtCore + QtGui)
+        \li 2.8M
+        \li 2.1M
+    \row
+        \li wiggly widget (QtCore + QtGui + QtWidgets)
+        \li 4.3M
+        \li 3.2M
+    \row
+        \li SensorTag (QtCore + QtGui + QtWidgets + QtQuick + QtCharts)
+        \li 8.6M
+        \li 6.3M
+    \endtable
+
+    Compression is typically handled on the web server side, using standard compression
+    features: the server compresses automatically or picks up pre-compressed versions of
+    the files. There's generally no need to have special handling of wasm files.
 */

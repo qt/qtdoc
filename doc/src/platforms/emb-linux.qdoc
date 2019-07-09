@@ -31,17 +31,19 @@
   \brief Provides information about Embedded Linux support in Qt.
   \ingroup supportedplatform
 
-  Since the Qt 5.0 release, Qt no longer has its own window system (QWS)
+  On Embedded Linux systems, there are multiple platform plugins that you can
+  use: EGLFS, LinuxFB, DirectFB, or Wayland. However, the availability of these
+  plugins depend on how Qt is configured.
+
+  EGLFS is the default plugin on many boards. If it's not suitable, use the
+  \c QT_QPA_PLATFORM environment variable to request another plugin.
+  Alternatively, for quick tests, use the \c -platform command-line argument
+  with the same syntax.
+
+  \note As of Qt 5.0, Qt no longer has its own window system (QWS)
   implementation. For single-process use cases, the \l{Qt Platform Abstraction}
   is a superior solution; multi-process use cases are supported through
-  Wayland.
-
-  There are multiple platform plugins that you can use on Embedded Linux
-  systems: EGLFS, LinuxFB, DirectFB, or Wayland. However, the availability of
-  these plugins depend on how Qt is configured. On many boards \e eglfs is the
-  default plugin. If the default is not suitable, use the \c QT_QPA_PLATFORM
-  environment variable to request another plugin. Alternatively, for quick
-  tests, the \c -platform command-line can be used with the same syntax.
+  \l{Qt Wayland Compositor}{Wayland}.
 
   \section1 Platform Plugins for Embedded Linux Devices
 
@@ -50,39 +52,42 @@
 
   \l {http://www.khronos.org/egl}{EGL} is an interface between OpenGL and the
   native windowing system. Qt can use EGL for context and surface management,
-  however the API contains no platform-specifics: The creation of a \e {native
-  window}, which will not necessarily be an actual window on the screen, must
-  still be done by platform-specific means. Hence the need for the board or
-  GPU-specific adaptation code. Such adaptations are provided either as
-  \e {eglfs hooks}, which can be a single source file compiled into the
-  platform plugin, or as dynamically loaded \e {EGL device integration}
-  plugins.
+  however the API contains no platform-specifics. Creating a \e {native window},
+  which won't necessarily be an actual window on the screen, must still be
+  done by platform-specific means. This is why we need the board or GPU-specific
+  adaptation code. Typically, these adaptations are provided as:
 
-  \e EGLFS is a platform plugin for running Qt5 applications on top of EGL and
-  OpenGL ES 2.0 without an actual windowing system like X11 or Wayland. In
-  addition to Qt Quick 2 and native OpenGL applications, EGLS supports
-  software-rendered windows, like QWidget, too. In the latter case, the
-  widgets' contents are rendered using the CPU into images, which are then
+  \list
+    \li \e{EGLFS hooks} -- a single source file compiled into the platform
+        plugin
+    \li \e{EGL device integration} -- dynamically loaded plugins
+  \endlist
+
+  EGLFS is a platform plugin for running Qt5 applications on top of EGL and
+  OpenGL ES 2.0, without an actual windowing system like X11 or Wayland. In
+  addition to Qt Quick 2 and native OpenGL applications, EGLFS supports
+  software-rendered windows, like QWidget, too. For QWidget, the widgets'
+  contents are rendered using the CPU into images, which are then
   uploaded into textures and composited by the plugin.
 
   EGLFS is the recommended plugin for modern Embedded Linux devices that
   include a GPU.
 
-  \e EGLFS forces the first top-level window - either a QWidget or a QQuickView
-  - to become fullscreen. This window is also chosen to be the \e root
-  widget window into which all other top-level widgets are composited. For
-  example, dialogs, popup menus, or combo boxes. This behavior is necessary
-  because with \e EGLFS there is always exactly one native window and one EGL
-  window surface; these belong to the widget or window that is created first.
-  This approach works well when there is a main window that exists for the
+  EGLFS forces the first top-level window - either a QWidget or a QQuickView
+  - to become fullscreen. This window is also chosen to be the \e root widget
+  window into which all other top-level widgets are composited. For example,
+  dialogs, popup menus, or combo boxes. This behavior is necessary because
+  with EGLFS there is always exactly one native window and one EGL window
+  surface; these belong to the widget or window that is created first. This
+  approach works well when there is a main window that exists for the
   application's lifetime and all other widgets are either non top-levels or are
   created afterwards, once the main window is shown.
 
-  There are further restrictions for OpenGL-based windows. As of Qt 5.3,
-  \c eglfs supports a single fullscreen GL window: such as an
-  OpenGL-based QWindow, a QQuickView, or a QOpenGLWidget. Opening additional
-  OpenGL windows or mixing such windows with QWidget-based content is not
-  supported; Qt terminates the application with an error message.
+  There are further restrictions for OpenGL-based windows. EGLFS supports a
+  single single fullscreen GL window (as of Qt 5.3), like OpenGL-based QWindow,
+  a QQuickView, or a QOpenGLWidget. Opening additional OpenGL windows or mixing
+  such windows with QWidget-based content isn't supported; Qt terminates the
+  application with an error message.
 
   If necessary, \c eglfs can be configured using the following environment
   variables:
@@ -113,7 +118,7 @@
     \row
       \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT}
       \li Specifies the physical screen's width and height in millimeters. On
-          platforms where the value cannot be queried from the framebuffer
+          platforms where the value can't be queried from the framebuffer
           device \e{/dev/fb0} or via other means, a default DPI of 100 is used.
           Use this variable to override any such defaults. Setting this variable
           is important because QWidget- or Qt Quick Controls-based applications
@@ -198,41 +203,37 @@
           configuration.
   \endtable
 
-  In addition to \c {QT_QPA_EGLFS_DEBUG}, \c eglfs also supports the more modern
-  categorized logging system of Qt. The following logging categories are
-  available:
+  In addition to \c {QT_QPA_EGLFS_DEBUG}, \c eglfs also supports Qt's modern
+  categorized logging system. The following logging categories are available:
 
   \list
 
     \li \c qt.qpa.egldeviceintegration – Enables logging for dynamically loaded
-    backends. Very useful to check what backend is in use.
-
+        backends. Use this category to check what backend is in use.
     \li \c qt.qpa.input – Enables debug output both from the \c evdev and
-    \c libinput input handlers. Very useful to check if a given input device was
-    recognized and opened.
-
+        \c libinput input handlers. Use this category to check if a given input
+        device was recognized and opened.
     \li \c qt.qpa.eglfs.kms – Enables verbose logging in the KMS/DRM backend.
-
   \endlist
 
-  After running \c configure, make sure to inspect the output of
-  it. Not having the necessary eglfs backend, libudev, or libinput
-  enabled due to the corresponding configure tests failing are fairly
-  common issues that can be easily and quickly recognized this
-  way. When there is an undesired "no" result, run \c configure with
-  \c{-v} to turn on verbose output in order to see the compiler and
-  linker invocations for each configure test.
+  After running \c configure, make sure to inspect its output. This is the
+  easiest, quickest way to identify whether you have the necessary EGLFS
+  backend, libudev, or libinput enabled. In short, if there's an undesired
+  "no" in your \c configure output, run:
 
-  \note Errors about missing headers, libraries or seemingly cryptic
-  linker failures are often a sign of an incomplete or broken sysroot
-  and have nothing to do with and cannot be solved by Qt.
+  \code
+  ./configure -v
+  \endcode
 
-  As an example, when targeting the Raspberry Pi with the Broadcom
-  proprietary graphics drivers, the output should contain something
-  like the following. If this is not the case, there is no point in
-  proceeding further with the build since accelerated graphics will
-  not be functional without the Raspberry Pi-specific backend, even if
-  the rest of Qt compiles successfully.
+  to turn on the verbose output, so that you can see the compiler and linker
+  invocations for each configure test.
+
+  \note If you encounter errors about missing headers, libraries, or seemingly
+  cryptic linker failures, often, they are a sign of an incomplete or broken
+  sysroot and isn't related to Qt.
+
+  As an example, when targeting the Raspberry Pi with the Broadcom proprietary
+  graphics drivers, the output should contain something like the following:
 
   \badcode
     QPA backends:
@@ -247,62 +248,72 @@
       EGL on X11 ......................... no
   \endcode
 
+  If this is not the case, it's not advisable to proceed further with the build
+  since accelerated graphics won't be functional without the Raspberry
+  Pi-specific backend, even if the rest of Qt compiles successfully.
+
   \section2 LinuxFB
 
-  This plugin writes directly to the framebuffer via the fbdev subsystem of
-  Linux. Only software-rendered content is supported. Note that on some setups
+  This plugin writes directly to the framebuffer via Linux's fbdev subsystem.
+  Only software-rendered content is supported. Note that on some setups
   the display performance is expected to be limited.
 
-  As of Qt 5.9, DRM dumb buffer support is also available due to fbdev being
-  deprecated in the Linux kernel. This must be requested by setting the
+  However, since fbdev is being deprecated in the Linux kernel, the DRM dumb
+  buffer support is also available, as of Qt 5.9. To use it, set the
   \c QT_QPA_FB_DRM environment variable to a non-zero value. When set, provided
-  that dumb buffers are supported by the system, legacy framebuffer devices like
-  \c{/dev/fb0} are never accessed. Instead, rendering is set up via the DRM
-  APIs, similarly to the \c{eglfs_kms} backend of eglfs. The output will be
-  double-buffered and page flipped, providing proper vsync for software-rendered
-  content as well.
+  that dumb buffers are supported by your system, legacy framebuffer devices
+  like \c{/dev/fb0} won't be accessed. Instead, the rendering is set up via the
+  DRM APIs, similar to the \c{eglfs_kms} backend in EGLFS. The output is
+  double-buffered and page flipped, providing proper vsync for
+  software-rendered content as well.
 
-  \note when dumb buffers are in use, none of the options described below are
+  \note When dumb buffers are in use, none of the options described below are
   applicable since properties like physical and logical screen sizes are all
   queried automatically.
 
-  The \c linuxfb plugin allows specifying additional settings by passing them
-  in the \c QT_QPA_PLATFORM environment variable or \c -platform command-line
-  option. For example, \c {QT_QPA_PLATFORM=linuxfb:fb=/dev/fb1} specifies that
-  the framebuffer device \c /dev/fb1 must be used instead of the default
-  \c fb0. Multiple settings can be specified by separating them with a colon.
+  The \c linuxfb plugin allows you to specify additional settings via the
+  \c QT_QPA_PLATFORM environment variable or \c -platform command-line option.
+  For example, \c {QT_QPA_PLATFORM=linuxfb:fb=/dev/fb1} specifies that the
+  framebuffer device \c /dev/fb1 must be used instead of the default \c fb0.
+  To specify multiple settings, separate the mwith a colon (:).
 
-  \list
+  \table
+    \header
+      \li Settings
+      \li Description
+    \row
+      \li \c {fb=/dev/fbN}
+      \li Specifies the framebuffer devices. On multiple display setups,
+          this setting allows you to run the application on different displays.
+          Currently, there's no way to use multiple framebuffers from one Qt
+          application.
+    \row
+      \li \c{size=}\e{<width>}\c{x}\e{<height>}
+      \li Specifies the screen size in pixels. The plugin tries to query the
+          display dimensions, both physical and logical, from the framebuffer
+          device. However, this query may not always lead to proper results;
+          it may be necessary to specify the values explicitly.
+    \row
+      \li \c{mmsize=}\e{<width>}\c{x}\e{<height>}
+      \li Specifies the physical width and height in millimeters.
+    \row
+      \li \c{offset=}\e{<width>}\c{x}\e{<height>}
+      \li Specifies the top-left corner of the screen offset in pixels. The
+          default position is at \c{(0, 0)}.
+    \row
+      \li \c {nographicsmodeswitch}
+      \li Specifies not to switch the virtual terminal to graphics mode
+          (\c KD_GRAPHICS). Typically, \e enabling graphics mode disables the
+          blinking cursor and screen blanking. However, when this parameter is
+          set, those two features are also skipped.
+    \row
+      \li \c {tty=/dev/ttyN}
+      \li Overrides the virtual console. Only used when \c{nographicsmodeswitch}
+          isn't set.
+  \endtable
 
-  \li \c {fb=/dev/fbN} - Specifies the framebuffer devices. On multiple display
-  setups this typically allows running the application on different
-  displays. For the time being there is no way to use multiple framebuffers from
-  one Qt application.
-
-  \li \c{size=}\e{<width>}\c{x}\e{<height>} - Specifies the screen size in
-  pixels. The plugin tries to query the display dimensions, both physical and
-  logical, from the framebuffer device. This may not always lead to proper
-  results however, and therefore it may become necessary to explicitly specify
-  the values.
-
-  \li \c{mmsize=}\e{<width>}\c{x}\e{<height>} - Physical width and height in
-  millimeters.
-
-  \li \c{offset=}\e{<width>}\c{x}\e{<height>} - Offset in pixels specifying the
-  top-left corner of the screen. The default position is at \c{(0, 0)}.
-
-  \li \c {nographicsmodeswitch} - Do not switch the virtual terminal to graphics
-  mode (\c KD_GRAPHICS). In addition to switching to graphics mode, the blinking
-  cursor and screen blanking are normally disabled too. When this parameter is
-  set, these are also skipped.
-
-  \li \c {tty=/dev/ttyN} - Overrides the virtual console. Only used when
-  \c{nographicsmodeswitch} is not set.
-
-  \endlist
-
-  As of Qt 5.9, the behavior of \c eglfs and \c linuxfb have been synchronized
-  in regards to window sizing policy: the first top-level window is forced to
+  As of Qt 5.9, the behavior of EGLFS and LinuxFB have been synchronized, with
+  regards to the window sizing policy: the first top-level window is forced to
   cover the entire screen, with both platform plugins. If this is not desired,
   set the \c{QT_QPA_FB_FORCE_FULLSCREEN} environment variable to \c 0 to
   restore the behavior from earlier Qt versions.
