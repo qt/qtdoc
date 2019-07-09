@@ -174,7 +174,7 @@ QQmlImportDatabase::resolveType "Rectangle" = "QDeclarativeRectangle"
 \keyword qml debug
 
 The \l{Qt QML} module provides services for debugging, inspecting, and profiling applications via a
-TCP port.
+TCP port or a local socket.
 
 \section2 Enabling the Infrastructure
 
@@ -201,9 +201,10 @@ infrastructure is enabled, the application displays the following warning:
 
 \section2 Starting Applications
 
-To enable debugging from the start, start the application with the following arguments:
+To enable debugging -- from the start or to attach a debugger later on -- start the application
+with the following arguments:
 
-\c {-qmljsdebugger=port:<port_from>[,port_to][,host:<ip address>][,block]}
+\c {-qmljsdebugger=port:<port_from>[,port_to][,host:<ip address>][,block][,file:<local socket>][,services:<comma-separated list of services to enable>]}
 
 Where:
 \list
@@ -213,11 +214,16 @@ Where:
         running
     \li the optional \c block prevents the application from running until the debug client connects
         to the server
+    \li the optional \c {file} specifies the local socket.
+    \li the optional \c {services} specifies the services to enable; the default is all that are
+        found. Note that the \c{v4 debug} service disables the JIT.
 \endlist
 
 After the application has successfully started, it displays the following message:
 
 \c {QML Debugger: Waiting for connection on port <port_number>}
+or
+\c {QML Debugger: Connecting to socket at <file>"}
 
 \section2 Connecting to Applications
 

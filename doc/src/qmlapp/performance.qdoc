@@ -1142,11 +1142,13 @@ or cache-thrash, causing a huge reduction in performance. It is always necessary
 the impact of trade-offs carefully in order to determine which solution is best in a given
 situation.
 
-For in-depth information on cache performance and memory-time trade-offs, please see
-Ulrich Drepper's excellent article "What Every Programmer Should Know About Memory"
-(available at http://ftp.linux.org.ua/pub/docs/developer/general/cpumemory.pdf as at 18th
-April 2012), and for information on C++-specific optimizations, please see Agner Fog's
-excellent manuals on optimizing C++ applications (available at
-http://www.agner.org/optimize/ as at 18th April 2012).
+For in-depth information on cache performance and memory-time trade-offs, refer to the following
+articles:
+\list
+    \li Ulrich Drepper's excellent article: "What Every Programmer Should Know About Memory",
+        at: \l{https://people.freebsd.org/~lstewart/articles/cpumemory.pdf}.
+    \li Agner Fog's excellent manuals on optimizing C++ applications at:
+        \l{http://www.agner.org/optimize/}.
+\endlist
 
 */

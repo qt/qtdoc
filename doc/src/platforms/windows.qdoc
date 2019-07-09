@@ -112,10 +112,39 @@
            the target machines.
      \endlist
 
-    Support for Secure Sockets Layer (SSL) communication is provided by the
-    \l {OpenSSL Toolkit}, which must be obtained separately. See
-    \l {Secure Sockets Layer (SSL) Classes} for instructions on building Qt with
-    SSL support.
+    \section2 SSL
+
+    Support for Secure Sockets Layer (SSL) communication is provided by the \l {OpenSSL Toolkit},
+    which must be obtained separately. Download the latest version of the toolkit.
+
+    \list
+        \li To have Configure pick up OpenSSL automatically, set the following variables to point
+            to where your OpenSSL includes and libraries are located:
+
+            \code
+            /* Assuming your OpenSSL is installed in C:\OpenSSL */
+
+            set INCLUDE=%INCLUDE%;C:\OpenSSL\include
+            set PATH=%PATH%;C:\OpenSSL\bin
+            \endcode
+
+        \li To use linked OpenSSL support, set the following:
+
+            \code
+            /* Assuming your OpenSSL is installed in C:\OpenSSL */
+
+            set INCLUDE=%INCLUDE%;C:\OpenSSL\include
+            set LIB=%LIB%;C:\OpenSSL\lib
+            \endcode
+
+            Then, pass \c -openssl-linked to \c configure:
+
+            \code
+            configure -openssl-linked
+            \endcode
+    \endlist
+
+    See \l {Secure Sockets Layer (SSL) Classes} for instructions on building Qt with SSL support.
 
     \section2 ICU
 
