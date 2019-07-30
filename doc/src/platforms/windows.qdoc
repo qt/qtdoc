@@ -122,7 +122,7 @@
             to where your OpenSSL includes and libraries are located:
 
             \code
-            /* Assuming your OpenSSL is installed in C:\OpenSSL */
+            :: Assuming your OpenSSL is installed in C:\OpenSSL
 
             set INCLUDE=%INCLUDE%;C:\OpenSSL\include
             set PATH=%PATH%;C:\OpenSSL\bin
@@ -131,7 +131,7 @@
         \li To use linked OpenSSL support, set the following:
 
             \code
-            /* Assuming your OpenSSL is installed in C:\OpenSSL */
+            :: Assuming your OpenSSL is installed in C:\OpenSSL
 
             set INCLUDE=%INCLUDE%;C:\OpenSSL\include
             set LIB=%LIB%;C:\OpenSSL\lib
