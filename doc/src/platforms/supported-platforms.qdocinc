@@ -35,21 +35,21 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li openSUSE 15.x
+    \row \li openSUSE 15.1
         \li \c x86_64
-        \li \b {GCC 7}, \b {ICC}
+        \li GCC 5 or later, \b {GCC 7}, \b {ICC 18}
         \li
     \row \li SUSE Linux Enterprise Server
         \li \c x86_64
-        \li \b {GCC 7}, GCC 8, ICC 18.x
+        \li GCC 5 or later, \b {GCC 10}
         \li
-    \row \li Red Hat Enterprise Linux 7.x
+    \row \li Red Hat Enterprise Linux 7.6
         \li \c x86_64
         \li \b {GCC 5.3.1 via devtoolset-4}
         \li
     \row \li Ubuntu 18.04
         \li \c x86_64
-        \li GCC as provided by Canonical, \b {GCC 7.x or later}
+        \li GCC 5 or later, \b {GCC 9}
         \li
     \row \li Generic Linux
         \li \c x86 and \c x86_64
@@ -61,10 +61,16 @@
 \section2 \l{Qt for macOS}{\macos}
 //! [macos]
 \table 80%
-    \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.13, 10.14, \b 10.15
+    \header \li Distribution \li Architecture \li Build Environment
+    \row \li \b {macOS 10.13}
         \li \c x86_64 and \c x86_64h
-        \li \b {Xcode 11} (10.15 SDK)
+        \li \b {Xcode 10 (10.14 SDK)}
+    \row \li \b {macOS 10.14}
+        \li \c x86_64 and \c x86_64h
+        \li \b {Xcode 11 (10.15 SDK)}
+    \row \li macOS 10.15 or later
+        \li \c x86_64 and \c x86_64h
+        \li Xcode 11 (10.15 SDK)
 \endtable
 //! [macos]
 
@@ -74,16 +80,16 @@
     \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2019}, MSVC 2017, \b {MSVC 2015}, \b {MinGW 7.3}
+        \li \b {MSVC 2019}, MSVC 2017, \b {MinGW 8.1}
         \li
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
-        \li MSVC 2019, MSVC 2017, MSVC 2015, MinGW 7.3
+        \li MSVC 2019, MSVC 2017, MinGW 8.1
         \li
     \row \li Windows 7
         \li \c x86 and \c x86_64
-        \li MSVC 2019, MSVC 2017, MSVC 2015, \b {MinGW 7.3}
-        \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/7.3.0/threads-posix/dwarf/i686-7.3.0-release-posix-dwarf-rt_v5-rev0.7z/download}{MinGW-builds GCC 7.3.0 (x86)}
+        \li MSVC 2019, MSVC 2017, \b {MinGW 8.1}
+        \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z/download}{MinGW-builds GCC 8.1.0 (x86)}
 \endtable
 
 //! [windows]
@@ -96,11 +102,12 @@
 \section2 \l{Qt for Android}{Android}
 //! [android]
 \table 80%
-    \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li Android 5.0 or later (API level 21 or higher)
-        \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li \b {Clang 9.0.8 (NDK r21) and Clang 8.0.7 (NDK r20b) as provided by Google}, \b {MinGW 7.3}
-        \li
+    \header \li Platform Version \li Architecture \li Compiler \li Build Environment
+    \row \li Android 5.0 or later (that is, API Level 21 and up)
+        \li \c armv7a and \c x86, \c arm64-v8 and \c x86_64
+        \li \b {Clang as provided by Google}, \b {MinGW 8.1}
+        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.14}, \b {Windows 10 (x86_64)},
+            \b Windows 7
 \endtable
 //! [android]
 
@@ -112,13 +119,13 @@
         \li \c armv8 (\c arm64)
         \li \b {Xcode 11} (iOS 13.2 SDK)
         \li
-    \row \li tvOS 12, \b{tvOS 13}
+    \row \li tvOS 12, tvOS 13
         \li \c armv8 (\c arm64)
-        \li \b {Xcode 11} (tvOS 13 SDK)
+        \li Xcode 11 (tvOS 13 SDK)
         \li Technology Preview
-    \row \li watchOS 5, \b{watchOS 6}
+    \row \li watchOS 5, watchOS 6
         \li \c armv7k
-        \li \b {Xcode 11} (watchOS 6 SDK)
+        \li Xcode 11 (watchOS 6 SDK)
         \li Technology Preview. No UI.
 \endtable
 //! [ios]
@@ -129,7 +136,7 @@
     \header \li Platform Version \li Architecture \li Compiler \li Build Environment
     \row \li Universal Windows Platform 10
         \li \c x86, \c x86_64, and \c armv7
-        \li \b{MSVC 2017}, \b{MSVC 2015}
+        \li \b{MSVC 2019}, MSVC 2017
         \li \b{Windows 10}
 \endtable
 
