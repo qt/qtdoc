@@ -105,8 +105,9 @@
     \page cmake-variable-reference.html
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
+    \contentspage Build with CMake
     \nextpage CMake Command Reference
-    \previouspage CMake Manual
+    \previouspage Build with CMake
 
     \section1 Module variables
 
@@ -174,8 +175,23 @@
     \page cmake-command-reference.html
     \title CMake Command Reference
     \brief Provides a complete reference for CMake commands implemented in Qt.
-    \contentspage CMake Manual
+    \contentspage Build with CMake
     \previouspage CMake Variable Reference
 
+    \section2 Qt5::Core
+
+    \annotatedlist cmake-macros-qtcore
+
+    \section2 Qt5::Widgets
+
+    \annotatedlist cmake-macros-qtwidgets
+
+    \section2 Qt5::DBus
+
+    \annotatedlist cmake-commands-qtdbus
+
+    \section2 Qt5::LinguistTools
+
+    \annotatedlist cmake-macros-qtlinguisttools
 */
 
