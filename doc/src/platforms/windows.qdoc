@@ -98,6 +98,9 @@
     applications on Windows.
 
     \list
+        \li \l{OpenSSL Toolkit}: Qt can make use of OpenSSL to support Secure Socket Layer
+           (SSL) communication.
+
         \li \l{ICU}: Qt 5 can make use of the ICU library for enhanced UNICODE and Globalization
            support (see QTextCodec, QCollator::setNumericMode()).
 
@@ -115,36 +118,74 @@
     \section2 SSL
 
     Support for Secure Sockets Layer (SSL) communication is provided by the \l {OpenSSL Toolkit},
-    which must be obtained separately. Download the latest version of the toolkit.
+    which must be obtained separately. Download the latest version of the toolkit that is
+    supported by Qt.
+
+    Qt can be configured to use OpenSSL in three ways:
+    \list
+        \li Qt Network loads OpenSSL libraries (DDLs) when first needed, at runtime. If not found,
+            the application continues to run, but fails to handle SSL communication.
+
+            All official Qt binary builds use this configuration.
+
+            The OpenSSL libraries are looked up first in the directory of the executable, then in
+            the Windows System directory (usually \c{C:\Windows\system32}), and finally in all
+            directories listed in the \c PATH environment variable.
+
+        \li Qt Network links against the OpenSSL libraries. If they cannot be found at load time,
+            the application fails to start.
+
+        \li Qt Network compiles against a static version of the OpenSSL libs, and OpenSSL becomes
+            part of the Qt5Network library.
+    \endlist
+
+
+    If you compile Qt yourself, you can configure how Qt uses OpenSSL by setting either the
+    \c{-openssl} / \c{-openssl-runtime} or \c{-openssl-linked} configure flags.
+
+    If OpenSSL is not found in the normal compiler include and library directories, you can set
+    either the \c OPENSSL_PREFIX, or \c OPENSSL_INCDIR and \c OPENSSL_LIBDIR configure arguments.
+    If \c OPENSSL_PREFIX is set, \c OPENSSL_INCDIR defaults to \c OPENSSL_PREFIX/include and
+    \c OPENSSL_LIBDIR to \c OPENSSL_PREFIX/lib.
+
+    The actual libraries to link to can be tweaked by setting the \c OPENSSL_LIBS,
+    \c OPENSSL_LIBS_DEBUG, and \c OPENSSL_LIBS_RELEASE configure arguments.
 
     \list
-        \li To have Configure pick up OpenSSL automatically, set the following variables to point
-            to where your OpenSSL includes and libraries are located:
+        \li To load OpenSSL at runtime, set the \c {-openssl-runtime} configure argument. Qt will
+            try to find \c{openssl/ssl.h} and \c{openssl/opensslv.h} in the default include path of
+            the compiler. You can specify an additional include directory by setting
+            \c OPENSSL_INCDIR.
 
-            \code
-            /* Assuming your OpenSSL is installed in C:\OpenSSL */
-
-            set INCLUDE=%INCLUDE%;C:\OpenSSL\include
-            set PATH=%PATH%;C:\OpenSSL\bin
+            For example:
+            \badcode
+            configure -openssl-runtime OPENSSL_INCDIR="C:\Program Files\OpenSSL-Win64\include"
             \endcode
 
-        \li To use linked OpenSSL support, set the following:
+        \li To link Qt Network against OpenSSL libraries, set the \c{-openssl-linked}
+            configure argument. Use the \c{OPENSSL_PREFIX} variable to let Qt correctly locate
+            and build against your OpenSSL installation:
 
-            \code
-            /* Assuming your OpenSSL is installed in C:\OpenSSL */
-
-            set INCLUDE=%INCLUDE%;C:\OpenSSL\include
-            set LIB=%LIB%;C:\OpenSSL\lib
+            For example:
+            \badcode
+            configure -openssl-linked OPENSSL_PREFIX="C:\Program Files\OpenSSL-Win64"
             \endcode
 
-            Then, pass \c -openssl-linked to \c configure:
+        \li To link Qt Network against a static version of the OpenSSL libs, set the
+            \c{-openssl-linked} argument, and set \c{OPENSSL_PREFIX}, or \c{OPENSSL_INCDIR}
+            and \c{OPENSSL_LIBDIR}. In addition, you probably need to set the \c{OPENSSL_LIBS},
+            \c{OPENSSL_LIBS_DEBUG}, \c{OPENSSL_LIBS_RELEASE} configure arguments to let Qt correctly
+            link against your static build of the OpenSSL libraries.
 
-            \code
-            configure -openssl-linked
+            For example:
+
+            \badcode
+            set OPENSSL_DIR=C:\Program Files\OpenSSL-Win64
+            configure -openssl-linked OPENSSL_INCDIR="%OPENSSL_DIR%\include" OPENSSL_LIBDIR="%OPENSSL_DIR%\lib\VC\static" OPENSSL_LIBS="-lWs2_32 -lGdi32 -lAdvapi32 -lCrypt32 -lUser32" OPENSSL_LIBS_DEBUG="-llibssl64MDd -llibcrypto64MDd" OPENSSL_LIBS_RELEASE="-llibssl64MD -llibcrypto64MD"
             \endcode
     \endlist
 
-    See \l {Secure Sockets Layer (SSL) Classes} for instructions on building Qt with SSL support.
+    See \l {Secure Sockets Layer (SSL) Classes} for further instructions on Qt with SSL support.
 
     \section2 ICU
 
