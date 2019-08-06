@@ -11,6 +11,7 @@ moduleheader =
 
 depends += \
     activeqt \
+    qtcmake \
     qdoc \
     qmake \
     qtandroidextras \
@@ -85,9 +86,10 @@ exampledirs += \
     ../snippets \
     ../../examples
 
-# Don't parse files in snippets directory
+# Don't parse files in snippets and cmake directories
 excludedirs += \
-    ../src/snippets
+    ../src/snippets \
+    ../src/cmake
 
 examplesinstallpath =
 
