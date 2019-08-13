@@ -30,7 +30,7 @@
     \target CMake Manual
     \title Build with CMake
     \brief Describes how to use CMake in your development projects.
-    \nextpage CMake Variable Reference
+    \nextpage Get started with CMake
 
     \c{CMake} is a tool to simplify the build process for development projects across different
     platforms. \c CMake automatically generates build systems, such as Makefiles and Visual Studio
@@ -39,7 +39,35 @@
     \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}. This topic
     describes how to use \c{CMake} 3.1.0 with Qt 5.
 
-    \section1 Get started
+
+    \section1 Table of Contents
+
+    \list
+        \li \l{Get started with CMake}
+        \list
+            \li \l{Build a GUI executable}
+            \li \l{Imported targets}
+        \endlist
+        \li \l{CMake Variable Reference}
+            \list
+            \li \l{Module variables}
+            \li \l{Installation variables}
+        \endlist
+        \li \l{CMake Command Reference}
+        \list
+            \li \l{Qt5::Core}
+            \li \l{Qt5::Widgets}
+            \li \l{Qt5::DBus}
+            \li \l{Qt5::LinguistTools}
+        \endlist
+    \endlist
+*/
+
+/*!
+    \page cmake-get-started.html
+    \title Get started with CMake
+    \previouspage Build with CMake
+    \nextpage CMake Variable Reference
 
     Start with \c{find_package} to locate the libraries and header files shipped with Qt. Then, you
     can use these libraries and header files with the \c{target_link_libraries} command to build
