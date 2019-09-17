@@ -91,32 +91,6 @@ One benefit of compiling ahead of time is that, in the event of syntax errors in
 documents, you are notified at application compile-time instead of at run-time, when the file is
 loaded.
 
-If you have \c .qml or \c .js files which should not be compiled but just bundled by the resource
-system, such as \c .js files used with \l{Qt WebEngine}, you can omit them from the compilation
-via the \c QTQUICK_COMPILER_SKIPPED_RESOURCES variable. In your project file, specify the resource
-files to omit, as follows:
-
-\code
-QTQUICK_COMPILER_SKIPPED_RESOURCES += bundle_only.qrc
-\endcode
-
-By default, this feature ties your application to the Qt version you are compiling against, because
-it replaces the QML document source code in the resources with the compiled binary version. The
-source files are not present anymore. Consequently, when you use the same application against a
-different version of Qt without recompiling it, loading the QML documents will fail with an error
-message.
-
-Ahead-of-Time compilation is implemented this way because the feature originates from an add-on for
-use in commercial application environments, where deploying source code is not desirable but it's
-usually acceptable to require a recompilation when changing Qt.
-
-You can retain the QML and JavaScript documents in the resources by passing a list of resource
-\c{(*.qrc)} files in the \c QTQUICK_COMPILER_RETAINED_RESOURCES qmake variable. These resource
-files will then not be filtered, and any QML and JavaScript files specified in them will be
-readable in full source by your application. Then, if you run the application with a different
-Qt version, the QML and JavaScript files will be recompiled at runtime, slowing down the
-initial start of the application.
-
 \section1 Prototyping with QML Scene
 
 The Declarative UI package includes a QML runtime tool, \l{qtquick-qmlscene.html}{qmlscene},
