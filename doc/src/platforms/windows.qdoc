@@ -443,8 +443,9 @@
 
     ANGLE depends on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
     \l {http://sourceforge.net/projects/winflexbison/}{Win flex-bison}
-    projects, which are provided for your convenience in the \e gnuwin32/bin
-    folder:
+    projects. You can download a copy containing flex and bison from:
+    \l {https://download.qt.io/development_releases/gnuwin32/gnuwin32.zip}
+    or from the respective upstream projects:
     \list
         \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
         \li \l{http://sourceforge.net/projects/winflexbison/files/win_flex_bison-2.5.5.zip/download}{Bison, Flex}
@@ -452,9 +453,8 @@
 
     The \e gnuwin32/bin folder should be added to the \c PATH variable.
 
-    \note If you are building qtbase outside of qt5.git, you will need to
-    download \e win_bison and \e win_flex from the link above and rename
-    them to \e bison and \e flex.
+    \note If you download from the winflexbison project, you must
+    download \e win_bison and \e win_flex and rename them to \e bison and \e flex.
 
     For instructions for building the Qt 5 source, read
     the \l{Qt for Windows - Building from Source} page.
