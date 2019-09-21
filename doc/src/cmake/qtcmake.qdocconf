@@ -1,0 +1,39 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+include($QT_INSTALL_DOCS/global/externalsites.qdocconf)
+
+project                 = QtCMake
+description             = Using Qt with CMake
+version                 = $QT_VERSION
+
+qhp.projects            = qtcmake
+
+qhp.qtcmake.file                = qtcmake.qhp
+qhp.qtcmake.namespace           = org.qt-project.qtcmake.$QT_VERSION_TAG
+qhp.qtcmake.virtualFolder       = qtcmake
+qhp.qtcmake.indexTitle          = Using Qt with CMake
+qhp.qtcmake.filterAttributes    = qt $QT_VERSION tools cmake
+qhp.qtcmake.customFilters.qtcmake.name = Build with CMake
+qhp.qtcmake.customFilters.qtcmake.filterAttributes = qt tools cmake
+qhp.qtcmake.subprojects         = manual
+qhp.qtcmake.subprojects.manual.title = Manual
+qhp.qtcmake.subprojects.manual.indexTitle = Build with CMake
+qhp.qtcmake.subprojects.manual.selectors = fake:page
+
+sources                 = cmake-manual.qdoc
+
+exampledirs             = .
+
+# Instruct Clang not to look for a module header
+moduleheader =
+
+depends += \
+    qtdoc \
+    qtcore \
+    qtnetwork \
+    qtsql \
+    qtgui \
+    qtwidgets \
+    qtdbus \
+    qtlinguist
+
+navigation.landingpage = "Build with CMake"

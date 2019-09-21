@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -79,15 +79,6 @@
     make
     make install
     \endcode
-
-    \note The 'make install' step is required only if Qt is configured with a
-    \e -prefix, which is the default on Unix-based platforms unless the
-    \e -developer-build configure option is used. On Windows, Qt is configured
-    as a non-prefix build by default.
-
-    \note The \c -developer-build is meant for developing Qt and not for
-    shipping applications. Such a build contains more exported symbols than
-    a standard build and compiles with a higher warning level.
 
     \section1 Modules and Features
 
@@ -234,7 +225,7 @@
     \list
     \li \l{Building Qt 5 for Android} Wiki page
     \li \l{Qt for iOS - Building from Source}
-    \li \l{Qt for WinRT#Building from source}{Qt for WinRT - Building from Source}
+    \li \l{Qt for UWP#Building from source}{Qt for UWP - Building from Source}
     \li \l{Configure an Embedded Linux Device}
     \li \l{http://wiki.qt.io/Qt_RaspberryPi}{Qt for Raspberry Pi} - a community-driven site for
     Raspberry devices
@@ -281,4 +272,10 @@
     dynamically switch between the available options at runtime. For more
     details about the benefits of using dynamic GL-switching, see
     \l{Graphics Drivers}.
+
+    \section1 Developer Builds
+
+    The \c -developer-build option is not meant for shipping applications,
+    but can be used for developing Qt. Such a build contains more exported
+    symbols than a standard build and compiles with a higher warning level.
 */

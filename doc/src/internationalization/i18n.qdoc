@@ -151,27 +151,14 @@
 
     Support for these writing systems is transparent to the
     programmer and completely encapsulated in \l{Rich Text Processing}{Qt's text engine}.
-    This means that you don't need to have any knowledge about the writing
-    system used in a particular language, except for the following small points:
-
-    \list
-
-    \li QPainter::drawText(int x, int y, const QString &str) will always
-    draw the string with its left edge at the position specified with
-    the x, y parameters. This will usually give you left aligned strings.
-    Arabic and Hebrew application strings are usually right
-    aligned, so for these languages use the version of drawText() that
-    takes a QRect since this will align in accordance with the language.
-
-    \li When you write your own text input controls, use QTextLayout.
-    In some languages (e.g. Arabic or languages from the Indian
-    subcontinent), the width and shape of a glyph changes depending on the
-    surrounding characters, which QTextLayout takes into account.
-    Writing input controls usually requires a certain knowledge of the
-    scripts it is going to be used in. Usually the easiest way is to
-    subclass QLineEdit or QTextEdit.
-
-    \endlist
+    This means that you don't usually need to have any knowledge of the writing
+    system used in a particular language, unless you want to write your own text
+    input controls. In some languages, such as Arabic or languages from the
+    Indian subcontinent, the width and shape of a glyph changes depending on the
+    surrounding characters. To take this into account, use QTextLayout.
+    Writing input controls also requires some knowledge of the scripts they are
+    going to be used in. Usually, the easiest way is to subclass QLineEdit or
+    QTextEdit.
 
     For more information about how to internationalize source code, see
     \l{Writing Source Code for Translation} and
