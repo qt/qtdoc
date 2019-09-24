@@ -27,7 +27,7 @@
 /*!
 \page wasm.html
 \title Qt for WebAssembly
-\brief Runs Qt applications in a secure sandbox in the browser
+\brief Runs Qt applications in a secure sandbox in the browser.
 
 \ingroup supportedplatform
 
@@ -44,10 +44,13 @@ resource usage.
 
 \section2 Install Emscripten
 
-\l{https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten} is a toolchain for compiling to asm.js and Webassembly.
+\l{https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten}
+is a toolchain for compiling to asm.js and WebAssembly.
 It lets you run Qt on the web at near-native speed without plugins.
 
-Refer to the \l{http://kripken.github.io/emscripten-site/docs/getting_started/index.html}{emscripten documentation} for the installation procedure.
+Refer to the \l{http://kripken.github.io/emscripten-site/docs/getting_started/index.html}
+{emscripten documentation} for more information about checking out the
+Emscripten SDK and installing and activating Emscripten for your Qt version.
 
 After installation, you should have emscripten in your path.
 Check this with the following command:
@@ -65,10 +68,11 @@ The known-good versions are:
    \li Qt 5.13: 1.38.27 (multithreading: 1.38.30)
 \endlist
 
-Use \c emsdk to install specific \c emscripten versions:
+Use \c emsdk to install specific \c emscripten versions. For example, to install
+it for Qt 5.13, enter:
 \list
-    \li ./emsdk install sdk-1.38.16-64bit
-    \li ./emsdk activate --embedded sdk-1.38.16-64bit
+    \li ./emsdk install sdk-1.38.27-64bit
+    \li ./emsdk activate --embedded sdk-1.38.27-64bit
 \endlist
 
 The \c --embedded option is useful if you want to install multiple versions of the SDK.

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -45,7 +45,7 @@
     \section1 New Supported Platforms
 
     \list
-    \li \l{Qt for WinRT}{WinRT} now a supported platform
+    \li Qt for \WinRT now a supported platform
     \li Windows Phone 8.1 minimum supported version
     \endlist
 
@@ -76,12 +76,12 @@
     color channel. If used as the internal format of a QOpenGLFramebufferObject,
     the OpenGL paint engine is able to render in full precision if supported by
     the OpenGL driver.
-    \li WinRT: Added support for native file dialogs.
+    \li \WinRT: Added support for native file dialogs.
     \endlist
 
     \section2 Qt Core Module
     \list
-    \li WinRT: Added support for native settings container (local and roaming).
+    \li \WinRT: Added support for native settings container (local and roaming).
     \li QStorageInfo: Class for providing information about currently mounted
     storage volumes and drives.
     \li QByteArrayList: Convenience class adding similar extra methods on top

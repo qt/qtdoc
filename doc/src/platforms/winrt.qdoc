@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -27,22 +27,24 @@
 
 /*!
     \page winrt_support.html
-    \title Qt for WinRT
-    \brief Provides insight into Qt's WinRT port and how to use it.
+    \title Qt for UWP
+    \brief Running Qt applications on devices supporting the
+    Universal Windows Platform (UWP).
     \ingroup supportedplatform
 
-    Qt for WinRT allows you to run Qt applications on devices supporting the
-    Windows Store App APIs. This covers Modern UI applications on Windows 10,
-    Windows 10 Mobile and Windows 10 IoT.
+    Qt for UWP allows you to run Qt applications on devices supporting the
+    Universal Windows Platform (UWP). Microsoft Windows 10 introduced UWP, which
+    provides a common application platform on every device that runs Windows 10,
+    as a successor to Windows Runtime (WinRT) introduced by Windows 8. The UWP
+    core APIs are the same on all Windows devices, and therefore applications
+    that only use the core APIs will run on any Windows 10 device, such as a
+    desktop PC, or Xbox One.
 
-    Microsoft introduced a new design paradigm with the Windows 8 Modern UI. A
-    core part of this new approach is Windows Runtime (WinRT) that supports
-    development using different programming languages, such as C++/CX (component
-    extensions), C# VB.NET, or JavaScript. The Qt port uses the C++
-    capabilities. While WinRT supports the component extensions internally, they
-    are not used inside Qt and you do not need to use them. WinRT applications
-    run in a sandboxed environment for security reasons and support different
-    architectures, such as ARM and x86.
+    The Qt port was originally written for WinRT and updated to support UWP. The
+    port uses the C++ capabilities. While UWP supports the component
+    extensions internally, they are not used inside Qt and you do not need to
+    use them. UWP applications run in a sandboxed environment for security
+    reasons and support different architectures, such as ARM and x86.
 
     \target winrt-supported-configurations
     \section1 Supported Configurations
@@ -53,45 +55,27 @@
 
     \section1 Requirements
 
-    Development for Windows Runtime requires a Microsoft Windows development host.
+    Development for UWP requires a Microsoft Windows development host.
     The minimum version supported is Windows 10.
 
-    Depending on your device target you will need the following tools provided
-    by Microsoft to be installed:
+    Qt supports UWP apps running on any variant of Windows 10 or later on the
+    desktop PC, IoT, Xbox One, and so on.
 
-    \table
-    \header
-        \li Device Target
-        \li Environment
-    \row
-        \li Windows 10 Mobile
-        \li Visual Studio 2015
-    \row
-        \li Windows 10 Desktop
-        \li Visual Studio 2015
-    \row
-        \li Windows 10 IoT
-        \li Visual Studio 2015
-    \row
-        \li XBox One
-        \li Visual Studio 2015
-    \endtable
-
-    If you are targeting a remote device, please follow all instructions by
+    If you are targeting a remote device, follow the instructions by
     Visual Studio to set it up correctly.
 
     \section1 Getting Started
 
     \section2 Notes to Desktop Users
 
-    As WinRT applications run in a sandboxed environment, some restrictions should be taken
+    As UWP applications run in a sandboxed environment, some restrictions should be taken
     into account when considering porting or writing cross-platform applications:
 
     \list
         \li The class QProcess is not implemented (indicated by the macro \c QT_NO_PROCESS
             being defined) as no subprocesses can be launched.
         \li Some paths returned by QStandardPaths::writableLocation() may be empty.
-        \li A WinRT application may not do socket-based communication with another application
+        \li A UWP application may not do socket-based communication with another application
             running on the same host (as this would violate the sandboxing).
         \li Applications run in fullscreen mode only (see QStyleHints). On desktop,
             the screen size varies as the application is resized.
@@ -99,18 +83,18 @@
             by maintaining the values locally, so that qputenv() and related
             functions continue to work. All known variables influencing Qt can
             be set in source code.
-        \li WinRT applications are UI applications by nature. This implies that
+        \li UWP applications are UI applications by nature. This implies that
             console type applications will have a window created internally,
             which is always visible.
         \li Applications should not exit programmatically. In particular, calling
             exit() before the UI is shown causes a crash.
-        \li The WinRT clipboard is local to the application; it cannot be retrieved
+        \li The UWP clipboard is local to the application; it cannot be retrieved
             by a desktop application.
     \endlist
 
     \section2 Building Applications
 
-    You can develop applications for WinRT just as any other Qt applications.
+    You can develop applications for UWP just as any other Qt applications.
     Use your favorite editor or IDE (such as Qt Creator) and create your
     application or load a Qt example. Then run \c qmake and \c {nmake/jom} to
     build your application.
@@ -147,7 +131,7 @@
     You will not need to do any conversion to open your project in Qt Creator.
     Please follow the generic instructions on how to open and build a project.
 
-    Qt Creator deploys your application on the WinRT device, if the
+    Qt Creator deploys your application on the UWP device, if the
     device is detected by the PC.
 
     \note Remote PCs, such as the Surface, are not yet supported for deployment by Creator.
@@ -159,30 +143,30 @@
     requirements for building Qt. The process of building Qt is found
     in the \l{Building Qt Sources} page.
 
-    Qt for WinRT is always built as a cross-build, because tools, such as qmake,
+    Qt for UWP is always built as a cross-build, because tools, such as qmake,
     are built as desktop applications. For compiling those, a desktop development
-    environment is required. If you have installed Visual Studio 2013 for Windows,
-    this will only create binaries for WinRT. You will need Visual Studio for
+    environment is required. If you have installed Visual Studio for Windows,
+    this will only create binaries for UWP. You will need Visual Studio for
     Windows Desktop as well to create those desktop tools.
 
     Please make sure to use an x86 command prompt (either use the \e {VS x86 Native
     Tools Command Prompt} or call \e vcvarsall.bat without any parameter or with \c x86)
-    for every WinRT build. While the toolchain which is used for the
+    for every UWP build. While the toolchain which is used for the
     target is set automatically, the command prompt decides what will be used for the
     host tools like \e qmake or \e moc. Building these tools might fail if another
     command prompt is used.
 
-    The WinRT mkspec format is \c {<platform>-<architecture>-<toolchain>}
+    The UWP mkspec format is \c {<platform>-<architecture>-<toolchain>}
     where architecture can be \c arm, \c x86, or \c x64. The following is an
-    example of building qtbase for WinRT:
+    example of building qtbase for UWP:
     \code
-        > ./configure -xplatform winrt-x64-msvc2013 -release
+        > ./configure -xplatform winrt-x64-msvc2017 -release
         > nmake/jom
     \endcode
 
     \section1 Running Applications from Command Line
 
-    WinRT applications must be packaged (including all dependencies) and
+    UWP applications must be packaged (including all dependencies) and
     installed or registered with the application service in order to be
     launched. \l{winrtrunner}{The WinRT Runner Tool} can be used to
     launch these applications from the command line.
@@ -196,7 +180,7 @@
     using a \c plugins folder as root. For more information, see
     \l{Qt for Windows - Deployment}.
 
-    As WinRT applications are run in a sandboxed environment, setting
+    As UWP applications are run in a sandboxed environment, setting
     the path variable to point to the files required will not work.
 
     The \l{The Windows Deployment Tool}{windeployqt} convenience tool looks up
