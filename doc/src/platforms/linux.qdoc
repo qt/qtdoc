@@ -149,7 +149,7 @@
     \li libxcb-render
     \li X C Bindings for Render extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="OptionalColor"}
     \li xcb-render-util
     \li libxcb-render-util
@@ -161,31 +161,31 @@
     \li libxcb-shape
     \li X C Bindings for Shape extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li xcb-randr
     \li libxcb-randr
     \li X C Bindings for Resize and Rotate Extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li xcb-xfixes
     \li libxcb-xfixes
     \li X C Bindings for Fixes Extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li xcb-sync
     \li libxcb-sync
     \li X C Bindings for Sync Extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li xcb-shm
     \li libxcb-shm
     \li X C Bindings for Shared Memory Extension
     \li auto-detected or provided by -qt-xcb
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li xcb-icccm
     \li libxcb-icccm
@@ -204,6 +204,13 @@
     \li Utility library for XCB for XImage and XShmImage, used for QBackingStore and cursor support
     \li auto-detected or provided by -qt-xcb
     \li 0.3.9
+
+    \row {id="OptionalColor"}
+    \li xkbcommon
+    \li libxkbcommon
+    \li Keymap handling
+    \li \tt{-xkbcommon} or auto-detected
+    \li 0.5.0
 
     \row {id="OptionalColor"}
     \li Fontconfig
@@ -241,7 +248,7 @@
     \li libxcb
     \li X C Binding library
     \li
-    \li 1.8.1
+    \li 1.9
     \row {id="DefaultColor"}
     \li X11-xcb
     \li libX11-xcb
@@ -409,37 +416,33 @@
 
     \snippet snippets/code/doc_src_installation.qdoc 3
 
-        Note that on some systems the make utility is named differently,
-        e.g. gmake. The configure script tells you which make utility to
-        use.
+        Note that on some systems the make utility is named differently, like gmake.
+        The configure script tells you which make utility to use.
 
-        \note If you later need to reconfigure and rebuild Qt from the
-        same location, ensure that all traces of the previous configuration are
-        removed by entering the build directory and typing \c{make confclean}
-        before running \c configure again.
+        \note Later, if you need to reconfigure and rebuild Qt from the same location,
+        ensure that all traces of the previous configuration are removed. To do so, from
+        the build directory, type \c{make confclean} before running \c configure again.
 
     \section1 Step 4: Set the Environment Variables
 
-        In order to use Qt, some environment variables needs to be
-        extended.
+        To use Qt, some environment variables need to be extended.
 
     \snippet snippets/code/doc_src_installation.qdoc 4
 
-        This is done like this:
+        This is done as follows:
 
         In \c{.profile} (if your shell is bash, ksh, zsh or sh), add the
         following lines:
 
     \snippet snippets/code/doc_src_installation.qdoc 5
 
-        In \c{.login} (in case your shell is csh or tcsh), add the following line:
+        In \c{.login} (if your shell is csh or tcsh), add the following line:
 
     \snippet snippets/code/doc_src_installation.qdoc 6
 
-        If you use a different shell, please modify your environment
-        variables accordingly.
+        If you use a different shell, modify your environment variables accordingly.
 
-        For compilers that do not support rpath you must also extended the
+        For compilers that do not support rpath you must also extend the
         \c LD_LIBRARY_PATH environment variable to include
         \c{/usr/local/Qt-%VERSION%/lib}. On Linux with GCC this step
         is not needed.
