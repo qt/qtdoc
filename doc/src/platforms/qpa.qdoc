@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -162,6 +162,10 @@ The following table summarizes the platform plugins available for QPA:
     \li QVncIntegration
     \li VNC support
 \row
+    \li \c qwasm
+    \li QWasmIntegration
+    \li \l{Qt for WebAssembly}{WebAssembly support}
+\row
     \li \c qwayland
     \li \list
             \li QWaylandIntegrationPlugin
@@ -178,7 +182,10 @@ The following table summarizes the platform plugins available for QPA:
 \row
     \li \c qwinrt
     \li QWinRTIntegrationPlugin
-    \li \l{Qt for WinRT}{WinRT and Windows Phone support}
+    \li \l{Qt for UWP}{Universal Windows Platform (UWP) support}
+        \note This plugin was originally written for \WinRT (Windows Runtime),
+        and is therefore called \c qwinrt.
+
 \row
     \li \c qxcb
     \li QXcbIntegrationPlugin
