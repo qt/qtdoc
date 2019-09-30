@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -354,7 +354,14 @@
         If you use a different shell, please modify your environment
         variables accordingly.
 
-    \b {That's all. Qt is now installed.}
+    \b {Qt is now installed.}
+
+    \section1 Step 5: Build the Qt Documentation
+
+    For the Qt reference documentation to be available in \l {Qt Assistant}, you
+    must build it separately:
+
+    \snippet snippets/code/doc_src_installation.qdoc 24
 
     \section1 Limitations
 
