@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -100,10 +100,11 @@
 //! [android]
 \table 80%
     \header \li Platform Version \li Architecture \li Compiler \li Build Environment
-    \row \li Android 5, 6, 7, 8 (API Level 21)
-        \li \c armv7 and \c x86
+    \row \li Android 5.0 or later (that is, API Level 21 and up)
+        \li \c armv7a and \c x86, \c arm64-v8 and \c x86_64
         \li \b {Clang as provided by Google}, \b {MinGW 7.3}
-        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)}
+        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)},
+            \b {Windows 10}
 \endtable
 //! [android]
 
@@ -126,7 +127,7 @@
 \endtable
 //! [ios]
 
-\section2 \l{Qt for WinRT}{WinRT}
+\section2 \l{Qt for UWP}{Universal Windows Platform (UWP)}
 //! [winrt]
 \table 80%
     \header \li Platform Version \li Architecture \li Compiler \li Build Environment
@@ -139,7 +140,6 @@
 \br
 Universal Windows Platforms include Windows 10, Windows 10 IoT devices, Xbox
 One, and HoloLens.
-
 //! [winrt]
 
 //! [mobile]
