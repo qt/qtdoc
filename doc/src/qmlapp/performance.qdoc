@@ -80,52 +80,6 @@ such as those done to the bindings compiler, it can (in some use-cases) be faste
 than calling a C++ function. However, care must be taken to ensure that unnecessary
 processing isn't triggered accidentally.
 
-\section2 Bindings
-
-There are two types of bindings in QML: optimized and non-optimized bindings.
-It is a good idea to keep binding expressions as simple as possible, since the
-QML engine makes use of an optimized binding expression evaluator which can
-evaluate simple binding expressions without needing to switch into a full
-JavaScript execution environment. These optimized bindings are evaluated far
-more efficiently than more complex (non-optimized) bindings. The basic
-requirement for optimization of bindings is that the type information of every
-symbol accessed must be known at compile time.
-
-Things to avoid in binding expressions to maximize optimizability:
-\list
-  \li declaring intermediate JavaScript variables
-  \li accessing "var" properties
-  \li calling JavaScript functions
-  \li constructing closures or defining functions within the binding expression
-  \li accessing properties outside of the immediate evaluation scope
-  \li writing to other properties as side effects
-\endlist
-
-Bindings are quickest when they know the type of objects and properties they are working
-with. This means that non-final property lookup in a binding expression can be slower
-in some cases, where it is possible that the type of the property being looked up has
-been changed (for example, by a derived type).
-
-The immediate evaluation scope can be summarized by saying that it contains:
-\list
-  \li the properties of the expression scope object (for binding expressions, this is
-      the object to which the property binding belongs)
-  \li ids of any objects in the component
-  \li the properties of the root item in the component
-\endlist
-
-Ids of objects from other components and properties of any such objects, as
-well as symbols defined in or included from a JavaScript import, are not in the
-immediate evaluation scope, and thus bindings which access any of those things
-will not be optimized.
-
-Note that if a binding cannot be optimized by the QML engine's optimized binding
-expression evaluator, and thus must be evaluated by the full JavaScript environment,
-some of the tips listed above will no longer apply. For example, it can sometimes be
-beneficial to cache the result of property resolution in an intermediate JavaScript
-variable in a very complex binding. Upcoming sections have more information on these
-sorts of optimizations.
-
 \section2 Type-Conversion
 
 One major cost of using JavaScript is that in most cases when a property from a QML
