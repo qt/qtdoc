@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2019 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -129,16 +129,10 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-            QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app.installTranslator(&qtTranslator);
-
     QTranslator myappTranslator;
     myappTranslator.load("myapp_" + QLocale::system().name());
     app.installTranslator(&myappTranslator);
 
-    ...
     return app.exec();
 }
 //! [8]
@@ -199,3 +193,10 @@ void same_global_function(LoginWidget *logwid)
             logwid);
 }
 //! [13]
+
+
+//! [14]
+    QTranslator qtTranslator;
+    qtTranslator.load(QLocale::system(), QStringLiteral("qtbase_"));
+    app.installTranslator(&qtTranslator);
+//! [14]

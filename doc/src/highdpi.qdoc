@@ -203,6 +203,18 @@
              actual window system coordinates, regardless of environment variables. This
              attribute takes priority over Qt::AA_EnableHighDpiScaling.
 
+         \li The QT_ENABLE_HIGHDPI_SCALING environment variable, introduced in Qt 5.14,
+             enables automatic scaling based on the pixel density of the monitor. Replaces
+             QT_AUTO_SCREEN_SCALE_FACTOR.
+
+         \li The QT_SCALE_FACTOR_ROUNDING_POLICY environment variable and
+             QGuiApplication::highDpiScaleFactorRoundingPolicy API, introduced in Qt 5.14,
+             makes it possible to control if and how the device pixel ratio should be rounded
+             to the nearest integer. This is relevant for configurations like Windows at
+             150% scale. Possible values are \c{Round}, \c{Ceil}, \c{Floor}, \c{RoundPreferFloor},
+             \c{PassThrough}. See the Qt::HighDpiScaleFactorRoundingPolicy enum documentation
+             for a full description of the options.
+
         \li An experimental implementation of high-DPI scaling was introduced in Qt 5.4.
             It was enabled by the environment variable \c QT_DEVICE_PIXEL_RATIO, which
             could be set to a numerical scale factor or \c "auto". This variable is
