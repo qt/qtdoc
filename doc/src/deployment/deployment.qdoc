@@ -134,27 +134,61 @@
     This article gives a technical description of the steps required to take
     any given Qt application and deploy it to an Android device (or market place).
 
-    It is recommended that you use the \l {androiddeployqt}{androiddeployqt deployment tool} or
-    Qt Creator to automate this work rather than perform the steps manually. The following
-    information will give you a technical insight into the structure of the resulting Android
-    application which is not normally required just to write an application.
+    It is recommended that you use Qt Creator or the Makefile created by qmake to
+    create the application bundle. The following information will give you a technical
+    insight into the structure of the resulting Android application which is not normally
+    required just to write an application.
+
+    All the steps described here are handled automatically by the build script and
+    the \l {androiddeployqt}{androiddeployqt deployment tool}, which are run by Qt Creator
+    for you.
+
+    \note If you prefer building Android packages from the command line, you may use the "aab"
+    or "apk" build targets in the Makefile directly:
+
+    \code
+    % make aab
+    \endcode
+
+    or
+
+    \code
+    % make apk
+    \endcode
 
     \tableofcontents
 
-    \section1 The APK Package
+    \section1 The Application Bundle
 
-    Applications on Android are packaged in a specially structured type of ZIP file called \c APK.
-    When you build a Qt application using \c qmake and \c make, the result will be a binary file
-    which is built with the correct compiler and flags to be usable on an Android device with the
-    target architecture.
+    Applications on Android can be packaged in two ways: Either as Application Package (APK)
+    or Android App Bundle (AAB). Both are ZIP files which follow a predefined directory
+    structure. The difference between the two is that APK files can be downloaded to
+    and executed on a device. AAB, on the other hand, is intended to be interpreted by the
+    Google Play store and is used to generate APK files.
 
-    In order to turn this into a runnable application, it has to be put into a special directory
-    structure with some other files and packaged into an APK package.
+    For testing the application locally, the APK format is the most appropriate, as this can
+    be uploaded directly to the device and run. For distribution to the Google Play store, it is
+    recommended that you use AAB instead, which has a similar layout. The added convenience
+    of AAB is that you can include all target ABIs in the same bundle without increasing the
+    size of the actual package downloaded by your users. When using AAB, the Google Play store
+    generates optimized APK packages for the devices issuing the download request and
+    automatically sign them with your publisher key.
+
+    Read \l{https://developer.android.com/guide/app-bundle}{the Android documentation} if you
+    want to know more about the AAB format.
+
+    In either case, the files must be copied into a special directory structure first, before
+    bundling them in a single ZIP file
+
+    This contains one or more binary \c .so files with the code for your application, as
+    well as any dependencies, such as Qt's libraries and plugins. In addition, it includes
+    \c .jar files containing compiled Java code, assets, resources, and some \c .xml
+    files that are used to describe the contents of the bundle.
 
     \section1 Package Template
 
-    A template for the other sources of an APK package is contained in \c{$QTDIR/src/android/java}.
-    The first step of making an APK is to copy these files into an empty directory. In this
+    A template for the other sources of an APK package is contained in \c{$QTDIR/src/android/templates}.
+    The first step of making a package manually is to copy these files into an empty directory. In this
     guide, we'll refer to this build directory as \c{$BUILD_TARGET}.
 
     We also need to make sure the application binary is copied into the package. This can be
@@ -180,31 +214,17 @@
     \c{AndroidManifest.xml} file, please refer to the
     \l{http://developer.android.com/guide/topics/manifest/manifest-intro.html}{Android documentation on this topic}.
 
-    There are some special variables recognized by Qt which can be placed inside the manifest:
-
-    \list
-    \li \c{android.app.use_local_qt_libs}: If this is set to \c 1, Qt libraries are expected to be
-    found on the target device. If it is \c 0, then libraries must be requested from the \b Ministro
-    service.
-    \li \c{android.app.bundle_local_qt_libs}: If set to \c 1, the Qt libraries are expected to be
-    bundled as part of the \c APK. If set to \c 0, they are expected to be found in the
-    \c{/data/local/tmp/qt} folder on the target device.
-
-    \note If \c{use_local_qt_libs} is 0, then this variable has no effect, since libraries
-    are then requested through Ministro instead.
-    \endlist
-
-    Other variables in the manifest refer to resources, and more information about these can
-    be found in the \l{Resources}{documentation for the resources} below.
+    The default manifest contains some special parameters used by Qt to set up the application for
+    running. When you are creating your own Android manifest, you must make sure that it contains these
+    parameters. The \c androiddeployqt tool replaces content in the template with the correct
+    values.
 
     \section2 Java Code
 
     Under \c{$BUILD_TARGET/src} are the files comprising the Java code of the Android application.
     The regular Android application launcher is a Java process, so Qt applications have a
     Java-based entry point. The code in here will load the required Qt libraries, based on the
-    meta-information given in other files in the template. The code supports all the
-    three deployment mechanisms which are supported in Qt Creator and \c{androiddeployqt}: \e Bundled,
-    \e Ministro and \e Debug.
+    meta-information given in other files in the template.
 
     After loading the libraries, the Java code will call into the application's native \c{main()}
     function on a new thread and the application will launch. At this point, the Java code in
@@ -228,9 +248,9 @@
 //@ANDROID-21
     \endcode
 
-    If your minimum Android API level is 20 or lower, then the code should be removed before
+    If your minimum Android API level is 20 or lower, the code is removed before
     building, since it's not a supported API on Android API level 20. However, if your minimum API
-    level is 21 or higher, it should be left in.
+    level is 21 or higher, it is left in.
 
     \section2 Resources
 
@@ -252,29 +272,13 @@
     necessary Qt libraries. This is used when the Ministro deployment mechanism is active. Read the
     \l{http://necessitas.kde.org/necessitas/ministro.php}{Ministro documentation} for more
     information about such repositories.
-    \li \c{repository}: The Ministro repository to use at the given URL. This is used when the
-    Ministro deployment mechanism is active.
-    \li \c{bundled_libs}: Libraries in the APK's library folder which should be loaded on start-up.
+    \li \c{bundled_libs}: Libraries in the package's library folder which should be loaded on start-up.
     Library names should be specified without the \c lib prefix and \c{.so} suffix.
     \li \c{qt_libs}: Qt libraries which should be loaded on start-up. When bundled deployment is
     used, these are expected to be found inside the \c{APK}'s library folder. When Ministro
     deployment is in use, they are requested from the Ministro service on the device. And when
     debugging deployment is in use, they are loaded from the \c{/data/local/tmp/qt} directory on the
     target device.
-    \li \c{bundled_in_lib}: List of plugins which are bundled in the \c{APK}'s library folder. This
-    is only used when the bundling deployment mechanism is active. Qt's plugin system requires
-    plugins to be placed in a special directory structure which contains information about the
-    plugin category. The library folder in the APK does not support such a directory
-    structure, so the bundled_in_lib array contains the information lost when the directory
-    structure is flattened. Each item is a pair of paths, separated by a colon. The first of the
-    pair is the file name of the file bundled inside the \c{APK}'s library folder. The second of the
-    pair is the original path of the file, relative to the Qt installation.
-    \li \c{bundled_in_assets}: List of other types of Qt files which are bundled inside the
-    \c{APK}'s asset folder. This value is only used when the bundling deployment mechanism is active. The
-    format of the items is the same as for the \c{bundled_in_lib array}. The difference is that the
-    first of the pairs refers to the path of a file inside the \c{assets} directory of the
-    application instead of the library directory. This array is typically used for bundling QML
-    imports, which also require a special directory structure to be used inside Qt.
     \endlist
 
     \section3 res/values/strings.xml
@@ -291,43 +295,31 @@
 
     Under \c libs in the package directory, it's possible to place libraries that should be included
     in the application bundle. \c JAR libraries should be placed directly under \c{libs/}, while
-    shared libraries should be put in a subdirectory suitably named after the target architecture
+    shared libraries should be put in a subdirectory suitably named after the target ABI
     of the libraries.
-
-    For deployment that bundles Qt in the \c APK, the Qt \c JAR files that are suffixed with
-    \c{"bundled"} should be put into the libs directory. It is also required that the necessary
-    shared libraries and plugins are placed in the appropriate subdirectory of libs.
 
     \section1 Building the Android Application Package
 
-    Once all the pieces are in place, a few steps are required to build the application package.
-    First, a build script needs to be generated. This is done using the \c android tool which is
-    part of the Google Android SDK.
-
-    Example:
-    \code
-    % android update project --path $BUILD_TARGET --target android-16 --name QtApp
-    \endcode
-
-    This example will create build files in \c{$BUILD_TARGET} for an \c APK named \c QtApp. The Java
-    code will be compiled against the \c{android-16} platform.
-
-    The project can then be built using the ant tool. If a release package is built it can
-    be signed and aligned using \c jarsigner and \c zipalign.
+    The project can be built using the gradle tool. If an APK intended for release is built, then
+    it should be signed and aligned using \c jarsigner and \c zipalign.
 
     \section1 androiddeployqt
 
     Building an application package is complex, so Qt comes with a tool which handles the work for
     you. The steps described in this document so far are handled automatically by the tool.
 
+    In addition, there are Makefile build targets for building the package from the
+    command line. There is also automated support in Qt Creator for generating both \c APK and \c AAB
+    packages.
+
     \section2 Required Steps Before Running androiddeployqt
 
-    Before running the tool, you need run \c qmake and \c make your project. Running \c qmake
-    creates the \c Makefile, and it will also generate a \c JSON file containing important settings
-    used by \c androiddeployqt.
+    Before running the tool manually, you need to run \c qmake and \c make on your project. Running
+    \c qmake creates the \c Makefile, and it will also generate a \c JSON file containing important
+    settings used by \c androiddeployqt.
 
     You should then install the application binary (and any other requirements) into the library
-    folder of the \c APK. If \c{$BUILD_TARGET} is your build directory (the first time you do this,
+    folder of the \c bundle. If \c{$BUILD_TARGET} is your build directory (the first time you do this,
     the directory should be empty at this point), then you can install the binary with the following
     command:
 
@@ -345,6 +337,8 @@
     is available by passing the \c{--help} argument to androiddeployqt.
 
     \list
+    \li \c{--aab}: Generate an Android Application Bundle, rather than an APK. Note that this
+    invalidates some of the other arguments, such as --install.
     \li \c{--input <file name>}: This allows you to specify the \c JSON file generated by \c qmake.
     By default, \c androiddeployqt will try to guess the file name based on the current working
     directory.
@@ -358,8 +352,6 @@
     particular device or emulator will be requested by \c adb, causing it to pick a default instead.
     \li \c{--android-platform <platform>}: The SDK platform used for building the Java code of the
     application. By default, the latest available platform is used.
-    \li \c{--ant <path>}: Specify the path to the \c ant executable. If this is unspecified,
-    \c androiddeployqt will attempt to detect it on the \c PATH.
     \li \c{--release}: Specify this to create a release package instead of a debug package. With no
     other arguments, release packages are unsigned and cannot be installed to any device before
     they have been signed by a private key.

@@ -118,11 +118,12 @@
         -android-ndk <path/to/ndk> -android-sdk <path/to/sdk> -no-warnings-are-errors
         \endcode
 
-        You also need to provide the \c{-android-arch} parameter which is necessary to specify the
-        Android architecture, such as armeabi-v71 (default), arm64-v8a, x86, or x86_64:
+        You may provide the \c{-android-abis} parameter to limit the
+        Android ABIs targeted, such as armeabi-v7a, arm64-v8a, x86, or x86_64:
         \code
-        -android-arch armeabi-v71
+        -android-abis armeabi-v7a,arm64-v8a
         \endcode
+        If the parameter is not specified, Qt is built for all supported ABIs.
 
         \li To build the parts of Qt you have now configured run the following command. \e{nproc} is
             optional, representing the number of parallel jobs your system can do.
