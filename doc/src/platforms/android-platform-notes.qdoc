@@ -177,4 +177,14 @@
     to build separate APKs for each architecture, so that each APK only contains the binaries required
     for the targeted architecture. For more information about this, see the Android documentation
     about \l{http://developer.android.com/google/play/publishing/multiple-apks.html}{Multiple APK Support}.
+
+    \section1 Known Issues
+
+    Due to a bug on some devices, when you turn off predictive text with \c ImhNoPredictiveText,
+    this property will be ignored and predictive text will still be enabled. To work around this,
+    set the \c QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT environment variable to \c 1.
+    However, one side effect is that this environment variable can cause a problem with other
+    keyboards such as Gboard. If you use a language like Japanese, with Gboard, only a QWERTY
+    keyboard is displayed. This environment variable is queried each time the keyboard is displayed,
+    so it's possible to toggle the workaround on and off, as necessary.
 */
