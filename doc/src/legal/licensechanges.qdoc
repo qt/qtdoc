@@ -50,6 +50,25 @@
 
     \l{SQLite} got updated to upstream version 3.30.1.
 
+    \section2 Qt Wayland Compositor
+
+    The compositor module is no longer available under the GPLv2 and LGPLv3
+    licenses, but is still available under GPLv3 and commercial licenses.
+
+    \list
+        \li The xdg-output-unstable-v1 protocol version 2 was added under the
+        MIT License.
+        \li The idle-inhibit-unstable-v1 protocol version 1 was added under the
+        MIT License.
+    \endlist
+
+    \section2 Qt Wayland QPA plugin
+
+    \list
+        \li The primary-selection-unstable-v1 protocol version 1 was added
+        under the MIT License.
+    \endlist
+
     \section1 Qt 5.13.2
 
     \section2 Qt SQL Module
