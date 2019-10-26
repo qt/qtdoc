@@ -102,16 +102,6 @@
     is designed to be mapped directly to memory. The same format is used to
     share glyphs from non-prerendered fonts between applications.
 
-    \target QPF
-    \section1 Legacy Qt Prerendered Font (QPF)
-
-    Qt provides support for the legacy QPF format for compatibility
-    reasons. QPF is based on the internal font engine data structure of Qt/Embedded
-    versions 2 and 3.
-
-    Note that the file name describes the font, for example \c helvetica_120_50.qpf
-    is 12 point Helvetica while \c helvetica_120_50i.qpf is 12 point Helvetica \e italic.
-
     \omit
     \section1 Memory Requirements
 
