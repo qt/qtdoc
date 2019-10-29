@@ -62,13 +62,10 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.12, 10.13, \b 10.14
+    \row \li \macos 10.13, 10.14, \b 10.15
         \li \c x86_64 and \c x86_64h
-        \li \b {Xcode 10} (10.14 SDK), Xcode 9\raisedaster (10.13 SDK)
+        \li \b {Xcode 11} (10.15 SDK)
 \endtable
-    \br
-    \b{Note:} Xcode 9 is only supported for application development (to be able to opt out
-    of features such as layer-backing and dark mode), not for development of Qt itself.
 //! [macos]
 
 \section2 \l{Qt for Windows}{Windows}
@@ -112,17 +109,17 @@
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
-    \row \li iOS 11, \b{iOS 12}
+    \row \li iOS 12, \b{iOS 13}
         \li \c armv8 (\c arm64)
-        \li \b {Xcode 10} (iOS 12 SDK)
+        \li \b {Xcode 11} (iOS 13 SDK)
         \li
-    \row \li tvOS 11, \b{tvOS 12}
+    \row \li tvOS 12, \b{tvOS 13}
         \li \c armv8 (\c arm64)
-        \li \b {Xcode 10} (tvOS 12 SDK)
+        \li \b {Xcode 11} (tvOS 13 SDK)
         \li Technology Preview
-    \row \li watchOS 4, \b{watchOS 5}
+    \row \li watchOS 5, \b{watchOS 6}
         \li \c armv7k
-        \li \b {Xcode 10} (watchOS 5 SDK)
+        \li \b {Xcode 11} (watchOS 6 SDK)
         \li Technology Preview. No UI.
 \endtable
 //! [ios]
