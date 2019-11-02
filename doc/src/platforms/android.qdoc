@@ -60,7 +60,7 @@ The following list summarizes what you can do with Qt for Android:
      \l{Qt Android Extras}.
  \li Develop secure applications using OpenSSL library.
  \li Create \l{Android Services}
- \li Create and deploy Application Package (APK) using Qt Creator.
+ \li Create and deploy Application Package using Qt Creator.
 \endlist
 
 The following topics provide more details about how to use Qt for Android:
@@ -135,8 +135,9 @@ The following topics provide more details about how to use Qt for Android:
 
   And that's it: Provided that the path referenced in the \c{project.properties} file is located
   under the \c{Android Package Source Directory}, the deployment tool will copy it into the
-  packaging directory and perform the necessary steps to include it in your \c{APK}. You can
-  now add Java code to your application which accesses the APIs provided by the library project.
+  packaging directory and perform the necessary steps to include it in your \c{APK} or \c{AAB}.
+  You can now add Java code to your application which accesses the APIs provided by the library
+  project.
 
 */
 
