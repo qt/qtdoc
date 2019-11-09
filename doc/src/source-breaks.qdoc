@@ -503,7 +503,7 @@ recommendations for handling those changes.
     \section2 Changes to QTouchEvent
 
       \list
-       \li \l{QTouchEvent::DeviceType} and \l{QTouchEvent::deviceType()} are deprecated
+       \li \c{QTouchEvent::DeviceType} and \c{QTouchEvent::deviceType()} are deprecated
            as \l{QTouchDevice} provides a better way to identify and access the
            device from which the events originate.
        \li The constructor now takes a \l{QTouchDevice} pointer instead of \c{DeviceType} value.
