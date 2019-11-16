@@ -101,10 +101,11 @@ QPainter and related classes are part of the \l {Qt GUI} module.
 
 \section1 OpenGL and 3D
 
-OpenGL is the most widely adopted graphics API for hardware accelerated and 3D graphics, implemented on all
-desktop platforms and almost every mobile and embedded platform. The
-Qt library contains a number of classes that help users integrate
-OpenGL into their applications.
+OpenGL is the most widely adopted graphics API for hardware accelerated and 3D
+graphics, implemented on all desktop platforms and almost every mobile and
+embedded platform. The Qt library contains a number of classes that help users
+integrate graphics driven by OpenGL or other graphics API calls into their
+applications, as well as add-on modules for displaying 3D content.
 
 \list
 
@@ -115,14 +116,19 @@ OpenGL into their applications.
     \li \l {QOpenGLWidget}{QOpenGLWidget} is a widget that allows adding OpenGL
     scenes into QWidget-based user interfaces.
 
-    \li \l {Mixing Scene Graph and OpenGL}{OpenGL and Qt Quick 2.0} -
-    How to integrate OpenGL into a the Qt Quick 2.0 scene graph.
+    \li \l {Mixing Scene Graph and the native graphics API}{OpenGL and Qt Quick 2.0}
+        - How to integrate application-provided graphics commands
+        (OpenGL, Vulkan, Direct3D, etc.) into a Qt Quick scene graph.
 
     \li \l {http://www.khronos.org/opengl}{www.khronos.org/opengl} -
     The official OpenGL pages.
 
-    \li Qt Canvas 3D - An add-on module that provides a way to
-        make OpenGL-like 3D drawing calls from Qt Quick using JavaScript.
+    \li \l {Qt Quick 3D} - An add-on module that provides a high-level API for
+        creating 3D content or UIs based on Qt Quick.
+
+    \li \l {Qt 3D} - An add-on module that provides functionality for near-realtime
+        simulation systems with support for 2D and 3D rendering, in both Qt C++ and
+        Qt Quick applications.
 
 \endlist
 
