@@ -39,59 +39,78 @@
     \section2 Qt Core Module
 
     \list
-        \li \l{Unicode Common Locale Data Repository (CLDR)} got updated to
+        \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} got updated to
             upstream version v36.
-        \li \l{Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles}
+        \li \l{doubleconversion}{Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles}
             got updated to upstream version 3.1.5.
-        \li The copy of the \l{The Public Suffix List} got updated on 2019-10-23.
+        \li The copy of the \l{psl}{The Public Suffix List} got updated on 2019-10-23.
     \endlist
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.30.1.
+    \l{sqlite}{SQLite} got updated to upstream version 3.30.1.
+
+    \section2 Qt Wayland Compositor
+
+    The compositor module is no longer available under the GPLv2 and LGPLv3
+    licenses, but is still available under GPLv3 and commercial licenses.
+
+    \list
+        \li The xdg-output-unstable-v1 protocol version 2 was added under the
+        MIT License.
+        \li The idle-inhibit-unstable-v1 protocol version 1 was added under the
+        MIT License.
+    \endlist
+
+    \section2 Qt Wayland QPA plugin
+
+    \list
+        \li The primary-selection-unstable-v1 protocol version 1 was added
+        under the MIT License.
+    \endlist
 
     \section1 Qt 5.13.2
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.29.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.29.0.
 
     \section1 Qt 5.13.1
 
     \section2 Qt Core Module
 
-    \l{Unicode Common Locale Data Repository (CLDR)} got updated to
+    \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} got updated to
             upstream version v35.1
 
     \section2 Qt Image Formats
 
-    \l{WebP (libwebp)} got updated to upstream version 1.0.3.
+    \l{libwebp}{WebP (libwebp)} got updated to upstream version 1.0.3.
 
     \section1 Qt 5.13.0
 
     \section2 Qt Core Module
 
     \list
-        \li The copy of the \l{The Public Suffix List} got updated on 2019-02-20.
+        \li The copy of the \l{psl}{The Public Suffix List} got updated on 2019-02-20.
         The upstream license is now MPL 2.0.
-        \li \l{PCRE2} got updated to upstream version 10.33.
-        \li \l{PCRE2 - Stack-less Just-In-Time Compiler} got updated to upstream version 10.33.
+        \li \l{pcre2}{PCRE2} got updated to upstream version 10.33.
+        \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} got updated to upstream version 10.33.
     \endlist
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.28.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.28.0.
 
     \section2 Qt GUI Module
 
     \list
-        \li \l{LibJPEG-turbo} got updated to upstream version 2.0.2.
-        \li \l{LibPNG} got updated to upstream version 1.6.37.
+        \li \l{libjpeg}{LibJPEG-turbo} got updated to upstream version 2.0.2.
+        \li \l{libpng}{LibPNG} got updated to upstream version 1.6.37.
     \endlist
 
     \section2 Qt DBUS Module
 
-    The \l{libdus-1 headers} got updated to upstream version 1.12.12.
+    The \l{libdbus-1-headers}{libdus-1 headers} got updated to upstream version 1.12.12.
 
     \section2 Qt Wayland
 
@@ -110,63 +129,63 @@
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.29.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.29.0.
 
     \section1 Qt 5.12.5
 
     \section2 Qt GUI Module
 
-    Use of \l{Adobe Glyph List For New Fonts} under the \e{BSD-3-Clause}
+    Use of \l{aglfn}{Adobe Glyph List For New Fonts} under the \e{BSD-3-Clause}
     license is now documented.
 
     \section2 Qt Image Formats
 
-    \l{WebP (libwebp)} got updated to upstream version 1.0.3.
+    \l{libwebp}{WebP (libwebp)} got updated to upstream version 1.0.3.
 
     \section1 Qt 5.12.4
 
     \section2 Qt GUI Module
 
-    \l{LibPNG} got updated to upstream version 1.6.37.
+    \l{libpng}{LibPNG} got updated to upstream version 1.6.37.
 
     \section2 Qt Core Module
 
     \list
-        \li \l{PCRE2} got updated to upstream version 10.33
-        \li \l{PCRE2 - Stack-less Just-In-Time Compiler} got updated to
+        \li \l{pcre2}{PCRE2} got updated to upstream version 10.33
+        \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} got updated to
             upstream version 10.33
-        \li \l{Unicode Common Locale Data Repository (CLDR)} got updated to
+        \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} got updated to
             upstream version v35.1
     \endlist
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.28.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.28.0.
 
     \section1 Qt 5.12.3
 
     \section2 Qt GUI Module
 
-    The license of \l{Wintab API} was now classified as 'Custom' instead of
+    The license of \l{wintab}{Wintab API} was now classified as 'Custom' instead of
     'Public Domain'.
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.27.1.
+    \l{sqlite}{SQLite} got updated to upstream version 3.27.1.
 
     \section1 Qt 5.12.2
 
     \section2 Qt GUI Module
 
     \list
-        \li \l{Freetype 2} got updated to upstream version 2.9.1.
-        \li \l{LibPNG} got updated to upstream version 1.6.36. libpng License 2
+        \li \l{freetype}{Freetype 2} got updated to upstream version 2.9.1.
+        \li \l{libpng}{LibPNG} got updated to upstream version 1.6.36. libpng License 2
         added at same time.
     \endlist
 
     \section2 Qt Image Formats
 
-    \l{WebP (libwebp)} got updated to upstream version 1.0.2.
+    \l{libwebp}{WebP (libwebp)} got updated to upstream version 1.0.2.
 
     \section1 Qt 5.12.1
 
@@ -174,74 +193,74 @@
 
     \list
         \li The version information for \l{FreeBSD} got updated.
-        \li The version information for \l{Secure Hash Algorithm SHA-3 - Keccak} got updated.
-        \li \l{UCD} got updated to upstream version 20.
+        \li The version information for \l{sha3_keccak}{Secure Hash Algorithm SHA-3 - Keccak} got updated.
+        \li \l{unicode-character-database}{UCD} got updated to upstream version 20.
     \endlist
 
     \section2 Qt GUI Module
 
-    \l{xkbcommon} was removed from 3rd party sources and we are not bundling that library any more.
+    \e{xkbcommon} was removed from 3rd party sources and we are not bundling that library any more.
 
     \section2 Qt Image Formats
 
     \list
-        \l{WebP (libwebp)} got updated to upstream version 1.0.1.
+        \l{libwebp}{WebP (libwebp)} got updated to upstream version 1.0.1.
         \l{libtiff} got updated to upstream version 4.0.10.
     \endlist
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.26.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.26.0.
 
     \section2 Qt Virtual Keyboard Module
 
-    The version information for \l{Lipi Toolkit} got updated.
+    The version information for \l{lipitk}{Lipi Toolkit} got updated.
 
     \section2 Qt Wayland Compositor Module
 
-    The usage of \l{Wayland EGLStream Controller Protocol} under MIT license is now documented.
+    The usage of \l{wayland-eglstream-controller}{Wayland EGLStream Controller Protocol} under MIT license is now documented.
 
     \section1 Qt 5.12.0
 
     \section2 Qt 3D Module
 
-    Use of \l{Miramar Skybox Textures} is now documented.
+    Use of \l{miramar-sky}{Miramar Skybox Textures} is now documented.
 
     \section2 Qt Core Module
 
     \list
-        \li \l{Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles}
+        \li \l{doubleconversion}{Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles}
             got updated to upstream version 3.1.1.
-        \li \l{PCRE2} got updated to upstream version 10.32.
-        \li Use of \l{PCRE2 - Stack-less Just-In-Time Compiler} under the
+        \li \l{pcre2}{PCRE2} got updated to upstream version 10.32.
+        \li Use of \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} under the
             \e{BSD 2-clause "Simplified"} license is now documented.
-        \li \l{Secure Hash Algorithm SHA-3 - brg_endian} got updated to version
+        \li \l{sha3_endian}{Secure Hash Algorithm SHA-3 - brg_endian} got updated to version
             https://github.com/BrianGladman/sha/ commit 4b9e13ead2c5b5e41ca27c65de4dd69ae0bac228.
             License got updated to \e{BSD 2-clause "Simplified"} license.
-        \li Use of \l{TinyCBOR} under the \e{MIT} license is now documented.
-        \li \l{Unicode Common Locale Data Repository (CLDR)} got updated to
+        \li Use of \l{tinycbor}{TinyCBOR} under the \e{MIT} license is now documented.
+        \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} got updated to
             upstream version v34.
     \endlist
 
     \section2 Qt GUI Module
 
     \list
-        \li The version information for \l{Freetype 2} got updated.
-        \li The Qt usage documentation for \l{HarfBuzz} got updated.
-        \li The Qt usage documentation for \l{HarfBuzz-NG} got updated.
-        \li The version information for \l{IAccessible2 IDL Specification} got updated.
-        \li \l{LibJPEG-turbo} got updated to upstream version 2.0.0.
-        \li \l{LibPNG} got updated to upstream version 1.6.35.
-        \li Use of \l{Bitstream Vera Font} under the \e{Bitstream Vera Font}
+        \li The version information for \l{freetype}{Freetype 2} got updated.
+        \li The Qt usage documentation for \l{harfbuzz}{HarfBuzz} got updated.
+        \li The Qt usage documentation for \l{harfbuzz-ng}{HarfBuzz-NG} got updated.
+        \li The version information for \l{iaccessible2}{IAccessible2 IDL Specification} got updated.
+        \li \l{libjpeg}{LibJPEG-turbo} got updated to upstream version 2.0.0.
+        \li \l{libpng}{LibPNG} got updated to upstream version 1.6.35.
+        \li Use of \l{vera_font}{Bitstream Vera Font} under the \e{vera_font}{Bitstream Vera Font}
             license is now documented.
-        \li \l{DejaVu Fonts} got updated to upstream version 2.37 and their use
+        \li \l{dejayvu}{DejaVu Fonts} got updated to upstream version 2.37 and their use
             under the \e{Bitstream DejaVu Font} license is now documented.
-        \li Use of \l{WebGradients} under the \e{MIT} license is now documented.
+        \li Use of \l{webgradients}{WebGradients} under the \e{MIT} license is now documented.
     \endlist
 
     \section2 Qt DBUS Module
 
-    \l{libdus-1 headers} got updated to upstream version 1.12.
+    \l{libdbus-1-headers}{libdus-1 headers} got updated to upstream version 1.12.
 
     \section2 Qt Image Formats
 
@@ -253,50 +272,50 @@
     \section2 Qt Location Module
 
     \list
-        \li Use of \l{Tango Weather Icon Pack by Darkobra} is now documented.
-        \li Use of \l{Tango Icons} is now documented.
+        \li Use of \l{weatherinfo-tango-weather-pack}{Tango Weather Icon Pack by Darkobra} is now documented.
+        \li Use of \l{weatherinfo-tango-icons}{Tango Icons} is now documented.
     \endlist
 
     \section2 Qt Test Module
 
-    \l{Valgrind} got updated to upstream version 3.14.0.
+    \l{valgrind}{Valgrind} got updated to upstream version 3.14.0.
 
     \section2 Qt Wayland Compositor Module
 
     \list
-        \li Use of \l{Wayland xdg-decoration Protocol} under the \e{MIT} license
+        \li Use of \l{wayland-xdg-decoration-protocol}{Wayland xdg-decoration Protocol} under the \e{MIT} license
             is now documented.
-        \li Use of \l{Wayland XDG Output Protocol} under the \e{MIT} license is
+        \li Use of \l{wayland-xdg-output-protocol}{Wayland XDG Output Protocol} under the \e{MIT} license is
             now documented.
     \endlist
 
     \section2 Qt WebEngine Module
 
-    \l Chromium and third-party components bundled with it were updated to
+    \e Chromium and third-party components bundled with it were updated to
     version 69.0.3497.
 
     \section1 Qt 5.11.2
 
     \section2 Qt Core Module
 
-    \l{PCRE2} got updated to upstream version 10.31.
+    \l{pcre2}{PCRE2} got updated to upstream version 10.31.
 
     \section2 Qt GUI Module
 
     \list
-        \li The copyright information for \l{HarfBuzz} got updated.
+        \li The copyright information for \l{harfbuzz}{HarfBuzz} got updated.
         \li The copyright information for
-            \l{Anti-aliasing rasterizer from FreeType 2} got updated.
+            \l{grayraster}{Anti-aliasing rasterizer from FreeType 2} got updated.
     \endlist
 
     \section2 Qt Location Module
 
     The copyright information and description of
-    \l{Clipper Polygon Clipping Library} got updated.
+    \l{clipper}{Clipper Polygon Clipping Library} got updated.
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.24.0.
+    \l{sqlite}{SQLite} got updated to upstream version 3.24.0.
 
     \section2 Qt WebEngine Module
 
@@ -306,7 +325,7 @@
         \li The \l{WebEngine StyleSheet Browser Example}, \l{WebEngine Widgets Simple Browser Example},
             \l{WebEngine Quick Nano Browser}, and \l{WebEngine Cookie Browser Example}
             use images from the Tango Icon Library. This is now documented.
-        \li \l{Marked (WebEngine RecipeBrowser example)} got updated to upstream
+        \li \l{recipebrowser-marked}{Marked (WebEngine RecipeBrowser example)} got updated to upstream
             version 0.4.0.
     \endlist
 
@@ -314,26 +333,26 @@
 
     \section2 Qt 3D Module
 
-    The use of the \e{Jet Propulsion Laboratory Photojournal} in
+    The use of the \e{nasa-jpl}{Jet Propulsion Laboratory Photojournal} in
     the module is actually limited to the planets-qml example. The attribution
     has therefore been removed from the module's documentation.
 
     \section2 Qt Documentation
 
-    Use of the \l{Titillium Web Font} in the Coffee demo is now documented.
+    Use of the \l{coffeeexample-titillium}{Titillium Web Font} in the Coffee demo is now documented.
 
     \section2 Qt Image Formats
 
-    \l{WebP (libwebp)} got updated to version 1.0.0.
+    \l{libwebp}{WebP (libwebp)} got updated to version 1.0.0.
 
     \section1 Qt 5.11.0
 
     \section2 Qt 3D Module
 
     \list
-        \li The \l{Open Asset Import Library} got updated to upstream version
+        \li The \l{assimp}{Open Asset Import Library} got updated to upstream version
             4.1.0.
-        \li Examples use some assets from \l{Substance Share} that are available
+        \li Examples use some assets from \l{substance_share}{Substance Share} that are available
             under the \e {Creative Commons Attribution 4.0} license. This is now
             documented.
     \endlist
@@ -344,16 +363,16 @@
         \li \e{Parts of QTemporaryFile} got removed from documentation.
             The corresponding code got removed already in Qt 5.10.0.
 
-        \li The copy of the \l{The Public Suffix List} got updated on
+        \li The copy of the \l{psl}{The Public Suffix List} got updated on
             2018-01-04.
 
         \li The concluded license for the
-            \l{Unicode Common Locale Data Repository (CLDR)} changed to
+            \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} changed to
             \e{Unicode License Agreement - Data Files and Software (2016)}.
             In Qt 5.10 documentation, the component was labelled as
             \e{Unicode CLDR (Unicode Common Locale Data Repository)}.
 
-        \li The use of the \l{Unicode Character Database (UCD)} under the
+        \li The use of the \l{unicode-character-database}{Unicode Character Database (UCD)} under the
             \e{Unicode License Agreement - Data Files and Software (2016)}.
             is now documented.
     \endlist
@@ -367,36 +386,36 @@
     \section2 Qt GUI Module
 
     \list
-        \li \l{HarfBuzz-NG} got updated to upstream version 1.7.4.
-        \li \l{LibJPEG-turbo} got updated to upstream version 1.5.3.
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} got updated to upstream version 1.7.4.
+        \li \l{libjpeg}{LibJPEG-turbo} got updated to upstream version 1.5.3.
     \endlist
 
     \section2 Qt Image Formats
 
     \list
-        \li \l{TIFF Software Distribution (libtiff)} got updated to upstream
+        \li \l{libtiff}{TIFF Software Distribution (libtiff)} got updated to upstream
             version 4.0.9.
-        \li \l{WebP (libwebp)} got updated to upstream version 0.6.1.
+        \li \l{libwebp}{WebP (libwebp)} got updated to upstream version 0.6.1.
     \endlist
 
     \section2 Qt Quick Controls 2 Module
 
-    Use of \l{Shadow values from Angular Material} under \e{MIT License}
+    Use of \l{shadow_angular_material}{Shadow values from Angular Material} under \e{MIT License}
     in the Material Style is now documented.
 
     \section2 Qt SQL Module
 
-    \l{SQLite} got updated to upstream version 3.23.1.
+    \l{sqlite}{SQLite} got updated to upstream version 3.23.1.
 
     \section2 Qt Test Module
 
-    The concluded license of \l{Linux Performance Events} changed to
+    The concluded license of \l{linuxperf}{Linux Performance Events} changed to
     \e{GNU General Public License v2.0 only with Linux Syscall Note}.
 
     \section2 Qt WebEngine Module
 
     \list
-        \li \l{(Components of) Bazel} got added under the
+        \li \e{(Components of) Bazel} got added under the
             \e {Apache License 2.0}.
         \li \l{Breakpad, An open-source multi-platform crash reporting system}
             got added under a \e{New BSD, Apple PSL 2.0 and Apache 2.0} license.
@@ -421,7 +440,7 @@
 
     \section2 Qt XML Patterns Module
 
-    Use of \l{XML Schema}
+    Use of \l{xml-xsd}{XML Schema}
     under \e{W3C Software Notice and Document License (2015-05-13)}
     is now documented.
 */

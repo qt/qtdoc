@@ -204,7 +204,7 @@
 
     To explicitly enable the use of ICU in Qt Core, pass \c -icu to \c configure:
 
-    \code
+    \badcode
     configure -icu
     \endcode
 
@@ -235,14 +235,14 @@
     use OpenGL, pass the command line options \c{-opengl desktop} to the
     configure script.
 
-    \code
+    \badcode
     configure -opengl desktop
     \endcode
 
     To use an OpenGL ES 2.0 emulator instead of ANGLE, use the configure
     options: \c{-opengl es2 -no-angle}.
 
-    \code
+    \badcode
     configure -opengl es2 -no-angle
     \endcode
 
@@ -252,7 +252,7 @@
     and loading the OpenGL implementation at runtime. To use this
     mode, pass \c{-opengl dynamic} to the configure script.
 
-    \code
+    \badcode
     configure -opengl dynamic
     \endcode
 
@@ -433,7 +433,7 @@
             (\l{http://www.activestate.com/activeperl}{download page}) and add
            the installation location to your \c PATH.
         \li Python - Install Python from the \l{http://www.python.org/download/}{here}
-           and add the installation location to your PATH.
+           and add the installation location to your \c PATH.
     \endlist
 
     \note Please make sure that the \c perl executable from ActivePerl is found
@@ -587,7 +587,7 @@
     \title Qt for Windows - Deployment
 
     This documentation describes deployment process for \l{Qt for
-    Windows}{Windows}. We refer to the \l{Plug & Paint Example}{plug & paint}
+    Windows}{Windows}. We refer to the \l{Plug & Paint Example}{Plug & Paint}
     example application through out the document to demonstrate the deployment
     process.
 
@@ -967,9 +967,9 @@
     executable with your application and ensure that it is executed when the
     user installs your application.
 
-    They are named \c vcredist_x64.exe (IA64 and 64-bit) or
+    They are named \c vcredist_x64.exe (64-bit) or
     \c vcredist_x86.exe (32-bit) and can be found in the folder
-    c{Visual Studio install path>/VC/redist/<language-code>}.
+    \c{<Visual Studio install path>/VC/redist/<language-code>}.
 
     Alternatively, they can be downloaded from the web, for example
     \l{https://www.microsoft.com/download/details.aspx?id=48145}
@@ -1141,12 +1141,12 @@
         to \c cmd.exe.
 
         Assuming the file is called \c{qt5vars.cmd}
-        and the Qt folder is called \c qt-5 and located under \c C:\qt:
+        and the Qt folder is called \c Qt-5 and located under \c C:\Qt:
 
-        \code
-        REM Set up \Microsoft Visual Studio 2017, where <arch> is \c amd64, \c x86, etc.
+        \badcode
+        REM Set up Microsoft Visual Studio 2017, where <arch> is amd64, x86, etc.
         CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
-        SET _ROOT=C:\qt\qt-5
+        SET _ROOT=C:\Qt\Qt-5
         SET PATH=%_ROOT%\qtbase\bin;%_ROOT%\gnuwin32\bin;%PATH%
         REM Uncomment the below line when using a git checkout of the source repository
         REM SET PATH=%_ROOT%\qtrepotools\bin;%PATH%
@@ -1154,8 +1154,8 @@
         \endcode
 
         A desktop link can then be created by specifying the command
-        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k c:\qt\qt5vars.cmd}
-        as application and \c{c:\qt\qt-5} as working directory.
+        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k C:\Qt\qt5vars.cmd}
+        as application and \c{C:\Qt\Qt-5} as working directory.
 
         \note Setups for MinGW are similar; they differ
         only in that the \c bin folder of the installation should be added to the
@@ -1176,7 +1176,7 @@
         To configure the Qt library for a debug build for your machine, type
         the following command in the command prompt:
 
-        \code
+        \badcode
         configure -debug -nomake examples -nomake tests -skip qtwebengine -opensource
         \endcode
 
@@ -1185,19 +1185,19 @@
 
         To build Qt using \l{jom}, type:
 
-        \code
+        \badcode
         jom
         \endcode
 
         If you do not have \l{jom} installed, type:
 
-        \code
+        \badcode
         nmake
         \endcode
 
         For MinGW, type:
 
-        \code
+        \badcode
         mingw32-make
         \endcode
 
@@ -1219,7 +1219,7 @@
         For the Qt reference documentation to be available in \l {Qt Assistant},
         you must build it separately:
 
-        \code
+        \badcode
         nmake docs
         \endcode
 */
