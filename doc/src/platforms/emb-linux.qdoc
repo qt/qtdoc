@@ -320,36 +320,36 @@
 
   \section1 Display Output
 
-  When having multiple displays connected, the level of support for targeting
-  one or more of these from one single Qt application varies between the
+  When you have multiple displays connected, the level of support to target one
+  or more of these displays from one single Qt application, varies between the
   platform plugins and often depends on the device and its graphics stack.
 
-  \section2 eglfs with eglfs_kms backend
+  \section2 EGLFS with the eglfs_kms Backend
 
-  When the KMS/DRM backend is in use, eglfs reports all available screens in
+  When the KMS/DRM backend is in use, EGLFS reports all available screens in
   QGuiApplication::screens(). Applications can target different screens with
   different windows via QWindow::setScreen().
 
   \note The restriction of one single fullscreen window per screen still
-  applies. Changing screens after making the QWindow visible is not supported
-  either. Therefore, it is essential that embedded applications make all the
+  applies. Changing screens after making the QWindow visible isn't supported
+  either. Therefore, it's essential that embedded applications make all the
   necessary QWindow::setScreen() calls before calling QWindow::show().
 
-  When getting started with developing on a given embedded device, it is often
-  necessary to verify the behavior of the device and drivers, and that the
-  connected displays are working as they should. One easy way is to use the
-  hellowindow example. Launching it with \c{-platform eglfs --multiscreen
-  --timeout} arguments shows a rotating Qt logo on each connected screen for a few
-  seconds.
+  When you start developing on a given embedded device, often it's necessary to
+  verify the behavior of the device and drivers, and that the connected displays
+  are working as they should. One easy way is to use the \b{hellowindow} example.
+  Launching it with the \c{-platform eglfs --multiscreen --timeout} arguments
+  shows a rotating Qt logo on each connected screen for a few seconds.
 
-  \note Most of the configuration options described below apply to all
-  KMS/DRM-based backends, regardless of the buffer management technology (GBM or
-  EGLStreams).
+  The KMS/DRM backend also supports custom configurations via a JSON file. To
+  enable this, set the \c QT_QPA_EGLFS_KMS_CONFIG environment variable to the
+  name of the file. You can also embed this file into the application via the Qt
+  resource system.
 
-  The KMS/DRM backend also supports custom configurations via a JSON file.  Set
-  the environment variable \c QT_QPA_EGLFS_KMS_CONFIG to the name of the file to
-  enable this. The file can also be embedded into the application via the Qt
-  resource system. An example configuration is below:
+  Most of these configuration options apply to all KMS/DRM-based backends,
+  regardless of the buffer management technology (GBM or EGLStreams).
+
+  Here's an example configuration:
 
   \badcode
     {
@@ -369,51 +369,47 @@
     }
   \endcode
 
-  Here we configure the specified device so that
+  Here we configure the specified device so that:
 
   \list
-
-  \li it will not use the hardware cursor (falls back to rendering the mouse
-  cursor via OpenGL; by default hardware cursors are enabled as they are more
-  efficient),
-
-  \li it will back QOffscreenSurface with standard EGL pbuffer surfaces (by
-  default this is disabled and a gbm surface is used instead),
-
-  \li output on the VGA connector is disabled, while HDMI is active with a
-  resolution of 1024x768.
-
+    \li It won't use the hardware cursor (falls back to rendering the mouse
+        cursor via OpenGL; by default hardware cursors are enabled as they're
+        more efficient).
+    \li It backs QOffscreenSurface with standard EGL pbuffer surfaces (by
+        default this is disabled and a gbm surface is used instead).
+    \li Output on the VGA connector is disabled, while HDMI is active with a
+        resolution of 1024x768.
   \endlist
 
   Additionally, such a configuration also disables looking for a device via
-  \c libudev and instead the specified device is used.
+  \c libudev; instead the specified device is used.
 
-  When \c mode is not defined, the mode that is reported as preferred by the
-  system is chosen. The accepted values for \c mode are: \c off, \c current,
-  \c preferred, \c skip, width\c{x}height, width\c{x}height\c{@}vrefresh, or a
-  modeline string.
+  When \c mode is not defined, the system's preferred mode is chosen. The
+  accepted values for \c mode are: \c off, \c current, \c preferred, \c skip,
+  width\c{x}height, width\c{x}height\c{@}vrefresh, or a modeline string.
 
-  Specifying \c current will choose a mode with a resolution matching the
-  current one. Due to the fact that modesetting is done only when the desired
-  mode is actually different from the active one (unless forced via the
+  Specifying \c current chooses a mode with a resolution that matches the
+  current one. Because modesetting is done only when the desired mode is
+  actually different from the active one (unless forced via the
   \c QT_QPA_EGLFS_ALWAYS_SET_MODE environment variable), this value is useful to
-  keep the current mode and any content in the planes not touched by Qt. \c skip
-  causes the connector for the output to be ignored, just as if it was
-  disconnected. \c off is similar, but it changes the mode as well to turn off
-  the display.
+  preserve the current mode and any content in the planes not touched by Qt.
 
-  All screens reported by the DRM layer will be treated as one big virtual
-  desktop by default. The mouse cursor implementation will take this into
-  account and move across the screens as expected. Although not recommended, the
-  virtual desktop mode can be disabled by setting \c separateScreens to \c false
-  in the configuration, if desired.
+  \c skip causes the connector for the output to be ignored, as if it were
+  disconnected. \c off is similar, but it changes the mode and turns off the
+  display.
+
+  By default, all screens reported by the DRM layer are treated as one big virtual
+  desktop. The mouse cursor implementation takes this into account and moves
+  across the screens as expected. Although not recommended, you can disable the
+  virtual desktop by setting \c separateScreens to \c false in the configuration.
 
   By default, the virtual desktop is formed left to right, based on the order of
-  connectors as reported by the system. This can be changed by setting
-  \c virtualIndex to a value starting from 0. For example, the following
-  configuration uses the preferred resolution but ensures that the left side in
-  the virtual desktop is the screen connected to the HDMI port, while the right
-  side is the screen connected to the DisplayPort:
+  connectors as reported by the system. To change this, set \c virtualIndex to a
+  value starting from 0.
+
+  For example, the following configuration uses the preferred resolution but ensures
+  that the left side in the virtual desktop is the screen connected to the HDMI port;
+  while the right side is the screen connected to the DisplayPort:
 
   \badcode
     {
@@ -432,21 +428,21 @@
   \endcode
 
   The order of elements in the array is not relevant. Outputs with unspecified
-  virtual indices will be placed after the others, with the original order in
-  the DRM connector list preserved.
+  virtual indices are placed after the others, with the original order in the
+  DRM connector list preserved.
 
   To create a vertical desktop space (that is, to stack top to bottom instead of
   left to right), add a \c virtualDesktopLayout property after \c device
   with the value of \c vertical.
 
-  \note It is recommended that all screens in the virtual desktop use the same
+  \warning It's recommended that all screens in the virtual desktop use the same
   resolution, otherwise elements like the mouse cursor may behave in unexpected
   ways when entering areas that only exist on one given screen.
 
-  When \c virtualIndex is not sufficient, the property \c virtualPos can be used
+  When \c virtualIndex is not sufficient, the \c virtualPos property can be used
   to explicitly specify the top-left position of the screen in question. Taking
   the previous example and assuming a resolution of 1080p for HDMI1, the
-  following places a second HDMI-based screen below the first one:
+  following code snippet places a second HDMI-based screen below the first one:
 
   \badcode
     {
@@ -478,13 +474,14 @@
   values.
 
   Each active output from the \c outputs array corresponds to one QScreen
-  instance reported from QGuiApplication::screens(). The primary screen reported
-  by QGuiApplication::primaryScreen() is by default the screen that gets
-  registered first. When not using \c virtualIndex, this means the decision is
-  based on the DRM connector order. To override this, set the property
-  \c primary to \c true on the desired entry in the \c outputs list. For example,
-  to ensure the screen corresponding to the VGA output will be the primary even
-  when the system happens to report the HDMI one first, one can do the following:
+  instance reported from QGuiApplication::screens(). By default, the primary screen
+  that QGuiApplication::primaryScreen() reports is the screen that is registered
+  first. If you're not using \c virtualIndex, this means the decision is based on
+  the DRM connector order. To override this, set the \c primary property to \c true
+  on the desired entry in the \c outputs list.
+
+  For example, to ensure the screen corresponding to the VGA output is the primary even
+  when the system happens to report the HDMI one first, do the following:
 
   \badcode
     {
@@ -498,11 +495,11 @@
   \endcode
 
   For troubleshooting it might be useful to enable debug logs from the KMS/DRM
-  backend. To do this, enable the categorized logging rule, \c qt.qpa.eglfs.kms.
+  backend. To do this, enable the \c qt.qpa.eglfs.kms categorized logging rule.
 
-  \note In an embedded environment virtual desktops are more limited than with a
-  full windowing system. Windows overlapping multiple screens, non-fullscreen
-  windows and moving windows between screens should be avoided and may not
+  \note In an embedded environment, virtual desktops are more limited compared to
+  a full windowing system. Windows overlapping multiple screens, non-fullscreen
+  windows, and moving windows between screens, should be avoided and may not
   function as expected.
 
   The most common and best supported use case for a multi-screen setup is to
@@ -510,10 +507,10 @@
   \c threaded render loop of the Qt Quick scenegraph, each of these windows will
   get its own dedicated render thread. This is good because the threads can be
   throttled independently based on vsync, and will not interfere with each
-  other. With the \c basic loop this can get problematic and animations may
-  degrade as a result.
+  other. With the \c basic loop this can get problematic, causing animations to
+  degrade.
 
-  As an example, discovering all connected screens and creating a QQuickView for
+  For example, discovering all connected screens and creating a QQuickView for
   each of them can be done like this:
 
   \badcode
@@ -539,9 +536,9 @@
     }
   \endcode
 
-  \section2 Advanced eglfs_kms features
+  \section2 Advanced eglfs_kms Features
 
-  Screen cloning (mirroring) is supported as of Qt 5.11. It can be enabled by
+  As of Qt 5.11, screen cloning (mirroring) is supported. This is enabled via
   the \c clones property:
 
   \badcode
@@ -554,21 +551,20 @@
     }
   \endcode
 
-  Here the content on the display connected via DisplayPort will be the same as
-  on the HDMI one. This is ensured by simply scanning out the same buffer on
+  In this case, the content on the display connected via DisplayPort will be the
+  same as on the HDMI one. This is ensured by scanning out the same buffer on
   both.
 
-  \note This can only work if the resolutions are the same, there are no
-  incompatibilities when it comes to accepted buffer formats, and the
-  application does not have any output on the QScreen associated with a clone
-  destination. In practice the latter means that no QWindow associated with the
-  QScreen in question - DP1 in the example - must ever perform a
-  QOpenGLContext::swapBuffers() operation. It is up to the configuration and the
-  application to ensure these.
+  However, this feature can only work if the resolutions are the same, there are no
+  incompatibilities when it comes to accepted buffer formats, and the application
+  doesn't have any output on the QScreen associated with a clone destination. In
+  practice, the latter means that no QWindow associated with the QScreen in question
+  - DP1 in the example - must ever perform a QOpenGLContext::swapBuffers() operation.
+  It's up to the configuration and the application to ensure these.
 
-  Headless mode via DRM render nodes is supported as of Qt 5.11. This allows
+  As of Qt 5.11, headless mode via DRM render nodes is supported. This allows
   performing GPU compute (OpenGL compute shaders, OpenCL) or offscreen OpenGL
-  rendering without needing DRM master privileges. In this mode applications can
+  rendering without needing DRM master privileges. In this mode, applications can
   function even when there is already another process outputting to the screen.
 
   Just switching \c device from \c{/dev/dri/card0} to \c{/dev/dri/renderD128} is
