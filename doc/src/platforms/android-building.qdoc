@@ -83,7 +83,7 @@
     \endlist
 
 
-    \section2 Building Qt
+    \section2 Building Qt for Android on Linux
 
     \list 1
         \li If you have a commercially licensed Qt, install your license file. If you're using
@@ -156,6 +156,8 @@
         \li Install the latest JDK from
             \l{https://www.oracle.com/technetwork/java/javase/downloads/index.html}. Then, add the
             \e{<JDK_ROOT>} to \c PATH.
+            Alternatively, if you've installed Android Studio, you can use the JDK that's
+            included in your installation's \c jre folder.
         \li Install the Android NDK, r18b, from
             \l{https://developer.android.com/tools/sdk/ndk/index.html}. Extract it to
             \e{<ANDROID_NDK_PATH>}.
@@ -177,18 +179,18 @@
             set "ANDROID_BUILD_TOOLS_REVISION=21.1.2"
             set "ANDROID_NDK_PATH=<ANDROID_NDK_PATH>"
             set "ANDROID_TOOLCHAIN_VERSION=4.9"
-            \encode
+            \endcode
             Depending on which NDK you have downloaded, add its path:
             \code
             set "ANDROID_NDK_HOST=windows-x86_64"
-            \encdode
+            \endcode
             or
             \code
             set "ANDROID_NDK_HOST=windows"
             \endcode
     \endlist
 
-    \section2 Building Qt
+    \section2 Building Qt for Android on Windows
 
     \list
         \li If you have a commercially licensed Qt, install your license file. If you're using
@@ -203,13 +205,12 @@
             installed, for example: \c{C:\Qt\%VERSION%}. This install path must not contain any
             spaces or Windows-specific file system characters.
 
-        \li Run the following command. \e{<N>} is optional, representing the number of parallel
-            jobs your system can do.
+        \li Run the following command to configure Qt:
 
         \code
         configure.bat -prefix <path to install Qt to> -platform win32-g++ -opengl es2 -xplatform
-        android-g++ -android-ndk ANDROID_NDK_PATH -android-sdk ANDROID_SDK_ROOT -nomake tests
-        -nomake examples mingw32-make.exe -j<N>
+        android-clang -android-ndk %ANDROID_NDK_PATH% -android-sdk %ANDROID_SDK_ROOT% -nomake tests
+        -nomake examples
         \endcode
 
         \li To build the previously configured parts of Qt, run the following command:
@@ -217,6 +218,8 @@
         \code
         mingw32-make.exe -j<N>
         \endcode
+
+        \e{<N>} is optional, representing the number of parallel jobs your system can do.
 
         \li Now, to install Qt, run the following command:
 
