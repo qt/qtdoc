@@ -168,6 +168,10 @@ earlier. For more details, refer to the
 \l{https://developer.android.com/studio/intro/update.html}{Android Studio}
 documentation.
 
+\note Make sure to unpack the Android SDK and NDK to a writeable location that Qt Creator
+can access later. Otherwise, Qt Creator won't be able to use \c sdkmanager or find all
+components even if they were installed manually.
+
 \section2 Updating the Android SDK
 
 The command line tools provided by the Android SDK Tools package also enables updating

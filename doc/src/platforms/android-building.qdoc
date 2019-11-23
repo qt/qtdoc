@@ -177,11 +177,11 @@
             set "ANDROID_BUILD_TOOLS_REVISION=21.1.2"
             set "ANDROID_NDK_PATH=<ANDROID_NDK_PATH>"
             set "ANDROID_TOOLCHAIN_VERSION=4.9"
-            \encode
+            \endcode
             Depending on which NDK you have downloaded, add its path:
             \code
             set "ANDROID_NDK_HOST=windows-x86_64"
-            \encdode
+            \endcode
             or
             \code
             set "ANDROID_NDK_HOST=windows"
