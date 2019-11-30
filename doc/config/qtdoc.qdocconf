@@ -9,73 +9,8 @@ version                 = $QT_VERSION
 # Instruct Clang not to look for a module header
 moduleheader =
 
-depends += \
-    activeqt \
-    qtcmake \
-    qdoc \
-    qmake \
-    qtandroidextras \
-    qtassistant \
-    qtbluetooth \
-    qtconcurrent \
-    qtcore \
-    qtdbus \
-    qtdesigner \
-    qtgamepad \
-    qtgraphicaleffects \
-    qthelp \
-    qtimageformats \
-    qtgui \
-    qtlinguist \
-    qtlocation \
-    qtlottieanimation \
-    qtmacextras \
-    qtmultimedia \
-    qtnetwork \
-    qtnfc \
-    qtopengl \
-    qtplatformheaders \
-    qtpositioning \
-    qtprintsupport \
-    qtqml \
-    qtqmlmodels \
-    qtqmltest \
-    qtquick \
-    qtquickcontrols \
-    qtquickdialogs \
-    qtquickextras \
-    qtquicktimeline \
-    qtscript \
-    qtscripttools \
-    qtscxml \
-    qtsensors \
-    qtserialbus \
-    qtserialport \
-    qtsql \
-    qtsvg \
-    qttestlib \
-    qtuitools \
-    qtwebchannel \
-    qtwebengine \
-    qtwebsockets \
-    qtwidgets \
-    qtwinextras \
-    qtx11extras \
-    qtxml \
-    qtxmlpatterns \
-    qt3d \
-    qtwebview \
-    qtquickcontrols1 \
-    qtwaylandcompositor \
-    qtcharts \
-    qtdatavisualization \
-    qtpurchasing \
-    qtvirtualkeyboard \
-    qtspeech \
-    qtnetworkauth \
-    qtremoteobjects \
-    qtdistancefieldgenerator \
-    qtquick3d
+# Depend on everything - load all available index files
+depends = *
 
 headerdirs  += ../src
 imagedirs   += ../src/images \
