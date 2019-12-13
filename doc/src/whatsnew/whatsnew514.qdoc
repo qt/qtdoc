@@ -1,0 +1,343 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page whatsnew514.html
+    \title What's New in Qt 5.14
+    \brief Lists the new features in Qt 5.14.
+
+    \section1 New Features in Qt 5.14
+
+    \section2 Qt 3D Module
+
+    \list
+        \li Overhauled the threading architecture. This includes the
+            removal of the aspect thread.
+        \li Overhauled the frontend/backend node sync.
+        \li Enabled QTransform to have access to the world matrix.
+        \li Introduced Scene3DView.
+        \li Scene3D is now in sync with QtQuick, and can render as an
+            underlay without an FBO.
+    \endlist
+
+    \section2 Qt Bluetooth Module
+
+    \list
+        \li Introduced a new, optional Win32 backend with support for Windows 7
+            and 8. This backend is not built by default, nor is it part of the
+            pre-built packages.
+        \li QLowEnergyController: Introduced
+            \l {QLowEnergyController::}{AuthorizationError}.
+        \li Added the ability to include multiple manufacturer data entries per
+            manufacturer ID.
+    \endlist
+
+    \section2 Qt Core Module
+
+    \list
+        \li Added support in QCalendar for calendars other than Gregorian, by
+            implementation of suitable backends.
+        \li Added backends to implement the Gregorian, Jalali (Persian), Islamic
+            Civil, Milankovic, and Julian calendars. We look forward to other
+            contributions.
+        \li Added QColorConstants, a namespace providing constexpr QColor
+            instances that don't cost any runtime overhead.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li Updated High-DPI support:
+        \list
+            \li Introduced non-integer scale factors (for example, a scale factor of
+                150%) that applications can opt-in to use. Use
+                QGuiApplication::highDpiScaleFactorRoundingPolicy or
+                QT_SCALE_FACTOR_ROUNDING_POLICY to set the rounding policy.
+            \li Added the QT_ENABLE_HIGHDPI_SCALING environment variable, enabling
+                high-DPI scaling based on display DPI. This replaces
+                QT_AUTO_SCREEN_SCALE_FACTOR (now deprecated), and corresponds to
+                the Qt::AA_EnableHighDpiScaling application attribute.
+            \li Added cross-platform support for the QT_FONT_DPI environment
+                variable, for the purpose of developing and testing with specific
+                DPI values.
+        \endlist
+
+        \li Added color-space support for images; reading and writing color-spaces
+            from JPEG, PNG, WebP and TIFF images, and performing color-space
+            transformation on images.
+        \li Improvements to QTextDocument and QTextTable styling:
+        \list
+            \li Added per-edge border styling via QTextTableCellFormat.
+            \li Added border-collapse mode.
+            \li Added support for (partial) HTML table style import and export.
+        \endlist
+
+        \li Added support for reading and writing Markdown format to QTextDocument,
+            as an alternative to HTML.
+    \endlist
+
+    \section2 Qt Multimedia Module
+
+    \list
+        \li Added QVideoFrame::Format_YUV422P.
+        \li Introduced support for the GStreamer OpenGL plugin.
+    \endlist
+
+    \section2 Qt Network Module
+
+    \list
+        \li Introduced the HTTP/2 Configuration API.
+        \li Introduced network connectivity monitoring.
+        \li Added support for Kerberos proxy authentication.
+    \endlist
+
+    \section2 Qt QML Module
+
+    \list
+        \li Added qmlRegisterSingletonInstance() function. This allows to expose a
+            QObject as a singleton to QML, without having to create a factory
+            function as required by qmlRegisterSingletonType(). It is meant as a
+            type safe replacement of setContextProperty() in common usages.
+        \li Added qmlRegisterAnonymousType() as a replacement for
+            qmlRegisterType(). It allows to specify the URI and major version,
+            which enables better tooling support.
+        \li Added an experimental -U option to \c qmllint. When set, access to
+            unqualified identifiers generates warnings.
+    \endlist
+
+    \section2 Qt Quick Module
+
+    \list
+        \li Added a preview of the graphics API independent scenegraph
+            renderer as an opt-in feature. This allows running qualifying Qt Quick
+            applications on top of Vulkan, Metal, or Direct3D 11, instead of OpenGL.
+            Currently supported platforms:
+            \list
+                \li Windows 10 (Direct3D)
+                \li Linux with X11/xcb (Vulkan)
+                \li \macos (Metal or Vulkan with MoltenVK)
+                \li Android 7.0+ (Vulkan)
+            \endlist
+
+        \li Added support for the Markdown format (including CommonMark and GitHub
+            dialects) to \l [QML] Text and \l [QML] TextEdit as an alternative to
+            HTML. This includes the GitHub checklist extension, allowing to toggle
+            checkboxes in a TextEdit.
+        \li Switched \l [QML] TextEdit to use an \e {I-beam cursor} by default, and
+            a \e {pointing-hand cursor} when hovering over a checkbox or a link.
+            Default cursors can be overridden.
+        \li Added \l [QML] WheelHandler, an event handler for the mouse wheel, and
+            optionally for emulated mouse wheel events coming from a trackpad.
+        \li Added BoundaryRule in Qt.labs.animation: a PropertyValueInterceptor that
+            restricts the range of values a numeric property can have, applies
+            "resistance" when overshooting a value, and provides the ability to
+            animate it back to its normal range. It's particularly useful in
+            combination with WheelHandler, providing physics similar to
+            \l [QML] Flickable.
+        \li Added \e currentFrame and \e frameCount properties to \l [QML] Image
+            and \l [QML] BorderImage, just as \l [QML] AnimatedImage has;
+            for example, this allows choosing an individual icon from an .ICO file
+            that contains multiple icons.
+        \li Added \l [QML] PathPolyline and \l [QML] PathMultiline as additional
+            ways of drawing and/or filling arbitrary polygons and sets of polygons
+            with Qt Quick Shapes.
+    \endlist
+
+    \section2 Qt Serial Bus Module
+
+    \list
+        \li Added operators to compare QCanBusDevice::Filter for equality or
+            inequality.
+        \li Added the QCanBusDevice::OperationError and QCanBusDevice::TimeoutError
+            codes to signal operation and timeout errors.
+        \li Added the QCanBusDevice::busStatus() function to query the bus status
+            from the CAN bus device.
+        \li Added the QCanBusDevice::resetController() function to release the CAN
+            controller from bus off state.
+        \li SocketCAN: Added the configuration parameter QCanBusDevice::ProtocolKey
+            to use another protocol inside the protocol family PF_CAN.
+        \li SocketCAN: If \c libsocketcan is available, the CAN bus bitrate can be
+            retrieved and set at runtime.
+        \li PeakCAN: Added support for PCAN-USB devices on \macos by using the
+            \e MacCAN library.
+        \li Exposed the underlying QIODevice used for Modbus communication. This
+            enables, for example, setting the serial port hardware flow control
+            (RTS/CTS).
+    \endlist
+
+    \section2 Qt Test Module
+
+    \list
+        \li Introduced \c initMain() function to perform any initialization that
+            must happen before QApplication exists.
+    \endlist
+
+    \section2 Qt WebEngine Module
+
+    \list
+        \li Updated to Chromium 77.
+        \li Added a new API to control the life-cycle of QWebEnginePage.
+    \endlist
+
+    \section2 Qt Widgets Module
+
+    \list
+        \li Added support for the Markdown format (including CommonMark and GitHub
+            dialects) to QTextEdit and QTextBrowser as an alternative to HTML.
+            This includes the GitHub checklist extension, allowing to toggle
+            checkboxes if the widget is editable. QTextBrowser::setSource() detects
+            Markdown based on the file extension.
+    \endlist
+
+    \section1 Platform Changes
+
+    \b Android
+
+    \list
+        \li Android now requires NDKr20+.
+        \li Added multi-ABI build in one go. By default, all Android supported ABIs
+            (arm64-v8a, armeabi-v7a, x86_64, x86) are built. ANDROID_ABIS qmake
+            variable can be used for selecting specific ABIs.
+        \li Added support for the new AAB package format, which allows Google Play
+            deployment of a single application bundle containing binaries for all
+            supported ABIs.
+    \endlist
+
+
+    \section1 New Modules
+
+    \list
+        \li \l {Qt Quick Timeline} - Enables keyframe-based animations and
+            parameterization.
+    \endlist
+
+    \section1 Technology Preview Modules
+
+    \list
+        \li \l {Qt Quick 3D} - A high-level API for creating 3D content for user
+        interfaces from Qt Quick.
+    \endlist
+
+    \section1 Qt for Automation Modules
+
+    \b {Qt KNX}
+
+    \list
+        \li Extended support for KNXnet/IP Core V2 (discovery, tunneling, routing,
+            and security).
+    \endlist
+
+    \b {Qt MQTT}
+
+    \list
+        \li Added support for using QSslConfiguration when creating encrypted
+            connections.
+        \li Added \e autoKeepAlive property to enable manual connectivity checks.
+    \endlist
+
+    \b {Qt OPC UA}
+
+    \list
+        \li Added GDS client support as a technology preview.
+        \li Updated the 3rd-party open62541 implementation to version 1.0.
+    \endlist
+
+    \b {Qt CoAP}
+
+    \list
+        \li This module is now out of technology preview status.
+    \endlist
+
+    \section1 Deprecated Modules
+
+    The following modules are part of Qt 5.14 release, but are deprecated and
+    considered for removal in subsequent releases of Qt:
+
+    \list
+        \li Qt Script
+        \li Qt Quick Controls 1
+        \li Qt XmlPatterns
+    \endlist
+
+    \section1 List of API Changes
+
+    The pages below contain a list of API changes in Qt 5.14:
+    \list
+        \li \l{New Classes and Functions in Qt 5.14}
+        \li \l{Obsolete Classes}
+    \endlist
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.13}
+        \li \l{What's New in Qt 5.12}
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/
+
+/*!
+    \page newclasses514.html
+    \title New Classes and Functions in Qt 5.14
+    \brief A list of new APIs in Qt 5.14.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 5.14. Links to new APIs in previous Qt 5 releases are found
+    at the bottom of this page.
+
+    \sincelist 5.14
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.13}
+        \li \l{What's New in Qt 5.12}
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/

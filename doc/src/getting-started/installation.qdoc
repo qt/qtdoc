@@ -98,4 +98,19 @@ visit the following page:
 \list
 \li \l {Qt for UWP#Building from source}{Qt for UWP - Building from Source}
 \endlist
+
+\section1 Additional Information
+
+The top-level qt5 Git repository contains a set of build instructions in the
+form of \e {provisioning scripts}, used by Qt's continuous integration (CI)
+system to build and test the supported \l {Reference Configurations}. These
+scripts are useful for anyone building Qt from source, as they provide
+information on the tools and components that are required for each
+configuration.
+
+\list
+    \li \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin?h=\qtver}
+           {qt/qt5.git CI provisioning for Qt \qtver}
+    \li \l {https://wiki.qt.io/CI_Overview}{CI Overview in Qt Wiki}
+\endlist
 */
