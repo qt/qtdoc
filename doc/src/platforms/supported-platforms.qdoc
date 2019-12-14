@@ -77,11 +77,17 @@
     Project. However, Qt may run on configurations other than those actively
     tested on, and additional configurations may be raised to tested state, if
     sufficient effort is made to bring continuous integration to an acceptable
-    state for that particular configuration.
+    state for that particular configuration. The reference configurations are
+    subject to change during the lifetime of a Qt release.
 
-    The Qt Company, Qt partners, open source projects and community users
-    are able to provide assistance with various different supported
-    platforms and configurations.
+    Details of the reference configurations are stored as \e {provisioning scripts}
+    in the \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin?h=\qtver}
+    {qt5 Git repository}.
+
+    The Qt Company provides support for the officially supported platforms and
+    configurations. The Qt Company, Qt partners, open source projects and community
+    users are also able to provide assistance with various different platforms and
+    configurations.
 
     \section1 Availability of Packages
 

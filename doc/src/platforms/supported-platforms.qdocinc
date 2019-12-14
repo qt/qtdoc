@@ -39,21 +39,21 @@
         \li \c x86_64
         \li \b {GCC 7}, \b {ICC}
         \li
+    \row \li SUSE Linux Enterprise Server
+        \li \c x86_64
+        \li \b {GCC 7}, GCC 8, ICC 18.x
+        \li
     \row \li Red Hat Enterprise Linux 7.x
         \li \c x86_64
-        \li \b {GCC 5.3.1}
-        \li devtoolset-4
+        \li \b {GCC 5.3.1 via devtoolset-4}
+        \li
     \row \li Ubuntu 18.04
         \li \c x86_64
-        \li GCC as provided by Canonical, \b {GCC 7.3.0}
-        \li
-    \row \li Ubuntu 16.04
-        \li \c x86_64
-        \li GCC as provided by Canonical, GCC 5.4.0
+        \li GCC as provided by Canonical, \b {GCC 7.x or later}
         \li
     \row \li Generic Linux
         \li \c x86 and \c x86_64
-        \li GCC 4.8, GCC 4.9, GCC 5, GCC 6, GCC 7
+        \li GCC (4.8 or later), ICC 18.x
         \li
 \endtable
 //! [linux]
@@ -75,7 +75,7 @@
     \row \li Windows 10
         \li \c x86 and \c x86_64
         \li \b {MSVC 2017}, \b {MSVC 2015}, \b {MinGW 7.3}
-        \li Tested on \e {Windows 10 (1809) October 2018 Update}
+        \li
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
         \li MSVC 2017, MSVC 2015, MinGW 7.3
@@ -100,8 +100,8 @@
     \row \li Android 5.0 or later (that is, API Level 21 and up)
         \li \c armv7a and \c x86, \c arm64-v8 and \c x86_64
         \li \b {Clang as provided by Google}, \b {MinGW 7.3}
-        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.13}, \b {Windows 7 (x86_64)},
-            \b {Windows 10}
+        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.13}, \b {Windows 10 (x86_64)},
+            \b Windows 7
 \endtable
 //! [android]
 
@@ -131,7 +131,7 @@
     \row \li Universal Windows Platform 10
         \li \c x86, \c x86_64, and \c armv7
         \li \b{MSVC 2017}, \b{MSVC 2015}
-        \li \b{Windows 10} (1809) October 2018 Update
+        \li \b{Windows 10}
 \endtable
 
 \br
