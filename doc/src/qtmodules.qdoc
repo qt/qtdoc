@@ -397,6 +397,11 @@
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
     \row
+        \li \l{Qt for WebAssembly}
+        \li All
+        \li Web browsers with WebAssembly support
+        \li A platform target to compile Qt applications for the web browsers using WebAssembly.
+    \row
         \li \l {Qt Quick WebGL}
         \li All
         \li WebGL-enabled web browsers
@@ -442,9 +447,6 @@
     \header
         \li Feature
         \li Description
-    \row
-        \li \l{Qt for WebAssembly} (Technology Preview)
-        \li A platform target to compile Qt applications for the web browsers using WebAssembly.
     \row
         \li \l{Qt Lottie Animation} (Technology Preview)
         \li A QML API for rendering graphics and animations in JSON format,
