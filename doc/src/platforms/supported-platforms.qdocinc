@@ -141,6 +141,23 @@ One, and HoloLens.
 
 //! [mobile]
 
+\section2 \l{Qt for WebAssembly}{Qt for WebAssembly}
+//! [qtwasm]
+\table 80%
+    \header \li Target Browser \li Device
+    \row \li Chrome \li Desktop
+    \row \li FireFox \li Desktop
+    \row \li Safari \li Desktop, Mobile
+    \row \li Edge (Chrome) \li Desktop
+    \row \li Android Browser \li Mobile
+\endtable
+
+\br
+If the browser supports WebAssembly then Qt should run.
+\note Qt has a fixed WebGL requirement, also for apps that do not use WebGL
+directly. Browsers often blacklist WebGL for older/unsupported GPUs.
+//! [qtwasm]
+
 \section1 Embedded Platforms
 //! [embedded]
 
