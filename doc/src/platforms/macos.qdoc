@@ -394,13 +394,10 @@
 
     \section1 Aqua
 
-    Aqua is an essential part of the \macos platform. As with Cocoa and
-    Carbon, Qt provides widgets that look like those described in the Human
-    Interface Descriptions. Qt's widgets use HIThemes to implement the look and
-    feel. In other words, we use Apple's own APIs for doing the rendering. More
-    documentation about Aqua is found at the
-     \l{http://developer.apple.com/library/mac/#documentation/UserExperience/Conceptual/AppleHIGuidelines/Intro/Intro.html#//apple_ref/doc/uid/20000957}
-     {\macos Human Interface Guidelines}.
+    The Aqua style is an essential part of the \macos platform. As with Cocoa, Qt provides widgets that
+    look like those described in the \l{https://developer.apple.com/design/human-interface-guidelines/macos/overview/themes/}
+    {\macos Human Interface Guidelines}. Note that although Qt's widgets use AppKit under the hood for
+    look and feel, it does not represent each individual Qt Widget as a wrapped native control.
 
     The \l{Qt Widget Gallery} page contains sample images of applications using
     the \macos platform theme.
@@ -766,7 +763,7 @@
     Usually, when referring to a native \macos application, \e native means an
     application that interfaces directly to the underlying window system, rather
     than one that uses some intermediary layer. Qt applications run as first
-    class citizens, just like Cocoa and Carbon applications. We use Cocoa
+    class citizens, just like Cocoa applications. We use Cocoa
     internally to communicate with the operating system.
 
 */
