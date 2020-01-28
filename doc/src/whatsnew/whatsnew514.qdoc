@@ -112,7 +112,8 @@
     \list
         \li Introduced the HTTP/2 Configuration API.
         \li Introduced network connectivity monitoring.
-        \li Added support for Kerberos proxy authentication.
+        \li Added support for SPNEGO/Negotiate proxy authentication
+            to QAuthenticator. This requires KRB5 GSSAPI to work.
     \endlist
 
     \section2 Qt QML Module
