@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -25,24 +25,14 @@
 **
 ****************************************************************************/
 /*!
-\page portingguide.html
-\title Porting Guide
-\brief Provides guidance to migrate your Qt 5 application to Qt 6.
-
-Qt 6 is a result of the conscious effort to make the framework more
-efficient and easy to use.
-
-We try to maintain binary and source compatibility for all the public APIs in
-each release, but some changes were inevitable in an effort to make Qt a
-better framework. In this topic, we try to summarize those changes and
-provide guidance to handle them.
-
-Below you can find links to articles about changes that may affect your
-application, and which can help you transitioning from Qt 5 to Qt 6.
+\page portingcppapp.html
+\title Porting C++ Applications to Qt 6
+\brief Provides instructions to migrate a Qt 5 C++ application to Qt 6.
 
 \section1 Related Topics
 \list
-\li \l {Porting C++ Applications to Qt 6}
+\li \l {C++ API Changes}
 \li \l {Porting QML Applications to Qt 6}
+\li \l {Qt Examples And Tutorials}
 \endlist
 */
