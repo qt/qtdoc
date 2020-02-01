@@ -610,8 +610,11 @@
     directory is passed with the \c{--qmldir} argument, \c windeployqt uses the
     \c qmlimportscanner tool to scan QML files inside the directory for QML import
     dependencies. Identified dependencies are then copied to the executable's
-    directory. The hardcoded local paths in Qt5Core.dll are furthermore replaced
-    with relative ones.
+    directory.
+
+    In case Qt was built with the configure switch \c{-relocatable} turned off,
+    \c windeployqt replaces the hardcoded local paths in Qt5Core.dll by
+    relative ones.
 
     For Windows desktop applications, the required runtime files for the compiler
     are also copied to the deployable folder by default (unless the option
@@ -627,7 +630,7 @@
 
     \badcode
     Usage: windeployqt [options] [files]
-    Qt Deploy Tool 5.12.2
+    Qt Deploy Tool 5.14.1
 
     The simplest way to use windeployqt is to add the bin directory of your Qt
     installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
@@ -637,7 +640,8 @@
       windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
 
     Options:
-      -?, -h, --help            Displays this help.
+      -?, -h, --help            Displays help on commandline options.
+      --help-all                Displays help including Qt specific options.
       -v, --version             Displays version information.
       --dir <directory>         Use directory instead of binary directory.
       --libdir <path>           Copy libraries to path.
@@ -652,11 +656,13 @@
       --no-plugins              Skip plugin deployment.
       --no-libraries            Skip library deployment.
       --qmldir <directory>      Scan for QML-imports starting from directory.
-      --qmlimport <directory>   Add the given path to the QML module search locations.
+      --qmlimport <directory>   Add the given path to the QML module search
+                                locations.
       --no-quick-import         Skip deployment of Qt Quick imports.
       --no-translations         Skip deployment of translations.
       --no-system-d3d-compiler  Skip deployment of the system D3D compiler.
       --compiler-runtime        Deploy compiler runtime (Desktop only).
+      --no-virtualkeyboard      Disable deployment of the Virtual Keyboard.
       --no-compiler-runtime     Do not deploy compiler runtime (Desktop only).
       --webkit2                 Deployment of WebKit2 (web process).
       --no-webkit2              Skip deployment of WebKit2.
@@ -1050,12 +1056,24 @@
     be located within a specific subdirectory (such as \c printsupport,
     \c imageformats or \c sqldrivers) within your distribution directory.
 
-    The search path for Qt plugins is hard-coded into the QtCore library.
-    By default, the plugins subdirectory of the Qt installation is the first
-    plugin search path. However, pre-determined paths like the default one
-    have certain disadvantages. For example, they may not exist on the target
-    machine. For that reason, you need to examine various alternatives to make
-    sure that the Qt plugins are found:
+    As of Qt 5.14, the libraries are relocatable unless Qt was built with
+    the configure switch \c{-relocatable} turned off. The search paths for
+    Qt plugins are relative to the location of the QtCore library and no
+    further steps are required to ensure plugins are found after installing
+    the application on the target machine.
+
+    \section2 Ensuring Plugins Are Found when Using Non-Relocatable Builds
+
+    For non-relocatable builds, additional steps must be taken to ensure
+    plugins are found after the application has been installed on the target
+    machine.
+
+    In this case, the search path for Qt plugins is hard-coded into the QtCore
+    library. By default, the plugins subdirectory of the Qt installation is
+    the first plugin search path. However, pre-determined paths like the
+    default one have certain disadvantages. For example, they may not
+    exist on the target machine. For that reason, you need to examine various
+    alternatives to make sure that the Qt plugins are found:
 
     \list
 
