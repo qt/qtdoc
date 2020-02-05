@@ -40,7 +40,7 @@
     \section1 Android Development in Qt Creator
 
     The easiest way to develop with Qt for Android is to use
-    \l{http://doc.qt.io/qtcreator/creator-developing-android.html}{Qt Creator}. When you apply
+    \l{https://doc.qt.io/qtcreator/creator-developing-android.html}{Qt Creator}. When you apply
     a \b{Qt for Android Kit} to a Qt Creator project, it will create and maintain a set of files which
     are required to make your application run on Android.
 
@@ -117,7 +117,7 @@
     \section1 Multimedia Special Considerations
     The \l{Qt Multimedia Widgets} module is not supported on Android, which means
     video display is only available using the VideoOutput and the \l [QML]{QtMultimedia::}{Video}
- QML Type.
+    QML Type.
 
 
     \section1 Assets File System
@@ -158,4 +158,41 @@
     keyboards such as Gboard. If you use a language like Japanese, with Gboard, only a QWERTY
     keyboard is displayed. This environment variable is queried each time the keyboard is displayed,
     so it's possible to toggle the workaround on and off, as necessary.
+
+    \section1 Supported Environment Variables
+
+    The following environment variables are available for building applications with Qt for Android.
+
+    \table
+        \header
+            \li Variable
+            \li Description
+        \row
+            \li ANDROID_NDK_ROOT
+            \li Specifies where the Android NDK is located.
+        \row
+            \li ANDROID_SDK_ROOT
+            \li Specifies where the Android SDK is located.
+        \row
+            \li ANDROID_NDK_PLATFORM
+            \li Specifies the NDK API version; the default is android-21.
+        \row
+            \li ANDROID_API_VERSION
+            \li Specifies the Java API version, which can differ from your NDK API version
+               (ANDROID_NDK_PLATFORM). The default is the highest API version found on your
+               system.
+        \row
+            \li ANDROID_NDK_HOST
+            \li Specifies the host for which the toolchain was built.
+                For example, \c{linux-x86_64} for Linux, \c{windows{} for Windows, and
+                \c{darwin-x86_64} for macOS.
+                \note This variable is detected automatically. Normally, you don't have to change
+                     it.
+        \row
+            \li ANDROID_BUILD_TOOLS_REVISION
+            \li Specifies the version of the SDK build tools used as part of the deployment process.
+                For example, 28.0.3.
+                \note Currently in the \c{build.gradle} script file, a known working value is
+                hardcoded; so you don't have to change it.
+    \endtable
 */
