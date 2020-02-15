@@ -176,6 +176,10 @@ QQmlImportDatabase::resolveType "Rectangle" = "QDeclarativeRectangle"
 The \l{Qt QML} module provides services for debugging, inspecting, and profiling applications via a
 TCP port or a local socket.
 
+\note The \c qmltooling plugins that are required for debugging and profiling
+QML applications on devices are automatically installed during Qt installation.
+They must be deployed to the devices for debugging and profiling to work.
+
 \section2 Enabling the Infrastructure
 
 When you compile your application, you must explicitly enable the debugging infrastructure. If you
