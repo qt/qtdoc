@@ -168,8 +168,8 @@ void ImageAnalyzer::fetchURLs()
 void ImageAnalyzer::handleReply(QNetworkReply * pReply)
 {
     m_outstandingFetches--;
-    if (pReply->networkError()) {
-        qDebug() << "Error code" << pReply->networkError();
+    if (pReply->error()) {
+        qDebug() << "Error code" << pReply->error();
         qDebug() << "Http code" << pReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
         return;
     }
