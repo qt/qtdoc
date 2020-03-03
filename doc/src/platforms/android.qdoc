@@ -155,9 +155,27 @@ In order to use \l{Qt for Android}, you need the following:
     \note If your Qt version is earlier than v5.9, use the SDK tools package
     v25.2.5 or earlier.
 \li \l{http://developer.android.com/tools/sdk/ndk/index.html}{The Android NDK}
-    \note Using Qt for Android with the GCC toolchain requires Android NDK
-    version \e r10e. For Qt 5.12 or later, use the latest
-    available version of NDK with \e android-clang toolchain.
+    \list
+        \li Qt 5.11 and below
+            \list
+                \li NDK r10e
+                \li GCC toolchain
+            \endlist
+        \li Qt 5.12.0 to 5.12.5
+            and Qt 5.13.0 to 5.13.1
+        \list
+            \li NDK r19c
+            \li \e android-clang
+        \endlist
+        \li Qt 5.14+, Qt 5.13.2+
+            and Qt 5.12.6+
+        \list
+            \li NDK r20b or r21
+            \li \e android-clang
+            \li \note Qt 5.14.0 and 5.14.1 with NDK r21 have a bug fixed at \l{https://bugreports.qt.io/browse/QTBUG-81461}{QTBUG-81461}.
+        \endlist
+    \endlist
+
 \li \l{http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html}{Java SE Development Kit} (JDK) v6 or later. You can also use \l{http://openjdk.java.net}{OpenJDK} on Linux.
 \endlist
 
