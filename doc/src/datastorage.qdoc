@@ -83,14 +83,11 @@ Qt's SQL classes can be divided in 3 layers:
             \endlist
 \endtable
 
-With the MySQL driver, it is possible to connect to a MySQL server. In order to
-build the QMYSQL Plugin for Unix or \macos, you need the MySQL header files
-as well as the shared library, libmysqlclient.so. To compile the plugin
-for Windows, install MySQL.
+With all the SQL drivers, with the exception of SQLite, you can connect to a
+server that is hosting your database system. If you use the embedded MySQL Server,
+you do not need a MySQL server in order to use that database system.
 
-If you use the embedded MySQL Server, you do not need a MySQL server in order
-to use that database system. In order to do so, you need to link the Qt plugin
-to libmysqld instead of libmysqlclient.
+For instructions on how to build the SQL database drivers, see \l{SQL Database Drivers}.
 
 The Qt SQLite plugin is very suitable for local storage. SQLite is a relational
 database management system contained in a small (~350 KiB) C library.
