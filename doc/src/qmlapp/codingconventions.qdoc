@@ -69,22 +69,6 @@ could be written like this:
 
 \snippet qmlapp/codingconventions/dotproperties.qml 1
 
-
-\section1 Lists
-
-If a list contains only one element, we generally omit the square brackets.
-
-For example, it is very common for a component to only have one state.
-
-In this case, instead of:
-
-\snippet qmlapp/codingconventions/lists.qml 0
-
-we will write this:
-
-\snippet qmlapp/codingconventions/lists.qml 1
-
-
 \section1 JavaScript Code
 
 If the script is a single expression, we recommend writing it inline:
