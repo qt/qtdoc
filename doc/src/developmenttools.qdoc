@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -34,10 +34,9 @@
     deploying them across several desktop and mobile operating systems.
 
     The easiest way to start application development with Qt is to \l{Downloads}
-    {download} and install Qt 5.
-    It contains Qt libraries, examples, documentation, and the necessary
-    development tools, such as the \l{Qt Creator Manual}{Qt Creator}
-    integrated development environment (IDE).
+    {download} and install Qt. Qt installations contain Qt libraries, examples,
+    documentation, and the necessary development tools, such as the
+    \l{Qt Creator Manual}{Qt Creator} integrated development environment (IDE).
 
     Qt Creator provides you with tools for accomplishing your tasks throughout
     the whole application development life-cycle, from creating a project to
@@ -59,12 +58,11 @@
             and customize your widgets or dialogs in a visual editor, and
             test them using different styles and resolutions. You can access
             Qt Designer from Qt Creator in the Design mode (1).
-        \li \l{qmake Manual}{qmake} for building applications for different
+        \li \l{Build with CMake}{CMake}, \l{qmake Manual}{qmake}, and
+            \l{Qbs Manual}{Qbs} for building applications for different
             target platforms. You can also use other build automation tools,
-            such as \l{CMake Documentation}{CMake}, \l{Qbs Manual}{Qbs}, or Autotools.
-            When using qmake or CMake, you specify the build system in the
-            Projects mode (2). When using Qbs or Autotools, you open a .qbs or
-            .am file in Qt Creator.
+            such as Autotools.
+            You can configure the build system in the Projects mode (2).
         \li \l{Qt Linguist Manual}{Qt Linguist} for localizing applications.
             Qt Linguist contains tools for the roles typically involved in
             localizing applications: developers, translators, and release
@@ -72,32 +70,10 @@
             Qt Creator Tools menu.
         \li \l{Qt Assistant Manual}{Qt Assistant} for viewing Qt documentation.
             You can also view documentation in Qt Creator. The documentation
-            installed with Qt 5 is displayed automatically in the Help
+            installed with Qt is displayed automatically in the Help
             mode (3), and you can add documents to the list.
     \endlist
 
-    In addition, you can use the tools listed in the following table.
-
-    \table
-    \header \li Tool \li Description
-    \row \li \l{makeqpf}
-         \li Create pre-rendered fonts for embedded devices.
-    \row \li \l{moc}{Meta-Object Compiler (moc)}
-         \li Generate meta-object information for QObject subclasses.
-    \row \li \l{User Interface Compiler (uic)}
-         \li Generate C++ code from user interface files.
-    \row \li \l{Resource Compiler (rcc)}
-         \li Embed resources into Qt applications during the build process.
-    \row \li \l{Qt D-Bus XML compiler (qdbusxml2cpp)}
-         \li A tool to convert D-Bus interface descriptions to C++ source code.
-    \row \li \l{D-Bus Viewer}
-         \li A tool to introspect D-Bus objects and messages. Available from
-         the Qt SDK or the Qt 5 qttools repository.
-    \row \li \l{Qt VS Tools}
-         \li Intended for developers who wish to develop Qt applications using
-         the Visual Studio IDE instead of Qt Creator.
-    \row \li \l{Qt Distance Field Generator Manual}{Qt Distance Field Generator}
-         \li A tool that generates distance fields to improve load times for a
-         text-heavy Qt Quick user interface.
-    \endtable
+    Other tools are typically described in their context of use in other parts
+    of the documentation.
 */
