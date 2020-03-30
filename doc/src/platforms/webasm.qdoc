@@ -71,10 +71,10 @@ The known-good versions are:
 \endlist
 
 Use \c emsdk to install specific \c emscripten versions. For example, to install
-it for Qt 5.13, enter:
+it for Qt 5.15, enter:
 \list
-    \li ./emsdk install sdk-fastcomp-1.38.27-64bit
-    \li ./emsdk activate sdk-fastcomp-1.38.27-64bit
+    \li ./emsdk install 1.39.8
+    \li ./emsdk activate --embedded 1.39.8
 \endlist
 
 After installation, you should have emscripten in your path.  Check this with the following command:
