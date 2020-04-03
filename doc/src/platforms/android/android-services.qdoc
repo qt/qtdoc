@@ -1,0 +1,64 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page android-services.html
+\title Android Services
+\brief Provides information about Android Services support in Qt.
+
+Starting with Qt 5.7, you can create Android services using Qt. A service
+is a component that runs in background, so, it has no user interface. It is
+useful to perform long-term operations such as logging GPS, waiting for social
+media notifications, and so on. A service will continue to run even if the
+application that started it exits.
+
+To create a service, do the following steps:
+\list 1
+ \li Uncomment the service part of your \c AndroidManifest.xml.
+
+ \li Make sure the \c service tag contains an \c android:process=":some_name"
+     attribute. It is needed to force the \c service to run in a separate
+     process than the \c activity.
+
+ \li If you're using the same application (.so file) for activity and also
+     for service, you need to use \c android.app.arguments \c meta-data to
+     pass some arguments to your \c main function in order to know which one
+     is which.
+
+ \li To enable background running, uncomment \c android.app.background_running
+     \c meta-data and set it to true (\c android:value="true" ).
+
+\endlist
+
+Qt loads the \c .so file defined in \c android.app.lib_name \c meta-data,
+and calls the \c main function with all the arguments set in
+\c android.app.arguments \c meta-data.
+
+See \l{http://developer.android.com/guide/components/services.html}{Android Services}
+documentation for more information.
+*/
+
