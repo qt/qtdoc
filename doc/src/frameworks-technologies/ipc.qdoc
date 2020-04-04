@@ -38,10 +38,18 @@
 
     The cross-platform \l{Qt Network} module provides classes that make
     network programming portable and easy. It offers high-level
-    classes (e.g., QNetworkAccessManager, QFtp) that communicate using
+    classes (e.g. QNetworkAccessManager) that communicate using
     specific application-level protocols, and lower-level classes
     (e.g., QTcpSocket, QTcpServer, QSslSocket) for implementing
     protocols.
+
+    \section1 Local Server/Socket
+
+    The cross-platform \l{Qt Network} module provides classes that make
+    local network programming portable and easy. It offers the QLocalServer
+    and QLocalSocket classes that allow for network-like communication in a
+    local setup. Their TCP counterparts can be used as drop-in replacement to
+    make the communication work across networks.
 
     \section1 Shared Memory
 
@@ -72,10 +80,10 @@
 
     \section1 Session Management
 
-    In Linux/X11 platforms, Qt provides support for session management.
-    Sessions allow events to be propagated to processes, for example, to
-    notify when a shutdown occurs. The process and applications can then
-    perform any necessary operations such as save open documents.
+    On Linux/X11, Windows and macOS, Qt provides support for session
+    management. Sessions allow events to be propagated to processes, for
+    example, to notify when a shutdown occurs. The process and applications
+    can then perform any necessary operations such as save open documents.
 
     \list
     \li \l{Session Management}

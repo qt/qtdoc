@@ -67,18 +67,15 @@ The known-good versions are:
    \li Qt 5.12: 1.38.16
    \li Qt 5.13: 1.38.27 (multithreading: 1.38.30)
    \li Qt 5.14: 1.38.27 (multithreading: 1.38.30)
+   \li Qt 5.15: 1.39.8
 \endlist
 
 Use \c emsdk to install specific \c emscripten versions. For example, to install
 it for Qt 5.13, enter:
 \list
     \li ./emsdk install sdk-fastcomp-1.38.27-64bit
-    \li ./emsdk activate --embedded sdk-fastcomp-1.38.27-64bit
+    \li ./emsdk activate sdk-fastcomp-1.38.27-64bit
 \endlist
-
-The \c --embedded option is useful if you want to install multiple versions of the SDK.
-It locates all configuration and cache files inside the SDK so that multiple versions
-do not conflict.
 
 After installation, you should have emscripten in your path.  Check this with the following command:
 
