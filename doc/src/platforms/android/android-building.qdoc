@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -64,19 +64,19 @@
     \section2 Manual Installation
 
     \list 1
-        \li Download Android Studio from \l{https://developer.android.com/studio/index.html}.
+        \li Download \l {Android: Android Studio}{Android Studio}.
         \li Open Android Studio and run the SDK Manager tool from
             \uicontrol{Tools > Android > SDK Manager}. If this toolbar isn't visible, you can
             enable it from the \uicontrol View menu: select \uicontrol Toolbar.
-        \li Download the Android NDK from \l{https://developer.android.com/tools/sdk/ndk/index.html}.
+        \li Download \l{Android: The Android NDK}{Android NDK}.
             \note As of Qt 5.12, Android NDK r18 is required and gcc toolchains are no longer
             supported.
         \li Ensure that the NDK supports the API level you're targeting. To verify, check your
             \e{path_to_NDK/platforms} directory.
             \note As of Qt 5.13, any API level >= 21 is sufficient.
         \li Install a JDK with a version of 1.6 or newer from
-        \l{https://www.oracle.com/technetwork/java/javase/downloads/index.html}. Alternatively, you
-            can use OpenJDK.
+            \l{Java SE Development Kit}. Alternatively, you can
+            use \l {OpenJDK}.
             \code
             apt-get install openjdk-8-jdk
             \endcode
@@ -149,22 +149,17 @@
     \section2 Step 1: Setting up the Development Environment
 
     \list 1
-        \li Install the latest Perl from \l{http://strawberryperl.com}. Then, select a destination
+        \li Install the latest \l {Perl}, and then select a destination
             folder, also known as \c{PERL_ROOT}.
         \li Set up the MinGW toolchain by downloading a pre-built Qt package for MinGW, and then
-            add it to your \c PATH, for example: \c{C:\dev\Qt\Tools\mingw730_64\bin}.
-        \li Install the latest JDK from
-            \l{https://www.oracle.com/technetwork/java/javase/downloads/index.html}. Then, add the
-            \e{<JDK_ROOT>} to \c PATH.
+            add it to your \c PATH. For example: \c{C:\dev\Qt\Tools\mingw730_64\bin}.
+        \li Install JDK and add \e{<JDK_ROOT>} to \c PATH.
             Alternatively, if you've installed Android Studio, you can use the JDK that's
             included in your installation's \c jre folder.
-        \li Install the Android NDK, r18b, from
-            \l{https://developer.android.com/tools/sdk/ndk/index.html}. Extract it to
-            \e{<ANDROID_NDK_PATH>}.
-        \li Install the latest Android SDK (tools only) from
-            \l{http://developer.android.com/sdk/index.html}. Run the Android SDK Manager and install
-            the latest version of "SDK Platform", "Google APIs", and "build-tools" in
-            \e{<ANDROID_SDK_PATH>}.
+        \li Install the Android NDK, r18b, and extract it to \e{<ANDROID_NDK_PATH>}.
+        \li Install the latest Android SDK (tools only). Run the Android SDK Manager
+            and install the latest version of "SDK Platform", "Google APIs", and
+            "build-tools" into \e{<ANDROID_SDK_PATH>}.
         \li Open the \c cmd.exe window and verify that:
             \list
                 \li \c{where gcc.exe} lists \e{<MINGW_ROOT>.exe} first before \e{<PERL_ROOT>.exe}.

@@ -30,40 +30,49 @@
     \title Qt for Android Examples
     \brief A list of selected Qt Examples for Android.
 
-    This page lists Qt Examples known to work for \l{Qt for Android}{Android}.
-    This page is not an exclusive list, meaning most
-    \l{Qt Examples and Tutorials}{Qt Examples} are compatible with Android but
-    are not listed here.
+    This page lists Qt examples that have been tested to run on
+    \l{Qt for Android}{Android}. However, most \l{Qt Examples and Tutorials}
+    {Qt Examples} can be run on Android even though they are not listed here.
 
     \section1 Running the Examples
 
-    To run the examples from \l{Qt Creator Manual}{Qt Creator}, open the \gui
-    Welcome mode and select the example from \gui Examples. Entering the search
-    term \gui Android filters these examples from the other \l{Qt Examples and
-    Tutorials}{Qt Examples}. For more information, visit
-    \l{Qt Creator: Building and Running an Example}{Building and Running an Example}.
+    To run examples from \l{Qt Creator Manual}{Qt Creator}, select \uicontrol
+    Welcome > \uicontrol Examples, and then select an installed Qt for Android
+    to filter the examples that have been tested to run on Android. For more
+    information, see \l{Qt Creator: Building and Running an Example}
+    {Building and Running an Example}.
 
     \section1 Essentials
 
-    These examples and tutorials give instructions on how to get started
-    as well as information related to Qt for Android.
+    The following sections describe how to get started with developing
+    applications for Android:
 
     \list
-    \li \l{Getting Started with Qt for Android}{Getting Started}
-    \li \l{Qt Creator: Creating a Mobile Application}{Creating a Mobile Application}
-    \li \l{Qt Creator: Deploying Applications to Android Devices}{Deploying to the Device}
-    \li \l{Porting to Android}{Porting a Qt Application}
-    \li \l{Publishing to Google Play}
-    \li \l{Adding OpenSSL Support for Android}
-    \li \l{Building Qt 5 for Android}{Building from Sources}
-    \li \l{Qt Notifier} - demonstrates how to call Java code from an Android application
+        \li \l{Getting Started with Qt for Android}
+        \li \l{Qt Creator: Creating a Mobile Application}
+        \li \l{Qt Creator: Deploying Applications to Android Devices}
+        \li \l{Publishing to Google Play}
+        \li \l{Porting to Android}
+        \li \l{Adding OpenSSL Support for Android}
+        \li \l{Qt for Android - Building from Source}
+    \endlist
+
+    \l {Qt Android Extras} is an Android specific module used to integrate Qt
+    API with Java API by enabling communication between Qt code {C++ and QML}
+    and Java code. The following examples demonstrate using the module:
+
+    \list
+        \li \l{Qt Notifier} .demonstrates how to call Java code from an
+            Android application.
+        \li \l{Qt JNI Messenger} demonstrates communication between Java code
+            and QML or C++ using NJI calls.
     \endlist
 
     \section1 Qt Quick and QML Examples for Android
 
-    These are a list of Qt Quick and QML examples for Android. For a full list
-    of Qt Quick examples including beginner-level tutorials, visit
-    \l{Qt Quick Examples and Tutorials}.
+    The following Qt Quick and QML examples are useful when developing
+    applications for Android. For a full list of Qt Quick examples
+    including beginner-level tutorials, see \l{Qt Quick Examples and Tutorials}.
 
     \div {class="multi-column"}
     \div {class="doc-column"}
@@ -121,6 +130,14 @@
         \li \l{QML Video Shader Effects Example}{Video Shader Effects Example}
         \li \l{QML Video Example}{Video Example}
         \li \l{QML Camera Example}{Camera Example}
+        \endlist
+    \enddiv
+    \div {class="doc-column"}
+        \b{Location}
+        \list
+        \li \l{Map Viewer (QML)}{Map Viewer Example}
+        \li \l{Places Map (QML)}{Places Map Example}
+        \li \l{Plane Spotter (QML)}{Plane Spotter Example}
         \endlist
     \enddiv
     \enddiv

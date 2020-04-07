@@ -34,8 +34,6 @@
     and running them on the \l{Qt for Android}{Android} platform. Qt supports
     Android versions 4.1 (API level 16) or later.
 
-    \tableofcontents
-
     \section1 Android Development in Qt Creator
 
     The easiest way to develop with Qt for Android is to use
@@ -183,7 +181,7 @@
         \row
             \li ANDROID_NDK_HOST
             \li Specifies the host for which the toolchain was built.
-                For example, \c{linux-x86_64} for Linux, \c{windows{} for Windows, and
+                For example, \c{linux-x86_64} for Linux, \c{windows} for Windows, and
                 \c{darwin-x86_64} for macOS.
                 \note This variable is detected automatically. Normally, you don't have to change
                      it.
