@@ -1,0 +1,94 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page android-publishing-to-googleplay.html
+\title Publishing to Google Play
+\brief Provides instructions to prepare your application for publishing.
+
+\l{Qt for Android} provides a complete solution to develop, build, and package
+your applications for Android. Most of these tasks, especially packaging and
+deployment are handled by Qt Creator providing rich developer experience.
+
+Every time you run the application using Qt Creator, an Android Application
+Package (APK) is created and deployed onto the target (device or emulator) you
+choose. With some minor changes to how the \e .apk is created, you can publish
+your application on Google Play and monetize. The following
+step-by-step instructions guide you to create an \e{.apk} that can go live
+on Google Play:
+\list 1
+ \li Open your application project using Qt Creator v3.0 or later and change
+ its \uicontrol Build settings to build release version.
+
+ \li Select \uicontrol {Create Templates} under \uicontrol Build settings to
+ create the template files such as \e AndroidManifest.xml and other
+ resources.
+
+ \note You can edit the \e AndroidManifest.xml in \uicontrol General or
+ \uicontrol {XML Source} mode.
+
+ \li Check for the following in \e AndroidManifest.xml:
+ \list
+  \li \uicontrol{Minimum required SDK} is set to API 9 or later.
+
+  \note Qt Quick Controls with the \l{Material Style}{Material Style}
+  require API 11 (Android v3.0) or later.
+
+  \li Add \uicontrol{Application name} and \uicontrol{Application icon}.
+
+  \li \uicontrol Permissions list has all the required permissions.
+
+  \li \uicontrol Features list has the software or hardware features that your
+      application depends on. For example, NFC.
+ \endlist
+
+ \note Qt adds the default permissions and features based on the module
+ dependencies of your application. If you do not want these default permissions
+ and features, remove the \c{<!-- %%INSERT_PERMISSIONS -->} and
+ \c{<!-- %%INSERT_FEATURES -->} comments from \e AndroidManifest.xml. For
+ information on the manifest XML format, see \l{Android: App Manifest}.
+
+ \li Set up a \uicontrol keystore to sign the \e .apk. You can create a new
+ keystore if you do not have one. For more details, see
+ \l{Android APK}{QtCreator: Specifying Settings for Packages}.
+
+ \li Select \uicontrol{Open package location after build} and run your
+ application to build the \e .apk. Qt Creator builds the \e .apk and opens the
+ folder containing the \e .apk.
+
+ \li Log in to the \l{Google Play Developer Console} and upload the \e .apk
+ file, few screen captures of the application, and a description.
+\endlist
+
+Now your application is available to other Android device users via
+Google Play. You can also choose to publish the application to a smaller
+group, so that you can test and improve the application before publishing it to
+a larger audience.
+
+See \l{Deploying an Application on Android} for more information about how the
+packaging is done and how you can influence it.
+*/

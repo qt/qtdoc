@@ -1,0 +1,88 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page porting-to-android.html
+\title Porting to Android
+\brief Provides instructions to port your existing Qt application to Android.
+
+In this section, we are going to port an existing Qt Application to
+\l{Qt for Android}{Android} and deploy it to the device.
+
+Most Qt applications should be portable to Android with ease, unless they
+depend on a specific hardware or software feature not supported by Android.
+If your application is not using any such feature, deployment is probably the
+only step that demands some changes to your application.
+
+\include porting-notes.qdocinc using resources
+
+The other approach is to deploy the resources into the package's \c{assets}
+directory. It is the best option if you want to achieve better
+interoperability with the Android APIs. You can access all resources in the
+directory using the "assets:" prefix. Unlike qrc, this approach is not a
+cross-platform solution.
+
+The following step-by-step instructions guide you to port an existing Qt Quick
+application to Android using the qrc approach:
+
+\list 1
+ \li Open the existing project in Qt Creator and configure it
+     with "Android for ARM" kit. For more information, see
+     \l{Qt Creator: Configuring Projects}
+ \li Identify all the resources used by your application and add them to one
+     or more qrc files.
+     Qt Creator updates your qmake project file with the "RESOURCES"
+     variable listing the qrc files you added.
+ \li To load or refer to the resources in the qrc file from your C++ code,
+     use the "qrc:" scheme followed by the absolute URL. For example, to
+     load the \c{main.qml} file from \c{resources.qrc}, you can use the
+     following C++ code:
+
+     \code
+     QQuickView viewer;
+     viewer.setSource(QUrl("qrc:/qml/main.qml"));
+     viewer.show();
+     \endcode
+
+     \note QML documents can refer to the contents in qrc files using the
+     relative path to the document. Such references do not require the
+     "\c{qrc:}" or "\c{:/}" prefix.
+ \li Save the changes to your project and run the application.
+\endlist
+
+\note Qt Quick Controls in the application will use native
+\l{Android Style}{Android style} if the target device is running
+Android 3.0 (API 11) or later. The application should function normally on
+devices with Android versions earlier than v3.0, but without native style for
+controls.
+
+Qt Creator deploys your application on the Android device, if the
+device is detected by the PC. Otherwise, it tries to run the application on an
+AVD (Android Virtual Device). You will be prompted to create one if there are no
+AVDs found.
+*/
+
