@@ -38,15 +38,15 @@ Every time you run the application using Qt Creator, an Android Application
 Package (APK) is created and deployed onto the target of your choice
 (device or emulator). With few minor changes to packaging settings, you can
 publish your application on Google Play. The following instructions guide you
-to create an \e{.apk} that can go live on Google Play:
+to create an \c{.apk} that can go live on Google Play:
 \list 1
     \li Open your project with Qt Creator 4.11 or later choosing a \c{Release Build}.
 
     \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
     > \uicontrol {Create Templates} to create the Android package template files
-    such as \e{AndroidManifest.xml} which is the main file of concern here.
+    such as \c{AndroidManifest.xml} which is the main file of concern here.
 
-    \li Check for the following settings in \e{AndroidManifest.xml}:
+    \li Check for the following settings in \c{AndroidManifest.xml}:
 
     \list
         \li Set \uicontrol{Minimum required SDK} to API 21 or later.
@@ -60,13 +60,14 @@ to create an \e{.apk} that can go live on Google Play:
     \endlist
 
     For more information, see
-    \li{Qt Creator: Editing Manifest Files}{editing the Manifest Files in Qt Creator}.
+    \l{Qt Creator: Editing Manifest Files}{editing the Manifest Files in Qt Creator}.
 
     \note By default, Qt adds the permissions and the features based on the module
     dependencies of your application. If you do not want these default permissions
-    and features, either deselect the checkboxes \e{Include default permissions for Qt modules}
-    and \e{Include default features for Qt modules}, or remove the following
-    part from the \e{AndroidManifest.xml} file:
+    and features, either deselect the checkboxes
+    \uicontrol{Include default permissions for Qt modules} and
+    \uicontrol{Include default features for Qt modules}, or remove the following
+    part from the \c{AndroidManifest.xml} file:
 
     \badcode
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
@@ -81,14 +82,14 @@ to create an \e{.apk} that can go live on Google Play:
     For information on the manifest XML format, see \l{Android: App Manifest}.
 
     \li Set up a \l{Android: Android keystore system}{keystore} to sign your
-    \e{.apk} file. You can create a new keystore if you do not have one. For more
+    \c{.apk} file. You can create a new keystore if you do not have one. For more
     information, see \l{Qt Creator: Specifying Settings for Packages}
     {Specifying Settings for Packages in Qt Creator}.
 
     \li Locate the generated package:
 
     \list
-        \li For \e{APK} packages, locate the \e{.apk} package at:
+        \li For APK packages, locate the \c{.apk} package at:
 
             \badcode
             <$BUILD_DIR>/android-build/build/outputs/apk/release/android-build-release.apk
@@ -97,13 +98,13 @@ to create an \e{.apk} that can go live on Google Play:
             \note In Qt Creator, select \uicontrol{Projects} > \uicontrol{Build}
                 > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
                 \uicontrol{Open package location after build} to build the
-                application's \e{.apk} and open the directory containing the
+                application's \c{.apk} and open the directory containing the
                 package.
 
-        \li For \e{AAB} packages, select \uicontrol{Projects} > \uicontrol{Build}
+        \li For AAB packages, select \uicontrol{Projects} > \uicontrol{Build}
             > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
             \uicontrol{Build .aab (Android App Bundle)} for Qt Creator to generate
-            the \e{.aab} file, then locate the package at:
+            the \c{.aab} file, then locate the package at:
 
             \badcode
             <$BUILD_DIR>/android-build/build/outputs/bundle/release/android-build-release.aab
@@ -112,7 +113,7 @@ to create an \e{.apk} that can go live on Google Play:
     \endlist
 
     \li Log into the \l{Google Play Developer Console} and upload either of
-        \e{.apk} or \e{.aab} files, along with a description and screen captures
+        \c{.apk} or \c{.aab} files, along with a description and screen captures
         resembling the usage of your application.
 \endlist
 
