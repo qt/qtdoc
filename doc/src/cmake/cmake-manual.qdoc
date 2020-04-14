@@ -159,6 +159,10 @@
             \li \c Qt5Widgets_LIBRARIES
             \li The name of the imported target for the module: \c Qt5::Widgets
         \row
+            \li \c Qt5Widgets_PRIVATE_INCLUDE_DIRS
+            \li A list of private include directories to use when building against the library
+                and using private Qt API.
+        \row
             \li \c Qt5Widgets_VERSION_STRING
             \li A string containing the module's version.
     \endtable
