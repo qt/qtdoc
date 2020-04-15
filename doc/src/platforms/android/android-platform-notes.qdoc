@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -24,172 +24,100 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-
-
 /*!
     \page android-platform-notes.html
-    \title Platform and Compiler Notes - Android
+    \title Android Platform Notes
 
-    This page contains information particular to building Qt applications for
-    and running them on the \l{Qt for Android}{Android} platform. Qt supports
-    Android versions 4.1 (API level 16) or later.
+    This page contains information particular to building and running Qt
+    applications on Android. Qt supports Android versions 5.0 (API level 21) or
+    later.
 
     \section1 Android Development in Qt Creator
 
     The easiest way to develop with Qt for Android is to use
-    \l{https://doc.qt.io/qtcreator/creator-developing-android.html}{Qt Creator}. When you apply
-    a \b{Qt for Android Kit} to a Qt Creator project, it will create and maintain a set of files which
-    are required to make your application run on Android.
-
-    The files added to your project are:
-    \list
-    \li \e .java files will serve as the entry point into your application and
-    automatically load Qt to execute the native code in your application
-    \li \e AndroidManifest.xml which provides meta-information about your
-    application
-    \li Other XML files detailing the dependencies of your application
-    \li Resource files
-    \li Depending on the deployment method selected in Qt Creator, additional
-    files like libraries and QML files can be included in the project.
-    \endlist
-
-    Qt Creator adds these files in a subdirectory of your project called \b android. The contents of
-    the \b android folder is used as basis for your app's distributable application package.
+    \l{Qt Creator: Connecting Android Devices}{Qt Creator}. When you use an
+    \b{Android Kit} with a Qt Creator project, it builds your code in addition
+    to some Android specific files that are required for enabling Qt on Android
+    and generating your application bundle. Qt Creator adds these files in a
+    subdirectory of your project called \b android. For more information, see
+    \l{Android Package Templates}.
 
     \section1 Application Package
 
-    On Android, apps are distributed to devices in packages called \e APK.
+    On Android, apps are distributed to devices as \b{APK} packages. For
+    distributing apps in Google Play, a different format called \b{AAB} is used
+    instead. For more information, see \l{Publishing to Google Play}.
 
-    For distributing apps in Google Play, a different format called AAB is used
-    instead.
-
-    Although Qt Creator supports building both these package formats for you, you could
-    also build them manually when needed. To do so, ensure that the necessary packages
-    and build files are in place. For more detailed information about how the packaging
-    is done, see \l{Deploying an Application on Android}.
+    Use Qt Creator to build both \b{APK} and \b{AAB} package formats, or build
+    them manually. For more information, see \l{Deploying an Application on Android}.
 
     \section1 Plugins and Imports Special Considerations
 
-    If an application uses plugins that depend on other modules, these modules must
-    be listed in the application's dependencies. This is because Qt Creator does not know ahead
-    of time which plugins your application will end up loading.
-
-    For example, if a plugin depends on \l{Qt Multimedia}, then the Qt Multimedia module
-    must explicitly be made a dependency of the application, otherwise the plugin cannot be
-    loaded. You can do this by adding it to the application's \c .pro file:
-
-    \code
-    QT += multimedia
-    \endcode
-
-    The automatic deployment tool detects any dependencies on QML modules that are imported
-    from the application's code, but in special case (for instance when QML code is generated
-    by the C++ code), this is not possible. If this generated code imports any special
-    QML modules, they are not detected by the deployment tool and therefore will
-    not be included in the application bundle.
-
-    In these cases, you must add "dummy" QML code importing the same modules as the generated
-    code, so that the automated tool detects the dependencies.
+    If an application uses plugins that depend on other modules, these modules
+    must be listed in the application's dependencies. For more information, see
+    \l{Dependencies Detection}.
 
     \section1 Text Special Considerations
 
-    Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache text glyphs does
-    not work as expected on all Android devices, causing text to appear scrambled. To remedy this,
-    a workaround is in place, which increases memory consumption and can also affect text rendering
-    performance. Before Qt 5.3.2, the workaround was enabled only for a particular set of devices.
-    It is now used by default on all devices.
+    Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache
+    text glyphs does not work as expected on all Android devices, causing text
+    to appear scrambled. To remedy this, a workaround is in place, but it can
+    increase memory consumption and can also affect text rendering performance.
+    The workaround is now used by default on all devices.
 
-    You can disable the workaround by setting the \c QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND
-    environment variable to \c 1. You should do so only after verifying that text appears correctly
-    on all targeted devices.
+    You can disable the workaround by setting the
+    \c QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND environment variable to \e 1 or
+    \e true. However, you should do so only after verifying that text appears
+    correctly on all targeted devices.
 
     \section1 OpenGL Special Considerations
 
-    Modern devices often support OpenGL ES 3.0 or 3.1 in addition to 2.0. To get a suitable OpenGL
-    context, set the requested version via QSurfaceFormat::setVersion(). Note however that the
-    header files are only available in recent API levels, for example to include gl31.h, you need to
-    target API level 21. Keep in mind also that using OpenGL ES 3.x features will result in the
-    application breaking on older devices that only support 2.0.
+    Modern devices often support OpenGL ES 3.0 or 3.1 in addition to 2.0. To get
+    a suitable OpenGL context, set the requested version via
+    \l{QSurfaceFormat::setVersion()}.
+
+    \note The header files, such as \e{gl31.h}, are only available in recent API
+    levels, and therefore you need to target API level 21. Keep in mind also that
+    using OpenGL ES 3.x features will result in the application breaking on older
+    devices that only support 2.0.
 
     \section1 Multimedia Special Considerations
-    The \l{Qt Multimedia Widgets} module is not supported on Android, which means
-    video display is only available using the VideoOutput and the \l [QML]{QtMultimedia::}{Video}
-    QML Type.
 
+    The \l{Qt Multimedia Widgets} module is not supported on Android, which means
+    video display is only available using the \l [QML]{QtMultimedia::}{Video}
+    QML Type.
 
     \section1 Assets File System
 
-    Qt for Android provides a special, virtual file system which is based on the \e assets mechanism
-    in Android. Files that are put under \e assets in the \e android folder created by Qt Creator, will
-    be packaged as part of your application package. These can be accessed in Qt by prefixing the paths
-    with \c{assets:/}. For instance, to access the image \e logo.png in the folder \e{assets/images},
-    you can use \c QPixmap("assets:/images/logo.png").
+    Qt for Android provides a special, virtual file system which is based on
+    the \l{Android: Accessing original files}{Android Assets mechanism}.
+    Files that are put under the directory (\l{ANDROID_PACKAGE_SOURCE_DIR}/assets/)
+    are packaged as part of your application package. These can be accessed in
+    Qt by prefixing the paths with \c{assets:/}. For more information, see
+    \l{Porting to Android}{Porting Qt applications to Android}.
 
-    If using the assets mechanism is not required for your app, the recommended way of distributing
-    resources with your Qt app is to use \l{The Qt Resource System}, which is a cross-platform mechanism
-    for distributing resources with your app.
+    \section1 Android Supported Architectures
 
-    \section1 Supported Architectures
+    Qt for Android currently has binaries for \e{armv7a}, \e{arm64-v8a}, \e{x86}
+    and \e{x86-64}.
 
-    Qt for Android currently has binaries for armv7a, arm64-v8a, x86 and x86-64.
+    If you want to support several different ABIs in your application in Google
+    Play, the recommendation is to build an Application App Bundle (AAB)
+    containing binaries for each of the ABIs. Based on your AAB, Google Play
+    generates optimized Application Packages (APK) for each device requesting a
+    download.
 
-    If you want to support several different ABIs in your application, the recommendation is
-    to build an Application App Bundle (AAB) containing binaries for each of the ABIs. Based on this,
-    Google Play generates optimized Application Packages (APK) for the device issuing the download
-    request.
-
-    The Application App Bundle is generated by Qt Creator, if the corresponding checkbox for this
-    is selected in the project settings. It can also be built from the command line by using the
-    "aab" Makefile target.
-
-    \code
-    % make aab
-    \endcode
+    For more information, see \l{Building the Android Application}.
 
     \section1 Known Issues
 
-    Due to a bug on some devices, when you turn off predictive text with \c ImhNoPredictiveText,
-    this property will be ignored and predictive text will still be enabled. To work around this,
-    set the \c QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT environment variable to \c 1.
-    However, one side effect is that this environment variable can cause a problem with other
-    keyboards such as Gboard. If you use a language like Japanese, with Gboard, only a QWERTY
-    keyboard is displayed. This environment variable is queried each time the keyboard is displayed,
+    Due to a bug on some devices, when you turn off predictive text with
+    \c{ImhNoPredictiveText}, this property is ignored and predictive text is
+    still enabled. To work around this, set the
+    \c{QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT} environment
+    variable to \c 1. However, one side effect is that this environment variable
+    can cause a problem with other keyboards such as Gboard. If you use a
+    language like Japanese, with Gboard, only a QWERTY keyboard is displayed.
+    This environment variable is queried each time the keyboard is displayed,
     so it's possible to toggle the workaround on and off, as necessary.
-
-    \section1 Supported Environment Variables
-
-    The following environment variables are available for building applications with Qt for Android.
-
-    \table
-        \header
-            \li Variable
-            \li Description
-        \row
-            \li ANDROID_NDK_ROOT
-            \li Specifies where the Android NDK is located.
-        \row
-            \li ANDROID_SDK_ROOT
-            \li Specifies where the Android SDK is located.
-        \row
-            \li ANDROID_NDK_PLATFORM
-            \li Specifies the NDK API version; the default is android-21.
-        \row
-            \li ANDROID_API_VERSION
-            \li Specifies the Java API version, which can differ from your NDK API version
-               (ANDROID_NDK_PLATFORM). The default is the highest API version found on your
-               system.
-        \row
-            \li ANDROID_NDK_HOST
-            \li Specifies the host for which the toolchain was built.
-                For example, \c{linux-x86_64} for Linux, \c{windows} for Windows, and
-                \c{darwin-x86_64} for macOS.
-                \note This variable is detected automatically. Normally, you don't have to change
-                     it.
-        \row
-            \li ANDROID_BUILD_TOOLS_REVISION
-            \li Specifies the version of the SDK build tools used as part of the deployment process.
-                For example, 28.0.3.
-                \note Currently in the \c{build.gradle} script file, a known working value is
-                hardcoded; so you don't have to change it.
-    \endtable
 */
