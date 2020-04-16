@@ -112,8 +112,8 @@
             configuration is created.
         \li If Qt was configured with the \c -release switch, an imported target with the RELEASE
             configuration is created.
-        \li If Qt was configured with the \c -debug-and-release switch, which is the default on
-            Windows, then imported targets are created with both RELEASE and DEBUG configurations.
+        \li If Qt was configured with the \c -debug-and-release switch, then imported targets are
+            created with both RELEASE and DEBUG configurations.
     \endlist
 
     If your project has custom \c{CMake} build configurations, you have to map your custom
