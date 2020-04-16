@@ -120,13 +120,6 @@
     configuration to either the debug or the release Qt configuration.
 
     \snippet snippets/cmake/examples.cmake 2
-
-    In \c{CMake}, plugins are also available as \c IMPORTED targets. The \l{Qt Network}, \l{Qt SQL},
-    \l{Qt GUI}, and \l{Qt Widgets} modules have plugins associated. They provide a list of plugins
-    in the \c{Qt5}\e{<Module>}\c{_PLUGINS} variable.
-
-    \snippet snippets/cmake/examples.cmake 5
-
 */
 
 /*!
