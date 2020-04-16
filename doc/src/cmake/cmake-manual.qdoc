@@ -146,25 +146,25 @@
             \li Description
         \row
             \li \c Qt5Widgets_COMPILE_DEFINITIONS
-            \li A list of definitions for use with the \c COMPILE_DEFINITIONS target property.
+            \li A list of compile definitions to use when building against the library.
         \row
             \li \c Qt5Widgets_DEFINITIONS
-            \li A list of definitions for use with the \c add_definitions command.
+            \li A list of definitions to use when building against the library.
         \row
             \li \c Qt5Widgets_EXECUTABLE_COMPILE_FLAGS
-            \li A string of flags to use when building executables.
+            \li A string of flags to use when building executables against the library.
         \row
             \li \c Qt5Widgets_FOUND
             \li A boolean that describes whether the module was found successfully.
         \row
             \li \c Qt5Widgets_INCLUDE_DIRS
-            \li A list of directories for use with the \c include_directories command.
+            \li A list of include directories to use when building against the library.
         \row
             \li \c Qt5Widgets_LIBRARIES
-            \li A list of libraries for use with the \c target_link_libraries command.
+            \li The name of the imported target for the module: \c Qt5::Widgets
         \row
             \li \c Qt5Widgets_VERSION_STRING
-            \li A string that describes the module's version.
+            \li A string containing the module's version.
     \endtable
 
     For all packages found with \c{find_package}, equivalents of these variables are available;
