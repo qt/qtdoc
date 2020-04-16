@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2020 The Qt Company Ltd
 ** Copyright (C) 2012 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com, author Stephen Kelly <stephen.kelly@kdab.com>
 ** Contact: https://www.qt.io/licensing/
 **
@@ -93,18 +94,14 @@
     The \c CMAKE_AUTOMOC setting runs moc automatically when required. For more details, see
     \l{CMake AUTOMOC documentation}.
 
-    \section2 Imported targets
+    \section2 Imported library targets
 
-    Imported targets are created for each Qt module. In \c{CMake}, commands such as
-    \c{target_link_libraries} use imported target names instead of variables like
-    \c{Qt5<Module>_LIBRARIES}. The actual path to the library can be obtained using the
-    \l{CMake LOCATION Documentation}{LOCATION property}, as follows:
+    Each Qt module that is loaded defines a CMake library target. The target names
+    start with \c{Qt5::}, followed by the module name. For example: \c{Qt5::Core}, \c{Qt5::Gui}.
+    Pass the name of the library target to \c target_link_libraries to use the respective library.
 
-    \snippet snippets/cmake/examples.cmake 1
-
-    However, you rarely need the full location to the library as most \c{CMake} APIs can locate
-    imported targets and use them automatically, instead of the full path. For this purpose, each
-    module in Qt 5 has a library target with the \b{Qt5::<Module>} naming convention.
+    \note Since Qt 5.15, the CMake targets are also available as \c Qt::Core, \c Qt::Gui, and so on.
+    This eases writing CMake code that can work with both Qt 5 and Qt 6.
 
     Imported targets are created with the same configurations as when Qt was configured. That is:
     \list
@@ -131,11 +128,10 @@
 
     \section1 Module variables
 
-    When you use \c{find_package}, the resulting imported targets are created for use with
-    \c{target_link_libraries}. Some variables are populated with information required to configure
-    the build. For each module, the name of its imported target matches the name of the module with
-    a "Qt5::" prefix, such as "Qt5::Widgets". All of the package-specific variables have a
-    consistent name with its package name as prefix.
+    Qt modules loaded with \c{find_package} set various variables.
+
+    \note You rarely need to access these variables directly. Common tasks like linking against a
+    module should be done through the library targets each module defines.
 
     For example, \c{find_package(Qt5 COMPONENTS Widgets)}, when successful, makes the following
     variables available:

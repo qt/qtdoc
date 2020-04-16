@@ -23,12 +23,6 @@ add_executable(helloworld
 target_link_libraries(helloworld Qt5::Widgets)
 #! [0]
 
-#! [1]
-find_package(Qt5 COMPONENTS Core REQUIRED)
-
-get_target_property(QtCore_location Qt5::Core LOCATION)
-#! [1]
-
 #! [2]
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
