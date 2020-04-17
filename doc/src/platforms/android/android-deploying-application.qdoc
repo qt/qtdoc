@@ -432,7 +432,21 @@
     it should be possible to run \l androiddeployqt on it with no modifications
     and get a working Qt for Android application.
 
-    However, there are a set of \c qmake variables that can be used to tailor
+    There are two important environment variables used by Qt:
+
+    \list
+        \li \c{ANDROID_SDK_ROOT}: specifies the path to the Android SDK used for
+            building the application. The Android SDK contains the build-tools,
+            Android NDK, and Android toolchains.
+        \li \c{ANDROID_NDK_ROOT}: specifies the path to the Android NDK used to
+            build the application. It is not recommended to hard-code this path,
+            since different Qt for Android versions can depend on different
+            Android NDK versions.
+    \endlist
+
+    \note Qt Creator sets these variables by default.
+
+    There are a set of \c qmake variables that can be used to tailor
     your package. At some point during development, you will most likely want
     to look into these variables to customize your application.
 
@@ -448,14 +462,13 @@
         \li \l{ANDROID_ABIS}
         \li \l{ANDROID_API_VERSION}
         \li \l{ANDROID_DEPLOYMENT_DEPENDENCIES}
-        \li \l{ANDROID_SDK_ROOT}
-        \li \l{ANDROID_NDK_ROOT}
         \li \l{ANDROID_MIN_SDK_VERSION}
         \li \l{ANDROID_TARGET_SDK_VERSION}
         \li \l{JAVA_HOME}
     \endlist
 
-    Also, the most useful \c qmake variable when writing a Qt module:
+    Also, the following \c qmake variables are primarily useful when writing a Qt module, and not
+    normal applications:
 
     \list
         \li \l{ANDROID_BUNDLED_JAR_DEPENDENCIES}
@@ -470,5 +483,5 @@
 
     Qt Creator runs the \l androiddeployqt tool by default, and provides easy
     and intuitive user interfaces to specify many of the options. For more
-    information, see \l{Qt Creator: Deploying Applications to Android Devices}{the Qt Creator documentation}.
+    information, see \l{Qt Creator: Deploying Applications to Android Devices}.
 */
