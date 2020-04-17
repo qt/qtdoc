@@ -120,4 +120,33 @@
     language like Japanese, with Gboard, only a QWERTY keyboard is displayed.
     This environment variable is queried each time the keyboard is displayed,
     so it's possible to toggle the workaround on and off, as necessary.
+
+    \section1 Limitations
+
+    Some of the Qt modules might have features that are not supported on Android
+    or have limitations. For more information, see \l{QTBUG-72086}.
+
+    \section1 Frequently Asked Questions
+
+    \list
+        \li Should I use \c QtActivity or \l{Android: Activity}{Android Activity}
+            to create a custom Activity?
+
+        \c QtActivity extends \c Activity and implements the logic needed to load
+        the Qt libraries or handle events and native calls between Android and Qt.
+        In general, extending \c QtActivity is needed if you are using any native
+        calls. Otherwise, extending \c Activity should work.
+
+        \li Should I use \c QtService or \l{Android: Service}{Android Service}?
+
+        The same reasoning as \c QtActivity applies here. Unless you are using
+        features that require the Qt libraries to be loaded, like native calls.
+
+        \li Can \l{Android: Fragments}{Android Fragments} be used with Qt? What is
+            the equivalent for Fragment in Qt?
+
+        Android Fragments cannot be used with Qt. However, Qt offers it's own modular
+        components and views with QML. You can combine multiple components in one
+        QML view. For more information, see \l{Qt QML}.
+    \endlist
 */
