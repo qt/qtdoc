@@ -356,6 +356,9 @@
         always. It applies to OpengGL only and has no effect when using ANGLE or Software
         OpenGL implementations. This is intended for drivers that have issues with rotation.
         This feature keyword was introduced in Qt 5.6.
+
+        \li \c disable_program_cache - Disable storing shader program binaries on
+        disk. This feature keyword was introduced in Qt 5.12.
     \endlist
 
     A sample file looks like:
@@ -422,6 +425,17 @@
 
         \li \c gl_vendor - Matches when the value is a substring of the \c GL_VENDOR string
     \endlist
+
+    To disable all blacklisting, set the environment variable \c{QT_NO_OPENGL_BUGLIST} to
+    any value. This will skip reading any configuration files, and instead will assume that
+    nothing is disabled, regardless of the driver or OS.
+
+    \note While not typically needed, \c{QT_NO_OPENGL_BUGLIST} can become relevant in
+    certain virtualized environments, with multiple, possibly virtual, graphics adapters
+    present. If the logs from categories like \l{qt.qpa.gl} indicate that the detection of
+    the driver and display adapter leads to incorrectly disabling OpenGL, it is then
+    recommended to set this environment variable in order to enable the application to run
+    normally. This environment variable was introduced in Qt 5.15.
 
     \section1 Building from Source
 
