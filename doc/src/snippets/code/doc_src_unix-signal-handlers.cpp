@@ -110,6 +110,7 @@ static int setup_unix_signal_handlers()
 
     term.sa_handler = MyDaemon::termSignalHandler;
     sigemptyset(&term.sa_mask);
+    term.sa_flags = 0;
     term.sa_flags |= SA_RESTART;
 
     if (sigaction(SIGTERM, &term, 0))
