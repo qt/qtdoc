@@ -48,16 +48,19 @@
 
     \table
     \header \li Option \li Description
-    \row \li \c{-o <file>} \li Write output to \c <file> instead of to standard output.
-    \row \li \c{-tr <func>} \li Use \c <func> for translating strings instead of \c tr().
-    \row \li \c{-p} \li Don't generate guards against multiple inclusion (\c #ifndef FOO_H ...).
-    \row \li \c{-h} \li Display the usage and the list of options.
-    \row \li \c{-v} \li Display \c{uic}'s version number.
-    \row \li \c{-d} \li Display the dependencies for the UI.
-    \row \li \c{-n} \li Don't generate any #include directives.
-    \row \li \c{--postfix <postfix>} \li Append \c <postfix> to all generated classnames.
-    \row \li \c{--include <file>} \li Add #include \c <file> to the output.
-
+    \row \li \c{-h, --help}                    \li Displays help on commandline options.
+    \row \li \c{-v, --version}                 \li Displays version information.
+    \row \li \c{-d, --dependencies}            \li Display the dependencies.
+    \row \li \c{-o, --output <file>}           \li Place the output into \c{<file>}
+    \row \li \c{-a, --no-autoconnection}       \li Do not generate a call to \c{QObject::connectSlotsByName()}.
+    \row \li \c{-p, --no-protection}           \li Disable header protection.
+    \row \li \c{-n, --no-implicit-includes}    \li Disable generation of \c{#include-directives}.
+    \row \li \c{--postfix <postfix>}           \li Postfix to add to all generated classnames.
+    \row \li \c{--tr, --translate <function>}  \li Use <function> for i18n.
+    \row \li \c{--include <include-file>}      \li Add #include \c{<include-file>} to \c{<file>}.
+    \row \li \c{-g, --generator <python|cpp>}  \li Select generator.
+    \row \li \c{--idbased}                     \li Use id based function for i18n
+    \row \li \c{--from-imports}                \li Python: generate imports relative to \c{'.'}
     \endtable
 
     \section1 Examples

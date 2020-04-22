@@ -45,6 +45,8 @@
 
     \row \li \c{-o} \li \c{file} \li Write output to \c{file} rather than to stdout.
 
+    \row \li \c{-g, --generator} \li \c {<cpp|python|python2>} \li Select generator.
+
     \row \li \c{-name} \li \c{name} \li Create an external initialization
                                      function with \c{name}.
 
@@ -79,6 +81,8 @@
 
     \row \li \c{-no-compress} \li \li Disable compression.
 
+    \row \li \c{--pass} \li \c{<number>} \li Pass number for big resources
+
     \row \li \c{-binary} \li \li Output a binary file for use as a dynamic resource.
 
     \row \li \c{-version} \li \li Display version information.
@@ -93,12 +97,17 @@
 
     \row \li \c{--list} \li \li Only list .qrc file entries, do not generate code.
 
+    \row \li \c{--list-mapping} \li \li Only output a mapping of resource paths
+                                        to file system paths defined in the .qrc
+                                        file, do not generate code.
+
+    \row \li \c{-d, --depfile} \li \c{<file>} \li Write a depfile with the .qrc
+                                                  dependencies to <file>.
+
     \row \li \c{-project} \li \li Output a resource file containing all files from the
                                   current directory.
 
-
-
-
+    \row \li \c{--format-version \li \c{<number>} \li The RCC format version to write.
 
     \endtable
 
