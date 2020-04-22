@@ -26,63 +26,76 @@
 ****************************************************************************/
 
 /*!
-  \page android-3rdparty-libs.html
-  \title Third-party Android Libraries
-  \brief Provides instructions to include third-party Android libraries in an application.
+    \page android-3rdparty-libs.html
+    \title Third-party Android Libraries
+    \brief Provides instructions to include third-party Android libraries in an application.
 
-  This guide describes how to include a Java-based third-party library in your application package.
-  There are many Java libraries which provide APIs that may be useful to your application.
-  One example is the \c{Google Play Services} add-on provided in the Android SDK. We will use this library
-  as an example in this guide, but the same approach may be taken to include other libraries, provided
-  that they have been made to be included as library projects in an Android application.
+    This guide describes how to include a Java-based third-party library in your
+    application package. There are many Java libraries which provide APIs that
+    may be useful to your application.
 
-  \section1 Prerequisites
+    \section1 Prerequisites
 
-  This guide assumes that the \l{androiddeployqt} tool is used for constructing the deployment package.
-  When using Qt Creator for building and deploying, androiddeployqt is used behind the scenes, so this also
-  applies to development with Qt Creator. Explaining how to access the Java APIs after they have been
-  included in the application is not in the scope of this guide.
+    This guide assumes that the \l{androiddeployqt} tool is used for constructing
+    the deployment package. When using Qt Creator for building and deploying,
+    androiddeployqt is used behind the scenes, so this also applies to
+    development with Qt Creator. Explaining how to access the Java APIs after
+    being included in the the project is not in the scope of this guide. For
+    more information, see \l{Customizing the Package Templates}.
 
-  \section1 Including the Library in the Source
+    \section1 Including a Library to an Android Project
 
-  The very first thing we need to do is to copy the actual library project into the source of our
-  project. We want the contents of the library project to be copied without modifications into the
-  packaging directory, so we need to place it into the \c{Android Package Source Directory}. This
-  can be any directory which is pointed to by the \l{qmake} variable \c{ANDROID_PACKAGE_SOURCE_DIR}.
+    The very first thing you need to do is to copy the library files into
+    your project. The contents of the library have to be copied without
+    modifications into the packaging directory, i.e. into the path set with
+    \l{qmake} variable \l{ANDROID_PACKAGE_SOURCE_DIR}. For more information, see
+    \l{Android Libraries}.
 
-  If you are using Qt Creator, you can quickly set up the directory structure by clicking on the
-  \gui{Create AndroidManifest.xml} button in the \gui{Deployment} settings of your project. This
-  will create an \c{Android Package Source Directory} and place the \c{AndroidManifest.xml} file
-  inside it. Copy the library project directory into this directory.
+    If you are using Qt Creator, you can quickly set up the packaging directory
+    structure by selecting \uicontrol Projects > \uicontrol Build >
+    \uicontrol {Build Android APK} > \uicontrol {Create Templates}. This creates
+    a directory for your \l{Customizing the Package Templates}{Android package customizations}.
+    Copy the library directory into \c {$ANDROID_PACKAGE_SOURCE_DIR/libs/}.
 
-  For example, once it has been installed via the \c{Android SDK Maintenance} application,
-  the \c{Google Play Services} library project is located under the path
-  \c{$ANDROID_SDK_ROOT/extras/google/google_play_services/libproject/google-play-services_lib}. If
-  the \c{Android Package Source Directory} of our project is \c{$PROJECT_ROOT/android}, then we
-  can copy the \c{google-play-services_lib} directory in there, creating
-  \c{$PROJECT_ROOT/android/google-play-services_lib}.
+    \section2 Adding a .jar or .aar Library
 
-  \section1 Adding the Library to the Project Dependencies
+    By default, Qt for Android uses can use \c .jar or \c .aar libraries that are
+    found in the path \c {$ANDROID_PACKAGE_SOURCE_DIR/libs/}. Qt has the following
+    rule in \c{build.gradle} file that is part of \l{Gradle files}{the Gradle files}
+    used by Android build:
 
-  Once the library code has been copied into the project, we need to tell the Android build system
-  about it. This is done in the \c{project.properties} file. Create a file called \c{project.properties}
-  inside the \c{Android Package Source Directory} and add a line to it which assigns the relative
-  path of the library project to the property \c{android.library.reference.1}. If you want to include
-  multiple library projects, increment the counter at the end of the property name for each.
+    \badcode
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    \endcode
 
-  In our example, we would create \c{$PROJECT_ROOT/android/project.properties} and add the
-  following contents:
+    \section1 Adding a Library Project
 
-  \badcode
-  android.library.reference.1=google-play-services_lib/
-  \endcode
+    Having a library called \c{CustomLibrary}, similar to the previous approach,
+    copy the library project to your packaging directory
+    \c{$ANDROID_PACKAGE_SOURCE_DIR/libs/}, then create a file \c{settings.gradle}
+    with the following content:
 
-  \section1 Deployment
+    \badcode
+    include ':libs:CustomLibrary'
+    \endcode
 
-  And that's it: Provided that the path referenced in the \c{project.properties} file is located
-  under the \c{Android Package Source Directory}, the deployment tool will copy it into the
-  packaging directory and perform the necessary steps to include it in your \c{APK} or \c{AAB}.
-  You can now add Java code to your application which accesses the APIs provided by the library
-  project.
+    Then, add the dependency to \c{build.gradle} file inside the \c{dependencies}
+    block:
+
+    \badcode
+    dependencies {
+        implementation project(":libs:CustomLibrary")
+    }
+    \endcode
+
+    For more information on adding libraries to an Android project, see
+    \l{Android: Add build dependencies}{Add build dependencies Android documentation}.
+
+    \section1 Deployment
+
+    Once \l{Gradle} settings and the library files are all properly configured,
+    Qt for Android should be able to build your \c APK or \c AAB package with
+    your custom library.
 
 */

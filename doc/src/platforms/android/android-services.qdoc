@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -36,29 +36,500 @@ useful to perform long-term operations such as logging GPS, waiting for social
 media notifications, and so on. A service will continue to run even if the
 application that started it exits.
 
-To create a service, do the following steps:
-\list 1
- \li Uncomment the service part of your \c AndroidManifest.xml.
+\section1 Assemble the Service
 
- \li Make sure the \c service tag contains an \c android:process=":some_name"
-     attribute. It is needed to force the \c service to run in a separate
-     process than the \c activity.
+To get started, create an Android package directory as instructed in
+\l{Qt Creator: Deploying Applications to Android Devices}. This directory
+contains the \c AndroidManifest.xml file. Inside the package directory,
+create a \c src directory, where all your Java packages and classes
+will be created.
 
- \li If you're using the same application (.so file) for activity and also
-     for service, you need to use \c android.app.arguments \c meta-data to
-     pass some arguments to your \c main function in order to know which one
-     is which.
+\section2 Create the Service Class
 
- \li To enable background running, uncomment \c android.app.background_running
-     \c meta-data and set it to true (\c android:value="true" ).
+You can create a service by extending the class \c QtService or
+\l{Android: Service} to your Java class. Depending on whether you want to use
+Qt features in your service or call native C++ functions from Java, you need to
+extend either \c QtService or \c Service. Let's start with a simple service,
+as follows:
 
+\code
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import org.qtproject.qt5.android.bindings.QtService;
+
+public class QtAndroidService extends QtService
+{
+    private static final String TAG = "QtAndroidService";
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.i(TAG, "Creating Service");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "Destroying Service");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        int ret = super.onStartCommand(intent, flags, startId);
+
+        // Do some work
+
+        return ret;
+    }
+}
+\endcode
+
+\section2 Start the Service
+
+Android allows starting services on demand or at boot time. You can do both using
+Qt as well.
+
+\section3 Start a Service On Demand
+
+You can start the service in the following ways:
+
+\list
+    \li Directly from C++ using \l {QtAndroidExtras}{QAndroidIntent} and
+        \l {QtAndroidExtras}{QAndroidJniObject}, by creating a service
+        \l {Android: Intent}{Intent} and calling the app's main activity method
+        \l {Android: startService()}{startService()}:
+
+        \code
+        QAndroidIntent serviceIntent(QtAndroid::androidActivity().object(),
+                                            "org/qtproject/example/qtandroidservice/QtAndroidService");
+        QAndroidJniObject result = QtAndroid::androidActivity().callObjectMethod(
+                    "startService",
+                    "(Landroid/content/Intent;)Landroid/content/ComponentName;",
+                    serviceIntent.handle().object());
+        \endcode
+
+    \li Start the service by calling a Java method. The easiest way is to create
+        a static method in your service class:
+
+        \code
+        public static void startQtAndroidService(Context context) {
+                context.startService(new Intent(context, QtAndroidService.class));
+        }
+        \endcode
+
+        The you can call it from C++ using the following JNI call:
+
+        \code
+        QAndroidJniObject::callStaticMethod<void>(
+            "org/qtproject/example/qtandroidservice/QtAndroidService",
+            "startQtAndroidService",
+            "(Landroid/content/Context;)V",
+            QtAndroid::androidActivity().object());
+        \endcode
 \endlist
 
+\section3 Start a Service At Boot Time
+
+To run a service at boot time, you need a \l{Android: BroadcastReceiver}
+{BroadcastReceiver}.
+
+Create a custom Java class:
+
+\code
+public class QtBootServiceBroadcastReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Intent startServiceIntent = new Intent(context, QtBootServiceBroadcastReceiver.class);
+        context.startService(startServiceIntent);
+    }
+}
+\endcode
+
+Add the following \c uses-permission in the body of the \c <manifest> section in
+the \c AndroidManifest.xml file:
+
+\badcode
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+\endcode
+
+Also, add the \c receiver definition in the body of the \c <application> section:
+
+\badcode
+<receiver android:name=".QtBootServiceBroadcastReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>
+\endcode
+
+\note To run a service at boot time, it has to be defined as a separate process,
+see \l{Service in Separate Process}.
+
+\section2 Manage the Service in AndroidMnifest.xml
+
+For the service to be usable in an Android app, you must declare it in the
+\c AndroidManifest.xml file. Let's start with adding the service section:
+
+\list
+    \li When extending \c Service, just declare the service section as a normal Android
+        service. Add the following inside the \c <application> section:
+
+        \badcode
+        <service android:name=".QtAndroidService">
+            <!-- Background running -->
+            <meta-data android:name="android.app.background_running" android:value="true"/>
+            <!-- Background running -->
+        </service>
+        \endcode
+
+        This way the service will start in the same process as \c QtActivity,
+        which allows you to use native C++ calls from Java code. You can run it
+        in a separate process but that way you cannot use any native calls for
+        communication because the Qt libraries are not loaded for that process.
+        To run on separate process, add this to the service tag:
+
+        \badcode
+        android:process=":qt_service"
+        \endcode
+
+    \target Extending QtActivity AndroidManifest.xml
+    \li When extending \c QtService, you need to declare other items for loading
+        all the necessary libs required for Qt, mainly the same items as in
+        \c <activity> section for \c QtActivity. Add the following:
+
+        \badcode
+        <service android:process=":qt_service" android:name=".QtAndroidService">
+
+            <meta-data android:name="android.app.lib_name" android:value="service"/>
+            <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
+            <meta-data android:name="android.app.repository" android:value="default"/>
+            <meta-data android:name="android.app.qt_libs_resource_id" android:resource="@array/qt_libs"/>
+            <meta-data android:name="android.app.bundled_libs_resource_id" android:resource="@array/bundled_libs"/>
+
+            <!-- Deploy Qt libs as part of package -->
+            <meta-data android:name="android.app.bundle_local_qt_libs" android:value="-- %%BUNDLE_LOCAL_QT_LIBS%% --"/>
+
+            <!-- Run with local libs -->
+            <meta-data android:name="android.app.use_local_qt_libs" android:value="-- %%USE_LOCAL_QT_LIBS%% --"/>
+            <meta-data android:name="android.app.libs_prefix" android:value="/data/local/tmp/qt/"/>
+            <meta-data android:name="android.app.load_local_libs_resource_id" android:resource="@array/load_local_libs"/>
+            <meta-data android:name="android.app.load_local_jars" android:value="-- %%INSERT_LOCAL_JARS%% --"/>
+            <meta-data android:name="android.app.static_init_classes" android:value="-- %%INSERT_INIT_CLASSES%% --"/>
+            <!-- Run with local libs -->
+
+            <!-- Background running -->
+            <meta-data android:name="android.app.background_running" android:value="true"/>
+            <!-- Background running -->
+        </service>
+        \endcode
+\endlist
+
+\note Make sure to define the following to run the service in the background:
+
+\badcode
+<meta-data android:name="android.app.background_running" android:value="true"/>
+\endcode
+
+There are a few variations on how to declare services. Some of them are already
+used in the previous manifest snippet. Depending on your use case, run the
+service either in the same process as QtActivity or in a separate process.
+
+\section3 Service in the Same Process as QtActivity
+
+To run a service in the same process as QtActivity, declare the service header
+as follows:
+
+\badcode
+<service android:name=".QtAndroidService">
+\endcode
+
+\section3 Service in Separate Process
+
+To run a service in a dedicated process, declare the service header as follows:
+
+\badcode
+<service android:process=":qt_service" android:name=".QtAndroidService">
+\endcode
+
 Qt loads the \c .so file defined in \c android.app.lib_name \c meta-data,
-and calls the \c main function with all the arguments set in
-\c android.app.arguments \c meta-data.
+and calls the \c main() function with all the arguments set in
+\c android.app.arguments \c meta-data. When running in a separate process, you
+can start the service using either the same lib file as the main activity or
+a separate lib file.
 
-See \l{http://developer.android.com/guide/components/services.html}{Android Services}
-documentation for more information.
+\section4 Use the Same .so Lib File
+
+Using the same \c .so lib file as the main activity means the service
+will use the same entry point with an extra argument to distinguish
+it from the main activity. You can handle your application's
+execution in the \c main() function according the arguments provided.
+Add the following argument declaration to your service body:
+
+\badcode
+<!-- Application arguments -->
+<meta-data android:name="android.app.arguments" android:value="-service"/>
+<!-- Application arguments -->
+\endcode
+
+Then make sure the service \c android.app.lib_name is the same as
+the main activity, add the following:
+
+\badcode
+<meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+\endcode
+
+When using the same \c .so lib file, your application's \c main() function
+is executed two times, one to start the main activity and the second time
+to start the service. Thus, you have to handle each execution according
+to the provided argument. One way to acheive that is as follows:
+
+\code
+if (argc <= 1) {
+    // code to handle main activity execution
+} else if (argc > 1 && strcmp(argv[1], "-service") == 0) {
+    qDebug() << "Service starting with from the same .so file";
+    QAndroidService app(argc, argv);
+    return app.exec();
+} else {
+    qWarning() << "Unrecognized command line argument";
+    return -1;
+}
+\endcode
+
+\section4 Use a Separate .so Lib File
+
+In this case, you need to have a sub-project with a \c lib template that
+provides a different executable for the service. A sample project \c .pro is:
+
+\badcode
+TEMPLATE = lib
+TARGET = service
+CONFIG += dll
+QT += core androidextras
+
+SOURCES += \
+    service_main.cpp
+
+HEADERS += servicemessenger.h
+\endcode
+
+In the \c service_main.cpp you could have the following:
+
+\code
+#include <QDebug>
+#include <QAndroidService>
+
+int main(int argc, char *argv[])
+{
+    qWarning() << "Service starting from a separate .so file";
+    QAndroidService app(argc, argv);
+
+    return app.exec();
+}
+\endcode
+
+Define the \c android.app.lib_name for the service in the \c AndroidManifest.xml:
+
+\badcode
+<meta-data android:name="android.app.lib_name" android:value="service"/>
+\endcode
+
+\section1 Communication with the Service
+
+Qt for Android offers a variety of inter-process communication (IPC) methods to
+communicate with Android Services. Depending on the structure of your project,
+you can use either native C++ calls from Java Service or Android
+BroadcastReceiver.
+
+\section2 Native C++ Calls from Java Service
+
+This can work with services running in the same process as \c QtActivity and even
+if \c Service is extended. For more information, see
+\l{Calling QML/C++ Functions from Java Code}.
+
+\section2 Using Android BroadcastReceiver
+
+\l {Android: BroadcastReceiver}{Android BroadcastReceiver} enables exchanging
+messages between the Android system, apps, activities and services. Similarly
+to other Android features, Qt can use broadcast receivers to exchange messages
+between \c QtActivity and your service. Let's start with logic to send a message
+from your service. Add the following in your service implementation, which calls
+\l{Android: sendBroadcast()}{sendBroadcast()}:
+
+\code
+@Override
+public int onStartCommand(Intent intent, int flags, int startId) {
+    int ret = super.onStartCommand(intent, flags, startId);
+
+    Intent sendToUiIntent = new Intent();
+    sendToUiIntent.setAction(ActivityUtils.BROADCAST_CUSTOM_ACTION);
+    sendToUiIntent.putExtra("message", "simple_string");
+
+    Log.i(TAG, "Service sending broadcast");
+    sendBroadcast(sendToUiIntent);
+
+    return ret;
+}
+\endcode
+
+Then, you need to create and register the broadcast receiver from
+the Qt's main activity. The easiest way is to create a custom class with a method
+and implement all that logic in Java. In the following example, the service sends
+a message \c "simple_string" to Qt by calling the native method \c sendToQt():
+
+\code
+public class ServiceBroadcastUtils {
+
+    private static native void sendToQt(String message);
+
+    private static final String TAG = "ActivityUtils";
+    public static final String BROADCAST_CUSTOM_ACTION = "org.qtproject.example.qtandroidservice.broadcast.custom";
+
+    public void registerServiceBroadcastReceiver(Context context) {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BROADCAST_CUSTOM_ACTION);
+        context.registerReceiver(serviceMessageReceiver, intentFilter);
+        Log.i(TAG, "Registered broadcast receiver");
+    }
+
+    private BroadcastReceiver serviceMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "In OnReceive()");
+            if (BROADCAST_CUSTOM_ACTION.equals(intent.getAction())) {
+                String message = intent.getStringExtra("message");
+                sendToQt(data);
+                Log.i(TAG, "Service sent back message to C++: " + message);
+            }
+        }
+    };
+}
+\endcode
+
+For more information on working with native calls, see
+\l{Calling QML/C++ Functions from Java Code}.
+
+To make use of all that, start your service as shown in \l{Start the Service},
+an then register the broadcast receiver by calling the method
+\c registerServiceBroadcastReceiver():
+
+\code
+QAndroidJniEnvironment env;
+jclass javaClass = env.findClass("org/qtproject/example/qtandroidservice/ActivityUtils");
+QAndroidJniObject classObject(javaClass);
+
+classObject.callMethod<void>("registerServiceBroadcastReceiver",
+                             "(Landroid/content/Context;)V",
+                             QtAndroid::androidContext().object());
+\endcode
+
+For more information, see the examples \l{Android Service with BroadcastReceiver},
+and \l{Android Service with BroadcastReceiver - Same Lib File}.
+
+\section2 Using Qt Remote Objects
+
+\l{Getting Started with Qt Remote Objects}{Qt Remote Objects} offers an easy way
+to share APIs between Qt processes. The main concept is to server in the service
+process, and have a replica in the Qt application, then those two parts are able
+to exchange data between each other, using signals and slots.
+
+\section3 Prepare the replica
+Let's consider a service example with separate \c .so lib file. Define a
+\c .rep file which defines our communication class:
+
+\code
+class ServiceMessenger {
+    SLOT(void ping(const QString &message));
+    SIGNAL(pong(const QString &message));
+}
+\endcode
+
+The define the class in the service sub-project as \c servicemessenger.h:
+
+\code
+#include "rep_servicemessenger_source.h"
+
+class ServiceMessenger : public ServiceMessengerSource {
+public slots:
+    void ping(const QString &name) override {
+        emit pong("Hello " + name);
+    }
+};
+\endcode
+
+Then, add the \c .rep file to both the main application and service \c .pro files,
+in the main application:
+
+\badcode
+QT += remoteobjects
+REPC_REPLICA += servicemessenger.rep
+\endcode
+
+And in the service sub-project:
+
+\badcode
+QT += remoteobjects
+REPC_SOURCE += servicemessenger.rep
+\endcode
+
+\section3 Connect the source and replica
+
+Define the Qt Remote Objects source node in the service sub-project's \c main()
+function:
+
+\code
+#include "servicemessenger.h"
+
+#include <QDebug>
+#include <QAndroidService>
+
+int main(int argc, char *argv[])
+{
+    qWarning() << "QtAndroidService starting from separate .so";
+    QAndroidService app(argc, argv);
+
+    QRemoteObjectHost srcNode(QUrl(QStringLiteral("local:replica")));
+    ServiceMessenger serviceMessenger;
+    srcNode.enableRemoting(&serviceMessenger);
+
+    return app.exec();
+}
+\endcode
+
+Then, in the application's \c main() function, connect to source node:
+
+\code
+QRemoteObjectNode repNode;
+repNode.connectToNode(QUrl(QStringLiteral("local:replica")));
+QSharedPointer<ServiceMessengerReplica> rep(repNode.acquire<ServiceMessengerReplica>());
+bool res = rep->waitForSource();
+Q_ASSERT(res);
+
+QObject::connect(rep.data(), &ServiceMessengerReplica::pong, [](const QString &message){
+    qDebug() << "Service sent: " << message;
+});
+rep->ping("Qt and Android are friends!");
+\endcode
+
+This example sends a message from the main application's process to the
+service. The service replies with the same message, which is printed
+on the debug logcat.
+
+\note The same method could be used when using the same \c .so lib file. For more
+information, see \l{Use the same .so Lib File}.
+
+For more information, see the examples \l{Android Service with Qt Remote Objects},
+and \l{Android Service with Qt Remote Objects - Same Lib File}.
+
+\section2 Using QAndroidBinder
+
+While using \l{QtRemoteObjects}{Qt Remote Objects} for communication is a
+cross-platform solution, \l QAndroidBinder Class Reference} is Android specific.
+\l QAndroidBinder is a convenience class that implements the most important
+methods in \l{Android: Binder}.
+It allows sending \l{QByteArray} or \l{QVariant} objcets between processes.
+For more information on how to use it with an Android Service, see
+\l{Android Service with QAndroidBinder}{Android Service with QAndroidBinder Example}.
+
 */
-

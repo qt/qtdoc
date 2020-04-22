@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2020 The Qt Company Ltd
 ** Copyright (C) 2012 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com, author Stephen Kelly <stephen.kelly@kdab.com>
 ** Contact: https://www.qt.io/licensing/
 **
@@ -93,18 +94,14 @@
     The \c CMAKE_AUTOMOC setting runs moc automatically when required. For more details, see
     \l{CMake AUTOMOC documentation}.
 
-    \section2 Imported targets
+    \section2 Imported library targets
 
-    Imported targets are created for each Qt module. In \c{CMake}, commands such as
-    \c{target_link_libraries} use imported target names instead of variables like
-    \c{Qt5<Module>_LIBRARIES}. The actual path to the library can be obtained using the
-    \l{CMake LOCATION Documentation}{LOCATION property}, as follows:
+    Each Qt module that is loaded defines a CMake library target. The target names
+    start with \c{Qt5::}, followed by the module name. For example: \c{Qt5::Core}, \c{Qt5::Gui}.
+    Pass the name of the library target to \c target_link_libraries to use the respective library.
 
-    \snippet snippets/cmake/examples.cmake 1
-
-    However, you rarely need the full location to the library as most \c{CMake} APIs can locate
-    imported targets and use them automatically, instead of the full path. For this purpose, each
-    module in Qt 5 has a library target with the \b{Qt5::<Module>} naming convention.
+    \note Since Qt 5.15, the CMake targets are also available as \c Qt::Core, \c Qt::Gui, and so on.
+    This eases writing CMake code that can work with both Qt 5 and Qt 6.
 
     Imported targets are created with the same configurations as when Qt was configured. That is:
     \list
@@ -112,21 +109,14 @@
             configuration is created.
         \li If Qt was configured with the \c -release switch, an imported target with the RELEASE
             configuration is created.
-        \li If Qt was configured with the \c -debug-and-release switch, which is the default on
-            Windows, then imported targets are created with both RELEASE and DEBUG configurations.
+        \li If Qt was configured with the \c -debug-and-release switch, then imported targets are
+            created with both RELEASE and DEBUG configurations.
     \endlist
 
     If your project has custom \c{CMake} build configurations, you have to map your custom
     configuration to either the debug or the release Qt configuration.
 
     \snippet snippets/cmake/examples.cmake 2
-
-    In \c{CMake}, plugins are also available as \c IMPORTED targets. The \l{Qt Network}, \l{Qt SQL},
-    \l{Qt GUI}, and \l{Qt Widgets} modules have plugins associated. They provide a list of plugins
-    in the \c{Qt5}\e{<Module>}\c{_PLUGINS} variable.
-
-    \snippet snippets/cmake/examples.cmake 5
-
 */
 
 /*!
@@ -138,11 +128,10 @@
 
     \section1 Module variables
 
-    When you use \c{find_package}, the resulting imported targets are created for use with
-    \c{target_link_libraries}. Some variables are populated with information required to configure
-    the build. For each module, the name of its imported target matches the name of the module with
-    a "Qt5::" prefix, such as "Qt5::Widgets". All of the package-specific variables have a
-    consistent name with its package name as prefix.
+    Qt modules loaded with \c{find_package} set various variables.
+
+    \note You rarely need to access these variables directly. Common tasks like linking against a
+    module should be done through the library targets each module defines.
 
     For example, \c{find_package(Qt5 COMPONENTS Widgets)}, when successful, makes the following
     variables available:
@@ -152,26 +141,30 @@
             \li Variable
             \li Description
         \row
-            \li \c Qt5Widgets_VERSION
-            \li A string that describes the module's version.
-        \row
-            \li \c Qt5Widgets_LIBRARIES
-            \li A list of libraries for use with the \c target_link_libraries command.
-        \row
-            \li \c Qt5Widgets_INCLUDE_DIRS
-            \li A list of directories for use with the \c include_directories command.
+            \li \c Qt5Widgets_COMPILE_DEFINITIONS
+            \li A list of compile definitions to use when building against the library.
         \row
             \li \c Qt5Widgets_DEFINITIONS
-            \li A list of definitions for use with the \c add_definitions command.
+            \li A list of definitions to use when building against the library.
         \row
-            \li \c Qt5Widgets_COMPILE_DEFINITIONS
-            \li A list of definitions for use with the \c COMPILE_DEFINITIONS target property.
+            \li \c Qt5Widgets_EXECUTABLE_COMPILE_FLAGS
+            \li A string of flags to use when building executables against the library.
         \row
             \li \c Qt5Widgets_FOUND
             \li A boolean that describes whether the module was found successfully.
         \row
-            \li \c Qt5Widgets_EXECUTABLE_COMPILE_FLAGS
-            \li A string of flags to use when building executables.
+            \li \c Qt5Widgets_INCLUDE_DIRS
+            \li A list of include directories to use when building against the library.
+        \row
+            \li \c Qt5Widgets_LIBRARIES
+            \li The name of the imported target for the module: \c Qt5::Widgets
+        \row
+            \li \c Qt5Widgets_PRIVATE_INCLUDE_DIRS
+            \li A list of private include directories to use when building against the library
+                and using private Qt API.
+        \row
+            \li \c Qt5Widgets_VERSION_STRING
+            \li A string containing the module's version.
     \endtable
 
     For all packages found with \c{find_package}, equivalents of these variables are available;
@@ -187,13 +180,35 @@
             \li Variable
             \li Description
         \row
-            \li \c QT_VISIBILITY_AVAILABLE
-            \li On Unix, a boolean that describes whether Qt libraries and plugins were compiled
-                with \c{-fvisibility=hidden}. This means that only selected symbols are exported.
+            \li \c QT_DEFAULT_MAJOR_VERSION
+            \li An integer that controls the Qt version that \c qt_ commands forward to in case of
+                mixed Qt 5 and Qt 6 projects. It needs to be set to either \c 5 or \c 6 before the
+                respective \c find_package() calls.
+
+                If set to \c 5, commands starting with \c qt_ will call their counterpart starting
+                with \c qt5_. If set to \c 6, they will call their counterpart starting with
+                \c qt6_.
+
+                If not set, the first \c find_package call defines the default version.
+                This functionality was added in Qt 5.15.
         \row
             \li \c QT_LIBINFIX
             \li A string that holds the infix used in library names, when Qt is configured with
                 \c{-libinfix}.
+        \row
+            \li \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+            \li Since Qt 5.15, modules define not only commands that start with \c{qt5_},
+                but also ones with \c{qt_}. You can set \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+                before \c{find_package} to prevent this.
+        \row
+            \li \c QT_NO_CREATE_VERSIONLESS_TARGETS
+            \li Since Qt 5.15, modules define not only targets that start with \c{Qt5::},
+                but also ones with \c{Qt::}. You can set \c QT_NO_CREATE_VERSIONLESS_TARGETS before
+                \c{find_package} to prevent this.
+        \row
+            \li \c QT_VISIBILITY_AVAILABLE
+            \li On Unix, a boolean that describes whether Qt libraries and plugins were compiled
+                with \c{-fvisibility=hidden}. This means that only selected symbols are exported.
     \endtable
 
 */
@@ -208,10 +223,6 @@
 
     \annotatedlist cmake-macros-qtcore
 
-    \section2 Qt5::Widgets
-
-    \annotatedlist cmake-macros-qtwidgets
-
     \section2 Qt5::DBus
 
     \annotatedlist cmake-commands-qtdbus
@@ -219,5 +230,13 @@
     \section2 Qt5::LinguistTools
 
     \annotatedlist cmake-macros-qtlinguisttools
+
+    \section2 Qt5::RemoteObjects
+
+    \annotatedlist cmake-macros-qtremoteobjects
+
+    \section2 Qt5::Widgets
+
+    \annotatedlist cmake-macros-qtwidgets
 */
 

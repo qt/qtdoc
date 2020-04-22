@@ -351,6 +351,17 @@
     Linux distributions; try searching for \c gstreamer or \c libgstreamer in your distribution's
     package repository to find suitable packages.
 
+    \section1 Speech Dependencies
+
+    \l{Qt Speech} depends on Speech Dispatcher (libspeechd) on the Linux platform.
+    The following development packages should be installed:
+
+    \list
+    \li flite1-dev
+    \li libspeechd-dev
+    \li speech-dispatcher
+    \endlist
+
     \section1 Qt WebEngine Dependencies
 
     \l{Qt WebEngine} has additional build requirements which are listed in the

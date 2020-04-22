@@ -33,60 +33,135 @@
 The Qt installation package comes with OpenSSL support but the OpenSSL libraries
 are not part of the package due to legal restrictions in some countries. If your
 application depends on OpenSSL, consider packaging the SSL libraries with your
-Application Package (APK) as the target device may or may not have them. You
-can use the \l{QSslSocket::supportsSsl()} static function to check for SSL
-support on the target.
+Application Package (APK) as the target device may or may not have them.
 
-The following instructions guide you to build and add the OpenSSL libraries to
-the APK:
+You can use the \l {QSslSocket::supportsSsl()} static function to check for SSL
+support on the target device. First include the header:
+\code
+#include <QSslSocket>
+\endcode
+
+Then use the following line to check if SSL is supported:
+\code
+qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
+\endcode
+
+Check Qt Creator's \c {Application Output} section or the Android \c logcat for
+the result.
+
+\section1 Building OpenSSL for Android
+
+A convenient Github repository with prebuilt and a build script can be used
+without the need for manual step-by-step build. For more information, see
+\l {OpenSSL for Android}. If you download the repository, you can then skip
+to \l {Using OpenSSL Libraries with Qt for Android}.
+
+The following instructions guide you to build the OpenSSL libraries manually:
+
 \list 1
- \li Download the latest OpenSSL 1.1.x sources from \l{http://www.openssl.org/source}.
+    \li Download \l{OpenSSL Source}{OpenSSL} 1.1.x sources.
 
- \li Extract the sources to a folder and navigate to that folder using
-     the CLI.
-     \note If your development platform is Windows, you need \c msys with
-     \c perl v5.14 or later to build OpenSSL.
+    \li Extract the sources to a folder and navigate to that folder using
+        the CLI.
+        \note If your development platform is Windows, you need \c msys with
+        \c perl v5.14 or later to build OpenSSL.
 
- \li Add android llvm toolchain to your path:
-    \badcode
-    export PATH="<android_ndk_path>/toolchains/llvm/prebuilt/<host>/bin":$PATH
-    \endcode
+    \li Add the Android LLVM toolchain (NDK r20b or r21) to your path:
 
- \li Configure the OpenSSL sources to build for Android using
-     the following command:
+        \badcode
+        export PATH="<android_ndk_path>/toolchains/llvm/prebuilt/<host>/bin":$PATH
+        \endcode
 
-     \badcode
-     ./Configure shared android-<arch> -D__ANDROID_API__=21
-     \endcode
+    \li Configure the OpenSSL sources to build for Android using
+        the following command:
 
-     \note You must consider enabling/disabling the SSL features based on the
-     legal restrictions in the region where your application is available.
-     See the \l{OpenSSL Configure Options}{SSL configure options} for details about
-     the configurable features.
+        \badcode
+        ./Configure shared android-<arch> -D__ANDROID_API__=21
+        \endcode
 
- \li Run \c{make SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs} to
-     build \c libcrypto and \c libssl shared libraries that are not versioned,
-     but with a \e _1_1 suffix. If you want to use a different suffix, then you must
-     set the \c ANDROID_OPENSSL_SUFFIX environment variable before you access the
-     Qt Network API. Without a suffix, Android 5 (API 21) will load the system
-     libraries \e libcrypto.so and \e libssl.so, which are OpenSSL 1.0, rather than
-     your libraries.
+        Where <arch> can take a value of: \c arm, \c arm64, \c x86, \c x86_64.
 
-     \note Android does not load versioned libraries.
+        \note You must consider enabling or disabling the SSL features based on
+        the legal restrictions in the region where your application is available.
+        For more information about the configurable features, see
+        \l{OpenSSL Configure Options}.
 
- \li Open your Qt project using Qt Creator and update the "Build Android APK"
-     settings to add \e libcrypto and \e libssl as additional libraries for
-     your project.
+    \li To build \c libcrypto and \c libssl shared libraries that are not versioned,
+        but with an \e _1_1 suffix, run:
 
- \li Run your application to see it running on the device.
+        \code
+        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs
+        \endcode
+
+        Without a suffix, Android 5 (API 21) will load the system libraries
+        \e {libcrypto.so} and \e {libssl.so}, which are OpenSSL 1.0, rather than
+        your libraries.
+
+        If you want to use a different suffix, you must change \c SHLIB_EXT in
+        the previous command, and set the \c ANDROID_OPENSSL_SUFFIX environment
+        variable before you access the Qt Network API.
+
+        \badcode
+        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=<custom_suffix>.so build_libs
+        \endcode
+
+        Then set the environment variable in your main.ccp file:
+
+        \code
+        qputenv("ANDROID_OPENSSL_SUFFIX", "<custom_suffix>");
+        \endcode
+
+        \note Android does not load versioned libraries.
 \endlist
 
-\note here \l{https://github.com/KDAB/android_openssl} you can find a script which
-can be used to compile openssl for all android abis and also latest prebuilt libs.
+\section1 Using OpenSSL Libraries with Qt for Android
 
-Qt Creator builds your application and creates an application package (APK)
-with the OpenSSL libraries bundled in it. Once the APK is ready, it uses \c adb
-to deploy the APK on the target you chose and launch the application.
+Depending on the method you obtained the OpenSSL libraries, you can use one of
+the following step to include those libraries in your project:
+
+\list
+
+    \li Using the project files:
+
+        Using the convenience \l {OpenSSL for Android} repository,
+        you can directly add the include projects into your own project, by adding
+        the following to your \c {.pro} file:
+
+        \badcode
+        android: include(<path/to/android_openssl/openssl.pri)
+        \endcode
+
+        Or if using CMake, add the following to your \c {CMakeLists.txt}:
+
+        \badcode
+        if (ANDROID)
+            include(<path/to/android_openssl/CMakeLists.txt)
+        endif()
+        \endcode
+
+        Alternatively, you can either use the Qt for Android variable ANDROID_EXTRA_LIBS to add
+        extra libraries, mainly \c libcrypto and \c libssl. For QMake use:
+
+        \badcode
+        ANDROID_EXTRA_LIBS += \
+            <path_to_libs_dir>/libcrypto_1_1.so \
+            <path_to_libs_dir>/libssl_1_1.so
+        \endcode
+
+        For CMake:
+
+        \badcode
+        set(ANDROID_EXTRA_LIBS
+            <path_to_libs_dir>/ibcrypto_1_1.so
+            <path_to_libs_dir>/libssl_1_1.so
+        CACHE INTERNAL "")
+        \endcode
+
+        \note When targeting multiple architectures, include OpenSSL libraries
+              for all the targeted architectures.
+
+    \li Using Qt Creator, it is possible to add extra libraries. For more
+        information, see \l {Qt Creator: Adding Libraries to Projects}.
+\endlist
 
 */
-
