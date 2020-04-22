@@ -39,8 +39,15 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
-  Qt 5.5 is currently tested and supported on VxWorks 7 release SR0480 2016-09-16.
-  Supported architecture is ARM-v7.
+  \list
+    \li Qt 5.5 was verified on VxWorks 7 release SR0480 2016-09-16.
+    Supported architecture is ARM-v7.
+    \note Qt 5.5 is no longer supported.
+    \li Qt 5.9 LTS was verified on VxWorks 7 SR0541.
+    \note Support for Qt 5.9 ends May 2020.
+    \li 5.12 LTS is verified on VxWorks 7 SR0541. Qt 5.12 is supported until
+    December 2021.
+  \endlist
 
   If you are interested in later Qt releases, please \l {https://www.qt.io/contact-us/}{contact} Qt professional services.
 
@@ -48,6 +55,10 @@
 
   Qt for VxWorks is delivered via the \l {Qt Account}, under the name
   \b {Qt 5.5.1} > \b {Qt VxWorks Platform Source Package}.
+  \note Qt 5.5 is no longer supported.
+
+  Source packages for up-to-date and supported Qt releases on VxWorks are
+  available through Qt Professional Services.
 
   \section1 Requirements for VxWorks
 
