@@ -36,4 +36,11 @@ ones, but you can find more complete lists in
 The following sections list the API changes in each module and provide
 recommendations for handling those changes.
 
+\section1 Qt Quick
+
+\list
+    \li QQuickItem's geometryChanged() function was renamed to
+        \l {QQuickItem::}{geometryChange()}.
+\endlist
+
 */
