@@ -159,6 +159,10 @@
             \li \c Qt5Widgets_LIBRARIES
             \li The name of the imported target for the module: \c Qt5::Widgets
         \row
+            \li \c Qt5Widgets_PRIVATE_INCLUDE_DIRS
+            \li A list of private include directories to use when building against the library
+                and using private Qt API.
+        \row
             \li \c Qt5Widgets_VERSION_STRING
             \li A string containing the module's version.
     \endtable
@@ -176,9 +180,31 @@
             \li Variable
             \li Description
         \row
+            \li \c QT_DEFAULT_MAJOR_VERSION
+            \li An integer that controls the Qt version that \c qt_ commands forward to in case of
+                mixed Qt 5 and Qt 6 projects. It needs to be set to either \c 5 or \c 6 before the
+                respective \c find_package() calls.
+
+                If set to \c 5, commands starting with \c qt_ will call their counterpart starting
+                with \c qt5_. If set to \c 6, they will call their counterpart starting with
+                \c qt6_.
+
+                If not set, the first \c find_package call defines the default version.
+                This functionality was added in Qt 5.15.
+        \row
             \li \c QT_LIBINFIX
             \li A string that holds the infix used in library names, when Qt is configured with
                 \c{-libinfix}.
+        \row
+            \li \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+            \li Since Qt 5.15, modules define not only commands that start with \c{qt5_},
+                but also ones with \c{qt_}. You can set \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+                before \c{find_package} to prevent this.
+        \row
+            \li \c QT_NO_CREATE_VERSIONLESS_TARGETS
+            \li Since Qt 5.15, modules define not only targets that start with \c{Qt5::},
+                but also ones with \c{Qt::}. You can set \c QT_NO_CREATE_VERSIONLESS_TARGETS before
+                \c{find_package} to prevent this.
         \row
             \li \c QT_VISIBILITY_AVAILABLE
             \li On Unix, a boolean that describes whether Qt libraries and plugins were compiled
