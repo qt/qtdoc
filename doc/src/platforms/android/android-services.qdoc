@@ -424,9 +424,6 @@ classObject.callMethod<void>("registerServiceBroadcastReceiver",
                              QtAndroid::androidContext().object());
 \endcode
 
-For more information, see the examples \l{Android Service with BroadcastReceiver},
-and \l{Android Service with BroadcastReceiver - Same Lib File}.
-
 \section2 Using Qt Remote Objects
 
 \l{Getting Started with Qt Remote Objects}{Qt Remote Objects} offers an easy way
@@ -519,18 +516,13 @@ on the debug logcat.
 \note The same method could be used when using the same \c .so lib file. For more
 information, see \l{Use the same .so Lib File}.
 
-For more information, see the examples \l{Android Service with Qt Remote Objects},
-and \l{Android Service with Qt Remote Objects - Same Lib File}.
-
 \section2 Using QAndroidBinder
 
 While using \l{QtRemoteObjects}{Qt Remote Objects} for communication is a
 cross-platform solution, \l QAndroidBinder Class Reference} is Android specific.
 \l QAndroidBinder is a convenience class that implements the most important
-methods in \l{Android: Binder}.
-It allows sending \l{QByteArray} or \l{QVariant} objcets between processes.
-For more information on how to use it with an Android Service, see
-\l{Android Service with QAndroidBinder}{Android Service with QAndroidBinder Example}.
+methods in \l{Android: Binder}. It allows sending \l{QByteArray} or \l{QVariant}
+objcets between processes.
 
 \note Qt for Android has a limitation forcing the execution of only one service
     at a time when running multiple services in one process. Thus, it is recommended
