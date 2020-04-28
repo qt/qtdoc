@@ -36,11 +36,55 @@
 
     \section1 Qt 5.15.0
 
+    \section2 Qt 3D Module
+
+    \list
+        \li \l{Dear ImGui}{imgui} version v1.66b was added under MIT License.
+    \endlist
+
     \section2 Qt Core Module
 
     \list
         \li \l{unicode-character-database}{UCD} got updated to upstream revision 26.
         \li The copy of the \l{psl}{The Public Suffix List} got updated on 2020-03-13.
+    \endlist
+
+    \section2 Qt DBUS Module
+
+    \l{libdbus-1-headers}{libdus-1 headers} got updated to upstream version 1.13.12
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{libjpeg}{LibJPEG-turbo} got updated to upstream version 2.0.4.
+        \li Usage of \l{XCB-XInput} under MIT License is now documented.
+    \endlist
+
+    section2 Qt Image Formats
+
+    \l{libwebp}{WebP (libwebp)} got updated to upstream version 1.1.0.
+
+    \section2 Qt Location Module
+
+    \list
+        \li Use of \l{geosimplify-js polyline simplification library}{geosimplify.js} is now documented.
+    \endlist
+
+    \section2 Qt Quick3D Module
+
+    \list
+        \li Usage of \l{assimp}{Open Asset Import Library} got updated to upstream version 5.0.1.
+    \endlist
+
+    \section2 Qt Wayland Compositor
+
+    \list
+        \li \l{wayland-tablet-protocol}{Wayland Tablet Protocol} unstable v2, version 1 was added under the MIT License.
+        \li \l{wayland-xdg-decoration-protocol}{Wayland xdg-decoration Protocol} was updated to unstable v1, version 2
+        \li \l{wayland-xdg-shell-protocol}{Wayland XDG Shell Protocol} was updated to version 1.18
+        \li \l{wayland-text-input-unstable}{Wayland Text Input Protocol} was updated to unstable version v2
+        \li \l{wayland-linux-dmabuf-unstable-v1}{Wayland Linux Dmabuf Unstable V1 Protocol} was updated to unstable v1, version 3
+        \li \l{wayland-eglstream-controller}{Wayland EGLStream Controller Protocol} was updated to version 1.1.1
     \endlist
 
     \section2 Qt WebEngine Module
