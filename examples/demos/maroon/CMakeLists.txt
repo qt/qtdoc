@@ -1,0 +1,118 @@
+# Generated from maroon.pro.
+
+cmake_minimum_required(VERSION 3.14)
+project(maroon LANGUAGES CXX)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+set(INSTALL_EXAMPLEDIR "examples/demos/maroon")
+
+find_package(Qt6 COMPONENTS Core)
+find_package(Qt6 COMPONENTS Gui)
+find_package(Qt6 COMPONENTS Qml)
+find_package(Qt6 COMPONENTS Quick)
+
+add_qt_gui_executable(maroon
+    main.cpp
+)
+target_link_libraries(maroon PUBLIC
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::Quick
+)
+
+
+# Resources:
+set(maroon_resource_files
+    "content/BuildButton.qml"
+    "content/GameCanvas.qml"
+    "content/GameOverScreen.qml"
+    "content/InfoBar.qml"
+    "content/NewGameScreen.qml"
+    "content/SoundEffect.qml"
+    "content/audio/bomb-action.wav"
+    "content/audio/catch-action.wav"
+    "content/audio/catch.wav"
+    "content/audio/currency.wav"
+    "content/audio/factory-action.wav"
+    "content/audio/melee-action.wav"
+    "content/audio/projectile-action.wav"
+    "content/audio/shooter-action.wav"
+    "content/gfx/background.png"
+    "content/gfx/bomb-action.png"
+    "content/gfx/bomb-idle.png"
+    "content/gfx/bomb.png"
+    "content/gfx/button-help.png"
+    "content/gfx/button-play.png"
+    "content/gfx/catch-action.png"
+    "content/gfx/catch.png"
+    "content/gfx/cloud.png"
+    "content/gfx/currency.png"
+    "content/gfx/dialog-bomb.png"
+    "content/gfx/dialog-factory.png"
+    "content/gfx/dialog-melee.png"
+    "content/gfx/dialog-pointer.png"
+    "content/gfx/dialog-shooter.png"
+    "content/gfx/dialog.png"
+    "content/gfx/factory-action.png"
+    "content/gfx/factory-idle.png"
+    "content/gfx/factory.png"
+    "content/gfx/grid.png"
+    "content/gfx/help.png"
+    "content/gfx/lifes.png"
+    "content/gfx/logo-bubble.png"
+    "content/gfx/logo-fish.png"
+    "content/gfx/logo.png"
+    "content/gfx/melee-action.png"
+    "content/gfx/melee-idle.png"
+    "content/gfx/melee.png"
+    "content/gfx/mob-idle.png"
+    "content/gfx/mob.png"
+    "content/gfx/points.png"
+    "content/gfx/projectile-action.png"
+    "content/gfx/projectile.png"
+    "content/gfx/scores.png"
+    "content/gfx/shooter-action.png"
+    "content/gfx/shooter-idle.png"
+    "content/gfx/shooter.png"
+    "content/gfx/sunlight.png"
+    "content/gfx/text-1.png"
+    "content/gfx/text-2.png"
+    "content/gfx/text-3.png"
+    "content/gfx/text-blank.png"
+    "content/gfx/text-gameover.png"
+    "content/gfx/text-go.png"
+    "content/gfx/wave.png"
+    "content/logic.js"
+    "content/mobs/MobBase.qml"
+    "content/towers/Bomb.qml"
+    "content/towers/Factory.qml"
+    "content/towers/Melee.qml"
+    "content/towers/Ranged.qml"
+    "content/towers/TowerBase.qml"
+    "maroon.qml"
+)
+
+qt6_add_resources(maroon "maroon"
+    PREFIX
+        "/demos/maroon"
+    FILES
+        ${maroon_resource_files}
+)
+
+if(TARGET Qt::Multimedia)
+    target_link_libraries(maroon PUBLIC
+        Qt::Multimedia
+    )
+endif()
+
+install(TARGETS maroon
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+)
