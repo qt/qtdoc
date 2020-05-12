@@ -155,10 +155,10 @@
         \li The ability to provide pixmaps or artwork for high resolution. For more details,
             see \l{Drawing High Resolution Versions of Pixmaps and Images}.
 
-        \li Qt 5.6 supports cross-platform high-DPI scaling for legacy applications, similar to
-            the scaling done natively in \macos. This allows applications written for low DPI
-            screens to run unchanged on high DPI devices. This feature is opt-in, and can be
-            enabled using the following environment variables:
+        \li Qt supports cross-platform high-DPI scaling similar to the scaling done natively
+            by \macos. This allows applications written for low-DPI screens to run unchanged
+            on high-DPI devices. This feature is opt-in, and can be enabled by the following
+            environment variables:
             \list
                 \li \c QT_AUTO_SCREEN_SCALE_FACTOR [boolean] enables automatic scaling,
                 based on the monitor's pixel density. This won't change the size of point-sized
