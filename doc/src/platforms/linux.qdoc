@@ -126,10 +126,10 @@
     table. To build Qt from its source code, you will also need to install the
     development packages for these libraries for your system.
 
-    It's possible to configure Qt with -qt-xcb, which compiles in a set of xcb helper
-    libraries instead of trying to link against the system versions. This can help make
-    Qt less dependent on some of the xcb helper libraries that might not be available
-    on all distributions. The table specifies which dependencies are provided by -qt-xcb.
+    \note From Qt 5.15 onwards, Qt does require libxcb 1.11. Also, the
+    \c{-qt-xcb} configure option got removed that was bundling some of the
+    libs below. Anyhow, you can now configure with \c{-bundled-xcb-xinput}
+    to avoid a dependency to system xcb-xinput.
 
     \table 100%
     \header
@@ -148,61 +148,61 @@
     \li xcb-render
     \li libxcb-render
     \li X C Bindings for Render extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="OptionalColor"}
     \li xcb-render-util
     \li libxcb-render-util
     \li Utility library for XCB for Render extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 0.3.8
     \row {id="OptionalColor"}
     \li xcb-shape
     \li libxcb-shape
     \li X C Bindings for Shape extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="DefaultColor"}
     \li xcb-randr
     \li libxcb-randr
     \li X C Bindings for Resize and Rotate Extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="DefaultColor"}
     \li xcb-xfixes
     \li libxcb-xfixes
     \li X C Bindings for Fixes Extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="DefaultColor"}
     \li xcb-sync
     \li libxcb-sync
     \li X C Bindings for Sync Extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="DefaultColor"}
     \li xcb-shm
     \li libxcb-shm
     \li X C Bindings for Shared Memory Extension
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 1.9
     \row {id="DefaultColor"}
     \li xcb-icccm
     \li libxcb-icccm
     \li X C Bindings for ICCCM Protocol
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 0.3.9
     \row {id="DefaultColor"}
     \li xcb-keysyms
     \li libxcb-keysyms
     \li Utility library for XCB for keycode conversion
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 0.3.9
     \row {id="DefaultColor"}
     \li xcb-image
     \li libxcb-image
     \li Utility library for XCB for XImage and XShmImage, used for QBackingStore and cursor support
-    \li auto-detected or provided by -qt-xcb
+    \li auto-detected
     \li 0.3.9
 
     \row {id="OptionalColor"}
@@ -230,13 +230,6 @@
     \li Font engine
     \li
     \li 2.3.0
-
-    \row {id="DefaultColor"}
-    \li Xi
-    \li libXi
-    \li X11 Input Extensions
-    \li \tt{-xinput} or auto-detected
-    \li 1.3.0
     \row {id="DefaultColor"}
     \li Xext
     \li libXext
@@ -298,20 +291,13 @@
     \li libfontconfig1-dev
     \li libfreetype6-dev
     \li libx11-dev
+    \li libx11-xcb-dev
     \li libxext-dev
     \li libxfixes-dev
     \li libxi-dev
     \li libxrender-dev
     \li libxcb1-dev
-    \li libx11-xcb-dev
     \li libxcb-glx0-dev
-    \li libxkbcommon-x11-dev
-    \endlist
-
-    Additionally, if you do not configure with -qt-xcb, you should also
-    install these development packages:
-
-    \list
     \li libxcb-keysyms1-dev
     \li libxcb-image0-dev
     \li libxcb-shm0-dev
@@ -321,6 +307,8 @@
     \li libxcb-shape0-dev
     \li libxcb-randr0-dev
     \li libxcb-render-util0-dev
+    \li libxkbcommon-dev
+    \li libxkbcommon-x11-dev
     \endlist
 
     Some of these packages depend on others in this list, so installing one
