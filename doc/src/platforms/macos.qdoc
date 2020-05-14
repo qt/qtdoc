@@ -1227,6 +1227,15 @@
         \li \c{-codesign=<ident>}
         \li Run \c codesign with the given identity on all executables
     \row
+        \li \c{-hardened-runtime}
+        \li Enable Hardened Runtime when code signing
+    \row
+        \li \c{-timestamp}
+        \li Include a secure timestamp when code signing (requires internet connection)
+    \row
+        \li \c{-sign-for-notarization=<ident>}
+        \li Activate the necessary options for notarization (requires internet connection). The activated options are \c{-hardened-runtime}, \c{-timestamp} and \c{-codesign=<ident>}
+    \row
         \li \c{-appstore-compliant}
         \li Skip deployment of components that use private API
     \row

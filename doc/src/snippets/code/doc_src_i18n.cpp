@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QTranslator myappTranslator;
-    myappTranslator.load("myapp_" + QLocale::system().name());
+    myappTranslator.load(QLocale(), QLatin1String("myapp"), QLatin1String("_"), QLatin1String(":/i18n"));
     app.installTranslator(&myappTranslator);
 
     return app.exec();

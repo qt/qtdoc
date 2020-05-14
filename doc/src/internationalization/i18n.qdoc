@@ -190,8 +190,9 @@
     \snippet snippets/code/doc_src_i18n.cpp 8
 
     For a translation-aware application, a QTranslator object is created, then a
-    translation is loaded according to the current locale at runtime, and
-    finally, the translator object is installed into the application.
+    translation is loaded according to the user's preferred UI display locale at
+    runtime, and finally, the translator object is installed into the
+    application.
 
     \section1 Locating Qt Translations
 
