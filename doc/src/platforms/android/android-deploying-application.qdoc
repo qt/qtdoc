@@ -96,8 +96,7 @@
     the following after running \c qmake or \c CMake:
 
     \code
-    export ANDROID_BUILD_DIR=$BUILD_DIR/android-build
-    make -j$(nproc) install INSTALL_ROOT=$ANDROID_BUILD_DIR
+    make -j$(nproc) apk_install_target
     \endcode
 
     The previous command copies the application's binaries and resources
@@ -244,8 +243,13 @@
 
     You can place any assets that are intended to be accessed by Java code under
     \c{$ANDROID_PACKAGE_SOURCE_DIR/assets/}. For more information on using assets
-    with Qt, see \l{Porting to Android}. However, to have the best integration
-    with Qt, it is recommended to use \l{The Qt Resource System}.
+    with Qt, see \l{Porting to Android}.
+
+    \note Using \l{The Qt Resource System} entails having \c{.qrc} files bundled
+        in the \c{.so} files which must be unpacked first to be loaded by the
+        linker, while the Android assets are compressed in the \e{.apk} and can
+        be directly used in your application. That means using the Android assets
+        can take up less space, but it's not a cross-platform solution with Qt.
 
     \section2 Android Libraries
 
@@ -304,9 +308,8 @@
     mkdir build-project
     cd build-project
     ~/Qt/5.15.0/android/bin/qmake ../project/project.pro
-    export ANDROID_BUILD_DIR=$(pwd)/android-build/
     make -j$(nproc)
-    make -j$(nproc) install INSTALL_ROOT=$ANDROID_BUILD_DIR
+    make -j$(nproc) apk_install_target
     \endcode
 
     \section2 Command Line Arguments
@@ -429,7 +432,21 @@
     it should be possible to run \l androiddeployqt on it with no modifications
     and get a working Qt for Android application.
 
-    However, there are a set of \c qmake variables that can be used to tailor
+    There are two important environment variables used by Qt:
+
+    \list
+        \li \c{ANDROID_SDK_ROOT}: specifies the path to the Android SDK used for
+            building the application. The Android SDK contains the build-tools,
+            Android NDK, and Android toolchains.
+        \li \c{ANDROID_NDK_ROOT}: specifies the path to the Android NDK used to
+            build the application. It is not recommended to hard-code this path,
+            since different Qt for Android versions can depend on different
+            Android NDK versions.
+    \endlist
+
+    \note Qt Creator sets these variables by default.
+
+    There are a set of \c qmake variables that can be used to tailor
     your package. At some point during development, you will most likely want
     to look into these variables to customize your application.
 
@@ -445,14 +462,13 @@
         \li \l{ANDROID_ABIS}
         \li \l{ANDROID_API_VERSION}
         \li \l{ANDROID_DEPLOYMENT_DEPENDENCIES}
-        \li \l{ANDROID_SDK_ROOT}
-        \li \l{ANDROID_NDK_ROOT}
         \li \l{ANDROID_MIN_SDK_VERSION}
         \li \l{ANDROID_TARGET_SDK_VERSION}
         \li \l{JAVA_HOME}
     \endlist
 
-    Also, the most useful \c qmake variable when writing a Qt module:
+    Also, the following \c qmake variables are primarily useful when writing a Qt module, and not
+    normal applications:
 
     \list
         \li \l{ANDROID_BUNDLED_JAR_DEPENDENCIES}
@@ -467,5 +483,5 @@
 
     Qt Creator runs the \l androiddeployqt tool by default, and provides easy
     and intuitive user interfaces to specify many of the options. For more
-    information, see \l{Qt Creator: Deploying Applications to Android Devices}{the Qt Creator documentation}.
+    information, see \l{Qt Creator: Deploying Applications to Android Devices}.
 */

@@ -384,6 +384,12 @@
         \li All
         \li UI Components for creating stunning 3D data visualizations.
     \row
+        \li \l{Qt Lottie Animation}
+        \li All
+        \li All
+        \li A QML API for rendering graphics and animations in JSON format,
+            exported by the \l Bodymovin plugin for Adobe® After Effects.
+    \row
         \li \l[QtNetworkAuth]{Qt Network Authorization}
         \li All
         \li All
@@ -401,6 +407,12 @@
         \li All
         \li Web browsers with WebAssembly support
         \li A platform target to compile Qt applications for the web browsers using WebAssembly.
+    \row
+        \li \l[QtQuick3D]{Qt Quick 3D}
+        \li All
+        \li All
+        \li Provides a high-level API for creating 3D content or UIs based on
+            Qt Quick.
     \row
         \li \l {Qt Quick WebGL}
         \li All
@@ -436,6 +448,11 @@
     \row \li \l{Qt for Device Creation}
          \li Tools for fast, easy, and fully-integrated embedded device application development.
              Included in most other value-add solutions.
+    \row \li \l{Qt for MCUs}
+         \li Offers a complete graphics framework and toolkit with everything
+             needed to design, develop, and deploy GUIs on microcontroller
+             units (MCUs). Applications can run either on bare metal or on a
+             real-time operating system.
     \endtable
 
     \section1 Technology Preview Features
@@ -448,13 +465,8 @@
         \li Feature
         \li Description
     \row
-        \li \l{Qt Lottie Animation} (Technology Preview)
-        \li A QML API for rendering graphics and animations in JSON format,
-            exported by the \l Bodymovin plugin for Adobe® After Effects.
-    \row
-        \li \l[QtQuick3D]{Qt Quick 3D} (Technology Preview)
-        \li Qt Quick 3D provides a high-level API for creating 3D content or UIs based on
-            Qt Quick.
+        \li \l{Qt PDF} (Technology Preview)
+        \li Provides C++ and QML APIs for rendering PDF documents.
     \endtable
 
     \section1 Qt Tools
