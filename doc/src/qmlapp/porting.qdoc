@@ -86,6 +86,8 @@ Text {
 }
 \endcode
 
+\section1 The OpenGLInfo QML type has been removed
 
-
+OpenGLInfo was deprecated in Qt 5.8 due to being superseded by GraphicsInfo. In Qt 6,
+OpenGLInfo is removed. Use GraphicsInfo instead.
 
