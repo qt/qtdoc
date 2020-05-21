@@ -109,10 +109,6 @@
            need to be found by copying the DLLs to the
            application folder or by adding the \e bin folder of the ICU
            installation to the \c PATH environment variable.
-
-        \li \l{ANGLE}: This library converts OpenGL ES 2.0 API calls to DirectX 11 or DirectX 9
-           calls (depending on availability), removing the need to install graphics drivers on
-           the target machines.
      \endlist
 
     \section2 SSL
@@ -210,81 +206,49 @@
 
     \section1 Graphics Drivers
 
-    For \l{Qt Quick} 2 to work, a graphics driver that provides OpenGL 2.1 or
-    higher is required. The default driver from Windows is OpenGL 1.1. Qt
-    includes a version of the \l{ANGLE} project which is included from the
-    Windows Qt installers. ANGLE implements the
-    OpenGL ES 2.0 API on top of DirectX 11 or DirectX 9.
+    For \l{Qt Quick} 2 to work, a graphics driver that provides Direct 3D 11.1,
+    Vulkan 1.0, or OpenGL 2.1 or higher is required. As of Qt 6, the default
+    for Qt Quick on Windows is Direct3D 11. This is different from Qt 5, where
+    the default was OpenGL, either directly, or through ANGLE, an OpenGL to
+    Direct3D translator. ANGLE is no longer shipped with Qt in Qt 6.
 
-    ANGLE requires that the DirectX SDK is installed when building Qt.
-    If MSVC is used, the DirectX SDK will be provided by the Windows SDK. In
-    this case, you will need at least Windows SDK 10.
-    For MinGW builds, you have to install the DirectX SDK provided by Microsoft.
+    To force using Direct3D's software rasterizer (WARP), set the environment
+    variable \c{QSG_RHI_PREFER_SOFTWARE_RENDERER} to \c 1.
 
-    ANGLE chooses the render backend depending on availability. DirectX 11
-    is usually preferable. However, some graphics cards may not fully
-    support it. For these cases, the environment variable \c QT_ANGLE_PLATFORM
-    (introduced in Qt 5.4) can be used to control the render backend. Possible
-    values are \c d3d11, \c d3d9 and \c warp.
+    To request using Vulkan or OpenGL, both of which require a Vulkan or OpenGL
+    driver to be installed, set the environment variable \c{QSG_RHI_BACKEND} to
+    \c vulkan or \c opengl, or use the equivalent
+    \l{QQuickWindow::setSceneGraphBackend()}{C++ API} in \c{main()}.
 
-    To use a custom version of ANGLE, set the \c ANGLE_DIR environment variable
-    to point to the ANGLE source tree before building Qt.
+    While not the default for \l{Qt Quick}, OpenGL is still commonly used in
+    many Qt applications, for example in QWidget-based applications building on
+    QOpenGLWindow or QOpenGLWidget. The following sections cover some OpenGL
+    specifics of a Qt build.
 
-    If you installed additional OpenGL drivers from your hardware vendor, then
-    you may want to consider using this version of OpenGL instead of ANGLE. To
-    use OpenGL, pass the command line options \c{-opengl desktop} to the
-    configure script.
+    \section2 Dynamically Loading OpenGL
 
-    \badcode
-    configure -opengl desktop
-    \endcode
-
-    To use an OpenGL ES 2.0 emulator instead of ANGLE, use the configure
-    options: \c{-opengl es2 -no-angle}.
-
-    \badcode
-    configure -opengl es2 -no-angle
-    \endcode
-
-    \section2 Dynamically Loading Graphics Drivers
-
-    In addition to the build time configuration, Qt supports choosing
-    and loading the OpenGL implementation at runtime. To use this
-    mode, pass \c{-opengl dynamic} to the configure script.
+    Qt supports choosing and loading the OpenGL implementation at runtime. This
+    mode is the default, and can be explicitly requested by passing \c{-opengl
+    dynamic} to the configure script.
 
     \badcode
     configure -opengl dynamic
     \endcode
 
-    \note As of Qt 5.5 this is the configuration used by the official, pre-built
-    binary packages of Qt. It is strongly recommended to use it also in custom
-    builds, especially for Qt binaries that are deployed alongside applications.
-
-    \note Combining \c{-opengl dynamic} with \c{-static} is also possible, but
-    be aware that ANGLE will not be statically linked into the applications in
-    this case, it will still be built as a shared library.
-
     This configuration is the most flexible because no dependencies or
     assumptions are hardcoded about the OpenGL implementation during build
     time. It allows robust application deployment. When a given environment
     fails to provide a proper OpenGL 2.0 implementation, it will fall back
-    automatically to ANGLE. This fallback will be completely transparent to the
-    application, and will allow Qt Quick or other OpenGL code to function by
-    translating to Direct3D. Such a fallback could, for example, take place on a
-    Windows 7 PC with no additional graphics drivers installed. On other
-    machines, where there is sufficient OpenGL support, the normal desktop
-    OpenGL drivers will be used. Additionally, pure software-based OpenGL
-    implementations may be available as additional fallbacks in the future,
-    allowing running Qt Quick applications without a GPU.
+    automatically to load an alternative to \c{opengl32.dll}, the default name
+    of which is \c{opengl32sw.dll}. The pre-built Qt packages ship a build of
+    Mesa llvmpipe, a software rasterizer implementation of OpenGL, under that
+    name.
 
     When configured with \c{-opengl dynamic}, neither Qt nor the applications
-    built using \c qmake will link to the opengl32 (standard desktop OpenGL) or
-    QtANGLE libraries. Instead, the appropriate library is chosen at
-    runtime. By default, Qt will determine whether the system's opengl32.dll
-    provides OpenGL 2 functions. If these are present, opengl32.dll is used,
-    otherwise the ANGLE libraries (libEGL.dll and libGLESv2.dll) will be used.
-    In case the ANGLE libraries are missing or initialization fails for some
-    reason, an additional fallback is attempted by trying to load
+    built using \c qmake or \c CMake will link to opengl32.lib. Instead, the
+    library is chosen and loaded at runtime. By default, Qt will determine
+    whether the system's opengl32.dll provides OpenGL 2 functions. If these are
+    present, opengl32.dll is used, otherwise it attempts to load
     \c{opengl32sw.dll}. See below for details.
 
     The loading mechanism can be configured through the \c{QT_OPENGL}
@@ -292,7 +256,7 @@
 
     \list
     \li \c Qt::AA_UseDesktopOpenGL Equivalent to setting \c{QT_OPENGL} to \c{desktop}.
-    \li \c Qt::AA_UseOpenGLES Equivalent to setting \c{QT_OPENGL} to \c{angle}.
+    \li \c Qt::AA_UseOpenGLES Has no effect in Qt 6.
     \li \c Qt::AA_UseSoftwareOpenGL Equivalent to setting \c{QT_OPENGL} to \c{software}.
     \endlist
 
@@ -301,22 +265,16 @@
     examined.
 
     The dynamic loading has a significant impact on applications that contain
-    native OpenGL calls: they may fail to link since \c qmake no longer
-    automatically adds opengl32.lib or libGLESv2.lib. Instead, applications are
-    expected to use the OpenGL functions via the QOpenGLFunctions class. Thus
-    the direct dependency on the OpenGL library is removed and all calls will be
-    routed during runtime to the implementation chosen by Qt.
-
-    Applications that require a certain OpenGL implementation (for example,
-    desktop OpenGL due to relying on features provided by OpenGL 3.0 or higher)
-    should set the application attributes \c Qt::AA_UseOpenGLES or \c
-    Qt::AA_UseDesktopOpenGL before instantiating QGuiApplication or
-    QApplication. When these attributes are set, no other OpenGL implementations
-    are considered. Additionally, if they wish to, such applications are free to
-    make direct OpenGL function calls by adding opengl32.lib to their .pro
-    project files: \e{LIBS += opengl32.lib} (Visual Studio) or \e{LIBS +=
-    -lopengl32} (MinGW). The result is, from the application's perspective,
-    equivalent to the \c{-opengl desktop} build configuration of Qt.
+    native OpenGL calls: they may fail to link since opengl32.lib is not
+    automatically specified to the linker. Instead, applications are expected
+    to use the OpenGL functions via the QOpenGLFunctions class. Thus the direct
+    dependency on the OpenGL library is removed and all calls will be routed
+    during runtime to the implementation chosen by Qt. Alternatively,
+    applications are free to make direct OpenGL function calls if they add
+    opengl32.lib to their .pro project files: \e{LIBS += opengl32.lib} (Visual
+    Studio) or \e{LIBS += -lopengl32} (MinGW). The result is, from the
+    application's perspective, equivalent to the \c{-opengl desktop} build
+    configuration of Qt.
 
     \c Qt::AA_UseSoftwareOpenGL is special in the sense that it will try to load
     an OpenGL implementation with a non-standard name. The default name is
@@ -338,24 +296,18 @@
 
     The following feature keywords are relevant for choosing the OpenGL implementation:
 
+    \note In Qt 6, the legacy ANGLE related keywords (\c disable_angle, \c disable_d3d11,
+    \c disable_d3d9) are accepted, but have no effect.
+
     \list
         \li \c disable_desktopgl - Disables OpenGL. This ensures that Qt does not attempt
         to use regular OpenGL (opengl32.dll), and that it starts with ANGLE right
         away. This is useful to prevent bad OpenGL drivers from crashing the application.
 
-        \li \c disable_angle - Disables ANGLE. Ensures that Qt does not attempt to use
-        ANGLE (and so Direct3D).
-
-        \li \c disable_d3d11 - Disables the D3D11 rasterizer in ANGLE. Instead, the next
-        D3D rendering option is tried first. The default order is: D3D11, D3D9, WARP,
-        reference implementation.
-
-        \li \c disable_d3d9 - Disables the D3D9 rasterizer in ANGLE
-
         \li \c disable_rotation - Forces the application to run in landscape orientation
-        always. It applies to OpengGL only and has no effect when using ANGLE or Software
-        OpenGL implementations. This is intended for drivers that have issues with rotation.
-        This feature keyword was introduced in Qt 5.6.
+        always. It has no effect when using a software OpenGL implementation. This is
+        intended for drivers that have issues with rotation.  This feature keyword was
+        introduced in Qt 5.6.
 
         \li \c disable_program_cache - Disable storing shader program binaries on
         disk. This feature keyword was introduced in Qt 5.12.
@@ -385,10 +337,11 @@
     ...
     \endcode
 
-    When \c{QT_OPENGL_BUGLIST} is not specified, a built-in list will be
-    used. This typically includes some older, less-capable graphics cards with
-    \c disable_desktopgl set, in order to prevent Qt from using their unstable
-    desktop OpenGL implementations and instead fall back to ANGLE right away.
+    When \c{QT_OPENGL_BUGLIST} is not specified, a built-in list will be used.
+    This typically includes some older, less-capable graphics cards with \c
+    disable_desktopgl set, in order to prevent Qt from using their unstable
+    desktop OpenGL implementations and instead fall back to attempting to load
+    the software-based alternative library right away.
 
     In practice the most common combinations are expected to be the following:
 
@@ -400,9 +353,6 @@
         desired. This ensures that the only option Qt tries is the sofware rasterizer
         (opengl32sw.dll). Can be useful in virtual machines and applications that are
         deployed on a wide range of old systems.
-
-        \li \c disable_d3d11, disable_d3d9 - When the accelerated D3D options are known to
-        be unstable and WARP is desired (when available). Can be useful in virtual machines.
     \endlist
 
     The supported keys for matching a given card or driver are the following. Note that
@@ -437,6 +387,23 @@
     recommended to set this environment variable in order to enable the application to run
     normally. This environment variable was introduced in Qt 5.15.
 
+    \section2 Direct dependency to opengl32.dll
+
+    An alternative to the default \c dynamic OpenGL builds is to depend
+    directly on opengl32.dll. For this mode, pass pass the command line options
+    \c{-opengl desktop} to the configure script.
+
+    \badcode
+    configure -opengl desktop
+    \endcode
+
+    \note Using EGL and OpenGL ES is not supported on Windows. In Qt 6, OpenGL
+    on Windows always implies using WGL as the windowing system interface.
+
+    In such Qt builds, many Qt shared libraries, and also Qt applications will
+    have a dependency to opengl32.dll, and therefore using an alternative
+    library is not possible.
+
     \section1 Building from Source
 
     These tools are not needed to run Qt 5 applications, but they are required
@@ -453,22 +420,6 @@
     \note Please make sure that the \c perl executable from ActivePerl is found
            in the path before the perl executable provided by msysgit, since the
            latter is outdated.
-
-
-    ANGLE depends on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
-    \l {http://sourceforge.net/projects/winflexbison/}{Win flex-bison}
-    projects. You can download a copy containing flex and bison from:
-    \l {https://download.qt.io/development_releases/gnuwin32/gnuwin32.zip}
-    or from the respective upstream projects:
-    \list
-        \li \l{http://gnuwin32.sourceforge.net/downlinks/gperf.php}{GPerf}
-        \li \l{http://sourceforge.net/projects/winflexbison/files/win_flex_bison-2.5.5.zip/download}{Bison, Flex}
-    \endlist
-
-    The \e gnuwin32/bin folder should be added to the \c PATH variable.
-
-    \note If you download from the winflexbison project, you must
-    download \e win_bison and \e win_flex and rename them to \e bison and \e flex.
 
     For instructions for building the Qt 5 source, read
     the \l{Qt for Windows - Building from Source} page.
@@ -653,7 +604,7 @@
     The simplest way to use windeployqt is to add the bin directory of your Qt
     installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
       windeployqt <path-to-app-binary>
-    If ICU, ANGLE, etc. are not in the bin directory, they need to be in the PATH
+    If ICU, etc. are not in the bin directory, they need to be in the PATH
     variable. If your application uses Qt Quick, run:
       windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
 
@@ -685,8 +636,6 @@
       --webkit2                 Deployment of WebKit2 (web process).
       --no-webkit2              Skip deployment of WebKit2.
       --json                    Print to stdout in JSON format.
-      --angle                   Force deployment of ANGLE.
-      --no-angle                Disable deployment of ANGLE.
       --no-opengl-sw            Do not deploy the software rasterizer library.
       --list <option>           Print only the names of the files copied.
                                 Available options:
@@ -811,12 +760,8 @@
     is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
-    If dynamic OpenGL is used, you additionally need to include the
-    libraries required for \l{ANGLE} and software rendering. For \l{ANGLE},
-    both \c libEGL.dll and \c libGLESv2.dll from Qt's \c lib directory are
-    required as well as the HLSL compiler from DirectX. The HLSL compiler
-    library, d3dcompiler_XX.dll, where XX is the version number that ANGLE
-    (libGLESv2) was linked against.
+    If dynamic OpenGL is used, you may additionally want to include the library
+    required software-based OpenGL, if the application is compatible with it.
 
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
     need to be added to the \c release folder, too.
@@ -904,16 +849,13 @@
         \li {2, 1} \c msvcp140.dll
     \endtable
 
-    If dynamic OpenGL was used, then the archive must additionally contain:
+    If dynamic OpenGL was used, then the archive may additionally contain:
 
     \table 100%
     \header
         \li Component \li {2, 1} File Name
     \row
-        \li ANGLE libraries
-        \li {2, 1} libEGL.dll, libGLESv2.dll
-    \row
-        \li HLSL compiler library for ANGLE
+        \li HLSL compiler library for Qt Quick on Direct3D 11
         \li {2, 1} d3dcompiler_XX.dll
     \row
         \li OpenGL Software renderer library
@@ -1009,9 +951,6 @@
 
     Depending on configuration, compiler specific libraries must be
     redistributed along with your application.
-
-    For example, if Qt is built using \l{ANGLE}, its shared libraries
-    and the HLSL compiler from DirectX to be shipped as well.
 
     You can check which
     libraries your application is linking against by using the
