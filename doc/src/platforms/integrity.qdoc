@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -60,7 +60,7 @@
     \section1 Supported Qt Modules
 
     Qt for INTEGRITY has been tested to support the following Qt modules: Qt Core,
-    Qt Network, Qt GUI, Qt Quick, Qt QML, Qt Quick Controls 2, Qt 3D, Qt Widgets,
+    Qt Network, Qt GUI, Qt Quick, Qt Quick 3D, Qt QML, Qt Quick Controls 2, Qt 3D, Qt Widgets,
     Qt Image Formats, Qt XML Patterns, Qt SVG.
 
     Other Qt modules may work with Qt for INTEGRITY, but we cannot guarantee that.
@@ -69,15 +69,32 @@
 
     Qt for INTEGRITY can be built on the following hosts:
     \list
-        \li 64-bit Linux distributions
-        \li 32-bit and 64-bit Windows 10
+        \list
+            \li Qt 5.15.x:
+            \list
+                \li 64-bit Linux distributions
+                \li 64-bit Windows 10
+            \endlist
+            \li Qt 5.9.x - Qt 5.14.x:
+            \list
+                \li 64-bit Linux distributions
+                \li 32-bit and 64-bit Windows 10
+            \endlist
+        \endlist
     \endlist
 
     Qt for INTEGRITY supports building and developing applications for the
     following development boards:
     \list
-        \li \l {https://boundarydevices.com/product/sabre-lite-imx6-sbc/}
-        {Boundary Devices BD-SL-i.MX6}
-        \li \l  {http://www.nvidia.com/object/tegra-x1-processor.html} {NVIDIA Tegra X1}
+        \li Qt 5.15.x:
+            \list
+                \li \l{https://www.intrinsyc.com/automotive-development-platforms/sa8155p-automotive-development-platform/}{Qualcomm SA8155P ADP }
+            \endlist
+        \li Qt 5.9.x - Qt 5.14.x:
+            \list
+                \li \l {https://boundarydevices.com/product/sabre-lite-imx6-sbc/}
+                {Boundary Devices BD-SL-i.MX6}
+                \li \l {http://www.nvidia.com/object/tegra-x1-processor.html} {NVIDIA Tegra X1}
+            \endlist
     \endlist
 */
