@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -539,6 +539,15 @@
     \snippet snippets/code/doc_src_platform-notes.qdoc 2
 
     Install Qt into a sub-directory without spaces to avoid this problem.
+
+    \section1 Maximum path length
+
+    The Win32 API that both Qt and compiler tools use has a built-in maximum
+    file path length of 260 characters (\c MAX_PATH). This can hit you in
+    various forms if either your absolute or relative directory structures
+    are too verbose.
+    It is therefore recommended to keep the file system paths within limits,
+    and put build directories nearby the source directories.
 
     \section1 Possible GL conflict
 
