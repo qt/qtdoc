@@ -63,6 +63,13 @@ APIs other than OpenGL as well.
 \li QQuickItem's geometryChanged() function was renamed to
 \l{QQuickItem::}{geometryChange()}.
 
+\li QQuickWidget is functional only when the scenegraph is rendering with
+OpenGL. It will not be functional when using another graphics API, such as
+Vulkan or Metal. Applications relying on QQuickWidget should force the usage of
+OpenGL by calling
+\c{QQuickWindow::setSceneGraphBackend(QSGRendererInterface::OpenGLRhi)} in their
+main() function.
+
 \endlist
 
 \section2 Changes to Qt Quick Scenegraph
@@ -81,10 +88,13 @@ removed QSGAbstractRenderer has been moved back to private.
 removed. Applications are expected to use the revised, OpenGL-independent
 QSGMaterial APIs instead.
 
-\li The QQuickFramebufferObject class is available with an unchanged API,
-but is only functional when the scenegraph is rendering with OpenGL. It
-will not be functional when using another graphics API, such as Vulkan or
-Metal.
+\li The QQuickFramebufferObject class is available with an unchanged API, but is
+only functional when the scenegraph is rendering with OpenGL. It will not be
+functional when using another graphics API, such as Vulkan or
+Metal. Applications relying on QQuickFramebufferObject should force the usage of
+OpenGL by calling
+\c{QQuickWindow::setSceneGraphBackend(QSGRendererInterface::OpenGLRhi)} in their
+main() function.
 
 \li Subclasses of QSGImageNode are now required to override new
 additional virtuals, such as setAnisotropyLevel() and anisotropyLevel().
