@@ -76,6 +76,19 @@ main() function.
 
 \list
 
+\li QSGMaterialShader has a changed interface. Implementations should
+not rely on OpenGL anymore, and cannot assume that functions, such as
+the now-removed updateState(), are called with a QOpenGLContext
+current. In the new, data-oriented interface updateState() is replaced
+by \l{QSGMaterialShader::updateUniformData()}{updateUniformData()},
+\l{QSGMaterialShader::updateSampledImage()}{updateSampledImage()}, and
+\l{QSGMaterialShader::updateGraphicsPipelineState()}{updateGraphicsPipelineState()}.
+Instead of GLSL shader code provided as strings, shaders are now
+expected to be preprocessed by the tools from the Qt Shader Tools
+module, such as the \c qsb command line tool, thus ensuring the shader
+assets are usable regardless of which graphics API (Vulkan, Metal,
+OpenGL, or Direct 3D) is used at run time.
+
 \li QSGEngine has been removed. In the unlikely case of an application
 utilizing this class, it is recommended to port to using
 QQuickRenderControl instead.
