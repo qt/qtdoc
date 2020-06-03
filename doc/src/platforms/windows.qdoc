@@ -566,8 +566,7 @@
     process of creating a deployable folder containing the \l{Qt}-related
     dependencies (libraries, QML imports, plugins, and translations) required
     to run the application from that folder.
-    It creates a sandbox for \l{Qt for UWP}{Universal Windows Platform (UWP)}
-    or an installation tree for Windows desktop applications, which can be
+    It creates an installation tree for Windows desktop applications, which can be
     easily bundled into an installation package.
 
     The tool can be found in \c{QTDIR/bin/windeployqt}. It needs to be run
