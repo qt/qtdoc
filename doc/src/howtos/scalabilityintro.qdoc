@@ -227,7 +227,7 @@
     evaluating JavaScript expressions comes with a performance cost.
 
     You can use bindings to handle low and high pixel density on platforms that
-    do not have automatic support for it (like \macos and iOS do).
+    do not have automatic support for it (like Android, \macos and iOS do).
     The following code snippet uses the \l{Screen}{Screen.PixelDensity}
     attached property to specify different images to display on screens with
     low, high, or normal pixel density:
@@ -245,9 +245,11 @@
         }
     \endcode
 
-    On \macos and iOS, you can provide alternative resources with double the size
-    and the \e @2x identifier for icons and images and place them in the
-    resource file. On Retina displays, the @2x versions are used automatically.
+    On Android, \macos and iOS, you can provide alternative resources with higher
+    resolutions by using the corresponding identifier (e.g. \e @2x, \e @3x,
+    or \e @4x) for icons and images, and place them in the resource file. The
+    version that matches the pixel density of the screen is automatically selected
+    for use.
 
     For example, the following code snippet will try to load \e artwork@2x.png
     on Retina displays:
@@ -437,12 +439,12 @@
     you can use a Loader.
 
     The target platforms might automate the loading of alternative resources for
-    different display densities in various ways. On iOS, the \e @2x filename
-    suffix is used to indicate high DPI versions of images. The \l Image QML
-    type and the QIcon class automatically load @2x versions of images and icons
-    if they are provided. The QImage and QPixmap classes automatically set the
-    \c devicePixelRatio of @2x versions of images to \c 2, but you need to add
-    code to actually use the @2x versions:
+    different display densities in various ways. On Android and iOS, the \e @2x
+    filename suffix is used to indicate high DPI versions of images. The \l Image
+    QML type and the QIcon class automatically load @2x versions of images and
+    icons if they are provided. The QImage and QPixmap classes automatically set
+    the \c devicePixelRatio of @2x versions of images to \c 2, but you need to
+    add code to actually use the @2x versions:
 
     \code
     if ( QGuiApplication::primaryScreen()->devicePixelRatio() >= 2 ) {
