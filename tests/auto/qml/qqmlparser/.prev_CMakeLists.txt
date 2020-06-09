@@ -4,7 +4,7 @@
 ## tst_qqmlparser Test:
 #####################################################################
 
-qt_add_test(tst_qqmlparser_doc # special case
+qt_add_test(tst_qqmlparser
     SOURCES
         tst_qqmlparser.cpp
     DEFINES
@@ -17,7 +17,7 @@ qt_add_test(tst_qqmlparser_doc # special case
 ## Scopes:
 #####################################################################
 
-qt_extend_target(tst_qqmlparser_doc CONDITION CMAKE_CROSSCOMPILING # special case
+qt_extend_target(tst_qqmlparser CONDITION CMAKE_CROSSCOMPILING
     DEFINES
         QTEST_CROSS_COMPILED
 )
