@@ -51,7 +51,7 @@
 /*
   model.cpp
 
-  A simple model that uses a QVector as its data source.
+  A simple model that uses a QList as its data source.
 */
 
 #include "model.h"
@@ -103,7 +103,7 @@ QVariant LinearModel::data(const QModelIndex &index, int role) const
 }
 
 /*!
-    Returns Qt::ItemIsEditable so that all items in the vector can be edited.
+    Returns Qt::ItemIsEditable so that all items in the list can be edited.
 */
 
 Qt::ItemFlags LinearModel::flags(const QModelIndex &index) const

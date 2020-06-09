@@ -53,7 +53,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
-#include <qvector.h>
+#include <qlist.h>
 
 class LinearModel : public QAbstractListModel
 {
@@ -74,7 +74,7 @@ public:
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
 
 private:
-    QVector<int> values;
+    QList<int> values;
 };
 
 #endif
