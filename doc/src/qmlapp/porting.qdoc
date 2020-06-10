@@ -91,3 +91,13 @@ Text {
 OpenGLInfo was deprecated in Qt 5.8 due to being superseded by GraphicsInfo. In Qt 6,
 OpenGLInfo is removed. Use GraphicsInfo instead.
 
+\section1 OpenGL is no longer the default choice on some platforms
+
+While it will present no breaks for many applications, application developers
+should be aware that, OpenGL is not always the default choice anymore for Qt
+Quick rendering in Qt 6. Unless the \c software backend is used, a Qt Quick
+application could use OpenGL, Vulkan, Metal, or Direct3D 11 at run time. When no
+explicit request is made, either via the \c QSG_RHI_BACKEND environment variable
+or the QQuickWindow::setSceneGraphBackend() function, a platform-specific
+default is chosen by Qt Quick. This is currently Metal on macOS and iOS,
+Direct3D 11 on Windows, OpenGL elsewhere.

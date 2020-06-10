@@ -139,6 +139,20 @@ new QQuickWindow::setGraphicsDevice() function into use as
 QQuickRenderControl no longer provides the
 \c{initialize(QOpenGLContext*)} function.
 
+\li The deprecated QQuickWindow::createTextureFromId() function has
+been removed. Use QQuickWindow::createTextureFromNativeObject()
+instead.
+
+\li Setting QQuickPaintedItem and Context2D to \c Framebuffer mode has
+no effect. It will behave as if the mode was set to the default Image
+mode.
+
+\li The QQuickWindow::openglContextCreated() signal has been removed.
+
+\li The QQuickWindow functions setPersistentOpenGLContext and
+isPersistentOpenGLContext are renamed, and are now
+QQuickWindow::setPersistentGraphics() and QQuickWindow::isPersistentGraphics().
+
 \endlist
 
 \section1 Changes to Qt OpenGL
