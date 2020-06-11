@@ -63,7 +63,7 @@
     Store the ICO file in your application's source code directory,
     for example, with the name \c appico.ico.
 
-    \section2 Using CMake
+    \section2 Using CMake on Windows
 
     To configure your application's icon, a resource file containing
     information about the icon is required. A resource file is a text
@@ -75,16 +75,16 @@
     Once you have the \c .rc file, add information about the ICO file to it and
     use it to configure your application icon.
 
-    The following snippet example demonstrates how to set up application
-    icon using CMake:
+    The following snippet demonstrates how the \l{Qt Quick Demo - Photo Surface}
+    example application uses CMake to set up an application icon:
 
-    \snippet snippets/code/CMakeLists.txt appicon_windows
+    \snippet demos/photosurface/CMakeLists.txt appicon_windows
 
-    Notice that the \c set command, defines the \c APP_ICON_RESOURCE_WINDOWS
+    Notice that the \c set command, defines the \c app_icon_windows
     variable, which contains the path of the RC file. This variable is used
     with the \c add_executable command to set the application's icon.
 
-    \section2 Using qmake
+    \section2 Using qmake on Windows
 
     If you are still using qmake to generate your makefiles,
     you need to add a single line to your \c .pro project file:
@@ -127,26 +127,26 @@
     icns files. Using this tool also compresses the resulting icns file,
     so there is no need for you to perform additional compression.
 
-    \section2 Using CMake
+    \section2 Using CMake on \macos
 
     To configure the application's icon, the \c Info.plist file generated
     by CMake must contain the icon information. This can be achieved by
     setting the \c .icns file name to the \c MACOSX_BUNDLE_ICON_FILE variable.
 
-    The following snippet demonstrates how to set up the application icon using
-    CMake:
+    The following snippet demonstrates how the \l{Qt Quick Demo - Photo Surface}
+    example application uses CMake to set up an application icon:
 
-    \snippet snippets/code/CMakeLists.txt appicon_macOS
+    \snippet demos/photosurface/CMakeLists.txt appicon_macOS
 
     Notice that the first \c set command defines the \c MACOSX_BUNDLE_ICON_FILE
     variable, which is required to add the icon file to the \c Info.plist file.
-    The second \c set command defines the \c APP_ICON_MACOSX variable with the
+    The second \c set command defines the \c app_icon_macos variable with the
     absolute path to the icon file. This variable is then used to configure
     MACOSX_PACKAGE_LOCATION, which defines the icon file's install location.
-    Finally, the \c add_executable uses the \c APP_ICON_MACOSX variable to set
+    Finally, the \c add_executable uses the \c app_icon_macOS variable to set
     the application's icon.
 
-    \section2 Using qmake
+    \section2 Using qmake on \macos
 
     If you are still using qmake to generate your makefiles, you only need
     to add a single line to your \c .pro project file. For example,
