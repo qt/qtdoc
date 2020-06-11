@@ -157,6 +157,26 @@ QQuickWindow::setPersistentGraphics() and QQuickWindow::isPersistentGraphics().
 application has ensured the scene graph is using OpenGL for rendering, it can
 query the QOpenGLContext from QSGRendererInterface::getResource().
 
+\li Applications that rely on the QQuickWindow::beforeRendering() or
+afterRendering() signals to issue their own set of OpenGL rendering commands
+should call QQuickWindow::beginExternalCommands() before, and
+QQuickWindow::endExternalCommands() after, the OpenGL calls. This ensures that
+state changes made by the application code does not lead to confusion with
+regards to the scene graph renderer's own cached state. Note however, that, just
+like in Qt 5, changing OpenGL 3.x or 4.x state that is not used by the Qt Quick
+renderer can still lead to unexpected issues, so therefore application are
+advised to reset any such OpenGL state to the default value before returning
+from the slots or lambdas connected to these signals.
+
+\li Applications wishing to integrate their own set of Vulkan, Metal, or
+Direct3D rendering commands should be aware of new QQuickWindow signals in
+addition to QQuickWindow::beforeRendering() and afterRendering(). The existing
+Qt 5 pattern of connecting to just beforeRendering or afterRendering is often
+not sufficient anymore on its own, and will likely need to be complemented by
+connecting to additional signals, such as
+\l{QQuickWindow::beforeRenderPassRecording()}{beforeRenderPassRecording()} or
+\l{QQuickWindow::afterRenderPassRecording()}{afterRenderPassRecording()}.
+
 \endlist
 
 \section1 Changes to Qt OpenGL
