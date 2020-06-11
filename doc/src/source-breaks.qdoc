@@ -153,6 +153,10 @@ mode.
 isPersistentOpenGLContext are renamed, and are now
 QQuickWindow::setPersistentGraphics() and QQuickWindow::isPersistentGraphics().
 
+\li The QQuickWindow::openglContext() function has been removed. When the
+application has ensured the scene graph is using OpenGL for rendering, it can
+query the QOpenGLContext from QSGRendererInterface::getResource().
+
 \endlist
 
 \section1 Changes to Qt OpenGL
