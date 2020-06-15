@@ -52,7 +52,14 @@
     applications, and not as a launcher in a production environment.
     To launch a QML application in a production environment, develop a custom
     C++ application or bundle the QML file in a module. See \l {Deploying QML
-    applications} for more information.
+    applications} for more information. When given a bare \l Item as root
+    element, \c qmlscene will automatically create a window to show the scene.
+    Notably, \l QQmlComponent::create() will not do such a thing. Therefore,
+    when moving from a prototype developed with \c qmlscene to a C++
+    application, you need to either make sure the root element is a
+    \l Window or manually create a window using QtQuick's C++ API. On the flip
+    side, the ability to automatically create a window gives you the option to
+    load parts of your prototype separately with \c qmlscene.
 
     To load a .qml file, run the tool and select the file to be opened, or
     provide the file path on the command prompt:
