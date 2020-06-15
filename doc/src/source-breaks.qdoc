@@ -186,6 +186,14 @@ to evaluate if the call is necessary at all, because in many cases it likely is
 not. If some OpenGL state needs resetting to the defaults, issue the necessary
 OpenGL state change calls directly in the application code.
 
+\li setClearBeforeRendering() and clearBeforeRendering() have been removed from
+QQuickWindow. There is no option for skipping the color buffer clearing in Qt
+6. Calling setClearBeforeRendering() was often necessary in Qt 5 in combination
+with underlays, to prevent Qt Quick from clearing the content rendered into the
+color buffer. In Qt 6, there is a more robust approach: connecting to the
+beforeRenderPassRecording() signal, that is emitted after clearing, but before
+rendering Qt Quick's content.
+
 \endlist
 
 \section1 Changes to Qt OpenGL
