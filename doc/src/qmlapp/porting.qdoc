@@ -101,3 +101,23 @@ explicit request is made, either via the \c QSG_RHI_BACKEND environment variable
 or the QQuickWindow::setSceneGraphBackend() function, a platform-specific
 default is chosen by Qt Quick. This is currently Metal on macOS and iOS,
 Direct3D 11 on Windows, OpenGL elsewhere.
+
+\section1 ShaderEffect source properties are now URLs
+
+The ShaderEffect properties \l{ShaderEffect::vertexShader}{vertexShader} and
+\l{ShaderEffect::fragmentShader}{fragmentShader} both have a type of QUrl now,
+instead of QByteArray. Their behavior is therefore identical to other similar
+properties, such as \l{Image::source}{Image.source}. Existing code that refers
+to files via the \c file or \c qrc scheme will continue to work as-is. In
+addition, this change allows referring to files with a path relative to the
+component's (the .qml file's) location. Specifying the \c{file:} scheme is
+therefore optional now.
+
+\section1 ShaderEffect does not support inline GLSL shader strings anymore
+
+Just like with \l{QSGMaterial}{custom materials}, the effects are no longer
+specified in form of GLSL shader strings. Rather, shaders are expected to be
+preprocessed by the tools from the Qt Shader Tools module, such as the \c qsb
+command line tool, thus ensuring the shader assets are usable regardless of
+which graphics API (Vulkan, Metal, OpenGL, or Direct 3D) is used at run time.
+ShaderEffect items are expected to reference the resulting \c{.qsb} files.
