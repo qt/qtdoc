@@ -194,6 +194,10 @@ color buffer. In Qt 6, there is a more robust approach: connecting to the
 beforeRenderPassRecording() signal, that is emitted after clearing, but before
 rendering Qt Quick's content.
 
+\li The QQuickWindow::setSceneGraphBackend() overload taking a
+QSGRendererInterface::GraphicsApi argument has been renamed to
+\l{QQuickWindow::setGraphicsApi()}{setGraphicsApi()}.
+
 \endlist
 
 \section1 Changes to Qt OpenGL
