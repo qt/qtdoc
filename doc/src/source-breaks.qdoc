@@ -178,13 +178,9 @@ connecting to additional signals, such as
 \l{QQuickWindow::afterRenderPassRecording()}{afterRenderPassRecording()}.
 
 \li resetOpenGLState() has been moved from QQuickWindow to
-QQuickFramebufferObject::Renderer. This means that applications subclassing
-QQuickFramebufferObject::Renderer can continue to call the function, but they
-need to call it on \c this instead of the window. For usages outside of
-QQuickFramebufferObject, alternatives have to be implemented. It is recommended
-to evaluate if the call is necessary at all, because in many cases it likely is
-not. If some OpenGL state needs resetting to the defaults, issue the necessary
-OpenGL state change calls directly in the application code.
+QQuickOpenGLUtils. Note that it may not be necessary to call this function
+anymore from QQuickFramebufferObject:Renderer subclasses, because the basic
+OpenGL state is now reset both before and after the render() implementation.
 
 \li setClearBeforeRendering() and clearBeforeRendering() have been removed from
 QQuickWindow. There is no option for skipping the color buffer clearing in Qt
