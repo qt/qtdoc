@@ -1249,4 +1249,12 @@
         \badcode
         nmake docs
         \endcode
+
+        This will build the documentation in the build folder. If you have
+        installed Qt in a separate location, you will also need to install
+        the documentation:
+
+        \badcode
+        nmake install_docs
+        \endcode
 */
