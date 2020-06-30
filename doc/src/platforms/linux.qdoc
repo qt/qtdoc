@@ -316,6 +316,12 @@
     may cause others to be automatically installed. Other distributions may
     provide system packages with similar names.
 
+    \section1 Accessibility Dependencies
+
+    The Qt accessibility implementation uses the \e{Assistive Technology
+    Service Provider Interface} (AT-SPI). Besides DBUS, the development
+    package \c{libatspi2.0-dev} must be installed.
+
     \section1 OpenGL Dependencies
 
     Configure attempts to automatically detect OpenGL ES 2.0, or later, or
