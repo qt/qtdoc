@@ -171,7 +171,7 @@ Item {
                 height: 120
 
                 TapHandler {
-                    // The animation starts running when you click within the rectange
+                    // The animation starts running when you click within the rectangle
                     onTapped: anim.running = true;
                 }
             }
