@@ -367,10 +367,13 @@
             \li \c{--sign <url> <alias>}
             \li Sign the resulting package. Specifying this also implies
                 \c{--release}. The URL of the keystore file and the alias of the
-                key have to be specified. In addition, there are a number of
-                options that can be specified which are passed through to the
-                \c jarsigner tool. Pass \c{--help} to \c androiddeployqt for
-                more information.
+                key have to be specified. Optionally, set the following environment
+                variables to conceal the signing information
+                \c QT_ANDROID_KEYSTORE_PATH, \c QT_ANDROID_KEYSTORE_ALIAS,
+                \c QT_ANDROID_KEYSTORE_STORE_PASS, and \c QT_ANDROID_KEYSTORE_KEY_PASS.
+                In addition, there are a number of options that can be specified
+                which are passed through to the \c jarsigner tool.
+                Pass \c{--help} to \c androiddeployqt for more information.
         \row
             \li \c{--jdk <path>}
             \li Specify the path to the Java Development Kit. This is only
