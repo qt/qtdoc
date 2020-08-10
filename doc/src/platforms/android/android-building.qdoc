@@ -43,32 +43,20 @@
     First, install the Android SDK in one of two ways:
 
     \list
-        \li \l{Using the Package Manager}{Using the package manager}
-        \li \l{Using Manual Installation}{Using a manual installation}
+        \li \l{Using Manual Installation}
+        \li \l{Using Qt Creator}
+        \li \l{Using Android Studio}
     \endlist
 
-    \section3 Using the Package Manager
-
-    For any Debian-based Linux, use the following command:
-
-    \badcode
-    sudo apt install build-essential android-sdk openjdk-11-jdk
-    \endcode
-
-    It is recommended to install the Android NDK using sdkmanager, with the
-    following commands:
-
-    \badcode
-    sdkmanager --verbose --licenses
-    sdkmanager --update
-    sdkmanager "platforms;android-28" "ndk-bundle" "build-tools;28.0.3" "platform-tools"
-    \endcode
-
-    \note If you are using the old SDK Tools packages "tools", OpenJDK 1.8 is
-        needed. It is also recommended to install the latest SDK Tools
-        "cmdline-tools" package and switch to it.
-
     \section3 Using Manual Installation
+
+    For more information, see \l{Getting Started with Qt for Android}.
+
+    \section3 Using Qt Creator
+
+    For more information, see\l{Qt Creator: Connecting Android Devices}{Connecting Android Devices}.
+
+    \section3 Using Android Studio
 
     You can use \l {Android: Android Studio}{Android Studio} to download and installl
     the Android SDK packages required for developing applications for Android. For
@@ -107,14 +95,18 @@
 
     \badcode
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    export PATH=$PATH:$JAVA_HOME/bin
+    export PATH=$JAVA_HOME/bin:$PATH
     \endcode
+
+    \note JDK 11 or below must be used to properly build Qt for Android.
+
+    \note We use \l{OpenJDK} here, but you can other JDK alternatives such as \l{AdoptOpenJdk}.
 
     To configure Qt for Android, run the following:
 
     \badcode
     cd /tmp/qt-everywhere-opensource-src-%VERSION%
-    ./configure -xplatform android-clang --disable-rpath -nomake tests -nomake examples -android-ndk <path/to/sdk>/ndk-bundle/ -android-sdk <path/to/sdk> -no-warnings-are-errors
+    ./configure -xplatform android-clang -prefix </path/to/install> --disable-rpath -nomake tests -nomake examples -android-ndk <path/to/sdk>/ndk/<ndk_version> -android-sdk <path/to/sdk> -no-warnings-are-errors
     \endcode
 
     The \l{Qt Configure Options}{Configure Options} page contains more information
@@ -160,13 +152,13 @@
 
     \list
         \li \l{Perl}
-        \li A JDK 1.8 package such as \l{Java SE Development Kit}{JDK} or
-            \l{OpenJDK} or \l{AdoptOpenJDK}.
+        \li A JDK package such as \l{AdoptOpenJDK}, \l{Java SE Development Kit}{JDK},
+            or \l{OpenJDK}.
         \li \b {MinGW 7.3} toolchain
     \endlist
 
-    Then set the respective environment variables, replacing them with the
-    appropriate values:
+    Then set the respective environment variables from the \uicontrol{Environment Variables}
+    system UI, or from the build command line prompt as:
 
     \badcode
     set "JDK_ROOT=<JDK_ROOT_PATH>\bin\"
@@ -174,7 +166,7 @@
     set "PERL_ROOT=<PERL_ROOT_PATH>"
     \endcode
 
-    Open the \c cmd.exe window and verify that:
+    Then, in the command line prompt, verify that:
 
     \list
         \li \c{where gcc.exe} lists \e{<MINGW_ROOT>.exe} first before \e{<PERL_ROOT>.exe}.
@@ -206,7 +198,7 @@
 
     \badcode
     cd <decompressed_source_code_folder>
-    configure.bat -prefix <path to install Qt to> -platform win32-g++ -opengl es2 -xplatform android-clang -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk-bundle\ -nomake tests -nomake examples
+    configure.bat -prefix <\path\to\install> -platform win32-g++ -opengl es2 -xplatform android-clang -nomake tests -nomake examples -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk\<ndk_version>
     \endcode
 
     The \l{Qt Configure Options}{Configure Options} page contains more information
