@@ -67,7 +67,7 @@ APIs other than OpenGL as well.
 OpenGL. It will not be functional when using another graphics API, such as
 Vulkan or Metal. Applications relying on QQuickWidget should force the usage of
 OpenGL by calling
-\c{QQuickWindow::setSceneGraphBackend(QSGRendererInterface::OpenGLRhi)} in their
+\c{QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi)} in their
 main() function.
 
 \endlist
@@ -106,7 +106,7 @@ only functional when the scenegraph is rendering with OpenGL. It will not be
 functional when using another graphics API, such as Vulkan or
 Metal. Applications relying on QQuickFramebufferObject should force the usage of
 OpenGL by calling
-\c{QQuickWindow::setSceneGraphBackend(QSGRendererInterface::OpenGLRhi)} in their
+\c{QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi)} in their
 main() function.
 
 \li Subclasses of QSGImageNode are now required to override new
@@ -186,7 +186,7 @@ connecting to additional signals, such as
 
 \li resetOpenGLState() has been moved from QQuickWindow to
 QQuickOpenGLUtils. Note that it may not be necessary to call this function
-anymore from QQuickFramebufferObject:Renderer subclasses, because the basic
+anymore from QQuickFramebufferObject::Renderer subclasses, because the basic
 OpenGL state is now reset both before and after the render() implementation.
 
 \li setClearBeforeRendering() and clearBeforeRendering() have been removed from
@@ -200,6 +200,11 @@ rendering Qt Quick's content.
 \li The QQuickWindow::setSceneGraphBackend() overload taking a
 QSGRendererInterface::GraphicsApi argument has been renamed to
 \l{QQuickWindow::setGraphicsApi()}{setGraphicsApi()}.
+
+\li The environment variable \c{QSG_NO_DEPTH_BUFFER} is still supported in Qt
+6.0, but its usage is recommended to be replaced by calling
+\l{QQuickGraphicsConfiguration::setDepthBufferFor2D()}{setDepthBufferFor2D()} on a
+QQuickGraphicsConfiguration that is then associated with the QQuickWindow.
 
 \endlist
 
