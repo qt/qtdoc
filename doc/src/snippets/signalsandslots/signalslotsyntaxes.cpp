@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Sze Howe Koh <szehowe.koh@gmail.com>
+** Copyright (C) 2020 Sze Howe Koh <szehowe.koh@gmail.com>
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -143,20 +143,7 @@ void DemoWidget::demoOverloadConnect()
     connect(slider, SIGNAL(valueChanged(int)),
             lcd, SLOT(display(int)));
 
-    // Functor-based syntax, first alternative
-    connect(slider, &QSlider::valueChanged,
-            lcd, static_cast<void (QLCDNumber::*)(int)>(&QLCDNumber::display));
-
-    // Functor-based syntax, second alternative
-    void (QLCDNumber::*mySlot)(int) = &QLCDNumber::display;
-    connect(slider, &QSlider::valueChanged,
-            lcd, mySlot);
-
-    // Functor-based syntax, third alternative
-    connect(slider, &QSlider::valueChanged,
-            lcd, QOverload<int>::of(&QLCDNumber::display));
-
-    // Functor-based syntax, fourth alternative (requires C++14)
+    // Functor-based syntax
     connect(slider, &QSlider::valueChanged,
             lcd, qOverload<int>(&QLCDNumber::display));
 //! [overload]
