@@ -95,12 +95,26 @@
     platforms are covered in the platform pages.
 
     \list
-    \li \l{Qt for Android}{Android}
-    \li \l{Qt for iOS}{iOS}
-    \li \l{Qt for Windows}{Windows}
-    \li \l{Qt for Linux/X11}{Linux/X11}
-    \li \l{Qt for macOS}{\macos}
-    \li \l{Qt for WebAssembly}{WebAssembly}
+    \li Desktop Platforms
+    \list
+        \li \l{Qt for Linux/X11}{Linux/X11}
+        \li \l{Qt for macOS}{\macos}
+        \li \l{Qt for Windows}{Windows}
+    \endlist
+    \li Embedded Platforms
+    \list
+        \li \l{Qt for Embedded Linux}{Embedded Linux}
+        \li \l{Qt for INTEGRITY}{INTEGRITY}
+        \li \l{Qt for QNX}{QNX}
+        \li \l{Qt for VxWorks}{VxWorks}
+        \li \l{Qt for Device Creation}
+    \endlist
+    \li Mobile Platforms
+    \list
+        \li \l{Qt for Android}{Android}
+        \li \l{Qt for iOS}{iOS}
+        \li \l{Qt for WebAssembly}{WebAssembly}
+    \endlist
     \endlist
 
     For more information, visit the \l{Supported Platforms}
