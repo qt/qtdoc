@@ -71,11 +71,16 @@
 \section2 \l{Qt for Windows}{Windows}
 //! [windows]
 \table 80%
-    \header \li Operating System \li Architecture \li Compiler \li Notes
+    \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2019}, MSVC 2017, \b {MSVC 2015}, \b {MinGW 7.3}
-        \li
+        \li \b {MSVC 2019}, MSVC 2017, \b {MSVC 2015}, \b {MinGW 8.1}
+    \row \li Windows 8.1
+        \li \c x86 and \c x86_64
+        \li MSVC 2019, MSVC 2017, MSVC 2015, MinGW 8.1
+    \row \li Windows 7
+        \li \c x86 and \c x86_64
+        \li MSVC 2019, MSVC 2017, MSVC 2015, \b {MinGW 8.1}
 \endtable
 
 //! [windows]
