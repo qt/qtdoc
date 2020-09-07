@@ -46,9 +46,10 @@
     \list
         \li \l{Get started with CMake}
         \list
-            \li \l{Build a GUI executable}
-            \li \l{Imported library targets}
+            \li \l{Build a C++ GUI executable}
+            \li \l{Further reading}
         \endlist
+        \li \l{Imported Targets}
         \li \l{CMake Variable Reference}
             \list
             \li \l{Module variables}
@@ -68,33 +69,130 @@
     \page cmake-get-started.html
     \title Get started with CMake
     \previouspage Build with CMake
-    \nextpage CMake Variable Reference
+    \nextpage Imported Targets
 
-    Start with \c{find_package} to locate the libraries and header files shipped with Qt. Then, you
-    can use these libraries and header files with the \c{target_link_libraries} command to build
-    Qt-based libraries and applications. This command automatically adds the appropriate include
-    directories, compile definitions, the position-independent-code flag, and links to the
-    \c qtmain.lib library on Windows, for example.
+    \c{CMake} is a group of tools that allow to build, test, and package
+    applications. Just like Qt, it is available on all major development
+    platforms. It is also supported by various IDE's, including
+    \l{Qt Creator Manual}{Qt Creator}.
 
-    \section2 Build a GUI executable
+    In this section we will show the most basic way to use Qt in a CMake
+    project. We will walk through an example project that is utilizing
+    \l{Qt Widgets}.
 
-    To build a helloworld GUI executable, you need the following:
+    \section2 Build a C++ GUI executable
 
-    \snippet snippets/cmake/examples.cmake 0
+    A \c{CMake} project is defined by files written in the CMake language.
+    The main file is called \c{CMakeLists.txt}, and is usually placed in the
+    same directory as the actual program sources.
 
-    For \c{find_package} to be successful, \c CMake must find the Qt installation in one of the
-    following ways:
+    Here is a typical \c{CMakeLists.txt} file for an application written in C++
+    and using Qt and \l{Qt Widgets}:
+
+    \quotefile snippets/cmake/helloworld_qtwidgets.cmake
+
+    Let's go through the content.
+
+    \quotefromfile snippets/cmake/helloworld_qtwidgets.cmake
+
+    \printuntil cmake_minimum_required
+
+    \c cmake_minimum_required() specifies the minimum CMake version that the
+    application requires. Qt itself requires at least CMake version 3.1.
+
+    \printuntil project(
+
+    \c project() sets a project name and the default project version. The
+    \c{LANGUAGES} argument tells CMake that the program is written in C++.
+
+    \printuntil CMAKE_CXX_STANDARD_REQUIRED
+
+    Qt 5.7 and later require a compiler supporting C++ version 11 or newer.
+    Enforcing this by setting the \c{CMAKE_CXX_STANDARD},
+    \c{CMAKE_CXX_STANDARD_REQUIRED} variables will let CMake print an error if
+    the compiler is too old.
+
+    \printuntil CMAKE_AUTOUIC
+
+    Qt applications typically make use of the
+    \l{Using the Meta-Object Compiler (moc)}{Meta-Object Compiler (moc)},
+    \l{Resource Compiler (rcc)}, and \l{User Interface Compiler (uic)}
+    that come with Qt. Setting the \c{CMAKE_AUTOMOC}, \c{CMAKE_AUTORCC}, and
+    \c{CMAKE_AUTOUIC} variables to \c{ON} will let CMake automatically set up
+    rules so that the respective compilers are called transparently, when
+    required.
+
+    \printuntil endif
+
+    \c{CMAKE_AUTOMOC} will generate \c{moc_*.cpp} and \c{*.moc} files in the
+    current build directory. It is common practice to include these files in
+    your .cpp files, so that the compiler does not have to build them
+    separately. Setting \c{CMAKE_INCLUDE_CURRENT_DIR} makes sure the compiler
+    will add the source and build directory to its include path, so that these
+    files will be found.
+
+    From CMake 3.7.0 onwards, \c{CMAKE_INCLUDE_CURRENT_DIR} is enabled by
+    default if \c{CMAKE_AUTOMOC} is set.
+
+    \printuntil find_package(
+
+    This tells CMake to look up Qt 5, and import the \c {Widgets} module. There
+    is no point in continuing if \c{CMake} cannot locate the module, so we do
+    set the \c{REQUIRED} flag to let CMake abort in this case.
+
+    If successful, the module will set some CMake variables documented in
+    \l{Module variables}. It furthermore imports the \c{Qt5::Widgets} target
+    that we use below.
+
+    For \c{find_package} to be successful, \c CMake must find the Qt
+    installation. There are different ways you can tell \c CMake about Qt:
     \list 1
-        \li Set your \c CMAKE_PREFIX_PATH environment variable to the Qt 5 installation prefix.
-            This is the recommended way.
-        \li Set the \c{Qt5_DIR} in the \c CMake cache to the location of the \c{Qt5Config.cmake}
-            file.
+        \li Set the \c CMAKE_PREFIX_PATH environment variable to include the
+            Qt 5 installation prefix.
+        \li Set the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the
+            Qt 5 installation prefix.
+        \li Set the \c{Qt5_DIR} in the \c CMake cache to the location of the
+            \c{Qt5Config.cmake} file.
     \endlist
 
-    The \c CMAKE_AUTOMOC setting runs moc automatically when required. For more details, see
-    \l{CMake AUTOMOC documentation}.
+    Note that \l{Qt Creator Manual}{Qt Creator} will handle this transparently
+    for you.
 
-    \section2 Imported library targets
+    \printuntil )
+
+    \c{add_executable()} tells CMake that we want to build an executable (so not
+    a library) called \c{helloworld} as a target. The target should be built
+    from C++ code (\c{mainwindow.cpp}, \c{main.cpp}), a \l{Qt Designer} file
+    (\c{mainwindow.ui}), and a \l{Qt Resource System} file (\c{resources.qrc}).
+
+    Note that you typically do not list header files here. This is different
+    from \l{qmake}, where header files need to be explicitly listed so that
+    they are processed by the
+    \l{Using the Meta-Object Compiler (moc)} {Meta-Object Compiler (moc)}.
+
+    \printuntil
+
+    Finally, \c{target_link_libraries} tells CMake that the \c{helloworld}
+    executable makes use of \l{Qt Widgets} by referencing the \c{Qt5::Widgets}
+    target imported by the \c{find_package()} call above. This will not only add
+    the right arguments to the linker, but also makes sure that the right
+    include directories, compiler definitions are passed to the C++ compiler.
+
+    \section2 Further reading
+
+     The official \l{CMake Documentation}{CMake Documentation} is an invaluable
+    source for working with CMake.
+
+     The book \l{Professional CMake: A Practical Guide} provides a great
+    introduction to the most relevant CMake features.
+*/
+
+/*!
+    \page cmake-imported-targets.html
+    \title Imported Targets
+    \brief Provides an overview of the CMake targets imported by Qt.
+    \nextpage CMake Variable Reference
+    \previouspage Get started with CMake
 
     Each Qt module that is loaded defines a CMake library target. The target names
     start with \c{Qt5::}, followed by the module name. For example: \c{Qt5::Core}, \c{Qt5::Gui}.
@@ -124,7 +222,7 @@
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
     \nextpage CMake Command Reference
-    \previouspage Build with CMake
+    \previouspage Imported Targets
 
     \section1 Module variables
 
