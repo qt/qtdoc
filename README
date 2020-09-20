@@ -3,7 +3,7 @@ To Generate Qt Documentation:
 qtdoc contains the main Qt Reference Documentation, which includes
 overviews, Qt topics, and examples not specific to any Qt module.The
 configuration files are located in qtdoc/doc/config and the articles in
-qtdoc/doc/src. Note that QDoc is located in qtbase.
+qtdoc/doc/src. Note that QDoc is located in qttools/src/qdoc.
 
 The instructions in this file assumes that the prerequisite binaries are
 compiled and in the $PATH variable.
@@ -27,7 +27,7 @@ Section 1 Building the qdocconf File
     dependencies to other projects.
 
     To build using the qdocconf file, run the "qdoc" binary and pass the
-    qdocconf file as a parameter. "qdoc" is found in qtbase repository. A
+    qdocconf file as a parameter. "qdoc" is found in qttools repository. A
     mandatory "outputdir" must be specified.
 
         $> qdoc doc/config/qtdoc.qdocconf -outputdir html
