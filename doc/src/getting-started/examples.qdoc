@@ -229,31 +229,6 @@
 */
 
 /*!
-    \page examples-statemachine.html
-    \ingroup all-examples
-    \title State Machine Examples
-    \brief Using Qt's finite state machine classes.
-
-    Qt provides a powerful hierarchical finite state machine through the Qt State
-    Machine classes.
-
-    These examples demonstrate the fundamental aspects of implementing
-    Statecharts with Qt.
-
-    \list
-    \li \l{statemachine/eventtransitions}{Event Transitions}\raisedaster
-    \li \l{statemachine/factorial}{Factorial States}\raisedaster
-    \li \l{statemachine/pingpong}{Ping Pong States}\raisedaster
-    \li \l{statemachine/rogue}{Rogue}\raisedaster
-    \li \l{statemachine/trafficlight}{Traffic Light}\raisedaster
-    \li \l{statemachine/twowaybutton}{Two-way Button}\raisedaster
-    \endlist
-
-    For more information about using the Qt SCXML module to to create state
-    charts from State Chart XML (SCXML) files, see \l {Qt SCXML Examples}.
-*/
-
-/*!
     \page examples-animation.html
     \ingroup all-examples
     \title Animation Framework Examples
@@ -262,15 +237,8 @@
     \image animation-examples.png Animation
 
     \list
-    \li \l{animation/animatedtiles}{Animated Tiles}
     \li \l{animation/easing}{Easing Curves}
-    \li \l{animation/moveblocks}{Move Blocks}\raisedaster
-    \li \l{animation/states}{States}
-    \li \l{animation/stickman}{Stick man}\raisedaster
-    \li \l{animation/sub-attaq}{Sub-Attaq}
     \endlist
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
@@ -297,6 +265,7 @@
 */
 
 /*!
+    \omit
     \page examples-activeqt.html
     \title ActiveQt Examples
     \brief Using ActiveX from Qt applications.
@@ -315,4 +284,5 @@
     \li \l{activeqt/simple}{Simple}\raisedaster
     \li \l{activeqt/wrapper}{Wrapper}\raisedaster
     \endlist
+    \endomit
 */
