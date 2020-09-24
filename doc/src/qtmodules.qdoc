@@ -133,18 +133,18 @@
     \row
         \li \l[QtConcurrent]{Qt Concurrent}
         \li All
-        \li All (*)
+        \li All
         \li Classes for writing multi-threaded programs without using low-level
             threading primitives.
     \row
         \li \l[QtDBus]{Qt D-Bus}
         \li All
-        \li All (*)
+        \li All
         \li Classes for inter-process communication over the D-Bus protocol.
     \row
         \li \l{Qt Help}
         \li All
-        \li All (*)
+        \li All
         \li Classes for integrating documentation into applications, similar to Qt Assistant.
     \row
         \li \l[QtImageFormats]{Qt Image Formats}
@@ -154,12 +154,12 @@
     \row
         \li \l[QtNfc]{Qt NFC}
         \li All
-        \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux} (*)
+        \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux}
         \li Provides access to Near-Field communication (NFC) hardware.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}
-        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, \l{Qt for Android}{Android} (*)
+        \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, \l{Qt for Android}{Android}
 
         \li Provides classes that encapsulate platform-specific information,
             tied to a given runtime configuration of a \l {Qt Platform Abstraction}
@@ -167,7 +167,7 @@
     \row
         \li \l[QtPrintSupport]{Qt Print Support}
         \li All
-        \li All (*)
+        \li All
         \li Classes to make printing easier and more portable.
     \row
         \li \l[QtQuick3D]{Qt Quick 3D}
@@ -178,12 +178,12 @@
     \row
         \li \l[Qt Quick Timeline]{Qt Quick Timeline}
         \li All
-        \li All (*)
+        \li All
         \li Enables keyframe-based animations and parameterization.
     \row
         \li \l{Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li All
-        \li All (*)
+        \li All
         \li Provides a C++ widget class for displaying a Qt Quick user interface.
     \row
         \li \l[QtShaderTools]{Qt Shader Tools}
@@ -201,12 +201,12 @@
     \row
         \li \l[QtUITools]{Qt UI Tools}
         \li All
-        \li All (*)
+        \li All
         \li Classes for loading QWidget based forms created in \QD dynamically, at runtime.
     \row
         \li \l[QtXml]{Qt XML}
         \li All
-        \li All (*)
+        \li All
         \li C++ implementations of SAX and DOM.
             \note This module is not required to use QXmlStreamReader and
             QXmlStreamWriter. They are already part of \l{Qt Core}.
@@ -255,8 +255,6 @@
             allows streaming Qt Quick user interfaces over the network using
             WebGL™.
    \endtable
-
-   (*) The QNX status is not known.
 
     \section1 Where to Go from Here
 
