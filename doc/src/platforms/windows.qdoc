@@ -382,7 +382,7 @@
 
     \note While not typically needed, \c{QT_NO_OPENGL_BUGLIST} can become relevant in
     certain virtualized environments, with multiple, possibly virtual, graphics adapters
-    present. If the logs from categories like \l{qt.qpa.gl} indicate that the detection of
+    present. If the logs from categories like \c{qt.qpa.gl} indicate that the detection of
     the driver and display adapter leads to incorrectly disabling OpenGL, it is then
     recommended to set this environment variable in order to enable the application to run
     normally. This environment variable was introduced in Qt 5.15.
@@ -464,13 +464,15 @@
 
     \sa {QDoc Dependencies}
 
+    \omit
     \section2 Building Qt WebEngine
 
     \l{Qt WebEngine} has additional build requirements which are listed in the
     \l{Qt WebEngine Platform Notes}.
+    \endomit
 
     \section1 QDoc Dependencies
-    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
     If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
     for specific build requirements.
 
@@ -765,8 +767,10 @@
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
     need to be added to the \c release folder, too.
 
+    \omit
     \note \l{Qt WebEngine} applications have additional requirements that are
     listed in \l{Deploying Qt WebEngine Applications}.
+    \endomit
 
     Remember that if your application depends on compiler specific
     libraries, these must be redistributed along with your

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -106,7 +106,6 @@
     \li \l{Qt Overviews} - list of topics about application development
     \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
     \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
-    \li \l{Qt X11 Extras} - provides additional APIs for X11
     \endlist
 
     Qt's vibrant and active community site, \l{http://qt.io} houses
@@ -332,20 +331,7 @@
     has been deprecated in favor of the \l{Qt GUI} module (which contains
     classes that start with \e QOpenGL).
 
-    \section1 Multimedia Dependencies
-
-    As described in the \l Multimedia overview, Qt Multimedia uses the GStreamer multimedia
-    framework as the backend for audio and video playback on Linux. The minimum required
-    version of GStreamer is 0.10.24. The 1.x series is also supported.
-
-    To build Qt Multimedia, you need the GStreamer library, base plugins, and development
-    files for your system. To run applications that use Qt Multimedia, you might also need to
-    install the following GStreamer plugins: 'good', 'ugly', 'bad', ffmpeg (0.10), and libav (1.x).
-    These additional plugins contain various codecs for audio and video decoding, as well as the
-    necessary components for using the camera APIs. The package names for GStreamer vary between
-    Linux distributions; try searching for \c gstreamer or \c libgstreamer in your distribution's
-    package repository to find suitable packages.
-
+    \omit
     \section1 Speech Dependencies
 
     \l{Qt Speech} depends on Speech Dispatcher (libspeechd) on the Linux platform.
@@ -356,14 +342,10 @@
     \li libspeechd-dev
     \li speech-dispatcher
     \endlist
-
-    \section1 Qt WebEngine Dependencies
-
-    \l{Qt WebEngine} has additional build requirements which are listed in the
-    \l{Qt WebEngine Platform Notes}.
+    \endomit
 
     \section1 QDoc Dependencies
-    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    \l{QDoc Manual}{QDoc} uses Clang to parse C++ code.
     If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
     for specific build requirements.
 */
@@ -846,8 +828,8 @@
        mode.
     \li Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
        known crash with "(0): internal error: 0_47021" when compiling
-       \l{Qt XML Patterns} and \l{Qt Designer} in release mode. Version
-       10.1.017 compiles these modules correctly in release mode.
+       \l{Qt Designer} in release mode. Version 10.1.017 compiles these
+       modules correctly in release mode.
     \endlist
 
     \section2 Known Issues with GCC Compilers

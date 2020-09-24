@@ -146,7 +146,7 @@
 
      \li If your application uses imports or plugins which depend on special Qt
          modules, these Qt modules should be added to the .pro file. For example, if
-         your application uses the \l{Qt Multimedia} import in QML, you should add
+         your application uses the Qt Multimedia import in QML, you should add
          the following to your .pro file:
 
          \badcode
@@ -163,14 +163,14 @@
          QTPLUGIN += qavfcamera
          \endcode
 
-         See \l {http://wiki.qt.io/QtMultimedia_iOS}{Qt Multimedia on iOS}
-         for information on other Qt Multimedia plugins. If your project uses APIs
-         from \l {Qt Sensors}, use the following:
+         \omit
+         If your project uses APIs from \l {Qt Sensors}, use the following:
 
          \badcode
          QT += sensors
          QTPLUGIN += qtsensors_ios
          \endcode
+         \endomit
 
      \li Save the changes to your project and run the application.
     \endlist

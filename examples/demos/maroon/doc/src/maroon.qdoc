@@ -829,7 +829,7 @@
 
     \section1 Playing Sound Effects
 
-    The app can play sound effects if the \l{Qt Multimedia} module is installed.
+    The app can play sound effects if the Qt Multimedia module is installed.
     In the SoundEffect.qml file, we proxy a SoundEffect type:
 
     \quotefromfile demos/maroon/content/SoundEffect.qml
@@ -838,7 +838,7 @@
     \printuntil }
 
     We add the \c qtHaveModule() qmake command to the app .pro file, maroon.pro,
-    to check whether the \l{Qt Multimedia} module is present:
+    to check whether the Qt Multimedia module is present:
 
     \quotefromfile demos/maroon/maroon.pro
     \skipto QT

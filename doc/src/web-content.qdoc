@@ -35,9 +35,13 @@ range of standard web techologies such as HTML, CSS, and JavaScript. These
 interfaces enable applications to embed content from the World Wide Web.
 
 It is also possible to combine Qt C++ and QML code with HTML and JavaScript to
-create web applications. Through \l{Qt WebChannel}, several of Qt's APIs are
-accessible to remote clients.
+create web applications.
 
+\omit
+Through Qt WebChannel, several of Qt's APIs are accessible to remote clients.
+\endomit
+
+\omit
 \section1 WebEngine in Qt
 
 Qt provides the Chromium-based \l{Qt WebEngine} module for applications
@@ -56,6 +60,8 @@ These pages contain information about porting applications to use
 \li \l{Porting from Qt WebKit to Qt WebEngine}
 \endlist
 
+\endomit
+\omit
 \section1 Qt and HTML-JavaScript Hybrid Applications
 
 The \l{Qt WebChannel} module enables HTML or JavaScript clients to access
@@ -70,4 +76,5 @@ These pages contain more information about the various APIs:
 \li \l{Qt WebChannel Standalone Example}{Standalone Example}
 \endlist
 
+\endomit
 */
