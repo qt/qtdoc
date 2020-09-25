@@ -2,6 +2,6 @@
 
 add_library(CMakeDoc INTERFACE)
 
-qt_add_docs(CMakeDoc
-            qtcmake.qdocconf
+qt_internal_add_docs(CMakeDoc
+                     qtcmake.qdocconf
 )

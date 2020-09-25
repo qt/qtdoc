@@ -2,6 +2,6 @@
 
 add_library(Doc INTERFACE)
 
-qt_add_docs(Doc
-            config/qtdoc.qdocconf
+qt_internal_add_docs(Doc
+                     config/qtdoc.qdocconf
 )

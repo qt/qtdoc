@@ -4,7 +4,7 @@
 ## tst_examples Test:
 #####################################################################
 
-qt_add_test(tst_examples
+qt_internal_add_test(tst_examples
     SOURCES
         tst_examples.cpp
     DEFINES
@@ -23,7 +23,7 @@ qt_add_test(tst_examples
 ## Scopes:
 #####################################################################
 
-qt_extend_target(tst_examples CONDITION NOT TARGET Qt::XmlPatterns
+qt_internal_extend_target(tst_examples CONDITION NOT TARGET Qt::XmlPatterns
     DEFINES
         QT_NO_XMLPATTERNS
 )
