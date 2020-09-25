@@ -2,8 +2,9 @@
 
 cmake_minimum_required(VERSION 3.15.0)
 
-project(QtDoc
-    VERSION 6.0.0
+include(.cmake.conf)
+project(QtDoc # special case
+    VERSION "${QT_REPO_MODULE_VERSION}"
     DESCRIPTION "Qt Documentation and examples" # special case
     HOMEPAGE_URL "https://qt.io/"
     LANGUAGES CXX C

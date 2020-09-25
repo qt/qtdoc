@@ -1,4 +1,5 @@
 # Generated from photosurface.pro.
+# special case skip regeneration
 
 cmake_minimum_required(VERSION 3.14)
 project(photosurface LANGUAGES CXX)
@@ -9,7 +10,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(INSTALL_EXAMPLEDIR "examples/demos/photosurface")
+if(NOT DEFINED INSTALL_EXAMPLESDIR)
+  set(INSTALL_EXAMPLESDIR "examples")
+endif()
+
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/photosurface")
 
 find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
