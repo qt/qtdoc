@@ -10,6 +10,11 @@ project(QtDoc # special case
     LANGUAGES CXX C
 )
 
+# special case begin
+# Make sure we only use latest private CMake API, aka no compatibility wrappers.
+set(QT_NO_INTERNAL_COMPATIBILITY_FUNCTIONS TRUE)
+# special case end
+
 find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core Gui) # special case
 find_package(Qt6 ${PROJECT_VERSION} CONFIG OPTIONAL_COMPONENTS Qml Quick Test Sql) # special case for tests
 
