@@ -34,11 +34,11 @@
     \nextpage Get started with CMake
 
     \c{CMake} is a tool to simplify the build process for development projects across different
-    platforms. \c CMake automatically generates build systems, such as Makefiles and Visual Studio
-    project files.
+    platforms. \c CMake automatically generates build systems, such as Makefiles and Ninja
+    files.
 
-    \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}. This topic
-    describes how to use \c{CMake} 3.1.0 or later with Qt 5.
+    \c{CMake} is a third-party tool with its own \l{CMake Documentation}{documentation}.
+    This manual focuses on how to use \c{CMake} to build Qt applications and libraries.
 
 
     \section1 Table of Contents
@@ -49,18 +49,25 @@
             \li \l{Build a C++ GUI executable}
             \li \l{Further reading}
         \endlist
-        \li \l{Imported Targets}
+        \li \l{Imported targets}
+        \li \l{Qt 5 and Qt 6 compatibility}
+        \list
+            \li \l{Versionless targets}
+            \li \l{Versionless commands}
+            \li \l{Supporting older Qt 5 versions}
+            \li \l{Recommended practices}
+        \endlist
         \li \l{CMake Variable Reference}
-            \list
+        \list
             \li \l{Module variables}
             \li \l{Installation variables}
         \endlist
         \li \l{CMake Command Reference}
         \list
-            \li \l{Qt5::Core}
-            \li \l{Qt5::Widgets}
-            \li \l{Qt5::DBus}
-            \li \l{Qt5::LinguistTools}
+            \li \l{Qt6::Core}
+            \li \l{Qt6::Widgets}
+            \li \l{Qt6::DBus}
+            \li \l{Qt6::LinguistTools}
         \endlist
     \endlist
 */
@@ -69,7 +76,7 @@
     \page cmake-get-started.html
     \title Get started with CMake
     \previouspage Build with CMake
-    \nextpage Imported Targets
+    \nextpage Imported targets
 
     \c{CMake} is a group of tools that allow to build, test, and package
     applications. Just like Qt, it is available on all major development
@@ -98,7 +105,7 @@
     \printuntil cmake_minimum_required
 
     \c cmake_minimum_required() specifies the minimum CMake version that the
-    application requires. Qt itself requires at least CMake version 3.1.
+    application requires. Qt itself requires at least CMake version 3.16.
 
     \printuntil project(
 
@@ -107,7 +114,7 @@
 
     \printuntil CMAKE_CXX_STANDARD_REQUIRED
 
-    Qt 5.7 and later require a compiler supporting C++ version 11 or newer.
+    Qt 6 requires a compiler supporting C++ version 17 or newer.
     Enforcing this by setting the \c{CMAKE_CXX_STANDARD},
     \c{CMAKE_CXX_STANDARD_REQUIRED} variables will let CMake print an error if
     the compiler is too old.
@@ -122,37 +129,23 @@
     rules so that the respective compilers are called transparently, when
     required.
 
-    \printuntil endif
-
-    \c{CMAKE_AUTOMOC} will generate \c{moc_*.cpp} and \c{*.moc} files in the
-    current build directory. It is common practice to include these files in
-    your .cpp files, so that the compiler does not have to build them
-    separately. Setting \c{CMAKE_INCLUDE_CURRENT_DIR} makes sure the compiler
-    will add the source and build directory to its include path, so that these
-    files will be found.
-
-    From CMake 3.7.0 onwards, \c{CMAKE_INCLUDE_CURRENT_DIR} is enabled by
-    default if \c{CMAKE_AUTOMOC} is set.
-
     \printuntil find_package(
 
-    This tells CMake to look up Qt 5, and import the \c {Widgets} module. There
+    This tells CMake to look up Qt 6, and import the \c {Widgets} module. There
     is no point in continuing if \c{CMake} cannot locate the module, so we do
     set the \c{REQUIRED} flag to let CMake abort in this case.
 
     If successful, the module will set some CMake variables documented in
-    \l{Module variables}. It furthermore imports the \c{Qt5::Widgets} target
+    \l{Module variables}. It furthermore imports the \c{Qt6::Widgets} target
     that we use below.
 
     For \c{find_package} to be successful, \c CMake must find the Qt
     installation. There are different ways you can tell \c CMake about Qt:
     \list 1
         \li Set the \c CMAKE_PREFIX_PATH environment variable to include the
-            Qt 5 installation prefix.
+            Qt 6 installation prefix.
         \li Set the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the
-            Qt 5 installation prefix.
-        \li Set the \c{Qt5_DIR} in the \c CMake cache to the location of the
-            \c{Qt5Config.cmake} file.
+            Qt 6 installation prefix.
     \endlist
 
     Note that \l{Qt Creator Manual}{Qt Creator} will handle this transparently
@@ -173,7 +166,7 @@
     \printuntil
 
     Finally, \c{target_link_libraries} tells CMake that the \c{helloworld}
-    executable makes use of \l{Qt Widgets} by referencing the \c{Qt5::Widgets}
+    executable makes use of \l{Qt Widgets} by referencing the \c{Qt6::Widgets}
     target imported by the \c{find_package()} call above. This will not only add
     the right arguments to the linker, but also makes sure that the right
     include directories, compiler definitions are passed to the C++ compiler.
@@ -189,17 +182,17 @@
 
 /*!
     \page cmake-imported-targets.html
-    \title Imported Targets
+    \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
-    \nextpage CMake Variable Reference
+    \nextpage Qt 5 and Qt 6 compatibility
     \previouspage Get started with CMake
 
     Each Qt module that is loaded defines a CMake library target. The target names
-    start with \c{Qt5::}, followed by the module name. For example: \c{Qt5::Core}, \c{Qt5::Gui}.
+    start with \c{Qt6::}, followed by the module name. For example: \c{Qt6::Core}, \c{Qt6::Gui}.
     Pass the name of the library target to \c target_link_libraries to use the respective library.
 
-    \note Since Qt 5.15, the CMake targets are also available as \c Qt::Core, \c Qt::Gui, and so on.
-    This eases writing CMake code that can work with both Qt 5 and Qt 6.
+    \note The targets are also available with a \c{Qt::} prefix:
+    \c Qt::Core, \c Qt::Gui, and so on. See also \l{Qt 5 and Qt 6 compatibility}.
 
     Imported targets are created with the same configurations as when Qt was configured. That is:
     \list
@@ -217,12 +210,94 @@
     \snippet snippets/cmake/examples.cmake 2
 */
 
+
+/*!
+    \page cmake-qt5-and-qt6-compatibility.html
+    \title Qt 5 and Qt 6 compatibility
+    \previouspage Imported targets
+    \nextpage CMake Variable Reference
+
+    The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible. However, up to Qt 5.14,
+    all imported Qt library targets and commands contained the version number as part of the name.
+    This makes writing CMake code that should work with both Qt 5 and Qt 6 somewhat cumbersome.
+    Qt 5.15 therefore introduced \e versionless targets and commands to enable writing CMake code
+    that is largely agnostic to the different Qt versions.
+
+    \section2 Versionless targets
+
+    In addition to the existing imported targets, Qt 5.15 introduced \e versionless targets. That
+    is, to link against \l{Qt Core} one can both reference \c Qt6::Core, or \c Qt::Core:
+
+    \snippet snippets/cmake/qt5_qt6_compatible.cmake versionless_targets
+
+    Above snippet first tries to find a Qt 6 installation. If that fails, it tries to find a
+    Qt 5.15 package. Independent of whether Qt 6 or Qt 5 is used, we can use the imported
+    \c{Qt::Core} target.
+
+    The versionless targets are defined by default. Set \l{QT_NO_CREATE_VERSIONLESS_TARGETS}
+    before the first \c{find_package()} call to disable them.
+
+    \note The imported Qt::Core target will not feature the target properties that are available
+    in the Qt6::Core target.
+
+    \section2 Versionless commands
+
+    Since Qt 5.15, the Qt modules also provide versionless variants of their
+    \l{CMake Command Reference}{commands}. You can for instance now use \l{qt_add_translation}
+    to compile translation files, independent of whether you use Qt 5 or Qt 6.
+
+    Set \l{QT_NO_CREATE_VERSIONLESS_FUNCTIONS} before the first \c{find_package()} call to
+    prevent the creation of versionless commands.
+
+    \section2 Mixing Qt 5 and Qt 6
+
+    There might be projects that need to load both Qt 5 and Qt 6 in one CMake context
+    (though mixing Qt versions in one library or executable is not supported, so be careful there).
+
+    In such a setup the versionless targets and commands will be implicitly referring to the first
+    Qt version that was found via \c{find_package}. Set the \l{QT_DEFAULT_MAJOR_VERSION} CMake
+    variable before the first \c{find_package} call to make the version explicit.
+
+    \section2 Supporting older Qt 5 versions
+
+    If you need to support also Qt 5 versions older than Qt 5.15, you can do so by storing the
+    current version in an CMake variable:
+
+    \snippet snippets/cmake/qt5_qt6_compatible.cmake older_qt_versions
+
+    Here we let \c{find_package(<PackageName>...)} try to find first Qt 6, and if
+    that fails Qt 5, under the name \c{QT}. If either of them is found, \c find_package will
+    succeed, and the CMake variable \c{QT_VERSION_MAJOR} will be defined to either \c{5} or \c{6}.
+
+    We then do load the package for the determined Qt version again by creating the name
+    \c{Qt${QT_VERSION_MAJOR}} on the fly. This is needed because \c{CMAKE_AUTOMOC}
+    expects the package name to be either \c{Qt5} or \c{Qt6}, and will print an error otherwise.
+
+    We can use the same pattern to also specify the name of the imported library.
+    Before calling \c{target_link_libraries}, CMake will resolve \c{Qt${QT_VERSION_MAJOR}::Widgets}
+    to either \c{Qt5::Widgets} or \c{Qt6::Widgets}.
+
+    \section2 Recommended practices
+
+    Use the versionless variants of the CMake commands where possible.
+
+    Versionless imported targets are mostly useful for projects that need to compile with both
+    Qt 5 and Qt 6. Because of the missing target properties, we do not recommend using
+    them by default.
+
+    Use the versioned versions of the CMake commands and targets if you need to support Qt 5
+    versions older than Qt 5.15, or if you cannot control whether your CMake code is
+    loaded in a context where \l{QT_NO_CREATE_VERSIONLESS_FUNCTIONS} or
+    \l{QT_NO_CREATE_VERSIONLESS_TARGETS} might be defined. In this case you can still simplify
+    your code by determining the actual command or target name through a variable.
+*/
+
 /*!
     \page cmake-variable-reference.html
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
     \nextpage CMake Command Reference
-    \previouspage Imported Targets
+    \previouspage Imported targets
 
     \section1 Module variables
 
@@ -231,7 +306,7 @@
     \note You rarely need to access these variables directly. Common tasks like linking against a
     module should be done through the library targets each module defines.
 
-    For example, \c{find_package(Qt5 COMPONENTS Widgets)}, when successful, makes the following
+    For example, \c{find_package(Qt6 COMPONENTS Widgets)}, when successful, makes the following
     variables available:
 
     \table
@@ -239,29 +314,29 @@
             \li Variable
             \li Description
         \row
-            \li \c Qt5Widgets_COMPILE_DEFINITIONS
+            \li \c Qt6Widgets_COMPILE_DEFINITIONS
             \li A list of compile definitions to use when building against the library.
         \row
-            \li \c Qt5Widgets_DEFINITIONS
+            \li \c Qt6Widgets_DEFINITIONS
             \li A list of definitions to use when building against the library.
         \row
-            \li \c Qt5Widgets_EXECUTABLE_COMPILE_FLAGS
+            \li \c Qt6Widgets_EXECUTABLE_COMPILE_FLAGS
             \li A string of flags to use when building executables against the library.
         \row
-            \li \c Qt5Widgets_FOUND
+            \li \c Qt6Widgets_FOUND
             \li A boolean that describes whether the module was found successfully.
         \row
-            \li \c Qt5Widgets_INCLUDE_DIRS
+            \li \c Qt6Widgets_INCLUDE_DIRS
             \li A list of include directories to use when building against the library.
         \row
-            \li \c Qt5Widgets_LIBRARIES
+            \li \c Qt6Widgets_LIBRARIES
             \li The name of the imported target for the module: \c Qt5::Widgets
         \row
-            \li \c Qt5Widgets_PRIVATE_INCLUDE_DIRS
+            \li \c Qt6Widgets_PRIVATE_INCLUDE_DIRS
             \li A list of private include directories to use when building against the library
                 and using private Qt API.
         \row
-            \li \c Qt5Widgets_VERSION_STRING
+            \li \c Qt6Widgets_VERSION_STRING
             \li A string containing the module's version.
     \endtable
 
@@ -278,7 +353,8 @@
             \li Variable
             \li Description
         \row
-            \li \c QT_DEFAULT_MAJOR_VERSION
+            \li \target QT_DEFAULT_MAJOR_VERSION
+                \c QT_DEFAULT_MAJOR_VERSION
             \li An integer that controls the Qt version that \c qt_ commands forward to in case of
                 mixed Qt 5 and Qt 6 projects. It needs to be set to either \c 5 or \c 6 before the
                 respective \c find_package() calls.
@@ -288,21 +364,20 @@
                 \c qt6_.
 
                 If not set, the first \c find_package call defines the default version.
-                This functionality was added in Qt 5.15.
         \row
             \li \c QT_LIBINFIX
             \li A string that holds the infix used in library names, when Qt is configured with
                 \c{-libinfix}.
         \row
-            \li \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
-            \li Since Qt 5.15, modules define not only commands that start with \c{qt5_},
-                but also ones with \c{qt_}. You can set \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
-                before \c{find_package} to prevent this.
+            \li \target QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+                \c QT_NO_CREATE_VERSIONLESS_FUNCTIONS
+            \li Hides commands that start with \c{qt_}, leaving only the versioned
+                ones starting with \c{qt6_}.
         \row
-            \li \c QT_NO_CREATE_VERSIONLESS_TARGETS
-            \li Since Qt 5.15, modules define not only targets that start with \c{Qt5::},
-                but also ones with \c{Qt::}. You can set \c QT_NO_CREATE_VERSIONLESS_TARGETS before
-                \c{find_package} to prevent this.
+            \li \target QT_NO_CREATE_VERSIONLESS_TARGETS
+                \c QT_NO_CREATE_VERSIONLESS_TARGETS
+            \li Hides the imported targets starting with \c{Qt::}. Instead, you need to use the
+                targets starting with \c{Qt6::}.
         \row
             \li \c QT_VISIBILITY_AVAILABLE
             \li On Unix, a boolean that describes whether Qt libraries and plugins were compiled
@@ -317,23 +392,23 @@
     \brief Provides a complete reference for CMake commands implemented in Qt.
     \previouspage CMake Variable Reference
 
-    \section2 Qt5::Core
+    \section2 Qt6::Core
 
     \annotatedlist cmake-macros-qtcore
 
-    \section2 Qt5::DBus
+    \section2 Qt6::DBus
 
     \annotatedlist cmake-commands-qtdbus
 
-    \section2 Qt5::LinguistTools
+    \section2 Qt6::LinguistTools
 
     \annotatedlist cmake-macros-qtlinguisttools
 
-    \section2 Qt5::RemoteObjects
+    \section2 Qt6::RemoteObjects
 
     \annotatedlist cmake-macros-qtremoteobjects
 
-    \section2 Qt5::Widgets
+    \section2 Qt6::Widgets
 
     \annotatedlist cmake-macros-qtwidgets
 */
