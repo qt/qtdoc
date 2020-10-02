@@ -1,0 +1,21 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+include($QT_INSTALL_DOCS/global/externalsites.qdocconf)
+
+project = QtPlatformIntegration
+navigation.landingpage = "Platform Integration"
+description = "Integrating Qt with the native platform"
+version = $QT_VERSION
+
+depends += qtcore qtgui qtdoc
+sourcedirs = .
+headerdirs = .
+
+moduleheader =
+
+qhp.projects = QtPlatformIntegration
+
+qhp.QtPlatformIntegration.file                = qtplatformintegration.qhp
+qhp.QtPlatformIntegration.namespace           = org.qt-project.qtplatformintegration.$QT_VERSION_TAG
+qhp.QtPlatformIntegration.virtualFolder       = qtplatformintegration
+qhp.QtPlatformIntegration.indexTitle          = "Platform Integration"
+qhp.QtPlatformIntegration.filterAttributes    = qt $QT_VERSION

@@ -24,10 +24,10 @@ exampledirs += \
     ../snippets \
     ../../examples
 
-# Don't parse files in snippets and cmake directories
 excludedirs += \
     ../src/snippets \
-    ../src/cmake
+    ../src/cmake \
+    ../src/platformintegration
 
 examplesinstallpath =
 
