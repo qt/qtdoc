@@ -73,14 +73,9 @@
 \table 80%
     \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10
-        \li \c x86 and \c x86_64
-        \li \b {MSVC 2019}, MSVC 2017, \b {MSVC 2015}, \b {MinGW 8.1}
-    \row \li Windows 8.1
-        \li \c x86 and \c x86_64
-        \li MSVC 2019, MSVC 2017, MSVC 2015, MinGW 8.1
-    \row \li Windows 7
-        \li \c x86 and \c x86_64
-        \li MSVC 2019, MSVC 2017, MSVC 2015, \b {MinGW 8.1}
+        \li \c x86_64
+        \li \b {MSVC 2019}, \b {MinGW 8.1}
+        \li
 \endtable
 
 //! [windows]
@@ -109,14 +104,6 @@
         \li \c armv8 (\c arm64)
         \li \b {Xcode 11} (iOS 13.2 SDK)
         \li
-    \row \li tvOS 12, \b{tvOS 13}
-        \li \c armv8 (\c arm64)
-        \li \b {Xcode 11} (tvOS 13 SDK)
-        \li Technology Preview
-    \row \li watchOS 5, \b{watchOS 6}
-        \li \c armv7k
-        \li \b {Xcode 11} (watchOS 6 SDK)
-        \li Technology Preview. No UI.
 \endtable
 //! [ios]
 
