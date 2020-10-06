@@ -55,6 +55,9 @@
         \li \l[QtCore]{Qt Core}
         \li Core non-graphical classes used by other modules.
     \row
+        \li \l[QtDBus]{Qt D-Bus}
+        \li Classes for inter-process communication over the D-Bus protocol.
+    \row
         \li \l[QtGui]{Qt GUI}
         \li Base classes for graphical user interface (GUI) components.
             Includes OpenGL.
@@ -86,9 +89,6 @@
             are written as JavaScript functions.
             \note The binary compatibility guarantee does not apply to Qt Quick
                   Test. However, it will remain source compatible.
-    \row
-        \li \l[QtSql]{Qt SQL}
-        \li Classes for database integration using SQL.
     \row
         \li \l[QtTestLib]{Qt Test}
         \li Classes for unit testing Qt applications and libraries.
@@ -125,22 +125,16 @@
          \li Functionality for near-realtime simulation systems with support
              for 2D and 3D rendering.
     \row
-        \li \l[QtBluetooth]{Qt Bluetooth}
-        \li All
-        \li \l{Qt for Android}{Android},
-            \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}, and
-        \li Provides access to Bluetooth hardware.
+         \li Qt 5 Compatibility Module
+         \li
+         \li
+         \li
     \row
         \li \l[QtConcurrent]{Qt Concurrent}
         \li All
         \li All
         \li Classes for writing multi-threaded programs without using low-level
             threading primitives.
-    \row
-        \li \l[QtDBus]{Qt D-Bus}
-        \li All
-        \li All
-        \li Classes for inter-process communication over the D-Bus protocol.
     \row
         \li \l{Qt Help}
         \li All
@@ -151,11 +145,6 @@
         \li All
         \li All
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
-    \row
-        \li \l[QtNfc]{Qt NFC}
-        \li All
-        \li \l{Qt for Android}{Android} and \l{Qt for Linux/X11}{Linux}
-        \li Provides access to Near-Field communication (NFC) hardware.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}
@@ -193,6 +182,11 @@
         processing graphics and compute shaders to make them usable for Qt Quick and other
         components in the Qt ecosystem.
     \row
+        \li \l[QtSql]{Qt SQL}
+    \li
+    \li
+        \li Classes for database integration using SQL.
+    \row
         \li \l[QtSvg]{Qt SVG}
         \li All
         \li All
@@ -204,13 +198,6 @@
         \li All
         \li Classes for loading QWidget based forms created in \QD dynamically, at runtime.
     \row
-        \li \l[QtXml]{Qt XML}
-        \li All
-        \li All
-        \li C++ implementations of SAX and DOM.
-            \note This module is not required to use QXmlStreamReader and
-            QXmlStreamWriter. They are already part of \l{Qt Core}.
-    \row
         \li \l{Qt Wayland Compositor}
         \li \l{Qt for Linux/X11}{Linux}
         \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
@@ -221,34 +208,10 @@
                   Add-ons available under Commercial Licenses, or GNU General
                   Public License v3
     \row
-        \li \l{Qt Charts}
-        \li All
-        \li All
-        \li UI Components for displaying visually pleasing charts,
-            driven by static or dynamic data models.
-    \row
-        \li \l{Qt Data Visualization}
-        \li All
-        \li All
-        \li UI Components for creating stunning 3D data visualizations.
-    \row
-        \li \l{Qt Lottie Animation}
-        \li All
-        \li All
-        \li A QML API for rendering graphics and animations in JSON format,
-            exported by the \l Bodymovin plugin for Adobe® After Effects.
-    \row
         \li \l[QtNetworkAuth]{Qt Network Authorization}
         \li All
         \li All
         \li Provides support for OAuth-based authorization to online services.
-    \row
-        \li \l {Qt Quick WebGL}
-        \li All
-        \li WebGL-enabled web browsers
-        \li Provides a \l {Qt Platform Abstraction} {platform plugin} that
-            allows streaming Qt Quick user interfaces over the network using
-            WebGL™.
    \endtable
 
     \section1 Where to Go from Here
