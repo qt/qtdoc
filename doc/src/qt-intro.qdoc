@@ -37,13 +37,23 @@
     can move seamlessly to Qt 6 while retaining the current functionality,
     and gradually develop new features that leverage what Qt 6 makes possible.
 
-    Cross-platform portability is made simpler in Qt 6, thanks to the
-    modularized codebase consisting of the
-    \l{All Modules}{essential and add-on} modules, and the consolidation
-    of the \l{Qt Platform Abstraction}.
+    \section1 Qt Essential, Qt Add-ons, and Qt Marketplace
 
-    The following sections summarize some of the key features that Qt 6 brings
-    to the table.
+    In Qt 6, a new structure streamlines the base installation. The base
+    installation includes primarily the Qt Essentials and a few of the most
+    commonly used Qt Add-Ons. The Qt Add-Ons are moved outside of the main
+    installation, but still available when needed. With the new Qt Marketplace,
+    other add-ons can be installed. In Qt 6, the installation experience is
+    easier and flexible.
+
+    \list
+        \li \l[All Modules]{Qt Modules}
+    \endlist
+
+    \section1 Cross-Platform Portability
+
+    Cross-platform portability is made simpler in Qt 6, thanks to the
+    modularized codebase and with \l{Qt Platform Abstraction}.
 
     \section1 New Features by Qt Version
 
@@ -52,21 +62,4 @@
         \li \l{Porting Guide}
     \endlist
 
-    \section1 Qt Everywhere on Mobile
-
-    \section1 Amazing Graphics Capability and Performance
-
-    \section1 Qt Quick in Qt 6
-
-    \section1 Designing UI Made Simpler
-
-    \section1 Sensor and Location
-
-    \section1 Web Engine and HTML5
-
-    \section1 Qt Platform Abstraction
-
-    \section1 Connectivity and Networking
-
-    \section1 User Input
 */
