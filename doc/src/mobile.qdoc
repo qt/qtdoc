@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -27,14 +27,10 @@
 
 /*!
     \page mobiledevelopment.html
-    \title Mobile APIs
-    \brief APIs for accessing mobile hardware
+    \title Mobile Development
+    \brief Development for mobile devices.
 
-    New in Qt 5 are APIs for mobile platforms. These APIs access various
-    hardware and mobile features. There are also APIs for extending support
-    to other devices and platforms.
-
-    \section2 Supported Mobile Platforms
+    Qt supports development and deployment of mobile applications.
 
     The following pages contain information about setting up Qt Creator and
     how to get started with the mobile platforms:
@@ -43,68 +39,47 @@
         \li \l{Qt for iOS}{iOS}
     \endlist
 
-    \section1 Sensors
+    \section1 Android
 
-    The Qt Sensors module's APIs allow access to various hardware
-    sensors. Accelerometers, light sensors, compass, and gyroscope sensors
-    are one of the many types of sensors supported by the QML and C++ APIs.
+    There is support for Android development in Qt 6. With Qt Creator, you can
+    connect to devices, develop, test, and package Android applications.
 
-    \list
-    \li \l{Qt Sensors}
-    \endlist
-
-    \section1 Positioning
-
-    Accessing location information through Global Positioning System (GPS) or
-    Cell ID positioning is available through the positioning APIs from the Qt
-    Positioning module. Additionally, devices which use NMEA protocols can be
-    used as a source.
+    \include supported-platforms.qdocinc android
 
     \list
-    \li \l{Qt Positioning}
+        \li \l{Qt for Android}
+        \li \l{Qt for Android Examples}{Android Examples}
     \endlist
 
-    \section1 Location
+    \section1 Apple Platforms - iOS, tvOS, and watchOS
 
-    The Qt Location module's API allows access to map, navigation, and place data.
-    It is possible to interact with tile maps using gestures to pan, flick, and
-    zoom. Additional information such as routes or places may be displayed on the
-    map.
+    There is support for various Apple mobile devices such as iPad,
+    iPhone, Apple TV, and Apple Watch. Qt Creator supplements \l Xcode for
+    development and deployment.
+
+    \include supported-platforms.qdocinc ios
 
     \list
-    \li \l{Qt Location}
+        \li \l{Qt for iOS}
+        \li \l{Qt for iOS Examples}{iOS Examples}
     \endlist
 
-    \section1 Bluetooth
+    \section1 Tools for Mobile Development
 
-    The Qt Bluetooth module's APIs allows access to Bluetooth-enabled devices.
-    There are APIs for scanning Bluetooth devices and sharing data among
-    devices. The APIs have support for radio-frequency communication (RFCOMM)
-    and OBEX Object Push Profile (OPP) protocols.
+    \l{Qt Creator} is the IDE for Qt development. Qt Creator creates project
+    files, test and debug code, and connects to mobile devices. For Android, Qt
+    Creator can sign and package APK files, ready for publishing to Google Play.
+    \l Xcode is necessary for development on Apple platforms and Qt Creator can
+    create project files and connect to Apple devices for testing.
+
+    \section2 Design Tools for Mobile
+
+    Design tools aid UI development by allowing designers to create layouts and
+    animation that can be converted into Qt compatible formats. 2D and 3D assets
+    created from design software can be integrated into Qt applications.
 
     \list
-    \li \l{Qt Bluetooth}
+        \li \l{Qt 3D Studio Manual}{Qt 3D Studio}
+        \li \l{Qt Design Studio}{Qt Design Studio}
     \endlist
-
-    \section1 NFC
-
-    Near field communication (NFC) support is provided by the Qt NFC module. The
-    QML and C++ APIs sets up communication between NFC Forum Tags and NFC Forum
-    Devices through the of NFC Logical Link Control Protocol (LLCP).
-
-    \list
-    \li \l{Qt NFC}
-    \endlist
-
-   \section1 In-App Purchasing
-
-   The Qt Purchasing module enables mobile developers to generate revenue from
-   their applications on Android and iOS platforms. The module provides C++ and
-   QML alternatives to support the In-App purchasing use case in Qt
-   applications.
-
-   \list
-    \li \l{Qt Purchasing}
-   \endlist
-
 */
