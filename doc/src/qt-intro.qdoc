@@ -30,36 +30,64 @@
     \title What's New in Qt 6
     \brief Qt 6 features and its benefits.
 
-    Qt 6 is the latest version of Qt. It lets you develop applications with
-    intuitive user interfaces for multiple targets, faster than ever before.
+    Qt 6 lets you develop applications with intuitive user interfaces for
+    multiple devices and platforms, faster than ever before. Development is
+    easy with \b{Qt Creator}, letting you design, code, test, and deploy Qt
+    applications. Qt 6 is highly compatible with Qt 5. Developers of Qt 5
+    applications can move seamlessly to Qt 6 while retaining applications'
+    functionality.
 
-    Qt 6 is highly compatible with Qt 5. Developers of Qt 5 applications
-    can move seamlessly to Qt 6 while retaining the current functionality,
-    and gradually develop new features that leverage what Qt 6 makes possible.
+    \section1 Developing User Interfaces with Qt
 
-    \section1 Qt Essential, Qt Add-ons, and Qt Marketplace
+    Qt offers two UI frameworks for developers: \b{Qt Widget} and \b{Qt Quick}
+    \l{Qt Widget} is cross-platform and tightly integrates with desktop
+    look 'n' feel. \l{Qt Quick} UIs are dynamic with fluid animations and are
+    optimal for touch interfaces. You can implement widget UIs in C++ and you
+    can implement Qt Quick UIs declaratively with QML and JavaScript. The
+    \l{User Interfaces} page compares both Qt Quick and Qt Widget UIs.
 
-    In Qt 6, a new structure streamlines the base installation. The base
-    installation includes primarily the Qt Essentials and a few of the most
-    commonly used Qt Add-Ons. The Qt Add-Ons are moved outside of the main
-    installation, but still available when needed. With the new Qt Marketplace,
-    other add-ons can be installed. In Qt 6, the installation experience is
-    easier and flexible.
+    \section2 Designing UIs
 
-    \list
-        \li \l[All Modules]{Qt Modules}
-    \endlist
+    \l{Qt Quick Designer} lets you design UIs from within Qt Creator. You can
+    import 2D and 3D assets, animate components, and create layouts. Testing
+    the designs is possible through a live preview on devices are through
+    an online browser.
 
-    \section1 Cross-Platform Portability
+    \section1 Developing Applications
 
-    Cross-platform portability is made simpler in Qt 6, thanks to the
-    modularized codebase and with \l{Qt Platform Abstraction}.
+    \l{Qt Creator Manual}{Qt Creator} is a complete IDE for developing Qt
+    applications. You can setup project files, code, debug, package, and
+    deploy from within Qt Creator. New in Qt 6, projects can use either
+    \l{Build with CMake}{CMake} or \l{qmake Manual}{qmake} to build
+    applications.
+
+    \section1 Cross-Platform Development
+
+    Qt is cross-platform and you can deploy onto different devices and
+    platforms. \l{Qt Creator Manual}{Qt Creator} has built-in project
+    templates and kits for different platforms and devices. In addition,
+    you can port Qt and create custom targets with
+    \l{Qt Platform Abstraction}.
+
+    \section1 Qt Essential and Qt Add-ons
+
+    In Qt 6, the installation experience is easier and more flexible than
+    before.The installation includes the \b{Qt Essentials} and a few of the most
+    commonly used \b{Qt Add-Ons}. The Qt Add-Ons are moved outside of the main
+    installation, but still available by running the installer. You can read the
+    list of Qt modules in the \l{All Modules}{Qt Modules} page.
+
+    \section1 Where To Go From Here
+
+        \list
+        \li {Getting Started with Qt}
+        \li \l{Porting Guide}{Porting Qt 5 Applications to Qt 6}
+        \endlist
 
     \section1 New Features by Qt Version
 
     \list
         \li \l{What's New in Qt 6.0}
-        \li \l{Porting Guide}
     \endlist
 
 */
