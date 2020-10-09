@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -42,15 +42,6 @@ is called before creating a network connection with QTcpSocket or QUdpSocket.
 Filtering and redistributing network traffic via proxies can handled by the
 QNetWorkProxy class.
 
-Qt Network also provides the \l{Bearer Management} API. It has functions that
-can start or stop network interfaces and roam between access points. It does
-however not take care of the network configurations itself. The platform needs
-to take care of that.
-
-\l{Qt WebEngine} offers a Chromium-based web engine that enables using
-web content in your application. \l{Qt WebEngine} can render HTML5, XHTML,
-and SVG documents, and execute Javascript.
-
 Qt also offers functionalities for \e{inter-process communication} (IPC). The
 class QProcess is used to start external programs. \l{Qt D-Bus} provides support
 for D-Bus, an interprocess communication and remoteprocedure calling mechanism.
@@ -84,10 +75,6 @@ alongside the central QSslSocket, e.g. QSslCertificate, QSslConfiguration and
 QSslError. The only supported backend for SSL in Qt is OpenSSL, which needs to
 be installed separately.
 
-For mobile devices, Qt Network offers the \l{Bearer Management}{bearer
-management} API to track the status of a connection (e.g. getting notified about
-online/offline status or whether Wifi or 3G is used).
-
 Qt also offers HTTP support in QML by either using HTTP explicitly via
 XmlHttpRequest, or by transparently using HTTP URLs in e.g. Image sources.
 
@@ -99,31 +86,9 @@ Related Topics:
         \li \l {Network Programming with Qt}
         \li \l {Qt Network C++ Classes}
         \li \l {Secure Sockets Layer (SSL) Classes}
-        \li \l {Bearer Management}
     \endlist
 \li \l {Resource Loading and Network Transparency} - network and URL transparency in QML
 \endlist
-
-\section1 WebSockets
-
-An alternative to direct TCP or HTTP communication is to use the WebSocket
-protocol (\l{http://tools.ietf.org/html/rfc6455}{RFC 6455}). It is a
-two-way communication protocol on top of the TCP protocol to utilize existing
-web infrastructure without having to create additional client-server based
-communication. The \l{Qt WebSockets} module provides both a QML and C++ API,
-in addition to several examples to demonstrate its use.
-
-\section1 World Wide Web Support
-
-Qt makes it easy to embed web content into your Qt application using features of
-the Qt WebEngine layout engine. The Qt WebEngine module equips Qt with support
-for a broad range of standard web technologies that make it possible to embed
-HTML content styled with CSS and scripted with JavaScript into your Qt
-application. \l{Qt WebEngine} facilitates both integration with traditional
-QWidget based desktop applications as well as embedding into Qt Quick QML
-applications.
-
-For more information see \l {Integrating Web Content}.
 
 \section1 Inter-Process Communication
 
@@ -174,59 +139,6 @@ Related Topics:
     \endlist
 \li \l {QLocalSocket}
 \li \l {QSharedMemory}
-\endlist
-
-\section1 Serial Port Communication
-
-The \l{Qt Serial Port} module provides a C++ API for communicating
-through serial ports, using the RS-232 standard. It works with physical
-ports and also with drivers that emulate these ports. Examples of serial
-port emulators include virtual COM ports, com0com emulators, and the
-Bluetooth SPP.
-
-This module is designed to make serial port programming easier and portable.
-As of Qt 5.2, it is supported on \l{Qt for Windows}{Windows}, \l{Qt for macOS}{\macos},
-and \l{Qt for Linux/X11}{Linux}.
-
-Related topics:
-\list
-\li \l {Qt Serial Port} - module documentation
-\li \l {Qt Serial Port C++ Classes}
-\endlist
-
-\section1 Bluetooth Communication
-
-The \l{Qt Bluetooth} module provides both C++ and QML APIs for the
-short-range (less than 100 meters) wireless protocol developed by the
-\l{Bluetooth SIG}{Bluetooth Special Interest Group}. It provides
-classic Bluetooth and Bluetooth Low Energy features.
-
-Related topics:
-\list
-\li \l {Qt Bluetooth} - module documentation
-    \list
-    \li \l {Qt Bluetooth Overview} {Bluetooth Classic}
-    \li \l {Bluetooth Low Energy Overview} {Bluetooth Low Energy}
-    \li \l {Qt Bluetooth C++ Classes}
-    \li \l {Qt Bluetooth QML Types}
-    \endlist
-\endlist
-
-
-\section1 Near Field Communication
-
-The \l{Qt NFC} module provides both C++ and QML APIs for the extremely
-short-range (less than 20 centimeters) wireless protocol developed by the
-\l{http://www.nfc-forum.org}{NFC Forum}.
-
-Related topics:
-\list
-\li \l {Qt NFC} - module documentation
-    \list
-    \li \l {Qt NFC Overview}
-    \li \l {Qt NFC C++ Classes}
-    \li \l {Qt NFC QML Types}
-    \endlist
 \endlist
 
 */
