@@ -58,6 +58,24 @@
 
     \section1 Window Embedding
 
+    Windows created by the underlying platform APIs may be used as both
+    parent containers for Qt windows, or embedded into Qt windows as child
+    windows.
+
+    The former is useful if the application is mainly written using the native
+    platform APIs, but where parts of the application uses Qt, for example
+    to draw a specialized UI. To embed Qt into the window hierarchy of the
+    native application, use QWindow::winId() to get the native handle for
+    the Qt window, and then use the native APIs to re-parent the window
+    into the native UI.
+
+    The latter is useful if the native platform, or another toolkit, exposes
+    a specialized control as a native window. By using QWindow::fromWinId()
+    to wrap the native window handle in a QWindow, the window can then be
+    re-parented into the Qt window hierarchy as any other QWindow. To re-parent
+    this QWindow into a Qt Widget based UI, use the widgets-specific
+    QWidget::createWindowContainer() function.
+
     \section1 Native Interfaces
 
     \section1 Platform Support

@@ -6,7 +6,7 @@ navigation.landingpage = "Platform Integration"
 description = "Integrating Qt with the native platform"
 version = $QT_VERSION
 
-depends += qtcore qtgui qtdoc
+depends += qtcore qtgui qtwidgets qtdoc
 sourcedirs = .
 headerdirs = .
 
