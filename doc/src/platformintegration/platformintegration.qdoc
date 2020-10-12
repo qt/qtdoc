@@ -45,6 +45,17 @@
 
     \section1 Type Conversions
 
+    \include platformintegration.qdocinc type-conversions
+
+    For example, to get the current user's username on Apple platforms:
+
+    \code
+        NSProcessInfo *processInfo = NSProcessInfo.processInfo;
+        QString userName = QString::fromNSString(processInfo.userName)
+    \endcode
+
+    For a complete list of all type conversions, see the \l{Type Conversions} overview.
+
     \section1 Window Embedding
 
     \section1 Native Interfaces
@@ -60,4 +71,13 @@
 
     The main abstraction layer here is the \l{Qt Platform Abstraction},
     or QPA for short, which deals with window system integration and related use-cases.
+*/
+
+/*!
+    \group platform-type-conversions
+    \title Type Conversions
+
+    \include platformintegration.qdocinc type-conversions
+
+    The following list enumerates all of the available type conversions:
 */
