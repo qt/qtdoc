@@ -76,6 +76,21 @@
     this QWindow into a Qt Widget based UI, use the widgets-specific
     QWidget::createWindowContainer() function.
 
+    \section1 Event Handling
+
+    Most event handling use-cases in Qt are sufficiently covered by the cross
+    platform event delivery, via QWindow::event() and friends, or through
+    QObject::installEventFilter().
+
+    In cases where this is not enough, Qt provides access to the delivery of the
+    native events. A global event filter that receives all native events can be
+    installed by using QCoreApplication::installNativeEventFilter(), while
+    per-window native events can be handled in QWindow::nativeEvent().
+
+    \note Interfering with the native event flow may put Qt in an inconsistent
+    state. These APIs should primarily be used to augment Qt's existing
+    event handling, for example for events Qt doesn't handle yet.
+
     \section1 Native Interfaces
 
     \section1 Platform Support
