@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -229,9 +229,6 @@
         \li \l {Qt Assistant Manual}{Qt Assistant}
         \li \c assistant_
     \row
-        \li \l [QtBluetooth]{Qt Bluetooth}
-        \li \c qtconnectivity_
-    \row
         \li \l [QtConcurrent]{Qt Concurrent}
         \li \c qtbase_
     \row
@@ -253,23 +250,8 @@
         \li \l {Qt Linguist Manual}{Qt Linguist}
         \li \c linguist_
     \row
-        \li \l [QtLocation]{Qt Location}
-        \li \c qtlocation_
-    \row
-        \li \l [QtMultimedia]{Qt Multimedia}
-        \li \c qtmultimedia_
-    \row
-        \li \l [QtMultimediaWidgets]{Qt Multimedia Widgets}
-        \li \c qtmultimedia_
-    \row
-        \li \l[QtNfc]{Qt NFC}
-        \li \c qtconnectivity_
-    \row
         \li \l[Qt Network]{Qt Network}
         \li \c qtbase_
-    \row
-        \li \l [QtPositioning]{Qt Positioning}
-        \li \c qtlocation_
     \row
         \li \l [QtPrintSupport]{Qt Print Support}
         \li \c qtbase_
@@ -286,52 +268,12 @@
         \li \l {Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li \c qtdeclarative_
     \row
-        \li \l [QtSerialPort]{Qt Serial Port}
-        \li \c qtserialport_
-    \row
         \li \l [QtSql]{Qt SQL}
         \li \c qtbase_
-    \row
-        \li \l [QtWebEngine]{Qt WebEngine}
-        \li \c qtwebengine_
-    \row
-        \li \l [QtWebSockets]{Qt WebSockets}
-        \li \c qtwebsockets_
     \row
         \li \l [QtWidgets]{Qt Widgets}
         \li \c qtbase_
     \endtable
-
-    \omit
-    The following modules are not listed above because they are deprecated,
-    documented as a part of another module, QPA modules, or not translated
-    for some reason.
-
-    \list
-    \row \li QtEglFSDeviceIntegration \li \c qtbase_ \li QPA
-    \row \li QtMultimediaGstTools \li \c qtmultimedia_ \li Qt Multimedia
-    \row \li QtMultimediaQuick \li \c qtmultimedia_ \li Qt Multimedia
-    \row \li QtOpenGL \li \c qtbase_ \li Deprecated
-    \row \li QtOpenGLExtensions \li \c qtbase_ \li Deprecated
-    \row \li QtPacketProtocol \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtPositioningQuick \li \c qtlocation_ \li Qt Positioning
-    \row \li QtQmlDebug \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtQmlModels \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtQmlWorkerScript \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtQuickParticles \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtQuickShapes \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtQuickTemplates2 \li \c qtquickcontrols2_ \li Qt Quick Controls 2
-    \row \li QtQuickTest \li \c qtdeclarative_ \li Not translated
-    \row \li QtQuickWidgets \li \c qtdeclarative_ \li Qt Quick
-    \row \li QtScript \li \c qtscript_ \li Deprecated
-    \row \li QtScriptTools \li \c qtscript_ \li Deprecated
-    \row \li QtTest \li \c qtbase_ \li Not translated
-    \row \li QtWebEngineCore \li \c qtwebengine_ \li Qt WebEngine
-    \row \li QtWebEngineWidgets \li \c qtwebengine_ \li Qt WebEngine
-    \row \li QtXml \li \c qtbase_ \li Deprecated
-    \row \li QtXmlPatterns \li \c qtxmlpatterns_ \li Deprecated
-    \endlist
-    \endomit
 
     \section2 Example: Basic Qt Modules
 
