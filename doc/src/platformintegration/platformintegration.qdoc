@@ -93,6 +93,19 @@
 
     \section1 Native Interfaces
 
+    Platform specific functionality not covered by the APIs mentioned above
+    are handled by the more generic \l{Native Interfaces}{native interface}
+    mechanism in Qt. The interfaces provide access to native or platform
+    specific APIs of the classes they extend.
+
+    \include platformintegration.qdocinc native-interface-blurb
+
+    \include platformintegration.qdocinc native-interface-handle-access-example
+
+    For a complete list of all native interfaces, see the \l{Native Interfaces} overview.
+
+    \warning \include platformintegration.qdocinc native-interface-compat-warning
+
     \section1 Platform Support
 
     In addition to the application developer APIs, Qt also interfaces with the
@@ -113,4 +126,108 @@
     \include platformintegration.qdocinc type-conversions
 
     The following list enumerates all of the available type conversions:
+*/
+
+/*!
+    \group native-interfaces
+    \title Native Interfaces
+
+    The native interfaces provide access to native or platform specific APIs of
+    the classes they extend.
+
+    \include platformintegration.qdocinc native-interface-blurb
+
+    \section1 Example Usage
+
+    \section2 Accessing underlying native handles
+
+    In situations where a feature of the native platform is not exposed in Qt,
+    it can be helpful to access the native handles maintained by Qt, and use
+    those to call the native APIs instead.
+
+    \include platformintegration.qdocinc native-interface-handle-access-example
+
+    The native interface is accessed through the QOpenGLContext::nativeInterface()
+    accessor, which ensures that the requested interface is available, and otherwise
+    returns \nullptr. The underlying NSOpenGLContext is then accessed through the
+    \l{QNativeInterface::QCocoaGLContext::nativeContext()}{nativeContext()} accessor.
+
+    \section2 Adopting existing native handles
+
+    Similarly to the \l{Window Embedding}{window embedding} use-case, there are
+    situations where the native platform, or another toolkit, has created a native
+    handle that you would like to pass on to Qt \mdash wrapping the existing handle
+    instead of creating a new one.
+
+    For example, to adopt an existing NSOpenGLContext, and use that to share
+    resources with a context created by Qt:
+
+    \code
+        using namespace QNativeInterface;
+        QOpenGLContext *adoptedContext = QCocoaGLContext::fromNativeContext(nsOpenGLContext);
+        anotherContext->setShareContext(adoptedContext);
+    \endcode
+
+    The adopted context is created by a platform specific factory function
+    in the QNativeInterface::QCocoaGLContext native interface.
+
+    \section2 Accessing platform specific APIs
+
+    In some cases an API is too platform specific to be included in the cross platform
+    Qt classes, but is still useful to include. These APIs are available either in the
+    same way as when accessing the underlying native handles, through the
+    \l{QOpenGLContext::nativeInterface()}{nativeInterface()} accessor, or directly
+    as static function in the native interface.
+
+    For example, to pull out the OpenGL module handle on Windows:
+
+    \code
+        using namespace QNativeInterface;
+        HMODULE moduleHandle = QWGLContext::openGLModuleHandle();
+    \endcode
+
+    \section1 Source and Binary Compatibility
+
+    \include platformintegration.qdocinc native-interface-compat-warning
+
+    \section1 Available Interfaces
+
+    For a list of all available interfaces, see the QNativeInterface namespace.
+
+    \section2 QOpenGLContext
+
+    Accessed through QOpenGLContext::nativeInterface().
+
+    \annotatedlist native-interfaces-qopenglcontext
+
+    \section2 QOffscreenSurface
+
+    Accessed through QOffscreenSurface::nativeInterface().
+
+    \annotatedlist native-interfaces-qoffscreensurface
+
+    \noautolist
+*/
+
+/*!
+    \namespace QNativeInterface
+    \inmodule QtPlatformIntegration
+    \inheaderfile
+    \since 6.0
+
+    \brief Contains the available native interfaces.
+
+    For documentation on how to use these interfaces, see the \l{Native Interfaces} overview.
+
+    \warning \include platformintegration.qdocinc native-interface-compat-warning
+*/
+
+/*!
+    \namespace QNativeInterface::Private
+    \inmodule QtPlatformIntegration
+    \internal
+    \inheaderfile
+    \since 6.0
+
+    \brief Contains the available private native interfaces.
 */
