@@ -1,9 +1,5 @@
 TEMPLATE = aux
+QT = core gui widgets
 
 QMAKE_DOCS = $$PWD/platformintegration.qdocconf
-
-QTDIR = $$[QT_HOST_PREFIX]
-exists($$QTDIR/.qmake.cache): \
-    QMAKE_DOCS_OUTPUTDIR = $$QTDIR/doc/cmake
-else: \
-    QMAKE_DOCS_OUTPUTDIR = $$OUT_PWD/cmake
+load(qt_docs)
