@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -39,13 +39,16 @@ module, designers and developers can easily build fluid animated user interfaces
 in QML, and have the option of connecting these user interfaces to any back-end
 C++ libraries.
 
-\section2 What is QML?
+
+\section1 What is QML?
 
 QML is a user interface specification and programming language.
 It allows developers and designers alike to create highly performant, fluidly
 animated and visually appealing applications.  QML offers a highly readable,
 declarative, JSON-like syntax with support for imperative JavaScript
 expressions combined with dynamic property bindings.
+
+\snippet qmlapp/qml_overview.qml file
 
 The QML language and engine infrastructure is provided by the \l {Qt QML} module.
 For in-depth information about the QML language, please see the
@@ -58,11 +61,12 @@ The following pages contain more information about QML:
 \li \l{The QML Reference} - reference about the QML constructs and features
 \li \l{qml-codingconventions.html}{QML Coding Conventions}
 \li \l{Glossary of QML Terms}
+\li \l{All QML APIs by Module}
 \endlist
 
-\section2 What is Qt Quick?
+\section1 What is Qt Quick?
 
-Qt Quick is the standard library of types and functionality for QML.  It
+Qt Quick is the standard library of QML types and functionality for QML. It
 includes visual types, interactive types, animations, models and views,
 particle effects and shader effects.  A QML application developer can get
 access to all of that functionality with a single import statement.
@@ -70,15 +74,8 @@ access to all of that functionality with a single import statement.
 The \c QtQuick QML library is provided by the \l{Qt Quick} module.
 For in-depth information about the various QML types and other functionality
 provided by Qt Quick, please see the \l{Qt Quick} module documentation.
-
-\section1 QML User Interfaces
-
-For creating or customizing graphical user interfaces, Qt Quick adds visual
-types, animation types, and other QML types in addition to the standard QML
-types from Qt QML. \l{Qt Creator: Editing QML Files in Design Mode}{Qt Quick Designer}
-is integrated within Qt Creator and supports \c{QtQuick 2} from Qt Creator
-version 2.7 and onwards.
-
+Qt Quick adds visual types, animation types, and other QML types in addition to
+the standard QML types from Qt QML.
 
 \list
 \li \l{qtquick-usecase-visual.html}{Visual types in QML}
@@ -88,68 +85,32 @@ version 2.7 and onwards.
 \li \l{qtquick-usecase-layouts.html}{Layouts in QML}
 \li \l{qtquick-usecase-styling.html}{Style and Theme Support}
 \li \l{qtquick-usecase-integratingjs.html}{Integrating JavaScript in QML}
-\li \l{Scalability}
 \endlist
 
 \section2 Buttons, Menus, and other Controls
 
-For a set of basic UI controls, the \l{Qt Quick Controls} module implements
-several controls such as buttons, menus, and views. These controls come with
+For a set of UI controls, the \l{Qt Quick Controls} module implements several
+controls such as buttons, menus, and views. These controls come with
 several built-in styles that can be used, and also support the creation
 of custom styles.
 
+\section1 Qt Quick Projects
+
+\l{Qt Creator} sets up project environments for the following types of Qt Quick
+applications:
+
 \list
-\li \l{Qt Quick Controls Guidelines}
-\li \l{Qt Quick Templates 2}
+\li \b Scroll - scroll-based navigation
+\li \b Stack - stack-based navigation
+\li \b Swipe - page-based application with swipe navigation
+\li \b Python - \l{Qt for Python} projects can have QML UIs and have Qt Creator
+support
 \endlist
 
-\section2 Special Effects
-
-Several Qt modules provide types for creating special effects in applications.
-Their respective pages contain more information about specific uses.
-
+For more information about Qt Quick applications, visit the following pages:
 \list
-\li \l{Using the Qt Quick Particle System}{Particle Effects}
-\li \l{Graphical Effects} - for creating image composition effects.
-\endlist
-
-\section2 Viewing Web Content in QML Applications
-
-The QML types, \l WebEngineView and \l WebView, render and display dynamic
-web content. The only difference between the two is that the latter uses a
-native web view if available. Both these types can load a URL or an HTML
-string. To read more about them and view code
-samples, see \l{Qt WebEngine} and \l{Qt WebView}.
-
-\section2 Sensors, Gestures, and Touch Interfaces
-
-The \l{Qt Sensors} module allows applications to read information from
-sensors such as accelerometers and tilt sensors. There is a common QML API for
-different platforms and can be extended in C++.
-
-\list
-\li \l{Qt Sensors QML Types}
-\li \l{Qt Sensors Examples}
-\li \l{Compatibility Map} - lists support level for different mobile platforms
-\endlist
-
-\omit //! Qt Multimedia
-\section1 Multimedia Content
-
-The \l{Qt Multimedia} module enables applications to handle various media
-content with a convenient set of QML types. These QML types can be extended
-in C++.
-
-\list
-\li \l Multimedia
-    \list
-    \li \l{Audio Overview}
-    \li \l{Video Overview}
-    \li \l{Camera Overview}
-    \li \l{Radio Overview}
-    \li \l{Qt Audio Engine QML Types}{Qt Audio Engine} - for 3D positional audio
-    playback and content management.
-    \endlist
+\li \l{Qt Creator: Creating Qt Quick Projects}{Creating Qt Quick Projects}
+\li \l{Design Tools} - tools for designing UIs
 \endlist
 \endomit //! Qt Multimedia
 
@@ -180,18 +141,12 @@ QML code is used in applications.
     \endlist
 \endlist
 
-\section1 Other QML Modules
-
-Qt Quick only provides basic visual types and much of Qt's functionality is
-exposed to QML through other modules. If you require the functionality of those
-modules, you should browse their QML documentation.
-
-The \l{All QML APIs by Module} contains a list of all QML modules
-in Qt.
-
 \section1 Related Topics
 
 \list
+\li \l{All QML Types}
+\li \l{All QML APIs by Module}
+\li \l{Obsolete QML Types}
 \li \l{Porting QML Applications to Qt 6}
 \endlist
 
