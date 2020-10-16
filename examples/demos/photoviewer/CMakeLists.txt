@@ -21,7 +21,7 @@ find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Quick)
 find_package(Qt6 COMPONENTS XmlPatterns)
 
-add_qt_gui_executable(photoviewer
+qt_add_executable(photoviewer
     main.cpp
 )
 target_link_libraries(photoviewer PUBLIC

@@ -20,7 +20,7 @@ find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Quick)
 
-add_qt_gui_executable(coffee
+qt_add_executable(coffee
     main.cpp
 )
 target_compile_definitions(coffee PUBLIC

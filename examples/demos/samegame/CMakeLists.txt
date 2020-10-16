@@ -21,7 +21,7 @@ find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Quick)
 find_package(Qt6 COMPONENTS Sql)
 
-add_qt_gui_executable(samegame
+qt_add_executable(samegame
     main.cpp
 )
 target_link_libraries(samegame PUBLIC

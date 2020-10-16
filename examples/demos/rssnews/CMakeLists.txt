@@ -22,7 +22,7 @@ find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Xml)
 find_package(Qt6 COMPONENTS XmlPatterns)
 
-add_qt_gui_executable(rssnews
+qt_add_executable(rssnews
     main.cpp
 )
 target_link_libraries(rssnews PUBLIC
