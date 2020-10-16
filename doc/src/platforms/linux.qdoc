@@ -74,9 +74,9 @@
     sudo zypper install -t pattern devel_basis
     \endcode
 
-    \section1 Building Qt 5 from Source
+    \section1 Building Qt from Source
 
-    You can also build Qt 5 from the source package and configure it according
+    You can also build Qt from the source package and configure it according
     to your target platform. The source packages are obtained from
     \l{http://www.qt.io/download/}.
 
@@ -373,7 +373,7 @@
     \title Qt for Linux/X11 - Building from Source
     \brief How to configure and build Qt on Linux/X11 platforms.
 
-    You can download the Qt 5 sources from the \l Downloads page. For more
+    You can download the Qt sources from the \l Downloads page. For more
     information, visit the \l{Getting Started with Qt} page.
 
     Qt for X11 has some requirements that are given in more detail
@@ -754,7 +754,7 @@
     \section2 Qt Plugins
 
     All Qt GUI applications require a plugin that implements the \l {Qt
-    Platform Abstraction} (QPA) layer in Qt 5. For Linux/X11, the name of the
+    Platform Abstraction} (QPA) layer in Qt. For Linux/X11, the name of the
     platform plugin is \c {libqxcb.so}. This file must be located within a
     specific subdirectory (by default, \c platforms) under your distribution
     directory. Alternatively, it is possible to adjust the search path Qt

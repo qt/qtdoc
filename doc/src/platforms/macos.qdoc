@@ -203,7 +203,7 @@
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c
     macdeployqt (available from the \macos installers), can be used to create
     the self-contained bundles, and optionally also create a .dmg archive.
-    Applications can also be distributed through the Mac App Store. Qt 5 aims
+    Applications can also be distributed through the Mac App Store. Qt aims
     to stay within the app store sandbox rules. macdeployqt (bin/macdeployqt)
     can be used as a starting point for app store deployment.
 
@@ -278,7 +278,7 @@
     \section1 Steps for Building
 
     The following instructions describe how to build Qt from the source package.
-    You can download the Qt 5 sources from the \l{Downloads} page. For
+    You can download the Qt sources from the \l{Downloads} page. For
     more information, visit the \l{Getting Started with Qt} page.
 
     \section2 Step 1: Install the License File (Commercially Licensed Qt Only)
@@ -607,7 +607,7 @@
     \li \c Q_OS_MACOS is defined when you are on an \macos system.
     \endlist
 
-    \note \c Q_WS_MAC is no longer defined in Qt 5.
+    \note \c Q_WS_MAC is no longer defined in Qt 5 and later.
 
     If you want to define code for specific versions of \macos, use
     the availability macros defined in \e{/usr/include/AvailabilityMacros.h}.
@@ -1112,7 +1112,7 @@
     \section2 Qt Plugins
 
     All Qt GUI applications require a plugin that implements the \l {Qt
-    Platform Abstraction} (QPA) layer in Qt 5. For \macos, the name of the
+    Platform Abstraction} (QPA) layer in Qt. For \macos, the name of the
     platform plugin is \c {libqcocoa.dylib}. This file must be located within a
     specific subdirectory (by default, \c platforms) under your distribution
     directory. Alternatively, it is possible to adjust the search path Qt

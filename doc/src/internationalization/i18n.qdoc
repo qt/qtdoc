@@ -214,9 +214,9 @@
     applications from Qt 4 to Qt 5 easier. The meta catalog depends on
     translations that might be absent, because they belong to unnecessary or
     deprecated modules, which might cause the loading of the translations to
-    fail. If you use modules that are new in Qt 5 in your application, you must
-    specify the names of the catalogs for those modules even if you use the
-    meta catalog.
+    fail. If you use modules that are new in Qt 5 or later in your application,
+    you must specify the names of the catalogs for those modules even if you
+    use the meta catalog.
 
     The following table lists the translation catalogs available for the Qt
     modules and tools in Qt.

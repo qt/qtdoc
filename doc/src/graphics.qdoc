@@ -30,9 +30,9 @@
 \title Graphics
 \brief Qt's graphics features
 
-Graphics in Qt 5 is primarily done either through the imperative QPainter API,
+Graphics in Qt is primarily done either through the imperative QPainter API,
 or through Qt’s declarative UI language, Qt Quick, and its scene graph back-end.
-Qt 5's graphics capabilities also includes support for printing, as well as the
+Qt's graphics capabilities also includes support for printing, as well as the
 loading and saving of various image formats.
 
 
@@ -131,12 +131,6 @@ applications, as well as add-on modules for displaying 3D content.
         Qt Quick applications.
 
 \endlist
-
-Prior to Qt 5.0, OpenGL support in Qt was handled by the \l {Qt OpenGL}
-module. This module is still present, but new code should aim to use
-the new classes in the \l {Qt GUI} module. The classes are easily distinguisible
-based on their names: Classes with the \c QGL prefix should not be used. Instead,
-prefer the ones starting with \c QOpenGL.
 
 
 

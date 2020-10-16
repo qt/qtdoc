@@ -94,14 +94,14 @@
 
     \section1 Libraries
 
-    The following third-party libraries may be used when running Qt 5
+    The following third-party libraries may be used when running Qt
     applications on Windows.
 
     \list
         \li \l{OpenSSL Toolkit}: Qt can make use of OpenSSL to support Secure Socket Layer
            (SSL) communication.
 
-        \li \l{ICU}: Qt 5 can make use of the ICU library for enhanced UNICODE and Globalization
+        \li \l{ICU}: Qt can make use of the ICU library for enhanced UNICODE and Globalization
            support (see QTextCodec, QCollator::setNumericMode()).
 
            At compile time, the \e include and \e lib folders of the ICU installation must
@@ -406,8 +406,8 @@
 
     \section1 Building from Source
 
-    These tools are not needed to run Qt 5 applications, but they are required
-    for building Qt 5 from source.
+    These tools are not needed to run Qt applications, but they are required
+    for building Qt from source.
 
     \list
         \li \l ActivePerl - Install a recent version of ActivePerl
@@ -421,7 +421,7 @@
            in the path before the perl executable provided by msysgit, since the
            latter is outdated.
 
-    For instructions for building the Qt 5 source, read
+    For instructions for building the Qt source, read
     the \l{Qt for Windows - Building from Source} page.
 
     \section1 Compilers
@@ -999,7 +999,7 @@
     \section2 Qt Plugins
 
     All Qt GUI applications require a plugin that implements the \l {Qt
-    Platform Abstraction} (QPA) layer in Qt 5. For Windows, the name of the
+    Platform Abstraction} (QPA) layer in Qt. For Windows, the name of the
     platform plugin is \c {qwindows.dll}. This file must be located within a
     specific subdirectory (by default, \c platforms) under your distribution
     directory. Alternatively, it is possible to adjust the search path Qt
@@ -1080,7 +1080,7 @@
     \l{Qt for Windows}. Before building, there are some requirements that are
     given in more detail in the \l{Qt for Windows - Requirements} document.
 
-    You can download the Qt 5 sources from the \l{Downloads} page. For
+    You can download the Qt sources from the \l{Downloads} page. For
     more information, visit the \l{Getting Started with Qt} page.
 
 
@@ -1142,7 +1142,7 @@
     \section1 Step 4: Build the Qt Library
 
         The default behavior of configure is to create an in-source build
-        of Qt 5. If you want to install Qt 5 to a separate location,
+        of Qt. If you want to install Qt to a separate location,
         you need to specify the command line option \c{-prefix <location>}.
         Alternatively, the command line option \c -developer-build creates
         an in-source build for developer usage.
