@@ -51,6 +51,15 @@
         \li \l{Using Android Studio}
     \endlist
 
+    Then, you need the following tools:
+
+    \list
+        \li A JDK package such as \l{AdoptOpenJDK}, \l{Java SE Development Kit}{JDK},
+            or \l{OpenJDK}.
+        \li \c CMake
+        \li \c Ninja
+    \endlist
+
     \section3 Using Manual Installation
 
     For more information, see \l{Getting Started with Qt for Android}.
@@ -66,6 +75,23 @@
     more information, see \l{Android: Update your tools with the SDK Manager}
     {Android Studio documentation}.
 
+
+    \section1 Building Qt for Android
+
+    Qt 6 allows building Qt for Android from source code using \c CMake. Qt 6 keeps
+    the same configure script from Qt 5. The main difference is that Qt for Android
+    is dependent on a host Qt build, which means to build Qt for Android, you
+    need to build Qt for the desktop platform used as a host (for example Linux,
+    macOS, or Windows).
+
+    With the configure script, the same arguments can be used as before. For more
+    information, see \l {Building Qt Sources}.
+
+    Qt for Android supports the following ABIs \e{armeabi-v7a}, \e{arm64-v8a},
+    \e{x86}, and \e{x86_64}.
+
+    \note Qt 6.0 does not support multi-abi feature, for that reason setting the
+    \e {-android-abis} is mandatory.
 
     \section1 Building on Linux
 
@@ -107,7 +133,9 @@
 
     \badcode
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    export PATH=$JAVA_HOME/bin:$PATH
+    export CMAKE_ROOT=~/Qt/Tools/CMake/bin
+    export NINJA_ROOT=~/Qt/Tools/Ninja
+    export PATH=$JAVA_HOME/bin:$CMAKE_ROOT:$NINJA_ROOT:$PATH
     \endcode
 
     \note JDK 11 or earlier must be used to properly build Qt for Android.
@@ -122,7 +150,7 @@
     mkdir <path_to_build_dir>/build-qt
     cd <path_to_build_dir>/build-qt
 
-    <path_to_qt_source>/configure -xplatform android-clang -prefix </path/to/install> -disable-rpath -nomake tests -nomake examples -android-ndk <path/to/sdk>/ndk/<ndk_version> -android-sdk <path/to/sdk> -no-warnings-are-errors
+    <path_to_qt_source>/configure -xplatform android-clang -prefix </path/to/install> -disable-rpath -nomake tests -nomake examples -android-ndk <path/to/sdk>/ndk/<ndk_version> -android-sdk <path/to/sdk> -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a -no-warnings-are-errors
     \endcode
 
     \l{Qt Configure Options} contains more information about the configure options.
@@ -130,17 +158,27 @@
     You can customize your build configuration in a more advanced manner. For
     more information, see \l {Advanced Build Arguments}.
 
+    \note For more information about building Qt 6 with CMake, see \l {Building with CMake}.
+
     To build the configured Qt code, run the following command:
+
     \badcode
-    make -j$(nproc)
+    cmake --build . --parallel
+    \endcode
+
+    Also, the following is possible instead:
+
+    \badcode
+    ninja -j$(nproc)
     \endcode
 
     \note \e{nproc} is optional. It represents the number of parallel jobs your
     system can do.
 
-    Then install the built Qt for Android:
+    Now, to install Qt, run the following command:
+
     \badcode
-    make install
+    cmake --install .
     \endcode
 
     If you haven't provided the \c{--prefix <install-dir>} configure option, the
@@ -153,11 +191,10 @@
 
     \section2 Preparing the Build Environment
 
-    Install the following:
+    In addition to the requirements from \c {Prepare the Build Environment}, you
+    need the following on Windows:
 
     \list
-        \li A JDK package such as \l{AdoptOpenJDK}, \l{Java SE Development Kit}{JDK},
-            or \l{OpenJDK}.
         \li \b {MinGW 7.3} toolchain
         \li \l{Perl}
     \endlist
@@ -169,7 +206,9 @@
     set JDK_ROOT=<JDK_ROOT_PATH>\bin
     set MINGW_ROOT=<MINGW_ROOT_PATH>\bin
     set PERL_ROOT=<PERL_ROOT_PATH>\bin
-    set PATH=%MINGW_ROOT%;%PERL_ROOT%;%JDK_ROOT%:%PATH%
+    set CMAKE_ROOT=C:\Qt\Tools\CMake\bin
+    set NINJA_ROOT=C:\Qt\Tools\Ninja\
+    set PATH=%MINGW_ROOT%;%CMAKE_ROOT%;%NINJA_ROOT%;%PERL_ROOT%;%JDK_ROOT%:%PATH%
     \endcode
 
     Then, in the command line prompt, verify that:
@@ -221,7 +260,7 @@
     mkdir C:\Qt\Build\build-qt
     cd C:\Qt\Build\build-qt
 
-    ..\Src_%VERSION%\configure.bat -platform win32-g++ -xplatform android-clang -prefix <\path\to\install> -nomake tests -nomake examples -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk\<ndk_version> -android-ndk-host windows-x86_64 -no-warnings-are-errors
+    ..\Src_%VERSION%\configure.bat -platform win32-g++ -xplatform android-clang -prefix <\path\to\install> -nomake tests -nomake examples -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk\<ndk_version> -android-ndk-host windows-x86_64 -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a -no-warnings-are-errors
     \endcode
 
     \l{Qt Configure Options} contains more information about the configure options.
@@ -229,10 +268,18 @@
     You can customize your build configuration in a more advanced manner. For
     more information, see \l {Advanced Build Arguments}.
 
+    \note For more information about building Qt 6 with CMake, see \l {Building with CMake}.
+
     To build the configured Qt for Android code, run the following:
 
     \badcode
-    mingw32-make.exe -j<N>
+    cmake --build . --parallel
+    \endcode
+
+    Also, the following is possible instead:
+
+    \badcode
+    ninja -j<N>
     \endcode
 
     \note \e{<N>} is optional. It represents the number of parallel jobs your
@@ -241,19 +288,10 @@
     Now, to install Qt, run the following command:
 
     \badcode
-    mingw32-make.exe install
+    cmake --install .
     \endcode
 
     \section1 Advanced Build Arguments
-
-    You may provide the \c{-android-abis} parameter to limit the Android ABIs
-    being built, with either of: \e{armeabi-v7a}, \e{arm64-v8a}, \e{x86}, or \e{x86_64}:
-
-    \badcode
-    -android-abis armeabi-v7a,arm64-v8a
-    \endcode
-
-    \note If the parameter is not specified, Qt is built for all supported ABIs.
 
     Qt for Android contains Java code which is compiled into *.jar files with
     \e javac. To set the \e javac version for source and target, use \e -android-javac-source
@@ -281,25 +319,64 @@
     \list
         \li Use the configured \e qt5 build with the following command:
             \code
-            make -j$(nproc) module-qtbase
+            ninja -j$(nproc) module-qtbase
             \endcode
 
             The to install those modules, use:
 
             \code
-            make -j$(nproc) module-qtbase-install_subtargets
+            ninja -j$(nproc) module-qtbase-install_subtargets
             \endcode
 
-            \note On Windows, use \e mingw32-make.exe instead.
-
-        \li Configure and build \e qtbase only, then use the resulting \e qmake to build
-            any other module. The only difference is that the configure script in
-            \e qtbase directory has to be used:
+        \li Configure and build \e qtbase only, then use the resulting
+            \e qt-configure-module to configure any other module. The only
+            difference is that the configure script in \e qtbase directory has to be used:
 
             \badcode
             mkdir <path_to_build_dir>/build-qt/qtbase
             cd <path_to_build_dir>/build-qt/qtbase
             <path_to_qt_source>/qtbase/configure [...]
             \endcode
+
+            Then to configure \c qtdeclarative for example:
+
+            \badcode
+            mkdir <build_directory>/build-qtdeclarative
+            cd <build_directory>/build-qtdeclarative
+            <qt_for_android_install_path>/bin/qt-configure-module <qt_source_path>/qtdeclarative
+            cmake --build . --parallel
+            cmake --install .
+            \endcode
     \endlist
+
+    \section1 Building User Projects
+
+    To build CMake projects with the resulting Qt installation, use
+    \c qt-cmake wrapper. For Android the following has to be be provided:
+
+    \badcode
+    <qt_for_android_install_path>/bin/qt-cmake -DANDROID_SDK_ROOT=<android_sdk_path> -DCMAKE_TOOLCHAIN_FILE=<android_ndk_path>/build/cmake/android.toolchain.cmake -DQT_HOST_PATH=<host_qt_install_path> -DCMAKE_FIND_ROOT_PATH=<qt_for_android_install_path> -DANDROID_ABI:STRING=<abi> -S <source_dir> -B <build_dir>
+    \endcode
+
+    Additionally, you can still use \c qmake to build user projects as before in Qt 5.
+
+    \section1 Configuring with CMake
+
+    Another way to configure Qt is to provide the full CMake configuration command:
+
+    \badcode
+    cmake -DQT_HOST_PATH=<path_to_host_qt_installation> -DQT_QMAKE_TARGET_MKSPEC=android-clang -DANDROID_SDK_ROOT=<path_to_android_sdk> -DANDROID_NDK_ROOT=<path_to_android_ndk> -DANDROID_ABI=arm64-v8a -DCMAKE_INSTALL_PREFIX=<qt_install_prefix> -G Ninja <path_to_qt_source>
+    \endcode
+
+    To build Qt in the configured directory, run:
+
+    \badcode
+    cmake --build . --parallel
+    \endcode
+
+    Then to install Qt, run:
+
+    \badcode
+    cmake --install .
+    \endcode
 */
