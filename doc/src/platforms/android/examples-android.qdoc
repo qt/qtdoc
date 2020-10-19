@@ -58,15 +58,22 @@
     \endlist
 
     \l {Qt Android Extras} is an Android specific module used to integrate Qt
-    API with Java API by enabling communication between Qt code {C++ and QML}
-    and Java code. The following examples demonstrate using the module:
+    API with Java API by enabling communication between Qt code (C++ and QML)
+    and Java code. The following examples demonstrate some of the features of
+    the module:
 
     \list
-        \li \l{Qt Notifier} .demonstrates how to call Java code from an
+        \li \l{Qt Notifier} demonstrates how to call Java code from an
             Android application.
         \li \l{Qt JNI Messenger} demonstrates communication between Java code
-            and QML or C++ using NJI calls.
+            and QML or C++ using JNI calls.
+        \li \l{Android Custom Activity} demonstrates working with custom Android activities.
+        \li \l{Qt JNI Music List} demonstrates how to exchange data from complex Java objects.
+        \li \l{Android Service with Qt Remote Objects} demonstrates how to run an Android service,
+            and how to communicate between the service and the app using Qt Remote Objects.
     \endlist
+
+    For the full list examples, see \l {Qt Android Extras Examples}.
 
     \section1 Qt Quick and QML Examples for Android
 
