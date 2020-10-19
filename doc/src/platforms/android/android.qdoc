@@ -101,10 +101,10 @@ In order to use \l{Qt for Android}, you need the following:
         is required to build Android apps. Other alternatives such as \l{OpenJDK}
         for Linux or \l{Java SE Development Kit} for Windows are also supported.
 
+        \note JDK 11 or earlier must be used when using Qt for Android.
+
     \li \l{Gradle} for building application packages (APK) and app bundles
         (AAB) for Android devices. Gradle is delivered with Qt 5.9, and later.
-        Because Gradle scripts are not delivered with  Android SDK tools since
-        version 26.0.0, they are delivered with Qt 5.9 and 5.6.3.
 
         \note Using Ant to build APKs is no longer supported.
 
@@ -135,48 +135,52 @@ In order to use \l{Qt for Android}, you need the following:
     \li \l{Android: The Android NDK}{The Android NDK}
         can be installed using the \c sdkmanager tool. Alternatively, you can
         download it and extract it manually to a path of your choosing.
-        Different Qt versions depend on different NDK versions, as listed below:
-
-        \list
-            \li Qt 5.14.0 or later, Qt 5.13.2 or later, and Qt 5.12.6 or later
-            \list
-                \li NDK r20b or r21
-                \li \e android-clang
-                \li \note Qt 5.14.0 and 5.14.1 with NDK r21 have a bug fixed at
-                    \l {QTBUG-81461}.
-            \endlist
-            \li Qt 5.12.0 to 5.12.5 and Qt 5.13.0 to 5.13.1
-            \list
-                \li NDK r19c
-                \li \e android-clang
-            \endlist
-            \li Qt 5.11 and below
-                \list
-                    \li NDK r10e
-                    \li GCC toolchain
-                \endlist
-        \endlist
 \endlist
 
-After downloading and unpacking the SDK tools, install the essential packages
-using \l {Android: Android Studio}{Android Studio}, the Qt Creator
-\l{Qt Creator: Managing Android SDK Packages}{SDK Manager UI}, or the
-\l{Android: sdkmanager}{sdkmanager} command line tool.
+Different Qt versions depend on different NDK versions, as listed below:
+
+\table
+    \header
+        \li Qt version
+        \li NDK version
+        \li Toolchain
+    \row
+        \li Qt 5.14.0 or later
+            Qt 5.13.2 or later
+            Qt 5.12.6 or later
+        \li NDK r20b or r21
+        \li \e android-clang
+    \row
+        \li Qt 5.12.0 to 5.12.5
+            Qt 5.13.0 to 5.13.1
+        \li NDK r19c
+        \li \e android-clang
+    \row
+        \li Qt 5.11 and earlier
+        \li NDK r10e
+        \li \e GCC toolchain
+\endtable
+
+\li \note Qt 5.14.0 and 5.14.1 with NDK r21 have a bug fixed at \l {QTBUG-81461}.
 
 \note Make sure to unpack the Android SDK and NDK to a writeable location that Qt Creator
 can access later. Otherwise, Qt Creator won't be able to use \c sdkmanager or find all
 components even if they were installed manually.
 
-\section2 Updating the Android SDK
+\section2 Installing the Android SDK Essentials
 
-Use the \c sdkmanager command line tool to update the packages list and then
-install the essential packages:
+After downloading and unpacking the Commandline SDK Tools, use the \c sdkmanager
+command line tool to install the essential packages:
 
 \badcode
 cd <ANDROID_SDK_ROOT>/tools/bin/
 ./sdkmanager --sdk_root=<ANDROID_SDK_ROOT> --install "cmdline-tools;latest"
-./sdkmanager --sdk_root=<ANDROID_SDK_ROOT> --install "platform-tools" "platforms;android-29" "build-tools;29.0.2" "ndk;21.1.6352462"
+./sdkmanager --sdk_root=<ANDROID_SDK_ROOT> --install "platform-tools" "platforms;android-29" "build-tools;29.0.2" "ndk;21.3.6528147"
 \endcode
+
+\l {Android: Android Studio}{Android Studio} or the Qt Creator's
+\l{Qt Creator: Managing Android SDK Packages}{SDK Manager UI} can also be used
+to install the essential SDK packages.
 
 To use the \l {Android: Android Emulator}{Android Emulator}, install it by
 entering:
