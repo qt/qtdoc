@@ -632,7 +632,6 @@ use-case it must fulfil, some general guidelines are as follows:
 \li Be as asynchronous as possible
 \li Do all processing in a (low priority) worker thread
 \li Batch up backend operations so that (potentially slow) I/O and IPC is minimized
-\li Use a sliding slice window to cache results, whose parameters are determined with the help of profiling
 \endlist
 
 It is important to note that using a low-priority worker thread is recommended to
