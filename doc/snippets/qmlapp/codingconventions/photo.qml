@@ -76,6 +76,21 @@ Rectangle {
         }
     }
 
+    states: [
+        State {
+            name: "selected"
+            PropertyChanges { target: border; color: "red" }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: ""
+            to: "selected"
+            ColorAnimation { target: border; duration: 200 }
+        }
+    ]
+
     Rectangle {                                             // child objects
         id: border
         anchors.centerIn: parent; color: "white"
@@ -84,17 +99,6 @@ Rectangle {
             id: photoImage
             anchors.centerIn: parent
         }
-    }
-
-    states: State {                                         // states
-        name: "selected"
-        PropertyChanges { target: border; color: "red" }
-    }
-
-    transitions: Transition {                               // transitions
-        from: ""
-        to: "selected"
-        ColorAnimation { target: border; duration: 200 }
     }
 }
 //! [0]
