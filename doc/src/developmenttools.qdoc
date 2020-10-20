@@ -37,39 +37,116 @@
     {download} and install Qt. Qt installations contain Qt libraries, examples,
     documentation, and the necessary development tools, such as the
     \l{Qt Creator Manual}{Qt Creator} integrated development environment (IDE).
+    For more information, visit the \l{Getting Started with Qt} page.
 
-    Qt Creator provides you with tools for accomplishing your tasks throughout
-    the whole application development life-cycle, from creating a project to
-    deploying the application on the target platforms. Qt Creator automates some
-    tasks, such as creating projects, by providing wizards that guide you
-    step-by-step through the project creation process, create the necessary
-    files, and specify settings depending on the choices you make. Also, it
-    speeds up some tasks, such as writing code, by offering semantic
-    highlighting, checking code syntax, code completion, refactoring actions,
-    and other useful features.
+    \section1 Qt Creator
+
+    \l{Qt Creator Manual}{Qt Creator} provides you with tools for accomplishing
+    your tasks throughout the whole application development life-cycle, from
+    creating a project to deploying the application on the target platforms. Qt
+    Creator automates some tasks, such as creating projects, by providing
+    wizards that guide you step-by-step through the project creation process,
+    create the necessary files, and specify settings depending on the choices
+    you make. Also, it speeds up some tasks, such as writing code, by offering
+    semantic highlighting, checking code syntax, code completion, refactoring
+    actions, and other useful features.
 
     \image qt-creator-gs.png
 
-    The following Qt tools are integrated into Qt Creator:
 
+    \section1 Design Tools
+
+    \b{Qt Designer} is a tool within Qt Creator for designing and building
+    graphical user interfaces (GUIs) for Qt Widgets. You can compose and
+    customize your widgets or dialogs in a visual editor, and test them using
+    different styles and resolutions. Qt Designer is also available as a
+    standalone tool. Both versions of Qt Designer only differ in some
+    functionalities such as the use of resource files and how to switch in the
+    design and edit mode. For more information, visit the
+    \l{Qt Designer Manual}{Qt Designer} manual.
+
+    For Qt Quick applications, you can use Qt Quick Designer which is integrated
+    within Qt Creator. Qt Quick Designer is available in the edit mode in an
+    open Qt Quick project. The \l{Qt Quick Designer} page has more information.
+
+
+    \section2 Collaboration with Designers
+
+    Qt lets designers to import assets from 2D and 3D programs, create
+    layouts and flows, and generate code for developers.
+    \b{Qt Design Studio} is a tool that provides rich and fluid components,
+    a code editor, timeline-based animations, visual effects, layouts, and
+    a live-preview for prototyping. Qt Design Studio generates code for
+    developers to use in Qt Creator. For more information about the tools for
+    designers, visit the \l{Qt Design Studio Manual}{Qt Design Studio} manual.
+
+
+    \section1 Build Tools
+
+    Qt Creator creates project templates for different build systems. You can
+    create \e kits for different combinations of target platforms and build
+    environments. Qt Creator supports CMake, qmake, Qbs, Autotools, Nimble,
+    Meson, and IncrediBuild projects.
+
+    For more information about project templates and building in Qt Creator,
+    visit the following pages:
     \list
-        \li \l{Qt Designer Manual}{Qt Designer} for designing and building
-            graphical user interfaces (GUIs) from Qt widgets. You can compose
-            and customize your widgets or dialogs in a visual editor, and
-            test them using different styles and resolutions. You can access
-            Qt Designer from Qt Creator in the Design mode (1).
-        \li \l{Build with CMake}{CMake}, \l{qmake Manual}{qmake}, and
-            \l{Qbs Manual}{Qbs} for building applications for different
-            target platforms. You can also use other build automation tools,
-            such as Autotools.
-            You can configure the build system in the Projects mode (2).
-        \li \l{Qt Linguist Manual}{Qt Linguist} for localizing applications.
-            Qt Linguist contains tools for the roles typically involved in
-            localizing applications: developers, translators, and release
-            managers. You can run the lupdate and lrelease tools from the
-            Qt Creator Tools menu.
+    \li \l{Qt Creator: Using Other Build Systems}
+        {Build Systems in Qt Creator}
+    \li \l{Qt Creator: Building for Multiple Platforms}
+        {Building for Multiple Platforms}
     \endlist
 
-    Other tools are typically described in their context of use in other parts
-    of the documentation.
+
+    \section2 Configuring and Building Qt
+
+    You can configure and build Qt from source using \b CMake or \b qmake.
+    Custom configurations are for developers of Qt and for porting Qt to
+    different targets. The \l{Qt Abstraction Platform} is an abstraction
+    layer to facilitate Qt ports onto different platforms and targets.
+
+    For more information about building Qt, visit the following pages:
+    \list
+    \li \l{Build with CMake}
+    \li \l{qmake Manual}
+    \li \l{Qt Abstraction Platform}
+    \li \l{Supported Platforms}
+    \endlist
+
+
+    \section1 Internationalization and Help Tools
+
+    You can localize your application to different languages. There is an
+    \l{Internationalization in Qt}{internationalization} framework within Qt
+    for handling different writing systems, translating interfaces, and for
+    displaying numbers, dates, and currency in different formats.
+    \l{Qt Linguist Manual}{Qt Linguist} is a tool for developers, translators,
+    and release managers to implement internationalization in applications.
+    The different roles can collaborate to produce, store, and deploy translated
+    text in the user interface.
+
+    For more information about internationalization and localization, visit
+    these pages:
+    \list
+    \li \l{Internationalization with Qt}
+    \li \l{Internationalization and Localization with Qt Quick}
+    \li \l{Qt Linguist Manual}{Qt Linguist}
+    \li \l{Writing Source Code for Translation}
+    \li \l{Qt Speech} - module for text-to-speech
+    \endlist
+
+    You can use the \l{The Qt Help Framework}{Qt Help} framework to create and
+    package help files for complex applications. The help framework involves
+    XML-based formats and tools to create content, set the order and filters
+    for application manuals. \l{Qt Assistant Manual}{Qt Assistant} is a browser
+    that handles the display of table of contents, pages, and multiple manuals
+    to application users.
+
+    \list
+    \li \l{The Qt Help Framework}
+    \li \l{Qt Assistant Manual}{Qt Assistant}
+    \li \l{Qt Help} C++ module
+    \endlist
+
 */
+
