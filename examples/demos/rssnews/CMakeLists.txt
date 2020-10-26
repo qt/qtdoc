@@ -25,6 +25,10 @@ find_package(Qt6 COMPONENTS XmlPatterns)
 qt_add_executable(rssnews
     main.cpp
 )
+set_target_properties(rssnews PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
 target_link_libraries(rssnews PUBLIC
     Qt::Core
     Qt::Gui

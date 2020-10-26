@@ -22,6 +22,10 @@ find_package(Qt6 COMPONENTS Quick)
 qt_add_executable(alarms
     main.cpp
 )
+set_target_properties(alarms PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
 target_link_libraries(alarms PUBLIC
     Qt::Core
     Qt::Gui

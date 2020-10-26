@@ -23,6 +23,10 @@ find_package(Qt6 COMPONENTS Quick)
 qt_add_executable(coffee
     main.cpp
 )
+set_target_properties(coffee PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
 target_compile_definitions(coffee PUBLIC
     QT_DEPRECATED_WARNINGS
 )

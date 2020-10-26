@@ -23,6 +23,10 @@ find_package(Qt6 COMPONENTS Qml)
 qt_add_executable(tweetsearch
     main.cpp
 )
+set_target_properties(tweetsearch PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
 target_link_libraries(tweetsearch PUBLIC
     Qt::Core
     Qt::Gui
