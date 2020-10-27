@@ -63,15 +63,14 @@
     \li \e{EGL device integration} -- dynamically loaded plugins
   \endlist
 
-  EGLFS is a platform plugin for running Qt5 applications on top of EGL and
-  OpenGL ES 2.0, without an actual windowing system like X11 or Wayland. In
-  addition to Qt Quick 2 and native OpenGL applications, EGLFS supports
+  EGLFS is a platform plugin for running Qt applications on top of EGL and
+  OpenGL ES 2.0, without an actual windowing system like X11 or Wayland. It is
+  the recommended plugin for modern Embedded Linux devices that include a GPU.
+
+  In addition to Qt Quick and native OpenGL applications, EGLFS supports
   software-rendered windows, like QWidget, too. For QWidget, the widgets'
   contents are rendered using the CPU into images, which are then
   uploaded into textures and composited by the plugin.
-
-  EGLFS is the recommended plugin for modern Embedded Linux devices that
-  include a GPU.
 
   EGLFS forces the first top-level window - either a QWidget or a QQuickView
   - to become fullscreen. This window is also chosen to be the \e root widget
