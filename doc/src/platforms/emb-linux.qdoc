@@ -89,6 +89,9 @@
   such windows with QWidget-based content isn't supported; Qt terminates the
   application with an error message.
 
+  Furthermore, APIs designed for desktop platforms or environments with a
+  windowing system, such as \l{Drag and Drop}, are not supported on EGLFS.
+
   If necessary, \c eglfs can be configured using the following environment
   variables:
 
