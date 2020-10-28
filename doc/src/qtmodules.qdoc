@@ -60,7 +60,6 @@
     \row
         \li \l[QtGui]{Qt GUI}
         \li Base classes for graphical user interface (GUI) components.
-            Includes OpenGL.
     \row
         \li \l[QtNetwork]{Qt Network}
         \li Classes to make network programming easier and more portable.
@@ -145,6 +144,13 @@
         \li All
         \li All
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
+    \row
+        \li \l[QtOpenGL]{Qt OpenGL}
+        \li All
+        \li All
+        \li C++ classes that make it easy to use OpenGL in Qt applications.
+            A separate library of \l{Qt OpenGL Widgets C++ Classes} provides a widget for
+            rendering OpenGL graphics.
     \row
         \li \l[QtPlatformHeaders]{Qt Platform Headers}
         \li \l{Qt for Windows}, \l{Qt for Linux/X11}{Linux}, \l{Qt for macOS}{\macos}
