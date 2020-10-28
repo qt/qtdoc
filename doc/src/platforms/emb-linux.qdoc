@@ -119,14 +119,9 @@
           necessary to use EGL with the framebuffer; no plugins must be loaded.
     \row
       \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT}
-      \li Specifies the physical screen's width and height in millimeters. On
-          platforms where the value can't be queried from the framebuffer
-          device \e{/dev/fb0} or via other means, a default DPI of 100 is used.
-          Use this variable to override any such defaults. Setting this variable
-          is important because QWidget- or Qt Quick Controls-based applications
-          rely on these values. Running these applications with the hard-coded
-          settings may result in user interface elements with sizes that are
-          unsuitable for the display in use.
+      \li Specifies the physical screen's width and height in millimeters. Note
+          that since Qt 6 the physical screen size is no longer used to determine
+          logical dpi.
     \row
       \li \c {QT_QPA_EGLFS_ROTATION}
       \li Specifies the rotation applied to software-rendered content in
