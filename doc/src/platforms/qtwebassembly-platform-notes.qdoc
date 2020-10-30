@@ -72,19 +72,6 @@
     does use some operating system adaptations, for example for ctrl/cmd
     key handling on macOS.
 
-    \section2 Supported Qt Modules
-
-    Qt for WebAssembly supports a subset of the Qt modules. The list below
-    lists the currently tested modules. The list can be pasted as arguments
-    to \c make.
-
-    \badcode
-        module-qtbase module-qtdeclarative module-qtquickcontrols2 module-qtwebsockets module-qtsvg module-qtcharts module-qtmqtt
-    \endcode
-
-    Other modules are untested and may work.  Are not supported: QtMultimedia
-    and QtWebView
-
     \section3 Known issues
 
     Refer to the \l{https://wiki.qt.io/Qt_for_WebAssembly#Known issues}{wiki}.

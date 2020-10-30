@@ -88,6 +88,29 @@ After installation, you should have emscripten in your path.  Check this with th
 The binary builds can be downloaded in the Downloads section using your Qt
 account.
 
+\section3 Supported Qt modules
+
+The following modules are supported by Qt for WebAssembly:
+
+\list
+    \li QtBase
+    \li QtDeclarative
+    \li QtQuickcontrols2
+    \li QtWebsockets
+    \li QtSvg
+    \li QtCharts
+    \li QtMqtt
+\endlist
+
+The following modules do not work:
+
+\list
+    \li QtMultimedia
+    \li QtWebView
+\endlist
+
+Other modules may work, but are not supported.
+
 \section3 Build Qt from the sources
 
 Alternatively, you could download the Qt sources in the Downloads section,
