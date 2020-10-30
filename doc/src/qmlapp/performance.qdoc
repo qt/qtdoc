@@ -476,14 +476,9 @@ sub-properties of a value-type is usually far less than the number of elements
 in a sequence), any increase in the number of bindings being re-evaluated needlessly
 will have a negative impact on performance.
 
-\section2 Other JavaScript Objects
+\section1 General Performance Tips
 
-Different JavaScript engines provide different optimizations. The JavaScript engine
-which \l {Qt Quick}{Qt Quick 2} uses is optimized for object instantiation and property
-lookup, but the optimizations which it provides relies on certain criteria. If your
-application does not meet the criteria, the JavaScript engine falls back to a
-"slow-path" mode with much worse performance. As such, always try to ensure you
-meet the following criteria:
+General JavaScript performance considerations resulting from the language design are applicable also to QML. Most prominently:
 
 \list
 \li Avoid using eval() if at all possible
@@ -879,13 +874,6 @@ jerky animations, which should be avoided at all costs.
 There are some cases where manually invoking the garbage collector is acceptable (and
 this is explained in greater detail in an upcoming section), but in most cases, invoking
 the garbage collector is unnecessary and counter-productive.
-
-\section3 Avoid complex bindings
-
-Aside from the reduced performance of complex bindings (for example, due to having to
-enter the JavaScript execution context to perform evaluation), they also take up more
-memory both on the C++ heap and the JavaScript heap than bindings which can be
-evaluated by QML's optimized binding expression evaluator.
 
 \section3 Avoid defining multiple identical implicit types
 
