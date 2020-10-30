@@ -137,7 +137,8 @@ Build required modules:
     make module-qtbase module-qtdeclarative [other modules]
 \endcode
 
-The Qt build is a static build, and does not support threads.
+The Qt build is a static build, and does not support threads by default. Configure with  \c{-feature-thread}
+to enable thread support.
 
 \section3 Build and run your application
 
@@ -196,8 +197,7 @@ You can test-run your application in the following way:
 
 \section1 Limitations
 
-The most important limitation is that the Qt build is static,
-and does not support threads.
+The most important limitation is that the Qt build is static.
 
 For further info, refer to \l{qtwebassembly-platform-notes}
 
