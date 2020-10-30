@@ -30,14 +30,144 @@
     \title What's New in Qt 6.0
     \brief Lists the new features in Qt 6.0
 
-    \section1 Qt Core Changes
 
-    \section1 Qt GUI Changes
-    \section1 Qt Network Changes
-    \section1 Qt QML Changes
-    \section1 Qt Quick Changes
+    \section1 Changes to Supported Modules
+
+    Qt 6.0 is streamlined compared to Qt 5 and some modules are no longer in the
+    default installation of Qt 6.0. Because of the modularized structure of Qt,
+    new modules or previous Qt 5 modules may appear in future releases of Qt 6.
+    For more information, visit the \l{All Modules} page.
+
+    The \l{C++ API changes} has a list of API changes in Qt 6.0.
+
+    \section1 New Modules in Qt 6.0
+
+        The following are new modules in Qt 6.0.
+
+        \list
+        \li Qt 5 Compatibility Module
+        \li \l[QtShaderTools]{Qt Shader Tools} - for graphics and compute
+            shaders
+        \endlist
+
+
+    \section1 Removed Modules in Qt 6.0
+
+        The following are Qt 5 modules that are not in Qt 6.0. They may be
+        re-introduced in a future release of Qt 6.
+
+        \table 80%
+        \header
+            \li Module
+            \li qmake
+            \li Comments
+        \row
+            \li Qt Android Extras
+            \li \c androidextras
+            \li
+        \row
+            \li Qt Bluetooth
+            \li \c bluetooth
+            \li
+        \row
+            \li Qt Graphical Effects
+            \li
+            \li only QML types
+        \row
+            \li Qt Location
+            \li \c location
+            \li
+        \row
+            \li Qt Mac Extras
+            \li \c macextras
+            \li
+        \row
+            \li Qt Multimedia
+            \li \c multimedia
+            \li
+        \row
+            \li Qt Multimedia Widgets
+            \li multimediawidgets
+        \row
+            \li Qt NFC
+            \li \c nfc
+            \li
+        \row
+            \li Qt Positioning
+            \li \c positioning
+            \li
+        \row
+            \li Qt Purchasing
+            \li \c purchasing
+            \li
+        \row
+            \li Qt Quick Extras
+            \li
+            \li Merged into \l{Qt Quick Controls}
+        \row
+            \li Qt Remote Objects
+            \li \c remoteobjects
+            \li
+        \row
+            \li Qt Script
+            \li \c qtscript
+            \li
+        \row
+            \li Qt SCXML
+            \li \c scxml
+            \li
+        \row
+            \li Qt Script Tools
+            \li \c scripttools
+            \li
+        \row
+            \li Qt Sensors
+            \li \c sensors
+            \li
+        \row
+            \li Qt Serial Bus
+            \li \c serialbus
+            \li
+        \row
+            \li Qt Serial Port
+            \li \c serialport
+            \li
+        \row
+            \li Qt Speech
+            \li \c texttospeech
+            \li
+        \row
+            \li Qt WebChannel
+            \li \c webchannel
+            \li
+        \row
+            \li Qt WebEngine
+            \li \c webenginecore
+            \li
+        \row
+            \li Qt WebSockets
+            \li \c websockets
+            \li
+        \row
+            \li Qt WebView
+            \li \c webview
+            \li
+        \row
+            \li Qt Windows Extras
+            \li \c winextras
+            \li
+        \row
+            \li Qt X11 Extras
+            \li \c x11extras
+            \li
+        \row
+            \li Qt XML Patterns
+            \li \c xmlpatterns
+            \li
+        \endtable
 
     \section1 New Classes and Functions
+
     The section provides a comprehensive list of all new classes and functions
     introduced in Qt 6.
 
