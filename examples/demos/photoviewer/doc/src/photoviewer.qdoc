@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -29,19 +29,20 @@
     \title Qt Quick Demo - Photo Viewer
     \ingroup qtquickdemos
     \example demos/photoviewer
-    \brief A QML photo viewer that that uses XmlListModel and XmlRole to
-    download Flickr feeds, and Package to display the photos in different views.
+    \brief A QML photo viewer that uses XmlListModel and XmlListModelRole
+    custom QML types to download Flickr feeds, and Package to display the photos
+    in different views.
 
     \image qtquick-demo-photoviewer-small.png
 
     \e{Photo Viewer} demonstrates the following \l{Qt Quick} features:
 
     \list
-        \li Using custom types to create screens and screen controls.
+        \li Using custom QML types.
         \li Using Qt Quick Controls 1 to create an application window.
         \li Using the \l Package type with a \l DelegateModel to provide
             delegates with a shared context to multiple views.
-        \li Using XML list models to download Flickr feeds.
+        \li Using custom types to download Flickr feeds.
         \li Using the \l Flipable type to create labels with different text on
             the front and back.
         \li Using the PathView, \l Path, PathAttribute, and PathLine types to
@@ -76,11 +77,55 @@
     \skipto PhotoViewerCore
     \printuntil "
 
+    We also use the following custom types that are defined in C++:
+
+    \list
+        \li \c XmlListModel
+        \li \c XmlListModelRole
+    \endlist
+
+    To register QML types from C++ we add the QML_ELEMENT macro to the QObject
+    derived classes' definitions like this:
+
+    \quotefromfile demos/shared/xmllistmodel.h
+    \skipto XmlListModelRole
+    \printuntil QML_ELEMENT
+
+    In addition we need to add the following to the CMakeLists.txt file of the
+    example:
+
+    \quotefromfile demos/photoviewer/CMakeLists.txt
+    \skipto set_target_properties
+    \printuntil PROPERTIES
+    \skipto QT_QML_MODULE_VERSION 1.0
+    \printuntil qt6_qml_type_registration(photoviewer)
+
+    To build with qmake, we add \c CONFIG += qmltypes, \c QML_IMPORT_NAME, and
+    \c QML_IMPORT_MAJOR_VERSION to the project file:
+
+    \quotefromfile demos/photoviewer/photoviewer.pro
+    \skipto CONFIG
+    \printuntil qmltypes
+    \skipto QML_IMPORT_NAME
+    \printuntil QML_IMPORT_MAJOR_VERSION
+
+    For more information on defining QML types from C++ see the
+    \l {Defining QML Types from C++} documentation.
+
+    To use the new types, we add an import statement that imports them to the QML
+    files that use the types:
+
+    \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
+    \skipto XmlListModel
+    \printuntil import
+
     \section1 Creating the Main Window
 
     In main.qml, we use the ApplicationWindow Qt Quick Control to create the app
     main window:
 
+    \quotefromfile demos/photoviewer/main.qml
+    \skipto ApplicationWindow
     \printuntil visible
 
     We use a ListModel type with \l ListElement types to display photo albums:
@@ -156,7 +201,7 @@
     \printuntil RssModel
     \printuntil }
 
-    In RssModel.qml, we use an XmlListModel type as a data source for
+    In RssModel.qml, we use the XmlListModel custom type as a data source for
     \l Package objects to download photos from the selected feeds:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/RssModel.qml
@@ -170,20 +215,16 @@
     We use the \c source property to fetch photos that have the specified tags
     attached from public Flickr feeds:
 
-    \printuntil namespaceDeclarations
+    \printuntil query
 
     The \c query property specifies that the XmlListModel generates a model item
     for each feed entry.
 
-    The \c namespaceDeclarations property specifies that the requested document
-    uses the namespace \c{http://www.w3.org/2005/Atom}, which is declared as the
-    default namespace.
-
-    We use the XmlRole type to specify the model item attributes. Each model
-    item has the \c title, \c content, and \c hq attributes that match the
+    We use the XmlListModelRole custom type to specify the model item attributes.
+    Each model item has the \c title and \c link attributes that match the
     values of the corresponding feed entry:
 
-    \printuntil hq
+    \printuntil link
 
     \section1 Creating Flipable Labels
 

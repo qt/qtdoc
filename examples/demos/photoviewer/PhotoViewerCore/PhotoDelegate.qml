@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick
 import "script/script.mjs" as Script
 
 Package {
@@ -79,8 +79,8 @@ Package {
             Rectangle {
                 id: placeHolder
 
-                property int w: Script.getWidth(content)
-                property int h: Script.getHeight(content)
+                property int w: 400
+                property int h: 400
                 property double s: Script.calculateScale(w, h, photoWrapper.width)
 
                 color: 'white'; anchors.centerIn: parent; antialiasing: true
@@ -98,7 +98,7 @@ Package {
             BusyIndicator { anchors.centerIn: parent; on: originalImage.status != Image.Ready }
             Image {
                 id: originalImage; antialiasing: true;
-                source: "http://" + Script.getImagePath(content); cache: false
+                source: link; cache: false
                 fillMode: Image.PreserveAspectFit; width: photoWrapper.width; height: photoWrapper.height
             }
             Image {
@@ -143,7 +143,7 @@ Package {
                     width: mainWindow.width; height: mainWindow.height
                 }
                 PropertyChanges { target: border; opacity: 0 }
-                PropertyChanges { target: hqImage; source: listItem.ListView.isCurrentItem ? hq : ""; visible: true }
+                PropertyChanges { target: hqImage; source: listItem.ListView.isCurrentItem ? link : ""; visible: true }
             }
             ]
 

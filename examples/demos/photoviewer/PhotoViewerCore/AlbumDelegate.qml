@@ -48,9 +48,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.XmlListModel 2.0
-import QtQml.Models 2.1
+import QtQuick
+import XmlListModel
+import QtQml.Models
 
 Component {
     id: albumDelegate

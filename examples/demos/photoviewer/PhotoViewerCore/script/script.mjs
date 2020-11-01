@@ -48,20 +48,6 @@
 **
 ****************************************************************************/
 
-export function getWidth(string) {
-    return (string.match(/width=\"([0-9]+)\"/))[1]
-}
-
-export function getHeight(string) {
-    return (string.match(/height=\"([0-9]+)\"/))[1]
-}
-
-export function getImagePath(string) {
-    var pattern = /src=\"https?:\/\/(\S+)\"/
-    var match = string.match(pattern)
-    return match ? match[1] : ""
-}
-
 export function calculateScale(width, height, cellSize) {
     var widthScale = (cellSize * 1.0) / width
     var heightScale = (cellSize * 1.0) / height

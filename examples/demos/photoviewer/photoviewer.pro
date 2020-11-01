@@ -1,9 +1,16 @@
 TEMPLATE = app
 
-QT += qml quick xmlpatterns
-CONFIG += lrelease embed_translations
+QT += qml quick
+CONFIG += lrelease embed_translations qmltypes
 
-SOURCES += main.cpp
+INCLUDEPATH += ../shared
+
+HEADERS += ../shared/xmllistmodel.h
+SOURCES += main.cpp \
+           ../shared/xmllistmodel.cpp
+
+QML_IMPORT_NAME = XmlListModel
+QML_IMPORT_MAJOR_VERSION = 1
 
 lupdate_only {
 SOURCES = *.qml \
