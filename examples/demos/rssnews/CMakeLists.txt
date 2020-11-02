@@ -20,23 +20,34 @@ find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Quick)
 find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Xml)
-find_package(Qt6 COMPONENTS XmlPatterns)
+find_package(Qt6 COMPONENTS Network)
 
 qt_add_executable(rssnews
     main.cpp
+    ../shared/xmllistmodel.cpp
+    ../shared/xmllistmodel.h
 )
-set_target_properties(rssnews PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
-)
+
 target_link_libraries(rssnews PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Qml
     Qt::Quick
     Qt::Xml
-    Qt::XmlPatterns
+    Qt::Network
 )
+
+target_include_directories(rssnews PUBLIC
+    ../shared
+)
+
+set_target_properties(rssnews PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+    QT_QML_MODULE_VERSION 1.0
+    QT_QML_MODULE_URI XmlListModel
+)
+qt6_qml_type_registration(rssnews)
 
 
 # Resources:

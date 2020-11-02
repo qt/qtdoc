@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick
 
 ListModel {
     ListElement { name: "Top Stories"; feed: "news.yahoo.com/rss/topstories"; image: "images/TopStories.jpg" }

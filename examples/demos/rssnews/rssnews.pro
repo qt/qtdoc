@@ -1,7 +1,17 @@
 TEMPLATE = app
 
-QT += quick qml xml xmlpatterns
-SOURCES += main.cpp
+QT += quick qml xml
+CONFIG += qmltypes
+
+INCLUDEPATH += ../shared
+
+HEADERS += ../shared/xmllistmodel.h
+SOURCES += main.cpp \
+           ../shared/xmllistmodel.cpp
+
+QML_IMPORT_NAME = XmlListModel
+QML_IMPORT_MAJOR_VERSION = 1
+
 RESOURCES += rssnews.qrc
 
 OTHER_FILES = rssnews.qml \

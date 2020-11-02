@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick
 
 Column {
     id: delegate
@@ -101,14 +101,14 @@ Column {
 
             Image {
                 id: titleImage
-                source: image
+                source: content
             }
         }
 
         Text {
             id: titleText
 
-            text: title
+            text: title.replace(/&#39;/g, "'")
             width: delegate.width - titleImage.width
             wrapMode: Text.WordWrap
             font.pixelSize: 26
@@ -130,7 +130,7 @@ Column {
     Text {
         id: descriptionText
 
-        text: description
+        text: description.replace(/\<a href=.*\/a\>/, '')
         width: parent.width
         wrapMode: Text.WordWrap
         font.pixelSize: 14

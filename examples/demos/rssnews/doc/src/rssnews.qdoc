@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -29,18 +29,18 @@
     \title Qt Quick Demo - RSS News
     \ingroup qtquickdemos
     \example demos/rssnews
-    \brief A QML RSS news reader that uses XmlListModel and XmlRole to download
-    XML data, ListModel and ListElement to create a category list, and ListView
-    to display the data.
+    \brief A QML RSS news reader that uses XmlListModel and XmlListModelRole custom
+    QML types to download XML data, ListModel and ListElement to create a category list,
+    and ListView to display the data.
 
     \image qtquick-demo-rssnews-small.png
 
     \e{RSS News} demonstrates the following \l{Qt Quick} features:
 
     \list
-        \li Using custom types to create screens and screen controls.
+        \li Using custom QML types.
         \li Using list models and list elements to represent data.
-        \li Using XML list models to download XML data.
+        \li Using custom list models to download XML data.
         \li Using list views to display data.
         \li Using the \l Component type to create a footer for the news item
             list view.
@@ -69,6 +69,49 @@
     \quotefromfile demos/rssnews/rssnews.qml
     \skipto content
     \printuntil "
+
+    We also use the following custom types that are defined in C++:
+
+    \list
+        \li \c XmlListModel
+        \li \c XmlListModelRole
+    \endlist
+
+    To register QML types from C++ we add the \l QML_ELEMENT macro to the QObject
+    derived classes' definitions like this:
+
+    \quotefromfile demos/shared/xmllistmodel.h
+    \skipto XmlListModelRole
+    \printuntil QML_ELEMENT
+
+    In addition we need to add the following to the CMakeLists.txt file of the
+    example:
+
+    \quotefromfile demos/rssnews/CMakeLists.txt
+    \skipto set_target_properties
+    \printuntil PROPERTIES
+    \skipto QT_QML_MODULE_VERSION 1.0
+    \printuntil qt6_qml_type_registration(rssnews)
+
+    To build with qmake, we add \c CONFIG += qmltypes, \c QML_IMPORT_NAME, and
+    \c QML_IMPORT_MAJOR_VERSION to the project file:
+
+    \quotefromfile demos/rssnews/rssnews.pro
+    \skipto CONFIG
+    \printuntil qmltypes
+    \skipto QML_IMPORT_NAME
+    \printuntil QML_IMPORT_MAJOR_VERSION
+
+    For more information on defining QML types from C++ see the
+    \l {Defining QML Types from C++} documentation.
+
+    To use the new types, we add an import statement that imports them to the QML
+    files that use the types:
+
+    \quotefromfile demos/rssnews/rssnews.qml
+    \skipto XmlListModel
+    \printuntil import
+
 
     \section1 Creating the Main Window
 
@@ -173,12 +216,12 @@
 
     \section1 Downloading XML Data
 
-    In rssnews.qml, we use an XmlListModel type as a data source for ListView
+    In rssnews.qml, we use an XmlListModel custom type as a data source for ListView
     elements to display news items in the selected category:
 
     \quotefromfile demos/rssnews/rssnews.qml
     \skipto XmlListModel {
-    \printuntil namespaceDeclarations
+    \printuntil query
 
     We use the \c source property and the \c window.currentFeed custom property
     to fetch news items for the selected category.
@@ -186,8 +229,8 @@
     The \c query property specifies that the XmlListModel generates a model item
     for each \c <item> in the XML document.
 
-    We use the XmlRole type to specify the model item attributes. Each model
-    item has the \c title, \c description, \c image, \c link, and \c pubDate
+    We use the XmlListModelRole custom type to specify the model item attributes.
+    Each model item has the \c title, \c description, \c content, \c link, and \c pubDate
     attributes that match the values of the corresponding \c <item> in the XML
     document:
 
