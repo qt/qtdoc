@@ -37,8 +37,8 @@ your code to be compatible.
 \section1 Changed type of font.weight
 The type of \c font.weight has been changed to \c int. The pre-defined weight classes still
 exist, but it is now possible to use arbitrary integers to select fonts which do not
-match any of these weight classes. This ensures parity with the C++ API, in which weight
-has always been expressed by an \c int.
+match any of these weight classes. This ensures parity with the C++ API, where it has
+always been possible to express the font weight as an arbitrary integer.
 
 Most code will be unaffected by this, except in the case where an implicit conversion
 from a string to enum value was used.
