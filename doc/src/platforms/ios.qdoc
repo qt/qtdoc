@@ -145,7 +145,9 @@
          \l{Qt Creator: Specifying Run Settings}
 
      \li If your application uses imports or plugins which depend on special Qt
-         modules, these Qt modules should be added to the .pro file. For example, if
+         modules, these Qt modules should be added to the .pro file.
+         \omit //! Qt Multimedia
+         For example, if
          your application uses the Qt Multimedia import in QML, you should add
          the following to your .pro file:
 
@@ -153,15 +155,19 @@
          QT += multimedia
          \endcode
 
+         \endomit //! Qt Multimedia
          In Qt for iOS, everything is compiled statically and placed into the application
          bundle. The applications are "sandboxed" inside their bundles and cannot make use
          of shared object files. Because of this, also the plugins used by the Qt modules
          need to be statically linked. To do this, define the required plugins using the
-         \l QTPLUGIN variable. For example, to use the camera APIs from Qt Multimedia:
+         \l QTPLUGIN variable.
+         \omit //! Qt Multimedia
+         For example, to use the camera APIs from Qt Multimedia:
 
          \badcode
          QTPLUGIN += qavfcamera
          \endcode
+         \endomit //! Qt Multimedia
 
          \omit
          If your project uses APIs from \l {Qt Sensors}, use the following:
