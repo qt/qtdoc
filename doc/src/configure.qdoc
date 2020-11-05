@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -30,55 +30,147 @@
     \title Qt Configure Options
     \brief Configuring Qt's compile options.
 
-    \c configure is a command-line tool which determines how to build Qt for a
-    particular platform. Configure can exclude a feature in Qt as well
-    as determine how Qt builds and deploys applications onto host platforms.
-    This page discusses some of the configure options, but for
-    the full list of options, enter the command \c{configure -h}. Configure
-    should be run from the main Qt source directory.
+    \b configure is a command-line tool that supports you in building a custom
+    version of Qt from source. It's part of the main Qt source directory.
 
-    Unless stated otherwise, the commands in this page are for the Linux
-    platforms. On \macos and on Windows, the \c PATH and directory structure
+    Since Qt 6, configure is a wrapper around \b{cmake}. CMake can also
+    be invoked directly. configure provides additional error checking and
+    compatibility with Qt 5.
+
+    This page discusses some of the configure options. For the full list of
+    options, enter the command \b{configure -h}.
+
+    \note Unless stated otherwise, the commands on this page are for the Linux
+    platforms. On \macos and Windows, the PATH and directory structure
     are different, therefore the commands will vary. Also, on Windows systems,
-    the configure script is called \e configure.bat.
+    the configure script is called configure.bat.
 
-    After running \c configure, build the sources with the \c make tool
-    belonging to the chosen toolchain.
+    \section1 Configure Workflow
+
+    configure must be called in a working build environment where
+    cmake, compilers, and required build tools are readily available.
+    \l{Building Qt Sources} lists such dependencies per platform.
+
+    After setting up such an environment, the typical workflow is to create
+    a separate build directory, and then first run configure,
+    then build Qt, and then install Qt:
+
+    \badcode
+    ~/qt-source/configure
+    cmake --build . --parallel
+    cmake --install .
+    \endcode
+
+    You might want to experiment with different configure flags, and therefore
+    run configure multiple times. Note that CMake caches configure options
+    and information about the environment in a file called CMakeCache.txt.
+    Delete this file when you want to start over without cached information.
 
     \section1 Source, Build, and Install Directories
 
     The \e source directory contains the source code that is obtained from
     the source package or git repository. The \e build directory is where the
-    build-related files such as Makefiles, object files, and other intermediate
-    files are stored. The \e install directory is where the binaries and
-    libraries are installed, for use either by the system or by the
-    application.
+    build-related files, such as build system files, object files, and other
+    intermediate files are stored. The \e install directory is where the
+    binaries and libraries are installed, for use either by the system or by
+    the application.
 
-    It is recommended to keep these directories separate by shadow-building and
-    using the \c -prefix option. This enables you to keep the Qt \e source tree
+    It's recommended to keep these directories separate by shadow-building and
+    using the \b -prefix option. This enables you to keep the Qt \e source tree
     clean from the build artifacts and binaries, which are stored in a separate
     directory. This method is very convenient if you want to have multiple
     builds from the same source tree, but for different configurations. To
-    shadow-build, run \c configure from a separate directory:
+    shadow-build, run configure from a separate directory:
 
     \badcode
     mkdir ~/qt-build
     cd ~/qt-build
-    ~/qt-source/configure -prefix /opt/Qt5.9
-    qmake
+    ~/qt-source/configure -prefix /opt/Qt6
     \endcode
 
-    Configuring with the \c -prefix option means that the Qt binaries and
-    libraries are installed into another directory, which is \c /opt/Qt5.9 in
-    this case. Running \c qmake generates the Makefiles in the \e ~/qt-build
-    directory and not in the \e source directory. After the Makefiles are in
-    place, run the following commands to build the Qt binaries and libraries,
-    and install them:
+    Configuring with the -prefix option means that the Qt binaries and
+    libraries are installed into another directory, which is /opt/Qt6 in
+    this case.
+
+    \section1 Examples, Tests, and Tools
+
+    By default, configure only configures Qt's libraries and tools.
+    You can use \b{-make examples} or \b{-make tests} to also build
+    the examples or tests that come with Qt:
 
     \badcode
-    make
-    make install
+    ~/qt-source/configure -make examples -make tests
     \endcode
+
+    You can also configure Qt such that examples, tests, and tools are
+    configured, but not built by default. If you set the CMake variables
+    \b{QT_NO_MAKE_EXAMPLES}, \b{QT_NO_MAKE_TESTS}, and \b{QT_NO_MAKE_TOOLS} to
+    ON, the respective parts will not be built by "cmake --build .".
+    Instead, CMake will generate individual targets that you can then build
+    individually.
+
+    Here we build Qt libraries and tools, but also the
+    \l{Getting Started Programming with Qt Widgets}{NotePad Example}:
+
+    \badcode
+    ~/qt-source/configure -make examples -- -D QT_NO_MAKE_EXAMPLES=ON
+    cmake --build . --parallel
+    cmake --build . --parallel --target notepad
+    \endcode
+
+    \note The -developer-build option builds tests by default.
+    See also \l{Developer Builds} below.
+
+    \section1 Build Configurations
+
+    You can build Qt libraries and tools in various variants, each of them
+    optimized for a different use case.
+
+    \section2 Debug and Release Builds
+
+    \b{-release} tells the compiler to optimize the code, and not provide
+    additional debug symbols alongside Qt and its tools.
+
+    \b{-debug} skips some optimizations to make it easier to debug Qt
+    and its tools. This option also enables the generation of debug symbols that
+    let you inspect the code and state of the built libraries in a debugger.
+
+    Finally, \b{-debug-and-release} lets you build both a debug and release
+    variant of Qt libraries in one go. This is only supported if you configure
+    a build for Windows.
+
+    There are further options to tweak the configurations:
+
+    \list
+    \li \b{-force-debug-info}: Creates a release build with debug information.
+    \li \b{-separate-debug-info}: Extracts the debug information into a separate
+        file.
+    \li \b{-optimize-size}: Optimizes release builds for size instead of speed.
+    \endlist
+
+    \section2 Static and Shared Builds
+
+    Qt Modules can be built as separate libraries that an executable
+    links to and loads at start time (for Qt libraries), or runtime
+    (for Qt plugins). This is called a \e shared build and is the default
+    configuration on most platforms. The matching configure option is
+    \b{-dynamic}.
+
+    You can also build Qt such that an executable binary will include all Qt
+    modules it links to and all Qt plugins it needs. This is called a
+    \e static build and can be selected when configuring with the \b{-static}
+    option.
+
+    \section1 CMake Generators
+
+    When configuring, you can select a CMake generator. Note that CMake supports
+    generators that cannot be used with Qt. Therefore, configure
+    automatically selects a generator for you.
+
+    configure always uses the \b Ninja generator and build tool if a ninja
+    executable is available. Ninja is both cross-platform, feature-rich,
+    and performant, and recommended on all platforms. Use of other generators
+    might work, but is not officially supported.
 
     \section1 Modules and Features
 
@@ -90,42 +182,40 @@
 
     \section2 Excluding Qt Modules
 
-    Configure's \c -skip option allows top-level source directories to be
-    excluded from the Qt build. Note that many directories contain multiple Qt
-    modules. For example, to exclude Qt NFC and Qt Bluetooth from the Qt build,
-    provide \c{-skip qtconnectivity} as the argument to configure.
+    configure's \b -skip option allows top-level source directories to be
+    excluded from the Qt build. Note that some directories contain multiple Qt
+    modules. For example, to exclude the Qt Wayland Compositor and the
+    Qt Wayland integration plugin from the Qt build, provide
+    \b{-skip qtwayland} as an option to configure.
 
-    \code
-    ./configure -skip qtconnectivity
+    \badcode
+    ~/qt-source/configure -skip qtwayland
     \endcode
 
     \section2 Including or Excluding Features
 
-    The \c{-feature-}\e{<feature>} and \c{-no-feature-}\e{<feature>} options
+    The \b{-feature-}\e{<feature>} and \b{-no-feature-}\e{<feature>} options
     include and exclude specific features, respectively.
 
-    For example, to disable \l Accessibility, provide
-    \c -no-feature-accessibility as the argument:
-    \code
-    ./configure -no-feature-accessibility
+    For example, you can use the \b -no-feature-accessibility configure option
+    to disable \l Accessibility support in Qt:
+
+    \badcode
+    ~/qt-source/configure -no-feature-accessibility
     \endcode
 
-    Use \c{configure -list-features} to show a list of all available features
+    Use \b{configure -list-features} to show a list of all available features
     on the command line. Note that features can depend on other features, so
     disabling a feature might have side-effects on other features.
-
-    The \l{Qt Configuration Tool} that is part of \l{Qt for Device Creation}
-    allows the tweaking of features and dependencies through a convenient user
-    interface.
 
     \section1 Third-Party Libraries
 
     The Qt source packages include third-party libraries. To set whether Qt
     should use the system's versions of the libraries or to use the bundled
-    version, pass either \c -system or \c -qt before the name of the library to
+    version, pass either \b -system or \b -qt before the name of the library to
     configure.
 
-    The table below summarizes the third-party options:
+    The table below summarizes some third-party options:
     \table
     \header
         \li Library Name
@@ -133,88 +223,107 @@
         \li Installed in System
     \row
         \li zlib
-        \li \c -qt-zlib
-        \li \c -system-zlib
+        \li \b -qt-zlib
+        \li \b -system-zlib
     \row
         \li libjpeg
-        \li \c -qt-libjpeg
-        \li \c -system-libjpeg
+        \li \b -qt-libjpeg
+        \li \b -system-libjpeg
     \row
         \li libpng
-        \li \c -qt-libpng
-        \li \c -system-libpng
+        \li \b -qt-libpng
+        \li \b -system-libpng
     \row
         \li freetype
-        \li \c -qt-freetype
-        \li \c -system-freetype
+        \li \b -qt-freetype
+        \li \b -system-freetype
     \row
         \li PCRE
-        \li \c -qt-pcre
-        \li \c -system-pcre
+        \li \b -qt-pcre
+        \li \b -system-pcre
     \row
         \li HarfBuzz-NG
-        \li \c -qt-harfbuzz
-        \li \c -system-harfbuzz
+        \li \b -qt-harfbuzz
+        \li \b -system-harfbuzz
     \endtable
 
-    It is also possible to disable support for these libraries by using
-    \c -no instead of \c{-qt}. For example, to use the system's xcb library
-    and disable zlib support, enter the following:
+    It's also possible to disable support for these libraries by using
+    \b -no instead of \b{-qt}.
 
-    \code
-    ./configure -no-zlib -qt-libjpeg -qt-libpng -system-xcb
-    \endcode
+    configure in Qt 6 relies on CMake to locate third-party libraries.
+    It does so by checking various system paths. If you installed libraries
+    somewhere else, you can let CMake know this by setting or extending the
+    \b CMAKE_PREFIX_PATH variable.
 
-    For a full list of options, consult the help with \c {configure -help}.
+    For a full list of options, consult the help with \b{configure -help}.
 
-    \section1 Compiler Options
+    \section2 SSL
 
-    The \c -platform option sets the host platform and the compiler for building
-    the Qt sources. The list of supported platforms and compilers is found in
-    the \l{Supported Platforms}{supported platforms} page while the
-    full list is available in \e{qtbase/mkspecs} directory.
+    Qt Network can be configured to support communication for Secure Sockets
+    Layer (SSL) but does not implement the actual algorithms itself. It needs
+    to leverage other libraries instead.
 
-    For example, on Ubuntu Linux systems, Qt can be compiled by several
-    compilers such as clang or g++:
+    On Windows, Qt can use the system's Secure Channel library for this
+    purpose (configure option \b{-schannel}). On \macos and iOS, Qt can be
+    configured to use the SecureTransport API (configure option
+    \b{-securetransport}).
 
-    \code
-    ./configure -platform linux-clang
-    ./configure -platform linux-g++
-    ./configure -platform linux-g++-32
-    \endcode
+    The most feature-complete support that also works on almost all target
+    platforms is provided by the \l {OpenSSL Toolkit} (option \b{-openssl}).
 
-    For \l{Qt for Windows}{Windows} machines, either MinGW or Visual Studio
-    toolchains can be used to compile Qt.
+    Qt can be configured to use OpenSSL in three ways:
+    \list
+        \li Qt Network loads OpenSSL libraries (DLLs) when first needed, at
+            runtime. If not found, the application continues to run but fails
+            to handle SSL communication. This is enabled by using the
+            configure option \b{-openssl-runtime}.
 
-    \code
-    configure.bat -platform win32-g++
-    configure.bat -platform win32-msvc
-    \endcode
+        \li Qt Network links against the OpenSSL libraries. If they cannot be
+            found at load time, the application fails to start. This is enabled
+            by using the configure option \b{-openssl-linked}.
 
-    Afterwards, the generated Makefiles will use the appropriate compiler
-    commands.
+        \li Qt Network compiles against a static version of the OpenSSL
+            libraries, and OpenSSL becomes part of the Qt Network library.
+            This is enabled by using the configure option \b{openssl-linked}
+            and setting the \b{OPENSSL_USE_STATIC_LIBS} variable to \b{ON}.
+    \endlist
+
+    Set the CMake variable \b{OPENSSL_ROOTDIR} if OpenSSL is not installed in
+    a standard location, and therefore not found by configure.
+
+    See \l {Secure Sockets Layer (SSL) Classes} for further instructions on
+    Qt with SSL support.
 
     \section1 Cross-Compilation Options
 
-    To configure Qt for cross-platform development and deployment, the
+    To configure Qt for cross-platform development and deployment, you need
+    to have a matching Qt version for the host machine first. Also, the
     development toolchain for the target platform needs to be set up. This
     set up varies among the \l{Supported Platforms}.
 
     Common options are:
     \list
-    \li \c -xplatform - the target platform. Valid xplatform options are the same
-    as the \c -platform options which are found in \e{qtbase/mkspecs}.
-    \li \c -device - a specific device or chipsets. The list of devices that configure is compatible with are
-    found in \e{qtbase/mkspecs/devices}. For more information, visit the \l{http://wiki.qt.io/Category:Devices}{Devices}
-    Wiki page.
-    \li \c -device-option - sets additional qmake variables. For example, \c{-device-option CROSS_COMPILE=}\e{<path-to-toolchain>} provides
-    the environment variable, \c{CROSS_COMPILE}, as needed by certain devices.
+    \li \b -external-hostbindir - Path to Qt tools built for this machine.
+    \li \b -device - Select devices/mkspec for the qmake companion files.
+    \li \b -device-option - sets additional qmake variables.
     \endlist
 
     \note Toolchains for non-desktop targets often come with a so-called \e
-    sysroot which Qt needs to be configured against.
+    sysroot that Qt needs to be configured against.
 
-    \section2 Specific Options for Platforms
+    \section1 Developer Builds
+
+    The \b -developer-build configure option is a convenience option that
+    optimizes the build for developing Qt itself. It shouldn't be used for
+    building Qt variants that ship to customers.
+
+    Libraries in a developer build contain more exported symbols than a
+    standard build, and all Qt code compiles with a higher warning
+    level. It also changes the default prefix to the build directory, avoiding
+    the need to install Qt before testing things, and finally enables the
+    compilation of Qt's autotests by default.
+
+    \section1 Specific Options for Platforms
 
     The following pages provide guidelines on how to configure Qt for specific
     platform development:
@@ -222,55 +331,5 @@
     \li \l{Building Qt for Android} Wiki page
     \li \l{Qt for iOS - Building from Source}
     \li \l{Configure an Embedded Linux Device}
-    \li \l{http://wiki.qt.io/Qt_RaspberryPi}{Qt for Raspberry Pi} - a community-driven site for
-    Raspberry devices
-    \li \l{http://wiki.qt.io/Category:Devices}{Devices} - a list of other devices and chipsets
     \endlist
-
-    \section1 OpenGL Options for Windows
-
-    On Windows, Qt can be configured with the system OpenGL or with \l{ANGLE}.
-    By default, Qt is configured to use dynamic OpenGL. This means that it tries
-    to use system OpenGL and falls back to ANGLE, which is bundled with Qt and
-    depends on the DirectX SDK, if native OpenGL does not work. ANGLE enables
-    running Qt applications that depend on OpenGL, without installing the latest
-    OpenGL drivers. If ANGLE also fails, Qt will fall back to software rendering,
-    which is the slowest but most safe of the rendering methods.
-
-    The \c -opengl option can be used to configure Qt to use
-    the OpenGL in the target system, a different version of OpenGL ES (with or
-    without ANGLE), or dynamically switch between the available OpenGL
-    implementations.
-
-    \code
-    configure.bat -opengl dynamic
-    \endcode
-
-    With the \c dynamic option, Qt will try to use native OpenGL first. If that
-    fails, it will fall back to ANGLE and finally to software rendering in case
-    of ANGLE failing as well.
-
-    \code
-    configure.bat -opengl desktop
-    \endcode
-
-    With the \c desktop option, Qt uses the OpenGL installed on Windows,
-    requiring that the OpenGL in the target Windows machine is compatible with
-    the application. The \c -opengl option accepts two versions of OpenGL ES, \c
-    es2 for OpenGL ES 2.0 or \c es1 for OpenGL ES Common Profile.
-
-    \code
-    configure.bat -opengl es2
-    \endcode
-
-    You can also use \c{-opengl dynamic}, which enable applications to
-    dynamically switch between the available options at runtime. For more
-    details about the benefits of using dynamic GL-switching, see
-    \l{Graphics Drivers}.
-
-    \section1 Developer Builds
-
-    The \c -developer-build option is not meant for shipping applications,
-    but can be used for developing Qt. Such a build contains more exported
-    symbols than a standard build and compiles with a higher warning level.
 */
