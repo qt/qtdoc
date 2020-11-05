@@ -46,12 +46,14 @@ basis for Qt's event system, which is a low-level way of communicating between
 QObject-based objects. Another high-level form of communication is provided in
 Qt's signals and slots mechanism.
 
+\omit //! SCXML omitted as it's not part of Qt 6.0
 These features can also be used in combination
 with the State Machine Framework which provides a formally defined and
 predictable way of managing the states of your application.
 An alternative way of implementing state machines is using the
 \l{Qt SCXML Overview}{Qt SCXML} add-on module to create them from State Chart
 XML (SCXML) files.
+\endomit
 
 In addition, QObject
 provides a simple timing mechanism with \l QObject::startTimer(). Alternatively,
@@ -66,7 +68,6 @@ the QTimer class provides a high-level interface for timers.
     \list
     \li \l{Differences between String-Based and Functor-Based Connections}
     \endlist
-\li \l{The State Machine Framework}
 \li \l{Timers}
 \endlist
 

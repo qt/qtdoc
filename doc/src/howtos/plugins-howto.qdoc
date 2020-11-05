@@ -116,11 +116,13 @@
         \li \c platformthemes
         \li \l{Qt Platform Abstraction}
         \li Case Insensitive
+    \omit //! Exclude modules not in 6.0
     \row
         \li QGeoPositionInfoSourceFactory
         \li \c position
         \li \l{Qt Positioning}
         \li Case Sensitive
+    \endomit //! Exclude modules not in 6.0
     \row
         \li QPlatformPrinterSupportPlugin
         \li \c printsupport
@@ -131,6 +133,7 @@
         \li \c scenegraph
         \li \l{Qt Quick}
         \li Case Sensitive
+    \omit //! Exclude modules not in 6.0
     \row
         \li QSensorGesturePluginInterface
         \li \c sensorgestures
@@ -141,6 +144,7 @@
         \li \c sensors
         \li \l{Qt Sensors}
         \li Case Sensitive
+    \endomit //! Exclude modules not in 6.0
     \row
         \li QSqlDriverPlugin
         \li \c sqldrivers

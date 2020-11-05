@@ -196,11 +196,6 @@
 
     \image xml-examples.png XML
 
-    The XQuery/XPath and XML Schema engines in the \l{Qt XML Patterns} module
-    provide classes for querying XML files and custom data models.
-
-    \annotatedlist xmlpattern_examples
-
     Examples marked with an asterisk (*) are fully documented.
 */
 /*
@@ -264,8 +259,7 @@
     \endlist
 */
 
-/*!
-    \omit
+/* //! QDoc marker omitted as ActiveQt is not part of 6.0 release.
     \page examples-activeqt.html
     \title ActiveQt Examples
     \brief Using ActiveX from Qt applications.
@@ -284,5 +278,4 @@
     \li \l{activeqt/simple}{Simple}\raisedaster
     \li \l{activeqt/wrapper}{Wrapper}\raisedaster
     \endlist
-    \endomit
 */
