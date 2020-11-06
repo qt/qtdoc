@@ -66,11 +66,7 @@ Section 3 Building Qt Documentation
 
 Section 4 Packaging the Documentation
 
-    To package the documentation for Qt Assistant, the HTML files must be
-    compiled into a QCH file (.qch).
-
     Required binaries:
-    * assistant - found in qttools
     * qhelpgenerator - found in qttools
 
     To compile thq qch file for each module, first enter the output directory
@@ -83,10 +79,7 @@ Section 4 Packaging the Documentation
     $> cd qtbase
     $> make qch_docs #builds the QCH files for modules in qtbase
 
-    The QCH file can then be loaded in Qt Assistant or Qt Creator. For Qt
-    Assistant, the QCH file may be registered to automatically load it.
-
-    $> assistant -register qtdoc.qch    #to automatically load the documentation
+    The QCH file can then be loaded in Qt Creator.
 
 Section 5 More Information
 

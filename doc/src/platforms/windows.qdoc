@@ -1192,20 +1192,4 @@
         \l{jom} is a replacement for \c nmake which makes use of all CPU cores
         and thus speeds up building.
 
-    \section1 Step 5: Build the Qt Documentation
-
-        For the Qt reference documentation to be available in \l {Qt Assistant},
-        you must build it separately:
-
-        \badcode
-        nmake docs
-        \endcode
-
-        This will build the documentation in the build folder. If you have
-        installed Qt in a separate location, you will also need to install
-        the documentation:
-
-        \badcode
-        nmake install_docs
-        \endcode
 */
