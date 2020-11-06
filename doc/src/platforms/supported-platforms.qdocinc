@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -37,11 +37,11 @@
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li openSUSE 15.1
         \li \c x86_64
-        \li GCC 5 or later, \b {GCC 7}, \b {ICC 19.1}
+        \li GCC 5 or later, \b {GCC 7.5.0}, \b {ICC 19.1}
         \li
     \row \li SUSE Linux Enterprise Server
         \li \c x86_64
-        \li GCC 5 or later, \b {GCC 10}
+        \li GCC 5 or later, \b {GCC 10.2.1}
         \li
     \row \li Red Hat Enterprise Linux 7.6
         \li \c x86_64
@@ -49,7 +49,7 @@
         \li
     \row \li Ubuntu 18.04
         \li \c x86_64
-        \li GCC 5 or later, \b {GCC 9}
+        \li GCC 5 or later, \b {GCC 9.3.0}
         \li
     \row \li Generic Linux
         \li \c x86 and \c x86_64
@@ -64,7 +64,7 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.13, 10.14, \b 10.15
         \li \c x86_64 and \c x86_64h
-        \li Xcode 11 (10.15 SDK)
+        \li Xcode 11 or \b 12 (10.15 SDK)
 \endtable
 //! [macos]
 
@@ -74,7 +74,7 @@
     \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2019}, MSVC 2017, \b {MinGW 8.1}
+        \li \b {MSVC 2019}, MSVC 2017, MSVC 2015, MinGW 8.1
         \li
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
@@ -82,7 +82,7 @@
         \li
     \row \li Windows 7
         \li \c x86 and \c x86_64
-        \li MSVC 2019, MSVC 2017, \b {MinGW 8.1}
+        \li MSVC 2019, MSVC 2017, MinGW 8.1
         \li \l{https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z/download}{MinGW-builds GCC 8.1.0 (x86)}
 \endtable
 
@@ -100,8 +100,7 @@
     \row \li Android 5.0 or later (that is, API Level 21 and up)
         \li \c armv7a and \c x86, \c arm64-v8 and \c x86_64
         \li \b {Clang as provided by Google}, \b {MinGW 8.1}
-        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.14}, \b {Windows 10 (x86_64)},
-            \b Windows 7
+        \li \b {RHEL 7.x (x86_64)}, \b{\macos 10.15}, \b {Windows 10 (x86_64)}
 \endtable
 //! [android]
 
