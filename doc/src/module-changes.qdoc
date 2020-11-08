@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -25,14 +25,27 @@
 **
 ****************************************************************************/
 /*!
-\page portingcppapp.html
-\title Porting C++ Applications to Qt 6
-\brief Provides instructions to migrate a Qt 5 C++ application to Qt 6.
+\page modulechanges.html
+\title Changes to Qt Modules
+\brief A list of changes to Qt modules
+
+Qt 6 is a result of the conscious effort to make the framework more
+efficient and easy to use.
+
+We try to maintain binary and source compatibility for all the public APIs in
+each release, but some changes were inevitable in an effort to make Qt a
+better framework. Below you can find a list of changes that may affect your
+application, and which can help you transitioning from Qt 5 to Qt 6.
+
+For information about changes specific to a Qt 6 release, visit the
+\l{New Features by Qt Version} section.
+
+\annotatedlist changes-qt-5-to-6
 
 \section1 Related Topics
 \list
-\li \l {C++ API Changes}
+\li \l {Porting C++ Applications to Qt 6}
 \li \l {Porting QML Applications to Qt 6}
-\li \l {Qt Examples And Tutorials}
+\li \l {Changes to Supported Modules} - status of Qt 5 modules in Qt 6.0
 \endlist
 */
