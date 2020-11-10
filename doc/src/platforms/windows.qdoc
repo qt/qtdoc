@@ -955,8 +955,8 @@
         up the environment and the command line option \c /k (remain open)
         to \c cmd.exe.
 
-        Assuming the file is called \c{qt5vars.cmd}
-        and the Qt folder is called \c Qt-5 and located under \c C:\Qt:
+        Assuming the file is called \c{qt6vars.cmd}
+        and the Qt folder is called \c Qt-6 and located under \c C:\Qt:
 
         \badcode
         REM Set up Microsoft Visual Studio 2019, where <arch> is amd64, x86, etc.
@@ -969,8 +969,8 @@
         \endcode
 
         A desktop link can then be created by specifying the command
-        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k C:\Qt\qt5vars.cmd}
-        as application and \c{C:\Qt\Qt-5} as working directory.
+        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k C:\Qt\qt6vars.cmd}
+        as application and \c{C:\Qt\Qt-6} as working directory.
 
         \note Setups for MinGW are similar; they differ
         only in that the \c bin folder of the installation should be added to the
@@ -982,51 +982,13 @@
 
     \section1 Step 3: Build the Qt Library
 
-        The default behavior of configure is to create an in-source build
-        of Qt. If you want to install Qt to a separate location,
-        you need to specify the command line option \c{-prefix <location>}.
-        Alternatively, the command line option \c -developer-build creates
-        an in-source build for developer usage.
+        To configure the Qt library for your machine type, run the
+        \c{configure.bat} script in the source directory.
 
-        To configure the Qt library for a debug build for your machine, type
-        the following command in the command prompt:
-
-        \badcode
-        configure -debug -nomake examples -nomake tests -skip qtwebengine -opensource
-        \endcode
+        By default, Qt is configured for installation in the
+        \c{C:\Program Files\Qt} directory, but this can be
+        changed by using the \c{-prefix} option.
 
         The \l{Qt Configure Options}{Configure Options} page contains more
         information about the configure options.
-
-        To build Qt using \l{jom}, type:
-
-        \badcode
-        jom
-        \endcode
-
-        If you do not have \l{jom} installed, type:
-
-        \badcode
-        nmake
-        \endcode
-
-        For MinGW, type:
-
-        \badcode
-        mingw32-make
-        \endcode
-
-        If an installation prefix was given, type
-        \c{jom install}, \c{nmake install} or \c{mingw32-make install}.
-
-        \note If you later need to reconfigure and rebuild Qt from the
-        same location, ensure that all traces of the previous configuration are
-        removed by entering the build directory and typing \c{nmake distclean}
-        before running \c configure again.
-
-    \section1 Parallel Builds
-
-        \l{jom} is a replacement for \c nmake which makes use of all CPU cores
-        and thus speeds up building.
-
 */
