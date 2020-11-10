@@ -903,13 +903,11 @@
     executable with your application and ensure that it is executed when the
     user installs your application.
 
-    They are named \c vcredist_x64.exe (64-bit) or
-    \c vcredist_x86.exe (32-bit) and can be found in the folder
-    \c{<Visual Studio install path>/VC/redist/<language-code>}.
+    The redistributable is named \c vc_redist.x64.exe (64-bit) and can be found
+    in the folder \c{<Visual Studio install path>/VC/redist/<language-code>}.
 
-    Alternatively, they can be downloaded from the web, for example
-    \l{https://www.microsoft.com/download/details.aspx?id=48145}
-    {vcredist_x64.exe for Visual Studio 2015}.
+    Alternatively, it can be downloaded from the web, for example
+    \l{https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads}.
 
     \note The application you ship must be compiled with exactly the same
     compiler version against the same C runtime version. This prevents
@@ -939,7 +937,7 @@
     \table 100%
         \header
             \li Qt
-            \li VC++ 14.0 (2015)
+            \li Visual Studio 16 (2019)
             \li MinGW
         \row
         \li \list
@@ -1087,9 +1085,9 @@
         and the Qt folder is called \c Qt-5 and located under \c C:\Qt:
 
         \badcode
-        REM Set up Microsoft Visual Studio 2017, where <arch> is amd64, x86, etc.
-        CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
-        SET _ROOT=C:\Qt\Qt-5
+        REM Set up Microsoft Visual Studio 2019, where <arch> is amd64, x86, etc.
+        CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
+        SET _ROOT=C:\Qt\Qt-6
         SET PATH=%_ROOT%\qtbase\bin;%_ROOT%\gnuwin32\bin;%PATH%
         REM Uncomment the below line when using a git checkout of the source repository
         REM SET PATH=%_ROOT%\qtrepotools\bin;%PATH%
