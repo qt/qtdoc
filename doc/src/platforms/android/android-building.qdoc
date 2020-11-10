@@ -355,7 +355,7 @@
     \c qt-cmake wrapper. For Android the following has to be be provided:
 
     \badcode
-    <qt_for_android_install_path>/bin/qt-cmake -DANDROID_SDK_ROOT=<android_sdk_path> -DCMAKE_TOOLCHAIN_FILE=<android_ndk_path>/build/cmake/android.toolchain.cmake -DQT_HOST_PATH=<host_qt_install_path> -DCMAKE_FIND_ROOT_PATH=<qt_for_android_install_path> -DANDROID_ABI:STRING=<abi> -S <source_dir> -B <build_dir>
+    <qt_for_android_install_path>/bin/qt-cmake -DANDROID_SDK_ROOT=<android_sdk_path> -DANDROID_NDK_ROOT=<android_ndk_path> -S <source_dir> -B <build_dir>
     \endcode
 
     Additionally, you can still use \c qmake to build user projects as before in Qt 5.
