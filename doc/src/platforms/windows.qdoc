@@ -553,7 +553,7 @@
     directory.
 
     In case Qt was built with the configure switch \c{-relocatable} turned off,
-    \c windeployqt replaces the hardcoded local paths in Qt5Core.dll by
+    \c windeployqt replaces the hardcoded local paths in Qt6Core.dll by
     relative ones.
 
     For Windows desktop applications, the required runtime files for the compiler
@@ -796,13 +796,13 @@
         \li {2, 1} \c styles\qwindowsvistastyle.dll
     \row
         \li The Qt Core module
-        \li {2, 1} \c Qt5Core.dll
+        \li {2, 1} \c Qt6Core.dll
     \row
         \li The Qt GUI module
-        \li {2, 1} \c Qt5Gui.dll
+        \li {2, 1} \c Qt6Gui.dll
     \row
         \li The Qt Widgets module
-        \li {2, 1} \c Qt5Widgets.dll
+        \li {2, 1} \c Qt6Widgets.dll
     \endtable
 
     Other plugins might be required depending on the features the application uses
@@ -948,9 +948,9 @@
             \li MinGW
         \row
         \li \list
-               \li QT5CORE.DLL - The QtCore runtime
-               \li QT5GUI.DLL - The QtGui runtime
-               \li QT5WIDGETS.DLL - The QtWidgets runtime
+               \li QT6CORE.DLL - The QtCore runtime
+               \li QT6GUI.DLL - The QtGui runtime
+               \li QT6WIDGETS.DLL - The QtWidgets runtime
            \endlist
         \li \list
                \li VCCORLIB140.DLL, VCRUNTIME140D.DLL - The C runtime
