@@ -96,7 +96,7 @@
 
     \section1 Graphics Drivers
 
-    For \l{Qt Quick} 2 to work, a graphics driver that provides Direct 3D 11.1,
+    For \l{Qt Quick} to work, a graphics driver that provides Direct 3D 11.1,
     Vulkan 1.0, or OpenGL 2.1 or higher is required. As of Qt 6, the default
     for Qt Quick on Windows is Direct3D 11. This is different from Qt 5, where
     the default was OpenGL, either directly, or through ANGLE, an OpenGL to
@@ -196,11 +196,10 @@
 
         \li \c disable_rotation - Forces the application to run in landscape orientation
         always. It has no effect when using a software OpenGL implementation. This is
-        intended for drivers that have issues with rotation.  This feature keyword was
-        introduced in Qt 5.6.
+        intended for drivers that have issues with rotation.
 
         \li \c disable_program_cache - Disable storing shader program binaries on
-        disk. This feature keyword was introduced in Qt 5.12.
+        disk.
     \endlist
 
     A sample file looks like:
