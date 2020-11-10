@@ -359,24 +359,4 @@
     \endcode
 
     Additionally, you can still use \c qmake to build user projects as before in Qt 5.
-
-    \section1 Configuring with CMake
-
-    Another way to configure Qt is to provide the full CMake configuration command:
-
-    \badcode
-    cmake -DQT_HOST_PATH=<path_to_host_qt_installation> -DQT_QMAKE_TARGET_MKSPEC=android-clang -DANDROID_SDK_ROOT=<path_to_android_sdk> -DANDROID_NDK_ROOT=<path_to_android_ndk> -DANDROID_ABI=arm64-v8a -DCMAKE_INSTALL_PREFIX=<qt_install_prefix> -G Ninja <path_to_qt_source>
-    \endcode
-
-    To build Qt in the configured directory, run:
-
-    \badcode
-    cmake --build . --parallel
-    \endcode
-
-    Then to install Qt, run:
-
-    \badcode
-    cmake --install .
-    \endcode
 */
