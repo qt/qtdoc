@@ -809,17 +809,17 @@
     (\c iconengines, \c imageformats).
 
     In addition, the archive must contain the following compiler
-    specific libraries (assuming Visual Studio 14.0 (2015) or 15.0 (2017) or 16.0 (2019)):
+    specific libraries (assuming Visual Studio 16 (2019)):
 
     \table 100%
     \header
         \li Component \li {2, 1} File Name
     \row
         \li The C run-time
-        \li {2, 1} \c vccorlib140.dll, \c vcruntime140.dll
+        \li {2, 1} \c vcruntime140.dll
     \row
         \li The C++ run-time
-        \li {2, 1} \c msvcp140.dll
+        \li {2, 1} \c msvcp160.dll
     \endtable
 
     If dynamic OpenGL was used, then the archive may additionally contain:
@@ -827,9 +827,6 @@
     \table 100%
     \header
         \li Component \li {2, 1} File Name
-    \row
-        \li HLSL compiler library for Qt Quick on Direct3D 11
-        \li {2, 1} d3dcompiler_XX.dll
     \row
         \li OpenGL Software renderer library
         \li opengl32sw.dll
