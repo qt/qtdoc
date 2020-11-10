@@ -372,7 +372,7 @@
         containing the files from the archive. We only support the GNU version of
         the tar archiving utility. Note that on some systems it is called gtar.
 
-    \section1 Step 2: Building the Library
+    \section1 Step 2: Build the Qt Library
 
         To configure the Qt library for your machine type, run the
         \c{./configure} script in the package directory.
@@ -380,6 +380,9 @@
         By default, Qt is configured for installation in the
         \c{/usr/local/Qt-%VERSION%} directory, but this can be
         changed by using the \c{-prefix} option.
+
+        The \l{Qt Configure Options}{Configure Options} page contains more
+        information about the configure options.
 
     \snippet snippets/code/doc_src_installation.qdoc 1
 
