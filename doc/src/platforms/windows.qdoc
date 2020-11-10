@@ -457,7 +457,7 @@
 
     \badcode
     Usage: windeployqt [options] [files]
-    Qt Deploy Tool 5.14.1
+    Qt Deploy Tool 6.0.0
 
     The simplest way to use windeployqt is to add the bin directory of your Qt
     installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
@@ -467,57 +467,59 @@
       windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
 
     Options:
-      -?, -h, --help            Displays help on commandline options.
-      --help-all                Displays help including Qt specific options.
-      -v, --version             Displays version information.
-      --dir <directory>         Use directory instead of binary directory.
-      --libdir <path>           Copy libraries to path.
-      --plugindir <path>        Copy plugins to path.
-      --debug                   Assume debug binaries.
-      --release                 Assume release binaries.
-      --pdb                     Deploy .pdb files (MSVC).
-      --force                   Force updating files.
-      --dry-run                 Simulation mode. Behave normally, but do not
-                                copy/update any files.
-      --no-patchqt              Do not patch the Qt5Core library.
-      --no-plugins              Skip plugin deployment.
-      --no-libraries            Skip library deployment.
-      --qmldir <directory>      Scan for QML-imports starting from directory.
-      --qmlimport <directory>   Add the given path to the QML module search
-                                locations.
-      --no-quick-import         Skip deployment of Qt Quick imports.
-      --no-translations         Skip deployment of translations.
-      --no-system-d3d-compiler  Skip deployment of the system D3D compiler.
-      --compiler-runtime        Deploy compiler runtime (Desktop only).
-      --no-virtualkeyboard      Disable deployment of the Virtual Keyboard.
-      --no-compiler-runtime     Do not deploy compiler runtime (Desktop only).
-      --webkit2                 Deployment of WebKit2 (web process).
-      --no-webkit2              Skip deployment of WebKit2.
-      --json                    Print to stdout in JSON format.
-      --no-opengl-sw            Do not deploy the software rasterizer library.
-      --list <option>           Print only the names of the files copied.
-                                Available options:
-                                 source:   absolute path of the source files
-                                 target:   absolute path of the target files
-                                 relative: paths of the target files, relative
-                                           to the target directory
-                                 mapping:  outputs the source and the relative
-                                           target, suitable for use within an
-                                           Appx mapping file
-      --verbose <level>         Verbose level (0-2).
+      -?, -h, --help              Displays help on commandline options.
+      --help-all                  Displays help including Qt specific options.
+      -v, --version               Displays version information.
+      --dir <directory>           Use directory instead of binary directory.
+      --qmake <path>              Use specified qmake instead of qmake from PATH.
+      --libdir <path>             Copy libraries to path.
+      --plugindir <path>          Copy plugins to path.
+      --debug                     Assume debug binaries.
+      --release                   Assume release binaries.
+      --pdb                       Deploy .pdb files (MSVC).
+      --force                     Force updating files.
+      --dry-run                   Simulation mode. Behave normally, but do not
+                                  copy/update any files.
+      --no-patchqt                Do not patch the Qt6Core library.
+      --ignore-library-errors     Ignore errors when libraries cannot be found.
+      --no-plugins                Skip plugin deployment.
+      --no-libraries              Skip library deployment.
+      --qmldir <directory>        Scan for QML-imports starting from directory.
+      --qmlimport <directory>     Add the given path to the QML module search
+                                  locations.
+      --no-quick-import           Skip deployment of Qt Quick imports.
+      --translations <languages>  A comma-separated list of languages to deploy
+                                  (de,fi).
+      --no-translations           Skip deployment of translations.
+      --no-system-d3d-compiler    Skip deployment of the system D3D compiler.
+      --compiler-runtime          Deploy compiler runtime (Desktop only).
+      --no-virtualkeyboard        Disable deployment of the Virtual Keyboard.
+      --no-compiler-runtime       Do not deploy compiler runtime (Desktop only).
+      --json                      Print to stdout in JSON format.
+      --no-opengl-sw              Do not deploy the software rasterizer library.
+      --list <option>             Print only the names of the files copied.
+                                  Available options:
+                                   source:   absolute path of the source files
+                                   target:   absolute path of the target files
+                                   relative: paths of the target files, relative
+                                             to the target directory
+                                   mapping:  outputs the source and the relative
+                                             target, suitable for use within an
+                                             Appx mapping file
+      --verbose <level>           Verbose level (0-2).
 
     Qt libraries can be added by passing their name (-xml) or removed by passing
     the name prepended by --no- (--no-xml). Available libraries:
-    bluetooth concurrent core declarative designer designercomponents enginio
-    gamepad gui qthelp multimedia multimediawidgets multimediaquick network nfc
-    opengl positioning printsupport qml qmltooling quick quickparticles quickwidgets
-    script scripttools sensors serialport sql svg test webkit webkitwidgets
-    websockets widgets winextras xml xmlpatterns webenginecore webengine
-    webenginewidgets 3dcore 3drenderer 3dquick 3dquickrenderer 3dinput 3danimation
-    3dextras geoservices webchannel texttospeech serialbus webview
+    bluetooth concurrent core declarative designer designercomponents gui qthelp
+    multimedia multimediawidgets multimediaquick network nfc opengl openglwidgets
+    positioning printsupport qml qmltooling quick quickparticles quickwidgets script
+    scripttools sensors serialport sql svg svgwidgets test websockets widgets xml
+    webenginecore webengine webenginewidgets 3dcore 3drenderer 3dquick
+    3dquickrenderer 3dinput 3danimation 3dextras geoservices webchannel serialbus
+    webview
 
     Arguments:
-      [files]                   Binaries or directory containing the binary.
+      [files]                     Binaries or directory containing the binary.
 \endcode
 
     \section1 Static Linking
