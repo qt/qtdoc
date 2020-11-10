@@ -340,9 +340,6 @@
         This command requires that you have administrator access
         on your machine.
 
-        \note There is a potential race condition when running make install with multiple
-        jobs. It is best to only run one make job (-j1) for the install.
-
     \section2 Step 4: Set the Environment Variables
 
         In order to use Qt, some environment variables need to be
@@ -364,16 +361,6 @@
         variables accordingly.
 
     \b {Qt is now installed.}
-
-    \section1 Limitations
-
-    \section2 Fink
-
-    If you have installed the Qt for X11 package from \l{http://www.finkproject.org/}{Fink},
-    it will set the \c QMAKESPEC environment variable to \c darwin-g++. This will cause
-    problems when you build the Qt for macOS package. To fix this, simply unset your \c
-    QMAKESPEC or set it to \c macx-g++ before you run \c configure. To get a
-    fresh Qt distribution, run \c{make confclean} on the command-line.
 */
 
 /*!
