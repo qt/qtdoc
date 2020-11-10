@@ -97,19 +97,6 @@
 
     To build Qt for Android under a Linux environment, follow the steps below:
 
-    \section2 Installing the License File
-
-    If you use Qt with a commercial license, the Qt tools look for a local license file.
-    If you are using a binary installer or the commercial Qt Creator, your licenses
-    are automatically fetched and stored in your local user profile
-    (\c{$XDG_DATA_HOME/Qt/qtlicenses.ini} file).
-
-    If you do not use any binary installer or Qt Creator, you can download
-    the respective license file from your \l {Qt Account} Web portal and save
-    it to your user profile as \c{$HOME/.qt-license}. If you prefer a
-    different location or file name, you need to set the \c{QT_LICENSE_FILE}
-    environment variable to the respective file path.
-
     \section2 Unpacking the Archive
 
     If you have downloaded the source code archive from \l {Qt Downloads}, then
@@ -235,17 +222,6 @@
 
     \note Qt for Android does not support building with Microsoft Visual C++ (MSVC),
     we only support building with MinGW.
-
-    \section2 Installing the License File
-
-    If you have a commercially licensed Qt, install your license file. If you're using
-    a binary installer or the commercial Qt Creator, your licenses are automatically
-    fetched and stored in your local user profile
-    \c{%USERPROFILE%\AppData\Roaming\Qt\qtlicenses.ini}. Alternatively, you can download
-    the respective license file from your Qt Account web portal and save it to your user
-    profile as \c{%USERPROFILE%\.qt-license}. If you prefer a different location or file
-    name, you need to set the \c QT_LICENSE_FILE environment variable to the respective
-    file path.
 
     \section2 Configuring and Building on Windows
 
