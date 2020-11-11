@@ -35,25 +35,25 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
+    \row \li CentOS Linux 8.1
+        \li \c x86_64
+        \li GCC 9
+        \li
     \row \li openSUSE 15.x
         \li \c x86_64
-        \li \b {GCC 7}, \b {ICC}
+        \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server
+    \row \li SUSE Linux Enterprise Server 15 SP2
         \li \c x86_64
-        \li \b {GCC 7}, GCC 8, ICC 18.x
+        \li GCC 10
         \li
-    \row \li Red Hat Enterprise Linux 7.x
+    \row \li Ubuntu 20.04
         \li \c x86_64
-        \li \b {GCC 5.3.1 via devtoolset-4}
-        \li
-    \row \li Ubuntu 18.04
-        \li \c x86_64
-        \li GCC as provided by Canonical, \b {GCC 7.x or later}
+        \li GCC as provided by Canonical, GCC 9.x
         \li
     \row \li Generic Linux
         \li \c x86 and \c x86_64
-        \li GCC (5 or later), ICC 18.x
+        \li GCC 9
         \li
 \endtable
 //! [linux]
@@ -62,9 +62,9 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.14, \b 10.15, \b 11.0
+    \row \li \macos 10.14, 10.15, 11.0
         \li \c x86_64 and \c x86_64h
-        \li \b {Xcode 12} (10.15 SDK)
+        \li Xcode 12 (10.15 SDK)
 \endtable
 //! [macos]
 
@@ -74,7 +74,7 @@
     \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10
         \li \c x86_64
-        \li \b {MSVC 2019}, \b {MinGW 8.1}
+        \li MSVC 2019, MinGW 8.1
         \li
 \endtable
 
@@ -91,19 +91,19 @@
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li \b {Clang 9.0.8 (NDK r21) and Clang 8.0.7 (NDK r20b) as provided
-            by Google}, \b {MinGW 8.1}
+        \li Clang 9.0.8 (NDK r21) and Clang 8.0.7 (NDK r20b) as provided
+            by Google, MinGW 8.1
         \li
 \endtable
 //! [android]
 
-\section2 \l{Qt for iOS}{iOS/tvOS/watchOS}
+\section2 \l{Qt for iOS}{iOS}
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
-    \row \li iOS 13, \b{iOS 14}
+    \row \li iOS 13, iOS 14
         \li \c armv8 (\c arm64)
-        \li \b {Xcode 12} (iOS 14 SDK)
+        \li Xcode 12 (iOS 14 SDK)
         \li
 \endtable
 //! [ios]
