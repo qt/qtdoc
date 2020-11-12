@@ -1,0 +1,176 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page qt6_buildsystem.html
+\title Build System Changes in Qt 6
+\brief Changes in Qt 6 how Qt is built
+
+A lot of the work that went into Qt 6 was related to how Qt and its modules are
+built. The target was to make Qt future-proof by moving to a broadly-adopted,
+popular build tool: \l{CMake Documentation}{CMake}. We also took the first steps
+towards making Qt more modular by using \l{Conan} as a package manager for some
+add-ons.
+
+\section1 Building Qt from Sources
+
+The Qt 5 build system was built on top of \l qmake. In Qt 6, we ported the build
+system to CMake.
+
+\note This only affects users that want to build Qt from sources. You can still
+use qmake as a build tool for your applications.
+
+It is possible to configure Qt directly from the command-line by invoking
+\b{cmake}. However, we continue to recommend the \b configure command-line
+tool, which provides an arguably nicer interface, and additional error-checking.
+
+See also \l{Qt Configure Options} for an overview of the new configure API.
+
+\section2 CMake, Ninja as External Dependencies
+
+You need a recent version of \l{CMake} to configure and build Qt. For Qt 6.0,
+we require \b{CMake 3.18}. You furthermore need to have an up-to date version
+of the \l{Ninja} tool installed.
+
+Both CMake and Ninja are open source tools that can be installed by various
+means. They are also available in the Qt Online installer.
+
+See \l{Building Qt Sources} for a more detailed overview of the build
+requirements on different platforms.
+
+\section2 Selecting a Qt License
+
+In Qt 5, configure required you to select whether you plan to use Qt under
+commercial or open-source licenses. If you had multiple commercial licenses,
+you also had to select the license you wished to use.
+
+We removed both selections in Qt 6. The choice of licenses that are available
+to you depends on any legal contracts you have with \l{The Qt Company}, not on
+any artifacts.
+
+The configure options \b{-opensource}, \b{-commercial}, and
+\b{-confirm-license} are ignored in Qt 6, and might be removed in future
+versions of Qt.
+
+\section2 Re-running configure
+
+You sometimes want to re-run configure to test different configure options. In
+Qt 5, configure cached various information from the environment between runs,
+but otherwise started from a clean state: You had to use \b{-redo}, or use the
+\b{config.status} shell script, to reuse arguments from a previous run.
+You also could use the \b{-recheck}, \b{-recheck-all} options to force a
+re-evaluation of cached tests.
+
+CMake and therefore configure in Qt 6 caches results even more aggressively.
+Detected environment settings, but also selections done through other
+command-line arguments, are stored in a file called \b{CMakeCache.txt}. If you
+run configure with new options, the new options are merged into this file.
+Delete the file to start from scratch. The configure options above are not
+supported anymore.
+
+\section2 Building only Parts of Qt
+
+The build system of Qt 5 allowed you to run the build tool (for example \c make)
+in a sub-directory to do a partial re-build.
+
+CMake follows a different paradigm and requires you to build targets from the
+top-level directory, taking into account the whole build. Use
+\b{ninja -t targets} to see all available targets in the build.
+
+\section2 Resolving Third-Party Libraries
+
+One of the tasks of configure is to detect the availability of different
+third-party packages in the environment. In Qt 5, configure optionally
+used pkg-config for this, but was also using various compile-time tests.
+These checks could be tweaked from the command line with various assignments
+like \b{ICU_PREFIX}, \b{ICU_LIBS}, etc.
+
+In Qt 6, configure relies on CMake to resolve dependencies. For most
+dependencies, this requires the third-party library to provide a CMake package
+in the CMake search path. You can use the \c{CMAKE_PREFIX_PATH} variable to
+extend this path with custom locations.
+
+Some dependencies like OpenSSL are also detected by logic within CMake:
+If OpenSSL is not picked up, you might need to set the \c{OPENSSL_ROOT_DIR}
+CMake variable so that it points to the installation directory.
+
+\section2 Selecting the Toolchain
+
+In Qt 5, configure used so-called mkspecs to specify both the build and
+target platforms (\b{-platform}, \b{-xplatform}, and \b{-device} options).
+CMake does not use these, but instead relies on environment checks, and
+toolchain files (see also the
+\l{https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html}
+{CMake-toolchains documentation}). The -platform, -xplatform options are still
+available, but only used to set the defaults for the generated qmake tool.
+
+\section2 Cross-Compiling Qt
+
+Cross-compilation is the act of compiling code for one computer system (the
+target) on a different system (the host). A build environment for
+cross-compiling Qt applications requires Qt tools to be available on the host
+(think of moc, rcc), as well as Qt libraries to be built for the target.
+
+In Qt 5, configure allowed you to build the host tools as well as the target
+tools and libraries in one step. In Qt 6, this is no longer supported. Instead,
+you have to have Qt installed and running on the host before you can
+cross-compile Qt to the target. The installed Qt must furthermore be the same
+version as the one to be cross-compiled.
+
+For more details on cross-compiling see \l{Configure an Embedded Linux Device},
+\l{Qt for Android - Building from Source}, and
+\l{Qt for iOS - Building from Source}.
+
+\section1 Porting Qt Plugins and Additional Libraries
+
+While qmake is still supported for building Qt applications, it can no longer
+be used to compile custom Qt plugins, or libraries that rely on internals from
+the Qt 5 build system. Such libraries or plugins must be ported to CMake for
+use with Qt 6.
+
+At the time of the release of Qt 6.0, the API for building custom Qt plugins
+or libraries is still in tech preview, which means that it may still change in
+future versions. A public stable API will be made available in a later Qt 6
+release.
+
+\section1 Build Additional Libraries through Conan
+
+Some Qt modules in Qt 6 are no longer provided as binary packages in
+the Qt online installer, but instead as Conan recipes. Conan is a
+general-purpose software package manager for C and C++ developers. Just like
+the build recipes of the modules, it is also made available in the Qt Online
+Installer.
+
+For an overview of the process, see
+\l{https://www.qt.io/blog/qt-6-additional-libraries-via-package-manager}
+{Qt 6 Additional Libraries via Package Manager}.
+
+\section1 Related Topics
+\list
+\li \l {Changes to Qt Modules} - A list of changes to Qt modules
+\li \l {Changes to Supported Modules} - Status of Qt 5 modules in Qt 6.0
+\endlist
+*/
