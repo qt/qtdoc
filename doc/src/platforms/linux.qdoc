@@ -149,43 +149,49 @@
     \li libxcb-render
     \li X C Bindings for Render extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
     \row {id="OptionalColor"}
     \li xcb-render-util
     \li libxcb-render-util
     \li Utility library for XCB for Render extension
     \li auto-detected
-    \li 0.3.8
+    \li 0.3.9
     \row {id="OptionalColor"}
     \li xcb-shape
     \li libxcb-shape
     \li X C Bindings for Shape extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
     \row {id="DefaultColor"}
     \li xcb-randr
     \li libxcb-randr
     \li X C Bindings for Resize and Rotate Extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
     \row {id="DefaultColor"}
     \li xcb-xfixes
     \li libxcb-xfixes
     \li X C Bindings for Fixes Extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
+    \row {id="DefaultColor"}
+    \li xcb-xkb
+    \li libxcb-xkb
+    \li X C Bindings for XKeyboard Extension
+    \li auto-detected
+    \li 1.11
     \row {id="DefaultColor"}
     \li xcb-sync
     \li libxcb-sync
     \li X C Bindings for Sync Extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
     \row {id="DefaultColor"}
     \li xcb-shm
     \li libxcb-shm
     \li X C Bindings for Shared Memory Extension
     \li auto-detected
-    \li 1.9
+    \li 1.11
     \row {id="DefaultColor"}
     \li xcb-icccm
     \li libxcb-icccm
@@ -202,6 +208,12 @@
     \li xcb-image
     \li libxcb-image
     \li Utility library for XCB for XImage and XShmImage, used for QBackingStore and cursor support
+    \li auto-detected
+    \li 0.3.9
+    \row {id="DefaultColor"}
+    \li xcb-util
+    \li libxcb-util
+    \li Utility library for XCB for atom, aux and event
     \li auto-detected
     \li 0.3.9
 
@@ -247,7 +259,7 @@
     \li libxcb
     \li X C Binding library
     \li
-    \li 1.9
+    \li 1.11
     \row {id="DefaultColor"}
     \li X11-xcb
     \li libX11-xcb
@@ -302,12 +314,14 @@
     \li libxcb-image0-dev
     \li libxcb-shm0-dev
     \li libxcb-icccm4-dev
-    \li libxcb-sync0-dev
+    \li libxcb-sync-dev
     \li libxcb-xfixes0-dev
     \li libxcb-shape0-dev
     \li libxcb-randr0-dev
     \li libxcb-render-util0-dev
+    \li libxcb-util-dev
     \li libxcd-xinerama-dev
+    \li libxcd-xkb-dev
     \li libxkbcommon-dev
     \li libxkbcommon-x11-dev
     \endlist
