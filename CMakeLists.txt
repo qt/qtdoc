@@ -24,7 +24,9 @@ qt_build_repo_begin()
 if(NOT QT_BUILD_STANDALONE_TESTS)
     add_subdirectory(doc)
     add_subdirectory(doc/src/cmake)
+    add_subdirectory(doc/src/platformintegration)
     add_dependencies(Doc CMakeDoc)
+    add_dependencies(Doc PlatformIntegrationDoc)
 
     # Dummy file that needs to be installed, to circumvent Coin skipping builds of standalone
     # tests due to not having anything to upload as an artifact.
