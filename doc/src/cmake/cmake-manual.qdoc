@@ -156,7 +156,8 @@
     \c{add_executable()} tells CMake that we want to build an executable (so not
     a library) called \c{helloworld} as a target. The target should be built
     from C++ code (\c{mainwindow.cpp}, \c{main.cpp}), a \l{Qt Designer} file
-    (\c{mainwindow.ui}), and a \l{Qt Resource System} file (\c{resources.qrc}).
+    (\c{mainwindow.ui}), and a \l{The Qt Resource System}{Qt Resource System}
+    file (\c{resources.qrc}).
 
     Note that you typically do not list header files here. This is different
     from \l{qmake}, where header files need to be explicitly listed so that
