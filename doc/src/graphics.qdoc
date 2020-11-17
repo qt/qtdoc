@@ -82,13 +82,14 @@ deploy on a platform that have a specific graphics API. Visit the
 {Rendering via the Qt Rendering Hardware Interface}
 page on how to set the render path in QQuickWindow.
 
-
 \section1 3D Graphics with Qt Quick 3D
 
 \l{Qt Quick 3D} is an add-on that provides a high-level API for creating 3D
 content and 3D user interfaces based on Qt Quick. It extends the
 \l{qtquick-visualcanvas-scenegraph.html}{Qt Quick Scene Graph} which lets you
 implement 3D content on 2D Qt Quick applications.
+
+\inlineimage blogs/BenchmarkDemoQt6.png
 
 
 \section1 Shader Effects
@@ -104,6 +105,8 @@ The following list contains information about shader effects.
 \li \l{Qt Shader Tools}
 \li \l{Programmable Materials, Effects, Geometry, and Texture data} - materials and shaders in Qt Quick 3D
 \endlist
+
+\inlineimage blogs/qtquick3D.png
 
 
 \section1 High-Level Graphics with Qt GUI
