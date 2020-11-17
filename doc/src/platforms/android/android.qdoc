@@ -34,14 +34,6 @@
 \nextpage android-getting-started.html
 
 Qt for Android enables you to run Qt applications on Android devices.
-All Qt modules (essentials and add-ons) are supported except the following:
-
-\list
-    \li \l{Qt WebEngine}
-    \li \l{Qt Virtual Keyboard}
-    \li Platform-specific extras: \l{Qt Mac Extras}, \l{Qt Windows Extras}, and
-        \l{Qt X11 Extras}
-\endlist
 
 The following configurations are supported:
 
@@ -53,17 +45,7 @@ The following list summarizes what you can do with Qt for Android:
     \li Run \l{Qt Widgets}{Widget-based} and \l{QML Applications}{QML}
         applications on a device or an emulator.
     \li Support for the \l{Material Style}{Material Style} with
-        Qt Quick Controls.
-    \omit //! Qt Multimedia
-    \li Handle \l{Qt Multimedia}{Multimedia} content in your
-        Qt Quick 2 applications.
-    \endomit //! Qt Multimedia
-    \li Get \l{Qt Sensors}{sensor} readings.
-    \li Retrieve positioning data using satellite or network information.
-    \li Connect and exchange data with \l{Qt Bluetooth}{Bluetooth}
-        and \l{Qt NFC}{NFC}-enabled devices.
-    \li Integrate Java code into your application using \l{Qt Android Extras}.
-    \li Develop secure applications using OpenSSL library.
+        \l{Qt Quick Controls}.
     \li Create \l{Android Services}.
     \li Create and deploy Application Package (APK) and Android App Bundle (AAB)
         packages using Qt Creator.
