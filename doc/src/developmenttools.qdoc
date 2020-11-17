@@ -102,14 +102,14 @@
 
     You can configure and build Qt from source using \b CMake or \b qmake.
     Custom configurations are for developers of Qt and for porting Qt to
-    different targets. The \l{Qt Abstraction Platform} is an abstraction
+    different targets. The \l{Qt Platform Abstraction} is an abstraction
     layer to facilitate Qt ports onto different platforms and targets.
 
     For more information about building Qt, visit the following pages:
     \list
     \li \l{Build with CMake}
     \li \l{qmake Manual}
-    \li \l{Qt Abstraction Platform}
+    \li \l{Qt Platform Abstraction}
     \li \l{Supported Platforms}
     \endlist
 
@@ -117,7 +117,7 @@
     \section1 Internationalization and Help Tools
 
     You can localize your application to different languages. There is an
-    \l{Internationalization in Qt}{internationalization} framework within Qt
+    \l{Internationalization with Qt}{internationalization} framework within Qt
     for handling different writing systems, translating interfaces, and for
     displaying numbers, dates, and currency in different formats.
     \l{Qt Linguist Manual}{Qt Linguist} is a tool for developers, translators,
@@ -132,19 +132,15 @@
     \li \l{Internationalization and Localization with Qt Quick}
     \li \l{Qt Linguist Manual}{Qt Linguist}
     \li \l{Writing Source Code for Translation}
-    \li \l{Qt Speech} - module for text-to-speech
     \endlist
 
     You can use the \l{The Qt Help Framework}{Qt Help} framework to create and
     package help files for complex applications. The help framework involves
     XML-based formats and tools to create content, set the order and filters
-    for application manuals. \l{Qt Assistant Manual}{Qt Assistant} is a browser
-    that handles the display of table of contents, pages, and multiple manuals
-    to application users.
+    for application manuals.
 
     \list
     \li \l{The Qt Help Framework}
-    \li \l{Qt Assistant Manual}{Qt Assistant}
     \li \l{Qt Help} C++ module
     \endlist
 
