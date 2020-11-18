@@ -104,10 +104,10 @@
 
     You can also configure Qt such that examples, tests, and tools are
     configured, but not built by default. If you set the CMake variables
-    \b{QT_NO_MAKE_EXAMPLES}, \b{QT_NO_MAKE_TESTS}, and \b{QT_NO_MAKE_TOOLS} to
-    ON, the respective parts will not be built by "cmake --build .".
-    Instead, CMake will generate individual targets that you can then build
-    individually.
+    \b{QT_BUILD_EXAMPLES_BY_DEFAULT}, \b{QT_BUILD_TESTS_BY_DEFAULT}, and
+    \b{QT_BUILD_TOOLS_BY_DEFAULT} to OFF, the respective parts will not be
+    built by "cmake --build .". Instead, CMake will generate individual targets
+    that you can then build individually.
 
     Here we build Qt libraries and tools, but also the
     \l{Getting Started Programming with Qt Widgets}{NotePad Example}:
