@@ -59,6 +59,26 @@
         \li \l{Qt for Android - Building from Source}
     \endlist
 
+    \omit //! Not part of Qt 6.0
+    \l {Qt Android Extras} is an Android specific module used to integrate Qt
+    API with Java API by enabling communication between Qt code (C++ and QML)
+    and Java code. The following examples demonstrate some of the features of
+    the module:
+
+    \list
+        \li \l{Qt Notifier} demonstrates how to call Java code from an
+            Android application.
+        \li \l{Qt JNI Messenger} demonstrates communication between Java code
+            and QML or C++ using JNI calls.
+        \li \l{Android Custom Activity} demonstrates working with custom Android activities.
+        \li \l{Qt JNI Music List} demonstrates how to exchange data from complex Java objects.
+        \li \l{Android Service with Qt Remote Objects} demonstrates how to run an Android service,
+            and how to communicate between the service and the app using Qt Remote Objects.
+    \endlist
+
+    For the full list examples, see \l {Qt Android Extras Examples}.
+    \endomit //! Not part of Qt 6.0
+
     \section1 Qt Quick and QML Examples for Android
 
     The following Qt Quick and QML examples are useful when developing
@@ -114,7 +134,7 @@
         \li \l{Extending QML - Attached Properties Example}{Attached Properties}
         \endlist
     \enddiv
-    \omit \\! Not in Qt 6.0
+    \omit \\! Not part of Qt 6.0
     \div {class="doc-column"}
         \b{Multimedia}
         \list
@@ -123,6 +143,8 @@
         \li \l{QML Camera Example}{Camera Example}
         \endlist
     \enddiv
+    \endomit //! Not part of Qt 6.0
+    \omit
     \div {class="doc-column"}
         \b{Location}
         \list
@@ -131,6 +153,6 @@
         \li \l{Plane Spotter (QML)}{Plane Spotter Example}
         \endlist
     \enddiv
-    \endomit \\! Not in Qt 6.0
+    \endomit \\! Not part of Qt 6.0
     \enddiv
 */
