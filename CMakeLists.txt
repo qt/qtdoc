@@ -37,7 +37,7 @@ endif()
 if(QT_BUILD_TESTS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt")
     add_subdirectory(tests)
 
-    if(QT_NO_MAKE_TESTS)
+    if(NOT QT_BUILD_TESTS_BY_DEFAULT)
         set_property(DIRECTORY tests PROPERTY EXCLUDE_FROM_ALL TRUE)
     endif()
 endif()
@@ -47,7 +47,7 @@ if(BUILD_EXAMPLES AND BUILD_SHARED_LIBS
             AND NOT QT_BUILD_STANDALONE_TESTS)
     add_subdirectory(examples)
 
-    if(QT_NO_MAKE_EXAMPLES)
+    if(NOT QT_BUILD_EXAMPLES_BY_DEFAULT)
         set_property(DIRECTORY examples PROPERTY EXCLUDE_FROM_ALL TRUE)
     endif()
 endif()
