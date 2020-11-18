@@ -91,6 +91,7 @@ public class QtAndroidService extends QtService
 
 Android allows starting services on demand or at boot time. You can do both using
 Qt as well.
+\omit //! Qt Android Extras not part of Qt 6.0
 
 \section3 Start a Service On Demand
 
@@ -130,6 +131,7 @@ You can start the service in the following ways:
             QtAndroid::androidActivity().object());
         \endcode
 \endlist
+\endomit //! Qt Android Extras not part of Qt 6.0
 
 \section3 Start a Service At Boot Time
 
@@ -347,9 +349,13 @@ BroadcastReceiver.
 \section2 Native C++ Calls from Java Service
 
 This can work with services running in the same process as \c QtActivity and even
-if \c Service is extended. For more information, see
+if \c Service is extended.
+\omit //! Qt Android Extras not part of Qt 6.0
+For more information, see
 \l{Calling QML/C++ Functions from Java Code}.
+\endomit //! Qt Android Extras not part of Qt 6.0
 
+\omit //! Qt Android Extras not part of Qt 6.0
 \section2 Using Android BroadcastReceiver
 
 \l {Android: BroadcastReceiver}{Android BroadcastReceiver} enables exchanging
@@ -411,7 +417,6 @@ public class ServiceBroadcastUtils {
 
 For more information on working with native calls, see
 \l{Calling QML/C++ Functions from Java Code}.
-
 To make use of all that, start your service as shown in \l{Start the Service},
 an then register the broadcast receiver by calling the method
 \c registerServiceBroadcastReceiver():
@@ -425,6 +430,9 @@ classObject.callMethod<void>("registerServiceBroadcastReceiver",
                              "(Landroid/content/Context;)V",
                              QtAndroid::androidContext().object());
 \endcode
+\endomit //! Android Extras not part of Qt 6.0
+
+\omit //! Qt Remote Objects not part of Qt 6.0
 
 \section2 Using Qt Remote Objects
 
@@ -517,14 +525,13 @@ on the debug logcat.
 
 \note The same method could be used when using the same \c .so lib file. For more
 information, see \l{Use the same .so Lib File}.
+\endomit //! Qt Remote Objects not part of Qt 6.0
 
 \section2 Using QAndroidBinder
 
-While using \l{QtRemoteObjects}{Qt Remote Objects} for communication is a
-cross-platform solution, \l QAndroidBinder Class Reference} is Android specific.
-\l QAndroidBinder is a convenience class that implements the most important
-methods in \l{Android: Binder}. It allows sending \l{QByteArray} or \l{QVariant}
-objcets between processes.
+QAndroidBinder is a convenience class that enables inter-process communication
+by implementing the most important methods in \l {Android: Binder}.
+It allows sending \l{QByteArray} or \l{QVariant} objects between processes.
 
 \note Qt for Android has a limitation forcing the execution of only one service
     at a time when running multiple services in one process. Thus, it is recommended

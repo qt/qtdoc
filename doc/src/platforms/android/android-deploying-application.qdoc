@@ -225,7 +225,7 @@
 
     \section1 Customizing the Package Templates
 
-    \section2 Resouces
+    \section2 Resources
 
     Put any resources used by your application under \c{$ANDROID_PACKAGE_SOURCE_DIR/res/}.
     A typical example of resources customization which should be placed here are
@@ -235,8 +235,10 @@
 
     Place any Java code under the path \c{$ANDROID_PACKAGE_SOURCE_DIR/src/}.
     Any code here can be used with your application, for example you can call
-    Java methods from within Qt code. For more information, see
-    \l{Qt JNI Messenger}{Qt JNI Messenger Example}.
+    Java methods from within Qt code.
+    \omit //! Not part of Qt 6.0
+    For more information, see \l{Qt JNI Messenger}{Qt JNI Messenger Example}.
+    \endomit //! Not part of Qt 6.0
 
     When using Qt Creator, add the Java files to your project using \l DISTFILES,
     so they are visible under the project files.
