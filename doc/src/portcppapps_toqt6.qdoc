@@ -1,0 +1,124 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page porting-to-qt6-using-clazy.html
+\title Porting C++ Applications to Qt 6 using Clazy checks
+
+    We've implemented some checks and fixits within the Clazy framework to
+    help you port your applications from Qt 5 to Qt 6.
+    In their own words: "Clazy is a compiler plugin which allows clang to
+    understand Qt semantics". Get Clazy (\l{https://invent.kde.org/sdk/clazy})
+    and read on to make porting to Qt 6 smoother.
+
+    Clazy checks can be run as a plugin during compilation or over a JSON
+    compilation database using \c clazy-standalone.
+    The fixes are applied later, using \c clang-apply-replacements.
+
+    \section1 Clazy checks dedicated to Qt 6 porting
+
+    The following checks are dedicated to ease the port from Qt 5 to Qt 6.
+    \list
+        \li \c qt6-deprecated-api-fixes
+        \li \c qt6-header-fixes
+        \li \c qt6-qhash-signature
+        \li \c qt6-qlatin1stringchar-to-u
+    \endlist
+
+    The checks have to be run against Qt 5. The fixed code is only going to
+    compile against Qt 6. For this reason the above mentioned checks have to be
+    run in one go. Clazy recommends running one test at a time to avoid
+    conflict when applying fixes, but this is not an option when running those
+    checks as a plugin.
+
+    \section1 How to apply Clazy checks
+
+    How to set up your project to run with Clazy and how to select and apply
+    the checks is fully explained here:
+    \l {https://invent.kde.org/sdk/clazy#setting-up-your-project-to-build-with-clazy}.
+
+    If you don't want to run the checks as a plugin but rather over a JSON
+    compilation database, you need to use \c clazy-standalone. Please see
+    \l {https://invent.kde.org/sdk/clazy#clazy-standalone-and-json-database-support}
+    for instructions.
+
+    In a nutshell, assuming you have an up to date Clazy version installed, what needs
+    to be done to run the checks as a plugin is explained below.
+
+    Set up your project to run with Clazy.
+    \section2 If using qmake
+    Add the following lines to your qmake command, as appropriate for your OS:
+    \code
+    -spec linux-clang QMAKE_CXX="clazy"
+    -spec macx-clang QMAKE_CXX="clazy"
+    \endcode
+    For Windows with MSVC add \c QMAKE_CXX="clazy-cl.bat".
+
+    Run qmake.
+
+    \section2 If using CMake
+    Add: \c --DCMAKE_CXX_COMPILER=clazy to the cmake command.
+
+    Run cmake.
+
+    Select the checks:
+    \code
+    export CLAZY_CHECKS="qt6-deprecated-api-fixes, qt6-header-fixes,
+    qt6-qhash-signature, qt6-qlatin1stringchar-to-u"
+    \endcode
+
+    Enable the fixits:
+    \code
+    export CLAZY_EXPORT_FIXES=ON
+    \endcode
+
+    Set the directories to be ignored by Clazy:
+    \code
+    export CLAZY_IGNORE_DIRS=.*lib_dir.*
+    \endcode
+    This will prevent Clazy checks from running on the libraries' files.
+    This is necessary if the libraries' paths are included
+    with \c -I and \c -F instead of \c -isystem and \c -framework.
+    This is also necessary to avoid warnings from \c qt-header-fixes check,
+    if the headers triggering the check are included in the included
+    libraries' files.
+
+    Compile your code.
+
+    During compilation \c {.yaml} files are created next to the source files.
+
+    To apply the fixits, run:
+    \code
+    clang-apply-replacements <path_to_yaml_files>
+    \endcode
+    This will modify the source files, consider backing up your code.
+
+    Not all porting can be done with automatic fixits. Please look carefully at
+    the warnings during compilation for the code that will have to be changed
+    manually.
+*/
+
