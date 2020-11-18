@@ -34,7 +34,17 @@
 \nextpage android-getting-started.html
 
 Qt for Android enables you to run Qt applications on Android devices.
+\omit //! Modules are not part of Qt 6.0
 
+All Qt modules (essentials and add-ons) are supported except the following:
+
+\list
+    \li Qt WebEngine
+    \li Qt Virtual Keyboard
+    \li Platform-specific extras: Qt Mac Extras, Qt Windows Extras, and
+        Qt X11 Extras
+\endlist
+\endomit //! Modules are not part of Qt 6.0
 The following configurations are supported:
 
 \include supported-platforms.qdocinc android
@@ -45,10 +55,24 @@ The following list summarizes what you can do with Qt for Android:
     \li Run \l{Qt Widgets}{Widget-based} and \l{QML Applications}{QML}
         applications on a device or an emulator.
     \li Support for the \l{Material Style}{Material Style} with
-        \l{Qt Quick Controls}.
-    \omit \\! Not in Qt 6.0
+        Qt Quick Controls.
+    \omit //! Qt Multimedia
+    \li Handle \l{Qt Multimedia}{Multimedia} content in your
+        Qt Quick 2 applications.
+    \endomit //! Qt Multimedia
+    \omit //! Qt Sensors not part of Qt 6.0
+    \li Get \l{Qt Sensors}{sensor} readings.
+    \endomit //! Qt Sensors not part of Qt 6.0
+    \li Retrieve positioning data using satellite or network information.
+    \omit
+    \li Connect and exchange data with \l{Qt Bluetooth}{Bluetooth}
+        and \l{Qt NFC}{NFC}-enabled devices.
+    \endomit //! Qt Bluetooth and NFC not part of Qt 6.0
+    \omit //! Qt Android Extras not part of Qt 6.0
+    \li Integrate Java code into your application using Qt Android Extras.
+    \endomit //! Qt Android Extras not part of Qt 6.0
+    \li Develop secure applications using OpenSSL library.
     \li Create \l{Android Services}.
-    \endomit \\! Not in Qt 6.0
     \li Create and deploy Application Package (APK) and Android App Bundle (AAB)
         packages using Qt Creator.
 \endlist
