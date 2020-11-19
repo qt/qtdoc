@@ -87,8 +87,9 @@ Row {
 
             anchors.fill: parent
             Connections {
-                target: mouseArea
-                onClicked: row.clicked()
+                function onClicked(mouse) {
+                    row.clicked()
+                }
             }
         }
     }
