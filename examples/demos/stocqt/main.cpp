@@ -52,13 +52,14 @@
 #include <QQmlEngine>
 #include <QQmlFileSelector>
 #include <QQuickView>
-
+#include <QtGlobal>
 int main(int argc, char *argv[])
 {
     QCoreApplication::setOrganizationName("QtExamples");
 
     QGuiApplication app(argc, argv);
-
+    if (qEnvironmentVariableIsEmpty("QML_XHR_ALLOW_FILE_READ"))
+        qputenv("QML_XHR_ALLOW_FILE_READ", "1");
     QQuickView view;
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
     view.setSource(QUrl("qrc:/demos/stocqt/stocqt.qml"));
