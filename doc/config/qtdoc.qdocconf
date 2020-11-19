@@ -29,6 +29,13 @@ excludedirs += \
     ../src/cmake \
     ../src/platformintegration
 
+# Exclude documentation for the broken examples
+excludefiles += \
+    ../../examples/demos/maroon/doc/src/maroon.qdoc \
+    ../../examples/demos/samegame/doc/src/samegame.qdoc \
+    ../../examples/demos/tweetsearch/doc/src/tweetsearch.qdoc \
+    ../../examples/demos/rssnews/doc/src/rssnews.qdoc
+
 examplesinstallpath =
 
 qhp.projects            = QtDoc
