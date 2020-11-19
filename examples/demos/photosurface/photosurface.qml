@@ -48,9 +48,9 @@
 **
 ****************************************************************************/
 import QtQuick 2.6
-import QtQuick.Dialogs 1.0
 import QtQuick.Window 2.1
 import Qt.labs.folderlistmodel 1.0
+import Qt.labs.platform 1.1
 
 Window {
     id: root
@@ -62,12 +62,11 @@ Window {
     property var currentFrame: undefined
     property real surfaceViewportRatio: 1.5
 
-    FileDialog {
+    FolderDialog {
         id: fileDialog
         title: "Choose a folder with some images"
-        selectFolder: true
         folder: picturesLocation
-        onAccepted: folderModel.folder = fileUrl + "/"
+        onAccepted: folderModel.folder = folder + "/"
     }
 
     Flickable {
