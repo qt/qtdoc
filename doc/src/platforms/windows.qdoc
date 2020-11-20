@@ -108,7 +108,7 @@
     To request using Vulkan or OpenGL, both of which require a Vulkan or OpenGL
     driver to be installed, set the environment variable \c{QSG_RHI_BACKEND} to
     \c vulkan or \c opengl, or use the equivalent
-    \l{QQuickWindow::setSceneGraphBackend()}{C++ API} in \c{main()}.
+    \l{QQuickWindow::setGraphicsApi()}{C++ API} in \c{main()}.
 
     While not the default for \l{Qt Quick}, OpenGL is still commonly used in
     many Qt applications, for example in QWidget-based applications building on
