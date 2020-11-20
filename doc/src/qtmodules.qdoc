@@ -113,12 +113,14 @@
         \li Development Platforms
         \li Target Platforms
         \li Description
+\if defined(onlinedocs)
     \row
          \li \l[Qt3D]{Qt 3D}
          \li All
          \li All
          \li Functionality for near-realtime simulation systems with support
              for 2D and 3D rendering.
+\endif
     \row
          \li \l{Qt 5 Core Compatibility APIs}
          \li
@@ -135,11 +137,13 @@
         \li All
         \li All
         \li Classes for integrating documentation into applications.
+\if defined(onlinedocs)
     \row
         \li \l[QtImageFormats]{Qt Image Formats}
         \li All
         \li All
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
+\endif
     \row
         \li \l[QtOpenGL]{Qt OpenGL}
         \li All
@@ -211,11 +215,13 @@
         \li {4,1} \target gpl-licensed-addons
                   Add-ons available under Commercial Licenses, or GNU General
                   Public License v3
+\if defined(onlinedocs)
     \row
         \li \l[QtNetworkAuth]{Qt Network Authorization}
         \li All
         \li All
         \li Provides support for OAuth-based authorization to online services.
+\endif
     \row
         \li \l{Qt Wayland Compositor}
         \li \l{Qt for Linux/X11}{Linux}
