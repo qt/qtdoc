@@ -154,7 +154,7 @@
     In practice this configure command is equivalent to the following direct CMake call:
 
     \badcode
-    cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DINPUT_opengl=es2 -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF \
+    cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DINPUT_opengl=es2 -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
       -DQT_HOST_PATH=$HOME/qt-host                           \
       -DCMAKE_STAGING_PREFIX=$HOME/qt6-rpi                   \
       -DCMAKE_INSTALL_PREFIX=/usr/local/qt6                  \
