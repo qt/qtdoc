@@ -1,0 +1,122 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+\page portingguide.html
+\title Porting to Qt 6
+\brief Guide for porting Qt 5 applications to Qt 6.
+
+There are many changes to Qt from the previous version, Qt 5, to Qt 6.
+Before upgrading to Qt 6, make sure that your Qt 5 application is updated to Qt
+5.15. The latest Qt 5 version has the least amount of changes when porting to
+Qt 6. However, APIs marked as deprecated or obsolete in Qt 5.15 may have been
+removed for the Qt 6.0 release.
+
+Here are things you should check if you are porting your Qt 5 applications into
+Qt 6.
+
+
+\section1 Enable Warnings for Deprecated APIs
+
+To check if your application uses deprecated functions, set the
+\l{QT_DISABLE_DEPRECATED_BEFORE} macro in your project file. This macro enables
+compile-time warnings if your application uses deprecated APIs.
+
+For example, in a qmake project file, define the macro with:
+\code
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE
+\endcode
+
+\list
+\li \l{https://doc.qt.io/qt-5/obsoleteclasses.html}
+    {Qt 5.15 Obsolete C++ Classes}
+\li \l{https://doc.qt.io/qt-5/obsoleteqmltypes.html}{Qt 5.15 Obsolete QML Types}
+\li \l{Obsolete C++ Classes}{Qt 6 Obsolete C++ Classes}
+\li \l{Obsolete QML Types}{Qt 6 Obsolete QML Types}
+\endlist
+
+
+\section1 Check the Changes to the Modules
+
+A goal for the Qt 6 release is to maintain a streamlined framework which means
+the removal of some Qt 5 modules in Qt 6. In some cases, APIs from a
+deprecated module are available in another module. In future Qt 6 releases,
+new or previous modules may be added.
+
+\list
+\li \l{New Modules in Qt 6.0}
+\li \l{Removed Modules in Qt 6.0}
+\li \l{Changes to Qt Modules} - list of changes per Qt module
+\endlist
+
+
+\section1 Test for Graphical Regressions
+
+QML applications have a new graphical backend, which you should test for
+regressions. OpenGL is no longer guaranteed as default on target platforms
+and you should check that your graphics code is still creating the same effects
+you want.
+
+It is still possible to use OpenGL calls in Qt applications, but the OpenGL
+APIs are moved to the \l{Qt OpenGL} module. The graphical backend for Qt Widgets
+applications are unchanged from Qt 5.
+
+\list
+\li \l{Graphics}
+\li \l{Changes to Qt Quick} - changes to Qt Quick graphics that may affect Qt 5
+    applications
+\endlist
+
+
+\section1 Use the Platform Integration APIs
+
+There is better integration with the native APIs on target platforms in Qt 6.
+You can use platform integration APIs to implement native behavior that is not
+provided by Qt. For Qt 6, check for any updates to your application's target
+platform.
+
+\list
+\li \l{Platform Integration}
+\li \l{Qt Platform Abstraction}
+\li \l{Supported Platforms}
+\endlist
+
+
+\section1 More Information about Qt 6
+
+There are many other changes in Qt. For example, there are constant updates to
+the development tools and the build tools.
+
+\list
+\li \l{What's New in Qt 6.0} - overview of the changes in Qt 6.0
+\li \l{Qt Creator Manual}
+\li \l{Qt Overviews}
+\li \l{Qt Examples And Tutorials}
+\li \l{Build System Changes in Qt 6} - for building Qt 6 from source
+\endlist
+*/
