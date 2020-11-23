@@ -19,7 +19,11 @@ content.files = \
         content/resources/icon-clear.png \
         content/resources/icon-loading.png \
         content/resources/icon-refresh.png \
-        content/resources/icon-search.png
+        content/resources/icon-search.png \
+        content/shaders/effect.frag \
+        content/shaders/effect.frag.qsb \
+        content/shaders/effect.vert \
+        content/shaders/effect.vert.qsb
 
 RESOURCES += content
 

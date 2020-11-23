@@ -63,7 +63,7 @@ Rectangle {
     property var idx
     property var ids
 
-    Component.onCompleted: ids = new Array()
+    Component.onCompleted: ids = []
 
     function idInModel(id)
     {
@@ -77,7 +77,7 @@ Rectangle {
         id: tweetsModel
         onIsLoaded: {
             console.debug("Reload")
-            idx = new Array()
+            idx = []
             for (var i = 0; i < tweetsModel.model.count; i++) {
                 var id = tweetsModel.model.get(i).id
                 if (!idInModel(id))
@@ -128,7 +128,7 @@ Rectangle {
         footer: ListFooter { }
 
         function clear() {
-            ids = new Array()
+            ids = []
             model.clear()
         }
 

@@ -57,7 +57,7 @@ Rectangle {
     z: 2
     Connections {
         target: mainListView
-        onAutoSearch: {
+        function onAutoSearch() {
             if (type == 'tag') {
                 tagSearch.open()
                 tagSearch.searchText = str

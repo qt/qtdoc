@@ -89,7 +89,7 @@ Item {
         effect.visible = true;
         effect.sourceA = effect.source1
         effect.sourceB = effect.source2
-        if (start == undefined)
+        if (start === undefined)
             start = 1.0;
         deltaAnim.from = start;
         deltaAnim.to = 0.0
@@ -101,7 +101,7 @@ Item {
         effect.visible = true;
         effect.sourceA = effect.source1
         effect.sourceB = effect.source2
-        if (start == undefined)
+        if (start === undefined)
             start = 0.0;
         deltaAnim.from = start;
         deltaAnim.to = 1.0
@@ -139,45 +139,9 @@ Item {
             hideSource: effect.visible
         }
 
-        fragmentShader: "
-            uniform lowp float qt_Opacity;
-            uniform sampler2D sourceA;
-            uniform sampler2D sourceB;
-            uniform highp float delta;
-            varying highp vec2 qt_TexCoord0;
-            void main() {
-                highp vec4 tex = vec4(qt_TexCoord0.x, qt_TexCoord0.y * 2.0, qt_TexCoord0.x, (qt_TexCoord0.y-0.5) * 2.0);
-                highp float shade = clamp(delta*2.0, 0.5, 1.0);
-                highp vec4 col;
-                if (qt_TexCoord0.y < 0.5) {
-                    col = texture2D(sourceA, tex.xy) * (shade);
-                } else {
-                    col = texture2D(sourceB, tex.zw) * (1.5 - shade);
-                    col.w = 1.0;
-                }
-                gl_FragColor = col * qt_Opacity;
-            }
-        "
+        fragmentShader: "shaders/effect.frag.qsb"
         property real h: height
-        vertexShader: "
-        uniform highp float delta;
-        uniform highp float factor;
-        uniform highp float h;
-        uniform highp mat4 qt_Matrix;
-        attribute highp vec4 qt_Vertex;
-        attribute highp vec2 qt_MultiTexCoord0;
-        varying highp vec2 qt_TexCoord0;
-        void main() {
-            highp vec4 pos = qt_Vertex;
-            if (qt_MultiTexCoord0.y == 0.0)
-                pos.x += factor * (1. - delta) * (qt_MultiTexCoord0.x * -2.0 + 1.0);
-            else if (qt_MultiTexCoord0.y == 1.0)
-                pos.x += factor * (delta) * (qt_MultiTexCoord0.x * -2.0 + 1.0);
-            else
-                pos.y = delta * h;
-            gl_Position = qt_Matrix * pos;
-            qt_TexCoord0 = qt_MultiTexCoord0;
-        }"
+        vertexShader: "shaders/effect.vert.qsb"
 
     }
 }

@@ -94,11 +94,12 @@ Item {
                 id: placeHolder
                 source: "resources/anonymous.png"
                 x: 10; y: 9
-                visible: avatar.status != Image.Ready
+                visible: avatar.status !== Image.Ready
             }
 
             Image {
                 id: avatar
+                asynchronous: true
                 source: model.userImage
                 anchors.fill: placeHolder
                 MouseArea {
@@ -161,6 +162,7 @@ Item {
 
             Image {
                 id: avatar2
+                asynchronous: true
                 source: model.userImage
                 anchors.right: parent.right
                 anchors.rightMargin: 10

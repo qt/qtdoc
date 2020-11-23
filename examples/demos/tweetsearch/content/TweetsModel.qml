@@ -75,7 +75,7 @@ Item {
     function reload() {
         tweets.clear()
 
-        if (from == "" && phrase == "")
+        if (from === "" && phrase === "")
             return;
 
 //! [requesting]
@@ -90,7 +90,13 @@ Item {
             } else {
                 for (var key in objectArray.statuses) {
                     var jsonObject = objectArray.statuses[key];
-                    tweets.append(jsonObject);
+                    var cleanJsonObject = {};
+                    // iterate through the json objects
+                    // and drop those with 'null' values.
+                    for (var subkey in jsonObject)
+                        if (jsonObject[subkey] !== null)
+                            cleanJsonObject[subkey] = jsonObject[subkey]
+                    tweets.append(cleanJsonObject);
                 }
             }
             wrapper.isLoaded()
