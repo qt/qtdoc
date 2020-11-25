@@ -149,11 +149,8 @@
         terminals.
   \endlist
 
-  If the default built-in keymap is not sufficient, you can specify a different one either via the
-  \c keymap parameter or via the eglfs-specific \l{QEglFSFunctions::loadKeymap()}{loadKeymap()}
-  function. The latter allows for switching the keymap at runtime. However, this behavior requires
-  using eglfs' built-in keyboard handler; it is not supported when the keyboard handler is
-  loaded via the \c -plugin command-line parameter.
+  If the default built-in keymap is not sufficient, you can specify a different
+  one via the \c keymap parameter.
 
   \note Special system key combinations, such as console switching (\uicontrol{Ctrl+Alt+Fx}) or
   zap (\uicontrol{Ctrl+Alt+Backspace}) are not currently supported and are ignored.
