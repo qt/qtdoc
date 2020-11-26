@@ -36,17 +36,19 @@
 
 /*!
     \page qtmain.html
-    \title The qtmain Library
+    \keyword QtEntryPoint
+    \title The QtEntryPoint Library
     \ingroup licensing
     \brief Commercial and \l{BSD 3-clause "New" or "Revised" License}.
 
-    qtmain is a helper library that enables the developer to write a
-    cross-platform main() function on Windows.
-    If you do not use \l qmake, \l {Qbs Manual}{qbs}, or other build tools such as
-    \l{CMake Documentation}{CMake}, then you need to link against the
-    \c qtmain library.
+    \e \QtEntryPoint is a helper library that enables the developer to
+    write a cross-platform main() function on Windows.
+    If you do not use \l {Build with CMake}{CMake}, \l qmake,
+    \l {Qbs Manual}{qbs}, or other build tool that handles this
+    automatically, then you need to link against the
+    \c QtEntryPoint library.
 
-    The qtmain library is statically linked with the application.
+    The entry point library is statically linked with the application.
     To avoid issues with static linking and the
     \l{GNU Lesser General Public License (LGPL)},
     it is licensed both under the commercial licenses,
@@ -55,7 +57,7 @@
     \section1 License Information
 
     \badcode
-    Copyright (C) 2016 The Qt Company Ltd.
+    Copyright (C) 2019 The Qt Company Ltd.
 
     Commercial License Usage
     Licensees holding valid commercial Qt licenses may use this file in
