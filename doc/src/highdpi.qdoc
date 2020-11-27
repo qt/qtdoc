@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -26,242 +26,160 @@
 ****************************************************************************/
 /*!
     \page highdpi.html
-    \title High DPI Displays
-    \brief Describes the concepts in high DPI displays.
+    \title High DPI
+    \brief Describes Qt's support for high DPI displays.
 
-    High DPI displays have increased pixel density, compared to standard DPI displays.
+    High-DPI displays – also known as retina displays – are displays with high
+    resolution (pixels) in relation to their physical size (mm), resulting in a
+    high pixel density, or high number of \e{dots per inch} (DPI). The increased
+    resolution is used to provide more detailed content on screen (smoother text,
+    more detailed icons), rather than more content (more windows, larger window
+    sizes).
 
-    Pixel density is measured in Dots per Inch (DPI) or Pixels per Inch (PPI), and is determined by
-    the number of display pixels and their size. Consequently, the number of pixels alone isn't
-    enough to determine if a display falls into the high-DPI category.
+    Qt supports high-DPI displays on all platforms, and provides a unified API
+    that abstracts over any platform differences. Qt will automatically account
+    for the display resolution when using  higher level APIs such as Qt Widgets
+    and Qt Quick, and applications only need to provide high-resolution assets,
+    such as images and icons. Changes in the platform's user preferences are
+    automatically picked up.
 
-    A 4K monitor has a fixed number of pixels (~8M), however its DPI varies between 185 (23 inches)
-    and 110 (40 inches). The former is around twice the standard 96 DPI desktop resolution; the
-    latter barely exceeds this resolution.
+    Lower-level graphics drawing (such as OpenGL code) need to be high-DPI aware,
+    but can use cross platform Qt APIs to learn about the platform's display
+    resolutions.
 
-    \section2 Challenges with High DPI
+    \section1 Conceptual Model
 
-    High DPI displays bring about some challenges for existing applications:
+    Qt uses a model where the application coordinate system is independent of the
+    display device resolution. The application operates in \e{device-independent pixels},
+    which are then mapped to the physical pixels of the display via a scale factor,
+    known as the \e{device pixel ratio}. The scale factor is expressed as a floating
+    point number, for example \c 1.0 or \c 2.0, or informally as \c 1x and \c 2x.
 
-    \list
-        \li \b{Applications using UI designs with fixed coordinates look small}
-            \br The combination of specifying font size in points and other sizes in pixels is
-            particularly problematic because points are independent from the monitor's resolution.
-            For example, suppose we have a frame of 40x20 pixels around the text "hello". If we use
-            a 12pt font, it would look correct on low resolution monitors. But, on high DPI
-            monitors, the frame would be too small, resulting in the text being clipped.
+    For example, creating a QWindow or QWidget, and setting its size to 200x200
+    will result in a corresponding window of 200x200 pixels on a normal density
+    display (with a device pixel ratio of 1.0), but will result in a window of
+    400x400 pixel on a high density display (with a device pixel ratio of 2.0).
 
-        \li \b{Applications must adapt to situations where users have multiple displays with
-            varying resolutions}
-            \br For example, a user might use a 4K monitor for the document window of an image
-            editor but a low resolution monitor for the tool box.
-    \endlist
+    This model applies to most units in higher level Qt Gui, Widgets, and Quick
+    APIs, including widget and item geometry, event geometry, desktop, window and
+    screen geometry, as well as animation velocities.
 
-    Traditionally, to support high DPI, Qt scales fonts automatically and provides a DPI value
-    that application code can use to scale the rest of the UI.
+    \note The model does not handle differences between UI classes, such as the
+    size of touch targets vs mouse targets.
 
-    \section2 High DPI Support on a System Level
+    \section1 Drawing
 
-    Qt supports a high DPI mode where the main coordinate system is virtualized and made independent
-    from the display pixel density. Some operating systems, like \macOS and iOS implement this mode.
-    Additionally, if an operating system doesn't support this mode, Qt has an implementation to
-    fallback on.
+    Qt will automatically take advantage of the increased density of a high-DPI
+    display when using drawing APIs such as QPainter, or when rendering graphic
+    primitives or text in Qt Quick.
 
-    Now, geometry is specified in device independent pixels. This includes widget and item geometry,
-    event geometry, desktop, window and screen geometry, as well as animation velocities. The output
-    is rendered in device pixels, which corresponds to the display resolution. The \e devicePixelRatio
-    is the ratio between the device independent pixels and the device pixel coordinate system.
+    As a result the application can operate in a single unified coordinate system,
+    without needing to account for the possible display densities the application
+    will run on.
 
-    Typically, most applications work with device independent pixels; except for OpenGL and code for
-    raster graphics.
+    However, when using lower level drawing APIs, for example OpenGL, the
+    application needs to take the device pixel ratio of the display into
+    account. This is available both per window, as QWindow::devicePixelRatio()
+    (tracking the device pixel ratio of the window when moved between displays),
+    or per display, as QScreen::devicePixelRatio().
 
-    \section2 Operating System Support
+    Image buffers such as QImage and QPixmap represent the raw pixels, and
+    as a result do not operate in the device independent coordinate system
+    described earlier. A QImage of size 400x400, with a device pixel ratio
+    of 2.0, will fit a 200x200 QWindow on a high density (2x) display, or
+    will be automatically downscaled to 200x200 during drawing if targeting
+    a normal density (1x) display. See \l{Drawing High Resolution Versions
+    of Pixmaps and Images} for more details.
 
-    The Qt-supported operating systems offer the following for high DPI displays:
+    \section1 Image Assets
 
-    \section3 \macos and iOS
+    To take advantage of the increased pixel density of high-DPI displays,
+    the application should also include high-DPI versions of static image
+    assets. This is achieved by using a special naming convention for the
+    high density assets, for example \c logo@2x.png, and loading both the
+    normal density image and the high-density image into a QIcon. Qt will
+    automatically choose the best representation for the target display at
+    runtime. See \l{High DPI Icons} for more details.
 
-    The Apple platforms implement scaling and coordinate system virtualization in the operating
-    system. Normally, no special configuration is required.
+    \section1 Configuring
 
-    On \macos, high-DPI support is enabled by settings in the \c{Info.plist} file; so make sure
-    these settings are present.
+    As an end user you may want to adjust the DPI or scale settings to
+    match display hardware, or to account for viewing distance and personal
+    preferences. These adjustments should be done using the native display
+    settings of the platform, so that all applications will agree on the same
+    DPI or scale factor values. Qt does not provide end user facilities to
+    configure the behavior of Qt's high-DPI support.
 
-    \code
-        <key>NSPrincipalClass</key>
-        <string>NSApplication</string>
-        <key>NSHighResolutionCapable</key>
-        <string>True</string>
-    \endcode
+    The operating system may represent the scale factor either as a factor (1.5),
+    as a percentage (150%), or as dots per inch (144 DPI). Qt translates these
+    to the device pixel ratio seen by the application. In the latter case
+    Qt assumes a "base" DPI – e.g 96 on X11 – and calculates the resulting
+    device pixel ratio accordingly.
 
-    Newer versions of qmake will generate an \c{Info.plist} file with the NSPrincipalClass key;
-    this is sufficient since NSHighResolutionCapable is true by default.
+    Integer scale factors (e.g. 1.0 or 2.0) are preferred for best results.
+    "Rounding" the scale factor to 25% increments can also give good results.
+    Setting the scale factor or DPI to the exact physical display DPI may not
+    give good visual results due to the fractional scaling involved. If the
+    application suffers from visual artifacts in this scenario, it can use
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy() to limit the scale
+    factors it will see.
 
-    \note Both \macos and iOS may apply further virtualization, such that device pixels no longer
-    correspond to display pixels 1:1. This happens on the iPhone 6+ and on \macos configured with
-    "display scaling" enabled.
+    \section2 Platform Details
 
-    \section3 Microsoft Windows
-
-    \b Scaling
-
-    Users choose a scaling factor from the \uicontrol{Control Panel} or via the context menu. This
-    works by making the functions for querying the system metrics return different values for
-    standard font sizes, sizes of window borders, and so on. It doesn't perform any actual scaling.
-
-    \b DPI Awareness
-
-    An application on Windows can assume one of the following levels of "DPI Awareness":
-
-    \table
-        \header
-            \li DPI Awareness Level
-            \li Meaning
-
-        \row
-            \li DPI Unaware
-            \li This level was introduced in Windows Vista. To the application, Windows pretends
-                as if it's running on a standard display of 96 DPI of 1920x1080 and scales the
-                application accordingly. It's intended to accommodate older applications designed
-                for low DPI displays. This type of scaling may result in some artifacts.
-
-        \row
-            \li System-DPI Aware
-            \li This level was introduced in Windows Vista. It differs from
-                \e{Per-Monitor DPI Aware} only when multiple monitors are connected. Windows
-                calculates a scaling that's suitable for all monitors connected.
-
-        \row
-            \li Per-Monitor DPI Aware
-            \li This level was introduced in Windows 8.1. Windows does not perform any scaling at
-                all.
-    \endtable
-
-    By default, Qt applications are set to \e{Per-Monitor DPI Aware} on Windows 8.1 or
-    \e{System-DPI Aware} on older Windows versions. As of Qt 5.4, this level can be specified via
-    a parameter to the platform plugin:
-
-    \code
-    <application> -platform windows:dpiawareness=0,1,2
-    \endcode
-
-    For more information, see \l{Using qt.conf}.
-
-    \section2 High DPI Support in Qt
-
-    Qt provides the following ways for you to handle high DPI support in your application.
-
-    \list
-        \li The ability to provide pixmaps or artwork for high resolution. For more details,
-            see \l{Drawing High Resolution Versions of Pixmaps and Images}.
-
-        \li Qt supports cross-platform high-DPI scaling similar to the scaling done natively
-            by \macos. This allows applications written for low-DPI screens to run unchanged
-            on high-DPI devices. This feature is opt-in, and can be enabled by the following
-            environment variables:
-            \list
-                \li \c QT_AUTO_SCREEN_SCALE_FACTOR [boolean] enables automatic scaling,
-                based on the monitor's pixel density. This won't change the size of point-sized
-                fonts, since point is a physical measurement unit. Multiple screens may get
-                different scale factors.
-
-                \li \c QT_SCALE_FACTOR [numeric] defines a global scale factor for the whole
-                application, including point-sized fonts.
-
-                \li \c QT_SCREEN_SCALE_FACTORS [list] specifies scale factors for each screen.
-                This won't change the size of point-sized fonts. The environment variable is
-                mainly useful for debugging, or to work around monitors with wrong
-                \l {https://en.wikipedia.org/wiki/Extended_Display_Identification_Data}
-                {EDID information}(Extended Display Identification Data).
-
-                The format can either be a semicolon-separated list of scale factors in the same
-                order as QGuiApplication::screens(), or a semicolon-separated list of \c name=value
-                pairs, where \c name is the same as QScreen::name().
-            \endlist
-
-            While the \macOS style fully supports high-DPI, the Windows desktop style currently has
-            some limitations with certain scale factors. In these cases, consider using the Fusion
-            style instead, which supports high-DPI in all cases.
-
-            \note Non-integer scale factors may cause significant scaling/painting artifacts.
-
-        \li The \c Qt::AA_EnableHighDpiScaling application attribute, introduced in Qt 5.6,
-            enables automatic scaling based on the monitor's pixel density.
-
-        \li The \c Qt::AA_DisableHighDpiScaling application attribute, introduced in Qt 5.6,
-            turns off all scaling. This is intended for applications that require actual window
-            system coordinates, regardless of environment variables. This attribute takes priority
-            over Qt::AA_EnableHighDpiScaling.
-
-         \li The QT_ENABLE_HIGHDPI_SCALING environment variable, introduced in Qt 5.14,
-             enables automatic scaling based on the pixel density of the monitor. Replaces
-             QT_AUTO_SCREEN_SCALE_FACTOR.
-
-         \li The QT_SCALE_FACTOR_ROUNDING_POLICY environment variable and
-             QGuiApplication::highDpiScaleFactorRoundingPolicy API, introduced in Qt 5.14,
-             makes it possible to control if and how the device pixel ratio should be rounded
-             to the nearest integer. This is relevant for configurations like Windows at
-             150% scale. Possible values are \c{Round}, \c{Ceil}, \c{Floor}, \c{RoundPreferFloor},
-             \c{PassThrough}. See the Qt::HighDpiScaleFactorRoundingPolicy enum documentation
-             for a full description of the options.
-
-        \li In Qt 5.4, there was an experimental implementation of high DPI scaling introduced via
-            the \c QT_DEVICE_PIXEL_RATIO environment variable, that you could set to a numerical
-            scale factor or \c auto. This variable was deprecated in Qt 5.6.
-        \endlist
-
-    \section2 Migrate Existing Applications
-
-    To get an application designed for low DPI values running on high resolution monitors quickly,
-    consider one of the following:
-
-    \list
-        \li let the application run as \e{DPI Unaware} on Windows
-        \li set the \c QT_AUTO_SCREEN_SCALE_FACTOR environment variable to \c 1.
-    \endlist
-
-    However, these options may result in some scaling or painting artifacts.
-
-    In the long term, the application should be adapted to run unmodified:
-
-    \list
-        \li Always use the qreal versions of the QPainter drawing API.
-        \li Size windows and dialogs in relation to the corresponding screen size.
-        \li Replace hard-coded sizes in layouts and drawing code with values calculated from font
-            metrics or screen size.
-    \endlist
-
-    \section2 Glossary Of High DPI Terms
+    The following table describes how to configure high-DPI on various platforms.
 
     \table
         \header
-            \li Term
-            \li Definition
-
+            \li Platform
+            \li Configuration
         \row
-            \li Device Independent Pixels
-            \li The pixels that an application uses (user space), subject to scaling by the operating
-                system or Qt.
-
+            \li \macos
+            \li Set the scale for each display in the display preferences.
+                \macos will reflect this to Qt as an integer device pixel ratio.
         \row
-            \li Device Pixels
-            \li The display device's pixels.
-
+            \li Windows
+            \li Set the scale factor for each display in the display settings.
+                The base scale factor is 100%, and can be adjusted in 25% steps.
         \row
-            \li Device Pixel Ratio
-            \li The scale factor that either the operating system or Qt applies.
-
+            \li Ubuntu
+            \li Set the scale factor in display settings. On Ubuntu 20.04 and later
+                this can be done per display, in increments of 25%. Earlier versions
+                support setting a global scale to either 100% or 200%.
         \row
-            \li Logical DPI
-            \li The resolution used to convert font sizes defined in points to font sizes in pixels.
-                The standard values are 96, 128, ... 192.
-
+            \li X11
+            \li Set the \c Xft.dpi setting, which is a global logical DPI.
+                Qt assumes that the base DPI is 96, and scales the UI accordingly.
         \row
-            \li Physical DPI
-            \li The physical resolution obtained by dividing the size of the monitor by the number
-                of pixels.
+            \li Wayland
+            \li Qt reads \c{wl_output::scale}, which is restricted to integer values.
+                Wayland compositors typically have a configuration option for setting
+                the scale factor, for example \c{weston --scale}.
         \row
-            \li User Space
-            \li The coordinate space that an application uses in Device Independent Pixels.
+            \li EGLFS
+            \li Set \c QT_FONT_DPI to the desired logical DPI value, for example \c{QT_FONT_DPI=192}.
+                Qt assumes that the base DPI is 96, and scales the UI accordingly.
     \endtable
+
+    \note Some windowing systems may have limitations that are then reflected
+    in Qt. Qt does not provide workarounds for these limitations. Instead,
+    consider workarounds on the windowing system level.
+
+    \section1 Testing
+
+    The DprGadget test application can be used to inspect the native
+    configuration, and how Qt reacts to it:
+
+    \image dprgadget.png
+
+    DprGadget displays the device pixel ratio of the window, as reported by
+    QWindow::devicePixelRatio(). In addition is displays the native DPI and
+    device pixel ratio of the screen the widow is on, as reported by
+    QPlatformScreen::logicalDpi() and QPlatformScreen::devicePixelRatio().
+
+    The displayed values should be updated automatically on screen and DPI
+    changes, and the dialog should maintain the same size. If this does happen
+    then that indicate there might be a bug in Qt.
+
+    DprGradget is a part Qt's manual test suite, and can
+    be found at \c{qtbase/tests/manual/highdpi/pixelgadget}.
 */
