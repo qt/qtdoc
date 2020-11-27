@@ -63,7 +63,7 @@ Window {
     property real surfaceViewportRatio: 1.5
 
     FolderDialog {
-        id: fileDialog
+        id: folderDialog
         title: "Choose a folder with some images"
         folder: picturesLocation
         onAccepted: folderModel.folder = folder + "/"
@@ -211,7 +211,7 @@ Window {
         MouseArea {
             anchors.fill: parent
             anchors.margins: -10
-            onClicked: fileDialog.open()
+            onClicked: folderDialog.open()
             hoverEnabled: true
             onPositionChanged: {
                 tooltip.visible = false
@@ -247,7 +247,7 @@ Window {
         Shortcut {
             id: openShortcut
             sequence: StandardKey.Open
-            onActivated: fileDialog.open()
+            onActivated: folderDialog.open()
         }
     }
 
@@ -271,12 +271,12 @@ Window {
             imageNameFilters = contextImageNameFilters;
             picturesLocation = contextPicturesLocation;
             if (contextInitialUrl == "")
-                fileDialog.open();
+                folderDialog.open();
             else
                 folderModel.folder = contextInitialUrl + "/";
         } else {
             // Launched via QML viewer without context properties set.
-            fileDialog.open();
+            folderDialog.open();
         }
     }
 
