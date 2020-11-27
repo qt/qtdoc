@@ -18,4 +18,4 @@ add_executable(helloworld
     resources.qrc
 )
 
-target_link_libraries(helloworld Qt6::Widgets)
+target_link_libraries(helloworld PRIVATE Qt6::Widgets)

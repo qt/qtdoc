@@ -7,7 +7,7 @@ add_executable(helloworld
     ...
 )
 
-target_link_libraries(helloworld Qt::Core)
+target_link_libraries(helloworld PRIVATE Qt::Core)
 #! [versionless_targets]
 
 #! [older_qt_versions]
@@ -18,5 +18,5 @@ add_executable(helloworld
     ...
 )
 
-target_link_libraries(helloworld Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(helloworld PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 #! [older_qt_versions]
