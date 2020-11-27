@@ -62,6 +62,10 @@
     in the Qt installer. However, the intention is to provide the most widely-used
     configurations for the developer's convenience.
 
+    \note2 Linux binary packages are linked against glibc 2.28. If you are using
+    a glibc version older than that you need to build Qt from sources or upgrade
+    glibc to 2.28 or newer.
+
     \section2 Exceptions
     Individual modules might be available only on some platforms, or they might
     not support all configurations. For example, as Qt \WebEngine has Chromium
