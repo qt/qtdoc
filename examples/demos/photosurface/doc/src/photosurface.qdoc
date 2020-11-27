@@ -35,11 +35,11 @@
     \image qtquick-demo-photosurface-small.png
 
     \e{Photo Surface} demonstrates how to use a \l{Repeater} with a
-    FolderListModel and a FileDialog to access images from a folder selected
+    FolderListModel and a FolderDialog to access images from a folder selected
     by a user and how to handle dragging, rotation and pinch zooming within the
     same item using a \l PinchArea that contains a \l MouseArea.
 
-    All the app code is contained in one QML file, photosurface.qml. Inline
+    All the app code is contained in one QML file, \c photosurface.qml. Inline
     JavaScript code is used to place, rotate, and scale images on the photo
     surface.
 
@@ -76,30 +76,30 @@
     import Qt.labs.folderlistmodel 1.0
     \endcode
 
-    We use a FileDialog to enable users to select the folder that contains
+    We use a FolderDialog to enable users to select the folder that contains
     the images:
 
     \quotefromfile demos/photosurface/photosurface.qml
-    \skipto FileDialog
+    \skipto FolderDialog
     \printuntil }
 
-    To use the FileDialog type, we must import Qt Quick Dialogs:
+    To use the FolderDialog type, we add the following import statement:
 
     \code
-    import QtQuick.Dialogs 1.0
+    import Qt.labs.platform 1.1
     \endcode
 
-    We use the \c {fileDialog.open()} function to open the file dialog when the
+    We use the \c {folderDialog.open()} function to open the file dialog when the
     app starts:
 
     \code
-    Component.onCompleted: fileDialog.open()
+    Component.onCompleted: folderDialog.open()
     \endcode
 
-    Users can also click the file dialog icon to open the file dialog. We use
+    Users can also click the folder dialog icon to open it. We use
     an \l{Image} QML type to display the icon. Inside the \l{Image} type, we
     use a MouseArea with the \c onClicked signal handler to call the
-    \c {fileDialog.open()} function:
+    \c {folderDialog.open()} function:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipuntil Image {
