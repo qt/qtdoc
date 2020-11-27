@@ -171,6 +171,11 @@
     target imported by the \c{find_package()} call above. This will not only add
     the right arguments to the linker, but also makes sure that the right
     include directories, compiler definitions are passed to the C++ compiler.
+    The \c{PRIVATE} keyword is not strictly necessary for an executable target,
+    but it is good practice to specify it. If \c{helloworld} was a library
+    rather than an executable, then either \c{PRIVATE} or \c{PUBLIC} should be
+    specified (\c{PUBLIC} if the library mentions anything from \c{Qt6::Widgets}
+    in its headers, \c{PRIVATE} otherwise).
 
     \section2 Further reading
 
