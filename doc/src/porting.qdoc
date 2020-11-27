@@ -92,6 +92,13 @@ applications are unchanged from Qt 5.
     applications
 \endlist
 
+\section2 High-DPI
+
+Qt 6 supports high-DPI displays on all platforms, and will automatically account
+for the display resolution when using higher level APIs such as Qt Widgets
+or Qt Quick. Applications only need to provide high-resolution assets,
+such as images and icons. The feature is always enabled. See \l{High DPI}
+for more details.
 
 \section1 Use the Platform Integration APIs
 
