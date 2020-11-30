@@ -40,16 +40,23 @@ removed for the Qt 6.0 release.
 Here are things you should check if you are porting your Qt 5 applications into
 Qt 6.
 
+\section1 Disable use of C++ API deprecated in Qt 5.15
 
-\section1 Enable Warnings for Deprecated APIs
-
-To check if your application uses deprecated functions, set the
-\l{QT_DISABLE_DEPRECATED_BEFORE} macro in your project file. This macro enables
-compile-time warnings if your application uses deprecated APIs.
+Usage of API deprecated in Qt will typically show up in the form of a compiler
+warning. You can also make the use an error by defining the
+\l{QT_DISABLE_DEPRECATED_BEFORE} C++ macro in your build system. To disable
+any API deprecated in 5.15 or older Qt versions, define the macro to
+\c{0x050F00}, which is '5.15.0' encoded as a hexadecimal number.
 
 For example, in a qmake project file, define the macro with:
 \code
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050F00
+\endcode
+
+In CMake, you can use add_compile_definitions:
+
+\code
+add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050F00)
 \endcode
 
 \list
