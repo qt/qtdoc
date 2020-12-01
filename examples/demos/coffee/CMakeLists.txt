@@ -27,10 +27,6 @@ set_target_properties(coffee PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
-target_compile_definitions(coffee PUBLIC
-    QT_DEPRECATED_WARNINGS
-)
-
 target_link_libraries(coffee PUBLIC
     Qt::Core
     Qt::Gui
