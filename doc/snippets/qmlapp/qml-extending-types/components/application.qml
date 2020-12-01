@@ -49,7 +49,7 @@
 ****************************************************************************/
 //![0]
 // application.qml
-import QtQuick 2.12
+import QtQuick
 
 Column {
     width: 180

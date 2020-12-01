@@ -49,7 +49,7 @@
 ****************************************************************************/
 //![0]
 // application.qml
-import QtQuick 1.0
+import QtQuick
 
 ImageViewer {
     id: viewer

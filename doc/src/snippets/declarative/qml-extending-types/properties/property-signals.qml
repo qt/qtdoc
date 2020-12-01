@@ -47,7 +47,7 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-import QtQuick 1.0
+import QtQuick
 //![0]
 Item {
     property int myNumber

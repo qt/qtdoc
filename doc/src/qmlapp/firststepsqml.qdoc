@@ -43,7 +43,7 @@ To use the \l{Qt Quick} module, a QML document needs to
 import it. The import syntax looks like this:
 
 \code
-import QtQuick 2.3
+import QtQuick
 \endcode
 
 The types and functionality that \l{Qt Quick} provides can now
@@ -84,7 +84,7 @@ by the \c{QtQuick} import. Putting the import and object declaration
 together, we get a complete QML document:
 
 \qml
-import QtQuick 2.3
+import QtQuick
 
 Rectangle {
     width: 200
@@ -133,8 +133,8 @@ demonstrates the use of available space:
 
 \qml
 //import related modules
-import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick
+import QtQuick.Controls
 
 //window containing the application
 ApplicationWindow {
@@ -195,7 +195,7 @@ as \l{Signal and Handler Event System}{signals} and these signals are handled by
 
 For example, consider the following example:
 \qml
-import QtQuick 2.12
+import QtQuick
 
 Rectangle {
     width: 200

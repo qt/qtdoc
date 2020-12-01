@@ -48,10 +48,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.3
-import QtQuick.Controls 1.2
-import QtQuick.Window 2.2
-import QtQuick.Controls.Styles 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Window
+import QtQuick.Controls.Styles
 
 ApplicationWindow {
 

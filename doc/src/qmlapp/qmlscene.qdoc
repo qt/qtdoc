@@ -103,7 +103,7 @@
     property which does not exist within the document:
 
     \qml
-    import QtQuick 2.3
+    import QtQuick
 
     ListView {
         width: 200; height: 300
@@ -116,7 +116,7 @@
     which contains a \c lottoNumbers.qml file like this:
 
     \qml
-    import QtQuick 2.3
+    import QtQuick
 
     ListModel {
         ListElement { number: 23 }
@@ -132,7 +132,7 @@
     document refers to a \c clock.time property:
 
     \qml
-    import QtQuick 2.3
+    import QtQuick
     Text { text: clock.time }
     \endqml
 
@@ -140,7 +140,7 @@
     \c time property in the root context:
 
     \qml
-    import QtQuick 2.3
+    import QtQuick
     QtObject { property int time: 54321 }
     \endqml
 
