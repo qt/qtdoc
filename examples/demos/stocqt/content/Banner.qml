@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.1
+import QtQuick
+import QtQuick.Layouts
 
 Rectangle {
     id: banner

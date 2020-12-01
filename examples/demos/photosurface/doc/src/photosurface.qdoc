@@ -58,7 +58,7 @@
     To use the \l{Window} type, we must import it:
 
     \code
-    import QtQuick.Window 2.1
+    import QtQuick.Window
     \endcode
 
     \section1 Accessing Folder Contents
@@ -73,7 +73,7 @@
     To use the FolderListModel type, we must import it:
 
     \code
-    import Qt.labs.folderlistmodel 1.0
+    import Qt.labs.folderlistmodel
     \endcode
 
     We use a FolderDialog to enable users to select the folder that contains
@@ -86,7 +86,7 @@
     To use the FolderDialog type, we add the following import statement:
 
     \code
-    import Qt.labs.platform 1.1
+    import Qt.labs.platform
     \endcode
 
     We use the \c {folderDialog.open()} function to open the file dialog when the

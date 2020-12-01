@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 .pragma library // Shared game state
-.import QtQuick 2.0 as QQ
+.import QtQuick as QQ
 
 // Game Stuff
 var gameState // Local reference

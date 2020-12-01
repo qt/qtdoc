@@ -48,9 +48,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Window 2.1
-import QtQuick.Layouts 1.1
+import QtQuick
+import QtQuick.Window
+import QtQuick.Layouts
 
 Rectangle {
     id: root

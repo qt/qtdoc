@@ -48,11 +48,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick
 //Proxies a SoundEffect if QtMultimedia is installed
 Item {
     id: container
-    property QtObject effect: Qt.createQmlObject("import QtMultimedia 5.0; SoundEffect{ source: '" + container.source + "'; muted: Qt.application.state != Qt.ApplicationActive }", container);
+    property QtObject effect: Qt.createQmlObject("import QtMultimedia; SoundEffect{ source: '" + container.source + "'; muted: Qt.application.state != Qt.ApplicationActive }",container);
     property url source: ""
     onSourceChanged: if (effect != null) effect.source = source;
     function play() {

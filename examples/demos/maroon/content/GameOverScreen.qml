@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 import "logic.js" as Logic
 
 Item {

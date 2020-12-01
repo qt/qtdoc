@@ -50,7 +50,7 @@
 
 /* This script file handles the game logic */
 .pragma library
-.import QtQuick.LocalStorage 2.0 as Sql
+.import QtQuick.LocalStorage as Sql
 
 var maxColumn = 10;
 var maxRow = 13;

@@ -47,10 +47,10 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-import QtQuick 2.6
-import QtQuick.Window 2.1
-import Qt.labs.folderlistmodel 1.0
-import Qt.labs.platform 1.1
+import QtQuick
+import QtQuick.Window
+import Qt.labs.folderlistmodel
+import Qt.labs.platform
 
 Window {
     id: root

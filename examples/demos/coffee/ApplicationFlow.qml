@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.4
-import Coffee 1.0
+import QtQuick
+import Coffee
 
 ApplicationFlowForm {
     id: applicationFlow

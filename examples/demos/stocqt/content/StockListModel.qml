@@ -47,7 +47,7 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-import QtQuick 2.0
+import QtQuick
 
 ListModel {
     id: stocks

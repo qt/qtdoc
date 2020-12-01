@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 pragma Singleton
-import QtQml 2.0
+import QtQml
 
 QtObject {
     property string fontFamily: "Open Sans"

@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.11
+import QtQuick
 
 // Populate the model with some sample data.
 ListModel {

@@ -50,7 +50,7 @@
 
 
 pragma Singleton
-import QtQuick 2.6
+import QtQuick
 
 QtObject {
     property FontLoader fontLoader: FontLoader {

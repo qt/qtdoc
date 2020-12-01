@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick
 
 TemplateBase{
     goalText: "8 of 10<br><br>Clear the grid."

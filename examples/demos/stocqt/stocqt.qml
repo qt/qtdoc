@@ -48,9 +48,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQml.Models 2.1
-import QtQuick.Layouts 1.1
+import QtQuick
+import QtQml.Models
+import QtQuick.Layouts
 import "./content"
 
 Rectangle {

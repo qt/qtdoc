@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 
 Item {
     id: container //Positioned where the 48x48 S/G should be
