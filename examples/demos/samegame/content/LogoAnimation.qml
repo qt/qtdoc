@@ -80,7 +80,9 @@ Item {
                     system: particleSystem
                     Connections {
                         target: container
-                        onBoomTime: emitter.pulse(100);
+                        function onBoomTime() {
+                            emitter.pulse(100);
+                        }
                     }
                 }
             }
