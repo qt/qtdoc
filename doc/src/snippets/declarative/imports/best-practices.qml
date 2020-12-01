@@ -49,8 +49,8 @@
 ****************************************************************************/
 
 //! [imports]
-import QtQuick 2.3
-import QtQuick.Particles 2.0
+import QtQuick
+import QtQuick.Particles
 import "subdirectory"
 import "script.js"
 //! [imports]

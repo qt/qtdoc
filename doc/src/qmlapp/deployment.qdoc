@@ -115,7 +115,7 @@ QQuickView is a QWindow-based class that can load QML files. For example, if the
 \c application.qml, it will look like this:
 
 \qml
-    import QtQuick 2.3
+    import QtQuick
 
     Rectangle { width: 100; height: 100; color: "red" }
 \endqml

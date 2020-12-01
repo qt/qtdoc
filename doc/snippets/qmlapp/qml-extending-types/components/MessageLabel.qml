@@ -49,7 +49,7 @@
 ****************************************************************************/
 //![0]
 // MessageLabel.qml
-import QtQuick 2.12
+import QtQuick
 
 Rectangle {
     height: 50

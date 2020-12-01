@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 1.0
+import QtQuick
 
 Rectangle {
     width: 50; height: 50

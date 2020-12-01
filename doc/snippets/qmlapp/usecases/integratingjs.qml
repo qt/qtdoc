@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 //![0]
-import QtQuick 2.12
+import QtQuick
 import "myscript.js" as Logic
 
 Item {

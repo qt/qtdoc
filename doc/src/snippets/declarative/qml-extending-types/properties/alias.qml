@@ -49,7 +49,7 @@
 ****************************************************************************/
 //![0]
 // Button.qml
-import QtQuick 1.0
+import QtQuick
 
 Item {
     property alias buttonText: textItem.text

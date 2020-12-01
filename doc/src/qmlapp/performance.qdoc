@@ -115,7 +115,7 @@ multiple times:
 
 \qml
 // bad.qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     width: 400
@@ -148,7 +148,7 @@ We could instead resolve the common base just once in the block:
 
 \qml
 // good.qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     width: 400
@@ -185,7 +185,7 @@ property resolution out of the loop, as follows:
 
 \qml
 // better.qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     width: 400
@@ -232,7 +232,7 @@ The following contrived example illustrates this point:
 
 \qml
 // bad.qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     id: root
@@ -266,7 +266,7 @@ It could be rewritten as follows:
 
 \qml
 // good.qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     id: root
@@ -321,7 +321,7 @@ reference sequence is equivalent in cost to assigning a N-element copy sequence 
 reference sequence, so you're usually better off modifying a temporary copy sequence
 and then assigning the result to a reference sequence, during computation.
 
-Assume the existence (and prior registration into the "Qt.example 1.0" namespace) of the
+Assume the existence (and prior registration into the "Qt.example" namespace) of the
 following C++ type:
 
 \code
@@ -350,8 +350,8 @@ tight loop, resulting in bad performance:
 
 \qml
 // bad.qml
-import QtQuick 2.3
-import Qt.example 1.0
+import QtQuick
+import Qt.example
 
 SequenceTypeExample {
     id: root
@@ -378,8 +378,8 @@ something functionally equivalent but much faster would be:
 
 \qml
 // good.qml
-import QtQuick 2.3
-import Qt.example 1.0
+import QtQuick
+import Qt.example
 
 SequenceTypeExample {
     id: root
@@ -413,8 +413,8 @@ aware of, in case you find yourself doing something like this:
 
 \qml
 // bad.qml
-import QtQuick 2.3
-import Qt.example 1.0
+import QtQuick
+import Qt.example
 
 SequenceTypeExample {
     id: root
@@ -441,8 +441,8 @@ sometimes be beneficial:
 
 \qml
 // good.qml
-import QtQuick 2.3
-import Qt.example 1.0
+import QtQuick
+import Qt.example
 
 SequenceTypeExample {
     id: root
@@ -950,7 +950,7 @@ to be of the type explicitly defined by the component, rather than its own impli
 
 Consider the following example:
 \qml
-import QtQuick 2.3
+import QtQuick
 
 Item {
     id: root

@@ -50,7 +50,7 @@
 
 //![0]
 // main.qml
-import QtQuick 2.3
+import QtQuick
 
 Image { source: "images/background.png" }
 //![0]

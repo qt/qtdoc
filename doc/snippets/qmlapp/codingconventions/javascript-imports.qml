@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.3
+import QtQuick
 
 //![0]
 import "myscript.js" as Script
