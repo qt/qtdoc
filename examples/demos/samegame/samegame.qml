@@ -134,7 +134,7 @@ Rectangle {
             Button {
                 width: root.width
                 rotatedButton: true
-                imgSrc: "content/gfx/but-game-1.png"
+                imgSrc: Qt.resolvedUrl("content/gfx/but-game-1.png")
                 onClicked: {
                     if (root.state == "in-game")
                         return //Prevent double clicking
@@ -158,7 +158,7 @@ Rectangle {
             Button {
                 width: root.width
                 rotatedButton: true
-                imgSrc: "content/gfx/but-game-2.png"
+                imgSrc: Qt.resolvedUrl("content/gfx/but-game-2.png")
                 onClicked: {
                     if (root.state == "in-game")
                         return
@@ -181,7 +181,7 @@ Rectangle {
             Button {
                 width: root.width
                 rotatedButton: true
-                imgSrc: "content/gfx/but-game-3.png"
+                imgSrc: Qt.resolvedUrl("content/gfx/but-game-3.png")
                 onClicked: {
                     if (root.state == "in-game")
                         return
@@ -204,7 +204,7 @@ Rectangle {
             Button {
                 width: root.width
                 rotatedButton: true
-                imgSrc: "content/gfx/but-game-4.png"
+                imgSrc: Qt.resolvedUrl("content/gfx/but-game-4.png")
                 group: "yellow"
                 onClicked: {
                     if (root.state == "in-game")
@@ -308,14 +308,14 @@ Rectangle {
         Button {
             id: quitButton
             height: Settings.toolButtonHeight
-            imgSrc: "content/gfx/but-quit.png"
+            imgSrc: Qt.resolvedUrl("content/gfx/but-quit.png")
             onClicked: {Qt.quit(); }
             anchors { left: parent.left; verticalCenter: parent.verticalCenter; leftMargin: 11 }
         }
         Button {
             id: menuButton
             height: Settings.toolButtonHeight
-            imgSrc: "content/gfx/but-menu.png"
+            imgSrc: Qt.resolvedUrl("content/gfx/but-menu.png")
             visible: (root.state == "in-game");
             onClicked: {root.state = ""; Logic.cleanUp(); gameCanvas.mode = ""}
             anchors { left: quitButton.right; verticalCenter: parent.verticalCenter; leftMargin: 0 }
@@ -323,7 +323,7 @@ Rectangle {
         Button {
             id: againButton
             height: Settings.toolButtonHeight
-            imgSrc: "content/gfx/but-game-new.png"
+            imgSrc: Qt.resolvedUrl("content/gfx/but-game-new.png")
             visible: (root.state == "in-game");
             opacity: gameCanvas.gameOver && (gameCanvas.mode == "arcade" || gameCanvas.mode == "multiplayer")
             Behavior on opacity{ NumberAnimation {} }
@@ -333,7 +333,7 @@ Rectangle {
         Button {
             id: nextButton
             height: Settings.toolButtonHeight
-            imgSrc: "content/gfx/but-puzzle-next.png"
+            imgSrc: Qt.resolvedUrl("content/gfx/but-puzzle-next.png")
             visible: (root.state == "in-game") && gameCanvas.mode == "puzzle" && gameCanvas.puzzleWon
             opacity: gameCanvas.puzzleWon ? 1 : 0
             Behavior on opacity{ NumberAnimation {} }
