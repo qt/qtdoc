@@ -344,7 +344,9 @@ Rectangle {
 
     Connections {
         target: root
-        onStateChanged: stateChangeAnim.running = true
+        function onStateChanged() {
+            stateChangeAnim.running = true
+        }
     }
     SequentialAnimation {
         id: stateChangeAnim

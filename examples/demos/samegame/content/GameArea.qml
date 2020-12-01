@@ -135,7 +135,10 @@ Item {
         source: "gfx/bubble-puzzle.png"
         Connections {
             target: gameCanvas
-            onModeChanged: if (mode != "puzzle" && puzzleTextBubble.opacity > 0) puzzleTextBubble.opacity = 0;
+            function onModeChanged(mode) {
+                if (mode != "puzzle" && puzzleTextBubble.opacity > 0)
+                    puzzleTextBubble.opacity = 0;
+            }
         }
         Text {
             id: puzzleTextLabel
