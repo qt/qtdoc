@@ -35,16 +35,16 @@
 */
 
 /*!
-    \page qtmain.html
+    \page qtentrypoint.html
     \keyword QtEntryPoint
     \title The QtEntryPoint Library
     \ingroup licensing
     \brief Commercial and \l{BSD 3-clause "New" or "Revised" License}.
 
-    \e \QtEntryPoint is a helper library that enables the developer to
+    \e QtEntryPoint is a helper library that enables the developer to
     write a cross-platform main() function on Windows.
     If you do not use \l {Build with CMake}{CMake}, \l qmake,
-    \l {Qbs Manual}{qbs}, or other build tool that handles this
+    \l {Qbs Manual}{qbs}, or any other build tool that handles this
     automatically, then you need to link against the
     \c QtEntryPoint library.
 
