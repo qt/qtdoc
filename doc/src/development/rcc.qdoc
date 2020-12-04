@@ -62,7 +62,7 @@
     \row \li \c{-compress-algo} \li \c{algorithm} \li The algorithm to compress files with.
                             Supported algorithms are \c{zstd}, \c{zlib}, and \c{none}, which
                             respectively mean to compress the content using the
-                            \l{https://zstd.net}{Zstandard} library, \l{https://zlib.net}{zlib}
+                            \l{Zstandard Site}{Zstandard} library, \l{https://zlib.net}{zlib}
                             library, and no compression. The default is \c{zstd} if that
                             library was found at compile time, \c{zlib} if not.
 
