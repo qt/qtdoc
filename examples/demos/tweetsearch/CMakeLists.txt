@@ -50,15 +50,15 @@ set(qmake_content_resource_files
     "content/resources/icon-loading.png"
     "content/resources/icon-refresh.png"
     "content/resources/icon-search.png"
-    "content/tweetsearch.mjs"
-    "tweetsearch.qml"
     "content/shaders/effect.frag"
     "content/shaders/effect.frag.qsb"
     "content/shaders/effect.vert"
     "content/shaders/effect.vert.qsb"
+    "content/tweetsearch.mjs"
+    "tweetsearch.qml"
 )
 
-qt6_add_resources(tweetsearch "qml_and_shader_content"
+qt6_add_resources(tweetsearch "qmake_content"
     PREFIX
         "/demos/tweetsearch"
     FILES
