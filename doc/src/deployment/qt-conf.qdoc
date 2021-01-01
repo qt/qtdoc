@@ -130,4 +130,16 @@
     \snippet snippets/code/doc_src_qt-conf.qdoc 1
 
     would cause the Windows platform plugin to use the FreeType font engine.
+
+    \section1 How to deal with parallel installations of older Qt versions
+
+    For environments that require an installation of an earlier major
+    version of Qt as well, it is possible to use a version-specific
+    qt.conf. This is often necessary in transition phases from one Qt
+    version to the next, or to avoid conflicts caused by an existing
+    file without version.
+
+    For this purpose, a file named \tt qt\qtmajorversion.conf can be
+    used instead of the \c qt.conf file. If both files exist in the
+    directory described above, \tt qt\qtmajorversion.conf is used.
 */
