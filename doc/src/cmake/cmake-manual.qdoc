@@ -61,13 +61,18 @@
         \list
             \li \l{Module variables}
             \li \l{Installation variables}
+            \li \l{Project variables}
+        \endlist
+        \li \l{CMake Property Reference}
+        \list
+            \li \l{cmake-properties-qtcore}{Qt6::Core}
         \endlist
         \li \l{CMake Command Reference}
         \list
-            \li \l{Qt6::Core}
-            \li \l{Qt6::Widgets}
-            \li \l{Qt6::DBus}
-            \li \l{Qt6::LinguistTools}
+            \li \l{cmake-macros-qtcore}{Qt6::Core}
+            \li \l{cmake-commands-qtdbus}{Qt6::DBus}
+            \li \l{cmake-macros-qtlinguisttools}{Qt6::LinguistTools}
+            \li \l{cmake-macros-qtwidgets}{Qt6::Widgets}
         \endlist
     \endlist
 */
@@ -302,8 +307,8 @@
     \page cmake-variable-reference.html
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
-    \nextpage CMake Command Reference
-    \previouspage Imported targets
+    \nextpage CMake Property Reference
+    \previouspage Qt 5 and Qt 6 compatibility
 
     \section1 Module variables
 
@@ -390,31 +395,59 @@
                 with \c{-fvisibility=hidden}. This means that only selected symbols are exported.
     \endtable
 
+    \section1 Project variables
+
+    These variables can influence CMake commands provided by Qt. They may be set
+    by the project, a toolchain file or other third-party packages.
+
+    \section2 Qt6::Core
+
+    \annotatedlist cmake-variables-qtcore
+*/
+
+/*!
+    \page cmake-property-reference.html
+    \title CMake Property Reference
+    \brief Provides a complete reference for CMake properties implemented in Qt.
+    \nextpage CMake Command Reference
+    \previouspage CMake Variable Reference
+
+    \section1 Qt6::Core
+    \target cmake-properties-qtcore
+
+    \section2 Target Properties
+
+    \annotatedlist cmake-target-properties-qtcore
 */
 
 /*!
     \page cmake-command-reference.html
     \title CMake Command Reference
     \brief Provides a complete reference for CMake commands implemented in Qt.
-    \previouspage CMake Variable Reference
+    \previouspage CMake Property Reference
 
     \section2 Qt6::Core
+    \target cmake-macros-qtcore
 
     \annotatedlist cmake-macros-qtcore
 
     \section2 Qt6::DBus
+    \target cmake-commands-qtdbus
 
     \annotatedlist cmake-commands-qtdbus
 
     \section2 Qt6::LinguistTools
+    \target cmake-macros-qtlinguisttools
 
     \annotatedlist cmake-macros-qtlinguisttools
 
     \section2 Qt6::RemoteObjects
+    \target cmake-macros-qtremoteobjects
 
     \annotatedlist cmake-macros-qtremoteobjects
 
     \section2 Qt6::Widgets
+    \target cmake-macros-qtwidgets
 
     \annotatedlist cmake-macros-qtwidgets
 */
