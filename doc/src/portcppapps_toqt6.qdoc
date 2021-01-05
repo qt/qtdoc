@@ -47,6 +47,7 @@
         \li \c qt6-header-fixes
         \li \c qt6-qhash-signature
         \li \c qt6-qlatin1stringchar-to-u
+        \li \c qt6-fwd-fixes
     \endlist
 
     The checks have to be run against Qt 5. The fixed code is only going to
@@ -88,7 +89,7 @@
     Select the checks:
     \code
     export CLAZY_CHECKS="qt6-deprecated-api-fixes, qt6-header-fixes,
-    qt6-qhash-signature, qt6-qlatin1stringchar-to-u"
+    qt6-qhash-signature, qt6-qlatin1stringchar-to-u, qt6-fwd-fixes"
     \endcode
 
     Enable the fixits:
