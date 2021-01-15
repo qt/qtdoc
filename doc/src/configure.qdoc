@@ -288,7 +288,7 @@
             and setting the \b{OPENSSL_USE_STATIC_LIBS} variable to \b{ON}.
     \endlist
 
-    Set the CMake variable \b{OPENSSL_ROOTDIR} if OpenSSL is not installed in
+    Set the CMake variable \b{OPENSSL_ROOT_DIR} if OpenSSL is not installed in
     a standard location, and therefore not found by configure.
 
     See \l {Secure Sockets Layer (SSL) Classes} for further instructions on
