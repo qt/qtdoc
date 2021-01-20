@@ -33,10 +33,6 @@
 
     Qt's support for different Windows platforms is extensive and mature.
 
-    Before you get started,
-    ensure that your development environment fulfills
-    the \l{Qt for Windows - Requirements}{requirements}.
-
     To download and install Qt for Windows, follow the instructions on the
     \l{Getting Started with Qt} page.
 
@@ -47,6 +43,11 @@
 
     \include supported-platforms.qdocinc windows
 
+    \section1 Building from Source
+
+    For details on how to build Qt itself from sources, see
+    \l{Qt for Windows - Building from Source}.
+
     \section1 Deployment and Other Issues
 
     The pages below covers specific issues and recommendations for creating
@@ -54,6 +55,7 @@
 
     \list
     \li \l{Qt for Windows - Deployment}
+    \li \l{Qt for Windows - Graphics Acceleration}
     \li \l{Qt for Windows - Specific Issues}
     \endlist
 
@@ -87,14 +89,9 @@
 */
 
 /*!
-    \page windows-requirements.html
-    \title Qt for Windows - Requirements
-    \brief Requirements of the Windows environment.
-
-    This page describes the required libraries and environment for
-    \l{Qt for Windows}.
-
-    \section1 Graphics Drivers
+    \page windows-graphics.html
+    \title Qt for Windows - Graphics Acceleration
+    \brief Using graphics acceleration with Qt for Windows
 
     For \l{Qt Quick} to work, a graphics driver that provides Direct 3D 11.1,
     Vulkan 1.0, or OpenGL 2.1 or higher is required. As of Qt 6, the default
@@ -115,7 +112,7 @@
     QOpenGLWindow or QOpenGLWidget. The following sections cover some OpenGL
     specifics of a Qt build.
 
-    \section2 Dynamically Loading OpenGL
+    \section1 Dynamically Loading OpenGL
 
     Qt supports choosing and loading the OpenGL implementation at runtime. This
     mode is the default, and can be explicitly requested by passing \c{-opengl
@@ -276,7 +273,7 @@
     recommended to set this environment variable in order to enable the application to run
     normally. This environment variable was introduced in Qt 5.15.
 
-    \section2 Direct dependency to opengl32.dll
+    \section1 Direct dependency to opengl32.dll
 
     An alternative to the default \c dynamic OpenGL builds is to depend
     directly on opengl32.dll. For this mode, pass pass the command line options
@@ -292,47 +289,6 @@
     In such Qt builds, many Qt shared libraries, and also Qt applications will
     have a dependency to opengl32.dll, and therefore using an alternative
     library is not possible.
-
-    \section1 Building from Source
-
-    These tools are not needed to run Qt applications, but they are required
-    for building Qt from source.
-
-    \list
-        \li CMake (available in the Qt online installer)
-        \li Ninja (available in the Qt online installer)
-        \li ActivePerl - Install a recent version of ActivePerl
-            (\l{http://www.activestate.com/activeperl}{download page}) and add
-           the installation location to your \c PATH.
-        \li Python - Install Python from the \l{http://www.python.org/download/}{here}
-           and add the installation location to your \c PATH.
-    \endlist
-
-    \note Please make sure that the \c perl executable from ActivePerl is found
-           in the path before the perl executable provided by msysgit, since the
-           latter is outdated.
-
-    For instructions for building the Qt source, read
-    the \l{Qt for Windows - Building from Source} page.
-
-    \section1 Compilers
-
-    The following compilers and configurations are supported in Qt \QtVer:
-
-    \include supported-platforms.qdocinc windows
-
-    \omit
-    \section2 Building Qt WebEngine
-
-    \l{Qt WebEngine} has additional build requirements which are listed in the
-    \l{Qt WebEngine Platform Notes}.
-    \endomit
-
-    \section1 QDoc Dependencies
-    \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
-    If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
-    for specific build requirements.
-
 */
 
 /*!
@@ -933,11 +889,9 @@
     \brief Configuring and building Qt for Windows.
 
     This page describes the process of configuring and building
-    \l{Qt for Windows}. Before building, there are some requirements that are
-    given in more detail in the \l{Qt for Windows - Requirements} document.
+    \l{Qt for Windows}.
 
-    You can download the Qt sources from the \l{Downloads} page. For
-    more information, visit the \l{Getting Started with Qt} page.
+    You can download the Qt sources from the \l{Downloads} page.
 
     \section1 Step 1: Unpack the Archive
 
@@ -947,7 +901,46 @@
         \note The install path must not contain any spaces or Windows specific
         file system characters.
 
-    \section1 Step 2: Set the Environment Variables
+    \section1 Step 2: Install Build Requirements
+
+    To build Qt from sources you need a build environment with
+    a supported compiler and various build tools available:
+
+    \section2 Build Tools
+
+    \list
+        \li CMake (available in the Qt online installer)
+        \li Ninja (available in the Qt online installer)
+        \li ActivePerl - Install a recent version of ActivePerl
+            (\l{http://www.activestate.com/activeperl}{download page}) and add
+           the installation location to your \c PATH.
+        \li Python - Install Python from the \l{http://www.python.org/download/}{here}
+           and add the installation location to your \c PATH.
+    \endlist
+
+    \note Please make sure that the \c perl executable from ActivePerl is found
+           in the path before the perl executable provided by msysgit, since the
+           latter is outdated.
+
+    \section2 Compilers
+
+    The following compilers and configurations are supported in Qt \QtVer:
+
+    \include supported-platforms.qdocinc windows
+
+    \omit
+    \section2 Building Qt WebEngine
+
+    \l{Qt WebEngine} has additional build requirements which are listed in the
+    \l{Qt WebEngine Platform Notes}.
+    \endomit
+
+    \section2 QDoc Dependencies
+    \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
+    for specific build requirements.
+
+    \section1 Step 3: Set the Environment Variables
 
         We recommend creating a desktop link that opens a command
         prompt with the environment set up similar to the
@@ -978,10 +971,7 @@
         path instead of calling the Visual Studio setup script. For MinGW, please make
         sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
 
-        Settings required by the additional libraries (see \l{Qt for Windows - Requirements})
-        should also go this file below the call to the Windows SDK setup script.
-
-    \section1 Step 3: Build the Qt Library
+    \section1 Step 4: Build the Qt Library
 
         To configure the Qt library for your machine type, run the
         \c{configure.bat} script in the source directory.
