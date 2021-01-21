@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -889,17 +889,26 @@
     \brief Configuring and building Qt for Windows.
 
     This page describes the process of configuring and building
-    \l{Qt for Windows}.
+    \l{Qt for Windows}. To download and install a pre-built Qt for Windows,
+    follow the instructions on the \l{Getting Started with Qt} page.
 
-    You can download the Qt sources from the \l{Downloads} page.
+    \section1 Step 1: Getting the Sources
 
-    \section1 Step 1: Unpack the Archive
+    Qt sources can be installed in the Qt Online Installer. Source packages are
+    also available as \l{https://code.qt.io}{Git repositories}, as archives in
+    the \l{Qt Account} (commercial users), and on
+    \l{https://download.qt.io}{download.qt.io} (open-source users).
 
-        Uncompress the files into the directory you want Qt installed;
-        e.g. \c{C:\Qt\%VERSION%}.
+    If you install the sources through the Qt Online Installer, they will
+    be available in the Qt installation directory, for instance
+    \tt{C:\\Qt\\\QtVersion\\Src}.
 
-        \note The install path must not contain any spaces or Windows specific
-        file system characters.
+    If you downloaded the source archive, extract it to a directory of your
+    choice, for instance \c{C:\dev\Qt\src}.
+
+    \note The path to the source directory must not contain any spaces or
+    Windows specific file system characters. The path should also be kept short.
+    This avoids issues with too long file paths in the compilation phase.
 
     \section1 Step 2: Install Build Requirements
 
@@ -912,14 +921,16 @@
         \li CMake (available in the Qt online installer)
         \li Ninja (available in the Qt online installer)
         \li ActivePerl - Install a recent version of ActivePerl
-            (\l{http://www.activestate.com/activeperl}{download page}) and add
-           the installation location to your \c PATH.
-        \li Python - Install Python from the \l{http://www.python.org/download/}{here}
-           and add the installation location to your \c PATH.
+            (\l{https://www.activestate.com/activeperl}{download page}).
+        \li Python - Install Python from the \l{https://www.python.org/download/}{here}.
     \endlist
 
+    The executables \c{cmake.exe}, \c{ninja.exe}, \c{perl.exe}, and \c{python.exe}
+    must be available in your build environment. You achieve this by adding the
+    respective directory to your \c{PATH} environment variable.
+
     \note Please make sure that the \c perl executable from ActivePerl is found
-           in the path before the perl executable provided by msysgit, since the
+           in the path before a potential perl executable provided by msysgit, since the
            latter is outdated.
 
     \section2 Compilers
@@ -950,21 +961,23 @@
         to \c cmd.exe.
 
         Assuming the file is called \c{qt6vars.cmd}
-        and the Qt folder is called \c Qt-6 and located under \c C:\Qt:
+        and the Qt folder is called \tt{C:\\Qt\\\QtVersion\\Src}:
 
-        \badcode
+        \badcode \QtVersion
         REM Set up Microsoft Visual Studio 2019, where <arch> is amd64, x86, etc.
         CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
-        SET _ROOT=C:\Qt\Qt-6
-        SET PATH=%_ROOT%\qtbase\bin;%_ROOT%\gnuwin32\bin;%PATH%
-        REM Uncomment the below line when using a git checkout of the source repository
-        REM SET PATH=%_ROOT%\qtrepotools\bin;%PATH%
+        SET _ROOT=C:\Qt\\1\Src
+        SET PATH=%_ROOT%\qtbase\bin;%PATH%
         SET _ROOT=
         \endcode
 
         A desktop link can then be created by specifying the command
         \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k C:\Qt\qt6vars.cmd}
-        as application and \c{C:\Qt\Qt-6} as working directory.
+        as application.
+
+        Depending on your individual setup, you might also need to make the
+        installation directories of CMake, ninja, Perl, and Python part of the
+        \c{SET %PATH%} line above.
 
         \note Setups for MinGW are similar; they differ
         only in that the \c bin folder of the installation should be added to the
@@ -982,4 +995,6 @@
 
         The \l{Qt Configure Options}{Configure Options} page contains more
         information about the configure options.
+        See \l{Qt for Windows - Graphics Acceleration} for specific options
+        regarding graphics acceleration.
 */
