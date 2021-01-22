@@ -917,21 +917,35 @@
 
     \section2 Build Tools
 
-    \list
-        \li CMake (available in the Qt online installer)
-        \li Ninja (available in the Qt online installer)
-        \li ActivePerl - Install a recent version of ActivePerl
-            (\l{https://www.activestate.com/activeperl}{download page}).
-        \li Python - Install Python from the \l{https://www.python.org/download/}{here}.
-    \endlist
+    \table 80%
+    \header \li Tool \li Supported Versions \li Description
+    \row
+        \li CMake
+        \li Version 3.16 and newer (3.17 and newer for \c{-debug-and-release} builds)
+        \li Required for configuring the Qt build. Available in the Qt Online
+            Installer and on \l{https://cmake.org}{cmake.org}.
+    \row
+        \li Ninja
+        \li -
+        \li Recommended tool for building Qt. Available in the Qt Online
+            Installer and on \l{https://ninja-build.org}{ninja-build.org}.
+    \row
+        \li Perl
+        \li -
+        \li Required build tool. Popular Windows installers are
+            \l{https://www.activestate.com/products/perl/downloads/}{ActiveState Perl}
+            and \l{https://strawberryperl.com/}{Strawberry Perl}. Perl is also
+            installed as part of \l{https://git-scm.com/download/win}{Git}.
+    \row
+        \li Python
+        \li Version 3
+        \li Required build tool. Windows installers are available on
+            \l{https://www.python.org/downloads/windows/}{python.org}.
+    \endtable
 
     The executables \c{cmake.exe}, \c{ninja.exe}, \c{perl.exe}, and \c{python.exe}
     must be available in your build environment. You achieve this by adding the
     respective directory to your \c{PATH} environment variable.
-
-    \note Please make sure that the \c perl executable from ActivePerl is found
-           in the path before a potential perl executable provided by msysgit, since the
-           latter is outdated.
 
     \section2 Compilers
 
@@ -976,7 +990,7 @@
         as application.
 
         Depending on your individual setup, you might also need to make the
-        installation directories of CMake, ninja, Perl, and Python part of the
+        installation directories of CMake, Ninja, Perl, and Python part of the
         \c{SET %PATH%} line above.
 
         \note Setups for MinGW are similar; they differ
