@@ -24,7 +24,7 @@ find_package(Qt6 COMPONENTS Quick)
 if (WIN32)
 #! [appicon_windows]
     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/resources/photosurface.rc")
-    add_executable(photosurface main.cpp ${app_icon_resource_windows})
+    qt_add_executable(photosurface main.cpp ${app_icon_resource_windows})
 #! [appicon_windows]
 elseif (APPLE)
 #! [appicon_macOS]
@@ -38,10 +38,10 @@ elseif (APPLE)
     set_source_files_properties(${app_icon_macos} PROPERTIES
            MACOSX_PACKAGE_LOCATION "Resources")
 
-    add_executable(photosurface MACOSX_BUNDLE main.cpp ${app_icon_macos})
+    qt_add_executable(photosurface MACOSX_BUNDLE main.cpp ${app_icon_macos})
 #! [appicon_macOS]
 else()
-    add_executable(photosurface main.cpp)
+    qt_add_executable(photosurface main.cpp)
 endif()
 
 target_link_libraries(photosurface PUBLIC
