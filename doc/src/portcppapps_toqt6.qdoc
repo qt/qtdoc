@@ -46,7 +46,6 @@
         \li \c qt6-deprecated-api-fixes
         \li \c qt6-header-fixes
         \li \c qt6-qhash-signature
-        \li \c qt6-qlatin1stringchar-to-u
         \li \c qt6-fwd-fixes
         \li \c missing-qobject-macro
     \endlist
@@ -135,7 +134,8 @@
     You must create your own configuration and select the Clazy checks dedicated
     to porting that you can find under Level 2 and Manual Level sections in
     Qt Creator version 4.14.1, or later. You can use the \e qt6 filter to locate
-    most of the checks.
+    most of the checks. Be careful to select only the checks present in the above
+    given list.
 
     \image qtcreator-clazy-checks-for-porting-to-qt6.png "Filtering Qt 6 checks"
 
