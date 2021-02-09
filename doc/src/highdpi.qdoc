@@ -56,9 +56,9 @@
     point number, for example \c 1.0 or \c 2.0, or informally as \c 1x and \c 2x.
 
     For example, creating a QWindow or QWidget, and setting its size to 200x200
-    will result in a corresponding window of 200x200 pixels on a normal density
-    display (with a device pixel ratio of 1.0), but will result in a window of
-    400x400 pixel on a high density display (with a device pixel ratio of 2.0).
+    will cover 200x200 display pixels on a normal density display (with a device
+    pixel ratio of 1.0), but will cover 400x400 pixels on a high density display
+    (with a device pixel ratio of 2.0).
 
     This model applies to most units in higher level Qt Gui, Widgets, and Quick
     APIs, including widget and item geometry, event geometry, desktop, window and
