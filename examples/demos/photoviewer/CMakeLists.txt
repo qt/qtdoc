@@ -19,17 +19,14 @@ find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Qml)
 find_package(Qt6 COMPONENTS Quick)
+find_package(Qt6 COMPONENTS QmlXmlListModel)
 
 qt_add_executable(photoviewer
-    ../shared/xmllistmodel.cpp ../shared/xmllistmodel.h
     main.cpp
 )
 set_target_properties(photoviewer PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
-)
-target_include_directories(photoviewer PUBLIC
-    ../shared
 )
 
 target_link_libraries(photoviewer PUBLIC
@@ -37,6 +34,7 @@ target_link_libraries(photoviewer PUBLIC
     Qt::Gui
     Qt::Qml
     Qt::Quick
+    Qt::QmlXmlListModel
 )
 
 
@@ -77,10 +75,3 @@ install(TARGETS photoviewer
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
-
-set_target_properties(photoviewer PROPERTIES
-    QT_QML_MODULE_VERSION 1.0
-    QT_QML_MODULE_URI XmlListModel
-)
-
-qt6_qml_type_registration(photoviewer)

@@ -19,18 +19,14 @@ find_package(Qt6 COMPONENTS Core)
 find_package(Qt6 COMPONENTS Gui)
 find_package(Qt6 COMPONENTS Quick)
 find_package(Qt6 COMPONENTS Qml)
-find_package(Qt6 COMPONENTS Xml)
+find_package(Qt6 COMPONENTS QmlXmlListModel)
 
 qt_add_executable(rssnews
-    ../shared/xmllistmodel.cpp ../shared/xmllistmodel.h
     main.cpp
 )
 set_target_properties(rssnews PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
-)
-target_include_directories(rssnews PUBLIC
-    ../shared
 )
 
 target_link_libraries(rssnews PUBLIC
@@ -38,7 +34,7 @@ target_link_libraries(rssnews PUBLIC
     Qt::Gui
     Qt::Qml
     Qt::Quick
-    Qt::Xml
+    Qt::QmlXmlListModel
 )
 
 
@@ -79,10 +75,3 @@ install(TARGETS rssnews
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
-
-set_target_properties(rssnews PROPERTIES
-    QT_QML_MODULE_VERSION 1.0
-    QT_QML_MODULE_URI XmlListModel
-)
-
-qt6_qml_type_registration(rssnews)

@@ -50,7 +50,7 @@
 
 import QtQuick
 import QtQuick.Window
-import XmlListModel
+import QtQml.XmlListModel
 import "./content"
 
 Rectangle {
@@ -76,13 +76,10 @@ Rectangle {
         source: "https://" + window.currentFeed
         query: "/rss/channel/item"
 
-        roles:  [
-            XmlListModelRole { elementName: "title"; attributeName: ""},
-            XmlListModelRole { elementName: "description"; attributeName: ""},
-            XmlListModelRole { elementName: "content"; attributeName: "url" },
-            XmlListModelRole { elementName: "link"; attributeName: "" },
-            XmlListModelRole { elementName: "pubDate"; attributeName: "" }
-        ]
+        XmlListModelRole { name: "title"; elementName: "title"; attributeName: ""}
+        XmlListModelRole { name: "content"; elementName: "content"; attributeName: "url" }
+        XmlListModelRole { name: "link"; elementName: "link"; attributeName: "" }
+        XmlListModelRole { name: "pubDate"; elementName: "pubDate"; attributeName: "" }
     }
 
     ListView {

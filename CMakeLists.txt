@@ -16,7 +16,7 @@ set(QT_NO_INTERNAL_COMPATIBILITY_FUNCTIONS TRUE)
 # special case end
 
 find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core) # special case
-find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG OPTIONAL_COMPONENTS Gui Qml Quick Test Sql) # special case for tests
+find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG OPTIONAL_COMPONENTS Gui Qml Quick Test Sql Network QuickControls2 QmlXmlListModel) # special case for tests
 
 # special case begin
 qt_build_repo_begin()
@@ -42,7 +42,7 @@ if(QT_BUILD_TESTS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt")
     endif()
 endif()
 
-if(BUILD_EXAMPLES AND BUILD_SHARED_LIBS
+if(QT_BUILD_EXAMPLES AND BUILD_SHARED_LIBS
             AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/examples/CMakeLists.txt"
             AND NOT QT_BUILD_STANDALONE_TESTS)
     add_subdirectory(examples)

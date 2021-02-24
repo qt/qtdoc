@@ -102,6 +102,8 @@ Column {
             Image {
                 id: titleImage
                 source: content
+                width: Math.min(delegate.width / 2, sourceSize.width)
+                fillMode: Image.PreserveAspectFit
             }
         }
 
@@ -122,19 +124,8 @@ Column {
         textFormat: Text.RichText
         font.italic: true
         text: timeSinceEvent(pubDate) + " (<a href=\"" + link + "\">Link</a>)"
-        onLinkActivated: {
+        onLinkActivated: function(link) {
             Qt.openUrlExternally(link)
         }
-    }
-
-    Text {
-        id: descriptionText
-
-        text: description.replace(/\<a href=.*\/a\>/, '')
-        width: parent.width
-        wrapMode: Text.WordWrap
-        font.pixelSize: 14
-        textFormat: Text.StyledText
-        horizontalAlignment: Qt.AlignLeft
     }
 }

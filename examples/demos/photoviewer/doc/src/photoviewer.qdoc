@@ -29,9 +29,9 @@
     \title Qt Quick Demo - Photo Viewer
     \ingroup qtquickdemos
     \example demos/photoviewer
-    \brief A QML photo viewer that uses XmlListModel and XmlListModelRole
-    custom QML types to download Flickr feeds, and Package to display the photos
-    in different views.
+    \brief A QML photo viewer that uses \l XmlListModel and \l XmlListModelRole
+    to download Flickr feeds, and \l Package to display the photos in different
+    views.
 
     \image qtquick-demo-photoviewer-small.png
 
@@ -39,14 +39,14 @@
 
     \list
         \li Using custom QML types.
-        \li Using Qt Quick Controls 1 to create an application window.
+        \li Using Qt Quick Controls to create an application window.
         \li Using the \l Package type with a \l DelegateModel to provide
             delegates with a shared context to multiple views.
-        \li Using custom types to download Flickr feeds.
+        \li Using XML list models to download Flickr feeds.
         \li Using the \l Flipable type to create labels with different text on
             the front and back.
-        \li Using the PathView, \l Path, PathAttribute, and PathLine types to
-            lay out photos on a path.
+        \li Using the \l PathView, \l Path, \l PathAttribute, and \l PathLine
+            types to lay out photos on a path.
         \li Providing feedback to users while data is loading.
         \li Localizing applications.
     \endlist
@@ -70,59 +70,17 @@
     \endlist
 
     To use the custom types, we add an import statement to the main QML file,
-    main.qml, that imports the folder called \c PhotoViewerCore where the types
-    are located:
+    \c main.qml, that imports the folder called \c PhotoViewerCore where the
+    types are located:
 
     \quotefromfile demos/photoviewer/main.qml
     \skipto PhotoViewerCore
     \printuntil "
 
-    We also use the following custom types that are defined in C++:
-
-    \list
-        \li \c XmlListModel
-        \li \c XmlListModelRole
-    \endlist
-
-    To register QML types from C++ we add the QML_ELEMENT macro to the QObject
-    derived classes' definitions like this:
-
-    \quotefromfile demos/shared/xmllistmodel.h
-    \skipto XmlListModelRole
-    \printuntil QML_ELEMENT
-
-    In addition we need to add the following to the CMakeLists.txt file of the
-    example:
-
-    \quotefromfile demos/photoviewer/CMakeLists.txt
-    \skipto set_target_properties
-    \printuntil PROPERTIES
-    \skipto QT_QML_MODULE_VERSION 1.0
-    \printuntil qt6_qml_type_registration(photoviewer)
-
-    To build with qmake, we add \c CONFIG += qmltypes, \c QML_IMPORT_NAME, and
-    \c QML_IMPORT_MAJOR_VERSION to the project file:
-
-    \quotefromfile demos/photoviewer/photoviewer.pro
-    \skipto CONFIG
-    \printuntil qmltypes
-    \skipto QML_IMPORT_NAME
-    \printuntil QML_IMPORT_MAJOR_VERSION
-
-    For more information on defining QML types from C++ see the
-    \l {Defining QML Types from C++} documentation.
-
-    To use the new types, we add an import statement that imports them to the QML
-    files that use the types:
-
-    \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
-    \skipto XmlListModel
-    \printuntil import
-
     \section1 Creating the Main Window
 
-    In main.qml, we use the ApplicationWindow Qt Quick Control to create the app
-    main window:
+    In \c main.qml, we use the \l ApplicationWindow Qt Quick Control to create the
+    app main window:
 
     \quotefromfile demos/photoviewer/main.qml
     \skipto ApplicationWindow
@@ -139,31 +97,31 @@
     how the data is accessed and include the data itself. For each list element,
     we use the \c tag role to specify the photos to download.
 
-    A DelegateModel type is used together with the \l Package type to provide
+    A \l DelegateModel type is used together with the \l Package type to provide
     delegates to multiple views. The \c model property holds the model providing
     data for the delegate model and the \c delegate property specifies the
     template defining each item instantiated by a view:
 
     \printuntil DelegateModel
 
-    We use a GridView type to lay out the albums as a grid:
+    We use a \l GridView type to lay out the albums as a grid:
 
     \printuntil }
 
     The \c model property references the package name \c album that we specify
-    in AlbumDelegate.qml. We use the \l Package type to allow the photos to move
-    between different views. The \l Package contains the named items \c browser,
-    \c fullscreen, and \c album:
+    in \c AlbumDelegate.qml. We use the \l Package type to allow the photos
+    to move between different views. The \l Package contains the named items
+    \c browser, \c fullscreen, and \c album:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
     \skipto Package
     \printuntil albumWrapper
 
     The named items are used as the delegates by the views that reference the
-    special DelegateModel::parts property to select the model that provides
+    special \l {DelegateModel::parts} property to select the model that provides
     the chosen delegate.
 
-    We use a ListView type to lay out albums in other views:
+    We use a \l ListView type to lay out albums in other views:
 
     \quotefromfile demos/photoviewer/main.qml
     \skipto ListView
@@ -173,9 +131,9 @@
 
     \section1 Displaying Photos
 
-    We use the PhotoDelegate custom type that is specified in PhotoDelegate.qml
-    to display photos. We use a \l Package type to lay out the photos either in
-    a stack, list, or a grid:
+    We use the \c PhotoDelegate custom type that is specified in
+    \c PhotoDelegate.qml to display photos. We use a \l Package type to lay
+    out the photos either in a stack, list, or a grid:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/PhotoDelegate.qml
     \skipto Package
@@ -186,22 +144,22 @@
 
     \printuntil stackItem
 
-    We use a BorderImage type to create borders for the images:
+    We use a \l BorderImage type to create borders for the images:
 
     \printuntil border.left
     \printuntil }
 
     \section1 Downloading Flickr Feeds
 
-    In AlbumDelegate.qml, we use the DelegateModel to provide the
-    PhotoDelegate delegate to the RssModel model:
+    In \c AlbumDelegate.qml, we use the \l DelegateModel to provide the
+    \c PhotoDelegate delegate to the \c RssModel model:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
     \skipto DelegateModel
     \printuntil RssModel
     \printuntil }
 
-    In RssModel.qml, we use the XmlListModel custom type as a data source for
+    In \c RssModel.qml, we use the \l XmlListModel type as a data source for
     \l Package objects to download photos from the selected feeds:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/RssModel.qml
@@ -217,10 +175,10 @@
 
     \printuntil query
 
-    The \c query property specifies that the XmlListModel generates a model item
-    for each feed entry.
+    The \c query property specifies that the \l XmlListModel generates a model
+    item for each feed entry.
 
-    We use the XmlListModelRole custom type to specify the model item attributes.
+    We use the \l XmlListModelRole type to specify the model item attributes.
     Each model item has the \c title and \c link attributes that match the
     values of the corresponding feed entry:
 
@@ -232,8 +190,8 @@
     their front side to their back side and the text on them changes from album
     name to \b Remove.
 
-    In AlbumDelegate.qml, we use the Tag custom type to specify the text to
-    display on the front and back sides of album labels:
+    In \c AlbumDelegate.qml, we use the \c Tag custom type to specify the
+    text to display on the front and back sides of album labels:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
     \skipto Tag
@@ -244,14 +202,14 @@
     which the model is populated. The \c onBackClicked signal handler is used to
     remove the album.
 
-    In Tag.qml, we use a \l Flipable type with custom properties and signals to
-    create the labels:
+    In \c Tag.qml, we use a \l Flipable type with custom properties and
+    signals to create the labels:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/Tag.qml
     \skipto Flipable
     \printuntil tagChanged
 
-    The \c front property holds the EditableButton custom type that enables
+    The \c front property holds the \c EditableButton custom type that enables
     users to edit the label text:
 
     \printuntil onLabelChanged
@@ -265,9 +223,9 @@
 
     \section1 Laying Out Photos on a Path
 
-    In AlbumDelegate.qml, we use a PathView type to lay out the photos provided
-    by the \c visualModel.parts.stack model on a path that has the form of a
-    stack:
+    In \c AlbumDelegate.qml, we use a \l PathView type to lay out the photos
+    provided by the \c visualModel.parts.stack model on a path that has the
+    form of a stack:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/AlbumDelegate.qml
     \skipto PathView
@@ -276,17 +234,17 @@
     \printuntil }
 
     The \c path property holds the \l Path type that defines the path used by
-    the PathView. The PathAttribute types are used to set a range of
+    the \l PathView. The \l PathAttribute types are used to set a range of
     \c 0 to \c 9999 for the \c z attribute. This way, the path creates a stack
-    of album photos. Because each PhotoDelegate is slightly rotated at a random
-    angle, this results in a realistic-looking stack of photos.
+    of album photos. Because each \c PhotoDelegate is slightly rotated at a
+    random angle, this results in a realistic-looking stack of photos.
 
     \section1 Providing Feedback to Users
 
     We use a busy indicator and a progress bar to indicate activity while
     Flickr feeds and photos are being loaded.
 
-    In AlbumDelegate.qml, we use the \c BusyIndicator custom type and the
+    In \c AlbumDelegate.qml, we use the \c BusyIndicator custom type and the
     \c on custom property to display a rotating image while the Flickr feed is
     being loaded:
 
@@ -295,7 +253,7 @@
     \printuntil rssModel
     \printuntil }
 
-    In PhotoDelegate.qml, we use them to indicate activity while a photo is
+    In \c PhotoDelegate.qml, we use them to indicate activity while a photo is
     being loaded:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/PhotoDelegate.qml
@@ -303,18 +261,18 @@
     \printuntil }
 
     We define the \c BusyIndicator type in \c BusyIndicator.qml. We use an
-    \l Image type to display an image and apply a NumberAnimation to its
-    \c rotation property to rotate the image in an infinite loop:
+    \l [QML] {Image} type to display an image and apply a \l NumberAnimation to
+    its \c rotation property to rotate the image in an infinite loop:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/BusyIndicator.qml
     \skipto Image
     \printuntil }
     \printuntil }
 
-    In your apps, you can also use the BusyIndicator type from the
+    In your apps, you can also use the \l BusyIndicator type from the
     \l {Qt Quick Controls} module.
 
-    In main.qml, we use the \c ProgressBar custom type to indicate progress
+    In \c main.qml, we use the \c ProgressBar custom type to indicate progress
     while a high quality version of a photo is being opened on full screen:
 
     \quotefromfile demos/photoviewer/main.qml
@@ -322,15 +280,15 @@
     \printuntil }
 
     We define the \c ProgressBar type in \c ProgressBar.qml. We use a
-    \l Rectangle type to create the progress bar and apply a NumberAnimation to
-    its \c opacity property to change the color of the bar from black to white
-    as data loading proceeds:
+    \l Rectangle type to create the progress bar and apply a \l NumberAnimation
+    to its \c opacity property to change the color of the bar from black to
+    white as data loading proceeds:
 
     \quotefromfile demos/photoviewer/PhotoViewerCore/ProgressBar.qml
     \skipto Item
     \printuntil /^\}/
 
-    In your apps, you can also use the ProgressBar type from the
+    In your apps, you can also use the \l ProgressBar type from the
     \l {Qt Quick Controls} module.
 
     \section1 Localizing Applications
@@ -338,7 +296,7 @@
     The example application is translated into German and French. The translated
     strings are loaded at runtime according to the current locale.
 
-    We use a \l Column type in main.qml to position buttons for adding and
+    We use a \l Column type in \c main.qml to position buttons for adding and
     editing albums and exiting the application:
 
     \quotefromfile demos/photoviewer/main.qml
@@ -347,17 +305,18 @@
     \printuntil }
     \printuntil }
 
-    We use the \l[QML]{Qt::}{qsTr()} command to mark the button labels translatable.
+    We use the \l[QML]{Qt::}{qsTr()} command to mark the button labels
+    translatable.
 
-    We use the \c lupdate() tool to generate the translation source files and
-    the \c lrelease() tool to convert the translated strings to the QM files used
+    We use the \c lupdate tool to generate the translation source files and
+    the \c lrelease tool to convert the translated strings to the QM files used
     by the application at runtime. These files are stored in the \c i18n
     directory.
 
     To make the application aware of the translations, we add code to the
-    \c main() function in the main.cpp file. The code creates a \l QTranslator
-    object, loads a translation according to the current locale at runtime, and
-    installs the translator object into the application:
+    \c main() function in the \c {main.cpp} file. The code creates a
+    \l QTranslator object, loads a translation according to the current locale
+    at runtime, and installs the translator object into the application:
 
     \quotefromfile demos/photoviewer/main.cpp
     \skipto main

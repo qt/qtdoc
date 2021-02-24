@@ -1,13 +1,8 @@
 TEMPLATE = app
 
-QT += quick qml xml
-CONFIG += qmltypes
+QT += quick qml
 
-INCLUDEPATH += ../shared
-
-HEADERS += ../shared/xmllistmodel.h
-SOURCES += main.cpp \
-           ../shared/xmllistmodel.cpp
+SOURCES += main.cpp
 
 QML_IMPORT_NAME = XmlListModel
 QML_IMPORT_MAJOR_VERSION = 1

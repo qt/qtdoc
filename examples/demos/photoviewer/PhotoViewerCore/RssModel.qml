@@ -48,8 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick
-import XmlListModel
+import QtQml.XmlListModel
 
 XmlListModel {
     property string tags : ""
@@ -60,8 +59,6 @@ XmlListModel {
 
     query: "/feed/entry"
 
-    roles: [
-        XmlListModelRole { elementName: "title"; attributeName: "" },
-        XmlListModelRole { elementName: "link"; attributeName: "href" }
-    ]
+    XmlListModelRole { name: "title"; elementName: "title"; attributeName: "" }
+    XmlListModelRole { name: "link"; elementName: "link"; attributeName: "href" }
 }
