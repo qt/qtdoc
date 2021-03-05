@@ -147,8 +147,7 @@
                 support setting a global scale to either 100% or 200%.
         \row
             \li X11
-            \li Set the \c Xft.dpi setting, which is a global logical DPI.
-                Qt assumes that the base DPI is 96, and scales the UI accordingly.
+            \li Set Xft.dpi, or opt-in to use physical DPI. See "Configuring X11" below.
         \row
             \li Wayland
             \li Qt reads \c{wl_output::scale}, which is restricted to integer values.
@@ -163,6 +162,53 @@
     \note Some windowing systems may have limitations that are then reflected
     in Qt. Qt does not provide workarounds for these limitations. Instead,
     consider workarounds on the windowing system level.
+
+    \section3 Configuring X11
+
+    The required configuration input to Qt is per-screen logical DPI. Currently, X11 provides
+    either global logical DPI or per-screen physical DPI. Neither of these are exactly what Qt
+    needs, which can make DPI configuration on X11 more complicated than on other platforms.
+
+    Desktops environments such as Ubuntu and Kubntu implement workardounds for the lack of logical
+    DPI, and provide easily configurable high-DPI support. If you instead want to configure
+    X11 DPI settings manually then this section decribes which X11 settings Qt reads.
+
+    Some X11 configuration workflows involves overriding the reported physical size of the
+    screen in order to make DPI calculations yield a spesific DPI value. Qt supports this
+    workflow, but this requires opting in, as described below.
+
+    The exact configuration priority is as follows, where Qt uses the first option available.
+    Note that the behavior depends on the Qt version in use. Qt 5 behavior assumes that
+    AA_EnableHighDpiScaling has been set (this flag is not needed on Qt 6).
+
+    \table
+    \header
+         \li {3,1} X11 DPI Configuration Priority
+    \header
+        \li Property
+        \li Notes
+    \row
+        \li 1. Xft/DPI
+        \li From X settings. Global logical DPI value.
+    \row
+        \li 2. Xft.dpi
+        \li From X resources. Global logical DPI value.
+    \row
+        \li 3. RandR physical DPI
+            [Qt 5 Only]
+        \li DPI calculated from per-screen physical size and pixel size, as reported by randr.
+            specifically, the mwidth and mheight fields of the xcb_randr_screen_change_notify_event_t
+            structure is used. The DPI will be rounded to an integer and clamped to be not less than 96.
+    \row
+        \li 4. 96 DPI
+        \li Fallback value.
+    \endtable
+
+    The QT_USE_PHYSICAL_DPI override
+
+    Set QT_USE_PHYSICAL_DPI=1 to make Qt use RandR physical DPI unconditionally; specifically
+    the mwidth and mheight fields of the xcb_randr_screen_change_notify_event_t structure is used.
+    The DPI value will be rounded to an integer.
 
     \section1 Testing
 
