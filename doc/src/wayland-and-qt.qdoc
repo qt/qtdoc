@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -30,19 +30,128 @@
   \title Wayland and Qt
   \brief An overview of the Wayland protocol and how it fits into Qt.
 
-  \l {https://wayland.freedesktop.org/}{Wayland} is a display server protocol
-  that helps you to create multi-process systems. Multiple client applications
-  ("clients") can render their own content to off-screen buffers. These buffers
-  are then passed to a display server, often called a compositor, using the
-  Wayland protocol. Finally, the compositor composites and positions the
-  content on a physical display.
+  Wayland was developed as an alternative to X11 on Linux. Its main purpose is to manage how
+  the content of applications is displayed together on a shared screen, and how a user can
+  interact with multiple applications sharing the same input devices.
 
-  \section1 Why Use Multi-Process
+  This role in an operating system is often called a \e{display server}. The Wayland display
+  server may also sometimes be called a \e{compositor} and a \e{window manager}, referring to
+  specific tasks it performs as part of its duty.
 
-  In a single-process system, all parts of the UI run in one, single process.
-  In a multi-process system, all clients run in their own, dedicated process.
-  With Qt, at any point in your development process, you can choose to switch
-  between single-process and multi-process.
+  In the following, we will give a short introduction to Wayland and its role in Qt. For more
+  details and background about Wayland itself, refer to the
+  \l{https://wayland.freedesktop.org/docs/html/}{official documentation}.
+
+  \section1 What is a Display Server
+
+  The display server is the part of the operating system which manages the screen real estate and
+  other shared resources. On a typical desktop system, you may have many independent applications
+  running at the same time, each expecting to be able to render graphics to the screen and receive
+  input.
+
+  The display server is a link between the application and shared resources such as a screen and
+  input devices. A typical display server on a desktop system will place application content into
+  distinct rectangular "windows", which can be moved and resized by the user. The display server
+  makes sure that the application content is displayed at the right position on the screen, that the
+  active window receives input from the keyboard, that overlapping windows are drawn in the right
+  order, and so on.
+
+  On other types of systems, the display server may be more restrictive. If the screen is an
+  instrument panel in a car, or the control panel of a fork lift, for instance, then moving and
+  resizing windows may not be desirable. Instead, each application may be locked into a pre-defined
+  area of the screen and receive input from preassigned devices.
+
+  Either way, as long as there are multiple isolated processes competing for the same resources,
+  a display server is useful.
+
+  \section1 The Role of Wayland
+
+  The \l {https://wayland.freedesktop.org/}{Wayland} name may refer to several related items:
+
+  \list
+    \li A set of protocols for communicating between a display server and its clients.
+    \li A library written in C with functions for inter-process communication, serving as the
+        foundation for implementing said protocols.
+    \li An XML-based language for extending the protocol, as well as a tool for generating binding
+        code in C from such extensions.
+  \endlist
+
+  Qt provides implementations for both the client and the server side of the protocol.
+
+  Normal Qt applications can be run as clients on a Wayland display server by selecting the
+  "wayland" QPA plugin (this is the default on certain systems). In addition, the
+  \l{Qt Wayland Compositor} module can be used to develop the display server itself.
+
+  Qt also has convenience functionality for easily extending the Wayland protocols with new
+  interfaces.
+
+  \section1 Wayland and Other Technology
+
+  On the Linux desktop, Wayland is an alternative to X11 and related extensions. It is a
+  compositing display server at its core, and the term "compositor" is often used to describe the
+  Wayland server. This means that clients will render content into an off-screen buffer, which
+  will later be "composited" with other clients on the screen, allowing window effects such as
+  drop shadows, transparency, background blurring, and so on.
+
+  One important design principle of the original X11 protocols is that the display server can be
+  running on a thin terminal with only a screen and input devices. Its clients would then be
+  running on remote systems with more processing power, communicating with the server over a
+  network connection.
+
+  In contrast, Wayland is designed around the observation that, in modern setups, the client and
+  display server are usually running on the same hardware. Distributed computing, remote storage
+  and remote desktop functionality are usually handled through other mechanisms. Designing this into
+  the protocol enables sharing graphics memory between the client and the server: When the
+  compositor is placing client content on screen, it can simply copy it from one part of graphics
+  memory to another.
+
+  For this to work optimally, the graphics driver must support Wayland. This support is provided
+  through an extension to \c EGL which is called \c EXT_platform_wayland.
+
+  \note Qt Wayland also supports compositing on systems where \c EXT_platform_wayland is not
+  supported, either through \c XComposite or by copying application content to shared CPU memory.
+  But for optimal performance, we recommend systems with driver support.
+
+  X11 has been extended to support features such as composition and direct rendering, but Wayland
+  is designed around this use case from the ground up. It also aims to be small and extensible,
+  in contrast to the complexity that has developed in X11 over time.
+
+  \section1 Extensibility and Embedded Systems
+
+  Since Wayland has a minimal core and is easily extensible, it is an ideal tool when building
+  embedded Linux platforms.
+
+  Desktop-style window system features, for instance, are not part of the core protocol. Instead,
+  Wayland has a special category of protocol extensions called "shells" that provide a way for the
+  client to manage its surfaces. Desktop-style features are provided through a shell called
+  \c{XDG Shell}. For other types of systems, a more specialized (and perhaps more restrictive)
+  "shell" can be used. For instance, when making In-Vehicle Infotainment systems, the \c{IVI Shell}
+  might be preferable.
+
+  The Wayland server broadcasts a list of its supported protocols (or "interfaces") when a client
+  connects, and the client can bind to the ones it wants to use. This can be any of the standard
+  interfaces, but new extensions are also easy to add. Wayland defines an easily understandable XML
+  format for defining protocols and the \c waylandscanner tool can be used to generate C code from
+  these. (In Qt, we also have \c qtwaylandscanner which generates additional C++ binding code.)
+
+  After a client binds to an interface, it can make "requests" to the server and the server can send
+  "events" to the client. The requests and events, as well as their arguments, are defined in the
+  XML file describing the protocol.
+
+  For building a platform from scratch, when you control the code of both server and clients,
+  adding extensions is an easy and controlled way of adding operating system features.
+
+  \section1 Multi-Process or Single-Process
+
+  When building a simple embedded platform with Qt, a perfectly viable option is to have all parts
+  of the UI running in a single process. However, as the system becomes more complex, you may want
+  to consider a multi-process system instead. This is where Wayland comes in. With Qt, at any point
+  in your development process, you can choose to switch between single-process and multi-process.
+
+  \section2 Benefits of Multi-Process
+
+  The following diagrams illustrate the difference between multi-process and single-process
+  systems.
 
   \image ../images/wayland-multi-process.png
   \caption Multi-Process Client Architecture
@@ -50,7 +159,8 @@
   \image ../images/wayland-single-process-eglfs.png
   \caption Single Process Client Architecture
 
-  The use of multi-process has the following benefits:
+  The \l{Qt Wayland Compositor} module is ideal for creating the display server and compositor
+  in multi-process systems on embedded Linux. The use of multi-process has the following benefits:
 
   \list
     \li \l{stability}{Stability}
@@ -113,49 +223,16 @@
           alongside your other Qt-based clients.
   \endtable
 
-  \section1 Why Use Wayland Instead of X11 or Custom Solutions
+  \section2 Trade-offs of Multi-Process
 
-  X11, a desktop protocol from the 80s, no longer fits with how graphics
-  hardware works today. It is large, complex, and lacks customizability. In
-  fact, it is difficult to run a client fluidly with X11, and reach 60 fps
-  without tearing. Wayland, in contrast, is easier to implement, has better
-  performance, and contains all the necessary parts to run efficiently on
-  modern graphics hardware. For embedded, multi-process systems on Linux,
-  Wayland is the standard.
-
-  However, if you are working with old hardware or legacy applications,
-  then Wayland may not be a good option. The Wayland protocol is designed with
-  security and isolation in mind, and is strict/conservative about what
-  information and functionality is available to clients. While this leads to a
-  cleaner and more secure interface, some functionality that legacy
-  applications expect may no longer be available on Wayland.
-
-  Particularly, there are three common use cases where Wayland may not be the
-  best option:
-  \list 1
-    \li The hardware or platform is old and only supports X11; in which case
-        you have no choice.
-    \li You have to support legacy applications that depend on features that
-        are absent in the Wayland protocol for security and simplicity.
-    \li You have to support legacy applications that use a UI toolkit that
-        doesn't run on Wayland at all. In some cases, you may be able to work
-        around this by running those applications on
-        \l{https://wayland.freedesktop.org/xserver.html}{XWayland} instead.
-  \endlist
-
-  Back when X11 was very popular, developers wrote their own custom solutions
-  to circumvent X11 issues. Older Qt versions had the Qt Windowing System
-  (QWS), which is now discontinued. Today, most of these use cases are covered
-  by Wayland, and custom solutions are becoming less and less common.
-
-  \section1 Possible Trade-Offs with Multi-Process
-
-  Use of multi-process systems do bring about the following trade-offs:
+  When going from single-process to multi-process, it is important to be conscious of the following
+  trade-offs:
 
     \list
     \li \l{increased-video-memory}{Increased video memory consumption}
     \li \l{increased-main-memory}{Increased main memory consumption}
     \li \l{repeated-storage}{Repeated storage of graphical resources}
+    \li \l{input-latency}{Input latency}
   \endlist
 
   \target increased-video-memory
@@ -197,9 +274,57 @@
           solution is to share graphical resource between clients. Qt already
           allows sharing image resources in main memory across processes
           without involving Wayland. Sharing GPU textures across processes, on
-          the other hand, requires more intricate solutions. Such solutions are
-          currently in development for the Qt Wayland Compositor.
+          the other hand, requires more intricate solutions. With Qt, such solutions
+          can be developed as Wayland extension protocols and with QQuickImageProvider,
+          for instance.
   \endtable
+
+  \target input-latency
+  \table 100%
+    \header
+      \li Input-to-photon latency
+    \row
+      \li On a single-process system, the application accesses the main frame buffer directly.
+          This means that the latency between input events and reflecting them on screen can be
+          minimized in such a setup. On a multi-process system, the application content has to
+          be triple-buffered to ensure the client isn't drawing into the buffers while they are
+          simultaneously being read by the server, as that would cause tearing. This means that
+          there is an implicit latency in a multi-process system.
+  \endtable
+
+  \section1 Why Use Wayland Instead of X11 or Custom Solutions
+
+  As described earlier, X11 is not an optimal match for typical system setups today.
+  It is quite large and complex, and it lacks customizability. In fact, it is difficult
+  to run a client fluidly with X11, and reach 60 fps without tearing. Wayland, in contrast,
+  is easier to implement, has better performance, and contains all the necessary parts to
+  run efficiently on modern graphics hardware. For embedded, multi-process systems on Linux,
+  Wayland is the standard.
+
+  However, if you are working with old hardware or legacy applications,
+  then Wayland may not be a good option. The Wayland protocol is designed with
+  security and isolation in mind, and is strict/conservative about what
+  information and functionality is available to clients. While this leads to a
+  cleaner and more secure interface, some functionality that legacy
+  applications expect may no longer be available on Wayland.
+
+  Particularly, there are three common use cases where Wayland may not be the
+  best option:
+  \list 1
+    \li The hardware or platform is old and only supports X11; in which case
+        you have no choice.
+    \li You have to support legacy applications that depend on features that
+        are absent in the Wayland protocol for security and simplicity.
+    \li You have to support legacy applications that use a UI toolkit that
+        doesn't run on Wayland at all. In some cases, you may be able to work
+        around this by running those applications on
+        \l{https://wayland.freedesktop.org/xserver.html}{XWayland} instead.
+  \endlist
+
+  Back when X11 was very popular, developers wrote their own custom solutions
+  to circumvent X11 issues. Older Qt versions had the Qt Windowing System
+  (QWS), which is now discontinued. Today, most of these use cases are covered
+  by Wayland, and custom solutions are becoming less and less common.
 
   \section1 What Qt Wayland Offers
 
@@ -244,11 +369,14 @@
   is. For instance, the clients could be part of a 3D scene with windows on the
   walls, on a VR system, mapped to a sphere, and so on.
 
-  The Qt Wayland Compositor is an API for building your own compositor. It
+  The \l{Qt Wayland Compositor} is an API for building your own compositor. It
   gives you full freedom to build a custom compositor UI and manage the windows
   of various clients. You can combine both Qt Quick and QML with the Qt Wayland
   Compositor to create impressive, imaginative UIs. For more information, see
   \l{Qt Wayland Compositor}.
+
+  Qt also provides powerful and user-friendly APIs to implement Wayland extensions and use
+  them from QML or C++.
 
   \section2 Related Content
   \list
