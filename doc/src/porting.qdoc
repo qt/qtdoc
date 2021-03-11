@@ -104,8 +104,17 @@ applications are unchanged from Qt 5.
 Qt 6 supports high-DPI displays on all platforms, and will automatically account
 for the display resolution when using higher level APIs such as Qt Widgets
 or Qt Quick. Applications only need to provide high-resolution assets,
-such as images and icons. The feature is always enabled. See \l{High DPI}
-for more details.
+such as images and icons. The feature is always enabled.
+
+Qt 6 changes the default scale factor rounding policy from
+\l{Qt::HighDpiScaleFactorRoundingPolicy}{Qt::HighDpiScaleFactorRoundingPolicy::Round} to
+\l{Qt::HighDpiScaleFactorRoundingPolicy}{Qt::HighDpiScaleFactorRoundingPolicy::PassThrough}
+in order to track operating system DPI settings accurately. Applications that
+use Qt Widgets may encounter graphical glitches at non-integer scale factors,
+for example on Windows with a display configured for 175%. In that case, set the
+rounding policy to \l{Qt::HighDpiScaleFactorRoundingPolicy}{Round} to restore Qt 5 behavior.
+
+See \l{High DPI} for more details.
 
 \section1 Use the Platform Integration APIs
 
