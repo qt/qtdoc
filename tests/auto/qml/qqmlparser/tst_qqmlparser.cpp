@@ -93,19 +93,19 @@ public:
         }
     }
 
-    virtual bool preVisit(AST::Node *node)
+    bool preVisit(AST::Node *node) override
     {
         checkNode(node);
         nodeStack.append(node);
         return true;
     }
 
-    virtual void postVisit(AST::Node *)
+    void postVisit(AST::Node *) override
     {
         nodeStack.removeLast();
     }
 
-    void throwRecursionDepthError()
+    void throwRecursionDepthError() override
     {
         QFAIL("Maximum statement or expression depth exceeded");
     }
