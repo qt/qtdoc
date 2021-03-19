@@ -166,6 +166,27 @@
 
     \section1 Testing
 
+    \section2 QT_SCALE_FACTOR
+
+    Set the QT_SCALE_FACTOR environment variable to provide a global scale factor for the
+    application.
+
+    \badcode
+        QT_SCALE_FACTOR=2 ./myapp
+    \endcode
+
+    This scales all application geometry (including the device pixel ratio) by the given
+    factor, which enables testing high-DPI support independently of available hardware.
+    The set scale factor will be used as-is by Qt, and will not be affected by the
+    \l{Qt::HighDpiScaleFactorRoundingPolicy}{rounding policy}.
+
+    The effective device pixel ratio, as returned by QWindow::devicePixelRatio(), will be a
+    product of the set scale factor and the native device pixel ratio. For example, setting
+    QT_SCALE_FACTOR=2 on a 2x Wayland display will result in the application seeing a device
+    pixel ratio of 4.
+
+    \section2 DprGadget
+
     The DprGadget test application can be used to inspect the native
     configuration, and how Qt reacts to it:
 
