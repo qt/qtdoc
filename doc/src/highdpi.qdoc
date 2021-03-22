@@ -249,4 +249,35 @@
 
     DprGradget is a part Qt's manual test suite, and can
     be found at \c{qtbase/tests/manual/highdpi/pixelgadget}.
+
+    \section1 Environment Variable Reference
+
+    This section lists high-DPI related environment variables recognized by Qt.
+    In alphabetical order:
+
+    \list
+    \li QT_ENABLE_HIGHDPI_SCALING Set to 0 to disable high-dpi scaling; effectivly reverting
+        to Qt 5 defualt behavior. Note that this has no effect on platforms such as Walyand
+        or macOS - it does not disable any native high-DPI support. This variable is intended
+        for testing purposes only, and we do not recommend setting it on a permanent basis.
+    \li QT_FONT_DPI Sets a global DPI. This is a legacy environment variable provided
+        for backwards compatibility.
+    \li QT_SCALE_FACTOR Sets a global scale factor. For debugging and testing purposes.
+    \li QT_SCALE_FACTOR_ROUNDING_POLICY Sets the scale factor
+        \l{Qt::HighDpiScaleFactorRoundingPolicy}{rounding policy}, which is
+        applied to the scale factor computed from screen DPI. Supported values include
+        \list
+            \li Round (Qt 5 default)
+            \li PassThrough (Qt 6 default)
+        \endlist
+    \li QT_SCREEN_SCALE_FACTORS Sets a list of screen scale factors. The list can be in one
+        of two formats; either a semicolon-separated list of screen scale factors ("1;1.5;2"),
+        or a semicolon-separated list of screen=factor entries ("screenA=1;screenB=1.5;screenC=2").
+        Setting this environment variable is not recommended since it prevents Qt from using
+        system DPI values.
+    \li QT_USE_PHYSICAL_DPI Makes Qt use physical DPI instead of logical DPI. Using logical
+        DPI is normally the best option; this environment varible can be set in cases where
+        logical DPI is not available and the physical DPI is known to be correct.
+    \endlist
+
 */
