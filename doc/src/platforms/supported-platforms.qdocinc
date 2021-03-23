@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -64,7 +64,7 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.14, 10.15, 11.0
         \li \c x86_64 and \c x86_64h
-        \li Xcode 12 (10.15 SDK)
+        \li Xcode 12 (11.1 SDK)
 \endtable
 //! [macos]
 
@@ -91,7 +91,7 @@
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 9.0.8 (NDK r21) and Clang 8.0.7 (NDK r20b) as provided
+        \li Clang 9.0.8 (NDK r21d) and Clang 8.0.7 (NDK r20b) as provided
             by Google, MinGW 8.1
         \li
 \endtable
@@ -103,7 +103,7 @@
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
     \row \li iOS 13, iOS 14
         \li \c armv8 (\c arm64)
-        \li Xcode 12 (iOS 14 SDK)
+        \li Xcode 12 (iOS 13 SDK)
         \li
 \endtable
 //! [ios]
