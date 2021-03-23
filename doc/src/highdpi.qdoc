@@ -323,4 +323,22 @@
         logical DPI is not available and the physical DPI is known to be correct.
     \endlist
 
+    \section1 Coordinate Systems Reference
+
+    \list
+        \li Device Independent Pixels This is Qt's main coordinate system. Window, widget,
+            Quick item, event, and screen geometry are all in device independent pixels. Typically,
+            a device independent pixel has a constant visual size across device types and screen
+            densities. Though this is a generalization, the exact size depends on device configuration.
+
+        \li Device Pixels This coordinate system is used for rasterization and low-level graphics tasks,
+            for example when using the OpenGL API. The device pixel coordinate system is often equivalent
+            to the physical coordinate system of the display, but this is not guaranteed. For example, both
+            macOS and Ubuntu may apply additional scaling, depeding on display settings.
+
+        \li Native Pixels This is the coordinate system used by the native API, such as Win32 or Cocoa (macOS).
+            Depending on platform and screen configuration, native pixels may be equivalent to device
+            independent or device pxiels.
+    \endlist
+
 */
