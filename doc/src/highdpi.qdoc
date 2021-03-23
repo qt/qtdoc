@@ -101,6 +101,32 @@
     automatically choose the best representation for the target display at
     runtime. See \l{High DPI Icons} for more details.
 
+    \section1 Device Independent Screen Geometry
+
+    Qt applications generally operate in device independent pixels. This includes
+    window and screen geometries reported to the application.
+
+    This means that QScreen::geometry() may not return the screen's physical pixel
+    count, or the pixel size as reported by the operating system. This has implications
+    for virtual desktop geometry:
+
+    Modern desktop operating systems typically create one shared coordinate system for
+    all connected screens, and allows the user to postion screens to match their physical
+    screen setup, usually via a configuration dialog. If this positioning is done in
+    a coordinate system equivalent to Qt's device independent pixels (like on macOS)
+    then QScreen geometry will match the native screen layout. If the positioning
+    is done in screen physical pixels (like on Windows), then Qt's treatment of
+    screen geometry may introduce "gaps" in virtual desktop geometry unused by any screen.
+
+    Specifically, Qt will scale the screen size (resulting in a "smaller" screen
+    for positive scale factors), but will not change the screen position. This
+    will produce an islands-of-screens type virtual desktop geometry.
+
+    Application code should not assume that postions immediately adjacent to and
+    outside one screen is a valid position on the neighbouring screen. Instead,
+    get the screen list using QGuiApplication::screens() and use that list to reason
+    about available screen geometry.
+
     \section1 Configuring
 
     As an end user you may want to adjust the DPI or scale settings to
