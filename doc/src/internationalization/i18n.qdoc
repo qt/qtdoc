@@ -196,7 +196,7 @@
 
     \section1 Locating Qt Translations
 
-    You can also use QLibraryInfo::location() to locate the translations for the
+    You can also use QLibraryInfo::path() to locate the translations for the
     Qt modules used. You can request the path to the translations at run-time by
     passing QLibraryInfo::TranslationsPath to this function.
 
