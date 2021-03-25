@@ -46,7 +46,7 @@
     To find out where your application's executable is located, see
     QCoreApplication::applicationDirPath().
 
-    Qt also looks in the directory specified by QLibraryInfo::location(QLibraryInfo::PluginsPath),
+    Qt also looks in the directory specified by QLibraryInfo::path(QLibraryInfo::PluginsPath),
     which typically is located in \c QTDIR/plugins; \c QTDIR is the directory where Qt is installed.
     If you want Qt to look in additional places you can add as many paths as you need with calls to
     QCoreApplication::addLibraryPath(). If you want to set your own path(s), you can use

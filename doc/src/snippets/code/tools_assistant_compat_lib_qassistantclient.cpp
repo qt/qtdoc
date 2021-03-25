@@ -50,7 +50,7 @@
 
 //! [0]
         QProcess *process = new QProcess(this);
-        QString app = QLibraryInfo::location(QLibraryInfo::BinariesPath)
+        QString app = QLibraryInfo::path(QLibraryInfo::BinariesPath)
             + QLatin1String("/assistant");
 
         process->start(app, QStringList() << QLatin1String("-enableRemoteControl"));
