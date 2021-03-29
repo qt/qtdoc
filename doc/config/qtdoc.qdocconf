@@ -75,8 +75,7 @@ macro.qtmajorversion          = "$QT_VER"
 macro.qtmajorversion.match    = "^(\\d+)"
 
 # Config to enable YouTube links in the offline documentation
-HTML.extraimages += images/I5jasWrsxT0.jpg
-qhp.QtDoc.extraFiles += images/I5jasWrsxT0.jpg
+{HTML.extraimages,qhp.QtDoc.extraFiles} += images/wPcVlP_wrew.jpg
 
 manifestmeta.highlighted.names = "QtDoc/Coffee Machine Example" \
                                  "QtDoc/Qt Quick Demo - Same Game"
