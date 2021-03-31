@@ -31,7 +31,7 @@
     \target CMake Manual
     \title Build with CMake
     \brief Describes how to use CMake in your development projects.
-    \nextpage Get started with CMake
+    \nextpage Getting started with CMake
 
     \c{CMake} is a tool to simplify the build process for development projects across different
     platforms. \c CMake automatically generates build systems, such as Makefiles and Ninja
@@ -44,7 +44,7 @@
     \section1 Table of Contents
 
     \list
-        \li \l{Get started with CMake}
+        \li \l{Getting started with CMake}
         \list
             \li \l{Build a C++ GUI executable}
             \li \l{Further reading}
@@ -80,7 +80,7 @@
 
 /*!
     \page cmake-get-started.html
-    \title Get started with CMake
+    \title Getting started with CMake
     \previouspage Build with CMake
     \nextpage Imported targets
 
@@ -197,7 +197,7 @@
     \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
     \nextpage Qt 5 and Qt 6 compatibility
-    \previouspage Get started with CMake
+    \previouspage Getting started with CMake
 
     Each Qt module that is loaded defines a CMake library target. The target names
     start with \c{Qt6::}, followed by the module name. For example: \c{Qt6::Core}, \c{Qt6::Gui}.
