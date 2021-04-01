@@ -54,7 +54,7 @@ export PATH=path/to/cross/compiler:$PATH
 
 
 //! [1]
-./configure -embedded arm -xplatform qws/linux-arm-g++ <other options>
+./configure -embedded arm -platform qws/linux-arm-g++ -qt-host-path <path_to_host_qt_installation> <other options>
 //! [1]
 
 

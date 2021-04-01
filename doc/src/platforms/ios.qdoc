@@ -79,7 +79,7 @@
     directory:
 
     \badcode
-        > ./configure -xplatform macx-ios-clang -release -qt-host-path <path_to_host_qt_installation>
+        > ./configure -platform macx-ios-clang -release -qt-host-path <path_to_host_qt_installation>
     \endcode
 
     For other configure options, see \l{Qt Configure Options}.
