@@ -137,7 +137,7 @@
     mkdir <path_to_build_dir>/build-qt
     cd <path_to_build_dir>/build-qt
 
-    <path_to_qt_source>/configure -xplatform android-clang -prefix </path/to/install> -android-ndk <path/to/sdk>/ndk/<ndk_version> -android-sdk <path/to/sdk> -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a
+    <path_to_qt_source>/configure -platform android-clang -prefix </path/to/install> -android-ndk <path/to/sdk>/ndk/<ndk_version> -android-sdk <path/to/sdk> -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a
     \endcode
 
     \l{Qt Configure Options} contains more information about the configure options.
@@ -236,7 +236,7 @@
     mkdir C:\Qt\Build\build-qt
     cd C:\Qt\Build\build-qt
 
-    ..\Src_%VERSION%\configure.bat -platform win32-g++ -xplatform android-clang -prefix <\path\to\install> -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk\<ndk_version> -android-ndk-host windows-x86_64 -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a
+    ..\Src_%VERSION%\configure.bat -platform android-clang -prefix <\path\to\install> -android-sdk <ANDROID_SDK_PATH> -android-ndk <ANDROID_SDK_PATH>\ndk\<ndk_version> -android-ndk-host windows-x86_64 -qt-host-path <path_to_host_qt_installation> -android-abis arm64-v8a
     \endcode
 
     \l{Qt Configure Options} contains more information about the configure options.
