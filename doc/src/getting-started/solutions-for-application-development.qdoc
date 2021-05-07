@@ -1,0 +1,96 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page solutions-for-application-development.html
+
+    \title Solutions for Application Development
+    \brief Qt solutions for developer use cases.
+
+    \image front-coding.png
+
+    As a developer, you most likely have a favorite operating system, toolchain,
+    and language. At work, the choices might be made for you, but Qt gives you
+    some freedom by enabling you to maintain a single software code base across
+    all operating systems, platforms, and screen types, from desktops and
+    embedded systems to business-critical applications, in-vehicle systems,
+    wearables, and mobile devices connected to the Internet of Things.
+
+    The options are endless, but the following table summarizes the solutions
+    available for different types of target platforms or industries with links
+    to more information.
+
+    \table
+    \header
+        \li To Develop For
+        \li You Need
+    \row
+        \li Desktop
+        \li Qt for Linux, \macos, or Windows with the appropriate
+            \l{All Modules}{Qt modules}, depending on what your
+            applications will be used for.
+    \row
+        \li Mobile Devices
+        \li Qt for for Linux, \macos, or Windows and for the mobile device
+            platform that you want to run the applications on. For example,
+            \l{Qt for Android} or \l{Qt for iOS}.
+    \row
+        \li Embedded Devices
+        \li \l {Qt for Device Creation}
+            \list
+                \li \l {Qt Automotive Suite}
+                \li \l {Qt for Automation}
+            \endlist
+    \row
+        \li MCUs
+        \li \l{Qt for MCUs}
+    \endtable
+
+    You can use C++, QML, or Python for application development:
+
+    \table
+    \header
+        \li To Develop With
+        \li You Need
+    \row
+        \li C++/Qt
+        \li Qt for for Linux, \macos, or Windows
+    \row
+        \li QML/Qt Quick
+        \li Qt for for Linux, \macos, or Windows
+    \row
+        \li Python
+        \li \l{Qt for Python}
+    \endtable
+
+    \list
+        \li \l{Get and Install Qt}
+            {I want to install the necessary tools and modules}
+        \li \l{Create Your First Applications}
+            {I've already installed everything and want to start developing}
+    \endlist
+*/

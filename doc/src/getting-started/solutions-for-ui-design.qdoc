@@ -1,0 +1,73 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page solutions-for-UI-design.html
+
+    \title Solutions for UI Design
+    \brief Choosing the UI design technology.
+
+    \image front-ui.png
+
+    As a designer, technical artist, or developer who needs a UI for their
+    application, you have some decisions to make. Take a look at the lists
+    below to see how well they fit the requirements for your applications
+    and which UI technology we recommend.
+
+    \table
+    \header
+    \row
+        \li If your applications:
+        \li If your applications:
+    \row
+        \li
+            \list
+                \li Are prototyped using short cycles.
+                \li Run on mobile or embedded devices or MCUs.
+                \li Work on touch screens.
+                \li Contain animation and graphical effects.
+            \endlist
+        \li
+            \list
+                \li Are large standard industry type applications.
+                \li Run on the desktop only.
+                \li Look like native Linux, \macos, and Windows applications.
+                \li Integrate well into the underlying platform.
+            \endlist
+    \row
+        \li We recommend using \l{Building UIs with Qt Quick Controls}
+            {Qt Quick}.
+        \li We recommend using \l{Qt Widgets User Interfaces}{Qt Widgets}.
+    \endtable
+
+    If you're not quite sure, see \l{Comparison of UI Interfaces}.
+
+    \list
+        \li \l{Tools for Qt Quick UIs}{I'll go with Qt Quick}
+        \li \l{Tools for Qt Widget-Based UIs}{I'll go with Qt Widgets}
+    \endlist
+*/

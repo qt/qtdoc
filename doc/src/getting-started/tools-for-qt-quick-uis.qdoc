@@ -1,0 +1,58 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page tools-for-qt-quick-uis.html
+
+    \title Tools for Qt Quick UIs
+    \brief Tools for designing Qt Quick UIs.
+
+    \image qtdesignstudio.png "Qt Design Studio"
+
+    Qt provides a tool for designing Qt Quick UIs called
+    \l{Qt Design Studio Manual}{Qt Design Studio}. Most of the
+    functionality of the tool is integrated into a developer tool
+    called \l{Qt Creator Manual}{Qt Creator}.
+
+    You need to separately select Qt Design Studio in the list of modules
+    and tools presented to you by the Qt installer, whereas Qt Creator is
+    installed by default when you install Qt. You can run both tools in
+    parallel without one interfering with the other.
+
+    If you only design UIs and don't need the developer tools, you can install
+    the stand-alone Qt Design Studio package. It contains all the Qt modules
+    and tools you need to design UIs and preview them on the desktop. The
+    Qt Quick code is automatically generated for you, and you can deliver it
+    to developers for implementing the application.
+
+    \list
+        \li \l{Install Qt Design Studio}{I just want Qt Design Studio}
+        \li \l{Get and Install Qt}{I want Qt and Qt Design Studio}
+        \li \l{Create Your First Applications}
+            {I've already installed everything and want to start designing}
+    \endlist
+*/
