@@ -28,6 +28,7 @@
 /*!
 \page android-services.html
 \title Android Services
+\preliminary
 \brief Provides information about Android Services support in Qt.
 \previouspage android-openssl-support.html
 \nextpage android-3rdparty-libs.html
@@ -91,22 +92,22 @@ public class QtAndroidService extends QtService
 
 Android allows starting services on demand or at boot time. You can do both using
 Qt as well.
-\omit //! Qt Android Extras not part of Qt 6.0
 
 \section3 Start a Service On Demand
 
 You can start the service in the following ways:
 
 \list
-    \li Directly from C++ using \l {QtAndroidExtras}{QAndroidIntent} and
-        \l {QtAndroidExtras}{QAndroidJniObject}, by creating a service
+    \li Directly from C++ using \l {QAndroidIntent} and
+        \l {QJniObject}, by creating a service
         \l {Android: Intent}{Intent} and calling the app's main activity method
         \l {Android: startService()}{startService()}:
 
         \code
-        QAndroidIntent serviceIntent(QtAndroid::androidActivity().object(),
-                                            "org/qtproject/example/qtandroidservice/QtAndroidService");
-        QAndroidJniObject result = QtAndroid::androidActivity().callObjectMethod(
+        auto activity = QJniObject(QNativeInterface::QAndroidApplication:context());
+        QAndroidIntent serviceIntent(activity.object(),
+                                     "org/qtproject/example/qtandroidservice/QtAndroidService");
+        QJniObject result = activity.callObjectMethod(
                     "startService",
                     "(Landroid/content/Intent;)Landroid/content/ComponentName;",
                     serviceIntent.handle().object());
@@ -124,14 +125,13 @@ You can start the service in the following ways:
         The you can call it from C++ using the following JNI call:
 
         \code
-        QAndroidJniObject::callStaticMethod<void>(
+        QJniObject::callStaticMethod<void>(
             "org/qtproject/example/qtandroidservice/QtAndroidService",
             "startQtAndroidService",
             "(Landroid/content/Context;)V",
             QtAndroid::androidActivity().object());
         \endcode
 \endlist
-\endomit //! Qt Android Extras not part of Qt 6.0
 
 \section3 Start a Service At Boot Time
 
@@ -312,7 +312,7 @@ provides a different executable for the service. A sample project \c .pro is:
 TEMPLATE = lib
 TARGET = service
 CONFIG += dll
-QT += core androidextras
+QT += core core-private
 
 SOURCES += \
     service_main.cpp
@@ -352,12 +352,13 @@ BroadcastReceiver.
 
 This can work with services running in the same process as \c QtActivity and even
 if \c Service is extended.
+
+//! TODO bring back once the jni example is merged to qtbase
 \omit //! Qt Android Extras not part of Qt 6.0
 For more information, see
 \l{Calling QML/C++ Functions from Java Code}.
 \endomit //! Qt Android Extras not part of Qt 6.0
 
-\omit //! Qt Android Extras not part of Qt 6.0
 \section2 Using Android BroadcastReceiver
 
 \l {Android: BroadcastReceiver}{Android BroadcastReceiver} enables exchanging
@@ -424,17 +425,14 @@ an then register the broadcast receiver by calling the method
 \c registerServiceBroadcastReceiver():
 
 \code
-QAndroidJniEnvironment env;
+QJniEnvironment env;
 jclass javaClass = env.findClass("org/qtproject/example/qtandroidservice/ActivityUtils");
-QAndroidJniObject classObject(javaClass);
+QJniObject classObject(javaClass);
 
 classObject.callMethod<void>("registerServiceBroadcastReceiver",
                              "(Landroid/content/Context;)V",
                              QtAndroid::androidContext().object());
 \endcode
-\endomit //! Android Extras not part of Qt 6.0
-
-\omit //! Qt Remote Objects not part of Qt 6.0
 
 \section2 Using Qt Remote Objects
 
@@ -527,7 +525,6 @@ on the debug logcat.
 
 \note The same method could be used when using the same \c .so lib file. For more
 information, see \l{Use the same .so Lib File}.
-\endomit //! Qt Remote Objects not part of Qt 6.0
 
 \section2 Using QAndroidBinder
 

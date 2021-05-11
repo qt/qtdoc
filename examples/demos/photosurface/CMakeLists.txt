@@ -65,16 +65,6 @@ qt6_add_resources(photosurface "photosurface"
         ${photosurface_resource_files}
 )
 
-if(ANDROID AND TARGET Qt::AndroidExtras)
-    target_compile_definitions(photosurface PUBLIC
-        REQUEST_PERMISSIONS_ON_ANDROID
-    )
-
-    target_link_libraries(photosurface PUBLIC
-        Qt::AndroidExtras
-    )
-endif()
-
 if(TARGET Qt::Widgets)
     target_link_libraries(photosurface PUBLIC
         Qt::Widgets

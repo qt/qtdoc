@@ -1,10 +1,6 @@
 TEMPLATE = app
 
 QT += qml quick
-android: qtHaveModule(androidextras) {
-    QT += androidextras
-    DEFINES += REQUEST_PERMISSIONS_ON_ANDROID
-}
 qtHaveModule(widgets): QT += widgets
 SOURCES += main.cpp
 RESOURCES += photosurface.qrc
