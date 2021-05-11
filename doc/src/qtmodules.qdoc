@@ -158,17 +158,6 @@
         \li All
         \li Classes to make printing easier and more portable.
     \row
-        \li \l[QtQuick3D]{Qt Quick 3D}
-        \li All
-        \li All
-        \li Provides a high-level API for creating 3D content or UIs based on
-            Qt Quick.
-    \row
-        \li \l[Qt Quick Timeline]{Qt Quick Timeline}
-        \li All
-        \li All
-        \li Enables keyframe-based animations and parameterization.
-    \row
         \li \l{Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li All
         \li All
@@ -179,13 +168,6 @@
         \li All
         \li Provides classes and tools for creating state machines from SCXML files and
             embedding them in applications.
-    \row
-        \li \l[QtShaderTools]{Qt Shader Tools}
-        \li All
-        \li All
-        \li Provides tools for the cross-platform Qt shader pipeline. These enable
-        processing graphics and compute shaders to make them usable for Qt Quick and other
-        components in the Qt ecosystem.
     \row
         \li \l[QtSql]{Qt SQL}
         \li All
@@ -249,6 +231,24 @@
         \li A framework for implementing different input methods as
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
+    \row
+        \li \l[QtQuick3D]{Qt Quick 3D}
+        \li All
+        \li All
+        \li Provides a high-level API for creating 3D content or UIs based on
+            Qt Quick.
+    \row
+        \li \l[Qt Quick Timeline]{Qt Quick Timeline}
+        \li All
+        \li All
+        \li Enables keyframe-based animations and parameterization.
+    \row
+        \li \l[QtShaderTools]{Qt Shader Tools}
+        \li All
+        \li All
+        \li Provides tools for the cross-platform Qt shader pipeline. These enable
+        processing graphics and compute shaders to make them usable for Qt Quick and other
+        components in the Qt ecosystem.
     \row
         \li \l{Qt Wayland Compositor}
         \li \l{Qt for Linux/X11}{Linux}
