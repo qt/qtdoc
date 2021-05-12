@@ -1,6 +1,6 @@
 ﻿/****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -53,13 +53,23 @@
     the designs is possible through a live preview on devices are through
     an online browser.
 
+    If you only design UIs and don't need the developer tools and functions,
+    you can use \l{Qt Design Studio Manual}{Qt Design Studio}. It enables you
+    to define the look and feel of the UI from wireframe to final implementation
+    with preset UI components. You can import UI design files from 2D and 3D
+    tools to Qt Design Studio, which can turn them into code for developers.
+    Qt Design Studio prototyping features bring your designs to life and
+    simulate and validate interactions and dynamic behavior. You can test,
+    preview, and fine-tune your designs to pixel-perfection live on the desktop
+    or target device.
+
     \section1 Developing Applications
 
     \l{Qt Creator Manual}{Qt Creator} is a complete IDE for developing Qt
     applications. You can setup project files, code, debug, package, and
-    deploy from within Qt Creator. New in Qt 6, projects can use either
+    deploy from within Qt Creator. You can configure either
     \l{Build with CMake}{CMake} or \l{qmake Manual}{qmake} to build
-    applications.
+    projects when you create them using wizard templates.
 
     \section1 Cross-Platform Development
 
