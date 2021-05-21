@@ -302,6 +302,16 @@
     loaded in a context where \l{QT_NO_CREATE_VERSIONLESS_FUNCTIONS} or
     \l{QT_NO_CREATE_VERSIONLESS_TARGETS} might be defined. In this case you can still simplify
     your code by determining the actual command or target name through a variable.
+
+    \section2 Unicode support in Windows
+
+    In Qt 6, the UNICODE AND _UNICODE compiler macros are set by default for targets that link
+    against Qt modules. This is in line with the qmake behavior, but it is a change compared to
+    the CMake API behavior in Qt 5.
+
+    Call qt_disable_unicode_defines() on the target to not set the macros.
+
+    \snippet snippets/cmake/qt5_qt6_compatible.cmake disable_unicode_defines
 */
 
 /*!

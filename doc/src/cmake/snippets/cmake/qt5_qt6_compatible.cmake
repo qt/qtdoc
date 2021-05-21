@@ -20,3 +20,15 @@ add_executable(helloworld
 
 target_link_libraries(helloworld PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 #! [older_qt_versions]
+
+#! [disable_unicode_defines]
+
+find_package(Qt6 COMPONENTS Core)
+
+add_executable(helloworld
+    ...
+)
+
+qt_disable_unicode_defines(helloworld)
+
+#! [disable_unicode_defines]
