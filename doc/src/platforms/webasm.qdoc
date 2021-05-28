@@ -71,10 +71,6 @@ version.
 
 The known-good versions are:
 \list
-   \li Qt 5.12: 1.38.16
-   \li Qt 5.13: 1.38.27 (multithreading: 1.38.30)
-   \li Qt 5.14: 1.38.27 (multithreading: 1.38.30)
-   \li Qt 5.15: 1.39.8
    \li Qt 6.2.0: 2.0.14
 \endlist
 
@@ -84,11 +80,6 @@ it for Qt 6.2 enter:
     \li ./emsdk install 2.0.14
     \li ./emsdk activate 2.0.14
 \endlist
-
-The \c --embedded option is useful if you want to install multiple versions of the SDK.
-It locates all configuration and cache files inside the SDK so that multiple versions
-do not conflict. Note that using this option is currently incompatible with the SDK
-detection in Qt Creator.
 
 After installation, on Windows, you should have emscripten in your path.  On macOS or Linux
 you need to add it to your path, like this:
