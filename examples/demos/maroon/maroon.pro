@@ -1,7 +1,7 @@
 TEMPLATE = app
 
 QT += qml quick
-qtHaveModule(multimedia): QT += multimedia
+# qtHaveModule(multimedia): QT += multimedia  //QTBUG-94183
 SOURCES += main.cpp
 RESOURCES += maroon.qrc
 
