@@ -108,33 +108,34 @@ Alternatively, you could download the Qt sources in the Downloads section,
 and build Qt from it.
 
 Configure Qt as a cross-compile build for the \c wasm-emscripten platform.
-This will implicitly set the "-static" and "-no-feature-thread" options.
-Pass the \c-compile-examples option to enable examples.
+This will implicitly set the \c -static, \c -no-feature-thread, and \c{-no-make examples}
+configure options. Thread support and building of the examples can be enabled
+by removing the corresponding disabling option. Shared library builds are not
+supported at this time.
 
 For Qt 6, you will need a host build of the same version of Qt and
-add that path to QT_HOST_PATH by using the -qt-host-path configure argument.
+add that path to QT_HOST_PATH by using the \c -qt-host-path configure argument.
+
 Although it should be detected, you may optionally set the CMAKE_TOOLCHAIN_PATH to the
 Emscripten.cmake toolchain file that comes with Emscripten sdk, by using the
 -DCMAKE_TOOLCHAIN_FILE= configure argument.
 
 \badcode
-    ./configure -qt_host_path /path/to/Qt/6.2.0/platform/bin -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase
+    ./configure -qt-host-path /path/to/Qt/6.2.0/platform -xplatform wasm-emscripten -prefix $PWD/qtbase
 \endcode
 
 On Windows, make sure you have \c MinGW in your \c PATH
 and configure with the following:
 
 \badcode
-    configure -qt_host_path C:\Path\to\to\Qt6 -no-warnings-are-errors -xplatform wasm-emscripten -platform win32-g++ -nomake examples -prefix %CD%\qtbase
+    configure -qt-host-path C:\Path\to\Qt6 -no-warnings-are-errors -xplatform wasm-emscripten -platform win32-g++ -prefix %CD%\qtbase
 \endcode
 
 Build required modules:
 
 \badcode
-    make module-qtbase module-qtdeclarative [other modules]
+    cmake --build . -t qtbase -t qtdeclarative [-t another_module]
 \endcode
-
-The Qt build is a static build, and does not support threads.
 
 \section3 Build and run your application
 
@@ -339,7 +340,8 @@ You can test-run your application in the following way:
 
     Using cmake, such as:
 
-    \code set(QT_WASM_PTHREAD_POOL_SIZE, 10)
+    \badcode
+        set(QT_WASM_PTHREAD_POOL_SIZE, 10)
     \endcode
 
     \section3 Limited Network access due to web sandbox
@@ -385,8 +387,6 @@ You can test-run your application in the following way:
     \list
     \li QSettings has an IndexedDB-based backend; Note that QSettings is
     asynchronous on WebAssembly. See usage example at [2]
-    \li QSettings has an IndexedDB-based backend; Note that QSettings is asynchronous
-    on WebAssembly. See usage example at [2]
     \li \l {https://doc.qt.io/qt-5/qfiledialog.html#getOpenFileContent}{QFileDialog::getOpenFileContent() }
     opens a native file dialog where the user can pick a file
     \li \l {https://doc.qt.io/qt-5/qfiledialog.html#saveFileContent}{QFileDialog::saveFileContent()}
