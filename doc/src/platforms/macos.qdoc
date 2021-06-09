@@ -1152,7 +1152,11 @@
     \li SQL driver plugins are deployed if the application uses the \l{Qt SQL} module.
     \li The SVG icon plugin is deployed if the application uses the \l{Qt SVG} module.
     \li The accessibility plugin is always deployed.
+    \li The style plugin is always deployed.
     \endlist
+
+    \important If you choose to not use the Mac Deployment Tool, you must
+    ensure that your deployment package includes these plugins.
 
     To include a 3rd party library in the application bundle, copy the library
     into the bundle manually, after the bundle is created.
