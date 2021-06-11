@@ -82,9 +82,6 @@ the build system in a specific way:
     \l{The Qt Resource System}{Qt's Resource system}.
     \li Your application must load the QML documents via the \c qrc:/// URL scheme.
     \li You can enable Ahead-of-Time compilation using the \c CONFIG+=qtquickcompiler directive.
-    \li If you're using the CMake build system, then you can achieve this by inserting a
-        \c find_package(Qt5QuickCompiler) call into your \c CMakeLists.txt and replacing the use
-        of \c qt5_add_resources with \c qtquick_compiler_add_resources.
 \endlist
 
 One benefit of compiling ahead of time is that, in the event of syntax errors in your QML
