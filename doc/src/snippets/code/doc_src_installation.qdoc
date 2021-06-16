@@ -101,12 +101,12 @@ cd /tmp/qt-everywhere-opensource-src-%VERSION%
 
 
 //! [13]
-make
+cmake --build . --parallel
 //! [13]
 
 
 //! [14]
-sudo make -j1 install
+cmake --install .
 //! [14]
 
 
