@@ -40,7 +40,8 @@
     through the Cocoa API.
 
     To download and install Qt for \macos, follow the instructions on the
-    \l{Getting Started with Qt} page.
+    \l{Getting Started with Qt} page. To build Qt from source, see \l{Qt
+    for macOS/Qt for macOS - Building from Source}.
 
     \target macos-supported-versions
     \section1 Supported Versions
@@ -64,8 +65,14 @@
     environment will be defined by that Xcode version.
 
     Xcode can be downloaded from Apple's \l{https://developer.apple.com/download/}{developer
-    website} (including older versions of Xcode). Once installed, choosing an Xcode installation
-    is done using the \c{xcode-select} tool.
+    website} (including older versions of Xcode).
+
+    You should always be using the latest Xcode available from Apple that has been
+    tested with the Qt version you are using. By always building against the latest
+    available platform SDK, you ensure that Qt can take advantage of new features
+    introduced in recent versions of \macos.
+
+    Once installed, choosing an Xcode installation is done using the \c{xcode-select} tool.
 
     \code
     $ sudo xcode-select --switch /Applications/Xcode.app
@@ -106,20 +113,26 @@
     below the deployment target macOS or Qt will give an error message and the application will
     not run.
 
-    Qt expresses the deployment target via the \c QMAKE_MACOSX_DEPLOYMENT_TARGET qmake
-    variable, which has a default value set via the makespec for \macos. You should not
-    need to change this default, but if needed you can increase it in your project file:
+    Qt expresses the deployment target via the \l
+    {https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html}
+    {\c CMAKE_OSX_DEPLOYMENT_TARGET} or \c QMAKE_MACOSX_DEPLOYMENT_TARGET variables,
+    which has a default value set by Qt. You only need to change this default if you
+    know that your own code uses \macos APIs that are only available in a particular
+    version higher than what Qt defaults to. For example, with CMake:
 
     \code
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.13
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+    \endcode
+
+    or with qmake:
+
+    \code
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.15
     \endcode
 
     \note You should not lower the deployment target beyond the default value set by Qt.
     Doing so will likely lead to crashes at runtime if the binary is then deployed to a
     \macos version lower than what Qt expected to run on.
-
-    By always building against the latest available platform SDK, you ensure that
-    Qt can take advantage of new features introduced in recent versions of \macos.
 
     For more information about SDK-based development on \macos, see Apple's \l
     {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{developer documentation}.
@@ -137,58 +150,46 @@
     the new SDK and operating system was released will still continue to run without
     regressions on new \macos releases.
 
-    A consequence of this is that if Qt has problems dealing with some of these
-    \macos features (dark-mode, layer-backed views), the only way to opt out of
-    them is building with an earlier SDK (the 10.13 SDK, available through
-    Xcode 9). This is a last-resort solution, and should only be applied if your
-    application has no other ways of working around the problem.
+    Building against an older SDK is a last-resort solution, and should only be applied
+    if your application has no other ways of working around the problem.
 
     \section2 Architectures
 
-    By default, Qt is built for x86_64. To build for x86_64h (Haswell). use the
-    \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
-    This is selectable at configure time:
+    By default, Qt will build for the architecture of your development machine -
+    either \c x86_64, or \c arm64 if you are on an Apple Silicon Mac.
+
+    To build for other architectures you can use the \l
+    {https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_ARCHITECTURES.html}
+    {\c CMAKE_OSX_ARCHITECTURES} and \c QMAKE_APPLE_DEVICE_ARCHS variables in
+    your project files or on the command line. This allows you to both cross-compile
+    to a different architecture, and to build universal (multi-architecture) binaries.
+    For example, to build your application for both \c x86_64 and \c arm64 with CMake:
+
     \code
-    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS=x86_64h
+    cmake ~/src/myapp -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
     \endcode
 
-    \c QMAKE_APPLE_DEVICE_ARCHS can also be specified as a space-delimited list
-    in order to build for multiple architectures simultaneously:
+    or with qmake:
+
     \code
-    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS="x86_64 x86_64h"
+    qmake ~/src/myapp QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
     \endcode
 
-    \section1 Additional Command-Line Options
+    \section1 Generating Xcode Project Files
 
-    On the command-line, applications can be built using \c qmake and \c make.
-    Optionally, \c qmake can generate project files for Xcode with
-    \c{-spec macx-xcode}. If you are using the binary package, \c qmake
-    generates Xcode projects by default; use \c{-spec macx-gcc} to generate
-    makefiles. For example:
-
-    \snippet snippets/code/doc_src_qtmac-as-native.qdoc 0
-
-    Configuring with \c{-spec macx-xcode} generates an Xcode project file from
-    project.pro. With \l qmake you do not have to worry about rules for Qt's
-    preprocessors (\l moc and \l uic) since \l qmake automatically handles them
-    and ensures that everything necessary is linked into your application.
-
-    Qt does not entirely interact with the development environment (for
-    example plugins to set a file to "mocable" from within the Xcode
-    user interface).
-
-    The result of the build process is an application bundle, which is a
-    directory structure that contains the actual application executable. The
-    application can be launched by double-clicking it in Finder, or by
-    referring directly to its executable from the command line, for example,
-    \c{myApp.app/Contents/MacOS/myApp}.
-
-    If you wish to have a command-line tool that does not use the GUI for
-    example, \c moc, \c uic or \c ls, you can tell qmake to disable bundle
-    creation from the \c{CONFIG} variable in the project file:
+    By default, CMake and qmake generates project files in Makefile
+    format. If you prefer to build and debug your application from
+    within Xcode, you can request that an Xcode project is generated
+    instead:
 
     \code
-    CONFIG -= app_bundle
+    cmake ~/src/myapp -GXcode
+    \endcode
+
+    or with qmake:
+
+    \code
+    qmake ~/src/myapp -spec macx-xcode
     \endcode
 
     \section1 Deploying Applications on \macos
@@ -199,17 +200,23 @@
     resources you may need. Third party libraries like Qt are normally not
     installed system-wide; each application provides its own copy.
 
+    To build your application as an application bundle with CMake, set the
+    \l {https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE.html}
+    {\c {MACOSX_BUNDLE}} property on your executable target. With qmake,
+    bundles are the default. Set \c {CONFIG -= app_bundle} in your project
+    file (\c{.pro}) to disable it.
+
     A common way to distribute applications is to provide a compressed disk
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c
     macdeployqt (available from the \macos installers), can be used to create
     the self-contained bundles, and optionally also create a .dmg archive.
-    Applications can also be distributed through the Mac App Store. Qt aims
-    to stay within the app store sandbox rules. macdeployqt (bin/macdeployqt)
-    can be used as a starting point for app store deployment.
 
-    \list
-    \li \l{Qt for macOS - Deployment}
-    \endlist
+    Applications can also be distributed through the Mac App Store. macdeployqt
+    (bin/macdeployqt) can be used as a starting point for app store deployment.
+    To ensure that Qt complies with the app store sandbox rules, Qt must be
+    configured with the \c {-feature-appstore-compliant} argument.
+
+    For details about deployment on \macos, see \l{Qt for macOS - Deployment}.
 
     \note For selling applications in the macOS App Store, special rules apply.
     In order to pass validation, the application must verify the existence of
@@ -252,24 +259,17 @@
 
     \section1 Requirements
 
-    Qt requires a macOS platform SDK and corresponding toolchain to be installed
-    on the system. You can get this by installing the Xcode command line tools:
+    Building Qt requires a macOS platform SDK and corresponding toolchain to be
+    installed on the system. You can get this by installing the Xcode, as described
+    in \l {Qt for macOS/Build Environment}.
 
-    \code
-    xcode-select --install
-    \endcode
+    You should always use the exact same Xcode and SDK version as listed in the
+    \l {Qt for macOS/Supported Versions}, to ensure that Qt has been tested in
+    the configuration you're building.
 
-    Or by downloading and installing \l{https://developer.apple.com/xcode/}{Xcode}.
+    \section2 QDoc Dependencies
 
-    \section2 Compiler Versions
-
-    Qt for macOS is tested and compatible with several versions of GCC (GNU
-    Compiler Collection) and Clang (as available from Xcode). For a list of
-    tested configurations, refer to the \l{Supported Platforms} page.
-
-    \section1 QDoc Dependencies
-
-    Since version 5.11, \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
+    \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
     If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
     for specific build requirements.
 
@@ -295,18 +295,24 @@
         To configure the Qt library for your machine type, run the
         \c{./configure} script in the package directory.
 
+        \snippet snippets/code/doc_src_installation.qdoc 12
+
         By default, Qt is configured for installation in the
         \c{/usr/local/Qt-%VERSION%} directory, but this can be
         changed by using the \c{-prefix} option.
 
-        The \l{Qt Configure Options}{Configure Options} page contains more
-        information about the configure options.
-
-    \snippet snippets/code/doc_src_installation.qdoc 12
-
         By default, Qt is built as a framework, but you can built
         it as a set of dynamic libraries (dylibs) by specifying the
         \c{-no-framework} option.
+
+        As described in \l {Qt for macOS/Architectures}, Qt will
+        build for the architecture of your development machine by
+        default. To configure a universal build of Qt with support
+        for both \c x86_64 and \c arm64, add the following argument:
+
+        \code
+        ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+        \endcode
 
         Qt can also be configured to be built with debugging symbols. This
         process is described in detail in the \l{Debugging Techniques}
@@ -337,7 +343,8 @@
 
         This is done like this:
 
-        In \c{.profile} (if your shell is bash), add the following lines:
+        In \c{.profile} (if your shell is bash), or \c{.zshenv} (for zsh)
+        add the following lines:
 
     \snippet snippets/code/doc_src_installation.qdoc 16
 
@@ -376,20 +383,16 @@
     applications on \macos:
 
     \list
-    \li Qt::AA_MacPluginApplication
+    \li Qt::AA_PluginApplication
     \li Qt::AA_DontUseNativeMenuBar
     \li Qt::AA_MacDontSwapCtrlAndMeta
-    \li Qt::WA_MacNoClickThrough
     \li Qt::WA_MacOpaqueSizeGrip
     \li Qt::WA_MacShowFocusRect
     \li Qt::WA_MacNormalSize
     \li Qt::WA_MacSmallSize
     \li Qt::WA_MacMiniSize
     \li Qt::WA_MacVariableSize
-    \li Qt::WA_MacBrushedMetal
     \li Qt::WA_MacAlwaysShowToolWindow
-    \li Qt::WA_MacFrameworkScaled
-    \li Qt::WA_MacNoShadow
     \li Qt::Sheet
     \li Qt::Drawer
     \li Qt::MacWindowToolBarButtonHint,
@@ -541,13 +544,9 @@
     and any other default paths, such as a lookup of dynamic libraries inside
     \e /usr/lib and similar default locations.
 
-    If you are using older versions of GDB you must run with the full
-    path to the executable. Later versions allow you to pass the
-    bundle name on the command line.
-
     \section2 Combining Libraries
 
-    If you want to build a new dynamic library combining the Qt 4
+    If you want to build a new dynamic library combining the Qt
     dynamic libraries, you need to introduce the \c{ld -r} flag. Then
     relocation information is stored in the output file, so that
     this file could be the subject of another \c ld run. This is done
@@ -580,7 +579,7 @@
     If you want to define code for specific versions of \macos, use
     the availability macros defined in \e{/usr/include/AvailabilityMacros.h}.
 
-    The QSysInfo documentation has information about runtime version checking.
+    The QSysInfo and QOperatingSystemVerison documentation has information about runtime version checking.
 
     \section1 \macos Native API Access
 
@@ -622,12 +621,6 @@
 
     The \l{http://developer.apple.com/library/mac/#documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html#//apple_ref/doc/uid/10000123i-CH101-SW13}{Bundle Programming Guide}
     contains information about bundles and the localized resource folder.
-
-    \section2 Mixing Qt with Native Code
-
-    Two classes are available for adding native Cocoa views and controls
-    inside a Qt application, or for embedding Qt into a native
-    Cocoa application: QMacCocoaViewContainer, and QMacNativeWidget.
 
     \section2 Using Native Cocoa Panels
 
@@ -1129,10 +1122,6 @@
     goals help determine how you are going to deploy the application. The last
     sections describe a few things that you must be aware of while deploying
     your application.
-
-    \section2 \macos Version Dependencies
-
-    \include expressing-apple-os-versions.qdocinc expressing os versions
 
     \section1 The Mac Deployment Tool
     \target macdeploy
