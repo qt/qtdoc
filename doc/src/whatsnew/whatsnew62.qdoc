@@ -1,0 +1,349 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page whatsnew62.html
+    \title What's New in Qt 6.2
+    \brief Lists the new features in Qt 6.2.
+
+    \section1 New and Restored Modules in Qt 6.2
+
+    Qt 6.2 adds the following module:
+
+    \list
+        \li \l [QML] {QtQuick.Dialogs} - A QML module that provides native
+            dialogs with a Qt Quick fallback on platforms where Qt does not
+            provide a native one. \l [QtQuickDialogs] FileDialog and
+            \l [QtQuickDialogs] FontDialog are available in this release.
+    \endlist
+
+    Qt 6.2 reintroduces the following modules that were not present in Qt 6.1.
+    All listed modules were ported to Qt 6 and the CMake build system.
+
+    \list
+        \li \l {Qt Bluetooth}
+        \li \l {Qt Multimedia}
+        \li \l {Qt NFC}
+        \li \l {Qt Positioning}
+        \list
+            \li Many of the properties were made bindable.
+            \li Renamed QGeoPolygon::path() to QGeoPolygon::perimeter.
+            \li QGeoLocation now uses QGeoShape instead of QGeoRectangle as a
+                bounding area.
+            \li The \c error() signal in multiple positioning classes was
+                renamed to \c errorOccurred().
+            \li QGeoPositionInfoSourceFactoryV2 was removed, and
+                QGeoPositionInfoSourceFactory now supports custom parameters
+                for the created objects.
+            \li NMEA support was redesigned. The \e serialnmea plugin was
+                renamed to \e nmea and now supports reading the input stream
+                from a TCP socket or a raw file. The \c nmeaSource property
+                was removed.
+        \endlist
+        \li \l {Qt Remote Objects}
+        \li \l {Qt Sensors}
+        \li \l {Qt Serial Bus}
+        \list
+            \li QCanBusFactory was removed and QCanBusFactoryV2 was renamed to
+                QCanBusFactory.
+            \li QModbusRtuSerialSlave and QModbusRtuSerialMaster were renamed
+                to QModbusRtuSerialServer and QModbusRtuSerialClient.
+        \endlist
+        \li \l {Qt Serial Port}
+        \li \l {Qt WebChannel}
+        \list
+            \li QWebChannel properties were made bindable.
+            \li The property update interval of QWebChannel can now be
+                configured. 50ms update interval remains the default.
+            \li QWebChannel now supports property updates for BINDABLE
+                properties. However, the client side does not provide a generic
+                callback mechanism if the host property does not have a NOTIFY
+                signal.
+            \li Signals from objects living in a different thread are now
+                handled correctly
+                (\l{https://bugreports.qt.io/browse/QTBUG-51366}{QTBUG-51366}).
+        \endlist
+        \li \l {Qt WebEngine}
+        \list
+            \li The submodule for Qt Quick has been renamed from \QtWebEngine to
+                QtWebEngineQuick.
+            \li Several classes were moved from QtWebEngineWidgets to
+                QtWebEngineCore, including QWebEnginePage.
+            \li Some functionality previously only accessible by deriving from
+                QWebEnginePage are now accessible using synchronous signals.
+        \endlist
+        \li \l {Qt WebSockets}
+        \li \l {Qt WebView}
+    \endlist
+
+    \section1 New Features in Qt 6.2
+
+    \section2 Qt Core Module
+
+    \list
+        \li Added functionality:
+        \list
+            \li Added QByteArrayView::compare().
+            \li Added methods QFlags::test(Any)Flag(s).
+            \li Added QHashSeed to control hashing (seeds are now size_t);
+                this shall replace qGlobalQHashSeed and qSetGlobalQHashSeed.
+            \li Added PRIxQTDATATYPE macros to facilitate printf()-style
+                formatting without casts or warnings.
+            \li Added a permissions API to QCoreApplication for controlling
+                access to camera, file system, network devices, and so on.
+        \endlist
+        \li Made many properties bindable.
+        \li Grapheme clusters can now handle emojis.
+        \li UNC paths and network shares on Windows are now handled
+            consistently.
+        \li QCalendar now supports construction from the ID of a custom
+            backend.
+        \li QChar, QPoint, and QPointF are now primitive rather than merely
+            relocatable.
+        \li QCoreApplication::exit() is now, like quit(), a slot (as the
+            documentation long claimed); same for QEventLoop and QThread.
+        \li QDateTime now takes account of time-zones throughout time_t's range
+            (in so far as the platform supplies such information), rather than
+            artificially limiting the range to 1970 - 2037.
+        \li Fleshed out the value-type behavior of QFlags, and it is now used
+            more systematically.
+        \li When building for C++20, QList (hence also QVector) is now a
+            \c contiguous_iterator, satisfying \c contiguous_range.
+        \li QLocalSocket::waitFor*() methods were made to support duplex
+            operations on Windows (as they already did on Unix).
+        \li Added std::chrono overloads to QLockFile methods, avoiding needless
+            conversions between UTC and local time.
+        \li QString can now be built from char8_t (when available).
+        \li Made \l {QThreadPool}'s thread priority configurable; the threads
+            share the pool's name if it has one.
+        \li Lots of Bug-fixing, clean up, and documentation improvements.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li Added floating point image formats to QImage for both 16-bit and
+            32-bit floats.
+        \li Converting RGB images to, or painting RGB colors onto, gray-scale
+            images is now gamma corrected and produces the luminance values of
+            the input color space.
+    \endlist
+
+    \section2 Qt Quick Module
+
+    \list
+        \li Added support for selecting cells in a \l [QML] TableView by
+            assigning it a ItemSelectionModel.
+    \endlist
+
+    \section2 Qt Quick Controls Module
+
+    \list
+        \li Added a new control; SelectionRectangle. This control can be used
+            to select cells in a TableView by using a styled selection
+            rectangle.
+    \endlist
+
+    \section2 Qt Network Module
+
+    \list
+        \li QSslSocket
+        \list
+            \li TLS backends that were previously (in Qt 6.1) converted into
+                plugin-like classes, were moved out of \QtNetwork and
+                implemented as real plugins.
+            \li Several TLS backends may now co-exist at runtime, for example,
+                \OpenSSL and Schannel, or \OpenSSL and \SecureTransport.
+        \endlist
+
+        \li QNetworkInformation
+        \list
+            \li Introduced \l {QNetworkInformation::}{isBehindCaptivePortal},
+                a new property that can be  used to determine whether the user
+                is connected to a network with a captive portal.
+        \endlist
+    \endlist
+
+    \section2 Qt QML Module
+
+    \list
+        \li Core language
+        \list
+            \li Added support for optional chaining.
+            \li Added \e as casts: these mostly help tooling but can also be
+                used to replace code such as
+                \c {return (obj instanceof Item) ? obj.width : 42} with
+                \c {(obj as Item)?.width ?? 42}.
+        \endlist
+        \li Added a public CMake API for QML modules: \c qt_add_qml_module().
+        \list
+            \li Takes care of generating \c qmldir and \c qmltypes.
+            \li Can automatically create a plugin if a plugin only registers types.
+            \li Has built-in support for a linting target.
+        \endlist
+        \li QML tooling
+        \list
+            \li \c qmllint
+            \list
+                \li Added a granular setting for the warning severity; warnings
+                    can be disabled entirely, make them informational only, or
+                    make them lead to a non-zero exit code.
+                \li Added a settings file (\e .qmllint.ini) for configuring
+                    warning levels on a directory-by-directory basis. A default
+                    settings file can be generated using
+                    \c {qmllint --write-defaults}.
+                \li Warnings can now be disabled in blocks via comments;
+                    \c {//qmllint enable/disable <warning-type1> <warning-type2...>}
+                \li Greatly improved performance when linting files, especially
+                    when linting multiple files with lots of imports.
+                \li Added support for JSON output for use in tooling.
+            \endlist
+            \li \c qmlformat
+            \list
+                \li \c qmlformat now utilizes our new \e qmldom library and
+                    should generally produce better output.
+            \endlist
+        \endlist
+    \endlist
+
+    \section2 Qt Quick 3D Module
+
+    \list
+        \li Added support for \e {instanced rendering}, an optimized way of
+            drawing multiple instances of the same objects with different
+            transformations.
+        \li Added 3D Particles, an API for adding particle effects to 3D scenes.
+            This includes a technology preview of model blend particles.
+        \li Added Qt Quick Input events for 2D items in 3D, both in scene and
+            in textures.
+        \li Added an API for ray-based picking from arbitrary points in the
+            scene.
+        \li Added RuntimeLoader, making it possible to load glTF2 files at
+            runtime.
+        \li Implemented \e {parallax occlusion mapping}: Enables the use of
+            height maps without the cost of adding geometry.
+        \li Implemented \e {depth draw mode} on materials: Enables fine
+            control over depth rendering for a material.
+    \endlist
+
+    \section2 Qt Data Visualization Module
+
+    \list
+        \li Fixed background rendering mode.
+        \li RenderDirectToBackground_NoClear was deprecated as opting to not
+            clear the window is no longer an option in Qt 6.
+        \li Lots of minor bug fixes.
+    \endlist
+
+    \section2 Qt Charts Module
+
+    \list
+        \li Added more marker shapes to pick from in QScatterSeries and QLegend.
+        \li Added a \e {light marker} feature to QXYSeries and QLegend. This is
+            a lighter weight rendering of points.
+        \li Added an ability to select points in a series via method calls to
+            QXYSeries and QBarSet.
+        \li Added an ability to set a color or use a custom light marker to be
+            used for selected points in QXYSeries.
+        \li Added an ability to set a color to be used for selected bars in
+            QBarSet.
+        \li Added a feature to display a \e {best fit line} in a QXYSeries.
+        \li Added an ability to customize the look of individual points in a
+            QXYSeries. This feature allows setting the visibility, label
+            visibility, and the size of each point.
+        \li Added a method \l {QXYSeries::}{sizeBy()} to QXYSeries that adjusts
+            the size of the points in a series according to passed values.
+        \li Added a method \l {QXYSeries::}{colorBy()} to QXYSeries that adjusts
+            color of the points in a series according to passed values and a
+            gradient.
+        \li Added a new axis class QColorAxis to support the colorBy() feature,
+            displaying a color scale.
+        \li Added an ability to disable label truncation in axes.
+        \li Improved performance by caching recently used text bounds.
+        \li Added interactive support to QLegend via a \l{QLegend::}
+            {setInteractive()} method. Once enabled, allows the legend to be
+            detached with a double-click. Once detached, the legend can be
+            dragged and resized, and reattached to a side of the chart by
+            dragging it off the edge.
+        \li Added \l{QLegend::}{attachedToChartChanged()} signal to QLegend.
+        \li Updated the legend example.
+    \endlist
+
+    \section1 Platform Changes
+
+    \section2 Android
+
+    \list
+        \li Some of the methods previously under the \QtAndroid namespace in
+            \QtAndroidExtras (for example, sdkVersion() and context()), were
+            moved to QNativeInterface::QAndroidApplication.
+        \li Implemented a new permissions API in QCoreApplication.
+        \li The remaining \QtAndroidExtras APIs were left as private APIs in
+            qtbase until cross-platform alternatives (for Intents, Services,
+            etc.) are in place.
+        \li Removed obsolete Ministro code as it's now unsupported by Android.
+        \li Simplified \e AndroidManifest.xml to only contain tags relevant to
+            the user, helping maintainability and reducing clutter.
+        \li QCDebug() and friends now use the category as a tag in Android
+            \e logcat.
+        \li Updated Android Gradle plugin to 4.1.3.
+    \endlist
+
+    \section1 List of API Changes
+
+    These pages contain an overview of API changes in Qt 6.2:
+    \list
+        \li \l {New Classes and Functions in Qt 6.2}
+        \li \l {Obsolete Classes}
+    \endlist
+
+    \section1 Additions to Other Qt 6 Releases
+
+    \list
+        \li \l {What's New in Qt 6.1}
+        \li \l {What's New in Qt 6.0}
+    \endlist
+*/
+
+/*!
+    \page newclasses62.html
+    \title New Classes and Functions in Qt 6.2
+    \brief A list of new APIs in Qt 6.2.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 6.2. Links to new APIs in previous Qt 6 releases are found
+    at the bottom of this page.
+
+    \sincelist 6.2
+
+    \section1 Additions to Other Qt 6 Releases
+
+    \list
+        \li \l {What's New in Qt 6.1}
+        \li \l {What's New in Qt 6.0}
+    \endlist
+*/
