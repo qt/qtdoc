@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -67,12 +67,12 @@ Item {
         font.pixelSize: 48
         wrapMode: Text.WordWrap
         lineHeight: 0.75
-        color: (dimmable && dimmed) ? Qt.darker(button.color) : button.color
+        color: (button.dimmable && button.dimmed) ? Qt.darker(button.color) : button.color
         Behavior on color { ColorAnimation { duration: 120; easing.type: Easing.OutElastic} }
         states: [
             State {
                 name: "pressed"
-                when: mouse.pressed && !dimmed
+                when: mouse.pressed && !button.dimmed
                 PropertyChanges {
                     target: textItem
                     color: Qt.lighter(button.color)
@@ -83,13 +83,13 @@ Item {
 
     MouseArea {
         id: mouse
-        anchors.fill: parent
+        anchors.fill: button
         anchors.margins: -5
         onClicked: {
-            if (operator)
-                window.operatorPressed(parent.text)
+            if (button.operator)
+                window.operatorPressed(button.text)
             else
-                window.digitPressed(parent.text)
+                window.digitPressed(button.text)
         }
     }
 

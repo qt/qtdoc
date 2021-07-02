@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -78,7 +78,7 @@ Rectangle {
     Item {
         id: pad
         width: 180
-        NumberPad { id: numPad; y: 10; anchors.horizontalCenter: parent.horizontalCenter }
+        NumberPad { id: numPad; y: 10; anchors.horizontalCenter: pad.horizontalCenter }
     }
 
     AnimationController {
@@ -94,7 +94,7 @@ Rectangle {
         }
     }
 
-    Keys.onPressed: {
+    Keys.onPressed: function(event) {
         if (event.key == Qt.Key_0)
             digitPressed("0")
         else if (event.key == Qt.Key_1)
@@ -135,7 +135,7 @@ Rectangle {
         id: display
         x: -16
         width: window.width - pad.width
-        height: parent.height
+        height: window.height
 
         MouseArea {
             id: mouseInput
@@ -144,9 +144,9 @@ Rectangle {
             property bool rewind: false
 
             anchors {
-                bottom: parent.bottom
-                left: parent.left
-                right: parent.right
+                bottom: display.bottom
+                left: display.left
+                right: display.right
             }
             height: 50
             onPositionChanged: {

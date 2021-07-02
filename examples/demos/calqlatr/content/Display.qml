@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -141,34 +141,34 @@ Item {
 
     Item {
         id: theItem
-        width: parent.width + 32
-        height: parent.height
+        width: display.width + 32
+        height: display.height
 
         Rectangle {
             id: rect
             x: 16
             color: "white"
-            height: parent.height
+            height: theItem.height
             width: display.width - 16
         }
         Image {
             anchors.right: rect.left
             source: "images/paper-edge-left.png"
-            height: parent.height
+            height: theItem.height
             fillMode: Image.TileVertically
         }
         Image {
             anchors.left: rect.right
             source: "images/paper-edge-right.png"
-            height: parent.height
+            height: theItem.height
             fillMode: Image.TileVertically
         }
 
         Image {
             id: grip
             source: "images/paper-grip.png"
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: theItem.horizontalCenter
+            anchors.bottom: theItem.bottom
             anchors.bottomMargin: 20
         }
 
@@ -178,8 +178,9 @@ Item {
             width: display.width
             height: display.height - 50 - y
             delegate: Item {
+                id: delegateItem
                 height: display.fontSize * 1.1
-                width: parent.width
+                width: listView.width
                 Text {
                     id: operator
                     x: 6
@@ -190,7 +191,7 @@ Item {
                 Text {
                     id: operand
                     font.pixelSize: display.fontSize
-                    anchors.right: parent.right
+                    anchors.right: delegateItem.right
                     anchors.rightMargin: 22
                     text: model.operand
                 }
