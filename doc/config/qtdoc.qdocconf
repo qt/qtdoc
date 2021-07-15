@@ -74,6 +74,9 @@ macro.qtver                   = "$QT_VER"
 macro.qtmajorversion          = "$QT_VER"
 macro.qtmajorversion.match    = "^(\\d+)"
 
+macro.qt5 = "\\l{https://doc.qt.io/qt-5/\1}{\2}"
+macro.qtbug = "\\l{https://bugreports.qt.io/browse/\1}{\1}"
+
 # Config to enable YouTube links in the offline documentation
 {HTML.extraimages,qhp.QtDoc.extraFiles} += images/wPcVlP_wrew.jpg
 
