@@ -147,14 +147,9 @@
     that we use below.
 
     For \c{find_package} to be successful, \c CMake must find the Qt
-    installation. There are different ways you can tell \c CMake about Qt:
-    \list 1
-        \li Set the \c CMAKE_PREFIX_PATH environment variable to include the
-            Qt 6 installation prefix.
-        \li Set the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the
-            Qt 6 installation prefix.
-    \endlist
-
+    installation. There are different ways you can tell \c CMake about Qt,
+    but the most common and recommended approach is to set the CMake cache
+    variable \c{CMAKE_PREFIX_PATH} to include the Qt 6 installation prefix.
     Note that \l{Qt Creator Manual}{Qt Creator} will handle this transparently
     for you.
 
