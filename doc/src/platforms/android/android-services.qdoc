@@ -353,11 +353,8 @@ BroadcastReceiver.
 This can work with services running in the same process as \c QtActivity and even
 if \c Service is extended.
 
-//! TODO bring back once the jni example is merged to qtbase
-\omit //! Qt Android Extras not part of Qt 6.0
-For more information, see
-\l{Calling QML/C++ Functions from Java Code}.
-\endomit //! Qt Android Extras not part of Qt 6.0
+For more information, see the
+\l{Qt Android Notifier}{Qt Android Notifier Example}.
 
 \section2 Using Android BroadcastReceiver
 
@@ -418,8 +415,6 @@ public class ServiceBroadcastUtils {
 }
 \endcode
 
-For more information on working with native calls, see
-\l{Calling QML/C++ Functions from Java Code}.
 To make use of all that, start your service as shown in \l{Start the Service},
 an then register the broadcast receiver by calling the method
 \c registerServiceBroadcastReceiver():
