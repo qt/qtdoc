@@ -83,14 +83,6 @@
     using OpenGL ES 3.x features will result in the application breaking on older
     devices that only support 2.0.
 
-    \omit //! Qt Multimedia
-    \section1 Multimedia Special Considerations
-
-    The \l{Qt Multimedia Widgets} module is not supported on Android, which means
-    video display is only available using the \l [QML]{QtMultimedia::}{Video}
-    QML Type.
-    \endomit //! Qt Multimedia
-
     \section1 Assets File System
 
     Qt for Android provides a special, virtual file system which is based on
