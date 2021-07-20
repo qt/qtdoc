@@ -236,9 +236,7 @@
     Place any Java code under the path \c{$ANDROID_PACKAGE_SOURCE_DIR/src/}.
     Any code here can be used with your application, for example you can call
     Java methods from within Qt code.
-    \omit //! Not part of Qt 6.0
-    For more information, see \l{Qt JNI Messenger}{Qt JNI Messenger Example}.
-    \endomit //! Not part of Qt 6.0
+    For more information, see \l{Qt Android Notifier}{Qt Android Notifier Example}.
 
     When using Qt Creator, add the Java files to your project using \l DISTFILES,
     so they are visible under the project files.
