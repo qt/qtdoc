@@ -89,11 +89,6 @@ int main(int argc, char* argv[])
     QGuiApplication app(argc, argv);
 #endif
 
-    auto permission = QPermission::WriteStorage;
-    if (QCoreApplication::requestPermission(permission).result() != QPermission::Authorized) {
-        qWarning() << "Couldn't get 'WriteStorage' permission!";
-        return -1;
-    }
     QQuickWindow::setDefaultAlphaBuffer(true);
 
     QCoreApplication::setApplicationName(QStringLiteral("Photosurface"));
