@@ -12,6 +12,8 @@ qtHaveModule(quick) {
 
     qtHaveModule(quickcontrols2) {
         SUBDIRS += coffee
+
+        android|ios: SUBDIRS += hangman
     }
 
     qtHaveModule(network) {
