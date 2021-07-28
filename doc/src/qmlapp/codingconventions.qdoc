@@ -82,6 +82,12 @@ users and tooling to reason about an external property's type.
 Additionally they remove assumptions that a component otherwise has to make about the environment
 in which it is created.
 
+\section1 Signal handlers
+
+When handling parameters in signal handlers use functions which name them explicitly:
+
+\snippet qmlapp/codingconventions/signalhandler.qml 0
+
 \section1 JavaScript Code
 
 If the script is a single expression, we recommend writing it inline:
