@@ -67,6 +67,12 @@ could be written like this:
 
 \snippet qmlapp/codingconventions/dotproperties.qml 1
 
+\section1 Unqualified access
+
+In order to improve readability and performance always reference properties of parent components by their id explicitly:
+
+\snippet qmlapp/codingconventions/qualifiedaccess.qml 0
+
 \section1 JavaScript Code
 
 If the script is a single expression, we recommend writing it inline:
