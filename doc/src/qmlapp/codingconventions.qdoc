@@ -73,6 +73,15 @@ In order to improve readability and performance always reference properties of p
 
 \snippet qmlapp/codingconventions/qualifiedaccess.qml 0
 
+\section1 Required properties
+
+When requiring data defined outside the component, make this explicit by using \l{Required Properties}.
+Required properties must be set or else the creation of the component will fail.
+These are preferable to unqualified lookups because they are more performant and allow for both
+users and tooling to reason about an external property's type.
+Additionally they remove assumptions that a component otherwise has to make about the environment
+in which it is created.
+
 \section1 JavaScript Code
 
 If the script is a single expression, we recommend writing it inline:
