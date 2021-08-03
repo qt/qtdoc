@@ -1,0 +1,91 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page integrity-monolith-project-tutorial.html
+    \title Monolith Project Tutorial
+    \previouspage integrity.html
+    \nextpage integrity-installing-dependencies.html
+
+    The INTEGRITY applications can be monolith application projects,
+    dynamic download application projects, or kernelspace projects. The monolith
+    application is a stand-alone executable that you can run directly on a
+    target device.
+
+    In this tutorial, we build an INTEGRITY monolith project for
+    a Qt application. After following the steps in this
+    tutorial, you will have the Qt for INTEGRITY development environment up and running.
+
+    The tutorial assumes you have the
+    \l {https://www.lantronix.com/products/sa8155p-automotive-development-platform}
+    {Qualcomm Snapdragon 8155P}.
+
+    Tutorial content:
+    \list 1
+        \li \l {Installing Platform Dependencies}
+        \li \l {Building Qt for Qualcomm Snapdragon 8155P Board}
+        \li \l {Building a monolith project}
+        \li \l {Flashing a monolith image and running Qt application on the board}
+    \endlist
+
+*/
+
+/*!
+    \page integrity-installing-dependencies.html
+    \title Installing Platform Dependencies
+    \previouspage integrity-monolith-project-tutorial.html
+    \nextpage integrity-building-qt-for-8155P-board.html
+
+    \include installing-platform-dependencies.qdocinc installing platform dependencies
+*/
+
+/*!
+    \page integrity-building-qt-for-8155P-board.html
+    \title Building Qt for Qualcomm Snapdragon 8155P Board
+    \previouspage integrity-installing-dependencies.html
+    \nextpage integrity-building-monolith.html
+
+    \include integrity-building-qt-8155P.qdocinc building qt for Qualcomm Snapdragon 8155P
+*/
+
+/*!
+    \page integrity-building-monolith.html
+    \title Building a monolith project
+    \previouspage integrity-building-qt-for-8155P-board.html
+    \nextpage integrity-flash-image-and-run.html
+
+    \include integrity-building-monolith.qdocinc building monolith
+*/
+
+/*!
+    \page integrity-flash-image-and-run.html
+    \title Flashing a monolith image and running Qt application on the board
+    \previouspage integrity-building-monolith.html
+    \nextpage integrity-monolith-project-tutorial.html
+
+    \include integrity-flash-and-run.qdocinc flash and run application
+*/

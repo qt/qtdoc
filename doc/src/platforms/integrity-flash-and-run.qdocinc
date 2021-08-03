@@ -1,0 +1,140 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+//! [flash and run application]
+\section1 Qualcomm Snapdragon 8155P Board
+    There is Qualcomm Snapdragon 8155P Board top view.
+\image sa8155p
+
+\section1 Setup the wiring
+    There are several connectors are needed to be connected to the PC
+    for flashing and running applications on the board:
+
+    \list 1
+        \li Power connector
+        \li Micro USB is the FT serial console output
+        \li Normal (male male USB-A - USB A/USB C cable) USB is the QFIL/Fastboot port
+        \li DisplayPort cable is for Graphical output
+    \endlist
+    \image wiring1
+    \caption There is a wiring configuration example: power is ON,
+             normal male USB-A is connected for flashing images,
+             DisplayPort cable is conected for Graphical output.
+    \image wiring2
+    \caption Micro USB is connected for using the FT serial console.
+
+\section1 Switch to Fastboot Mode
+    To flash images on Qualcomm Snapdragon 8155P board install
+    Fastboot Tool on Host OS.
+    See, \l {https://developer.android.com/studio/releases/platform-tools} {Fastboot Tool}
+
+    Before flashing switch the board to the Fastboot Mode:
+    \list 1
+        \li Open serial connection with the board:
+            \badcode
+                putty /dev/ttyUSB0 -serial -sercfg 115200,8,1
+            \endcode
+        \li There are 2 options:
+
+            - On the device, hold the volume key and power cycle the device.
+
+            - Or press down arrow on the UART shell and power cycle the device.
+
+        \li If the board switches to Fastboot Mode successfully,
+            it prints following console output:
+            \image fastboot-mode
+
+            Another way to check the board is in Fastboot Mode is to run the command:
+            \badcode
+                fastboot devices
+            \endcode
+
+    \endlist
+
+\section1 Flash images
+    The build script produces set of images for board partitions.
+    \badcode
+        boot.img, perf_dyn.img, misc_dyn.img, abl.elf, etc
+    \endcode
+
+    After switching to Fastboot Mode images can be flashed to the board.
+
+    \list 1
+    \li When setting up for the first time, follow the images flashing procedure from GHS
+        \e ES7_FinalCopy/ES7_customer_package_readme.docx:
+
+        \badcode
+            cd /work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/bin/target
+            fastboot flash abl  abl.elf
+            fastboot flash boot vmm-adp-gvm-sa8155/boot.img
+            fastboot flash perf_dyn_a vmm-adp-gvm-sa8155/perf_dyn.img
+            fastboot flash misc_dyn_a  vmm-adp-gvm-sa8155/misc_dyn.img
+
+            cd /work/ghs/sa8155/es7/es7_dev_env/ES7_FinalCopy/Images/sa8155_hyp
+            fastboot flash hyp_a hyp.mbn
+            fastboot flash tz tz.mbn
+            fastboot flash apdp apdp.mbn
+
+            cd /work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/bin/target/fs
+            fastboot flash gh_sys sys.img
+            fastboot flash gh_persist ghs_persist.img
+            fastboot flash gh_test ghs_test.img.sparse
+
+            cd /work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/prebuilt_NHLOS/adsp/asic_8150
+            fastboot flash adsp adsp.img
+
+            cd /work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/lagvm/LINUX/android/out/target/product/msmnile_gvmgh
+            fastboot flash vendor vendor.img
+        \endcode
+        \note \e ES7_FinalCopy/ES7_customer_package_readme.docx is a part of QC [ES7] Customer package.
+              Contact \l {https://www.qualcomm.com/support} {Qualcomm Support} for more information.
+
+    \li If this is not the first time flashing, then the monolith part should be flashed:
+        \badcode
+            cd /work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/bin/target
+            fastboot flash boot vmm-adp-gvm-sa8155/boot.img
+        \endcode
+    \li Restart the board.
+    \endlist
+
+\section1 Run Qt application on the board
+    \list 1
+        \li Open serial console:
+            \badcode
+                 putty /dev/ttyUSB0 -serial -sercfg 115200,8,1
+            \endcode
+        \li Execute the command:
+            \badcode
+                rt <application name> Initial
+            \endcode
+        \li Run Qt application example:
+            \image qml-application "QML application"
+                   Qt application is running on Qualcomm Snapdragon 8155P Board and displayed on the connected screen.
+    \endlist
+//! [flash and run application]
+*/

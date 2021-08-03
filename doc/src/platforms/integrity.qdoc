@@ -1,0 +1,88 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page integrity.html
+    \title Qt for INTEGRITY
+    \keyword INTEGRITY
+    \ingroup supportedplatform
+    \brief Platform support for INTEGRITY.
+
+    From Qt 5.9 onwards, the Green Hills Software
+    \l {http://www.ghs.com/products/rtos/integrity.html} {INTEGRITY}
+    Real-Time Operating System (RTOS) is a supported platform.
+
+    The INTEGRITY RTOS is widely used in systems where safety and security are critical.
+    Especially in the automotive industry, both Qt and the INTEGRITY RTOS can be
+    used in conjunction with the instrument clusters and infotainment systems.
+
+    With Qt for INTEGRITY you can build and develop applications for the
+    INTEGRITY RTOS. The development environment includes your target device and Qt sources
+    that you need to build for your target device.
+    See \l {Supported Development Hosts and Boards} for detailed information
+    about the supported development environment.
+
+    Qt for INTEGRITY has a tutorial that helps you learn how to:
+    \list
+        \li Set up a development environment for the Qualcomm Snapdragon 8155P board
+        \li Build an application
+        \li Prepare the Qualcomm Snapdragon 8155P board to run your application
+    \endlist
+
+    See \l {Monolith Project Tutorial}.
+
+    \section1 Supported Qt Modules
+
+    Qt for INTEGRITY has been tested to support the following Qt modules:
+    \list
+        \li Qt Core
+        \li Qt Network
+        \li Qt GUI
+        \li Qt Quick
+        \li Qt QML
+        \li Qt Image Formats
+        \li Qt Widgets
+        \li Qt SVG
+        \li Qt Remote Objects
+    \endlist
+
+    \note Other Qt modules may work with Qt for INTEGRITY, but we cannot guarantee that.
+
+    \section1 Supported Development Hosts and Boards
+
+    Qt for INTEGRITY can be built on the following hosts:
+    \list
+        \li 64-bit Linux distributions
+    \endlist
+
+    Qt 6 for INTEGRITY supports building and developing applications for the
+    following development board:
+    \list
+        \li \l {https://www.lantronix.com/products/sa8155p-automotive-development-platform}
+            {Qualcomm Snapdragon 8155P}
+    \endlist
+*/

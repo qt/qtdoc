@@ -1,0 +1,75 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+//! [installing platform dependencies]
+
+Before building applications with Qt for INTEGRITY,
+install the correct build tools and other dependencies required
+in the 64-bit Linux development host:
+
+\table 80%
+\header \li Requirement \li Description
+\row \li INTEGRITY 19.0.13 installation
+     \li The installation must contain the patches for C++17 support.
+         Contact \l {https://support.ghs.com/contact/request-support/}
+        {Green Hills Software}.
+        \note GHS patches \e 14695, \e 16456, \e 16761, \e 16762 and \e 16917.
+
+\row \li MULTI IDE and Green Hills Software Compiler (version 2020.1.4 or newer)
+     \li The Green Hills Software development tools. See
+         \l {http://www.ghs.com/products/MULTI_IDE.html} {MULTI IDE}.
+         For licenses, contact \l {https://support.ghs.com/licensing/request-license/}
+        {Green Hills Software}.
+         \note GHS patches \e 16398 and \e 17423.
+
+\row \li QC BSP [ES7] for GHS Integrity 19.0.13-QC
+     \li The development Qualcomm Board Support Package for Integrity and Snapdragon 8155P Board.
+         Contact \l {https://support.ghs.com/contact/request-support/}
+        {Green Hills Software}.
+
+\row \li QC [ES7] Customer package
+     \li Additional patches and instructions from Qualcomm.
+         Contact \l {https://www.qualcomm.com/support} {Qualcomm Support}.
+\row
+    \li CMake 3.18.4 or higher
+    \li CMake build system is now the default one for Qt 6 building.
+        See \l {https://cmake.org/documentation/} {CMake Documentation}.
+\row
+    \li Ninja
+    \li Ninja is a build system with a focus on speed. It is used to build Google
+        Chrome, parts of Android, LLVM, and can be used in many other projects due to CMake's Ninja backend.
+        See \l {https://cmake.org/cmake/help/latest/generator/Ninja.html} {Ninja}.
+\row
+    \li Other extra packages (perl, python, etc) required to be installed Host OS
+    \li See  \l {https://wiki.qt.io/Building_Qt_5_from_Git} {Building Requirements}.
+        \note Perl is not required if you download the Qt sources via
+        your Qt Account.
+\endtable
+
+//! [installing platform dependencies]
+*/
