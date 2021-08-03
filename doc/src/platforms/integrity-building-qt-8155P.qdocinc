@@ -1,0 +1,187 @@
+/****************************************************************************
+**
+** Copyright (C) 2021 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+//! [building qt for Qualcomm Snapdragon 8155P]
+    Install INTEGRITY and Qualcomm environment according to the provided
+    instructions from Green Hills and Qualcomm.
+
+    To set up the development environment for Qt for INTEGRITY,
+    build Qt from the sources for the Qualcomm Snapdragon 8155P board. Before building Qt,
+    create a shell script that will set up the build environment.
+
+    \section1 Creating a shell script
+
+    Create a new shell script \e{setEnvironment.sh}, and save it under
+    your home folder. Add the following export commands to the script:
+
+    \badcode
+        export PATH=$PATH:/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/comp
+        export INTEGRITY_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/integrity
+        export INTEGRITY_BSP=platform-sa8155
+        export INTEGRITY_BUILD_TARGET=chk
+        export QC_MULTIMEDIA_INC_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/include/amss/multimedia
+        export GL_INC_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/include/public
+        export GL_LIB_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/rel/libs/base:/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/rel/libs/multimedia/display:/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/rel/libs/multimedia/graphics:/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/rel/libs/platform/:/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/opengl/esx/build/integrity/prebuilt/
+    \endcode
+
+    These exports assume you have used the \c /work/ghs/* installation directories
+    while installing MULTI IDE and INTEGRITY (see
+    \l {Installing Platform Dependencies}). If you have not used the default
+    directories, adjust the exported paths accordingly.
+
+    To initialize your build environment, run the following command in a terminal:
+
+    \badcode
+        source ~/setEnvironment.sh
+    \endcode
+
+    \note Run this command in your terminal every time you build Qt,
+    or use the \c qmake or CMake build systems.
+
+    \section1 Getting Qt sources
+
+    You can download the Qt source code from your
+    \l {https://login.qt.io/login} {Qt Account}.
+
+    You can also get the Qt sources from the Git repo. Qt Wiki has
+    instructions for getting Qt sources from Git, see
+    \l {https://wiki.qt.io/Building_Qt_5_from_Git#Getting_the_source_code} {Getting source code}.
+
+    \note Qt sources version must be 6.2 or laler.
+    \note The init-repository script initializes the Qt 6 repository
+          and clones various Qt 6 sub-modules (see
+          \l {https://wiki.qt.io/Building_Qt_5_from_Git#Getting_the_submodule_source_code}
+          {Getting the submodule source code}).
+          Qt modules supported by Qt for INTEGRITY are listed in \l {Supported Qt Modules}.
+
+    \section1 Building Qt Desktop for cross-compiling tools usage
+
+    The cross-compiling Qt requires a host build of Qt being available.
+    During the build, tools such as moc, rcc, qmlcachegen, qsb,
+    and others, are invoked from there.
+    For more detailed information please read
+    \l {https://www.qt.io/blog/qt-6-build-system} {Cross-compiling Qt}.
+
+    Run the following commands for Linux Host build:
+    \badcode
+        mkdir hostbuild
+        cd hostbuild/
+        ../qt5/configure -nomake tests -nomake examples -release -developer-build
+        cmake --build . --parallel 6
+    \endcode
+
+    \section1 Creating a toolchain file for INTEGRITY
+
+    To cross-compile a project with CMake, one must specify a toolchain file.
+    This CMake-language file sets the right values for the platform name,
+    used compiler/linker, and a whole bunch of other toolchain-specific things.
+    For Integrity build create toolchain.cmake with follow content:
+
+    \quotefromfile platforms/cmake/toolchain_integrity.cmake
+
+    \printuntil set(OPENGL_opengl_LIBRARY ${TARGET_ROOT_PATH}/libeglmegapack.a)
+
+    \section1 Creating EGL pack
+
+    For CMake find EGL module to properly detect EGL, repack the needed egl libraries into one archive called libeglmegapack:
+
+    \badcode
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libESXEGL_Adreno.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libadreno_utils.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libESXGLESv2_Adreno.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libadreno_utils.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libGSLUser.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libOSUser.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/graphics/libpanel.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/integrity/libs/arm64/chk/libivfs.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/platform/libpmem.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/platform/libtzbsp.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/integrity/libs/arm64/chk/libpaged_alloc.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/opengl/esx/build/integrity/prebuilt/libglnext-llvm.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/multimedia/display/libopenwfd.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/base/libplanedef.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/platform/liblogger.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/base/librfs_client.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/integrity/libs/arm64/chk/libshm_client.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/base/libmmosalrfs.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/base/libmmosalfile.a
+        ar -x ../hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/out/chk/libs/base/libOSAbstraction.a
+        ar r libeglmegapack.a *.o
+        rm *.o
+    \endcode
+
+    Copy the resulting \c libeglmegapack.a to your installation directory \c hlos_dev_boot.
+
+    \section1 Configuring Qt for INTEGRITY
+
+    Configure Qt for the Qualcomm Snapdragon 8155P board using these following commands:
+
+    \badcode
+        cd <Qt installation directory>
+        cmake ../qt5/ -DQT_HOST_PATH=/work/ghs/hostbuild/qtbase
+        -DCMAKE_TOOLCHAIN_FILE=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/toolchain_integrity.cmake
+        -DQT_QMAKE_TARGET_MKSPEC=devices/integrity-armv8-SA8155P -DBUILD_qtdoc=OFF
+        -DBUILD_qttranslations=OFF -DFEATURE_printdialog=OFF --debug-trycompile -DFEATURE_dbus=OFF
+        -GNinja -DUNIX=ON
+        -DEGL_LIBRARY=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/libeglmegapack.a
+        -DEGL_INCLUDE_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/include/public
+        -DFEATURE_dnslookup=OFF -DFEATURE_glib=OFF -DFEATURE_libudev=OFF -DFEATURE_system_pcre2=OFF -DFEATURE_sql_mysql=OFF
+    \endcode
+
+    \note INTEGRITY supports only static Qt builds.
+    \note \c QT_HOST_PATH variable introduced in Qt 6.
+          When cross-compiling, this must be set to the install location of Qt for the host platform.
+          It is used to locate tools to be run on the host (moc, rcc, androiddeployqt, and so on).
+
+    \section1 Building Qt for INTEGRITY
+
+    Build Qt by calling \c cmake in the terminal. You can run \c cmake with as
+    many cores on your host machine as you desire. In our example we use six cores:
+
+    \badcode
+        cmake --build . --parallel 6
+    \endcode
+
+    \target installing-qt-for-sa8155
+    \section1 Installing Qt
+
+    If you have not used the configure option \c {-prefix $PWD/qtbase} in \l {Configuring Qt},
+    run the following commands in a terminal:
+
+    \badcode
+    cd <Qt installation directory>
+        cmake --install .
+    \endcode
+
+    If you have used the configure option \c {-prefix $PWD/qtbase},
+    you can use Qt from the build directory, without running the
+    \c {cmake install} command.
+
+    Qt is now configured and built for the sa8155 board.
+//! [building qt for Qualcomm Snapdragon 8155P]
+*/
