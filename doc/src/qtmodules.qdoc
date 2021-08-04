@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -74,6 +74,10 @@
          \li Provides lightweight QML types for creating performant user
              interfaces for desktop, embedded, and mobile devices. These
              types employ a simple styling architecture and are very efficient.
+    \row
+        \li \l[QtQuickDialogs]{Qt Quick Dialogs}
+        \li Types for creating and interacting with system dialogs from a
+            Qt Quick application.
     \row
         \li \l[QtQuickLayouts]{Qt Quick Layouts}
         \li Layouts are items that are used to arrange Qt Quick 2 based items in
@@ -187,6 +191,12 @@
         \li Provides classes and tools for creating state machines from SCXML files and
             embedding them in applications.
     \row
+        \li \l[QtSensors]{Qt Sensors}
+        \li All
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}, \l{Qt for UWP}{UWP}, Mer,
+            and \l{Qt for QNX}{QNX}.
+        \li Provides access to sensor hardware and motion gesture recognition.
+    \row
         \li \l{Qt Serial Bus}{Qt Serial Bus}
         \li All
         \li \l{Qt for Linux/X11}{Linux}, \l{Boot2Qt}{Boot to Qt}, \l{Qt for macOS}{macOS}
@@ -222,6 +232,28 @@
         \li All
         \li All
         \li Classes for loading QWidget based forms created in \QD dynamically, at runtime.
+    \row
+        \li \l[QtWebChannel]{Qt WebChannel}
+        \li All
+        \li All
+        \li Provides access to QObject or QML objects from HTML clients for seamless
+            integration of Qt applications with HTML/JavaScript clients.
+    \row
+        \li \l[QtWebEngine]{Qt WebEngine}
+        \li All
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
+        \li Classes and functions for embedding web content in applications using the
+            \l{http://www.chromium.org/Home}{Chromium browser project}.
+    \row
+        \li \l[QtWebSockets]{Qt WebSockets}
+        \li All
+        \li All
+        \li Provides \WebSocket communication compliant with \l{http://tools.ietf.org/html/rfc6455} {RFC 6455}.
+    \row \li \l[QtWebView]{Qt WebView}
+         \li All
+         \li Platforms with a native web engine.
+         \li Displays web content in a QML application by using APIs native to the platform,
+             without the need to include a full web browser stack.
     \row
         \li \l[QtXml]{Qt XML}
         \li All
