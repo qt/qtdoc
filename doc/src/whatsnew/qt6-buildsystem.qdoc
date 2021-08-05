@@ -52,8 +52,9 @@ See also \l{Qt Configure Options} for an overview of the new configure API.
 \section2 CMake, Ninja as External Dependencies
 
 You need a recent version of \b{CMake} to configure and build Qt. For Qt 6.0,
-we require \b{CMake 3.18}. You furthermore need to have an up-to date version
-of the \l{Ninja} tool installed.
+we require \b{CMake 3.16}. Starting with Qt 6.2, we require \b{CMake 3.21} when
+building Qt as static libraries. You must also have an up-to date version of
+the \l{Ninja} tool installed.
 
 Both CMake and Ninja are open source tools that can be installed by various
 means. They are also available in the Qt Online installer.
