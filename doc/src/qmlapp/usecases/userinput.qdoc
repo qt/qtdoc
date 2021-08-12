@@ -34,15 +34,10 @@
 The \l {Qt Quick} module provides support for the most common types of user input,
 including mouse and touch events, text input, and key-press events.  Other
 modules provide support for other types of user input.
-\omit
-For example, the \l {Qt Sensors} module provides support for shake-gestures
-in QML applications.
-\endomit
 
 This article covers how to handle basic user input.
 \omit //! Qt Multimedia
-For further information about motion-gesture support, see the
-\l {Qt Sensors} documentation. For information about audio-visual input, see the \l {Qt Multimedia} documentation.
+For information about audio-visual input, see the \l {Qt Multimedia} documentation.
 \endomit //! Qt Multimedia
 
 \section2 Mouse and touch events
@@ -54,13 +49,8 @@ The \l TapHandler responds to taps or clicks on any type of pointing device.
 
 \snippet qmlapp/usecases/userinput.qml 0
 
-For more advanced use cases such as, drag, pinch and zoom gestures, see
-documentation for the \l DragHandler and \l PinchHandler types.
-
-\note Some types have their own built-in input handling. For example,
-\l Flickable responds to mouse dragging and mouse wheel scrolling. It handles
-touch dragging and flicking via synthetic mouse events that are created when
-the touch events are not handled.
+\note Some Item types have their own built-in input handling. For example,
+\l Flickable responds to mouse dragging, touch flicking, and mouse wheel scrolling.
 
 \section2 Keyboard and button events
 
