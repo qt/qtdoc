@@ -27,7 +27,7 @@
 
 /*!
     \page macos.html
-    \title Qt for macOS
+    \title Qt for \macos
     \brief Platform support for \macos.
     \keyword Qt for macOS
     \ingroup supportedplatform
@@ -40,8 +40,8 @@
     through the Cocoa API.
 
     To download and install Qt for \macos, follow the instructions on the
-    \l{Getting Started with Qt} page. To build Qt from source, see \l{Qt
-    for macOS/Qt for macOS - Building from Source}.
+    \l{Getting Started with Qt} page. To build Qt from source, see \l
+    {Qt for \macos - Building from Source}.
 
     \target macos-supported-versions
     \section1 Supported Versions
@@ -49,7 +49,7 @@
     When talking about version support on \macos, it's important to distinguish
     between the  \l {Build Environment}{build environment}; the platform you're building on
     or with, and the  \l {Target Platforms}{target platforms}; the platforms you are building
-    for. The following macOS versions are supported.
+    for. The following \macos versions are supported.
 
     \include supported-platforms.qdocinc macos
 
@@ -110,7 +110,7 @@
     In theory this would allow running your application on every single \macos version released,
     but for practical (and technical) reasons there is a lower limit to this range, known as
     the \e{deployment target} of your application. If the binary is launched on a \macos version
-    below the deployment target macOS or Qt will give an error message and the application will
+    below the deployment target \macos or Qt will give an error message and the application will
     not run.
 
     Qt expresses the deployment target via the \l
@@ -216,9 +216,9 @@
     To ensure that Qt complies with the app store sandbox rules, Qt must be
     configured with the \c {-feature-appstore-compliant} argument.
 
-    For details about deployment on \macos, see \l{Qt for macOS - Deployment}.
+    For details about deployment on \macos, see \l{Qt for \macos - Deployment}.
 
-    \note For selling applications in the macOS App Store, special rules apply.
+    \note For selling applications in the \macos App Store, special rules apply.
     In order to pass validation, the application must verify the existence of
     a valid receipt before executing any code. Since this is a copy protection
     mechanism, steps should be taken to avoid common patterns and obfuscate the
@@ -232,7 +232,7 @@
     The page below covers specific issues and recommendations for creating
     \macos applications.
     \list
-    \li \l{Qt for macOS - Specific Issues}
+    \li \l{Qt for \macos - Specific Issues}
     \endlist
 
     \section1 Where to Go from Here
@@ -254,17 +254,17 @@
 
 /*!
     \page macos-building.html
-    \title Qt for macOS - Building from Source
+    \title Qt for \macos - Building from Source
     \brief How to install Qt on \macos.
 
     \section1 Requirements
 
-    Building Qt requires a macOS platform SDK and corresponding toolchain to be
+    Building Qt requires a \macos platform SDK and corresponding toolchain to be
     installed on the system. You can get this by installing the Xcode, as described
-    in \l {Qt for macOS/Build Environment}.
+    in \l {Qt for \macos#Build Environment}.
 
     You should always use the exact same Xcode and SDK version as listed in the
-    \l {Qt for macOS/Supported Versions}, to ensure that Qt has been tested in
+    \l {Qt for \macos#Supported Versions}, to ensure that Qt has been tested in
     the configuration you're building.
 
     \section2 QDoc Dependencies
@@ -305,7 +305,7 @@
         it as a set of dynamic libraries (dylibs) by specifying the
         \c{-no-framework} option.
 
-        As described in \l {Qt for macOS/Architectures}, Qt will
+        As described in \l {Qt for \macos#Architectures}, Qt will
         build for the architecture of your development machine by
         default. To configure a universal build of Qt with support
         for both \c x86_64 and \c arm64, add the following argument:
@@ -360,7 +360,7 @@
 
 /*!
     \page macos-issues.html
-    \title Qt for macOS - Specific Issues
+    \title Qt for \macos - Specific Issues
     \brief A description of issues with Qt that are specific to \macos.
 
     This page outlines the main issues regarding \macos support in Qt.
@@ -492,7 +492,7 @@
     deployment of applications.
 
     Qt provides a deploy tool, \l{The Mac Deployment Tool}{macdeployqt}, to
-    simplify the deployment process. The \l{Qt for macOS - Deployment}
+    simplify the deployment process. The \l{Qt for \macos - Deployment}
     article covers the deployment process in more detail.
 
     \section2 Qt Libraries as Frameworks
@@ -731,10 +731,10 @@
 
 /*!
     \page macos-deployment.html
-    \title Qt for macOS - Deployment
+    \title Qt for \macos - Deployment
     \brief Describes the deployment process for \macos.
 
-    This document describes how to create a \l{Qt for macOS}{\macos} bundle
+    This document describes how to create a \l{Qt for \macos}{\macos} bundle
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
     \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with the
@@ -874,7 +874,7 @@
     We assume that you already have installed Qt as frameworks, which
     is the default when installing Qt, in the /path/to/Qt
     directory. For more information on how to build Qt without Frameworks,
-    visit the \l{Qt for macOS - Specific Issues} documentation.
+    visit the \l{Qt for \macos - Specific Issues} documentation.
 
     When installing, the identification name of the frameworks is set. This
     name is used by the dynamic linker (\c dyld) to find the libraries for your
