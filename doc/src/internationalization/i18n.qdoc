@@ -282,9 +282,28 @@
 
     \section1 Support for Encodings
 
-    The QTextCodec class and the facilities in QTextStream make it easy to
-    support many legacy input and output encodings for your users' data. When an
-    application starts, the locale of the machine will determine the 8-bit
+    As of Qt 6, it is assumed that 8-bit
+    \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8} is the predominant encoding.
+
+    QString::toUtf8() returns the text in UTF-8 encoding; this perfectly
+    preserves Unicode information while looking like plain ASCII if the text
+    is wholly ASCII.
+
+    For converting Unicode to local 8-bit encodings, a shortcut is
+    available: the QString::toLocal8Bit() function returns such 8-bit
+    data. On Unix systems this is equivalent to toUtf8(), on Windows the
+    systems current code page is being used.
+
+    For converting the other way, there are the QString::fromUtf8() and
+    QString::fromLocal8Bit() convenience functions.
+
+    For QTextStream, QTextStream::setEncoding() can be used to set
+    common encodings.
+
+    Should other legacy encodings be required, the QTextCodec class from the
+    Qt5Compat module can be used.
+
+    When an application starts, the locale of the machine will determine the 8-bit
     encoding used when dealing with external 8-bit data. QTextCodec::codecForLocale()
     returns a codec that can be used to convert between this locale encoding
     and Unicode.
@@ -297,39 +316,13 @@
 
     \snippet snippets/code/doc_src_i18n.cpp 9
 
-    For converting Unicode to local 8-bit encodings, a shortcut is
-    available: the QString::toLocal8Bit() function returns such 8-bit
-    data. Another useful shortcut is QString::toUtf8(), which returns
-    text in the 8-bit \l{http://www.ietf.org/rfc/rfc2279.txt}{UTF-8} encoding:
-    this perfectly preserves
-    Unicode information while looking like plain ASCII if the text is
-    wholly ASCII.
-
-    For converting the other way, there are the QString::fromUtf8() and
-    QString::fromLocal8Bit() convenience functions, or the general code,
-    demonstrated by this conversion from ISO 8859-5 Cyrillic to Unicode
-    conversion:
+    For converting the other way, the below code demonstrates the conversion
+    from ISO 8859-5 Cyrillic to Unicode:
 
     \snippet snippets/code/doc_src_i18n.cpp 10
 
-    Unicode I/O should be used as this maximizes the portability
-    of documents between users around the world. In many cases it is
-    however still necessary to support other encodings as your users will
-    need to process existing documents. The most important additional
-    encoding to support is the one
-    returned by QTextCodec::codecForLocale(), as this is the one the user
-    is most likely to need for communicating with other people and
-    applications (this is the codec used by local8Bit()).
-
-    Qt supports most of the more frequently used encodings natively. For a
-    complete list of supported encodings see the \l QTextCodec
+    For a complete list of supported encodings see the \l QTextCodec
     documentation.
-
-    In some cases and for less frequently used encodings it may be
-    necessary to write your own QTextCodec subclass. Depending on the
-    urgency, it may be useful to contact Qt's technical support team or
-    ask on the \c qt-interest mailing list to see if someone else is
-    already working on supporting the encoding.
 
     \keyword localization
 
