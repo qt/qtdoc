@@ -130,8 +130,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QTranslator myappTranslator;
-    myappTranslator.load(QLocale(), QLatin1String("myapp"), QLatin1String("_"), QLatin1String(":/i18n"));
-    app.installTranslator(&myappTranslator);
+    if (myappTranslator.load(QLocale::system(), u"myapp"_qs, u"_"_qs, u":/i18n"_qs))
+        app.installTranslator(&myappTranslator);
 
     return app.exec();
 }
@@ -197,6 +197,8 @@ void same_global_function(LoginWidget *logwid)
 
 //! [14]
     QTranslator qtTranslator;
-    qtTranslator.load(QLocale::system(), QStringLiteral("qtbase_"));
-    app.installTranslator(&qtTranslator);
+    if (qtTranslator.load(QLocale::system(), u"qtbase"_qs, u"_"_qs,
+                          QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
+        app.installTranslator(&qtTranslator);
+    }
 //! [14]
