@@ -102,6 +102,10 @@ If the script is more than a couple of lines long or can be used by different ob
 
 \snippet qmlapp/codingconventions/javascript.qml 2
 
+Also note that is recommended to add type annotations to your function in order
+to more easily reason about and refactor your application since both parameter
+and return types are immediately visible from the function signature.
+
 For long scripts, we will put the functions in their own JavaScript file and import it like this:
 
 \snippet qmlapp/codingconventions/javascript-imports.qml 0
