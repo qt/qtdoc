@@ -95,7 +95,7 @@
         states and can now invoke its continuation in a context object's
         thread.
     \li qfloat16 can be constructed uninitialized.
-    \li <QMath> provides qHypot(), generalising std::hypot() to
+    \li <QtMath> provides qHypot(), generalising std::hypot() to
         arbitrarily-many arguments and supporting qfloat16 arguments.
     \li Overflow-safe arithmetic is now supported by the functions
         qAddOverflow(), qSubOverflow(), and qMulOverflow().
