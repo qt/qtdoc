@@ -251,6 +251,10 @@ strings are accessible from QML and C++.
 
 \section2 Use a Conditional to Hide QML Source From the Compiler
 
+\note The following section only applies to \c qmake projects. With \c CMake's
+target based API, the QML sources are passed \c{qt_add_qml_module}'s QML_FILES
+property. \c{qt_add_lupdate} will then collect them from the target.
+
 The \c lupdate tool extracts user interface strings from your application.
 lupdate reads your application's .pro file to identify which source files
 contain texts to be translated. This means your source files must be listed in
