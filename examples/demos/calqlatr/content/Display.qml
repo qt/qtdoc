@@ -55,10 +55,10 @@ Item {
     id: display
     property real fontSize: Math.floor(Screen.pixelDensity * 5.0)
     property bool enteringDigits: false
-    property int maxDigits: (width / fontSize) + 1
+    readonly property int maxDigits: (width / fontSize) + 1
     property string displayedOperand
     property string errorString: qsTr("ERROR")
-    property bool isError: displayedOperand === errorString
+    readonly property bool isError: displayedOperand === errorString
 
     function displayOperator(operator)
     {
@@ -79,7 +79,7 @@ Item {
     {
         if (!enteringDigits)
             listView.model.append({ "operator": "", "operand": "" })
-        var i = listView.model.count - 1;
+        const i = listView.model.count - 1;
         listView.model.get(i).operand = listView.model.get(i).operand + digit;
         enteringDigits = true
         listView.positionViewAtEnd()
@@ -87,7 +87,7 @@ Item {
 
     function setDigit(digit)
     {
-        var i = listView.model.count - 1;
+        const i = listView.model.count - 1;
         listView.model.get(i).operand = digit;
         listView.positionViewAtEnd()
     }
@@ -96,7 +96,7 @@ Item {
     {
         displayedOperand = ""
         if (enteringDigits) {
-            var i = listView.model.count - 1
+            const i = listView.model.count - 1
             if (i >= 0)
                 listView.model.remove(i)
             enteringDigits = false
@@ -111,11 +111,11 @@ Item {
         if (typeof(num) != "number")
             return errorString;
 
-        var intNum = parseInt(num);
-        var intLen = intNum.toString().length;
+        const intNum = parseInt(num);
+        const intLen = intNum.toString().length;
 
         // Do not count the minus sign as a digit
-        var maxLen = num < 0 ? maxDigits + 1 : maxDigits;
+        const maxLen = num < 0 ? maxDigits + 1 : maxDigits;
 
         if (num.toString().length <= maxLen) {
             if (isFinite(num))
@@ -126,13 +126,13 @@ Item {
         // Integer part of the number is too long - try
         // an exponential notation
         if (intNum == num || intLen > maxLen - 3) {
-            var expVal = num.toExponential(maxDigits - 6).toString();
+            const expVal = num.toExponential(maxDigits - 6).toString();
             if (expVal.length <= maxLen)
                 return expVal;
         }
 
         // Try a float presentation with fixed number of digits
-        var floatStr = parseFloat(num).toFixed(maxDigits - intLen - 1).toString();
+        const floatStr = parseFloat(num).toFixed(maxDigits - intLen - 1).toString();
         if (floatStr.length <= maxLen)
             return floatStr;
 

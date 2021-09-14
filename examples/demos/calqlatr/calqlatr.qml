@@ -65,11 +65,9 @@ Rectangle {
 
     function operatorPressed(operator) {
         CalcEngine.operatorPressed(operator)
-        numPad.buttonPressed()
     }
     function digitPressed(digit) {
         CalcEngine.digitPressed(digit)
-        numPad.buttonPressed()
     }
     function isButtonDisabled(op) {
         return CalcEngine.disabled(op)
@@ -94,41 +92,63 @@ Rectangle {
         }
     }
 
-    Keys.onPressed: {
-        if (event.key == Qt.Key_0)
+    Keys.onPressed: function(event) {
+        switch (event.key) {
+        case Qt.Key_0:
             digitPressed("0")
-        else if (event.key == Qt.Key_1)
+            break
+        case Qt.Key_1:
             digitPressed("1")
-        else if (event.key == Qt.Key_2)
+            break
+        case Qt.Key_2:
             digitPressed("2")
-        else if (event.key == Qt.Key_3)
+            break
+        case Qt.Key_3:
             digitPressed("3")
-        else if (event.key == Qt.Key_4)
+            break
+        case Qt.Key_4:
             digitPressed("4")
-        else if (event.key == Qt.Key_5)
+            break
+        case Qt.Key_5:
             digitPressed("5")
-        else if (event.key == Qt.Key_6)
+            break
+        case Qt.Key_6:
             digitPressed("6")
-        else if (event.key == Qt.Key_7)
+            break
+        case Qt.Key_7:
             digitPressed("7")
-        else if (event.key == Qt.Key_8)
+            break
+        case Qt.Key_8:
             digitPressed("8")
-        else if (event.key == Qt.Key_9)
+            break
+        case Qt.Key_9:
             digitPressed("9")
-        else if (event.key == Qt.Key_Plus)
+            break
+        case Qt.Key_Plus:
             operatorPressed("+")
-        else if (event.key == Qt.Key_Minus)
-            operatorPressed("−")
-        else if (event.key == Qt.Key_Asterisk)
+            break
+        case Qt.Key_Minus:
+            operatorPressed("-")
+            break
+        case Qt.Key_Asterisk:
             operatorPressed("×")
-        else if (event.key == Qt.Key_Slash)
+            break
+        case Qt.Key_Slash:
             operatorPressed("÷")
-        else if (event.key == Qt.Key_Enter || event.key == Qt.Key_Return)
+            break
+        case Qt.Key_Enter:
+        case Qt.Key_Return:
             operatorPressed("=")
-        else if (event.key == Qt.Key_Comma || event.key == Qt.Key_Period)
+            break
+        case Qt.Key_Comma:
+        case Qt.Key_Period:
             digitPressed(".")
-        else if (event.key == Qt.Key_Backspace)
+            break
+        case Qt.Key_Backspace:
             operatorPressed("backspace")
+            break
+        }
+
     }
 
     Display {
@@ -150,17 +170,17 @@ Rectangle {
             }
             height: 50
             onPositionChanged: {
-                var reverse = startX > window.width / 2
-                var mx = mapToItem(window, mouseInput.mouseX, mouseInput.mouseY).x
-                var p = Math.abs((mx - startX) / (window.width - display.width))
-                if (p < oldP)
-                    rewind = reverse ? false : true
-                else
-                    rewind = reverse ? true : false
+                const reverse = startX > window.width / 2
+                const mx = mapToItem(window, mouseInput.mouseX, mouseInput.mouseY).x
+                const p = Math.abs((mx - startX) / (window.width - display.width))
+
+                rewind = p < oldP ? !reverse : reverse
+
                 controller.progress = reverse ? 1 - p : p
                 oldP = p
             }
             onPressed: startX = mapToItem(window, mouseInput.mouseX, mouseInput.mouseY).x
+
             onReleased: {
                 if (rewind)
                     controller.completeToBeginning()
