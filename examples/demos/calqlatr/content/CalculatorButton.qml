@@ -49,56 +49,39 @@
 ****************************************************************************/
 
 import QtQuick
+import QtQuick.Controls
 
-Item {
+Button {
     id: button
-    property alias text: textItem.text
-    property color color: "#eceeea"
-
-    property bool operator: false
     property bool dimmable: false
     property bool dimmed: false
+    property color textColor: "#eceeea"
 
     width: 30
     height: 50
-
-    Text {
-        id: textItem
+    contentItem: Text {
+        text: button.text
         font.pixelSize: 48
         wrapMode: Text.WordWrap
         lineHeight: 0.75
-        color: (button.dimmable && button.dimmed) ? Qt.darker(button.color) : button.color
-        Behavior on color { ColorAnimation { duration: 120; easing.type: Easing.OutElastic} }
+        color: (button.dimmable && button.dimmed) ? Qt.darker(button.textColor) : button.textColor
+        Behavior on color {
+            ColorAnimation {
+                duration: 120
+                easing.type: Easing.OutElastic
+            }
+        }
         states: [
             State {
                 name: "pressed"
-                when: mouse.pressed && !button.dimmed
+                when: button.pressed && !button.dimmed
                 PropertyChanges {
-                    target: textItem
-                    color: Qt.lighter(button.color)
+                    target: button.contentItem
+                    color: Qt.lighter(button.textColor)
                 }
             }
         ]
     }
 
-    MouseArea {
-        id: mouse
-        anchors.fill: button
-        anchors.margins: -5
-        onClicked: {
-            if (button.operator)
-                window.operatorPressed(button.text)
-            else
-                window.digitPressed(button.text)
-        }
-    }
-
-    function updateDimmed() {
-        dimmed = window.isButtonDisabled(button.text)
-    }
-
-    Component.onCompleted: {
-        numPad.buttonPressed.connect(updateDimmed)
-        updateDimmed()
-    }
+    background: null
 }

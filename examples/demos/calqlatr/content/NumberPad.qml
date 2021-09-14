@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the examples of the Qt Toolkit.
@@ -55,27 +55,92 @@ Grid {
     columnSpacing: 32
     rowSpacing: 16
 
-    signal buttonPressed
+    function updateDimmed(){
+        for (let i = 0; i < children.length; i++){
+            children[i].dimmed = window.isButtonDisabled(children[i].text)
+        }
+    }
 
-    Button { text: "7" }
-    Button { text: "8" }
-    Button { text: "9" }
-    Button { text: "4" }
-    Button { text: "5" }
-    Button { text: "6" }
-    Button { text: "1" }
-    Button { text: "2" }
-    Button { text: "3" }
-    Button { text: "0" }
-    Button { text: "."; dimmable: true }
-    Button { text: " " }
-    Button { text: "±"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "−"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "+"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "√"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "÷"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "×"; color: "#6da43d"; operator: true; dimmable: true }
-    Button { text: "C"; color: "#6da43d"; operator: true }
-    Button { text: " "; color: "#6da43d"; operator: true }
-    Button { text: "="; color: "#6da43d"; operator: true; dimmable: true }
+    component DigitButton: CalculatorButton {
+        onPressed: function() {
+            window.digitPressed(text)
+            updateDimmed()
+        }
+    }
+
+    component OperatorButton: CalculatorButton {
+        onPressed: function() {
+            window.operatorPressed(text)
+            updateDimmed()
+        }
+        textColor: "#6da43d"
+        dimmable: true
+    }
+
+    DigitButton {
+        text: "7"
+    }
+    DigitButton {
+        text: "8"
+    }
+    DigitButton {
+        text: "9"
+    }
+    DigitButton {
+        text: "4"
+    }
+    DigitButton {
+        text: "5"
+    }
+    DigitButton {
+        text: "6"
+    }
+    DigitButton {
+        text: "1"
+    }
+    DigitButton {
+        text: "2"
+    }
+    DigitButton {
+        text: "3"
+    }
+    DigitButton {
+        text: "0"
+    }
+    DigitButton {
+        text: "."
+        dimmable: true
+    }
+    DigitButton {
+        text: " "
+    }
+    OperatorButton {
+        text: "±"
+    }
+    OperatorButton {
+        text: "−"
+    }
+    OperatorButton {
+        text: "+"
+    }
+    OperatorButton {
+        text: "√"
+    }
+    OperatorButton {
+        text: "÷"
+    }
+    OperatorButton {
+        text: "×"
+    }
+    OperatorButton {
+        text: "C"
+    }
+    OperatorButton {
+        text: " "
+    }
+    OperatorButton {
+        text: "="
+    }
+
+    Component.onCompleted: updateDimmed()
 }
