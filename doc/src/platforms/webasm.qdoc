@@ -173,6 +173,31 @@ This generates the following files:
     \sa {WebAssembly Resource site},{Getting Started with Qt for WebAssembly},
         {Remote UIs with WebGL and WebAssembly}
 
+\section3 Additional configuration
+    Qt for Webassembly has several additional configuration arguments available.
+\table
+    \header
+        \li Configure Argument
+        \li Brief Description
+    \row
+        \li -sse2
+        \li This enables autovectorization and Wasm SIMD support by adding the compiler argument -msimd128. In addition, emulated
+        and native optcode SSE instructions are utilized (at which point Qt's SSE code paths will also be used).
+        SSE1, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, and 128-bit AVX instructions only. Simd support may need to be enabled
+        in browsers advanced configurations, such as 'about:config' or 'chrome:flags'. There may be performance
+        issues when used with certain SIMD instructions that are emulated and that have no native optcode supported by the browser.
+        For more information see https://emscripten.org/docs/porting/simd.html
+    \row
+        \li -feature-thread
+        \li Multi-threaded wasm
+    \row
+        \li -device-option QT_WASM_SOURCE_MAP=1
+        \li Debugging option for creating source maps
+    \row
+        \li -feature-opengles3
+        \li Use opengles3 in addition to the default opengles2
+\endtable
+
 \section1 Test-run your application
 
 You can test-run your application in the following way:
