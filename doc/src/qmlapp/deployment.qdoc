@@ -74,7 +74,16 @@ when the application starts for the very first time. To avoid that initial step 
 startup times from the very beginning, Qt's build system allows you to perform the compilation step
 for QML files ahead of time, when compiling the C++ parts of your application.
 
-To deploy your application with QML files compiled ahead of time, you must organize the files and
+One benefit of compiling ahead of time is that, in the event of syntax errors in your QML
+documents, you are notified at application compile-time instead of at run-time, when the file is
+loaded.
+
+This will happen automatically if you use the \l{qt_add_qml_module}{CMake QML Module API},
+for qmake see the section below.
+
+\section2 qmake
+
+When using qmake, in order to deploy your application with QML files compiled ahead of time, you must organize the files and
 the build system in a specific way:
 
 \list
@@ -83,10 +92,6 @@ the build system in a specific way:
     \li Your application must load the QML documents via the \c qrc:/// URL scheme.
     \li You can enable Ahead-of-Time compilation using the \c CONFIG+=qtquickcompiler directive.
 \endlist
-
-One benefit of compiling ahead of time is that, in the event of syntax errors in your QML
-documents, you are notified at application compile-time instead of at run-time, when the file is
-loaded.
 
 \section1 Prototyping with QML Scene
 
