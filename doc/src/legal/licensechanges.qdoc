@@ -36,10 +36,57 @@
 
     \section1 Qt 6.2.0
 
+    \section2 Qt Core Module
+
+    \list
+        \li \l{extra-cmake-modules}{extra-cmake-modules} was updated to version 5.84.0
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 6.8.3
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{freetype}{Freetype 2} was updated to version 2.10.4
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 2.9.0
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 2.1.1
+    \endlist
+
+    \section2 Qt Imageformats Module
+
+    \list
+        \li \l{libwebp}{WebP (libwebp)} was updated to version 1.2.1
+    \endlist
+
     \section2 Qt Positioning Module
 
     \list
         \li \l {clipper}{Clipper Polygon Clipping Library} was updated to version 6.4.2.
+        \li Usage of \l {clip2tri}{Clip2Tri Polygon Triangulation Library} under MIT license is now documented.
+        \li Usage of \l {poly2tri}{Poly2Tri Polygon Triangulation Library} under BSD 3-clause \"New\" or \"Revised\" license is now documented.
+    \endlist
+
+    \section2 Qt Quick3D Module
+
+    \list
+        \li Usage of \l{shadow_angular_material}{Shadow values from Angular Material} under MIT license is now documented.
+    \endlist
+
+    \section2 Qt Quick Controls Module
+
+    \list
+        \li Usage of \l{xatlas}{xatlas} version a8ffc484335ecc3819c69e1749f142e75e03acdf under MIT license is now documented.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \list
+        \li \l{sqlite}{SQLite} was updated to version 3.36.0
+    \endlist
+
+    \section2 Qt Wayland Compositor Module
+
+    \list
+        \li Usage of \l {wayland-pointer-gestures-protocol}{Wayland Pointer Gestures Protocol} version unstable v1, version 2 under MIT license is now documented.
     \endlist
 
     \section1 Qt 6.1.1
