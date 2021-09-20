@@ -91,8 +91,9 @@
     \badcode
         mkdir hostbuild
         cd hostbuild/
-        ../qt5/configure -nomake tests -nomake examples -release -developer-build
+        ../qt5/configure -nomake tests -nomake examples -release -prefix /work/ghs/hostbuild
         cmake --build . --parallel 6
+        cmake --install .
     \endcode
 
     \section1 Creating a toolchain file for INTEGRITY
@@ -142,7 +143,7 @@
     Configure Qt for the Qualcomm Snapdragon 8155P board using these following commands:
 
     \badcode
-        cd <Qt installation directory>
+        cd /work/ghs/targetbuild // Path to Qt installation directory
         cmake ../qt5/ -DQT_HOST_PATH=/work/ghs/hostbuild/qtbase
         -DCMAKE_TOOLCHAIN_FILE=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/toolchain_integrity.cmake
         -DQT_QMAKE_TARGET_MKSPEC=devices/integrity-armv8-SA8155P -DBUILD_qtdoc=OFF
@@ -151,6 +152,7 @@
         -DEGL_LIBRARY=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/libeglmegapack.a
         -DEGL_INCLUDE_DIR=/work/ghs/sa8155/es7/es7_dev_env/hlos_dev_boot/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/include/public
         -DFEATURE_dnslookup=OFF -DFEATURE_glib=OFF -DFEATURE_libudev=OFF -DFEATURE_system_pcre2=OFF -DFEATURE_sql_mysql=OFF
+        -DCMAKE_INSTALL_PREFIX=/work/ghs/targetbuild
     \endcode
 
     \note INTEGRITY supports only static Qt builds.

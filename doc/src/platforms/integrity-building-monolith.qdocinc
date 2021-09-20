@@ -41,14 +41,26 @@ by running the \c setEnvironment.sh script. For more information about the scrip
 \endcode
 
 \section1 Building the Qt application
-For building a Qt6 based application using the CMake tool, run the following commands in a terminal:
+\list 1
+    \li \c CMake tool
 
-\badcode
-    <Qt installation path>/qtbase/bin/qt-cmake <Qt example application path>/CMakeLists.txt
-    cmake --build .
-\endcode
+        To build the application against Qt6 using CMake, run the following commands in a terminal:
 
-Where, \c qt-cmake is the wrapper script that calls CMake to configure your project with appropriate include paths.
+        \badcode
+            <Qt installation path>/bin/qt-cmake <Qt example application path>/CMakeLists.txt
+            cmake --build .
+        \endcode
+
+        Where, \c qt-cmake is the wrapper script that calls CMake to configure your project with appropriate include paths.
+    \li \c qmake tool
+
+        To build the application against Qt6 using qmake, run the following commands in a terminal:
+
+        \badcode
+            <Qt installation path>/bin/qmake <Qt example application path>/application.pro
+            make
+        \endcode
+\endlist
 
 \section1 Building a monolith project
 
