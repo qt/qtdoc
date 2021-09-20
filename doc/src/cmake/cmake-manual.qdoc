@@ -304,11 +304,11 @@
 
     \section2 Unicode support in Windows
 
-    In Qt 6, the UNICODE AND _UNICODE compiler macros are set by default for targets that link
+    In Qt 6, the \c UNICODE and \c{_UNICODE} compiler definitions are set by default for targets that link
     against Qt modules. This is in line with the qmake behavior, but it is a change compared to
     the CMake API behavior in Qt 5.
 
-    Call qt_disable_unicode_defines() on the target to not set the macros.
+    Call \l{qt6_disable_unicode_defines}{qt_disable_unicode_defines()} on the target to not set the definitions.
 
     \snippet snippets/cmake/qt5_qt6_compatible.cmake disable_unicode_defines
 */
