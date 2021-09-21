@@ -180,8 +180,7 @@
     Enabling \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} is optional. If only the Qt libraries,
     and no associated tools, are desired for the target device, then it can be left
     out. However, enabling it is often a good idea, because it will lead to building
-    binaries of tools meant to be run on the target device, such as \c qml, \c qmlscene,
-    or \c qmlpreview.
+    binaries of tools meant to be run on the target device, such as \c qml and \c qmlpreview.
 
     \note When \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} is enabled, target binaries of tools
     like \c qmake will get installed to the staging location. Therefore, if \c qmake is
