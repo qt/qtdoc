@@ -61,6 +61,9 @@
     side, the ability to automatically create a window gives you the option to
     load parts of your prototype separately with \c qmlscene.
 
+    \note The \l{qtquick-qml-runtime.html}{qml tool} is also included since
+    Qt 5.2, and has certain advantages over \c qmlscene.
+
     To load a .qml file, run the tool and select the file to be opened, or
     provide the file path on the command prompt:
 
