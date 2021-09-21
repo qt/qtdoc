@@ -92,12 +92,28 @@
     Additional configurations can be added by creating configuration
     directories in \l QStandardPaths::AppConfigLocation, each with two QML
     files inside: a configuration file named \c configuration.qml, and a QML
-    file that declares the Item wrapper, which can have any name.
+    file that declares the Item wrapper, which can have any name. If this has
+    been done, the \c {qml --list-conf} command will also list those extra
+    configurations, while the \c --verbose option will expand those to give the
+    complete paths to those configurations, and the additional locations that
+    were searched:
+
+    \code
+    $ qml --list-conf --verbose
+    Built-in configurations:
+      default
+      resizeToItem
+    Other configurations:
+      /home/myuser/.config/QtProject/Qml Runtime/simplest
+    Checked in:
+      /home/myuser/.config/QtProject/Qml Runtime
+      /etc/xdg/QtProject/Qml Runtime
+    \endcode
 
     Here is an example \c configuration.qml file:
 
     \qml
-    import QmlRuntime.Config 1.0
+    import QmlRuntime.Config
 
     Configuration {
         PartialScene {
@@ -111,11 +127,10 @@
     property could point to:
 
     \qml
-    import QtQuick 2.0
-    import QtQuick.Window 2.0
+    import QtQuick
 
     Window {
-        property Item containedObject: null
+        required property Item containedObject: null
         onContainedObjectChanged: {
             if (containedObject == undefined || containedObject == null) {
                 visible = false;
@@ -127,12 +142,12 @@
     }
     \endqml
 
-    When this has been done, you can use the \c {qml -c} option giving the
-    complete path to the \c configuration.qml file, which specifies the path to
-    the container object:
+    When these files have been created, you can use the \c {qml -c} option
+    giving the name of the directory containing the \c configuration.qml file,
+    which specifies the path to the container object:
 
     \code
-    $ qml -c ~/.config/QtProject/Qml\ Runtime/simplest/configuration.qml mycomponent.qml
+    $ qml -c simplest mycomponent.qml
     \endcode
 
     The \c qml runtime will directly set the \c containedObject property, which
@@ -141,6 +156,11 @@
     QML, when you write your own wrapper window, you are free to add whatever
     additional features you would like: to handle resizing in a customized
     way, or to add capabilities that you may find useful during prototyping.
+
+    Regardless of what was found in \c AppConfigLocation, you can alternatively
+    use the \c {qml -c} option giving the complete path to the
+    \c configuration.qml file, and it can in turn specify the complete path to
+    the container object; so these files can be located anywhere.
 
     In addition to the features that can be declared in the configuration files,
     the \c qml tool also provides a few more features via command-line options.
