@@ -165,7 +165,7 @@
     \row
         \li \l{Qt Multimedia}
          \li All
-         \li All
+         \li All*
          \li A rich set of QML types and C++ classes to handle multimedia content.
             Also includes APIs to handle camera access.
     \row
@@ -329,6 +329,8 @@
         \li \l{Qt for Linux/X11}{Linux} and \l{Boot2Qt}{Boot to Qt} targets.
         \li Provides a framework to develop a Wayland compositor.
    \endtable
+
+    \note \b{All*} refers to all supported platforms except QNX and INTEGRITY.
 
     \section1 Where to Go from Here
 
