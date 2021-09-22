@@ -39,58 +39,63 @@ deployment are handled by Qt Creator providing rich developer experience.
 Every time you run the application using Qt Creator, an Android Application
 Package (APK) is created and deployed onto the target of your choice
 (device or emulator). With few minor changes to packaging settings, you can
-publish your application on Google Play. The following instructions guide you
-to create an \c{.apk} that can go live on Google Play:
-\list 1
-    \li Open your project with Qt Creator 4.11 or later choosing a \c{Release Build}.
+publish your application on Google Play.
 
-    \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
-    > \uicontrol {Create Templates} to create the Android package template files
-    such as \c{AndroidManifest.xml} which is the main file of concern here.
+\section1 Building the App
 
-    \li Check for the following settings in \c{AndroidManifest.xml}:
+The following instructions guide you to create an \c{.apk} or \c{.aab}
+that can go live on Google Play
 
-    \list
-        \li Set \uicontrol{Minimum required SDK} to API 23 or later.
+    \list 1
+        \li Open your project with Qt Creator 4.11 or later choosing a \c{Release Build}.
 
-        \li Set \uicontrol{Application name} and \uicontrol{Application icon}.
+        \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
+        > \uicontrol {Create Templates} to create the Android package template files
+        such as \c{AndroidManifest.xml} which is the main file of concern here.
 
-        \li Check the \uicontrol{Permissions} list has all the required permissions.
+        \li Check for the following settings in \c{AndroidManifest.xml}:
 
-        \li Check the \uicontrol{Features} list has the software or hardware
-            features that your application depends on, such as GPS or NFC.
-    \endlist
+        \list
+            \li Set \uicontrol{Minimum required SDK} to API 23 or later.
 
-    For more information, see
-    \l{Qt Creator: Editing Manifest Files}{editing the Manifest Files in Qt Creator}.
+            \li Set \uicontrol{Application name} and \uicontrol{Application icon}.
 
-    \note By default, Qt adds the permissions and the features based on the module
-    dependencies of your application. If you do not want these default permissions
-    and features, either deselect the checkboxes
-    \uicontrol{Include default permissions for Qt modules} and
-    \uicontrol{Include default features for Qt modules}, or remove the following
-    part from the \c{AndroidManifest.xml} file:
+            \li Check the \uicontrol{Permissions} list has all the required permissions.
 
-    \badcode
-    <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
-         Remove the comment if you do not require these default permissions. -->
-    <!-- %%INSERT_PERMISSIONS -->
+            \li Check the \uicontrol{Features} list has the software or hardware
+                features that your application depends on, such as GPS or NFC.
+        \endlist
 
-    <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
-         Remove the comment if you do not require these default features. -->
-    <!-- %%INSERT_FEATURES -->
-    \endcode
+        For more information, see
+        \l{Qt Creator: Editing Manifest Files}{editing the Manifest Files in Qt Creator}.
 
-    For information on the manifest XML format, see \l{Android: App Manifest}.
+        \note By default, Qt adds the permissions and the features based on the module
+        dependencies of your application. If you do not want these default permissions
+        and features, either deselect the checkboxes
+        \uicontrol{Include default permissions for Qt modules} and
+        \uicontrol{Include default features for Qt modules}, or remove the following
+        part from the \c{AndroidManifest.xml} file:
 
-    \li Set up a \l{Android: Android keystore system}{keystore} to sign your
-    \c{.apk} file. You can create a new keystore if you do not have one. For more
-    information, see \l{Qt Creator: Specifying Settings for Packages}
-    {Specifying Settings for Packages in Qt Creator}.
+        \badcode
+        <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
+             Remove the comment if you do not require these default permissions. -->
+        <!-- %%INSERT_PERMISSIONS -->
 
-    \li Locate the generated package:
+        <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
+             Remove the comment if you do not require these default features. -->
+        <!-- %%INSERT_FEATURES -->
+        \endcode
 
-    \list
+        For information on the manifest XML format, see \l{Android: App Manifest}.
+
+        \li Set up a \l{Android: Android keystore system}{keystore} to sign your
+        \c{.apk} file. You can create a new keystore if you do not have one. For more
+        information, see \l{Qt Creator: Specifying Settings for Packages}
+        {Specifying Settings for Packages in Qt Creator}.
+
+        \li Locate the generated package:
+
+        \list
         \li For APK packages, locate the \c{.apk} package at:
 
             \badcode
@@ -112,12 +117,64 @@ to create an \c{.apk} that can go live on Google Play:
             <$BUILD_DIR>/android-build/build/outputs/bundle/release/android-build-release.aab
             \endcode
 
+        \endlist
     \endlist
 
-    \li Log into the \l{Google Play Developer Console} and upload either of
-        \c{.apk} or \c{.aab} files, along with a description and screen captures
-        resembling the usage of your application.
-\endlist
+\section1 Uploading the App to Google Play Store
+
+    Log into the \l{Google Play Developer Console} and upload the \c{.aab} files,
+    along with a description and screen captures resembling the usage of your application.
+
+    For Qt versions that supports building a multi-abi bundle (i.e. Qt 5.14 and 5.15),
+    uploading one \c {.aab} with all the supported architectures is enough.
+    However, for Qt versions that don't have the multi-abi build support,
+    publishing your app requires additional steps.
+
+    \section2 Publishing Single-ABI bundles
+
+        To publish your app that is built using a single ABI kit, you need
+        to make sure that each ABI uses a different internal version code.
+        The version code is an intenal non-public identifier for your app's
+        release. Build each one of the architectures you want to support
+        and set a different version code for each ABI. This can be done
+        as follows, for CMake:
+
+        \badcode
+        set_property(TARGET scroll_example APPEND PROPERTY QT_ANDROID_VERSION_CODE <unique_version>)
+        \endcode
+
+        Or as follows for qmake:
+
+        \badcode
+        ANDROID_VERSION_CODE = <unique_version>
+        \endcode
+
+        The app developer can use a specific scheme for the version code, for exampe,
+        the code could have a chunks for the platform, the ABI, and the actual
+        version. Then, a sample scheme would be \c {<Platform><ABI><AppVersion>}:
+
+        \list
+        \li Platform:
+            \list
+                \li 0 for Arm
+                \li 1 for Intel
+            \endlist
+        \li Architecture:
+            \list
+                \li 32 for 32 bit
+                \li 64 for 64 bit
+            \endlist
+        \endlist
+
+        The resulting version code for a release 1.0 for arm64-v8a ABI,
+        would be \c {06410}.
+
+        The following screenshot shows an example for an app targeting 4 ABIs,
+        while each package uses a unique version code, which is different from
+        the version name that is the public version string.
+
+        \image android-single-abis.png
+
 
 For more information on packaging, see \l{Deploying an Application on Android}.
 */
