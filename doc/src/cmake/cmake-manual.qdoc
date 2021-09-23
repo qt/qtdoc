@@ -169,6 +169,12 @@
     they are processed by the
     \l{Using the Meta-Object Compiler (moc)} {Meta-Object Compiler (moc)}.
 
+    For less trivial projects, you may want to call
+    \l{qt6_add_executable}{qt_add_executable()} instead. It is a wrapper around
+    the built-in \c add_executable() command, providing additional logic to
+    automatically handle things like linking of Qt plugins in static Qt builds,
+    platform-specific customization of library names and so on.
+
     \printuntil
 
     Finally, \c{target_link_libraries} tells CMake that the \c{helloworld}
