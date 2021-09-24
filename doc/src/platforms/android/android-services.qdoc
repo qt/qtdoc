@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -30,7 +30,7 @@
 \title Android Services
 \preliminary
 \brief Provides information about Android Services support in Qt.
-\previouspage android-openssl-support.html
+\previouspage android-manifest-file-configuration.html
 \nextpage android-3rdparty-libs.html
 
 Starting with Qt 5.7, you can create Android services using Qt. A service
@@ -206,27 +206,8 @@ For the service to be usable in an Android app, you must declare it in the
 
         \badcode
         <service android:process=":qt_service" android:name=".QtAndroidService">
-
             <meta-data android:name="android.app.lib_name" android:value="service"/>
-            <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
-            <meta-data android:name="android.app.repository" android:value="default"/>
-            <meta-data android:name="android.app.qt_libs_resource_id" android:resource="@array/qt_libs"/>
-            <meta-data android:name="android.app.bundled_libs_resource_id" android:resource="@array/bundled_libs"/>
-
-            <!-- Deploy Qt libs as part of package -->
-            <meta-data android:name="android.app.bundle_local_qt_libs" android:value="-- %%BUNDLE_LOCAL_QT_LIBS%% --"/>
-
-            <!-- Run with local libs -->
-            <meta-data android:name="android.app.use_local_qt_libs" android:value="-- %%USE_LOCAL_QT_LIBS%% --"/>
-            <meta-data android:name="android.app.libs_prefix" android:value="/data/local/tmp/qt/"/>
-            <meta-data android:name="android.app.load_local_libs_resource_id" android:resource="@array/load_local_libs"/>
-            <meta-data android:name="android.app.load_local_jars" android:value="-- %%INSERT_LOCAL_JARS%% --"/>
-            <meta-data android:name="android.app.static_init_classes" android:value="-- %%INSERT_INIT_CLASSES%% --"/>
-            <!-- Run with local libs -->
-
-            <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
-            <!-- Background running -->
         </service>
         \endcode
 \endlist

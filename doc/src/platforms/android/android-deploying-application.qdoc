@@ -1,6 +1,6 @@
 ﻿/****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2021 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -113,38 +113,11 @@
     and by the target device to decide which features to enable, the default
     orientation of the application, and so on. In addition, it's used by the
     Google Play Store for information on the version code, device support,
-    package name, and lots more.
+    package name, and lots more. The Android Manifest is also used to define
+    \l{Android Services}, and custom \l{Android: Introduction to Activities}{Android Activities}.
 
     For more information about the \c AndroidManifest.xml, see
-    \l{Android: App Manifest}{Android Manifest documentation}.
-
-    The default manifest contains some special parameters used by Qt to set up
-    the application and load all the necessary libraries for Qt. When you are
-    customizing your own Android manifest, make sure that it contains these
-    parameters. For that reason, it's recommended to start with the default
-    templates, then customize on top of that. The \l androiddeployqt tool replaces
-    content in the templates with the correct values. The parts that are filled
-    by \l androiddeployqt have the value as \c "-- %%INSERT_VALUE%% --", as in:
-
-    \badcode
-    <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
-    <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
-    <meta-data android:name="android.app.repository" android:value="default"/>
-    <meta-data android:name="android.app.qt_libs_resource_id" android:resource="@array/qt_libs"/>
-    <meta-data android:name="android.app.bundled_libs_resource_id" android:resource="@array/bundled_libs"/>
-    <!-- Deploy Qt libs as part of package -->
-    <meta-data android:name="android.app.bundle_local_qt_libs" android:value="-- %%BUNDLE_LOCAL_QT_LIBS%% --"/>
-
-    <!-- Run with local libs -->
-    <meta-data android:name="android.app.use_local_qt_libs" android:value="-- %%USE_LOCAL_QT_LIBS%% --"/>
-    <meta-data android:name="android.app.libs_prefix" android:value="/data/local/tmp/qt/"/>
-    <meta-data android:name="android.app.load_local_libs_resource_id" android:resource="@array/load_local_libs"/>
-    <meta-data android:name="android.app.load_local_jars" android:value="-- %%INSERT_LOCAL_JARS%% --"/>
-    <meta-data android:name="android.app.static_init_classes" android:value="-- %%INSERT_INIT_CLASSES%% --"/>
-    \endcode
-
-    The Android Manifest is also used to define \l{Android Services}, and custom
-    \l{Android: Introduction to Activities}{Android Activities}.
+    \l{Qt Android Manifest File Configuration}{Android Manifest file documentation}.
 
     \section2 Java Code
 
