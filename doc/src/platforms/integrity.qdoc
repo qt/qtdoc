@@ -57,30 +57,23 @@
 
     \section1 Supported Qt Modules
 
-    Qt for INTEGRITY has been tested to support the following Qt modules:
-    \list
-        \li Qt Core
-        \li Qt Network
-        \li Qt GUI
-        \li Qt Quick
-        \li Qt QML
-        \li Qt Image Formats
-        \li Qt Widgets
-        \li Qt SVG
-        \li Qt Remote Objects
-    \endlist
+    All essential modules are supported except \l{Qt D-Bus}.
 
-    \note Other Qt modules may work with Qt for INTEGRITY, but we cannot guarantee that.
+    For add-on modules see \l{All Modules}{all Qt Modules}.
 
-    \section1 Supported Development Hosts and Boards
+    \section1 Supported Development Hosts and Target Boards
 
-    Qt for INTEGRITY can be built on the following hosts:
+    Qt for INTEGRITY should be able to be built on the following hosts:
     \list
         \li 64-bit Linux distributions
     \endlist
 
-    Qt 6 for INTEGRITY supports building and developing applications for the
-    following development board:
+    \note Only Ubuntu 20.04 64 bit is supported by Qt at this time.
+    \note See the GHS Compiler manual for other information regarding GHS Compiler
+    compatibility with development hosts.
+
+    Qt for INTEGRITY supports building and developing applications for the
+    following target boards:
     \list
         \li \l {https://www.lantronix.com/products/sa8155p-automotive-development-platform}
             {Qualcomm Snapdragon 8155P}
