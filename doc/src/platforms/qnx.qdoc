@@ -25,16 +25,8 @@
 **
 ****************************************************************************/
 /*!
-    \group qnxcontent
-    \title QNX Table of Contents
-    \internal
-    Information on Qt for QNX is available in the following sections:
-*/
-
-/*!
     \page qnx.html
     \title Qt for QNX
-    \ingroup qnxcontent
     \ingroup supportedplatform
     \keyword QNX
     \startpage Qt for QNX
@@ -63,7 +55,6 @@
     \title Qt for QNX Support
     \brief Details support on Qt modules, QNX releases and target architectures.
     \ingroup qnxcontent
-    \keyword QNX
 
 
     \section1 QNX releases and architectures
@@ -114,12 +105,12 @@
     \nextpage Qt for QNX Runtime Target Requirements
     \title Building Qt for QNX
     \ingroup qnxcontent
-    \keyword QNX
     \brief Describes required packages and necessary configuration for building.
 
     \section1 Setting up QNX SDP
+
     Building Qt 6 requires downloading and installing of QNX SDP 7.1 from the
-    \{QNX website}.
+    \l{QNX website}.
     \note A suitable license is required. \l {mailto://info@qnx.com}{Contact QNX}
     for more information.
 
@@ -132,9 +123,10 @@
     \endcode
 
     \section1 Host build
+
     The cross-compiling Qt requires a host build of Qt being available. During
-    the build, tools such as \c moc,\c rcc,\c qmlcachegen,\c qsb, are invoked
-    from there. You can either
+    the build, tools such as \c{moc}, \c{rcc}, \c{qmlcachegen}, \c{qsb}, are
+    invoked from there. You can either
     \l{https://doc.qt.io/qt-6/build-sources.html}{build Qt from sources}
     for the host or install host build using online installer. However, it is
     advisable to ensure that you can build Qt for the desktop target on the
@@ -142,6 +134,7 @@
     \l{https://www.qt.io/blog/qt-6-build-system}{Cross-compiling Qt}.
 
     \section1 Creating a toolchain file for QNX
+
     To cross-compile a project with CMake a toolchain file is needed. This
     CMake-language file sets the right values for the platform name,
     compiler/linker, and many other toolchain-specific things.
@@ -172,6 +165,7 @@
         \li A host build of Qt in \c{$HOME/qt-host}.
         \li The installation location on the local system will be
         \c{$HOME/qnx-install}.
+    \endlist
 
     After creating and switching to the \c build directory run:
 
@@ -197,7 +191,7 @@
     You can also configure Qt with the configure tool. Since Qt 6, this tool is
     a wrapper around CMake.
 
-    \sa Qt Configure Options Configuring Qt
+    \sa {Qt Configure Options}, {Configuring Qt}
 
     \section1 Third party libraries
 
@@ -230,7 +224,6 @@
     \previouspage Building Qt for QNX
     \title Qt for QNX Runtime Target Requirements
     \ingroup qnxcontent
-    \keyword QNX
     \brief Describes target requirements for running qt applications.
 
     QNX Software Systems delivers software solutions for making embedded
