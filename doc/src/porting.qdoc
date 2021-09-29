@@ -35,7 +35,7 @@ There are many changes to Qt from the previous version, Qt 5, to Qt 6.
 Before upgrading to Qt 6, make sure that your Qt 5 application is updated to Qt
 5.15. The latest Qt 5 version has the least amount of changes when porting to
 Qt 6. However, APIs marked as deprecated or obsolete in Qt 5.15 may have been
-removed for the Qt 6.0 release.
+removed in Qt 6.
 
 Here are things you should check if you are porting your Qt 5 applications into
 Qt 6.
@@ -76,8 +76,10 @@ deprecated module are available in another module. In future Qt 6 releases,
 new or previous modules may be added.
 
 \list
-\li \l{New Modules in Qt 6.0}
 \li \l{Removed Modules in Qt 6.0}
+\li \l{New Modules in Qt 6.0}
+\li \l{New and Restored Modules in Qt 6.1}
+\li \l{New and Restored Modules in Qt 6.2}
 \li \l{Changes to Qt Modules in Qt 6} - list of changes per Qt module
 \endlist
 
@@ -140,7 +142,7 @@ There are many other changes in Qt. For example, there are constant updates to
 the development tools and the build tools.
 
 \list
-\li \l{What's New in Qt \QtVer} - overview of the changes in Qt \QtVer
+\li \l{What's New in Qt 6}
 \li \l{Qt Creator Manual}
 \li \l{Qt Overviews}
 \li \l{Qt Examples And Tutorials}
