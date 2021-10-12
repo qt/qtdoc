@@ -175,6 +175,14 @@
     qmake ~/src/myapp QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
     \endcode
 
+    When specifying the architectures in a project file they should not be quoted, e.g.:
+
+    \code
+    TEMPLATE = app
+    SOURCES = main.cpp
+    QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+    \endcode
+
     \section1 Generating Xcode Project Files
 
     By default, CMake and qmake generates project files in Makefile
