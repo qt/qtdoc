@@ -177,7 +177,7 @@
             QByteArray::number()'s overloads for signed integral types now
             return a text with a minus sign followed by the number's absolute
             value instead of coercing to an unsigned type for all bases except
-            teno, when passed a negative integer and any supported base.
+            ten, when passed a negative integer and any supported base.
         \li QCalendar now supports construction from the ID of a custom
             backend.
         \li QChar, QPoint, and QPointF are now primitive rather than merely
@@ -379,7 +379,7 @@
             from source.
         \li Added support for std::function for some of QThreadPool's methods.
         \li Added new QML functions as well as support for
-            QmlRegisterSingletonInstance.
+            qmlRegisterSingletonInstance.
     \endlist
 
     \section1 Platform Changes
@@ -454,7 +454,7 @@
         \li The default targetSdkVersion is set to 30 in accordance with
             Google Play Store requirements.
         \li The build-tools version and platform version used is bumped to 30.
-        \li QDesktopService custom handlers are now enabled, and allows you to
+        \li QDesktopServices custom handlers are now enabled, and allow you to
             work with Android App Links, for example.
         \li Added information that allow applications to determine the source
             of an intent without creating an own extension of QtActivity.
