@@ -99,6 +99,19 @@
                 was removed.
         \endlist
         \li \l {Qt Remote Objects}
+        \list
+            \li The local connection backend now supports abstract namespaces
+                (this is a Linux-specific extension), achieved by using the new
+                \c localabstract schema in the URL.
+            \li \c {.rep}-files now support:
+            \list
+                \li Class enums.
+                \li QFlags.
+                \li Multiline comments (C-style).
+            \endlist
+            \li Enums and \l {QFlags}{flags} are now supported in POD-types and
+                as keys for QMap and QHash properties in \c {.rep} files.
+        \endlist
         \li \l {Qt Sensors}
         \li \l {Qt Serial Bus}
         \list
@@ -129,6 +142,10 @@
                 QtWebEngineCore, including QWebEnginePage.
             \li Some functionality previously only accessible by deriving from
                 QWebEnginePage are now accessible using synchronous signals.
+            \li Favicon API added to QWebEngineProfile to look up icons for
+                specific URLs.
+            \li The new QWebEngineLoadingInfo class provides more detail about
+                loading success or failure.
         \endlist
         \li \l {Qt WebSockets}
         \li \l {Qt WebView}
@@ -147,13 +164,20 @@
                 this shall replace qGlobalQHashSeed and qSetGlobalQHashSeed.
             \li Added PRIxQTDATATYPE macros to facilitate printf()-style
                 formatting without casts or warnings.
-            \li Added a permissions API to QCoreApplication for controlling
-                access to camera, file system, network devices, and so on.
         \endlist
         \li Made many properties bindable.
         \li Grapheme clusters can now handle emojis.
         \li UNC paths and network shares on Windows are now handled
             consistently.
+        \li The handling of the start-offset parameter, called \c from, in
+            various \c {indexOf()} and \c {lastIndexOf()} methods of containers
+            (principally QString, QByteArray and their views) is now more
+            coherent.
+        \li Like QString::number() has since the release of Qt 6.0,
+            QByteArray::number()'s overloads for signed integral types now
+            return a text with a minus sign followed by the number's absolute
+            value instead of coercing to an unsigned type for all bases except
+            teno, when passed a negative integer and any supported base.
         \li QCalendar now supports construction from the ID of a custom
             backend.
         \li QChar, QPoint, and QPointF are now primitive rather than merely
@@ -210,6 +234,12 @@
         \li Added PM_LineEditIconSize, a new QStyle::PixelMetric enum value
             that allows styles to define a default size for icons in a
             QLineEdit.
+        \li The new QGraphicsSceneEvent::timestamp method returns the timestamp
+            of the original event, if applicable.
+        \li QGraphicsSceneWheelEvent::phase,
+            QGraphicsSceneWheelEvent::pixelDelta,
+            and QGraphicsSceneWheelEvent::isInverted
+            return the respective attributes of the original QWheelEvent.
     \endlist
 
     \section2 Qt Network Module
@@ -337,6 +367,21 @@
         \li Updated the legend example.
     \endlist
 
+    \section2 Qt for Python
+    \list
+        \li New examples, tutorials, and videos added to the
+            \l {https://doc.qt.io/qtforpython-6/}{Qt for Python documentation}.
+        \li Compatible with Python 3.10rc2.
+        \li Added the QtDBus, QtNetworkAuth, and QtBluetooth modules.
+        \li Added a new Shiboken feature, Opaque Containers, to avoid copying
+            C++ containers into Python to use them.
+        \li You can now use \c qtpaths instead of \c qmake when building PySide
+            from source.
+        \li Added support for std::function for some of QThreadPool's methods.
+        \li Added new QML functions as well as support for
+            QmlRegisterSingletonInstance.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Technology Preview Platforms
@@ -402,6 +447,20 @@
         \li QCDebug() and friends now use the category as a tag in Android
             \e logcat.
         \li Updated Android Gradle plugin to 4.1.3.
+        \li Fixed a non-SDK API bug with style
+            (\l {https://bugreports.qt.io/browse/QTBUG-71590}{QTBUG-71590}),
+            though Android Style for widgets on Android 9+ is still affected
+            (\l {https://bugreports.qt.io/browse/QTBUG-96149}{QTBUG-96149}).
+        \li The default targetSdkVersion is set to 30 in accordance with
+            Google Play Store requirements.
+        \li The build-tools version and platform version used is bumped to 30.
+        \li QDesktopService custom handlers are now enabled, and allows you to
+            work with Android App Links, for example.
+        \li Added information that allow applications to determine the source
+            of an intent without creating an own extension of QtActivity.
+        \li Fixed imports for QML modules and added the possibility of multiple
+            QML root paths.
+        \li Fixed Vulkan builds on Android.
     \endlist
 
     \section3 iOS
@@ -441,6 +500,10 @@
         \li Added INTEGRITY version 19.0.13 and Ubuntu 20.04 as a host.
         \li Added Qualcomm Snapdragon 8155P as a reference target.
     \endlist
+
+    \section3 WebOS
+    Qt 6.2 has been verified to work with LG webOS OSE 2.13.1 using
+    Ubuntu 20.04 as development host and Raspberry Pi4 hardware.
 
     \section1 List of API Changes
 
