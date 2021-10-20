@@ -144,7 +144,8 @@ Here is the code that makes the signal-slot connections:
 \snippet snippets/signalsandslots/signalslotsyntaxes.cpp crosslanguage
 
 \note All JavaScript functions in QML take parameters of \c var type, which maps
-to the QVariant type in C++.
+to the QVariant type in C++, unless they use type annotations. See
+\l{Invoking QML Methods} for further details.
 
 When the QPushButton is clicked, the console prints,
 \e{'QML received: "Hello from C++!"'}. Likewise, when the Rectangle is clicked,
