@@ -147,8 +147,7 @@
       -qt-host-path $HOME/qt-host                              \
       -extprefix $HOME/qt6-rpi                                 \
       -prefix /usr/local/qt6                                   \
-      -- -DCMAKE_TOOLCHAIN_FILE=$HOME/qt-cross/toolchain.cmake \
-      -DQT_BUILD_TOOLS_WHEN_CROSSCOMPILING=ON
+      -- -DCMAKE_TOOLCHAIN_FILE=$HOME/qt-cross/toolchain.cmake
     \endcode
 
     In practice this configure command is equivalent to the following direct CMake call:
@@ -159,7 +158,6 @@
       -DCMAKE_STAGING_PREFIX=$HOME/qt6-rpi                   \
       -DCMAKE_INSTALL_PREFIX=/usr/local/qt6                  \
       -DCMAKE_TOOLCHAIN_FILE=$HOME/qt-cross/toolchain.cmake  \
-      -DQT_BUILD_TOOLS_WHEN_CROSSCOMPILING=ON                \
       $HOME/qt-cross/qtbase
     \endcode
 
@@ -177,10 +175,10 @@
       ...
     \endcode
 
-    Enabling \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} is optional. If only the Qt libraries,
-    and no associated tools, are desired for the target device, then it can be left
-    out. However, enabling it is often a good idea, because it will lead to building
-    binaries of tools meant to be run on the target device, such as \c qml and \c qmlpreview.
+    By default, when cross-compiling, only the Qt libraries and tools that are
+    supposed to run on the target device are built. Build-related tools like \c
+    moc and \c uic are not built. Building such tools can be enabled by setting
+    \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} to \c{ON}.
 
     \note When \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} is enabled, target binaries of tools
     like \c qmake will get installed to the staging location. Therefore, if \c qmake is
