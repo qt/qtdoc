@@ -148,7 +148,7 @@
     Qt modules.
 
     Clients that still rely on missing functionality can include the private
-    header \c {<QtGui/private/qtandroidextras_p.h>} as a stopgap solution.
+    header \c {<QtCore/private/qandroidextras_p.h>} as a stopgap solution.
     To enable private headers use \c {QT += core-private} with \c qmake,
     or add a project dependency to \c Qt::CorePrivate with \c CMake.
 
