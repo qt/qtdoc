@@ -203,16 +203,16 @@
 
     You can use bindings to handle low and high pixel density on platforms that
     do not have automatic support for it (like Android, \macos and iOS do).
-    The following code snippet uses the \l{Screen}{Screen.PixelDensity}
+    The following code snippet uses the \l{Screen}{Screen.pixelDensity}
     attached property to specify different images to display on screens with
     low, high, or normal pixel density:
 
     \code
     Image {
         source: {
-            if (Screen.PixelDensity < 40)
+            if (Screen.pixelDensity < 40)
             "image_low_dpi.png"
-            else if (Screen.PixelDensity > 300)
+            else if (Screen.pixelDensity > 300)
             "image_high_dpi.png"
             else
             "image.png"
