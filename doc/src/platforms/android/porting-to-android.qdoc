@@ -29,6 +29,7 @@
 \page porting-to-android.html
 \title Porting to Android
 \brief Provides instructions to port your existing Qt application to Android.
+\ingroup androidplatform
 \previouspage android-building.html
 \nextpage examples-android.html
 
@@ -43,7 +44,7 @@ The other approach is to deploy the resources into the package's \c{assets}
 directory. It is the best option if you want to achieve better
 interoperability with the Android APIs. You can access all resources in the
 directory using the "assets:" prefix. Unlike qrc, this approach is Android
-sepcific, not a cross-platform solution.
+specific, not a cross-platform solution.
 
 To use the "assets:" approach, for example, add the following lines into the
 \c {.pro} file:

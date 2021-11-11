@@ -29,6 +29,7 @@
     \page examples-android.html
     \title Qt for Android Examples
     \brief A list of selected Qt Examples for Android.
+    \ingroup androidplatform
     \previouspage porting-to-android.html
     \nextpage deployment-android.html
 
@@ -114,16 +115,15 @@
         \li \l{Extending QML - Attached Properties Example}{Attached Properties}
         \endlist
     \enddiv
-    \omit \\! Not part of Qt 6.0
     \div {class="doc-column"}
         \b{Multimedia}
         \list
-        \li \l{QML Video Shader Effects Example}{Video Shader Effects Example}
-        \li \l{QML Video Example}{Video Example}
-        \li \l{QML Camera Example}{Camera Example}
+        \li \l{Media Player Example}
+        \li \l{Camera Example}
+        \li \l{QML Media Player Example}
+        \li \l{QML Recorder Example}
         \endlist
     \enddiv
-    \endomit
     \omit \\! Not part of Qt 6.0
     \div {class="doc-column"}
         \b{Location}

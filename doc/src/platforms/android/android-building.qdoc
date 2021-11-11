@@ -28,6 +28,7 @@
 /*!
     \page android-building.html
     \title Qt for Android - Building from Source
+    \ingroup androidplatform
     \brief How to configure and build Qt for Android directly from source.
     \previouspage android-getting-started.html
     \nextpage porting-to-android.html
@@ -328,5 +329,5 @@
     <qt_for_android_install_path>/bin/qt-cmake -DANDROID_SDK_ROOT=<android_sdk_path> -DANDROID_NDK_ROOT=<android_ndk_path> -S <source_dir> -B <build_dir>
     \endcode
 
-    Additionally, you can still use \c qmake to build user projects as before in Qt 5.
+    Additionally, you can still use \c qmake to build user projects, as before in Qt 5.
 */
