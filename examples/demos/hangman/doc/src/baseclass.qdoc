@@ -73,12 +73,12 @@
    };
    \endcode
 
-   Check out the derived classes \l AndroidInAppProduct for Android and \l IosInAppProduct for iOS.
+   Check out the derived classes \c AndroidInAppProduct for Android and \c IosInAppProduct for iOS.
 
    \section1 InAppStore
 
-   The main entry point for managing in-app purchases. It is the base class for AndroidInAppProduct and
-   IosInAppProduct.
+   The main entry point for managing in-app purchases. It is the base class for \c AndroidInAppProduct and
+   \c IosInAppProduct.
 
    InAppStore is used for managing in-app purchases in the application in a cross-platform way.
    Depending on the compiler, InAppStore checks what platform is available using \c Macros.
@@ -120,13 +120,13 @@
 
    Once the items have been successfully registered in the store, The user can purchase them by
    pressing on of the products on the apps store page. QML will call product.purchase()
-   function in AndroidInAppProduct or IosInAppProduct which will open the external store's
+   function in AndroidInAppProduct or \c IosInAppProduct which will open the external store's
    purchasing flow.
 
    When a purchase has been completed regardless of success, the transactionRedy signal will be
    sent to \c InAppProductQmlType, to notify QML to start finalize the transaction.
 
-   section2 Restoring purchases
+   \section2 Restoring purchases
 
    In the demo unlockable purchases will be saved on the apps storage. By clearing the storage
    the user will lose the unlockable purchase and it cannot be purchased again, as according to
@@ -151,10 +151,10 @@
    been performed, finalize() should be called. The finalize() function should be called regardless
    of the status of the transaction.
 
-   Check out the derived classes \l {AndroidInAppTransaction}{AndroidInAppTransaction} for android and \l {IosInAppTransaction}{IosInAppTransaction} for iOS.
+   Check out the derived classes \c{AndroidInAppTransaction} for android and \c{IosInAppTransaction} for iOS.
 
    \section1 InAppPurchaseBackend
 
-   InAppPurchaseBackend is used to create derived classs for
-   AndroidInAppPurchaseBackend and IosInAppPurchaseBackend
+   \c InAppPurchaseBackend is used to create derived classs for
+   \c AndroidInAppPurchaseBackend and \c IosInAppPurchaseBackend.
 */

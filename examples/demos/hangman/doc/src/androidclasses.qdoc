@@ -43,7 +43,7 @@
          \li \l AndroidInAppPurchaseBackend
          \li Comminucates with external store.
       \row
-         \li \l androidjni.cpp and InAppPurchase.java
+         \li \c{androidjni.cpp} and \c{InAppPurchase.java}
          \li Communication between Google Play's billing system and C++.
    \endtable
 
@@ -92,9 +92,10 @@
 
    \section1 InAppPurchase.java and androidjni.cpp
 
-   AndroidInAppPurchaseBackend makes calls directly to InAppPurchase.java and
+   AndroidInAppPurchaseBackend makes calls directly to \c InAppPurchase.java and
    receives Java calls from androidjni. The demo application communicates
-   with Java function using \l QJniObjects.
+   with Java function using \l QJniObject.
 
-   \sa \l {https://developer.android.com/google/play/billing/integrate#java}{Integrate the Google Play Billing Library}, \l QJniObjects and \l QJniEnvironment.
+   \sa {https://developer.android.com/google/play/billing/integrate#java}{Integrate the Google Play Billing Library},
+       QJniObject, and QJniEnvironment.
 */

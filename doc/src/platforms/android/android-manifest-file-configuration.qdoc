@@ -206,7 +206,7 @@ The following is a list of such meta-data defined by Qt:
     \li android.app.splash_screen_sticky
     \li Sets whether the splash screen stays visible until explicitly hidden
         by the app.
-        For more information, see \l {QAndroidApplication::hideSplashScreen()}.
+        For more information, see \l {QNativeInterface::}{QAndroidApplication::hideSplashScreen()}.
         Default: \c false.
 \row
     \target android.app.system_libs_prefix

@@ -46,7 +46,7 @@
     each defined in a separate .qml file:
 
     \list
-        \li Button.qml
+        \li CalculatorButton.qml
         \li Display.qml
         \li NumberPad.qml
     \endlist
@@ -69,11 +69,10 @@
     \printuntil }
     \printuntil }
 
-    Further, we use the Button type in the \c NumberPad type to create the
-    calculator buttons. Button.qml specifies the basic properties for a
-    button that we can modify for each button instance in NumberPad.qml. For the
-    digit and separator buttons, we additionally specify the text property using
-    the property alias \c text that we define in Button.qml.
+    Further, we use the CalculatorButton type in the \c NumberPad type to create the
+    calculator buttons. \c CalculatorButton.qml specifies the basic properties for a
+    button that we can modify for each button instance in \c NumberPad.qml. For the
+    digit and separator buttons, we additionally specify the \c text property.
 
     For the operator buttons, we also specify another color (green) using the
     property alias \c color and set the operator property to \c true. We use
@@ -131,14 +130,13 @@
     We use the easing curve of the type \c Easing.InOutQuad to accelerate the
     motion until halfway and then decelerate it.
 
-    In Button.qml, the text colors of the number pad buttons are also animated.
+    In \c CalculatorButton.qml, the text colors of the number pad buttons are also animated.
 
-    \quotefromfile demos/calqlatr/content/Button.qml
+    \quotefromfile demos/calqlatr/content/CalculatorButton.qml
     \skipto Text
-    \printuntil id:
     \dots 8
     \skipto color:
-    \printuntil ]
+    \printuntil }
     \printuntil }
 
     We use \l {QtQml::Qt::darker()}{Qt.darker()} to darken the color when the
@@ -152,11 +150,12 @@
 
     In order to dynamically change the \c dimmed property of all the buttons
     of the \c NumberPad, we connect its \c buttonPressed signal to the
-    \c Button's \c updateDimmed() function in Button.qml:
+    \c NumberPad's \c updateDimmed() function.
 
-    \quotefromfile demos/calqlatr/content/Button.qml
-    \skipto function updateDimmed() {
-    \printuntil buttonPressed.connect
+    \quotefromfile demos/calqlatr/content/NumberPad.qml
+    \skipto function updateDimmed()
+    \printuntil operatorPressed
+    \printuntil }
     \printuntil }
 
     This way, when a button is pressed, all buttons on the \c NumPad

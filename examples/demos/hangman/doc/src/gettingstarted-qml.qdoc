@@ -58,7 +58,7 @@
    \section1 Registering products
 
    Before you can operate on the products in your code, they must be
-   registered in the QML graph. You start by making a \l{Store} item,
+   registered in the QML graph. You start by making a Store item,
    and then create each product as a child of this.
 
    \qml
@@ -86,10 +86,12 @@
    \section1 The product declaration
 
    For each product you must fill out the \c identifier, before the product can
-   be queried from the external store. You should also always add a \l{QtPurchasing::Product::onPurchaseSucceeded}{onPurchaseSucceeded}
-   and a \l{QtPurchasing::Product::onPurchaseFailed}{onPurchaseFailed} handler if you intend to provide the option to purchase
-   the products. If you are also using the restore functionality, you should add a
-   \l{QtPurchasing::Product::onPurchaseRestored}{onPurchaseRestored} handler to your unlockable products.
+   be queried from the external store. You should also always add a \c{QtPurchasing::Product::onPurchaseSucceeded}
+   and a \c{QtPurchasing::Product::onPurchaseFailed} handler if you intend to
+   provide the option to purchase the products. If you are also using the
+   restore functionality, you should add a
+   \c{QtPurchasing::Product::onPurchaseRestored} handler to your unlockable
+   products.
 
    The signal handlers should handle the incoming transaction. Once the transaction
    has been handled appropriately, it should be finalized. For instance, when a purchase
@@ -172,8 +174,8 @@
    \endqml
 
    When the button is clicked, the purchase process is started. At some point in the future, either the
-   \l{QtPurchasing::Product::onPurchaseFailed}{onPurchaseFailed} handler will be called (for example if the user cancels the transaction), or the
-   \l{QtPurchasing::Product::onPurchaseSucceeded}{onPurchaseSucceeded} handler will be called.
+   \c{QtPurchasing::Product::onPurchaseFailed} handler will be called (for example if the user cancels the transaction), or the
+   \c{QtPurchasing::Product::onPurchaseSucceeded} handler will be called.
 
    \note The button is only enabled if the product's status is set to Registered. The registration process
    for a product is asynchronous, so purchases attempted on a product before it has been successfully registered
@@ -186,7 +188,7 @@
    in the external market place.
 
    To start the process of restoring purchases, you should call the restorePurchases() method in the
-   \l Store object. This will cause the onPurchaseRestored handler to be called in each of the application's
+   \c Store object. This will cause the onPurchaseRestored handler to be called in each of the application's
    unlockable products that has previously been purchased by the current user.
 
    Continuing on the example from before, which could be some sort of role-playing computer game, lets imagine

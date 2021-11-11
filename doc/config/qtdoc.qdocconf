@@ -29,6 +29,9 @@ excludedirs += \
     ../src/cmake \
     ../src/platformintegration
 
+# include java files in the list of example sources
+examples.fileextensions =+ *.java
+
 # Exclude documentation for the broken examples
 excludefiles += \
     ../../examples/demos/maroon/doc/src/maroon.qdoc \
