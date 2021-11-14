@@ -87,3 +87,7 @@ manifestmeta.highlighted.names = "QtDoc/Coffee Machine Example" \
 manifestmeta.filters += coffeemachine
 manifestmeta.coffeemachine.names = "QtDoc/Coffee Machine Example"
 manifestmeta.coffeemachine.tags = quick,embedded
+
+# Fail the documentation build if there are more warnings than the limit
+warninglimit = 0
+

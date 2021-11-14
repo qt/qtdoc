@@ -40,3 +40,7 @@ depends += \
     qtscxml
 
 navigation.landingpage = "Build with CMake"
+
+# Fail the documentation build if there are more warnings than the limit
+warninglimit = 0
+
