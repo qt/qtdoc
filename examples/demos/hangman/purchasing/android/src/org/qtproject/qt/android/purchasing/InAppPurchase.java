@@ -156,7 +156,7 @@ public class InAppPurchase implements PurchasesUpdatedListener
 
         for (Purchase purchase : purchases) {
             try {
-                if (m_publicKey != null && !Security.verifyPurchase(m_publicKey, TYPE_INAPP, purchase.getSignature())) {
+                if (m_publicKey != null && !Security.verifyPurchase(m_publicKey, purchase.getOriginalJson(), purchase.getSignature())) {
                     purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, "Signature could not be verified");
                     return;
                 }
@@ -169,7 +169,7 @@ public class InAppPurchase implements PurchasesUpdatedListener
                 e.printStackTrace();
                 purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, e.getMessage());
             }
-            purchaseSucceeded(purchaseRequestCode, purchase.getSignature(), TYPE_INAPP, purchase.getPurchaseToken(), purchase.getOrderId(), purchase.getPurchaseTime());
+            purchaseSucceeded(purchaseRequestCode, purchase.getSignature(), purchase.getOriginalJson(), purchase.getPurchaseToken(), purchase.getOrderId(), purchase.getPurchaseTime());
         }
     }
 
@@ -184,7 +184,7 @@ public class InAppPurchase implements PurchasesUpdatedListener
             index += productIdList.size();
 
             SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
-            params.setSkusList(productIdList).setType(BillingClient.SkuType.INAPP);
+            params.setSkusList(productIdList).setType(TYPE_INAPP);
             billingClient.querySkuDetailsAsync(params.build(),
                     new SkuDetailsResponseListener() {
                         @Override
@@ -230,7 +230,7 @@ public class InAppPurchase implements PurchasesUpdatedListener
         List<String> skuList = new ArrayList<>();
         skuList.add(identifier);
         SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
-        params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+        params.setSkusList(skuList).setType(TYPE_INAPP);
         billingClient.querySkuDetailsAsync(params.build(),
                 new SkuDetailsResponseListener() {
                     @Override
@@ -302,7 +302,7 @@ public class InAppPurchase implements PurchasesUpdatedListener
                         registerPurchased(m_nativePointer,
                                 purchase.getSkus().get(0),
                                 purchase.getSignature(),
-                                TYPE_INAPP,
+                                purchase.getOriginalJson(),
                                 purchase.getPurchaseToken(),
                                 purchase.getDeveloperPayload(),
                                 purchase.getPurchaseTime());
