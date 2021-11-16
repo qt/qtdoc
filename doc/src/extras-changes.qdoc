@@ -139,8 +139,8 @@
 
     Clients that still rely on the functionality can include the private
     header \c {<QtGui/private/qtx11extras_p.h>} as a stopgap solution.
-    To enable private headers use \c {QT += core-private} with \c qmake,
-    or add a project dependency to \c Qt::CorePrivate with \c CMake.
+    To enable private headers use \c {QT += gui-private} with \c qmake,
+    or add a project dependency to \c Qt::GuiPrivate with \c CMake.
 
     \section1 Changes to Qt Android Extras
 
