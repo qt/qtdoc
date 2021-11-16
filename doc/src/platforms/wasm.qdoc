@@ -30,6 +30,18 @@
 \title Qt for WebAssembly
 \brief Runs Qt applications in a secure sandbox in the browser.
 
+Qt for Webassembly lets you to run Qt applications on the web.
+
+WebAssembly (abbreviated Wasm) is a binary instruction format intended to
+be executed in a virtual machine, for example in a web browser.
+
+With Qt for WebAssembly, you can distribute your application as a web
+application that runs in a browser sandbox. This approach is suitable for
+web distributed applications that do not require full access to host device
+capabilities.
+
+\note Qt for WebAssembly is in Tech Preview.
+
 \ingroup experimentalplatform
 
 \section1 Getting Started with Qt for WebAssembly
