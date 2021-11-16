@@ -36,13 +36,21 @@
    \section1 What is this demo?
    \image qthangman-example.png
 
-   This demo is a complete mobile application that demonstrates how it is
-   possible to offer in-app products inside a Qt application, in a
-   cross-platform manner. In order to test the in-app purchase functionality in the
-   example, you must first register the application and its products in the
-   external store. For an introduction on how to do this, see the guides for
-   \l{Registering Products in Google Play}{Google Play} and
-   \l{Registering Products in App Store}{App Store} respectively.
+   This demo is a mobile game application based on the classic word guessing game
+   Hangman, where vowels can be purchased through the demo's internal store. In the
+   game you will be presented with a row of dashes, representing letters of the
+   word to guess. By guessing a correct letter that occurs in the given word, the
+   letter will be placed on the corresponding dash or dashes in the word. By
+   guessing every letter of the word or just guessing the whole word correctly at
+   any time the game is over and you heve won. If the guess is wrong, one element
+   of a hanging stick figure is drawn. Once the figure is complete, you are out of
+   guesses and you lose.
+
+   The demo shows how it is possible to offer in-app products inside a Qt
+   application, for the Android and iOS platforms. In order to test the in-app
+   purchase functionality in the the demo, you must first register the application
+   and its products in the external store. For an introduction on how to do this,
+   see the guides for \l{Registering Products in Google Play}{Google Play} and \l{Registering Products in App Store}{App Store} respectively.
 
    \section1 3rd party app stores
 
