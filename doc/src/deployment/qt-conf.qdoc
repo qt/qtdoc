@@ -83,7 +83,7 @@
     \row \li LibraryExecutables  \li \c libexec
     \row \li Binaries            \li \c bin
     \row \li Plugins             \li \c plugins
-    \row \li Qml2Imports         \li \c qml
+    \row \li QmlImports          \li \c qml
     \row \li ArchData            \li \c .
     \row \li Data                \li \c .
     \row \li Translations        \li \c translations
@@ -103,6 +103,9 @@
     need to be placed in specific sub-directories under the
     \c{plugins} directory (see \l{How to Create Qt Plugins} for
     details).
+
+    \note For backwards-compatibility, the entry \c Qml2Imports is valid in the
+    \c{Paths} section and is treated as fallback for \c{QmlImports}.
 
     For example, a \c qt.conf file could contain the following:
 
