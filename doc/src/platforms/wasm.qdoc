@@ -45,12 +45,181 @@ capabilities.
 \ingroup experimentalplatform
 
 \section1 Getting Started with Qt for WebAssembly
+
+Building Qt applications for WebAssembly is similar to building Qt for other platforms. You
+need to install an SDK (Emscripten), install Qt (or build Qt from source), and finally, build
+the application. Some differences exist, for example, Qt for WebAssambly supports fewer modules
+and less features than other Qt builds.
+
 \section2 Installing Emscripten
+
+\l{https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten}
+is a toolchain for compiling to WebAssembly. It lets you run Qt on the web at
+near-native speed without browser plugins.
+
+Refer to the \l{https://emscripten.org/docs/getting_started/index.html}
+{emscripten documentation} for more information about installing the
+Emscripten SDK.
+
+After installation, you should have the Emscripten compiler in your path.
+Check this with the following command:
+\badcode
+    em++ --version
+\endcode
+
+Each minor version of Qt targets a specific minimum Emcsripten version, which will
+not change for the lifetime of that minor version. Qt's binary packages are
+built using this version of the Emscripten SDK. Install the minimum Emcsripten version
+that corresponds to the Qt version you use, especially if you use the binary packages.
+
+Later versions of Emscripten may work (and often do), but may introduce behavior
+changes which require changes to Qt.
+
+The minimum versions are:
+\list
+   \li Qt 6.2: 2.0.14
+\endlist
+
+Use \c emsdk to install specific \c emscripten versions. For example, to install
+it for Qt 6.2 enter:
+\list
+    \li ./emsdk install 2.0.14
+    \li ./emsdk activate 2.0.14
+\endlist
+
+On Windows, emscripten is in your path after installation. On macOS or Linux
+you need to add it to your path, like this:
+
+\badcode
+    source /path/to/emsdk/emsdk_env.sh
+\endcode
+
+Check this with the following command:
+
+\badcode
+    em++ --version
+\endcode
+
 \section2 Installing Qt
+
+Download Qt from the Downloads section of your Qt account. We provide builds
+for Linux, macOS, and Windows as development platforms.
+
+The binary builds are designed to run on as many browsers as possible,
+and do not enable features such as threads or SIMD support.
+
 \section2 Building Qt from Source
+
+Building from source lets you set Qt configuration options such as thread
+support, OpenGL ES level, or SIMD support. Download the Qt sources from the
+Downloads section of your Qt account.
+
+Configure Qt as a cross-compile build for the \c wasm-emscripten platform.
+This sets the \c -static, \c -no-feature-thread, and \c{-no-make examples}
+configure options. You can enable thread support with the \c -feature-thread,
+configure option. Shared library builds are not supported.
+
+You need a host build of the same version of Qt and add that path to \e QT_HOST_PATH
+by using the \c -qt-host-path configure argument.
+
+Although it should be detected, you may optionally set the \e CMAKE_TOOLCHAIN_PATH
+environment variable to theEmscripten.cmake toolchain file that comes with Emscripten
+sdk, by using the \c {-DCMAKE_TOOLCHAIN_FILE=/path/to/Emscripten.cmake} configure argument.
+
+\badcode
+    ./configure -qt-host-path /path/to/Qt/6.2.0/platform -xplatform wasm-emscripten -prefix $PWD/qtbase
+\endcode
+
+On Windows, make sure you have MinGW in your \c PATH
+and configure with the following:
+
+\badcode
+    configure -qt-host-path C:\Path\to\Qt6 -no-warnings-are-errors -xplatform wasm-emscripten -platform win32-g++ -prefix %CD%\qtbase
+\endcode
+
+Then build the required modules:
+
+\badcode
+    cmake --build . -t qtbase -t qtdeclarative [-t another_module]
+\endcode
+
 \section2 Building Applications on the Command Line
+
+Qt for WebAssembly supports building applications using qmake and make, or CMake with ninja or make.
+
+\badcode
+   $ /path/to/qt-wasm/qtbase/bin/qt-cmake .
+   $ cmake --build .
+\endcode
+
+Building the application generates several output files, including a .wasm file that contains
+the application and Qt code (statically linked), a .html file that can be opened in the browser
+to run the application.
+
+\note Emscripten produces relatively large .wasm files at the "-g" debug level. Consider
+linking with "-g2" for debug builds.
+
 \section2 Running Applications
+
+Running the application requires a web server. The build output files are all
+static content, so any web server will do. Some use cases might require special
+server configuration, such as providing https certificates or setting http headers
+required to enable multithreading support.
+
+Emscripten provides the \e emrun utility for test-running applications. Emrun
+starts a web server, launches a browser, and will also capture and forward
+stdout/stderr (which will normally go to the JavaScript console).
+
+\badcode
+    /path/to/emscripten/emrun --browser=firefox appname.html
+\endcode
+
+Another option is http.server from Python:
+
+\badcode
+    python -m http.server
+\endcode
+
 \section2 Building Applications using Qt Creator
+
+
+\section2 Deploying Applications on the web
+
+Building an application generates several files (substitute "app" with
+the application name in the following table).
+
+\table
+    \header
+        \li Generated file
+        \li Brief Description
+    \row
+        \li app.html
+        \li HTML container
+    \row
+        \li qtloader.js
+        \li JavaScript API for loading Qt apps
+    \row
+        \li app.js
+        \li JS API for loading Qt apps
+    \row
+        \li app.wasm
+        \li app binary
+\endtable
+
+You can deploy \e {app.html} as-is, or discard it in favor favor of a custom html
+file. Smaller adjustments, such as changing the splash screen image from the Qt
+logo to the app logo, is also possible. In both cases, \e {qtloader.js} provides a JavaScript
+API for loading the application.
+
+We recommend compressing the wasm file using e.g. gzip or brotli before deployment,
+as this can provide a significant reductiton in file size.
+
+Enabling certain features, such as multi-threading and SIMD, produces .wasm binaries
+that are incompatible with browsers that do not support the enabled feature. It is
+possible to work around this limitation by building multiple .wasm files and then
+use JavaScript feature detection to select the correct one, but note that Qt does
+not provide any functionality for doing this.
+
 \section1 Supported Browsers
 \section1 Supported Qt Modules
 \section1 Developing with Qt for WebAssembly
