@@ -221,7 +221,61 @@ use JavaScript feature detection to select the correct one, but note that Qt doe
 not provide any functionality for doing this.
 
 \section1 Supported Browsers
+\section2 Desktop
+
+Qt for WebAssembly is developed and tested on the following browsers:
+
+\list
+    \li Chrome
+    \li Firefox
+    \li Safari
+    \li Edge
+\endlist
+
+Qt should run if the browser supports WebAssembly. Qt has a fixed WebGL
+requirement, even if the application itself does not use hardware accelerated
+graphics. Browsers that support WebAssembly often support WebGL, though
+some browsers blacklist older or unsupported GPUs. s/\e {qtloader.js}
+provides APIs to check if WebGL is available.
+
+Qt does not make direct use of operating system features and it makes
+no difference if, for example, FireFox runs on Windows or macOS. Qt
+does use some operating system adaptations, for example for ctrl/cmd
+key handling on macOS.
+
+\section2 Mobile
+
+Qt for WebAssembly applications runs on mobile browsers such as mobile
+Safari and Android Chrome. However, there is no support for text input
+using the native virtual keyboard.
+
 \section1 Supported Qt Modules
+
+Qt for WebAssembly supports a subset of the Qt modules and features. Tested
+modules are listed below, other modules may or may not work.
+
+\list
+    \li \l {Qt Core}
+    \li \l {Qt GUI}
+    \li \l {Qt Network}
+    \li \l {Qt Widgets}
+    \li \l {Qt QML}
+    \li \l {Qt Quick}
+    \li \l {Qt Quick Controls}
+    \li \l {Qt Quick Layouts}
+    \li \l {Qt 5 Core Compatibility APIs}
+    \li \l {Qt Concurrent}
+    \li \l {Qt Image Formats}
+    \li \l {Qt OpenGL}
+    \li \l {Qt SVG}
+    \li \l {Qt WebSockets}
+\endlist
+
+In all cases, module support may not be complete and and there may be
+additional limitations, either due to the browser sandbox or due to
+incompleteness of the Qt platform port. See \l {Developing with Qt for WebAssembly}
+for further info.
+
 \section1 Developing with Qt for WebAssembly
 \section2 WebGL
 \section2 Multithreading
