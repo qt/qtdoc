@@ -471,10 +471,72 @@ is not providing that capability
 \endlist
 
 \section1 Other Topics
-\section2 Qt Config Options Reference
-\section2 Examples
+\section2 Qt Configure Options Reference
+
+The following configure options are relevant when building Qt for WebAssembly from source.
+
+\table
+    \header
+        \li Configure Argument
+        \li Brief Description
+    \row
+        \li -sse2
+        \li Enables SIMD support.
+    \row
+        \li -feature-thread
+        \li Multi-threaded wasm
+    \row
+        \li -device-option QT_WASM_SOURCE_MAP=1
+        \li Debugging option for creating source maps
+    \row
+        \li -feature-opengles3
+        \li Use opengles3 in addition to the default opengles2
+\endtable
+
 \section2 Typical Download Sizes
-\section2 External Resources
+Expected footprint (download size): Wasm modules as produced by the compiler can be
+large, but compress well:
+
+\table
+\header
+    \li Example
+    \li gzip
+    \li brotli
+\row
+    \li helloglwindow (QtCore + QtGui)
+    \li 2.8M
+    \li 2.1M
+\row
+    \li wiggly widget (QtCore + QtGui + QtWidgets)
+    \li 4.3M
+    \li 3.2M
+\row
+    \li SensorTag (QtCore + QtGui + QtWidgets + QtQuick + QtCharts)
+    \li 8.6M
+    \li 6.3M
+\endtable
+
+Compression is typically handled on the web server side, using standard compression
+features: the server compresses automatically or picks up pre-compressed versions of the
+files. There's generally no need to have special handling of wasm files.
+
+\section2 Examples
+
+\list
+        \li \l {https://www.qt.io/web-assembly-example-industrial-panel}
+               {Industrial Panel Demo}
+        \li \l {https://www.qt.io/web-assembly-example-slate}
+               {QMainWindow app}
+        \li \l {https://www.qt.io/web-assembly-example-gallery}
+               {A gallery of available controls in Qt Quick Controls}
+        \li \l {https://www.qt.io/web-assembly-example-pizza-shop}
+               {Web app for prdering pizzas}
+\endlist
+
 \section1 License
+
+Qt for WebAssembly is available under commercial licenses from \l{The Qt Company}.
+In addition, it is available under the \l{GNU General Public License, version 3}.
+See \l{Qt Licensing} for further details.
 
 */
