@@ -277,8 +277,58 @@ incompleteness of the Qt platform port. See \l {Developing with Qt for WebAssemb
 for further info.
 
 \section1 Developing with Qt for WebAssembly
-\section2 WebGL
+\section2 OpenGL and WebGL
+
+Qt requires WebGL, also for applications which do not use OpenGL directly. All
+relevant browsers support WebGL, but note that some browsers blacklist certain
+older GPUs. The Qt loader will detect this and display an error message.
+
+Qt detects WebGL as OpenGL ES, with the following version mapping:
+
+\table
+    \header
+        \li OpenGL
+        \li WebGL
+    \row
+        \li OpengL ES 2
+        \li WebGL 1
+    \row
+        \li OpengL ES 3
+        \li WebGL 2
+\endtable
+
+OpengL ES 2 is selected by default, OpenGL ES 3 can be enabled by configuring Qt with
+the -feature-opengles3 option.
+
+Qt for WebAssembly does support mixing raster and OpenGL content. Supported
+use cases are pure raster apps using QWigets, and pure OpenGL apps using
+Qt Quick or QOpenGLWindow. QOpenGLWidget is not supported at this point (QTBUG-66944).
+
+Web and Desktop OpenGL differences are documented in:
+\l {https://www.khronos.org/registry/webgl/specs/latest/1.0/#6}{WebGL and OpenGL Differences}
+There are additional differences between WebGL 1.0 and WebGL 2.0 which are documented in:
+\l {https://www.khronos.org/registry/webgl/specs/latest/2.0}{WebGL 2.0 Specification}
+
 \section2 Multithreading
+
+Qt supports multithreading on WebAssembly, however this feature is experimental
+and is not enabled by default. Thread support can be enabled by building Qt from
+source and using the "-feature-thread" configure flag.
+
+The Qt for WebAssembly binary packages do not support multithreading.
+
+Emscripten implements support for pthreads using web workers, and this abstraction
+is not completely leak free. See \l {https://emscripten.org/docs/porting/pthreads.html}{Pthreads Support}
+for further info.
+
+Multithreading requires browser support for SharedArrayBuffer, see \l {https://caniuse.com/sharedarraybuffer}
+{ caniuse sharedarraybuffer } for current supported status. If suppoerted, SharedArrayBuffer will
+be enabled provided the web server sets the COOP and and COEP headers:
+\list
+\li Cross-Origin-Opener-Policy: same-origin
+\li Cross-Origin-Embedder-Policy: require-corp
+\endlist
+
 \section2 SIMD
 \section2 Networking
 \section2 Local File Access
