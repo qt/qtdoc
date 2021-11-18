@@ -349,9 +349,127 @@ also if the SIMD code paths are not called at run-time. SIMD support may need to
 in the browsers advanced configurations, such as 'about:config' or 'chrome:flags'
 
 \section2 Networking
+
+Qt provides limited support for networking. In general, network protocols which are
+already in use on the web can be use also from Qt, while others are not directly
+available due to the web sandbox.
+
+The following protocols are supported:
+
+\list
+\li QNetworkAccessManager http requests to the web page origin server, or to a
+server which supports CORS. This includes XMLHttpRequest from QML.
+\li QWebSocket connections to any host. Note that web pages served over the secure https protocol
+allows websockets connections over secure wss protocol only.
+\endlist
+
+All other network protocols are not supported.
+
+In addition Emscripten supports \l{https://emscripten.org/docs/porting/networking.html}
+{emulated POSIX TCP sockets over WebSockets}. This is not currently supported by Qt's socket
+classes.
+
 \section2 Local File Access
+
+File system access is sandboxed on the web, and this has implications for how the
+application works with files. The Web platform provides APIs for accessing the local
+file system in a way which is under user control, as well as APIs for accessing
+persistent storage. Emscripten and Qt wraps these features and provides APIs which
+are easier to use from C++ and Qt-based applications.
+
+The web platform provides features for accessing local files and persistent storage:
+\list
+\li <input type="file"> for showing a native open-file dialog where the user can pick a file.
+\li IndexedDB provides persistent local storage (not accessible outside the browser)
+\endlist
+
+Emscripten provides several file systems with a POSIX like API. These include:
+\list
+\li the MEMFS ephemeral file system which stores files in-memory
+\li the IDBFS persistent file system which stores files using IndexedDB
+\endlist
+
+Emscripten mounts a temporary MEMFS filesystem to "/" at app startup. This means
+that QFile can be used, and will read and write files to memory by default. Qt
+provides other API as well:
+
+\list
+\li QSettings has an IndexedDB-based backend; Note that QSettings is
+asynchronous on WebAssembly.
+\li \l {https://doc.qt.io/qt-5/qfiledialog.html#getOpenFileContent}{QFileDialog::getOpenFileContent() }
+opens a native file dialog where the user can pick a file
+\li \l {https://doc.qt.io/qt-5/qfiledialog.html#saveFileContent}{QFileDialog::saveFileContent()}
+saves a file to the local file system via file download}
+\endlist
+
 \section2 Clipboard Access
+
+Qt supports copying and pasting text to the system clipboard, with some differences due
+to the web sandbox. In general clipbard access requre user permission, which can be obtained
+by handling an input event (e.g. CTRL+c), or by using the
+\l{https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API}{Clipboard API}.
+
+Browsers that support the Clipboard API are preferred. Note that a requirement for this API
+is that the web page is served over a secure connection (e.g. https), and that some browsers
+my require changing configuration flags.
+
+At the time of writing the following browsers support the Clipboard API, see
+\l{https://caniuse.com/?search=Clipboard}{caniuse} for the current support level.
+
+\list
+    \li Chrome supports the Clipboard API
+    \li Firefox supports the Clipboard API behind a flag:
+        dom.events.asyncClipboard.dataTransfer
+\endlist
+
 \section2 Debugging and Profiling
+
+Wasm debugging is done on browser javascript console, debugging applications on Wasm
+directly within Qt Creator is not possible.
+
+\list
+\li Qt debug and logging output is printed on the JavaScript console, which can be
+accessed via browser "Developer Tools" or similar.
+\li Source maps for stepping through code, can be created by reconfiguring Qt with
+the --device-option QT_WASM_SOURCE_MAP=1, and building a debug build.
+\list
+    \li \l {https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map}
+    \li \l {https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps#source_maps_in_devtools_sources_panel}
+\endlist
+\li Mobile browsers can use remote debugging
+\list
+    \li \l {https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging}
+    \li \l {https://developers.google.com/web/tools/chrome-devtools/remote-debugging}
+    \li \l {https://developer.apple.com/safari/tools/}
+\endlist
+\li To stop execution on a certain line and popup the browser debugger
+programmatically, you can add the function emscripten_debugger(); to the application
+source code.
+\li Profiling can be accomplished by using a debug build and the javascript console
+profiling features. Qt adds --profiling-funcs to the linker arguments in debug builds,
+which preserve function names in profiling
+\endlist
+
+\section2 Known Issues
+
+\list
+\li Nested event loops are not supported. Applications should not call API like QDialog::exec()
+and QEventLoop::exec()
+\li Drag and Drop is not supported
+\li Printing is not supported
+\li QDnsLookup lookups, QTcpSocket, QSsl do not work and are not supported due to the web sandbox
+\li Accessibility is not supported: Qt draws application content to a canvas element and does not
+use (other) native DOM elements.
+\li Fonts: Wasm sandbox does not allow access to system fonts. Font files must be
+distributed with the application, for example in Qt resources or downloading.
+Qt for WebAssembly itself embeds one such font.
+\li There may be artifacts of uninitialized graphics memory on some
+Qt Quick Controls 2 components, such as checkboxes. This can sometimes
+be seen on HighDPi displays.
+\li Native styles for Windows and macOS are not supported as Wasm as a platform
+is not providing that capability
+\endlist
+
 \section1 Other Topics
 \section2 Qt Config Options Reference
 \section2 Examples
