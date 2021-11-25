@@ -43,7 +43,7 @@
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP2
+    \row \li SUSE Linux Enterprise Server 15 SP3
         \li \c x86_64
         \li GCC 10
         \li
@@ -74,7 +74,7 @@
     \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10
         \li \c x86_64
-        \li MSVC 2019, MinGW 8.1
+        \li MSVC 2019, MinGW 11.2
         \li
     \row \li Windows on ARM
         \li \c arm64
@@ -95,7 +95,7 @@
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 8.1
+        \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 11.2
         \li
 \endtable
 //! [android]
