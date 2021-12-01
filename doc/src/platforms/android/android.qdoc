@@ -83,16 +83,12 @@ See \l{Get and Install Qt} and select Qt for Android in the installer.
 In order to use \l{Qt for Android}, you need the following:
 
 \list
-    \li Java Development Kit (JDK) provided by \l{AdoptOpenJDK} for all platforms,
+    \li Java Development Kit 11 (JDK) or above provided by \l{AdoptOpenJDK} for all platforms,
         is required to build Android apps. Other alternatives such as \l{OpenJDK}
-        for Linux or \l{Java SE Development Kit} for Windows are also supported.
+        for Linux and macOS or \l{Java SE Development Kit} for Windows are also supported.
 
-        \note JDK 11 or earlier must be used when using Qt for Android.
-
-    \li \l{Gradle} for building application packages (APK) and app bundles
+    \li \l{Gradle} 7.2 for building application packages (APK) and app bundles
         (AAB) for Android devices. Gradle is delivered with Qt.
-
-        \note Using Ant to build APKs is no longer supported.
 
     \target android-sdk
     \li \l{Android: The Android SDK Tools}{The Android Command-line SDK Tools}
