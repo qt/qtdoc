@@ -139,6 +139,8 @@ import QtQuick.Controls 2.12
 //window containing the application
 ApplicationWindow {
 
+    visible: true
+
     //title of the application
     title: qsTr("Hello World")
     width: 640
