@@ -167,6 +167,8 @@ static content, so any web server will do. Some use cases might require special
 server configuration, such as providing https certificates or setting http headers
 required to enable multithreading support.
 
+\section3 Emrun
+
 Emscripten provides the \e emrun utility for test-running applications. Emrun
 starts a web server, launches a browser, and will also capture and forward
 stdout/stderr (which will normally go to the JavaScript console).
@@ -175,10 +177,34 @@ stdout/stderr (which will normally go to the JavaScript console).
     /path/to/emscripten/emrun --browser=firefox appname.html
 \endcode
 
-Another option is http.server from Python:
+\section3 Python http.server
+
+Another option is to start a development web server and then launch the web
+browser separately. One of the simplest options is http.server from Python:
 
 \badcode
     python -m http.server
+\endcode
+
+\section3 qtwasmserver
+
+Qt provides a developer web server which uses \l{https://github.com/FiloSottile/mkcert}{mkcert}
+to generate https certificates. This allows testing web features which require
+a \l{https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts}{secure context}.
+Note that delivery over http://localhost is also considered secure, wihtout requireing a
+certificate.
+
+The web server also sets the \l{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy}{COOP}
+and \l{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy}{COEP}
+headers to values which enalbles support for \l{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer}{SharedArrayBuffer}
+and multi-threading.
+
+The qtwasmserver script starts one server which binds to localhost by default. You may
+add additional addresses using the \e -a command-line argument, or use \e --all to bind
+to all available addresses.
+
+\badcode
+    python /path/to/qtbase/util/wasm/qtwasmserver/qtwasmserver.py --all
 \endcode
 
 \section2 Building Applications using Qt Creator
