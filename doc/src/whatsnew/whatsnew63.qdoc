@@ -122,6 +122,23 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Positioning Module
+
+    \list
+        \li New \l {QGeoPositionInfo::}{DirectionAccuracy} attribute is added
+            for Android and iOS platforms. It represents the accuracy of the
+            provided bearing.
+    \endlist
+
+    \section2 Qt Bluetooth Module
+
+    \list
+        \li Extended the Windows implementation of \l QBluetoothLocalDevice.
+            It reports the adapter state correctly, and allows to toggle its
+            state. Support for connected/disconnected devices tracking is still
+            missing.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Technology Preview Platforms
