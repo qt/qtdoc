@@ -83,7 +83,10 @@
     \section2 Qt Network Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QNetworkInformation learned transportMedium. A property that
+            returns the transport medium of the primary network interface.
+        \li QNetworkInformation also learned isMetered. A property that
+            returns whether the network is metered.
     \endlist
 
     \section2 Qt QML Module
