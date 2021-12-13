@@ -35,7 +35,14 @@
     Qt 6.3 adds the following module:
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+
+        \li Qt Language Server: implements the \l
+            {https://microsoft.github.io/language-server-protocol/specifications/specification-current/}
+            {Language Server Protocol Specification} and the \l
+            {https://www.jsonrpc.org/specification} {JsonRpc 2.0}
+            protocol.
+            The module does not contain a public API.
+
     \endlist
 
     Qt 6.3 reintroduces the following modules that were not present in Qt 6.2.
