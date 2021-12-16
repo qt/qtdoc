@@ -40,15 +40,16 @@
     QNX SDP (Software Development Platform) which includes QNX Neutrino RTOS
     components for various targets and a full set of development tools.
 
-    Qt 5 is currently tested and supported on QNX SDP 7.0, with support for
-    both 32-bit and 64-bit target architectures:
+    Qt 5 is currently tested and supported on QNX SDP 7.0 and 7.1, with support for
+    the following target architectures:
 
     \list
-        \li \c ARMle-v7 and \c x86 (32-bit)
-        \li \c AArch64le and \c x86-64 (64-bit)
+        \li \c (32-bit) ARMle-v7 and \c x86 (QNX 7.0 only)
+        \li \c (64-bit) AArch64le and \c x86-64
     \endlist
 
-    Support for 64-bit architectures was added in QNX SDP 7.0.
+    \note Support for 64-bit architectures was added in QNX SDP 7.0. Support for
+          32-bit x86 architecture was removed in QNX SDP 7.1.
 
     \section2 Previous Releases
 
@@ -86,14 +87,12 @@
 
     \section1 Build Requirements
 
-    Building Qt 5 requires the following packages available from the
-    \l {http://www.qnx.com/}{QNX website} (registration required for access
-    to downloads):
+    Building Qt 5 requires downloading, and installing of, QNX SDP 7.0 or 7.1
+    from the
+    \l {http://www.qnx.com/}{QNX website}.
 
-    \list
-        \li \l {http://blackberry.qnx.com/en/sdp7/sdp70_download}{QNX SDP 7.0}
-            with \l {http://www.qnx.com/download/group.html?programid=26808}
-    \endlist
+    \note A suitable license is required. Contact (\l {mailto://info@qnx.com}{QNX}
+          for more information.
 
     The compiler and other parts of the tool chain are provided in the SDP
     packages. You do not need any additional installations on your host PC.
@@ -298,6 +297,8 @@
     variables, especially for the host name and time and date.
 
     \section1 Qt Creator Target Requirements
+
+    \note Qt Creator support has been tested with QNX 7.0 only.
 
     A QNX Neutrino RTOS target used for development with Qt Creator should
     provide a few additional command line tools and services.
