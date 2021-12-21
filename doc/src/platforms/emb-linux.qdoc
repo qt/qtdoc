@@ -715,11 +715,11 @@
   help identify the correct input device nodes and may uncover output
   configuration issues that can be difficult to debug otherwise.
 
-  \note As of Qt 5.8, the above is only supported for the evdevtouch input
-  backend. Other variants, such as the libinput-based one, will continue to
-  route events to the primary screen. To force the usage of evdevtouch on
-  systems where multiple input backends are available, set the environment
-  variable \c QT_QPA_EGLFS_NO_LIBINPUT to \c 1.
+  \note As of Qt 5.14, the above is only supported for the evdevtouch and
+  libinput backends. Other variants will continue to route events to the
+  primary screen. To force the usage of evdevtouch on systems where multiple
+  input backends are available, set the environment variable
+  \c QT_QPA_EGLFS_NO_LIBINPUT to \c 1.
 
   \section2 EGLFS with other backends
 
