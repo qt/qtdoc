@@ -140,6 +140,19 @@
             missing.
     \endlist
 
+    \section2 Qt Wayland Compositor Module
+
+    \list
+        \li Added an API to create custom shell extensions. For instructions on usage, see
+            \l{Qt Wayland Compositor Examples - Custom Shell}{the example}.
+        \li Added a \l{Qt Wayland Compositor Examples - QtShell Compositor}{Qt Shell} which
+            supports all windowing system features available in Qt.
+        \li Added support for the \l{QtWayland.Compositor.PresentationTime}{presentation-time}
+            protocol.
+        \li Added support for multiple input method protocols in the same server, in order to
+            support clients from different sources.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Technology Preview Platforms
@@ -153,12 +166,6 @@
     \section2 Desktop Platforms
 
     \section3 \macos on Apple Silicon
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section3 Wayland Client on Linux
 
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
@@ -198,6 +205,18 @@
 
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Other
+
+    \section3 Wayland
+
+    \list
+        \li Implemented support for \c DataDeviceV3 protocol.
+        \li Upgraded \c wl_seat support to version 7.
+        \li Added support for selecting input method protocol, if the server supports multiple
+            interfaces. This can be done by setting QT_WAYLAND_TEXT_INPUT_PROTOCOL to the name of
+            the protocol.
     \endlist
 
     \section1 List of API Changes
