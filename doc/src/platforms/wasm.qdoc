@@ -120,22 +120,24 @@ This sets the \c -static, \c -no-feature-thread, and \c{-no-make examples}
 configure options. You can enable thread support with the \c -feature-thread,
 configure option. Shared library builds are not supported.
 
-You need a host build of the same version of Qt and add that path to \e QT_HOST_PATH
-by using the \c -qt-host-path configure argument.
+You need a host build of the same version of Qt and specify that path in the \e
+QT_HOST_PATH CMake variable or by using the \c -qt-host-path configure argument.
 
-Although it should be detected, you may optionally set the \e CMAKE_TOOLCHAIN_PATH
-environment variable to theEmscripten.cmake toolchain file that comes with Emscripten
-sdk, by using the \c {-DCMAKE_TOOLCHAIN_FILE=/path/to/Emscripten.cmake} configure argument.
+Although it should be detected, you may optionally set the
+\e{CMAKE_TOOLCHAIN_FILE} CMake variable to the Emscripten.cmake toolchain file
+that comes with Emscripten SDK. This can be done by setting the environment
+variable \e{CMAKE_TOOLCHAIN_FILE} or by passing
+\c{CMAKE_TOOLCHAIN_FILE=/path/to/Emscripten.cmake} to configure.
 
 \badcode
-    ./configure -qt-host-path /path/to/Qt/6.2.0/platform -xplatform wasm-emscripten -prefix $PWD/qtbase
+    ./configure -qt-host-path /path/to/Qt -platform wasm-emscripten -prefix $PWD/qtbase
 \endcode
 
 On Windows, make sure you have MinGW in your \c PATH
 and configure with the following:
 
 \badcode
-    configure -qt-host-path C:\Path\to\Qt6 -no-warnings-are-errors -xplatform wasm-emscripten -platform win32-g++ -prefix %CD%\qtbase
+    configure -qt-host-path C:\Path\to\Qt -no-warnings-are-errors -platform wasm-emscripten -prefix %CD%\qtbase
 \endcode
 
 Then build the required modules:
