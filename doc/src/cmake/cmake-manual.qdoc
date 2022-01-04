@@ -57,16 +57,6 @@
             \li \l{Supporting older Qt 5 versions}
             \li \l{Recommended practices}
         \endlist
-        \li \l{CMake Variable Reference}
-        \list
-            \li \l{Module variables}
-            \li \l{Installation variables}
-            \li \l{Project variables}
-        \endlist
-        \li \l{CMake Property Reference}
-        \list
-            \li \l{cmake-properties-qtcore}{Qt6::Core}
-        \endlist
         \li \l{CMake Command Reference}
         \list
             \li \l{cmake-commands-qtcore}{Qt6::Core}
@@ -76,6 +66,16 @@
             \li \l{cmake-macros-qtremoteobjects}{Qt6::RemoteObjects}
             \li \l{cmake-macros-qtscxml}{Qt6::Scxml}
             \li \l{cmake-macros-qtwidgets}{Qt6::Widgets}
+        \endlist
+        \li \l{CMake Variable Reference}
+        \list
+            \li \l{Module variables}
+            \li \l{Installation variables}
+            \li \l{Project variables}
+        \endlist
+        \li \l{CMake Property Reference}
+        \list
+            \li \l{cmake-properties-qtcore}{Qt6::Core}
         \endlist
     \endlist
 */
@@ -232,7 +232,7 @@
     \page cmake-qt5-and-qt6-compatibility.html
     \title Qt 5 and Qt 6 compatibility
     \previouspage Imported targets
-    \nextpage CMake Variable Reference
+    \nextpage CMake Command Reference
 
     The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible. However, up to Qt 5.14,
     all imported Qt library targets and commands contained the version number as part of the name.
@@ -324,7 +324,7 @@
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
     \nextpage CMake Property Reference
-    \previouspage Qt 5 and Qt 6 compatibility
+    \previouspage CMake Command Reference
 
     \section1 Module variables
 
@@ -429,7 +429,6 @@
     \page cmake-property-reference.html
     \title CMake Property Reference
     \brief Provides a complete reference for CMake properties implemented in Qt.
-    \nextpage CMake Command Reference
     \previouspage CMake Variable Reference
 
     \section1 Qt6::Core
@@ -444,7 +443,8 @@
     \page cmake-command-reference.html
     \title CMake Command Reference
     \brief Provides a complete reference for CMake commands implemented in Qt.
-    \previouspage CMake Property Reference
+    \previouspage Qt 5 and Qt 6 compatibility
+    \nextpage CMake Variable Reference
 
     \section2 Qt6::Core
     \target cmake-commands-qtcore
