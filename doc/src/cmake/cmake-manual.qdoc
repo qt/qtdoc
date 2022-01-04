@@ -48,6 +48,7 @@
         \list
             \li \l{Building a C++ console application}
             \li \l{Building a C++ GUI application}
+            \li \l{Adding resources}
             \li \l{Further reading}
         \endlist
         \li \l{Imported targets}
@@ -238,6 +239,25 @@
 
     See the \l{CMake Documentation} for more information about these target
     properties.
+
+    \section2 Adding resources
+
+    We want to display some images in our application, so we add them using the
+    \l{The Qt Resource System}{Qt Resource System}.
+
+    \quotefile snippets/cmake/helloworld_resources.cmake
+
+    The \l{qt_add_resources} command automatically creates a Qt resource
+    containing the referenced images. From the C++ source code, you can access
+    the images by prepending the specified resource prefix:
+
+    \code
+    logoLabel->setPixmap(QPixmap(":/images/logo.png"));
+    \endcode
+
+    The \l{qt_add_resources} command takes as the first argument either a
+    variable name or a target name. We recommend to use the target-based variant
+    of this command as shown in the example above.
 
     \section2 Further reading
 
