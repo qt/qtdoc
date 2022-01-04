@@ -46,7 +46,8 @@
     \list
         \li \l{Getting started with CMake}
         \list
-            \li \l{Build a C++ GUI executable}
+            \li \l{Building a C++ console application}
+            \li \l{Building a C++ GUI application}
             \li \l{Further reading}
         \endlist
         \li \l{Imported targets}
@@ -92,23 +93,23 @@
     \l{Qt Creator Manual}{Qt Creator}.
 
     In this section we will show the most basic way to use Qt in a CMake
-    project. We will walk through an example project that is utilizing
-    \l{Qt Widgets}.
+    project. First, we create a basic console application. Then, we extend the
+    project into a GUI application that uses \l{Qt Widgets}.
 
-    \section2 Build a C++ GUI executable
+    \section2 Building a C++ console application
 
     A \c{CMake} project is defined by files written in the CMake language.
     The main file is called \c{CMakeLists.txt}, and is usually placed in the
     same directory as the actual program sources.
 
-    Here is a typical \c{CMakeLists.txt} file for an application written in C++
-    and using Qt and \l{Qt Widgets}:
+    Here is a typical \c{CMakeLists.txt} file for a console application written
+    in C++ using Qt:
 
-    \quotefile snippets/cmake/helloworld_qtwidgets.cmake
+    \quotefile snippets/cmake/helloworld_qtcore.cmake
 
     Let's go through the content.
 
-    \quotefromfile snippets/cmake/helloworld_qtwidgets.cmake
+    \quotefromfile snippets/cmake/helloworld_qtcore.cmake
 
     \printuntil cmake_minimum_required
 
@@ -129,24 +130,22 @@
     \c{CMAKE_CXX_STANDARD_REQUIRED} variables will let CMake print an error if
     the compiler is too old.
 
-    \printuntil CMAKE_AUTOUIC
+    \printuntil CMAKE_AUTOMOC
 
-    Qt applications typically make use of the
-    \l{Using the Meta-Object Compiler (moc)}{Meta-Object Compiler (moc)},
-    \l{Resource Compiler (rcc)}, and \l{User Interface Compiler (uic)}
-    that come with Qt. Setting the \c{CMAKE_AUTOMOC}, \c{CMAKE_AUTORCC}, and
-    \c{CMAKE_AUTOUIC} variables to \c{ON} will let CMake automatically set up
-    rules so that the respective compilers are called transparently, when
+    Qt applications typically make use of the \l{Using the Meta-Object Compiler
+    (moc)}{Meta-Object Compiler (moc)} that comes with Qt. Setting the
+    \c{CMAKE_AUTOMOC} variable to \c{ON} will let CMake automatically set up
+    rules so that the meta-object compiler is called transparently, when
     required.
 
     \printuntil find_package(
 
-    This tells CMake to look up Qt 6, and import the \c {Widgets} module. There
+    This tells CMake to look up Qt 6, and import the \c {Core} module. There
     is no point in continuing if \c{CMake} cannot locate the module, so we do
     set the \c{REQUIRED} flag to let CMake abort in this case.
 
     If successful, the module will set some CMake variables documented in
-    \l{Module variables}. It furthermore imports the \c{Qt6::Widgets} target
+    \l{Module variables}. It furthermore imports the \c{Qt6::Core} target
     that we use below.
 
     For \c{find_package} to be successful, \c CMake must find the Qt
@@ -160,9 +159,7 @@
 
     \c{add_executable()} tells CMake that we want to build an executable (so not
     a library) called \c{helloworld} as a target. The target should be built
-    from C++ code (\c{mainwindow.cpp}, \c{main.cpp}), a \l{Qt Designer} file
-    (\c{mainwindow.ui}), and a \l{The Qt Resource System}{Qt Resource System}
-    file (\c{resources.qrc}).
+    from the C++ source file \c{main.cpp}.
 
     Note that you typically do not list header files here. This is different
     from \l{qmake}, where header files need to be explicitly listed so that
@@ -178,15 +175,67 @@
     \printuntil
 
     Finally, \c{target_link_libraries} tells CMake that the \c{helloworld}
-    executable makes use of \l{Qt Widgets} by referencing the \c{Qt6::Widgets}
+    executable makes use of \l{Qt Core} by referencing the \c{Qt6::Core}
     target imported by the \c{find_package()} call above. This will not only add
     the right arguments to the linker, but also makes sure that the right
     include directories, compiler definitions are passed to the C++ compiler.
     The \c{PRIVATE} keyword is not strictly necessary for an executable target,
     but it is good practice to specify it. If \c{helloworld} was a library
     rather than an executable, then either \c{PRIVATE} or \c{PUBLIC} should be
-    specified (\c{PUBLIC} if the library mentions anything from \c{Qt6::Widgets}
+    specified (\c{PUBLIC} if the library mentions anything from \c{Qt6::Core}
     in its headers, \c{PRIVATE} otherwise).
+
+    \section2 Building a C++ GUI application
+
+    In the \l{Building a C++ console application}{last section} we showed the
+    CMakeLists.txt file for a simple console application. We will now extend it
+    to create a GUI application that uses the \l{Qt Widgets} module.
+
+    This is the full project file:
+
+    \quotefile snippets/cmake/helloworld_qtwidgets.cmake
+
+    Let's walk through the changes we have made.
+
+    \quotefromfile snippets/cmake/helloworld_qtwidgets.cmake
+    \skipto CMAKE_AUTOMOC
+    \printuntil CMAKE_AUTOUIC
+
+    In addition to \c{CMAKE_AUTOMOC} we set the \c{CMAKE_AUTOUIC} variable to
+    \c{ON}. This will automatically create rules to invoke Qt's \l{User
+    Interface Compiler (uic)} on \c{.ui} source files.
+
+    \printuntil find_package(
+
+    In the \c{find_package} call, we replace \c{Core} with \c{Widgets}. This
+    will locate the \c{Qt6Widgets} module and provide the \c{Qt6::Widgets}
+    targets we later link against.
+
+    Note that the application will still link against \c{Qt6::Core}, because
+    \c{Qt6::Widgets} depends on it.
+
+    \printuntil )
+
+    We add a \l{Qt Designer} file (\c{mainwindow.ui}) and its corresponding C++
+    source file (\c{mainwindow.cpp}) to the application target's sources.
+
+    \printuntil target_link_libraries
+
+    In the \c{target_link_libraries} command, we link against \c{Qt6::Widgets}
+    instead of \c{Qt6::Core}.
+
+    \printuntil
+
+    Finally, we set properties on our application target with the following
+    effects:
+
+    \list
+        \li Prevent the creation of a console window on Windows.
+        \li Create an application bundle on macOS.
+    \endlist
+
+    See the \l{CMake Documentation} for more information about these target
+    properties.
 
     \section2 Further reading
 
