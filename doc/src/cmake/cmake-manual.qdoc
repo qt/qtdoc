@@ -48,6 +48,9 @@
         \list
             \li \l{Building a C++ console application}
             \li \l{Building a C++ GUI application}
+            \li \l{Structuring projects}
+            \li \l{Building libraries}
+            \li \l{Using libraries}
             \li \l{Adding resources}
             \li \l{Further reading}
         \endlist
@@ -239,6 +242,131 @@
 
     See the \l{CMake Documentation} for more information about these target
     properties.
+
+    \section2 Structuring projects
+
+    Projects that contain more than just one target will benefit from a clear
+    project file structure. We will use CMake's \l{CMake add_subdirectory
+    documentation}{subdirectory feature}.
+
+    As we plan to extend the project with more targets, we move the source files
+    of the application into a subdirectory and create a new \c{CMakeLists.txt}
+    in there.
+
+    \badcode
+    <project root>
+    ├── CMakeLists.txt
+    └── src
+        └── app
+            ├── CMakeLists.txt
+            ├── main.cpp
+            ├── mainwindow.cpp
+            ├── mainwindow.h
+            └── mainwindow.ui
+    \endcode
+
+    The top-level \c{CMakeLists.txt} contains the overall project setup,
+    \c{find_package} and \c{add_subdirectory} calls:
+
+    \quotefile snippets/cmake/helloworld_subdirs.cmake
+
+    Variables that are set in this file are visible in subdirectory project
+    files.
+
+    The application's project file \c{src/app/CMakeLists.txt} contains the
+    executable target:
+
+    \quotefile snippets/cmake/helloworld_src_app.cmake
+
+    Such a structure will make it easy to add more targets to the project such
+    as libraries or unit tests.
+
+    \section2 Building libraries
+
+    As the project grows, you may want to turn parts of your application code
+    into a library that is used by the application and possibly unit tests. This
+    section shows how to create such a library.
+
+    Our application currently contains business logic directly in \c{main.cpp}.
+    We extract the code into a new static library called \c{businesslogic} in
+    the subdirectory \c{"src/businesslogic"} as explained in the \l{Structuring
+    projects}{previous section}.
+
+    For the sake of simplicity, the library consists of just one C++ source file
+    and its corresponding header file that is included by the application's
+    \c{main.cpp}:
+
+    \badcode
+    <project root>
+    ├── CMakeLists.txt
+    └── src
+        ├── app
+        │   ├── ...
+        │   └── main.cpp
+        └── businesslogic
+            ├── CMakeLists.txt
+            ├── businesslogic.cpp
+            └── businesslogic.h
+    \endcode
+
+    Let's have a look at the library's project file (\c{src/businesslogic/CMakeLists.txt}).
+
+    \quotefile snippets/cmake/helloworld_src_businesslogic.cmake
+
+    Let's go through the content.
+
+    \quotefromfile snippets/cmake/helloworld_src_businesslogic.cmake
+    \printuntil )
+
+    The
+    \l{https://cmake.org/cmake/help/latest/command/add_library.html}{add_library}
+    command creates the library \c{businesslogic}. Later, we will let the
+    application link against this target.
+
+    The \c STATIC keyword denotes a static library. If we wanted to create a
+    shared or dynamic library, we would use the \c SHARED keyword.
+
+    \printuntil target_link_libraries
+
+    We have a static library and don't actually have to link other libraries.
+    But as our library uses classes from \c{QtCore}, we add a link dependency to
+    \c{Qt6::Core}. This pulls in the necessary \c QtCore include paths and
+    preprocessor defines.
+
+    \printuntil target_include_directories
+
+    The library API is defined in the header file
+    \c{businesslogic/businesslogic.h}. By calling \l{CMake
+    target_include_directories documentation}{target_include_directories}, we
+    make sure that the absolute path to the \c businesslogic directory is
+    automatically added as an include path to all targets using our library.
+
+    This frees us in \c{main.cpp} from using relative paths to locate
+    \c{businesslogic.h}. Instead, we can just write
+
+    \badcode
+    #include <businesslogic.h>
+    \endcode
+
+    Last, we must add the library's subdirectory to the top-level project file:
+
+    \quotefile snippets/cmake/helloworld_subdirs2.cmake
+
+    \section2 Using libraries
+
+    To use the library we created in the \l{Building libraries}{previous
+    section}, we instruct CMake to link against it:
+
+    \quotefile snippets/cmake/helloworld_src_app2.cmake
+
+    This ensures that \c{businesslogic.h} is found when main.cpp is compiled.
+    Furthermore, the businesslogic static library will become a part of the \c
+    helloworld executable.
+
+    In CMake terms, the library \c businesslogic specifies \e{usage
+    requirements} (the include path) that every consumer of our library (the
+    application) has to satisfy. The \c{target_link_libraries} command takes
+    care of that.
 
     \section2 Adding resources
 
