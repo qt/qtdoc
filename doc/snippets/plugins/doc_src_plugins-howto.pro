@@ -57,9 +57,7 @@ QTPLUGIN.platforms = qminimal
 #! [4]
 
 #! [5]
-QTPLUGIN     += qjpeg \
-                qgif \
-                qkrcodecs
+QTPLUGIN += qlibinputplugin
 #! [5]
 
 #! [6]
