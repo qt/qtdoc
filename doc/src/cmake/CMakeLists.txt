@@ -1,7 +1,7 @@
 # special case skip regeneration
 
-add_library(CMakeDoc INTERFACE)
+add_library(qtcmake INTERFACE)
 
-qt_internal_add_docs(CMakeDoc
+qt_internal_add_docs(qtcmake
                      qtcmake.qdocconf
 )
