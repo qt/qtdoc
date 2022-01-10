@@ -131,17 +131,20 @@
     \section2 Qt Quick Controls Module
 
     \list
-        \li New control added: \l [QML] TreeViewDelegate.
+        \li New controls added: \l [QML] TreeViewDelegate, \l [QML] Calendar,
+            \l [QML] CalendarModel, \l [QML] DayOfWeekRow, \l [QML] MonthGrid,
+            \l [QML] WeekNumberColumn.
     \endlist
 
     \section2 Qt Quick Dialogs Module
 
     \list
-        \li Added MessageDialog. This will by default be a native dialog on
-            platforms that support it, and a non-native quick dialog on other
+        \li Added FolderDialog and MessageDialog. These are native dialogs on
+            platforms that support it, and non-native Qt Quick dialogs on other
             platforms.
-            The non-native quick MessageDialog supports the Basic, Fusion,
-            Imagine, Material and Universal styles.
+
+            The non-native dialogs support all of the non-native styles: Basic,
+            Fusion, Imagine, Material and Universal.
     \endlist
 
     \section2 Qt Widgets Module
