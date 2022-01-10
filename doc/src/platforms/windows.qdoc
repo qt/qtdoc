@@ -351,12 +351,12 @@
     used and it does cover the entire full screen window, then this problem
     does not occur.
 
-    To solve this problem, a QWindowsWindowFunction can be used to enable a
-    native Windows flag which will set \c WS_BORDER when showing in full
-    screen mode. This can be utilized as follows:
+    To solve this problem, native APIs can be used to enable the \c WS_BORDER
+    attribute when showing in full screen mode. This can be utilized as follows:
 
     \code
-    QWindowsWindowFunctions::setHasBorderInFullScreen(tlwWindow->windowHandle(), true);
+        HWND handle = reinterpret_cast<HWND>(window.winId());
+        SetWindowLongPtr(handle, GWL_STYLE, GetWindowLongPtr(handle, GWL_STYLE) | WS_BORDER);
     \endcode
 
     This will give the full screen window a 1-pixel border, thus enabling the
