@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -62,6 +62,22 @@
     \list
         \li Added QtFuture::whenAll() and QtFuture::whenAny() functions
             for combining multiple futures.
+        \li Time formats used by QLocale, QTime and QDateTime's parsing and
+            serialization now recognize 'aP' and 'Ap' format specifiers to
+            obtain an AM/PM indicator, using the locale-appropriate case for the
+            indicator, where previously the author of a time format had to pick
+            a case that might conflict with the user's locale. For QTime and
+            QDateTime the locale is always C, whose indicators are
+            uppercase. For QLocale, the case will now match that of amText() or
+            pmText(). Previously, 'aP' would have been read as a lower-case
+            indicator followed by a 'P' and 'Ap' as an upper-case indicator
+            followed by a 'p'. The 'P' or 'p' will now be treated as part of the
+            format specifier: if the prior behavior is desired, either use 'APp'
+            or 'apP' as format specifier or quote the 'p' or 'P' in the
+            format. The prior 'a', 'ap', 'A' and 'AP' specifiers are otherwise
+            unaffected.
+        \li Added QByteArrayView::trimmed() to elide leading and trailing space.
+        \li QLocale now has a constructor taking a QStringView.
     \endlist
 
     \section2 Qt GUI Module
