@@ -62,6 +62,24 @@
     \list
         \li Added QtFuture::whenAll() and QtFuture::whenAny() functions
             for combining multiple futures.
+        \li Added QDir::mdkir() and QFile::open() overloads accepting
+            a permission argument.
+        \li QMetaType can now convert any QFuture<T> to QFuture<void>.
+        \li Added QDirIterator::nextFileInfo(), to advance and get
+            full file information.
+        \li QLocale's mappings of language codes to and from Language
+            values now have overloads specifying which ISO 639 code
+            types to consider.
+        \li QRegularExpressionMatch now has hasCaptured() methods to
+            test whether a given group was captured at all.
+        \li QProcess now has a constructor that inherits the parent
+            process's environment. (This was formerly the default
+            constructor's behavior, in conflict with its
+            documentation; a default-constructed QProcess now, as
+            documented, has an empty environment.) Added method
+            inheritsFromParent() to test for an instance constructed
+            the new way.
+        \li QVarLengthArray now has emplace() and emplace_back() methods.
         \li Time formats used by QLocale, QTime and QDateTime's parsing and
             serialization now recognize 'aP' and 'Ap' format specifiers to
             obtain an AM/PM indicator, using the locale-appropriate case for the
@@ -76,8 +94,25 @@
             or 'apP' as format specifier or quote the 'p' or 'P' in the
             format. The prior 'a', 'ap', 'A' and 'AP' specifiers are otherwise
             unaffected.
+        \li QDebug can now stream QVarLengthArray objects.
+        \li QObject::findChildren() now has an overload taking no name.
+        \li Added overloads and method names to QSemaphore for greater
+            compatibility with std::counting_semaphore and std::chrono.
+        \li QJsonValue now has rvalue constructors taking QJsonArray
+            and QJsonObject.
+        \li QCborMap::fromJsonObject() and QCborArray::fromJsonArray()
+            now have rvalue overloads.
         \li Added QByteArrayView::trimmed() to elide leading and trailing space.
+        \li Added number-parsing methods to QByteArrayView.
+        \li Added isValidUtf8() methods to QByteArray, QByteArrayView,
+            and QUtf8StringView.
+        \li Added QCryptographicHash::resultView() to provide a view over result().
+        \li QStringBuilder now supports QByteArrayView.
+        \li QUuid can now be constructed from QAnyStringView.
         \li QLocale now has a constructor taking a QStringView.
+        \li QByteArrayList::join() now has an overload taking QByteArrayView.
+        \li QCryptographicHash::addData() now has an overload taking QByteArrayView.
+        \li qSwap() is now constexpr.
     \endlist
 
     \section2 Qt GUI Module
