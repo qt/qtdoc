@@ -182,7 +182,12 @@
     \section2 Qt Data Visualization Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added a new \l {QSurface3DSeries::}{wireFrameColor} property to set the wireframe color
+            for a QSurface3DSeries in Q3DSurface.
+        \li Added a new \l {QBar3DSeries::}{rowColors} property to set different colors for rows of bars in Q3DBars.
+        \li Added a new \l {Q3DBars::}{barSeriesMargin} property to set the margin for individual bars in Q3DBars.
+        \li Added a \l {QAbstract3DGraph::}{hasSeries} function to check whether a series is already added in QAbstract3DGraph.
+        \li Added support for 16-bit height maps.
     \endlist
 
     \section2 Qt Charts Module
