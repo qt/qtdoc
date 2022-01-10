@@ -118,6 +118,11 @@
     \list
         \li Added ReflectionProbe, making it possible for models to
             show reflections.
+        \li Particles3D: New \c ParticleCustomShape3D element which loads emitting shapes
+            from custom CBOR binary files.
+        \li Particles3D: Sprite particles now have support for the 3D environment lights.
+        \li Particles3D: New \c DynamicBurst element for declarative dynamic emitting
+            and for emitting at trail start/end times.
     \endlist
 
     \section2 Qt Data Visualization Module
