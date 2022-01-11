@@ -178,9 +178,9 @@
     By default, when cross-compiling, only the Qt libraries and tools that are
     supposed to run on the target device are built. Build-related tools like \c
     moc and \c uic are not built. Building such tools can be enabled by setting
-    \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} to \c{ON}.
+    \c{QT_FORCE_BUILD_TOOLS} to \c{ON}.
 
-    \note When \c{QT_BUILD_TOOLS_WHEN_CROSSCOMPILING} is enabled, target binaries of tools
+    \note When \c{QT_FORCE_BUILD_TOOLS} is enabled, target binaries of tools
     like \c qmake will get installed to the staging location. Therefore, if \c qmake is
     used to build applications, call the \c{host-qmake} script instead.
 
