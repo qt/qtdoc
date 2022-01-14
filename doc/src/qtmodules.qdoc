@@ -332,6 +332,22 @@
 
     \note \b{All*} refers to all supported platforms except QNX and INTEGRITY.
 
+    The following add-ons are still in development, but are available as technology previews:
+
+    \section1 Qt Add-Ons in Technical Preview
+    \table 80%
+    \header
+        \li Module
+        \li Development Platforms
+        \li Target Platforms
+        \li Description
+    \row
+        \li \l[QtPDF]{Qt PDF}
+        \li All
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
+        \li Classes and functions for rendering PDF documents.
+    \endtable
+
     \section1 Where to Go from Here
 
     We invite you to explore the rest of Qt. We prepared overviews which help
