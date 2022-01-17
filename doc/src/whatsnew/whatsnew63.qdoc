@@ -1,4 +1,4 @@
-/****************************************************************************
+u/****************************************************************************
 **
 ** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -167,7 +167,14 @@
 
     \list
         \li Added tech preview QML type compiler (\c qmltc) that compiles QML
-        type structure to C++
+            type structure to C++.
+        \li Added several new warnings to qmllint which now uses compiler
+            infrastructure.
+        \li The header only qmlintegration module allows to mark types for registration in a QML module,
+            without adding a dependency to qtdeclarative. Those can then be added to a QML module via
+            the new \c qt6_generate_foreign_qml_types CMake API.
+        \li qmlcachegen compiles suitable functions and expressions to C++ now, for improved
+            performance.
     \endlist
 
     \section2 Qt Quick 3D Module
