@@ -177,6 +177,11 @@
         \li Particles3D: Sprite particles now have support for the 3D environment lights.
         \li Particles3D: New \c DynamicBurst element for declarative dynamic emitting
             and for emitting at trail start/end times.
+        \li Added \l [QML] ResourceLoader component for explicit setting of resource lifetimes
+            (in Technical Preview)
+        \li PrincipledMaterial: Added support for ClearCoat, Transmission, and Refraction.
+        \li glTF2: Importers now support the following additional extensions: KHR_materials_clearcoat,
+            KHR_materials_ior, KHR_materials_transmission, KHR_materials_volume
     \endlist
 
     \section2 Qt Data Visualization Module
