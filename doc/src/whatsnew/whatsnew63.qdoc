@@ -252,6 +252,23 @@ u/****************************************************************************
 
     \section2 Technology Preview Platforms
 
+    \section3 WebAssembly
+        Several improvements have been made for Qt for WebAssembly. See the platform documentation
+        at \l{Qt for WebAssembly} for details.
+
+        \list
+            \l Added support for copy/paste of images and html text to the system clipboard.
+            \l Added SIMD support. Note that enabling SIMD requires building Qt from source.
+            \l Added support for calling QEventLoop::exec() and QThread::exec() on secondary threads.
+            \l Added support for calling QEventLoop::exec() and QDialog::exec() on the main thread using
+               \l{https://emscripten.org/docs/porting/asyncify.html}{Emscripten Asyncify}.
+               Note that enabling asyncify requires building Qt from source.
+            \l Drag-and-drop now works for asyncify-enabled builds.
+            \l Added support for tunneling TCP and UDP sockets over WebSockets, using Emscriptens
+               \l{https://emscripten.org/docs/porting/networking.html}{Emulated POSIX TCP Sockets over WebSockets}.
+               This support is limited to async sockets on the main thread.
+        \endlist
+
     \section3 Windows on ARM
 
     \list
