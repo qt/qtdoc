@@ -140,6 +140,11 @@
          \li All
          \li Qt Core APIs that were in Qt 5 but not Qt 6.
     \row
+    \li \l[Qt CoAP]{Qt CoAP}
+        \li All
+        \li All
+        \li Implements the client side of CoAP defined by RFC 7252.
+    \row
         \li \l[QtConcurrent]{Qt Concurrent}
         \li All
         \li All
@@ -184,6 +189,12 @@
         \li All
         \li Provides an easy to use mechanism for sharing a QObject's API
              (Properties/Signals/Slots) between processes or devices.
+    \row
+    \li \l{Qt OPC UA Overview}{Qt OPC UA}
+        \li All
+        \li All (except QNX, WebAssembly)
+        \li Protocol for data modeling and exchange of data in industrial
+            applications.
     \row
         \li \l{Qt SCXML}{Qt SCXML}
         \li All
