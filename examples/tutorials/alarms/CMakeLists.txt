@@ -1,5 +1,3 @@
-# Generated from alarms.pro.
-
 cmake_minimum_required(VERSION 3.16)
 project(alarms LANGUAGES CXX)
 
@@ -9,28 +7,27 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
-  set(INSTALL_EXAMPLESDIR "examples")
+    set(INSTALL_EXAMPLESDIR "examples")
 endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/alarms")
 
-find_package(Qt6 COMPONENTS Core)
-find_package(Qt6 COMPONENTS Gui)
-find_package(Qt6 COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick)
 
 qt_add_executable(alarms
     main.cpp
 )
+
 set_target_properties(alarms PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
+
 target_link_libraries(alarms PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
 )
-
 
 # Resources:
 set(qml_resource_files
