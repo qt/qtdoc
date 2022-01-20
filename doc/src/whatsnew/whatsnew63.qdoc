@@ -154,6 +154,21 @@ u/****************************************************************************
             pad.
     \endlist
 
+    Several new QStyle enum values are available to allow styles to customize
+    additional look and feel aspects of a widget-based UI:
+
+    \list
+        \li \l {QStyle::}{PM_LineEditIconMargin} to customize the margin around an icon
+            in a QLineEdit.
+        \li \l {QStyle::}{SH_Table_AlwaysDrawLeftTopGridLines} to control whether
+            the left and top grid lines are always painted, also when
+            the headers are hidden.
+        \li \l {QStyle::}{SH_SpinBox_SelectOnStep} to control whether changing the
+            value using the up/down buttons should select the text.
+        \li \l {QStyle::}{SP_TabCloseButton} to specify an icon for the close button
+            in the tab of a QTabBar
+    \endlist
+
     \section2 Qt Network Module
 
     \list
