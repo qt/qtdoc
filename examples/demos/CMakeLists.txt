@@ -1,5 +1,3 @@
-# Generated from demos.pro.
-
 if(TARGET Qt::Quick)
     qt_internal_add_example(samegame)
     qt_internal_add_example(calqlatr)
@@ -19,4 +17,3 @@ if(TARGET Qt::Quick AND TARGET Qt::Network AND TARGET Qt::QmlXmlListModel)
     qt_internal_add_example(rssnews)
     qt_internal_add_example(photoviewer)
 endif()
-

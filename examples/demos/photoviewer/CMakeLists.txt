@@ -1,5 +1,3 @@
-# Generated from photoviewer.pro.
-
 cmake_minimum_required(VERSION 3.16)
 project(photoviewer LANGUAGES CXX)
 
@@ -9,20 +7,17 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
-  set(INSTALL_EXAMPLESDIR "examples")
+    set(INSTALL_EXAMPLESDIR "examples")
 endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/photoviewer")
 
-find_package(Qt6 COMPONENTS Core)
-find_package(Qt6 COMPONENTS Gui)
-find_package(Qt6 COMPONENTS Qml)
-find_package(Qt6 COMPONENTS Quick)
-find_package(Qt6 COMPONENTS QmlXmlListModel)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml QmlXmlListModel Quick)
 
 qt_add_executable(photoviewer
     main.cpp
 )
+
 set_target_properties(photoviewer PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
@@ -35,7 +30,6 @@ target_link_libraries(photoviewer PUBLIC
     Qt::Quick
     Qt::QmlXmlListModel
 )
-
 
 # Resources:
 set(qmake_immediate_resource_files
