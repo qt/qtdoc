@@ -52,6 +52,7 @@
             \li \l{Building libraries}
             \li \l{Using libraries}
             \li \l{Adding resources}
+            \li \l{Adding translations}
             \li \l{Further reading}
         \endlist
         \li \l{Imported targets}
@@ -384,6 +385,47 @@
     The \l{qt_add_resources} command takes as the first argument either a
     variable name or a target name. We recommend to use the target-based variant
     of this command as shown in the example above.
+
+    \section2 Adding translations
+
+    Translations of strings in a Qt project are encoded in \c{.ts} files. See
+    \l{Internationalization with Qt} for details.
+
+    To add \c{.ts} files to your project, use the
+    \l{qt6_add_translations}{qt_add_translations} command.
+
+    The following example adds a German and a French translation file to the
+    \c{helloworld} target:
+
+    \quotefile snippets/cmake/helloworld_translations.cmake
+
+    This creates build system rules to automatically generate \c{.qm} files from
+    the \c{.ts} files. By default, the \c{.qm} files are embedded into a
+    resource and are accessible under the \c{"/i18n"} resource prefix.
+
+    To update the entries in the \c{.ts} file, build the \c{update_translations}
+    target:
+
+    \badcode
+    $ cmake --build . --target update_translations
+    \endcode
+
+    To trigger the generation of the \c{.qm} files manually, build the
+    \c{release_translations} target:
+
+    \badcode
+    $ cmake --build . --target release_translations
+    \endcode
+
+    For more information about how to influence the handling of \c{.ts} files and
+    the embedding into a resource, see the
+    \l{qt6_add_translations}{qt_add_translations documentation}.
+
+    The \l{qt6_add_translations}{qt_add_translations} command is a convenience
+    wrapper. For more fine-grained control of how \c{.ts} files and \c{.qm}
+    files are handled, use the underlying commands
+    \l{qt6_add_lupdate}{qt_add_lupdate} and
+    \l{qt6_add_lrelease}{qt_add_lrelease}.
 
     \section2 Further reading
 
