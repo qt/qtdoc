@@ -64,7 +64,7 @@ set(CMAKE_FIND_ROOT_PATH ${TARGET_ROOT_PATH})
 #base
 set(CMAKE_C_FLAGS  "-bsp $ENV{INTEGRITY_BSP} -os_dir $ENV{INTEGRITY_DIR} -non_shared -startfile_dir=$ENV{INTEGRITY_DIR}/libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/arm64/$ENV{INTEGRITY_BUILD_TARGET} -bigswitch -DINTEGRITY -llibivfs.a -llibposix.a -llibpaged_alloc.a -llibnet.a -llibsocket.a")
 set(CMAKE_C_FLAGS_DEBUG "-g -Omaxdebug")
-set(CMAKE_C_FLAGS_RELEASE "-Ospeed -Olink -Omax")
+set(CMAKE_C_FLAGS_RELEASE "-Ospeed -Olink -Omax -no_uvfd")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --signed_fields --diag_suppress=1,82,228,236,381,611,961,997,1795,1931,1974,3148 --c++17 --thread_local_storage --exceptions --defer_parse_function_templates")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} --signed_fields --no_implicit_include --link_once_templates -non_shared --new_outside_of_constructor -I $ENV{QC_MULTIMEDIA_INC_DIR}")
@@ -76,7 +76,7 @@ set(CMAKE_FIND_LIBRARY_PREFIXES "lib")
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 
 set(BUILD_SHARED_LIBS OFF)
-set(QT_CFLAGS_OPTIMIZE_FULL "-Ospeed -Olink -Omax")
+set(QT_CFLAGS_OPTIMIZE_FULL "-Ospeed -Olink -Omax -no_uvfd")
 
 set(EGL_INCLUDE_DIR $ENV{GL_INC_DIR})
 set(PKG_EGL_LIBRARY_DIRS ${TARGET_ROOT_PATH})
