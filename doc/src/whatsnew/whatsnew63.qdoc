@@ -303,7 +303,16 @@ u/****************************************************************************
     \section3 Android
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li The \l{In-App purchasing demo} and \l{Qt 3D: Planets QML Example}
+        had android specific improvements.
+        \li Updated Gradle to 7.2.0 and the Android Gradle Plugin (AGP) to 7.0.2
+        (requires JDK 11 or above).
+        \li Added missing _make_aab target for CMake Android projects.
+        \li Added multi-ABI build for CMake, see \l{QT_ANDROID_ABIS}.
+        \li QML modules are now staged to a common directory named "android-qml" under the
+        user's build folder. This acts as a common import path for
+        \l{The androiddeployqt Tool}.
+        \li The QML Test Bench now works for Android builds.
     \endlist
 
     \section3 iOS
