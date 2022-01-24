@@ -34,20 +34,16 @@
     \image qtdesignstudio.png "Qt Design Studio"
 
     Qt provides a tool for designing Qt Quick UIs called
-    \l{Qt Design Studio Manual}{Qt Design Studio}. Most of the
-    functionality of the tool is integrated into a developer tool
-    called \l{Qt Creator Manual}{Qt Creator}.
-
-    You need to separately select Qt Design Studio in the list of modules
-    and tools presented to you by the Qt installer, whereas Qt Creator is
-    installed by default when you install Qt. You can run both tools in
-    parallel without one interfering with the other.
+    \l{Qt Design Studio Manual}{Qt Design Studio}. You need
+    to separately select Qt Design Studio in the list of modules
+    and tools presented to you by the Qt installer.
 
     If you only design UIs and don't need the developer tools, you can install
     the stand-alone Qt Design Studio package. It contains all the Qt modules
     and tools you need to design UIs and preview them on the desktop. The
     Qt Quick code is automatically generated for you, and you can deliver it
-    to developers for implementing the application.
+    to developers for implementing the application. Developers can open the
+    project in a developer tool called \l{Qt Creator Manual}{Qt Creator}.
 
     \list
         \li \l{Install Qt Design Studio}{I just want Qt Design Studio}
