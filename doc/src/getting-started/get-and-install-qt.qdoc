@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -63,14 +63,13 @@
     under the Qt version you want to develop with.
 
     However, the easiest way to install Qt for desktop development is to select
-    the default installation. You can install additional modules later.
+    the default installation for desktop development. You can install additional
+    modules later.
 
     \image qtinstallercomponents.png
 
     If you also want to run your applications on Android devices, for example,
-    you should select a custom installation and then select a Qt for Android
-    version in the list of components, in addition to the Qt for your desktop
-    platform.
+    you should select the default installation for mobile development.
 
     The following table contains examples of which components to install
     depending on the platforms where you want to run your applications.
@@ -81,10 +80,17 @@
         \li Choose
     \row
         \li Desktop
-        \li Default installation.
+        \li Default installation for \e {desktop development}.
+
+            If you want to use other than the default toolchain, such as
+            MSVC on Windows, select \e {Custom installation}. Then
+            select the Qt for the toolchain you want to use.
     \row
         \li Mobile Devices
-        \li Custom installation, with Qt for your OS and for the mobile
+        \li Default installation for \e {mobile development}.
+
+            If you only want to develop for a particular platform, select
+            \e {Custom installation}. Then select the Qt for the mobile
             device platform that you want to run the applications on. For
             example, \l{Qt for Android} or \l{Qt for iOS}.
     \row
@@ -93,15 +99,14 @@
             from the \l{Qt for Device Creation} section, depending on the types
             of devices that you want to run applications on.
     \row
-        \li Automotive
-        \li Custom installation, with the necessary Qt modules and toolchains
-            from the \l{Qt for Device Creation} section, depending on the types
-            of devices that you want to run applications on.
+        \li Android Automotive
+        \li Custom installation, with \l{Qt for Android Automotive}.
     \row
         \li Automation
         \li Custom installation, with the necessary Qt modules and toolchains
-            from the \l{Qt for Automation} section, depending on the types of
-            devices that you want to run applications on.
+            from the \l{Qt for Automation}{Qt for Automation/Qt M2M Protocols}
+            section, depending on the types of devices that you want to run
+            applications on.
     \row
         \li MCUs
         \li Custom installation, with \l{Qt for MCUs}.
