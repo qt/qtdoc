@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2020 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -65,16 +65,13 @@
     design and edit mode. For more information, visit the
     \l{Qt Designer Manual}{Qt Designer} manual.
 
-    For Qt Quick applications, you can use Qt Quick Designer which is integrated
-    within Qt Creator. Qt Quick Designer is available in the edit mode in an
-    open Qt Quick project. The \l{Qt Quick Designer} page has more information.
-
 
     \section2 Collaboration with Designers
 
-    Qt lets designers to import assets from 2D and 3D programs, create
-    layouts and flows, and generate code for developers.
-    \l{Qt Design Studio Manual}{Qt Design Studio} is a tool that provides rich and fluid components,
+    Qt lets designers import assets from imaging and design tools, such as Adobe
+    Photoshop, Sketch, Figma, Blender, or Maya, create layouts and flows, and
+    generate code for developers. \l{Qt Design Studio Manual}{Qt Design Studio}
+    is a tool that provides rich and fluid components,
     a code editor, timeline-based animations, visual effects, layouts, and
     a live-preview for prototyping. Qt Design Studio generates code for
     developers to use in Qt Creator. For more information about the tools for
@@ -91,10 +88,8 @@
     For more information about project templates and building in Qt Creator,
     visit the following pages:
     \list
-    \li \l{Qt Creator: Using Other Build Systems}
-        {Build Systems in Qt Creator}
+    \li \l{Qt Creator: Build Systems}
     \li \l{Qt Creator: Building for Multiple Platforms}
-        {Building for Multiple Platforms}
     \endlist
 
 
