@@ -248,6 +248,8 @@ u/****************************************************************************
             It reports the adapter state correctly, and allows to toggle its
             state. Support for connected/disconnected devices tracking is still
             missing.
+        \li Extended \l QBluetoothDeviceInfo API to expose Bluetooth Low Energy
+            service data as published during the advertisement.
     \endlist
 
     \section2 Qt Wayland Compositor Module
