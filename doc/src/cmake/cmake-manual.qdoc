@@ -143,14 +143,6 @@
     \c{CMAKE_CXX_STANDARD_REQUIRED} variables will let CMake print an error if
     the compiler is too old.
 
-    \printuntil CMAKE_AUTOMOC
-
-    Qt applications typically make use of the \l{Using the Meta-Object Compiler
-    (moc)}{Meta-Object Compiler (moc)} that comes with Qt. Setting the
-    \c{CMAKE_AUTOMOC} variable to \c{ON} will let CMake automatically set up
-    rules so that the meta-object compiler is called transparently, when
-    required.
-
     \printuntil find_package(
 
     This tells CMake to look up Qt 6, and import the \c {Core} module. There
@@ -167,6 +159,19 @@
     variable \c{CMAKE_PREFIX_PATH} to include the Qt 6 installation prefix.
     Note that \l{Qt Creator Manual}{Qt Creator} will handle this transparently
     for you.
+
+    \printuntil qt_standard_project_setup(
+
+    The \l{qt6_standard_project_setup}{qt_standard_project_setup} command sets
+    project-wide defaults for a typical Qt application.
+
+    Among other things, this command sets the \c{CMAKE_AUTOMOC} variable to
+    \c{ON}, which instructs CMake to automatically set up rules so that Qt's
+    \l{Using the Meta-Object Compiler (moc)}{Meta-Object Compiler (moc)} is
+    called transparently, when required.
+
+    See \l{qt6_standard_project_setup}{qt_standard_project_setup}'s reference
+    for details.
 
     \printuntil )
 
@@ -211,13 +216,7 @@
     Let's walk through the changes we have made.
 
     \quotefromfile snippets/cmake/helloworld_qtwidgets.cmake
-    \skipto CMAKE_AUTOMOC
-    \printuntil CMAKE_AUTOUIC
-
-    In addition to \c{CMAKE_AUTOMOC} we set the \c{CMAKE_AUTOUIC} variable to
-    \c{ON}. This will automatically create rules to invoke Qt's \l{User
-    Interface Compiler (uic)} on \c{.ui} source files.
-
+    \skipto find_package(
     \printuntil find_package(
 
     In the \c{find_package} call, we replace \c{Core} with \c{Widgets}. This
@@ -226,6 +225,13 @@
 
     Note that the application will still link against \c{Qt6::Core}, because
     \c{Qt6::Widgets} depends on it.
+
+    \printuntil qt_standard_project_setup(
+
+    In addition to \c{CMAKE_AUTOMOC},
+    \l{qt6_standard_project_setup}{qt_standard_project_setup} sets the
+    \c{CMAKE_AUTOUIC} variable to \c{ON}. This will automatically create rules
+    to invoke Qt's \l{User Interface Compiler (uic)} on \c{.ui} source files.
 
     \printuntil )
 
