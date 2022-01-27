@@ -1,0 +1,159 @@
+/****************************************************************************
+**
+** Copyright (C) 2022 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page android-building-user-projects.html
+    \title Qt for Android - Building User Projects
+    \ingroup androidplatform
+    \brief How to build user projects using Qt for Android.
+    \previouspage android-building.html
+    \nextpage porting-to-android.html
+
+    \section1 Building with CMake
+
+    To build CMake projects with an installed or
+    \l{Qt for Android - Building from Source}{a self-built} Qt, use
+    \l{Building projects on the command line}{qt-cmake} wrapper. For Android the following
+    has to be provided:
+
+    \badcode
+    <qt_for_android_install_path>/bin/qt-cmake \
+        -DANDROID_SDK_ROOT=<android_sdk_path> \
+        -DANDROID_NDK_ROOT=<android_ndk_path> \
+        -S <source_dir> -B <build_dir> \
+        [-G"<Ninja|Unix Makefiles>"]
+    \endcode
+
+    Qt for Android automatically collects Android package dependencies from a
+    project build tree and uses known library paths. It's also possible to
+    specify various dependencies that need to be deployed within a target
+    package using the following target properties:
+    \list
+    \li \l{cmake-target-property-QT_ANDROID_DEPLOYMENT_DEPENDENCIES}{QT_ANDROID_DEPLOYMENT_DEPENDENCIES}
+    \li \l{cmake-target-property-QT_ANDROID_EXTRA_LIBS}{QT_ANDROID_EXTRA_LIBS}
+    \li \l{cmake-target-property-QT_ANDROID_EXTRA_PLUGINS}{QT_ANDROID_EXTRA_PLUGINS}
+    \endlist
+
+    \section2 Building multi-ABI packages using CMake
+
+    Introduced in Qt 6.3.
+
+    There are several ways to enable building a multi-ABI package. By default
+    only the single ABI belonging to the
+    \l{Building projects on the command line}{qt-cmake} script is selected.
+    Setting the
+    \l{cmake-variable-QT_ANDROID_BUILD_ALL_ABIS}{QT_ANDROID_BUILD_ALL_ABIS}
+    variable to \c{TRUE} enables the automatic detection of available Qt for
+    Android SDKs. The detection mechanism assumes the use of the default
+    directory structure supplied by the Qt installer:
+    \badcode
+        <path/to/Qt>/\1
+            android_armv7
+            android_arm64_v8a
+            android_x86
+            android_x86_64
+    \endcode
+
+    The command below shows the easiest way to build an Android multi-ABI
+    package using the Qt for Android SDKs supplied by the Qt installer:
+    \badcode
+    <qt_for_android_install_path>/bin/qt-cmake \
+        -DQT_ANDROID_BUILD_ALL_ABIS=TRUE \
+        -DANDROID_SDK_ROOT=<android_sdk_path> \
+        -DANDROID_NDK_ROOT=<android_ndk_path> \
+        -S <source_directory> -B <build_directory>
+    \endcode
+
+    Using the \l{cmake-variable-QT_ANDROID_ABIS}{QT_ANDROID_ABIS} variable, it's
+    possible to customize the list of ABIs the project is built for.
+    The corresponding Qt for Android development kits needs to follow the
+    directory structure described previously. The following command line
+    configures a project for \c{arm64-v8a} and \c{x86} ABIs only:
+
+    \badcode
+    <qt_for_android_install_path>/bin/qt-cmake \
+        -DQT_ANDROID_ABIS="arm64-v8a;x86" \
+        -DANDROID_SDK_ROOT=<android_sdk_path> \
+        -DANDROID_NDK_ROOT=<android_ndk_path> \
+        -S <source_directory> -B <build_directory>
+    \endcode
+
+    \note The ABI of the primary SDK that \l{Building projects on the command line}{qt-cmake}
+    script belongs to is added to the list of used ABIs unconditionally. It's
+    not possible to exclude it from the build.
+
+    \note
+    \l{cmake-variable-QT_ANDROID_BUILD_ALL_ABIS}{QT_ANDROID_BUILD_ALL_ABIS} has
+    higher priority than \l{cmake-variable-QT_ANDROID_ABIS}{QT_ANDROID_ABIS}.
+
+    Paths to the Qt for Android SDKs that do not match the default directory
+    structure can be changed using the corresponding
+    \l{cmake-variable-QT_PATH_ANDROID_ABI_<ABI>}{QT_PATH_ANDROID_ABI_<ABI>}
+    variables.
+
+    The following example enables the automatic detection of available Qt for
+    Android SDKs and specifies custom paths to \c{armeabi-v7a} and \c{arm64-v8a}
+    SDKs:
+
+    \badcode
+    <qt_for_android_install_path>/bin/qt-cmake \
+        -DQT_ANDROID_BUILD_ALL_ABIS=TRUE
+        -DQT_PATH_ANDROID_ABI_armeabi-v7a="<Qt/for/armeabi-v7a>" \
+        -DQT_PATH_ANDROID_ABI_arm64-v8a="<Qt/for/arm64-v8a>" \
+        -DANDROID_SDK_ROOT=<android_sdk_path> \
+        -DANDROID_NDK_ROOT=<android_ndk_path> \
+        -S <source_directory> -B <build_directory>
+    \endcode
+
+    \sa {cmake-variable-QT_ANDROID_ABIS}{QT_ANDROID_ABIS},
+        {cmake-variable-QT_ANDROID_BUILD_ALL_ABIS}{QT_ANDROID_BUILD_ALL_ABIS},
+        {cmake-variable-QT_PATH_ANDROID_ABI_<ABI>}{QT_PATH_ANDROID_ABI_<ABI>}
+
+    It's also possible to set the
+    \l{cmake-target-property-QT_ANDROID_ABIS}{QT_ANDROID_ABIS} target
+    property that specifies a list of ABIs that the single executable target is
+    built for. For example:
+
+    \badcode
+    \dots 0
+    qt_add_executable(MyApp main.cpp)
+
+    set_target_properties(MyApp PROPERTIES QT_ANDROID_ABIS "arm64-v8a;x86")
+    \endcode
+
+    The \c{MyApp} target will be built for \c{armeabi-v7a} and \c{arm64-v8a}
+    only, even if the \c{QT_ANDROID_BUILD_ALL_ABIS} or \c{QT_ANDROID_ABIS}
+    variable is set.
+
+    \sa {cmake-target-property-QT_ANDROID_ABIS}{QT_ANDROID_ABIS}
+
+    \section1 Building with qmake
+
+    You can continue to use \c qmake to build user projects.
+
+    \note Building multi-ABI packages with \c qmake is not supported in Qt 6.
+*/
