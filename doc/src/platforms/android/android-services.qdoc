@@ -270,7 +270,7 @@ the main activity, add the following:
 When using the same \c .so lib file, your application's \c main() function
 is executed two times, one to start the main activity and the second time
 to start the service. Thus, you have to handle each execution according
-to the provided argument. One way to acheive that is as follows:
+to the provided argument. One way to achieve that is as follows:
 
 \code
 if (argc <= 1) {

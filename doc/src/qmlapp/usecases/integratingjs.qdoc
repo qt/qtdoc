@@ -41,8 +41,8 @@ Item {
 }
 \endcode
 
-Note that function calls, like Math.random(), will not be revaluated unless their arguments
-change. So binding to Math.random() will be one random number and not revaluated, but if the width is changed in some
+Note that function calls, like Math.random(), will not be reevaluated unless their arguments
+change. So binding to Math.random() will be one random number and not reevaluated, but if the width is changed in some
 other manner, the height binding will be reevaluated to take that into account.
 
 \section1 Adding JavaScript Functions in QML

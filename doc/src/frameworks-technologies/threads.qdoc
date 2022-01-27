@@ -304,7 +304,7 @@
             \l{QtConcurrent::mappedReduced}() instead.
     \row
         \li One call/Permanent
-        \li Perfrom a long computation in a pure QML application, and update the GUI
+        \li Perform a long computation in a pure QML application, and update the GUI
             when the results are ready.
         \li Place the computation code in a \c{.js} script and attach it to a
             WorkerScript instance. Call

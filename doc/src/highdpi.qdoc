@@ -111,7 +111,7 @@
     for virtual desktop geometry:
 
     Modern desktop operating systems typically create one shared coordinate system for
-    all connected screens, and allows the user to postion screens to match their physical
+    all connected screens, and allows the user to position screens to match their physical
     screen setup, usually via a configuration dialog. If this positioning is done in
     a coordinate system equivalent to Qt's device independent pixels (like on macOS)
     then QScreen geometry will match the native screen layout. If the positioning
@@ -122,7 +122,7 @@
     for positive scale factors), but will not change the screen position. This
     will produce an islands-of-screens type virtual desktop geometry.
 
-    Application code should not assume that postions immediately adjacent to and
+    Application code should not assume that positions immediately adjacent to and
     outside one screen is a valid position on the neighbouring screen. Instead,
     get the screen list using QGuiApplication::screens() and use that list to reason
     about available screen geometry.
@@ -197,7 +197,7 @@
 
     Desktops environments such as Ubuntu and Kubntu implement workardounds for the lack of logical
     DPI, and provide easily configurable high-DPI support. If you instead want to configure
-    X11 DPI settings manually then this section decribes which X11 settings Qt reads.
+    X11 DPI settings manually then this section describes which X11 settings Qt reads.
 
     Some X11 configuration workflows involves overriding the reported physical size of the
     screen in order to make DPI calculations yield a spesific DPI value. Qt supports this
@@ -300,7 +300,7 @@
 
     \list
     \li QT_ENABLE_HIGHDPI_SCALING Set to 0 to disable high-dpi scaling; effectivly reverting
-        to Qt 5 defualt behavior. Note that this has no effect on platforms such as Walyand
+        to Qt 5 default behavior. Note that this has no effect on platforms such as Wayland
         or macOS - it does not disable any native high-DPI support. This variable is intended
         for testing purposes only, and we do not recommend setting it on a permanent basis.
     \li QT_FONT_DPI Sets a global DPI. This is a legacy environment variable provided
@@ -319,7 +319,7 @@
         Setting this environment variable is not recommended since it prevents Qt from using
         system DPI values.
     \li QT_USE_PHYSICAL_DPI Makes Qt use physical DPI instead of logical DPI. Using logical
-        DPI is normally the best option; this environment varible can be set in cases where
+        DPI is normally the best option; this environment variable can be set in cases where
         logical DPI is not available and the physical DPI is known to be correct.
     \endlist
 
@@ -334,7 +334,7 @@
         \li Device Pixels This coordinate system is used for rasterization and low-level graphics tasks,
             for example when using the OpenGL API. The device pixel coordinate system is often equivalent
             to the physical coordinate system of the display, but this is not guaranteed. For example, both
-            macOS and Ubuntu may apply additional scaling, depeding on display settings.
+            macOS and Ubuntu may apply additional scaling, depending on display settings.
 
         \li Native Pixels This is the coordinate system used by the native API, such as Win32 or Cocoa (macOS).
             Depending on platform and screen configuration, native pixels may be equivalent to device
