@@ -43,7 +43,7 @@
 <script type="text/javascript">
     var remaining = 0;
     var connected = false;
-    //We use this function because connect statements resolve their target once, imediately
+    //We use this function because connect statements resolve their target once, immediately
     //not at signal emission so they must be connected once the imageAnalyzer object has been added to the frame
     //! <!--  [ connect slots ] -->
     function connectSlots()
@@ -60,7 +60,7 @@
         setStatus('Idle');
         setResults(imageAnalyzer.red.toFixed(2), imageAnalyzer.green.toFixed(2), imageAnalyzer.blue.toFixed(2));
     }
-    //This will function as the recieving "slot" for the progress signal
+    //This will function as the receiving "slot" for the progress signal
     function updateProg(complete, max)
     {
         var oldRemaining = remaining;

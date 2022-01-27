@@ -78,7 +78,7 @@
          initializes the connection to the Google Play store using the initialize()
          function.
       \li When the connection is successful, androidjni will call registerRedy() which
-         emits the ready() singnal to InAppStore and starts queryProducts() function to get
+         emits the ready() signal to InAppStore and starts queryProducts() function to get
          the information of the purchasable items.
       \li When the query is done, productQueryDone() signal is emitted and
          the item's information will be visible on the application's store page.

@@ -131,7 +131,7 @@
     spacing between the cells.
 
     You can use the \l{Qt Quick Layouts} QML types to attach additional properties to the
-    items pushed to the layouts. For example, you can specify mininum, maximum,
+    items pushed to the layouts. For example, you can specify minimum, maximum,
     and preferred values for item height, width, and size.
 
     The layouts ensure that your UIs are scaled properly when windows and
@@ -424,7 +424,7 @@
     \section1 Loading Files Depending on Platform
 
     You can use the QQmlFileSelector to apply a QFileSelector to QML file
-    loading. This enables you to load altenative resources depending on the
+    loading. This enables you to load alternative resources depending on the
     platform on which the application is run. For example, you can use the
     \c +android file selector to load different image files
     when run on Android devices.

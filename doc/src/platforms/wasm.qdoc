@@ -193,7 +193,7 @@ browser separately. One of the simplest options is http.server from Python:
 Qt provides a developer web server which uses \l{https://github.com/FiloSottile/mkcert}{mkcert}
 to generate https certificates. This allows testing web features which require
 a \l{https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts}{secure context}.
-Note that delivery over http://localhost is also considered secure, wihtout requireing a
+Note that delivery over http://localhost is also considered secure, without requiring a
 certificate.
 
 The web server also sets the \l{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy}{COOP}
@@ -435,7 +435,7 @@ saves a file to the local file system via file download}
 \section2 Clipboard Access
 
 Qt supports copying and pasting text to the system clipboard, with some differences due
-to the web sandbox. In general clipbard access requre user permission, which can be obtained
+to the web sandbox. In general clipboard access require user permission, which can be obtained
 by handling an input event (e.g. CTRL+c), or by using the
 \l{https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API}{Clipboard API}.
 
