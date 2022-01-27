@@ -31,7 +31,7 @@
     \ingroup androidplatform
     \brief How to configure and build Qt for Android directly from source.
     \previouspage android-getting-started.html
-    \nextpage porting-to-android.html
+    \nextpage android-building-user-projects.html
 
     Qt for Android has some requirements that you are recommended to know before
     going through this guide. Accomplish the tasks in
@@ -319,15 +319,4 @@
             cmake --install .
             \endcode
     \endlist
-
-    \section1 Building User Projects
-
-    To build CMake projects with the resulting Qt installation, use
-    \c qt-cmake wrapper. For Android the following has to be be provided:
-
-    \badcode
-    <qt_for_android_install_path>/bin/qt-cmake -DANDROID_SDK_ROOT=<android_sdk_path> -DANDROID_NDK_ROOT=<android_ndk_path> -S <source_dir> -B <build_dir>
-    \endcode
-
-    Additionally, you can still use \c qmake to build user projects, as before in Qt 5.
 */
