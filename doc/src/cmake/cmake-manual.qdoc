@@ -90,6 +90,8 @@
         \li \l{CMake Property Reference}
         \list
             \li \l{cmake-properties-qtcore}{Qt6::Core}
+            \li \l{cmake-properties-qtdbus}{Qt6::DBus}
+            \li \l{cmake-properties-qtqml}{Qt6::Qml}
         \endlist
     \endlist
 */
@@ -804,6 +806,24 @@
     \section2 Target Properties
 
     \annotatedlist cmake-target-properties-qtcore
+
+    \section2 Source File Properties
+
+    \annotatedlist cmake-source-file-properties-qtcore
+
+    \section1 Qt6::DBus
+    \target cmake-properties-qtdbus
+
+    \section2 Source File Properties
+
+    \annotatedlist cmake-source-file-properties-qtdbus
+
+    \section1 Qt6::Qml
+    \target cmake-properties-qtqml
+
+    \section2 Source File Properties
+
+    \annotatedlist cmake-source-file-properties-qtqml
 */
 
 /*!
