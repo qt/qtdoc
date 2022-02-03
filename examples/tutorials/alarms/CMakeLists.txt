@@ -36,14 +36,20 @@ set(qml_resource_files
     "AlarmModel.qml"
     "TumblerDelegate.qml"
     "main.qml"
-    "qtquickcontrols2.conf"
 )
 
 qt6_add_resources(alarms "qml"
     PREFIX
-        "/"
+        "/alarms/"
     FILES
         ${qml_resource_files}
+)
+
+qt6_add_resources(alarms "controls_conf"
+    PREFIX
+        "/"
+    FILES
+        "qtquickcontrols2.conf"
 )
 
 install(TARGETS alarms
