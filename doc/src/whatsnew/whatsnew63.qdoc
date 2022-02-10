@@ -63,7 +63,7 @@ u/****************************************************************************
     \list
         \li Added QtFuture::whenAll() and QtFuture::whenAny() functions
             for combining multiple futures.
-        \li Added QDir::mdkir() and QFile::open() overloads accepting
+        \li Added QDir::mkdir() and QFile::open() overloads accepting
             a permission argument.
         \li QMetaType can now convert any QFuture<T> to QFuture<void>.
         \li Added QDirIterator::nextFileInfo(), to advance and get
@@ -71,16 +71,27 @@ u/****************************************************************************
         \li QLocale's mappings of language codes to and from Language
             values now have overloads specifying which ISO 639 code
             types to consider.
-        \li QRegularExpressionMatch now has hasCaptured() methods to
+        \li QRegularExpressionMatch now has
+            \l{QRegularExpressionMatch::hasCaptured()}{hasCaptured()} methods to
             test whether a given group was captured at all.
-        \li QProcess now has a constructor that inherits the parent
-            process's environment. (This was formerly the default
-            constructor's behavior, in conflict with its
-            documentation; a default-constructed QProcess now, as
-            documented, has an empty environment.) Added method
-            inheritsFromParent() to test for an instance constructed
-            the new way.
-        \li QVarLengthArray now has emplace() and emplace_back() methods.
+        \li QProcessEnvironment gained a new enum and constructor that allows you to
+            choose whether the process environment shall be inherited from the parent
+            process when a respective QProcess is launched.
+
+            \warning In older Qt versions, the default behavior was to inherit, although the
+            documentation said it won't. Qt 6.3 changes the behavior of the default
+            constructor to actually match the documentation. That is, launching
+            a QProcess with a QProcessEnvironment created by
+            \l{QProcessEnvironment::QProcessEnvironment()}{QProcessEnvironment()} will
+            be launched in an empty environment. Use
+            QProcessEnvironment(QProcessEnvironment::InheritFromParent) to revert
+            to the old behavior.
+
+            Also, added method
+            \l{QProcessEnvironment::inheritsFromParent()}{inheritsFromParent()} to test
+            for an instance constructed the new way.
+        \li QVarLengthArray now has \l{QVarLengthArray::emplace()}{emplace()}
+            and \l{QVarLengthArray::emplace_back()}{emplace_back()} methods.
         \li Time formats used by QLocale, QTime and QDateTime's parsing and
             serialization now recognize 'aP' and 'Ap' format specifiers to
             obtain an AM/PM indicator, using the locale-appropriate case for the
@@ -107,12 +118,14 @@ u/****************************************************************************
         \li Added number-parsing methods to QByteArrayView.
         \li Added isValidUtf8() methods to QByteArray, QByteArrayView,
             and QUtf8StringView.
-        \li Added QCryptographicHash::resultView() to provide a view over result().
+        \li Added QCryptographicHash::resultView() to provide a view over
+            \l{QCryptographicHash::result()}{result()}.
         \li QStringBuilder now supports QByteArrayView.
         \li QUuid can now be constructed from QAnyStringView.
         \li QLocale now has a constructor taking a QStringView.
         \li QByteArrayList::join() now has an overload taking QByteArrayView.
-        \li QCryptographicHash::addData() now has an overload taking QByteArrayView.
+        \li \l{QCryptographicHash::addData(QIODevice*)}{QCryptographicHash::addData()} now has
+            an overload taking QByteArrayView.
         \li qSwap() is now constexpr.
     \endlist
 
