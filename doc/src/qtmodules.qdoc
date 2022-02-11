@@ -279,8 +279,10 @@
     \row
         \li \l[QtNFC]{Qt NFC}
         \li All
-        \li \l{Qt for Android}{Android} and \l{Qt for iOS}{iOS}
-        \li Provides access to Near-Field communication (NFC) hardware.
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
+            \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
+        \li Provides access to Near-Field communication (NFC) hardware. On desktop
+        platforms NDEF access is only supported for Type 4 tags.
     \row
     \header
         \li {4,1} \target gpl-licensed-addons
