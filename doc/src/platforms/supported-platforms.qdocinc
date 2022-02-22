@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -74,8 +74,11 @@
     \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10 (1809 or later)
         \li \c x86_64
-        \li MSVC 2019, MinGW 11.2
+        \li MSVC 2019, MSVC 2022, MinGW 11.2
         \li
+    \row \li Windows 11 21H2
+        \li \c x86_64
+        \li MSVC 2019, MSVC 2022, MinGW 11.2
     \row \li Windows on ARM
         \li \c arm64
         \li MSVC 2019
