@@ -51,11 +51,11 @@
     \row
         \li Type
         \li In QML, a \e type may refer to either a
-            \l{qtqml-typesystem-topic.html}{Basic Type} or a
+            \l{qtqml-typesystem-topic.html}{Value Type} or a
             \l{qtqml-typesystem-topic.html#qml-object-types}{QML Object Type}.
 
             The QML language provides a number of built-in
-            \l{qtqml-typesystem-basictypes.html}{basic types}, and the
+            \l{qtqml-typesystem-valuetypes.html}{value types}, and the
             Qt Quick module provides various \l {Qt Quick QML Types}{Qt Quick types}
             for building QML applications. Types can also be provided by
             third-party developers through (\l{qtqml-modules-topic.html}{modules}) or by the application
@@ -65,17 +65,18 @@
             for more details.
 
     \row
-        \li Basic Type
-        \li A \l{qtqml-typesystem-topic.html}{basic type} is a simple type
+        \li Value Type
+        \li A \l{qtqml-typesystem-topic.html}{value type} is a simple type
             such as \c int, \c string and \c bool. Unlike
             \l{qtqml-typesystem-topic.html#qml-object-types}{object types},
-            an object cannot be instantiated from a basic type; for example,
+            an object cannot be instantiated from a value type; for example,
             it is not possible to create an \c int object with properties,
             methods, signals and so on.
 
-            Basic types are built into the QML language, whereas object types
-            cannot be used unless the appropriate
-            \l{qtqml-modules-topic.html}{module} is imported.
+            Value types as well as object types usually belong to a
+            \l{qtqml-modules-topic.html}{QML module}. You have to import the
+            module to use them. Some types are built into the language, for
+            example int, bool, double, string, but also QtObject and Component.
 
             See \l{qtqml-typesystem-topic.html}{The QML Type System}
             for more details.
