@@ -55,6 +55,8 @@
             \li \l{Adding translations}
             \li \l{Further reading}
         \endlist
+        \li \l {Building a QML application}
+        \li \l {Building a reusable QML module}
         \li \l{Building projects on the command line}
         \list
             \li \l{CMake generators}
@@ -309,8 +311,8 @@
     ├── CMakeLists.txt
     └── src
         ├── app
-        │   ├── ...
-        │   └── main.cpp
+        │   ├── ...
+        │   └── main.cpp
         └── businesslogic
             ├── CMakeLists.txt
             ├── businesslogic.cpp
@@ -443,8 +445,157 @@
 
     The official \l{CMake Tutorial} covers common build system tasks.
 
-     The book \l{Professional CMake: A Practical Guide} provides a great
+    The book \l{Professional CMake: A Practical Guide} provides a great
     introduction to the most relevant CMake features.
+*/
+
+/*!
+    \page cmake-build-qml-application.html
+    \title Building a QML application
+    \previouspage Getting started with CMake
+    \nextpage Building a reusable QML module
+
+    In \l{Building a C++ console application} we showed the
+    CMakeLists.txt file for a simple console application. We will now extend it
+    to create a QML application that uses the \l{Qt Quick} module.
+
+    This is the full project file:
+    \quotefile snippets/cmake/helloworld_qtqml.cmake
+
+    Let's walk through the changes we have made.
+    We specify \l {Building a C++ GUI application}{CMAKE_AUTOMOC},
+    \l{Building a C++ console application}{CMAKE_CXX_STANDARD},
+    and CMAKE_CXX_STANDARD_REQUIRED.
+
+    \quotefromfile snippets/cmake/helloworld_qtqml.cmake
+    \skipto CMAKE_AUTOMOC
+    \printuntil CMAKE_CXX_STANDARD_REQUIRED
+
+    In the \c{find_package} call, we replace \c{Core} with \c{Quick}. This
+    will locate the \c{Qt6Quick} module and provide the \c{Qt6::Quick}
+    targets we later link against.
+
+    \printuntil find_package(
+
+    Note that the application will still link against \c{Qt6::Core}, because
+    \c{Qt6::Quick} depends on it.
+
+    \l {qt_add_executable} creates and finalizes an application target:
+
+    \printuntil )
+
+    \l {qt_add_qml_module} passes the target of the executable, a URI, module
+    version, and a list of QML files to ensure that myapp becomes a
+    QML module. Among other things, this places the QML files into
+    \c { qrc:/${URI} } in the resource file system.
+
+    \printuntil )
+
+    First, \c qt_add_qml_module ensures that \c qmlcachegen runs. Second, it
+    creates a \c myapp_qmllint target, which runs \c qmllint on the files in
+    QML_FILES.
+
+    By adding the referenced resources, they get automatically added to
+    the application under the same root path as the QML files – also in the
+    resource file system. By keeping the path in the resource system
+    consistent with the one in the source and build directory, we ensure that
+    the image is always found, as it is resolved relative to FramedImage.qml.
+    It refers to the image in the resource file system if we load main.qml from
+    there, or to the one in the actual file system if we review it with
+    the \c qml tool.
+
+    In the \c{target_link_libraries} command, we link against \c{Qt6::Quick}
+    instead of \c{Qt6::Core}.
+
+    \printuntil target_link_libraries
+*/
+
+/*!
+    \page cmake-build-reusable-qml-module.html
+    \title Building a reusable QML module
+    \previouspage Building a QML application
+    \nextpage Building projects on the command line
+
+    The example below demonstrates how to create a library which exposes C++ to QML.
+    The directory structure for the example looks like this:
+
+    \badcode
+    ├── CMakeLists.txt
+    └── example
+        └── mylib
+            ├── CMakeLists.txt
+            ├── mytype.cpp
+            ├── mytype.h
+    \endcode
+
+    The toplevel \c CMakeLists.txt file does some basic setup, and then uses
+    \c add_subdirectory to include the one in mylib. The subdirectory structure
+    corresponds to the QML module’s URI, but with the dots replaced by
+    slashes. That’s the same logic the engine uses when it searches for a
+    module in the \l{Import Statements}{import paths}. \c mytype.h declares a
+    class and uses the
+    declarative registration macros to expose it to the engine.
+
+    In the subdirectory’s \c CMakeLists.txt we again call \c qt6_add_qml_module.
+    However, the invocation is slightly different:
+
+    \quotefromfile snippets/cmake/helloworld_subdirs_qml.cmake
+    \printuntil mytype.h
+    \skipto )
+    \printuntil )
+
+    To add C++ types, the SOURCES parameter needs to be specified. The target for
+    mylib is not created. Therefore, if the target passed to \c qt6_add_qml_module
+    does not exist, a library target is automatically created, which is needed in
+    this case.
+
+    When the project is built, in addition to the library, a QML plugin is also
+    built. The plugin's auto-generated class extends from
+    \c {QQmlEngineExtensionPlugin}.
+    The mylib library itself already contains the code to register the types
+    with the engine.  However, that is only useful in cases where we can link
+    against the library. To make the module usable in a QML file loaded by the
+    \l{QML tool}, a plugin is needed that can be loaded. The
+    plugin is then responsible for actually linking against the library, and
+    ensuring that the types get registered.
+
+    Note that the automatic plugin generation is only possible if the module
+    does not do anything besides registering the types. If it needs to do
+    something more advanced like registering an image provider in
+    \c initializeEngine, you still need to manually write the plugin.
+    \l{qt6_add_qml_module} has support for this with \c NO_GENERATE_PLUGIN_SOURCE.
+
+    Also, following the directory layout convention helps tooling. That layout
+    is mirrored in the build directory. Which means that you can pass the path to
+    your build directory to the QML tool (via the -I flag), and it will find the
+    plugin.
+
+    Before concluding add a QML file to the module. In the lib subfolder,
+    add a \c Mistake.qml file
+    \code
+    import example.mylib
+
+    MyType{
+        answer: 43
+    }
+    \endcode
+
+    and adjust the \c qt6_add_qml_module call:
+
+    \quotefile snippets/cmake/helloworld_subdirs_qml.cmake
+
+    As mentioned, we made a mistake because \c answer is actually a read-only
+    property. This illustrates \c qmllint integration: CMake
+    creates a \c qmllint target, and once we run it, \c qmllint warns
+    about the issue:
+
+    \badcode
+    $> cmake --build . --target mylib_qmllint
+    ...
+    Warning: Mistake.qml:4:13: Cannot assign to read-only property answer
+        answer: 43
+                ^^
+    \endcode
 */
 
 /*!
