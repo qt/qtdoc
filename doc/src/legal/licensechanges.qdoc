@@ -34,6 +34,33 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 5.15.3
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{pcre2}{PCRE2} got updated to upstream version 10.36.
+        \li  The copy of the \l{psl}{The Public Suffix List} got updated on
+        2021-01-21.
+        \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} got updated to
+        upstream version v38.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \l{md4c}{MD4C} got updated to upstream version 0.4.6.
+
+    \section2 Qt SQL Module
+
+    \l{sqlite}{SQLite} got updated to upstream version 3.34.0.
+
+    \section2 Qt WebEngine Module
+
+    \list
+        \li The Chromium version has been updated to 87.0.4280.144.
+        \li Chromium received backported security fixes from Chromium up to version
+            88.0.4324.150.
+    \endlist
 
     \section1 Qt 5.15.2
 
