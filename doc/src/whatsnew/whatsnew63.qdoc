@@ -132,7 +132,14 @@ u/****************************************************************************
     \section2 Qt GUI Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Calling QGuiApplication::setLayoutDirection() with a non-auto value
+            now disables the auto-detection based on installed translators.
+        \li URL handlers passed to QDesktopServices::setUrlHandler() must now be
+            removed by calling \l {QDesktopServices::}{unsetUrlHandler()} before
+            they are destroyed. Relying on the handler's destructor to
+            implicitly unset them is deprecated.
+        \li QVulkanWindow now enables all Vulkan 1.0 features that are reported
+            as supported by the physical device.
     \endlist
 
     \section2 Qt Quick Module
@@ -232,18 +239,12 @@ u/****************************************************************************
     \section2 Qt Data Visualization Module
 
     \list
-        \li Added a new \l {QSurface3DSeries::}{wireFrameColor} property to set the wireframe color
+        \li Added a new \l {QSurface3DSeries::}{wireframeColor} property to set the wireframe color
             for a QSurface3DSeries in Q3DSurface.
         \li Added a new \l {QBar3DSeries::}{rowColors} property to set different colors for rows of bars in Q3DBars.
         \li Added a new \l {Q3DBars::}{barSeriesMargin} property to set the margin for individual bars in Q3DBars.
         \li Added a \l {QAbstract3DGraph::}{hasSeries} function to check whether a series is already added in QAbstract3DGraph.
         \li Added support for 16-bit height maps.
-    \endlist
-
-    \section2 Qt Charts Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt Positioning Module
@@ -272,8 +273,7 @@ u/****************************************************************************
             \l{Qt Wayland Compositor Examples - Custom Shell}{the example}.
         \li Added a \l{Qt Wayland Compositor Examples - QtShell Compositor}{Qt Shell} which
             supports all windowing system features available in Qt.
-        \li Added support for the \l{QtWayland.Compositor.PresentationTime}{presentation-time}
-            protocol.
+        \li Added support for the \l[QML]{PresentationTime}{presentation-time} protocol.
         \li Added support for multiple input method protocols in the same server, in order to
             support clients from different sources.
     \endlist
@@ -305,12 +305,6 @@ u/****************************************************************************
 
     \section2 Desktop Platforms
 
-    \section3 \macos on Apple Silicon
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
     \section2 Mobile Platforms
 
     \section3 Android
@@ -331,7 +325,7 @@ u/****************************************************************************
     \section3 iOS
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li CMake-based projects now generate a default launch screen.
     \endlist
 
     \section2 Embedded Platforms
@@ -343,18 +337,6 @@ u/****************************************************************************
     \list
         \li Boot to Qt stack was updated to use Yocto 3.4 (honister).
         \li Qt PDF and Qt Language Server were included in Boot to Qt stack.
-    \endlist
-
-    \section3 QNX
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section3 INTEGRITY
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Other
