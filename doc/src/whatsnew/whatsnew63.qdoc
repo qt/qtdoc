@@ -163,6 +163,49 @@ u/****************************************************************************
 
     \list
         \li New item added: \l [QML] TreeView.
+        \li All \l {Qt Quick Input Handlers}{pointer handlers} have settable \c parent properties.
+        \li \l [QML] HoverHandler and \l [QML] WheelHandler have a \c blocking property to
+            control whether the hover and wheel events respectively propagate
+            to items and handlers behind the handler's \c parent.
+        \li \l [QML] TapHandler now has one more \l {TapHandler::gesturePolicy}{gesturePolicy}
+            value: \c DragWithinBounds; it is similar to \c WithinBounds,
+            except that even if the user drags while holding the point pressed,
+            \l {TapHandler::timeHeld}{timeHeld} is not reset during dragging,
+            and the \l {TapHandler::longPressed}{longPressed} signal is emitted
+            regardless of the drag threshold, if the user holds it that long.
+            This is useful for implementing press-drag-release components such as menus
+            (like the pie menu in the pointer handlers example) while using \c timeHeld
+            to directly drive an "opening" animation.
+            \image ../images/piemenu.gif
+        \li \l QQuickItem::clipRect() now provides the region visible in the \l {QQuickItem::viewportItem()}{viewport}
+            (the parent \l [QML] Flickable or \l [QML] Window), and can be used to limit scene graph node
+            vertices as an optimization in custom items, at the cost of having
+            \l {QQuickItem::updatePaintNode()}{updatePaintNode()} called more often.
+            See docs about the new \l {QQuickItem::ItemObservesViewport} and
+            \l {QQuickItem::ItemIsViewport} flags.
+        \li To save memory and startup time, \l [QML] Text and \l [QML] TextEdit now avoid
+            generating scene graph nodes for large portions of text that are
+            invisible because of falling outside the viewport (\l [QML] Flickable or \l [QML] Window).
+        \li \l [QML] Text now renders horizontal rules from HTML or Markdown.
+        \li In \l [QML] Text, horizontal rules and underline/overline/strikethrough lines
+            can be colored by CSS rules included in HTML source.
+            \snippet snippets/declarative/text-lines.qml 0
+        \li QQuickItem::dumpItemTree() has been added; it
+            can be called from C++ (similar to QObject::dumpObjectTree()) or
+            from QML, to show the qDebug-operator output for an item and all
+            its children, indented to show the tree structure.
+        \li \l [QML] TapHandler \l {TapHandler::tapped}{tapped}, \l {TapHandler::singleTapped}{singleTapped}
+            and \l {TapHandler::doubleTapped}{doubleTapped} signals now have two arguments:
+            the \l QEventPoint instance, and the \c button being tapped. If you need a signal handler,
+            you should write an explicit function to receive those arguments:
+            \qml
+            onTapped: function(point, button) { ... }
+            onDoubleTapped: (point, button)=> ...
+            \endqml
+        \li \l [QML] DragHandler \l {DragHandler::activeTranslation}{activeTranslation}
+            now holds the amount of movement since the drag gesture began.
+            \l {DragHandler::persistentTranslation}{persistentTranslation} holds the accumulated sum of movement
+            that has occurred during subsequent drag gestures, and can be reset to arbitrary values between gestures.
     \endlist
 
     \section2 Qt Quick Controls Module
