@@ -123,18 +123,29 @@
 
     \section1 Warning and Debugging Messages
 
-    Qt includes global macros for writing out warning and debug
-    text. You can use them for the following purposes:
+    Qt includes global C++ macros for writing out warning and debug text.
+    The plain macros use a default \l {QLoggingCategory}{logging category};
+    the categorized logging macros allow you to specify the category.
+    You can use them for the following purposes:
 
-    \list
-    \li qDebug() is used for writing custom debug output.
-    \li qInfo() is used for informational messages.
-    \li qWarning() is used to report warnings and recoverable errors in
-       your application.
-    \li qCritical() is used for writing critical error messages and
-       reporting system errors.
-    \li qFatal() is used for writing fatal error messages shortly before exiting.
-    \endlist
+    \table
+    \header \li Plain macro \li Categorized macro \li Purpose
+    \row \li qDebug()
+         \li qCDebug()
+         \li Used for writing custom debug output
+    \row \li qInfo()
+         \li qCInfo()
+         \li Used for informational messages
+    \row \li qWarning()
+         \li qCWarning()
+         \li Used to report warnings and recoverable errors in your application or library
+    \row \li qCritical()
+         \li qCCritical()
+         \li Used for writing critical error messages and reporting system errors
+    \row \li qFatal()
+         \li -
+         \li Used for writing messages about fatal errors shortly before exiting
+    \endtable
 
     If you include the <QtDebug> header file, the \c qDebug() macro
     can also be used as an output stream. For example:
@@ -150,7 +161,7 @@
     by setting the \c QT_MESSAGE_PATTERN environment variable. For example:
 
     \code
-    QT_MESSAGE_PATTERN="[%{type}] %{appname} (%{file}:%{line}) - %{message}"
+    QT_MESSAGE_PATTERN="[%{time process} %{type}] %{appname} %{category} %{function} - %{message}"
     \endcode
 
     The format is documented in qSetMessagePattern(). You can also install your
@@ -168,6 +179,8 @@
     QObject::dumpObjectInfo() are often useful when an application
     looks or acts strangely. More useful if you use \l{QObject::setObjectName()}{object names}
     than not, but often useful even without names.
+
+    In QML, \l {QtQuick::Item::}{dumpItemTree()} serves the same purpose.
 
     \section1 Providing Support for the qDebug() Stream Operator
 
@@ -223,6 +236,9 @@
     print warning messages when a programming error is detected. We
     therefore recommend that you use a debug version of Qt when
     developing Qt-based software.
+
+    Logging and \l {LoggingCategory}{categorized logging} are also
+    possible in \l {Debugging QML Applications}{QML}.
 
     \section1 Common Bugs
 
