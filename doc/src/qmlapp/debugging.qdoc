@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -144,6 +144,9 @@ may face. The sections below describe the debugging tools available and how to u
         \li \c console.exception prints an error message together with the stack trace of
             JavaScript execution at the point where it is called.
 \endtable
+
+Alternatively, a \l {QLoggingCategory}{logging category} can be passed as the
+first argument to any of these \c {console} functions. See \l [QML] LoggingCategory for more details.
 
 \section1 Debugging Module Imports
 
