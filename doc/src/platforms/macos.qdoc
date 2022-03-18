@@ -745,8 +745,8 @@
     This document describes how to create a \l{Qt for \macos}{\macos} bundle
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with the
-    Qt installation package.
+    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with
+    the Qt installation package.
 
     The Qt installers for \macos include a \l
     {macdeploy}{deployment tool} that automates the procedures described here.
@@ -754,7 +754,7 @@
     \section1 The Bundle
 
     On \macos, a GUI application must be built and run from a bundle, which is a
-    directory structure that appears as a single  entity when viewed in the
+    directory structure that appears as a single entity when viewed in the
     Finder. A bundle for an application typically contains the executable and
     all the resources it needs. Here is the snapshot of an application bundle
     structure:
@@ -770,15 +770,26 @@
     more information about bundles, see
     \l {http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFBundles/index.html}{Apple's Developer Website}.
 
-    \c{qmake} automatically generates a bundle for your application. To disable this,
-    add the following statement to your application's project file (\c{.pro}):
+    To build your application as a bundle with CMake, set the
+    \l {https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE.html}
+    {\c {MACOSX_BUNDLE}} property on your executable target:
+
+    \code
+        set_target_properties(plugandpaint PROPERTIES
+            MACOSX_BUNDLE TRUE
+        )
+    \endcode
+
+    \c{qmake} automatically generates a bundle for your application. To disable
+    this, add the following statement to your application's project file
+    (\c{.pro}):
 
     \snippet snippets/code/doc_src_deployment.pro 26
 
     \section1 Static Linking
 
-    If you want to keep things simple and have a few files to
-    deploy, you must build your application with statically linked libraries.
+    If you want to keep things simple and only have a few files to
+    deploy, you can build your application with statically linked libraries.
 
     \section2 Building Qt Statically
 
@@ -793,28 +804,45 @@
 
     \section2 Linking the Application to the Static Version of Qt
 
-    Once Qt is built statically, the next step is to regenerate the
-    makefile and rebuild the application. First, we must go into the
-    directory that contains the application:
+    Once Qt is built statically, the next step is to regenerate the build files
+    and rebuild the application.
+
+    \section3 Using CMake
+
+    Make sure to use the \c qt_add_executable wrapper command, which provides
+    additional logic such as linking Qt plugins in static Qt builds. Also, when
+    using a static Qt build, you need to set \c cmake_minimum_required() to
+    3.21.1 or newer:
+
+    \code
+        cmake_minimum_required(VERSION 3.21.1)
+    \endcode
+
+    \include {macos-deploy-cmake.qdocinc} {building with cmake}
+
+    \section3 Using qmake
+
+    First, go into the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 28
 
-    Now run \c qmake to create a new makefile for the application, and do
+    Then, run \c qmake to create a new makefile for the application, and do
     a clean build to create the statically linked executable:
 
     \snippet snippets/code/doc_src_deployment.qdoc 29
 
-    You probably want to link against the release libraries, and you
-    can specify this when invoking \c qmake. If you have Xcode Tools
-    1.5 or higher installed, you may want to take advantage of "dead
-    code stripping" to reduce the size of your binary even more. You
-    can do this by passing \c {LIBS+= -dead_strip} to \c qmake in
-    addition to the \c {-config release} parameter.
+    You probably want to link against the release libraries, and you can specify
+    this when invoking \c qmake. You may want to take advantage of "dead code
+    stripping" to reduce the size of your binary even more. You can do this by
+    passing \c {LIBS+= -dead_strip} to \c qmake in addition to the
+    \c {-config release} parameter.
 
-    Now, provided that everything compiled and linked without any
-    errors, we should have a \c plugandpaint.app bundle ready
-    for deployment. Try installing the bundle on a machine running \macos
-    that does not have Qt or any Qt applications installed.
+    Again, provided that everything compiled and linked without any errors, you
+    should have a \c plugandpaint.app bundle ready for deployment. Try
+    installing the bundle on a machine running \macos that does not have Qt or
+    any Qt applications installed.
+
+    \section3 Checking linked libraries
 
     You can check what other libraries your application links to using
     the \c otool:
@@ -858,8 +886,8 @@
 
     \section1 Frameworks
 
-    In this approach, ensure that the Qt runtime is redistributed correctly
-    with the application bundle, and that the plugins are installed in the correct
+    In this approach, ensure that the Qt runtime is redistributed correctly with
+    the application bundle, and that the plugins are installed in the correct
     location so that the application finds them.
 
     There are two ways to distribute Qt with your application in the frameworks
@@ -870,12 +898,12 @@
     the installed binary).
     \endlist
 
-    The former is good if you have Qt built in a special way, or want to make
-    sure the framework is there. It just comes down to where you place the Qt
-    frameworks.
+    The first option is good if you have Qt built in a special way, or want to
+    make sure the framework is there. It just comes down to where you place the
+    Qt frameworks.
 
-    The latter option is good if you have many Qt applications and you want
-    them use a single Qt framework rather than multiple versions of it.
+    The second option is good if you have many Qt applications and you want
+    them to use a single Qt framework rather than multiple versions of it.
 
     \section2 Building Qt as Frameworks
 
@@ -891,8 +919,15 @@
     \section2 Linking the Application to Qt as Frameworks
 
     After building Qt as frameworks, we can build the \l
-    {tools/plugandpaint/app}{Plug & Paint} application. First, we must go
-    to the directory that contains the application:
+    {tools/plugandpaint/app} {Plug & Paint} application.
+
+    \section3 Using CMake
+
+    \include {macos-deploy-cmake.qdocinc} {building with cmake}
+
+    \section3 Using qmake
+
+    First, go into the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 34
 
