@@ -48,6 +48,8 @@
 **
 ****************************************************************************/
 
+using namespace Qt::StringLiterals;
+
 //! [0]
 LoginWidget::LoginWidget()
 {
@@ -130,7 +132,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QTranslator myappTranslator;
-    if (myappTranslator.load(QLocale::system(), u"myapp"_qs, u"_"_qs, u":/i18n"_qs))
+    if (myappTranslator.load(QLocale::system(), u"myapp"_s, u"_"_s, u":/i18n"_s))
         app.installTranslator(&myappTranslator);
 
     return app.exec();
@@ -197,7 +199,7 @@ void same_global_function(LoginWidget *logwid)
 
 //! [14]
     QTranslator qtTranslator;
-    if (qtTranslator.load(QLocale::system(), u"qtbase"_qs, u"_"_qs,
+    if (qtTranslator.load(QLocale::system(), u"qtbase"_s, u"_"_s,
                           QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
         app.installTranslator(&qtTranslator);
     }
