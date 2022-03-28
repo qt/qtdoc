@@ -184,9 +184,7 @@
 
     \quotefromfile platforms/cmake/linux/toolchain_integrity.cmake
 
-    \printuntil set(OPENGL_opengl_LIBRARY ${TARGET_ROOT_PATH}/libeglmegapack.a)
-
-    \include qt6CreatingEglPack.qdocinc Creating EGL pack lib
+    \printuntil set(OPENGL_opengl_LIBRARY ${EGL_LIBRARY})
 
     \section1 Configuring Qt for INTEGRITY
 
@@ -538,8 +536,6 @@
     \quotefromfile platforms/cmake/win/toolchain_integrity.cmake
 
     \printuntil set(CMAKE_C_LINK_EXECUTABLE   "${CMAKE_CXX_COMPILER} ${CMAKE_C_FLAGS} <CMAKE_C_LINK_FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
-
-    \include qt6CreatingEglPack.qdocinc Creating EGL pack lib
 
     \section1 Configuring Qt for INTEGRITY
 
