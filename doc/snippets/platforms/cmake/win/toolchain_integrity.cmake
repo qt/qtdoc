@@ -62,16 +62,15 @@ endif()
 set(CMAKE_FIND_ROOT_PATH ${TARGET_ROOT_PATH})
 
 #base
-set(CMAKE_C_FLAGS  "-bsp $ENV{INTEGRITY_BSP} -os_dir $ENV{INTEGRITY_DIR} -non_shared -startfile_dir=$ENV{INTEGRITY_DIR}/libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/arm64/$ENV{INTEGRITY_BUILD_TARGET} -bigswitch -DINTEGRITY -llibivfs.a -llibposix.a -llibpaged_alloc.a -llibnet.a -llibsocket.a")
+set(CMAKE_C_FLAGS  "-bsp $ENV{INTEGRITY_BSP} -os_dir $ENV{INTEGRITY_DIR} -non_shared -startfile_dir=$ENV{INTEGRITY_DIR}/libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/$ENV{INTEGRITY_BSP}/$ENV{INTEGRITY_BUILD_TARGET} --rtos_library_directory=libs/arm64/$ENV{INTEGRITY_BUILD_TARGET} -bigswitch -DINTEGRITY -llibposix.a")
 set(CMAKE_C_FLAGS_DEBUG "-g -Omaxdebug")
 set(CMAKE_C_FLAGS_RELEASE "-Ospeed -Olink -Omax -no_uvfd")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --signed_fields --diag_suppress=1,82,228,236,381,611,961,997,1795,1931,1974,3148 --c++17 --thread_local_storage --exceptions --defer_parse_function_templates")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} --signed_fields --no_implicit_include --link_once_templates -non_shared --new_outside_of_constructor -I $ENV{QC_MULTIMEDIA_INC_DIR}")
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -frigor=accurate --signed_fields --no_implicit_include --link_once_templates -non_shared --new_outside_of_constructor --commons -I $ENV{QC_MULTIMEDIA_INC_DIR}")
 set(CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L$ENV{TARGET_ROOT_PATH} -L$ENV{TARGET_ROOT_PATH}/apps/ghs_apps_proc/qc_bsp/out/rel/libs/multimedia/graphics -L$ENV{TARGET_ROOT_PATH}/apps/ghs_apps_proc/qc_bsp/out/rel/libs/base -L$ENV{TARGET_ROOT_PATH}/apps/ghs_apps_proc/qc_bsp/AMSS/multimedia/graphics/opengl/esx/build/integrity/prebuilt -L$ENV{TARGET_ROOT_PATH}/apps/ghs_apps_proc/qc_bsp/out/rel/libs/platform -L$ENV{TARGET_ROOT_PATH}/apps/ghs_apps_proc/qc_bsp/out/rel/libs/multimedia/display/ --commons")
 set(CMAKE_FIND_LIBRARY_PREFIXES "lib")
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 
@@ -84,9 +83,33 @@ set(PKG_EGL_LIBRARY_DIRS ${TARGET_ROOT_PATH})
 set(GLESv2_INCLUDE_DIR $ENV{GL_INC_DIR})
 set(OPENGL_INCLUDE_DIR $ENV{GL_INC_DIR})
 
-set(EGL_LIBRARY ${TARGET_ROOT_PATH}/libeglmegapack.a)
-set(GLESv2_LIBRARY ${TARGET_ROOT_PATH}/libeglmegapack.a)
-set(OPENGL_opengl_LIBRARY ${TARGET_ROOT_PATH}/libeglmegapack.a)
+set(EGL_LIBRARY "${EGL_LIBRARY_GRAPHIC_PATH}/libESXEGL_Adreno.a")
+
+set(GLESv2_INCLUDE_DIR $ENV{GL_INC_DIR})
+set(GLESv2_LIBRARY "${EGL_LIBRARY_GRAPHIC_PATH}/libESXGLESv2_Adreno.a")
+
+set(IntegrityPlatformGraphics_INCLUDE_DIR ${GL_INC_DIR})
+set(IntegrityPlatformGraphics_LIBRARY "${EGL_LIBRARY_GRAPHIC_PATH}/libadreno_utils.a")
+set(IntegrityPlatformGraphics_LIBRARIES_PACK
+    "${EGL_LIBRARY_BASE_PATH}/libplanedef.a"
+    "${EGL_LIBRARY_BASE_PATH}/libmmosalfile.a"
+    "${EGL_LIBRARY_BASE_PATH}/libOSAbstraction.a"
+    "${EGL_LIBRARY_OPENWFD_PATH}/libopenwfd.a"
+    "${EGL_LIBRARY_GRAPHIC_PATH}/libOSUser.a"
+    "${EGL_LIBRARY_GRAPHIC_PATH}/libpanel.a"
+    "${EGL_LIBRARY_GRAPHIC_PATH}/libGSLUser.a"
+    "${EGL_LIBRARY_PREBUILD_PATH}/libglnext-llvm.a"
+    "${EGL_LIBRARY_PLATFORM_PATH}/libpmem.a"
+    "${EGL_LIBRARY_CHK_PATH}/libposix.a"
+    "${EGL_LIBRARY_CHK_PATH}/libivfs.a"
+)
+
+list(APPEND _qt_igy_gui_libs
+    "${GLESv2_LIBRARY}"
+    "${IntegrityPlatformGraphics_LIBRARY}"
+    "${IntegrityPlatformGraphics_LIBRARIES_PACK}")
+
+set(OPENGL_opengl_LIBRARY ${EGL_LIBRARY})
 
 # Command is required to fix CMake WIN bug https://gitlab.kitware.com/cmake/cmake/-/issues/22933
 set(CMAKE_CXX_COMPILER_PREDEFINES_COMMAND ${CMAKE_CXX_COMPILER})
