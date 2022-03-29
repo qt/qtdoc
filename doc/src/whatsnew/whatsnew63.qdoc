@@ -127,6 +127,23 @@ u/****************************************************************************
         \li \l{QCryptographicHash::addData(QIODevice*)}{QCryptographicHash::addData()} now has
             an overload taking QByteArrayView.
         \li qSwap() is now constexpr.
+        \li Added new public CMake API:
+        \list
+            \li for setting up project-wide defaults:
+                \l{qt_standard_project_setup}{qt_standard_project_setup()}
+            \li for deploying applications:
+                \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
+                (in Technical Preview)
+            \li for generating a qt.conf file at installation time:
+                \l{qt_deploy_qt_conf}{qt_deploy_qt_conf()}
+                 (in Technical Preview)
+            \li for deploying runtime dependencies at installation time:
+                \l{qt_deploy_runtime_dependencies}{qt_deploy_runtime_dependencies()}
+                 (in Technical Preview)
+            \li for performing platform-specific tasks associated with a Qt project:
+                \l{qt_finalize_project}{qt_finalize_project()}
+                 (in Technical Preview)
+        \endlist
     \endlist
 
     \section2 Qt GUI Module
@@ -207,9 +224,27 @@ u/****************************************************************************
             infrastructure.
         \li The header only qmlintegration module allows to mark types for registration in a QML module,
             without adding a dependency to qtdeclarative. Those can then be added to a QML module via
-            the new \c qt6_generate_foreign_qml_types CMake API.
+            the new \l{qt6_generate_foreign_qml_types}{qt_generate_foreign_qml_types()} CMake API.
         \li qmlcachegen compiles suitable functions and expressions to C++ now, for improved
             performance.
+        \li Added new public CMake API:
+        \list
+            \li for registering a target's foreign types in a QML module:
+                \l{qt_generate_foreign_qml_types}{qt_generate_foreign_qml_types()}
+                (in Technical Preview)
+            \li for compiling QML code into C++:
+                \l{qt_target_compile_qml_to_cpp}{qt_target_compile_qml_to_cpp()}
+                (in Technical Preview)
+            \li for deploying QML applications:
+                \l{qt_generate_deploy_qml_app_script}{qt_generate_deploy_qml_app_script()}
+                (in Technical Preview)
+            \li for deploying the runtime components of QML modules at installation time:
+                \l{qt_deploy_qml_imports}{qt_deploy_qml_imports()}
+                (in Technical Preview)
+            \li for querying information about a QML module:
+                \l{qt_query_qml_module}{qt_query_qml_module()}
+                (in Technical Preview)
+        \endlist
     \endlist
 
     \section2 Qt Quick 3D Module
@@ -234,6 +269,11 @@ u/****************************************************************************
     \list
         \li Now builds with Python 3 instead of Python 2
         \li Added API for replacing QML touch selection menu
+        \li Added new public CMake API:
+        \list
+            \li for converting Hunspell dictionaries to the Qt WebEngine \c .bdic binary format:
+                \l{qt_add_webengine_dictionary}{qt_add_webengine_dictionary()}
+        \endlist
     \endlist
 
     \section2 Qt Data Visualization Module
