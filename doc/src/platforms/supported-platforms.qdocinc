@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -35,7 +35,7 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li CentOS Linux 8.2
+    \row \li CentOS Linux 8.4
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
@@ -43,7 +43,7 @@
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP2
+    \row \li SUSE Linux Enterprise Server 15 SP3
         \li \c x86_64
         \li GCC 10
         \li
@@ -68,9 +68,13 @@
 //! [windows]
 \table 80%
     \header \li Operating System \li Architecture \li Compiler
-    \row \li Windows 10 (1809 or later)
+    \row \li Windows 11 (21H2 or later)
         \li \c x86_64
-        \li MSVC 2019, MinGW 8.1
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
+        \li
+    \row \li Windows 10 (21H2 or later)
+        \li \c x86_64
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
     \row \li Windows on ARM
         \li \c arm64
@@ -91,7 +95,7 @@
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 8.1
+        \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 11.2
         \li
 \endtable
 //! [android]
