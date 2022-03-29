@@ -123,12 +123,6 @@
         \li \l{Qt for Windows}{Windows}
         \li Classes for applications which use ActiveX and COM
     \row
-        \li \l{Qt Bluetooth}{Qt Bluetooth}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Boot2Qt}{Boot to Qt}, \l{Qt for macOS}{macOS}
-            and \l{Qt for Windows}{Windows}
-        \li Provides access to Bluetooth hardware.
-    \row
          \li \l[Qt3D]{Qt 3D}
          \li All
          \li All
@@ -139,6 +133,12 @@
          \li All
          \li All
          \li Qt Core APIs that were in Qt 5 but not Qt 6.
+    \row
+        \li \l{Qt Bluetooth}{Qt Bluetooth}
+        \li All
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Boot2Qt}{Boot to Qt}, \l{Qt for macOS}{macOS}
+            and \l{Qt for Windows}{Windows}
+        \li Provides access to Bluetooth hardware.
     \row
     \li \l[Qt CoAP]{Qt CoAP}
         \li All
@@ -161,6 +161,22 @@
         \li All
         \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
     \row
+        \li \l{Qt Multimedia}
+        \li All
+        \li All*
+        \li A rich set of QML types and C++ classes to handle multimedia content.
+            Also includes APIs to handle camera access.
+    \row
+        \li \l[QtNFC]{Qt NFC}
+        \li All
+        \li \l{Qt for Android}{Android} and \l{Qt for iOS}{iOS}
+        \li Provides access to Near-Field communication (NFC) hardware.
+    \li \l{Qt OPC UA Overview}{Qt OPC UA}
+        \li All
+        \li All (except QNX, WebAssembly)
+        \li Protocol for data modeling and exchange of data in industrial
+            applications.
+    \row
         \li \l[QtOpenGL]{Qt OpenGL}
         \li All
         \li All
@@ -168,11 +184,11 @@
             A separate library of \l{Qt OpenGL Widgets C++ Classes} provides a widget for
             rendering OpenGL graphics.
     \row
-        \li \l{Qt Multimedia}
-         \li All
-         \li All*
-         \li A rich set of QML types and C++ classes to handle multimedia content.
-            Also includes APIs to handle camera access.
+        \li \l[QtPositioning]{Qt Positioning}
+        \li All
+        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
+            \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
+        \li Provides access to position, satellite info and area monitoring classes.
     \row
         \li \l[QtPrintSupport]{Qt Print Support}
         \li All
@@ -189,12 +205,6 @@
         \li All
         \li Provides an easy to use mechanism for sharing a QObject's API
              (Properties/Signals/Slots) between processes or devices.
-    \row
-    \li \l{Qt OPC UA Overview}{Qt OPC UA}
-        \li All
-        \li All (except QNX, WebAssembly)
-        \li Protocol for data modeling and exchange of data in industrial
-            applications.
     \row
         \li \l{Qt SCXML}{Qt SCXML}
         \li All
@@ -271,17 +281,6 @@
         \li All
         \li Handling of XML in a Document Object Model (DOM) API.
     \row
-        \li \l[QtPositioning]{Qt Positioning}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
-            \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
-        \li Provides access to position, satellite info and area monitoring classes.
-    \row
-        \li \l[QtNFC]{Qt NFC}
-        \li All
-        \li \l{Qt for Android}{Android} and \l{Qt for iOS}{iOS}
-        \li Provides access to Near-Field communication (NFC) hardware.
-    \row
     \header
         \li {4,1} \target gpl-licensed-addons
                   Add-ons available under Commercial Licenses, or GNU General
@@ -314,13 +313,6 @@
         \li All
         \li Provides support for OAuth-based authorization to online services.
         \row
-    \li \l{Qt Virtual Keyboard}
-        \li All
-        \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
-            desktop, and \l{Boot2Qt}{Boot to Qt} targets.
-        \li A framework for implementing different input methods as
-            well as a QML virtual keyboard. Supports localized keyboard
-            layouts and custom visual themes.
     \row
         \li \l[QtQuick3D]{Qt Quick 3D}
         \li All
@@ -339,6 +331,14 @@
         \li Provides tools for the cross-platform Qt shader pipeline. These enable
         processing graphics and compute shaders to make them usable for Qt Quick and other
         components in the Qt ecosystem.
+    \row
+        \li \l{Qt Virtual Keyboard}
+        \li All
+        \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
+            desktop, and \l{Boot2Qt}{Boot to Qt} targets.
+        \li A framework for implementing different input methods as
+            well as a QML virtual keyboard. Supports localized keyboard
+            layouts and custom visual themes.
     \row
         \li \l{Qt Wayland Compositor}
         \li \l{Qt for Linux/X11}{Linux}
