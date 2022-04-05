@@ -25,20 +25,21 @@ exampledirs             = .
 moduleheader =
 
 depends += \
-    qtdoc \
-    qtcore \
-    qtnetwork \
-    qtsql \
-    qtgui \
-    qtwidgets \
-    qtdbus \
-    qtlinguist \
-    qtqml \
-    qtremoteobjects \
-    qtdesigner \
     qmake \
+    qtcore \
+    qtdbus \
+    qtdesigner \
+    qtdoc \
+    qtgui \
+    qtlinguist \
+    qtnetwork \
+    qtqml \
+    qtquick \
+    qtremoteobjects \
     qtscxml \
-    qtwebengine
+    qtsql \
+    qtwebengine \
+    qtwidgets
 
 navigation.landingpage = "Build with CMake"
 
