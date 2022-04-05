@@ -561,9 +561,9 @@
     \c {QQmlEngineExtensionPlugin}.
     The mylib library itself already contains the code to register the types
     with the engine.  However, that is only useful in cases where we can link
-    against the library. To make the module usable in a QML file loaded by the
-    \l{QML tool}, a plugin is needed that can be loaded. The
-    plugin is then responsible for actually linking against the library, and
+    against the library. To make the module usable in a QML file loaded by \c qml,
+    the \l{qml_runtime_tool}{QML Runtime Tool}, a plugin is needed that can be loaded.
+    The plugin is then responsible for actually linking against the library, and
     ensuring that the types get registered.
 
     Note that the automatic plugin generation is only possible if the module
