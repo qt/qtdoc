@@ -140,7 +140,7 @@ Create a custom Java class:
 public class QtBootServiceBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent startServiceIntent = new Intent(context, QtBootServiceBroadcastReceiver.class);
+        Intent startServiceIntent = new Intent(context, QtAndroidService.class);
         context.startService(startServiceIntent);
     }
 }
@@ -163,8 +163,10 @@ Also, add the \c receiver definition in the body of the \c <application> section
 </receiver>
 \endcode
 
-\note To run a service at boot time, it has to be defined as a separate process,
-see \l{Service in Separate Process}.
+\note Android 8.0 introduced some limitations on running background services,
+which means using a nomal \c Service class might not work. For more information,
+see Android's recommendation to use either \c {Android: Foreground services}{Foreground services}
+or \l {Android: JobIntentService}{JobIntentService}.
 
 \section2 Manage the Service in AndroidMnifest.xml
 
