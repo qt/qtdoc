@@ -156,7 +156,7 @@ the \c AndroidManifest.xml file:
 Also, add the \c receiver definition in the body of the \c <application> section:
 
 \badcode
-<receiver android:name=".QtBootServiceBroadcastReceiver">
+<receiver android:name=".QtBootServiceBroadcastReceiver" android:exported="true">
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED" />
     </intent-filter>
@@ -178,7 +178,7 @@ For the service to be usable in an Android app, you must declare it in the
         service. Add the following inside the \c <application> section:
 
         \badcode
-        <service android:name=".QtAndroidService">
+        <service android:name=".QtAndroidService" android:exported="true">
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
@@ -201,8 +201,7 @@ For the service to be usable in an Android app, you must declare it in the
         \c <activity> section for \c QtActivity. Add the following:
 
         \badcode
-        <service android:process=":qt_service" android:name=".QtAndroidService">
-
+        <service android:process=":qt_service" android:name=".QtAndroidService" android:exported="true">
             <meta-data android:name="android.app.lib_name" android:value="service"/>
             <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
             <meta-data android:name="android.app.repository" android:value="default"/>
@@ -243,7 +242,7 @@ To run a service in the same process as QtActivity, declare the service header
 as follows:
 
 \badcode
-<service android:name=".QtAndroidService">
+<service android:name=".QtAndroidService" android:exported="true">
 \endcode
 
 \section3 Service in Separate Process
@@ -251,7 +250,7 @@ as follows:
 To run a service in a dedicated process, declare the service header as follows:
 
 \badcode
-<service android:process=":qt_service" android:name=".QtAndroidService">
+<service android:process=":qt_service" android:name=".QtAndroidService" android:exported="true">
 \endcode
 
 Qt loads the \c .so file defined in \c android.app.lib_name \c meta-data,
