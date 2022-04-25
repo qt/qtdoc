@@ -37,9 +37,9 @@
 
     \list
         \li \e {Deployment target} specifies the \e hard minimum version of
-            \macos, iOS, tvOS, or watchOS that your application supports.
-        \li \e {SDK version} specifies the \e soft maximum version of \macos,
-            iOS, tvOS, or watchOS that your application supports.
+            \macos or iOS that your application supports.
+        \li \e {SDK version} specifies the \e soft maximum version of \macos
+            or iOS that your application supports.
     \endlist
 
     When you develop an application for an Apple platform, you should always
@@ -83,9 +83,8 @@
     linker flags have no power there.
 
     For the most part, Qt applications will work without problems. For example,
-    in qmake, the Qt mkspecs set \l QMAKE_IOS_DEPLOYMENT_TARGET,
-    \l QMAKE_MACOSX_DEPLOYMENT_TARGET, \l QMAKE_TVOS_DEPLOYMENT_TARGET, or
-    \l QMAKE_WATCHOS_DEPLOYMENT_TARGET to the minimum version that Qt itself
+    in qmake, the Qt mkspecs set \l QMAKE_IOS_DEPLOYMENT_TARGET or
+    \l QMAKE_MACOSX_DEPLOYMENT_TARGET to the minimum version that Qt itself
     supports. Similarly, in Qbs, the Qt modules set \c cpp.minimumIosVersion,
     \c cpp.minimumMacosVersion, \c cpp.minimumTvosVersion, or
     \c cpp.minimumWatchosVersion to the minimum version that Qt itself supports.
