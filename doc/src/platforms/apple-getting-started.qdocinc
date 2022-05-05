@@ -29,11 +29,12 @@
 //! [getting started]
     \section1 Getting Started
 
-    Development and deployment is done using Xcode. The supported
-    workflow is to maintain a \c .pro file based project, which
-    generates an Xcode project. Building and deploying can be done
-    using either Xcode or Qt Creator. We will look at that in more
-    detail in the next section.
+    Qt supports you in building, testing, and deploying applications for iOS. Qt
+    applications are typically defined using the \l{Build with CMake}{CMake} or
+    \l qmake build tools. Both tools can generate an \c .xcodeproj file that
+    can then be loaded and built from the command line, or with Xcode.
+    \l{Qt Creator Manual}{Qt Creator} also directly supports building, running,
+    debugging, and profiling CMake and qmake projects for iOS.
 
     The minimum deployment target for Qt applications is specified in
     \l {Supported Platforms}.
@@ -62,19 +63,52 @@
     is set up correctly, for example, by running one of the standard
     Xcode application templates on your device.
 
-    \section2 Building Applications From the Command Line
+    \section2 Building Applications from the Command Line
 
-    As mentioned previously, the development workflow consists
-    of maintaining a normal \c .pro file project and exporting it to
-    Xcode.
+    Use CMake or qmake to define how to build your iOS application. Both CMake
+    and qmake can generate an \c xcodeproj file, which can then be loaded and
+    built from the command line.
 
-    Here is how to build a project with Xcode:
+    \section3 Using CMake
 
-    \list
-        \li run qmake (if you have not done so previously)
-        \li open the resulting \c .xcodeproj file in Xcode
-        \li build the application in Xcode
-    \endlist
+    With CMake you have to use the Xcode generator and set
+    \c CMAKE_OSX_SYSROOT, \c CMAKE_OSX_ARCHITECTURES, and the Qt toolchain
+    file with \c CMAKE_TOOLCHAIN_FILE:
+
+    \code
+        cmake <source-dir> -G Xcode -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_OSX_SYSROOT="iphoneos" -DCMAKE_TOOLCHAIN_FILE="~/<Qt-dir>/<version>/ios/lib/cmake/Qt6/qt.toolchain.cmake"
+    \endcode
+
+    Using the generated \c xcodeproj file, you can either use Xcode to build
+    your application or run \c xcodebuild from the command line. For a list of
+    available targets and schemes for your application, run the following
+    command:
+
+    \code
+        xcodebuild -list -project <your-app>.xcodeproj
+    \endcode
+
+    Then, run \c {xcodebuild build}, passing in your application details:
+
+    \code
+        xcodebuild build -allowProvisioningUpdates -project <your-app>.xcodeproj -scheme <your-scheme> -configuration Debug -destination "generic/platform=iOS" -destination-timeout 1 ENABLE_ONLY_ACTIVE_RESOURCES=NO
+    \endcode
+
+    \section3 Using qmake
+
+    First, define how to build the application using qmake. Then, use the
+    generated \c xcodeproj file to build the application, either in Xcode or
+    from the command line.
+
+    \code
+        qmake <your-app>.pro -spec macx-ios-clang CONFIG+=debug CONFIG+=iphoneos CONFIG+=device CONFIG+=qml_debug QMAKE_MAC_XCODE_SETTINGS+=qteam qteam.name=DEVELOPMENT_TEAM qteam.value=<your-team-id> QMAKE_TARGET_BUNDLE_PREFIX+=com.<your-company> QMAKE_BUNDLE+=<your-app>
+    \endcode
+
+    Now run \c make to build your application:
+
+    \code
+        make -j8
+    \endcode
 
     Note that you must re-import the project if its setup changes, for
     example, when adding or removing source files.
