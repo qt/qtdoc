@@ -271,7 +271,6 @@ modules are listed below, other modules may or may not work.
     \li \l {Qt Quick Controls}
     \li \l {Qt Quick Layouts}
     \li \l {Qt 5 Core Compatibility APIs}
-    \li \l {Qt Concurrent}
     \li \l {Qt Image Formats}
     \li \l {Qt OpenGL}
     \li \l {Qt SVG}
@@ -282,6 +281,19 @@ In all cases, module support may not be complete and and there may be
 additional limitations, either due to the browser sandbox or due to
 incompleteness of the Qt platform port. See \l {Developing with Qt for WebAssembly}
 for further info.
+
+Qt for WebAssembly Technology Preview modules and features. These features
+may require to reconfigure and build Qt. They may contain features that
+are still experimental in the browsers or Emscripten.
+
+\list
+    \li \l {Qt Threading}
+    \li \l {Qt Concurrent}
+    \li \l {Emscripten Asyncify}
+    \li \l {Qt Sockets}
+
+
+\endlist
 
 \section1 Developing with Qt for WebAssembly
 \section2 OpenGL and WebGL
@@ -465,12 +477,41 @@ profiling features. Qt adds --profiling-funcs to the linker arguments in debug b
 which preserve function names in profiling
 \endlist
 
+You can add more verbosity to help debug using Emscripten linker arguments:
+
+\list
+    \li -s LIBRARY_DEBUG=1 (print out library calls)
+    \li -s SYSCALL_DEBUG=1 (print out sys calls)
+    \li -s FS_LOG=1  (print out filesystem operations)
+    \li -s SOCKET_DEBUG (print out socket, network data transfer)
+\endlist
+
+Using cmake:
+\code
+   target_link_options(<your target> PRIVATE "SHELL:-s LIBRARY_DEBUG=1")
+\endcode
+Using qmake:
+\code
+    QMAKE_LFLAGS_DEBUG += -s LIBRARY_DEBUG=1
+\endcode
+
+\section2 Asyncify
+
+Asyncify is an Emscripten feature which enables synchronous C++ code to interact with asynchronous JavaScript.
+
+Qt uses it to allow calling blocking APIs like one level of nested QEventLoop::exec() and returning normally.
+
+Asyncify's unwinding and rewinding the stack add overhead to executable size as well as performance.
+To enable asyncify, configure Qt using:
+\code
+     -device-option QT_EMSCRIPTEN_ASYNCIFY=1
+\endcode
+
 \section2 Known Issues
 
 \list
 \li Nested event loops are not supported. Applications should not call API like QDialog::exec()
-and QEventLoop::exec()
-\li Drag and Drop is not supported
+and QEventLoop::exec(). Experimental feature Asyncify could be used.
 \li Printing is not supported
 \li QDnsLookup lookups, QTcpSocket, QSsl do not work and are not supported due to the web sandbox
 \li Accessibility is not supported: Qt draws application content to a canvas element and does not
@@ -509,6 +550,9 @@ The following configure options are relevant when building Qt for WebAssembly fr
     \row
         \li -feature-opengles3
         \li Use opengles3 in addition to the default opengles2
+    \row
+        \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
+        \li Use asyncify
 \endtable
 
 \section2 Typical Download Sizes
