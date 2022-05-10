@@ -7,76 +7,69 @@
     \brief Qt 6 features and its benefits.
 
     Qt 6 lets you develop applications with intuitive user interfaces for
-    multiple devices and platforms, faster than ever before. Development is
-    easy with \b{Qt Creator}, letting you design, code, test, and deploy Qt
-    applications. Qt 6 is highly compatible with Qt 5. Developers of Qt 5
-    applications can move seamlessly to Qt 6 while retaining applications'
+    multiple devices and platforms, faster than ever before.
+
+    \note Qt 6 is highly compatible with \l{Qt 5.15}{Qt 5}. Developers of Qt 5
+    applications can move seamlessly to Qt 6 while retaining the applications'
     functionality.
 
-    \section1 Developing User Interfaces with Qt
+    \section1 Designing User Interfaces
 
-    Qt offers two UI frameworks for developers: \b{Qt Widgets} and \b{Qt Quick}.
-    \l{Qt Widgets} is cross-platform and tightly integrates with desktop
-    look and feel. \l{Qt Quick} UIs are dynamic with fluid animations and are
-    optimal for touch interfaces. You can implement widget UIs in C++ and you
-    can implement Qt Quick UIs declaratively with QML and JavaScript. The
-    \l{User Interfaces} page compares both Qt Quick and Qt Widgets UIs.
+    Qt offers two \{Solutions for UI Design}{solutions for UI design}:
+    \l{Qt Widgets} and \l{Qt Quick}.
+    \b{Qt Widgets} tightly integrates with desktop
+    look-and-feel. \b{Qt Quick} UIs are dynamic with fluid animations and are
+    optimal for touch interfaces. The
+    \l{User Interfaces} page compares both Qt Quick and Qt Widgets
+    technologies.
 
-    \section2 Designing UIs
+    \section1 Cross-Platform
 
-    \l{Qt Design Studio} lets you design UIs from within Qt Creator. You can
-    import 2D and 3D assets, animate components, and create layouts. Testing
-    the designs is possible through a live preview on devices are through
-    an online browser.
+    Qt is cross-platform. Qt modules are available on various
+    \l{Supported Platforms} {devices and platforms}.
+    Developer tools like \l{Qt Creator Manual}{Qt Creator} and
+    \l{Qt Design Studio Manual}{Qt Design Studio} are available for Windows,
+    macOS, and Linux.
+    Build tools like \l{qmake} and \l{Build with CMake}{CMake} seamlessly
+    handle the platform-specific differences in the build process.
 
-    If you only design UIs and don't need the developer tools and functions,
-    you can use \l{Qt Design Studio Manual}{Qt Design Studio}. It enables you
-    to define the look and feel of the UI from wireframe to final implementation
-    with preset UI components. You can import UI design files from 2D and 3D
-    tools to Qt Design Studio, which can turn them into code for developers.
-    Qt Design Studio prototyping features bring your designs to life and
-    simulate and validate interactions and dynamic behavior. You can test,
-    preview, and fine-tune your designs to pixel-perfection live on the desktop
-    or target device.
+    \section1 Features and APIs
 
-    \section1 Developing Applications
+    Qt features a large set of \l{All Modules}{modules} in the area of UIs,
+    networking, web technologies, communication protocols, file formats, and
+    much more.
+
+    \l{Qt Essentials}{Essentials} define the foundation of Qt on all platforms.
+    They are available on all supported development platforms and the tested
+    target platforms.
+
+    \l{Qt Add-Ons}{Add-ons} bring additional value for specific purposes.
+
+    \section1 Tools
 
     \l{Qt Creator Manual}{Qt Creator} is a complete IDE for developing Qt
-    applications. You can setup project files, code, debug, package, and
-    deploy from within Qt Creator. You can configure either
-    \l{Build with CMake}{CMake} or \l{qmake Manual}{qmake} to build
-    projects when you create them using wizard templates.
+    applications. You can set up project files, code, debug, package, and
+    deploy from within Qt Creator.
 
-    \section1 Cross-Platform Development
+    \l{Qt Design Studio Manual}{Qt Design Studio} supports you in designing
+    Qt Quick UIs. It enables you to define the look-and-feel of the UI from
+    wireframe to final implementation, using preset UI components.
 
-    Qt is cross-platform and you can deploy onto different devices and
-    platforms. \l{Qt Creator Manual}{Qt Creator} has built-in project
-    templates and kits for different platforms and devices. In addition,
-    you can port Qt and create custom targets with
-    \l{Qt Platform Abstraction}.
+    Many more \l{Qt Tool Manuals}{tools} are available.
 
-    \section1 Qt Essential and Qt Add-ons
+    \section1 Programming Languages
 
-    In Qt 6, the installation experience is easier and more flexible than
-    before.The installation includes the \b{Qt Essentials} and a few of the most
-    commonly used \b{Qt Add-Ons}. The Qt Add-Ons are moved outside of the main
-    installation, but still available by running the installer. You can read the
-    list of Qt modules in the \l{All Modules}{Qt Modules} page.
+    Qt applications are usually written in C++. \l{Qt for Python} allows
+    you to use write applications in Python.
+
+    Qt Quick UIs are written in \l{The QML Reference}{QML}.
 
     \section1 Where To Go From Here
 
-        \list
-        \li \l{Getting Started with Qt}
-        \li \l{Changes to Qt Modules in Qt 6}
-        \endlist
-
-    \section1 New Features by Qt Version
-
     \list
-        \li \l{What's New in Qt 6.3}
-        \li \l{What's New in Qt 6.2}
-        \li \l{What's New in Qt 6.1}
-        \li \l{What's New in Qt 6.0}
+        \li \l{Getting Started with Qt}{Getting Started}
+        \li \l{Qt Examples And Tutorials}{Examples and Tutorials}
+        \li \l{Supported Platforms}
+        \li \l{Qt Licensing}
     \endlist
-
 */
