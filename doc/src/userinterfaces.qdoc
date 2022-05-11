@@ -30,18 +30,18 @@
 \title User Interfaces
 \brief Qt's technologies for Creating User Interfaces
 
-The Qt framework's main user interface technologies are \b{Qt Quick Controls}
-and \b{Qt Widgets}. Qt Quick Control interfaces are fluid, dynamic, and are best
+The Qt framework's main user interface technologies are \b{Qt Quick}
+and \b{Qt Widgets}. Qt Quick interfaces are fluid, dynamic, and are best
 on touch interfaces. Qt Widgets are for creating complex desktop applications.
-You can create Qt Quick Controls and Qt Widgets interfaces with the target
+You can create Qt Quick and Qt Widgets interfaces with the target
 platform's native look and feel.
 
-\section1 Building UIs with Qt Quick Controls
+\section1 Building UIs with Qt Quick
 
-Qt Quick Controls is for creating dynamic and fluid user interfaces. The
+Qt Quick is for creating dynamic and fluid user interfaces. The
 \l{Qt Quick Controls} module supplies QML types such as buttons, dialogs, and
-menus. You can use QML, a declarative language, to build the UI and JavaScript
-to implement the logic.
+menus. You can use \l{The QML Reference}{QML}, a declarative language,
+to build the UI and JavaScript to implement the logic.
 
 The following list contains related overviews:
 \list
@@ -113,7 +113,7 @@ The following table compares Qt Widgets and Qt Quick interfaces.
         \li Fluid animated UIs
         \li \inlineimage ok
         \li
-        \li Qt Widgets do not scale well for animations. Qt Quick Controls
+        \li Qt Widgets do not scale well for animations. Qt Quick
             offers a convenient and natural way to implement animations in a
             declarative manner.
     \row
@@ -121,7 +121,7 @@ The following table compares Qt Widgets and Qt Quick interfaces.
         \li \inlineimage ok
         \li
         \li Qt Widgets often require a mouse cursor for good interaction, whereas
-            Qt Quick Controls provides QML types for touch interaction.
+            Qt Quick provides QML types for touch interaction.
     \row
         \li Standard industry widgets
         \li
