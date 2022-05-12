@@ -71,12 +71,27 @@
 
     \section3 Using CMake
 
-    With CMake you have to use the Xcode generator and set
-    \c CMAKE_OSX_SYSROOT, \c CMAKE_OSX_ARCHITECTURES, and the Qt toolchain
-    file with \c CMAKE_TOOLCHAIN_FILE:
+    While it's possible to use Makefiles or Ninja to build static libraries
+    targeting iOS, you have to use the Xcode generator for executable
+    applications or shared libraries.
 
-    \code
-        cmake <source-dir> -G Xcode -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_OSX_SYSROOT="iphoneos" -DCMAKE_TOOLCHAIN_FILE="~/<Qt-dir>/<version>/ios/lib/cmake/Qt6/qt.toolchain.cmake"
+    You can choose to use the \c qt-cmake convenience script located in
+    \c <Qt-dir>/<version>/ios/bin/ or use CMake directly from the
+    command line. If you run CMake directly, you need to set the
+    \c CMAKE_OSX_SYSROOT, \c CMAKE_OSX_ARCHITECTURES, and the Qt toolchain file
+    with \c CMAKE_TOOLCHAIN_FILE. The \c qt-cmake convenience script will set
+    these variables for you.
+
+    Using \c qt-cmake convencience script:
+
+    \badcode
+        <Qt-dir>/<version>/ios/bin/qt-cmake <source-dir> -G Xcode
+    \endcode
+
+    Using CMake directly:
+
+    \badcode
+        cmake <source-dir> -G Xcode -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_OSX_SYSROOT="iphoneos" -DCMAKE_TOOLCHAIN_FILE="<Qt-dir>/<version>/ios/lib/cmake/Qt6/qt.toolchain.cmake"
     \endcode
 
     Using the generated \c xcodeproj file, you can either use Xcode to build
@@ -84,13 +99,13 @@
     available targets and schemes for your application, run the following
     command:
 
-    \code
+    \badcode
         xcodebuild -list -project <your-app>.xcodeproj
     \endcode
 
     Then, run \c {xcodebuild build}, passing in your application details:
 
-    \code
+    \badcode
         xcodebuild build -allowProvisioningUpdates -project <your-app>.xcodeproj -scheme <your-scheme> -configuration Debug -destination "generic/platform=iOS" -destination-timeout 1 ENABLE_ONLY_ACTIVE_RESOURCES=NO
     \endcode
 
@@ -100,13 +115,14 @@
     generated \c xcodeproj file to build the application, either in Xcode or
     from the command line.
 
-    \code
+    \badcode
         qmake <your-app>.pro -spec macx-ios-clang CONFIG+=debug CONFIG+=iphoneos CONFIG+=device CONFIG+=qml_debug QMAKE_MAC_XCODE_SETTINGS+=qteam qteam.name=DEVELOPMENT_TEAM qteam.value=<your-team-id> QMAKE_TARGET_BUNDLE_PREFIX+=com.<your-company> QMAKE_BUNDLE+=<your-app>
     \endcode
 
-    Now run \c make to build your application:
+    qmake creates a wrapper Makefile that in turns calls \c xcodebuild, so you
+    can run \c make to build your application:
 
-    \code
+    \badcode
         make -j8
     \endcode
 
