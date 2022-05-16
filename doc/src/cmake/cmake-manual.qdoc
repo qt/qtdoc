@@ -112,6 +112,10 @@
     project. First, we create a basic console application. Then, we extend the
     project into a GUI application that uses \l{Qt Widgets}.
 
+    If you want to know how to build an existing CMake project with Qt, see the
+    documentation on \l{Building projects on the command line}{how to build
+    projects with CMake on the command line}.
+
     \section2 Building a C++ console application
 
     A \c{CMake} project is defined by files written in the CMake language.
@@ -605,6 +609,10 @@
     \title Building projects on the command line
     \previouspage Getting started with CMake
     \nextpage Imported targets
+
+    This page explains how to configure and build existing projects. If you want
+    to know how to create a Qt-based CMake project, see the documentation on
+    \l{Getting started with CMake}{how to get started with CMake}.
 
     To build a Qt project, CMake needs to know where the Qt installation is
     located. Usually this is done by setting the CMake variable \l{CMake
