@@ -45,7 +45,7 @@
     \note Qt 5.5 is no longer supported.
     \li Qt 5.9 LTS was verified on VxWorks 7 SR0541.
     \note Support for Qt 5.9 ends May 2020.
-    \li 5.12 LTS is verified on VxWorks 7 SR0541. Qt 5.12 is supported until
+    \li 5.12 LTS is verified on VxWorks 7 SR0541 for gcc and SR650 for clang. Qt 5.12 is supported until
     December 2021.
   \endlist
 
@@ -210,12 +210,27 @@
   \endcode
   \endlist
 
-  Below is an example configuration for the BD-SL-i.MX6. For most VxWorks boards
-  the configure command will look very similar. By default, Qt 5 is configured to
-  use shared libraries. To build Qt 5 statically, add \c -static option for configure.
+  To build Qt 5 as shared libraries, add \c -shared option for configure.
+  To build Qt 5 statically, add \c -static option for configure.
+
+  Since support for llvm/clang toolchain in newer 5.12 has been added, there are two
+  types of default devices depending on the VxWorks 7 version used.
+
+  \list
+  \li \c vxworks-imx6-g++ for SR0541
+  \li \c vxworks-imx6-clang for SR0650
+  \endlist
+
+  Below is an example configuration for the BD-SL-i.MX6 when using VxWorks 7 SR0541.
 
   \badcode
-    ./configure -commercial -confirm-license -device vxworks-imx6 -device-option CROSS_COMPILE=arm -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
+    ./configure -commercial -shared -confirm-license -device vxworks-imx6-g++ -device-option CROSS_COMPILE=arm -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
+  \endcode
+
+  Below is an example configuration for the BD-SL-i.MX6 when using VxWorks 7 SR0650.
+
+  \badcode
+    ./configure -commercial -shared -confirm-license -device vxworks-imx6-clang -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
   \endcode
 
   The most important parameters are \c -device, \c -device-option CROSS_COMPILE=<arch>,
