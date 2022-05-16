@@ -188,6 +188,8 @@
     automatically handle things like linking of Qt plugins in static Qt builds,
     platform-specific customization of library names and so on.
 
+    For creating libraries, see \l{qt6_add_library}{qt_add_library}.
+
     \printuntil
 
     Finally, \c{target_link_libraries} tells CMake that the \c{helloworld}
