@@ -59,7 +59,9 @@
     \section2 Qt GUI Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added QTextDocumentFragment::toMarkdown(),
+            QTextDocumentFragment::fromMarkdown(),
+            and QTextCursor::insertMarkdown().
     \endlist
 
     \section2 Qt Quick Module
