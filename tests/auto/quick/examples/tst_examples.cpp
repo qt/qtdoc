@@ -250,6 +250,9 @@ void tst_examples::sgexamples_data()
 
 void tst_examples::sgexamples()
 {
+#ifdef Q_OS_ANDROID
+    QSKIP("The test needs changes to package examples files to the Android package (QTBUG-103597)");
+#endif
     QFETCH(QString, file);
     QQuickWindow window;
     window.setPersistentGraphics(true);
