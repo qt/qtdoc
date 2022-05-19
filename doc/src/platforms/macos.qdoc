@@ -275,6 +275,22 @@
     \l {Qt for \macos#Supported Versions}, to ensure that Qt has been tested in
     the configuration you're building.
 
+    In addition to Xcode, you will need to make sure you have the following
+    dependencies in your path \c PATH.
+
+    \list
+        \include system-requirements-building-from-source.qdocinc minimal
+    \endlist
+
+    If you want to build Qt WebEngine or Qt PDF, you will need the following
+    additional dependencies:
+
+    \list
+        \include system-requirements-building-from-source.qdocinc
+                 {qt webengine and qt pdf}
+    \endlist
+
+
     \section2 QDoc Dependencies
 
     \l {QDoc Manual}{QDoc} uses Clang to parse C++ code.
