@@ -78,14 +78,15 @@ changes which require changes to Qt.
 The minimum versions are:
 \list
    \li Qt 6.2: 2.0.14
-   \li Qt 6.3: 3.1.6
+   \li Qt 6.3: 3.0.0
+   \li Qt 6.4: 3.1.10
 \endlist
 
 Use \c emsdk to install specific \c emscripten versions. For example, to install
-it for Qt 6.2 enter:
+it for Qt 6.4 enter:
 \list
-    \li ./emsdk install 2.0.14
-    \li ./emsdk activate 2.0.14
+    \li ./emsdk install 3.1.10
+    \li ./emsdk activate 3.1.10
 \endlist
 
 On Windows, emscripten is in your path after installation. On macOS or Linux
