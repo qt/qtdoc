@@ -298,8 +298,7 @@
     \section1 Installation location
 
     Installing Qt into a directory with spaces, for example,
-    \e{C:\\Program Files}, may cause linker errors like the following:
-    \snippet snippets/code/doc_src_platform-notes.qdoc 2
+    \e{C:\\Program Files}, may cause issues with qmake.
 
     Install Qt into a sub-directory without spaces to avoid this problem.
 
@@ -320,12 +319,6 @@
     unless direct rendering is disabled.
 
     \section1 Visual Studio
-
-    The Visual C++ Linker doesn't understand filenames with spaces (for example,
-    \e{C:\\Program files\\Qt\\}) so you will have to move it to another place,
-    or explicitly set the path yourself.
-
-    \snippet snippets/code/doc_src_compiler-notes.qdoc 0
 
     If you are experiencing strange problems with using special flags that
     modify the alignment of structure and union members (such as \c{/Zp2})
