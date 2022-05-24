@@ -59,7 +59,9 @@
     \section2 Qt Widgets Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QFormLayout has new \l{QFormLayout::}{isRowVisible()} and \l{QFormLayout::}{setRowVisible()}
+            member functions, with overloads that allow hiding and showing rows by index, input
+            widget, or row layout.
     \endlist
 
     \section2 Qt Network Module
