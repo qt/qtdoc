@@ -311,13 +311,6 @@
     It is therefore recommended to keep the file system paths within limits,
     and put build directories nearby the source directories.
 
-    \section1 Possible GL conflict
-
-    There is a known issue when running Microsoft NetMeeting, Lotus SameTime,
-    and other applications that require screen grabbing while direct
-    rendering is enabled. Other GL-applications may not work as expected,
-    unless direct rendering is disabled.
-
     \section1 Visual Studio
 
     If you are experiencing strange problems with using special flags that
