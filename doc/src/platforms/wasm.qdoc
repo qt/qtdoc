@@ -365,9 +365,8 @@ SIMD128 intrinsics. For more information, see the Emscripten
 \l{https://emscripten.org/docs/porting/simd.html}{ SIMD documentation }.
 
 In addition, Emscripten supports emulating/translating x86 SSE instructions to Wasm SIMD instructions.
-Enable by building Qt from source and configure with the "-sse2" option. This adds support for SSE1,
-SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, and 128-bit AVX instructions, and enables Qt's SSE code paths.
-Use of SSE SIMD instructions that have no native Wasm SIMD equivalent may cause reduced performance.
+This emulation is no longer supported in Qt 6.5, as the use of SSE SIMD instructions that have no native
+Wasm SIMD equivalent may cause reduced performance.
 
 Note that SIMD-enabled binaries are incompatible with browsers that do not support WebAssembly SIMD,
 also if the SIMD code paths are not called at run-time. SIMD support may need to be enabled
