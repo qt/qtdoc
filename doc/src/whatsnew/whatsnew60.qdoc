@@ -5,6 +5,7 @@
     \page whatsnew60.html
     \title What's New in Qt 6.0
     \brief Lists the new features in Qt 6.0.
+    \ingroup whatsnewqt6
 
     \section1 Build System Changes in Qt 6
 
@@ -155,10 +156,23 @@
             \li
         \endtable
 
-    \section1 New Classes and Functions
+    \section1 List of API Changes
+
+    These pages contain an overview of API changes in Qt 6.0:
+    \list
+        \li \l {New Classes and Functions in Qt 6.0}
+        \li \l {Obsolete Classes}
+    \endlist
+*/
+
+/*!
+    \page newclasses60.html
+    \title New Classes and Functions in Qt 6.0
+    \ingroup whatsnewqt6
+    \brief A list of new APIs in Qt 6.0.
 
     The section provides a comprehensive list of all new classes and functions
-    introduced in Qt 6.
+    introduced in Qt 6.0.
 
     \sincelist 6.0
 */
