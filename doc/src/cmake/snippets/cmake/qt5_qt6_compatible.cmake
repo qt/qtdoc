@@ -1,5 +1,5 @@
 #! [versionless_targets]
-find_package(Qt6 COMPONENTS Widgets)
+find_package(Qt6 COMPONENTS Core)
 if (NOT Qt6_FOUND)
     find_package(Qt5 5.15 REQUIRED COMPONENTS Core)
 endif()
