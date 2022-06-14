@@ -515,6 +515,9 @@ Qt Quick Controls 2 components, such as checkboxes. This can sometimes
 be seen on HighDPi displays.
 \li Native styles for Windows and macOS are not supported as Wasm as a platform
 is not providing that capability
+\li Link time error such as "wasm-ld: error: initial memory too small", requires adjustment of the
+ initial memory size. Use QT_WASM_INITIAL_MEMORY to set the initial size in kb, which must be a
+ multiple of 64KB (65536). Default is 50 MB. In CMakeFiles.txt: set(QT_WASM_INITIAL_MEMORY, "50MB");
 \endlist
 
 \section1 Other Topics
