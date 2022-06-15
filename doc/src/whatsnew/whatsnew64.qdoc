@@ -85,7 +85,51 @@
     \section2 Qt Quick 3D Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+
+        \li Added a preview of lightmap baking support. This provides a static global
+            illumination solution with lightmaps pre-generated using raytracing. See
+            \l{Lightmaps and Global Illumination} for details.
+
+        \li Added SpecularGlossyMaterial to enable using the specular/glossiness workflow
+            instead of metalness/roughness.
+
+        \li Added the \l{QtQuick3D::LineParticle3D}{LineParticle3D} type that allows
+            creating line shaped sprite particles.
+
+        \li Added the \l{QtQuick3D::Model::castsReflections}{Model.castsReflection}
+            property to control if a model is rendered by reflection probes and if it can
+            be seen in reflections. The same property is also introduced for
+            \l{QQuick3DParticleSpriteParticle}{sprite particles}.
+
+        \li Added \l{QtQuick3D::Helpers::HeightFieldGeometry}{HeightFieldGeometry} to
+            enable creating a height-field geometry from an image file.
+
+        \li Added CubeMapTexture to enable custom materials and post-processing effects to
+            work with cube map textures in the shaders. The input is either a \c{.ktx}
+            container with image data for all 6 faces, or 6 individual image files.
+
+        \li Added support for rendering a skybox from a cubemap instead of the light
+            probe. This can be requested by setting the background mode
+            \l{QtQuick3D::SceneEnvironment::SkyBoxCubeMap}{SceneEnvironment.SkyBoxCubeMap}.
+
+        \li Added
+            \l{QtQuick3D::Helpers::ProceduralSkyTextureData}{ProceduralSkyTextureData} to
+            procedurally generate a HDR light probe or sky box texture.
+
+        \li Improved shadow rendering for point and spot lights.
+
+        \li Added the \l{QtQuick3D::View3D::renderFormat}{renderFormat} property to View3D
+            to allow specifying the backing texture format when the View3D is using its
+            (default) Offscreen render mode. The available values are the same as with
+            \l{QtQuick::ShaderEffectSource::format}{ShaderEffectSource.format} (which
+            itself is also revised in 6.4). This enables using floating point textures
+            instead of the default RGBA8.
+
+        \li Support for importing UIP files was removed. The mapping from old Qt 3D Studio
+            features to Qt Quick 3D was problematic in previous releases
+            already. Therefore, Qt 6.4 removes support for \c{.uip} files from the \c
+            balsam tool.
+
     \endlist
 
     \section2 Qt Data Visualization Module
