@@ -328,6 +328,17 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt WebEngine Module
+
+    \list
+        \li HTML5 file-system access API added, controlled by QWebEngineFileSystemAccessRequest
+        \li QWebEngineLoadingInfo improved error codes, in particular for HTTP errors
+        \li QWebEngineView::setPage() now works on pages already loaded
+        \li QWebEngineSettings::NavigateOnDrop added to allow disabling navigation on drag-an-drop of URLs
+        \li QWebEngineUrlRequestInfo::ResourceTypeWebSocket added to allow interception of websocket connections
+
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Technology Preview Platforms
