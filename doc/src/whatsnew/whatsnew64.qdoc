@@ -33,7 +33,20 @@
     \section2 Qt Core Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added QLatin1StringView as an alias for QLatin1String. This is
+            now the recommended name for referring to a Latin-1 string view.
+        \li The \c QLatin1StringView(const char *, qsizetype) and
+            \c QLatin1StringView(const char *, const char *) constructors are
+            made non-explicit.
+        \li Added literal operator \c _L1 for creating Latin-1 string and char
+            literals in the Qt::Literals::StringLiterals namespace.
+        \li Added literal operators \c _s and \c _ba for creating QString and
+            QByteArray literals respectively, in the Qt::Literals::StringLiterals
+            namespace. Deprecated \c _qs and \c _qba in favor of \c _s and
+            \c _ba.
+        \li Deprecated QString::count() and QByteArray::count() that take no
+            parameters, to avoid confusion with the algorithm overloads of the
+            same name. They can be replaced by \c size() or \c length() methods.
     \endlist
 
     \section2 Qt GUI Module
