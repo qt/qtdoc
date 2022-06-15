@@ -47,13 +47,19 @@
     \section2 Qt Quick Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Several new properties and functions has been added to TableView that improves
+        support for keyboard navigation and selection, row- and column selections, animations,
+        sub-cell positioning, and more.
+        \li TreeView now support selections, and has gained a broader API for expanding
+        and collapsing nodes in the tree recursively.
     \endlist
 
     \section2 Qt Quick Controls Module
 
     \list
         \li Added a new native-looking style for iOS, \l {iOS Style}, as Tech Preview.
+        \li TreeViewDelegate has three new properties that describes if it's
+        current, selected, or highlighted in the TreeView.
     \endlist
 
     \section2 Qt Widgets Module
