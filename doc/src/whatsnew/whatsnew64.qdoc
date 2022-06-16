@@ -55,6 +55,22 @@
             string.
         \li The new template function \l{QJniObject::construct()} allows instantiating of a
             Java class from C++ without specifying a type or signature string.
+        \li QByteArray now has a percentDecoded() instance method as an
+            alternative to calling the fromPercentEncoding() static method on
+            the instance.
+        \li QTextStream now supports input and output of char16_t.
+        \li QStringView now has a localeAwareCompare() method and can count()
+            how many times a given sub-string appears.
+        \li QDate can now be constructed from various std::chrono year-month-day
+            structure types, when available, and it has an addDuration() taking
+            a std::chrono::days, when available.
+        \li QDateTime likewise gains an addDuration(std::chrono::milliseconds),
+            along with arithmetic to add or subtract the same type, a difference
+            of QDateTime values returning it, and a few static
+            pseudo-constructors taking various std::chrono types describing a
+            moment in time.
+        \li Added QTimeZone::fromStdTimeZonePtr(const std::chrono::time_zone *).
+        \li QCalendar's construction by name now accepts QAnyStringView.
     \endlist
 
     \section2 Qt GUI Module
