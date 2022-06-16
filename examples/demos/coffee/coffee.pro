@@ -24,7 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 qnx: target.path = /tmp/$${TARGET}/bin
-else: win32|if(unix:!android): target.path = $$[QT_INSTALL_EXAMPLES]/demos/$${TARGET}
+else: win32|unix: target.path = $$[QT_INSTALL_EXAMPLES]/demos/$${TARGET}
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
