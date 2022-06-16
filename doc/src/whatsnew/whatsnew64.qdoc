@@ -99,6 +99,13 @@
             be seen in reflections. The same property is also introduced for
             \l{QQuick3DParticleSpriteParticle}{sprite particles}.
 
+        \li Added the \l{QtQuick3D::ReflectionProbe::boxOffset}{ReflectionProbe.boxOffset}
+            property to move the box relative to the position of the probe without affecting
+            the position of the capture point.
+
+        \li Added the \l{QtQuick3D::ReflectionProbe::debugView}{ReflectionProbe.debugView}
+            property to display a cube visualizing the probe box.
+
         \li Added \l{QtQuick3D::Helpers::HeightFieldGeometry}{HeightFieldGeometry} to
             enable creating a height-field geometry from an image file.
 
