@@ -136,6 +136,24 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Test Module
+
+    \list
+        \li QTestEventLoop::enterLoopMSecs() now uses a PreciseTimer if the
+            timeout is less than a second.
+        \li Custom QTest::compare() implementations should now revise any calls
+            to QTest::compare_helper() to use one of the two new overloads
+            instead of the old one, which is now deprecated (so as to only
+            generate the strings to represent values in a failure report if the
+            check actually does fail).
+        \li Added QAbstractItemModelTester::setUseFetchMore().
+        \li New macros QCOMPARE_{EQ,NE,GT,GE,LT,LE}() support comparisons with
+            reporting similar to that of QCOMPARE(). The EQ one does exact
+            comparisons, without QCOMPARE()'s customizations. These also come
+            with the usual QTRY_COMPARE_*() and QTRY_COMPARE_*_WITH_TIMEOUT()
+            variants.
+    \endlist
+
     \section2 Qt QML Module
 
     \list
