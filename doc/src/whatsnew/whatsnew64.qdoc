@@ -9,14 +9,14 @@
 
     \section1 New and Restored Modules in Qt 6.4
 
-    Qt 6.4 adds the following module:
+    Qt 6.4 adds the following modules:
 
     \list
         \li \l[QtHttpServer]{Qt HTTP Server} - A module for embedding an HTTP
             server into Qt applications. This module is in technical preview,
             API and ABI stability is not guaranteed.
-        \li \l[QtQuick3DPhysics]{Qt Quick 3D Physics} - A high-level QML module adding physical simulation capabilities to Qt Quick 3D.
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li \l[QtQuick3DPhysics]{Qt Quick 3D Physics} - A high-level QML module
+            adding physical simulation capabilities to Qt Quick 3D.
     \endlist
 
     Qt 6.4 reintroduces the following modules that were not present in Qt 6.3.
@@ -26,7 +26,7 @@
     \l {Changes to Qt Modules in Qt 6}.
 
     \list
-        \li The {Qt TextToSpeech} module has been ported to Qt 6.
+        \li The {Qt TextToSpeech} module (from Qt 5) has been ported to Qt 6.
     \endlist
 
     \section1 New Features in Qt 6.4
