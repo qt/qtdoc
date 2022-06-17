@@ -129,6 +129,28 @@ For further embedded platform support, please consult the
 
 //! [embedded]
 
+\section1 Web Platforms
+//! [web]
+
+\section2  \l{Qt for WebAssembly}{WebAssembly}
+\table 80%
+    \header \li Host Platform \li Architecture \li Compiler \li Browsers
+    \row \li macOS
+        \li \c wasm32
+        \li Emscripten 3.1.10
+        \li Safari, Chrome, Firefox
+    \row \li Windows
+        \li \c wasm32
+        \li Emscripten 3.1.10
+        \li Edge, Chrome, Firefox
+    \row \li Linux
+        \li \c wasm32
+        \li Emscripten 3.1.10
+        \li Chrome, Firefox
+\endtable
+
+//! [web]
+
 //! [all]
 
 */
