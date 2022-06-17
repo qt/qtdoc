@@ -82,12 +82,13 @@ InAppStore::~InAppStore()
 
 void InAppStore::setupBackend()
 {
-    #ifdef Q_OS_ANDROID
+#if defined Q_OS_ANDROID
     d->backend = new AndroidInAppPurchaseBackend;
-    #endif
-    #ifdef Q_OS_IOS
+#elif defined Q_OS_IOS
     d->backend = new IosInAppPurchaseBackend;
-    #endif
+#else
+    return;
+#endif
     d->backend->setStore(this);
 
     connect(d->backend, &InAppPurchaseBackend::ready,
