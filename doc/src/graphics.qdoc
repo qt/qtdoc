@@ -44,10 +44,6 @@ Quick applications.
         (OpenGL, Vulkan, Direct3D, etc.) into a Qt Quick scene graph.
 \endlist
 
-Qt Quick can also be rendered using \l{Qt Quick 2D Renderer}. This raster
-paint engine enables rendering Qt Quick applications on platforms that
-do not have OpenGL.
-
 \section2 Choosing a Rendering Path
 
 Qt uses the target platform's graphics APIs whenever possible, however, it is
