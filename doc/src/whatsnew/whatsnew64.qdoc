@@ -238,6 +238,11 @@
 
         \warning This is not backward compatible, but this will prevent future
         BC breaks going forward.
+
+        \li In Qt Bluetooth various error enums are extended with new error
+        codes that represent a missing permissions error. Currently these codes
+        are used on Android and \macos/iOS.
+        See \l {QBluetoothLocalDevice::MissingPermissionsError} as an example.
     \endlist
 
     \section2 Qt Data Visualization Module
