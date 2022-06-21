@@ -228,6 +228,17 @@
 
     \endlist
 
+    \section2 Qt Connectivity Module
+
+    \list
+        \li \l{QNdefMessage} is no longer exported. This class inherits
+        \l{QList} publicly, but QList isn't designed to be inherited by
+        an exported class.
+
+        \warning This is not backward compatible, but this will prevent future
+        BC breaks going forward.
+    \endlist
+
     \section2 Qt Data Visualization Module
 
     \list
