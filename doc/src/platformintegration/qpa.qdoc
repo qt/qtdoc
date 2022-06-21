@@ -146,6 +146,13 @@ The following table summarizes the platform plugins available:
     \li \l{Qt for Linux/X11}{X Window System (X11) support}
 \endtable
 
+\section2 Selecting a QPA plugin
+
+Qt will select a default QPA plugin, depending on the platform.
+The \c{QT_QPA_PLATFORM} environment variable and the \c{-platform}
+command line argument allow you to override this default.
+See \l QGuiApplication for more details.
+
 \section2 Writing a QPA plugin
 
 There is no detailed tutorial documentation for writing QPA plugins at this
