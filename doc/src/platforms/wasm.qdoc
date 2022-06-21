@@ -315,6 +315,14 @@ Web and Desktop OpenGL differences are documented in:
 There are additional differences between WebGL 1.0 and WebGL 2.0 which are documented in:
 \l {https://www.khronos.org/registry/webgl/specs/latest/2.0}{WebGL 2.0 Specification}
 
+ A WebGL-friendly subset of ES2 (and ES3) is used by default. If you need to use
+ glDrawArrays and glDrawElements without bound buffers, you can enable full
+ ES2 support by adding
+  target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES2=1")
+and/or full ES3 emulation by adding
+  target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES3=1")
+to your projects CMakeFiles.txt
+
 \section2 Multithreading
 
 Qt supports multithreading on WebAssembly, however this feature is experimental
