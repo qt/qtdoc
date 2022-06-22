@@ -287,12 +287,10 @@ may require to reconfigure and build Qt. They may contain features that
 are still experimental in the browsers or Emscripten.
 
 \list
-    \li \l {Qt Threading}
+    \li \l {Thread Support in Qt}{Qt Threading}
     \li \l {Qt Concurrent}
-    \li \l {Emscripten Asyncify}
-    \li \l {Qt Sockets}
-
-
+    \li \l {#Asyncify}{Emscripten Asyncify}
+    \li \l {Network Programming with Qt}{Qt Sockets}
 \endlist
 
 \section1 Developing with Qt for WebAssembly
