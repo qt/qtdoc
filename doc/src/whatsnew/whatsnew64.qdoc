@@ -183,13 +183,13 @@
         \li Added SpecularGlossyMaterial to enable using the specular/glossiness workflow
             instead of metalness/roughness.
 
-        \li Added the \l{QtQuick3D::LineParticle3D}{LineParticle3D} type that allows
+        \li Added the \l [QML] {QtQuick3D.Particles3D::}{LineParticle3D} type that allows
             creating line shaped sprite particles.
 
         \li Added the \l{QtQuick3D::Model::castsReflections}{Model.castsReflection}
             property to control if a model is rendered by reflection probes and if it can
             be seen in reflections. The same property is also introduced for
-            \l{QQuick3DParticleSpriteParticle}{sprite particles}.
+            \l [QML] {SpriteParticle3D}{sprite particles}.
 
         \li Added the \l{QtQuick3D::ReflectionProbe::boxOffset}{ReflectionProbe.boxOffset}
             property to move the box relative to the position of the probe without affecting
@@ -198,7 +198,7 @@
         \li Added the \l{QtQuick3D::ReflectionProbe::debugView}{ReflectionProbe.debugView}
             property to display a cube visualizing the probe box.
 
-        \li Added \l{QtQuick3D::Helpers::HeightFieldGeometry}{HeightFieldGeometry} to
+        \li Added \l [QML] {QtQuick3D.Helpers::}{HeightFieldGeometry} to
             enable creating a height-field geometry from an image file.
 
         \li Added CubeMapTexture to enable custom materials and post-processing effects to
@@ -207,15 +207,15 @@
 
         \li Added support for rendering a skybox from a cubemap instead of the light
             probe. This can be requested by setting the background mode
-            \l{QtQuick3D::SceneEnvironment::SkyBoxCubeMap}{SceneEnvironment.SkyBoxCubeMap}.
+            \l{QtQuick3D::SceneEnvironment::backgroundMode}{SceneEnvironment.SkyBoxCubeMap}.
 
         \li Added
-            \l{QtQuick3D::Helpers::ProceduralSkyTextureData}{ProceduralSkyTextureData} to
-            procedurally generate a HDR light probe or sky box texture.
+            \l [QML] {QtQuick3D.Helpers::}{ProceduralSkyTextureData} to procedurally generate
+            a HDR light probe or sky box texture.
 
         \li Improved shadow rendering for point and spot lights.
 
-        \li Added the \l{QtQuick3D::View3D::renderFormat}{renderFormat} property to View3D
+        \li Added the \l{QtQuick3D::View3D::}{renderFormat} property to View3D
             to allow specifying the backing texture format when the View3D is using its
             (default) Offscreen render mode. The available values are the same as with
             \l{QtQuick::ShaderEffectSource::format}{ShaderEffectSource.format} (which
