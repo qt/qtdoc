@@ -81,7 +81,7 @@
 
     \section2 Adding the Font
 
-    The proper way to bundle the font is to add it to \l{Qt Resources System}
+    The proper way to bundle the font is to add it to \l{The Qt Resources System}
     files. For example, you can make a separated resources file for the font -
     "font.qrc" with the NotoColorEmoji_WindowsCompatible.ttf.
     To embed the new resources file use the following code in CMakeLists.txt:
@@ -103,7 +103,7 @@
 
     \section2 Loading the bundled font in QML
 
-    To load the font using QML, it needs to use the \l{FontLoader QML Type}.
+    To load the font in QML, use \l FontLoader:
 
     \qml
       // Loading NotoColorEmoji using QML FontLoader
@@ -292,7 +292,7 @@
     works in Qt 6 check the \l{Qt Android Notifier} example.
 
     After obtaining the file descriptor from Java code, wrap the file descriptor
-    into a \l{QFile Class} and load the font file into the \l{QFontDatabase Class} :
+    into a QFile class and load the font file using QFontDatabase:
     \code
         QFile file;
         file.open(fd, QFile::OpenModeFlag::ReadOnly, QFile::FileHandleFlag::AutoCloseHandle);
