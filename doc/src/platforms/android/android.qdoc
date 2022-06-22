@@ -38,9 +38,57 @@ Qt for Android enables you to run Qt applications on Android devices.
 For Qt modules that support android targets see:
 \l{All Modules}{All Supported Qt Modules}.
 
-The following configurations are supported:
+The following development environments and target system configurations are
+supported in Qt \QtVer:
 
 \include supported-platforms.qdocinc android
+
+\table 50%
+    \header \li {4,1} Target Devices used in Automated Testing
+    \header \li Device \li OS Version \li Architecture \li Form Factor
+    \row \li \l{Pixel 3A}
+             \li Android 10 (API 29)
+             \li armv7, arm64_v8a
+             \li Mobile
+    \row \li \l{Pixel 4A}
+             \li Android 12 (API 31)
+             \li armv7, arm64_v8a
+             \li Mobile
+     \row \li \l{Samsung Galaxy Tab S4}
+             \li Android 10 (API 29)
+             \li armv7, arm64_v8a
+             \li Tablet
+     \row \li \l{Google Pixel 6 Pro}
+             \li Android 13 Beta 4.1
+             \li armv7, arm64_v8a
+             \li Mobile
+     \row \li \l{Samsung Galaxy S21}
+             \li Android 12 (API 31)
+             \li armv7, arm64_v8a
+             \li Mobile
+     \row \li \l{Motorola MotoG 3rd}
+             \li Android 6.0.1 (API 23)
+             \li armv7
+             \li Mobile
+     \row \li Huawei Honor
+             \li Android 6.0.1 (API 23)
+             \li armv7, arm64_v8a
+             \li Mobile
+     \row \li \l{Samsung Galaxy S10}
+             \li Android 9 (API 28)
+             \li armv7, arm64_v8a
+             \li Mobile
+    \row \li \l{Pixel 4}
+             \li Android 11 (API 30)
+             \li armv7, arm64_v8a
+             \li Mobile
+\endtable
+
+\note Qt for Android support is inclusive of \b{but not limited to} these devices.
+
+\note The above table is accurate at the time of this Qt patch release only.
+It may change during the patch release cycle and should only be used as a
+reference for what the Qt Company can rapidly reproduce bugs on.
 
 Here is what you can do with Qt for Android:
 
@@ -107,8 +155,9 @@ In order to use \l{Qt for Android}, you need the following:
         essential packages automatically. For more information, see
         \l {Qt Creator: Specifying Android Device Settings}.
 
-        \note If you are using the SDK Tools 26.x or below, the JDK 8 is required.
-        Versions higher than 8 might cause issues for \l {android-sdk}{the Android SDK tools}.
+
+   Qt for Android development requires JDK 11 or above, provided by any of the
+   following supported distributions:
 
     \target android-ndk
     \li \l{Android: The Android NDK}{The Android NDK}
