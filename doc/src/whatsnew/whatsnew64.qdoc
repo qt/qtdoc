@@ -180,7 +180,26 @@
     \section2 Qt QML Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+      \li QML Type Compile (qmltc)
+      \list
+          \li Expanded QML language coverage
+      \endlist
+      \li qmllint
+      \list
+          \li Added new warnings regarding proper use of QtQuick and QtQuick.Controls
+      \endlist
+      \li QML Language Server (qmlls)
+      \list
+          \li Added completions support
+          \li Added code action fixing for some linter warnings/hints
+          \li Moved executable to libexec
+      \endlist
+      \li Cleaned up CMake API:
+      \list
+          \li \l{qt_target_compile_qml_to_cpp}{qt_target_compile_qml_to_cpp()} used to invoke the
+              QML type compiler is deprecated. Its functionality has been integrated into
+              \l{qt_add_qml_module}{qt_add_qml_module()}
+      \endlist
     \endlist
 
     \section2 Qt Quick 3D Module
