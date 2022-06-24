@@ -508,6 +508,27 @@ int main(int argc, char **argc)
 }
 \endcode
 
+\section3 Asyncify
+
+The default build of Qt for WebAssembly does not support reentering the event loop,
+for example by calling QEventLoop::exec() or QDialog::exec(), due to resitrictions
+of the web platform.
+
+Emscripten's \l{https://emscripten.org/docs/porting/asyncify.html}{asyncify} feature lifts
+these restrictions by allowing sychronous calls (like QEventLoop::exec() and QDialog::exec())
+to yield to the event loop. Nested calls are not supported, and for this reason asyncify is
+not used for the top-level QApplication::exec() call.
+
+Asyncify support is not enabled by default, and is not available when using the binary package.
+To enable, build Qt from source and set the QT_EMSCRIPTEN_ASYNCIFY device option:
+
+\badcode
+  -device-option QT_EMSCRIPTEN_ASYNCIFY=1
+\badcode
+
+Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
+usage. Build with optimizations enabled to minimize the overhead.
+
 \section2 Debugging and Profiling
 
 Wasm debugging is done on browser javascript console, debugging applications on Wasm
@@ -605,6 +626,9 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Multi-threaded wasm
     \row
         \li -device-option QT_WASM_SOURCE_MAP=1
+        \li Debugging option for creating source maps
+    \row
+        \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
         \li Debugging option for creating source maps
     \row
         \li -feature-opengles3
