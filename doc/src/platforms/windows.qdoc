@@ -341,8 +341,17 @@
     attribute when showing in full screen mode. This can be utilized as follows:
 
     \code
-        HWND handle = reinterpret_cast<HWND>(window.winId());
-        SetWindowLongPtr(handle, GWL_STYLE, GetWindowLongPtr(handle, GWL_STYLE) | WS_BORDER);
+        bool Widget::event(QEvent *e) {
+        #if defined(Q_OS_WIN)
+            if (e->type() == QEvent::WinIdChange) {
+                if (windowHandle()) {
+                    HWND handle = reinterpret_cast<HWND>(windowHandle()->winId());
+                    SetWindowLongPtr(handle, GWL_STYLE, GetWindowLongPtr(handle, GWL_STYLE) | WS_BORDER);
+                }
+            }
+        #endif
+            return QWidget::event(e);
+        }
     \endcode
 
     This will give the full screen window a 1-pixel border, thus enabling the
