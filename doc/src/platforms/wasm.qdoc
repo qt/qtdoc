@@ -462,6 +462,53 @@ which can either fetch a font by URL or using
 The other way to use font is to add it via
 \l{https://doc.qt.io/qt-6/qfontdatabase.html#addApplicationFontFromData}{QFontDatabase::addApplicationFontFromData}.
 
+\section2 Application Startup and the Event Loop
+
+Qt for WebAssembly supports the standard Qt startup approach, where the application
+creates a QApplication object and calls the exec function:
+
+\code
+int main(int argc, char **argc)
+{
+    QApplication app(argc, argv);
+
+    QWindow appWindow;
+
+    return app.exec();
+}
+\endcode
+
+The exec() call above normally blocks and processes events until application
+shutdown. Unfortunately this is not possible on the web platform where blocking
+the main thread is not allowed. Instead, control must be returned to the browser's
+event loop after processing each event.
+
+Qt works around this by making exec() return main thread control to the browser,
+while preserving the stack. From the point of view of application code, the exec()
+function is entered and event processing happens as usual. However, the exec() call
+never returns, also not on application exit.
+
+This behavior is usually acceptable since the browser will free up application memory
+at app shutdown time. It does mean that shutdown code does not run, since the application
+object is leaked and its destructor does not run.
+
+You can avoid this by rewriting main() to be asynchronous, which is possible
+since Emscripten does not exit the runtime when main() returns. Application code
+then omits making the exec() call, and can shut down Qt cleanly by deleting
+the top-level window and application objects.
+
+\code
+QApplication *g_app = nullptr;
+AppWindow *g_appWindow = nullptr;
+
+int main(int argc, char **argc)
+{
+    g_app = new QApplication(argc, argv);
+    g_appWindow = new AppWindow();
+    return 0;
+}
+\endcode
+
 \section2 Debugging and Profiling
 
 Wasm debugging is done on browser javascript console, debugging applications on Wasm
