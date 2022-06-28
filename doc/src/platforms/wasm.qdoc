@@ -446,6 +446,20 @@ At the time of writing the following browsers support the Clipboard API, see
         dom.events.asyncClipboard.dataTransfer
 \endlist
 
+\section2 Fonts
+
+The Qt WASM module contains 3 embedded fonts: "Bitstream Vera Sans" (fallback font), "DejaVu Sans", "DejaVu Sans Mono".
+
+These fonts provide a limited character set. Qt provides several options for adding additional fonts:
+
+One is using FontLoader in QML,
+which can either fetch a font by URL or using
+\l{https://doc.qt.io/qt-6/resources.html}{Qt Resource System}
+(the same way the usual desktop apps work).
+
+The other way to use font is to add it via
+\l{https://doc.qt.io/qt-6/qfontdatabase.html#addApplicationFontFromData}{QFontDatabase::addApplicationFontFromData}.
+
 \section2 Debugging and Profiling
 
 Wasm debugging is done on browser javascript console, debugging applications on Wasm
