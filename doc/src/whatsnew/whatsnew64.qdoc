@@ -180,11 +180,34 @@
     \section2 Qt QML Module
 
     \list
-      \li QML Type Compile (qmltc)
+      \li QML Language
+      \list
+        \li You can register custom value types with names now. That is, the
+            argument to QML_VALUE_TYPE is no longer ignored. It must be lower
+            case. Once registered, you can declare properties of your own value
+            types in QML.
+        \li You can store any named value type in a list in QML now. For example
+            list<rect> in QML is like a QList<QRectF> in C++. This removes the
+            need to use var for such properties or wrap their elements into
+            objects.
+        \li The new pragma ComponentBehavior lets you specify whether components
+            defined in a QML file can be used outside of their creation context.
+            If not (pragma ComponentBehavior: Bound), then Qt Quick Compiler can
+            optimize your code better.
+      \endlist
+      \li QML Type Compiler (qmltc)
       \list
           \li Expanded QML language coverage
       \endlist
-      \li qmllint
+      \li QML Script Compiler (qmlsc, qmlcachegen)
+      \list
+          \li Various operations on lists of value types are now compiled to C++.
+          \li Dead code and dead stores are optimized out more aggressively now.
+          \li Type conversions now happen at the place where a value is written,
+              not at the place where it's read. If the value is read multiple
+              times, this is faster.
+      \endlist
+      \li QML Linter (qmllint)
       \list
           \li Added new warnings regarding proper use of QtQuick and QtQuick.Controls
       \endlist
