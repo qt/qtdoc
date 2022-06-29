@@ -590,7 +590,8 @@
 */
 
 /*!
-    \page accessible-qtquick.html
+    \group accessible-qtquick.html
+    \noautolist
     \title Accessibility for Qt Quick Applications
     \brief How to make your applications accessible to those with disabilities.
     \startpage Accessibility
@@ -600,13 +601,102 @@
 
     \section1 Introduction
 
-    We will explain how to make Qt Quick applications accessible.
-    This can be compared to making web application accessible.
-    You simply need to assign a few properties when creating controls such
-    as buttons in QML.
+    This page explains how to add accessibility metadata to Qt Quick
+    applications. Qt Quick applications and many of its QML types already have
+    built-in accessibility features. For example, the \l{Button Controls} have
+    keyboard accessibility, which makes it possible to tab between the controls
+    and activate them using the Return or Enter key. So, by using existing
+    controls, you are already off to a good start in making your Qt Quick
+    application accessible. In some cases, however, you may need to clarify the
+    job of a QML item.
 
-    The most important property for this purpose is the attached property
-    \l {Accessible}.
+    Similar to making
+    \l{https://developer.mozilla.org/en-US/docs/Web/Accessibility}
+    {web applications accessible}, you assign properties to UI elements, in this
+    case, to QML items. These properties expose metadata to accessibility
+    tools, which, together with carefully chosen high-contrast color themes and
+    other visual cues, aid the user in interacting with your Qt Quick
+    application.
 
+    In general, accessibility tools are interested in three different categories
+    of metadata:
 
+    \list
+        \li \e{Properties}: The accessibility client reads metadata about
+        accessible objects. In some cases, the accessibility client can also
+        modify these properties, such as text in a line edit.
+        \li \e{Actions}: The accessibility client invokes actions, such as pressing a button.
+        \li \e{Relationships and Navigation}: The accessibility client traverses
+        from one accessible object to another, using the relationships between
+        objects.
+    \endlist
+
+    For Qt Quick applications, the most important type to be aware of is the
+    \l{Accessible} QML type, which adds accessibility metadata to QML items.
+
+    \section1 Adding Accessibility Metadata to QML Items
+
+    To add accessibility metadata to QML items, either to existing types
+    provided by Qt or to custom types defined in C++, use the
+    \l Accessible QML type. The most important properties of the
+    \l Accessible QML type are \l {Accessible::}{name},
+    \l {Accessible::}{description}, and \l {Accessible::}{role}.
+
+    Here's an example of adding accessibility metadata to a \c Text type,
+    which, in this case, represents a mathematical equation:
+
+    \qml
+    Text {
+        id: myMathEquation
+        text: "y = 8x - 9"
+        font.family: "Helvetica"
+
+        Accessibility.role: Accessible.Equation
+        Accessibility.name: myMathEquation.text
+        Accessibility.description: qsTr("Linear equation")
+        Accessible.onPressAction: {
+            // Highlight the the x variable
+            ...
+        }
+    }
+    \endqml
+
+    The \l{Accessible::}{role} is set to \c Equation to indicate what the
+    \c Text type represents. \l {Accessible::}{name} is the most important
+    property, which is bound to the text of the button. To provide extra
+    information about a QML item, use the  \l {Accessible::}{description}
+    property. The signal handler
+    \l{Accessible::pressAction}{Accessible.pressAction}, which can be invoked by
+    accessibility tools to trigger the button, needs to have the same effect as
+    tapping or clicking the text.
+
+    Wheras textual content is inherently accessible, multimedia content is not.
+    So it's important to provide necessary accessibility metadata to
+    multimedia content such as images, videos, and audio. Here's an example of
+    providing accessibility metadata to an image, which represents a pie chart:
+
+    \qml
+    Image {
+        source: "pie-chart-683.png"
+        Accessibility.role: Accessible.Chart
+        Accessibility.name: qsTr("Pie chart")
+        Accessibility.description: qsTr("Pie chart that shows the distribution
+        of sales from three store locations: Durban representing 60 percent,
+        Johannesburg 20 percent, and Cape Town 20 percent")
+        Accessible.onPressAction: {
+            // Expand the image
+            ...
+        }
+    }
+    \endqml
+
+    For more information, see \l Accessible for the list of properties you can
+    add to QML items.
+
+    \section1 Related Classes and Interfaces
+
+    \list
+        \li \l QAccessible
+        \li \l QAccessibleInterface
+    \endlist
 */
