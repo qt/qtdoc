@@ -81,7 +81,7 @@
 
     \section2 Adding the Font
 
-    The proper way to bundle the font is to add it to \l{The Qt Resources System}
+    The proper way to bundle the font is to add it to \l{The Qt Resource System}
     files. For example, you can make a separated resources file for the font -
     "font.qrc" with the NotoColorEmoji_WindowsCompatible.ttf.
     To embed the new resources file use the following code in CMakeLists.txt:
