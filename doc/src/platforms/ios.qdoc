@@ -135,15 +135,7 @@
 
     As mentioned previously, you must have Xcode installed.
 
-    \section1 Using Objective-C Code in Qt Applications
-
-    Clang, the compiler used for applications on Apple Platforms, allows mixing
-    C++ and Objective-C code. To enable this mode, suffix your source
-    files with \c .mm, and add them to \c OBJECTIVE_SOURCES instead of
-    \c SOURCES in the \c .pro file. This makes it possible to use
-    frameworks from Apple's Developer Library in Qt applications.
-    Most useful is perhaps the possibility for adding In-App
-    Purchasing with the StoreKit framework.
+    \include objective-c.qdocinc
 
     \section1 Examples for iOS
 
