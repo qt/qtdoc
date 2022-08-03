@@ -161,62 +161,45 @@ If you're not using any graphical items from Qt Quick, you can replace QGuiAppli
 QCoreApplication in the code above. This way, you can use QML as a language without any
 dependencies to the \l{Qt GUI} module.
 
-\section1 Managing Resource Files with the Qt Resource System
+\section1 Using the Qt Resource System with QML
 
 The \l {The Qt Resource System}{Qt resource system} allows resource files to be stored as binary
-files in an application executable. This can be useful when building a mixed QML/C++ application
+files in an application executable. The Qt Resource System is used for QML application
 as it enables QML files and other resources -- such as images and sound files -- to be referred
 to through the resource system URI scheme rather than relative or absolute paths to filesystem
 resources.
 
-\note If you use the resource system, the application executable must be re-compiled whenever a
-QML source file is changed, to update the resources in the package.
+\note Usage of the resource system means that the application executable usually must be
+re-compiled whenever a QML source file is changed, to update the resources in the package.
 
-To use the resource system in a mixed QML/C++ application:
+The \l{qt_add_qml_module}{CMake QML Module API} automatically places your QML files in the resource
+system. To access them, load your main QML file as a resource using the \c{:/} prefix or as a URL
+with the \c{qrc} scheme. The path in the resource system where your QML files are placed can be
+found by concatenating:
 
 \list
-\li Create a \c .qrc \l {The Qt Resource System}{resource collection file} that lists resource
-    files in XML format.
-\li From C++, load the main QML file as a resource using the \c :/ prefix or as a URL with the
-    \c .qrc scheme.
+\li the \c RESOURCE_PREFIX you have passed to \l{qt_add_qml_module}, or \c{/qt/qml} if you have
+    passed \c AUTO_RESOURCE_PREFIX, or just \c{/} if you haven't passed either.
+\li If you have \e{not} passed \c NO_RESOURCE_TARGET_PATH to \l{qt_add_qml_module}:
+    the \c URI you have passed to \l{qt_add_qml_module} with dots replaced by slashes.
 \endlist
 
-Once this is done, all files specified by relative paths in QML are loaded from the resource
-system instead. Use of the resource system is completely transparent to the QML layer; this means
-all QML code should refer to resource files using relative paths and should \b not use the \c .qrc
-scheme. This scheme should only be used from C++ code to refer to resource files.
+For example, a module called \c{My.Own.Module} is placed at:
+\list
+\li \c{:/qt/qml/My/Own/Module/} in case of \c AUTO_RESOURCE_PREFIX
+\li \c{:/Some/Prefix/My/Own/Module/} if you have specified \c{Some/Prefix/} as \c RESOURCE_PREFIX
+\li \c{:/My/Own/Module/} in case of no resource prefix or \c{/} as \c RESOURCE_PREFIX
+\li \c{:/} if you have specified \c NO_RESOURCE_TARGET_PATH
+\endlist
 
-Here's an application packaged using the Qt resource system; its directory structure is as follows:
+Once this is done, all files specified by relative paths in QML are loaded from the resource system.
+Use of the resource system is completely transparent to the QML layer; this means all QML code
+should refer to resource files using relative paths and should \e{not} use the \c{qrc} scheme. This
+scheme should only be used from C++ code to refer to resource files.
 
-\code
-project
-    |- example.qrc
-    |- main.qml
-    |- images
-        |- background.png
-    |- main.cpp
-    |- project.pro
-\endcode
-
-The \c main.qml and \c background.png files are packaged as resource files. This is done in the
-\c example.qrc resource collection file:
-
-\quotefile qmlapp/qtbinding/resources/example.qrc
-
-Since \c background.png is a resource file, \c main.qml can refer to it using the relative path
-specified in \c example.qrc:
-
-\snippet qmlapp/qtbinding/resources/main.qml 0
-
-To allow QML to locate resource files correctly, the \c main.cpp loads the main QML file,
-\c main.qml, as a resource file using the \c .qrc scheme:
-
-\snippet qmlapp/qtbinding/resources/main.cpp 0
-
-Finally, \c project.pro uses the \c RESOURCES variable to indicate that \c example.qrc should
-be used to build the application resources:
-
-\quotefile qmlapp/qtbinding/resources/resources.pro
+\note When using qmake, you need to manually place your files in the resource system. See the
+\l{qmake Manual} and the \l{The Qt Resource System}{general documentation} on the resouce system for
+how to do this. It's advisable to still follow the path naming convention outlined above.
 
 \section1 Related Information
 \list
