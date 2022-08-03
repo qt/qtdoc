@@ -47,27 +47,13 @@
 
     \section3 Using CMake
 
-    While it's possible to use Makefiles or Ninja to build static libraries
-    targeting iOS, you have to use the Xcode generator for executable
-    applications or shared libraries.
+    The \c qt-cmake convenience script located in \c <Qt-dir>/<version>/ios/bin/
+    will take care of setting up the toolchain and correct architectures for you.
 
-    You can choose to use the \c qt-cmake convenience script located in
-    \c <Qt-dir>/<version>/ios/bin/ or use CMake directly from the
-    command line. If you run CMake directly, you need to set the
-    \c CMAKE_OSX_SYSROOT, \c CMAKE_OSX_ARCHITECTURES, and the Qt toolchain file
-    with \c CMAKE_TOOLCHAIN_FILE. The \c qt-cmake convenience script will set
-    these variables for you.
-
-    Using \c qt-cmake convencience script:
+    Using \c qt-cmake convenience script:
 
     \badcode
-        <Qt-dir>/<version>/ios/bin/qt-cmake <source-dir> -G Xcode
-    \endcode
-
-    Using CMake directly:
-
-    \badcode
-        cmake <source-dir> -G Xcode -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -DCMAKE_OSX_SYSROOT="iphoneos" -DCMAKE_TOOLCHAIN_FILE="<Qt-dir>/<version>/ios/lib/cmake/Qt6/qt.toolchain.cmake"
+        <Qt-dir>/<version>/ios/bin/qt-cmake <source-dir>
     \endcode
 
     Using the generated \c xcodeproj file, you can either use Xcode to build
@@ -92,7 +78,7 @@
     from the command line.
 
     \badcode
-        qmake <your-app>.pro -spec macx-ios-clang CONFIG+=debug CONFIG+=iphoneos CONFIG+=device CONFIG+=qml_debug QMAKE_MAC_XCODE_SETTINGS+=qteam qteam.name=DEVELOPMENT_TEAM qteam.value=<your-team-id> QMAKE_TARGET_BUNDLE_PREFIX+=com.<your-company> QMAKE_BUNDLE+=<your-app>
+        qmake <your-app>.pro
     \endcode
 
     qmake creates a wrapper Makefile that in turns calls \c xcodebuild, so you
@@ -104,6 +90,25 @@
 
     Note that you must re-import the project if its setup changes, for
     example, when adding or removing source files.
+
+    \section4 Customizing Xcode project settings
+
+    The \c QMAKE_MAC_XCODE_SETTINGS qmake variable can be used to customize
+    Xcode settings, for example:
+
+    \badcode
+        development_team.name = DEVELOPMENT_TEAM
+        development_team.value = <your-team-id>
+        QMAKE_MAC_XCODE_SETTINGS += development_team
+    \endcode
+
+    Other qmake variables are also useful:
+
+    \badcode
+        QMAKE_TARGET_BUNDLE_PREFIX = com.<your-company>
+        QMAKE_BUNDLE = <your-app>
+    \endcode
+
 
     \section2 Building Applications with Qt Creator
 
