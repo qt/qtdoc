@@ -308,15 +308,29 @@
 
     \section3 Info.plist with CMake
 
-    When a target has its \c{MACOSX_BUNDLE} property set to \c TRUE, CMake will
-    try to find a \c{MacOSXBundleInfo.plist.in} file in \c{CMAKE_MODULE_PATH}.
-    The Qt CMake integration adjusts the value of \c{CMAKE_MODULE_PATH} so that
-    CMake picks up an Info.plist template file more suitable for Qt
-    applications.
+    CMake generates a default \c Info.plist file if a target has its \c{MACOSX_BUNDLE}
+    property set to \c TRUE. Unfortunately that file is not suitable for iOS projects.
 
-    To specify a custom Info.plist you can set the target property
-    \c{MACOSX_BUNDLE_INFO_PLIST}. See \l{CMake MACOSX_BUNDLE_INFO_PLIST
-    documentation} for more details.
+    Instead, projects can use \l qt_add_executable, which will automatically generate
+    an \c Info.plist file with default values suitable for iOS projects.
+
+    To specify a custom \c{Info.plist}, projects can set the \c{MACOSX_BUNDLE_INFO_PLIST}
+    target property as shown below. Doing that will disable the automatic file
+    generation provided by \l qt_add_executable and will instead use CMake's
+    native \c Info.plist handling for the custom Info.plist file that the project
+    provides.
+
+    \badcode
+    qt_add_executable(app)
+    if(IOS)
+        set_target_properties(app
+            PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/ios/Info.plist")
+    endif()
+    \endcode
+
+    See the \l{CMake MACOSX_BUNDLE_INFO_PLIST documentation} for information
+    on which target properties and variables can be specified for the
+    template substitution performed by CMake.
 
     \section3 Info.plist with QMake
 
