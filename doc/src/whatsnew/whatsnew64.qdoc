@@ -19,15 +19,12 @@
             adding physical simulation capabilities to Qt Quick 3D.
     \endlist
 
-    Qt 6.4 reintroduces the following modules that were not present in Qt 6.3.
-    All listed modules were ported to Qt 6 and the CMake build system.
+    Qt 6.4 reintroduces the \l {Qt TextToSpeech} module from Qt 5. This module
+    wasn't present in Qt 6.3. It now uses the CMake build system and works with
+    Qt 6.
 
-    A more detailed list of changes to each module can be found in
+    You'll find more details about changes to each module in
     \l {Changes to Qt Modules in Qt 6}.
-
-    \list
-        \li The {Qt TextToSpeech} module (from Qt 5) has been ported to Qt 6.
-    \endlist
 
     \section1 New Features in Qt 6.4
 
