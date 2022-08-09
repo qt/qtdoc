@@ -172,7 +172,12 @@
     \section2 Qt Network Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added QSslServer. This simplifies creation of a server which solely
+        communicates over TLS.
+        \li QNetworkInformation now has loadBackendByFeatures(Features) and
+        loadBackendByName(QStringView), meant to eventually replace the
+        corresponding overloaded load(Features/QStringView) functions which are
+        now marked as deprecated.
     \endlist
 
     \section2 Qt Test Module
