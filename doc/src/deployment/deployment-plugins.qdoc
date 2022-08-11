@@ -47,38 +47,25 @@
     The following rules apply:
 
     \list
-    \li Plugins linked with a Qt library that has a higher version number will not be loaded by a
-        library with a lower version number.
+    \li Plugins linked with a Qt library that has a higher minor version number will not be loaded by a
+        library with a lower minor version number.
 
         \br
-        \b{Example:} Qt 5.0.0 will \e{not} load a plugin built with Qt 5.0.1.
+        \b{Example:} Qt 6.2.0 will \e{not} load a plugin built with Qt 6.3.0.
+        \b{Example:} Qt 6.2.0 will load a plugin built with Qt 6.1.0.
+        \b{Example:} Qt 6.2.0 will load a plugin built with Qt 6.2.1.
 
     \li Plugins linked with a Qt library that has a lower major version number will not be loaded
         by a library with a higher major version number.
 
         \br
-        \b{Example:} Qt 5.0.1 will \e{not} load a plugin built with Qt 4.8.2.
-        \br
-        \b{Example:} Qt 5.1.1 will load plugins built with Qt 5.1.0 and Qt 5.0.3.
+        \b{Example:} Qt 6.0.0 will \e{not} load a plugin built with Qt 5.15.0.
     \endlist
 
     When building plugins to extend an application, it's important to ensure that the plugin is
     configured in the same way as the application. This means that if the application was built in
     release mode, plugins should be built in release mode, too. Except for Unix operating systems,
     where the plugin system will not load plugins built in a different mode from the application.
-
-    If you configure Qt to be built in both debug and release modes, but only build your
-    applications in release mode, you need to ensure that your plugins are also built in release
-    mode. By default, if a debug build of Qt is available, plugins will \e only be built in debug
-    mode. To force the plugins to be built in release mode, add the following line to the plugin's
-    project (\c{.pro}) file:
-
-    \code
-        CONFIG += release
-    \endcode
-
-    This ensures that the plugin is compatible with the version of the library used in the
-    application.
 
     \section1 Debugging Plugins
 
@@ -102,9 +89,7 @@
             \QD shows the plugin libraries in its \uicontrol{Help|About Plugins} dialog, but no
             plugins are listed under each of them.
         \li The application and its plugins are built in different modes.
-        \li Either share the same build information or build the plugins in both debug and release
-            modes by appending the \c debug_and_release to the
-            \l{qmake Variable Reference#CONFIG}{CONFIG} variable in each of their project files.
+        \li Build the plugin in the same configuration as the executable.
     \endtable
 
 */
