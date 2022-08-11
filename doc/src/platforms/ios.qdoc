@@ -283,7 +283,7 @@
 
     Developing, building, running, and debugging a Qt for iOS application can all be done
     with Qt Creator on \macos. The toolchain is provided by Apple's Xcode,
-    and running qmake on a project targeted for iOS will also generate an
+    and running qmake or CMake on a project targeted for iOS will also generate an
     Xcode project file (.xcodeproj), with initial application settings. As Qt
     Creator does not provide an interface for managing all of the settings specific
     to iOS platform, it is sometimes necessary to adjust them in Xcode directly.
@@ -317,8 +317,7 @@
     To specify a custom \c{Info.plist}, projects can set the \c{MACOSX_BUNDLE_INFO_PLIST}
     target property as shown below. Doing that will disable the automatic file
     generation provided by \l qt_add_executable and will instead use CMake's
-    native \c Info.plist handling for the custom Info.plist file that the project
-    provides.
+    native handling for the project-provided \c Info.plist file.
 
     \badcode
     qt_add_executable(app)
@@ -360,19 +359,45 @@
     }
     \endcode
 
-    For image resources, an alternative way is to make use of \l {Create asset catalogs and sets}
-    {asset catalogs} in Xcode, which can be added in a similar way:
+    With CMake, the same can be done in the following way:
+
+    \badcode
+    qt_add_executable(app)
+    file(GLOB_RECURSE font_files CONFIGURE_DEPENDS "fonts/*.ttf")
+    if(IOS AND font_files)
+        target_sources(app PRIVATE ${font_files})
+        set_source_files_properties(
+            ${font_files}
+            PROPERTIES MACOSX_PACKAGE_LOCATION Resources/fonts)
+    endif()
+    \endcode
+
+    For image resources, an alternative way is to make use of
+    \l {Managing Assets with Asset Catalogs}{asset catalogs} in Xcode, which can be
+    added in the following way with qmake:
+
     \badcode
     ios {
         QMAKE_ASSET_CATALOGS += ios/Assets.xcassets
     }
     \endcode
 
+    With CMake:
+
+    \badcode
+    qt_add_executable(app)
+    set(asset_catalog_path "ios/Assets.xcassets")
+    target_sources(app PRIVATE "${asset_catalog_path}")
+    set_source_files_properties(
+        ${asset_catalog_path}
+        PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    \endcode
+
     \section2 Icons
 
-    Icons need to be set in the Info.plist and copied to the application bundle.
+    Icons need to be set in the \c Info.plist file and then copied to the application bundle.
     Xcode has special support for icons, but when using Qt, it is usually better
-    to set them in the .pro file.
+    to set them in the .pro file or the CMakeLists.txt file.
 
     To support all resolutions and devices, several images should be created.
     A detailed list of what is required is available at \l {App Icons on iPhone, iPad and Apple Watch}{Icon files}.
@@ -400,8 +425,8 @@
         \li AppIcon76x76~ipad.png: 76 x 76
     \endlist
 
-    These files should be copied to the application bundle by adding something
-    like the following code snippet to the .pro file:
+    These files should be copied to the application bundle by adding
+    the following code snippet to the project .pro file:
 
     \badcode
     ios {
@@ -410,10 +435,23 @@
     }
     \endcode
 
-    For the icons to be used, the filenames also have to be listed in the Info.plist. The best way is to list all icon files
-    using the \c CFBundleIconFiles key.
-    The iPad specific version can be given using the \c CFBundleIcons~ipad key, by adding something
-    like the following code snippet to Info.plist:
+    With CMake:
+
+    \badcode
+    qt_add_executable(app)
+    file(GLOB_RECURSE app_icons CONFIGURE_DEPENDS "ios/AppIcon*.png")
+    if(IOS AND app_icons)
+        target_sources(app PRIVATE ${app_icons})
+        set_source_files_properties(
+            ${app_icons}
+            PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    endif()
+    \endcode
+
+    For the icons to be used, the filenames must also be listed in the \c Info.plist file.
+    The best way is to list all icon files using the \c CFBundleIconFiles key.
+    The iPad specific version can be given using the \c CFBundleIcons~ipad key, by adding
+    the following code snippet to \c Info.plist:
 
     \badcode
     <key>CFBundleIcons</key>
@@ -467,23 +505,62 @@
         \li iTunesArtwork@2x 1024x1024
     \endlist
 
-    \section2 Launch Images
+    \section2 Launch Screens and Launch Images
 
-    Like icons, launch images consist of images that need to be copied to the application bundle
-    and keys that have to be set in the Info.plist.
+    \section3 Launch Screens
 
-    To support the iPhone 6, a launch file (an interface builder .xib file or a storyboard file) should be provided.
-    For more information, see \l{https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/launch-screen/}{Launch Screen}.
-    Assuming that you called the launch file Launch.xib, it can be added to the Info.plist as follows:
+    Every iOS app must provide a launch screen to be displayed while the app launches.
+    A launch screen is an interface builder \c{.xib} file, also called a storyboard file.
+    For more information, see \l{Specifying Your App's Launch Screen}.
+
+    Support for launch screens has been introduced in iOS 9.0.
+
+    Both qmake and CMake generate a default launch screen called \c{LaunchScreen.storyboard}.
+
+    To specify a custom launch screen, it must be copied to the application bundle, and the
+    \c UILaunchStoryboardName key must be set to the name of the launch screen in the
+    \c Info.plist file.
+
+    Qt supports custom launch screens with CMake since Qt 6.4, and with qmake since Qt 6.0.
+
+    Assuming that the launch file is called \c Launch.storyboard, it can be added to
+    \c Info.plist as follows:
+
     \badcode
     <key>UILaunchStoryboardName</key>
     <string>Launch</string>
     \endcode
-    It is possible to use launch images (PNG files), as described below, to support the iPhone 6, but it is not recommended.
-    Qmake generates a default LaunchScreen.xib, so it is better to use another name for a custom launch screen to avoid clashes.
 
-    Starting with iOS 7, the launch images are defined using the \c UILaunchImages key.
-    To support these devices, you need to prepare the following images:
+    To copy the launch screen into the application bundle with qmake, use the following code
+    snippet in your project .pro file:
+
+    \badcode
+    ios {
+        QMAKE_IOS_LAUNCH_SCREEN = $$PWD/Launch.storyboard
+    }
+    \endcode
+
+    With CMake:
+
+    \badcode
+    qt_add_executable(app)
+    if(IOS)
+        set_target_properties(app PROPERTIES
+            QT_IOS_LAUNCH_SCREEN "${CMAKE_CURRENT_SOURCE_DIR}/Launch.storyboard")
+    endif()
+    \endcode
+
+    \section3 Launch Images
+
+    It's also possible to specify launch images (PNG files) instead of launch screen.
+
+    \note Using launch images is not recommended, because support for them has been
+    deprecated since iOS 13.0. Consider switching to launch screens instead.
+
+    Launch images must be copied to the application bundle and their names must
+    be set in the \c Info.plist file using the \c UILaunchImages key.
+
+    The following images must be prepared:
     \list
         \li LaunchImage-iOS7-568h@2x.png: 640 x 1136
         \li LaunchImage-iOS7-Landscape.png: 1024 x 768
@@ -493,7 +570,7 @@
         \li LaunchImage-iOS7@2x.png: 640 x 960
     \endlist
 
-    The images can be added to the Info.plist as follows:
+    The images can be added to \c Info.plist as follows:
     \badcode
     <key>UILaunchImages</key>
     <array>
@@ -563,35 +640,32 @@
     </array>
     \endcode
 
-    To support earlier iOS versions, one can use the \c UILaunchImageFile string in the Info.plist:
-    \badcode
-    <key>UILaunchImageFile</key>
-    <string>LaunchImage</string>
-    \endcode
-    The name defaults to \c Default, but qmake generates some of the images, so it is easier to use another name (for example LaunchImage as we did) to avoid clashes.
-    \list
-        \li LaunchImage.png: 320 x 480
-        \li LaunchImage@2x.png: 640 x 960
-        \li LaunchImage-568h@2x.png: 640 x 1136
-        \li LaunchImage-Landscape.png: 1024 x 748
-        \li LaunchImage-Landscape@2x.png: 2048 x 1496
-        \li LaunchImage-Portrait.png: 768 x 1004
-        \li LaunchImage-Portrait@2x.png: 1536 x 2008
-    \endlist
+    To copy the launch images into the application bundle with qmake, use the following code
+    snippet in your project .pro file:
 
-    You can change the filenames as long as the Info.plist and filenames stay in sync.
-
-    Finally, all these files have to be copied to the application bundle by adding something
-    like the following code snippet to the .pro file:
     \badcode
     ios {
-        app_launch_images.files = $$PWD/ios/Launch.xib $$files($$PWD/ios/LaunchImage*.png)
+        app_launch_images.files = $$files($$PWD/ios/LaunchImage*.png)
         QMAKE_BUNDLE_DATA += app_launch_images
     }
     \endcode
 
-    This allows you to produce universal applications with valid LaunchImages as required by the Apple App Store.
-    \important \c "launch_images" is used internally by Qt, so it will be overwritten if used in your .pro file.
+    With CMake:
+
+    \badcode
+    qt_add_executable(app)
+    file(GLOB_RECURSE launch_images CONFIGURE_DEPENDS "ios/LaunchImage*.png")
+    if(IOS AND launch_images)
+        target_sources(app PRIVATE ${launch_images})
+        set_source_files_properties(
+            ${launch_images}
+            PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    endif()
+    \endcode
+
+    \note Earlier iOS versions supported specifying a single launch image using the
+    \c UILaunchImageFile key in \c Info.plist, but support for it has been deprecated since
+    iOS 10.0.
 
     \section2 Native Image Picker
 
