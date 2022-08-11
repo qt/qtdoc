@@ -184,11 +184,7 @@
     resources you may need. Third party libraries like Qt are normally not
     installed system-wide; each application provides its own copy.
 
-    To build your application as an application bundle with CMake, set the
-    \l {https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE.html}
-    {\c {MACOSX_BUNDLE}} property on your executable target. With qmake,
-    bundles are the default. Set \c {CONFIG -= app_bundle} in your project
-    file (\c{.pro}) to disable it.
+    \include {apple-app-bundle.qdocinc} {building an app bundle}
 
     A common way to distribute applications is to provide a compressed disk
     image (.dmg file) that the user can mount in Finder. The deployment tool, \c

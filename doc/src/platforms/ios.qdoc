@@ -290,6 +290,15 @@
     Checking that the application is configured correctly is especially important
     before submitting an application for publishing in Apple's App Store.
 
+    \section2 Application bundles
+
+    iOS applications are typically deployed as self-contained application
+    bundles. The application bundle contains the application's executable as well
+    as dependencies, such as the Qt libraries, plugins, translations, and other
+    resources the application may need.
+
+    \include {apple-app-bundle.qdocinc} {building an app bundle}
+
     \target Info.plist
     \section2 Information Property List Files
 
