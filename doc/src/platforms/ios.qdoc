@@ -719,4 +719,17 @@
     \section1 Symbol visibility warnings
 
     \include apple-hidden-symbols.qdocinc
+
+    \section1 Product archiving issue with CMake
+
+    Due to an issue in \l{CMake iOS archiving failure issue}{CMake}, trying to create a product
+    archive with an iOS application may fail.
+
+    This can happen both when trying to create the archive in Xcode using the
+    Product -> Archive menu item, or from the command line using \c {xcodebuild -archivePath}.
+
+    The error message might reference undefined symbols or non-existent file paths.
+
+    To work around the issue, make sure to manually rebuild the project before trying
+    to create an archive.
 */
