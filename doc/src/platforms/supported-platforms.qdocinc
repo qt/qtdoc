@@ -94,25 +94,25 @@
 
 \section2 \l{Qt for Android}{Android}
 //! [android]
-    The following configurations are supported in this Qt release:
-    \table 80%
-        \header \li Distribution \li Architecture \li Compiler \li Notes
-        \row \li Android 6.0 or later (API level 23 or higher)
-            \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-            \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 11.2
-            \li For JDK versions see \l{Java Development Kit (JDK)}
-    \endtable
+The following configurations are supported in this Qt release:
+\table 80%
+    \header \li Distribution \li Architecture \li Compiler \li Notes
+    \row \li Android 6.0 or later (API level 23 or higher)
+        \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
+        \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 11.2
+        \li For JDK versions see \l{Java Development Kit (JDK)}
+\endtable
 //! [android]
 
 \section2 \l{Qt for iOS}{iOS}
 //! [ios]
 \table 80%
-        \header \li Target Platform \li Architecture \li Build Environment \li Notes
-        \row \li iOS 13, iOS 14, iOS 15
-            \li \c armv8 (\c arm64)
-            \li Xcode 12 (iOS 14 SDK), {Xcode 13} (iOS 15 SDK)
-            \li
-    \endtable
+    \header \li Target Platform \li Architecture \li Build Environment \li Notes
+    \row \li iOS 13, iOS 14, iOS 15
+        \li \c armv8 (\c arm64)
+        \li Xcode 12 (iOS 14 SDK), \b {Xcode 13} (iOS 15 SDK)
+        \li
+\endtable
 //! [ios]
 
 //! [mobile]
