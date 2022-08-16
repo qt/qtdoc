@@ -101,11 +101,6 @@
     table. To build Qt from its source code, you will also need to install the
     development packages for these libraries for your system.
 
-    \note From Qt 5.15 onward, Qt does require libxcb 1.11. Also, the
-    \c{-qt-xcb} configure option got removed that was bundling some of the
-    libs below. Anyhow, you can now configure with \c{-bundled-xcb-xinput}
-    to avoid a dependency to system xcb-xinput.
-
     \table 100%
     \header
     \li Name
