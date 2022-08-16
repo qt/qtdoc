@@ -20,19 +20,19 @@ Qt 6.
 
 Usage of API deprecated in Qt will typically show up in the form of a compiler
 warning. You can also make the use an error by defining the
-\l{QT_DISABLE_DEPRECATED_BEFORE} C++ macro in your build system. To disable
+\l{QT_DISABLE_DEPRECATED_UP_TO} C++ macro in your build system. To disable
 any API deprecated in 5.15 or older Qt versions, define the macro to
 \c{0x050F00}, which is '5.15.0' encoded as a hexadecimal number.
 
 For example, in a qmake project file, define the macro with:
 \code
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050F00
+DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 \endcode
 
 In CMake, you can use add_compile_definitions:
 
 \code
-add_compile_definitions(QT_DISABLE_DEPRECATED_BEFORE=0x050F00)
+add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 \endcode
 
 \list
