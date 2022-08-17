@@ -524,7 +524,7 @@ To enable, build Qt from source and set the QT_EMSCRIPTEN_ASYNCIFY device option
 
 \badcode
   -device-option QT_EMSCRIPTEN_ASYNCIFY=1
-\badcode
+\endcode
 
 Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
 usage. Build with optimizations enabled to minimize the overhead.
