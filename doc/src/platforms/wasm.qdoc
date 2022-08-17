@@ -29,12 +29,12 @@ and less features than other Qt builds.
 
 \section2 Installing Emscripten
 
-\l{https://emscripten.org/docs/introducing_emscripten/index.html}{emscripten}
+\l{https://emscripten.org/docs/introducing_emscripten/index.html}{Emscripten}
 is a toolchain for compiling to WebAssembly. It lets you run Qt on the web at
 near-native speed without browser plugins.
 
 Refer to the \l{https://emscripten.org/docs/getting_started/index.html}
-{emscripten documentation} for more information about installing the
+{Emscripten documentation} for more information about installing the
 Emscripten SDK.
 
 After installation, you should have the Emscripten compiler in your path.
@@ -58,14 +58,14 @@ The minimum versions are:
    \li Qt 6.4: 3.1.10
 \endlist
 
-Use \c emsdk to install specific \c emscripten versions. For example, to install
+Use \c emsdk to install specific \c Emscripten versions. For example, to install
 it for Qt 6.4 enter:
 \list
     \li ./emsdk install 3.1.10
     \li ./emsdk activate 3.1.10
 \endlist
 
-On Windows, emscripten is in your path after installation. On macOS or Linux
+On Windows, Emscripten is in your path after installation. On macOS or Linux
 you need to add it to your path, like this:
 
 \badcode
