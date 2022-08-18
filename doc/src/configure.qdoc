@@ -82,7 +82,7 @@
     configured, but not built by default. If you set the CMake variables
     \b{QT_BUILD_EXAMPLES_BY_DEFAULT}, \b{QT_BUILD_TESTS_BY_DEFAULT}, and
     \b{QT_BUILD_TOOLS_BY_DEFAULT} to OFF, the respective parts will not be
-    built by "cmake --build .". Instead, CMake will generate individual targets
+    built by \c{cmake --build .}. Instead, CMake will generate individual targets
     that you can then build individually.
 
     Here we build Qt libraries and tools, but also the
