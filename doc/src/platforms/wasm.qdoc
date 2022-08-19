@@ -318,7 +318,7 @@ Qt detects WebGL as OpenGL ES, with the following version mapping:
 OpengL ES 2 is selected by default, OpenGL ES 3 can be enabled by configuring Qt with
 the -feature-opengles3 option.
 
-Qt for WebAssembly does support mixing raster and OpenGL content. Supported
+Qt for WebAssembly does not support mixing raster and OpenGL content. Supported
 use cases are pure raster apps using QWigets, and pure OpenGL apps using
 Qt Quick or QOpenGLWindow. QOpenGLWidget is not supported at this point (QTBUG-66944).
 
