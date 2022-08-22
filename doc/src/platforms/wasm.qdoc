@@ -520,11 +520,17 @@ these restrictions by allowing sychronous calls (like QEventLoop::exec() and QDi
 to yield to the event loop. Nested calls are not supported, and for this reason asyncify is
 not used for the top-level QApplication::exec() call.
 
-Asyncify support is not enabled by default, and is not available when using the binary package.
-To enable, build Qt from source and set the QT_EMSCRIPTEN_ASYNCIFY device option:
+As of Qt 6.4, Asyncify support is enabled in the binary package, but needs to be enabled for
+applications by adding -sASYNCIFY -Os to linker options:
 
+CMake:
 \badcode
-  -device-option QT_EMSCRIPTEN_ASYNCIFY=1
+set target_link_options(<target> PUBLIC -sASYNCIFY -Os)
+\endcode
+
+qmake:
+\badcode
+QMAKE_LFLAGS += -sASYNCIFY -Os)
 \endcode
 
 Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
