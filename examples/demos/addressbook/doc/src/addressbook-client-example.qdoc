@@ -1,0 +1,70 @@
+// Copyright (C) 2022 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\ingroup qtquickdemos
+\example demos/addressbook
+\title Qt Quick Demo - RESTful API client Address Book
+\brief Example of how to create a RESTful API client.
+\image addressbookclient.png
+
+This example shows how to create a basic QML application with address book
+functionality.
+The application uses RESTful communication with a given server to send
+requests and retrieve data.
+
+The application allows users to add new contacts by clicking the
+'Add Contact' button and then entering the data for the record and
+clicking the 'Add' button (see image below).
+\image newcontact.png
+
+The Address Book application gives you the ability to delete an entry,
+by clicking the 'Delete' button next to the entry, and update by updating
+the data in the table.
+
+In order to use the modification features, users must authorize themselves
+by providing a key and value, which will be used in communication
+with the RESTful API.
+\image authorize.png
+
+To run the client application, first run the
+\l {RESTful server Address Book Example} {Address Book server example}
+in the background or use an already running server that provides used API.
+Then run the client application, to run it host and port arguments must be provided,
+for example:
+\code
+./addressbookclient  --host http://127.0.0.1 --port 62122
+\endcode
+
+This example application uses QNetworkAccessManager
+which is wrapped in the \c RestAccessManager class.
+
+\snippet demos/addressbook/restaccessmanager.cpp Connect QNetworkAccessManager example
+The code snippet above shows how to connect QNetworkAccessManager to this wrapper.
+First, a connection to the server is established
+and the QNetworkAccessManager::setAutoDeleteReplies method is called to simplify
+the QNetworkReply deletion.
+Then QObject::connect is used to call the internal \c RestAccessManager::readContacts
+after the QNetworkReply is ready to be processed.
+
+\snippet demos/addressbook/restaccessmanager.cpp Update contacts signal example
+This method asynchronously processes each QNetworkReply
+for each request sent via QNetworkAccessManager.
+When the response is an array, that practically means that RestAccessManage
+got a new list of the contacts, so it has to update it.
+When the response is different, it means that the corresponding request
+has changed the list of contacts and it needs to be retrieved from the server.
+
+\snippet demos/addressbook/restaccessmanager.cpp GET contacts example
+To send a \c GET request, the QNetworkAccessManager::get method is used
+with the prepared QNetworkRequest.
+QNetworkRequest::setHeader is used to ensure correct encoding of the content.
+
+\snippet demos/addressbook/restaccessmanager.cpp POST contacts example
+To send the \c POST request, a similar approach can be used.
+In addition, to set the authorization header
+QNetworkRequest::setRawHeader was used.
+
+
+\sa {RESTful server Address Book Example}
+*/
