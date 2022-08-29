@@ -6,7 +6,7 @@
 \title Differences between String-Based and Functor-Based Connections
 \brief Compares the two syntaxes for making signal-slot connections in C++.
 
-From Qt 5.0 onwards, Qt offers two different ways to write \l{Signals and Slots}
+From Qt 5.0 onward, Qt offers two different ways to write \l{Signals and Slots}
 {signal-slot connections} in C++: The \e{string-based} connection syntax and the
 \e{functor-based} connection syntax. There are pros and cons to both syntaxes.
 The table below summarizes their differences.
@@ -163,7 +163,7 @@ With the string-based syntax, parameter types are explicitly specified. As a
 result, the desired instance of an overloaded signal or slot is unambiguous.
 
 In contrast, with the functor-based syntax, an overloaded signal or slot must
-be casted to tell the compiler which instance to use.
+be cast to tell the compiler which instance to use.
 
 For example, \l QLCDNumber has three versions of the \c display() slot:
 \list 1

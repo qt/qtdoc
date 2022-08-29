@@ -124,7 +124,7 @@
     \row
       \li \c {QT_QPA_EGLFS_FORCE888}
       \li When set, the red, green, and blue color channel sizes are ignored
-          when \c eglfs creates a new context, window or offscreen surface.
+          when \c eglfs creates a new context, window or off-screen surface.
           Instead, the plugin requests a configuration with 8 bits per channel.
           This can be helpful on devices where configurations with less than 32
           or 24 bits per pixel (for example, 5-6-5 or 4-4-4) are chosen by
@@ -365,7 +365,7 @@
   width\c{x}height, width\c{x}height\c{@}vrefresh, or a modeline string.
 
   Specifying \c current chooses a mode with a resolution that matches the
-  current one. Because modesetting is done only when the desired mode is
+  current one. Because mode-setting is done only when the desired mode is
   actually different from the active one (unless forced via the
   \c QT_QPA_EGLFS_ALWAYS_SET_MODE environment variable), this value is useful to
   preserve the current mode and any content in the planes not touched by Qt.
@@ -539,7 +539,7 @@
   It's up to the configuration and the application to ensure these.
 
   As of Qt 5.11, headless mode via DRM render nodes is supported. This allows
-  performing GPU compute (OpenGL compute shaders, OpenCL) or offscreen OpenGL
+  performing GPU compute (OpenGL compute shaders, OpenCL) or off-screen OpenGL
   rendering without needing DRM master privileges. In this mode, applications can
   function even when there is already another process outputting to the screen.
 
@@ -559,7 +559,7 @@
   screen size, hence the need for specifying a size in the \c headless
   property. There is also a lack of vsync-based throttling.
 
-  Once enabled, applications have two typical choices to perform offscreen
+  Once enabled, applications have two typical choices to perform off-screen
   rendering in headless mode:
 
   Use an ordinary window, such as a QOpenGLWindow subclass, targeting the

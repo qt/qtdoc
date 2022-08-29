@@ -13,7 +13,7 @@
     in Qt. However, there are limitations: There are things that you can
     easily express with templates, and there are things that are
     impossible to express with templates. A generic vector container class
-    is easily expressible, even with partial specialisation for pointer
+    is easily expressible, even with partial specialization for pointer
     types, while a function that sets up a graphical user interface based
     on an XML description given as a string is not expressible as a
     template. And then there is a gray area in between. Things that you can

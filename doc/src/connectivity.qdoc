@@ -7,7 +7,7 @@
 \brief Qt's network and connectivity features
 
 Qt provides classes for both high-level and low-level network communication,
-classes for web integration, and classes for interprocess communication.
+classes for web integration, and classes for inter-process communication.
 
 For high-level network traffic, \l{Qt Network} provides an abstraction layer
 over the operations used, showing only high-level classes and functions. Qt
@@ -20,7 +20,7 @@ QNetWorkProxy class.
 
 Qt also offers functionalities for \e{inter-process communication} (IPC). The
 class QProcess is used to start external programs. \l{Qt D-Bus} provides support
-for D-Bus, an interprocess communication and remoteprocedure calling mechanism.
+for D-Bus, an inter-process communication and remote procedure calling mechanism.
 It mostly communicates via a central server application, called a bus. However,
 it is also possible to let applications communicate directly with each other.
 QSharedMemory provides access to a shared memory segment by multiple threads

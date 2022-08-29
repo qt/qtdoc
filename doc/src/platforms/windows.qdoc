@@ -240,7 +240,7 @@
     nothing is disabled, regardless of the driver or OS.
 
     \note While not typically needed, \c{QT_NO_OPENGL_BUGLIST} can become relevant in
-    certain virtualized environments, with multiple, possibly virtual, graphics adapters
+    certain virtual environments, with multiple, possibly virtual, graphics adapters
     present. If the logs from categories like \c{qt.qpa.gl} indicate that the detection of
     the driver and display adapter leads to incorrectly disabling OpenGL, it is then
     recommended to set this environment variable in order to enable the application to run
@@ -773,7 +773,7 @@
     When looking at the plugin DLLs the exact same dependencies
     are listed.
 
-    From Qt version 5.2 onwards, the officially supported version
+    From Qt version 5.2 onward, the officially supported version
     for OpenSSL is 1.0.0 or later. Versions >= 0.9.7 and < 1.0.0 might
     work, but are not guaranteed to.
 

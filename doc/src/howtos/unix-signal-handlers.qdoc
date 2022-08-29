@@ -60,7 +60,7 @@
     In the slot functions connected to the
     QSocketNotifier::activated() signals, you \e read the byte. Now
     you are safely back in Qt with your signal, and you can do all the
-    Qt stuff you weren'tr allowed to do in the Unix signal handler.
+    Qt stuff you were not allowed to do in the Unix signal handler.
 
     \snippet snippets/code/doc_src_unix-signal-handlers.cpp 4
 */

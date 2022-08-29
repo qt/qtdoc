@@ -271,7 +271,7 @@
   \section1 Why Use Wayland Instead of X11 or Custom Solutions
 
   As described earlier, X11 is not an optimal match for typical system setups today.
-  It is quite large and complex, and it lacks customizability. In fact, it is difficult
+  It is quite large and complex, and lacks ability in customization. In fact, it is difficult
   to run a client fluidly with X11, and reach 60 fps without tearing. Wayland, in contrast,
   is easier to implement, has better performance, and contains all the necessary parts to
   run efficiently on modern graphics hardware. For embedded, multi-process systems on Linux,

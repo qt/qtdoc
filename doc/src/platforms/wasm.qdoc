@@ -221,7 +221,7 @@ logo to the app logo, is also possible. In both cases, \e {qtloader.js} provides
 API for loading the application.
 
 We recommend compressing the wasm file using e.g. gzip or brotli before deployment,
-as this can provide a significant reductiton in file size.
+as this can provide a significant reduction in file size.
 
 Enabling certain features, such as multi-threading and SIMD, produces .wasm binaries
 that are incompatible with browsers that do not support the enabled feature. It is
@@ -348,7 +348,7 @@ is not completely leak free. See \l {https://emscripten.org/docs/porting/pthread
 for further info.
 
 Multithreading requires browser support for SharedArrayBuffer, see \l {https://caniuse.com/sharedarraybuffer}
-{ caniuse sharedarraybuffer } for current supported status. If suppoerted, SharedArrayBuffer will
+{ caniuse sharedarraybuffer } for current supported status. If supported, SharedArrayBuffer will
 be enabled provided the web server sets the COOP and and COEP headers:
 \list
 \li Cross-Origin-Opener-Policy: same-origin
@@ -358,7 +358,7 @@ be enabled provided the web server sets the COOP and and COEP headers:
 \section2 SIMD
 
 The LLVM compiler supports generating \l{https://emscripten.org/docs/porting/simd.html}{WebAssembly SIMD}.
-Pass the -msimd128 flag at compile time to enable. This enables LLVM autovectorization, which
+Pass the -msimd128 flag at compile time to enable. This enables LLVM auto-vectorization, which
 makes it possible to benefit from SIMD without making source code modifications.
 
 You can target WebAssembly SIMD directly using either GCC/Clang SIMD Vector Extensions or WASM
@@ -512,11 +512,11 @@ int main(int argc, char **argc)
 \section3 Asyncify
 
 The default build of Qt for WebAssembly does not support reentering the event loop,
-for example by calling QEventLoop::exec() or QDialog::exec(), due to resitrictions
+for example by calling QEventLoop::exec() or QDialog::exec(), due to restrictions
 of the web platform.
 
 Emscripten's \l{https://emscripten.org/docs/porting/asyncify.html}{asyncify} feature lifts
-these restrictions by allowing sychronous calls (like QEventLoop::exec() and QDialog::exec())
+these restrictions by allowing synchronous calls (like QEventLoop::exec() and QDialog::exec())
 to yield to the event loop. Nested calls are not supported, and for this reason asyncify is
 not used for the top-level QApplication::exec() call.
 
@@ -538,13 +538,13 @@ usage. Build with optimizations enabled to minimize the overhead.
 
 \section2 Debugging and Profiling
 
-Wasm debugging is done on browser javascript console, debugging applications on Wasm
+Wasm debugging is done on browser JavaScript console, debugging applications on Wasm
 directly within Qt Creator is not possible.
 
 \list
 \li Qt debug and logging output is printed on the JavaScript console, which can be
 accessed via browser "Developer Tools" or similar.
-\li Source maps for stepping through code, can be created by reconfiguring Qt with
+\li Source maps for stepping through code, can be created by re-configuring Qt with
 the --device-option QT_WASM_SOURCE_MAP=1, and building a debug build.
 \list
     \li \l {https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map}
@@ -559,7 +559,7 @@ the --device-option QT_WASM_SOURCE_MAP=1, and building a debug build.
 \li To stop execution on a certain line and popup the browser debugger
 programmatically, you can add the function emscripten_debugger(); to the application
 source code.
-\li Profiling can be accomplished by using a debug build and the javascript console
+\li Profiling can be accomplished by using a debug build and the JavaScript console
 profiling features. Qt adds --profiling-funcs to the linker arguments in debug builds,
 which preserve function names in profiling
 \endlist
@@ -685,7 +685,7 @@ files. There's generally no need to have special handling of wasm files.
         \li \l {https://www.qt.io/web-assembly-example-gallery}
                {A gallery of available controls in Qt Quick Controls}
         \li \l {https://www.qt.io/web-assembly-example-pizza-shop}
-               {Web app for prdering pizzas}
+               {Web app for ordering pizzas}
 \endlist
 
 \section1 External resources

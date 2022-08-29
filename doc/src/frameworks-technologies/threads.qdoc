@@ -113,7 +113,7 @@
 
     Creating and destroying threads frequently can be expensive. To reduce this
     overhead, existing threads can be reused for new tasks. QThreadPool is a
-    collection of reuseable QThreads.
+    collection of reusable QThreads.
 
     To run code in one of a QThreadPool's threads, reimplement QRunnable::run()
     and instantiate the subclassed QRunnable. Use QThreadPool::start() to put
