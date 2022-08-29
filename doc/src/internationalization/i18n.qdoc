@@ -45,7 +45,7 @@
     application usable by Japanese users, or a Korean application usable
     by German users, will require that the software operate not only in
     different languages, but use different input techniques, character
-    encodings and presentation conventions.
+    encoding and presentation conventions.
 
     Qt tries to make internationalization as painless as possible for
     developers. All input controls and text drawing methods in Qt offer
@@ -181,7 +181,7 @@
     The Qt translation catalogs are located in the \c qttranslations repository.
 
     \warning Qt translations are contributed by the Qt community, and provided
-    without any guarantees. Translations migh be missing, outdated, or entirely
+    without any guarantees. Translations might be missing, outdated, or entirely
     incorrect, up to the point of being malicious. It is recommended that you
     audit any translations you ship.
 
@@ -265,7 +265,7 @@
     preserves Unicode information while looking like plain ASCII if the text
     is wholly ASCII.
 
-    For converting Unicode to local 8-bit encodings, a shortcut is
+    For converting Unicode to local 8-bit encoding, a shortcut is
     available: the QString::toLocal8Bit() function returns such 8-bit
     data. On Unix systems this is equivalent to toUtf8(), on Windows the
     systems current code page is being used.
@@ -730,7 +730,7 @@
     \section1 Using QKeySequence() for Accelerator Values
 
     Accelerator values such as Ctrl+Q or Alt+F need to be translated
-    too. If you hardcode \c{Qt::CTRL + Qt::Key_Q} for "quit" in your
+    too. If you hard-code \c{Qt::CTRL + Qt::Key_Q} for "quit" in your
     application, translators won't be able to override it. The
     correct idiom is:
 

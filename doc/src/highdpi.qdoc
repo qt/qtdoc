@@ -36,7 +36,7 @@
     pixel ratio of 1.0), but will cover 400x400 pixels on a high density display
     (with a device pixel ratio of 2.0).
 
-    This model applies to most units in higher level Qt Gui, Widgets, and Quick
+    This model applies to most units in higher level Qt GUI, Widgets, and Quick
     APIs, including widget and item geometry, event geometry, desktop, window and
     screen geometry, as well as animation velocities.
 
@@ -63,7 +63,7 @@
     as a result do not operate in the device independent coordinate system
     described earlier. A QImage of size 400x400, with a device pixel ratio
     of 2.0, will fit a 200x200 QWindow on a high density (2x) display, or
-    will be automatically downscaled to 200x200 during drawing if targeting
+    will be automatically down-scaled to 200x200 during drawing if targeting
     a normal density (1x) display. See \l{Drawing High Resolution Versions
     of Pixmaps and Images} for more details.
 
@@ -99,7 +99,7 @@
     will produce an islands-of-screens type virtual desktop geometry.
 
     Application code should not assume that positions immediately adjacent to and
-    outside one screen is a valid position on the neighbouring screen. Instead,
+    outside one screen is a valid position on the neighboring screen. Instead,
     get the screen list using QGuiApplication::screens() and use that list to reason
     about available screen geometry.
 
@@ -171,12 +171,12 @@
     either global logical DPI or per-screen physical DPI. Neither of these are exactly what Qt
     needs, which can make DPI configuration on X11 more complicated than on other platforms.
 
-    Desktops environments such as Ubuntu and Kubntu implement workardounds for the lack of logical
+    Desktops environments such as Ubuntu and Kubntu implement workarounds for the lack of logical
     DPI, and provide easily configurable high-DPI support. If you instead want to configure
     X11 DPI settings manually then this section describes which X11 settings Qt reads.
 
     Some X11 configuration workflows involves overriding the reported physical size of the
-    screen in order to make DPI calculations yield a spesific DPI value. Qt supports this
+    screen in order to make DPI calculations yield a specific DPI value. Qt supports this
     workflow, but this requires opting in, as described below.
 
     The exact configuration priority is as follows, where Qt uses the first option available.
@@ -198,8 +198,8 @@
     \row
         \li 3. RandR physical DPI
             [Qt 5 Only]
-        \li DPI calculated from per-screen physical size and pixel size, as reported by randr.
-            specifically, the mwidth and mheight fields of the xcb_randr_screen_change_notify_event_t
+        \li DPI calculated from per-screen physical size and pixel size, as reported by \c randr.
+            specifically, the \c mwidth and \c mheight fields of the \c xcb_randr_screen_change_notify_event_t
             structure is used. The DPI will be rounded to an integer and clamped to be not less than 96.
     \row
         \li 4. 96 DPI
@@ -209,20 +209,20 @@
     The QT_USE_PHYSICAL_DPI override
 
     Set QT_USE_PHYSICAL_DPI=1 to make Qt use RandR physical DPI unconditionally; specifically
-    the mwidth and mheight fields of the xcb_randr_screen_change_notify_event_t structure is used.
+    the \c mwidth and \c mheight fields of the xcb_randr_screen_change_notify_event_t structure is used.
     The DPI value will be rounded to an integer.
 
     \section3 Configuring Windows
 
-    Qt uses the Windows display scale settings automatically; no spesific settings are required.
+    Qt uses the Windows display scale settings automatically; no specific settings are required.
     For example, if a display is configured for 175% scale then Qt apps will see a device pixel
     ratio of 1.75 on that screen.
 
     Windows defines several\l{https://docs.microsoft.com/en-us/windows/win32/hidpi/high-dpi-desktop-application-development-on-windows}
     {DPI Awareness} levels, which applications set in order to
-    opt-in to high-DPI featuers. Qt 6 is Per-Monitor DPI Aware V2 by default. If you are
+    opt-in to high-DPI features. Qt 6 is Per-Monitor DPI Aware V2 by default. If you are
     incorporating code which assumes a single global DPI then you might want to set a different
-    awarness level. This can be done by adding an entry to qt.conf:
+    awareness level. This can be done by adding an entry to qt.conf:
 
     \badcode
     [Platforms]
@@ -275,7 +275,7 @@
     In alphabetical order:
 
     \list
-    \li QT_ENABLE_HIGHDPI_SCALING Set to 0 to disable high-dpi scaling; effectivly reverting
+    \li QT_ENABLE_HIGHDPI_SCALING Set to 0 to disable high-dpi scaling; effectively reverting
         to Qt 5 default behavior. Note that this has no effect on platforms such as Wayland
         or macOS - it does not disable any native high-DPI support. This variable is intended
         for testing purposes only, and we do not recommend setting it on a permanent basis.
@@ -314,7 +314,7 @@
 
         \li Native Pixels This is the coordinate system used by the native API, such as Win32 or Cocoa (macOS).
             Depending on platform and screen configuration, native pixels may be equivalent to device
-            independent or device pxiels.
+            independent or device pixels.
     \endlist
 
 */

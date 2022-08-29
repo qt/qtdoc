@@ -24,7 +24,7 @@
     \section1 Configure Workflow
 
     configure must be called in a working build environment where
-    cmake, compilers, and required build tools are readily available.
+    CMake, compilers, and required build tools are readily available.
     \l{Building Qt Sources} lists such dependencies per platform.
 
     After setting up such an environment, the typical workflow is to create
@@ -158,7 +158,7 @@
 
     \section2 Excluding Qt Modules
 
-    configure's \b -skip option allows top-level source directories to be
+    \c configure's \b -skip option allows top-level source directories to be
     excluded from the Qt build. Note that some directories contain multiple Qt
     modules. For example, to exclude the Qt Wayland Compositor and the
     Qt Wayland integration plugin from the Qt build, provide
@@ -297,7 +297,7 @@
     standard build, and all Qt code compiles with a higher warning
     level. It also changes the default prefix to the build directory, avoiding
     the need to install Qt before testing things, and finally enables the
-    compilation of Qt's autotests by default.
+    compilation of Qt's auto-tests by default.
 
     \section1 Specific Options for Platforms
 

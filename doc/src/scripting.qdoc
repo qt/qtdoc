@@ -6,9 +6,10 @@
 \title Scripting
 \brief Qt's scripting features
 
-Qt has two main ways to help make an application scriptable. All of them allow easy
-integration of the \l{ECMA-262}{ECMAScript} (more widely known as JavaScript) language into the application. Depending on how deep
-the integration should be, one of these APIs can be used:
+Qt has two main ways to help make a scripted application. All of these allow
+easy integration of the \l{ECMA-262}{ECMAScript} (more widely known as
+JavaScript) language into the application. Depending on how deep the integration
+should be, one of these APIs can be used:
 
 \section1 JS API
 This is a simple API, but limited to basic functionality. The main classes

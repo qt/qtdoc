@@ -101,7 +101,7 @@
     table. To build Qt from its source code, you will also need to install the
     development packages for these libraries for your system.
 
-    \note From Qt 5.15 onwards, Qt does require libxcb 1.11. Also, the
+    \note From Qt 5.15 onward, Qt does require libxcb 1.11. Also, the
     \c{-qt-xcb} configure option got removed that was bundling some of the
     libs below. Anyhow, you can now configure with \c{-bundled-xcb-xinput}
     to avoid a dependency to system xcb-xinput.
@@ -706,7 +706,7 @@
     above. Do this by adding them to the \c LIBS variable in your
     project file.
 
-    From Qt version 5.2 onwards, the officially supported version for
+    From Qt version 5.2 onward, the officially supported version for
     OpenSSL is 1.0.0 or later. Versions >= 0.9.7 and < 1.0.0 might work,
     but are not guaranteed to.
 

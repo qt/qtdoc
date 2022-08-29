@@ -68,7 +68,7 @@
       \li When set to \c 1, Qt grabs the device for exclusive use.
     \row
       \li \c abs
-      \li Some touchscreens report absolute coordinates and can't be differentiated from touchpads.
+      \li Some touchscreens report absolute coordinates and can't be differentiated from touch pads.
           In this case, pass \c abs to indicate that the device is using absolute events.
   \endtable
 
@@ -155,9 +155,9 @@
 
   \section2 Touch
 
-  While it's not necessary for modern touch screens, some resistive, single-touch touch screens may
-  require that you fallback to using \c tslib instead of relying on the Linux multi-touch protocol
-  and the event devices.
+  While it's not necessary for modern touchscreens, some older resistance touchscreens that only
+  support single-touch may require that you fall back to using \c tslib, instead of relying on the
+  Linux multi-touch protocol and the event devices.
 
   To enable \c tslib support, set the \c QT_QPA_EGLFS_TSLIB (for \c eglfs) or \c QT_QPA_FB_TSLIB
   (for \c linuxfb) environment variable to 1. To change the device, set the \c TSLIB_TSDEVICE
