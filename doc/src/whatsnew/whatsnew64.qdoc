@@ -133,6 +133,9 @@
             switches automatically to the regular timer-based approach of running
             animations, thus preventing QML animations running too fast.
 
+        \li Added FrameAnimation for custom animations. Allows running custom scripts
+            in synchronization with the animation frames.
+
     \endlist
 
     \section2 Qt Quick Controls Module
