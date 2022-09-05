@@ -45,6 +45,8 @@
         \li Deprecated QString::count() and QByteArray::count() that take no
             parameters, to avoid confusion with the algorithm overloads of the
             same name. They can be replaced by \c size() or \c length() methods.
+        \li QStringEncoder and QStringDecoder support now all codecs supported by ICU
+            when Qt is built with ICU support enabled.
         \li In the classes for Android and JNI development, QJniObject and QJniEnvironment,
             overloads have been added for \l{QJniObject::}{callMethod},
             \l{QJniEnvironment::}{findMethod} and similar methods. It is now possible to
