@@ -18,76 +18,69 @@
 
     \tableofcontents
 
-
     \section1 Introduction
 
-    Accessibility in computer software is making applications usable
-    for people with different abilities.
-    It is important to take different people's needs into account, for example,
-    in case of low vision, hearing, dexterity, or cognitive problems.
-    Some examples of accessibility measures are
-    keyboard shortcuts, a high-contrast user interface that uses
-    specially selected colors and fonts, or support for assistive tools
-    such as screen readers and braille displays.
-
-    A basic checklist that any application should aim for:
+    Accessibility in software development aims to make software available to people of
+    all abilities. This includes people with
     \list
-        \li \b {Usability} - Usability and user centric design generally lead to
-        more usable applications, including improvements for people with various abilities.
-        \li \b {Fonts} - Font settings should follow the system/platform. This allows users to select
-        fonts for readability and increasing the font size.
-        \li \b {Colors} - Provide enough contrast and consider the most common cases of low
-        vision and color blindness. Make sure that the application is usable, for example,
-        for people with red/green blindness, and don't depend on colors only.
-        \li \b {Scalable UI} - A user interface that works in various sizes and properly supports
-        different fonts and accommodates size changes.
-        \li \b {Sounds} - Do not exclusively rely on sound notifications, provide a visual alternative
-        when a sound signal is imperative to using the application.
-        \li \b {Spelling} - Offer spell checking wherever it makes sense, even when only a single word is expected.
-        \li \b {Assistive Technology} - Support the use of assistive tools (AT). Either use standard widgets/controls
-        which support ATs out of the box, or make sure that your custom widgets and controls support
-        accessibility properly. In order to learn more about this read on below.
+    \li impaired vision
+    \li motor difficulties
+    \li cognitive impairments or learning disabilities
+    \li deafness or impaired hearing
     \endlist
 
-    This part of the documentation assumes that the basics for accessibility,
-    which go hand in hand with usability, are already in good shape.
-    The rest of this document focuses more specifically on supporting assistive technology.
+    Qt aims to support you in writing accessible software. Let's have a look at common
+    themes in this context and how Qt can help you in making your software accessible.
 
-    Assistive Tools (or ATs) come in great variety and help users with different tasks.
-    For this reason what individual applications offer (with the help of Qt) is a generic
-    API that allows to inspect what is on screen in a semantic way and offers the typical
-    interactions with the UI elements.
+    \section1 Scalable UI
 
-    Applications do not usually communicate directly with the
-    assistive tools, but through a platform specific API.
-    Generally the communication with the ATs works though an IPC mechanism.
-    Semantic information about user interface elements, such as
-    buttons and scroll bars, is exposed to the assistive technologies.
-    Qt supports UI Automation on Windows,
-    \macos Accessibility on \macos, and AT-SPI via DBus on Unix/X11.
-    The platform specific technologies are abstracted by Qt,
-    so that applications do not need any platform specific changes to work with the different
-    native APIs. Qt tries to make adding accessibility support to your application as easy
-    as possible, only a few changes from your side may be required to allow even more users to enjoy it.
+    Allow your application’s user interface to work in different sizes,
+    resolutions, and form factors. Also, allow the user to customize fonts
+    and font sizes.
 
-    The main reason to consult this documentation is to learn how to make custom \l QWidget subclasses
-    and \l {QQuickItem}s accessible.
+    Qt supports you by providing a sophisticated layout system that dynamically scales your user
+    interface. Qt widgets and controls, by default, also use fonts and font sizes configured
+    in the operating system.
 
-    In this overview document, we will examine the overall Qt
-    accessibility architecture, and how to implement accessibility for
-    custom widgets and elements.
+    \section1 Keyboard Navigation
 
-    \section1 Making Applications Accessible
+    Do not rely solely on a computer mouse or touch as input but also allow navigation
+    by a keyboard. Define keyboard shortcuts for often used functionality.
 
-    These two pages focus on giving an overview of how to achieve
-    good accessibility:
+    Qt enables keyboard focus and navigation for Qt Widgets and Qt Quick and makes
+    it easy to configure global or local keyboard shortcuts.
+    \l{Qt Virtual Keyboard} allows you to show an on-screen keyboard.
 
-    \l{Accessibility for QWidget Applications}
+    \section1 Colors & Color Contrast
 
-    \l{Accessibility for Qt Quick Applications}
+    Provide enough contrast in your UI and consider the most common
+    cases of color blindness. Support different color schemes in your application,
+    or respect colors and themes as configured in the operating system.
+    Do not depend on colors only to provide information.
 
-    These classes provide support for accessible applications:
-    \annotatedlist accessibility
+    Qt widgets and controls do adhere to the system color palette by default.
+    For embedded software, \l{Styling Qt Quick Controls}{styles} allow you
+    to create high-contrast themes.
+
+    \section1 Sound & Speech
+
+    In addition to allowing visual interaction with your application, consider sound
+    notifications or speech input and output. Do not exclusively rely on sound
+    notifications though.
+
+    \l{Qt Multimedia} allows you to play sounds, and \l{Qt TextToSpeech} allows you to read out
+    texts with a synthesized voice.
+
+    \section1 Assistive Tools
+
+    Allow your application to be used via assistive tools like screen readers and braille
+    displays.
+
+    Qt does use platform-specific APIs to expose the semantic
+    structure of your GUI to such tools. The ready-made widgets and controls also provide
+    enough metadata to be usable, and custom widgets and controls can expose and enhance
+    this data, too. See \l{Accessibility for QWidget Applications} and
+    \l{Accessibility for Qt Quick Applications} for more details.
 */
 
 
@@ -587,6 +580,9 @@
 
     \endomit
 
+    \section1 Related Classes
+
+    \annotatedlist accessibility
 */
 
 /*!
