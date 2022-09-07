@@ -202,6 +202,9 @@
         \li Qt Module or Tool
         \li Catalog
     \row
+        \li \c {Qt Bluetooth}
+        \li \c qtconnectivity
+    \row
         \li \l [QtConcurrent]{Qt Concurrent}
         \li \c qtbase
     \row
@@ -226,6 +229,9 @@
         \li \l[Qt Network]{Qt Network}
         \li \c qtbase
     \row
+        \li \c {Qt NFC}
+        \li \c qtconnectivity
+    \row
         \li \l [QtPrintSupport]{Qt Print Support}
         \li \c qtbase
     \row
@@ -241,11 +247,20 @@
         \li \l {Qt Quick Widgets C++ Classes}{Qt Quick Widgets}
         \li \c qtdeclarative
     \row
+        \li \c {Qt SerialPort}
+        \li \c qtserialport
+    \row
         \li \l [QtSql]{Qt SQL}
         \li \c qtbase
     \row
         \li \l [QtWidgets]{Qt Widgets}
         \li \c qtbase
+    \row
+        \li \c {Qt WebSockets}
+        \li \c qtsockets
+    \row
+        \li \c {Qt WebEngine}
+        \li \c qtwebengine
     \endtable
 
     \section2 Example: Basic Qt Modules
