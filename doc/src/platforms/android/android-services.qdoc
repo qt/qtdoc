@@ -165,7 +165,7 @@ Also, add the \c receiver definition in the body of the \c <application> section
 
 \note Android 8.0 introduced some limitations on running background services,
 which means using a nomal \c Service class might not work. For more information,
-see Android's recommendation to use either \c {Android: Foreground services}{Foreground services}
+see Android's recommendation to use either \l {Android: Foreground services}{Foreground services}
 or \l {Android: JobIntentService}{JobIntentService}.
 
 \section2 Manage the Service in AndroidMnifest.xml
