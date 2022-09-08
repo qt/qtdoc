@@ -386,13 +386,13 @@ The following protocols are supported:
 server which supports CORS. This includes XMLHttpRequest from QML.
 \li QWebSocket connections to any host. Note that web pages served over the secure https protocol
 allows websockets connections over secure wss protocol only.
+\li Emulated POSIX TCP Sockets over WebSockets, using functionality provided by
+\l{https://emscripten.org/docs/porting/networking.html#emulated-posix-tcp-sockets-over-websockets}
+{Emscripten}. Note that this requires running a \l{https://github.com/novnc/websockify}
+{forwarding server} which handles socket translation.
 \endlist
 
 All other network protocols are not supported.
-
-In addition Emscripten supports \l{https://emscripten.org/docs/porting/networking.html}
-{emulated POSIX TCP sockets over WebSockets}. This is not currently supported by Qt's socket
-classes.
 
 \section2 Local File Access
 
