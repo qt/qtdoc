@@ -443,17 +443,12 @@
     for building Qt 5 from source.
 
     \list
-        \li \l ActivePerl - Install a recent version of ActivePerl
-            (\l{http://www.activestate.com/activeperl}{download page}) and add
+        \li \l Perl - Install a recent version of perl (for instance
+            (\l{https://strawberryperl.com/}{Strawberry Perl}) and add
            the installation location to your \c PATH.
         \li Python - Install Python from the \l{http://www.python.org/download/}{here}
            and add the installation location to your \c PATH.
     \endlist
-
-    \note Please make sure that the \c perl executable from ActivePerl is found
-           in the path before the perl executable provided by msysgit, since the
-           latter is outdated.
-
 
     ANGLE depends on these extra tools from the \l{GnuWin32 Project}{GnuWin32} and
     \l {http://sourceforge.net/projects/winflexbison/}{Win flex-bison}

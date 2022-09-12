@@ -211,11 +211,12 @@ QGraphicsView. In contrast, QQuickView inherits from QQuickWindow and uses the Q
 infrastructure introduced in Qt 5; any QGraphicsView-specific functionality is no longer available.
 
 
-\section3 qmlscene Utility
+\section3 Utilities: qmlscene and qml
 
 The \c qmlviewer tool provided for prototyping and testing QML applications in Qt 4.x has been
 replaced with the \c qmlscene tool which integrates with the new scenegraph features in Qt 5.
-
+In Qt 5.2, the \l{qtquick-qml-runtime.html}{qml} tool was added, intended as the eventual
+replacement for \c qmlscene.
 
 \section2 QML plugins
 
