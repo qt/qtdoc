@@ -11,7 +11,7 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li CentOS Linux 8.2
+    \row \li Red Hat 8.4
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
@@ -19,7 +19,7 @@
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP2
+    \row \li SUSE Linux Enterprise Server 15 SP4
         \li \c x86_64
         \li GCC 10
         \li
@@ -44,9 +44,13 @@
 //! [windows]
 \table 80%
     \header \li Operating System \li Architecture \li Compiler
-    \row \li Windows 10 (1809 or later)
+    \row \li Windows 11 21H2 (1809 or later)
         \li \c x86_64
-        \li MSVC 2019/2022, MinGW 11.2
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
+        \li
+    \row \li Windows 10 21H2 (1809 or later)
+        \li \c x86_64
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
     \row \li Windows on ARM
         \li \c arm64
