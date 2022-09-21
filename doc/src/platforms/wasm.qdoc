@@ -525,6 +525,13 @@ these restrictions by allowing synchronous calls (like QEventLoop::exec() and QD
 to yield to the event loop. Nested calls are not supported, and for this reason asyncify is
 not used for the top-level QApplication::exec() call.
 
+Features that require asyncify are:
+\list
+    \li QDialogs, QMessageBoxes with return values.
+    \li Drag and drop (specifically drag).
+    \li Nested/secondary event loops exec().
+\endlist
+
 As of Qt 6.4, Asyncify support is enabled in the binary package, but needs to be enabled for
 applications by adding -sASYNCIFY -Os to linker options:
 
