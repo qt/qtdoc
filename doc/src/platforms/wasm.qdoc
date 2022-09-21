@@ -530,7 +530,7 @@ set target_link_options(<target> PUBLIC -sASYNCIFY -Os)
 
 qmake:
 \badcode
-QMAKE_LFLAGS += -sASYNCIFY -Os)
+QMAKE_LFLAGS += -sASYNCIFY -Os
 \endcode
 
 Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
