@@ -339,6 +339,19 @@
     Qt is now fully supported on the WebAssembly platform. See the platform
     documentation at \l{Qt for WebAssembly} for details.
 
+    \section2 Mobile Platforms
+
+    \section3 Android
+
+    \list
+        \li Updated Gradle to 7.4.2 and Android Gradle Plugin to 7.2.1.
+        \li Updated NDK to r23b (23.1.7779620).
+        \li Added CMake variables \l QT_ANDROID_SIGN_APK and \l QT_ANDROID_SIGN_AAB
+            to build signed packages directly from CMake.
+        \li Android Accessibility is now aware of scroll events.
+        \li Improved assets loading speed for Android apps.
+    \endlist
+
     \section2 Embedded Platforms
 
     \section3 Boot to Qt
