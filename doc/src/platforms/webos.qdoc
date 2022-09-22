@@ -7,16 +7,32 @@
 \brief Platform Support for webOS OSE.
 \ingroup supportedplatform
 
-\e {webOS Open Source Edition} (webOS OSE) is an open-source edition of LG’s
-webOS, a web-centric and usability-focused software platform for smart devices.
-It supports development using both modern web application frameworks as well as
-native technologies including Qt and the \l {QML Applications}{QML} language.
+\e {webOS Open Source Edition} (webOS OSE) is an open source edition of LG’s
+\l{https:\\https://www.webosose.org/}{webOS}. webOS supports development using
+both modern web application frameworks as well as native technologies including
+Qt and the \l {QML Applications}{QML} language.
+
+\section1 Developing Applications with Qt for webOS
+
+Both native C++ and QML are supported but QML is suggested for application development. For information on
+how to develop QML applications for webOS see
+\l{https://www.webosose.org/docs/guides/development/qml-apps/qml-app-overview/}{LG's documentation}.
+
+There is also an \l{https://resources.qt.io/videos/how-to-build-qml-apps-for-webos-and-the-qt-creator-webos-plugin-2}{excellent talk}
+given by LG at a recent Qt world summit that discusses this in detail.
 
 \section1 Supported Platforms and Versions
 
-webOS OSE version 2.15.0 is supported for Qt 6. The reference hardware is
-Raspberry Pi 4, the main platform used by the community. Supported development
-host is Ubuntu 20.04.
+WebOS versions are released with modified Qt versions. The \b{meta-webosose} Yocto layer configuration
+creates a customized Qt configuration to depend on.
+
+The Qt Company has verified that \b{webOS OSE version 2.18.0} works with applications
+developed with Qt 6.4.
+
+The supported target device is a Raspberry Pi 4, which is the main platform
+currently used by the community. Also QEMU emulator is supported.
+
+The Supported development host is Ubuntu 20.04.
 
 \section1 Further Reading
 
