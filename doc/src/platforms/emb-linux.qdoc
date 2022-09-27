@@ -235,7 +235,7 @@
   the display performance is expected to be limited.
 
   However, since fbdev is being deprecated in the Linux kernel, the DRM dumb
-  buffer support is also available, as of Qt 5.9. To use it, set the
+  buffer support is also available. To use it, set the
   \c QT_QPA_FB_DRM environment variable to a non-zero value. When set, provided
   that dumb buffers are supported by your system, legacy framebuffer devices
   like \c{/dev/fb0} won't be accessed. Instead, the rendering is set up via the
@@ -514,7 +514,7 @@
 
   \section2 Advanced eglfs_kms Features
 
-  As of Qt 5.11, screen cloning (mirroring) is supported. This is enabled via
+  Screen cloning (mirroring) is supported. This is enabled via
   the \c clones property:
 
   \badcode
@@ -538,7 +538,7 @@
   - DP1 in the example - must ever perform a QOpenGLContext::swapBuffers() operation.
   It's up to the configuration and the application to ensure these.
 
-  As of Qt 5.11, headless mode via DRM render nodes is supported. This allows
+  Headless mode via DRM render nodes is supported. This allows
   performing GPU compute (OpenGL compute shaders, OpenCL) or off-screen OpenGL
   rendering without needing DRM master privileges. In this mode, applications can
   function even when there is already another process outputting to the screen.
