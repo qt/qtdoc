@@ -44,15 +44,13 @@ Check this with the following command:
     em++ --version
 \endcode
 
-Each minor version of Qt targets a specific minimum Emcsripten version, which will
-not change for the lifetime of that minor version. Qt's binary packages are
-built using this version of the Emscripten SDK. Install the minimum Emcsripten version
-that corresponds to the Qt version you use, especially if you use the binary packages.
+Each minor version of Qt targets a specific Emcsripten version, which remains unchanged
+in patch releases. Qt's binary packages are built using the target Emscripten version.
+Applications should use the same version since Emscripten does not guarantee 
+\l{https://github.com/emscripten-core/emscripten/blob/main/ChangeLog.md}{ABI compatibility}
+between versions.
 
-Later versions of Emscripten may work (and often do), but may introduce behavior
-changes which require changes to Qt.
-
-The minimum versions are:
+The Emcsripten versions are:
 \list
    \li Qt 6.2: 2.0.14
    \li Qt 6.3: 3.0.0
@@ -78,6 +76,10 @@ Check this with the following command:
 \badcode
     em++ --version
 \endcode
+
+You can build Qt from source if you require more flexibility when selecting the Emcsripten
+version. In this case the versions above are minimum versions. Later versions are
+expected to work but may introduce behavior changes which require making changes to Qt.
 
 \section2 Installing Qt
 
