@@ -41,6 +41,7 @@ Rectangle {
             PropertyChanges {
                 target: choosingCoffee
                 selected: true
+                x: Constants.defaultX
             }
         },
         State {
