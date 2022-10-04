@@ -31,6 +31,8 @@
   \brief Provides information about Embedded Linux support in Qt.
   \ingroup supportedplatform
 
+  \section1 Platform Plugins for Embedded Linux Devices
+
   On Embedded Linux systems, there are multiple platform plugins that you can
   use: EGLFS, LinuxFB, DirectFB, or Wayland. However, the availability of these
   plugins depend on how Qt is configured.
@@ -94,6 +96,7 @@
   Furthermore, APIs designed for desktop platforms or environments with a
   windowing system, such as \l{Drag and Drop}, are not supported on EGLFS.
 
+  \section3 Environment Variables Used by EGLFS
   If necessary, \c eglfs can be configured using the following environment
   variables:
 
@@ -148,7 +151,7 @@
     \row
       \li \c {QT_QPA_EGLFS_FORCE888}
       \li When set, the red, green, and blue color channel sizes are ignored
-          when \c eglfs creates a new context, window or offscreen surface.
+          when \c eglfs creates a new context, window or off-screen surface.
           Instead, the plugin requests a configuration with 8 bits per channel.
           This can be helpful on devices where configurations with less than 32
           or 24 bits per pixel (for example, 5-6-5 or 4-4-4) are chosen by
@@ -203,6 +206,8 @@
           configuration.
   \endtable
 
+  \section3 Logging
+
   In addition to \c {QT_QPA_EGLFS_DEBUG}, \c eglfs also supports Qt's modern
   categorized logging system. The following logging categories are available:
 
@@ -244,7 +249,7 @@
       EGLFS EGLDevice .................... no
       EGLFS GBM .......................... no
       EGLFS Mali ......................... no
-      EGLFS Rasberry Pi .................. yes
+      EGLFS Raspberry Pi ................. yes
       EGL on X11 ......................... no
   \endcode
 
@@ -259,7 +264,7 @@
   the display performance is expected to be limited.
 
   However, since fbdev is being deprecated in the Linux kernel, the DRM dumb
-  buffer support is also available, as of Qt 5.9. To use it, set the
+  buffer support is also available. To use it, set the
   \c QT_QPA_FB_DRM environment variable to a non-zero value. When set, provided
   that dumb buffers are supported by your system, legacy framebuffer devices
   like \c{/dev/fb0} won't be accessed. Instead, the rendering is set up via the
@@ -270,6 +275,8 @@
   \note When dumb buffers are in use, none of the options described below are
   applicable since properties like physical and logical screen sizes are all
   queried automatically.
+
+  \section3 Specifying Additional Settings
 
   The \c linuxfb plugin allows you to specify additional settings via the
   \c QT_QPA_PLATFORM environment variable or \c -platform command-line option.
@@ -341,6 +348,8 @@
   Launching it with the \c{-platform eglfs --multiscreen --timeout} arguments
   shows a rotating Qt logo on each connected screen for a few seconds.
 
+  \section3 Custom Configuration
+
   The KMS/DRM backend also supports custom configurations via a JSON file. To
   enable this, set the \c QT_QPA_EGLFS_KMS_CONFIG environment variable to the
   name of the file. You can also embed this file into the application via the Qt
@@ -389,7 +398,7 @@
   width\c{x}height, width\c{x}height\c{@}vrefresh, or a modeline string.
 
   Specifying \c current chooses a mode with a resolution that matches the
-  current one. Because modesetting is done only when the desired mode is
+  current one. Because mode-setting is done only when the desired mode is
   actually different from the active one (unless forced via the
   \c QT_QPA_EGLFS_ALWAYS_SET_MODE environment variable), this value is useful to
   preserve the current mode and any content in the planes not touched by Qt.
@@ -397,6 +406,8 @@
   \c skip causes the connector for the output to be ignored, as if it were
   disconnected. \c off is similar, but it changes the mode and turns off the
   display.
+
+  \section3 Default Behavior
 
   By default, all screens reported by the DRM layer are treated as one big virtual
   desktop. The mouse cursor implementation takes this into account and moves
@@ -461,6 +472,8 @@
   cursor's behavior may be unexpected with non-linear layouts. Touch should
   present no issues however.
 
+  \section3 Automatic Physic Screen Size Querying
+
   In some cases the automatic querying of the physical screen size via DRM may
   fail. Normally the \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
   \c QT_QPA_EGLFS_PHYSICAL_HEIGHT environment variable would be used to provide the
@@ -472,6 +485,8 @@
   because it may lead to unexpected issues due to some graphics stack components
   not knowing about multiple screens and relying solely on the first screen's
   values.
+
+  \section3 Active Outputs and QScreen Instances
 
   Each active output from the \c outputs array corresponds to one QScreen
   instance reported from QGuiApplication::screens(). By default, the primary screen
@@ -501,6 +516,8 @@
   a full windowing system. Windows overlapping multiple screens, non-fullscreen
   windows, and moving windows between screens, should be avoided and may not
   function as expected.
+
+  \section3 A Common Use Case
 
   The most common and best supported use case for a multi-screen setup is to
   open a dedicated QQuickWindow or QQuickView for each screen. With the default
@@ -538,7 +555,9 @@
 
   \section2 Advanced eglfs_kms Features
 
-  As of Qt 5.11, screen cloning (mirroring) is supported. This is enabled via
+  \section3 Cloning (Mirroring)
+
+  Screen cloning (mirroring) is supported. This is enabled via
   the \c clones property:
 
   \badcode
@@ -562,8 +581,10 @@
   - DP1 in the example - must ever perform a QOpenGLContext::swapBuffers() operation.
   It's up to the configuration and the application to ensure these.
 
-  As of Qt 5.11, headless mode via DRM render nodes is supported. This allows
-  performing GPU compute (OpenGL compute shaders, OpenCL) or offscreen OpenGL
+  \section3 Headless Mode Using DRM Render
+
+  Headless mode via DRM render nodes is supported. This allows
+  performing GPU compute (OpenGL compute shaders, OpenCL) or off-screen OpenGL
   rendering without needing DRM master privileges. In this mode, applications can
   function even when there is already another process outputting to the screen.
 
@@ -583,7 +604,7 @@
   screen size, hence the need for specifying a size in the \c headless
   property. There is also a lack of vsync-based throttling.
 
-  Once enabled, applications have two typical choices to perform offscreen
+  Once enabled, applications have two typical choices to perform off-screen
   rendering in headless mode:
 
   Use an ordinary window, such as a QOpenGLWindow subclass, targeting the
@@ -610,6 +631,8 @@
      ctx.doneCurrent();
   \endcode
 
+  \section3 DRM API Selection
+
   KMS/DRM can be used with two different DRM APIs which are \e legacy and \e atomic.
   The main benefit of DRM atomic API is to allow several DRM plane updates
   within the same renderloop, whereas legacy API would require one plane update
@@ -634,7 +657,7 @@
     }
   \endcode
 
-  \section2 eglfs with eglfs_kms_egldevice backend
+  \section2 EGLFS With an eglfs_kms_egldevice Backend
 
   This backend, typically used on Tegra devices, is similar to the KMS/DRM
   backend mentioned above, except that it relies on the EGLDevice and EGLStream
@@ -724,7 +747,7 @@
   systems where multiple input backends are available, set the environment
   variable \c QT_QPA_EGLFS_NO_LIBINPUT to \c 1.
 
-  \section2 eglfs with other backends
+  \section2 EGLFS with other backends
 
   Other backends, that are typically based on targeting the framebuffer or a
   composition API directly via the vendor's EGL implementation, usually provide
@@ -739,7 +762,7 @@
   kernel parameters may also be available as well to control the used
   framebuffer. Refer to the embedded board's documentation.
 
-  \section2 Video Memory
+  \section1 Video Memory
 
   Systems with a fixed amount of dedicated video memory may need extra care
   before running Qt application based on Qt Quick or classes like
@@ -817,7 +840,7 @@
   \section1 Related Topics
 
   \list
-   \li \l{Qt for Device Creation}
+   \li \l{Boot to Qt}
    \li \l{Configure an Embedded Linux Device}
    \li \l{Inputs on an Embedded Linux Device}
   \endlist
