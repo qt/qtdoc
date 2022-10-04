@@ -3,8 +3,8 @@
 
 /*!
 \page qtquick-performance.html
-\title Performance Considerations And Suggestions
-\brief Discussion of performance-related tradeoffs and best-practices
+\title QML Performance Considerations And Suggestions
+\brief Discussion of performance-related trade-offs and best-practices
 
 \section1 Timing Considerations
 
@@ -37,8 +37,9 @@ your event loop.
 
 The most important tip is: use the QML profiler included with Qt Creator. Knowing
 where time is spent in an application will allow you to focus on problem areas which
-actually exist, rather than problem areas which potentially exist. See the Qt Creator
-manual for more information on how to use the QML profiling tool.
+actually exist, rather than problem areas which potentially exist. See the
+\l{Qt Creator: Profiling QML Applications}{Qt Creator manual} for more
+information on how to use the QML profiling tool.
 
 Determining which bindings are being run the most often, or which functions your
 application is spending the most time in, will allow you to decide whether you need
@@ -452,7 +453,7 @@ sub-properties of a value-type is usually far less than the number of elements
 in a sequence), any increase in the number of bindings being re-evaluated needlessly
 will have a negative impact on performance.
 
-\section1 General Performance Tips
+\section2 General Performance Tips
 
 General JavaScript performance considerations resulting from the language design are applicable also to QML. Most prominently:
 
