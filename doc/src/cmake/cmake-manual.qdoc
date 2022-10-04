@@ -52,6 +52,7 @@
         \list
             \li \l{cmake-commands-qtcore}{Qt6::Core}
             \li \l{cmake-commands-qtdbus}{Qt6::DBus}
+            \li \l{cmake-macros-qtinterfaceframework}{Qt6::InterfaceFramework}
             \li \l{cmake-macros-qtlinguisttools}{Qt6::LinguistTools}
             \li \l{cmake-commands-qtqml}{Qt6::Qml}
             \li \l{cmake-macros-qtremoteobjects}{Qt6::RemoteObjects}
@@ -996,8 +997,6 @@
     \target cmake-macros-qtinterfaceframework
 
     \annotatedlist cmake-macros-qtinterfaceframework
-
-    \annotatedlist cmake-commands-qtdbus
 
     \section2 Qt6::LinguistTools
     \target cmake-macros-qtlinguisttools
