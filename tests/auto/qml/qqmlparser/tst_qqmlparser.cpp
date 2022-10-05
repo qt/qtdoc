@@ -100,7 +100,7 @@ void tst_qqmlparser::initTestCase()
 
 QStringList tst_qqmlparser::findFiles(const QDir &d)
 {
-    for (int ii = 0; ii < excludedDirs.count(); ++ii) {
+    for (int ii = 0; ii < excludedDirs.size(); ++ii) {
         QString s = excludedDirs.at(ii);
         if (d.absolutePath().endsWith(s))
             return QStringList();
