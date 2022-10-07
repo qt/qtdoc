@@ -83,6 +83,9 @@ manifestmeta.highlighted.names = "QtDoc/Coffee Machine Example" \
                                  "QtDoc/Qt Quick Demo - Same Game" \
                                  "QtDoc/Qt Quick Demo - Calqlatr"
 
+# Include 'Qt for Education' pages
+include(../edu/config/qtforeducation.qdocconf)
+
 # Fail the documentation build if there are more warnings than the limit
 warninglimit = 0
 
