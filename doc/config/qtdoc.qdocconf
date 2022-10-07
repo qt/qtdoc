@@ -87,6 +87,9 @@ manifestmeta.filters += coffeemachine
 manifestmeta.coffeemachine.names = "QtDoc/Coffee Machine Example"
 manifestmeta.coffeemachine.tags = quick,embedded
 
+# Include 'Qt for Education' pages
+include(../edu/config/qtforeducation.qdocconf)
+
 # Fail the documentation build if there are more warnings than the limit
 warninglimit = 0
 
