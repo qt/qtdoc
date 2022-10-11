@@ -46,7 +46,7 @@
     \header \li Operating System \li Architecture \li Compiler
     \row \li Windows 10 (1809 or later)
         \li \c x86_64
-        \li MSVC 2019/2022, MinGW 8.1
+        \li MSVC 2019/2022, MinGW 11.2
         \li
     \row \li Windows on ARM
         \li \c arm64
@@ -72,7 +72,7 @@ The following configurations are supported in this Qt release:
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 12.0.8 (NDK r23b) as provided by Google, MinGW 8.1
+        \li Clang 12.0.8 (NDK r23b) as provided by Google
         \li For JDK versions see \l{Java Development Kit (JDK)}
 \endtable
 \note Qt user apps require using the same NDK r23b version used for
