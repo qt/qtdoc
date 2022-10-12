@@ -6,8 +6,12 @@
    \title In-App purchasing demo
    \brief A complete mobile application that demonstrates purchasing in-app products.
    \ingroup qtpurchasing-examples
-   \ingroup android-examples
+   \ingroup android-examples io-examples
+   \meta {tag} {demo,quick,quickcontrols,purchasing,store,android,ios}
 
+    \note The Qt Purchasing module was one of the \l{Removed Modules in Qt 6.0},
+    and the code is now contained within this example as a guide on how you can
+    use Qt to integrate with common marketplaces.
 
    \section1 What is this demo?
    \image qthangman-example.png
@@ -18,7 +22,7 @@
    word to guess. By guessing a correct letter that occurs in the given word, the
    letter will be placed on the corresponding dash or dashes in the word. By
    guessing every letter of the word or just guessing the whole word correctly at
-   any time the game is over and you heve won. If the guess is wrong, one element
+   any time the game is over and you have won. If the guess is wrong, one element
    of a hanging stick figure is drawn. Once the figure is complete, you are out of
    guesses and you lose.
 
@@ -26,7 +30,8 @@
    application, for the Android and iOS platforms. In order to test the in-app
    purchase functionality in the the demo, you must first register the application
    and its products in the external store. For an introduction on how to do this,
-   see the guides for \l{Registering Products in Google Play}{Google Play} and \l{Registering Products in App Store}{App Store} respectively.
+   see the guides for \l{Registering Products in Google Play}{Google Play} and
+   \l{Registering Products in App Store}{App Store} respectively.
 
    \section1 3rd party app stores
 
@@ -83,10 +88,6 @@
    clicked by the user.
 
    \snippet demos/hangman/qml/StoreItem.qml 0
-
-   If you are planning to use QML in your project with purchasing functionality,
-   check out
-   \l{Getting Started with Qt Purchasing in QML}.
 
    Android and iOS use the base classes. From base classes there are derivative
    classes for android and ios:
