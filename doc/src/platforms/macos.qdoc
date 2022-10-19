@@ -601,25 +601,6 @@
     QCoreApplication::applicationDirPath() can be used to determine
     the path of the binary within the bundle.
 
-    \section2 Translating the Application Menu and Native Dialogs
-
-    The items in the Application Menu will be merged correctly for
-    localized applications, but they will not show up translated
-    until the application bundle contains a localized resource folder.
-    to the application bundle.
-
-    Essentially, there needs to be a file called
-    \e locversion.plist. Here is an example of an application with Norwegian
-    localization:
-
-    \snippet snippets/code/doc_src_mac-differences.qdoc 2
-
-    Afterwards, when the application is run with the preferred language set to
-    Norwegian, the menu items should display \gui Avslutt instead of \gui Quit.
-
-    The \l{http://developer.apple.com/library/mac/#documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html#//apple_ref/doc/uid/10000123i-CH101-SW13}{Bundle Programming Guide}
-    contains information about bundles and the localized resource folder.
-
     \section2 Using Native Cocoa Panels
 
     Qt's event dispatcher is more flexible than what Cocoa offers, and lets the
