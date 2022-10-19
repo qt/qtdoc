@@ -7,7 +7,7 @@ QMAKE_LFLAGS_SONAME  = -Wl,-install_name,@executable_path/../Frameworks/
 
 
 //! [1]
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MACOS
     CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
     CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
                                            kCFURLPOSIXPathStyle);
