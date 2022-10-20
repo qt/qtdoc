@@ -111,9 +111,21 @@
 
     \section1 Changes to Qt X11 Extras
 
-    The \qt5{qx11info.html}{\c QX11Info} class has been removed.
+    The \l {https://doc.qt.io/qt-5/qtx11extras-index.html}{Qt X11 Extras} module was removed in Qt 6.
 
-    Clients that still rely on the functionality can include the private
+    \list
+        \li For QX11Info::connection(), use QNativeInterface::QX11Application::connection() instead.
+        \li For QX11Info::display(), use QNativeInterface::QX11Application::display() instead.
+        \li For QX11Info::isPlatformX11(), check QNativeInterface::QX11Application existence instead.
+    \endlist
+
+    Make sure to check you can get a QNativeInterface::QX11Application object from QGuiApplication,
+    as in the following snippet:
+
+    \snippet snippets/porting-qx11info/testwindow.cpp 1
+
+    Clients that still rely on the functionality in \qt5{qx11info.html}{\c QX11Info}
+    class can include the private
     header \c {<QtGui/private/qtx11extras_p.h>} as a stopgap solution.
     To enable private headers use \c {QT += gui-private} with \c qmake,
     or add a project dependency to \c Qt::GuiPrivate with \c CMake.
