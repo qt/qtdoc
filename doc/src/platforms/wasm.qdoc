@@ -201,7 +201,7 @@ certificate.
 
 The web server also sets the \l{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy}{COOP}
 and \l{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy}{COEP}
-headers to values which enalbles support for \l{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer}{SharedArrayBuffer}
+headers to values which enables support for \l{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer}{SharedArrayBuffer}
 and multi-threading.
 
 The qtwasmserver script starts one server which binds to localhost by default. You may
