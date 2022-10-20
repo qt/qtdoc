@@ -188,6 +188,9 @@ browser separately. One of the simplest options is http.server from Python:
     python -m http.server
 \endcode
 
+Note that this is only a simple webserver and does not support SharedArrayBuffer required for
+threading, as the required COOP and COED headers mentioned below are not sent.
+
 \section3 qtwasmserver
 
 Qt provides a developer web server which uses \l{https://github.com/FiloSottile/mkcert}{mkcert}
