@@ -811,6 +811,62 @@
 
   For more details, see \l{Wayland and Qt}.
 
+  \section1 Performance enhancement guidelines
+
+  \section2 Use hardware rendering where possible
+  When performance is critical to your application, avoid the use of Qt modules
+  that rely on software rendering, such as \l{Qt Charts}. Prefer modules that rely on
+  hardware rendering instead, where possible.
+
+  \section2 Follow the best practices for Qt Quick
+
+  Follow the \l{Best Practices for QML and Qt Quick}, especially with regards to
+  including the \l{Building a QML application}{QML CMake API}, so that \l{qmllint},
+  \l{QML Script Compiler} (qmlsc), and the \l{QML Type Compiler} (qmltc) are available.
+  In addition, it's preferable to write declarative QML and minimize Javascript.
+  For more information on how using excessive JavaScript may impact performance see
+  \l{QML Performance Considerations And Suggestions}.
+
+  \section2 Use images/textures and shader effects instead of the Canvas QML type
+
+  For drawing custom UI elements, use images/textures and \l{Shader Effects}. Don't
+  use the QML \l[QML]{Canvas} type. Shaders require hardware acceleration (GPU).
+
+  \section2 Use Qt Quick instead of Qt Widgets
+
+  With Qt Quick, it's possible to use either hardware-accelerated or software-rendered backends.
+  For complex Uls, using Qt Widgets on embedded targets is not recommended, as it will always use
+  a software backend.
+
+  There are trade-offs here:
+  \list
+       \li Using the QML engine and Qt Quick comes with initial overhead.
+       \li If your UI is very simple and repaints rarely, it may perform faster when implemented
+       using Widgets instead of QML.
+       \li If your UI benefits from \l{Animation and Transitions in Qt Quick}{animations},
+       \l[QML]{Flickable}{smooth scrolling},and \l[QML]{Item::scale}{scaling},
+       \l[QML]{ShaderEffect}{rendering effects}, or \l{Qt Quick 3D}{3D} you need to have GPU
+       acceleration, and thus Qt Quick.
+  \endlist
+
+  \section2 Choose a resolution appropriate for your UI size
+
+  You need to be cautious with higher resolutions. Resolutions of 720p and higher
+  may reduce performance.
+
+  \section2 Use a QML Window type as your application's root element
+
+  Use a \l[QML]{Window} as your application's root element with the application's background
+  \l[QML]{Window::color}{color}.
+
+  The reasoning for this is that a Window component has a color property that has
+  the effect of being a buffer clear. Rendering the background using a full-screen
+  \l[QML]{Rectangle} as an application's root \l[QML]{Item} would cause an additional
+  draw call. For some RHI backends this may be the same thing, but there is a difference
+  between a \l{QOpenGLFunctions::glClear}{glClear} call and drawing a quad. In most cases,
+  a single, opaque image might not have a large performance impact but if you were to
+  use an alpha value in that item's color, you might see a significant performance impact.
+
   \section1 Related topics
 
   \list
