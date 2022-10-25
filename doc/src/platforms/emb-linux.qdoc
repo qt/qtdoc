@@ -1,29 +1,29 @@
-/****************************************************************************
-**
-** Copyright (C) 2020 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the documentation of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:FDL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** GNU Free Documentation License Usage
-** Alternatively, this file may be used under the terms of the GNU Free
-** Documentation License version 1.3 as published by the Free Software
-** Foundation and appearing in the file included in the packaging of
-** this file. Please review the following information to ensure
-** the GNU Free Documentation License version 1.3 requirements
-** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+-/****************************************************************************
+-**
+-** Copyright (C) 2023 The Qt Company Ltd.
+-** Contact: https://www.qt.io/licensing/
+-**
+-** This file is part of the documentation of the Qt Toolkit.
+-**
+-** $QT_BEGIN_LICENSE:FDL$
+-** Commercial License Usage
+-** Licensees holding valid commercial Qt licenses may use this file in
+-** accordance with the commercial license agreement provided with the
+-** Software or, alternatively, in accordance with the terms contained in
+-** a written agreement between you and The Qt Company. For licensing terms
+-** and conditions see https://www.qt.io/terms-conditions. For further
+-** information use the contact form at https://www.qt.io/contact-us.
+-**
+-** GNU Free Documentation License Usage
+-** Alternatively, this file may be used under the terms of the GNU Free
+-** Documentation License version 1.3 as published by the Free Software
+-** Foundation and appearing in the file included in the packaging of
+-** this file. Please review the following information to ensure
+-** the GNU Free Documentation License version 1.3 requirements
+-** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+-** $QT_END_LICENSE$
+-**
+-****************************************************************************/
 
 /*!
   \page embedded-linux.html
@@ -31,7 +31,7 @@
   \brief Provides information about Embedded Linux support in Qt.
   \ingroup supportedplatform
 
-  \section1 Platform Plugins for Embedded Linux Devices
+  \section1 Platform plugins for embedded Linux devices
 
   On Embedded Linux systems, there are multiple platform plugins that you can
   use: EGLFS, LinuxFB, DirectFB, or Wayland. However, the availability of these
@@ -49,8 +49,6 @@
 
   See \l{Configure an Embedded Linux Device} for an overview of configuring Qt
   for cross-compilation using an Embedded Linux toolchain.
-
-  \section1 Platform Plugins for Embedded Linux Devices
 
   \target embedded eglfs
   \section2 EGLFS
@@ -96,7 +94,7 @@
   Furthermore, APIs designed for desktop platforms or environments with a
   windowing system, such as \l{Drag and Drop}, are not supported on EGLFS.
 
-  \section3 Environment Variables Used by EGLFS
+  \section3 Environment variables used by EGLFS
   If necessary, \c eglfs can be configured using the following environment
   variables:
 
@@ -276,7 +274,7 @@
   applicable since properties like physical and logical screen sizes are all
   queried automatically.
 
-  \section3 Specifying Additional Settings
+  \section3 Specifying additional settings
 
   The \c linuxfb plugin allows you to specify additional settings via the
   \c QT_QPA_PLATFORM environment variable or \c -platform command-line option.
@@ -325,13 +323,13 @@
   set the \c{QT_QPA_FB_FORCE_FULLSCREEN} environment variable to \c 0 to
   restore the behavior from earlier Qt versions.
 
-  \section1 Display Output
+  \section1 Display output
 
   The level of support to target one or more displays from one single Qt application
   varies between the platform plugins. Support often depends on the device and its
   graphics stack.
 
-  \section2 EGLFS with the eglfs_kms Backend
+  \section2 EGLFS with the eglfs_kms backend
 
   When the KMS/DRM backend is in use, EGLFS reports all available screens in
   QGuiApplication::screens(). Applications can target different screens with
@@ -348,7 +346,7 @@
   Launching it with the \c{-platform eglfs --multiscreen --timeout} arguments
   shows a rotating Qt logo on each connected screen for a few seconds.
 
-  \section3 Custom Configuration
+  \section3 Custom configuration
 
   The KMS/DRM backend also supports custom configurations via a JSON file. To
   enable this, set the \c QT_QPA_EGLFS_KMS_CONFIG environment variable to the
@@ -407,7 +405,7 @@
   disconnected. \c off is similar, but it changes the mode and turns off the
   display.
 
-  \section3 Default Behavior
+  \section3 Default behavior
 
   By default, all screens reported by the DRM layer are treated as one big virtual
   desktop. The mouse cursor implementation takes this into account and moves
@@ -472,7 +470,7 @@
   cursor's behavior may be unexpected with non-linear layouts. Touch should
   present no issues.
 
-  \section3 Automatic Physic Screen Size Querying
+  \section3 Automatic physic screen size querying
 
   In some cases, the automatic querying of the physical screen size via DRM may
   fail. Normally the \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
@@ -486,7 +484,7 @@
   not knowing about multiple screens and relying solely on the first screen's
   values.
 
-  \section3 Active Outputs and QScreen Instances
+  \section3 Active outputs and QScreen instances
 
   Each active output from the \c outputs array corresponds to one QScreen
   instance reported from QGuiApplication::screens(). By default, the primary screen
@@ -517,7 +515,7 @@
   windows, and moving windows between screens, should be avoided and may not
   function as expected.
 
-  \section3 A Common Use Case
+  \section3 A common use case
 
   The most common and best supported use case for a multi-screen setup is to
   open a dedicated QQuickWindow or QQuickView for each screen. With the default
@@ -553,9 +551,9 @@
     }
   \endcode
 
-  \section2 Advanced eglfs_kms Features
+  \section2 Advanced eglfs_kms features
 
-  \section3 Cloning (Mirroring)
+  \section3 Cloning (mirroring)
 
   Screen cloning (mirroring) is supported. This is enabled via
   the \c clones property:
@@ -581,7 +579,7 @@
   - DP1 in the example - must ever perform a QOpenGLContext::swapBuffers() operation.
   It's up to the configuration and the application to ensure these.
 
-  \section3 Headless Mode Using DRM Render
+  \section3 Headless mode using DRM render
 
   Headless mode via DRM render nodes is supported. This allows
   performing GPU compute (OpenGL compute shaders, OpenCL) or off-screen OpenGL
@@ -631,7 +629,7 @@
      ctx.doneCurrent();
   \endcode
 
-  \section3 DRM API Selection
+  \section3 DRM API selection
 
   KMS/DRM can be used with two different DRM APIs which are \e legacy and \e atomic.
   The main benefit of DRM atomic API is to allow several DRM plane updates
@@ -657,7 +655,7 @@
     }
   \endcode
 
-  \section2 EGLFS With an eglfs_kms_egldevice Backend
+  \section2 EGLFS with an eglfs_kms_egldevice backend
 
   This backend, typically used on Tegra devices, is similar to the KMS/DRM
   backend mentioned above, except that it relies on the EGLDevice and EGLStream
@@ -762,7 +760,7 @@
   kernel parameters may also be available as well to control the used
   framebuffer. Refer to the embedded board's documentation.
 
-  \section1 Video Memory
+  \section1 Video memory
 
   Systems with a fixed amount of dedicated video memory may need extra care
   before running Qt applications based on Qt Quick or classes like
@@ -777,7 +775,7 @@
 
   Use the \c fb plugin parameter to specify the framebuffer device to use.
 
-  \section1 Unix Signal Handlers
+  \section1 Unix signal handlers
 
   The console-oriented platform plugins like eglfs and linuxfb install signal
   handlers by default to capture interrupt (\c SIGINT), suspend and continue
@@ -806,7 +804,7 @@
   means that it is up to the platform (the system image) to provide the
   necessary fonts.
 
-  \section1 Platform Plugins for Windowing Systems on Embedded Linux Devices
+  \section1 Platform plugins for windowing systems on embedded Linux devices
 
   \section2 XCB
 
@@ -837,7 +835,7 @@
 
   For more details, see \l{Wayland and Qt}.
 
-  \section1 Related Topics
+  \section1 Related topics
 
   \list
    \li \l{Boot to Qt}
