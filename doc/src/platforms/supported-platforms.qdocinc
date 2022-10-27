@@ -62,9 +62,9 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.13, 10.14, \b 10.15, 11.0
+    \row \li \macos 10.13, \macos 10.14, \macos 10.15, \macos 11
         \li \c x86_64 and \c x86_64h
-        \li Xcode 11 or \b 12 (11.1 SDK)
+        \li Xcode 11 or \b {Xcode 12} (11 SDK)
 \endtable
 //! [macos]
 
@@ -108,9 +108,15 @@
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
+<<<<<<< HEAD
     \row \li iOS 12, \b{iOS 13}, iOS 14
         \li \c armv8 (\c arm64)
         \li Xcode \b{11 (iOS 13.2 SDK)}, Xcode 12 (iOS 14 SDK)
+=======
+    \row \li iOS 12, iOS 13, iOS 14
+        \li \c armv8 (\c arm64)
+        \li  Xcode 11 (iOS 13.2 SDK), \b {Xcode 12} (iOS 14 SDK)
+>>>>>>> v5.15.7-lts-lgpl
         \li
     \row \li tvOS 12, tvOS 13
         \li \c armv8 (\c arm64)
