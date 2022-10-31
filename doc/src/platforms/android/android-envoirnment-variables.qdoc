@@ -1,0 +1,44 @@
+// Copyright (C) 2020 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page android-environment-variables.html
+\title Environment Variables Used by Qt for Android
+\brief Lists some useful environment variables used by the Qt For Android toolchain.
+\ingroup androidplatform
+
+\section1 Enabling or disabling workarounds
+
+Qt Android uses some environment variables to enable/disable certain workarounds:
+\section2 Commonly used variables
+\list
+    \li QT_ANDROID_NO_EXIT_CALL: In some cases, an Android app might not be able
+    to safely clean all threads while calling \c exit() and crash. This is because
+    there are C++ threads running and destroying these without joining them
+    terminates an application. These threads cannot be joined because it's not
+    possible to know if they are running.
+    This flag avoids calling \c exit() and lets the Android system handle this,
+    at the cost of not attempting to run global destructors.
+    \li QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT: Allows
+    the hiding of predictive text suggestions, mainly from password fields. Certain
+    devices don’t handle this properly.
+    \li QT_ANDROID_ENABLE_RIGHT_MOUSE_FROM_LONG_PRESS: Interprets a long touch press
+    as a right mouse click event.
+    \li QT_ANDROID_DISABLE_ACCESSIBILITY: Disable \l{Assistive Tools}{Accessibility}.
+    This prevents the processing of accessibility events.
+\endlist
+
+\section2 Less commonly used variables
+\list
+    \li QT_ANDROID_FONT_LOCATION: Sets a custom path for system fonts.
+    \li QT_ANDROID_MAX_ASSETS_CACHE_SIZE: cache size for assets under the
+    assets folder.
+    \li QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND
+    \li QT_ANDROID_RASTER_IMAGE_DEPTH
+    \li QT_ANDROID_MINIMUM_MOUSE_DOUBLE_CLICK_DISTANCE
+\endlist
+
+\note Though related, these are not the same as CMake commands or variables used
+by Qt For Android, see \l{Qt for Android: CMake}
+
+*/
