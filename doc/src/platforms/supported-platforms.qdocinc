@@ -72,12 +72,9 @@ The following configurations are supported in this Qt release:
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 12.0.8 (NDK r23b) as provided by Google
+        \li Clang 14.0.6 (NDK r25b) as provided by Google
         \li For JDK versions see \l{Java Development Kit (JDK)}
 \endtable
-\note Qt user apps require using the same NDK r23b version used for
-building the official Qt for Android libraries. A different
-version might be missing the symbols for \c __emutls_get_address.
 
 //! [android]
 
