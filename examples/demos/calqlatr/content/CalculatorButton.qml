@@ -10,13 +10,13 @@ Button {
     property bool dimmed: false
     property color textColor: "#eceeea"
 
-    width: 30
-    height: 50
+    width: 60
+    height: 64
     contentItem: Text {
         text: button.text
         font.pixelSize: 48
-        wrapMode: Text.WordWrap
-        lineHeight: 0.75
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
         color: (button.dimmable && button.dimmed) ? Qt.darker(button.textColor) : button.textColor
         Behavior on color {
             ColorAnimation {
