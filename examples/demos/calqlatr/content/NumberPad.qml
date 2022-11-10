@@ -5,8 +5,8 @@ import QtQuick
 
 Grid {
     columns: 3
-    columnSpacing: 32
-    rowSpacing: 16
+    columnSpacing: 2
+    rowSpacing: 2
 
     function updateDimmed(){
         for (let i = 0; i < children.length; i++){
