@@ -9,7 +9,7 @@
 There are two ways to install Qt:
 \list 1
 \li through the \e {Qt Installers} - downloads and installs Qt
-\li through the \e{Qt sources}.
+\li through the \e{Qt sources}
 \endlist
 
 You can download the Qt installers and sources from the \l Downloads page.
@@ -18,11 +18,12 @@ For more information, visit the \l{Getting Started with Qt} page.
 This page lists the relevant information for installing Qt by building the Qt
 sources. The installation procedure is different on each Qt platform. This page
 collects the relevant information for the \l{Supported Platforms}
-{supported platforms}.
+{supported platforms}. In addition, this page provides links to any
+module-specific system requirements.
 
 \section1 General Installation Information
 
-Building Qt revolves around using \c configure to configure Qt for a particular
+To build Qt from source, use \c configure to configure Qt for a particular
 platform with a particular set of Qt features or modules. For more information,
 visit the following page:
 
@@ -66,6 +67,14 @@ visit the following page:
 
 \list
 \li \l {Qt for iOS - Building from Source}
+\endlist
+
+\section1 Module-specific System Requirements
+
+\list
+    \li \l {Qt WebEngine Platform Notes} {Building Qt WebEngine from Source}
+    \li \l [QtQuick3D] {Building From Source}
+           {Building Qt Quick 3D from Source}
 \endlist
 
 \section1 Additional Information
