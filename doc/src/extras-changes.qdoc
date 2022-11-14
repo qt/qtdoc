@@ -26,19 +26,19 @@
 
     Most members of the QtMac namespace have \qt5{qtmac-obsolete.html}
     {explicit replacements}. The \qt5{qtmac-obsolete.html#fromCGImageRef}
-    {\c QtMac::fromCGImageRef} function has been removed due to lack of
+    {QtMac::fromCGImageRef} function has been removed due to lack of
     known clients of the API.
 
     \section2 QMacPasteboardMime
 
-    The \qt5{qmacpasteboardmime.html}{\c QMacPasteboardMime} class has been
+    The \qt5{qmacpasteboardmime.html}{QMacPasteboardMime} class has been
     removed due to warranting a cross-platform solution. See \qtbug QTBUG-93632
     for details.
 
     \section2 QMacToolBar
 
-    The \qt5{qmactoolbar.html}{\c QMacToolBar} and \qt5{qmactoolbaritem.html}
-    {\c QMacToolBarItem} classes have been removed. Use QToolBar as a replacement.
+    The \qt5{qmactoolbar.html}{QMacToolBar} and \qt5{qmactoolbaritem.html}
+    {QMacToolBarItem} classes have been removed. Use QToolBar as a replacement.
 
     \section1 Changes to Qt Windows Extras
 
@@ -81,7 +81,7 @@
 
     \section2 QWinMime
 
-    The \qt5{qwinmime.html}{\c QWinMime} class has been removed due to
+    The \qt5{qwinmime.html}{QWinMime} class has been removed due to
     warranting a cross-platform solution. See \qtbug QTBUG-93632 for details.
 
     Clients that still rely on the functionality can include the private headers
@@ -92,21 +92,21 @@
 
     \section2 QWinJumpList
 
-    The \qt5{qwinjumplist.html}{\c QWinJumpList}, \qt5{qwinjumplistcategory.html}
-    {\c QWinJumpListCategory}, and \qt5{qwinjumplistitem.html}{\c QWinJumpListItem}
+    The \qt5{qwinjumplist.html}{QWinJumpList}, \qt5{qwinjumplistcategory.html}
+    {QWinJumpListCategory}, and \qt5{qwinjumplistitem.html}{QWinJumpListItem}
     classes have been removed due to warranting a cross-platform solution.
     See \qtbug QTBUG-94007 for details.
 
     \section2 QWinTaskbarButton
 
-    The \qt5{qwintaskbarbutton.html}{\c QWinTaskbarButton} and \qt5{qwintaskbarprogress.html}
-    {\c QWinTaskbarProgress} classes have been removed due to warranting a cross-platform
+    The \qt5{qwintaskbarbutton.html}{QWinTaskbarButton} and \qt5{qwintaskbarprogress.html}
+    {QWinTaskbarProgress} classes have been removed due to warranting a cross-platform
     solution. See \qtbug QTBUG-94009 and \qtbug QTBUG-94008 for details.
 
     \section2 QWinThumbnailToolBar
 
-    The \qt5{qwinthumbnailtoolbar.html}{\c QWinThumbnailToolBar} and
-    \qt5{qwinthumbnailtoolbutton.html}{\c QWinThumbnailToolButton}
+    The \qt5{qwinthumbnailtoolbar.html}{QWinThumbnailToolBar} and
+    \qt5{qwinthumbnailtoolbutton.html}{QWinThumbnailToolButton}
     classes have been removed due to lack of known clients of the API.
 
     \section1 Changes to Qt X11 Extras
@@ -124,7 +124,7 @@
 
     \snippet snippets/porting-qx11info/testwindow.cpp 1
 
-    Clients that still rely on the functionality in \qt5{qx11info.html}{\c QX11Info}
+    Clients that still rely on the functionality in \qt5{qx11info.html}{QX11Info}
     class can include the private
     header \c {<QtGui/private/qtx11extras_p.h>} as a stopgap solution.
     To enable private headers use \c {QT += gui-private} with \c qmake,
@@ -142,12 +142,12 @@
 
     \section2 QAndroidJniObject and QAndroidJniEnvironment
 
-    The \qt5{qandroidjniobject.html}{\c QAndroidJniObject} and
-    \qt5{qandroidjnienvironment.html}{\c QAndroidJniEnvironment}
+    The \qt5{qandroidjniobject.html}{QAndroidJniObject} and
+    \qt5{qandroidjnienvironment.html}{QAndroidJniEnvironment}
     classes have been replaced by \l QJniObject and \l QJniEnvironment
     respectively.
 
-    The \qt5{qandroidjniexceptioncleaner.html}{\c QAndroidJniExceptionCleaner}
+    The \qt5{qandroidjniexceptioncleaner.html}{QAndroidJniExceptionCleaner}
     class is no longer needed. See QJniEnvironment::checkAndClearExceptions()
     for a replacement.
 
