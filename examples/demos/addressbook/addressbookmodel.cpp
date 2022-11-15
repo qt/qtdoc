@@ -116,7 +116,7 @@ void AddressBookModel::updateContacts()
     QList<ContactEntry> tmpContacts;
     const RestAccessManager::ContactsMap contactsMap = accessManager->getContacts();
     std::transform(contactsMap.constKeyValueBegin(), contactsMap.constKeyValueEnd(),
-                   std::back_inserter(contacts), toContactEntry);
+                   std::back_inserter(tmpContacts), toContactEntry);
 
     this->beginInsertRows(this->index(-1, -1), 0, this->rowCount());
     {
