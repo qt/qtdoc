@@ -95,6 +95,15 @@
     \row \li \c QT_HASH_SEED
          \li Set to an integer value to disable QHash and QSet using a new random ordering for
              each application run, which in some cases might make testing and debugging difficult.
+    \row \li \c QT_WIN_DEBUG_CONSOLE
+         \li On Windows, GUI applications are not attached to a console, so
+             output written to \c stdout and \c stderr is not visible to the
+             user. IDEs typically redirect and display output, but when running
+             an application from the command line, debug output is lost. To get
+             access to the output, set this environment variable to \c new to
+             make the application allocate a new console, or to \c attach to
+             make the application attempt to attach to the parent process'
+             console.
     \endtable
 
     \section1 Warning and Debugging Messages
