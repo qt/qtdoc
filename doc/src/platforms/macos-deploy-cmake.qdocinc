@@ -10,23 +10,23 @@
     installation prefix. If you have a Cmake build already, delete the
     \c CMakeCache.txt file. Then, rerun CMake:
 
-    \code
-        cmake -DCMAKE_PREFIX_PATH=path/to/Qt/6.4.0/your_platform -S <source-dir> -B <build-dir> -G Ninja
+    \badcode \QtVersion
+    cmake -DCMAKE_PREFIX_PATH=path/to/Qt/\1/your_platform -S <source-dir> -B <build-dir> -G Ninja
     \endcode
 
     Alternatively, use the convenience script \c qt-cmake, which sets the
     \c CMAKE_PREFIX_PATH variable for you.
 
-    \code
-        path/to/Qt/6.4.0/your_platform/bin/qt-cmake -S <source-dir> -B <build-dir> -G Ninja
+    \badcode
+    path/to/Qt/\1/your_platform/bin/qt-cmake -S <source-dir> -B <build-dir> -G Ninja
     \endcode
 
     Finally, go into your build directory and run your preferred build system.
     In this example, we're using \c Ninja.
 
-    \code
-        cd path/to/build/dir
-        ninja
+    \badcode
+    cd path/to/build/dir
+    ninja
     \endcode
 
     Now, provided that everything compiled and linked without any errors, you
