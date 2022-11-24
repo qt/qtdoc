@@ -136,7 +136,8 @@
     \section2 Architectures
 
     By default, Qt will build for the architecture of your development machine -
-    either \c x86_64, or \c arm64 if you are on an Apple Silicon Mac.
+    either \c x86_64 if you're on an Intel Mac, or \c arm64 if you are on an
+    Apple Silicon Mac.
 
     To build for other architectures you can use the \l
     {https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_ARCHITECTURES.html}
@@ -162,6 +163,16 @@
     SOURCES = main.cpp
     QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
     \endcode
+
+    \section3 Sub-architecture support on Intel Macs
+
+    In addition to the baseline \c x86_64 architecture, Qt also supports the
+    \c x86_64h ("Haswell") sub-architecture, which improves performance on Intel
+    Macs. The Qt \qtver binary packages, which are universal builds for both Intel
+    and Apple Silicon Macs, use \c x86_64h for the Intel slice of the libraries.
+    However, this does not affect how your application is built, so you can still
+    build using the default \c x86_64 Intel architecture. If needed, you can follow
+    Qt's default by specifying \c "x86_64h;arm64" for \c CMAKE_OSX_ARCHITECTURES.
 
     \section1 Generating Xcode Project Files
 
@@ -310,11 +321,14 @@
         As described in \l {Qt for \macos#Architectures}, Qt will
         build for the architecture of your development machine by
         default. To configure a universal build of Qt with support
-        for both \c x86_64 and \c arm64, add the following argument:
+        for both Intel and Apple Silicon Macs, add the following argument:
 
         \code
-        ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+        ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64h;arm64"
         \endcode
+
+        Be careful to specify the Intel architecture ("x86_64h") first,
+        otherwise Qt may not enable all the x86 functionality.
 
         Qt can also be configured to be built with debugging symbols. This
         process is described in detail in the \l{Debugging Techniques}
