@@ -321,24 +321,30 @@ Qt detects WebGL as OpenGL ES, with the following version mapping:
 \endtable
 
 OpengL ES 2 is selected by default, OpenGL ES 3 can be enabled by configuring Qt with
-the -feature-opengles3 option.
+the \c {-feature-opengles3} option.
 
-Qt for WebAssembly does not support mixing raster and OpenGL content. Supported
-use cases are pure raster apps using QWigets, and pure OpenGL apps using
-Qt Quick or QOpenGLWindow. QOpenGLWidget is not supported at this point (QTBUG-66944).
+Web and Desktop OpenGL differences are documented in
+\l {https://www.khronos.org/registry/webgl/specs/latest/1.0/#6}
+{WebGL and OpenGL Differences}.
+There are additional differences between WebGL 1.0 and WebGL 2.0,
+documented in the \l {https://www.khronos.org/registry/webgl/specs/latest/2.0}
+{WebGL 2.0 Specification}.
 
-Web and Desktop OpenGL differences are documented in:
-\l {https://www.khronos.org/registry/webgl/specs/latest/1.0/#6}{WebGL and OpenGL Differences}
-There are additional differences between WebGL 1.0 and WebGL 2.0 which are documented in:
-\l {https://www.khronos.org/registry/webgl/specs/latest/2.0}{WebGL 2.0 Specification}
+A WebGL-friendly subset of ES2 (and ES3) is used by default. If you need to use
+\c glDrawArrays and \c glDrawElements without bound buffers, you can enable full
+ES2 support by adding
 
- A WebGL-friendly subset of ES2 (and ES3) is used by default. If you need to use
- glDrawArrays and glDrawElements without bound buffers, you can enable full
- ES2 support by adding
-  target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES2=1")
+\badcode
+target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES2=1")
+\endcode
+
 and/or full ES3 emulation by adding
-  target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES3=1")
-to your projects CMakeFiles.txt
+
+\badcode
+target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES3=1")
+\endcode
+
+to your project's \c {CMakeFiles.txt}.
 
 \section2 Multithreading
 
