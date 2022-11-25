@@ -92,18 +92,22 @@
     Qt expresses the deployment target via the \l
     {https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html}
     {\c CMAKE_OSX_DEPLOYMENT_TARGET} or \c QMAKE_MACOSX_DEPLOYMENT_TARGET variables,
-    which has a default value set by Qt. You only need to change this default if you
-    know that your own code uses \macos APIs that are only available in a particular
-    version higher than what Qt defaults to. For example, with CMake:
+    which by default is set to the minimum supported deployment target for Qt.
+
+    You only need to raise the deployment target if your own code uses APIs
+    that were added in a \macos version higher than what Qt defaults to,
+    and you are not using \c @available checks to guard their use at runtime.
+
+    To raise the deployment target with CMake:
 
     \code
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "13.0")
     \endcode
 
     or with qmake:
 
     \code
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.15
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.0
     \endcode
 
     \note You should not lower the deployment target beyond the default value set by Qt.
