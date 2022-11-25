@@ -141,6 +141,8 @@ ApplicationWindow {
             DelegateChoice {
                 column: 0
                 delegate: Rectangle {
+                    SystemPalette { id: activePalette }
+                    color: activePalette.alternateBase
                     Button {
                         id: deleteButton
                         text: qsTr("Delete")
