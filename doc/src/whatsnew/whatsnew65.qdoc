@@ -34,32 +34,68 @@
     \section2 Qt Core Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QTimeZone can now package a Qt::TimeSpec and, when relevant, an offset
+            in a lightweight time representation that unifies the various APIs of
+            QDateTime and QDate that took either a QTimeZone or a Qt::TimeSpec
+            and offset.
     \endlist
 
     \section2 Qt GUI Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Reintroduced classes QWindowsMimeConverter and QUtiMimeConverter for handling
+            drag'n'drop and clipboard data in platform specific formats on Windows, macOS, and iOS.
     \endlist
 
     \section2 Qt Quick Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li TableView got support for editing cells using an edit delegate.
+        \li TableView got support for resizing rows and columns using the mouse.
+        \li TableView got support for setting row and column sizes explicitly.
+        \li TableView got a new signal 'layoutChanged()'. This signal can be used
+            to e.g reposition overlay items.
+        \li TableView got support for doing multi-selections
     \endlist
 
     \section2 Qt Quick Controls Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li TreeViewDelegate got support editing tree nodes
     \endlist
 
     \section2 Qt Widgets Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QKeySequenceEdit got two new properties:
+            \l{QKeySequenceEdit::}{maximumSequenceLength} allows applications
+            to control how long a key sequence be, and
+            \l{QKeySequenceEdit::}{finishingKeyCombinations} defines key
+            combinations that end the recording.
     \endlist
+
+    \section2 Qt Positioning Module
+
+    \list
+        \li Introduced \l SatelliteSource - a QML API for
+            \l QGeoSatelliteInfoSource.
+    \endlist
+
+    \section2 Qt Serial Bus Module
+
+    \list
+        \li Introduced \l QCanSignalDescription, \l QCanMessageDescription and
+            \l QCanUniqueIdDescription classes. These classes are used to
+            provide a set of rules to encode or decode CAN bus messages.
+        \li Introduced \l QCanFrameProcessor class. This class can be used to \
+            decode the received QCanBusFrame into a map of key-value pairs, and
+            also compose a QCanBusFrame out of a map of key-value pairs.
+        \li Introduced \l QCanDbcFileParser class. This class is used to parse
+            DBC files and generate message descriptions, which can later be
+            used in \l QCanFrameProcessor.
+    \endlist
+
+    All new classes are experimental and are subject to change.
 
     \section2 Qt Network Module
 
@@ -103,6 +139,14 @@
 
     \section2 Desktop Platforms
 
+    \section3 Windows
+
+    \list
+        \li The environment variable QT_WIN_DEBUG_CONSOLE can be set to see stdout/stderr messages
+            in a console window also for GUI applications that are started from the command line.
+            Set it to \c new or \c attach.
+    \endlist
+
     \section3 \macos on Apple Silicon
 
     \list
@@ -112,7 +156,6 @@
     \section3 Wayland Client on Linux
 
     \list
-        \li Updated NDK to r25b (25.1.8937393).
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
@@ -121,7 +164,9 @@
     \section3 Android
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li \li Updated Gradle to 7.5.1 and the Android Gradle Plugin (AGP) to 7.2.1
+        (requires JDK 11 or above).
+        \li Updated NDK to r25b (25.1.8937393).
     \endlist
 
     \section3 iOS
