@@ -15,7 +15,7 @@
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
-    \row \li openSUSE 15.3
+    \row \li openSUSE 15.4
         \li \c x86_64
         \li GCC 9
         \li
@@ -34,9 +34,9 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.14, 10.15, 11, 12
+    \row \li \macos 10.14, 10.15, 11, 12, 13
         \li \c x86_64, \c x86_64h, and \c arm64
-        \li Xcode 12 (11 SDK), \li Xcode 13 (12 SDK)
+        \li Xcode 13 (12 SDK), \li Xcode 14 (13 SDK)
 \endtable
 //! [macos]
 
@@ -89,9 +89,9 @@ version might be missing the symbols for \c __emutls_get_address.
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
-    \row \li iOS 13, iOS 14, iOS 15
+    \row \li iOS 13, iOS 14, iOS 15, iOS 16
         \li \c armv8 (\c arm64)
-        \li Xcode 12 (iOS 14 SDK), \b {Xcode 13} (iOS 15 SDK)
+        \li Xcode 12 (iOS 14 SDK), {Xcode 13} (iOS 15 SDK), \b {Xcode 14} (iOS 16 SDK)
         \li
 \endtable
 //! [ios]
