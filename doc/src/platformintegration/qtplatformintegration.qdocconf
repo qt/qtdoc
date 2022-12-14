@@ -10,6 +10,7 @@ depends += qtcore qtgui qtwidgets qtquick qtdoc qtwaylandcompositor
 sourcedirs = .
 headerdirs = .
 
+includepaths += .
 moduleheader = platformintegration.h
 
 qhp.projects = QtPlatformIntegration
