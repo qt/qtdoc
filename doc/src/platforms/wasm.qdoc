@@ -55,13 +55,14 @@ The Emcsripten versions are:
    \li Qt 6.2: 2.0.14
    \li Qt 6.3: 3.0.0
    \li Qt 6.4: 3.1.14
+   \li Qt 6.5: 3.1.25
 \endlist
 
 Use \c emsdk to install specific \c Emscripten versions. For example, to install
-it for Qt 6.4 enter:
+it for Qt 6.5 enter:
 \list
-    \li ./emsdk install 3.1.14
-    \li ./emsdk activate 3.1.14
+    \li ./emsdk install 3.1.25
+    \li ./emsdk activate 3.1.25
 \endlist
 
 On Windows, Emscripten is in your path after installation. On macOS or Linux
