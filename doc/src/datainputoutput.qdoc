@@ -1,10 +1,12 @@
-// Copyright (C) 2016 The Qt Company Ltd.
+// Copyright (C) 2022 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-\page topics-data-storage.html
-\title Data Storage
-\brief Qt's data storage features
+\page topics-data-io.html
+\title Data Input Output
+\brief Qt's data input output
+
+This page provides an overview of various ways of retrieving and saving data using Qt.
 
 \section1 Saving and Loading Data
 
@@ -13,7 +15,10 @@ in \l {Qt Core}. All classes that are used for reading and writing data
 inherit from it.
 
 Examples of devices are QFile, QBuffer, QTcpSocket, and QProcess.
-QFile is used for reading and writing text, binary files, and resources.
+QFile is used for reading and writing text, binary files, and \l resources,
+using the QIODevice interface. A QFile may be used by itself or, more
+conveniently, with a QTextStream or QDataStream.
+
 The QBuffer class provides a QIODevice interface for a QByteArray.
 QTcpSocket enables the developer to establish a TCP connection and transfer
 streams of data. QProcess is used to start external programs, and to read
@@ -22,10 +27,21 @@ from and write to that process.
 \list
 \li \l {Input/Output and Networking} (list of I/O related classes)
 \li \l {File and Datastream Functions}
-\li \l {Serializing Qt Data Types}
 \endlist
 
-\section1 SQL Support in Qt
+\section1 Serialized data
+The Qt API provides support for \l {qtserialization} {Data serialization} for
+several use cases.
+
+\list
+\li \l JSON support in Qt provides an easy to use C++ API to parse, modify
+    and save JSON data
+\li \l QDataStream class provides serialization of binary data to a QIODevice
+\li \l {Qt XML C++ Classes} provide C++ implementations of the \l XML Streaming
+    and DOM standards for XML
+\endlist
+
+\section1 Database
 
 The \l {Qt SQL} module uses driver plugins to communicate with several database
 APIs. Qt has drivers for SQLite, MySQL, DB2, Borland InterBase, Oracle, ODBC,
@@ -102,6 +118,17 @@ Qt provides APIs to read and parse XML streams, and also to write to these
 streams. The following key classes facilitate these actions by providing the
 necessary infrastructure:
 \list
+ \li QDomDocument class represents the entire XML document as a document tree and
+     provides primary access to the document's data.
+  \list
+    \li It has several functions for creating document data, for example,
+        \l {QDomDocument::createElement()} {createElement()}, \l {QDomDocument::createTextNode()}
+        {createTextNode()}, \l {QDomDocument::createComment()} {createComment()},
+        \l {QDomDocument::createCDATASection()} {createCDATASection()},
+        \l {QDomDocument::createProcessingInstruction()} {createProcessingInstruction()},
+        \l {QDomDocument::createAttribute()} {createAttribute()},
+        and \l {QDomDocument::createEntityReference()} {createEntityReference()}.
+  \endlist
  \li QXmlStreamReader class provides a parser to read XML. It is a well-formed
      XML 1.0 parser that does not include external parsed entities.
   \list
@@ -211,7 +238,7 @@ For example:
 
 \section1 Resources
 
-The Qt Resource System is a platform-independent mechanism for storing binary
+\l {The Qt Resource System} is a platform-independent mechanism for storing binary
 files in the application's executable. This is handy if your application
 frequently needs a certain file, or set of files. It also protects against
 loss of that particular file .
@@ -224,8 +251,13 @@ By default, resources are accessible from the application code by the same file
 name as they are stored in the source tree, with a \c{:/} prefix, or by a URL
 with a qrc scheme.
 
+\section1 Connectivity
 \list
-\li \l {The Qt Resource System}
+    \li \l {Qt Serial Port}
+    \li \l {Qt Modbus}
+    \li \l {Qt CAN Bus}
+    \li \l {Qt Bluetooth}
+    \li \l {Qt NFC}
 \endlist
 
 \section1 File Archiving
