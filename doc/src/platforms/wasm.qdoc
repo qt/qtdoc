@@ -568,6 +568,9 @@ the --device-option QT_WASM_SOURCE_MAP=1, and building a debug build.
     \li \l {https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map}
     \li \l {https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps#source_maps_in_devtools_sources_panel}
 \endlist
+\li Debug symbols via DWARF are also enabled if the program is linked with the -g flag (tested with Chrome)
+    \li This will require this extension: \l {https://goo.gle/wasm-debugging-extension}
+    \li See also \l {https://developer.chrome.com/blog/wasm-debugging-2020/}
 \li Mobile browsers can use remote debugging
 \list
     \li \l {https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging}
