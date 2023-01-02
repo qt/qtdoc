@@ -898,13 +898,6 @@
         \li Recommended tool for building Qt. Available in the Qt Online
             Installer and on \l{https://ninja-build.org}{ninja-build.org}.
     \row
-        \li Perl
-        \li -
-        \li Required build tool. Popular Windows installers are
-            \l{https://www.activestate.com/products/perl/downloads/}{ActiveState Perl}
-            and \l{https://strawberryperl.com/}{Strawberry Perl}. Perl is also
-            installed as part of \l{https://git-scm.com/download/win}{Git}.
-    \row
         \li Python
         \li Version 3
         \li Required build tool. Windows installers are available on
@@ -912,7 +905,7 @@
             \l{https://docs.python.org/3/using/windows.html#windows-store}{Microsoft Store}.
     \endtable
 
-    The executables \c{cmake.exe}, \c{ninja.exe}, \c{perl.exe}, and \c{python.exe}
+    The executables \c{cmake.exe}, \c{ninja.exe}, and \c{python.exe}
     must be available in your build environment. You achieve this by adding the
     respective directory to your \c{PATH} environment variable.
 
@@ -959,7 +952,7 @@
         as application.
 
         Depending on your individual setup, you might also need to make the
-        installation directories of CMake, Ninja, Perl, and Python part of the
+        installation directories of CMake, Ninja, and Python part of the
         \c{SET %PATH%} line above.
 
         \note Setups for MinGW are similar; they differ
