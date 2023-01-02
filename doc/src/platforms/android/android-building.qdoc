@@ -24,7 +24,6 @@
 
     \list
         \li MinGW 11.2 toolchain
-        \li \l{Perl}
     \endlist
 
     \note Qt for Android does not support building from source with Microsoft Visual C++ (MSVC).
@@ -34,8 +33,7 @@
 
     \badcode
         set MINGW_ROOT=<MINGW_ROOT_PATH>\bin
-        set PERL_ROOT=<PERL_ROOT_PATH>\bin
-        set PATH=%MINGW_ROOT%;%PERL_ROOT%;%PATH%
+        set PATH=%MINGW_ROOT%;%PATH%
     \endcode
 
     To verify the installation, run:
