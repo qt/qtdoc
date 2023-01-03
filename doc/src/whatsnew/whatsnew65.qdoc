@@ -114,7 +114,28 @@
     \section2 Qt QML Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li API has been added to \l QQmlApplicationEngine and \l QQmlComponent
+            to load/create QML elements via their module URI and type-name.
+            In contrast to the URL based functions, this also works with C++
+            types and inline components.
+        \li \l QQmlListProperty properties now behave more like arrays,
+            gaining support for methods like map(), reduce() and forEach().
+            The same holds for other sequence types, like QList<int> and
+            similar.
+        \li A new \l{AUTO_RESOURCE_PREFIX} attribute has been added to
+            \l{qt_add_qml_module} to automate the setting of resource prefixes.
+            If you use it, the QML engine will always be able to find your
+            QML modules in the resource file system.
+        \li Extended the \l{QML Type Compiler}{qmltc} to support more
+            qml constructs, notably translation bindings, inline
+            components, singletons and signal handlers for c++-defined
+            signals.
+        \li The \l{QML Script Compiler} can handle additional constructs. In
+            particular: console.log() and friends, \c{let} and \c{const},
+            qsTr() and friends, arg() for strings, all the remaining bitwise and
+            shift operators, the exponentiation operator.
+        \li \l{The QML Disk Cache} can be controlled in a more fine grained way
+            using the new environment variable \l{QML_DISK_CACHE}.
     \endlist
 
     \section2 Qt Quick 3D Module
