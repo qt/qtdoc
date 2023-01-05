@@ -120,7 +120,51 @@
     \section2 Qt Quick 3D Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added automatic level of detail (LOD) support for models. This
+            allows generating simplified versions of the meshes during asset
+            import and then automatically picking the appropriate level when
+            rendering.
+
+        \li Added explicit level of detail (LOD) support to control the opacity
+            of models based on the camera distance.
+
+        \li Added \l ExtendedSceneEnvironment, with built-in effects for depth
+            of field, color grading, glow, vignette, lens flare, and others.
+            These effects are performed together, increasing efficiency compared
+            to individual, stand-alone post-processing effects, each requiring
+            one or more render passes.
+
+        \li Enhanced \l DebugView with rendering statistics, the list of
+            active mesh and texture assets, and live render pass information, as
+            well as controls to interactively toggle settings, such as wireframe
+            mode and material overrides from DebugSettings.
+
+        \li Added \l DebugSettings, available via \l SceneEnvironment, allowing
+            programmatic control over settings such as wireframe mode and
+            material overrides to only render certain aspects of physically
+            based materials.
+
+        \li Added \l InfiniteGrid, implementing an infinite grid in the
+            horizontal plane with fade out.
+
+        \li Added built-in, simple fog support, available via \l
+            SceneEnvironment. When enabled, this applies a depth and/or height
+            fog effect when rendering the models in the scene.
+
+        \li Improved picking when instanced rendering is used.
+
+        \li Added vertex color support for \l PrincipledMaterial and \l
+            SpecularGlossyMaterial
+
+        \li Reflection probe: added support for using a provided cubemap texture
+            instead of rendering the scene.
+
+        \li Post-processing effects were enhanced to properly react to changes
+            in shader source file URIs at run time.
+
+        \li Added persistent, disk-based caching of runtime generated material
+            shader data. This is expected to improve application startup and
+            view change times.
     \endlist
 
     \section2 Qt Data Visualization Module
