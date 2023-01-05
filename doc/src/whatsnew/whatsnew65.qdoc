@@ -102,6 +102,14 @@
             to control how long a key sequence be, and
             \l{QKeySequenceEdit::}{finishingKeyCombinations} defines key
             combinations that end the recording.
+
+        \li Added stereoscopic rendering support to QOpenGLWidget, applicable
+            also to any QGraphicsView backed by a QOpenGLWidget viewport. Unlike
+            QOpenGLWindow, or the now-removed QGLWidget in Qt 5 and 4,
+            QOpenGLWidget needs explicit support for this with supporting APIs
+            in place, because applications do not directly render to the native
+            window in this case, and therefore do not have the same control over
+            the active draw buffers as they have with QOpenGLWindow.
     \endlist
 
     \section2 Qt Positioning Module
