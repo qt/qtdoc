@@ -53,6 +53,15 @@
     \list
         \li Reintroduced classes QWindowsMimeConverter and QUtiMimeConverter for handling
             drag'n'drop and clipboard data in platform specific formats on Windows, macOS, and iOS.
+
+        \li QVulkanInstance is now enabling Vulkan Portability physical devices
+            by default. This is required in order to be operational with newer
+            MoltenVK versions on Apple platforms. Added a NoPortabilityDrivers
+            flag as well to allow opting out from this.
+
+        \li The Vulkan rendering infrastructure is now using VK_EXT_debug_utils
+            instead of the deprecated VK_EXT_debug_report and
+            VK_EXT_debug_marker.
     \endlist
 
     \section2 Qt Quick Module
