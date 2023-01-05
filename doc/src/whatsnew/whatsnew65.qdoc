@@ -73,6 +73,19 @@
         \li TableView got a new signal 'layoutChanged()'. This signal can be used
             to e.g reposition overlay items.
         \li TableView got support for doing multi-selections
+
+        \li Added support for specifying separate RGB and alpha blend factors in
+            a QSGMaterial.
+
+        \li The Qt Quick scenegraph is now automatically utilizing persistent,
+            disk-based caching of graphics pipelines or the intermediate format
+            shader bytecode, depending on the platform and the 3D graphics API
+            in use. This is expected to reduce the time spent on graphics
+            pipeline creation in subsequent runs of the application. In
+            addition, QQuickGraphicsConfiguration provides explicit control over
+            if/where this data is written out and loaded from, thus enabling
+            advanced use cases such as shipping a pre-seeded cache file with an
+            application or device, thus accelarating first-time startup as well.
     \endlist
 
     \section2 Qt Quick Controls Module
