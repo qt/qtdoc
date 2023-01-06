@@ -14,6 +14,10 @@
     \list
         \li Qt Quick Effect Maker - A tool to create high-performance shader
             effects for Qt Quick.
+        \li \l{Qt Quick Effects QML Types}{Qt Quick Effects} - A module containing \l{MultiEffect}, for applying
+            one or more simple graphical effects on a Qt Quick \l{Item}.
+        \li \l{Qt Quick 3D Physics} - A physics engine for use with Qt Quick 3D.
+            This module is no longer a technology preview.
         \li Qt Location - a module for rendering 2D maps into a Qt Quick
             application. This module is in technical preview, API and ABI
             stability is not guaranteed.
@@ -60,7 +64,6 @@
     \list
         \li Reintroduced classes QWindowsMimeConverter and QUtiMimeConverter for handling
             drag'n'drop and clipboard data in platform specific formats on Windows, macOS, and iOS.
-
         \li QVulkanInstance is now enabling Vulkan Portability physical devices
             by default. This is required in order to be operational with newer
             MoltenVK versions on Apple platforms. Added a NoPortabilityDrivers
@@ -69,6 +72,8 @@
         \li The Vulkan rendering infrastructure is now using VK_EXT_debug_utils
             instead of the deprecated VK_EXT_debug_report and
             VK_EXT_debug_marker.
+        \li QTextLayout::glyphRuns() can now return the string index corresponding to each glyph,
+            when this is requested. Made available through the new function QGlyphRun::stringIndexes().
     \endlist
 
     \section2 Qt Quick Module
@@ -277,7 +282,7 @@
     \section3 Wayland Client on Linux
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Now supports fractional_scale_v1 protocol for compositors that suggest fractional scale factors for the client.
     \endlist
 
     \section2 Mobile Platforms
