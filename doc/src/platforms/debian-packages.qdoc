@@ -48,7 +48,8 @@
 
     \badcode
     $ mkdir -p $HOME/keyrings/tqtc  # pick a suitable location for you!
-    $ wget https://cdn.qt.io/debian/keys/qt-company-debian-repo.gpg $HOME/keyrings/tqtc
+    $ cd $HOME/keyrings/tqtc
+    $ wget https://cdn.qt.io/debian/keys/qt-company-debian-repo.gpg
     \endcode
 
     \section1 Configuring Authentication
@@ -69,19 +70,47 @@
           password <Qt Account password>
     \endcode
 
-    \section1 Repository Configuration Example
+    \section1 Updating Local Package Cache
 
-    The following code snippet demonstrates how you can configure repositories
-    for multiple Qt repositories:
+    Update the local package cache as follows:
 
     \badcode
+    $ sudo apt-get update
+    \endcode
+
+    No errors should originate from the added repository in the output.
+
+    \section1 Full Configuration Example
+
+    The following code snippet demonstrates the whole work flow with Qt Debian
+    packages:
+
+    \badcode
+    # install repository key
+    $ mkdir -p $HOME/keyrings/tqtc
+    $ cd $HOME/keyrings/tqtc
+    $ wget https://cdn.qt.io/debian/keys/qt-company-debian-repo.gpg
+
+    # configure Qt Account based authentication to Qt Debian repositories
+    $ sudo nano /etc/apt/auth.conf
+      machine https://debian-packages.qt.io
+      login <your Qt Account email>
+      password <your Qt Account password>
+
+    # add repositories
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg]
+        https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
 
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
-        deb [arch=amd64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-amd64 tqtc-focal main
+    # update local package cache
+    $ sudo apt-get update
 
-        # in case you need to put your Qt Account credentials directly into the repository entry
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://john.smith@company:password123@debian-packages.qt.io/debian/enterprise/qt-6.4.0-arm64 tqtc-jammy main
+    # search and install packages
+    $ apt-cache search qt6.3.1
+    ....
+    ....
+    # files are installed under /opt/qt-6.3.1/
+    $ sudo apt-get install qt6.3.1-declarative-dev qt6.3.1-declarative-private-dev ...
     \endcode
 
     See \l{Repository information for Qt Releases} to pick the needed
@@ -138,6 +167,21 @@
     Also, the following tables list the installation directories on your
     system and the Linux distribution used to build the packages.
 
+    \section2 Qt 6.3.2
+
+    \table
+    \header
+        \li Architecture
+        \li Distribution (build platform)
+        \li Installation directory
+        \li Package resource list entries for APT
+    \row
+        \li amd64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-6.3.2/aarch64-linux-gnu/
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.2-amd64 tqtc-focal main
+    \endtable
+
     \section2 Qt 6.3.1
 
     \table
@@ -147,12 +191,12 @@
         \li Installation directory
         \li Package resource list entries for APT
     \row
-        \li arm64
+        \li amd64
         \li focal-fossa (Ubuntu 20.04)
         \li /opt/qt-6.3.1/aarch64-linux-gnu/
         \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-amd64 tqtc-focal main
     \row
-        \li amd64
+        \li arm64
         \li focal-fossa (Ubuntu 20.04)
         \li /opt/qt-6.3.1/x86_64-linux-gnu/
         \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
