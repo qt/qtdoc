@@ -1,0 +1,228 @@
+/****************************************************************************
+**
+** Copyright (C) 2023 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qt-debian-packages.html
+    \brief Instructions How to Use Enterprise Qt Debian Packages
+    \title Enterprise Qt Debian Packages
+
+    To use Enterprise Debian packages with Qt, add your enterprise repositories to Advanced
+    Packaging Tool (APT). For details, see
+    \l{Debian Repository Configuration Format}.
+
+    To use the enterprise repositories, you need to:
+    \list
+        \li \l{Installing Public GPG Key}{Install a public GPG key} for enterprise repositories
+        \li \l{Configuring Authentication}
+        {Configure Qt Account based authentication} for enterprise repository
+        access
+        \li \l{Repository Configuration Example}{Configure repositories}
+    \endlist
+
+    \section1 Debian Repository Configuration Format
+
+    To add extra repositories for APT, insert repositories into a file with an
+    extension of \e{.list} under the \e{/etc/apt/sources.list.d} directory. For
+    each repository, add a new entry in the file. The generic format is as
+    follows:
+
+    \badcode
+    deb [arch=<arch> signed-by=<path>] <REPO_URL> <DIST> <COMPONENT(s)>
+    \endcode
+
+    An example of an enterprise repository entry:
+
+    \badcode
+    $ sudo nano /etc/apt/sources.list.d/tqtc.list
+
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
+    \endcode
+
+    See \l{Repository information for Qt Releases} for detailed information
+    on how you can configure repositories per Qt release and architecture.
+
+    \section1 Installing Public GPG Key
+
+    Install a public GPG (GNU Privacy Guard) key for Enterprise Qt Debian
+    repositories as follows:
+
+    \badcode
+    $ mkdir -p $HOME/keyrings/tqtc  # pick a suitable location for you!
+    $ cd $HOME/keyrings/tqtc
+    $ wget https://cdn.qt.io/debian/keys/qt-company-debian-repo.gpg
+    \endcode
+
+    \section1 Configuring Authentication
+
+    To access the listed repositories, you need an enterprise Qt Account
+    or an evaluation Qt Account.
+
+    \note If your password contains special characters, you may need to escape
+    those by using \b'\\' or \b'%40'.
+
+    Configure the Qt Account credentials for your APT package manager as follows:
+
+    \badcode
+    $ sudo nano /etc/apt/auth.conf
+
+          machine https://debian-packages.qt.io
+          login <Qt Account login name (email)>
+          password <Qt Account password>
+    \endcode
+
+    \section1 Updating Local Package Cache
+
+    Update the local package cache as follows:
+
+    \badcode
+    $ sudo apt-get update
+    \endcode
+
+    No errors should originate from the added repository in the output.
+
+    \section1 Full Configuration Example
+
+    The following code snippet demonstrates the whole work flow with
+    Enterprise Qt Debian packages:
+
+    \badcode
+    # install repository key
+    $ mkdir -p $HOME/keyrings/tqtc
+    $ cd $HOME/keyrings/tqtc
+    $ wget https://cdn.qt.io/debian/keys/qt-company-debian-repo.gpg
+
+    # configure Qt Account based authentication to Qt Debian repositories
+    $ sudo nano /etc/apt/auth.conf
+      machine https://debian-packages.qt.io
+      login <your Qt Account email>
+      password <your Qt Account password>
+
+    # add repositories
+    $ sudo nano /etc/apt/sources.list.d/tqtc.list
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg]
+        https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
+
+    # update local package cache
+    $ sudo apt-get update
+
+    # search and install packages
+    $ apt-cache search qt6.3.1
+    ....
+    ....
+    # files are installed under /opt/qt-6.3.1/
+    $ sudo apt-get install qt6.3.1-declarative-dev qt6.3.1-declarative-private-dev ...
+    \endcode
+
+    See \l{Repository information for Qt Releases} to pick the needed
+    repositories into your \e{/etc/apt/sources.list.d/tqtc.list} file.
+
+    \section1 Troubleshooting
+
+    \section2 Difficulties in authentication
+
+    The server may response with the following HTTP error codes:
+
+    \section3 401 Unauthorized
+
+    Wrong credentials. User email and password must be provided in correct format.
+
+    Also, try storing the credentials directly into the repository config:
+
+    \badcode
+    deb [...] https://<Qt Account email>:<Qt Account passwd>@https://debian-packages.qt.io/.....
+    \endcode
+
+    If your password contains special characters, you may need to escape those
+    for APT. Use '\' or '%40' for escaping those characters or try changing your
+    Qt Account password.
+
+    \section3 403 Forbidden
+
+    Missing credentials.
+
+    \section3 429 Too Many Requests
+
+    User has sent too much \b{failed} requests (3 requests per minute).
+
+    \section3 500 Internal Server Error
+
+    Contact \l{https://www.qt.io/contact-us}{Qt support}.
+
+    \section2 Difficulties with repository GPG key usage
+
+    An alternative to 'signed-by' usage attribute in the repository config is to
+    install the key in the following way, althoug this is not recommended as
+    it's deprecated way to install it:
+
+    \badcode
+    $ sudo apt-key add qt-company-debian-repo.gpg
+    \endcode
+
+    \section1 Repository information for Qt Releases
+
+    Below you find the Qt releases that the Enterprise Qt Debian packages
+    support. Pick the needed repositories and add them to your
+    \e{/etc/apt/sources.list.d/tqtc.list} as instructed above.
+
+    Also, the following tables list the installation directories on your
+    system and the Linux distribution used to build the packages.
+
+    \section2 Qt 6.3.2
+
+    \table
+    \header
+        \li Architecture
+        \li Distribution (build platform)
+        \li Installation directory
+        \li Package resource list entries for APT
+    \row
+        \li amd64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-6.3.2/aarch64-linux-gnu/
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.2-amd64 tqtc-focal main
+    \endtable
+
+    \section2 Qt 6.3.1
+
+    \table
+    \header
+        \li Architecture
+        \li Distribution (build platform)
+        \li Installation directory
+        \li Package resource list entries for APT
+    \row
+        \li amd64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-6.3.1/aarch64-linux-gnu/
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-amd64 tqtc-focal main
+    \row
+        \li arm64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-6.3.1/x86_64-linux-gnu/
+        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.3.1-arm64 tqtc-focal main
+    \endtable
+*/
