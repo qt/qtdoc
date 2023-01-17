@@ -46,6 +46,9 @@
             in a lightweight time representation that unifies the various APIs of
             QDateTime and QDate that took either a QTimeZone or a Qt::TimeSpec
             and offset.
+        \li Introduced \l{Application Permissions}{application permissions} API,
+            to allow applications to check or request permissions for features that
+            require user consent before use.
     \endlist
 
     \section2 Qt GUI Module
