@@ -302,8 +302,8 @@
     \target Info.plist
     \section2 Information Property List Files
 
-    Information property list file (Info.plist) on iOS and \macos is used for configuring
-    an application bundle. These configuration settings include:
+    Information property list file (Info.plist) on iOS and \macos is used for
+    configuring an application bundle. These configuration settings include:
 
     \list
         \li Application display name and identifier
@@ -312,7 +312,8 @@
         \li Icons and launch images
     \endlist
 
-    See the documentation on \l {https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html}
+    See the documentation on
+    \l {https://developer.apple.com/documentation/bundleresources/information_property_list}
     {Information Property List File} in iOS Developer Library for details.
 
     \section3 Info.plist with CMake
