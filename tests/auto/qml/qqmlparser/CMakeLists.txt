@@ -11,7 +11,7 @@ qt_internal_add_test(tst_qqmlparser_doc # special case
     SOURCES
         tst_qqmlparser.cpp
     DEFINES
-        SRCDIR=\\\"${CMAKE_CURRENT_SOURCE_DIR}\\\"
+        SRCDIR="${CMAKE_CURRENT_SOURCE_DIR}"
     LIBRARIES
         Qt::Gui
         Qt::QmlPrivate
