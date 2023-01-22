@@ -11,7 +11,8 @@ qtHaveModule(quick) {
         stocqt
 
     qtHaveModule(quickcontrols2) {
-        SUBDIRS += coffee
+        SUBDIRS += coffee \
+                   colorpaletteclient
 
         android|ios: SUBDIRS += hangman
     }
