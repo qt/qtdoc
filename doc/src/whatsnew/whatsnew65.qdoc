@@ -50,6 +50,9 @@
             to allow applications to check or request permissions for features that
             require user consent before use.
         \li New cross-platform tracing backend in Common Trace Format(CTF) format.
+        \li QBindable can now be constructed from any property with a NOTIFY signal.
+            This enables integration of existing, non-bindable properties with
+            \l{bindable properties}{Qt Bindable Properties}.
     \endlist
 
     \section2 Qt GUI Module
