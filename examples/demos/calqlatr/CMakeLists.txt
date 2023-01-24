@@ -38,6 +38,7 @@ qt6_add_qml_module(calqlatrexample
         "content/images/paper-edge-left.png"
         "content/images/paper-edge-right.png"
         "content/images/paper-grip.png"
+    RESOURCE_PREFIX /
 )
 
 install(TARGETS calqlatrexample
