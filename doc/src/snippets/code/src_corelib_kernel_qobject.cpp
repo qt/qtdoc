@@ -207,11 +207,6 @@ showMessage(tr("%n message(s) saved", "", n));
 //! [18]
 
 
-//! [19]
-n == 1 ? tr("%n message saved") : tr("%n messages saved")
-//! [19]
-
-
 //! [20]
 label->setText(tr("F\374r \310lise"));
 //! [20]
@@ -458,7 +453,3 @@ if (isSignalConnected(QMetaMethod::fromSignal(&MyObject::valueChanged))) {
 //~ magic-stuff This might mean something magic.
 QString text = MyMagicClass::tr("Sim sala bim.");
 //! [meta data]
-
-//! [explicit tr context]
-QString text = QScrollBar::tr("Page up");
-//! [explicit tr context]

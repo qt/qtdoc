@@ -70,15 +70,6 @@ void FileCopier::showProgress(int done, int total,
 //! [4]
 
 
-//! [5]
-QString s1 = "%1 of %2 files copied. Copying: %3";
-QString s2 = "Kopierer nu %3. Av totalt %2 filer er %1 kopiert.";
-
-qDebug() << s1.arg(5).arg(10).arg("somefile.txt");
-qDebug() << s2.arg(5).arg(10).arg("somefile.txt");
-//! [5]
-
-
 //! [8]
 int main(int argc, char *argv[])
 {
@@ -107,18 +98,6 @@ QByteArray encodedString = ...; // some ISO 8859-5 encoded text
 QTextCodec *codec = QTextCodec::codecForName("ISO 8859-5");
 QString string = codec->toUnicode(encodedString);
 //! [10]
-
-
-//! [11]
-void Clock::setTime(const QTime &time)
-{
-    if (tr("AMPM") == "AMPM") {
-        // 12-hour clock
-    } else {
-        // 24-hour clock
-    }
-}
-//! [11]
 
 
 //! [12]
