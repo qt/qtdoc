@@ -1,0 +1,248 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page localization.html
+    \previouspage Writing Source Code for Translation
+    \nextpage Translation Rules for Plural Forms
+
+    \ingroup internationalization
+
+    \title Localizing Applications
+    \brief Localizing Qt and Qt Quick apps into multiple languages.
+
+    The steps to localize applications include creating translatable
+    applications, preparing them for translation, translating the
+    strings, and creating runtime translation files for the released
+    application.
+
+    Qt Quick and Qt C++ applications use the same underlying localization system:
+    \c lupdate, \c lrelease, and the translation source (TS) files and QM files
+    that they generate. You use the same tools for both QML and C++ code, as
+    described in the \l {Qt Linguist Manual}.
+
+    You can even have user interface strings in QML and C++ source files in the
+    same application. The system will create a single combined translation file
+    and the strings are accessible from QML and C++ code.
+
+    To localize internationalized applications:
+
+    \list
+        \li \l {Specify Translation Sources in Qt Project Files}
+        \li \l {Deploy Translations}
+        \li \l {Use Qt Module Translations}
+    \endlist
+
+    \section1 Specify Translation Sources in Qt Project Files
+
+    To enable \c lupdate and \c lrelease to generate TS and QM files, update the
+    application project file to specify the source files that contain text
+    to be translated.
+
+    Use ISO language and country codes in the TS file name to determine
+    the language to load at runtime. For more information, see \l Languages.
+
+    The \c lupdate tool extracts user interface strings from your application.
+    It expects all source code to be encoded in UTF-8 by default. For more
+    information, see \l{Encoding}.
+
+    \section2 Using CMake
+
+    With \c CMake's target based API, the QML sources are passed
+    \c{qt_add_qml_module}'s \c QML_FILES property. The \c{qt_add_lupdate} function
+    collects them from the target.
+
+    Add the \l{cmake-commands-qtlinguisttools}{CMake commands} to
+    the \c CMakeLists.txt file. The following example adds translations
+    for an \e Arrowpad application:
+
+    \badcode
+    find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
+
+    ...
+
+    qt6_add_translations(arrowpad
+        TS_FILES arrowpad_fr.ts arrowpad_nl.ts
+        QM_FILES_OUTPUT_VARIABLE qm_files)
+    install(FILES ${qm_files} DESTINATION ${INSTALL_EXAMPLEDIR})
+    \endcode
+
+    \section2 Using qmake
+
+    When using qmake, set a conditional statement to hide the QML source from the
+    compiler that you list in the \c SOURCES or \c HEADERS entry in the .pro file.
+
+    The SOURCES variable is intended for C++ source files. If you list QML
+    or JavaScript source files there, the compiler tries to build them as though
+    they are C++ files. As a workaround, you can use an \c lupdate_only{...}
+    conditional statement so the \c lupdate tool sees the .qml files but the C++
+    compiler ignores them.
+
+    For example, the following .pro file snippet specifies two .qml files in
+    the application.
+
+    \code
+    lupdate_only{
+    SOURCES = main.qml \
+              MainPage.qml
+    }
+    \endcode
+
+    You can also specify the .qml source files with a wildcard match. The
+    search is not recursive, so you need to specify each directory that
+    contains source files that contain UI strings:
+
+    \code
+    lupdate_only{
+    SOURCES = *.qml \
+              *.js \
+              content/*.qml \
+              content/*.js
+    }
+    \endcode
+
+    \section1 Deploy Translations
+
+    Place the \c .qm files required for the application in a location where the
+    loader code using \l QTranslator can find them. Typically, you specify a path
+    relative to \l QCoreApplication::applicationDirPath().
+
+    In addition to the application's QM files, you need to deploy the QM files
+    for the Qt modules that you use in the application, unless they are installed
+    on the system.
+
+    The QM files are split up by module and there is a so-called meta catalog
+    file which includes the QM files of all modules. However, you only need to
+    deploy the QM files for the modules that you use in the application.
+
+    You can use the \c lconvert tool in the deploy step to concatenate the
+    required QM files into one file that matches the meta catalog file.
+    For example, to create a German translation file for an application that
+    uses the \l{Qt Core}, \l {Qt GUI}, and \l {Qt Quick} modules, run:
+
+    \code
+    lconvert -o installation_folder/qt_de.qm qtbase_de.qm qtdeclarative_de.qm
+    \endcode
+
+    \section1 Use Qt Module Translations
+
+    \target qt-itself
+    Qt modules contain several thousands of strings that also need to be
+    translated into the languages that you are targeting. You can find a
+    number of TS files in the \l {https://code.qt.io/cgit/qt/qttranslations.git/}
+    {qttranslations} repository. Before you start translating Qt, read the
+    wiki page \l{external: Translating Qt Into Other Languages}
+    {Translating Qt Into Other Languages}.
+
+    \section2 Locating Qt Translations
+
+    You can use QLibraryInfo::path() to locate the translations for the
+    Qt modules that your application uses. You can request the path to the
+    translations at run-time by passing QLibraryInfo::TranslationsPath to this
+    function.
+
+    \section2 Available Catalogs
+
+    The Qt translation catalogs are located in the \c qttranslations repository.
+
+    \warning Qt translations are contributed by the Qt community, and provided
+    without any guarantees. Translations might be missing, outdated, or entirely
+    incorrect, up to the point of being malicious. It is recommended that you
+    audit any translations you ship.
+
+    In Qt 4, there is one big, monolithic \c .qm file per locale. For example,
+    the file \c qt_de.qm contains the German translation of all libraries.
+
+    The \c qt_ meta catalog contains the still-existing Qt translations that
+    were included in the \c qt_ catalog in Qt 4. It was created to make porting
+    applications from Qt 4 to Qt 5 easier. The meta catalog depends on
+    translations that might be absent, because they belong to unnecessary or
+    deprecated modules, which might cause the loading of the translations to
+    fail. If you use modules that are new in Qt 5 or later in your application,
+    you must specify the names of the catalogs for those modules even if you
+    use the meta catalog.
+
+    The following table lists the translation catalogs available for the Qt
+    modules and tools in Qt.
+
+    \table
+    \header
+        \li Qt Module or Tool
+        \li Catalog
+    \row
+        \li \l {Qt Bluetooth}
+        \li \c qtconnectivity
+    \row
+        \li \l [QtConcurrent]{Qt Concurrent}
+        \li \c qtbase
+    \row
+        \li \l [QtCore]{Qt Core}
+        \li \c qtbase
+    \row
+        \li \l [QtDBus]{Qt D-Bus}
+        \li \c qtbase
+    \row
+        \li \l {Qt Designer}
+        \li \c designer
+    \row
+        \li \l [QtGui]{Qt GUI}
+        \li \c qtbase
+    \row
+        \li \l {Qt Help}
+        \li \c qt_help
+    \row
+        \li \l {Qt Linguist Manual}{Qt Linguist}
+        \li \c linguist
+    \row
+        \li \l {Qt Location}
+        \li \c qtlocation
+    \row
+        \li \l {Qt Multimedia}
+        \li \c qtmultimedia
+    \row
+        \li \l[Qt Network]{Qt Network}
+        \li \c qtbase
+    \row
+        \li \l {Qt NFC}
+        \li \c qtconnectivity
+    \row
+        \li \l [QtPrintSupport]{Qt Print Support}
+        \li \c qtbase
+    \row
+        \li \l {Qt QML}
+        \li \c qtdeclarative
+    \row
+        \li \l {Qt Quick}
+        \li \c qtdeclarative
+    \row
+        \li \l {Qt Quick Controls}
+        \li \c qtdeclarative
+    \row
+        \li \l {Qt Quick Widgets}
+        \li \c qtdeclarative
+    \row
+        \li \l {Qt Serial Port}
+        \li \c qtserialport
+    \row
+        \li \l [QtSql]{Qt SQL}
+        \li \c qtbase
+    \row
+        \li \l [QtWidgets]{Qt Widgets}
+        \li \c qtbase
+    \row
+        \li \l {Qt WebSockets}
+        \li \c qtsockets
+    \row
+        \li \l {Qt WebEngine}
+        \li \c qtwebengine
+    \endtable
+
+    \section2 Example: Essential Qt Modules
+
+    For example, to locate translations for essential Qt modules, such as Qt Core,
+    Qt GUI, Qt Network, and Qt Widgets, add the following code to the \c main()
+    function:
+
+    \snippet snippets/code/doc_src_i18n.cpp 14
+
+*/

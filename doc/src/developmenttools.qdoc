@@ -62,7 +62,7 @@
     Meson, and IncrediBuild projects.
 
     For more information about project templates and building in Qt Creator,
-    visit the following pages:
+    see:
     \list
     \li \l{Qt Creator: Build Systems}
     \li \l{Qt Creator: Building for Multiple Platforms}
@@ -76,7 +76,7 @@
     different targets. The \l{Qt Platform Abstraction} is an abstraction
     layer to facilitate Qt ports onto different platforms and targets.
 
-    For more information about building Qt, visit the following pages:
+    For more information about building Qt, see:
     \list
     \li \l{Build with CMake}
     \li \l{qmake Manual}
@@ -87,20 +87,17 @@
 
     \section1 Internationalization and Help Tools
 
-    You can localize your application to different languages. There is an
-    \l{Internationalization with Qt}{internationalization} framework within Qt
+    You can localize your application to different languages. Use the Qt
+    \l{Internationalization with Qt}{internationalization} framework
     for handling different writing systems, translating interfaces, and for
     displaying numbers, dates, and currency in different formats.
-    \l{Qt Linguist Manual}{Qt Linguist} is a tool for developers, translators,
-    and release managers to implement internationalization in applications.
-    The different roles can collaborate to produce, store, and deploy translated
-    text in the user interface.
+    \l{Qt Linguist Manual}{Qt Linguist} is a tool for translators for
+    translating applications. Together with release managers and developers,
+    they produce, store, and deploy translated text in the UI.
 
-    For more information about internationalization and localization, visit
-    these pages:
+    For more information about internationalization and localization, see:
     \list
     \li \l{Internationalization with Qt}
-    \li \l{Internationalization and Localization with Qt Quick}
     \li \l{Qt Linguist Manual}{Qt Linguist}
     \li \l{Writing Source Code for Translation}
     \endlist
