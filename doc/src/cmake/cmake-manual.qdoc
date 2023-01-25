@@ -519,8 +519,13 @@
             ├── mytype.h
     \endcode
 
-    The toplevel \c CMakeLists.txt file does some basic setup, and then uses
-    \c add_subdirectory to include the one in mylib. The subdirectory structure
+    The toplevel \c CMakeLists.txt file does some basic setup using
+    \l{qt6_standard_project_setup}{qt_standard_project_setup}, and then uses
+    \c add_subdirectory to include the one in mylib:
+
+    \quotefile snippets/cmake/helloworld_subdirs_qml_toplevel.cmake
+
+    The subdirectory structure
     corresponds to the QML module’s URI, but with the dots replaced by
     slashes. That’s the same logic the engine uses when it searches for a
     module in the \l{Import Statements}{import paths}. \c mytype.h declares a
