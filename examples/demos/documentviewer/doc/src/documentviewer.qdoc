@@ -1,0 +1,207 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \title Qt Demo - Document Viewer
+    \ingroup mainwindow-classes
+    \example demos/documentviewer
+    \brief A Widgets application to display and print Json, text and PDF files.
+    Demonstrates various features to use in widget applications:
+    Using QSettings, query and save user preferences, manage file histories and
+    control cursor behavior when hovering over widgets.
+    \image documentviewer_open.png
+    \meta {tag} {demo,widgets,mainwindow}
+
+    \e{Document Viewer} demonstrates how to use a QMainWindow with static
+    and dynamic tool bars, menus and actions.
+
+    The MainWindow class provides a common application screen with general menus,
+    actions and a tool bar. It provides functionality to open a file, determine the
+    content type and keep a list of previously opened files. It stores information
+    in QSettings and reads settings when launched.
+    Depending on the opened file's content type, it creates a suitable viewer to
+    display it and provide printing functionality.
+
+    \section1 Creating an executable
+
+    To create an executable, we use a standard main.cpp file.
+    First, we set the application's organization name:
+
+    \quotefromfile demos/documentviewer/main.cpp
+    \skipto int main
+    \printuntil QApplication::set
+    \endsection1
+
+    \section1 Creating an application and showing the main window
+
+    \quotefromfile demos/documentviewer/main.cpp
+    \skipto QApplication app
+    \printuntil }
+    \endsection1
+
+    \section1 The MainWindow class
+
+    The class constructor initializes the user interface created in Qt Designer.
+    It links the actions for opening a file and the about dialog to their implementation.
+
+    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \skipto ui->setupUi
+    \printuntil triggered
+
+    The \c mainwindow.ui file provides a QTabWidget on the left, where bookmarks and thumbnails
+    can be displayed. It provides a QScrollArea on the right, where the viewed file contents are
+    displayed.
+
+    The ViewerFactory class provides a static method to create a file type specific viewer.
+
+    \code
+    m_viewer = ViewerFactory::makeViewer(&file, ui->viewArea, this, questions());
+    \endcode
+
+    If the application settings contain a section for the viewer, it is passed to the viewer's
+    virtual restoreState method. Afterwards, the standard UI assets are passed to the viewer
+    and it's display widget is displayed in the main scroll area.
+
+    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \skipuntil void MainWindow::openFile
+    \skipto m_viewer->initViewer
+    \printuntil }
+    \endsection1
+
+    \section1 The ViewerFactory class
+
+    The only static method of the class takes a file, the widget where the viewed content is to be
+    displayed, the main window and the user questions.
+    Depending on the file's mime type, it creates an appropriate document viewer.
+
+    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \skipto AbstractViewer
+    \printuntil }
+    \endsection1
+
+    \section1 The AbstractViewer class
+
+    The class provides a generalized API to view and browse through a document, save and print it.
+    Properties of the document and the viewer itself can be queried: Does the document have content?
+    Has it been modified? Is an overview (thumbnails or bookmarks) supported?
+    The viewer's state can be saved to and restored from a QByteArray, which the application can
+    access to store in its settings.
+
+    AbstractViewer provides protected methods for classes inheriting from it, to create actions
+    and menus on the main window. In order to display these assets on the main window, they are
+    parented to it. AbstractViewer takes responsibility to remove and destroy the UI assets it
+    created. It inherits from QObject to provide access to signals and slots.
+
+    \section2 Signals
+
+
+    \code
+    void uiInitialized();
+    \endcode
+
+    The signal is emitted when AbstractViewer has received all necessary information about UI
+    assets on the main window.
+
+    \code
+    void printingEnabledChanged(bool enabled);
+    \endcode
+
+    This signal is emitted when document printing has been enabled or disabled, e.g. because a new
+    document has been successfully loaded or all content has been removed.
+
+    \code
+    void printStatusChanged(AbstractViewer::PrintStatus status);
+    \endcode
+
+    When printing has been started, this signal notifies about the printing progress.
+
+    \code
+    void documentLoaded(const QString &fileName);
+    \endcode
+    \endsection2
+
+    The signal notifies the application that a document has been loaded successfully.
+    \endsection1
+
+    \section1 The TextViewer class
+
+    A simple text viewer, inheriting from AbstractViewer.
+    It features editing text files, copy/cut and paste, printing and saving changes.
+
+    \section1 The JsonViewer class
+
+    The class displays a JSON file in a QTreeView.
+    It loads a file into a QJsonDocument, used to populate a custom tree model with
+    JsonItemModel.
+    This part of the JSON viewer demonstrates, how to implement custom item models inheriting from
+    QAbstractItemModel. The JsonTreeItem class provides basic API for manipulating JSON data
+    and propagating it back to the underlying QJsonDocument.
+
+    JsonViewer uses the toplevel objects as bookmarks for navigation. Other nodes (keys or
+    values) can be added as additional bookmarks or removed from the bookmark list.
+    A QLineEdit is used as a search field to navigate through the JSON tree.
+    \endsection1
+
+    \section1 The PdfViewer class
+    This is a fork of the QPdfViewerWidgets example.
+    It demonstrates the use of QScroller to smoothly flick through the document.
+    \endsection1
+
+    \section1 Additional classes for application features
+
+    \section2 The HoverWatcher class
+
+    The class can be used to set override cursors when the mouse is hovering over a widget and
+    to restore them upon departure.
+    In order to prevent multiple HoverWatcher instances created for the same widget, it is
+    implemented as a signleton per widget.
+
+    HoverWatcher inherits from QObject and the QWidget watched becomes the instance's parent.
+    An event filter is used to intercept the hover events without consuming them.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.cpp
+    \skipto HoverWatcher::HoverWatcher
+    \printuntil }
+
+    The actions watched are represented in an enum.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \skipto enum HoverAction
+    \printuntil };
+
+    Static methods create watchers, check their existence for a specific QWidget or dismiss
+    a watcher.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \skipto static HoverWatcher
+    \printuntil static void dismiss
+
+    A cursor shape can be specified or unset for each HoverAction. If no cursor shape is
+    specified for an action, the application's override cursor will be restored when it occurs.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \skipto public slots
+    \printuntil void unSetCursorShape
+
+    The mouseButtons property specifies, which mouse buttons to consider for the MousePress action.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \skipuntil public slots
+    \skipto setMouseButtons
+    \printuntil setMouseButton(
+
+    Action specific signals are emitted when an action has been processed.
+
+    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \skipto signals
+    \printuntil left();
+
+    A general signal is emitted which passes the processed action as an argument.
+
+    \code
+    void hoverAction(HoverAction action);
+    \endcode
+    \endsection2
+    \endsection1
+
+*/
