@@ -369,17 +369,21 @@ be enabled provided the web server sets the COOP and and COEP headers:
 
 \section2 SIMD
 
-The LLVM compiler supports generating \l{https://emscripten.org/docs/porting/simd.html}{WebAssembly SIMD}.
-Pass the -msimd128 flag at compile time to enable. This enables LLVM auto-vectorization, which
-makes it possible to benefit from SIMD without making source code modifications.
+Emscripten supports \l{https://emscripten.org/docs/porting/simd.html}{WebAssembly SIMD}, which
+provides 128-bit SIMD types and operations for WebAssembly.
+
+Build Qt from source and configure with the -feature-wasm-simd128 flag to enable; this will pass the
+-msimd128 flag at compile and link time. Note that Qt does not contain wasm-simd optimized
+code paths at this point, however enabling wasm-simd will enable compiler auto-vectorization
+where the compiler can use the SIMD instructions.
 
 You can target WebAssembly SIMD directly using either GCC/Clang SIMD Vector Extensions or WASM
 SIMD128 intrinsics. For more information, see the Emscripten
 \l{https://emscripten.org/docs/porting/simd.html}{ SIMD documentation }.
 
 In addition, Emscripten supports emulating/translating x86 SSE instructions to Wasm SIMD instructions.
-This emulation is no longer supported in Qt 6.5, as the use of SSE SIMD instructions that have no native
-Wasm SIMD equivalent may cause reduced performance.
+Qt does not use this emulation, as the use of SSE SIMD instructions that have no native Wasm SIMD
+equivalent may cause reduced performance.
 
 Note that SIMD-enabled binaries are incompatible with browsers that do not support WebAssembly SIMD,
 also if the SIMD code paths are not called at run-time. SIMD support may need to be enabled
