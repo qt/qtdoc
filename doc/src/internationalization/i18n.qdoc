@@ -146,7 +146,7 @@
     QString::toLocal8Bit(). On Unix systems, this is equivalent to \c toUtf8().
     On Windows, the system's current code page is used.
 
-    For converting from UTF-8 and local 8-bit encoding to Unicode, use the
+    For converting from UTF-8 and local 8-bit encoding to QString, use the
     QString::fromUtf8() and QString::fromLocal8Bit() convenience functions.
 
     \section2 Encoding Text Input/Output
