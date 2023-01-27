@@ -6,7 +6,7 @@
     \brief Instructions How to Use Enterprise Qt Debian Packages
     \title Enterprise Qt Debian Packages
 
-    To use Debian packaging with Qt, add your enterprise repositories to Advanced
+    To use Enterprise Debian packages with Qt, add your enterprise repositories to Advanced
     Packaging Tool (APT). For details, see
     \l{Debian Repository Configuration Format}.
 
@@ -43,7 +43,7 @@
 
     \section1 Installing Public GPG Key
 
-    Install a public GPG (GNU Privacy Guard) key for Qt Enterprise Debian
+    Install a public GPG (GNU Privacy Guard) key for Enterprise Qt Debian
     repositories as follows:
 
     \badcode
@@ -82,8 +82,8 @@
 
     \section1 Full Configuration Example
 
-    The following code snippet demonstrates the whole work flow with Qt Debian
-    packages:
+    The following code snippet demonstrates the whole work flow with
+    Enterprise Qt Debian packages:
 
     \badcode
     # install repository key
@@ -129,7 +129,7 @@
     Also, try storing the credentials directly into the repository config:
 
     \badcode
-    deb [...] https://<Qt Account email>:<Qt Account passwd>@https://debian-packages.qt.io/..... 
+    deb [...] https://<Qt Account email>:<Qt Account passwd>@https://debian-packages.qt.io/.....
     \endcode
 
     If your password contains special characters, you may need to escape those
@@ -160,7 +160,7 @@
 
     \section1 Repository information for Qt Releases
 
-    Below you can find the Qt releases that the enterprise Qt Debian packaging
+    Below you can find the Qt releases that the Enterprise Qt Debian packages
     supports. Pick the needed repositories and add them to your
     \e{/etc/apt/sources.list.d/tqtc.list} as instructed above.
 
