@@ -48,24 +48,8 @@
 
     \section2 Using CMake
 
-    With \c CMake's target based API, the QML sources are passed
-    \c{qt_add_qml_module}'s \c QML_FILES property. The \c{qt_add_lupdate} function
-    collects them from the target.
-
-    Add the \l{cmake-commands-qtlinguisttools}{CMake commands} to
-    the \c CMakeLists.txt file. The following example adds translations
-    for an \e Arrowpad application:
-
-    \badcode
-    find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
-
-    ...
-
-    qt6_add_translations(arrowpad
-        TS_FILES arrowpad_fr.ts arrowpad_nl.ts
-        QM_FILES_OUTPUT_VARIABLE qm_files)
-    install(FILES ${qm_files} DESTINATION ${INSTALL_EXAMPLEDIR})
-    \endcode
+    Add the \l qt_add_translations command to the \c CMakeLists.txt file to
+    create targets for updating TS files and transforming them into QM files.
 
     \section2 Using qmake
 
