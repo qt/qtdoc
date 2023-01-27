@@ -87,8 +87,9 @@ expected to work but may introduce behavior changes which require making changes
 Download Qt from the Downloads section of your Qt account. We provide builds
 for Linux, macOS, and Windows as development platforms.
 
-The binary builds are designed to run on as many browsers as possible,
-and do not enable features such as threads or SIMD support.
+The binary builds are designed to run on as many browsers as possible, and come
+in single-threaded and multi-threaded versions. Non-standard features such as wasm
+SIMD and wasm exceptions are not supported by the binary builds.
 
 \target wasm-building-qt-from-source
 \section2 Building Qt from Source
@@ -349,19 +350,41 @@ to your project's \c {CMakeFiles.txt}.
 
 \section2 Multithreading
 
-Qt supports multithreading on WebAssembly, however this feature is experimental
-and is not enabled by default. Thread support can be enabled by building Qt from
-source and using the "-feature-thread" configure flag.
+Qt for WebAssembly supports multithreading using Emscripten's \l{https://emscripten.org/docs/porting/pthreads.html}
+{Pthreads support}, where each thread is backed by a \l{https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API}{web worker}.
+Enable multithreading by installing the "WebAssembly (multi-threaded)" component from the Qt Maintenance Tool,
+or by building Qt from source and passing the "-feature-thread flag to configure.
 
-The Qt for WebAssembly binary packages do not support multithreading.
+Existing threading code can generally be reused, but may need to be modified to work around
+\l{https://emscripten.org/docs/porting/pthreads.html#special-considerations}{spesifics} of the
+pthread implementation. Some Emscripten and Qt features are not supported, this includes
+the \l {https://emscripten.org/docs/porting/pthreads.html#proxying}{thread proxying} feature and
+the Qt Quick threaded render loop.
 
-Emscripten implements support for pthreads using web workers, and this abstraction
-is not completely leak free. See \l {https://emscripten.org/docs/porting/pthreads.html}{Pthreads Support}
-for further info.
+Be aware that it is especially important to \l{https://emscripten.org/docs/porting/pthreads.html#blocking-on-the-main-browser-thread}
+{not block the main thread} on Qt for WebAssembly, since the main thread might be required to service
+requests from secondary threads. For example, all timers in Qt are scheduled on the main thread, and
+will not fire if the main thread is blocked. Another example is that creating a new web worker (for
+a thread) can only be done from the main thread.
 
-Multithreading requires browser support for SharedArrayBuffer, see \l {https://caniuse.com/sharedarraybuffer}
-{ caniuse sharedarraybuffer } for current supported status. If supported, SharedArrayBuffer will
-be enabled provided the web server sets the COOP and and COEP headers:
+Emscripten provides some mitigations for this. Short-term waits such as acquiring a mutex lock is
+supported by busy-waiting and processing events while waiting for the lock. Longer waits on the main
+thread should be avoided. In particular, the common practice of calling QThread::wait()
+or pthread_join() to wait for a secondary thread will not work, unless the application can guarantee
+that the thread (and web worker) has already been started, and will be able to complete without assistance
+from the main thread at the time that the wait() or join() call is made.
+
+The multithreading feature requires browser support for the \l{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer}
+{SharedArrayBuffer} API. (Normally, Emscripten stores the heap in an ArrayBuffer object. For
+multithreading, the heap must be shared with web workers and a SharedArrayBuffer is needed) This API
+is generally available in all modern browsers, but may be disabled if certain security requirements
+are not met. WebAssembly binaries with thread support enabled will then fail to run, also if the
+binary does not actually start a thread.
+
+Enabling SharedArrayBuffer requires a secure browsing context (where the page is served over https://
+or http://localhost), and that the page is in cross-origin isolated mode. The latter can be done by
+setting the so called COOP and COEP headers on the web server:
+
 \list
 \li Cross-Origin-Opener-Policy: same-origin
 \li Cross-Origin-Embedder-Policy: require-corp
