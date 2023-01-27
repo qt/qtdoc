@@ -48,6 +48,7 @@ target_link_libraries(photosurface PUBLIC
 set(photosurface_resource_files
     "photosurface.qml"
     "resources/folder.png"
+    "resources/MomentumAnimation.qml"
 )
 
 qt6_add_resources(photosurface "photosurface"
@@ -56,12 +57,6 @@ qt6_add_resources(photosurface "photosurface"
     FILES
         ${photosurface_resource_files}
 )
-
-if(TARGET Qt::Widgets)
-    target_link_libraries(photosurface PUBLIC
-        Qt::Widgets
-    )
-endif()
 
 install(TARGETS photosurface
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"

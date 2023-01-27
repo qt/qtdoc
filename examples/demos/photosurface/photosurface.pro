@@ -1,7 +1,6 @@
 TEMPLATE = app
 
 QT += qml quick
-qtHaveModule(widgets): QT += widgets
 SOURCES += main.cpp
 RESOURCES += photosurface.qrc
 

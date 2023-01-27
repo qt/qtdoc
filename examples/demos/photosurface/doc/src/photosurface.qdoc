@@ -6,15 +6,15 @@
     \ingroup qtquickdemos
     \example demos/photosurface
     \brief A QML app for touch devices that uses a Repeater with a
-    FolderListModel to access content in a folder, and a PinchArea that contains
-    a MouseArea to handle pinch gestures on the fetched content.
+    FolderListModel to access content in a folder, and a PinchHandler
+    to handle pinch gestures on the fetched content.
     \image qtquick-demo-photosurface-small.png
     \meta {tag} {demo,quick,touch}
 
     \e{Photo Surface} demonstrates how to use a \l{Repeater} with a
-    FolderListModel and a FolderDialog to access images from a folder selected
-    by a user and how to handle dragging, rotation and pinch zooming within the
-    same item using a \l PinchArea that contains a \l MouseArea.
+    \l FolderListModel and a \l FolderDialog to access images from a folder selected
+    by a user, and how to handle dragging, rotation and pinch zooming within the
+    same item using \l {Qt Quick Input Handlers}.
 
     All the app code is contained in one QML file, \c photosurface.qml. Inline
     JavaScript code is used to place, rotate, and scale images on the photo
@@ -30,18 +30,13 @@
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto Window {
-    \printuntil currentFrame
-
-    To use the \l{Window} type, we must import it:
-
-    \code
-    import QtQuick.Window
-    \endcode
+    \printuntil imageNameFilters
 
     \section1 Accessing Folder Contents
 
-    We use a \l{Repeater} QML type together with the FolderListModel to display
-    GIF, JPG, and PNG images located in a folder:
+    We use a \l{Repeater} QML type together with the \l FolderListModel to display
+    at least the GIF, JPG, and PNG images located in a folder (although main.cpp
+    may expand the list of supported image types):
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto Repeater
@@ -63,72 +58,88 @@
     To use the FolderDialog type, we add the following import statement:
 
     \code
-    import Qt.labs.platform
+    import QtQuick.Dialogs
     \endcode
 
     We use the \c {folderDialog.open()} function to open the file dialog when the
-    app starts:
+    app starts, if a folder path has not already been given as a command-line argument:
 
-    \code
-    Component.onCompleted: folderDialog.open()
-    \endcode
+    \skipto StandardKey.Quit
+    \skipto Component.onCompleted: {
+    \printuntil }
 
     Users can also click the folder dialog icon to open it. We use
-    an \l{Image} QML type to display the icon. Inside the \l{Image} type, we
-    use a MouseArea with the \c onClicked signal handler to call the
+    an \l{Image} QML type to display the icon. Inside the \l{Image} type,
+    we use a \l TapHandler with the \c onTapped signal handler to call the
     \c {folderDialog.open()} function:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipuntil Image {
     \skipto Image {
+    \printuntil Shortcut {
     \printuntil }
     \printuntil }
 
     \section1 Displaying Images on the Photo Surface
 
     We use a \l{Rectangle} as a delegate for a \l{Repeater} to provide a frame
-    for each image that the FolderListModel finds in the selected folder. We use
+    for each image that the \l FolderListModel finds in the selected folder. We use
     JavaScript \c Math() methods to place the frames randomly on the photo
-    surface and to rotate them at random angles, as well as to scale the images:
+    surface and to rotate them at random angles, as well as to scale the images.
+    The border color indicates the state of interaction:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto Rectangle
-    \printuntil Component.onCompleted
+    \printuntil Image
     \printuntil }
 
-    \section1 Handling Pinch Gestures
+    \section1 Handling Drag and Pinch Gestures, and the Mouse
 
-    We use a PinchArea that contains a MouseArea in the photo frames to handle
-    dragging, rotation and pinch zooming of the frame:
+    We use a \l DragHandler and a \l PinchHandler in each photo frame to
+    handle dragging, pinch zooming and rotation:
 
-    \skipto PinchArea
-    \printuntil onPinchStarted
+    \skipto PinchHandler
+    \printto HoverHandler
 
-    We use the \c pinch group property to control how the photo frames react to
-    pinch gestures. The \c pinch.target sets \c photoFrame as the item to
-    manipulate. The rotation properties specify that the frames can be rotated
-    at all angles and the scale properties specify that they can be scaled
-    between \c 0.1 and \c 10.
+    Because the PinchHandler is declared inside the Rectangle, the
+    \c PinchHandler.target property is implicitly set so that pinch gestures
+    manipulate the Rectangle. The rotation properties specify that the frames
+    can be rotated to all angles, and the scale properties specify that they
+    can be scaled between \c 0.1 and \c 10. The pinch gesture works equally
+    well on a touchscreen or multi-touch touchpad. Transforming the frame
+    transforms its contents (the \l Image).
 
-    In the MouseArea's \c onPressed signal handler, we raise the selected photo
-    frame to the top by increasing the value of its \c z property. The root item
-    stores the z value of the top-most frame. The border color of the photo
-    frame is controlled in the \c onEntered signal handler to highlight the
-    selected image:
+    The \c DragHandler.target property is implicitly set as well, so that you
+    can drag a photo with one finger on a touchscreen or touchpad, or with a
+    mouse. In the DragHandler's \c onActiveChanged signal handler, we raise the
+    selected photo frame to the top by increasing the value of its \c z
+    property (while the shared \c highestZ property holds the largest \c z
+    value that has been used so far). When dragging ends, we begin an animation
+    to keep it moving in the same direction for a little while, slowing down
+    and coming to a stop. If you "fling" a photo past the edge of the surface,
+    the surface expands to accommodate its new position. You can move around to
+    view different parts of the surface via the ScrollView that contains the
+    Repeater and all the photo frames that it populates.
 
-    \skipto MouseArea
-    \printuntil onEntered
+    Since you can drag two photos with two fingers via their DragHandlers, and
+    you can also pinch one PinchHandler with two fingers, and collections of
+    photos tend to pile on top of each other, we need to adjust
+    \c grabPermissions so that the PinchHandler has priority: when the pinch
+    gesture begins, it does not allow the DragHandlers to take over the
+    touchpoint grabs again.
 
-    To enable you to test the example on the desktop, we use the MouseArea's
-    \c onWheel signal handler to simulate pinch gestures by using a mouse:
+    To make the example more interactive on computers without touch devices, we
+    add the \l HoverHandler on which the border.color above depends, and two
+    \l {WheelHandler}{WheelHandlers}. One allows you to hold down the Ctrl key
+    and use the mouse wheel to twirl the photo around the mouse cursor; with
+    the other, you can hold down the Shift key and use the mouse wheel to zoom
+    in or out of the position under the cursor. Both of these also raise the
+    photo in the same way that the DragHandler above does it:
 
-    \printuntil photoFrame.scale
+    \skipto HoverHandler
     \printuntil }
     \printuntil }
-
-    The \c onWheel signal handler is called in response to mouse wheel gestures.
-    Use the vertical wheel to zoom and Ctrl and the vertical wheel to rotate
-    frames. If the mouse has a horizontal wheel, use it to rotate frames.
+    \printuntil }
 
     \sa {QML Applications}
 */
