@@ -150,7 +150,12 @@
     \section2 Qt Network Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Introduced QHttp1Configuration. The class can be used to configure
+            the maximum number of connections used per host when using
+            HTTP 1 (default: 6).
+        \li QNetworkRequest on Qt for WebAssembly gained the
+            UseCredentialsAttribute attribute, enabling withCredentials for the
+            underlying XMLHttpRequest.
     \endlist
 
     \section2 Qt QML Module
