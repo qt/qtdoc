@@ -620,6 +620,19 @@ To enable asyncify, configure Qt using:
      -device-option QT_EMSCRIPTEN_ASYNCIFY=1
 \endcode
 
+\section2 Wasm Exceptions
+
+Qt is built without exception support by default, where throwing an exception will abort
+the program. \l{https://emscripten.org/docs/porting/exceptions.html#webassembly-exception-handling-based-support}
+{WebAssembly exceptions} can be enabled by building from source and passing the -feature-wasm-exceptions
+flag to Qt configure. This will pass the -fwasm-exceptions flag to the compiler at compile and
+link time. Qt does not support enabling Emscripten's support for the earlier JavaScript-based
+exception implementation.
+
+Note that calling QApplication::exec() is not supported when exceptions are enabled, due to
+internal implementation details. Instead, write main() in the form where it returns early and
+does not call exec(), as described in \l{Application Startup and the Event Loop}.
+
 \section2 Known Issues
 
 \list
