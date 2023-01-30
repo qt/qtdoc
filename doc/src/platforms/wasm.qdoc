@@ -608,18 +608,6 @@ Using qmake:
     QMAKE_LFLAGS_DEBUG += -s LIBRARY_DEBUG=1
 \endcode
 
-\section2 Asyncify
-
-Asyncify is an Emscripten feature which enables synchronous C++ code to interact with asynchronous JavaScript.
-
-Qt uses it to allow calling blocking APIs like one level of nested QEventLoop::exec() and returning normally.
-
-Asyncify's unwinding and rewinding the stack add overhead to executable size as well as performance.
-To enable asyncify, configure Qt using:
-\code
-     -device-option QT_EMSCRIPTEN_ASYNCIFY=1
-\endcode
-
 \section2 Wasm Exceptions
 
 Qt is built without exception support by default, where throwing an exception will abort
