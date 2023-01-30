@@ -41,6 +41,7 @@
             \li \l{Specifying a custom toolchain file}
         \endlist
         \li \l{Imported targets}
+        \li \l{Qt CMake policies}
         \li \l{Qt 5 and Qt 6 compatibility}
         \list
             \li \l{Versionless targets}
@@ -714,7 +715,7 @@
     \page cmake-imported-targets.html
     \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
-    \nextpage Qt 5 and Qt 6 compatibility
+    \nextpage Qt CMake policies
     \previouspage Building projects on the command line
 
     Each Qt module that is loaded defines a CMake library target. The target names
@@ -740,11 +741,29 @@
     \snippet snippets/cmake/examples.cmake 2
 */
 
+/*!
+    \page qt-cmake-policies.html
+    \title Qt CMake policies
+    \brief Provides a list of available Qt CMake policies.
+    \previouspage Imported targets
+    \nextpage Qt 5 and Qt 6 compatibility
+
+    Qt CMake policies maintain the backward compatibility
+    across multiple releases. Every new policy starts by warning you about a
+    deprecated feature or behavior; followed by a warning message that briefly
+    describes the change. To disable a policy's warning, explicitly
+    request the \c NEW or non-backward compatible behavior of a policy
+    using the \l{qt_policy}{qt_policy()} command.
+
+    \section1 Policies
+
+    \annotatedlist qt-cmake-policies
+*/
 
 /*!
     \page cmake-qt5-and-qt6-compatibility.html
     \title Qt 5 and Qt 6 compatibility
-    \previouspage Imported targets
+    \previouspage Qt CMake policies
     \nextpage CMake Command Reference
 
     The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible. However, up to Qt 5.14,
