@@ -656,17 +656,14 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Configure Argument
         \li Brief Description
     \row
-        \li -sse2
-        \li Enables SIMD support.
-    \row
         \li -feature-thread
         \li Multi-threaded wasm
     \row
-        \li -device-option QT_WASM_SOURCE_MAP=1
-        \li Debugging option for creating source maps
+        \li -feature-wasm-simd128
+        \li Enables WebAssembly SIMD support.
     \row
-        \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
-        \li Debugging option for creating source maps
+        \li -feature-wasm-exceptions
+        \li Enables WebAssembly exceptions support.
     \row
         \li -feature-opengles3
         \li Use opengles3 in addition to the default opengles2
