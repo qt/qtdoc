@@ -104,6 +104,36 @@
 
     \list
         \li TreeViewDelegate got support editing tree nodes
+        \li The Material style was updated to \l {Material 3}.
+            \list
+                \li Several controls received visual updates, so it is recommended
+                    to check how your application looks and adapt it accordingly:
+                    \list
+                    \li \l ApplicationWindow
+                    \li \l Button
+                    \li \l CheckBox
+                    \li \l DelayButton
+                    \li \l Dialog
+                    \li \l RangeSlider
+                    \li \l RoundButton
+                    \li \l Slider
+                    \li \l Switch
+                    \li \l TextArea
+                    \li \l TextField
+                    \endlist
+
+                \li Some new API was added:
+                    \list
+                    \li \l {material-containerStyle-attached-prop}{Material.containerStyle}
+                        controls the style of the container used by the target control.
+                        It can be attached to any window or item, but only \l TextField and
+                        \l TextArea support it by default.
+                    \li \l {material-roundedScale-attached-prop}{Material.roundedScale}
+                        controls the radius of rounded corners used on the target control.
+                        It can be attached to any window or item, but only
+                        \l Button, \l Dialog, and \l DialogButtonBox support it by default.
+                    \endlist
+            \endlist
     \endlist
 
     \section2 Qt Widgets Module
