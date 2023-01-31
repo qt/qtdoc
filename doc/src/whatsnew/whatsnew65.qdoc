@@ -21,12 +21,12 @@
         \li Qt Location - a module for rendering 2D maps into a Qt Quick
             application. This module is in technical preview, API and ABI
             stability is not guaranteed.
-        \li Qt Grpc - a super-module that provides the modules QtGrpc and
-            QtProtobuf.
-            QtProtobuf enables you to generate, serialize, and
+        \li \l{Qt Protobuf} - A module that enables you to generate, serialize, and
             deserialize Qt-based classes from protobuf .proto-specifications.
-            QtGrpc enables communication with gRPC services using classes
-            generated based on service descriptions from protobuf
+            This module is in technical preview, API and ABI stability
+            is not guaranteed.
+        \li \l{Qt GRPC} - A module that enables communication with gRPC services
+            using classes generated based on service descriptions from protobuf
             .proto-specifications. This module is in technical preview, API and
             ABI stability is not guaranteed.
     \endlist
