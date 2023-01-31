@@ -9,36 +9,30 @@
 
     \section1 New and Restored Modules in Qt 6.5
 
-    Qt 6.5 adds the following module:
+    Qt 6.5 adds the following modules and tools:
 
     \list
-        \li Qt Quick Effect Maker - A tool to create high-performance shader
-            effects for Qt Quick.
-        \li \l{Qt Quick Effects QML Types}{Qt Quick Effects} - A module containing \l{MultiEffect}, for applying
-            one or more simple graphical effects on a Qt Quick \l{Item}.
-        \li \l{Qt Quick 3D Physics} - A physics engine for use with Qt Quick 3D.
-            This module is no longer a technology preview.
-        \li Qt Location - a module for rendering 2D maps into a Qt Quick
-            application. This module is in technical preview, API and ABI
-            stability is not guaranteed.
-        \li \l{Qt Protobuf} - A module that enables you to generate, serialize, and
-            deserialize Qt-based classes from protobuf .proto-specifications.
-            This module is in technical preview, API and ABI stability
-            is not guaranteed.
-        \li \l{Qt GRPC} - A module that enables communication with gRPC services
-            using classes generated based on service descriptions from protobuf
-            .proto-specifications. This module is in technical preview, API and
-            ABI stability is not guaranteed.
+        \li \l {Qt Quick Effect Maker} - A tool to create high-performance
+            shader effects for Qt Quick.
+        \li \l {Qt Quick Effects QML Types}{Qt Quick Effects} - A module
+            containing \l{MultiEffect}, for applying one or more simple
+            graphical effects on a Qt Quick \l{Item}.
+        \li \l {Qt Quick 3D Physics} - A physics engine for use with Qt Quick
+            3D. This module is no longer in technical preview.
     \endlist
 
-    Qt 6.5 reintroduces the following modules that were not present in Qt 6.4.
-    All listed modules were ported to Qt 6 and the CMake build system.
+    \section2 New and Restored Modules in Technical Preview
 
-    A more detailed list of changes to each module can be found in
-    \l {Changes to Qt Modules in Qt 6}.
+    \note API and ABI stability is not guaranteed.
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li \l {Qt Location} supports rendering 2D maps into a Qt Quick
+            application.
+        \li \l {Qt GRPC} supports communicating with gRPC services using classes
+            generated based on service descriptions from protobuf
+            .proto-specifications.
+        \li \l {Qt Protobuf} supports generating, serializing, and
+            deserializing Qt-based classes from protobuf .proto-specifications.
     \endlist
 
     \section1 New Features in Qt 6.5
@@ -46,34 +40,35 @@
     \section2 Qt Core Module
 
     \list
-        \li QTimeZone can now package a Qt::TimeSpec and, when relevant, an offset
-            in a lightweight time representation that unifies the various APIs of
-            QDateTime and QDate that took either a QTimeZone or a Qt::TimeSpec
-            and offset.
-        \li Introduced \l{Application Permissions}{application permissions} API,
-            to allow applications to check or request permissions for features that
-            require user consent before use.
-        \li New cross-platform tracing backend in Common Trace Format(CTF) format.
-        \li QBindable can now be constructed from any property with a NOTIFY signal.
-            This enables integration of existing, non-bindable properties with
-            \l{bindable properties}{Qt Bindable Properties}.
+        \li QTimeZone can now package a Qt::TimeSpec and, when relevant, an
+            offset in a lightweight time representation that unifies the various
+            APIs of QDateTime and QDate that took either a QTimeZone or a
+            Qt::TimeSpec and offset.
+        \li Introduced \l {Application Permissions}{application permissions}
+            API to allow applications to check or request permissions for
+            features that require user consent before use.
+        \li New cross-platform tracing backend in Common Trace Format (CTF).
+        \li QBindable can now be constructed from any property with a NOTIFY
+            signal. This lets you integrate existing, non-bindable
+            properties with \l {bindable properties}{Qt Bindable Properties}.
     \endlist
 
     \section2 Qt GUI Module
 
     \list
-        \li Reintroduced classes QWindowsMimeConverter and QUtiMimeConverter for handling
-            drag'n'drop and clipboard data in platform specific formats on Windows, macOS, and iOS.
-        \li QVulkanInstance is now enabling Vulkan Portability physical devices
-            by default. This is required in order to be operational with newer
+        \li Reintroduced classes QWindowsMimeConverter and QUtiMimeConverter
+            for handling drag'n'drop and clipboard data in platform specific
+            formats on Windows, macOS, and iOS.
+        \li QVulkanInstance now enables Vulkan Portability physical devices
+            by default. This is required to be operational with newer
             MoltenVK versions on Apple platforms. Added a NoPortabilityDrivers
-            flag as well to allow opting out from this.
-
+            flag that lets you opt out from this.
         \li The Vulkan rendering infrastructure is now using VK_EXT_debug_utils
             instead of the deprecated VK_EXT_debug_report and
             VK_EXT_debug_marker.
-        \li QTextLayout::glyphRuns() can now return the string index corresponding to each glyph,
-            when this is requested. Made available through the new function QGlyphRun::stringIndexes().
+        \li QTextLayout::glyphRuns() can now return the string index
+            corresponding to each glyph when this is requested. Made available
+            through the new function QGlyphRun::stringIndexes().
     \endlist
 
     \section2 Qt Quick Module
@@ -82,22 +77,20 @@
         \li TableView got support for editing cells using an edit delegate.
         \li TableView got support for resizing rows and columns using the mouse.
         \li TableView got support for setting row and column sizes explicitly.
-        \li TableView got a new signal 'layoutChanged()'. This signal can be used
-            to e.g reposition overlay items.
-        \li TableView got support for doing multi-selections
-
+        \li TableView got a new signal \c layoutChanged(). This signal can be
+            used to, for example, reposition overlay items.
+        \li TableView got support for doing multi-selections.
         \li Added support for specifying separate RGB and alpha blend factors in
             a QSGMaterial.
-
-        \li The Qt Quick scenegraph is now automatically utilizing persistent,
+        \li The Qt Quick scenegraph is now automatically using persistent,
             disk-based caching of graphics pipelines or the intermediate format
             shader bytecode, depending on the platform and the 3D graphics API
-            in use. This is expected to reduce the time spent on graphics
-            pipeline creation in subsequent runs of the application. In
+            in use. This is expected to reduce the time spent on creating the
+            graphics pipeline in subsequent runs of the application. In
             addition, QQuickGraphicsConfiguration provides explicit control over
-            if/where this data is written out and loaded from, thus enabling
+            if and where this data is written out and loaded from. This enables
             advanced use cases such as shipping a pre-seeded cache file with an
-            application or device, thus accelarating first-time startup as well.
+            application or device, which also accelerates first-time startup.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -140,9 +133,9 @@
 
     \list
         \li QKeySequenceEdit got two new properties:
-            \l{QKeySequenceEdit::}{maximumSequenceLength} allows applications
-            to control how long a key sequence be, and
-            \l{QKeySequenceEdit::}{finishingKeyCombinations} defines key
+            \l {QKeySequenceEdit::}{maximumSequenceLength} allows applications
+            to control the length of a key sequence.
+            \l {QKeySequenceEdit::}{finishingKeyCombinations} defines key
             combinations that end the recording.
 
         \li Added stereoscopic rendering support to QOpenGLWidget, applicable
@@ -150,8 +143,8 @@
             QOpenGLWindow, or the now-removed QGLWidget in Qt 5 and 4,
             QOpenGLWidget needs explicit support for this with supporting APIs
             in place, because applications do not directly render to the native
-            window in this case, and therefore do not have the same control over
-            the active draw buffers as they have with QOpenGLWindow.
+            window in this case, and therefore do not have the same control
+            over the active draw buffers as they have with QOpenGLWindow.
     \endlist
 
     \section2 Qt Positioning Module
@@ -167,9 +160,9 @@
         \li Introduced \l QCanSignalDescription, \l QCanMessageDescription and
             \l QCanUniqueIdDescription classes. These classes are used to
             provide a set of rules to encode or decode CAN bus messages.
-        \li Introduced \l QCanFrameProcessor class. This class can be used to \
-            decode the received QCanBusFrame into a map of key-value pairs, and
-            also compose a QCanBusFrame out of a map of key-value pairs.
+        \li Introduced \l QCanFrameProcessor class. This class can be used to
+            decode the received QCanBusFrame into a map of key-value pairs and
+            compose a QCanBusFrame out of a map of key-value pairs.
         \li Introduced \l QCanDbcFileParser class. This class is used to parse
             DBC files and generate message descriptions, which can later be
             used in \l QCanFrameProcessor.
@@ -191,7 +184,7 @@
     \section2 Qt QML Module
 
     \list
-        \li API has been added to \l QQmlApplicationEngine and \l QQmlComponent
+        \li Added API to \l QQmlApplicationEngine and \l QQmlComponent
             to load/create QML elements via their module URI and type-name.
             In contrast to the URL based functions, this also works with C++
             types and inline components.
@@ -199,20 +192,27 @@
             gaining support for methods like map(), reduce() and forEach().
             The same holds for other sequence types, like QList<int> and
             similar.
-        \li A new \l{AUTO_RESOURCE_PREFIX} attribute has been added to
-            \l{qt_add_qml_module} to automate the setting of resource prefixes.
+        \li Added a new \l {AUTO_RESOURCE_PREFIX} attribute to
+            \l {qt_add_qml_module} to automate the setting of resource prefixes.
             If you use it, the QML engine will always be able to find your
             QML modules in the resource file system.
-        \li Extended the \l{QML Type Compiler}{qmltc} to support more
+        \li Extended the \l {QML Type Compiler}{qmltc} to support more
             qml constructs, notably translation bindings, inline
-            components, singletons and signal handlers for c++-defined
+            components, singletons, and signal handlers for C++-defined
             signals.
-        \li The \l{QML Script Compiler} can handle additional constructs. In
-            particular: console.log() and friends, \c{let} and \c{const},
-            qsTr() and friends, arg() for strings, all the remaining bitwise and
-            shift operators, the exponentiation operator.
-        \li \l{The QML Disk Cache} can be controlled in a more fine grained way
-            using the new environment variable \l{QML_DISK_CACHE}.
+        \li The \l {QML Script Compiler} can handle additional constructs. In
+            particular:
+            \list
+                \li console.log() and friends
+                \li \c{let} and \c{const}
+                \li qsTr() and friends
+                \li arg() for strings
+                \li all the remaining bitwise and
+                    shift operators
+                \li the exponentiation operator
+            \endlist
+        \li \l {The QML Disk Cache} can be controlled in a more fine-grained way
+            using the new environment variable \l {QML_DISK_CACHE}.
     \endlist
 
     \section2 Qt Quick 3D Module
@@ -245,14 +245,14 @@
         \li Added \l InfiniteGrid, implementing an infinite grid in the
             horizontal plane with fade out.
 
-        \li Added built-in, simple fog support, available via \l
-            SceneEnvironment. When enabled, this applies a depth and/or height
-            fog effect when rendering the models in the scene.
+        \li Added built-in, simple fog support, available via
+            \l SceneEnvironment. When enabled, this applies a depth or
+            height fog effect when rendering the models in the scene.
 
         \li Improved picking when instanced rendering is used.
 
-        \li Added vertex color support for \l PrincipledMaterial and \l
-            SpecularGlossyMaterial
+        \li Added vertex color support for \l PrincipledMaterial and
+            \l SpecularGlossyMaterial
 
         \li Reflection probe: added support for using a provided cubemap texture
             instead of rendering the scene.
@@ -260,47 +260,28 @@
         \li Post-processing effects were enhanced to properly react to changes
             in shader source file URIs at run time.
 
-        \li Added persistent, disk-based caching of runtime generated material
+        \li Added persistent, disk-based caching of runtime-generated material
             shader data. This is expected to improve application startup and
             view change times.
-    \endlist
-
-    \section2 Qt Data Visualization Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section2 Qt Charts Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt WebView Module
 
     \list
-       \li Added \l {QQuickWebViewSettings::WebViewSettings}{WebViewSettings} to make it possible to
-           configure some of the common \l {QtWebView::WebView}{WebView} functionality.
+       \li Added \l {QQuickWebViewSettings::WebViewSettings}{WebViewSettings} to
+       configure some of the common \l {QtWebView::WebView}{WebView} functionality.
     \endlist
 
     \section1 Platform Changes
-
-    \section2 Technology Preview Platforms
-
-    \section3 Windows on ARM
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
 
     \section2 Desktop Platforms
 
     \section3 Windows
 
     \list
-        \li The environment variable QT_WIN_DEBUG_CONSOLE can be set to see stdout/stderr messages
-            in a console window also for GUI applications that are started from the command line.
+        \li The environment variable QT_WIN_DEBUG_CONSOLE can be set to see
+            stdout/stderr messageges in a console window for GUI applications
+            that are started from the command line.
             Set it to \c new or \c attach.
     \endlist
 
@@ -308,10 +289,6 @@
 
     \list
         \li Added native backend for QMessageBox and QErrorMessage.
-    \endlist
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section3 Wayland Client on Linux
@@ -325,45 +302,9 @@
     \section3 Android
 
     \list
-        \li \li Updated Gradle to 7.5.1 and the Android Gradle Plugin (AGP) to 7.2.1
-        (requires JDK 11 or above).
+        \li Updated Gradle to 7.5.1 and the Android Gradle Plugin (AGP) to
+        7.2.1 (requires JDK 11 or above).
         \li Updated NDK to r25b (25.1.8937393).
-    \endlist
-
-    \section3 iOS
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section2 Embedded Platforms
-
-    Available under the \l {Qt for Device Creation} license.
-
-    \section3 Boot to Qt
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section3 QNX
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section3 INTEGRITY
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section2 Web Platforms
-
-    \section3 Web Assembly
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section1 List of API Changes
