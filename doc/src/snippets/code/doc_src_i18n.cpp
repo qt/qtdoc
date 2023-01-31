@@ -136,3 +136,55 @@ void same_global_function(LoginWidget *logwid)
         app.installTranslator(&qtTranslator);
     }
 //! [14]
+
+//! [15]
+
+class MyItem : public QQuickItem
+{
+    Q_OJBECT
+    QML_ELEMENT
+
+    Q_PROPERTY(QString greeting READ greeting NOTIFY greetingChanged)
+
+public signals:
+    void greetingChanged();
+public:
+    QString greeting() const
+    {
+        return tr("Hello World!");
+    }
+
+    bool event(QEvent *ev) override
+    {
+        if (ev->type() == QEvent::LanguageChange)
+            emit greetingChanged();
+        return QQuickItem::event(ev);
+    }
+};
+//! [15]
+
+
+//! [16]
+class CustomObject : public QObject
+{
+    Q_OBJECT
+
+public:
+    QList<QQuickItem *> managedItems;
+
+    CustomObject(QOject *parent = nullptr) : QObject(parent)
+    {
+        QCoreApplication::instance()->installEventFilter(this);
+    }
+
+    bool eventFilter(QObject *obj, QEvent *ev) override
+    {
+        if (obj == QCoreApplication::instance() && ev->type() == QEvent::LanguageChange) {
+            for (auto item : std::as_const(managedItems))
+                QCoreApplication::sendEvent(item, ev);
+            // do any further work on reaction, e.g. emit changed signals
+        }
+        return false;
+    }
+};
+//! [16]
