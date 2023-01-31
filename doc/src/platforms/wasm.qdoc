@@ -46,7 +46,7 @@ Check this with the following command:
 
 Each minor version of Qt targets a specific Emcsripten version, which remains unchanged
 in patch releases. Qt's binary packages are built using the target Emscripten version.
-Applications should use the same version since Emscripten does not guarantee 
+Applications should use the same version since Emscripten does not guarantee
 \l{https://github.com/emscripten-core/emscripten/blob/main/ChangeLog.md}{ABI compatibility}
 between versions.
 
@@ -637,6 +637,7 @@ is not providing that capability
  multiple of 64KB (65536). Default is 50 MB. In CMakeFiles.txt: set(QT_WASM_INITIAL_MEMORY, "50MB");
 \li add_executable in CMakeLists.txt does not produce <target>.html or copy qtloader.js. Use
  qt_add_executable instead.
+\li QWebSocket connections are supported by Emscripten only on the main thread.
 
 \endlist
 
