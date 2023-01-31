@@ -11,15 +11,19 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li CentOS Linux 8.2
+    \row \li Red Hat 8.4
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
-    \row \li openSUSE 15.3
+    \row \li Red Hat 9.0
+        \li \c x86_64
+        \li GCC 11
+        \li
+    \row \li openSUSE 15.4
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP2
+    \row \li SUSE Linux Enterprise Server 15 SP4
         \li \c x86_64
         \li GCC 10
         \li
@@ -43,10 +47,10 @@
 \section2 \l{Qt for Windows}{Windows}
 //! [windows]
 \table 80%
-    \header \li Operating System \li Architecture \li Compiler \li Notes
-    \row \li Windows 10 (1809 or later)
+    \header \li Operating System \li Architecture \li Compiler
+    \row \li Windows 10 (1809 or later)/Windows 11"
         \li \c x86_64
-        \li MSVC 2019/2022, MinGW 11.2
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
     \row \li Windows on ARM
         \li \c arm64
@@ -75,6 +79,10 @@ The following configurations are supported in this Qt release:
         \li Clang 14.0.6 (NDK r25b) as provided by Google
         \li For JDK versions see \l{Java Development Kit (JDK)}
 \endtable
+ \note It's recommended that Qt user apps use the same NDK r25b version
+ used for building these official Qt for Android libraries. An NDK version
+ more recent than r23b is required if building a project results in an error
+ of missing the symbols for \c __emutls_get_address.
 
 //! [android]
 
@@ -148,15 +156,15 @@ documentation.
     \header \li Host Platform \li Architecture \li Compiler \li Browsers
     \row \li macOS
         \li \c wasm32
-        \li Emscripten 3.1.10
+        \li Emscripten 3.1.25
         \li Safari, Chrome, Firefox
     \row \li Windows
         \li \c wasm32
-        \li Emscripten 3.1.10
+        \li Emscripten 3.1.25
         \li Edge, Chrome, Firefox
     \row \li Linux
         \li \c wasm32
-        \li Emscripten 3.1.10
+        \li Emscripten 3.1.25
         \li Chrome, Firefox
 \endtable
 
