@@ -248,6 +248,7 @@
         \li \l {Make Keyboard Shortcuts Translatable}
         \li \l {Use Locale to Extend Localization Features}
         \li \l {Enable Translation}
+        \li \l {Prepare for Dynamic Language Changes}
     \endlist
 
     When developing C++ applications, see also
@@ -821,6 +822,77 @@
     UI display locale at runtime, and install the translator object into
     the application.
 
+
+    \section1 Prepare for Dynamic Language Changes
+
+    Both Qt Widgets and Qt Quick use
+    \l {The Event System}{Qt's event system} to inform classes about
+    translation changes.
+
+    \l{QEvent::LanguageChange}{LanguageChange} events are posted when you use
+    the QCoreApplication::installTranslator() function to install a new
+    translation. Other application components can also force widgets or
+    QML types derived from the \l Item type to update themselves by posting
+    \c LanguageChange events to them.
+
+    By default, \c LanguageChange events are propagated to all top-level
+    windows, and from there they're propagated through the entire tree of
+    widgets or QML types derived from Item.
+
+    \section2 Qt Widgets: Override changeEvent
+
+    The default event handler for QWidget subclasses responds to the
+    QEvent::LanguageChange event and calls the \c {changeEvent()}
+    function when necessary.
+
+    To make Qt widgets aware of changes to the installed QTranslator objects,
+    reimplement the widget's \l{QWidget::changeEvent()}{changeEvent()} function
+    to check whether the event is a \l{QEvent::LanguageChange}{LanguageChange}
+    event and update the text displayed by widgets using the \l{QObject::tr()}
+    {tr()} function in the usual way. For example:
+
+    \snippet snippets/code/doc_src_i18n.cpp 12
+
+    To pass on other change events, call the default implementation of the
+    function.
+
+    The list of installed translators might change in response to a
+    \l{QEvent::LocaleChange}{LocaleChange} event, or the application might
+    provide a UI that allows the user to change the current
+    application language.
+
+    \section2 QML: Override event for Types Derived from Item
+    For plain QML applications without any custom C++ registered types,
+    \l {QML: Use QQmlApplicationEngine}{using QQmlApplicationEngine} is enough
+    to trigger an update of all translation bindings.
+
+    However, if you registered a type derived from QQuickItem, and one of
+    its properties exposes translated text (or is otherwise language
+    dependent), override its \l{QObject::event}{event method} and
+    emit the property's change signal in it (or call
+    \l{QObjectBindableProperty::notify()}{notify} in case of bindable
+    properties). For example:
+
+    \snippet snippets/code/doc_src_i18n.cpp 15
+
+    This ensures that any binding in QML in which the property is used is
+    reevaluated and takes the language change into account.
+
+    \section2 Generic QObject-derived Classes: Use Event Filters
+
+    Some classes are neither derived from QWidget nor from QQuickItem, but might
+    still need to handle language change events. In that case, install
+    \l{Event Filters}{an event filter} on
+    QCoreApplication.
+
+    \snippet snippets/code/doc_src_i18n.cpp 16
+
+    This might be necessary when translated strings are provided by the class
+    that later get displayed in a user interface (for example, a custom
+    \l{QAbstractItemModel}{item model}), or when the class acts as a container
+    of Widgets or Quick Items, and is therefore responsible for forwarding the
+    event to them.
+
     \section1 Additional Considerations for C++ Code
 
     The following sections contain more information about using the Qt C++
@@ -831,7 +903,6 @@
         \li \l {Define a Translation Context}
         \li \l {Translate Non-Qt Classes}
         \li \l {Translate Text That is Outside of a QObject Subclass}
-        \li \l {Prepare for Dynamic Language Changes}
     \endlist
 
     \section2 Use QString for All User-Visible Text
@@ -893,33 +964,6 @@
     QCoreApplication::translate() function directly:
 
     \snippet snippets/code/doc_src_i18n.cpp 13
-
-    \section2 Prepare for Dynamic Language Changes
-
-    To make Qt widgets aware of changes to the installed QTranslator objects,
-    reimplement the widget's \l{QWidget::changeEvent()}{changeEvent()} function
-    to check whether the event is a \l{QEvent::LanguageChange}{LanguageChange}
-    event and update the text displayed by widgets using the \l{QObject::tr()}
-    {tr()} function in the usual way. For example:
-
-    \snippet snippets/code/doc_src_i18n.cpp 12
-
-    All other change events should be passed on by calling the default
-    implementation of the function.
-
-    The list of installed translators might change in response to a
-    \l{QEvent::LocaleChange}{LocaleChange} event, or the application might
-    provide a UI that allows the user to change the current
-    application language.
-
-    The default event handler for QWidget subclasses responds to the
-    QEvent::LanguageChange event, and calls the \c {changeEvent()}
-    function when necessary.
-
-    \l{QEvent::LanguageChange}{LanguageChange} events are posted when you use
-    the QCoreApplication::installTranslator() function to install a new
-    translation. Other application components can also force widgets to update
-    themselves by posting \c LanguageChange events to them.
 */
 
 /*!
