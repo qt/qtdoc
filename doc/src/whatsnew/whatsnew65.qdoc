@@ -140,6 +140,14 @@
             \endlist
     \endlist
 
+    \section2 Qt Test Module
+
+    \list
+        \li Added QTest::currentTestResolved() which returns true if the test
+            has failed or skipped. This can replace QTest::currentTestFailed()
+            as the condition to test on return from a helper function.
+    \endlist
+
     \section2 Qt Widgets Module
 
     \list
