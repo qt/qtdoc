@@ -321,8 +321,8 @@ Qt detects WebGL as OpenGL ES, with the following version mapping:
         \li WebGL 2
 \endtable
 
-OpengL ES 2 is selected by default, OpenGL ES 3 can be enabled by configuring Qt with
-the \c {-feature-opengles3} option.
+OpenGL ES 2 and OpenGL ES 3 are enabled by default, and can be selected through
+the QSurfaceFormat::setMajorVersion() function.
 
 Web and Desktop OpenGL differences are documented in
 \l {https://www.khronos.org/registry/webgl/specs/latest/1.0/#6}
