@@ -192,10 +192,6 @@
             gaining support for methods like map(), reduce() and forEach().
             The same holds for other sequence types, like QList<int> and
             similar.
-        \li Added a new \l {AUTO_RESOURCE_PREFIX} attribute to
-            \l {qt_add_qml_module} to automate the setting of resource prefixes.
-            If you use it, the QML engine will always be able to find your
-            QML modules in the resource file system.
         \li Extended the \l {QML Type Compiler}{qmltc} to support more
             qml constructs, notably translation bindings, inline
             components, singletons, and signal handlers for C++-defined
@@ -213,6 +209,13 @@
             \endlist
         \li \l {The QML Disk Cache} can be controlled in a more fine-grained way
             using the new environment variable \l {QML_DISK_CACHE}.
+        \li Added new public CMake API:
+            \list
+                \li Introduced a \l{Qt CMake policy} to set a better default for the
+                    resource prefix. If \l{QTP0001} policy is set to \c NEW, the QML
+                    engine will always be able to find your QML modules in the
+                    resource file system.
+            \endlist
     \endlist
 
     \section2 Qt Quick 3D Module
