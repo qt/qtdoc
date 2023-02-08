@@ -668,6 +668,8 @@ is not providing that capability
 \li add_executable in CMakeLists.txt does not produce <target>.html or copy qtloader.js. Use
  qt_add_executable instead.
 \li QWebSocket connections are supported by Emscripten only on the main thread.
+\li QWebSockets for WebAssembly does not support sending ping or pong frames, as the API available to
+web pages and browsers does not expose this functionality.
 
 \endlist
 
