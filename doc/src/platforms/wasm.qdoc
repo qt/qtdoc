@@ -346,7 +346,7 @@ and/or full ES3 emulation by adding
 target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES3=1")
 \endcode
 
-to your project's \c {CMakeFiles.txt}.
+to your project's \c {CMakeLists.txt}.
 
 \section2 Multithreading
 
@@ -663,7 +663,8 @@ be seen on HighDPi displays.
 is not providing that capability
 \li Link time error such as "wasm-ld: error: initial memory too small", requires adjustment of the
  initial memory size. Use QT_WASM_INITIAL_MEMORY to set the initial size in kb, which must be a
- multiple of 64KB (65536). Default is 50 MB. In CMakeFiles.txt: set(QT_WASM_INITIAL_MEMORY, "50MB");
+ multiple of 64KB (65536). Default is 50 MB. In CMakeLists.txt:
+ set_target_properties(<target> PROPERTIES QT_WASM_INITIAL_MEMORY "150MB")
 \li add_executable in CMakeLists.txt does not produce <target>.html or copy qtloader.js. Use
  qt_add_executable instead.
 
