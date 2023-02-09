@@ -105,12 +105,14 @@
     Here is a typical \c{CMakeLists.txt} file for a console application written
     in C++ using Qt:
 
-    \quotefile snippets/cmake/helloworld_qtcore.cmake
+    \quotefromfile snippets/cmake/helloworld_qtcore.cmake
+    \skipto cmake_minimum_required
+    \printuntil
 
     Let's go through the content.
 
     \quotefromfile snippets/cmake/helloworld_qtcore.cmake
-
+    \skipto cmake_minimum_required
     \printuntil cmake_minimum_required
 
     \c cmake_minimum_required() specifies the minimum CMake version that the
@@ -200,7 +202,9 @@
 
     This is the full project file:
 
-    \quotefile snippets/cmake/helloworld_qtwidgets.cmake
+    \quotefromfile snippets/cmake/helloworld_qtwidgets.cmake
+    \skipto cmake_minimum_required
+    \printuntil
 
     Let's walk through the changes we have made.
 
@@ -270,7 +274,19 @@
     The top-level \c{CMakeLists.txt} contains the overall project setup,
     \c{find_package} and \c{add_subdirectory} calls:
 
-    \quotefile snippets/cmake/helloworld_subdirs.cmake
+    \code
+    cmake_minimum_required(VERSION 3.16)
+
+    project(helloworld VERSION 1.0.0 LANGUAGES CXX)
+
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+    qt_standard_project_setup()
+
+    add_subdirectory(src/app)
+    \endcode
 
     Variables that are set in this file are visible in subdirectory project
     files.
@@ -278,7 +294,20 @@
     The application's project file \c{src/app/CMakeLists.txt} contains the
     executable target:
 
-    \quotefile snippets/cmake/helloworld_src_app.cmake
+    \code
+    add_executable(helloworld
+        mainwindow.ui
+        mainwindow.cpp
+        main.cpp
+    )
+
+    target_link_libraries(helloworld PRIVATE Qt6::Widgets)
+
+    set_target_properties(helloworld PROPERTIES
+        WIN32_EXECUTABLE ON
+        MACOSX_BUNDLE ON
+    )
+    \endcode
 
     Such a structure will make it easy to add more targets to the project such
     as libraries or unit tests.
@@ -313,12 +342,15 @@
 
     Let's have a look at the library's project file (\c{src/businesslogic/CMakeLists.txt}).
 
-    \quotefile snippets/cmake/helloworld_src_businesslogic.cmake
+    \quotefromfile snippets/cmake/helloworld_src_businesslogic.cmake
+    \skipto add_library
+    \printuntil
 
     Let's go through the content.
 
     \quotefromfile snippets/cmake/helloworld_src_businesslogic.cmake
-    \printuntil )
+    \skipto add_library
+    \printto target_link_libraries
 
     The
     \l{https://cmake.org/cmake/help/latest/command/add_library.html}{add_library}
@@ -352,14 +384,22 @@
 
     Last, we must add the library's subdirectory to the top-level project file:
 
-    \quotefile snippets/cmake/helloworld_subdirs2.cmake
+    \code
+    add_subdirectory(src/app)
+    add_subdirectory(src/businesslogic)
+    \endcode
 
     \section2 Using libraries
 
     To use the library we created in the \l{Building libraries}{previous
     section}, we instruct CMake to link against it:
 
-    \quotefile snippets/cmake/helloworld_src_app2.cmake
+    \code
+    target_link_libraries(helloworld PRIVATE
+        businesslogic
+        Qt6::Widgets
+    )
+    \endcode
 
     This ensures that \c{businesslogic.h} is found when main.cpp is compiled.
     Furthermore, the businesslogic static library will become a part of the \c
@@ -375,7 +415,12 @@
     We want to display some images in our application, so we add them using the
     \l{The Qt Resource System}{Qt Resource System}.
 
-    \quotefile snippets/cmake/helloworld_resources.cmake
+    \code
+    qt_add_resources(helloworld imageresources
+        PREFIX "/images"
+        FILES logo.png splashscreen.png
+    )
+    \endcode
 
     The \l{qt_add_resources} command automatically creates a Qt resource
     containing the referenced images. From the C++ source code, you can access
@@ -400,7 +445,10 @@
     The following example adds a German and a French translation file to the
     \c{helloworld} target:
 
-    \quotefile snippets/cmake/helloworld_translations.cmake
+    \code
+    qt_add_translations(helloworld
+        TS_FILES helloworld_de.ts helloworld_fr.ts)
+    \endcode
 
     This creates build system rules to automatically generate \c{.qm} files from
     the \c{.ts} files. By default, the \c{.qm} files are embedded into a
@@ -452,7 +500,9 @@
     to create a QML application that uses the \l{Qt Quick} module.
 
     This is the full project file:
-    \quotefile snippets/cmake/helloworld_qtqml.cmake
+    \quotefromfile snippets/cmake/helloworld_qtqml.cmake
+    \skipto cmake_minimum_required
+    \printuntil
 
     Let's walk through the changes we have made.
     We specify \l {Building a C++ GUI application}{CMAKE_AUTOMOC},
@@ -524,7 +574,19 @@
     \l{qt6_standard_project_setup}{qt_standard_project_setup}, and then uses
     \c add_subdirectory to include the one in mylib:
 
-    \quotefile snippets/cmake/helloworld_subdirs_qml_toplevel.cmake
+    \code
+    cmake_minimum_required(VERSION 3.16)
+
+    project(qmlmodule VERSION 1.0.0 LANGUAGES CXX)
+
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+    find_package(Qt6 REQUIRED COMPONENTS Qml)
+    qt_standard_project_setup()
+
+    add_subdirectory(example/mylib)
+    \endcode
 
     The subdirectory structure
     corresponds to the QML module’s URI, but with the dots replaced by
@@ -536,10 +598,16 @@
     In the subdirectory’s \c CMakeLists.txt we again call \c qt6_add_qml_module.
     However, the invocation is slightly different:
 
-    \quotefromfile snippets/cmake/helloworld_subdirs_qml.cmake
-    \printuntil mytype.h
-    \skipto )
-    \printuntil )
+    \code
+    qt6_add_qml_module(mylib
+        URI example.mylib
+        VERSION 1.0
+        SOURCES
+            mytype.h mytype.cpp
+        QML_FILES
+            Mistake.qml
+    )
+    \endcode
 
     To add C++ types, the SOURCES parameter needs to be specified. The target for
     mylib is not created. Therefore, if the target passed to \c qt6_add_qml_module
@@ -579,7 +647,16 @@
 
     and adjust the \c qt6_add_qml_module call:
 
-    \quotefile snippets/cmake/helloworld_subdirs_qml.cmake
+    \code
+    qt6_add_qml_module(mylib
+        URI example.mylib
+        VERSION 1.0
+        SOURCES
+            mytype.h mytype.cpp
+        QML_FILES
+            Mistake.qml
+    )
+    \endcode
 
     As mentioned, we made a mistake because \c answer is actually a read-only
     property. This illustrates \c qmllint integration: CMake
