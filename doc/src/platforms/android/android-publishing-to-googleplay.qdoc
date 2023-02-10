@@ -15,7 +15,7 @@ deployment are handled by Qt Creator providing rich developer experience.
 
 Every time you run the application using Qt Creator, an Android Application
 Package (APK) is created and deployed onto the target of your choice
-(device or emulator). With few minor changes to packaging settings, you can
+(device or emulator). With a few minor changes to packaging settings, you can
 publish your application on Google Play.
 
 \section1 Building the App
@@ -31,7 +31,6 @@ that can go live on Google Play
         such as \c{AndroidManifest.xml} which is the main file of concern here.
 
         \li Check for the following settings in \c{AndroidManifest.xml}:
-
         \list
             \li Set \uicontrol{Application name} and \uicontrol{Application icon}.
 
@@ -40,28 +39,7 @@ that can go live on Google Play
             \li Check the \uicontrol{Features} list has the software or hardware
                 features that your application depends on, such as GPS or NFC.
         \endlist
-
-        For more information, see
-        \l{Qt Creator: Editing Manifest Files}{editing the Manifest Files in Qt Creator}.
-
-        \note By default, Qt adds the permissions and the features based on the module
-        dependencies of your application. If you do not want these default permissions
-        and features, either deselect the checkboxes
-        \uicontrol{Include default permissions for Qt modules} and
-        \uicontrol{Include default features for Qt modules}, or remove the following
-        part from the \c{AndroidManifest.xml} file:
-
-        \badcode
-        <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
-             Remove the comment if you do not require these default permissions. -->
-        <!-- %%INSERT_PERMISSIONS -->
-
-        <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
-             Remove the comment if you do not require these default features. -->
-        <!-- %%INSERT_FEATURES -->
-        \endcode
-
-        For information on the manifest XML format, see \l{Android: App Manifest}.
+        See \l{Notes on Android project settings} for more information.
 
         \li Set up a \l{Android: Android keystore system}{keystore} to sign your
         \c{.apk} file. You can create a new keystore if you do not have one. For more
@@ -100,7 +78,7 @@ that can go live on Google Play
     Log into the \l{Google Play Developer Console} and upload the \c{.aab} files,
     along with a description and screen captures resembling the usage of your application.
 
-    For Qt versions that supports building a multi-abi bundle (i.e. Qt 5.14 and 5.15),
+    For Qt versions that support building a multi-abi bundle (i.e. Qt 5.14 and 5.15),
     uploading one \c {.aab} with all the supported architectures is enough.
     However, for Qt versions that don't have the multi-abi build support,
     publishing your app requires additional steps.
@@ -109,7 +87,7 @@ that can go live on Google Play
 
         To publish your app that is built using a single ABI kit, you need
         to make sure that each ABI uses a different internal version code.
-        The version code is an intenal non-public identifier for your app's
+        The version code is an internal non-public identifier for your app's
         release. Build each one of the architectures you want to support
         and set a different version code for each ABI. This can be done
         as follows, for CMake:
@@ -124,8 +102,8 @@ that can go live on Google Play
         ANDROID_VERSION_CODE = <unique_version>
         \endcode
 
-        The app developer can use a specific scheme for the version code, for exampe,
-        the code could have a chunks for the platform, the ABI, and the actual
+        The app developer can use a specific scheme for the version code, for example,
+        the code could have chunks for the platform, the ABI, and the actual
         version. Then, a sample scheme would be \c {<Platform><ABI><AppVersion>}:
 
         \list
@@ -150,6 +128,50 @@ that can go live on Google Play
 
         \image android-single-abis.png
 
+    For more information on packaging, see \l{Deploying an Application on Android}.
 
-For more information on packaging, see \l{Deploying an Application on Android}.
+\section1 Notes on Android project settings
+
+    Settings for \uicontrol {Minimum required SDK} and
+    \uicontrol {Target SDK} versions are set in the Gradle build configuration and
+    are controlled by the following variables:
+    For qmake:
+    \list
+        \li \l ANDROID_TARGET_SDK_VERSION
+        \li \l ANDROID_MIN_SDK_VERSION
+    \endlist
+
+    For CMake:
+    \list
+        \li \l QT_ANDROID_TARGET_SDK_VERSION
+        \li \l QT_ANDROID_MIN_SDK_VERSION
+    \endlist
+
+    See \l {CMake Property Reference} for CMake projects, and
+    \l {qmake Variable Reference} for Android-specific settings in qmake projects.
+
+    \note As before with Qt 5.15, you can specify these settings in
+    \c {AndroidManifest.xml}. Be aware that \c build.gradle will override these if
+    set there. See \l{Android: App Versioning} for more information on setting
+    these in \c build.gradle.
+
+    \note By default, Qt adds the permissions and the features based on the module
+    dependencies of your application. If you do not want these default permissions
+    and features, either deselect the checkboxes
+    \uicontrol{Include default permissions for Qt modules} and
+    \uicontrol{Include default features for Qt modules}, or remove the following
+    part from the \c{AndroidManifest.xml} file:
+
+    \badcode
+    <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
+         Remove the comment if you do not require these default permissions. -->
+    <!-- %%INSERT_PERMISSIONS -->
+
+    <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
+         Remove the comment if you do not require these default features. -->
+    <!-- %%INSERT_FEATURES -->
+    \endcode
+
+    For information on the manifest, see \l{Android: App Manifest} and
+    \l{Qt Creator: Editing Manifest Files}.
 */
