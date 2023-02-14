@@ -48,7 +48,11 @@
 //! [windows]
 \table 80%
     \header \li Operating System \li Architecture \li Compiler
-    \row \li Windows 10 (1809 or later)/Windows 11"
+    \row \li Windows 10 (1809 or later)
+        \li \c x86_64
+        \li MSVC 2022, MSVC 2019, MinGW 11.2
+        \li
+    \row \li Windows 11
         \li \c x86_64
         \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
