@@ -176,6 +176,8 @@
         > ./configure -platform macx-ios-clang -release -qt-host-path <path_to_host_qt_installation>
     \endcode
 
+    \include use-ninja-note.qdocinc ninja-note
+
     For other configure options, see \l{Qt Configure Options}.
 
     Then, simply run \c{cmake --build . --parallel}.

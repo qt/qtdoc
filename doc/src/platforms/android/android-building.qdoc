@@ -71,6 +71,8 @@
     <path_to_qt_source>/configure -platform android-clang -prefix </path/to/install> -android-ndk $ANDROID_NDK_ROOT -android-sdk $ANDROID_SDK_ROOT -qt-host-path <path_to_host_qt_installation>
     \endcode
 
+    \include use-ninja-note.qdocinc ninja-note
+
     \section2 Architectures
 
     Qt for Android supports the following ABIs:
