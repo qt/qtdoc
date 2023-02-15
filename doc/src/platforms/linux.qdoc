@@ -347,87 +347,126 @@
     \title Qt for Linux/X11 - Building from Source
     \brief How to configure and build Qt on Linux/X11 platforms.
 
-    You can download the Qt sources from the \l Downloads page. For more
-    information, visit the \l{Getting Started with Qt} page.
+    This page describes configuring and building \l{Qt for Linux/X11} from
+    sources. Note that it is typically easier to install the pre-built Qt
+    libraries and tools via the \l{Online Installer}. A lot of Linux
+    distributions also provide Qt packages through their package manager.
+    Build Qt from sources, however, if you want to customize Qt further or are
+    using a distribution for which no binary Qt packages (in the right version)
+    are available.
 
-    Qt for X11 has some requirements that are given in more detail
-    in the \l{Qt for X11 Requirements} document.
+    Distribution packagers can find further information on how to package Qt in
+    the \l{Qt Packaging Recommendations}{packaging recommendations}.
 
-    Distribution packagers can find information how to package Qt in the
-    \l{Qt Packaging Recommendations}{packaging recommendations}.
+    \section1 Step 1: Getting the Sources
 
-    \section1 Step 1: Unpacking the Archive
-        Unpack the archive if you have not done so already. For example,
-        if you have the \c{qt-everywhere-src-%VERSION%.tar.gz}
-        package, type the following commands at a command line prompt:
+    Qt sources can be installed in the Qt Online Installer. Source packages are
+    also available as \l{https://code.qt.io}{Git repositories}, as archives in
+    the \l{Qt Account} (commercial users), and on
+    \l{https://download.qt.io/official_releases/qt/}{download.qt.io}
+    (open-source users).
 
-    \snippet snippets/code/doc_src_installation.qdoc 0
+    If you install the sources through the Qt Online Installer, they will
+    be available in the Qt installation directory, for example
+    \tt{$HOME/Qt/\QtVersion/Src}.
 
-        This creates the directory \c{/tmp/qt-everywhere-src-%VERSION%}
-        containing the files from the archive. We only support the GNU version of
-        the tar archiving utility. Note that on some systems it is called gtar.
+    If you downloaded the single source archive, extract it to a directory of
+    your choice:
 
-    \section1 Step 2: Build the Qt Library
+    \badcode \QtVersion
+    cd ~/dev
+    tar xf ~/Downloads/qt-everywhere-src-\1.tar.xz
+    \endcode
 
-        To configure the Qt library for your machine type, run the
-        \c{./configure} script in the package directory.
+    \section1 Step 2: Install Build Requirements
 
-        By default, Qt is configured for installation in the
-        \c{/usr/local/Qt-%VERSION%} directory, but this can be
-        changed by using the \c{-prefix} option.
+    Building Qt requires a build environment with tools, compilers, and
+    development packages.
 
-        The \l{Qt Configure Options}{Configure Options} page contains more
-        information about the configure options.
+    \section2 Build Tools
 
-    \snippet snippets/code/doc_src_installation.qdoc 1
+    \table 80%
+    \header \li Tool \li Supported Versions
+    \row
+        \li CMake
+        \li Version 3.16 and newer (3.21 and newer for \c{-static} builds).
+    \row
+        \li Ninja
+        \li -
+    \row
+        \li Python
+        \li Version 3
+    \endtable
 
     \include use-ninja-note.qdocinc ninja-note
 
-        The \l{Qt Configure Options}{Configure Options} page contains more
-        information about the configure options.
+    \section2 Compilers & Development Packages
 
-        To create the library and compile all the examples, tools,
-        and tutorials, type:
+    The following compilers and configurations are supported in Qt \QtVer:
 
-    \snippet snippets/code/doc_src_installation.qdoc 2
+    \include supported-platforms.qdocinc linux
 
-        If \c{-prefix} is outside the build directory, you need to install
-        the library, examples, tools, and tutorials in the appropriate
-        place. To do this (as root if necessary), type:
+    Other compilers and configurations might work but are not actively tested.
 
-    \snippet snippets/code/doc_src_installation.qdoc 3
+    Qt also relies on the availability of various libraries and development
+    packages, which are typically installed by the package manager of the
+    respective resolution. See \l{Qt for X11 Requirements} for the details.
 
-        Note that on some systems the make utility is named differently, like gmake.
-        The configure script tells you which make utility to use.
+    \section1 Step 3: Build the Qt Libraries and Tools
 
-        \note Later, if you need to reconfigure and rebuild Qt from the same location,
-        ensure that all traces of the previous configuration are removed. To do so, from
-        the build directory, type \c{make confclean} before running \c configure again.
+    Run the \c{./configure} script in the package directory to configure
+    your build:
 
-    \section1 Step 3: Set the Environment Variables
+    \badcode \QtVersion
+    cd /tmp/qt-everywhere-src-\1
+    ./configure
+    \endcode
 
-        To use Qt, some environment variables need to be extended.
+    By default, Qt is configured for installation in the
+    \tt{/usr/local/Qt-\QtVersion} directory. This can be changed by using the
+    \c{-prefix} option. See the list of \l{Qt Configure Options}{configure options}
+    to tweak further.
 
-    \snippet snippets/code/doc_src_installation.qdoc 4
+    Did \c{configure} run successfully? Then proceed with building the libraries
+    and tools:
 
-        This is done as follows:
+    \badcode
+    cmake --build . --parallel
+    \endcode
 
-        In \c{.profile} (if your shell is bash, ksh, zsh or sh), add the
-        following lines:
+    After building, you need to install the libraries and tools in the
+    appropriate place (unless you enabled a
+    \l{Developer Builds}{developer build}):
 
-    \snippet snippets/code/doc_src_installation.qdoc 5
+    \badcode
+    cmake --install .
+    \endcode
 
-        In \c{.login} (if your shell is csh or tcsh), add the following line:
+    Note that this might require root access.
 
-    \snippet snippets/code/doc_src_installation.qdoc 6
+    \section1 Step 4: Using Qt
 
-        If you use a different shell, modify your environment variables accordingly.
+    After Qt is installed, you can start building applications with it.
 
-        For compilers that do not support rpath you must also extend the
-        \c LD_LIBRARY_PATH environment variable to include
-        \c{/usr/local/Qt-%VERSION%/lib}. On Linux with GCC this step
-        is not needed.
+    If you work from the command line, consider adding the Qt tools to your
+    default \c PATH. This is done as follows:
 
+    In \c{.profile} (if your shell is bash, ksh, zsh or sh), add the
+    following lines:
+
+    \badcode \QtVersion
+    PATH=/usr/local/Qt-\1/bin:$PATH
+    export PATH
+    \endcode
+
+    In \c{.login} (if your shell is csh or tcsh), add the following line:
+
+    \badcode \QtVersion
+    setenv PATH /usr/local/Qt-\1/bin:$PATH
+    \endcode
+
+    If you plan to use Qt from an IDE, you need to register the Qt version
+    explicitly there. For Qt Creator, see \l{Qt Creator: Adding Qt Versions}.
 */
 
 /*!
