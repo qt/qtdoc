@@ -3,13 +3,13 @@
 
 //! [0]
 cd <anywhere>
-gunzip qt-everywhere-opensource-src-%VERSION%.tar.gz
-tar xf qt-everywhere-opensource-src-%VERSION%.tar
+gunzip qt-everywhere-src-%VERSION%.tar.gz
+tar xf qt-everywhere-src-%VERSION%.tar
 //! [0]
 
 
 //! [1]
-~/qt-everywhere-opensource-src-%VERSION%
+~/qt-everywhere-src-%VERSION%
 //! [1]
 
 
@@ -18,7 +18,7 @@ tar xf qt-everywhere-opensource-src-%VERSION%.tar
 //! [embedded help]
 
 //! [2]
-cd  ~/qt-everywhere-opensource-src-%VERSION%
+cd  ~/qt-everywhere-src-%VERSION%
 ./configure -embedded [architecture]
 //! [2]
 

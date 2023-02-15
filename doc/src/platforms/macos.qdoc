@@ -280,12 +280,12 @@
     \section2 Step 1: Unpack the Archive
 
         Unpack the archive if you have not done so already. For example,
-        if you have the \c{qt-everywhere-opensource-src-%VERSION%.tar.gz}
+        if you have the \c{qt-everywhere-src-%VERSION%.tar.gz}
         package, type the following commands at a command line prompt:
 
     \snippet snippets/code/doc_src_installation.qdoc 11
 
-        This creates the directory \c{/tmp/qt-everywhere-opensource-src-%VERSION%}
+        This creates the directory \c{/tmp/qt-everywhere-src-%VERSION%}
         containing the files from the archive.
 
     \section2 Step 2: Build the Qt Library

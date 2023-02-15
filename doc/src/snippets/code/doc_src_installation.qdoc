@@ -3,13 +3,13 @@
 
 //! [0]
 cd /tmp
-gunzip qt-everywhere-opensource-src-%VERSION%.tar.gz        # uncompress the archive
-tar xvf qt-everywhere-opensource-src-%VERSION%.tar          # unpack it
+gunzip qt-everywhere-src-%VERSION%.tar.gz        # uncompress the archive
+tar xvf qt-everywhere-src-%VERSION%.tar          # unpack it
 //! [0]
 
 
 //! [1]
-cd /tmp/qt-everywhere-opensource-src-%VERSION%
+cd /tmp/qt-everywhere-src-%VERSION%
 ./configure
 //! [1]
 
@@ -42,13 +42,13 @@ setenv PATH /usr/local/Qt-%VERSION%/bin:$PATH
 
 //! [11]
 cd /tmp
-gunzip qt-everywhere-opensource-src-%VERSION%.tar.gz        # uncompress the archive
-tar xvf qt-everywhere-opensource-src-%VERSION%.tar          # unpack it
+gunzip qt-everywhere-src-%VERSION%.tar.gz        # uncompress the archive
+tar xvf qt-everywhere-src-%VERSION%.tar          # unpack it
 //! [11]
 
 
 //! [12]
-cd /tmp/qt-everywhere-opensource-src-%VERSION%
+cd /tmp/qt-everywhere-src-%VERSION%
 ./configure
 //! [12]
 
