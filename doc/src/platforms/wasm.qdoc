@@ -116,6 +116,8 @@ variable \e{CMAKE_TOOLCHAIN_FILE} or by passing
     ./configure -qt-host-path /path/to/Qt -platform wasm-emscripten -prefix $PWD/qtbase
 \endcode
 
+\include use-ninja-note.qdocinc ninja-note
+
 On Windows, make sure you have MinGW in your \c PATH
 and configure with the following:
 

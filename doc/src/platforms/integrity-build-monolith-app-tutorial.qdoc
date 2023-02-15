@@ -151,6 +151,8 @@
         cmake --install .
     \endcode
 
+    \include use-ninja-note.qdocinc ninja-note
+
     \section1 Creating a toolchain file for INTEGRITY
 
     To cross-compile a project with CMake, one must specify a toolchain file.

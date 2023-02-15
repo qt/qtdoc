@@ -61,6 +61,8 @@
     ./configure -release -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$TOOLCHAIN/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- -sysroot $ROOTFS -prefix /usr/local/qt5
     \endcode
 
+    \include use-ninja-note.qdocinc ninja-note
+
     With Qt 6 and CMake, this approach is \b{no longer sufficient} on its own. Rather, a
     \l{https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html}{CMake toolchain
     file} must be provided before configuring can happen. It is in this file where
