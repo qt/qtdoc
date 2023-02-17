@@ -610,12 +610,8 @@
 
     \snippet snippets/code/doc_src_mac-differences.cpp 1
 
-    \note When \macos is set to use Japanese, a bug causes this sequence
-    to fail and return an empty string. Therefore, always test the
-    returned string.
-
-    For more information about using the CFBundle API, visit
-    \l{http://developer.apple.com/documentation/CoreFoundation/Reference/CFBundleRef/index.html}
+    For more information about using the NSBundle API, visit
+    \l{https://developer.apple.com/documentation/foundation/nsbundle?language=objc}
     {Apple's Developer Website}.
 
     QCoreApplication::applicationDirPath() can be used to determine
