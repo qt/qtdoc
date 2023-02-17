@@ -50,13 +50,7 @@
 
 //! [1]
 #ifdef Q_OS_MAC
-    CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-    CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
-                                           kCFURLPOSIXPathStyle);
-    const char *pathPtr = CFStringGetCStringPtr(macPath,
-                                           CFStringGetSystemEncoding());
-    qDebug("Path = %s", pathPtr);
-    CFRelease(appUrlRef);
-    CFRelease(macPath);
+    QString bundlePath = QString::fromNSString(NSBundle.mainBundle.bundlePath);
+    qDebug() << "Bundle path =" << bundlePath;
 #endif
 //! [1]
