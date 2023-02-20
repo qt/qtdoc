@@ -481,13 +481,17 @@ Browsers that support the Clipboard API are preferred. Note that a requirement f
 is that the web page is served over a secure connection (e.g. https), and that some browsers
 my require changing configuration flags.
 
-At the time of writing the following browsers support the Clipboard API, see
-\l{https://caniuse.com/?search=Clipboard}{caniuse} for the current support level.
+See \l{https:...}{caniuse} for which browsers currently support the
+  Clipboard API. The following versions are known to work:
 
 \list
-    \li Chrome supports the Clipboard API
-    \li Firefox supports the Clipboard API behind a flag:
-        dom.events.asyncClipboard.dataTransfer
+    \li Chrome version 66 and Safari version 13.1 support the Clipboard API
+    \li Firefox version 90 supports the Clipboard API if you enable the
+        following flags in 'about:config':
+\badcode
+        dom.events.asyncClipboard.read
+        dom.events.asyncClipboard.clipboardItem
+\endcode
 \endlist
 
 \section2 Fonts
