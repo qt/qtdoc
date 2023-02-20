@@ -25,7 +25,7 @@ yet supported or are in Tech Preview. See \l[QtDoc] {Supported Qt Modules}.
 
 Building Qt applications for WebAssembly is similar to building Qt for other platforms. You
 need to install an SDK (Emscripten), install Qt (or build Qt from source), and finally, build
-the application. Some differences exist, for example, Qt for WebAssambly supports fewer modules
+the application. Some differences exist, for example, Qt for WebAssembly supports fewer modules
 and less features than other Qt builds.
 
 \section2 Installing Emscripten
@@ -88,8 +88,8 @@ Download Qt from the Downloads section of your Qt account. We provide builds
 for Linux, macOS, and Windows as development platforms.
 
 The binary builds are designed to run on as many browsers as possible, and come
-in single-threaded and multi-threaded versions. Non-standard features such as wasm
-SIMD and wasm exceptions are not supported by the binary builds.
+in single-threaded and multi-threaded versions. Non-standard features such as \c {Wasm
+SIMD} and \c {Wasm exceptions} are not supported by the binary builds.
 
 \target wasm-building-qt-from-source
 \section2 Building Qt from Source
@@ -224,13 +224,14 @@ the application name in the following table).
         \li app binary
 \endtable
 
-You can deploy \e {app.html} as-is, or discard it in favor of a custom html
+You can deploy \e {app.html} as-is, or discard it in favor of a custom HTML
 file. Smaller adjustments, such as changing the splash screen image from the Qt
 logo to the app logo, is also possible. In both cases, \e {qtloader.js} provides a JavaScript
 API for loading the application.
 
-We recommend compressing the wasm file using e.g. gzip or brotli before deployment,
-as this can provide a significant reduction in file size.
+Compress the Wasm file using either \c gzip or \c brotli before deploying,
+as they offer better compression ratio than the other tools.
+See \l{Minimizing the size of binaries} for more information.
 
 Enabling certain features, such as multi-threading and SIMD, produces .wasm binaries
 that are incompatible with browsers that do not support the enabled feature. It is
@@ -635,6 +636,130 @@ qmake:
     QMAKE_LFLAGS_DEBUG += -s LIBRARY_DEBUG=1
 \endcode
 
+\section2 Optimizing
+
+Qt for WebAssembly uses the Emscripten toolchain to generate binaries,
+and there are many flags that may impact performance and the size of binaries.
+See \l{Emscripten: Optimizing Code} for more information.
+
+You can pass linker and compiler flags just as for normal C++ applications:
+\if defined(onlinedocs)
+    \tab {passing-flags}{tab-cmake}{CMake}{checked}
+    \tab {passing-flags}{tab-qmake}{qmake}{}
+    \tabcontent {tab-cmake}
+\else
+    \section1 Using CMake
+\endif
+    \badcode
+        target_compile_options(<your target> PRIVATE -oz -flto)
+        target_link_options(<your target> PRIVATE -flto)
+    \endcode
+\if defined(onlinedocs)
+    \endtabcontent
+    \tabcontent {tab-qmake}
+\else
+    \section1 Using qmake
+\endif
+    \badcode
+        QMAKE_CXXFLAGS += -oz -flto
+        QMAKE_LFLAGS += -flto
+    \endcode
+\if defined(onlinedocs)
+    \endtabcontent
+\endif
+
+\section3 Minimizing the size of binaries
+
+In order to provide a seamless user experience, it's important to reduce the time
+to download and load WebAssembly applications.
+Smaller application binary is one of the important aspects that enable faster
+download. Use the following alternatives to reduce the binary size:
+
+\list
+\li Make sure to distribute release builds. Debug builds contain debug symbols
+and are much bigger.
+\li Enable compression on a server. The most common algorithms like \c gzip and
+Brotli work well on Wasm binaries and can drastically reduce their size.
+\li Try compiler and linker flags that may results in generating smaller
+binaries (i.e. '-os', '-oz'). Results will vary depending on the particular
+application.
+\li Disable unsued features when compiling Qt for WebAssembly from source (see below).
+\endlist
+
+\section4 Opting out of features
+
+A WebAssembly application by default links statically to the Qt libraries,
+enabling the compiler to eliminate dead code. However, due to Qt's dynamic nature
+it's not always possible for the compiler to perform such optimizations.
+
+If you build Qt for WebAssembly from source, you can disable features to reduce
+the size of Qt binaries, and --- as a result --- the size of .wasm binaries.
+Qt disables some features by default for the WebAssembly platform, but you can
+also disable features that your application does not use.
+See \l{disabled features} for more information.
+
+You can disable the following features to reduce binary size (usually by 10-15%):
+\table
+    \header
+        \li Configure Argument
+        \li Brief Description
+    \row
+        \li -no-feature-cssparser
+        \li Parser for Cascading Style Sheets.
+    \row
+        \li -no-feature-datetimeedit
+        \li Editing dates and times (depends on datetimeparser).
+    \row
+        \li -no-feature-datetimeparser
+        \li Parsing date-time texts.
+    \row
+        \li -no-feature-dockwidget
+        \li Docking widgets inside a QMainWindow or floating them as top-level
+            windows on the desktop.
+    \row
+        \li -no-feature-gestures
+        \li Framework for gestures.
+    \row
+        \li -no-feature-mimetype
+        \li Mimetype handling.
+    \row
+        \li -no-feature-qml-network
+        \li Network transparency.
+    \row
+        \li -no-feature-qml-list-model
+        \li ListModel QML type.
+    \row
+        \li -no-feature-qml-table-model
+        \li TableModel QML type.
+    \row
+        \li -no-feature-quick-canvas
+        \li Canvas item.
+    \row
+        \li -no-feature-quick-path
+        \li Path elements.
+    \row
+        \li -no-feature-quick-pathview
+        \li PathView item.
+    \row
+        \li -no-feature-quick-treeview
+        \li TreeView item.
+    \row
+        \li -no-feature-style-stylesheet
+        \li Widget style which is configurable via CSS.
+    \row
+        \li -no-feature-tableview
+        \li Default model/view implementation of a table view.
+    \row
+        \li -no-feature-texthtmlparser
+        \li Parser for HTML.
+    \row
+        \li -no-feature-textmarkdownreader
+        \li Markdown (CommonMark and GitHub) reader.
+    \row
+        \li -no-feature-textodfwriter
+        \li ODF writer.
+\endtable
+
 \section2 Wasm Exceptions
 
 Qt is built without exception support by default, where throwing an exception will abort
@@ -688,7 +813,7 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Brief Description
     \row
         \li -feature-thread
-        \li Multi-threaded wasm.
+        \li Multi-threaded Wasm.
     \row
         \li -feature-wasm-simd128
         \li Enables WebAssembly SIMD support.
@@ -701,6 +826,19 @@ The following configure options are relevant when building Qt for WebAssembly fr
     \row
         \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
         \li Use asyncify.
+\endtable
+
+\target disabled features
+Qt disables some features by default for the WebAssembly platform, to reduce the binary size.
+You can explicitly enable a feature when you configure Qt for WebAssembly:
+
+\table
+    \header
+        \li Configure Argument
+        \li Brief Description
+    \row
+        \li -feature-topleveldomain
+        \li Provides support for checking if a domain is a top-level domain.
 \endtable
 
 \section2 Typical Download Sizes
@@ -728,7 +866,9 @@ large, but compress well:
 
 Compression is typically handled on the web server side, using standard compression
 features: the server compresses automatically or picks up pre-compressed versions of the
-files. There's generally no need to have special handling of wasm files.
+files. There's generally no need to have special handling of Wasm files.
+
+For more information, see \l{Minimizing the size of binaries}.
 
 \section2 Examples
 
