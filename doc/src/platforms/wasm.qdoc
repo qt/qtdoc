@@ -266,6 +266,7 @@ key handling on macOS.
 Qt for WebAssembly applications runs on mobile browsers such as mobile
 Safari and Android Chrome.
 
+\target supported modules
 \section1 Supported Qt Modules
 
 Qt for WebAssembly supports a subset of the Qt modules and features. Tested
@@ -339,13 +340,13 @@ A WebGL-friendly subset of ES2 (and ES3) is used by default. If you need to use
 ES2 support by adding
 
 \badcode
-target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES2=1")
+    target_link_options(<your target> PRIVATE -s FULL_ES2=1)
 \endcode
 
 and/or full ES3 emulation by adding
 
 \badcode
-target_link_options(<your target> PRIVATE "SHELL:-s FULL_ES3=1")
+    target_link_options(<your target> PRIVATE -s FULL_ES3=1)
 \endcode
 
 to your project's \c {CMakeLists.txt}.
@@ -573,7 +574,7 @@ applications by adding -sASYNCIFY -Os to linker options:
 
 CMake:
 \badcode
-set target_link_options(<target> PUBLIC -sASYNCIFY -Os)
+    target_link_options(<your target> PUBLIC -sASYNCIFY -Os)
 \endcode
 
 qmake:
@@ -624,12 +625,13 @@ You can add more verbosity to help debug using Emscripten linker arguments:
     \li -s SOCKET_DEBUG (print out socket, network data transfer)
 \endlist
 
-Using cmake:
-\code
-   target_link_options(<your target> PRIVATE "SHELL:-s LIBRARY_DEBUG=1")
+CMake:
+\badcode
+    target_link_options(<your target> PRIVATE -s LIBRARY_DEBUG=1)
 \endcode
-Using qmake:
-\code
+
+qmake:
+\badcode
     QMAKE_LFLAGS_DEBUG += -s LIBRARY_DEBUG=1
 \endcode
 
@@ -686,7 +688,7 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Brief Description
     \row
         \li -feature-thread
-        \li Multi-threaded wasm
+        \li Multi-threaded wasm.
     \row
         \li -feature-wasm-simd128
         \li Enables WebAssembly SIMD support.
@@ -695,10 +697,10 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Enables WebAssembly exceptions support.
     \row
         \li -feature-opengles3
-        \li Use opengles3 in addition to the default opengles2
+        \li Use opengles3 in addition to the default opengles2.
     \row
         \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
-        \li Use asyncify
+        \li Use asyncify.
 \endtable
 
 \section2 Typical Download Sizes
