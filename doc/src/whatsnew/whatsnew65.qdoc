@@ -107,6 +107,9 @@
                     \li \l CheckBox
                     \li \l DelayButton
                     \li \l Dialog
+                    \li \l Drawer
+                    \li \l Menu
+                    \li \l Popup
                     \li \l RangeSlider
                     \li \l RoundButton
                     \li \l Slider
@@ -123,8 +126,16 @@
                         \l TextArea support it by default.
                     \li \l {material-roundedScale-attached-prop}{Material.roundedScale}
                         controls the radius of rounded corners used on the target control.
-                        It can be attached to any window or item, but only
-                        \l Button, \l Dialog, and \l DialogButtonBox support it by default.
+                        It can be attached to any window or item, but only the following
+                        controls support it by default:
+                        \list
+                        \li \l Button
+                        \li \l Dialog
+                        \li \l DialogButtonBox
+                        \li \l Drawer
+                        \li \l Menu
+                        \li \l Popup
+                        \endlist
                     \endlist
             \endlist
     \endlist
