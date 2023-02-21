@@ -590,35 +590,41 @@
     add_subdirectory(example/mylib)
     \endcode
 
-    The subdirectory structure
-    corresponds to the QML module’s URI, but with the dots replaced by
+    The subdirectories are structured to
+    correspond to the QML module’s URI, but with the dots replaced by
     slashes. That’s the same logic the engine uses when it searches for a
-    module in the \l{Import Statements}{import paths}. \c mytype.h declares a
-    class and uses the
-    declarative registration macros to expose it to the engine.
+    module in the \l{Import Statements}{import paths}. Following this
+    subdirectory structure helps tooling.
 
-    In the subdirectory’s \c CMakeLists.txt we again call \c qt6_add_qml_module.
-    However, the invocation is slightly different:
+    \c mytype.h declares a class and uses the
+    \l{Registering C++ Types with the QML Type System}{declarative registration macros}
+    to expose it to the engine.
+
+    In the subdirectory’s \c CMakeLists.txt we call \l{qt6_add_qml_module}{qt_add_qml_module}.
+    Compared to \l {Building a QML application}, the invocation is slightly
+    different:
 
     \code
-    qt6_add_qml_module(mylib
+    qt_add_qml_module(mylib
         URI example.mylib
         VERSION 1.0
         SOURCES
             mytype.h mytype.cpp
         QML_FILES
-            Mistake.qml
+            MyQmlType.qml
     )
     \endcode
 
-    To add C++ types, the SOURCES parameter needs to be specified. The target for
-    mylib is not created. Therefore, if the target passed to \c qt6_add_qml_module
-    does not exist, a library target is automatically created, which is needed in
-    this case.
+    The target for \c{mylib} has not been created before. When the target passed
+    to \c qt6_add_qml_module does not exist, it automatically creates a library
+    target. This avoids a separate
+    call to \l {qt6_add_library}{qt_add_library}.
+    To register QML types defined in C++, add their header and source files
+    as arguments to the SOURCES parameter.
 
     When the project is built, in addition to the library, a QML plugin is also
     built. The plugin's auto-generated class extends from
-    \c {QQmlEngineExtensionPlugin}.
+    \l {QQmlEngineExtensionPlugin}.
     The mylib library itself already contains the code to register the types
     with the engine.  However, that is only useful in cases where we can link
     against the library. To make the module usable in a QML file loaded by \c qml,
@@ -634,44 +640,8 @@
 
     Also, following the directory layout convention helps tooling. That layout
     is mirrored in the build directory. Which means that you can pass the path to
-    your build directory to the QML tool (via the -I flag), and it will find the
+    your build directory to the QML tool (via the \c{-I} flag), and it will find the
     plugin.
-
-    Before concluding add a QML file to the module. In the lib subfolder,
-    add a \c Mistake.qml file
-    \code
-    import example.mylib
-
-    MyType{
-        answer: 43
-    }
-    \endcode
-
-    and adjust the \c qt6_add_qml_module call:
-
-    \code
-    qt6_add_qml_module(mylib
-        URI example.mylib
-        VERSION 1.0
-        SOURCES
-            mytype.h mytype.cpp
-        QML_FILES
-            Mistake.qml
-    )
-    \endcode
-
-    As mentioned, we made a mistake because \c answer is actually a read-only
-    property. This illustrates \c qmllint integration: CMake
-    creates a \c qmllint target, and once we run it, \c qmllint warns
-    about the issue:
-
-    \badcode
-    $> cmake --build . --target mylib_qmllint
-    ...
-    Warning: Mistake.qml:4:13: Cannot assign to read-only property answer
-        answer: 43
-                ^^
-    \endcode
 */
 
 /*!
