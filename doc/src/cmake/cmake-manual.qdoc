@@ -506,19 +506,22 @@
     \printuntil
 
     Let's walk through the changes we have made.
-    We specify \l {Building a C++ GUI application}{CMAKE_AUTOMOC},
-    \l{Building a C++ console application}{CMAKE_CXX_STANDARD},
-    and CMAKE_CXX_STANDARD_REQUIRED.
-
-    \quotefromfile snippets/cmake/helloworld_qtqml.cmake
-    \skipto CMAKE_AUTOMOC
-    \printuntil CMAKE_CXX_STANDARD_REQUIRED
-
     In the \c{find_package} call, we replace \c{Core} with \c{Quick}. This
     will locate the \c{Qt6Quick} module and provide the \c{Qt6::Quick}
     targets we later link against.
 
+    \quotefromfile snippets/cmake/helloworld_qtqml.cmake
+    \skipto find_package(
     \printuntil find_package(
+
+    We call \l {qt6_standard_project_setup}{qt_standard_project_setup},
+    and specify \l{Building a C++ console application}{CMAKE_CXX_STANDARD},
+    and \c{CMAKE_CXX_STANDARD_REQUIRED}.
+    By passing \c {REQUIRED 6.5} to \c {qt_standard_project_setup}, we opt-in
+    to useful defaults for \l{qt6_add_qml_module}{qt_add_qml_module}.
+
+    \printuntil CMAKE_CXX_STANDARD_REQUIRED
+
 
     Note that the application will still link against \c{Qt6::Core}, because
     \c{Qt6::Quick} depends on it.
@@ -529,14 +532,13 @@
 
     \l {qt_add_qml_module} passes the target of the executable, a URI, module
     version, and a list of QML files to ensure that myapp becomes a
-    QML module. Among other things, this places the QML files into
-    \c { qrc:/${URI} } in the resource file system.
+    QML module. This places the QML files into
+    \c { qrc:/qt/qml/${URI} } in the resource file system.
+    Moreover, \c qt_add_qml_module ensures that \c qmlcachegen runs.
+    Additionally, it creates a \c myapp_qmllint target, which runs \c qmllint on
+    the files in QML_FILES.
 
     \printuntil )
-
-    First, \c qt_add_qml_module ensures that \c qmlcachegen runs. Second, it
-    creates a \c myapp_qmllint target, which runs \c qmllint on the files in
-    QML_FILES.
 
     By adding the referenced resources, they get automatically added to
     the application under the same root path as the QML files – also in the
@@ -584,7 +586,7 @@
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
     find_package(Qt6 REQUIRED COMPONENTS Qml)
-    qt_standard_project_setup()
+    qt_standard_project_setup(REQUIRED 6.5)
 
     add_subdirectory(example/mylib)
     \endcode
