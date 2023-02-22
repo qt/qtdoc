@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
     parser.process(app);
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl("qrc:///photosurface.qml"));
+    engine.load(QUrl("qrc:/qt/qml/photosurface/photosurface.qml"));
     if (engine.rootObjects().isEmpty())
         return -1;
 
