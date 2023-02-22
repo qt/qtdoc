@@ -84,7 +84,7 @@ The following instructions guide you to build the OpenSSL libraries manually:
         make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=<custom_suffix>.so build_libs
         \endcode
 
-        Then set the environment variable in your main.ccp file:
+        Then set the environment variable in your main.cpp file:
 
         \code
         qputenv("ANDROID_OPENSSL_SUFFIX", "<custom_suffix>");

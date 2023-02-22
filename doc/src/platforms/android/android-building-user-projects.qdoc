@@ -114,8 +114,8 @@
     property that specifies a list of ABIs that the single executable target is
     built for. For example:
 
-    \badcode
     \dots 0
+    \badcode
     qt_add_executable(MyApp main.cpp)
 
     set_target_properties(MyApp PROPERTIES QT_ANDROID_ABIS "arm64-v8a;x86")
