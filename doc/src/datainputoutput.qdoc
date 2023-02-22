@@ -30,15 +30,15 @@ from and write to that process.
 \endlist
 
 \section1 Serialized data
-The Qt API provides support for \l {qtserialization} {Data serialization} for
-several use cases.
+The Qt API provides support for \l [QtCore] {Qt Serialization}
+{data serialization} for several use cases.
 
 \list
 \li \l JSON support in Qt provides an easy to use C++ API to parse, modify
     and save JSON data
 \li \l QDataStream class provides serialization of binary data to a QIODevice
-\li \l {Qt XML C++ Classes} provide C++ implementations of the \l XML Streaming
-    and DOM standards for XML
+\li \l {Qt XML C++ Classes} provide C++ implementations of the
+    \l [QtXML] {XML Streaming} and DOM standards for XML
 \endlist
 
 \section1 Database

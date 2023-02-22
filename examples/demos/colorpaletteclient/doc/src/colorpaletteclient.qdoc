@@ -31,7 +31,7 @@ At start the application presents the options for the color palette server to co
 with. The predefined options are:
 \list
     \li \l {https://reqres.in}{reqres.in}, a publicly available REST API test service
-    \li \l {RESTful server Color Palette Example}{Qt-based REST API server example} in QtHttpServer
+    \li \l {RESTful Color Palette Server} {Qt-based REST API server example} in QtHttpServer
 \endlist
 Once selected, the application issues a test HTTP GET to the color API to check if the service is
 accessible.
@@ -39,7 +39,7 @@ accessible.
 \image colorpalette_urlselection.png
 
 One major difference between the two predefined API options is that the
-\l {RESTful server Color Palette Example}{Qt-based REST API server example} is a stateful
+\l {RESTful Color Palette Server}{Qt-based REST API server example} is a stateful
 application which allows modifying colors, whereas the \e reqres.in is a stateless API testing
 service. In other words, when using the \e reqres.in backend, modifying the colors has no impact on
 the UI.
