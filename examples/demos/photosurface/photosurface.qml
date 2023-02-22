@@ -1,5 +1,6 @@
 // Copyright (C) 2017 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
@@ -160,9 +161,17 @@ Window {
     Shortcut { sequence: StandardKey.Quit; onActivated: Qt.quit() }
 
     Component.onCompleted: {
-        let lastArg = Application.arguments.slice(-1)[0]
-        if (/.*hotosurface.*|--+/.test(lastArg))
-            folderDialog.open()
+        const lastArg = Application.arguments.slice(-1)[0]
+        const standardPicturesLocations = StandardPaths.standardLocations(StandardPaths.PicturesLocation)
+        const hasValidPicturesLocation = standardPicturesLocations.length > 0
+        if (hasValidPicturesLocation)
+            folderDialog.currentFolder = standardPicturesLocations[0]
+        if (/.*hotosurface.*|--+/.test(lastArg)) {
+            if (hasValidPicturesLocation)
+                folderModel.folder = standardPicturesLocations[0]
+            else
+                folderDialog.open()
+        }
         else
             folderModel.folder = Qt.resolvedUrl("file:" + lastArg)
     }
