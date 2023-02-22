@@ -574,7 +574,8 @@
     displaying the results on screen in the main thread when the
     worker thread is finished. This is the approach used for
     implementing the \l{Mandelbrot Example} and
-    the \l{Blocking Fortune Client Example}.
+    the \l [QtNetwork] {Blocking Fortune Client}
+    {Blocking Fortune Client example}.
 
     In general, creating QObjects before the QApplication is not supported
     and can lead to weird crashes on exit, depending on the platform.
@@ -714,7 +715,8 @@
     thread. The thread emits a signal when it is done rendering the
     fractal.
 
-    Similarly, the \l{Blocking Fortune Client Example} uses a separate
+    Similarly, the \l [QtNetwork] {Blocking Fortune Client}
+    {Blocking Fortune Client example} uses a separate
     thread for communicating with a TCP server asynchronously.
 */
 

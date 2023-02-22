@@ -52,7 +52,8 @@
         \li New cross-platform tracing backend in Common Trace Format (CTF).
         \li QBindable can now be constructed from any property with a NOTIFY
             signal. This lets you integrate existing, non-bindable
-            properties with \l {bindable properties}{Qt Bindable Properties}.
+            properties with \l [QtCore] {Qt Bindable Properties}
+            {bindable properties}.
     \endlist
 
     \section2 Qt GUI Module
@@ -245,11 +246,14 @@
                     shift operators
                 \li the exponentiation operator
             \endlist
+        \li \l {The QML Disk Cache} can be controlled in a more fine-grained way
+            using the new environment variable \c {QML_DISK_CACHE}.
         \li Added new public CMake API:
             \list
-                \li Introduced a \l{Qt CMake policy} to set a better default for the
-                    resource prefix. If \l{QTP0001} policy is set to \c NEW, the QML
-                    engine will always be able to find your QML modules in the
+                \li Introduced a \l [QtCore] {qt_policy} {Qt CMake policy} to
+                    set a better default for the resource prefix. If
+                    \l{QTP0001} policy is set to \c NEW, the QML engine
+                    will always be able to find your QML modules in the
                     resource file system.
             \endlist
     \endlist
@@ -307,8 +311,8 @@
     \section2 Qt WebView Module
 
     \list
-       \li Added \l {QQuickWebViewSettings::WebViewSettings}{WebViewSettings} to
-       configure some of the common \l {QtWebView::WebView}{WebView} functionality.
+       \li Added \l [QtWebView] {WebViewSettings} to
+       configure some of the common \l [QtWebView] {WebView} functionality.
     \endlist
 
     \section1 Platform Changes
