@@ -118,6 +118,74 @@ See notes on \l {Qt for WebAssembly#Supported Browsers}{supported browsers}.
 \section1 Embedded Platforms
 //! [embedded]
 
+//! [tier_support]
+
+\section2 Support Levels for Target Hardware
+
+There are multiple levels of support that apply across specific hardware and OS
+combinations.
+
+\note Boards will not be demoted or removed from these tables during a patch
+release, however they may be removed in a future minor release.
+
+\section3 Tier 1: Reference Targets
+
+\list
+    \li Issues on this reference target are given a higher priority than lower
+    tier targets.
+    \li Covered under \l{Qt Support Terms and Conditions}{Standard Support}.
+    \li Releases are available via the Qt Online Installer.
+\endlist
+
+\table
+    \header \li{4,1} Tier 1: Reference Targets
+    \header \li Vendor \li Board \li OS / Other \li Provided By
+    \row \li Intel \li NUC 10 \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8QuadMax \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8QuadMax \li QNX 7.1 \li \l{Qt for QNX}
+    \row \li Qualcomm \li SA8155P \li AAOS 10-12 \li \l{Qt for Android Automotive}
+    \row \li Qualcomm \li SA8155P \li INTEGRITY 19.03 \li \l{Qt for INTEGRITY}
+    \row \li Raspberry Pi \li Raspberry Pi 4 Model B \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li Toradex \li Apalis iMX6 \li Yocto 4.1.2 \li \l{Boot to Qt}
+\endtable
+
+\section3 Tier 2: Verified Targets
+
+\list
+    \li Issues on verified targets are given a lower priority than
+    \l{Tier 1: Reference Targets}.
+    \li Covered under \l{Qt Support Terms and Conditions}{Premium Support}.
+    \li Releases are available via the Qt Online Installer.
+\endlist
+
+\table
+    \header \li{4,1} Tier 2: Verified Targets
+    \header \li Vendor \li Board \li OS / Other \li Provided By
+    \row \li NVIDIA \li Jetson AGX Xavier \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NVIDIA \li Jetson AGX Orin \li Debian 12 \li \l{Enterprise Qt Debian Packages}
+    \row \li NXP \li i.MX 8M \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Mini \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Plus \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Nano \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li ST \li STM32MP157F-DK2 \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li ST \li STM32MP157F-EV1 \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li TI \li AM62x \li Yocto 4.1.2 \li \l{Boot to Qt}
+    \row \li Toradex \li Colibri iMX6 ULL \li Yocto 4.1.2 \li \l{Boot to Qt}
+\endtable
+
+\section3 Tier 3: Other Targets
+
+\list
+    \li Issues on other targets are given a lower priority than
+    \l{Tier 1: Reference Targets} and \l{Tier 2: Verified Targets}.
+    \li Hardware not regularly tested.
+    \li Releases are available via the Qt Online Installer.
+\endlist
+
+See \l{Other Targets} for more information.
+
+See \l{Qt Support Terms and Conditions} for more information.
+//! [tier_support]
 \section2 Android Automotive OS
 
 The \l{Qt for Android Automotive} solution is based on \l{Qt for Android},
@@ -148,6 +216,14 @@ documentation.
     \li
     \li
     \li \l{Qt for QNX}
+    \row \li Free RTOS
+    \li
+    \li
+    \li \l{Qt for MCUs}
+    \row \li Bare metal
+    \li
+    \li
+    \li \l{Qt for MCUs}
 \endtable
 
 //! [embedded]
