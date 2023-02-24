@@ -38,6 +38,7 @@ Window {
                 nameFilters: root.imageNameFilters
             }
             delegate: Rectangle {
+                required property string fileModified
                 required property string fileName
                 required property string fileUrl
                 id: photoFrame
@@ -64,9 +65,18 @@ Window {
                     antialiasing: true
                 }
 
-                ToolTip.visible: mouse.hovered
-                ToolTip.text: fileName
-                ToolTip.delay: 1000
+                Text {
+                    text: fileName + " ❖ " + Qt.formatDateTime(fileModified, Locale.LongFormat)
+                    horizontalAlignment: Text.AlignHCenter
+                    elide: Text.ElideRight
+                    font.pixelSize: (parent.height - image.height) / 3
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                        margins: font.pixelSize / 5
+                    }
+                }
 
                 MomentumAnimation {
                     id: anim
