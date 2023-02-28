@@ -554,7 +554,7 @@
     \list
         \li A root object. This is the root in the accessible
            object tree and is of type QAccessibleInterface.
-        \li Receive events from from accessible objects.
+        \li Receive events from accessible objects.
     \endlist
 
     The root object is set with the
@@ -651,7 +651,7 @@
         Accessibility.name: myMathEquation.text
         Accessibility.description: qsTr("Linear equation")
         Accessible.onPressAction: {
-            // Highlight the the x variable
+            // Highlight the x variable
             ...
         }
     }
