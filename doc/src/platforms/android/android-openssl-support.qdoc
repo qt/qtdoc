@@ -141,8 +141,8 @@ the following step to include those libraries in your project:
         endif()
         \endcode
 
-        Alternatively, you can either use the Qt for Android variable ANDROID_EXTRA_LIBS to add
-        extra libraries, mainly \c libcrypto and \c libssl. For QMake use:
+        Alternatively, you can use the following project variable to add extra
+        libraries, such as \c libcrypto and \c libssl. For QMake use:
 
         \badcode
         ANDROID_EXTRA_LIBS += \
@@ -153,10 +153,9 @@ the following step to include those libraries in your project:
         For CMake:
 
         \badcode
-        set(ANDROID_EXTRA_LIBS
-            <path_to_libs_dir>/ibcrypto_1_1.so
-            <path_to_libs_dir>/libssl_1_1.so
-        CACHE INTERNAL "")
+        set_property(TARGET <target name> PROPERTY QT_ANDROID_EXTRA_LIBS
+            <path_to_libs_dir>/libcrypto_1_1.so
+            <path_to_libs_dir>/libssl_1_1.so)
         \endcode
 
         \note When targeting multiple architectures, include OpenSSL libraries

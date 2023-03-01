@@ -94,12 +94,13 @@
 
 \section2 \l{Qt for Android}{Android}
 //! [android]
+The following configurations are supported in this Qt release:
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
     \row \li Android 6.0 or later (API level 23 or higher)
         \li \c armv7a, \c x86, \c arm64-v8, and \c x86_64
         \li Clang 11.0.5 (NDK r22b) as provided by Google, MinGW 11.2
-        \li
+        \li For JDK versions see \l{Java Development Kit (JDK)}
 \endtable
 //! [android]
 
