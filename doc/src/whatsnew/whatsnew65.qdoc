@@ -138,6 +138,23 @@
                         \endlist
                     \endlist
             \endlist
+        \li The iOS style was finished
+            \list
+                \li The new controls that were implemented for the iOS style
+                    for 6.5 are:
+                \list
+                    \li \l BusyIndicator
+                    \li \l ComboBox
+                    \li \l DelayButton
+                    \li \l Dialog
+                    \li \l DialogButtonBox
+                    \li \l HorizontalHeaderView
+                    \li \l SelectionRectangle
+                    \li \l ToolTip
+                    \li \l ToolSeparator
+                    \li \l VerticalHeaderView
+                \endlist
+            \endlist
     \endlist
 
     \section2 Qt Test Module
@@ -342,6 +359,12 @@
         \li Updated Gradle to 8.0 and the Android Gradle Plugin (AGP) to
         7.4.1 (requires JDK 11 or above).
         \li Updated NDK to r25b (25.1.8937393).
+    \endlist
+
+    \section3 iOS
+
+    \list
+        \li Added native implemementation for QColorDialog and QFontDialog.
     \endlist
 
     \section1 List of API Changes
