@@ -1,4 +1,4 @@
-// Copyright (C) 2022 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -9,6 +9,36 @@
 
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
+
+    \section1 Qt 6.4.3
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{pcre2}{PCRE2} was updated to version 10.42.
+        \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} was updated to version 10.42.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 2.1.5.
+        \li \l{freetype}{Freetype 2} was updated to version 2.13.0.
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 7.0.1.
+    \endlist
+
+    \section2 Qt Image Formats
+
+    \list
+        \li \l{libtiff}{TIFF Software Distribution (libtiff)} was updated to version 4.5.0.
+        \li \l{libwebp}{WebP (libwebp)} was updated to version 1.3.0.
+    \endlist
+
+   \section2 Qt SQL Module
+
+    \list
+        \li \l{sqlite}{SQLite} was updated to version 3.41.0.
+    \endlist
 
     \section1 Qt 6.4.2
 
