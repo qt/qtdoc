@@ -311,6 +311,18 @@
        configure some of the common \l {QtWebView::WebView}{WebView} functionality.
     \endlist
 
+    \section2 Qt Multimedia Module
+
+    \list
+        \li The ffmpeg media backend, being a technical preview in 6.4, becomes the default
+        for macOS, Windows, Android, and Linux except for Yocto distribution. The native backends
+        are still available with limited support.
+       \li Introduced \l QScreenCapture class that is a new type of video input.
+        It's possible to direct video from \l QScreenCapture through \l {QMediaCaptureSession} to outputs,
+        e.g. \l QMediaRecorder or \l QVideoWidget. The screen capture functionality is available only
+        with the ffmpeg media backend.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 WebAssembly
