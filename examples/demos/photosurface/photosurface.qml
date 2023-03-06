@@ -133,6 +133,8 @@ Window {
     }
 
     Image {
+        id: folderIcon
+        visible: false
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: 10
@@ -154,32 +156,37 @@ Window {
     }
 
     Text {
+        visible: folderDialog.visible
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: 10
-        color: "darkgrey"
+        anchors.margins: 20
+        color: "white"
         wrapMode: Text.WordWrap
-        font.pointSize: 8
-        text: qsTr(`On a touchscreen: use two fingers to zoom and rotate, one finger to drag
-                  \nWith a mouse: drag and scroll normally, shift-wheel to zoom, control-wheel to rotate`)
+        text: qsTr("Choose your own photo folder")
     }
 
     Shortcut { sequence: StandardKey.Quit; onActivated: Qt.quit() }
 
-    Component.onCompleted: {
-        const lastArg = Application.arguments.slice(-1)[0]
-        const standardPicturesLocations = StandardPaths.standardLocations(StandardPaths.PicturesLocation)
-        const hasValidPicturesLocation = standardPicturesLocations.length > 0
-        if (hasValidPicturesLocation)
-            folderDialog.currentFolder = standardPicturesLocations[0]
-        if (/.*hotosurface.*|--+/.test(lastArg)) {
+    SlideShow {
+        id: welcomeSlides
+        multiFrameSource: "welcome.pdf"
+        anchors.fill: parent
+        Component.onDestruction: {
+            folderIcon.visible = true
+            const lastArg = Application.arguments.slice(-1)[0]
+            const standardPicturesLocations = StandardPaths.standardLocations(StandardPaths.PicturesLocation)
+            const hasValidPicturesLocation = standardPicturesLocations.length > 0
             if (hasValidPicturesLocation)
-                folderModel.folder = standardPicturesLocations[0]
+                folderDialog.currentFolder = standardPicturesLocations[0]
+            if (/.*hotosurface.*|--+/.test(lastArg)) {
+                if (hasValidPicturesLocation)
+                    folderModel.folder = standardPicturesLocations[0]
+                else
+                    folderDialog.open()
+            }
             else
-                folderDialog.open()
+                folderModel.folder = Qt.resolvedUrl("file:" + lastArg)
         }
-        else
-            folderModel.folder = Qt.resolvedUrl("file:" + lastArg)
     }
 }

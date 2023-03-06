@@ -51,8 +51,10 @@ qt_add_qml_module(photosurfaceexample
     QML_FILES
       "photosurface.qml"
       "resources/MomentumAnimation.qml"
+      "resources/SlideShow.qml"
     RESOURCES
       "resources/folder.png"
+      "resources/welcome.pdf"
 )
 
 qt6_add_shaders(photosurfaceexample "shaders"
