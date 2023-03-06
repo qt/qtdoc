@@ -25,6 +25,13 @@ Window {
         onAccepted: folderModel.folder = selectedFolder
     }
 
+    ShaderEffect {
+        readonly property vector3d iResolution: Qt.vector3d(width, height, 1.0)
+
+        fragmentShader: "resources/shaders/gneiss.frag.qsb"
+        anchors.fill: parent
+    }
+
     ScrollView {
         id: flick
         anchors.fill: parent

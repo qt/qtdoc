@@ -12,7 +12,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/photosurface")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick ShaderTools)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -53,6 +53,16 @@ qt_add_qml_module(photosurfaceexample
       "resources/MomentumAnimation.qml"
     RESOURCES
       "resources/folder.png"
+)
+
+qt6_add_shaders(photosurfaceexample "shaders"
+    BATCHABLE
+    PRECOMPILE
+    OPTIMIZED
+    PREFIX
+        "/qt/qml/photosurface"
+    FILES
+        "resources/shaders/gneiss.frag"
 )
 
 install(TARGETS photosurfaceexample

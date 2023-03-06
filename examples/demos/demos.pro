@@ -7,7 +7,6 @@ qtHaveModule(quick) {
         clocks \
         tweetsearch \
         maroon \
-        photosurface \
         stocqt
 
     qtHaveModule(quickcontrols2) {
