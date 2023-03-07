@@ -193,14 +193,37 @@
     \e{/etc/apt/sources.list.d/tqtc.list} as instructed above.
 
     Also, the following tables list the installation directories on your
-    system and the Linux distribution used to build the packages.
+    system and the Linux distribution compatible with the packages.
+
+    \note The packages may work on other distributions as well but there is no
+    guarantee on that.
+
+    \section2 Qt Creator
+
+    \table
+    \header
+        \li Architecture
+        \li Distribution
+        \li Installation directory
+        \li Package resource list entries for APT
+    \row
+        \li amd64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-creator/
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtcreator-amd64 tqtc-focal main
+    \row
+        \li arm64
+        \li focal-fossa (Ubuntu 20.04)
+        \li /opt/qt-creator/
+        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtqtcreator-arm64 tqtc-focal main
+    \endtable
 
     \section2 Qt 6.3.2
 
     \table
     \header
         \li Architecture
-        \li Distribution (build platform)
+        \li Distribution
         \li Installation directory
         \li Package resource list entries for APT
     \row
