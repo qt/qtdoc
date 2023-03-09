@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QDir>
 #include <QFileInfo>
+#include <QStringLiteral>
 
 class AbstractViewer;
 namespace Ui {
@@ -41,11 +42,8 @@ private:
     int m_classId = -1;
 
     static constexpr QLatin1StringView settingsName = QLatin1StringView("DocumentViewerExample");
-    static constexpr QLatin1StringView settingsFiles = QLatin1StringView("RecentFiles");
-    static constexpr QLatin1StringView settingsFileName = QLatin1StringView("FileName");
     static constexpr QLatin1StringView settingsDir = QLatin1StringView("WorkingDir");
     static constexpr QLatin1StringView settingsMainWindow = QLatin1StringView("MainWindow");
-    static constexpr QLatin1StringView settingsQuestions = QLatin1StringView("Questions");
     static constexpr QLatin1StringView settingsViewers = QLatin1StringView("Viewers");
 };
 

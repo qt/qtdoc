@@ -154,7 +154,7 @@
     The class can be used to set override cursors when the mouse is hovering over a widget and
     to restore them upon departure.
     In order to prevent multiple HoverWatcher instances created for the same widget, it is
-    implemented as a signleton per widget.
+    implemented as a singleton per widget.
 
     HoverWatcher inherits from QObject and the QWidget watched becomes the instance's parent.
     An event filter is used to intercept the hover events without consuming them.
