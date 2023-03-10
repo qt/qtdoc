@@ -28,8 +28,9 @@
     \note API and ABI stability is not guaranteed.
 
     \list
-        \li \l {Qt Location} supports rendering 2D maps into a Qt Quick
-            application.
+        \li \l {Qt Location}'s \l {QtLocation::}{Map} renders 2D maps into a Qt Quick
+            application. \l {QtLocation::}{MapView} includes \l {Qt Quick Input Handlers}
+            to implement the typical interactive features (zoom, pan, tilt).
         \li \l {Qt GRPC} supports communicating with gRPC services using classes
             generated based on service descriptions from protobuf
             .proto-specifications.
@@ -72,6 +73,8 @@
         \li QTextLayout::glyphRuns() can now return the string index
             corresponding to each glyph when this is requested. Made available
             through the new function QGlyphRun::stringIndexes().
+        \li Checkbox list items can now be read and written in HTML as well as
+            Markdown, including conversions.
     \endlist
 
     \section2 Qt Quick Module
@@ -193,6 +196,10 @@
         \li Added QTest::currentTestResolved() which returns true if the test
             has failed or skipped. This can replace QTest::currentTestFailed()
             as the condition to test on return from a helper function.
+        \li QTest::mouseRelease() and \l {QTest::}{mouseClick()} can now be
+            used to test double-clicks, by specifying a realistic timestamp delay,
+            in case you need to check intermediate state between the events.
+            \l {QTest::}{mouseDClick()} is still more convenient otherwise.
     \endlist
 
     \section2 Qt Widgets Module
