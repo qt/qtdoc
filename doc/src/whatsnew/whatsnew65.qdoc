@@ -94,6 +94,33 @@
             if and where this data is written out and loaded from. This enables
             advanced use cases such as shipping a pre-seeded cache file with an
             application or device, which also accelerates first-time startup.
+        \li PinchHandler has new \l {PinchHandler::}{scaleAxis} and
+            \l {PinchHandler::}{rotationAxis} grouped properties, offering
+            several new values, including the \c activeValue property which is
+            new in all the handler axis groups. It also got the
+            \l {PinchHandler::}{activeTranslation} and
+            \l {PinchHandler::}{persistentTranslation} properties that DragHandler
+            already had.
+        \li DragHandler's \c xAxis and \c yAxis have new
+            \l {DragHandler::xAxis::activeValue}{activeValue} properties.
+        \li PinchHandler's \l {PinchHandler::}{activeScale} (which was
+            previously called \c scale) is no longer restricted to the range between
+            \l {PinchHandler::}{minimumScale} and \l {PinchHandler::}{maximumScale}:
+            these limits apply only to \l {PinchHandler::}{persistentScale}. Likewise,
+            \l {PinchHandler::}{activeRotation} (previously \c rotation) is no longer
+            restricted to the range between \l {PinchHandler::}{minimumRotation} and
+            \l {PinchHandler::}{maximumRotation}. These limits are applied the same
+            way for native touchpad pinch gestures as on touchscreens.
+        \li \l {TapHandler::exclusiveSignals} now lets you make the
+            \l {TapHandler::}{singleTapped} and \l {TapHandler::}{doubleTapped}
+            signals exclusive.
+
+    \endlist
+
+    \section2 Qt Labs Animation Module
+
+    \list
+        \li \l BoundaryRule now has a \l {BoundaryRule::}{returnedToBounds} signal.
     \endlist
 
     \section2 Qt Quick Controls Module
