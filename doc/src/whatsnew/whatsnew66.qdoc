@@ -41,6 +41,17 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt PDF Module
+
+    \list
+        \li The new QPdfLinkModel class provides the link geometry and destinations
+            on a specified page.
+        \li QPdfDocument::pageModel() implements Qt::DecorationRole to render
+            page thumbnails on-demand.
+        \li The new QPdfPageSelector class is a specialized QSpinBox for
+            selecting a page in widget-based PDF viewers.
+    \endlist
+
     \section2 Qt Positioning Module
 
     \list
