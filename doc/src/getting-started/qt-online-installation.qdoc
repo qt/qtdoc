@@ -1,0 +1,135 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page qt-online-installation.html
+
+    \title Get and Install Qt with Qt Online Installer
+    \brief Downloading and installing the Qt modules and tools that you need.
+
+    The Qt Online Installer gives you the choice of installing only the modules
+    and tools you need to develop on a particular desktop platform and to run
+    your applications on one or several desktop platforms, mobile or embedded
+    devices, or MCUs.
+
+    If instead you prefer to build Qt from sources, please see \l{Building Qt
+    Sources}.
+
+    \section1 1. Create a Qt Account
+
+    To begin, create a \l{Qt Account}. This account gives you access to a web
+    portal where you can manage your licenses, as well as access to the forums
+    and wikis. Also, make sure you read the \l{Qt Licensing} page regarding your
+    chosen license.
+
+    \section1 2. Download the Installer
+
+    Go to your Qt account's download page. By selecting the appropriate unified
+    Qt online installer for your OS, you can install commercial or open source
+    versions of Qt, development tools, and other components. The online
+    installer asks for your Qt account credentials. The installer retrieves the
+    license attached to the account from a server and provides a list of
+    available components corresponding to the license.
+
+    \section1 3. Install Qt
+
+    To complete the installation, select the components that you want to install
+    and follow the instructions of the installation program.
+
+    You must select at least one Qt version for one platform that you want to
+    run your applications on. For example, if you have installed Microsoft
+    Visual Studio 2022 on 64-bit Windows, you could
+    select \e {MSVC 2022 64-bit} under the Qt version you want to develop with.
+
+    However, the easiest way to install Qt for desktop development is to select
+    the default installation for desktop development. You can install additional
+    modules later.
+
+    \image qtinstallercomponents.png
+
+    If you also want to run your applications on Android devices, for example,
+    you should select the default installation for mobile development.
+
+    The following table contains examples of which components to install
+    depending on the platforms where you want to run your applications.
+
+    \table
+    \header
+        \li To Develop For
+        \li Choose
+    \row
+        \li Desktop
+        \li Default installation for \e {desktop development}.
+
+            If you want to use other than the default toolchain, such as
+            MSVC on Windows, select \e {Custom installation}. Then
+            select the Qt for the toolchain you want to use.
+    \row
+        \li Mobile Devices
+        \li Default installation for \e {mobile development}.
+
+            If you only want to develop for a particular platform, select
+            \e {Custom installation}. Then select the Qt for the mobile
+            device platform that you want to run the applications on. For
+            example, \l{Qt for Android} or \l{Qt for iOS}.
+    \row
+        \li Embedded Devices
+        \li Custom installation, with the necessary Qt modules and toolchains
+            from the \l{Boot to Qt} section, depending on the types
+            of devices that you want to run applications on.
+    \row
+        \li Android Automotive
+        \li Custom installation, with \l{Qt for Android Automotive}.
+    \row
+        \li Automation
+        \li Custom installation, with the necessary Qt modules and toolchains
+            from the \l{Qt for Automation}{Qt for Automation/Qt M2M Protocols}
+            section, depending on the types of devices that you want to run
+            applications on.
+    \row
+        \li MCUs
+        \li Custom installation, with \l{Qt for MCUs}.
+    \endtable
+
+    To check the platform requirements, see \l{Supported Platforms}.
+
+    The following YouTube video gives a complete walk-through of the
+    installation process:
+
+    \youtube yIv0vO8B7tQ //! Remember to update filename in qtdoc.qdocconf.
+
+    \section2 Updating or Removing Components
+
+    Once Qt is installed, you can use the \e{Maintenance Tool} under
+    \e{<install_dir>} to add components, update, or remove installed
+    components.
+
+    \section2 Getting Help
+
+    Evaluation and open source users can get help on the
+    \l {https://forum.qt.io/}{Qt forum}. See also the
+    \l {https://wiki.qt.io/Forum_Help}{Help on using the Forum} wiki page.
+
+    Non-commercial users can get limited help with the installation process
+    through \l {https://account.qt.io/support}{Qt support}.
+
+    The primary support channel for commercial customers is their
+    \l {https://account.qt.io/support}{Qt Account}.
+
+    \section1 4. Create Applications
+
+    After the installation, \l{Qt Creator Manual}{Qt Creator} opens. You can
+    use the project wizard templates to start creating applications that run
+    on your chosen platform.
+
+    If you want to design Qt Quick UIs, open \l{Qt Design Studio Manual}
+    {Qt Design Studio} and use the project wizard templates there.
+
+    \l{Create Your First Applications}{Tell me more}
+
+    \section1 Additional Resources
+
+    \l {https://www.qt.io/courses} {Qt Learning} has a course on
+    \l {https://www.qt.io/courses/how-to-install-qt?hsLang=en}
+       {how to install Qt}.
+*/
