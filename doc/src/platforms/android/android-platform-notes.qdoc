@@ -57,6 +57,15 @@
     must be listed in the application's dependencies. For more information, see
     \l{Dependencies Detection}.
 
+    \section1 Qt Gui Dependency
+
+    Given that Android apps typically include GUI elements, the Qt for Android plugin
+    is built mainly to provide a GUI, so it implements the various QPA abstractions.
+    As a result, deploying a Qt for Android app is expected to involve a dependency
+    on \l {Qt Gui}. Moreover, it's worth noting that Qt Creator only supports Gradle builds
+    and deployments, meaning that command line or shell executions are not supported
+    out of the box.
+
     \section1 Text Special Considerations
 
     Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache
