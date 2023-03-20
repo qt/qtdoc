@@ -9,7 +9,9 @@
 #include <QPdfBookmarkModel>
 #include <QPdfDocument>
 #include <QPdfPageNavigator>
+#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
 #include <QPdfPageSelector>
+#endif
 #include <QListView>
 #include <QPdfView>
 #include <QStandardPaths>
@@ -48,12 +50,16 @@ void PdfViewer::initPdfViewer()
 {
     m_toolBar = addToolBar("PDF");
     m_zoomSelector = new ZoomSelector(m_toolBar);
+
+    auto *nav = m_pdfView->pageNavigator();
+#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
     m_pageSelector = new QPdfPageSelector(m_toolBar);
-
     m_toolBar->insertWidget(m_uiAssets.forward, m_pageSelector);
+    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
+    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
+    connect(nav, &QPdfPageNavigator::currentPageChanged, m_pageSelector, &QSpinBox::setValue);
+#endif
 
-    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
-    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
     connect(m_pdfView->pageNavigator(), &QPdfPageNavigator::backAvailableChanged, m_uiAssets.back, &QAction::setEnabled);
     m_actionBack = m_uiAssets.back;
     m_actionForward = m_uiAssets.forward;
@@ -75,8 +81,6 @@ void PdfViewer::initPdfViewer()
     m_toolBar->addAction(actionZoomOut);
     connect(actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);
 
-    auto *nav = m_pdfView->pageNavigator();
-    connect(nav, &QPdfPageNavigator::currentPageChanged, m_pageSelector, &QSpinBox::setValue);
     connect(nav, &QPdfPageNavigator::backAvailableChanged, m_actionBack, &QAction::setEnabled);
     connect(nav, &QPdfPageNavigator::forwardAvailableChanged, m_actionForward, &QAction::setEnabled);
 
@@ -135,7 +139,9 @@ void PdfViewer::openPdfFile()
     const auto documentTitle = m_document->metaData(QPdfDocument::MetaDataField::Title).toString();
     statusMessage(!documentTitle.isEmpty() ? documentTitle : QStringLiteral("PDF Viewer"));
     pageSelected(0);
+#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
     m_pageSelector->setMaximum(m_document->pageCount() - 1);
+#endif
 
     statusMessage(tr("Opened PDF file %1").arg(m_file->fileName()));
     qCDebug(lcExample) << "Opened file" << m_file->fileName();
