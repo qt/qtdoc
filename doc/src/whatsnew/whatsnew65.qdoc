@@ -415,6 +415,18 @@
         \li Added native implemementation for QColorDialog and QFontDialog.
     \endlist
 
+    \section2 Embedded Platforms
+
+    \section3 Boot to Qt
+
+    \list
+        \li Boot to Qt stack was updated to use yocto 4.1.2 (langdale).
+        \li Support for macOS host using Docker-based toolchains.
+        \li The \l{Support Levels for Target Hardware} were updated and there
+            are now multiple levels of support that apply across
+            specific hardware and OS combinations.
+    \endlist
+
     \section1 List of API Changes
 
     These pages contain an overview of API changes in Qt 6.5:
