@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -31,7 +31,7 @@
     \brief A tutorial for Qt Quick based on an alarms application.
 
     This tutorial shows how to develop a simple alarm application as
-    an introduction to Qt Quick and Qt Quick Controls2.
+    an introduction to Qt Quick and Qt Quick Controls.
 
     This application is similar to the alarm application usually
     found on an Android phone. Its features let you enter, edit,
@@ -65,6 +65,9 @@
     The latter two files are included with the source code for this
     tutorial.
 
+    \note The UI text in Qt Creator and the contents of the generated files
+    depend on the Qt Creator version that you use.
+
     \section1 Qt Creator
 
     Setting up a new project in Qt Creator is aided by a wizard that
@@ -73,12 +76,12 @@
     type of project and creates the project for you.
 
     To create the Alarms project, select \uicontrol{File} >
-    \uicontrol{New File or Project} > \uicontrol{Application} >
-    \uicontrol{Qt Quick Application - Empty} > \uicontrol{Choose}.
-    Type "alarms" in the \b{Name} field, and follow the instructions
+    \uicontrol{New Project} > \uicontrol{Application (Qt)} >
+    \uicontrol{Qt Quick Application} > \uicontrol{Choose}.
+    Type \e alarms in the \uicontrol{Name} field, and follow the instructions
     of the wizard.
 
-    \image alarms2.png "Qt Creator New File or Project dialog"
+    \image alarms2.png "Qt Creator New Project dialog"
 
     \image alarms3.png "Project Location"
 
@@ -90,15 +93,16 @@
             \li Source file
             \li Purpose
         \row
-            \li alarms.pro
+            \li CMakeLists.txt
             \li The project file
         \row
             \li main.cpp
             \li The main C++ code file for the application.
-        \row
-            \li qml.qrc
-            \li The resource file, which contains the names of the
-            source files, except main.cpp and the project file.
+       \row
+           \li main.qml
+           \li The main QML code file for the application. We will instantiate
+               our custom QML types (\c AlarmDialog, \c AlarmModel,
+               \c AlarmDelegate, and \c TumblerDelegate) in this file.
     \endtable
 
     The wizard generates the code in the main.cpp file below.
@@ -119,10 +123,6 @@
            \li \c qtquickcontrols2.conf
            \li Selects the \c Material style with the \c Dark theme.
        \row
-           \li \c main.qml
-           \li The QML code that links AlarmDialog.qml, AlarmModel.qml,
-               AlarmDelegate.qml and TumblerDelegate.qml
-       \row
            \li \c AlarmDialog.qml
            \li Defines the dialog for adding new alarms.
        \row
@@ -133,7 +133,11 @@
            \li Defines the ListModel used for storing the alarms' data.
        \row
            \li \c TumblerDelegate.qml
-           \li Defines the graphical layout of the Tumblers
+           \li Defines the graphical layout of the Tumblers.
+        \row
+            \li \c qml.qrc
+            \li The resource file, which contains the names of the
+                source files, except main.cpp and the project file.
     \endtable
 
 

@@ -145,17 +145,24 @@
 
     \section2 Architectures
 
-    By default, Qt is built for x86_64. To build for x86_64h (Haswell). use the
-    \c QMAKE_APPLE_DEVICE_ARCHS \c qmake variable.
-    This is selectable at configure time:
+    By default, Qt will build for the architecture of your development machine -
+    either \c x86_64, or \c arm64 if you are on an Apple Silicon Mac.
+
+    To build for other architectures you can use the \c QMAKE_APPLE_DEVICE_ARCHS variables
+    in your project files or on the command line. This allows you to both cross-compile
+    to a different architecture, and to build universal (multi-architecture) binaries.
+    For example, to build your application for both \c x86_64 and \c arm64:
+
     \code
-    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS=x86_64h
+    qmake ~/src/myapp QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
     \endcode
 
-    \c QMAKE_APPLE_DEVICE_ARCHS can also be specified as a space-delimited list
-    in order to build for multiple architectures simultaneously:
+    When specifying the architectures in a project file they should not be quoted, e.g.:
+
     \code
-    ./configure -platform macx-clang QMAKE_APPLE_DEVICE_ARCHS="x86_64 x86_64h"
+    TEMPLATE = app
+    SOURCES = main.cpp
+    QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
     \endcode
 
     \section1 Additional Command-Line Options
