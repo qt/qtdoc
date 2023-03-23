@@ -14,7 +14,7 @@
    <string>Document Viewer Demo</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../../../build/dev/qtdoc/examples/demos/documentviewer/.rcc/documentviewer.qrc">
+   <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
     <normaloff>:/demos/documentviewer/images/qt-logo.png</normaloff>:/demos/documentviewer/images/qt-logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -96,6 +96,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionRecent"/>
     <addaction name="actionPrint"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -121,6 +122,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+   <addaction name="actionRecent"/>
    <addaction name="actionPrint"/>
    <addaction name="separator"/>
    <addaction name="actionBack"/>
@@ -141,8 +143,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about" resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/qt-logo.png</normaloff>:/demos/documentviewer/images/qt-logo.png</iconset>
    </property>
    <property name="text">
     <string>about documentviewer</string>
@@ -189,8 +191,8 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset theme="document-print">
-    <normaloff>:/demos/documentviewer/images/print.png</normaloff>:/demos/documentviewer/images/print.png</iconset>
+    <iconset theme="document-print" resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/print.png</normaloff>:/demos/documentviewer/images/print.png</iconset>
    </property>
    <property name="text">
     <string>Print</string>
@@ -204,9 +206,9 @@
   </action>
   <action name="actionAboutQt">
    <property name="icon">
-    <iconset resource="../../../../../build/dev/qthttpserver/examples/httpserver/simple/.rcc/assets.qrc">
-    <normaloff>:/demos/documentviewer/images/qt-logo.png</normaloff>
-    <normalon>:/demos/documentviewer/images/qt-logo.png</normalon>:/demos/documentviewer/images/qt-logo.png</iconset>
+    <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/qt-logo.png</normaloff>
+     <normalon>:/demos/documentviewer/images/qt-logo.png</normalon>:/demos/documentviewer/images/qt-logo.png</iconset>
    </property>
    <property name="text">
     <string>About Qt</string>
@@ -224,7 +226,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Open</string>
+    <string>Recently opened...</string>
    </property>
    <property name="shortcut">
     <string>Meta+R</string>
@@ -232,7 +234,8 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -246,8 +249,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../../../../../build/dev/qtdoc/examples/demos/documentviewer/.rcc/documentviewer.qrc"/>
-  <include location="../../../../../build/dev/qthttpserver/examples/httpserver/simple/.rcc/assets.qrc"/>
+  <include location="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc"/>
  </resources>
  <connections>
   <connection>

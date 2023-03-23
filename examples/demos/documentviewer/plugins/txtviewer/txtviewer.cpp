@@ -13,20 +13,25 @@
 #include <QMetaObject>
 #include <QScrollBar>
 #include <QPainter>
-#ifdef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPrintDialog>
 #endif
 
-TxtViewer::TxtViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow) :
-        AbstractViewer(file, new QPlainTextEdit(parent), mainWindow)
+void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
+    AbstractViewer::init(file, new QPlainTextEdit(parent), mainWindow);
     m_textEdit = qobject_cast<QPlainTextEdit *>(widget());
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
 }
 
 TxtViewer::~TxtViewer()
 {
+}
+
+QStringList TxtViewer::supportedMimeTypes() const
+{
+    return {"text/plain"};
 }
 
 void TxtViewer::setupTxtUi()
@@ -119,7 +124,7 @@ bool TxtViewer::hasContent() const
     return (!m_textEdit->toPlainText().isEmpty());
 }
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 void TxtViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -127,8 +132,7 @@ void TxtViewer::printDocument(QPrinter *printer) const
 
     m_textEdit->print(printer);
 }
-
-#endif // QT_ABSTRACTVIEWER_PRINTSUPPORT
+#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
 bool TxtViewer::saveFile(QFile *file)
 {

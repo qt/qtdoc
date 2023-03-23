@@ -10,6 +10,8 @@
 #include <QStringLiteral>
 
 class AbstractViewer;
+class RecentFiles;
+class ViewerFactory;
 namespace Ui {
 class MainWindow;
 }
@@ -37,14 +39,17 @@ private:
     void saveViewerSettings() const;
 
     QDir m_currentDir;
+    AbstractViewer *m_viewer = nullptr;
     std::unique_ptr<Ui::MainWindow> ui;
-    std::unique_ptr<AbstractViewer> m_viewer;
+    std::unique_ptr<RecentFiles> m_recentFiles;
     int m_classId = -1;
+    std::unique_ptr<ViewerFactory> m_factory;
 
     static constexpr QLatin1StringView settingsName = QLatin1StringView("DocumentViewerExample");
     static constexpr QLatin1StringView settingsDir = QLatin1StringView("WorkingDir");
     static constexpr QLatin1StringView settingsMainWindow = QLatin1StringView("MainWindow");
     static constexpr QLatin1StringView settingsViewers = QLatin1StringView("Viewers");
+    static constexpr QLatin1StringView settingsFiles = QLatin1StringView("RecentFiles");
 };
 
 #endif // MAINWINDOW_H

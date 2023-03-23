@@ -18,14 +18,14 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QApplication>
-#ifdef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
 
-JsonViewer::JsonViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow) :
-    AbstractViewer(file, new QTreeView(parent), mainWindow)
+void JsonViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
+    AbstractViewer::init(file, new QTreeView(parent), mainWindow);
     m_tree = qobject_cast<QTreeView *>(widget());
     connect(this, &AbstractViewer::uiInitialized, this, &JsonViewer::setupJsonUi);
 }
@@ -33,6 +33,11 @@ JsonViewer::JsonViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow) :
 JsonViewer::~JsonViewer()
 {
     delete m_toplevel;
+}
+
+QStringList JsonViewer::supportedMimeTypes() const
+{
+    return {"application/json"};
 }
 
 void JsonViewer::setupJsonUi()
@@ -268,7 +273,7 @@ bool JsonViewer::hasContent() const
     return !m_root.isEmpty();
 }
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 void JsonViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -278,7 +283,7 @@ void JsonViewer::printDocument(QPrinter *printer) const
     doc.print(printer);
 }
 
-#endif // QT_ABSTRACTVIEWER_PRINTSUPPORT
+#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
 QByteArray JsonViewer::saveState() const
 {

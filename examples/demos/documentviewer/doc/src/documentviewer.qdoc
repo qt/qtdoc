@@ -27,14 +27,14 @@
     To create an executable, we use a standard main.cpp file.
     First, we set the application's organization name:
 
-    \quotefromfile demos/documentviewer/main.cpp
+    \quotefromfile demos/documentviewer/app/main.cpp
     \skipto int main
     \printuntil QApplication::set
     \endsection1
 
     \section1 Creating an application and showing the main window
 
-    \quotefromfile demos/documentviewer/main.cpp
+    \quotefromfile demos/documentviewer/app/main.cpp
     \skipto QApplication app
     \printuntil }
     \endsection1
@@ -44,13 +44,17 @@
     The class constructor initializes the user interface created in Qt Designer.
     It links the actions for opening a file and the about dialog to their implementation.
 
-    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \quotefromfile demos/documentviewer/app/mainwindow.cpp
     \skipto ui->setupUi
     \printuntil triggered
 
     The \c mainwindow.ui file provides a QTabWidget on the left, where bookmarks and thumbnails
     can be displayed. It provides a QScrollArea on the right, where the viewed file contents are
-    displayed.
+    \printuntil showMenu);
+
+    If a file is opened, the {File} class (inheriting from {QFile}) automatically determines
+    the FileType used in this application. If no valid file type could be established, the user
+    is asked, if it should be opened as plain text.
 
     The ViewerFactory class provides a static method to create a file type specific viewer.
 
@@ -62,7 +66,7 @@
     virtual restoreState method. Afterwards, the standard UI assets are passed to the viewer
     and it's display widget is displayed in the main scroll area.
 
-    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \quotefromfile demos/documentviewer/app/mainwindow.cpp
     \skipuntil void MainWindow::openFile
     \skipto m_viewer->initViewer
     \printuntil }
@@ -74,7 +78,7 @@
     displayed, the main window and the user questions.
     Depending on the file's mime type, it creates an appropriate document viewer.
 
-    \quotefromfile demos/documentviewer/mainwindow.cpp
+    \quotefromfile demos/documentviewer/app/mainwindow.cpp
     \skipto AbstractViewer
     \printuntil }
     \endsection1
@@ -159,40 +163,40 @@
     HoverWatcher inherits from QObject and the QWidget watched becomes the instance's parent.
     An event filter is used to intercept the hover events without consuming them.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.cpp
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.cpp
     \skipto HoverWatcher::HoverWatcher
     \printuntil }
 
     The actions watched are represented in an enum.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.h
     \skipto enum HoverAction
     \printuntil };
 
     Static methods create watchers, check their existence for a specific QWidget or dismiss
     a watcher.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.h
     \skipto static HoverWatcher
     \printuntil static void dismiss
 
     A cursor shape can be specified or unset for each HoverAction. If no cursor shape is
     specified for an action, the application's override cursor will be restored when it occurs.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.h
     \skipto public slots
     \printuntil void unSetCursorShape
 
     The mouseButtons property specifies, which mouse buttons to consider for the MousePress action.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.h
     \skipuntil public slots
     \skipto setMouseButtons
     \printuntil setMouseButton(
 
     Action specific signals are emitted when an action has been processed.
 
-    \quotefromfile demos/documentviewer/hoverwatcher.h
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/hoverwatcher.h
     \skipto signals
     \printuntil left();
 
@@ -201,6 +205,72 @@
     \code
     void hoverAction(HoverAction action);
     \endcode
+    \endsection2
+
+    \section2 The {RecentFiles} class
+
+    The class is a QStringList, specialized to manage a list of recently opened files.
+
+    \quotefromfile demos/documentviewer/recentfiles.cpp
+    \skipto RecentFiles::RecentFiles
+    \printuntil }
+
+    It provides slots to add a single or multiple files, by passing their path or a list
+    of paths as an argument. A file is added, if the path leads to a valid file.
+    If a file already exists in the list of recent files, it is removed from its original position
+    and added on the top.
+
+    \quotefromfile demos/documentviewer/recentfiles.h
+    \skipto public slots
+    \printuntil addFiles
+
+    Files can be removed by name or by index.
+
+    \quotefromfile demos/documentviewer/recentfiles.h
+    \skipuntil public slots
+    \skipto removeFile
+    \printuntil addFiles
+
+    Slots are available to save and restore from {QSettings}.
+    Files restored from settings are ignored, if they no longer exist.
+
+    \quotefromfile demos/documentviewer/recentfiles.h
+    \skipuntil public slots
+    \skipto saveSettings
+    \printuntil restoreFromSettings
+
+    The maxFiles property manages the maximum amount of recent files to be remebered (default: 10).
+
+    \code
+    qsizetype maxFiles();
+    void setMaxFiles(qsizetype maxFiles);
+    \endcode
+
+    {RecentFiles} verifies a file can be opened in {openMode}, before adding it.
+
+    \code
+    void setOpenMode(QIODevice::OpenMode mode);
+    QIODevice::OpenMode openMode() const;
+    \endcode
+    \endsection2
+
+    \section2 The {RecentFileMenu} class
+
+    The {RecentFileMenu} class is a QMenu, specialized as a submenu to display a \l{RecentFiles}
+    object as a submenu.
+
+    Its constructor takes a parent widget, usually and QAction or a QMenu.
+    Its fileOpened signal passes a QString argument with the absolute file name, when the
+    application user has selected a recent file from the list.
+
+    \note
+    A {RecentFileMenu} is deleted either with its parent widget, or with the RecentFiles object
+    passed to its constructor.
+
+    \quotefromfile demos/documentviewer/recentfilemenu.h
+    \skipuntil class RecentFileMenu
+    \printuntil void fileOpened
+
     \endsection2
     \endsection1
 

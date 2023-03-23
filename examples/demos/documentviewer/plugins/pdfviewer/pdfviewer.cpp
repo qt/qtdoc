@@ -25,25 +25,31 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QScroller>
-#ifdef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
 
 Q_LOGGING_CATEGORY(lcExample, "qt.examples.pdfviewer")
 
-PdfViewer::PdfViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow) :
-    AbstractViewer(file, new QPdfView(parent), mainWindow), m_document(new QPdfDocument(this))
-
+void PdfViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
+    AbstractViewer::init(file, new QPdfView(parent), mainWindow);
+    m_document = new QPdfDocument(this);
     m_pdfView = qobject_cast<QPdfView *>(widget());
     connect(this, &AbstractViewer::uiInitialized, this, &PdfViewer::initPdfViewer);
 }
+
 PdfViewer::~PdfViewer()
 {
     delete m_pages;
     delete m_bookmarks;
     delete m_document;
+}
+
+QStringList PdfViewer::supportedMimeTypes() const
+{
+    return {"application/pdf"};
 }
 
 void PdfViewer::initPdfViewer()
@@ -154,7 +160,7 @@ bool PdfViewer::hasContent() const
     return m_document ? m_document->pageCount() > 0 : false;
 }
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 void PdfViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -172,7 +178,7 @@ void PdfViewer::printDocument(QPrinter *printer) const
     }
     painter.end();
 }
-#endif // QT_ABSTRACTVIEWER_PRINTSUPPORT
+#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
 void PdfViewer::bookmarkSelected(const QModelIndex &index)
 {

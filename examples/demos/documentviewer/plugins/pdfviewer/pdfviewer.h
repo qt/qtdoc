@@ -4,7 +4,7 @@
 #ifndef PDFVIEWER_H
 #define PDFVIEWER_H
 
-#include "abstractviewer.h"
+#include "viewerinterfaces.h"
 #include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(lcExample)
@@ -17,22 +17,25 @@ class QListView;
 class QTabWidget;
 class QTreeView;
 class ZoomSelector;
-class PdfViewer : public AbstractViewer
+class PdfViewer : public ViewerInterface
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface" FILE "pdfviewer.json")
+    Q_INTERFACES(ViewerInterface)
 public:
-    PdfViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow);
-
     ~PdfViewer() override;
+    void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
     QString viewerName() const override { return staticMetaObject.className(); };
+    QStringList supportedMimeTypes() const override;
     bool supportsOverview() const override { return true; }
     bool hasContent() const override;
     QByteArray saveState() const override { return QByteArray(); }
     bool restoreState(QByteArray &) override { return true; }
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
-#endif // QT_ABSTRACTVIEWER_PRINTSUPPORT
+#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
 public slots:
     void openPdfFile();
@@ -58,10 +61,10 @@ private:
     const qreal zoomMultiplier = qSqrt(2.0);
     static constexpr int maxIconWidth = 200;
     QToolBar *m_toolBar = nullptr;
-    ZoomSelector *m_zoomSelector;
-    QPdfPageSelector *m_pageSelector;
-    QPdfDocument *m_document;
-    QPdfView *m_pdfView;
+    ZoomSelector *m_zoomSelector = nullptr;
+    QPdfPageSelector *m_pageSelector = nullptr;
+    QPdfDocument *m_document = nullptr;
+    QPdfView *m_pdfView = nullptr;
     QAction *m_actionForward = nullptr;
     QAction *m_actionBack = nullptr;
     QTreeView *m_bookmarks = nullptr;

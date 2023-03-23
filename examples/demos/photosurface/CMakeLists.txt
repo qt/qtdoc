@@ -14,7 +14,7 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/photosurface")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick ShaderTools)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup()
 
 if (WIN32)
 #! [appicon_windows]
@@ -48,6 +48,7 @@ target_link_libraries(photosurfaceexample PRIVATE
 
 qt_add_qml_module(photosurfaceexample
     URI photosurface
+    VERSION 1.0
     QML_FILES
       "photosurface.qml"
       "resources/MomentumAnimation.qml"

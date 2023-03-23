@@ -4,7 +4,7 @@
 #ifndef JSONVIEWER_H
 #define JSONVIEWER_H
 
-#include "abstractviewer.h"
+#include "viewerinterfaces.h"
 #include <QJsonValue>
 #include <QJsonDocument>
 #include <QAbstractItemModel>
@@ -15,21 +15,25 @@ class QTreeView;
 class QListWidget;
 class QListWidgetItem;
 class QLineEdit;
+class QPrinter;
 
-class JsonViewer : public AbstractViewer
+class JsonViewer : public ViewerInterface
 {
-    Q_GADGET
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface/1.0" FILE "jsonviewer.json")
+    Q_INTERFACES(ViewerInterface)
 public:
-    JsonViewer(QFile *file, QWidget *parent, QMainWindow *mainWindow);
     ~JsonViewer() override;
 
+    void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
     QString viewerName() const override { return staticMetaObject.className(); };
+    QStringList supportedMimeTypes() const override;
     QByteArray saveState() const override;
     bool restoreState(QByteArray &) override;
     bool supportsOverview() const override { return true; }
     bool hasContent() const override;
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
 #endif // QT_ABSTRACTVIEWER_PRINTSUPPORT

@@ -13,14 +13,18 @@
 #include <QSettings>
 #include <QApplication>
 
-#if defined(QT_ABSTRACTVIEWER_PRINTSUPPORT)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrintDialog>
-#endif // QT_ABSTRACTVIEWER_PRINTSUPPORT
+#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
-AbstractViewer::AbstractViewer(QFile *file, QWidget *widget, QMainWindow *mainWindow) :
-    m_file(file),
-    m_widget(widget)
+AbstractViewer::AbstractViewer() : m_file(nullptr), m_widget(nullptr)
 {
+}
+
+void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
+{
+    m_file.reset(file);
+    m_widget = widget;
     Q_ASSERT(widget);
     Q_ASSERT(mainWindow);
     m_uiAssets.mainWindow = mainWindow;
@@ -33,6 +37,96 @@ AbstractViewer::~AbstractViewer()
     delete m_widget;
     qDeleteAll(m_menus);
     qDeleteAll(m_toolBars);
+}
+
+bool AbstractViewer::isEmpty() const
+{
+    return !hasContent();
+}
+
+bool AbstractViewer::isPrintingEnabled() const
+{
+    return m_printingEnabled;
+}
+
+bool AbstractViewer::hasContent() const
+{
+    return false;
+}
+
+bool AbstractViewer::supportsOverview() const
+{
+    return false;
+}
+
+bool AbstractViewer::isModified() const
+{
+    return false;
+}
+
+bool AbstractViewer::saveDocument()
+{
+    return false;
+}
+
+bool AbstractViewer::saveDocumentAs()
+{
+    return false;
+}
+
+QList<QAction *> AbstractViewer::actions() const
+{
+    return m_actions;
+}
+
+QWidget *AbstractViewer::widget() const
+{
+    return m_widget;
+}
+
+QList<QMenu *> AbstractViewer::menus() const
+{
+    return m_menus;
+}
+
+QMainWindow *AbstractViewer::mainWindow() const
+{
+    return m_uiAssets.mainWindow;
+}
+
+QStatusBar *AbstractViewer::statusBar() const
+{
+    return mainWindow()->statusBar();
+}
+
+QMenuBar *AbstractViewer::menuBar() const
+{
+    return mainWindow()->menuBar();
+}
+
+void AbstractViewer::maybeEnablePrinting()
+{
+    maybeSetPrintingEnabled(true);
+}
+
+void AbstractViewer::disablePrinting()
+{
+    maybeSetPrintingEnabled(false);
+}
+
+bool AbstractViewer::isDefaultViewer() const
+{
+    return false;
+}
+
+AbstractViewer *AbstractViewer::viewer()
+{
+    return this;
+}
+
+const AbstractViewer *AbstractViewer::viewer() const
+{
+    return this;
 }
 
 void AbstractViewer::statusMessage(const QString &message, const QString &type, int timeout)
@@ -78,7 +172,7 @@ QMenu *AbstractViewer::fileMenu()
 
 void AbstractViewer::print()
 {
-#ifdef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
     static const QString type = tr("Printing");
     if (!hasContent()) {
         statusMessage(tr("No content to print."), type);
@@ -126,7 +220,7 @@ void AbstractViewer::print()
  */
 void AbstractViewer::maybeSetPrintingEnabled(bool enabled)
 {
-#ifndef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifndef QT_DOCUMENTVIEWER_PRINTSUPPORT
     enabled = false;
 #else
     if (!hasContent())

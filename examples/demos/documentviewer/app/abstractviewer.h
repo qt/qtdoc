@@ -8,14 +8,9 @@
 #include <QMainWindow>
 #include <QFileInfo>
 
-#if defined(QT_PRINTSUPPORT_LIB)
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QtPrintSupport/qtprintsupportglobal.h>
-#if QT_CONFIG(printer)
-#if QT_CONFIG(printdialog)
-#define QT_ABSTRACTVIEWER_PRINTSUPPORT
 #include <QPrinter>
-#endif // QT_CONFIG(printdialog)
-#endif // QT_CONFIG(printer)
 #endif // QT_PRINTSUPPORT_LIB
 
 class QToolBar;
@@ -27,28 +22,32 @@ class AbstractViewer : public QObject
     Q_OBJECT
 
 protected:
-    explicit AbstractViewer(QFile *file, QWidget *widget, QMainWindow *mainWindow);
+    AbstractViewer();
 
 public:
     virtual ~AbstractViewer();
-
+    virtual void init(QFile *file, QWidget *widget, QMainWindow *mainWindow);
     void initViewer(QAction *back, QAction *forward, QAction *help, QTabWidget *tabs);
-    virtual bool isModified() const { return false; }
-    virtual bool saveDocument() { return false; }
-    virtual bool saveDocumentAs() { return false; }
+    virtual bool isModified() const;
+    virtual bool saveDocument();
+    virtual bool saveDocumentAs();
     virtual QString viewerName() const = 0;
-    virtual bool supportsOverview() const { return false; }
+    virtual bool supportsOverview() const;
     virtual QByteArray saveState() const = 0;
     virtual bool restoreState(QByteArray &) = 0;
-    virtual bool hasContent() const { return false; }
-    bool isEmpty() const { return !hasContent(); }
-    bool isPrintingEnabled() const { return m_printingEnabled; }
+    virtual bool hasContent() const;
+    virtual QStringList supportedMimeTypes() const = 0;
+    virtual bool isDefaultViewer() const;
+    bool isEmpty() const;
+    bool isPrintingEnabled() const;
+    AbstractViewer *viewer();
+    const AbstractViewer *viewer() const;
 
-    QList<QAction *> actions() const { return m_actions; }
-    QWidget *widget() const { return m_widget; }
-    QList<QMenu *> menus() const { return m_menus; }
+    QList<QAction *> actions() const;
+    QWidget *widget() const;
+    QList<QMenu *> menus() const;
 
-#ifdef QT_ABSTRACTVIEWER_PRINTSUPPORT
+#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     virtual void printDocument(QPrinter *) const {};
 #endif
@@ -76,18 +75,18 @@ protected:
     QToolBar *addToolBar(const QString &);
     QMenu *addMenu(const QString &);
     QMenu *fileMenu();
-    QMainWindow *mainWindow() const { return m_uiAssets.mainWindow; }
-    QStatusBar *statusBar() const { return mainWindow()->statusBar(); }
-    QMenuBar *menuBar() const { return mainWindow()->menuBar(); }
+    QMainWindow *mainWindow() const;
+    QStatusBar *statusBar() const;
+    QMenuBar *menuBar() const;
 
     std::unique_ptr<QFile> m_file;
     QList<QAction *> m_actions;
-    QWidget *m_widget;
+    QWidget *m_widget = nullptr;
 
 protected slots:
     void maybeSetPrintingEnabled(bool enabled);
-    inline void maybeEnablePrinting() { return maybeSetPrintingEnabled(true); }
-    inline void disablePrinting() { return maybeSetPrintingEnabled(false); }
+    void maybeEnablePrinting();
+    void disablePrinting();
 
 private:
     QList<QMenu *> m_menus;
