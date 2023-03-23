@@ -75,6 +75,10 @@
             through the new function QGlyphRun::stringIndexes().
         \li Checkbox list items can now be read and written in HTML as well as
             Markdown, including conversions.
+        \li Added QGuiApplication::setBadgeNumber() to provide feedback to the
+            user about the number of unread messages or similar. The badge will
+            be overlaid the application's icon in the Dock on \macos, the home
+            screen icon on iOS, or the task bar on Windows.
     \endlist
 
     \section2 Qt Quick Module
