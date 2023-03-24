@@ -39,6 +39,8 @@ android {
 
     buildToolsVersion androidBuildToolsVersion
 
+    packagingOptions.jniLibs.useLegacyPackaging true
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
