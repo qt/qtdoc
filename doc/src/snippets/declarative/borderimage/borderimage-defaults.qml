@@ -3,11 +3,6 @@
 
 import QtQuick
 
-Rectangle {
-    id: page
-    color: "white"
-    width: 180; height: 180
-
 //! [tiled border image]
 BorderImage {
     width: 180; height: 180
@@ -15,4 +10,3 @@ BorderImage {
     source: "pics/borderframe.png"
 }
 //! [tiled border image]
-}
