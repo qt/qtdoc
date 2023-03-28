@@ -263,8 +263,8 @@
     QPlatformScreen::logicalDpi() and QPlatformScreen::devicePixelRatio().
 
     The displayed values should be updated automatically on screen and DPI
-    changes, and the dialog should maintain the same size. If this does happen
-    then that indicate there might be a bug in Qt.
+    changes, and the dialog should maintain the same size. If not, it might be a
+    Qt bug.
 
     DprGradget is a part Qt's manual test suite, and can
     be found at \c{qtbase/tests/manual/highdpi/dprgadget}.
