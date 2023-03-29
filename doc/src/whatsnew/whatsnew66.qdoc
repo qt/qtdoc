@@ -102,8 +102,30 @@
 
     \section2 Qt TextToSpeech Module
 
+    The QTextToSpeech class learned a few more tricks that are available with all
+    engines:
+
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Applications can add multiple chunks of text to a synthesizing engine
+            via \l{QTextToSpeech::}{sayNext}.
+        \li The new \l{QTextToSpeech::}{aboutToSynthesize} signal gets emitted just
+            before a chunk of text gets synthesized.
+    \endlist
+
+    Not all new features are available with every engine. Applications can use the
+    new \l{QTextToSpeech::}{Capabilities} flag and \l{QTextToSpeech::}{engineCapabilities}
+    property to check which of the following new features the currently used engine
+    supports:
+
+    \list
+        \li If the engine has the \l{QTextToSpeech::Capabilities}{Synthesize}
+            capability, QTextToSpeech can now synthesize text into PCM data. The
+            \l{QTextToSpeech::}{synthesize} function can be used with a callable that
+            receives chunks of PCM data as a QByteArray and QAudioFormat asynchronously,
+            or it can emit a signal carrying a chunk of data when it has been synthesized.
+        \li If the engine has the \l{QTextToSpeech::Capabilities}{WordByWordProgress}
+            capability, QTextToSpeech emits the \l{QTextToSpeech::}{sayingWord} signal
+            for each word in the current chunk of text as it gets spoken.
     \endlist
 
     \section2 Qt WebEngine Module
