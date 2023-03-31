@@ -51,7 +51,7 @@
     Once you have the \c .rc file, add information about the ICO file to it and
     use it to configure your application icon.
 
-    The following snippet demonstrates how the \l{Qt Quick Demo - Photo Surface}
+    The following snippet demonstrates how the \l{Photo Surface}
     example application uses CMake to set up an application icon:
 
     \snippet demos/photosurface/CMakeLists.txt appicon_windows
@@ -109,7 +109,7 @@
     by CMake must contain the icon information. This can be achieved by
     setting the \c .icns file name to the \c MACOSX_BUNDLE_ICON_FILE variable.
 
-    The following snippet demonstrates how the \l{Qt Quick Demo - Photo Surface}
+    The following snippet demonstrates how the \l{Photo Surface}
     example application uses CMake to set up an application icon:
 
     \snippet demos/photosurface/CMakeLists.txt appicon_macOS
