@@ -40,6 +40,11 @@
             \li \l{Cross-compiling}
             \li \l{Specifying a custom toolchain file}
         \endlist
+        \li \l{Deployment}
+        \list
+            \li \l{Deploying a Qt Widgets application}
+            \li \l{Deploying a Qt Quick application}
+        \endlist
         \li \l{Imported targets}
         \li \l{Qt CMake policies}
         \li \l{Qt 5 and Qt 6 compatibility}
@@ -648,7 +653,7 @@
     \page cmake-build-on-cmdline.html
     \title Building projects on the command line
     \previouspage Getting started with CMake
-    \nextpage Imported targets
+    \nextpage Deployment
 
     This page explains how to configure and build existing projects. If you want
     to know how to create a Qt-based CMake project, see the documentation on
@@ -761,11 +766,92 @@
 */
 
 /*!
+    \page cmake-deployment.html
+    \title Deployment
+    \brief Provides an overview of how to deploy Qt projects.
+    \nextpage Imported targets
+    \previouspage Building projects on the command line
+
+    Use Qt's CMake deployment API to deploy Qt projects for desktop platforms.
+    The API supports various target platforms, which you can find in the
+    \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
+    documentation.
+
+    The deployment process depends on whether your project is a Qt Widgets
+    application or a Qt Quick application. Even if you are planning to deploy
+    only Qt Quick applications, read about deploying Qt Widgets applications
+    first to understand the process.
+
+    \section1 Deploying a Qt Widgets application
+
+    This section shows how to deploy a Qt Widgets application with an example of
+    a simple C++ Qt project.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake basic setup
+
+    You need to instruct CMake to install the application target into the
+    appropriate location. On macOS, bundles are installed directly into
+    \c{${CMAKE_INSTALL_PREFIX}}, on other platforms into the \c{"bin"} directory
+    underneath.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake installation
+
+    Note that \l{qt_standard_project_setup}{qt_standard_project_setup()} pulls
+    in CMake's \c{GNUInstallDirs.cmake}. This is what defines the
+    \c{CMAKE_INSTALL_BINDIR} variable.
+
+    You also need to generate a \e{deployment script}. A deployment script is
+    CMake code that is executed at installation time. This code takes care of
+    collecting runtime dependencies and copies them to the installation
+    directory.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake deployment script
+
+    The \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
+    command generates the deployment script in the build directory. The file
+    name of the generated script file is stored in the \c{deploy_script}
+    variable. The \c{install(SCRIPT)} call instructs CMake to run the script on
+    installation.
+
+    The project can be installed with \c{cmake --install .} or \c{ninja install}
+    like any other CMake-based project. After installation, the installation
+    directory contains the shared libraries and assets that are necessary to run
+    the application. In other words, the installation produces a self-contained
+    directory, ready to be packaged - for example by \c{cpack}.
+
+    \section1 Deploying a Qt Quick application
+
+    Deploying a Qt Quick project requires a different command to generate the
+    deployment script. The rest of the steps are similar to deploying a
+    Qt Widgets application.
+
+    First, you create the Qt Quick application.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake basic setup
+
+    You install the application as before.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake installation
+
+    To generate the deployment script, you call
+    \l{qt_generate_deploy_qml_app_script}{qt_generate_deploy_qml_app_script()}
+    instead of
+    \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}.
+
+    \snippet snippets/cmake/deploy_non_qml.cmake deployment script
+
+    On installation, the application binary will be deployed, including the QML
+    files and the shared libraries and assets of Qt that are used by the
+    project. Again, the resulting directory is self-contained and can be
+    packaged by tools like \c{cpack}.
+*/
+
+/*!
     \page cmake-imported-targets.html
     \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
     \nextpage Qt CMake policies
-    \previouspage Building projects on the command line
+    \previouspage Deployment
 
     Each Qt module that is loaded defines a CMake library target. The target names
     start with \c{Qt6::}, followed by the module name. For example: \c{Qt6::Core}, \c{Qt6::Gui}.
