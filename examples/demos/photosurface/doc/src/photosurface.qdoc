@@ -63,10 +63,10 @@
     \endcode
 
     We use the \c {folderDialog.open()} function to open the file dialog when the
-    app starts, if a folder path has not already been given as a command-line argument:
+    initial slide show finishes, unless a folder path has been given as a command-line
+    argument:
 
-    \skipto StandardKey.Quit
-    \skipto Component.onCompleted: {
+    \skipto Component.onDestruction: {
     \printuntil }
 
     Users can also click the folder dialog icon to open it. We use
