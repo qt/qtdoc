@@ -943,7 +943,7 @@
         REM Set up Microsoft Visual Studio 2019, where <arch> is amd64, x86, etc.
         CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
         SET _ROOT=C:\Qt\\1\Src
-        SET PATH=%_ROOT%\qtbase\bin;%PATH%
+        SET PATH=%_ROOT%;%PATH%
         SET _ROOT=
         \endcode
 
@@ -963,7 +963,10 @@
     \section1 Step 4: Build the Qt Library
 
         To configure the Qt library for your machine type, run the
-        \c{configure.bat} script in the source directory.
+        \c{configure.bat} script in the source directory. Alternatively, if you have
+        already completed Step 3, you may double-click on the desktop link you created,
+        and type \c{configure} and start configuring the Qt library in your selected
+        directory.
 
         By default, Qt is configured for installation in the
         \c{C:\Program Files\Qt} directory, but this can be
