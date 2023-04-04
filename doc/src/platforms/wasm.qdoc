@@ -784,8 +784,6 @@ does not call exec(), as described in \l{Application Startup and the Event Loop}
 and QEventLoop::exec(). Experimental feature Asyncify could be used.
 \li Printing is not supported
 \li QDnsLookup lookups, QTcpSocket, QSsl do not work and are not supported due to the web sandbox
-\li Accessibility is not supported: Qt draws application content to a canvas element and does not
-use (other) native DOM elements.
 \li Fonts: Wasm sandbox does not allow access to system fonts. Font files must be
 distributed with the application, for example in Qt resources or downloading.
 Qt for WebAssembly itself embeds one such font.
