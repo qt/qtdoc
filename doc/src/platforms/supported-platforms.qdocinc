@@ -100,18 +100,8 @@ The following configurations are supported in this Qt release:
 \endtable
 //! [ios]
 
-\section2 \l{Qt for WebAssembly}{WebAssembly (Technology Preview)}
-//! [webassembly]
-\table 80%
-    \header \li Target Browser \li Device
-    \row    \li Chrome         \li Desktop, Mobile (Android)
-    \row    \li Safari         \li Desktop, Mobile (iOS)
-    \row    \li Firefox        \li Desktop
-    \row    \li Edge           \li Desktop
-\endtable
-
-See notes on \l {Qt for WebAssembly#Supported Browsers}{supported browsers}.
-//! [webassembly]
+For information about support of WebAssembly on mobile platforms, see notes
+on \l {Qt for WebAssembly#Supported Browsers}{supported browsers}.
 
 //! [mobile]
 
@@ -248,6 +238,8 @@ documentation.
         \li Chrome, Firefox
 \endtable
 
+For mobile platforms, Safari is the supported browser on iOS, and Chrome
+on Android.
 //! [web]
 
 //! [all]
