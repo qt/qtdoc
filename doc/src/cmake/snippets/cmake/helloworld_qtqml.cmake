@@ -7,7 +7,7 @@ project(hello VERSION 1.0 LANGUAGES CXX)
 
 find_package(Qt6 6.2 COMPONENTS Quick Gui REQUIRED)
 
-qt_standard_project_setup(REQUIRED 6.5)
+qt_standard_project_setup(REQUIRES 6.5)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
