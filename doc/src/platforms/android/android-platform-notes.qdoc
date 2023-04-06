@@ -65,9 +65,7 @@
     a suitable OpenGL context, set the requested version via
     \l{QSurfaceFormat::setVersion()}.
 
-    \note The header files, such as \e{gl31.h}, are only available in recent API
-    levels, and therefore you need to target API level 21. Keep in mind also that
-    using OpenGL ES 3.x features will result in the application breaking on older
+    \note Using OpenGL ES 3.x features will result in the application breaking on older
     devices that only support 2.0.
 
     \section1 Assets File System
