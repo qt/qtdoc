@@ -11,7 +11,7 @@ endif()
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/${PROJECT_NAME}")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
-qt_standard_project_setup()
+qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(colorpaletteclient
     main.cpp
@@ -38,7 +38,6 @@ qt_add_resources(colorpaletteclient "theme" FILES
 qt_add_qml_module(colorpaletteclient
     URI ColorPalette
     VERSION 1.0
-    AUTO_RESOURCE_PREFIX
     QML_FILES
         MainWindow.qml
     SOURCES
