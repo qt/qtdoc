@@ -395,7 +395,7 @@
     The \l{Qt Widget Gallery} page contains sample images of applications using
     the \macos platform theme.
 
-    \section2 Qt Attributes for \macos
+    \section1 Qt Attributes for \macos
 
     The following lists a set of useful attributes that can be used to tweak
     applications on \macos:
@@ -421,7 +421,7 @@
     outside of a paint event so Qt::WA_PaintOutsidePaintEvent has no effect
     either.
 
-    \section2 Right Mouse Clicks
+    \section1 Right Mouse Clicks
 
     The QContextMenuEvent class provides right mouse click support for \macos
     applications. This will map to a context menu event, for example, a menu
@@ -429,7 +429,7 @@
     mouse clicks, and maps to a control-click with the \macos one-button mouse
     support.
 
-    \section2 Menu Bar
+    \section1 Menu Bar
 
     Qt detects menu bars and turns them into Mac native menu bars. Fitting this
     into existing Qt applications is normally automatic. However, if you
@@ -480,7 +480,7 @@
     just like the application menu items when the \c QAction has the default
     \l{QAction::TextHeuristicRole}{TextHeuristicRole}.
 
-    \section2 Special Keys
+    \section1 Special Keys
 
     To provide the expected behavior for Qt applications on \macos,
     the Qt::Key_Meta, Qt::MetaModifier, and Qt::META enum values
@@ -488,14 +488,14 @@
     and the Qt::Key_Control, Qt::ControlModifier, and Qt::CTRL enum values
     correspond to the Command keys.
 
-    \section2 Dock
+    \section1 Dock
 
     Interaction with the dock is possible. The icon can be set by calling
     QWindow::setWindowIcon() from the main window in your application. The
     setWindowIcon() call can be made as often as necessary, providing an
     icon that can be easily updated.
 
-    \section2 Accessiblity
+    \section1 Accessiblity
 
     Many users interact with \macos with assistive devices. With Qt the aim is
     to make this automatic in your application so that it conforms to accepted
