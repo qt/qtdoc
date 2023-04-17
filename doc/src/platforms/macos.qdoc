@@ -429,6 +429,27 @@
     mouse clicks, and maps to a control-click with the \macos one-button mouse
     support.
 
+    \section1 Internationalization
+
+    Applications on \macos declare their supported languages as part of the
+    \c Info.plist of the application. The system will then match the application's
+    supported languages with the user's language preferences to determine the locale
+    the application is launched in. This in turn determines the ordered languages
+    reflected through QLocale::uiLanguages(), and how system frameworks such as
+    AppKit pick up their localized resources, such as menu titles and strings.
+
+    As Qt apps are not translated out of the box, the default generated \c Info.plist
+    for \c CMake and \c qmake projects sets
+    \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleallowmixedlocalizations?language=objc}
+    {\c CFBundleAllowMixedLocalizations} to \c YES, to allow system frameworks to pick
+    the localization that best matches the user's language preferences, even if that
+    localization is not available for the application itself. Once you add translations
+    to your application, via e.g. \l qt_add_translations, you should remove
+    \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleallowmixedlocalizations?language=objc}
+    {\c CFBundleAllowMixedLocalizations}
+    and replace it with \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundlelocalizations?language=objc}
+    {\c CFBundleLocalizations}, listing all the languages you support.
+
     \section1 Menu Bar
 
     Qt detects menu bars and turns them into Mac native menu bars. Fitting this
