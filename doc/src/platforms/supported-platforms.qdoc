@@ -65,13 +65,12 @@
 
     \section1 Reference Configurations
 
-    The reference configurations are run on the continuous integration (CI)
-    system within Qt Project. In addition, they are subjected to unit test suite
-    and other internal testing tools on a frequent basis (prior to new version
-    releases, source tree branching, and at other significant period points in
-    the development process). Errors or bugs discovered in these platforms are
-    prioritized for correction. Significant errors discovered in tested
-    configurations can impact release dates.
+    Reference configurations are the primary focus of development. They are subjected
+    to unit test suite and other internal testing tools on a frequent basis (prior to
+    new version releases, source tree branching, and at other significant period points
+    in the development process). Errors or bugs discovered in these platforms are
+    prioritized for correction. Significant errors discovered in tested configurations
+    can impact release dates.
 
     Any configurations not listed above are not actively tested by the Qt
     Project. However, Qt may run on configurations other than those actively
@@ -79,10 +78,6 @@
     sufficient effort is made to bring continuous integration to an acceptable
     state for that particular configuration. The reference configurations are
     subject to change during the lifetime of a Qt release.
-
-    Details of the reference configurations are stored as \e {provisioning scripts}
-    in the \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin?h=\qtver}
-    {qt5 Git repository}.
 
     The Qt Company provides support for the officially supported platforms and
     configurations. The Qt Company, Qt partners, open source projects and community
