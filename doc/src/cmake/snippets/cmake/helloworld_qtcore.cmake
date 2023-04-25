@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 qt_standard_project_setup()
 
-add_executable(helloworld
+qt_add_executable(helloworld
     main.cpp
 )
 
