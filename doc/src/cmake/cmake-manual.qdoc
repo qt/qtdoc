@@ -165,20 +165,19 @@
 
     \printuntil )
 
-    \c{add_executable()} tells CMake that we want to build an executable (so not
-    a library) called \c{helloworld} as a target. The target should be built
-    from the C++ source file \c{main.cpp}.
+    \l{qt6_add_executable}{qt_add_executable()} tells CMake that we want to
+    build an executable (so not a library) called \c{helloworld} as a target.
+    It is a  wrapper around the built-in \c add_executable() command, and
+    provides additional logic to automatically handle things like linking of
+    Qt plugins in static Qt builds, platform-specific customization of library
+    names, and so on.
 
-    Note that you typically do not list header files here. This is different
+    The target should be built from the C++ source file \c{main.cpp}.
+
+    Typically, you do not list header files here. This is different
     from \l{qmake}, where header files need to be explicitly listed so that
     they are processed by the
     \l{Using the Meta-Object Compiler (moc)} {Meta-Object Compiler (moc)}.
-
-    For less trivial projects, you may want to call
-    \l{qt6_add_executable}{qt_add_executable()} instead. It is a wrapper around
-    the built-in \c add_executable() command, providing additional logic to
-    automatically handle things like linking of Qt plugins in static Qt builds,
-    platform-specific customization of library names and so on.
 
     For creating libraries, see \l{qt6_add_library}{qt_add_library}.
 
@@ -296,7 +295,7 @@
     executable target:
 
     \code
-    add_executable(helloworld
+    qt_add_executable(helloworld
         mainwindow.ui
         mainwindow.cpp
         main.cpp
