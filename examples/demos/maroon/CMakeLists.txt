@@ -24,10 +24,10 @@ set_target_properties(maroon PROPERTIES
 )
 
 target_link_libraries(maroon PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
 )
 
 # Resources:
@@ -108,9 +108,9 @@ qt6_add_resources(maroon "maroon"
         ${maroon_resource_files}
 )
 
-if(TARGET Qt::Multimedia)
+if(TARGET Qt6::Multimedia)
     target_link_libraries(maroon PUBLIC
-        Qt::Multimedia
+        Qt6::Multimedia
     )
 endif()
 

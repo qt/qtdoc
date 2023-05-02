@@ -24,10 +24,10 @@ set_target_properties(tweetsearch PROPERTIES
 )
 
 target_link_libraries(tweetsearch PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
 )
 
 # Resources:

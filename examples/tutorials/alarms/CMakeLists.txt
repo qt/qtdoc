@@ -24,9 +24,9 @@ set_target_properties(alarms PROPERTIES
 )
 
 target_link_libraries(alarms PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Quick
 )
 
 # Resources:

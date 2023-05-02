@@ -24,11 +24,11 @@ set_target_properties(samegame PROPERTIES
 )
 
 target_link_libraries(samegame PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
-    Qt::Sql
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::Sql
 )
 
 # Resources:

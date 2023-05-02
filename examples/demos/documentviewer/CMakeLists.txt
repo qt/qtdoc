@@ -76,10 +76,10 @@ qt6_add_resources(documentviewer "documentviewer"
 )
 
 target_link_libraries(documentviewer PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Widgets
-    Qt::PdfWidgets
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+    Qt6::PdfWidgets
 )
 
 if(TARGET Qt6::PrintSupport)

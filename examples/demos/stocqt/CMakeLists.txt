@@ -24,10 +24,10 @@ set_target_properties(stocqt PROPERTIES
 )
 
 target_link_libraries(stocqt PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
 )
 
 # Resources:
