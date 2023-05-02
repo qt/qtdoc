@@ -64,9 +64,9 @@ qt_add_resources(documentviewer "documentviewer"
 )
 
 target_link_libraries(documentviewer PRIVATE
-    Qt::Core
-    Qt::Gui
-    Qt::Widgets
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
 )
 
 if(QT6_IS_SHARED_LIBS_BUILD)

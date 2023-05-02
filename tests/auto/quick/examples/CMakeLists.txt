@@ -13,11 +13,11 @@ qt_internal_add_test(tst_examples
     DEFINES
         SRCDIR="${CMAKE_CURRENT_SOURCE_DIR}"
     LIBRARIES
-        Qt::CorePrivate
-        Qt::Gui
-        Qt::GuiPrivate
-        Qt::QmlPrivate
-        Qt::QuickPrivate
+        Qt6::CorePrivate
+        Qt6::Gui
+        Qt6::GuiPrivate
+        Qt6::QmlPrivate
+        Qt6::QuickPrivate
 )
 
 #### Keys ignored in scope 1:.:.:examples.pro:<TRUE>:
@@ -26,7 +26,7 @@ qt_internal_add_test(tst_examples
 ## Scopes:
 #####################################################################
 
-qt_internal_extend_target(tst_examples CONDITION NOT TARGET Qt::XmlPatterns
+qt_internal_extend_target(tst_examples CONDITION NOT TARGET Qt6::XmlPatterns
     DEFINES
         QT_NO_XMLPATTERNS
 )
