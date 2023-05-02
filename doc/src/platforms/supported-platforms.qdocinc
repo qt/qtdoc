@@ -72,7 +72,7 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.13, \macos 10.14, \macos 10.15, \macos 11, \macos 12
         \li \c x86_64 and \c x86_64h and \c arm64
-        \li Xcode 11 or Xcode 12 or \b {Xcode 13} (12 SDK)
+        \li Xcode 11, Xcode 12, Xcode 13 (12 SDK), or \b {Xcode 14} (13 SDK)
 \endtable
 //! [macos]
 
@@ -122,7 +122,8 @@
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
     \row \li iOS 12, iOS 13, iOS 14, iOS 15
         \li \c armv8 (\c arm64)
-        \li  Xcode 11 (iOS 13.2 SDK), Xcode 12 (iOS 14 SDK), \b {Xcode 13} (iOS 15 SDK)
+        \li  Xcode 11 (iOS 13.2 SDK), Xcode 12 (iOS 14 SDK), Xcode 13 (iOS 15 SDK),
+             \b {Xcode 14} (iOS 16 SDK)
         \li
     \row \li tvOS 12, tvOS 13
         \li \c armv8 (\c arm64)
