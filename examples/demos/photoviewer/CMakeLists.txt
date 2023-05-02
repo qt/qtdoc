@@ -23,7 +23,7 @@ set_target_properties(photoviewer PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(photoviewer PUBLIC
+target_link_libraries(photoviewer PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
@@ -56,7 +56,7 @@ qt_add_resources(photoviewer "qmake_immediate"
 )
 
 if(lupdate_only)
-    target_sources(photoviewer PUBLIC
+    target_sources(photoviewer PRIVATE
         *.qml
         PhotoViewerCore/*.qml
         PhotoViewerCore/script/*.js

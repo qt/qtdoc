@@ -23,7 +23,7 @@ set_target_properties(maroon PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(maroon PUBLIC
+target_link_libraries(maroon PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
@@ -109,7 +109,7 @@ qt_add_resources(maroon "maroon"
 )
 
 if(TARGET Qt6::Multimedia)
-    target_link_libraries(maroon PUBLIC
+    target_link_libraries(maroon PRIVATE
         Qt6::Multimedia
     )
 endif()

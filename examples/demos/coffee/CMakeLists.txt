@@ -23,7 +23,7 @@ set_target_properties(coffee PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(coffee PUBLIC
+target_link_libraries(coffee PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml

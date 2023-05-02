@@ -23,7 +23,7 @@ set_target_properties(samegame PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(samegame PUBLIC
+target_link_libraries(samegame PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
