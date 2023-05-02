@@ -236,10 +236,16 @@ documentation.
         \li \c wasm32
         \li Emscripten 3.1.25
         \li Chrome, Firefox
+    \row \li iOS
+        \li \c wasm32
+        \li Emscripten 3.1.25
+        \li Safari
+    \row \li Android
+        \li \c wasm32
+        \li Emscripten 3.1.25
+        \li Chrome
 \endtable
 
-For mobile platforms, Safari is the supported browser on iOS, and Chrome
-on Android.
 //! [web]
 
 //! [all]
