@@ -23,7 +23,7 @@ set_target_properties(clocks PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(clocks PUBLIC
+target_link_libraries(clocks PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml

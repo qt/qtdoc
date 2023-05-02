@@ -23,7 +23,7 @@ set_target_properties(alarms PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(alarms PUBLIC
+target_link_libraries(alarms PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick

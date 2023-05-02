@@ -23,7 +23,7 @@ set_target_properties(stocqt PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(stocqt PUBLIC
+target_link_libraries(stocqt PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
