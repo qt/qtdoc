@@ -53,7 +53,7 @@ set(qmake_content_resource_files
     "tweetsearch.qml"
 )
 
-qt6_add_resources(tweetsearch "qmake_content"
+qt_add_resources(tweetsearch "qmake_content"
     PREFIX
         "/demos/tweetsearch"
     FILES

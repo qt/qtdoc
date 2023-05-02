@@ -57,7 +57,7 @@ qt_add_qml_module(photosurfaceexample
       "resources/welcome.pdf"
 )
 
-qt6_add_shaders(photosurfaceexample "shaders"
+qt_add_shaders(photosurfaceexample "shaders"
     BATCHABLE
     PRECOMPILE
     OPTIMIZED

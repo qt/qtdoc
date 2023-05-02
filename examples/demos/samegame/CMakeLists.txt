@@ -104,7 +104,7 @@ set(samegame_resource_files
     "samegame.qml"
 )
 
-qt6_add_resources(samegame "samegame"
+qt_add_resources(samegame "samegame"
     PREFIX
         "/demos/samegame"
     FILES

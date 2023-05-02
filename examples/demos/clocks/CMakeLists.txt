@@ -45,7 +45,7 @@ set(clocks_resource_files
     "content/second.png"
 )
 
-qt6_add_resources(clocks "clocks"
+qt_add_resources(clocks "clocks"
     PREFIX
         "/demos/clocks"
     FILES

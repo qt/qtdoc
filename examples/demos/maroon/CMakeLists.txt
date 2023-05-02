@@ -101,7 +101,7 @@ set(maroon_resource_files
     "maroon.qml"
 )
 
-qt6_add_resources(maroon "maroon"
+qt_add_resources(maroon "maroon"
     PREFIX
         "/demos/maroon"
     FILES

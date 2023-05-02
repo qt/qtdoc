@@ -38,14 +38,14 @@ set(qml_resource_files
     "main.qml"
 )
 
-qt6_add_resources(alarms "qml"
+qt_add_resources(alarms "qml"
     PREFIX
         "/alarms/"
     FILES
         ${qml_resource_files}
 )
 
-qt6_add_resources(alarms "controls_conf"
+qt_add_resources(alarms "controls_conf"
     PREFIX
         "/"
     FILES
