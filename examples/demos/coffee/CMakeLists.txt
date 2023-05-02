@@ -69,7 +69,7 @@ set(qml_resource_files
     "qtquickcontrols2.conf"
 )
 
-qt6_add_resources(coffee "qml"
+qt_add_resources(coffee "qml"
     PREFIX
         "/"
     FILES

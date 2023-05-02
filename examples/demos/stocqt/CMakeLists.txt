@@ -72,7 +72,7 @@ set(stocqt_resource_files
     "stocqt.qml"
 )
 
-qt6_add_resources(stocqt "stocqt"
+qt_add_resources(stocqt "stocqt"
     PREFIX
         "/demos/stocqt"
     FILES

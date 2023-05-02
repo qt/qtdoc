@@ -48,7 +48,7 @@ set(qmake_immediate_resource_files
     "main.qml"
 )
 
-qt6_add_resources(photoviewer "qmake_immediate"
+qt_add_resources(photoviewer "qmake_immediate"
     PREFIX
         "/"
     FILES

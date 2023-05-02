@@ -56,7 +56,7 @@ set(rssnews_resource_files
     "rssnews.qml"
 )
 
-qt6_add_resources(rssnews "rssnews"
+qt_add_resources(rssnews "rssnews"
     PREFIX
         "/demos/rssnews"
     FILES

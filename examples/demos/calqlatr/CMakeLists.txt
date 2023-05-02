@@ -25,7 +25,7 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::Quick
 )
 
-qt6_add_qml_module(calqlatrexample
+qt_add_qml_module(calqlatrexample
     URI demos.calqlatr
     VERSION 1.0
     QML_FILES
