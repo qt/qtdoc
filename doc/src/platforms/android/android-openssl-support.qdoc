@@ -38,14 +38,14 @@ to \l {Using OpenSSL Libraries with Qt for Android}.
 The following instructions guide you to build the OpenSSL libraries manually:
 
 \list 1
-    \li Download \l{OpenSSL Source}{OpenSSL} 1.1.x sources.
+    \li Download \l{OpenSSL Source}{OpenSSL} sources.
 
     \li Extract the sources to a folder and navigate to that folder using
         the CLI.
         \note If your development platform is Windows, you need \c msys with
         \c perl v5.14 or later to build OpenSSL.
 
-    \li Add the Android LLVM toolchain (NDK r20b or r21) to your path:
+    \li Add the Android LLVM toolchain to your path:
 
         \badcode
         export PATH="<android_ndk_path>/toolchains/llvm/prebuilt/<host>/bin":$PATH
@@ -55,10 +55,15 @@ The following instructions guide you to build the OpenSSL libraries manually:
         the following command:
 
         \badcode
-        ./Configure shared android-<arch> -D__ANDROID_API__=21
+        ./Configure shared android-<arch> -D__ANDROID_API__=XX
         \endcode
 
-        Where <arch> can take a value of: \c arm, \c arm64, \c x86, \c x86_64.
+        Where:
+        \list
+             \li <arch> can take a value of: \c arm, \c arm64, \c x86, \c x86_64.
+             \li \c XX is a two-digit number equal to the minimum API level for
+             this Qt version: see \l {Supported Configurations}{Qt for Android support}.
+        \endlist
 
         \note You must consider enabling or disabling the SSL features based on
         the legal restrictions in the region where your application is available.
@@ -66,19 +71,18 @@ The following instructions guide you to build the OpenSSL libraries manually:
         \l{OpenSSL Configure Options}.
 
     \li To build \c libcrypto and \c libssl shared libraries that are not versioned,
-        but with an \e _1_1 suffix, run:
+        but with an \e _3 suffix, run:
 
         \code
-        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=_1_1.so build_libs
+        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=_3.so build_libs
         \endcode
-
-        Without a suffix, Android 5 (API 21) will load the system libraries
-        \e {libcrypto.so} and \e {libssl.so}, which are OpenSSL 1.0, rather than
-        your libraries.
 
         If you want to use a different suffix, you must change \c SHLIB_EXT in
         the previous command, and set the \c ANDROID_OPENSSL_SUFFIX environment
         variable before you access the Qt Network API.
+
+        \note Without a suffix, Android loads the system libraries \c {libcrypto.so} and
+        \c {libssl.so}. These may be different versions from your libraries or from what Qt expects.
 
         \badcode
         make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=<custom_suffix>.so build_libs
@@ -123,16 +127,16 @@ the following step to include those libraries in your project:
 
         \badcode
         ANDROID_EXTRA_LIBS += \
-            <path_to_libs_dir>/libcrypto_1_1.so \
-            <path_to_libs_dir>/libssl_1_1.so
+            <path_to_libs_dir>/libcrypto_3.so \
+            <path_to_libs_dir>/libssl_3.so
         \endcode
 
         For CMake:
 
         \badcode
         set_property(TARGET <target name> PROPERTY QT_ANDROID_EXTRA_LIBS
-            <path_to_libs_dir>/libcrypto_1_1.so
-            <path_to_libs_dir>/libssl_1_1.so)
+            <path_to_libs_dir>/libcrypto_3.so
+            <path_to_libs_dir>/libssl_3.so)
         \endcode
 
         \note When targeting multiple architectures, include OpenSSL libraries
