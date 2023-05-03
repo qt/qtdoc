@@ -10,11 +10,14 @@ QT_BEGIN_NAMESPACE
 class QPlainTextEdit;
 QT_END_NAMESPACE
 
+//! [interfacing]
 class TxtViewer : public ViewerInterface
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface" FILE "txtviewer.json")
     Q_INTERFACES(ViewerInterface)
+//! [interfacing]
+//! [classDefinition]
 public:
     TxtViewer();
     ~TxtViewer() override;
@@ -43,5 +46,6 @@ private:
     int m_classId;
     QPlainTextEdit *m_textEdit;
 };
+//! [classDefinition]
 
 #endif //TXTVIEWER_H

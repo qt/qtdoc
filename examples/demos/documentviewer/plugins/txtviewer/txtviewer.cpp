@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+//! [init]
 #include "txtviewer.h"
 
 #include <QFileDialog>
@@ -103,7 +104,9 @@ void TxtViewer::setupTxtUi()
             bar->setValue(bar->value() + 1);
     });
 }
+//! [init]
 
+//! [open]
 void TxtViewer::openFile()
 {
     const QString type = tr("open");
@@ -131,7 +134,9 @@ void TxtViewer::openFile()
                   .arg(QDir::toNativeSeparators(m_file->fileName())), type);
     maybeEnablePrinting();
 }
+//! [open]
 
+//! [infoPrintAndSave]
 bool TxtViewer::hasContent() const
 {
     return (!m_textEdit->toPlainText().isEmpty());
@@ -188,3 +193,4 @@ bool TxtViewer::saveDocumentAs()
     m_file->setFileName(files.first());
     return saveDocument();
 }
+//! [infoPrintAndSave]
