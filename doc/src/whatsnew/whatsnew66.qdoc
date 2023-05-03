@@ -91,7 +91,11 @@
     \section2 Qt Sql Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li A plugin for \l {https://www.mimer.com/} {Mimer SQL} was added
+        \li MySQL/MariaDB gained the new connect options MYSQL_OPT_PROTOCOL,
+        MYSQL_SHARED_MEMORY_BASE_NAME, MYSQL_OPT_TLS_VERSION, MYSQL_OPT_SSL_MODE
+        \li The ODBC plugin now returns all native error codes in QSqlError
+        \li QSqlQuery got two new functions boundValueName()/boundValueNames()
     \endlist
 
     \section2 Qt Test Module
