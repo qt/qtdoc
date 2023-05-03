@@ -5,11 +5,15 @@
     \title Qt Demo - Document Viewer
     \ingroup mainwindow-classes
     \example demos/documentviewer
-    \examplecategory {Application Examples}
-    \brief A Widgets application to display and print Json, text and PDF files.
+    \brief A Widgets application to display and print JSON, text, and PDF files.
+
     Demonstrates various features to use in widget applications:
-    Using QSettings, query and save user preferences, manage file histories and
-    control cursor behavior when hovering over widgets.
+    \list
+    \li Using QSettings, query and save user preferences, manage file histories and
+    \li Controllinh cursor behavior when hovering over widgets.
+    \li Writing and dynamically loading plugins.
+    \endlist
+
     \image documentviewer_open.png
     \meta {tag} {demo,widgets,mainwindow}
 
@@ -57,10 +61,27 @@
     the FileType used in this application. If no valid file type could be established, the user
     is asked, if it should be opened as plain text.
 
-    The ViewerFactory class provides a static method to create a file type specific viewer.
+    The \c ViewerFactory class is used to manage file type specific viewers, implemented as plugins.
+    When an instance of \c ViewerFactory is created, pointers to view area and QMainWindow have
+    to be passed to the constructor.
 
     \code
-    m_viewer = ViewerFactory::makeViewer(&file, ui->viewArea, this, questions());
+    m_factory.reset(new ViewerFactory(ui->viewArea, this));
+    \endcode
+
+    \c ViewerFactory loads all available plugins when constructed. It provides public APIs to
+    query about loaded plugins, their names, and supported mime types.
+
+    \quotefromfile demos/documentviewer/app/viewerfactory.h
+    \skipto ViewerList
+    \printuntil QStringList supportedMimeTypes() const;
+
+
+    The method \c viewer returns the pointer to the plugin suitable to open the QFile passed
+    as an argument.
+
+    \code
+    m_viewer = m_factory->viewer(file);
     \endcode
 
     If the application settings contain a section for the viewer, it is passed to the viewer's
@@ -135,7 +156,7 @@
 
     \section1 The JsonViewer class
 
-    The class displays a JSON file in a QTreeView.
+    The plugin class displays a JSON file in a QTreeView.
     It loads a file into a QJsonDocument, used to populate a custom tree model with
     JsonItemModel.
     This part of the JSON viewer demonstrates, how to implement custom item models inheriting from
@@ -148,8 +169,11 @@
     \endsection1
 
     \section1 The PdfViewer class
-    This is a fork of the QPdfViewerWidgets example.
+    This plugin is a fork of the QPdfViewerWidgets example.
     It demonstrates the use of QScroller to smoothly flick through the document.
+
+    \section1 The TxtViewer class
+    This plugin is a simple a text editor, to show how a user interface is written in pure C++.
     \endsection1
 
     \section1 Additional classes for application features
@@ -212,7 +236,7 @@
 
     The class is a QStringList, specialized to manage a list of recently opened files.
 
-    \quotefromfile demos/documentviewer/recentfiles.cpp
+    \quotefromfile demos/documentviewer/app/recentfiles.cpp
     \skipto RecentFiles::RecentFiles
     \printuntil }
 
@@ -221,13 +245,13 @@
     If a file already exists in the list of recent files, it is removed from its original position
     and added on the top.
 
-    \quotefromfile demos/documentviewer/recentfiles.h
+    \quotefromfile demos/documentviewer/app/recentfiles.h
     \skipto public slots
     \printuntil addFiles
 
     Files can be removed by name or by index.
 
-    \quotefromfile demos/documentviewer/recentfiles.h
+    \quotefromfile demos/documentviewer/app/recentfiles.h
     \skipuntil public slots
     \skipto removeFile
     \printuntil addFiles
@@ -235,7 +259,7 @@
     Slots are available to save and restore from {QSettings}.
     Files restored from settings are ignored, if they no longer exist.
 
-    \quotefromfile demos/documentviewer/recentfiles.h
+    \quotefromfile demos/documentviewer/app/recentfiles.h
     \skipuntil public slots
     \skipto saveSettings
     \printuntil restoreFromSettings
@@ -268,7 +292,7 @@
     A {RecentFileMenu} is deleted either with its parent widget, or with the RecentFiles object
     passed to its constructor.
 
-    \quotefromfile demos/documentviewer/recentfilemenu.h
+    \quotefromfile demos/documentviewer/app/recentfilemenu.h
     \skipuntil class RecentFileMenu
     \printuntil void fileOpened
 
