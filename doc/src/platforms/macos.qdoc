@@ -329,6 +329,10 @@
         ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64h;arm64"
         \endcode
 
+        \note A universal build always needs to include the architecture of
+        your development machine, as the process relies on tools that are built
+        and run on your machine as part of the overall build.
+
         Be careful to specify the Intel architecture ("x86_64h") first,
         otherwise Qt may not enable all the x86 functionality.
 
