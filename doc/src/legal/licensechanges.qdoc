@@ -10,6 +10,55 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.5.1
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 7.2.0.
+    \endlist
+
+    \section2 Qt Location Module
+
+    \list
+        \li Usage of \e {Earcut Polygon Triangulation Library} was removed.
+        \li Usage of \e {geosimplify-js polyline simplification library} was removed.
+    \endlist
+
+    \section2 Qt Multimedia Module
+
+    \list
+        \li \l{pfft}{pfft} was updated to version 38946c766c1a.
+        \li \l{resonance-audio}{Resonance Audio} was updated to version e225aedb5ec7.
+    \endlist
+
+    \section2 Qt Network module
+
+    \list
+        \li \l{psl-data}{The Public Suffix List} was updated to the commit matching the
+            sha a304485800b4b6b796fcccbb3be1585f189ee038, on 2023-05-03.
+    \endlist
+
+    \section2 Qt Quick3D module
+
+    \list
+        \li \l{tinyexr}{Tiny OpenEXR} was updated to version v1.0.2.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \list
+        \li \l{sqlite}{SQLite} was updated to version 3.41.2.
+    \endlist
+
+    \section2 Qt Webengine Module
+
+    \list
+        \li Usage of \e {Marked (WebEngine Markdown Editor example)} was removed.
+        \li Usage of \e {Markdown.css (WebEngine Markdown Editor example)} was removed.
+        \li Usage of \e {Tango Icon Library} was removed.
+    \endlist
+
     \section1 Qt 6.5.0
 
     \section2 Qt Core Module
