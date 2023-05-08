@@ -46,7 +46,7 @@
 
     \snippet snippets/moc/myclass2.h 0
 
-    The Q_FLAGS() macro declares enums that are to be used
+    The Q_FLAG() macro declares enums that are to be used
     as flags, i.e. OR'd together. Another macro, Q_CLASSINFO(),
     allows you to attach additional name/value pairs to the class's
     meta-object:
