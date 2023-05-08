@@ -68,18 +68,19 @@ target_link_libraries(documentviewer PRIVATE
     Qt6::Widgets
 )
 
+set(plugin_targets
+    jsonviewer
+    txtviewer
+)
+
+if(TARGET pdfviewer)
+    list(APPEND plugin_targets pdfviewer)
+endif()
+
 if(QT6_IS_SHARED_LIBS_BUILD)
-    add_dependencies(documentviewer
-        jsonviewer
-        pdfviewer
-        txtviewer
-    )
+    add_dependencies(documentviewer ${plugin_targets})
 else()
-    target_link_libraries(documentviewer PRIVATE
-        jsonviewer
-        pdfviewer
-        txtviewer
-    )
+    target_link_libraries(documentviewer PRIVATE ${plugin_targets})
 endif()
 
 if(TARGET Qt6::PrintSupport)
