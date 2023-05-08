@@ -346,31 +346,6 @@ Q_PROPERTY(QString title READ title WRITE setTitle USER true)
 //! [37]
 
 
-//! [38]
-class MyClass : public QObject
-{
-    Q_OBJECT
-    Q_ENUMS(Priority)
-
-public:
-    MyClass(QObject *parent = 0);
-    ~MyClass();
-
-    enum Priority { High, Low, VeryHigh, VeryLow };
-    void setPriority(Priority priority);
-    Priority priority() const;
-};
-//! [38]
-
-
-//! [39a]
-class QLibrary : public QObject
-{
-    ...
-    Q_FLAGS(LoadHint LoadHints)
-    ...
-//! [39a]
-
 //! [39b]
     ...
 public:
