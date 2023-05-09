@@ -35,9 +35,9 @@ public:
     void setOpenMode(QIODevice::OpenMode mode) { m_openMode = mode; }
 
 public slots:
-    void addFile(const QString &fileName) {addFile(fileName, EmitPolicy::EmitWhenChanged); }
+    void addFile(const QString &fileName) { addFile(fileName, EmitPolicy::EmitWhenChanged); }
     void addFiles(const QStringList &fileNames);
-    void removeFile(const QString &fileName) {removeFile(indexOf(fileName)); }
+    void removeFile(const QString &fileName) { removeFile(indexOf(fileName)); }
     void removeFile(qsizetype index) {removeFile(index, RemoveReason::RemovedManually); }
     void saveSettings(QSettings &settings, const QString &key) const;
     bool restoreFromSettings(QSettings &settings, const QString &key);
