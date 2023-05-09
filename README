@@ -10,16 +10,16 @@ compiled and in the $PATH variable.
 
 Prerequisites:
     * qtbase exists
-    * "qmake" and "qdoc" compiled and installed
+    * "qdoc" built and installed
     * other Qt repositories exist as needed
 
-The Qt Reference Documentation were written with links to the released modules
-for Qt 5. If the modules and repositories do not exist, then the resulting HTML
+The Qt Reference Documentation was written with links to the released modules
+for Qt. If the modules and repositories do not exist, then the resulting HTML
 files will contain broken links.
 
 There are two ways to build the documentation. One way is to compile the
 documentation using QDoc and the configuration file (qdocconf) file. The other
-way is to use qmake by running "make docs".
+way is to use CMake and Ninja by running "ninja docs".
 
 Section 1 Building the qdocconf File
 
@@ -34,35 +34,35 @@ Section 1 Building the qdocconf File
 
     Note that QDoc will delete the contents of the "html" output directory.
 
-Section 2 Building using make
+Section 2 Building using CMake and Ninja
 
     QMake uses the QT_INSTALL_DOCS variable to determine where the documentation
-    for Qt 5 are installed. This method is useful for linking to other Qt
-    modules.
+    for Qt is installed. This method is useful for linking to other Qt modules.
 
     To see where the documentation will be installed, run:
-    $> qmake -query
+    $> <Qt-installation-dir>/bin/qtpaths -query QT_INSTALL_DOCS
 
     To generate the documentation, run:
 
     $> cd qtdoc  #or whichever repository's root
-    $> qmake
-    $> make docs
+    $> <Qt-installation-dir>/bin/qt-configure-module .
+    $> ninja docs
+    $> ninja install
 
-    "make docs" also works in the main Qt 5 repository. Running the command
-    there will generate the documentation for Qt 5 and install them to the
-    path set to the QT_INSTALL_DOCS variable.
+    This procedure also works in the top-level Qt repository. Running the
+    commands there will generate the documentation for Qt and install them to
+    the path set to the QT_INSTALL_DOCS variable.
 
 Section 3 Building Qt Documentation
 
     To build the Qt module documentation along with the Qt Reference Documentation,
     run the following:
 
-    $> cd qt5  #the main qt5.git directory
-    $> make qmake_all  #creates Makefiles for each repository
-    $> make docs
+    $> cd qt           # the top-level Qt repository
+    $> configure       # creates the build system for all repositories
+    $> ninja docs
 
-    To generate only HTML files, run "make html_docs" instead of "make docs"
+    To generate only HTML files, run "ninja html_docs" instead of "ninja docs".
 
 Section 4 Packaging the Documentation
 
@@ -83,5 +83,5 @@ Section 4 Packaging the Documentation
 
 Section 5 More Information
 
-For more information about Qt 5's documentation, refer to the Qt Project wiki:
-http://wiki.qt.io/Qt5DocumentationProject
+For more information about Qt's documentation, refer to the Qt Project wiki:
+https://wiki.qt.io/Qt_Writing_Guidelines
