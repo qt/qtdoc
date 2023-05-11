@@ -15,6 +15,15 @@
 
     \note API and ABI stability is not guaranteed.
 
+    \section2 Qt Graphs Module
+
+    Qt Graphs is meant to be the replacement module for Qt Data Visualization. It uses
+    Qt Quick 3D as the rendering engine to provide support for native graphics
+    backends, instead of relying on OpenGL 2.1, like Qt Data Visualization does.
+
+    The module will provide most, if not all of the functionality of Qt Data Visualization.
+    Some advanced features may be incomplete in Technical Preview.
+
     \section1 New Features in Qt 6.6
 
     \section2 Qt Core Module
