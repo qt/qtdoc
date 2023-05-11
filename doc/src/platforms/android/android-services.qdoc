@@ -149,7 +149,7 @@ which means using a nomal \c Service class might not work. For more information,
 see Android's recommendation to use either \l {Android: Foreground services}{Foreground services}
 or \l {Android: JobIntentService}{JobIntentService}.
 
-\section2 Manage the Service in AndroidMnifest.xml
+\section2 Manage the Service in AndroidManifest.xml
 
 For the service to be usable in an Android app, you must declare it in the
 \c AndroidManifest.xml file. Let's start with adding the service section:
