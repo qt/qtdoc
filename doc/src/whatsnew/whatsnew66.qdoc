@@ -120,9 +120,13 @@
 
     \list
         \li Applications can add multiple chunks of text to a synthesizing engine
-            via \l{QTextToSpeech::}{sayNext}.
+            via \l{QTextToSpeech::}{enqueue}.
         \li The new \l{QTextToSpeech::}{aboutToSynthesize} signal gets emitted just
             before a chunk of text gets synthesized.
+        \li Selecting one of the voices provided by the engine using a set of
+            criteria is now easy with the \l{QTextToSpeech::}{findVoices} member
+            function. QML code can in addition use the \l{VoiceSelector} type as an
+            attached property.
     \endlist
 
     Not all new features are available with every engine. Applications can use the
