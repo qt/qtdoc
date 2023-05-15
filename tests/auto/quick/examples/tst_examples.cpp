@@ -68,7 +68,6 @@ tst_examples::tst_examples()
 #ifdef QT_NO_XMLPATTERNS
     excludedDirs << "demos/twitter";
     excludedDirs << "demos/flickr";
-    excludedDirs << "demos/photoviewer";
     excludedFiles << "snippets/qml/xmlrole.qml";
     excludedFiles << "particles/itemparticle/particleview.qml";
     excludedFiles << "views/visualdatamodel/slideshow.qml";
