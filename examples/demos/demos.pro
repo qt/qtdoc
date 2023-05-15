@@ -20,8 +20,5 @@ qtHaveModule(quick) {
         qtHaveModule(xml) {
             SUBDIRS += rssnews
         }
-        qtHaveModule(quickcontrols2) {
-            SUBDIRS += photoviewer
-        }
     }
 }
