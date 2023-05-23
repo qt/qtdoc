@@ -18,11 +18,12 @@ Qt applications to the available graphics APIs on the target platform.
 
 The supported graphics APIs are:
 \list
-\li OpenGL (version 3 and higher)
-\li OpenGL ES (version 2 and higher)
-\li Vulkan (1.0 and higher)
-\li Direct3D 11 (11.1 and higher)
-\li Metal
+\li OpenGL (version 2.1 and higher)
+\li OpenGL ES (version 2.0 and higher)
+\li Vulkan (version 1.0 and higher)
+\li Direct3D 11 (version 11.1 and higher)
+\li Direct3D 12 (version 12.0 and higher)
+\li Metal (version 1.2 and higher)
 \endlist
 
 
@@ -96,6 +97,23 @@ The following list contains information about Qt GUIs high-level drawing APIs.
     \li \l{Coordinate System}
     \li \l{Drawing and Filling}
 \endlist
+
+\section1 Low-Level Graphics with Qt GUI
+
+\l{Qt GUI} provides cross-platform enablers for managing OpenGL contexts and
+Vulkan instances. Applications that perform rendering directly with OpenGL,
+OpenGL ES, or Vulkan can use \l QOpenGLContext, \l QOpenGLFunctions, \l QVulkanInstance,
+\l QVulkanFunctions, and \l QVulkanDeviceFunctions to manage contexts, instances, and
+gain access to the OpenGL and Vulkan API functionsin a portable manner.
+
+\l{Qt GUI} also offers the Qt Rendering Hardware Interface (RHI) family of APIs,
+such as \l QRhi and \l QShader, for applications that want to perform rendering
+using the portable, cross-platform 3D rendering infrastructure Qt itself uses
+to implement the Qt Quick scene graph and the Qt Quick 3D rendering engine.
+These classes are offered as "semi-public" APIs with a limited compatibility
+promise for the time being, similarly to the \l{Qt Platform Abstraction}
+classes. However, the QRhi classes come with full documentation. See the
+\l QRhi class to get started.
 
 
 \section1 Qt OpenGL Module
