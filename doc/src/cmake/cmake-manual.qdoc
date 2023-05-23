@@ -701,7 +701,7 @@
     project. It eliminates the need for you to specify the
     \c{CMAKE_PREFIX_PATH}. You can find it located in the \c{bin} directory of
     your Qt installation prefix. The script passes all parameters to CMake, so
-    you can use it just like you would \c{cmake\}:
+    you can use it just like you would use \c{cmake}:
 
     \badcode \QtVersion
     C:\Qt\\1\msvc2019_64\bin\qt-cmake -G Ninja -S <source-dir> -B <build-dir>
