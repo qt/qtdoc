@@ -168,11 +168,7 @@
 
     In addition to the baseline \c x86_64 architecture, Qt also supports the
     \c x86_64h ("Haswell") sub-architecture, which improves performance on Intel
-    Macs. The Qt \qtver binary packages, which are universal builds for both Intel
-    and Apple Silicon Macs, use \c x86_64h for the Intel slice of the libraries.
-    However, this does not affect how your application is built, so you can still
-    build using the default \c x86_64 Intel architecture. If needed, you can follow
-    Qt's default by specifying \c "x86_64h;arm64" for \c CMAKE_OSX_ARCHITECTURES.
+    Macs.
 
     \section1 Generating Xcode Project Files
 
@@ -326,14 +322,14 @@
         for both Intel and Apple Silicon Macs, add the following argument:
 
         \code
-        ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64h;arm64"
+        ./configure -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
         \endcode
 
         \note A universal build always needs to include the architecture of
         your development machine, as the process relies on tools that are built
         and run on your machine as part of the overall build.
 
-        Be careful to specify the Intel architecture ("x86_64h") first,
+        Be careful to specify the Intel architecture ("x86_64") first,
         otherwise Qt may not enable all the x86 functionality.
 
         Qt can also be configured to be built with debugging symbols. This
