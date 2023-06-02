@@ -143,7 +143,7 @@
 
     \generatelist obsoleteclasses
 
-    \section1 C++ classes that contain one or more members that are deprecated
+    \section1 C++ classes that contain deprecated members
 
     The following Qt C++ classes contain one or more members that are
     now obsolete. Obsolete members are no longer maintained. They are
@@ -161,13 +161,15 @@
     \ingroup classlists
     \brief A list of obsolete QML types that should not be used in new code.
 
+    \section1 QML types that are deprecated
+
     The following QML types are now obsolete. Obsolete types
     are no longer maintained. They are provided to keep old source
     code working, but they can be removed in a future release. We
     strongly advise against using these classes in new code.
 
     \generatelist obsoleteqmltypes
-    \section1 QML Types with Obsolete Properties or Methods
+    \section1 QML types that contain deprecated properties or methods
 
     The following QML types contain one or more properties or methods that are
     now obsolete. Obsolete members are no longer maintained. They are
