@@ -56,6 +56,8 @@ qt_add_qml_module(photosurfaceexample
     RESOURCES
       "resources/folder.png"
       "resources/welcome.pdf"
+    RESOURCE_PREFIX
+      "qt/qml"
 )
 
 qt_add_shaders(photosurfaceexample "shaders"
