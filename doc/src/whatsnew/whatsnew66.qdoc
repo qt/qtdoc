@@ -138,8 +138,7 @@
         \li If the engine has the \l{QTextToSpeech::Capabilities}{Synthesize}
             capability, QTextToSpeech can now synthesize text into PCM data. The
             \l{QTextToSpeech::}{synthesize} function can be used with a callable that
-            receives chunks of PCM data as a QByteArray and QAudioFormat asynchronously,
-            or it can emit a signal carrying a chunk of data when it has been synthesized.
+            receives chunks of PCM data when it has been synthesized.
         \li If the engine has the \l{QTextToSpeech::Capabilities}{WordByWordProgress}
             capability, QTextToSpeech emits the \l{QTextToSpeech::}{sayingWord} signal
             for each word in the current chunk of text as it gets spoken.
