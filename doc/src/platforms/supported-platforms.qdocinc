@@ -66,7 +66,7 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 10.13, \macos 10.14, \macos 10.15, \macos 11
+    \row \li \macos 10.13, \macos 10.14, \macos 10.15, \macos 11, \macos 12
         \li \c x86_64 and \c x86_64h and \c arm64
         \li Xcode 11 or Xcode 12 or \b {Xcode 13} (12 SDK)
 \endtable
@@ -82,7 +82,7 @@
         \li
     \row \li Windows 10 21H2
         \li \c x86 and \c x86_64
-        \li \b {MSVC 2019}, MSVC 2017, MSVC 2015, MinGW 8.1
+        \li MSVC 2022, \b {MSVC 2019}, MSVC 2017, MSVC 2015, MinGW 8.1
         \li
     \row \li Windows 8.1
         \li \c x86 and \c x86_64
@@ -108,7 +108,7 @@
     \row \li Android 5.0 or later (that is, API Level 21 and up)
         \li \c armv7a and \c x86, \c arm64-v8 and \c x86_64
         \li \b {Clang as provided by Google}, \b {MinGW 8.1}
-        \li {RHEL 8.x (x86_64)}, \b {RHEL 7.x (x86_64)}, \b{\macos 10.15}, \b {Windows 10 (x86_64)}
+        \li \b {RHEL 8.x (x86_64)}, \b {RHEL 7.x (x86_64)}, \b{\macos 10.15}, \b {Windows 10 21H2 (x86_64)}
 \endtable
 //! [android]
 
