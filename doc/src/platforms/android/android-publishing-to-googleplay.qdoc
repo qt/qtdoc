@@ -135,8 +135,8 @@ that can go live on Google Play
         \list
         \li Platform:
             \list
-                \li 0 for Arm
-                \li 1 for Intel
+                \li 1 for Arm
+                \li 2 for Intel
             \endlist
         \li Architecture:
             \list
@@ -146,7 +146,10 @@ that can go live on Google Play
         \endlist
 
         The resulting version code for a release 1.0 for arm64-v8a ABI,
-        would be \c {06410}.
+        would be \c {16410}.
+
+        For more information, see Google's documentation on
+        \l{https://developer.android.com/studio/publish/versioning#appversioning}{app versioning}.
 
         The following screenshot shows an example for an app targeting 4 ABIs,
         while each package uses a unique version code, which is different from
