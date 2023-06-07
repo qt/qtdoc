@@ -89,6 +89,12 @@
             android/res/values/libs.xml
     }
     \endcode
+    \target setting_android_package_src_cmake
+    Or with CMake use:
+
+    \badcode
+    set(ANDROID_PACKAGE_SOURCE_DIR "${PROJECT_SOURCE_DIR}/android" CACHE INTERNAL "")
+    \endcode
 
     Qt Creator copies the package templates to your Android build directory
     (\e{$ANDROID_BUILD_DIR=$BUILD_DIR/android-build}) into your project build
@@ -477,7 +483,9 @@
         \li \l{ANDROID_FEATURES}
     \endlist
 
-    \note This list of variables can also be used with CMake.
+    \note This list of variables can also be used with CMake, however
+    see the \l{setting_android_package_src_cmake}{section above} about using
+    CMake.
 
     \section1 Deployment in Qt Creator
 
