@@ -5,8 +5,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
 qt_standard_project_setup()
 
-set(CMAKE_AUTOMOC ON)
-
 qt_add_executable(documentviewer
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui

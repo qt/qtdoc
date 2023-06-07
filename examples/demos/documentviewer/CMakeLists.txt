@@ -5,7 +5,6 @@ cmake_minimum_required(VERSION 3.16)
 project(documentviewer LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
-#                 OPTIONAL_COMPONENTS PrintSupport PdfWidgets)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
