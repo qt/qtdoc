@@ -7,7 +7,10 @@
 #include <QEvent>
 #include <QScroller>
 
+QT_BEGIN_NAMESPACE
 class QWidget;
+QT_END_NAMESPACE
+
 class HoverWatcher : public QObject
 {
     Q_OBJECT

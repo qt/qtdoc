@@ -9,11 +9,15 @@
 #include <QObject>
 #include <QMap>
 
-class AbstractViewer;
+QT_BEGIN_NAMESPACE
 class QWidget;
 class QMainWindow;
-class Questions;
 class QFile;
+QT_END_NAMESPACE
+
+class AbstractViewer;
+class Questions;
+
 class ViewerFactory
 {
 public:
