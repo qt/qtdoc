@@ -7,7 +7,10 @@
 #include <QMenu>
 #include <QFile>
 
+QT_BEGIN_NAMESPACE
 class QSettings;
+QT_END_NAMESPACE
+
 class RecentFiles : public QObject, private QStringList
 {
     Q_OBJECT

@@ -12,9 +12,12 @@
 class AbstractViewer;
 class RecentFiles;
 class ViewerFactory;
+
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {

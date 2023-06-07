@@ -13,10 +13,13 @@
 #include <QPrinter>
 #endif // QT_PRINTSUPPORT_LIB
 
+QT_BEGIN_NAMESPACE
 class QToolBar;
 class QTabWidget;
 class QScrollArea;
 class QStatusBar;
+QT_END_NAMESPACE
+
 class AbstractViewer : public QObject
 {
     Q_OBJECT
