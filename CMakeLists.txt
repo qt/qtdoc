@@ -13,8 +13,20 @@ project(QtDoc # special case
     LANGUAGES CXX C
 )
 
-find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core) # special case
-find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG OPTIONAL_COMPONENTS Gui Qml Quick Test Sql Network QuickControls2 QmlXmlListModel) # special case for tests
+find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core)
+find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
+    OPTIONAL_COMPONENTS
+        Gui
+        Widgets
+        PrintSupport
+        Qml
+        Quick
+        Test
+        Sql
+        Network
+        QuickControls2
+        QmlXmlListModel
+)
 qt_internal_project_setup()
 
 # special case begin
