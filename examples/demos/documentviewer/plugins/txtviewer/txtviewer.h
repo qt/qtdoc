@@ -38,7 +38,6 @@ protected:
 
 private slots:
     void setupTxtUi();
-    void documentWasModified();
 
 private:
     void openFile();
