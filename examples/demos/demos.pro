@@ -3,7 +3,6 @@ TEMPLATE = subdirs
 qtHaveModule(quick) {
     SUBDIRS += \
         samegame \
-        calqlatr \
         clocks \
         tweetsearch \
         maroon \
@@ -11,7 +10,9 @@ qtHaveModule(quick) {
 
     qtHaveModule(quickcontrols2) {
         SUBDIRS += coffee \
-                   colorpaletteclient
+                   colorpaletteclient \
+                   calqlatr 
+
 
         android|ios: SUBDIRS += hangman
     }

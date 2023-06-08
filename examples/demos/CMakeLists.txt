@@ -3,7 +3,6 @@
 
 if(TARGET Qt6::Quick)
     qt_internal_add_example(samegame)
-    qt_internal_add_example(calqlatr)
     qt_internal_add_example(clocks)
     qt_internal_add_example(tweetsearch)
     qt_internal_add_example(maroon)
@@ -13,6 +12,8 @@ if(TARGET Qt6::Quick AND TARGET Qt6::QuickControls2)
     qt_internal_add_example(colorpaletteclient)
     qt_internal_add_example(coffee)
     qt_internal_add_example(todolist)
+    qt_internal_add_example(calqlatr)
+
     if(ANDROID OR IOS)
         qt_internal_add_example(hangman)
     endif()
