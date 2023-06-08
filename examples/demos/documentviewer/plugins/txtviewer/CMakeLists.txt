@@ -7,7 +7,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
 qt_add_plugin(txtviewer
     CLASS_NAME TxtViewer
     txtviewer.cpp txtviewer.h
-    ../../app/abstractviewer.h ../../app/abstractviewer.cpp
 )
 
 set_target_properties(txtviewer PROPERTIES
@@ -22,6 +21,7 @@ target_link_libraries(txtviewer PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    abstractviewer
 )
 
 if(TARGET Qt6::PrintSupport)

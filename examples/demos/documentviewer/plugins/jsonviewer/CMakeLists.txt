@@ -4,7 +4,6 @@
 qt_add_plugin(jsonviewer
     CLASS_NAME JsonViewer
     jsonviewer.cpp jsonviewer.h
-    ../../app/abstractviewer.h ../../app/abstractviewer.cpp
 )
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
@@ -22,6 +21,7 @@ target_link_libraries(jsonviewer PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    abstractviewer
 )
 
 if(TARGET Qt6::PrintSupport)

@@ -9,7 +9,6 @@ qt_add_plugin(pdfviewer
     pdfviewer.cpp pdfviewer.h
     zoomselector.cpp zoomselector.h
     hoverwatcher.cpp hoverwatcher.h
-    ../../app/abstractviewer.h ../../app/abstractviewer.cpp
 )
 
 set_target_properties(pdfviewer PROPERTIES
@@ -26,6 +25,7 @@ target_link_libraries(pdfviewer PRIVATE
     Qt6::Gui
     Qt6::Widgets
     Qt6::PdfWidgets
+    abstractviewer
 )
 
 if(TARGET Qt6::PrintSupport)
