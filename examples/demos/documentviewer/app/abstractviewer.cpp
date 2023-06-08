@@ -32,9 +32,6 @@ void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
 
 AbstractViewer::~AbstractViewer()
 {
-    // delete all objects created by the viewer which need to be displayed
-    // and therefore parented on MainWindow
-    delete m_widget;
     qDeleteAll(m_menus);
     qDeleteAll(m_toolBars);
 }
