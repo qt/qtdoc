@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick quickcontrols2
 SOURCES += main.cpp
 
 RESOURCES += calqlatr.qrc

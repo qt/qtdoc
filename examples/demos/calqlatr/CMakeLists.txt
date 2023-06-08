@@ -12,7 +12,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/calqlatr")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
 
 qt_add_executable(calqlatrexample WIN32 MACOSX_BUNDLE
     main.cpp
@@ -23,6 +23,7 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::QuickControls2
 )
 
 qt_add_qml_module(calqlatrexample
