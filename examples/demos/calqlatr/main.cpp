@@ -5,12 +5,15 @@
 #include <QQmlEngine>
 #include <QQmlFileSelector>
 #include <QQuickView>
+#include <QQuickStyle>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setOrganizationName("QtExamples");
 
     QGuiApplication app(argc, argv);
+
+    QQuickStyle::setStyle("Basic");
 
     QQuickView view;
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
