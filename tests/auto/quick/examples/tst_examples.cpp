@@ -64,6 +64,7 @@ tst_examples::tst_examples()
     excludedFiles << "examples/quick/shapes/content/interactive.qml"; // relies on resources
     excludedFiles << "examples/demos/addressbook/qml/main.qml"; // relies on resources
     excludedFiles << "examples/demos/robotarm/main.qml"; // relies on custom import
+    excludedFiles << "examples/demos/FX_Material_Showroom/main.qml"; // relies on custom import
 
 #ifdef QT_NO_XMLPATTERNS
     excludedDirs << "demos/twitter";
