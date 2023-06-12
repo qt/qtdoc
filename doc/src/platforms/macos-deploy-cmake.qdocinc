@@ -2,6 +2,13 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 //! [building with cmake]
+    To build for Apple platforms you need to set \c cmake_minimum_required() to
+    3.21.1 or newer:
+
+    \code
+        cmake_minimum_required(VERSION 3.21.1)
+    \endcode
+
     Go into the directory that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 28

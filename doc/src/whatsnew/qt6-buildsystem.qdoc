@@ -29,7 +29,8 @@ See also \l{Qt Configure Options} for an overview of the new configure API.
 
 You need a recent version of \b{CMake} to configure and build Qt. For Qt 6.0,
 we require \b{CMake 3.16}. Starting with Qt 6.2, we require \b{CMake 3.21} when
-building Qt as static libraries. You must also have an up-to date version of
+building Qt as static libraries. Starting with Qt 6.6, we require \b{CMake 3.21.1}
+when building Qt for Apple platforms. You must also have an up-to date version of
 the \l{Ninja} tool installed.
 
 Both CMake and Ninja are open source tools that can be installed by various
