@@ -122,9 +122,9 @@
     \printuntil cmake_minimum_required
 
     \c cmake_minimum_required() specifies the minimum CMake version that the
-    application requires. Qt itself requires at least CMake version 3.16.
-    If you use a Qt that was built statically - the default in \l{Qt for iOS} and
-    \l{Qt for WebAssembly} - you need CMake 3.21.1 or newer.
+    application requires. Qt itself requires at least CMake version 3.16, except
+    on Apple platforms, or for static builds of Qt - the default in \l{Qt for iOS}
+    and \l{Qt for WebAssembly} - where you need CMake 3.21.1 or newer.
 
     \printuntil project(
 

@@ -823,13 +823,7 @@
     \section3 Using CMake
 
     Make sure to use the \c qt_add_executable wrapper command, which provides
-    additional logic such as linking Qt plugins in static Qt builds. Also, when
-    using a static Qt build, you need to set \c cmake_minimum_required() to
-    3.21.1 or newer:
-
-    \code
-        cmake_minimum_required(VERSION 3.21.1)
-    \endcode
+    additional logic such as linking Qt plugins in static Qt builds.
 
     \include {macos-deploy-cmake.qdocinc} {building with cmake}
 
