@@ -444,11 +444,12 @@
     {\c CFBundleAllowMixedLocalizations} to \c YES, to allow system frameworks to pick
     the localization that best matches the user's language preferences, even if that
     localization is not available for the application itself. Once you add translations
-    to your application, via e.g. \l qt_add_translations, you should remove
+    to your application via \l qt_add_translations, the
     \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleallowmixedlocalizations?language=objc}
     {\c CFBundleAllowMixedLocalizations}
-    and replace it with \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundlelocalizations?language=objc}
+    key will be automatically removed, and replace with \l{https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundlelocalizations?language=objc}
     {\c CFBundleLocalizations}, listing all the languages you support.
+    For \c qmake this process must be done manually.
 
     \section1 Menu Bar
 
