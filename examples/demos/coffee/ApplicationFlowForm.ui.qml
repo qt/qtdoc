@@ -13,7 +13,7 @@ Rectangle {
 
     color: Constants.backgroundColor
 
-    state: intital
+    state: "initial"
 
     EmptyCupForm {
         id: emptyCup
