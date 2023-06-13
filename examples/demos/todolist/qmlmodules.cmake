@@ -12,7 +12,7 @@ add_subdirectory(content)
 add_subdirectory(imports)
 
 target_link_libraries(ToDoListApp PRIVATE
-    contentplugin
+    todolist_contentplugin
     CustomControlsplugin
     CustomStyleplugin
     ToDoListplugin
