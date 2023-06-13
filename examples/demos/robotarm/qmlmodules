@@ -17,7 +17,7 @@ set(QML_IMPORT_PATH
     CACHE STRING "")
 
 target_link_libraries(RobotArmApp PRIVATE
-    contentplugin
+    robotarm_contentplugin
     RobotArmplugin
     backendmodule
 )
