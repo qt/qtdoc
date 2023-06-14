@@ -144,6 +144,15 @@
              protobuf, that need not contain a value.
      \endlist
 
+    \section2 Qt Bluetooth Module
+
+    \list
+        \li The Qt Bluetooth library no longer requests the bluetooth
+            permissions, buts only checks if they are provided or not. The
+            client applications must request the permissions using the new
+            QPermission API.
+    \endlist
+
     \section2 Qt QML Module
 
     \list
