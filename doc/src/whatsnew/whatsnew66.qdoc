@@ -29,7 +29,9 @@
     \section2 Qt Core Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added Q_NODISCARD_CTOR macro that should be applied to mark
+            constructors nodiscard. The macro resolves to \c{[[nodiscard]]}
+            on compilers that support it, and does nothing on other compilers.
     \endlist
 
     \section2 Qt GUI Module
