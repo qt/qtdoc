@@ -121,7 +121,10 @@
     \section2 Qt Positioning Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li The Qt Positioning library no longer requests the location
+            permissions, but only checks if they are provided or not. The
+            client applications must request the permissions using the new
+            QPermission API.
     \endlist
 
      \section2 Qt Protobuf Module
