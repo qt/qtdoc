@@ -32,6 +32,10 @@
         \li Added Q_NODISCARD_CTOR macro that should be applied to mark
             constructors nodiscard. The macro resolves to \c{[[nodiscard]]}
             on compilers that support it, and does nothing on other compilers.
+        \li Added \c {assign()} overloads to the following Qt containers:
+            QVarLengthArray, QList, QByteArray and QString. These functions are
+            a convenient way to assign new data while reusing the existing
+            \c {capacity()}.
     \endlist
 
     \section2 Qt GUI Module
