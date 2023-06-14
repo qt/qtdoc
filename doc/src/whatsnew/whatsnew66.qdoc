@@ -72,7 +72,11 @@
     \section2 Qt QML Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added support for managing \l{application permissions via QML}
+        {QML Application Permissions}. The \l{Qt QML Core Types}{Qt QML Core}
+        module exposes the Qt C++ \l [QtCore] {Application Permissions}
+        functionality to QML via a set of permission types that can be used
+        to check or request permission in a cross platform manner.
     \endlist
 
     \section2 Qt Quick Module
