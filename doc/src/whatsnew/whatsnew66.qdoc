@@ -82,13 +82,40 @@
     \section2 Qt Quick Module
 
     \list
-        \li Added font.features property for direct access to OpenType features in the font.
+        \li Added \l {Text::}{font.features} property for direct access to
+            OpenType features in the font.
+        \li TableView has a \l {TableView::}{selectionMode} property to control whether
+            single or multiple cells can be selected.
+        \li TreeView has a \l {TreeView::}{rootIndex} property to show only a
+            subtree from the model.
+        \li AnimatedImage now supports the \l {AnimatedImage::}{sourceSize} property.
+        \li The environment variable \c QT_QUICK_FLICKABLE_WHEEL_DECELERATION
+            lets you customize the deceleration after scrolling with a "clicky"
+            wheel mouse. By default, acceleration is now turned off so that
+            scrolling distance is proportional to the number of "clicks"
+            (unless the platform provides its own acceleration); but you can
+            set a value less than 15000 to restore old behavior. The
+            \l {Flickable::}{flickDeceleration} property now applies only to touch flicks.
+        \li Most properties are now \l {Qt's Property System}{FINAL}, meaning that they
+            can no longer be shadowed by declaring new properties with the same names.
+            A warning will be emitted if a \c FINAL property is shadowed. We recommend
+            that users rename such properties to avoid unexpected behavior changes.
     \endlist
 
     \section2 Qt Quick Controls Module
 
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt Quick Layouts Module
+    \list
+        \li Added LayoutItemProxy, a helper item for writing responsive layouts (in Technical Preview)
+        \li Added \l {RowLayout::}{uniformCellSizes}, {ColumnLayout::}{uniformCellSizes},
+            \l {GridLayout::}{uniformCellWidths} and \l {GridLayout::}{uniformCellHeights} properties
+            as applicable to each type of \l {Qt Quick Layouts}{Layout} (in Technical Preview)
+        \li StackLayout will now update \l {StackLayout::}{currentIndex} if an Item
+            is inserted or removed at an index less than or equal to the current index.
     \endlist
 
     \section2 Qt Quick 3D Module
