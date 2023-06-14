@@ -284,6 +284,22 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Embedded Platforms
+
+    \section3 Boot to Qt
+
+    \list
+        \li Support was added for Yocto 4.2 (mickledore).
+        \li The \l{Support Levels for Target Hardware} were updated with new supported boards:
+            \list
+                \li Tier 1 support for the NXP i.MX 93 board added.
+                \li Tier 1 support for the Jetson AGX Xavier board added.
+                \li Tier 3 support for the NXP i.MX 8QuadXPlus board added.
+                \li Tier 3 support for the Toradex Apalis iMX8 board added.
+            \endlist
+        \li Toradex and ST targets are now using latest Yocto LTS version (kirkstone).
+    \endlist
+
     \section1 List of API Changes
 
     \list
