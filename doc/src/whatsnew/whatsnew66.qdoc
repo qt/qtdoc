@@ -35,7 +35,7 @@
     \section2 Qt GUI Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added QFont::setFeatures() for direct access to OpenType features in the font.
     \endlist
 
     \section2 Qt Location Module
@@ -76,7 +76,7 @@
     \section2 Qt Quick Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added font.features property for direct access to OpenType features in the font.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -179,12 +179,6 @@
     \endlist
 
     \section3 X11
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section3 Wayland Client on Linux
 
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
