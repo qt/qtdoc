@@ -38,6 +38,37 @@
 
     \list
         \li Added QFont::setFeatures() for direct access to OpenType features in the font.
+
+        \li The QRhi family of classes are now fully documented and offered as
+        APIs with a limited compatibility promise. The Qt Rendering Hardware
+        Interface is a 3D graphics API and shading language abstraction layer
+        that is used by modules such as Qt Quick and Qt Quick 3D to implement
+        cross-platform, portable rendering engines and material systems that can
+        function on top of Direct 3D 11/12, Vulkan, Metal, OpenGL, and OpenGL
+        ES. Applications that wish to perform their own low-level rendering
+        without directly relying on potentially platform-specific 3D APIs and
+        shading languages can now use QRhi and the related classes to augment a
+        Qt Quick scene, render to a QWindow, perform offscreen rendering into a
+        texture, or to dispatch GPU compute workloads. In previous Qt 6 releases
+        the QRhi classes were fully private and the documentation was not
+        provided as part of the standard Qt documentation set. Now they are
+        treated similarly to the QPA (QPlatform*) classes, meaning they form a
+        special set of classes that do not offer all the standard patterns and
+        source/binary compatibility promises of public Qt APIs, but are
+        nonetheless available for use by intermediate/advanced level application
+        developers. The documentation for the QRhi APIs is now part of the
+        standard Qt documentation. Also introduced the
+        \l{RHI Window Example}{rhiwindow example}.
+
+        \li Added a Direct 3D 12 backend for QRhi. This does not currently
+        affect any applications because Qt Quick's and QQuickWidget's default
+        backend choice continues to be Direct 3D 11 on Windows, and this is not
+        expected to change in the foreseeable future either. The new D3D12
+        backend should be considered experimental for the time being, and is
+        useful primarily for applications that have a need to get Qt to perform
+        its rendering via Direct 3D 12 in order to simplify interoperating with
+        the application's own or some external component's rendering or compute
+        engine requiring D3D12.
     \endlist
 
     \section2 Qt Location Module
@@ -100,6 +131,23 @@
             can no longer be shadowed by declaring new properties with the same names.
             A warning will be emitted if a \c FINAL property is shadowed. We recommend
             that users rename such properties to avoid unexpected behavior changes.
+        \li Added and exposed a number of QRhi-related functions in
+            QQuickWindow, QQuickRenderControl, and QSGTexture. Querying the QRhi,
+            QRhiSwapChain, or QRhiCommandBuffer used by the onscreen or offscreen Qt
+            Quick rendering is now simplified. Some functions previously hidden from
+            the documentation due to relying on QRhi* classes are made visible.
+            Added
+            \l{QQuickWindow::createTextureFromRhiTexture()}{createTextureFromRhiTexture()}
+            to QQuickWindow serving as the counterpart of createTextureFromImage().
+        \li Updated the scenegraph examples: added
+            \l{Scene Graph - RHI Under QML}{rhiunderqml},
+            replaced the legacy, OpenGL-only fboitem example with
+            a new, portable \l{Scene Graph - RHI Texture Item}{rhitextureitem example},
+            and updated the \l{Scene Graph - Custom QSGRenderNode}{customrendernode example}.
+            These together demonstrate the three ways to extend a Qt Quick scene
+            with custom low-level 2D/3D rendering (the three approaches being:
+            underlay/overlay, custom item backed by rendering to a texture, custom
+            item with QSGRenderNode).
     \endlist
 
     \section2 Qt Quick Controls Module
