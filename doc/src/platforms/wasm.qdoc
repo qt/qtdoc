@@ -802,6 +802,11 @@ is not providing that capability
 \li QWebSocket connections are supported by Emscripten only on the main thread.
 \li QWebSockets for WebAssembly does not support sending ping or pong frames, as the API available to
 web pages and browsers does not expose this functionality.
+\li Runtime error such as "RangeError: Out of memory" can be worked around by
+setting MAXIMUM_MEMORY to a value the device supports, for example
+\badcode
+target_link_options(<your target> PRIVATE -s MAXIMUM_MEMORY=1GB)
+\endcode
 
 \endlist
 
