@@ -97,7 +97,7 @@ void MainWindow::on_actionAbout_triggered()
                           "behavior when hovering over widgets.\n\n"
                           "This version has loaded the following plugins:\n") +
                           m_factory->viewerNames().join(", ") +
-                          tr("\n\nIt supports thow following mime types:\n") +
+                          tr("\n\nIt supports the following mime types:\n") +
                           m_factory->supportedMimeTypes().join("\n");
 
         AbstractViewer *def = m_factory->defaultViewer();
