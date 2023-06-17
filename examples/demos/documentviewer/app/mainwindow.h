@@ -38,6 +38,7 @@ private:
     void readSettings();
     void saveSettings() const;
     void restoreViewerSettings();
+    void resetViewer() const;
     void saveViewerSettings() const;
 
     QDir m_currentDir;

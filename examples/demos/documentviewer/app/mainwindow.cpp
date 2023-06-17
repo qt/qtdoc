@@ -74,8 +74,8 @@ bool MainWindow::openFile(const QString &fileName)
     m_currentDir = fileInfo.dir();
     m_recentFiles->addFile(fileInfo.absoluteFilePath());
 
-    // If a viewer is already open, save its state first
-    saveViewerSettings();
+    // If a viewer is already open, clean it up and save its settings
+    resetViewer();
     m_viewer = m_factory->viewer(file);
     if (!m_viewer) {
         statusBar()->showMessage(tr("File %1 can't be opened.")
@@ -164,6 +164,15 @@ void MainWindow::saveViewerSettings() const
         settings.setValue(m_viewer->viewerName(), m_viewer->saveState());
     settings.endGroup();
     settings.sync();
+}
+
+void MainWindow::resetViewer() const
+{
+    if (!m_viewer)
+        return;
+
+    saveViewerSettings();
+    m_viewer->cleanup();
 }
 
 void MainWindow::restoreViewerSettings()

@@ -26,8 +26,10 @@ class PdfViewer : public ViewerInterface
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface" FILE "pdfviewer.json")
     Q_INTERFACES(ViewerInterface)
 public:
+    PdfViewer();
     ~PdfViewer() override;
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
+    void cleanup() override;
     QString viewerName() const override { return staticMetaObject.className(); };
     QStringList supportedMimeTypes() const override;
     bool supportsOverview() const override { return true; }

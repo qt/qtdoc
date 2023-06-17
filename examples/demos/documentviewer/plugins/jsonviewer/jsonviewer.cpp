@@ -29,11 +29,15 @@
 #include <QPainter>
 #endif
 
+JsonViewer::JsonViewer()
+{
+    connect(this, &AbstractViewer::uiInitialized, this, &JsonViewer::setupJsonUi);
+}
+
 void JsonViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     AbstractViewer::init(file, new QTreeView(parent), mainWindow);
     m_tree = qobject_cast<QTreeView *>(widget());
-    connect(this, &AbstractViewer::uiInitialized, this, &JsonViewer::setupJsonUi);
 }
 
 JsonViewer::~JsonViewer()
@@ -64,9 +68,9 @@ void JsonViewer::setupJsonUi()
     a->setPriority(QAction::LowPriority);
     a->setShortcut(QKeySequence::New);
 
-    if (!m_searchKey) {
+    if (!m_searchKey)
         m_searchKey = new QLineEdit(tb);
-    }
+
     auto *label = new QLabel(tb);
     const QPixmap magnifier = QPixmap(":/icons/images/magnifier.png").scaled(QSize(28, 28));
     label->setPixmap(magnifier);

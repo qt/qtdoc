@@ -22,14 +22,18 @@
 #include <QPrintDialog>
 #endif
 
-void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
+TxtViewer::TxtViewer()
 {
-    AbstractViewer::init(file, new QPlainTextEdit(parent), mainWindow);
-    m_textEdit = qobject_cast<QPlainTextEdit *>(widget());
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
 }
 
 TxtViewer::~TxtViewer() = default;
+
+void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
+{
+    AbstractViewer::init(file, new QPlainTextEdit(parent), mainWindow);
+    m_textEdit = qobject_cast<QPlainTextEdit *>(widget());
+}
 
 QStringList TxtViewer::supportedMimeTypes() const
 {
