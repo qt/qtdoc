@@ -131,8 +131,8 @@
   </widget>
   <action name="actionOpen">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/open.png</normaloff>:/demos/documentviewer/images/open.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -144,7 +144,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset theme="help-about" resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/qt-logo.png</normaloff>:/demos/documentviewer/images/qt-logo.png</iconset>
+     <normaloff>:/demos/documentviewer/images/help-about.svgz</normaloff>:/demos/documentviewer/images/help-about.svgz</iconset>
    </property>
    <property name="text">
     <string>about documentviewer</string>
@@ -158,8 +158,8 @@
   </action>
   <action name="actionForward">
    <property name="icon">
-    <iconset theme="go-next">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/go-next.svgz</normaloff>:/demos/documentviewer/images/go-next.svgz</iconset>
    </property>
    <property name="text">
     <string>actionForward</string>
@@ -173,8 +173,8 @@
   </action>
   <action name="actionBack">
    <property name="icon">
-    <iconset theme="go-previous">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/go-previous.svgz</normaloff>:/demos/documentviewer/images/go-previous.svgz</iconset>
    </property>
    <property name="text">
     <string>actionBack</string>
@@ -192,7 +192,7 @@
    </property>
    <property name="icon">
     <iconset theme="document-print" resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/print.png</normaloff>:/demos/documentviewer/images/print.png</iconset>
+     <normaloff>:/demos/documentviewer/images/print2x.png</normaloff>:/demos/documentviewer/images/print2x.png</iconset>
    </property>
    <property name="text">
     <string>Print</string>
@@ -222,8 +222,8 @@
   </action>
   <action name="actionRecent">
    <property name="icon">
-    <iconset theme="document-open-recent">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="../../../../../../build/dev/qtdoc/examples/demos/documentviewer/app/.rcc/documentviewer.qrc">
+     <normaloff>:/demos/documentviewer/images/document-open-recent.svgz</normaloff>:/demos/documentviewer/images/document-open-recent.svgz</iconset>
    </property>
    <property name="text">
     <string>Recently opened...</string>
