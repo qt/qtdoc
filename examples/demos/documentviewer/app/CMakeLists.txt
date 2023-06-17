@@ -61,6 +61,10 @@ qt_add_resources(documentviewer "documentviewer"
         "images/zoom-out.png"
         "images/zoom-previous@2x.png"
         "images/zoom-previous.png"
+        "images/document-open-recent.svgz"
+        "images/go-next.svgz"
+        "images/go-previous.svgz"
+        "images/help-about.svgz"
 )
 
 target_link_libraries(documentviewer PRIVATE
