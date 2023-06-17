@@ -41,6 +41,7 @@ public:
     virtual bool hasContent() const;
     virtual QStringList supportedMimeTypes() const = 0;
     virtual bool isDefaultViewer() const;
+    virtual void cleanup();
     bool isEmpty() const;
     bool isPrintingEnabled() const;
     AbstractViewer *viewer();

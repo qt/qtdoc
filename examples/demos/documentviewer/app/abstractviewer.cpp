@@ -32,8 +32,7 @@ void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
 
 AbstractViewer::~AbstractViewer()
 {
-    qDeleteAll(m_menus);
-    qDeleteAll(m_toolBars);
+    AbstractViewer::cleanup();
 }
 
 bool AbstractViewer::isEmpty() const
@@ -143,9 +142,22 @@ QToolBar *AbstractViewer::addToolBar(const QString &title)
 QMenu *AbstractViewer::addMenu(const QString &title)
 {
     QMenu *menu = new QMenu(title, menuBar());
+    menu->setObjectName(title);
     menuBar()->insertMenu(m_uiAssets.help, menu);
     m_menus.append(menu);
     return menu;
+}
+
+void AbstractViewer::cleanup()
+{
+    // delete all objects created by the viewer which need to be displayed
+    // and therefore parented on MainWindow
+    if (m_file)
+        m_file.reset();
+    qDeleteAll(m_menus);
+    m_menus.clear();
+    qDeleteAll(m_toolBars);
+    m_toolBars.clear();
 }
 
 QMenu *AbstractViewer::fileMenu()
@@ -155,7 +167,7 @@ QMenu *AbstractViewer::fileMenu()
     if (fileMenu)
         return fileMenu;
 
-    QList<QMenu *> menus = mainWindow()->findChildren<QMenu *>();
+    const QList<QMenu *> menus = mainWindow()->findChildren<QMenu *>();
     for (auto *menu : menus) {
         if (menu->objectName() == name) {
             fileMenu = menu;

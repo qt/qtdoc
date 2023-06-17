@@ -20,6 +20,7 @@ class TxtViewer : public ViewerInterface
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface" FILE "txtviewer.json")
     Q_INTERFACES(ViewerInterface)
 public:
+    TxtViewer();
     ~TxtViewer() override;
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
     QString viewerName() const override { return staticMetaObject.className(); };

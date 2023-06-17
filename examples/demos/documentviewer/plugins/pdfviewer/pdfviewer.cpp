@@ -32,19 +32,36 @@
 
 Q_LOGGING_CATEGORY(lcExample, "qt.examples.pdfviewer")
 
+PdfViewer::PdfViewer()
+{
+    connect(this, &AbstractViewer::uiInitialized, this, &PdfViewer::initPdfViewer);
+}
+
 void PdfViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     AbstractViewer::init(file, new QPdfView(parent), mainWindow);
     m_document = new QPdfDocument(this);
     m_pdfView = qobject_cast<QPdfView *>(widget());
-    connect(this, &AbstractViewer::uiInitialized, this, &PdfViewer::initPdfViewer);
+}
+
+void PdfViewer::cleanup()
+{
+    delete m_pageSelector;
+    m_pageSelector = nullptr;
+    delete m_zoomSelector;
+    m_zoomSelector = nullptr;
+    delete m_pages;
+    m_pages = nullptr;
+    delete m_bookmarks;
+    m_bookmarks = nullptr;
+    delete m_document;
+    m_document = nullptr;
+    AbstractViewer::cleanup();
 }
 
 PdfViewer::~PdfViewer()
 {
-    delete m_pages;
-    delete m_bookmarks;
-    delete m_document;
+    PdfViewer::cleanup();
 }
 
 QStringList PdfViewer::supportedMimeTypes() const
@@ -139,8 +156,10 @@ void PdfViewer::openPdfFile()
 {
     disablePrinting();
 
-    if (m_file->open(QIODevice::ReadOnly))
+    if (m_file->open(QIODevice::ReadOnly)) {
         m_document->load(m_file.get());
+        m_file->close();
+    }
 
     const auto documentTitle = m_document->metaData(QPdfDocument::MetaDataField::Title).toString();
     statusMessage(!documentTitle.isEmpty() ? documentTitle : QStringLiteral("PDF Viewer"));

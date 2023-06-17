@@ -25,6 +25,7 @@ class JsonViewer : public ViewerInterface
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.DocumentViewer.ViewerInterface/1.0" FILE "jsonviewer.json")
     Q_INTERFACES(ViewerInterface)
 public:
+    JsonViewer();
     ~JsonViewer() override;
 
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
@@ -57,7 +58,7 @@ private:
     QJsonDocument m_root;
 
     int m_classId = -1;
-    QLineEdit *m_searchKey = nullptr;
+    QPointer<QLineEdit> m_searchKey;
 };
 
 class JsonTreeItem
