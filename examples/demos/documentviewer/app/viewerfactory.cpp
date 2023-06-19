@@ -7,6 +7,8 @@
 #include <QApplication>
 #include <QPluginLoader>
 #include <QDir>
+#include <QMessageBox>
+#include <QTimer>
 #include "abstractviewer.h"
 #include "viewerfactory.h"
 #include "viewerinterfaces.h"
@@ -144,7 +146,19 @@ AbstractViewer *ViewerFactory::viewer(const QMimeType &mimeType) const
         }
     }
 
-    return defaultViewer();
+    AbstractViewer *viewer = defaultViewer();
+
+    if (m_defaultWarning) {
+        QMessageBox mbox;
+        mbox.setIcon(QMessageBox::Warning);
+        mbox.setText(QObject::tr("Mime type %1 not supported. Falling back to %2.")
+                     .arg(mimeType.name(), viewer->viewerName()));
+        mbox.setStandardButtons(QMessageBox::Ok);
+        QTimer::singleShot(8000, &mbox, [&mbox](){ mbox.close(); });
+        mbox.exec();
+    }
+
+    return viewer;
 }
 
 AbstractViewer *ViewerFactory::defaultViewer() const

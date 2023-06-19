@@ -33,6 +33,8 @@ public:
 
     DefaultPolicy defaultPolicy() const { return m_defaultPolicy; }
     void setDefaultPolicy(DefaultPolicy policy) { m_defaultPolicy = policy; }
+    bool defaultWarning() const { return m_defaultWarning; }
+    void setDefaultWarning(bool on) { m_defaultWarning = on; }
 
     AbstractViewer *viewer(QFile *file) const;
 
@@ -51,6 +53,7 @@ private:
     QMainWindow *m_mainWindow;
     ViewerMap m_viewers;
     AbstractViewer *m_defaultViewer = nullptr;
+    bool m_defaultWarning = true;
 
     void loadViewerPlugins();
     void addViewer(QObject *viewerObject);
