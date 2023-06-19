@@ -15,7 +15,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(ds)
 FetchContent_Populate(ds)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
+target_link_libraries(FxMaterialShowroomApp PRIVATE
     QuickStudioComponentsplugin
     QuickStudioEffectsplugin
     QuickStudioApplicationplugin
@@ -28,6 +28,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
 
 add_subdirectory(${ds_SOURCE_DIR} ${ds_BINARY_DIR})
 
-target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+target_compile_definitions(FxMaterialShowroomApp PRIVATE
     BULD_QDS_COMPONENTS=true
 )
