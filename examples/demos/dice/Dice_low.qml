@@ -27,10 +27,7 @@ Node {
     Model {
         id: cube_001
         source: "meshes/cube_001.mesh"
-        materials: [
-            base_material,
-            dots_material
-        ]
+        materials: [base_material, dots_material]
     }
 
     // Animations:

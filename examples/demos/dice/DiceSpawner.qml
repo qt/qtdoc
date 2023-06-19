@@ -12,39 +12,38 @@ Node {
     property var dieComponent: Qt.createComponent("PhysicalDie.qml")
 
     function randomInRange(min, max) {
-        return Math.random() * (max - min) + min
+        return Math.random() * (max - min) + min;
     }
 
     function createDie(position, physicsMaterial) {
-        let rotation = Qt.vector3d(randomInRange(0, 360),
-                                   randomInRange(0, 360), randomInRange(0, 360))
+        let rotation = Qt.vector3d(randomInRange(0, 360), randomInRange(0, 360),
+                                   randomInRange(0, 360));
         let settings = {
             "position": position,
             "eulerRotation": rotation,
             "physicsMaterial": physicsMaterial
-        }
-        let die = dieComponent.createObject(shapeSpawner, settings)
-        dices.push(die)
-
+        };
+        let die = dieComponent.createObject(shapeSpawner, settings);
+        dices.push(die);
         if (die === null) {
-            console.log("Error creating object")
+            console.log("Error creating object");
         }
     }
 
     function spawnDice(numberOfDice, physicsMaterial) {
-        reset()
+        reset();
         for (var index = 0; index < numberOfDice; index++) {
-            let initialPosition = Qt.vector3d(0.11 * Math.cos(
-                                                  index / (Math.PI / 4)),
-                                              index * 2.1, 0)
-            createDie(initialPosition, physicsMaterial)
+            let initialPosition
+                = Qt.vector3d(0.11 * Math.cos(index / (Math.PI / 4)),
+                              index * 2.1, 0);
+            createDie(initialPosition, physicsMaterial);
         }
     }
 
     function reset() {
         dices.forEach(die => {
-                          die.destroy()
-                      })
-        dices = []
+                die.destroy();
+            });
+        dices = [];
     }
 }
