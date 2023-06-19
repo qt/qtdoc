@@ -21,6 +21,8 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         PrintSupport
         Qml
         Quick
+        Quick3D
+        Quick3DPhysics
         Test
         Sql
         Network
