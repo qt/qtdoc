@@ -1,0 +1,21 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \title Dice
+    \ingroup qtquickdemos
+    \example demos/dice
+    \brief A dice throwing application that demonstrates using Qt Quick 3D Physics
+    and Qt Quick 3D.
+    \examplecategory {Application Examples}
+    \image dice-screenshot.webp
+
+    \e Dice demonstrates using \l{Qt Quick 3D Physics} for physical simulation of dice
+    and a wooden table. The rendering is done with components from the \l{Qt Quick 3D}
+    module.
+
+    The example also has a \l{Qt Quick} UI for configuring the physical material of
+    the simulated dice as well as the number of dice.
+
+    \include examples-run.qdocinc
+*/
