@@ -14,6 +14,9 @@ qtHaveModule(quick) {
                    colorpaletteclient
 
         android|ios: SUBDIRS += hangman
+        qtHaveModule(quick3d):qtHaveModule(quick3dphysics) {
+            SUBDIRS += dice
+        }
     }
 
     qtHaveModule(network) {
