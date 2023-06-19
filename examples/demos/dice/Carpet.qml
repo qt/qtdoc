@@ -27,9 +27,7 @@ Node {
                 roughness: 1
                 cullMode: Material.NoCulling
             }
-            materials: [
-                carpet_texture_material
-            ]
+            materials: [carpet_texture_material]
         }
 
         Model {
@@ -43,9 +41,7 @@ Node {
                 roughness: 0.983808
                 cullMode: Material.NoCulling
             }
-            materials: [
-                contour_material
-            ]
+            materials: [contour_material]
         }
     }
 }

@@ -47,7 +47,7 @@ ApplicationWindow {
 
             function hide() {
                 if (tapLabel.opacity >= 1) {
-                    tapLabelAnimation.running = true
+                    tapLabelAnimation.running = true;
                 }
             }
         }
@@ -57,23 +57,23 @@ ApplicationWindow {
                 fill: parent
             }
             onClicked: {
-                tapLabel.hide()
-                scene.spawnDice(diceSlider.value)
+                tapLabel.hide();
+                scene.spawnDice(diceSlider.value);
             }
         }
 
         function updateGravity() {
             if (gravityZero.checked) {
-                scene.settingGravity = 0
+                scene.settingGravity = 0;
             }
             if (gravityMoon.checked) {
-                scene.settingGravity = 162
+                scene.settingGravity = 162;
             }
             if (gravityMars.checked) {
-                scene.settingGravity = 371
+                scene.settingGravity = 371;
             }
             if (gravityEarth.checked) {
-                scene.settingGravity = 980.7
+                scene.settingGravity = 980.7;
             }
         }
     }
@@ -203,8 +203,8 @@ ApplicationWindow {
         text: qsTr("\u2630")
         x: currDrawerWidth
         onClicked: {
-            tapLabel.hide()
-            drawer.open()
+            tapLabel.hide();
+            drawer.open();
         }
     }
 }

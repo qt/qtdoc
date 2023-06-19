@@ -14,7 +14,7 @@ Item {
     property real settingsRestitution: 0.5
 
     function spawnDice(numberOfDice) {
-        diceSpawner.spawnDice(numberOfDice, physicsMaterial)
+        diceSpawner.spawnDice(numberOfDice, physicsMaterial);
     }
 
     PhysicsWorld {
@@ -99,7 +99,8 @@ Item {
             StaticRigidBody {
                 position: Qt.vector3d(0, -50, 0)
                 eulerRotation: Qt.vector3d(-90, 0, 0)
-                collisionShapes: PlaneShape {}
+                collisionShapes: PlaneShape {
+                }
             }
         }
     }
