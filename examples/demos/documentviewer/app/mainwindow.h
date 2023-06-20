@@ -27,7 +27,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void openFile(const QString &fileName);
+    bool openFile(const QString &fileName);
 
 private slots:
     void on_actionOpen_triggered();
