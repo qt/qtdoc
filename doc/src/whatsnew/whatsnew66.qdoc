@@ -104,6 +104,23 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+     \section2 Qt Protobuf Module
+
+     \list
+         \li Enabled using certain Qt Core and Qt GUI types as a part of *.proto
+             schema.
+         \li Integrated QML-types support for auto-generated QProtobufMessage
+             classes.
+         \li Migrated to the implicitly shared data for auto-generated
+             QProtobufMessage classes. This allows accessing the message
+             types \e {by-value} from a QML context without making a
+             lot of copies.
+         \li Added the Qt Protobuf Well-Known Types support for
+             the \e {google.protobuf.Any} type.
+         \li Integrated support for the \e {oneof} type, a union-like type in
+             protobuf, that need not contain a value.
+     \endlist
+
     \section2 Qt QML Module
 
     \list
