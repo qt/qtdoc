@@ -5,20 +5,22 @@
 #include <QApplication>
 #include <QCommandLineParser>
 
+using namespace Qt::StringLiterals;
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QApplication::setOrganizationName(QApplication::translate("main", "QtExamples"));
     QApplication::setApplicationName(QApplication::translate("main", "DocumentViewer"));
-    QApplication::setApplicationVersion("1.0");
+    QApplication::setApplicationVersion("1.0"_L1);
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QApplication::translate("main",
                                                      "A viewer for JSON, PDF and text files"));
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument("File", QApplication::translate("main",
-                                                                 "JSON, PDF or text file to open"));
+    parser.addPositionalArgument("File"_L1, QApplication::translate("main",
+                                                                    "JSON, PDF or text file to open"));
     parser.process(app);
 
     const QStringList &positionalArguments = parser.positionalArguments();

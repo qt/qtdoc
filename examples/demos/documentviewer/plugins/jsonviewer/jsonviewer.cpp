@@ -29,6 +29,8 @@
 #include <QPainter>
 #endif
 
+using namespace Qt::StringLiterals;
+
 JsonViewer::JsonViewer()
 {
     connect(this, &AbstractViewer::uiInitialized, this, &JsonViewer::setupJsonUi);
@@ -47,7 +49,7 @@ JsonViewer::~JsonViewer()
 
 QStringList JsonViewer::supportedMimeTypes() const
 {
-    return {"application/json"};
+    return {"application/json"_L1};
 }
 
 void JsonViewer::setupJsonUi()
@@ -56,13 +58,13 @@ void JsonViewer::setupJsonUi()
     QMenu *menu  = addMenu(tr("Json"));
     QToolBar *tb = addToolBar(tr("Json Actions"));
 
-    const QIcon zoomInIcon = QIcon::fromTheme("zoom-in");
+    const QIcon zoomInIcon = QIcon::fromTheme("zoom-in"_L1);
     QAction *a = menu->addAction(zoomInIcon,  tr("&+Expand all"), m_tree, &QTreeView::expandAll);
     tb->addAction(a);
     a->setPriority(QAction::LowPriority);
     a->setShortcut(QKeySequence::New);
 
-    const QIcon zoomOutIcon = QIcon::fromTheme("zoom-out");
+    const QIcon zoomOutIcon = QIcon::fromTheme("zoom-out"_L1);
     a = menu->addAction(zoomOutIcon,  tr("&-Collapse all"), m_tree, &QTreeView::collapseAll);
     tb->addAction(a);
     a->setPriority(QAction::LowPriority);
@@ -72,7 +74,7 @@ void JsonViewer::setupJsonUi()
         m_searchKey = new QLineEdit(tb);
 
     auto *label = new QLabel(tb);
-    const QPixmap magnifier = QPixmap(":/icons/images/magnifier.png").scaled(QSize(28, 28));
+    const QPixmap magnifier = QPixmap(":/icons/images/magnifier.png"_L1).scaled(QSize(28, 28));
     label->setPixmap(magnifier);
     tb->addWidget(label);
     tb->addWidget(m_searchKey);
@@ -261,7 +263,7 @@ void JsonViewer::onBookmarkAdded()
     QModelIndex parent = index.parent();
     QString tooltip = index.data(Qt::DisplayRole).toString();
     while (parent.isValid()) {
-        tooltip = parent.data(Qt::DisplayRole).toString() + "->" + tooltip;
+        tooltip = parent.data(Qt::DisplayRole).toString() + "->"_L1 + tooltip;
         parent = parent.parent();
     }
     item->setToolTip(tooltip);
@@ -291,7 +293,7 @@ void JsonViewer::printDocument(QPrinter *printer) const
     if (!hasContent())
         return;
 
-    const QTextDocument doc(m_root.toJson(QJsonDocument::JsonFormat::Indented));
+    const QTextDocument doc(QString::fromUtf8(m_root.toJson(QJsonDocument::JsonFormat::Indented)));
     doc.print(printer);
 }
 
@@ -374,7 +376,7 @@ void JsonTreeItem::setType(const QJsonValue::Type &type)
 JsonTreeItem* JsonTreeItem::load(const QJsonValue& value, JsonTreeItem* parent)
 {
     JsonTreeItem *rootItem = new JsonTreeItem(parent);
-    rootItem->setKey("root");
+    rootItem->setKey("root"_L1);
 
     if (value.isObject()) {
         const QStringList &keys = value.toObject().keys();
@@ -407,8 +409,8 @@ JsonItemModel::JsonItemModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem{new JsonTreeItem}
 {
-    m_headers.append("Key");
-    m_headers.append("Value");
+    m_headers.append("Key"_L1);
+    m_headers.append("Value"_L1);
 }
 
 JsonItemModel::JsonItemModel(const QJsonDocument &doc, QObject *parent)
@@ -416,8 +418,8 @@ JsonItemModel::JsonItemModel(const QJsonDocument &doc, QObject *parent)
     , m_rootItem{new JsonTreeItem}
 {
     // Append header lines and return on empty document
-    m_headers.append("Key");
-    m_headers.append("Value");
+    m_headers.append("Key"_L1);
+    m_headers.append("Value"_L1);
     if (doc.isNull())
         return;
 

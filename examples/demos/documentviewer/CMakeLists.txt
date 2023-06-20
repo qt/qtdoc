@@ -9,6 +9,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
 
 qt_standard_project_setup()
 
+add_compile_definitions(QT_NO_CAST_FROM_ASCII)
+
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
 endif()

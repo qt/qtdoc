@@ -22,6 +22,8 @@
 #include <QPrintDialog>
 #endif
 
+using namespace Qt::StringLiterals;
+
 TxtViewer::TxtViewer()
 {
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
@@ -37,7 +39,7 @@ void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 
 QStringList TxtViewer::supportedMimeTypes() const
 {
-    return {"text/plain"};
+    return {"text/plain"_L1};
 }
 
 void TxtViewer::setupTxtUi()
@@ -45,7 +47,8 @@ void TxtViewer::setupTxtUi()
     QMenu *editMenu = addMenu(tr("&Edit"));
     QToolBar *editToolBar = addToolBar(tr("Edit"));
 #ifndef QT_NO_CLIPBOARD
-    const QIcon cutIcon = QIcon::fromTheme("edit-cut", QIcon(":/demos/documentviewer/images/cut.png"));
+    const QIcon cutIcon = QIcon::fromTheme("edit-cut"_L1,
+                                           QIcon(":/demos/documentviewer/images/cut.png"_L1));
     QAction *cutAct = new QAction(cutIcon, tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
     cutAct->setStatusTip(tr("Cut the current selection's contents to the "
@@ -54,7 +57,8 @@ void TxtViewer::setupTxtUi()
     editMenu->addAction(cutAct);
     editToolBar->addAction(cutAct);
 
-    const QIcon copyIcon = QIcon::fromTheme("edit-copy", QIcon(":/demos/documentviewer/images/copy.png"));
+    const QIcon copyIcon = QIcon::fromTheme("edit-copy"_L1,
+                                            QIcon(":/demos/documentviewer/images/copy.png"_L1));
     QAction *copyAct = new QAction(copyIcon, tr("&Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
     copyAct->setStatusTip(tr("Copy the current selection's contents to the "
@@ -63,7 +67,8 @@ void TxtViewer::setupTxtUi()
     editMenu->addAction(copyAct);
     editToolBar->addAction(copyAct);
 
-    const QIcon pasteIcon = QIcon::fromTheme("edit-paste", QIcon(":/demos/documentviewer/images/paste.png"));
+    const QIcon pasteIcon = QIcon::fromTheme("edit-paste"_L1,
+                                             QIcon(":/demos/documentviewer/images/paste.png"_L1));
     QAction *pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
     pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
