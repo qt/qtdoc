@@ -1,0 +1,52 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+/*!
+    \title Thermostat
+    \examplecategory {Application Examples}
+    \ingroup qtquickdemos
+    \example demos/thermostat
+    \brief A user interface for a home thermostat, implemented in Qt Quick. It demonstrates how to create responsive applications that scale from large desktop displays to mobile and small embedded displays.
+    \meta {tag} {demo,quick,charts}
+
+    \table
+    \header
+        \li Light theme
+        \li Dark theme
+    \row
+        \li \inlineimage small_light.png
+        \li \inlineimage small_dark.png
+    \row
+        \li \inlineimage mobile_light.png
+        \li \inlineimage mobile_dark.png
+    \row
+        \li \inlineimage desktop_light.png
+        \li \inlineimage desktop_dark.png
+    \endtable
+
+    \e{Thermostat} demonstrates a sample thermostat application that is fully responsive. The example can be run and edited in both \l{Qt Design Studio} and \l{Qt Creator}.
+    It shows how to implement different designs depending on the window size.
+
+    \section1 Responsive Design
+    As mentioned above, the application has support for a variety of display sizes.It can scale dynamically when the user changes the window size, or the application will select the correct sizes based on the available display on mobile targets.
+    Properties that specify the display size and control which layout is currently in use have been created in \c Constants.qml to achieve this behavior.
+
+    \quotefromfile demos/thermostat/imports/Thermostat/Constants.qml
+    \skipto isBigDesktopLayout
+    \printuntil isSmallLayout
+
+    In \c App.qml, the properties were bound to the window height and width at application startup.
+
+    \quotefromfile demos/thermostat/content/App.qml
+    \skipto Component.onCompleted
+    \printuntil Constants.isSmallLayout
+    \printuntil }
+    \printuntil }
+
+    The states are then used to control the properties of the component such as width, height, fontSize, position, layout (column or row), etc.
+
+    \quotefromfile demos/thermostat/content/StatisticsScrollViewForm.ui.qml
+    \skipto states
+    \printuntil ]
+
+*/
