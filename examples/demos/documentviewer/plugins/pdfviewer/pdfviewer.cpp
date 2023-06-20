@@ -6,39 +6,46 @@
 #include "hoverwatcher.h"
 
 #include <QApplication>
+#include <QEvent>
+#include <QFile>
+#include <QMouseEvent>
+
 #include <QPdfBookmarkModel>
 #include <QPdfDocument>
 #include <QPdfPageNavigator>
+#include <QPdfView>
 #if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
 #include <QPdfPageSelector>
 #endif
-<<<<<<< HEAD   (a75432 DocumentViewer demo: Fix warnings about closed QIODevice whe)
-=======
 
 #include <QtMath>
 #include <QDir>
 #include <QStandardPaths>
 
->>>>>>> CHANGE (5e6242 DocumentViewer demo: Small polish of the PDF plugin)
 #include <QListView>
 #include <QPdfView>
 #include <QStandardPaths>
+
 #include <QtMath>
+#include <QStandardPaths>
+
+#include <QListView>
+#include <QListWidget>
+#include <QMainWindow>
+#include <QScrollBar>
+#include <QScroller>
 #include <QSpinBox>
 #include <QToolBar>
-#include <QMainWindow>
 #include <QTreeView>
-#include <QListWidget>
-#include <QScrollBar>
-#include <QEvent>
-#include <QMouseEvent>
-#include <QScroller>
+
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
 
 Q_LOGGING_CATEGORY(lcExample, "qt.examples.pdfviewer")
+
+using namespace Qt::StringLiterals;
 
 PdfViewer::PdfViewer()
 {
@@ -74,12 +81,12 @@ PdfViewer::~PdfViewer()
 
 QStringList PdfViewer::supportedMimeTypes() const
 {
-    return {"application/pdf"};
+    return {"application/pdf"_L1};
 }
 
 void PdfViewer::initPdfViewer()
 {
-    m_toolBar = addToolBar("PDF");
+    m_toolBar = addToolBar(tr("PDF"));
     m_zoomSelector = new ZoomSelector(m_toolBar);
 
     auto *nav = m_pdfView->pageNavigator();
@@ -100,15 +107,15 @@ void PdfViewer::initPdfViewer()
     m_toolBar->addSeparator();
     m_toolBar->addWidget(m_zoomSelector);
 
-    auto *actionZoomIn = m_toolBar->addAction("Zoom in");
-    actionZoomIn->setToolTip("Increase zoom level");
-    actionZoomIn->setIcon(QIcon(":/demos/documentviewer/images/zoom-in.png"));
+    auto *actionZoomIn = m_toolBar->addAction(tr("Zoom in"));
+    actionZoomIn->setToolTip(tr("Increase zoom level"));
+    actionZoomIn->setIcon(QIcon(":/demos/documentviewer/images/zoom-in.png"_L1));
     m_toolBar->addAction(actionZoomIn);
     connect(actionZoomIn, &QAction::triggered, this, &PdfViewer::onActionZoomInTriggered);
 
-    auto *actionZoomOut = m_toolBar->addAction("Zoom out");
-    actionZoomOut->setToolTip("Decrease zoom level");
-    actionZoomOut->setIcon(QIcon(":/demos/documentviewer/images/zoom-out.png"));
+    auto *actionZoomOut = m_toolBar->addAction(tr("Zoom out"));
+    actionZoomOut->setToolTip(tr("Decrease zoom level"));
+    actionZoomOut->setIcon(QIcon(":/demos/documentviewer/images/zoom-out.png"_L1));
     m_toolBar->addAction(actionZoomOut);
     connect(actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);
 
@@ -154,8 +161,8 @@ void PdfViewer::initPdfViewer()
        m_pages->setCurrentIndex(m_pages->model()->index(page, 0));
     });
 
-    m_uiAssets.tabs->addTab(m_pages, "Pages");
-    m_uiAssets.tabs->addTab(m_bookmarks, "Bookmarks");
+    m_uiAssets.tabs->addTab(m_pages, tr("Pages"));
+    m_uiAssets.tabs->addTab(m_bookmarks, tr("Bookmarks"));
     QScroller::grabGesture(m_pdfView->viewport(), QScroller::ScrollerGestureType::LeftMouseButtonGesture);
     HoverWatcher::watcher(m_pdfView->viewport());
 }
