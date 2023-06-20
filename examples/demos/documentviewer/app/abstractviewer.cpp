@@ -23,6 +23,8 @@
 #include <QPrintDialog>
 #endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 
+using namespace Qt::StringLiterals;
+
 AbstractViewer::AbstractViewer() : m_file(nullptr), m_widget(nullptr)
 {
 }
@@ -133,14 +135,17 @@ const AbstractViewer *AbstractViewer::viewer() const
 
 void AbstractViewer::statusMessage(const QString &message, const QString &type, int timeout)
 {
-    const QString msg = viewerName() + (type.isEmpty() ? ": " : "/" + type + ": ") + message;
+    const QString msg = viewerName()
+                        + (type.isEmpty() ? ": "_L1 : "/"_L1 + type + ": "_L1) + message;
     emit showMessage(msg, timeout);
 }
 
 QToolBar *AbstractViewer::addToolBar(const QString &title)
 {
     auto *bar = mainWindow()->addToolBar(title);
-    bar->setObjectName(QString(title).replace(" ", ""));
+    QString name = title;
+    name.remove(u' ');
+    bar->setObjectName(name);
     m_toolBars.append(bar);
     return bar;
 }
@@ -205,7 +210,7 @@ void AbstractViewer::print()
     }
 
     const QPrinter::PrinterState state = printer.printerState();
-    QString message = viewerName() + " :";
+    QString message = viewerName() + " :"_L1;
     switch (state) {
     case QPrinter::PrinterState::Aborted:
         message += tr("Printing aborted.");

@@ -27,7 +27,7 @@ public:
     ~JsonViewer() override;
 
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
-    QString viewerName() const override { return staticMetaObject.className(); };
+    QString viewerName() const override { return QLatin1StringView(staticMetaObject.className()); };
     QStringList supportedMimeTypes() const override;
     QByteArray saveState() const override;
     bool restoreState(QByteArray &) override;

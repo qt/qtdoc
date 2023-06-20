@@ -17,6 +17,8 @@
 
 #include <concepts>
 
+using namespace Qt::StringLiterals;
+
 ViewerFactory::ViewerFactory(QWidget *displayWidget, QMainWindow *mainWindow, DefaultPolicy policy)
     : m_defaultPolicy(policy),
       m_displayWidget(displayWidget),
@@ -64,10 +66,10 @@ void ViewerFactory::loadViewerPlugins()
     QDir pluginsDir = QDir(QApplication::applicationDirPath());
 
 #if defined(Q_OS_WIN)
-    if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+    if (pluginsDir.dirName().toLower() == "debug"_L1 || pluginsDir.dirName().toLower() == "release"_L1)
         pluginsDir.cdUp();
 #elif defined(Q_OS_DARWIN)
-    if (pluginsDir.dirName() == "macOS") {
+    if (pluginsDir.dirName() == "macOS"_L1) {
         pluginsDir.cdUp();
         pluginsDir.cdUp();
         pluginsDir.cdUp();
@@ -114,8 +116,8 @@ QStringList ViewerFactory::viewerNames(bool showDefault) const
     for (auto it = m_viewers.constBegin(); it != m_viewers.constEnd(); ++it) {
         QString name = it.key();
         if ((m_defaultViewer && it.value()->isDefaultViewer())
-             || (!m_defaultViewer && it.key() == "TxtViewer")) {
-            name += "(default)";
+             || (!m_defaultViewer && it.key() == "TxtViewer"_L1)) {
+            name += "(default)"_L1;
         }
         list.append(name);
     }
@@ -170,9 +172,9 @@ AbstractViewer *ViewerFactory::defaultViewer() const
     case DefaultPolicy::NeverDefault:
         return nullptr;
     case DefaultPolicy::DefaultToCustomViewer:
-        return m_defaultViewer ? m_defaultViewer : findViewer("TxtViewer");
+        return m_defaultViewer ? m_defaultViewer : findViewer("TxtViewer"_L1);
     case DefaultPolicy::DefaultToTxtViewer:
-        return findViewer("TxtViewer");
+        return findViewer("TxtViewer"_L1);
     }
     Q_UNREACHABLE();
 }

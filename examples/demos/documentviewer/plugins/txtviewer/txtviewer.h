@@ -19,7 +19,7 @@ public:
     TxtViewer();
     ~TxtViewer() override;
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
-    QString viewerName() const override { return staticMetaObject.className(); };
+    QString viewerName() const override { return QLatin1StringView(staticMetaObject.className()); };
     QStringList supportedMimeTypes() const override;
     bool saveDocument() override { return saveFile(m_file.get()); };
     bool saveDocumentAs() override;
