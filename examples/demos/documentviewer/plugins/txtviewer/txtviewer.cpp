@@ -3,16 +3,18 @@
 
 #include "txtviewer.h"
 
-#include <QGuiApplication>
-#include <QPlainTextEdit>
-#include <QTextDocument>
+#include <QFileDialog>
+#include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
-#include <QToolBar>
-#include <QFileDialog>
-#include <QMetaObject>
+#include <QPlainTextEdit>
 #include <QScrollBar>
+#include <QToolBar>
+
+#include <QGuiApplication>
 #include <QPainter>
+#include <QTextDocument>
+
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPrintDialog>

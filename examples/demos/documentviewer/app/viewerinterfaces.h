@@ -5,14 +5,10 @@
 #define VIEWERINTERFACES_H
 
 #include "abstractviewer.h"
+
 #include <QtPlugin>
-#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QFile;
-class QMainWindow;
-class QWidget;
-class QTabWidget;
 class QPrinter;
 QT_END_NAMESPACE
 

@@ -5,18 +5,16 @@
 #define JSONVIEWER_H
 
 #include "viewerinterfaces.h"
+
 #include <QJsonValue>
 #include <QJsonDocument>
 #include <QAbstractItemModel>
 
 QT_BEGIN_NAMESPACE
-class QMainWindow;
-class QTreeWidgetItem;
 class QTreeView;
 class QListWidget;
 class QListWidgetItem;
 class QLineEdit;
-class QPrinter;
 QT_END_NAMESPACE
 
 class JsonViewer : public ViewerInterface

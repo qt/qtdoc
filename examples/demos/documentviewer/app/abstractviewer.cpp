@@ -2,18 +2,24 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "abstractviewer.h"
-#include <QAction>
-#include <QTabWidget>
-#include <QToolBar>
+
+#include <QApplication>
+#include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
+#include <QMessageBox>
 #include <QScrollArea>
 #include <QStatusBar>
-#include <QMessageBox>
+#include <QTabWidget>
+#include <QToolBar>
+
+#include <QAction>
+
+#include <QFile>
 #include <QSettings>
-#include <QApplication>
 
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#include <QPrinter>
 #include <QPrintDialog>
 #endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
 

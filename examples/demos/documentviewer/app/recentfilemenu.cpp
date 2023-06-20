@@ -5,8 +5,6 @@
 #include "recentfiles.h"
 
 #include <QAction>
-#include <QObject>
-#include <QWidget>
 
 RecentFileMenu::RecentFileMenu(QWidget *parent, RecentFiles *recent) :
     QMenu(parent), m_recentFiles(recent)

@@ -5,13 +5,9 @@
 #define TXTVIEWER_H
 
 #include "viewerinterfaces.h"
-#include "abstractviewer.h"
-#include <QPointer>
 
 QT_BEGIN_NAMESPACE
-class QMainWindow;
 class QPlainTextEdit;
-class QLabel;
 QT_END_NAMESPACE
 
 class TxtViewer : public ViewerInterface

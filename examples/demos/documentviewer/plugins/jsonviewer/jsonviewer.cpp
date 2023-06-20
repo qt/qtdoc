@@ -2,22 +2,27 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "jsonviewer.h"
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonValue>
-#include <QJsonObject>
-#include <QTreeView>
+
+#include <QApplication>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
 #include <QMenu>
 #include <QToolBar>
-#include <QHeaderView>
-#include <QListWidget>
+#include <QTreeView>
+
+#include <QDrag>
 #include <QEvent>
 #include <QMouseEvent>
-#include <QDrag>
+
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QMimeData>
-#include <QLineEdit>
-#include <QLabel>
-#include <QApplication>
+
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>

@@ -6,10 +6,6 @@
 
 #include <QMenu>
 
-QT_BEGIN_NAMESPACE
-class QAction;
-QT_END_NAMESPACE
-
 class RecentFiles;
 
 class RecentFileMenu : public QMenu
