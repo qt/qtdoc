@@ -176,6 +176,9 @@
             with custom low-level 2D/3D rendering (the three approaches being:
             underlay/overlay, custom item backed by rendering to a texture, custom
             item with QSGRenderNode).
+        \li Added Path::simplified property for automatic simplification of
+            paths before rendering them. This mirrors the QPainterPath::simplified()
+            function.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -192,6 +195,15 @@
             as applicable to each type of \l {Qt Quick Layouts}{Layout} (in Technical Preview)
         \li StackLayout will now update \l {StackLayout::}{currentIndex} if an Item
             is inserted or removed at an index less than or equal to the current index.
+    \endlist
+
+    \section2 Qt Quick Shapes Module
+    \list
+        \li Added experimental curve rendering backend, which will
+            render curves with higher quality than the default geometry
+            renderer and apply anti-aliasing without the use of MSAA.
+            It can be selected using the Shape::preferredRendererType
+            property.
     \endlist
 
     \section2 Qt Quick 3D Module
