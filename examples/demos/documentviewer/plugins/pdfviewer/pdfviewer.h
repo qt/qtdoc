@@ -30,7 +30,7 @@ public:
     ~PdfViewer() override;
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
     void cleanup() override;
-    QString viewerName() const override { return staticMetaObject.className(); };
+    QString viewerName() const override { return QLatin1StringView(staticMetaObject.className()); };
     QStringList supportedMimeTypes() const override;
     bool supportsOverview() const override { return true; }
     bool hasContent() const override;
