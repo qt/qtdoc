@@ -4,16 +4,15 @@
 #ifndef ABSTRACTVIEWER_H
 #define ABSTRACTVIEWER_H
 
-#include <QWidget>
-#include <QMainWindow>
-#include <QFileInfo>
-
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
-#include <QtPrintSupport/qtprintsupportglobal.h>
-#include <QPrinter>
-#endif // QT_PRINTSUPPORT_LIB
+#include <QObject>
 
 QT_BEGIN_NAMESPACE
+class QAction;
+class QFile;
+class QMainWindow;
+class QMenu;
+class QMenuBar;
+class QPrinter;
 class QToolBar;
 class QTabWidget;
 class QScrollArea;

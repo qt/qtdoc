@@ -7,11 +7,12 @@
 #include "abstractviewer.h"
 #include "recentfiles.h"
 #include "recentfilemenu.h"
+
 #include <QFileDialog>
-#include <QSettings>
 #include <QToolButton>
 #include <QMessageBox>
-#include <QMetaObject>
+
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

@@ -5,18 +5,16 @@
 #define VIEWERFACTORY_H
 
 #include <QString>
-#include <QMimeType>
-#include <QObject>
 #include <QMap>
 
 QT_BEGIN_NAMESPACE
+class QMimeType;
 class QWidget;
 class QMainWindow;
 class QFile;
 QT_END_NAMESPACE
 
 class AbstractViewer;
-class Questions;
 
 class ViewerFactory
 {

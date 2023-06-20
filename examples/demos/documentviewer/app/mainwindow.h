@@ -6,7 +6,6 @@
 
 #include <QMainWindow>
 #include <QDir>
-#include <QFileInfo>
 #include <QStringLiteral>
 
 class AbstractViewer;

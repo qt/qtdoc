@@ -1,17 +1,20 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include <QWidget>
-#include <QMimeDatabase>
-#include <QMimeType>
-#include <QApplication>
-#include <QPluginLoader>
-#include <QDir>
-#include <QMessageBox>
-#include <QTimer>
 #include "abstractviewer.h"
 #include "viewerfactory.h"
 #include "viewerinterfaces.h"
+
+#include <QApplication>
+#include <QMessageBox>
+#include <QWidget>
+
+#include <QDir>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QPluginLoader>
+#include <QTimer>
+
 #include <concepts>
 
 ViewerFactory::ViewerFactory(QWidget *displayWidget, QMainWindow *mainWindow, DefaultPolicy policy)
