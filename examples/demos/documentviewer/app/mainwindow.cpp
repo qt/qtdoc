@@ -51,24 +51,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    const QString fileName = QFileDialog::getOpenFileName(this,
-                                                          tr("Open Document"),
-                                                          m_currentDir.absolutePath());
-
-    if (fileName.isEmpty())
-        return;
-
-    openFile(fileName);
+    QFileDialog fileDialog(this, tr("Open Document"), m_currentDir.absolutePath());
+    while (fileDialog.exec() == QDialog::Accepted
+           && !openFile(fileDialog.selectedFiles().constFirst())) {
+    }
 }
 
-void MainWindow::openFile(const QString &fileName)
+bool MainWindow::openFile(const QString &fileName)
 {
     QFile *file = new QFile(fileName);
     if (!file->exists()) {
         statusBar()->showMessage(tr("File %1 could not be opened")
                                  .arg(QDir::toNativeSeparators(fileName)));
         delete file;
-        return;
+        return false;
     }
 
     QFileInfo fileInfo(*file);
@@ -81,7 +77,7 @@ void MainWindow::openFile(const QString &fileName)
     if (!m_viewer) {
         statusBar()->showMessage(tr("File %1 can't be opened.")
                                  .arg(QDir::toNativeSeparators(fileName)));
-        return;
+        return false;
     }
 
     ui->actionPrint->setEnabled(m_viewer->hasContent());
@@ -92,6 +88,7 @@ void MainWindow::openFile(const QString &fileName)
     m_viewer->initViewer(ui->actionBack, ui->actionForward, ui->menuHelp->menuAction(), ui->tabWidget);
     restoreViewerSettings();
     ui->scrollArea->setWidget(m_viewer->widget());
+    return true;
 }
 
 void MainWindow::on_actionAbout_triggered()
