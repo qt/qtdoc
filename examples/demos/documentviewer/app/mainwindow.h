@@ -30,9 +30,9 @@ public slots:
     bool openFile(const QString &fileName);
 
 private slots:
-    void on_actionOpen_triggered();
-    void on_actionAbout_triggered();
-    void on_actionAboutQt_triggered();
+    void onActionOpenTriggered();
+    void onActionAboutTriggered();
+    void onActionAboutQtTriggered();
 
 private:
     void readSettings();
