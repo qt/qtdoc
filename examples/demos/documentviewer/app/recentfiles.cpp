@@ -5,10 +5,6 @@
 #include <QFileInfo>
 #include <QSettings>
 
-RecentFiles::RecentFiles(QObject *parent) : QObject(parent)
-{
-}
-
 void RecentFiles::clear()
 {
     if (isEmpty())

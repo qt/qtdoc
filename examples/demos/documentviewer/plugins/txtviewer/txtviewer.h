@@ -28,7 +28,7 @@ public:
     bool saveDocument() override { return saveFile(m_file.get()); };
     bool saveDocumentAs() override;
     bool hasContent() const override;
-    QByteArray saveState() const override { return QByteArray(); }
+    QByteArray saveState() const override { return {}; }
     bool restoreState(QByteArray &) override { return true; }
     bool supportsOverview() const override { return false; }
 

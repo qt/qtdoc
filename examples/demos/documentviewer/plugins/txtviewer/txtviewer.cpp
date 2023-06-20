@@ -23,9 +23,7 @@ TxtViewer::TxtViewer()
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
 }
 
-TxtViewer::~TxtViewer()
-{
-}
+TxtViewer::~TxtViewer() = default;
 
 void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
