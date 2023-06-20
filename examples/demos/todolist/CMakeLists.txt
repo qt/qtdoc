@@ -19,10 +19,6 @@ qt_add_resources(ToDoListApp "configuration"
         qtquickcontrols2.conf
 )
 
-if (${BUILD_QDS_COMPONENTS})
-    include(qmlcomponents.cmake)
-endif ()
-
 include(qmlmodules.cmake)
 
 target_link_libraries(ToDoListApp PRIVATE

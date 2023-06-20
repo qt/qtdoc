@@ -3,7 +3,6 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(BUILD_QDS_COMPONENTS ON CACHE BOOL "Build design studio components")
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/thermostat")
 
 project(ThermostatApp LANGUAGES CXX)
@@ -19,10 +18,6 @@ qt_add_resources(ThermostatApp "configuration"
     FILES
         qtquickcontrols2.conf
 )
-
-if (${BUILD_QDS_COMPONENTS})
-    include(qmlcomponents)
-endif ()
 
 include(qmlmodules)
 
