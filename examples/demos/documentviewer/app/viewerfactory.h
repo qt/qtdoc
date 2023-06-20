@@ -39,8 +39,8 @@ public:
     AbstractViewer *viewer(QFile *file) const;
 
 
-    typedef QMap<QString, AbstractViewer *> ViewerMap;
-    typedef QList<AbstractViewer *> ViewerList;
+    using ViewerMap = QMap<QString, AbstractViewer *>;
+    using ViewerList = QList<AbstractViewer *>;
     QStringList viewerNames(bool showDefault = false) const;
     ViewerList viewers() const;
     AbstractViewer *findViewer(const QString &viewerName) const;

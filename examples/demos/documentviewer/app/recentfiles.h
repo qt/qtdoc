@@ -24,7 +24,7 @@ public:
     };
     Q_ENUM(RemoveReason)
 
-    explicit RecentFiles(QObject *parent);
+    using QObject::QObject;
 
     // Access to QStringList member functions
     qsizetype count() const {return QStringList::count(); };

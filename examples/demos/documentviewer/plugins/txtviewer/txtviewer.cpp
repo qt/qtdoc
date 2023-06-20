@@ -25,9 +25,7 @@ void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
 }
 
-TxtViewer::~TxtViewer()
-{
-}
+TxtViewer::~TxtViewer() = default;
 
 QStringList TxtViewer::supportedMimeTypes() const
 {
