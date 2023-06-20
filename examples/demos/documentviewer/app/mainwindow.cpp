@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onActionAboutTriggered);
+    connect(ui->actionAboutQt, &QAction::triggered, this, &MainWindow::onActionAboutQtTriggered);
 
     m_recentFiles.reset(new RecentFiles(ui->actionRecent));
     connect(m_recentFiles.get(), &RecentFiles::countChanged, this, [&](int count){
@@ -49,7 +52,7 @@ MainWindow::~MainWindow()
     saveSettings();
 }
 
-void MainWindow::on_actionOpen_triggered()
+void MainWindow::onActionOpenTriggered()
 {
     QFileDialog fileDialog(this, tr("Open Document"), m_currentDir.absolutePath());
     while (fileDialog.exec() == QDialog::Accepted
@@ -91,7 +94,7 @@ bool MainWindow::openFile(const QString &fileName)
     return true;
 }
 
-void MainWindow::on_actionAbout_triggered()
+void MainWindow::onActionAboutTriggered()
 {
     const QString viewerNames = m_factory->viewerNames().join(", "_L1);
     const QString mimeTypes = m_factory->supportedMimeTypes().join(u'\n');
@@ -110,7 +113,7 @@ void MainWindow::on_actionAbout_triggered()
     QMessageBox::about(this, tr("About Document Viewer Demo"), text);
 }
 
-void MainWindow::on_actionAboutQt_triggered()
+void MainWindow::onActionAboutQtTriggered()
 {
     QMessageBox::aboutQt(this);
 }
