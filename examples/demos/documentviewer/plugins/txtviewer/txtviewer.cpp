@@ -15,6 +15,8 @@
 #include <QPainter>
 #include <QTextDocument>
 
+#include <QDir>
+
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPrintDialog>
@@ -97,8 +99,9 @@ void TxtViewer::openFile()
 {
     const QString type = tr("open");
     if (!m_file->open(QFile::ReadOnly | QFile::Text)) {
-        statusMessage(tr("Cannot read file %1:\n%2.").arg(m_file->fileName(),
-                                                          m_file->errorString()), type);
+        statusMessage(tr("Cannot read file %1:\n%2.")
+                      .arg(QDir::toNativeSeparators(m_file->fileName()),
+                           m_file->errorString()), type);
         return;
     }
 
@@ -115,7 +118,8 @@ void TxtViewer::openFile()
     QGuiApplication::restoreOverrideCursor();
 #endif
 
-    statusMessage(tr("File %1 loaded.").arg(m_file->fileName()), type);
+    statusMessage(tr("File %1 loaded.")
+                  .arg(QDir::toNativeSeparators(m_file->fileName())), type);
     maybeEnablePrinting();
 }
 
@@ -144,7 +148,8 @@ bool TxtViewer::saveFile(QFile *file)
         out << m_textEdit->toPlainText();
     } else {
         errorMessage = tr("Cannot open file %1 for writing:\n%2.")
-                       .arg(file->fileName()), file->errorString();
+                       .arg(QDir::toNativeSeparators(file->fileName())),
+                            file->errorString();
     }
     QGuiApplication::restoreOverrideCursor();
 
@@ -153,7 +158,8 @@ bool TxtViewer::saveFile(QFile *file)
         return false;
     }
 
-    statusMessage(tr("File %1 saved").arg(file->fileName()));
+    statusMessage(tr("File %1 saved")
+                  .arg(QDir::toNativeSeparators(file->fileName())));
     return true;
 }
 

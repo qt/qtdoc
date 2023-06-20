@@ -12,7 +12,10 @@
 #include <QToolButton>
 #include <QMessageBox>
 
+#include <QDir>
 #include <QSettings>
+
+using namespace Qt::StringLiterals;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,13 +25,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_recentFiles.reset(new RecentFiles(ui->actionRecent));
     connect(m_recentFiles.get(), &RecentFiles::countChanged, this, [&](int count){
-        ui->actionRecent->setText(QString("%1 recent files").arg(count));
+        ui->actionRecent->setText(tr("%n recent files", nullptr, count));
     });
 
     readSettings();
     m_factory.reset(new ViewerFactory(ui->viewArea, this));
     const QStringList &viewers = m_factory->viewerNames();
-    const QString msg = tr("Available viewers: ") + viewers.join(", ");
+
+    const QString msg = tr("Available viewers: %1").arg(viewers.join(", "_L1));
     statusBar()->showMessage(msg);
 
     auto *menu = new RecentFileMenu(this, m_recentFiles.get());
@@ -61,7 +65,8 @@ void MainWindow::openFile(const QString &fileName)
 {
     QFile *file = new QFile(fileName);
     if (!file->exists()) {
-        statusBar()->showMessage(tr("File %1 could not be opened").arg(fileName));
+        statusBar()->showMessage(tr("File %1 could not be opened")
+                                 .arg(QDir::toNativeSeparators(fileName)));
         delete file;
         return;
     }
@@ -74,7 +79,8 @@ void MainWindow::openFile(const QString &fileName)
     saveViewerSettings();
     m_viewer = m_factory->viewer(file);
     if (!m_viewer) {
-        statusBar()->showMessage(tr("File %1 can't be opened.").arg(fileName));
+        statusBar()->showMessage(tr("File %1 can't be opened.")
+                                 .arg(QDir::toNativeSeparators(fileName)));
         return;
     }
 
@@ -90,24 +96,19 @@ void MainWindow::openFile(const QString &fileName)
 
 void MainWindow::on_actionAbout_triggered()
 {
-    static const QString &text = [&]{
-        QString text = tr("A Widgets application to display and print JSON, "
-                          "text and PDF files. Demonstrates various features to use "
-                          "in widget applications: Using QSettings, query and save "
-                          "user preferences, manage file histories and control cursor "
-                          "behavior when hovering over widgets.\n\n"
-                          "This version has loaded the following plugins:\n") +
-                          m_factory->viewerNames().join(", ") +
-                          tr("\n\nIt supports the following mime types:\n") +
-                          m_factory->supportedMimeTypes().join("\n");
+    const QString viewerNames = m_factory->viewerNames().join(", "_L1);
+    const QString mimeTypes = m_factory->supportedMimeTypes().join(u'\n');
+    QString text = tr("A Widgets application to display and print JSON, "
+                      "text and PDF files. Demonstrates various features to use "
+                      "in widget applications: Using QSettings, query and save "
+                      "user preferences, manage file histories and control cursor "
+                      "behavior when hovering over widgets.\n\n"
+                      "This version has loaded the following plugins:\n%1\n"
+                      "\n\nIt supports the following mime types:\n%2")
+                    .arg(viewerNames, mimeTypes);
 
-        AbstractViewer *def = m_factory->defaultViewer();
-        if (def) {
-            text += tr("\n\nOther mime types will be displayed with ") + def->viewerName() + ".";
-        }
-
-        return text;
-    }();
+    if (auto *def = m_factory->defaultViewer())
+        text += tr("\n\nOther mime types will be displayed with %1.").arg(def->viewerName());
 
     QMessageBox::about(this, tr("About Document Viewer Demo"), text);
 }

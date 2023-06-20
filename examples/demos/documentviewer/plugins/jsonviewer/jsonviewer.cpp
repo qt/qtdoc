@@ -16,6 +16,7 @@
 #include <QEvent>
 #include <QMouseEvent>
 
+#include <QDir>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -48,7 +49,7 @@ QStringList JsonViewer::supportedMimeTypes() const
 void JsonViewer::setupJsonUi()
 {
     // Build Menus and toolbars
-    QMenu *menu  = addMenu("Json");
+    QMenu *menu  = addMenu(tr("Json"));
     QToolBar *tb = addToolBar(tr("Json Actions"));
 
     const QIcon zoomInIcon = QIcon::fromTheme("zoom-in");
@@ -81,14 +82,14 @@ void JsonViewer::setupJsonUi()
     // Populate bookmarks with toplevel
     m_uiAssets.tabs->clear();
     m_toplevel = new QListWidget(m_uiAssets.tabs);
-    m_uiAssets.tabs->addTab(m_toplevel, "Bookmarks");
+    m_uiAssets.tabs->addTab(m_toplevel, tr("Bookmarks"));
     qRegisterMetaType<QModelIndex>();
     for (int i = 0; i < m_tree->model()->rowCount(); ++i) {
         const auto &index = m_tree->model()->index(i, 0);
         m_toplevel->addItem(index.data().toString());
         auto *item = m_toplevel->item(i);
         item->setData(Qt::UserRole, index);
-        item->setToolTip(QString("Toplevel Item %1").arg(i));
+        item->setToolTip(tr("Toplevel Item %1").arg(i));
     }
     m_toplevel->setAcceptDrops(true);
     m_tree->setDragEnabled(true);
@@ -140,12 +141,14 @@ bool JsonViewer::openJsonFile()
     m_root = QJsonDocument::fromJson(m_file->readAll(), &err);
     const QString type = tr("open");
     if (err.error != QJsonParseError::NoError) {
-        statusMessage(tr("Unable to parse Json document from %1. %2").arg(
-                          m_file->fileName(), err.errorString()), type);
+        statusMessage(tr("Unable to parse Json document from %1. %2")
+                      .arg(QDir::toNativeSeparators(m_file->fileName()),
+                           err.errorString()), type);
         return false;
     }
 
-    statusMessage(tr("Json document %1 opened").arg(m_file->fileName()), type);
+    statusMessage(tr("Json document %1 opened")
+                  .arg(QDir::toNativeSeparators(m_file->fileName())), type);
     m_file->close();
 
     maybeEnablePrinting();
@@ -211,7 +214,7 @@ void JsonViewer::onJsonMenuRequested(const QPoint &pos)
     }
 
     QMenu menu(m_tree);
-    QAction *action = new QAction("Add bookmark");
+    QAction *action = new QAction(tr("Add bookmark"));
     action->setData(index);
     menu.addAction(action);
     connect(action, &QAction::triggered, this, &JsonViewer::onBookmarkAdded);
@@ -230,7 +233,7 @@ void JsonViewer::onBookmarkMenuRequested(const QPoint &pos)
         return;
 
     QMenu menu;
-    QAction *action = new QAction("Delete bookmark");
+    QAction *action = new QAction(tr("Delete bookmark"));
     action->setData(m_toplevel->row(item));
     menu.addAction(action);
     connect(action, &QAction::triggered, this, &JsonViewer::onBookmarkDeleted);
