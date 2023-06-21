@@ -13,6 +13,6 @@ add_subdirectory(imports)
 
 target_link_libraries(ThermostatApp PRIVATE
     contentplugin
-    CustomControlsplugin
+    ThermostatCustomControlsplugin
     Thermostatplugin
 )
