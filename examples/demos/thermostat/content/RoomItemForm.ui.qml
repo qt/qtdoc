@@ -12,7 +12,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
-import CustomControls
+import ThermostatCustomControls
 import Thermostat
 
 Pane {

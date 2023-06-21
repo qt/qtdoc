@@ -4,6 +4,6 @@
 #include <QtQml/qqmlextensionplugin.h>
 
 Q_IMPORT_QML_PLUGIN(contentPlugin)
-Q_IMPORT_QML_PLUGIN(CustomControlsPlugin)
+Q_IMPORT_QML_PLUGIN(ThermostatCustomControlsPlugin)
 Q_IMPORT_QML_PLUGIN(ThermostatPlugin)
 
