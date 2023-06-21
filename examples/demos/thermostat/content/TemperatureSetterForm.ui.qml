@@ -11,7 +11,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Thermostat
-import CustomControls
+import ThermostatCustomControls
 
 Pane {
     width: 1087
