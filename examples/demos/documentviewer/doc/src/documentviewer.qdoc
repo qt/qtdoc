@@ -90,7 +90,7 @@
     area is set to show the viewer's display widget:
 
     \quotefromfile demos/documentviewer/app/mainwindow.cpp
-    \skipuntil void MainWindow::openFile
+    \skipuntil bool MainWindow::openFile
     \skipto m_viewer->initViewer
     \printuntil }
 
@@ -230,10 +230,6 @@
 
     \c RecentFiles is a QStringList that is specialized to manage a list of
     recently opened files.
-
-    \quotefromfile demos/documentviewer/app/recentfiles.cpp
-    \skipto RecentFiles::RecentFiles
-    \printuntil }
 
     RecentFiles has slots to add either a single file or multiple files in one
     go. An entry is added to the list of recent files if the path points to a
