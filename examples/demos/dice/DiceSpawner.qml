@@ -32,9 +32,10 @@ Node {
 
     function spawnDice(numberOfDice, physicsMaterial) {
         reset();
+        let degrees45 = Math.PI / 4;
         for (var index = 0; index < numberOfDice; index++) {
             let initialPosition
-                = Qt.vector3d(0.11 * Math.cos(index / (Math.PI / 4)),
+                = Qt.vector3d(0.11 * Math.cos(index / degrees45),
                               index * 2.1, 0);
             createDie(initialPosition, physicsMaterial);
         }
