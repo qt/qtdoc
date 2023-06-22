@@ -202,8 +202,8 @@
     \section2 Building a C++ GUI application
 
     In the \l{Building a C++ console application}{last section} we showed the
-    CMakeLists.txt file for a simple console application. We will now extend it
-    to create a GUI application that uses the \l{Qt Widgets} module.
+    CMakeLists.txt file for a simple console application. We will now create a
+    GUI application that uses the \l{Qt Widgets} module.
 
     This is the full project file:
 
@@ -500,9 +500,9 @@
     \previouspage Getting started with CMake
     \nextpage Building a reusable QML module
 
-    In \l{Building a C++ console application} we showed the
-    CMakeLists.txt file for a simple console application. We will now extend it
-    to create a QML application that uses the \l{Qt Quick} module.
+    In \l{Building a C++ console application} we showed the CMakeLists.txt file
+    for a simple console application. We will now create a QML application that
+    uses the \l{Qt Quick} module.
 
     This is the full project file:
     \quotefromfile snippets/cmake/helloworld_qtqml.cmake
