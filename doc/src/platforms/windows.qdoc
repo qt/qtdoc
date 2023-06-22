@@ -66,19 +66,29 @@
     \title Qt for Windows - Graphics Acceleration
     \brief Using graphics acceleration with Qt for Windows
 
-    For \l{Qt Quick} to work, a graphics driver that provides Direct 3D 11.1,
-    Vulkan 1.0, or OpenGL 2.1 or higher is required. As of Qt 6, the default
-    for Qt Quick on Windows is Direct3D 11. This is different from Qt 5, where
-    the default was OpenGL, either directly, or through ANGLE, an OpenGL to
-    Direct3D translator. ANGLE is no longer shipped with Qt in Qt 6.
+    For \l{Qt Quick} to work, a graphics driver that supports Direct 3D 11,
+    Direct3D 12, Vulkan 1.0, or OpenGL 2.1 or higher is required. As of Qt 6,
+    the default for Qt Quick on Windows is Direct3D 11. This is different from
+    Qt 5, where the default was OpenGL, either directly, or through ANGLE, an
+    OpenGL to Direct3D translator. ANGLE is no longer shipped with Qt in Qt 6.
 
     To force using Direct3D's software rasterizer (WARP), set the environment
-    variable \c{QSG_RHI_PREFER_SOFTWARE_RENDERER} to \c 1.
+    variable \c{QSG_RHI_PREFER_SOFTWARE_RENDERER} to \c 1. In some cases Qt
+    Quick will perform such a fallback automatically, in order to allow running
+    Qt applications without additional configuration. This happens when the
+    drivers do not provide a sufficient level of D3D11 functionality, and occurs
+    typically in virtual machines that do not have proper GPU acceleration and
+    passthrough implemented. When in doubt what graphics device is being used,
+    and when troubleshooting or reporting problems to Qt, run the application
+    with the environment variable \c{QSG_INFO=1} set and inspect the debug
+    output. Running the \c qtdiag tool can also provide useful information
+    since it enumerates all available 3D APIs.
 
-    To request using Vulkan or OpenGL, both of which require a Vulkan or OpenGL
-    driver to be installed, set the environment variable \c{QSG_RHI_BACKEND} to
-    \c vulkan or \c opengl, or use the equivalent
-    \l{QQuickWindow::setGraphicsApi()}{C++ API} in \c{main()}.
+    To request using Vulkan, OpenGL, or Direct 3D 12, set the environment
+    variable \c{QSG_RHI_BACKEND} to \c vulkan or \c opengl or \c d3d12, or use
+    the equivalent \l{QQuickWindow::setGraphicsApi()}{C++ API} in \c{main()}.
+    Note that some of these 3D APIs may require the appropriate drivers to be
+    installed.
 
     While not the default for \l{Qt Quick}, OpenGL is still commonly used in
     many Qt applications, for example in QWidget-based applications building on
