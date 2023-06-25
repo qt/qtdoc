@@ -2,15 +2,19 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 //! [11]
+\badcode \QtVersion
 cd /tmp
-gunzip qt-everywhere-src-%VERSION%.tar.gz        # uncompress the archive
-tar xvf qt-everywhere-src-%VERSION%.tar          # unpack it
+tar xf ~/Downloads/qt-everywhere-src-\1.tar.xz
+\endcode
 //! [11]
 
 
 //! [12]
-cd /tmp/qt-everywhere-src-%VERSION%
-./configure
+\badcode \QtVersion
+mkdir -p ~/dev/qt-build
+cd ~/dev/qt-build
+/tmp/qt-everywhere-src-\1/configure
+\endcode
 //! [12]
 
 
