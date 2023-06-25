@@ -962,11 +962,22 @@
 
     \section1 Step 4: Build the Qt Library
 
-        To configure the Qt library for your machine type, run the
-        \c{configure.bat} script in the source directory. Alternatively, if you have
-        already completed Step 3, you may double-click on the desktop link you created,
-        and type \c{configure} and start configuring the Qt library in your selected
-        directory.
+        To configure the Qt library for your machine type, create a build directory
+        and change to this directory. Then call the \c{configure.bat} script.
+        Alternatively, if you have already completed Step 3, you may double-click on
+        the desktop link you created, change to the build directory, type
+        \c{configure} and start configuring the Qt library.
+
+       \note Add the Qt build directory to the list of excluded directories
+             of any anti-virus application that runs on your system.
+
+       \badcode \QtVersion
+           mkdir qt6-build
+           cd qt6-build
+           C:\Qt\\1\Src\configure.bat
+           cmake --build .
+           cmake --install .
+       \endcode
 
         By default, Qt is configured for installation in the
         \c{C:\Program Files\Qt} directory, but this can be

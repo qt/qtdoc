@@ -291,25 +291,26 @@
     \section2 Step 1: Unpack the Archive
 
         Unpack the archive if you have not done so already. For example,
-        if you have the \c{qt-everywhere-src-%VERSION%.tar.gz}
-        package, type the following commands at a command line prompt:
+        if you have the \tt{qt-everywhere-src-\QtVersion.tar.xz} package, type
+        the following commands at a command line prompt:
 
-    \snippet snippets/code/doc_src_installation.qdoc 11
+    \include snippets/code/doc_src_installation.qdoc 11
 
-        This creates the directory \c{/tmp/qt-everywhere-src-%VERSION%}
+        This creates the directory \tt{/tmp/qt-everywhere-src-\QtVersion}
         containing the files from the archive.
 
     \section2 Step 2: Build the Qt Library
 
-        To configure the Qt library for your machine type, run the
-        \c{./configure} script in the package directory.
+        To configure the Qt library for your machine type, create a build
+        directory and change to it. Run the
+        \c{./configure} script in this directory.
 
-        \snippet snippets/code/doc_src_installation.qdoc 12
+        \include snippets/code/doc_src_installation.qdoc 12
 
         \include use-ninja-note.qdocinc ninja-note
 
         By default, Qt is configured for installation in the
-        \c{/usr/local/Qt-%VERSION%} directory, but this can be
+        \tt{/usr/local/\QtVersion} directory, but this can be
         changed by using the \c{-prefix} option.
 
         By default, Qt is built as a framework, but you can built

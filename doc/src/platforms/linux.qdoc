@@ -373,10 +373,7 @@
     If you downloaded the single source archive, extract it to a directory of
     your choice:
 
-    \badcode \QtVersion
-    cd ~/dev
-    tar xf ~/Downloads/qt-everywhere-src-\1.tar.xz
-    \endcode
+    \include snippets/code/doc_src_installation.qdoc 11
 
     \section1 Step 2: Install Build Requirements
 
@@ -414,13 +411,10 @@
 
     \section1 Step 3: Build the Qt Libraries and Tools
 
-    Run the \c{./configure} script in the package directory to configure
-    your build:
+    To configure your build, create a build directory and run the
+    \c{./configure} script in this directory:
 
-    \badcode \QtVersion
-    cd /tmp/qt-everywhere-src-\1
-    ./configure
-    \endcode
+    \include snippets/code/doc_src_installation.qdoc 12
 
     By default, Qt is configured for installation in the
     \tt{/usr/local/Qt-\QtVersion} directory. This can be changed by using the
