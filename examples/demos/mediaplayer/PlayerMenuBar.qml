@@ -4,6 +4,7 @@
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Dialogs
+import QtCore
 import Config
 
 Item {
@@ -18,6 +19,7 @@ Item {
 
     FileDialog {
         id: fileDialog
+        currentFolder: StandardPaths.standardLocations(StandardPaths.MoviesLocation)[0]
         title: qsTr("Please choose a file")
         onAccepted: root.fileOpened(fileDialog.selectedFile)
     }
