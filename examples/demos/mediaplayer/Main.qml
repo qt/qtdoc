@@ -19,6 +19,8 @@ ApplicationWindow {
     color: Config.mainColor
     title: qsTr("Multimedia Player")
     required property url source
+    required property list<string> nameFilters
+    required property int selectedNameFilter
 
     property alias currentFile: playlistInfo.currentIndex
     property alias playlistLooped: playbackControl.isPlaylistLooped
@@ -106,6 +108,9 @@ ApplicationWindow {
         visible: !videoOutput.fullScreen
 
         onFileOpened: (path) => openFile(path)
+
+        nameFilters : root.nameFilters
+        selectedNameFilter : root.selectedNameFilter
     }
 
     TouchMenu {

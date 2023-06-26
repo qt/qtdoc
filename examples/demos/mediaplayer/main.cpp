@@ -5,8 +5,50 @@
 #include <QQmlApplicationEngine>
 #include <QCommandLineParser>
 #include <QDir>
+#include <QMediaFormat>
+#include <QMimeType>
+
+#include <algorithm>
 
 using namespace Qt::Literals::StringLiterals;
+
+struct NameFilters
+{
+    QStringList filters;
+    int preferred = 0;
+};
+
+static NameFilters nameFilters()
+{
+#ifndef Q_OS_ANDROID
+    QStringList result;
+    QString preferredFilter;
+    const auto formats = QMediaFormat().supportedFileFormats(QMediaFormat::Decode);
+    for (qsizetype m = 0, size = formats.size(); m < size; ++m) {
+        const auto format = formats.at(m);
+        QMediaFormat mediaFormat(format);
+        const QMimeType mimeType = mediaFormat.mimeType();
+        if (mimeType.isValid()) {
+            QString filter = QMediaFormat::fileFormatDescription(format) + " ("_L1;
+            const auto suffixes = mimeType.suffixes();
+            for (qsizetype i = 0, size = suffixes.size(); i < size; ++i) {
+                if (i)
+                    filter += u' ';
+                filter += "*."_L1 + suffixes.at(i);
+            }
+            filter += u')';
+            result.append(filter);
+            if (mimeType.name() == "video/mp4"_L1)
+                preferredFilter = filter;
+        }
+    }
+    std::sort(result.begin(), result.end());
+    const int preferred = preferredFilter.isEmpty() ? 0 : int(result.indexOf(preferredFilter));
+    return { result, preferred };
+#else
+    return {};
+#endif
+}
 
 int main(int argc, char *argv[])
 {
@@ -29,8 +71,11 @@ int main(int argc, char *argv[])
     if (!parser.positionalArguments().isEmpty())
         source = QUrl::fromUserInput(parser.positionalArguments().at(0), QDir::currentPath());
 
+    const auto filters = nameFilters();
     QVariantMap initialProperties{
-        {"source", source}
+        {"source", source},
+        {"nameFilters", filters.filters},
+        {"selectedNameFilter", filters.preferred}
     };
 
     engine.setInitialProperties(initialProperties);

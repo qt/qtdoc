@@ -10,7 +10,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/mediaplayer")
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick QuickControls2 Svg)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick QuickControls2 Svg Multimedia)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -43,6 +43,7 @@ target_link_libraries(MediaPlayerApp PRIVATE
     Qt6::Core
     Qt6::Svg
     Qt6::Quick
+    Qt6::Multimedia
     MediaControlsplugin
     Configplugin
 )
