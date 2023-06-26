@@ -47,7 +47,7 @@ Item {
             palette.highlightedText: "#41CD52"
 
             MenuItem {
-                text: qsTr("Open &file")
+                text: qsTr("Open &File")
                 onTriggered: fileDialog.open()
             }
             MenuItem {
