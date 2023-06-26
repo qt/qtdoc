@@ -18,6 +18,7 @@ ApplicationWindow {
     visible: true
     color: Config.mainColor
     title: qsTr("Multimedia Player")
+    required property url source
 
     property alias currentFile: playlistInfo.currentIndex
     property alias playlistLooped: playbackControl.isPlaylistLooped
@@ -37,6 +38,13 @@ ApplicationWindow {
     function showOverlay(overlay) {
         closeOverlays()
         overlay.visible = true
+    }
+
+    function openFile(path) {
+        ++currentFile
+        playlistInfo.addFile(currentFile, path)
+        mediaPlayer.source = path
+        mediaPlayer.play()
     }
 
     MouseArea {
@@ -97,12 +105,7 @@ ApplicationWindow {
 
         visible: !videoOutput.fullScreen
 
-        onFileOpened: (path) => {
-            ++root.currentFile
-            playlistInfo.addFile(root.currentFile, path)
-            mediaPlayer.source = path
-            mediaPlayer.play()
-        }
+        onFileOpened: (path) => openFile(path)
     }
 
     TouchMenu {
@@ -377,6 +380,9 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        mediaPlayer.play()
+        if (source.toString().length > 0)
+            openFile(source)
+        else
+            mediaPlayer.play()
     }
 }

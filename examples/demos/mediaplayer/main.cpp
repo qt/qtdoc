@@ -25,12 +25,15 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::quit, &app, &QGuiApplication::quit);
 
-    if (!parser.positionalArguments().isEmpty()) {
-        QUrl source = QUrl::fromUserInput(parser.positionalArguments().at(0), QDir::currentPath());
-        engine.setInitialProperties({
-            { "source", source },
-        });
-    }
+    QUrl source;
+    if (!parser.positionalArguments().isEmpty())
+        source = QUrl::fromUserInput(parser.positionalArguments().at(0), QDir::currentPath());
+
+    QVariantMap initialProperties{
+        {"source", source}
+    };
+
+    engine.setInitialProperties(initialProperties);
     engine.loadFromModule("MediaPlayerModule", "Main");
 
     return app.exec();
