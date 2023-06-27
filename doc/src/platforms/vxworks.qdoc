@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2022 The Qt Company Ltd.
+** Copyright (C) 2023 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -38,6 +38,26 @@
   \l {https://www.qt.io/contact-us/}
 
   \section1 Supported Architectures and VxWorks Releases
+
+  \section2 Qt 5.15.14 for VxWorks
+
+  In Qt 5.15.14 LTS Commercial, Qt for VxWorks is provided as a source package
+  release. You can build Qt for VxWorks sources on Linux and Windows. Qt 5.15
+  LTS Commercial is supported until May 2025.
+
+  Qt 5.15.14 was verified on VxWorks 7 SR21.11 with
+  \l{https://ark.intel.com/content/www/us/en/ark/products/89189/intel-nuc-kit-nuc6i3syh.html}{NUC6i3SYB}.
+  Building Qt for VxWorks was verified on Ubuntu 20.04 and Windows 10.
+
+  \section2 Qt 5.15.12 for VxWorks
+
+  In Qt 5.15.12 LTS Commercial, Qt for VxWorks is provided as a source package
+  release. You can build Qt for VxWorks sources on Linux and Windows. Qt 5.15
+  LTS Commercial is supported until May 2025.
+
+  Qt 5.15.12 was verified on VxWorks 7 SR21.11 with
+  \l{https://boundarydevices.com/product/bd-sl-i-mx6/}{BD-SL-i.MX6}.
+  Building Qt for VxWorks was verified on Ubuntu 20.04 and Windows 10.
 
   \section2 Qt 5.15.10 for VxWorks
 
@@ -258,6 +278,34 @@
 
   It is recommended to build Qt 5 using a \e{shadow build}. See \l {Qt Configure Options}
   for more information.
+
+  \section2 Support for Intel Targets
+
+  Qt 5.15.14 for VxWorks introduces limited support for Intel
+  targets through the use of the EGLFS platform plugin. The following example
+  demonstrates the configuration for the NUC6i3SYB (Intel Skylake NUC) when
+  using VxWorks 7 SR21.11:
+
+  \badcode
+    ./configure -commercial -shared -confirm-license -device vxworks-x86-clang -prefix /bd0a/common -sysroot <path_to_vxworks_vsb_dir> -no-gcc-sysroot -hostprefix <path_to_host_dir> -no-openssl -no-feature-qml-jit -nomake examples -qpa eglfs -opengl es2 -no-opengles3 -skip qt3d -skip qtgamepad -skip qtlocation -skip qttools
+  \endcode
+
+  Note that for Intel targets, you must disable MESA name mangling in the
+  VxWorks Source Build (VSB) project to successfully build the EGLFS
+  platform plugin. You can do it as follows:
+
+  \badcode
+    vxprj vsb config -remove _WRS_CONFIG_MESA_MANGLE -w
+  \endcode
+
+  Note also for Intel targets, you must force VxWorks to report only OpenGL ES
+  version 2.0 before running any EGLFS application by setting the environment
+  variable below. This prevents the discovery and use of more recent ES features
+  that have not yet been demonstrated to work in VxWorks.
+
+  \badcode
+    putenv "MESA_GLES_VERSION_OVERRIDE=2.0"
+  \endcode
 
   \section1 Building and Installing Qt 5
 
