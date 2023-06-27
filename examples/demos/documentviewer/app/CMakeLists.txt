@@ -3,6 +3,8 @@ project(documentviewer LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
+set(CMAKE_AUTORCC ON)
+
 qt_standard_project_setup()
 
 qt_add_library(abstractviewer STATIC
@@ -16,55 +18,12 @@ qt_add_executable(documentviewer
     recentfiles.cpp recentfiles.h
     recentfilemenu.cpp recentfilemenu.h
     viewerinterfaces.h
+    documentviewer.qrc
 )
 
 set_target_properties(documentviewer PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
-)
-
-qt_add_resources(documentviewer "documentviewer"
-    PREFIX
-        "/demos/documentviewer"
-    FILES
-        "images/copy@2x.png"
-        "images/copy.png"
-        "images/cut@2x.png"
-        "images/cut.png"
-        "images/go-next-view@2x.png"
-        "images/go-next-view-page@2x.png"
-        "images/go-next-view-page.png"
-        "images/go-next-view.png"
-        "images/go-previous-view@2x.png"
-        "images/go-previous-view-page@2x.png"
-        "images/go-previous-view-page.png"
-        "images/go-previous-view.png"
-        "images/magnifier@2x.png"
-        "images/magnifier.png"
-        "images/open@2x.png"
-        "images/open.png"
-        "images/paste@2x.png"
-        "images/paste.png"
-        "images/print2x.png"
-        "images/print.png"
-        "images/qt-logo@2x.png"
-        "images/qt-logo.png"
-        "images/zoom-fit-best@2x.png"
-        "images/zoom-fit-best.png"
-        "images/zoom-fit-width@2x.png"
-        "images/zoom-fit-width.png"
-        "images/zoom-in@2x.png"
-        "images/zoom-in.png"
-        "images/zoom-original@2x.png"
-        "images/zoom-original.png"
-        "images/zoom-out@2x.png"
-        "images/zoom-out.png"
-        "images/zoom-previous@2x.png"
-        "images/zoom-previous.png"
-        "images/document-open-recent.svgz"
-        "images/go-next.svgz"
-        "images/go-previous.svgz"
-        "images/help-about.svgz"
 )
 
 target_link_libraries(documentviewer PRIVATE
