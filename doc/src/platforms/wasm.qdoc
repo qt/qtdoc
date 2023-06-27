@@ -1009,7 +1009,8 @@ setting MAXIMUM_MEMORY to a value the device supports, for example
 \badcode
 target_link_options(<your target> PRIVATE -s MAXIMUM_MEMORY=1GB)
 \endcode
-
+\li To use QtWebsockets, the subprotocol might need to be set to 'mqtt' for using QtMqtt. Use
+QWebSocketHandshakeOptions when you open the QWebSocket.
 \endlist
 
 \section1 Other Topics
