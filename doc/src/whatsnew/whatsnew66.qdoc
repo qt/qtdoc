@@ -322,7 +322,11 @@
     \section3 Android
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added FileProvider support when using \l {QDesktopServices::openUrl()}.
+        \li Added AndroidX by default (a dependency for FileProvider).
+        \li Introduced \l {QTP0002} CMake policy for android-specific target properties.
+        \li Updates for the list of examples that are supported on Android.
+        \li Android 13 as the maximum supported version
     \endlist
 
     \section3 iOS
