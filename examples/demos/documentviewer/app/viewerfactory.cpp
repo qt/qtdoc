@@ -15,8 +15,6 @@
 #include <QPluginLoader>
 #include <QTimer>
 
-#include <concepts>
-
 using namespace Qt::StringLiterals;
 
 ViewerFactory::ViewerFactory(QWidget *displayWidget, QMainWindow *mainWindow, DefaultPolicy policy)
