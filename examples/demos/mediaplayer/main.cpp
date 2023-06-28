@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     };
 
     engine.setInitialProperties(initialProperties);
-    engine.loadFromModule("MediaPlayerModule", "Main");
+    engine.loadFromModule("MediaPlayer", "Main");
 
     return app.exec();
 }
