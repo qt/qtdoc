@@ -18,24 +18,7 @@ qt_add_executable(MediaPlayerApp
     main.cpp
 )
 
-set(qml_files
-    "Main.qml"
-    "MetadataInfo.qml"
-    "PlayerMenuBar.qml"
-    "TracksInfo.qml"
-    "TracksOptions.qml"
-    "PlaylistInfo.qml"
-    "UrlPopup.qml"
-    "SettingsInfo.qml"
-    "ThemeInfo.qml"
-    "ErrorPopup.qml"
-    "TouchMenu.qml"
-)
-
-qt_add_qml_module(MediaPlayerApp
-    URI MediaPlayerModule
-    QML_FILES ${qml_files})
-
+add_subdirectory(MediaPlayer)
 add_subdirectory(MediaControls)
 add_subdirectory(Config)
 
