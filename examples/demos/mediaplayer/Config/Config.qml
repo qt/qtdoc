@@ -16,7 +16,7 @@ QtObject {
     readonly property color mainColor : activeTheme ? "#09102B" : "#FFFFFF"
     readonly property color secondaryColor : activeTheme ? "#FFFFFF" : "#09102B"
 
-    function iconSource(fileName, addSuffix = true) {
-        return `qrc:/qt/qml/MediaControls/icons/${fileName}${activeTheme === Config.Theme.Dark && addSuffix ? "_Dark.svg" : ".svg"}`
+    function iconName(fileName, addSuffix = true) {
+        return `${fileName}${activeTheme === Config.Theme.Dark && addSuffix ? "_Dark.svg" : ".svg"}`
     }
 }

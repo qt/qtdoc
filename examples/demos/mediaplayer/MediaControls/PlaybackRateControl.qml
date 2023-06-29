@@ -4,7 +4,6 @@
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
-import Config
 
 Item {
     id: root
@@ -19,7 +18,7 @@ Item {
         spacing: 10
 
         Image {
-            source: Config.iconSource("Rate_Icon")
+            source: ControlImages.iconSource("Rate_Icon")
         }
 
         CustomSlider {
