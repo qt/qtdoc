@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls.Fusion
-import Config
+import MediaControls
 
 Popup {
     id: errorPopup
@@ -22,7 +22,7 @@ Popup {
         spacing: 15
 
         Image {
-            source: Config.iconSource("Error", false)
+            source: ControlImages.iconSource("Error", false)
             anchors.horizontalCenter: parent.horizontalCenter
         }
 

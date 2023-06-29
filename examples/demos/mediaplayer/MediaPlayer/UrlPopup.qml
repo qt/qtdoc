@@ -80,7 +80,7 @@ Popup {
                     spacing: 10
 
                     Image {
-                        source: Config.iconSource("Warning_Icon", false)
+                        source: Images.iconSource("Warning_Icon", false)
                     }
 
                     Label {
@@ -109,7 +109,7 @@ Popup {
             anchors.horizontalCenter: parent.horizontalCenter
 
             CustomButton {
-                icon.source: Config.iconSource("Cancel_Button", false)
+                icon.source: ControlImages.iconSource("Cancel_Button", false)
                 onClicked: {
                     urlText.text = ""
                     urlPopup.close()
@@ -117,7 +117,7 @@ Popup {
             }
 
             CustomButton {
-                icon.source: Config.iconSource("Load_Button", false)
+                icon.source: ControlImages.iconSource("Load_Button", false)
                 enabled: urlText.text
                 opacity: urlText.text ? 1 : 0.5
                 onClicked: {

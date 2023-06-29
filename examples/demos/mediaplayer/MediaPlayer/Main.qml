@@ -205,7 +205,7 @@ ApplicationWindow {
         anchors.horizontalCenter: videoOutput.horizontalCenter
         anchors.verticalCenter: videoOutput.verticalCenter
         visible: !videoOutput.visible && mediaPlayer.hasAudio
-        source: Config.iconSource("Default_CoverArt", false)
+        source: Images.iconSource("Default_CoverArt", false)
     }
 
     Rectangle {
@@ -220,7 +220,7 @@ ApplicationWindow {
 
     Image {
         id: shadow
-        source: `qrc:/qt/qml/MediaControls/icons/Shadow.png`
+        source: `icons/Shadow.png`
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
     }

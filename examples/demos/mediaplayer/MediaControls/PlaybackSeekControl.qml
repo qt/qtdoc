@@ -59,12 +59,12 @@ Item {
 
         CustomButton {
             id: settingsButton
-            icon.source: Config.iconSource("Settings_Icon")
+            icon.source: ControlImages.iconSource("Settings_Icon")
         }
 
         CustomButton {
             id: fullScreenButton
-            icon.source: Config.iconSource("FullScreen_Icon")
+            icon.source: ControlImages.iconSource("FullScreen_Icon")
         }
     }
 

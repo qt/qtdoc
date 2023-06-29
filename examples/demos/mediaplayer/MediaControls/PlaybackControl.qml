@@ -16,8 +16,8 @@ Item {
     property bool isPlaylistShuffled: false
     property bool isPlaylistLooped: false
     property bool isPlaylistVisible: false
-    property url playlistIcon: !root.isPlaylistVisible ? Config.iconSource("Playlist_Icon") : Config.iconSource("Playlist_Active", false)
-    property url shuffleIcon: !root.isPlaylistShuffled ? Config.iconSource("Shuffle_Icon") : Config.iconSource("Shuffle_Active", false)
+    property url playlistIcon: !root.isPlaylistVisible ? ControlImages.iconSource("Playlist_Icon") : ControlImages.iconSource("Playlist_Active", false)
+    property url shuffleIcon: !root.isPlaylistShuffled ? ControlImages.iconSource("Shuffle_Icon") : ControlImages.iconSource("Shuffle_Active", false)
 
     property alias volume: audio.volume
     property alias playbackRate: rate.playbackRate
@@ -49,7 +49,7 @@ Item {
             Item {
                 CustomButton {
                     id: menuButton
-                    icon.source: Config.iconSource("Menu_Icon")
+                    icon.source: ControlImages.iconSource("Menu_Icon")
                     visible: Config.isMobileTarget
                     anchors.centerIn: parent
                 }
@@ -85,31 +85,31 @@ Item {
 
                 CustomButton {
                     id: previousButton
-                    icon.source: Config.iconSource("Previous_Icon")
+                    icon.source: ControlImages.iconSource("Previous_Icon")
                     onClicked: root.playPreviousFile()
                 }
 
                 CustomButton {
                     id: playButton
-                    icon.source: Config.iconSource("Play_Icon", false)
+                    icon.source: ControlImages.iconSource("Play_Icon", false)
                     onClicked: root.mediaPlayer.play()
                 }
 
                 CustomButton {
                     id: pausedButton
-                    icon.source: Config.iconSource("Stop_Icon", false)
+                    icon.source: ControlImages.iconSource("Stop_Icon", false)
                     onClicked: root.mediaPlayer.pause()
                 }
 
                 CustomButton {
                     id: nextButton
-                    icon.source: Config.iconSource("Next_Icon")
+                    icon.source: ControlImages.iconSource("Next_Icon")
                     onClicked: root.playNextFile()
                 }
 
                 CustomButton {
                     id: loopButton
-                    icon.source: Config.iconSource("Loop_Icon")
+                    icon.source: ControlImages.iconSource("Loop_Icon")
                     visible: Screen.primaryOrientation === Qt.LandscapeOrientation
                     onClicked: root.changeLoopMode()
 
@@ -118,21 +118,21 @@ Item {
                             name: "noActiveLooping"
                             when: root.mediaPlayer.loops === 1 && !root.isPlaylistLooped
                             PropertyChanges {
-                                loopButton.icon.source: Config.iconSource("Loop_Icon")
+                                loopButton.icon.source: ControlImages.iconSource("Loop_Icon")
                             }
                         },
                         State {
                             name: "singleLoop"
                             when: root.mediaPlayer.loops === MediaPlayer.Infinite
                             PropertyChanges {
-                                loopButton.icon.source: Config.iconSource("Single_Loop", false)
+                                loopButton.icon.source: ControlImages.iconSource("Single_Loop", false)
                             }
                         },
                         State {
                             name: "playlistLoop"
                             when: root.isPlaylistLooped
                             PropertyChanges {
-                                loopButton.icon.source: Config.iconSource("Loop_Playlist", false)
+                                loopButton.icon.source: ControlImages.iconSource("Loop_Playlist", false)
                             }
                         }
                     ]

@@ -112,7 +112,7 @@ Rectangle {
             }
 
             CustomButton {
-                icon.source: Config.iconSource("Add_file")
+                icon.source: ControlImages.iconSource("Add_file")
                 onClicked: folderView.open()
             }
         }
@@ -141,28 +141,28 @@ Rectangle {
                             name: "activeMovie"
                             when: root.currentIndex === row.index && row.isMovie
                             PropertyChanges {
-                                mediaIcon.source: Config.iconSource("Movie_Active", false)
+                                mediaIcon.source: Images.iconSource("Movie_Active", false)
                             }
                         },
                         State {
                             name: "inactiveMovie"
                             when: root.currentIndex !== row.index && row.isMovie
                             PropertyChanges {
-                                mediaIcon.source: Config.iconSource("Movie_Icon")
+                                mediaIcon.source: Images.iconSource("Movie_Icon")
                             }
                         },
                         State {
                             name: "activeMusic"
                             when: root.currentIndex === row.index && !row.isMovie
                             PropertyChanges {
-                                mediaIcon.source: Config.iconSource("Music_Active", false)
+                                mediaIcon.source: Images.iconSource("Music_Active", false)
                             }
                         },
                         State {
                             name: "inactiveMusic"
                             when: root.currentIndex !== row.index && !row.isMovie
                             PropertyChanges {
-                                mediaIcon.source: Config.iconSource("Music_Icon")
+                                mediaIcon.source: Images.iconSource("Music_Icon")
                             }
                         }
                     ]
@@ -181,7 +181,7 @@ Rectangle {
                 }
 
                 CustomButton {
-                    icon.source: Config.iconSource("Trash_Icon")
+                    icon.source: ControlImages.iconSource("Trash_Icon")
                     onClicked: {
                         const removedIndex = row.index
                         files.remove(row.index)

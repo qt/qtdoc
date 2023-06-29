@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Layouts
-import Config
 
 Item {
     id: root
@@ -18,7 +17,7 @@ Item {
         spacing: 10
 
         Image {
-            source: Config.iconSource("Mute_Icon")
+            source: ControlImages.iconSource("Mute_Icon")
         }
 
         CustomSlider {
@@ -32,7 +31,7 @@ Item {
         }
 
         Image {
-            source: Config.iconSource("Volume_Icon")
+            source: ControlImages.iconSource("Volume_Icon")
         }
     }
 }
