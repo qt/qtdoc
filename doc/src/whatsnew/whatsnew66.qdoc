@@ -38,6 +38,15 @@
             \c {capacity()}.
     \endlist
 
+    \section2 Qt GRPC Module
+
+    \list
+        \li Added QGrpcChannelOptions and QGrpcCallOptions. Those are
+            the new methods to pass options to channels and calls.
+        \li Added QGrpcMetadata to pass additional metadata to the calls.
+        \li Integrated QML-types support for auto-generated QtGRPC classes.
+    \endlist
+
     \section2 Qt GUI Module
 
     \list
