@@ -11,7 +11,7 @@ QT_BEGIN_NAMESPACE
 class QSettings;
 QT_END_NAMESPACE
 
-class RecentFiles : public QObject, private QStringList
+class RecentFiles : public QObject
 {
     Q_OBJECT
 public:
@@ -27,9 +27,8 @@ public:
     using QObject::QObject;
 
     // Access to QStringList member functions
-    qsizetype count() const {return QStringList::count(); };
-    const QStringList recentFiles() const {return *this; }
-    bool isEmpty() const { return QStringList::isEmpty(); }
+    const QStringList recentFiles() const {return m_files; }
+    bool isEmpty() const { return m_files.isEmpty(); }
 
     // Properties
     qsizetype maxFiles() const { return m_maxFiles; }
@@ -40,7 +39,7 @@ public:
 public slots:
     void addFile(const QString &fileName) { addFile(fileName, EmitPolicy::EmitWhenChanged); }
     void addFiles(const QStringList &fileNames);
-    void removeFile(const QString &fileName) { removeFile(indexOf(fileName)); }
+    void removeFile(const QString &fileName) { removeFile(m_files.indexOf(fileName)); }
     void removeFile(qsizetype index) {removeFile(index, RemoveReason::RemovedManually); }
     void saveSettings(QSettings &settings, const QString &key) const;
     bool restoreFromSettings(QSettings &settings, const QString &key);
@@ -60,7 +59,7 @@ private:
 
     // Private removers with reason
     void removeFile(qsizetype index, RemoveReason reason);
-    void removeFile(const QString &fileName, RemoveReason reason) {removeFile(indexOf(fileName), reason); }
+    void removeFile(const QString &fileName, RemoveReason reason) {removeFile(m_files.indexOf(fileName), reason); }
 
     // Private adder with emit policy
     enum class EmitPolicy {
@@ -73,6 +72,8 @@ private:
 
     qsizetype m_maxFiles = 10;
     QIODevice::OpenMode m_openMode = QIODevice::ReadOnly;
+
+    QStringList m_files;
 
     // Constexprs for settings
     static constexpr QLatin1StringView s_maxFiles = QLatin1StringView("maxFiles");
