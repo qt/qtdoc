@@ -44,12 +44,7 @@ public slots:
     void clear();
 
 signals:
-    void fileAdded(const QString &fileName);
-    void filesAdded(const QStringList &files);
-    void fileRemoved(const QString &fileName, RecentFiles::RemoveReason reason);
     void countChanged(int count);
-    void listCleared();
-    void settingsRestored(qsizetype count);
     void changed();
 
 private:
