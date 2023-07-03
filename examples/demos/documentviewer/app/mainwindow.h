@@ -47,7 +47,6 @@ private:
     std::unique_ptr<RecentFiles> m_recentFiles;
     std::unique_ptr<ViewerFactory> m_factory;
 
-    static constexpr QLatin1StringView settingsName = QLatin1StringView("DocumentViewerExample");
     static constexpr QLatin1StringView settingsDir = QLatin1StringView("WorkingDir");
     static constexpr QLatin1StringView settingsMainWindow = QLatin1StringView("MainWindow");
     static constexpr QLatin1StringView settingsViewers = QLatin1StringView("Viewers");

@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    QCoreApplication::setOrganizationName("QtProject");
+    QCoreApplication::setApplicationName("Hangman");
+
     QQmlApplicationEngine engine(QUrl("qrc:/main.qml"));
 
     return app.exec();

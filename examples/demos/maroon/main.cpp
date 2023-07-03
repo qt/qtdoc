@@ -8,7 +8,8 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("QtExamples");
+    QCoreApplication::setOrganizationName("QtProject");
+    QCoreApplication::setApplicationName("Maroon");
 
     QGuiApplication app(argc, argv);
 

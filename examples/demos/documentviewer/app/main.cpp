@@ -10,9 +10,9 @@ using namespace Qt::StringLiterals;
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QApplication::setOrganizationName(QApplication::translate("main", "QtExamples"));
-    QApplication::setApplicationName(QApplication::translate("main", "DocumentViewer"));
-    QApplication::setApplicationVersion("1.0"_L1);
+    QCoreApplication::setOrganizationName("QtProject"_L1);
+    QCoreApplication::setApplicationName("DocumentViewer"_L1);
+    QCoreApplication::setApplicationVersion("1.0"_L1);
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QApplication::translate("main",
