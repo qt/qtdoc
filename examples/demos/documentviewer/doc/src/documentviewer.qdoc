@@ -263,13 +263,8 @@
     void setMaxFiles(qsizetype maxFiles);
     \endcode
 
-    \c {RecentFiles} verifies that a file can be opened in \c {openMode} before
+    \c {RecentFiles} verifies that a file can be read before
     accepting it.
-
-    \code
-    void setOpenMode(QIODevice::OpenMode mode);
-    QIODevice::OpenMode openMode() const;
-    \endcode
 
     \section2 RecentFileMenu class
 

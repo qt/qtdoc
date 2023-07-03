@@ -5,6 +5,12 @@
 #include <QFileInfo>
 #include <QSettings>
 
+// Test if file exists and can be opened
+static bool testFileAccess(const QString &fileName)
+{
+    return QFileInfo(fileName).isReadable();
+}
+
 void RecentFiles::clear()
 {
     if (isEmpty())
@@ -86,30 +92,6 @@ void RecentFiles::addFiles(const QStringList &files)
         emit countChanged(m_files.count());
 }
 
-// Test if file exists and can be opened
-bool RecentFiles::testFileAccess(const QString &fileName) const
-{
-    QFileInfo info(fileName);
-    if (!info.isFile())
-        return false;
-
-    switch (m_openMode) {
-    case QIODevice::ReadOnly:
-        if (!info.isReadable())
-            return false;
-        break;
-    case QIODevice::ReadWrite:
-        if (!(info.isReadable() && info.isWritable()))
-            return false;
-        break;
-    case QIODevice::WriteOnly:
-        if (!info.isWritable())
-            return false;
-        break;
-    }
-    return true;
-}
-
 void RecentFiles::removeFile(qsizetype index, RemoveReason reason)
 {
     if (index < 0 || index >= m_files.count())
@@ -130,7 +112,6 @@ void RecentFiles::saveSettings(QSettings &settings, const QString &key) const
 {
     settings.beginGroup(key);
     settings.setValue(s_maxFiles, maxFiles());
-    settings.setValue(s_openMode, static_cast<int>(openMode()));
     if (!isEmpty()) {
         settings.beginWriteArray(s_fileNames, m_files.count());
         for (int index = 0; index < m_files.count(); ++index) {
@@ -146,10 +127,7 @@ bool RecentFiles::restoreFromSettings(QSettings &settings, const QString &key)
 {
     settings.beginGroup(key);
     const qsizetype mxFiles = settings.value(s_maxFiles, maxFiles()).toLongLong();
-    const auto mode = qvariant_cast<QIODevice::OpenMode>(settings.value(s_openMode,
-                                             static_cast<int>(openMode())).toInt());
     setMaxFiles(mxFiles);
-    setOpenMode(mode);
     m_files.clear(); // clear list without emitting
     const int numberFiles = settings.beginReadArray(s_fileNames);
     for (int index = 0; index < numberFiles; ++index) {
