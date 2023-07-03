@@ -16,10 +16,7 @@ class RecentFiles : public QObject
     Q_OBJECT
 public:
     enum class RemoveReason {
-        Reset,
-        Dangling,
-        TailCut,
-        RemovedManually,
+        Other,
         Duplicate
     };
     Q_ENUM(RemoveReason)
@@ -40,7 +37,7 @@ public slots:
     void addFile(const QString &fileName) { addFile(fileName, EmitPolicy::EmitWhenChanged); }
     void addFiles(const QStringList &fileNames);
     void removeFile(const QString &fileName) { removeFile(m_files.indexOf(fileName)); }
-    void removeFile(qsizetype index) {removeFile(index, RemoveReason::RemovedManually); }
+    void removeFile(qsizetype index) {removeFile(index, RemoveReason::Other); }
     void saveSettings(QSettings &settings, const QString &key) const;
     bool restoreFromSettings(QSettings &settings, const QString &key);
     void clear();
@@ -58,7 +55,6 @@ private:
 
     // Private adder with emit policy
     enum class EmitPolicy {
-        AllwaysEmit,
         EmitWhenChanged,
         NeverEmit
     };

@@ -26,7 +26,7 @@ void RecentFiles::addFile(const QString &fileName, EmitPolicy policy)
     for (qsizetype i = 0; i < m_files.size(); ) {
         const QString &file = m_files.at(i);
         if (!testFileAccess(file)) {
-            removeFile(file, RemoveReason::Dangling);
+            removeFile(file, RemoveReason::Other);
         } else if (file == fileName) {
             removeFile(file, RemoveReason::Duplicate);
         } else {
@@ -36,17 +36,12 @@ void RecentFiles::addFile(const QString &fileName, EmitPolicy policy)
 
     // Cut tail
     while (m_files.count() > m_maxFiles)
-        removeFile((m_files.count() - 1), RemoveReason::TailCut);
+        removeFile((m_files.count() - 1), RemoveReason::Other);
 
     m_files.prepend(fileName);
 
     switch (policy) {
     case EmitPolicy::NeverEmit:
-        return;
-
-    case EmitPolicy::AllwaysEmit:
-        emit changed();
-        emit countChanged(m_files.count());
         return;
 
     case EmitPolicy::EmitWhenChanged:
