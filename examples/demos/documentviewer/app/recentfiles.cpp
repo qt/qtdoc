@@ -12,7 +12,6 @@ void RecentFiles::clear()
 
     m_files.clear();
     emit countChanged(0);
-    emit listCleared();
 }
 
 void RecentFiles::addFile(const QString &fileName, EmitPolicy policy)
@@ -24,14 +23,12 @@ void RecentFiles::addFile(const QString &fileName, EmitPolicy policy)
     const qsizetype c = m_files.count();
 
     // Clean dangling and duplicate files
-    bool duplicateFound = false;
     for (qsizetype i = 0; i < m_files.size(); ) {
         const QString &file = m_files.at(i);
         if (!testFileAccess(file)) {
             removeFile(file, RemoveReason::Dangling);
         } else if (file == fileName) {
             removeFile(file, RemoveReason::Duplicate);
-            duplicateFound = true;
         } else {
             ++i;
         }
@@ -49,14 +46,11 @@ void RecentFiles::addFile(const QString &fileName, EmitPolicy policy)
 
     case EmitPolicy::AllwaysEmit:
         emit changed();
-        emit fileAdded(fileName);
         emit countChanged(m_files.count());
         return;
 
     case EmitPolicy::EmitWhenChanged:
         emit changed();
-        if (!duplicateFound)
-            emit fileAdded(fileName);
 
         if (c != m_files.count())
             emit countChanged(m_files.count());
@@ -80,7 +74,6 @@ void RecentFiles::addFiles(const QStringList &files)
     for (const auto &file : files)
         addFile(file, EmitPolicy::NeverEmit);
 
-    emit filesAdded(files);
     emit changed();
     if (m_files.count() != c)
         emit countChanged(m_files.count());
@@ -115,15 +108,11 @@ void RecentFiles::removeFile(qsizetype index, RemoveReason reason)
     if (index < 0 || index >= m_files.count())
         return;
 
-    const QString &fileName = m_files.at(index);
     m_files.remove(index);
 
     // No emit for duplicate removal, add emits changed later.
-    if (reason == RemoveReason::Duplicate)
-        return;
-
-    emit fileRemoved(fileName, reason);
-    emit changed();
+    if (reason != RemoveReason::Duplicate)
+        emit changed();
 }
 
 void RecentFiles::saveSettings(QSettings &settings, const QString &key) const
@@ -159,10 +148,8 @@ bool RecentFiles::restoreFromSettings(QSettings &settings, const QString &key)
     }
     settings.endArray();
     settings.endGroup();
-    if (!m_files.isEmpty()) {
-        emit settingsRestored(m_files.count());
+    if (!m_files.isEmpty())
         emit changed();
-    }
 
     return true;
 }
