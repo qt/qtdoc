@@ -3,7 +3,6 @@
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include <QSettings>
 
 #include "app_environment.h"
 #include "import_qml_plugins.h"
@@ -14,7 +13,6 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QApplication::setApplicationName("ThermostatApp");
     QApplication::setOrganizationName("QtProject");
-    QSettings settings;
 
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::quit, &app, &QGuiApplication::quit);

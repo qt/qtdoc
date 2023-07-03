@@ -8,7 +8,8 @@
 #include <QtGlobal>
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("QtExamples");
+    QCoreApplication::setOrganizationName("QtProject");
+    QCoreApplication::setApplicationName("StocQt");
 
     QGuiApplication app(argc, argv);
     if (qEnvironmentVariableIsEmpty("QML_XHR_ALLOW_FILE_READ"))

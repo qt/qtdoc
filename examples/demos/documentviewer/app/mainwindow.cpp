@@ -120,7 +120,7 @@ void MainWindow::onActionAboutQtTriggered()
 
 void MainWindow::readSettings()
 {
-    QSettings settings(settingsName);
+    QSettings settings;
 
     // Restore working directory
     if (settings.contains(settingsDir))
@@ -140,7 +140,7 @@ void MainWindow::readSettings()
 
 void MainWindow::saveSettings() const
 {
-    QSettings settings(settingsName);
+    QSettings settings;
 
     // Save working directory
     settings.setValue(settingsDir, m_currentDir.absolutePath());
@@ -159,7 +159,7 @@ void MainWindow::saveViewerSettings() const
     if (!m_viewer)
         return;
 
-    QSettings settings(settingsName);
+    QSettings settings;
     settings.beginGroup(settingsViewers);
         settings.setValue(m_viewer->viewerName(), m_viewer->saveState());
     settings.endGroup();
@@ -180,7 +180,7 @@ void MainWindow::restoreViewerSettings()
     if (!m_viewer)
         return;
 
-    QSettings settings(settingsName);
+    QSettings settings;
     settings.beginGroup(settingsViewers);
     QByteArray viewerSettings = settings.value(m_viewer->viewerName(), QByteArray()).toByteArray();
     settings.endGroup();
