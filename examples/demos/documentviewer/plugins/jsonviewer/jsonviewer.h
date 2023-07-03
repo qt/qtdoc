@@ -55,7 +55,6 @@ private:
     QListWidget *m_toplevel = nullptr;
     QJsonDocument m_root;
 
-    int m_classId = -1;
     QPointer<QLineEdit> m_searchKey;
 };
 

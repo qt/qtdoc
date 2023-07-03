@@ -43,7 +43,6 @@ private:
     void openFile();
     bool saveFile (QFile *file);
 
-    int m_classId;
     QPlainTextEdit *m_textEdit;
 };
 //! [classDefinition]

@@ -95,9 +95,6 @@ private:
     QList<QMenu *> m_menus;
     QList<QToolBar *> m_toolBars;
     bool m_printingEnabled = false;
-    int m_classId = -1;
-
-    static constexpr QLatin1StringView m_viewerName = QLatin1StringView("AbstractViewer");
 };
 
 #endif // ABSTRACTVIEWER_H

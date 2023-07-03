@@ -45,7 +45,6 @@ private:
     AbstractViewer *m_viewer = nullptr;
     std::unique_ptr<Ui::MainWindow> ui;
     std::unique_ptr<RecentFiles> m_recentFiles;
-    int m_classId = -1;
     std::unique_ptr<ViewerFactory> m_factory;
 
     static constexpr QLatin1StringView settingsName = QLatin1StringView("DocumentViewerExample");
