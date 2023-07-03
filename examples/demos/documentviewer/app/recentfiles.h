@@ -30,8 +30,6 @@ public:
     // Properties
     qsizetype maxFiles() const { return m_maxFiles; }
     void setMaxFiles(qsizetype maxFiles) { m_maxFiles = maxFiles; }
-    QIODevice::OpenMode openMode() const { return m_openMode; }
-    void setOpenMode(QIODevice::OpenMode mode) { m_openMode = mode; }
 
 public slots:
     void addFile(const QString &fileName) { addFile(fileName, EmitPolicy::EmitWhenChanged); }
@@ -47,8 +45,6 @@ signals:
     void changed();
 
 private:
-    bool testFileAccess(const QString &fileName) const;
-
     // Private removers with reason
     void removeFile(qsizetype index, RemoveReason reason);
     void removeFile(const QString &fileName, RemoveReason reason) {removeFile(m_files.indexOf(fileName), reason); }
@@ -62,7 +58,6 @@ private:
     void addFile(const QString &fileName, EmitPolicy policy);
 
     qsizetype m_maxFiles = 10;
-    QIODevice::OpenMode m_openMode = QIODevice::ReadOnly;
 
     QStringList m_files;
 
