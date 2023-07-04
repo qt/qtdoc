@@ -64,7 +64,6 @@ private:
     void populateQuestions();
 
     const qreal zoomMultiplier = qSqrt(2.0);
-    static constexpr int maxIconWidth = 200;
     QToolBar *m_toolBar = nullptr;
     ZoomSelector *m_zoomSelector = nullptr;
     QPdfPageSelector *m_pageSelector = nullptr;

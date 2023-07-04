@@ -12,6 +12,14 @@
 #if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
 #include <QPdfPageSelector>
 #endif
+<<<<<<< HEAD   (a75432 DocumentViewer demo: Fix warnings about closed QIODevice whe)
+=======
+
+#include <QtMath>
+#include <QDir>
+#include <QStandardPaths>
+
+>>>>>>> CHANGE (5e6242 DocumentViewer demo: Small polish of the PDF plugin)
 #include <QListView>
 #include <QPdfView>
 #include <QStandardPaths>
@@ -160,13 +168,14 @@ void PdfViewer::openPdfFile()
         m_document->load(m_file.get());
 
     const auto documentTitle = m_document->metaData(QPdfDocument::MetaDataField::Title).toString();
-    statusMessage(!documentTitle.isEmpty() ? documentTitle : QStringLiteral("PDF Viewer"));
+    statusMessage(documentTitle.isEmpty() ? "PDF Viewer"_L1 : documentTitle);
     pageSelected(0);
 #if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
     m_pageSelector->setMaximum(m_document->pageCount() - 1);
 #endif
 
-    statusMessage(tr("Opened PDF file %1").arg(m_file->fileName()));
+    statusMessage(tr("Opened PDF file %1")
+                  .arg(QDir::toNativeSeparators(m_file->fileName())));
     qCDebug(lcExample) << "Opened file" << m_file->fileName();
 
     maybeEnablePrinting();
