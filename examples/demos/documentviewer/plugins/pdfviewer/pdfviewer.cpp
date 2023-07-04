@@ -156,10 +156,8 @@ void PdfViewer::openPdfFile()
 {
     disablePrinting();
 
-    if (m_file->open(QIODevice::ReadOnly)) {
+    if (m_file->open(QIODevice::ReadOnly))
         m_document->load(m_file.get());
-        m_file->close();
-    }
 
     const auto documentTitle = m_document->metaData(QPdfDocument::MetaDataField::Title).toString();
     statusMessage(!documentTitle.isEmpty() ? documentTitle : QStringLiteral("PDF Viewer"));
