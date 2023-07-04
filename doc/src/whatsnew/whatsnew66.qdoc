@@ -193,7 +193,17 @@
     \section2 Qt Quick Controls Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added \l {SpinBox}{live} property to SpinBox. This controls
+        whether the \l {SpinBox}{value} is updated when the user edits
+        the \l {SpinBox}{displayText}.
+
+        \li Added \l {Dial}{wrapped} signal to Dial. This is emitted when
+        the dial wraps around, i.e. goes beyond its maximum value
+        to its minimum value, or vice versa.
+
+        \li Added \l {Dial}{startAngle} and \l {Dial}{endAngle} properties
+        to Dial. These properties control the start and end angle of
+        the dial in degrees.
     \endlist
 
     \section2 Qt Quick Layouts Module
