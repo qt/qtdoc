@@ -200,10 +200,14 @@
     \group touchinputexamples
     \ingroup all-examples
     \title Touch Input Examples
-    \brief Using Qt's touch input capability.
+    \brief Using Qt's touch input capability in widget-based applications.
 
-    Support for touch input makes it possible for developers to create
-    extensible and intuitive user interfaces.
+    Qt Widgets have legacy support for touch input.
+
+    Applications intended for use on touchscreens often have "fluid" UI
+    designs, because touch input feels better with quick animated feedback.
+    You should consider using \l {Qt Quick} to benefit from GPU acceleration,
+    rather than attempting to develop a fluid UI with Widgets.
 */
 
 /*!
