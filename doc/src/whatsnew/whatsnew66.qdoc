@@ -232,7 +232,19 @@
     \section2 Qt Quick 3D Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added a QML API for creating TextureData procedurally called
+        ProceduralTextureData. Previously this was only possible via C++ by
+        subclassing QQuick3DTextureData.
+        \li Added a QML API for creating mesh geometry procedurally called
+        ProceduralMesh. Previously this was only possible via C++ by
+        subclassing QQuick3DGeometry.
+        \li It is now possible to import PLY files.
+        \li Added support for creating 3D textures with QQuick3DTextureData.
+        \li Added initial Renderer Extensions support. This is the first steps
+        to allowing adding additional passes and enabling the customization of
+        the built in render passes. View3D has a new property called extensions
+        which takes an array of QQuick3DRenderExtension sub-classes. This is
+        further supported using the helper functions in QQuick3DExtensionHelpers.
     \endlist
 
     \section2 Qt Serial Bus Module
