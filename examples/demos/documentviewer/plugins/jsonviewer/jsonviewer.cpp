@@ -466,18 +466,6 @@ QVariant JsonItemModel::data(const QModelIndex &index, int role) const
     return {};
 }
 
-bool JsonItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    const int column = index.column();
-    if (Qt::EditRole == role && column == 1) {
-        JsonTreeItem *item = itemFromIndex(index);
-        item->setValue(value);
-        emit dataChanged(index, index, {Qt::EditRole});
-        return true;
-    }
-    return false;
-}
-
 QVariant JsonItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole)
@@ -534,18 +522,4 @@ int JsonItemModel::rowCount(const QModelIndex &parent) const
         parentItem = itemFromIndex(parent);
 
     return parentItem->childCount();
-}
-
-Qt::ItemFlags JsonItemModel::flags(const QModelIndex &index) const
-{
-    int col   = index.column();
-    auto *item = itemFromIndex(index);
-
-    auto isArray = QJsonValue::Array == item->type();
-    auto isObject = QJsonValue::Object == item->type();
-
-    if ((col == 1) && !(isArray || isObject))
-        return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
-    else
-        return QAbstractItemModel::flags(index);
 }
