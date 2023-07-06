@@ -778,6 +778,78 @@ Note that calling QApplication::exec() is not supported when exceptions are enab
 internal implementation details. Instead, write main() in the form where it returns early and
 does not call exec(), as described in \l{Application Startup and the Event Loop}.
 
+\section2 Shared Libraries and Dynamic Linking Developer Preview
+
+Qt for WebAssembly uses static linking by default, where the application is deployed as a single
+WebAssembly file which contains the Qt libraries and application code. Dynamic linking is an alternative
+build mode where each library and plugin is distributed individually.
+
+For instance, an application which uses Qt Quick may make use of the following
+libraries and plugins:
+
+\list
+\li <qtpath>/lib/libQt6Core.so
+\li <qtpath>/lib/libQt6Gui.so
+\li <qtpath>/lib/libQt6Qml.so
+\li <qtpath>/lib/libQt6Quick.so
+\li <qtpath>/plugins/imageformats/libqjpeg.so
+\li <qtpath>/plugins/imageformats/libqjgif.so
+\li <qtpath>/qml/QtQuick/Window/libquickwindowplugin.so
+\endlist
+
+Dynamic linking support is currently in developer preview. The implementation is suitable for prototyping
+and evaluation, but is not suitable for production use. Current limitations and restrictions include:
+
+\list
+\li The Emscripten SDK must be patched.
+\li The Chrome browser is not supported, due it not supporting synchronous loading of wasm files larger than 4K.
+\li Multithreading is not supported.
+\li Asyncify is not supported.
+\endlist
+
+\section3 Quick Start
+
+The build and deployment procedure is slightly different than that from static wasm and shared desktop builds.
+Consider starting with a small example before progressing to a full application build.
+
+\list 1
+\li Build Qt from source, pass the “-shared” option to the Qt configure script.
+\li Build your application using Qt from step 1)
+\li Deploy the Qt installation by copying or linking to a directory named "qt" in the application directory
+    \list
+    \li ln -s <qtpath> qt
+    \li cp -r <qtpath> qt
+    \endlist
+\li Create plugin preloading lists by running deployment scripts.
+    \list
+    \li <qtpath>/qtbase/util/wasm/preload/deploy_qt_plugins.py <qtpath>
+    \li <qtpath>/qtbase/util/wasm/preload/deploy_qml_imports.py <qthostpath> <qtpath>
+    \endlist
+\endlist
+
+\section3 Shared Libraries Deployment in Depth
+
+The shared libraries build of Qt is deployed in two stages, where the first stage makes the Qt and application
+build available for download from the web server, and the second stage downloads required Qt plugins and Qt Quick
+imports at application startup.
+
+In the first step, make the Qt installation available for download from the web server. Depending
+on the specifics of the web server setup there may be different ways to accomplish this. In common is that
+the Qt loader expects to find the Qt libraries and plugins in a directory name "qt", relative to the html
+file which loads the application.
+
+If you are already copying the application to the web server as a part of deployment, then copying Qt as well
+is a possible option. If you are serving the application directly from its build directroy - often the case during
+development phases - then creating a symlink to Qt can work well.
+
+Prepare for the second step by creating preload lists for Qt components such as plugins and Qt Quick imports. Preloading
+ensures that all required Qt components are availabe at application startup. Delayed loading, where components
+are dowloaded on demand, is also possbile but is not covered here.
+
+Preloading is implemented by the Qt JavaScript loader, which downloads files from the web server to the in-memory
+file system provided by Emscripten. Which files to download is specified using json-formatted download lists.
+Qt provides two scripts for generating preload lists, see Quick Start section above.
+
 \section2 Known Issues
 
 \list
