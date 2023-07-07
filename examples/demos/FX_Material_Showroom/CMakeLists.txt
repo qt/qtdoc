@@ -27,5 +27,4 @@ target_link_libraries(FxMaterialShowroomApp PRIVATE
     Qt6::Quick
 )
 
-include(qmlcomponents)
 include(qmlmodules)
