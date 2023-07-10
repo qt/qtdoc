@@ -82,6 +82,13 @@
         its rendering via Direct 3D 12 in order to simplify interoperating with
         the application's own or some external component's rendering or compute
         engine requiring D3D12.
+
+        \li Qt 6 applications can now support custom or platform specific
+        clipboard formats, using the new QUtiMimeConverter (for \macos) and
+        QWindowsMimeConverter for Windows) classes. Those classes are unified
+        versions of the QMacPasteboardMime and QWindowsMime types from Qt 5.
+        See the \l{Changes to Qt GUI}{porting guide} for help with adapting
+        an existing implementation.
     \endlist
 
     \section2 Qt Location Module
