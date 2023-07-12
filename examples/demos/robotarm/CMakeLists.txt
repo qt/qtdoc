@@ -11,7 +11,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quick3d/robotarm")
 
-find_package(Qt6 COMPONENTS Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Gui Qml Quick Quick3D)
 qt_standard_project_setup()
 qt_add_executable(RobotArmApp src/main.cpp)
 

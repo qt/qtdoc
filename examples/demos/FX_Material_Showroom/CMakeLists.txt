@@ -5,7 +5,7 @@ project(FxMaterialShowroomApp LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Qml Quick)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Qml Quick Quick3D)
 
 qt_add_executable(FxMaterialShowroomApp
     src/app_environment.h
