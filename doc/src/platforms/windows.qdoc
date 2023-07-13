@@ -948,8 +948,8 @@
         and the Qt folder is called \tt{C:\\Qt\\\QtVersion\\Src}:
 
         \badcode \QtVersion
-        REM Set up Microsoft Visual Studio 2019, where <arch> is amd64, x86, etc.
-        CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat" <arch>
+        REM Set up compiler, in this case Visual Studio Professional 2022 for amd64 CPU's
+        CALL "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" amd64
         SET _ROOT=C:\Qt\\1\Src
         SET PATH=%_ROOT%;%PATH%
         SET _ROOT=
