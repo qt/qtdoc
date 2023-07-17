@@ -7,10 +7,11 @@ qt_add_qml_module(FxMaterialShowroomApp
 
 add_subdirectory(content)
 add_subdirectory(imports)
-add_subdirectory(asset_imports)
 
 target_link_libraries(FxMaterialShowroomApp PRIVATE
     contentplugin
     PocketDemoplugin
-    ComponentBundles_MaterialBundleplugin
+    CB_MaterialBundleplugin
+    QQS_Appplugin
+    QQS_Componentsplugin
 )
