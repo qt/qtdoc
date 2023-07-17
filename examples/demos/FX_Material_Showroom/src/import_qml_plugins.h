@@ -5,4 +5,6 @@
 
 Q_IMPORT_QML_PLUGIN(contentPlugin)
 Q_IMPORT_QML_PLUGIN(PocketDemoPlugin)
-Q_IMPORT_QML_PLUGIN(ComponentBundles_MaterialBundlePlugin)
+Q_IMPORT_QML_PLUGIN(CB_MaterialBundlePlugin)
+Q_IMPORT_QML_PLUGIN(QQS_ComponentsPlugin)
+Q_IMPORT_QML_PLUGIN(QQS_AppPlugin)
