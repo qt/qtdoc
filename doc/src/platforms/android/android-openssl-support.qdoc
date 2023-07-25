@@ -5,7 +5,7 @@
 \page android-openssl-support.html
 \ingroup androidplatform
 \title Adding OpenSSL Support for Android
-\brief Provides instructions to package OpenSSL libraries with your Qt application for Android.
+\brief How to package OpenSSL libraries with a Qt for Android application.
 \previouspage deployment-android.html
 \nextpage android-manifest-file-configuration.html
 
@@ -30,8 +30,8 @@ the result.
 
 \section1 Building OpenSSL for Android
 
-A convenient Github repository with prebuilt and a build script can be used
-without the need for manual step-by-step build. For more information, see
+A convenient Github repository with a binary and a build script can be used
+without the need for a manual step-by-step build. For more information, see
 \l {OpenSSL for Android}. If you download the repository, you can then skip
 to \l {Using OpenSSL Libraries with Qt for Android}.
 
@@ -70,23 +70,25 @@ The following instructions guide you to build the OpenSSL libraries manually:
         For more information about the configurable features, see
         \l{OpenSSL Configure Options}.
 
-    \li To build \c libcrypto and \c libssl shared libraries that are not versioned,
-        but with an \e _3 suffix, run:
-
-        \code
-        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=_3.so build_libs
-        \endcode
-
-        If you want to use a different suffix, you must change \c SHLIB_EXT in
-        the previous command, and set the \c ANDROID_OPENSSL_SUFFIX environment
-        variable before you access the Qt Network API.
-
-        \note Without a suffix, Android loads the system libraries \c {libcrypto.so} and
-        \c {libssl.so}. These may be different versions from your libraries or from what Qt expects.
+    \li Without a suffix, Android loads the system libraries \c libcrypto.so and
+        \c libssl.so. These may be different versions from your libraries or from what
+        Qt expects. To ensure that Qt apps can load the manually built OpenSSL libraries,
+        run the following commands:
 
         \badcode
-        make -j$(nproc) SHLIB_VERSION_NUMBER= SHLIB_EXT=<custom_suffix>.so build_libs
+        make -j$(nproc) SHLIB_VERSION_NUMBER= build_libs
+
+        cp libcrypto.so "${out_path}/libcrypto_3.so"
+        cp libssl.so "${out_path}/libssl_3.so"
+
+        cd ${out_path}
+        patchelf --set-soname libcrypto_3.so libcrypto_3.so
+        patchelf --set-soname libssl_3.so libssl_3.so
+        patchelf --replace-needed libcrypto.so libcrypto_3.so libssl_3.so
         \endcode
+
+        \note Though the \c libcrypto and \c libssl shared libraries that are not versioned,
+        they will have a \e _3 suffix.
 
         Then set the environment variable in your main.cpp file:
 
@@ -114,16 +116,41 @@ the following step to include those libraries in your project:
         android: include(<path/to/android_openssl/openssl.pri)
         \endcode
 
-        Or if using CMake, add the following to your \c {CMakeLists.txt}:
+        If using CMake, add the following to your \c {CMakeLists.txt}:
 
         \badcode
         if (ANDROID)
-            include(<path/to/android_openssl/CMakeLists.txt)
+            FetchContent_Declare(
+              android_openssl
+              DOWNLOAD_EXTRACT_TIMESTAMP true
+              URL      https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+            )
+            FetchContent_MakeAvailable(android_openssl)
+            include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
         endif()
         \endcode
 
+        \b{Or} if you cloned the repository into a subdirectory:
+
+        \badcode
+        include(<path/to/android_openssl>/android_openssl.cmake)
+        \endcode
+
+        Then add:
+
+        \badcode
+            qt_add_executable(your_target_name ..)
+            qt_add_executable(your_second_target_name ..)
+
+            if (ANDROID)
+                add_android_openssl_libraries(your_target_name your_second_target_name)
+            endif()
+        \endcode
+
         Alternatively, you can use the following project variable to add extra
-        libraries, such as \c libcrypto and \c libssl. For QMake use:
+        libraries, such as \c libcrypto and \c libssl.
+
+        For QMake use:
 
         \badcode
         ANDROID_EXTRA_LIBS += \
