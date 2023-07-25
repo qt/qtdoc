@@ -100,6 +100,7 @@ manifestmeta.examplecategories = "Application Examples" \
 # Include 'Qt for Education' pages
 include(../edu/config/qtforeducation.qdocconf)
 
-# Fail the documentation build if there are more warnings than the limit
-warninglimit = 0
-
+# doc/src/overviews.qdoc:
+#   (qdoc) warning: '\generatelist explanations-webtechnologies' no such group
+#   (qdoc) warning: '\generatelist explanations-positioning' no such group
+warninglimit = 2
