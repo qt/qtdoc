@@ -7,6 +7,7 @@
     \brief You can't. But don't despair, there is a way...
 
     \ingroup best-practices
+    \ingroup explanations-platforms
 
     You \e can't call Qt functions from Unix signal handlers. The
     standard POSIX rule applies: You can only call async-signal-safe
