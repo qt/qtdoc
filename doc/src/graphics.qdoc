@@ -116,6 +116,14 @@ promise for the time being, similarly to the \l{Qt Platform Abstraction}
 classes. However, the QRhi classes come with full documentation. See the
 \l QRhi class to get started.
 
+The \l{Qt GUI} module on its own allows targeting a \l QWindow or an offscreen
+buffer, such as a \l QRhiTexture, with the \l{QRhi}-based rendering. With user
+interfaces based on QWidget or QML (Qt Quick) working with a QWindow backed by a
+native platform is not always the most convenient way. This is why the \l{Qt Widgets}
+module offers \l QRhiWidget, whereas Qt Quick provides \l QQuickRhiItem. These
+base classes allow convenient creation of \l QWidget or \l QQuickItem
+subclasses, instances of which perform portable QRhi-based rendering into a
+texture that is then composited automatically with the Widgets or Qt Quick scene.
 
 \section1 Qt OpenGL Module
 
