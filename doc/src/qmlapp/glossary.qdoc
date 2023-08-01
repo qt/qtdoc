@@ -155,8 +155,7 @@
             for more details.
 
     \row
-        \target lazy-instantiation
-        \li Lazy Instantiation
+        \li Lazy Instantiation \target lazy-instantiation
         \li Object instances can be instantiated "lazily" at run-time,
             to avoid performing unnecessary work until needed.  Qt Quick
             provides the \l Loader type to make lazy instantiation more
