@@ -224,7 +224,7 @@
     \section2 Qt Quick Layouts Module
     \list
         \li Added LayoutItemProxy, a helper item for writing responsive layouts (in Technical Preview)
-        \li Added \l {RowLayout::}{uniformCellSizes}, {ColumnLayout::}{uniformCellSizes},
+        \li Added \l {RowLayout::}{uniformCellSizes}, \l {ColumnLayout::}{uniformCellSizes},
             \l {GridLayout::}{uniformCellWidths} and \l {GridLayout::}{uniformCellHeights} properties
             as applicable to each type of \l {Qt Quick Layouts}{Layout} (in Technical Preview)
         \li StackLayout will now update \l {StackLayout::}{currentIndex} if an Item
