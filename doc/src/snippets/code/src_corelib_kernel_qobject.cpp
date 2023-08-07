@@ -1,6 +1,8 @@
 // Copyright (C) 2016 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+#undef QT_NO_FOREACH // this file contains unported legacy Q_FOREACH uses
+
 //! [0]
 QLineEdit *lineEdit = static_cast<QLineEdit *>(
         qt_find_obj_child(myWidget, "QLineEdit", "my line edit"));

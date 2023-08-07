@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 
+#undef QT_NO_FOREACH // this file contains unported legacy Q_FOREACH uses
+
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
