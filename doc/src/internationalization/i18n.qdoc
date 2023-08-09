@@ -429,6 +429,9 @@
     language, too. Use the \c lupdate tool \c -pluralonly command line option,
     to create TS files that contain only entries with plural forms.
 
+    Alternatively, you can use the \c lconvert tool's \c -pluralonly command
+    line option to remove all non-plural forms from an existing TS file.
+
     \section2 QML Example
 
     The following QML code snippet replaces \c %n with the value of \c total:
