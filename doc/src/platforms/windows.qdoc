@@ -506,9 +506,8 @@
 
     \section1 Shared Libraries
 
-    We have two challenges when deploying the \l
-    {tools/plugandpaint/app}{Plug & Paint} application using the shared
-    libraries approach: The Qt runtime has to be correctly
+    We have two challenges when deploying the \c plugandpaint application
+    using the shared libraries approach: The Qt runtime has to be correctly
     redistributed along with the application executable, and the
     plugins have to be installed in the correct location on the target
     system so that the application can find them.
@@ -522,8 +521,8 @@
     \section2 Linking the Application to Qt as a Shared Library
 
     After ensuring that Qt is built as a shared library, we can build
-    the \l {tools/plugandpaint/app}{Plug & Paint} application. First, we
-    must go into the directory that contains the application:
+    the \c plugandpaint application. First, we must go into the directory
+    that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 15
 
@@ -581,10 +580,9 @@
     environment.
 
     If the application starts without any problems, then we have
-    successfully made a dynamically linked version of the \l
-    {tools/plugandpaint/app}{Plug & Paint} application. But the
-    application's functionality will still be missing since we have
-    not yet deployed the associated plugins.
+    successfully made a dynamically linked version of the \c plugandpaint
+    application. But the application's functionality will still be missing
+    since we have not yet deployed the associated plugins.
 
     Plugins work differently to normal DLLs, so we can't just
     copy them into the same directory as our application's executable

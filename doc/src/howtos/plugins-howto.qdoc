@@ -216,7 +216,6 @@
     \li Use the Q_INTERFACES() macro to tell Qt's \l{meta-object
        system} about the interfaces.
     \li Export the plugin using the Q_PLUGIN_METADATA() macro.
-    \li Build the plugin using a suitable \c .pro file.
     \endlist
 
     For example, here's the definition of an interface class:
@@ -228,14 +227,13 @@
 
     \snippet plugins/extrafiltersplugin.h 0
 
-    The \l{tools/plugandpaint/app}{Plug & Paint} example documentation
-    explains this process in detail. See also \l{Creating Custom
-    Widgets for Qt Designer} for information about issues that are
-    specific to Qt Designer. You can also take a look at the
-    \l{Echo Plugin Example} which is a more trivial example on
-    how to implement a plugin that extends Qt applications.
-    Please note that a QCoreApplication must have been initialized
-    before plugins can be loaded.
+    You can take a look at the \l{Echo Plugin Example} which is a trivial
+    example on how to implement a plugin that extends Qt applications.
+    Note that a QCoreApplication instance must be initialized before
+    plugins can be loaded.
+
+    See also \l{Creating Custom Widgets for Qt Designer} for information
+    about issues that are specific to Qt Designer.
 
     \section1 Locating Plugins
 
@@ -372,5 +370,5 @@
     The \l{Deploying Plugins} document covers the process of deploying
     plugins with applications and debugging them when problems arise.
 
-    \sa QPluginLoader, QLibrary, {Plug & Paint Example}
+    \sa QPluginLoader, QLibrary
 */
