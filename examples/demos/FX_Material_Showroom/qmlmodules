@@ -9,7 +9,7 @@ add_subdirectory(content)
 add_subdirectory(imports)
 
 target_link_libraries(FxMaterialShowroomApp PRIVATE
-    contentplugin
+    FXMaterialShowroomContentplugin
     PocketDemoplugin
     CB_MaterialBundleplugin
     QQS_Appplugin

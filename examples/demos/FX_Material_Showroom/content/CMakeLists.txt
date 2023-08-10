@@ -1,6 +1,6 @@
-qt_add_library(content STATIC)
+qt_add_library(FXMaterialShowroomContent STATIC)
 
-qt_add_qml_module(content
+qt_add_qml_module(FXMaterialShowroomContent
     URI "content"
     VERSION 1.0
     QML_FILES
