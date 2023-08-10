@@ -162,14 +162,13 @@
     \brief Provides instructions to build Qt from source for iOS platform.
 
     Building \l {Qt for iOS} from sources requires \l Xcode with
-    command-line tools installed. This can be done within Xcode from
-    \gui Preferences > \gui Downloads > \gui Components >
-    \gui {Command Line Tools}.
-
+    Command Line Tools installed. You can install Xcode Command Line Tools
+    directly using \c {xcode-select –install} from you terminal or as a package
+    using \l {https://docs.brew.sh/Installation}{Homebrew}.
     Qt sources can be obtained either by cloning the repositories or
     downloading the source package(s).
 
-    We can then configure and build Qt. This is done from the Qt top
+    You can then configure and build Qt. This is done from the Qt top
     directory:
 
     \badcode
