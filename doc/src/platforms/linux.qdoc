@@ -469,8 +469,8 @@
 
     This documentation discusses specific deployment issues for \l{Qt for
     Linux/X11}. We will demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint/app}{Plug & Paint} application that is provided in Qt's
-    examples directory.
+    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes
+    with the Qt source package.
 
     Due to the proliferation of Unix systems (such as commercial Unixes, Linux
     distributions, and so on), deployment on Unix is a complex
@@ -552,9 +552,8 @@
 
     \section1 Shared Libraries
 
-    We have two challenges when deploying the \l
-    {tools/plugandpaint/app}{Plug & Paint} application using the shared
-    libraries approach: The Qt runtime has to be correctly
+    We have two challenges when deploying the \c plugandpaint application
+    using the shared libraries approach: The Qt runtime has to be correctly
     redistributed along with the application executable, and the
     plugins have to be installed in the correct location on the target
     system so that the application can find them.
@@ -568,8 +567,8 @@
     \section2 Linking the Application to Qt as a Shared Library
 
     After ensuring that Qt is built as a shared library, we can build
-    the \l {tools/plugandpaint/app}{Plug & Paint} application. First, we
-    must go into the directory that contains the application:
+    the \c plugandpaint application. First, we must go into the directory
+    that contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 4
 
@@ -650,8 +649,8 @@
     \snippet snippets/code/doc_src_deployment.pro 8
 
     An archive distributing all the Qt libraries, and all the plugins,
-    required to run the \l {tools/plugandpaint/app}{Plug & Paint}
-    application, would have to include the following files:
+    required to run the \c plugandpaint application, would have to
+    include the following files:
 
     \table 100%
     \header
@@ -673,13 +672,13 @@
         \li {2, 1} \c platforms\libqxcb.so
     \row
         \li The Qt Core module
-        \li {2, 1} \c libQt5Core.so.5
+        \li {2, 1} \c libQt6Core.so.6
     \row
         \li The Qt GUI module
-        \li {2, 1} \c libQt5Gui.so.5
+        \li {2, 1} \c libQt6Gui.so.6
     \row
         \li The Qt Widgets module
-        \li {2, 1} \c libQt5Widgets.so.5
+        \li {2, 1} \c libQt6Widgets.so.6
     \endtable
 
     On most systems, the extension for shared libraries is \c .so. A

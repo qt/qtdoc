@@ -24,7 +24,7 @@
     Alternatively, use the convenience script \c qt-cmake, which sets the
     \c CMAKE_PREFIX_PATH variable for you.
 
-    \badcode
+    \badcode \QtVersion
     path/to/Qt/\1/your_platform/bin/qt-cmake -S <source-dir> -B <build-dir> -G Ninja
     \endcode
 

@@ -760,7 +760,7 @@
     and make sure that the application finds the resources it needs at run-time.
     We demonstrate the procedures in terms of deploying the
     \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with
-    the Qt installation package.
+    the Qt source package.
 
     The Qt installers for \macos include a \l
     {macdeploy}{deployment tool} that automates the procedures described here.
@@ -881,7 +881,7 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 33
 
-    The \l {tools/plugandpaint/app}{Plug & Paint} example consists of
+    The \e {Plug & Paint} example consists of
     several components: The core application (\l
     {tools/plugandpaint/app}{Plug & Paint}), and the \l
     {tools/plugandpaint/plugins/basictools}{Basic Tools} and \l
@@ -926,8 +926,8 @@
 
     \section2 Linking the Application to Qt as Frameworks
 
-    After building Qt as frameworks, we can build the \l
-    {tools/plugandpaint/app} {Plug & Paint} application.
+    After building Qt as frameworks, we can build the \e {Plug & Paint}
+    application.
 
     \section3 Using CMake
 
@@ -1015,9 +1015,8 @@
     After this, we run \c otool again and see that the
     application can find the libraries.
 
-    The plugins for the \l {tools/plugandpaint/app}{Plug &
-    Paint} example makes it interesting. The basic steps we
-    need to follow with plugins are:
+    The plugins for the \e {Plug & Paint} example makes it interesting. The
+    basic steps we need to follow with plugins are:
 
     \list
         \li put the plugins inside the bundle,
