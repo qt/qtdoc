@@ -151,6 +151,15 @@
             permissions, buts only checks if they are provided or not. The
             client applications must request the permissions using the new
             QPermission API.
+        \li Qt now provides a native 128-bit unsigned int type as quint128.
+            On platforms that support it, the QBluetoothUuid(quint128)
+            constructor and the QBluetoothUuid::toUInt128() method now
+            use this type instead of a custom struct that earlier Qt
+            versions used. As long as your code treats quint128 as an opaque
+            type, the change is source- and binary-compatible, but consider
+            using the new overloads taking QUuid::Id128Bytes if you encounter
+            any issues. Platforms that do not support the 128-bit int types
+            (such as MSVC) still use the custom struct from Qt Bluetooth.
     \endlist
 
     \section2 Qt QML Module
