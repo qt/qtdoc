@@ -101,6 +101,20 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Multimedia Module
+
+    \list
+        \li The new \l {QWindowCapture} class adds support for capturing videos
+        of individual desktop application windows within a
+        \l {QMediaCaptureSession}. The recorded video can be directed to any
+        type of video output, for example to the \l {QMediaRecorder} or to the
+        \l {QVideoWidget}. Window capturing is only supported with the FFmpeg
+        backend.
+
+        \li \l {QMediaRecorder} has been extended with properties that gives
+        better control of video quality, resolution, and bit rates.
+    \endlist
+
     \section2 Qt Network Module
 
     \list
