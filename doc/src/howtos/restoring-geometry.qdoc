@@ -4,7 +4,7 @@
 /*!
     \page restoring-geometry.html
     \title Restoring a Window's Geometry
-    \brief How to save &amp; restore window geometry.
+    \brief How to save and restore window geometry.
     \ingroup best-practices
 
     This document describes how to save and restore a \l{Window
@@ -33,6 +33,5 @@
     Another solution is to store both \l{QWidget::pos()}{pos()} and
     \l{QWidget::size()}{size()} and to restore the geometry using
     \l{QWidget::resize()} and \l{QWidget::move()}{move()} before
-    calling \l{QWidget::show()}{show()}, as demonstrated in the
-    \l{mainwindows/application}{Application} example.
+    calling \l{QWidget::show()}{show()}.
 */
