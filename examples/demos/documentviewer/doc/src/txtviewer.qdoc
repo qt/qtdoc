@@ -10,7 +10,7 @@
     \brief A widget example with menus, toolbars and a status bar.
 
     The Text Viewer example is a text editor built around QPlainTextEdit,
-    in the form of a plugin for a general-purpose \l {DocumentViewer}.
+    in the form of a plugin for a general-purpose \l {Document Viewer}.
 
     All of the code for the Text Viewer example is in the \c TxtViewer class,
     which inherits \c AbstractViewer. \c AbstractViewer provides the framework
@@ -106,3 +106,4 @@
 
     The last two re-implementations provide functionality to save the current file or
     to save it under a new name.
+*/
