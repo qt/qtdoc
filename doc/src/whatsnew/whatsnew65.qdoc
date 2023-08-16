@@ -109,7 +109,7 @@
             \l {PinchHandler::}{persistentTranslation} properties that DragHandler
             already had.
         \li DragHandler's \c xAxis and \c yAxis have new
-            \l {DragHandler::xAxis::activeValue}{activeValue} properties.
+            \l {DragHandler::xAxis.activeValue}{activeValue} properties.
         \li PinchHandler's \l {PinchHandler::}{activeScale} (which was
             previously called \c scale) is no longer restricted to the range between
             \l {PinchHandler::}{minimumScale} and \l {PinchHandler::}{maximumScale}:
@@ -270,11 +270,11 @@
             gaining support for methods like map(), reduce() and forEach().
             The same holds for other sequence types, like QList<int> and
             similar.
-        \li Extended the \l {QML Type Compiler}{qmltc} to support more
+        \li Extended the \l {QML type compiler}{qmltc} to support more
             qml constructs, notably translation bindings, inline
             components, singletons, and signal handlers for C++-defined
             signals.
-        \li The \l {QML Script Compiler} can handle additional constructs. In
+        \li The \l {QML script compiler} can handle additional constructs. In
             particular:
             \list
                 \li console.log() and friends
