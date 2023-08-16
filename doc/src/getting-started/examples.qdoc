@@ -18,8 +18,6 @@
 
     \list
     \li \l{Basic Layouts Example}{Basic Layouts}
-    \li \l{Border Layout Example}{Border Layout}
-    \li \l{Dynamic Layouts Example}{Dynamic Layouts}
     \li \l{Flow Layout Example}{Flow Layout}
     \endlist
 
@@ -31,8 +29,6 @@
     \title Drag and Drop Examples
     \brief How to access your platform's native drag and drop functionality.
 
-    \image draganddrop-examples.png
-
     Qt supports native drag and drop on all platforms via an extensible
     MIME-based system that enables applications to send data to each other in the
     most appropriate formats.
@@ -42,12 +38,9 @@
     \list
     \li \l{draganddrop/draggableicons}{Draggable Icons}
     \li \l{draganddrop/draggabletext}{Draggable Text}
-    \li \l{draganddrop/dropsite}{Drop Site}\raisedaster
-    \li \l{draganddrop/fridgemagnets}{Fridge Magnets}\raisedaster
-    \li \l{draganddrop/puzzle}{Drag and Drop Puzzle}
+    \li \l{draganddrop/dropsite}{Drop Site}
     \endlist
 
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
