@@ -119,7 +119,7 @@ It can be loaded in a Qt application's \c main.cpp file like this:
 This creates a QWindow-based view that displays the contents of \c application.qml.
 
 The application's \c .pro \l{Creating Project Files}{project file} must specify
-the \c declarative module for the \c QT variable. For example:
+the \c quick module for the \c QT variable. For example:
 
 \code
     TEMPLATE += app
