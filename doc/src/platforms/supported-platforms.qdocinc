@@ -78,15 +78,14 @@
 The following configurations are supported in this Qt release:
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li Android 8.0 to Android 13 (API level 26 to API 33)
+    \row \li Android 8.0 to Android 14 (API level 26 to API 34)
         \li \c armeabi-v7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 14.0.6 (NDK r25b) as provided by Google
+        \li Clang 14.0.6 (NDK r26) as provided by Google
         \li For JDK versions see \l{Java Development Kit (JDK)}
 \endtable
- \note It's recommended that Qt user apps use the same NDK r25b version
- used for building these official Qt for Android libraries. An NDK version
- more recent than r23b is required if building a project results in an error
- of missing the symbols for \c __emutls_get_address.
+ \note It's recommended that Qt user apps use the same NDK r26 version
+ used for building these official Qt for Android libraries to avoid missing
+ symbol errors.
 
 //! [android]
 

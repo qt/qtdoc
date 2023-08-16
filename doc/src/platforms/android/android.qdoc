@@ -140,7 +140,7 @@
 
     \section3 Java Development Kit (JDK)
 
-    Qt for Android development requires JDK 11 or above, provided by any of the
+    Qt for Android development requires JDK 17 or above, provided by any of the
     following supported distributions:
 
     \list
@@ -155,16 +155,16 @@
     For example for Linux:
 
     \badcode
-        sudo apt-get install openjdk-11-jdk
-        export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+        sudo apt-get install openjdk-17-jdk
+        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
     \endcode
 
     Or for \macOS:
 
     \badcode
-        brew install openjdk@11
-        sudo ln -sfn "$(brew --prefix openjdk@11)/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
-        export JAVA_HOME="$(/usr/libexec/java_home -v 11)"
+        brew install openjdk@17
+        sudo ln -sfn "$(brew --prefix openjdk@17)/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
+        export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
     \endcode
 
     \section3 Android SDK Command Line Tools
@@ -190,22 +190,22 @@
 
     \section3 Android SDK
 
-    The required version of the Platform, Platform Tools, and Build Tools for \QtVer is 33.
+    The required version of the Platform, Platform Tools, and Build Tools for \QtVer is 34.
 
     To install all of these run the following command:
 
     \badcode
-        sdkmanager "platforms;android-33" "platform-tools" "build-tools;33.0.0"
+        sdkmanager "platforms;android-33" "platform-tools" "build-tools;34.0.0"
     \endcode
 
     \section3 Android NDK
 
-    The required version of the Android NDK for \QtVer is 25.1.8937393.
+    The required version of the Android NDK for \QtVer is 26.0.10792818.
 
     To install the NDK run the following command:
 
     \badcode
-        sdkmanager "ndk;25.1.8937393"
+        sdkmanager "ndk;26.0.10792818"
     \endcode
 
     Then make sure the \c ANDROID_NDK_ROOT environment variable is pointing to the
@@ -214,7 +214,7 @@
     For example for \macOS:
 
     \badcode
-        export ANDROID_NDK_ROOT="$(brew --prefix)/share/android-commandlinetools/ndk/25.1.8937393/"
+        export ANDROID_NDK_ROOT="$(brew --prefix)/share/android-commandlinetools/ndk/26.0.10792818/"
     \endcode
 
     \section3 Emulator
