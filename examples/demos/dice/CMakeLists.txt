@@ -10,7 +10,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics Multimedia Sensors)
 
 qt_standard_project_setup()
 
@@ -29,6 +29,8 @@ target_link_libraries(dice PRIVATE
     Qt6::Quick
     Qt6::Quick3D
     Qt6::Quick3DPhysics
+    Qt6::Multimedia
+    Qt6::Sensors
 )
 
 # Resources:
@@ -53,6 +55,10 @@ set(qml_resource_files
     meshes/object_2.mesh
     meshes/object_3.mesh
     meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh
+
+    #sounds
+    sounds/onedice.wav
+    sounds/rolling.wav
 )
 
 qt_add_resources(dice "qml"
