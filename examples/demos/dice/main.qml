@@ -1,12 +1,11 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 import QtQuick
-import QtQml
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import QtSensors
 
 ApplicationWindow {
     id: root
@@ -14,6 +13,28 @@ ApplicationWindow {
     height: 600
     visible: true
     property real currDrawerWidth: drawer.width * drawer.position
+
+    Accelerometer {
+        id: accelerometer
+        dataRate: 25
+        active: true
+        property real previousForce: 0
+        property real multiplier: 100
+        onReadingChanged: {
+            let force = Qt.vector3d(reading.x, reading.y, reading.z - 9.81)
+            if (isShake(force, previousForce)) {
+                tapLabel.hide()
+                force.x *= multiplier
+                force.y *= multiplier
+                force.z *= multiplier
+                scene.spawnDice(diceSlider.value, force)
+            }
+            previousForce = force.length()
+        }
+        function isShake(force, previousForce) {
+            return ((force.length() > 16) && (force.length() < previousForce))
+        }
+    }
 
     Scene {
         id: scene
@@ -31,7 +52,7 @@ ApplicationWindow {
                 centerIn: parent
             }
 
-            text: qsTr("Tap/click to throw dice")
+            text: qsTr("Tap, click or shake to throw dice")
             font.pixelSize: 32
             font.bold: true
             style: Text.Raised
@@ -47,7 +68,7 @@ ApplicationWindow {
 
             function hide() {
                 if (tapLabel.opacity >= 1) {
-                    tapLabelAnimation.running = true;
+                    tapLabelAnimation.running = true
                 }
             }
         }
@@ -57,23 +78,23 @@ ApplicationWindow {
                 fill: parent
             }
             onClicked: {
-                tapLabel.hide();
-                scene.spawnDice(diceSlider.value);
+                tapLabel.hide()
+                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0))
             }
         }
 
         function updateGravity() {
             if (gravityZero.checked) {
-                scene.settingGravity = 0;
+                scene.settingGravity = 0
             }
             if (gravityMoon.checked) {
-                scene.settingGravity = 162;
+                scene.settingGravity = 162
             }
             if (gravityMars.checked) {
-                scene.settingGravity = 371;
+                scene.settingGravity = 371
             }
             if (gravityEarth.checked) {
-                scene.settingGravity = 980.7;
+                scene.settingGravity = 980.7
             }
         }
     }
@@ -185,7 +206,7 @@ ApplicationWindow {
                 to: 10
                 value: 5
                 stepSize: 1
-                onValueChanged: scene.spawnDice(value)
+                onValueChanged: scene.spawnDice(value, Qt.vector3d(0, 0, 0))
             }
 
             // Throw dice
@@ -193,7 +214,8 @@ ApplicationWindow {
                 id: throwButton
                 Layout.alignment: Qt.AlignHCenter
                 text: qsTr("Throw dice")
-                onClicked: scene.spawnDice(diceSlider.value)
+                onClicked: scene.spawnDice(diceSlider.value,
+                                           Qt.vector3d(0, 0, 0))
             }
         }
     }
@@ -203,8 +225,8 @@ ApplicationWindow {
         text: qsTr("\u2630")
         x: currDrawerWidth
         onClicked: {
-            tapLabel.hide();
-            drawer.open();
+            tapLabel.hide()
+            drawer.open()
         }
     }
 }

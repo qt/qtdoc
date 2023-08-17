@@ -1,6 +1,5 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 import QtQuick
 import QtQuick3D
 import QtQuick3D.Physics
@@ -13,8 +12,8 @@ Item {
     property real settingsDynamicFriction: 0.5
     property real settingsRestitution: 0.5
 
-    function spawnDice(numberOfDice) {
-        diceSpawner.spawnDice(numberOfDice, physicsMaterial);
+    function spawnDice(numberOfDice, rollForce) {
+        diceSpawner.spawnDice(numberOfDice, physicsMaterial, rollForce)
     }
 
     PhysicsWorld {
@@ -99,8 +98,7 @@ Item {
             StaticRigidBody {
                 position: Qt.vector3d(0, -50, 0)
                 eulerRotation: Qt.vector3d(-90, 0, 0)
-                collisionShapes: PlaneShape {
-                }
+                collisionShapes: PlaneShape {}
             }
         }
     }
