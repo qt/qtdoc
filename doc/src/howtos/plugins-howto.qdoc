@@ -17,8 +17,8 @@
     Qt provides two APIs for creating plugins:
 
     \list
-    \li A high-level API for writing extensions to Qt itself: custom database
-       drivers, image formats, text codecs, custom styles, etc.
+    \li A high-level API for writing extensions to Qt itself, such as custom
+    database drivers, image formats, text codecs, and custom styles.
     \li A low-level API for extending Qt applications.
     \endlist
 
@@ -29,12 +29,8 @@
     Since the higher-level API is built on top of the lower-level API,
     some issues are common to both.
 
-    If you want to provide plugins for use with Qt Designer, see the Qt Designer
-    module documentation.
-
-    Topics:
-
-    \tableofcontents
+    If you want to provide plugins for use with Qt Designer, see
+    \l {Creating Custom Widget Plugins}.
 
     \section1 The High-Level API: Writing Qt Extensions
 
@@ -166,7 +162,7 @@
     \snippet plugins/doc_src_plugins-howto.qdoc 6
 
     The type of information that needs to be provided in the json file
-    is plugin dependent, please see the class documentation for
+    is plugin dependent. See the class documentation for
     details on the information that needs to be contained in the
     file.
 
@@ -188,11 +184,11 @@
 
     \section1 The Low-Level API: Extending Qt Applications
 
-    Not only Qt itself but also Qt application can be extended
+    In addition to Qt itself, Qt applications can be extended
     through plugins. This requires the application to detect and load
     plugins using QPluginLoader. In that context, plugins may provide
     arbitrary functionality and are not limited to database drivers,
-    image formats, text codecs, styles, and the other types of plugin
+    image formats, text codecs, styles, and other types of plugins
     that extend Qt's functionality.
 
     Making an application extensible through plugins involves the
@@ -241,7 +237,7 @@
 
     Qt applications automatically know which plugins are available,
     because plugins are stored in the standard plugin subdirectories.
-    Because of this applications don't require any code to find and load
+    Because of this, applications don't require any code to find and load
     plugins, since Qt handles them automatically.
 
     During development, the directory for plugins is \c{QTDIR/plugins}
@@ -255,7 +251,7 @@
     with this path and your plugins will be available to the application.
     Note that the final part of the path (for example, \c styles) cannot be changed.
 
-    If you want the plugin to be loadable then one approach is to
+    If you want the plugin to be loadable, one approach is to
     create a subdirectory under the application, and place the plugin
     in that directory. If you distribute any of the plugins that come
     with Qt (the ones located in the \c plugins directory), you must
@@ -281,9 +277,9 @@
     and redistribution of the application.
 
     CMake and qmake automatically add the plugins that are typically needed by
-    the Qt modules used, while more specialized plugins need to be added
-    manually. The default list of automatically added plugins can be overridden
-    per type.
+    the Qt modules that are used, while more specialized plugins need to be
+    added manually. The default list of automatically added plugins can be
+    overridden per type.
 
     The defaults are tuned towards an optimal out-of-the-box experience, but may
     unnecessarily bloat the application. It is recommended to inspect the linker
@@ -345,7 +341,7 @@
 
     \section2 Creating Static Plugins
 
-    It is also possible to create your own static plugins, by
+    It is also possible to create your own static plugins by
     following these steps:
 
     \list 1
