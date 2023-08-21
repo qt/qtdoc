@@ -80,9 +80,18 @@ macro.qtmajorversion.match    = "^(\\d+)"
 macro.qt5 = "\\l{https://doc.qt.io/qt-5/\1}{\2}"
 macro.qtbug = "\\l{https://bugreports.qt.io/browse/\1}{\1}"
 
-manifestmeta.highlighted.names = "QtDoc/Coffee Machine Example" \
-                                 "QtDoc/Qt Quick Demo - Same Game" \
-                                 "QtDoc/Qt Quick Demo - Calqlatr"
+# Highlight all examples in "Application Examples" category, as they are
+# often added also to other categories (and typically are highlighted there)
+manifestmeta.highlighted.names = "QtDoc/Calqlatr" \
+                                 "QtDoc/Coffee Machine" \
+                                 "QtDoc/Dice" \
+                                 "QtDoc/Document Viewer" \
+                                 "QtDoc/FX & Material Showroom" \
+                                 "QtDoc/Media Player Example" \
+                                 "QtDoc/Photo Surface" \
+                                 "QtDoc/Robot Arm Example" \
+                                 "QtDoc/Thermostat" \
+                                 "QtDoc/To Do List Example"
 
 manifestmeta.examplecategories = "Application Examples" \
                                  "Desktop" \
