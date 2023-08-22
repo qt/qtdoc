@@ -68,14 +68,6 @@ tst_examples::tst_examples()
     excludedFiles << "examples/demos/robotarm/main.qml"; // relies on custom import
     excludedFiles << "examples/demos/FX_Material_Showroom/main.qml"; // relies on custom import
 
-#ifdef QT_NO_XMLPATTERNS
-    excludedDirs << "demos/twitter";
-    excludedDirs << "demos/flickr";
-    excludedFiles << "snippets/qml/xmlrole.qml";
-    excludedFiles << "particles/itemparticle/particleview.qml";
-    excludedFiles << "views/visualdatamodel/slideshow.qml";
-#endif
-
 #if !QT_CONFIG(opengl)
     //No support for Particles
     excludedFiles << "examples/qml/dynamicscene/dynamicscene.qml";
