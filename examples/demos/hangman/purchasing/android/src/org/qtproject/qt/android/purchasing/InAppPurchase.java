@@ -13,8 +13,13 @@ import android.util.Log;
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryPurchasesParams;
+import com.android.billingclient.api.QueryProductDetailsParams.Product;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingFlowParams.ProductDetailsParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ConsumeResponseListener;
@@ -22,35 +27,31 @@ import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.Purchase.PurchaseState;
 import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
-
+import com.android.billingclient.api.ProductDetails;
 
 /***********************************************************************
  ** More info: https://developer.android.com/google/play/billing
  ** Add Dependencies below to build.gradle file:
 
 dependencies {
-    def billing_version = "4.0.0"
-    implementation "com.android.billingclient:billing:$billing_version"
+    def billingVersion = "6.0.1"
+    implementation "com.android.billingclient:billing:$billingVersion"
 }
 
 ***********************************************************************/
 
 public class InAppPurchase implements PurchasesUpdatedListener
 {
-    private Context m_context = null;
+    private Context m_context;
     private long m_nativePointer;
     private String m_publicKey = null;
     private int purchaseRequestCode;
-
 
     private BillingClient billingClient;
 
     public static final int RESULT_OK = BillingClient.BillingResponseCode.OK;
     public static final int RESULT_USER_CANCELED = BillingClient.BillingResponseCode.USER_CANCELED;
-    public static final String TYPE_INAPP = BillingClient.SkuType.INAPP;
+    public static final String TYPE_INAPP = BillingClient.ProductType.INAPP;
     public static final String TAG = "InAppPurchase";
 
     // Should be in sync with InAppTransaction::FailureReason
@@ -72,11 +73,11 @@ public class InAppPurchase implements PurchasesUpdatedListener
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(BillingResult billingResult) {
-                if (billingResult.getResponseCode() == RESULT_OK) {
+                if (billingResult.getResponseCode() == RESULT_OK)
                     purchasedProductsQueried(m_nativePointer);
-                }
+                else
+                    Log.w(TAG, "Can not connect to Billing service");
             }
-
             @Override
             public void onBillingServiceDisconnected() {
                 Log.w(TAG, "Billing service disconnected");
@@ -86,18 +87,16 @@ public class InAppPurchase implements PurchasesUpdatedListener
 
     @Override
     public void onPurchasesUpdated(BillingResult billingResult, List<Purchase> purchases) {
-
         int responseCode = billingResult.getResponseCode();
-
-        if (purchases == null) {
+        if (purchases == null || purchases.isEmpty()) {
             purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, "Data missing from result");
             return;
         }
-
-        if (billingResult.getResponseCode() == RESULT_OK) {
+        if (responseCode == RESULT_OK) {
             handlePurchase(purchases);
         } else if (responseCode == RESULT_USER_CANCELED) {
-            purchaseFailed(purchaseRequestCode, FAILUREREASON_USERCANCELED, "");
+            purchaseFailed(
+                    purchaseRequestCode, FAILUREREASON_USERCANCELED, "User canceled the purchase.");
         } else {
             String errorString = getErrorString(responseCode);
             purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, errorString);
@@ -106,174 +105,222 @@ public class InAppPurchase implements PurchasesUpdatedListener
 
     //Get list of purchases from onPurchasesUpdated
     private void handlePurchase(List<Purchase> purchases) {
-
         for (Purchase purchase : purchases) {
             try {
-                if (m_publicKey != null && !Security.verifyPurchase(m_publicKey, purchase.getOriginalJson(), purchase.getSignature())) {
-                    purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, "Signature could not be verified");
+                if (m_publicKey != null && !Security.verifyPurchase(
+                        m_publicKey, purchase.getOriginalJson(), purchase.getSignature())) {
+                    purchaseFailed(
+                            purchaseRequestCode,
+                            FAILUREREASON_ERROR,
+                            "Signature could not be verified");
                     return;
                 }
                 int purchaseState = purchase.getPurchaseState();
                 if (purchaseState != PurchaseState.PURCHASED) {
-                    purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, "Unexpected purchase state in result");
+                    purchaseFailed(
+                            purchaseRequestCode,
+                            FAILUREREASON_ERROR,
+                            "Unexpected purchase state in result");
                     return;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, e.getMessage());
             }
-            purchaseSucceeded(purchaseRequestCode, purchase.getSignature(), purchase.getOriginalJson(), purchase.getPurchaseToken(), purchase.getOrderId(), purchase.getPurchaseTime());
+            purchaseSucceeded(
+                purchaseRequestCode,
+                purchase.getSignature(),
+                purchase.getOriginalJson(),
+                purchase.getPurchaseToken(),
+                purchase.getOrderId(),
+                purchase.getPurchaseTime());
         }
+    }
+
+    private QueryProductDetailsParams productDetailsResponse(String[] strIdList) {
+        List<Product> productIdList = new ArrayList<>();
+        for (String productId : strIdList) {
+            productIdList.add(
+                Product.newBuilder()
+                .setProductId(productId)
+                .setProductType(TYPE_INAPP).build());
+        }
+        QueryProductDetailsParams queryProductDetailsParams = QueryProductDetailsParams.newBuilder()
+                .setProductList(productIdList)
+                .build();
+        return queryProductDetailsParams;
     }
 
     public void queryDetails(final String[] productIds) {
-
-        int index = 0;
-        while (index < productIds.length) {
-            List<String> productIdList = new ArrayList<>();
-            for (int i = index; i < Math.min(index + 20, productIds.length); ++i) {
-                productIdList.add(productIds[i]);
-            }
-            index += productIdList.size();
-
-            SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
-            params.setSkusList(productIdList).setType(TYPE_INAPP);
-            billingClient.querySkuDetailsAsync(params.build(),
-                    new SkuDetailsResponseListener() {
-                        @Override
-                        public void onSkuDetailsResponse(BillingResult billingResult, List<SkuDetails> skuDetailsList) {
-                            int responseCode = billingResult.getResponseCode();
-
-                            if (responseCode != RESULT_OK) {
-                                Log.e(TAG, "queryDetails: Couldn't retrieve sku details.");
-                                return;
-                            }
-                            if (skuDetailsList == null) {
-                                Log.e(TAG, "queryDetails: No details list in response.");
-                                return;
-                            }
-
-                            for (SkuDetails skuDetails : skuDetailsList) {
-                                try {
-                                    String queriedProductId = skuDetails.getSku();
-                                    String queriedPrice = skuDetails.getPrice();
-                                    String queriedTitle = skuDetails.getTitle();
-                                    String queriedDescription = skuDetails.getDescription();
-                                    registerProduct(m_nativePointer,
-                                            queriedProductId,
-                                            queriedPrice,
-                                            queriedTitle,
-                                            queriedDescription);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
+        QueryProductDetailsParams queryProductDetailsParams = productDetailsResponse(productIds);
+        billingClient.queryProductDetailsAsync(
+                queryProductDetailsParams, new ProductDetailsResponseListener() {
+            @Override
+            public void onProductDetailsResponse(
+                    BillingResult billingResult,
+                    List<ProductDetails> productDetailsResponseList) {
+                int responseCode = billingResult.getResponseCode();
+                List<String> productIdList = new ArrayList<String>();
+                if (responseCode != RESULT_OK) {
+                    Log.e(TAG, "queryDetails: Couldn't retrieve product details.");
+                }
+                if (productDetailsResponseList == null || productDetailsResponseList.isEmpty()) {
+                    Log.e(TAG, "queryDetails: No details list in the response.");
+                }
+                for (ProductDetails productDetails : productDetailsResponseList) {
+                    try {
+                        String queriedProductId = productDetails.getProductId();
+                        String queriedPrice = productDetails
+                                .getOneTimePurchaseOfferDetails()
+                                .getFormattedPrice();
+                        String queriedTitle = productDetails.getTitle();
+                        String queriedDescription = productDetails.getDescription();
+                        if (queriedProductId.equals("") ||
+                                queriedPrice.equals("") ||
+                                queriedTitle.equals("") ||
+                                queriedDescription.equals("")) {
+                            Log.e(TAG, "Data missing from product details.");
+                            failedProducts.add(queriedProductId);
+                            queryFailed(m_nativePointer, queriedProductId);
+                        } else {
+                            productIdList.add(queriedProductId);
+                            registerProduct(m_nativePointer,
+                                    queriedProductId,
+                                    queriedPrice,
+                                    queriedTitle,
+                                    queriedDescription);
                         }
-                    });
-
-
-            queryPurchasedProducts(productIdList);
-        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e(TAG, "queryDetails: ", e);
+                    }
+                }
+                queryPurchasedProducts(productIdList);
+            }
+        });
     }
 
-    //Launch Google purchasing screen
-    public void launchBillingFlow(String identifier, int requestCode){
+    public void launchBillingFlow(String identifier, int purchaseRequestCode){
+        QueryProductDetailsParams queryProductDetailsParams =
+                productDetailsResponse(new String[]{identifier});
+        billingClient.queryProductDetailsAsync(
+                queryProductDetailsParams, new ProductDetailsResponseListener() {
+            public void onProductDetailsResponse(
+                    BillingResult billingResult,
+                    List<ProductDetails> productDetailsResponseList) {
+                int responseCode = billingResult.getResponseCode();
+                if (responseCode != RESULT_OK) {
+                    String errorString = getErrorString(purchaseRequestCode);
+                    purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, errorString);
+                    return;
+                } else if (productDetailsResponseList == null
+                        || productDetailsResponseList.isEmpty()) {
+                    purchaseFailed(
+                            purchaseRequestCode,
+                            FAILUREREASON_ERROR,
+                            "Data missing from result");
+                    return;
+                }
+                List<ProductDetailsParams> productDetailsParamsList = new ArrayList<>();
+                productDetailsParamsList.add(
+                        ProductDetailsParams.newBuilder()
+                                .setProductDetails(productDetailsResponseList.get(0))
+                                .build()
+                );
+                BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                        .setProductDetailsParamsList(productDetailsParamsList)
+                        .build();
 
-        purchaseRequestCode = requestCode;
-        List<String> skuList = new ArrayList<>();
-        skuList.add(identifier);
-        SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
-        params.setSkusList(skuList).setType(TYPE_INAPP);
-        billingClient.querySkuDetailsAsync(params.build(),
-                new SkuDetailsResponseListener() {
-                    @Override
-                    public void onSkuDetailsResponse(BillingResult billingResult, List<SkuDetails> skuDetailsList) {
-
-                        if (billingResult.getResponseCode() != RESULT_OK) {
-                            Log.e(TAG, "Unable to launch Google Play purchase screen");
-                            String errorString = getErrorString(requestCode);
-                            purchaseFailed(requestCode, FAILUREREASON_ERROR, errorString);
-                            return;
-                        }
-                        else if (skuDetailsList == null){
-                            purchaseFailed(purchaseRequestCode, FAILUREREASON_ERROR, "Data missing from result");
-                            return;
-                        }
-
-                        BillingFlowParams purchaseParams = BillingFlowParams.newBuilder()
-                                .setSkuDetails(skuDetailsList.get(0))
-                                .build();
-
-                        //Results will be delivered to onPurchasesUpdated
-                        billingClient.launchBillingFlow((Activity) m_context, purchaseParams);
-                    }
-                });
+                billingClient.launchBillingFlow((Activity) m_context, billingFlowParams);
+            }
+        });
     }
 
     public void consumePurchase(String purchaseToken){
-
         ConsumeResponseListener listener = new ConsumeResponseListener() {
             @Override
             public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
                 if (billingResult.getResponseCode() != RESULT_OK) {
-                    Log.e(TAG, "Unable to consume purchase. Response code: " + billingResult.getResponseCode());
+                    Log.e(TAG,
+                            "Unable to consume purchase. Response code: "
+                            + billingResult.getResponseCode());
                 }
             }
         };
-        ConsumeParams consumeParams =
-                ConsumeParams.newBuilder()
-                        .setPurchaseToken(purchaseToken)
-                        .build();
+        ConsumeParams consumeParams = ConsumeParams
+                .newBuilder()
+                .setPurchaseToken(purchaseToken)
+                .build();
         billingClient.consumeAsync(consumeParams, listener);
     }
 
     public void acknowledgeUnlockablePurchase(String purchaseToken){
-
-        AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
+        AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams
+                .newBuilder()
                 .setPurchaseToken(purchaseToken)
                 .build();
-
-        AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener = new AcknowledgePurchaseResponseListener() {
+        AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener =
+                new AcknowledgePurchaseResponseListener() {
             @Override
             public void onAcknowledgePurchaseResponse(BillingResult billingResult) {
                 if (billingResult.getResponseCode() != RESULT_OK){
-                    Log.e(TAG, "Unable to acknowledge purchase. Response code: " + billingResult.getResponseCode());
+                    Log.e(TAG,
+                            "Unable to acknowledge purchase. Response code: "
+                            + billingResult.getResponseCode());
                 }
             }
         };
-        billingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener);
+        billingClient.acknowledgePurchase(
+                acknowledgePurchaseParams,
+                acknowledgePurchaseResponseListener);
     }
 
     public void queryPurchasedProducts(List<String> productIdList) {
-
-        billingClient.queryPurchasesAsync(TYPE_INAPP, new PurchasesResponseListener() {
-            @Override
-            public void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> list) {
-                for (Purchase purchase : list) {
-
-                    if (productIdList.contains(purchase.getSkus().get(0))) {
-                        registerPurchased(m_nativePointer,
-                                purchase.getSkus().get(0),
+        billingClient.queryPurchasesAsync(
+            QueryPurchasesParams.newBuilder().setProductType(TYPE_INAPP).build(),
+                    new PurchasesResponseListener() {
+                public void onQueryPurchasesResponse(
+                        BillingResult billingResult,
+                        List<Purchase> purchases) {
+                    if (billingResult.getResponseCode() != RESULT_OK) {
+                        Log.e(TAG, "queryPurchasedProducts: Couldn't retrieve purchased item.");
+                        return;
+                    }
+                    if (purchases == null || purchases.isEmpty()) {
+                        Log.e(TAG, "queryPurchasedProducts: No purchase list in response.");
+                        return;
+                    }
+                    for (Purchase purchase : purchases) {
+                        if (productIdList.contains(purchase.getProducts().get(0))) {
+                            registerPurchased(m_nativePointer,
+                                purchase.getProducts().get(0),
                                 purchase.getSignature(),
                                 purchase.getOriginalJson(),
                                 purchase.getPurchaseToken(),
                                 purchase.getDeveloperPayload(),
                                 purchase.getPurchaseTime());
+                        }
                     }
                 }
             }
-        });
+        );
     }
 
     private String getErrorString(int responseCode){
         String errorString;
         switch (responseCode) {
-            case BillingClient.BillingResponseCode.BILLING_UNAVAILABLE: errorString = "Billing unavailable"; break;
-            case BillingClient.BillingResponseCode.ITEM_UNAVAILABLE: errorString = "Item unavailable"; break;
-            case BillingClient.BillingResponseCode.DEVELOPER_ERROR: errorString = "Developer error"; break;
-            case BillingClient.BillingResponseCode.ERROR: errorString = "Fatal error occurred"; break;
-            case BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED: errorString = "Item already owned"; break;
-            case BillingClient.BillingResponseCode.ITEM_NOT_OWNED: errorString = "Item not owned"; break;
+            case BillingClient.BillingResponseCode.BILLING_UNAVAILABLE:
+                    errorString = "Billing unavailable"; break;
+            case BillingClient.BillingResponseCode.ITEM_UNAVAILABLE:
+                    errorString = "Item unavailable"; break;
+            case BillingClient.BillingResponseCode.DEVELOPER_ERROR:
+                    errorString = "Developer error"; break;
+            case BillingClient.BillingResponseCode.ERROR:
+                    errorString = "Fatal error occurred"; break;
+            case BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED:
+                    errorString = "Item already owned"; break;
+            case BillingClient.BillingResponseCode.ITEM_NOT_OWNED:
+                    errorString = "Item not owned"; break;
             default: errorString = "Unknown billing error " + responseCode; break;
         };
         return errorString;
@@ -297,7 +344,14 @@ public class InAppPurchase implements PurchasesUpdatedListener
                                    String orderId,
                                    long timestamp)
     {
-        purchaseSucceeded(m_nativePointer, requestCode, signature, purchaseData, purchaseToken, orderId, timestamp);
+        purchaseSucceeded(
+                m_nativePointer,
+                requestCode,
+                signature,
+                purchaseData,
+                purchaseToken,
+                orderId,
+                timestamp);
     }
 
     private native static void queryFailed(long nativePointer, String productId);
