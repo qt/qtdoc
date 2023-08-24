@@ -49,7 +49,7 @@
         \l{Options for Unattended Usage}.
     \endlist
 
-    The following examples demonstrate how you install Qt 6.5.0 binaries
+    The following examples demonstrate how you install Qt 6.6.0 binaries
     with Qt Online installer for Windows, macOS, and Linux. The unattended
     commands automatically accept the licenses (\b{\c{--accept-licenses}}), answer
     all message queries with their default answer (\b{\c{--default-answer}}), skip
@@ -58,13 +58,13 @@
 
     \badcode
     # Windows: new installation with Qt Online installer
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.win64_msvc2019_64
 
     # macOS: new installation with Qt Online installer
-    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_644
+    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.clang_644
 
     # linux: new installation with Qt Online installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.gcc_64
     \endcode
 
     \l{Options for Unattended Usage} lists all available options for unattended
@@ -82,7 +82,7 @@
         \l{Options for Unattended Usage}.
     \endlist
 
-    The following examples demonstrate how you add Qt 6.5.0 binaries
+    The following examples demonstrate how you add Qt 6.6.0 binaries
     with Maintenance Tool to an exsting installation on Windows, macOS, and
     Linux. The unattended commands automatically accept the licenses
     (\b{\c{--accept-licenses}}), answer all message queries with their default
@@ -92,13 +92,13 @@
 
     \badcode
     # Windows: update installation with Maintenance Tool
-    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
+    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.win64_msvc2019_64
 
     # macOS: update installation with Maintenance Tool
-    MaintenanceTool.dmg --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_64
+    MaintenanceTool.dmg --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.clang_64
 
     # linux: update installation with Maintenance Tool
-    MaintenanceTool.run --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
+    MaintenanceTool.run --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.gcc_64
     \endcode
 
     \section2 Options for Unattended Usage
@@ -241,31 +241,31 @@
     \endlist
 
     The following examples demonstrate how you create a new installation
-    of Qt 6.5.0 binaries with Qt Online installer for Windows, macOS, and Linux:
+    of Qt 6.6.0 binaries with Qt Online installer for Windows, macOS, and Linux:
 
     \badcode
     # Windows: new installation with user interaction
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir install qt.qt6.650.win64_msvc2019_64
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir install qt.qt6.660.win64_msvc2019_64
 
     # macOS: new installation with user interaction
-    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir install qt.qt6.650.clang_64
+    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir install qt.qt6.660.clang_64
 
     # linux: new installation with user interaction
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.650.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.660.gcc_64
     \endcode
 
     The following examples demonstrate how you update your existing
-    installation by installing the Qt 6.5.0 binaries with Maintenance Tool:
+    installation by installing the Qt 6.6.0 binaries with Maintenance Tool:
 
     \badcode
     # Windows: update installation with Maintenance Tool
-    MaintenanceTool.exe install qt.qt6.650.win64_msvc2019_64
+    MaintenanceTool.exe install qt.qt6.660.win64_msvc2019_64
 
     # macOS: update installation with Maintenance Tool
-    MaintenanceTool.dmg install qt.qt6.650.clang_64
+    MaintenanceTool.dmg install qt.qt6.660.clang_64
 
     # Linux: update installation with Maintenance Tool
-    MaintenanceTool.run install qt.qt6.650.gcc_64
+    MaintenanceTool.run install qt.qt6.660.gcc_64
     \endcode
 
     \section1 Uninstalling Packages
@@ -285,18 +285,18 @@
     prevent accidental changes. Use \b{\c{--confirm-command}} to skip asking for
     permission to continue.
 
-    The following example uninstalls the Qt 6.5.0 binaries without user
+    The following example uninstalls the Qt 6.6.0 binaries without user
     interaction:
 
     \badcode
     # windows
-    MaintenanceTool.exe --confirm-command remove qt.qt6.650.win64_msvc2019_64
+    MaintenanceTool.exe --confirm-command remove qt.qt6.660.win64_msvc2019_64
 
     # macOS
-    MaintenanceTool.dmg --confirm-command remove install qt.qt6.650.clang_64
+    MaintenanceTool.dmg --confirm-command remove install qt.qt6.660.clang_64
 
     # linux
-    MaintenanceTool.run --confirm-command remove qt.qt6.650.gcc_64
+    MaintenanceTool.run --confirm-command remove qt.qt6.660.gcc_64
     \endcode
 
     The following examples uninstall all packages and ask for permission to
@@ -320,24 +320,24 @@
     \b{\c{--filter-packages <regexp>}}. For example, filtering with the display
     name information can help search.
 
-    For example, the following command finds all MSVC 2019 packages for Qt 6.5.0:
+    For example, the following command finds all MSVC 2019 packages for Qt 6.6.0:
 
     \badcode
-    search .*650.*msvc2019
+    search .*660.*msvc2019
     \endcode
 
     You get the same result when you filter the search result as follows:
 
     \badcode
-    search --filter-packages DisplayName=MSVC 2019,Version=6.5.0
+    search --filter-packages DisplayName=MSVC 2019,Version=6.6.0
     \endcode
 
     As a result, you get the following packages:
 
     \badcode
     <availablepackages>
-        <package name="qt.qt6.650.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.5.0-0-202303290841"/>
-        <package name="qt.qt6.650.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.5.0-0-202303290841"/>
+        <package name="qt.qt6.660.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.6.0-0-202303290841"/>
+        <package name="qt.qt6.660.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.6.0-0-202303290841"/>
     </availablepackages>
     \endcode
 
