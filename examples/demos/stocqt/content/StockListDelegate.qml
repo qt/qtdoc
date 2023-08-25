@@ -60,7 +60,7 @@ Rectangle {
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
             text: change
-            onTextChanged: {
+            onTextChanged: (text) => {
                 if (parseFloat(text) >= 0.0)
                     color = "#328930";
                 else
@@ -96,7 +96,7 @@ Rectangle {
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
             text: changePercentage
-            onTextChanged: {
+            onTextChanged: (text) => {
                 if (parseFloat(text) >= 0.0)
                     color = "#328930";
                 else
