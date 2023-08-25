@@ -120,6 +120,65 @@ The following configurations are supported in this Qt release:
 \section1 Embedded Platforms
 //! [embedded]
 
+\section2 Support Levels for Target Hardware
+
+    There are multiple levels of support that apply across specific hardware and
+    OS combinations.
+
+    \section3 Tier 1: Reference Targets
+
+    \list
+        \li Issues on this reference target are given a higher priority than lower
+        tier targets.
+        \li Covered under \l{Qt Support Terms and Conditions}{Standard Support}.
+        \li Releases are available via the Qt Online Installer.
+    \endlist
+
+    \table
+    \header \li{4,1} Tier 1: Reference Targets
+    \header \li Vendor \li Board \li OS / Other \li Provided By
+    \row \li NXP \li \l {i.MX 8M Mini LPDDR4 EVK} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li NXP \li \l {i.MX 8QuadMax MEK} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li NXP \li \l {i.MX 8QuadMax MEK} \li QNX 7.1 \li \l{Qt for QNX}
+    \row \li Qualcomm \li \l {SA8155P} \li AAOS 10-11 \li \l{Qt for Android Automotive}
+    \row \li Qualcomm \li \l {SA8155P} \li INTEGRITY 19.03 \li \l{Qt for INTEGRITY}
+    \row \li Toradex \li \l {Apalis iMX6} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li Toradex \li \l {Colibri iMX6 ULL} \li Yocto 4.0 \li \l{Boot to Qt}
+    \endtable
+
+    \section3 Tier 2: Verified Targets
+
+    \list
+        \li Issues on verified targets are given a lower priority than
+        \e {Tier 1: Reference Targets}.
+        \li Covered under \l{Qt Support Terms and Conditions}{Premium Support}.
+        \li Releases are available via the Qt Online Installer.
+   \endlist
+
+    There are no Tier 2 targets in the 6.2 release.
+
+    \section3 Tier 3: Other Targets
+
+    \list
+        \li Issues on other targets are given a lower priority than
+        \e {Tier 1: Reference Targets} and \e {Tier 2: Verified Targets}.
+        \li Hardware not regularly tested.
+        \li Releases are available via the Qt Online Installer or QBSPs are
+        available via \l {Qt Account Downloads}.
+    \endlist
+
+    \table
+    \header \li{4,1} Tier 3: Other Targets
+    \header \li Vendor \li Board \li OS / Other \li Provided By
+    \row \li Intel \li \l {NUC} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li NVIDIA \li \l {Jetson TX2 Development Kit} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li NXP \li \l {i.MX 8M Nano DDR4 EVK}  \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li NXP \li \l {i.MX 8MQuad EVK} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li Raspberry Pi \li \l {Raspberry Pi 4 64-bit} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li ST \li \l {STM32MP15 Evaluation} \li Yocto 4.0 \li \l {Boot to Qt}
+    \row \li Toradex \li \l {Apalis iMX8} \li Yocto 4.0 \li \l {Boot to Qt}
+    \endtable
+
 \section2 Android Automotive OS
 
 The \l{Qt for Android Automotive} solution is based on \l{Qt for Android},
