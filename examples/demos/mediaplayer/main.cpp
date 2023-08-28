@@ -20,7 +20,6 @@ struct NameFilters
 
 static NameFilters nameFilters()
 {
-#ifndef Q_OS_ANDROID
     QStringList result;
     QString preferredFilter;
     const auto formats = QMediaFormat().supportedFileFormats(QMediaFormat::Decode);
@@ -45,9 +44,6 @@ static NameFilters nameFilters()
     std::sort(result.begin(), result.end());
     const int preferred = preferredFilter.isEmpty() ? 0 : int(result.indexOf(preferredFilter));
     return { result, preferred };
-#else
-    return {};
-#endif
 }
 
 int main(int argc, char *argv[])

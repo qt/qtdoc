@@ -28,6 +28,7 @@ target_link_libraries(MediaPlayerApp PRIVATE
     Qt6::Quick
     Qt6::Multimedia
     MediaControlsplugin
+    MediaPlayer
     Configplugin
 )
 
