@@ -104,6 +104,11 @@
     \section2 Qt Multimedia Module
 
     \list
+        \li The Qt Multimedia library no longer requests audio or video
+        permissions, but only checks if they are provided or not.
+        The client applications must request the permissions using the
+        \l{QPermission}{C++} or \l{QML Application Permissions}{QML}
+        permissions API.
         \li The new \l {QWindowCapture} class adds support for capturing videos
         of individual desktop application windows within a
         \l {QMediaCaptureSession}. The recorded video can be directed to any
@@ -136,9 +141,10 @@
 
     \list
         \li The Qt Positioning library no longer requests the location
-            permissions, but only checks if they are provided or not. The
-            client applications must request the permissions using the new
-            QPermission API.
+            permissions, but only checks if they are provided or not.
+            The client applications must request the permissions using the
+            \l{QPermission}{C++} or \l{QML Application Permissions}{QML}
+            permissions API.
     \endlist
 
      \section2 Qt Protobuf Module
@@ -162,9 +168,10 @@
 
     \list
         \li The Qt Bluetooth library no longer requests the bluetooth
-            permissions, buts only checks if they are provided or not. The
-            client applications must request the permissions using the new
-            QPermission API.
+            permissions, buts only checks if they are provided or not.
+            The client applications must request the permissions using the
+            \l{QPermission}{C++} or \l{QML Application Permissions}{QML}
+            permissions API.
         \li Qt now provides a native 128-bit unsigned int type as quint128.
             On platforms that support it, the QBluetoothUuid(quint128)
             constructor and the QBluetoothUuid::toUInt128() method now
@@ -179,11 +186,11 @@
     \section2 Qt QML Module
 
     \list
-        \li Added support for managing \l{QML Application Permissions}
-        {application permissions via QML}. The \l{Qt QML Core QML Types}{Qt QML Core}
-        module exposes the Qt C++ \l [QtCore] {Application Permissions}
+        \li Added support for managing application permissions via QML.
+        The \l{Qt QML Core} module exposes the Qt C++ \l [QtCore] {Application Permissions}
         functionality to QML via a set of permission types that can be used
         to check or request permission in a cross platform manner.
+        See \l{QML Application Permissions} for more information.
         \li The XMLHttpRequest object has now been updated with two more features,
         in order to bring it closer to modern browsers.
         The \l {XMLHttpRequest::}{responseURL} property has been added, which can be
