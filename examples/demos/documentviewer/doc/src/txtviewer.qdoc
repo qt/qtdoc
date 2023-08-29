@@ -12,6 +12,8 @@
     The Text Viewer example is a text editor built around QPlainTextEdit,
     in the form of a plugin for a general-purpose \l {Document Viewer}.
 
+    \image txtviewer_screenshot.png
+
     All of the code for the Text Viewer example is in the \c TxtViewer class,
     which inherits \c AbstractViewer. \c AbstractViewer provides the framework
     for interaction between a viewer and the main window. The application provides
