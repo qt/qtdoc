@@ -175,22 +175,21 @@ An object can take 2 forms:
 
 \table
     \header
-        \list
         \li Collection of name/value pairs
         \li Ordered list of values
-        \endlist
     \row
-    \li
-        \list
         \li
+        \code
            {
                      "last_name": "Routledge",
                      "first_name": "Ronald",
                      "birth_date": 1960
            }
-        \li   "colours": ["green", "blue", "yellow"]
-        \endlist
-    \li
+        \endcode
+        \li
+        \code
+            "colors": ["green", "blue", "yellow"]
+        \endcode
 \endtable
 
 \list
