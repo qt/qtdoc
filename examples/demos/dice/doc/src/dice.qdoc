@@ -8,15 +8,44 @@
     \brief A dice throwing application that demonstrates using Qt Quick 3D Physics
     and Qt Quick 3D.
     \examplecategory {Application Examples}
-    \meta {tag} {quick,3d,physics}
+    \meta {tag} {quick,3d,physics, multimedia, sensors}
     \image dice-screenshot.webp
 
-    \e Dice demonstrates using \l{Qt Quick 3D Physics} for physical simulation of dice
-    and a wooden table. The rendering is done with components from the \l{Qt Quick 3D}
-    module.
+    \section1 Overview
+    This example application allows you to roll some dice on a table. It's
+    implemented with QML and relies on a number of Qt modules that are detailed
+    in the following sections.
 
-    The example also has a \l{Qt Quick} UI for configuring the physical material of
-    the simulated dice as well as the number of dice.
+    This particular example is also available in the google play store as
+    Qt Dice.
+
+    As with any Qt example you can of course still build the application yourself
+    for your target of choice.
+
+    \section1 Simulating the physics of rolling dice
+
+    \e Dice demonstrates using \l{Qt Quick 3D Physics} for the physical simulation
+    of dice and a wooden table. The rendering is done with components from
+    \l{Qt Quick 3D}. For information on how this can be achieved, see the
+    \l{Qt Quick 3D Physics - Custom Shapes Example}.
+
+    \section1 Using sensor input to trigger a roll
+
+    On compatible targets, using \l{Qt Sensors} API enables using
+    accelerometer output to detect when the device is shaken, triggering a dice
+    roll. For more information on using an accelerometer, see the
+    \l{Sensors Showcase} example.
+
+    \section1 Adding sound effects
+
+    Using \l{Qt Multimedia}, sound effects are added for a more immersive
+    experience. See the \l{SoundEffect} QML type more for information.
+
+    \section1 Implementing a UI for changing simulation settings
+
+    A \l{Qt Quick} UI is provided for configuring the physical material of
+    the simulated dice, the magnitude of gravity, and the number of dice.
+
 
     \include examples-run.qdocinc
     \include examples/qtquick3d.qdocinc
