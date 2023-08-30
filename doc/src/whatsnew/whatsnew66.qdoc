@@ -250,6 +250,17 @@
         \li Added Path::simplified property for automatic simplification of
             paths before rendering them. This mirrors the QPainterPath::simplified()
             function.
+        \li Added support for collecting GPU timestamps for the QQuickWindow's
+            rendering. When enabled by \l{QQuickGraphicsConfiguration}'s
+            \l{QQuickGraphicsConfiguration::}{setTimestamps()} or the
+            corresponding environment variable, GPU-side timings will appear in
+            the debug output printed when enabling logging categories such as
+            \c{qt.scenegraph.time.renderloop}, and in Qt Quick 3D's \l DebugView
+            item, complementing the CPU-side timings. This is currently
+            supported on Direct 3D 11, Metal, and Vulkan (assuming the
+            underlying Vulkan implementation supported timestamp queries).
+            Support for the rest of the 3D APIs is going to be introduced in
+            future releases.
     \endlist
 
     \section2 Qt Quick Controls Module
