@@ -366,8 +366,6 @@
     \section2 Qt WebEngine Module
 
     \list
-        \li Response interceptors added to QWebEngineProfile and QWebEnginePage to intercept server responses,
-            instead of client requests.
         \li Response headers added to QWebEngineLoadingInfo.
         \li Made it possible to add additional response headers in QWebEngineUrlRequestJob.
         \li Added QWebEngineUrlScheme::FetchApiAllowed flag for enabling HTML5 Fetch API for custom url schemes.
