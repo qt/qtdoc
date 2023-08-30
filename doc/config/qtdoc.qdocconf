@@ -98,3 +98,6 @@ manifestmeta.examplecategories = "Application Examples" \
 
 # Include 'Qt for Education' pages
 include(../edu/config/qtforeducation.qdocconf)
+
+# Enforce zero documentation warnings
+warninglimit = 0
