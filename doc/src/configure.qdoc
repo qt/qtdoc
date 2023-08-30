@@ -300,6 +300,17 @@
     the need to install Qt before testing things, and finally enables the
     compilation of Qt's auto-tests by default.
 
+    \section1 Reconfiguring Existing Builds
+
+    The Qt build system has basic support for reconfiguring existing Qt builds
+    with a different set of configure options, but it is not very robust due
+    to the way CMake works internally.
+
+    The safest way to reconfigure an existing build is to pass the \b -redo
+    option to configure. That will remove the build's \b CMakeCache.txt file,
+    ensuring a relatively safe state for reconfiguration. The initial
+    configure flags will still apply to the reconfigured build.
+
     \section1 Specific Options for Platforms
 
     The following pages provide guidelines on how to configure Qt for specific
