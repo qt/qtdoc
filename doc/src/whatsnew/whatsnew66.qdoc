@@ -40,6 +40,11 @@
             QVarLengthArray, QList, QByteArray and QString. These functions are
             a convenient way to assign new data while reusing the existing
             \c {capacity()}.
+        \li You can omit the \e contents of any file added to the resource file
+            system by specifying the QT_DISCARD_FILE_CONTENTS source file
+            property in CMakeLists.txt. The file \e nodes will be retained. When
+            manually writing \c .qrc files you can achieve the same effect
+            by setting the \c empty attribute of a \c file XML node to \c true.
     \endlist
 
     \section2 Qt GRPC Module
