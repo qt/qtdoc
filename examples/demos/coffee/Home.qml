@@ -6,7 +6,6 @@ import QtQuick.Layouts
 Item {
     id: home
     property alias getStartedbutton: getStartedButton
-//    property alias grid: grid
 
     states: [
         State {

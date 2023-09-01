@@ -7,7 +7,6 @@ import QtQuick.Effects
 
 Item {
     id: root
-//    property alias grid: grid
     property alias continueButton: continueButton
     property alias cancelButton: cancelButton
     property alias dialog: dialog
