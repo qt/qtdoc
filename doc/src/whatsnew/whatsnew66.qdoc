@@ -389,6 +389,7 @@
             at least CMake version 3.21.1.
         \li QMessageBox::setCheckBox() is now respected when using native
             message boxes.
+        \li QFileDialog no longer triggers permission dialogs needlessly.
     \endlist
 
     \section3 X11
@@ -412,7 +413,8 @@
     \section3 iOS
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added support for QWindow::setMask() for masking rendering and input.
+        \li Added support for foreign windows, for embedding UIViews into QWindows.
     \endlist
 
     \section2 Embedded Platforms
