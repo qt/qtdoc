@@ -20,30 +20,24 @@
     the app shows an animated display of the brewing process, then returns
     to the start screen.
 
-    First the start screen \c Animationflowform is displayed, showing a
+    First the start screen Animationflowform is displayed, showing a
     sidebar with several types of coffee, and an empty cup on the right
     screen.
 
-    Selecting a coffee type - for example, cappuccino - triggers \c animation1
-    and \c animation2 in CoffeeButton.qml.  On the right side, you will see
+    Selecting a coffee type - for example, cappuccino - triggers animation1
+    and animation2 in CoffeeButton.qml.  On the right side, you will see
     the coffee blend you selected.
-
-    \snippet demos/coffee/CoffeeButton.qml 0
 
     It also triggers cappuccinoButton.onClicked(), which sets the default
     mix for the coffee type selected:
 
-    \snippet demos/coffee/SideBar.qml 0
-
     \borderedimage coffee_machine_selection.png
     \caption Coffee blend cappuccino
 
-    \c sideBar.coffeeSelected() \c sets applicationFlow.state to "selection"
+    sideBar.coffeeSelected() sets applicationFlow.state to "selection"
 
     If you click "Brew me a cup", choosingCoffee.brewButtonSelection.onClicked
     is triggered:
-
-    \snippet demos/coffee/ApplicationFlow.qml 0
 
     On the right side of the screen, you will see two sliders, one for
     the amount of milk, and one for sugar. They will have default values,
@@ -51,21 +45,15 @@
 
     \borderedimage coffee_machine_modify.png
 
-    If you click on \c Brew, \c choosingCoffee.brewButton.onClicked() is triggered,
+    If you click on Brew, choosingCoffee.brewButton.onClicked() is triggered,
     which displays a screen with the message "Please insert cup into tray".
-
-    \snippet demos/coffee/ApplicationFlow.qml 2
 
     \borderedimage coffee_machine_emptycup.png
 
-    Clicking on \c Continue starts the brewing of the coffee type you
+    Clicking on Continue starts the brewing of the coffee type you
     selected.
 
-    \snippet demos/coffee/ApplicationFlow.qml 1
-
-    The brewing process is defined as follows in \c Brewing.qml:
-
-    \snippet demos/coffee/Brewing.qml 0
+    The brewing process is defined as follows in Brewing.qml:
 
     After completion, the application returns to the start screen.
 */
