@@ -102,6 +102,9 @@
     This environment variable is queried each time the keyboard is displayed,
     so it's possible to toggle the workaround on and off, as necessary.
 
+    Android LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES is not supported. For more
+    information, see \l{QTBUG-114437}.
+
     \section1 Limitations
 
     Some of the Qt modules might have features that are not supported on Android
