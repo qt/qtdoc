@@ -426,6 +426,10 @@
         \li Introduced \l {QTP0002} CMake policy for android-specific target properties.
         \li Updates for the list of examples that are supported on Android.
         \li Android 13 as the maximum supported version
+        \li Updated Gradle to version 8.3.0.
+        \li QFileDialog takes all provided name filters into effect and not only
+            the selected one.
+        \li Updated Android target SDK level to 33 to match Play Store requirement for 2023.
     \endlist
 
     \section3 iOS
