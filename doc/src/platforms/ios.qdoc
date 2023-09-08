@@ -418,115 +418,51 @@
 
     \section2 Icons
 
-    Icons need to be set in the \c Info.plist file and then copied to the application bundle.
-    Xcode has special support for icons, but when using Qt, it is usually better
-    to set them in the .pro file or the CMakeLists.txt file.
+    Starting with Xcode 13, icons need to be added to an asset catalog's icon set, which is
+    usually called \c AppIcon.
+    Xcode will then take care of updating the \c Info.plist file with the correct keys and values,
+    as well as copy any necessary icon files directly into the application bundle.
 
-    To support all resolutions and devices, several images should be created.
-    A detailed list of what is required is available at \l {App Icons on iPhone, iPad and Apple Watch}{Icon files}.
+    Starting with Xcode 14, only one 1024x1024 pixel-sized image is required. Xcode takes care
+    of generating all the necessary icons from it. It is also possible to specify the images
+    manually in the asset catalog.
+
+    A detailed list of the icons that can be specified is available at
+    \l {App Icons on iPhone, iPad and Apple Watch}{Icon files}.
+
     The filename is not important, but the actual pixel size is.
-    Just a few icons are required.
-    However, to support both iPhone and iPad, the following images
+    To support a universal iOS application, the following images
     are required:
 
     \list
-        \li AppIcon29x29.png: 29 x 29
-        \li AppIcon29x29@2x.png: 58 x 58
-        \li AppIcon29x29@2x~ipad.png: 58 x 58
-        \li AppIcon29x29~ipad.png: 29 x 29
-        \li AppIcon40x40@2x.png: 80 x 80
-        \li AppIcon40x40@2x~ipad.png: 80 x 80
-        \li AppIcon40x40~ipad.png: 40 x 40
-        \li AppIcon50x50@2x~ipad.png: 100 x 100
-        \li AppIcon50x50~ipad.png: 50 x 50
-        \li AppIcon57x57.png: 57 x 57
-        \li AppIcon57x57@2x.png: 114 x 114
-        \li AppIcon60x60@2x.png: 120 x 120
-        \li AppIcon72x72@2x~ipad.png: 144 x 144
-        \li AppIcon72x72~ipad.png: 72 x 72
-        \li AppIcon76x76@2x~ipad.png: 152 x 152
-        \li AppIcon76x76~ipad.png: 76 x 76
+        \li AppIcon60x60@2x.png: 120 x 120 (for iPhone)
+        \li AppIcon76x76@2x~ipad.png: 152 x 152 (for iPad)
+        \li AppIcon167x167.png: 167x167 (for iPad Pro)
+        \li AppIcon1024x1024.png: 1024 x 1024 (for App Store)
     \endlist
 
-    These files should be copied to the application bundle by adding
-    the following code snippet to the project .pro file:
-
-    \badcode
-    ios {
-        ios_icon.files = $$files($$PWD/ios/AppIcon*.png)
-        QMAKE_BUNDLE_DATA += ios_icon
-    }
-    \endcode
-
-    With CMake:
-
-    \badcode
-    qt_add_executable(app)
-    file(GLOB_RECURSE app_icons CONFIGURE_DEPENDS "ios/AppIcon*.png")
-    if(IOS AND app_icons)
-        target_sources(app PRIVATE ${app_icons})
-        set_source_files_properties(
-            ${app_icons}
-            PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    endif()
-    \endcode
-
-    For the icons to be used, the filenames must also be listed in the \c Info.plist file.
-    The best way is to list all icon files using the \c CFBundleIconFiles key.
-    The iPad specific version can be given using the \c CFBundleIcons~ipad key, by adding
-    the following code snippet to \c Info.plist:
-
-    \badcode
-    <key>CFBundleIcons</key>
-    <dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-            <array>
-                <string>AppIcon29x29.png</string>
-                <string>AppIcon29x29@2x.png</string>
-                <string>AppIcon40x40@2x.png</string>
-                <string>AppIcon57x57.png</string>
-                <string>AppIcon57x57@2x.png</string>
-                <string>AppIcon60x60@2x.png</string>
-            </array>
-        </dict>
-    </dict>
-    <key>CFBundleIcons~ipad</key>
-    <dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-            <array>
-                <string>AppIcon29x29.png</string>
-                <string>AppIcon29x29@2x.png</string>
-                <string>AppIcon40x40@2x.png</string>
-                <string>AppIcon57x57.png</string>
-                <string>AppIcon57x57@2x.png</string>
-                <string>AppIcon60x60@2x.png</string>
-                <string>AppIcon29x29~ipad.png</string>
-                <string>AppIcon29x29@2x~ipad.png</string>
-                <string>AppIcon40x40~ipad.png</string>
-                <string>AppIcon40x40@2x~ipad.png</string>
-                <string>AppIcon50x50~ipad.png</string>
-                <string>AppIcon50x50@2x~ipad.png</string>
-                <string>AppIcon72x72~ipad.png</string>
-                <string>AppIcon72x72@2x~ipad.png</string>
-                <string>AppIcon76x76~ipad.png</string>
-                <string>AppIcon76x76@2x~ipad.png</string>
-            </array>
-        </dict>
-    </dict>
-    \endcode
-
-    This ensures that the appropriate files are copied to the right place and the correct icons are
-    used as required by the Apple App Store.
     Ad-hoc distributions should also include the following filenames in the application bundle
     to visualize the application in iTunes:
     \list
         \li iTunesArtwork 512x512
         \li iTunesArtwork@2x 1024x1024
     \endlist
+
+    The easiest way to add the icons is to follow Xcode's documentation at
+    \l {Create asset catalogs and sets}{Create asset catalogs and sets}.
+
+    When building a project with CMake, it should also specify the
+    following Xcode attribute to ensure app icons are generated by Xcode.
+
+    \badcode
+    set_target_properties(app_target_name PROPERTIES
+        XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+    \endcode
+
+    Below is an example of how an \c Assets.xcassets/AppIcon.appiconset/Contents.json file for
+    Xcode 14 might look like:
+
+    \quotefile ios/asset_catalog_icons.json
 
     \section2 Launch Screens and Launch Images
 
