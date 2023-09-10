@@ -5,6 +5,6 @@ import QtQuick
 
 //![0]
 MouseArea {
-    onClicked: (event) => { console.log(`${event.x},${event.y}`); }
+    onClicked: event => { console.log(`${event.x},${event.y}`); }
 }
 //![0]
