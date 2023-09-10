@@ -13,9 +13,9 @@ Rectangle { color: "blue"; width: parent.width / 3 }
 Rectangle {
     color: "blue"
     width: {
-        var w = parent.width / 3
-        console.debug(w)
-        return w
+        var w = parent.width / 3;
+        console.debug(w);
+        return w;
     }
 }
 //![1]
@@ -23,12 +23,12 @@ Rectangle {
 //![2]
 function calculateWidth(object : Item) : double
 {
-    var w = object.width / 3
+    var w = object.width / 3;
     // ...
     // more javascript code
     // ...
-    console.debug(w)
-    return w
+    console.debug(w);
+    return w;
 }
 
 Rectangle { color: "blue"; width: calculateWidth(parent) }

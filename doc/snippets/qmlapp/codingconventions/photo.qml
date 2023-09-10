@@ -14,7 +14,7 @@ Rectangle {
 
     function doSomething(x)                                 // javascript functions
     {
-        return x + photoImage.width
+        return x + photoImage.width;
     }
 
     color: "gray"                                           // object properties
@@ -46,7 +46,8 @@ Rectangle {
 
     Rectangle {                                             // child objects
         id: border
-        anchors.centerIn: parent; color: "white"
+        anchors.centerIn: parent
+        color: "white"
 
         Image {
             id: photoImage
