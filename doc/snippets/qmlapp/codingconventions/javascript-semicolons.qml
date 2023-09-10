@@ -6,8 +6,8 @@ import QtQuick
 //![0]
 MouseArea {
     anchors.fill: parent
-    onClicked: {
-        var scenePos = mapToItem(null, mouseX, mouseY);
+    onClicked: event => {
+        var scenePos = mapToItem(null, event.x, event.y);
         console.log("MouseArea was clicked at scene pos " + scenePos);
     }
 }
