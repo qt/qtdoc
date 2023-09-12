@@ -852,9 +852,14 @@
     reimplement the widget's \l{QWidget::changeEvent()}{changeEvent()} function
     to check whether the event is a \l{QEvent::LanguageChange}{LanguageChange}
     event and update the text displayed by widgets using the \l{QObject::tr()}
-    {tr()} function in the usual way. For example:
+    {tr()} function. For example:
 
     \snippet snippets/code/doc_src_i18n.cpp 12
+
+    When using Qt Designer UI files (.ui) and \c uic, you can read the new
+    translation files and call \c ui.retranslateUi(this) directly:
+
+    \snippet snippets/code/doc_src_i18n.cpp 17
 
     To pass on other change events, call the default implementation of the
     function.
