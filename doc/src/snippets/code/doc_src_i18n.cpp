@@ -188,3 +188,14 @@ public:
     }
 };
 //! [16]
+
+
+//! [17]
+void MyWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui.retranslateUi(this);
+    } else
+        QWidget::changeEvent(event);
+}
+//! [17]
