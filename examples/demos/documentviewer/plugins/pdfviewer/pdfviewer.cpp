@@ -93,9 +93,13 @@ void PdfViewer::initPdfViewer()
 #if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
     m_pageSelector = new QPdfPageSelector(m_toolBar);
     m_toolBar->insertWidget(m_uiAssets.forward, m_pageSelector);
-    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
-    connect(m_pageSelector, &QSpinBox::valueChanged, this, &PdfViewer::pageSelected);
-    connect(nav, &QPdfPageNavigator::currentPageChanged, m_pageSelector, &QSpinBox::setValue);
+    m_pageSelector->setDocument(m_document);
+    connect(m_pageSelector, &QPdfPageSelector::currentPageChanged,
+            this, &PdfViewer::pageSelected);
+    connect(m_pageSelector, &QPdfPageSelector::currentPageChanged,
+            this, &PdfViewer::pageSelected);
+    connect(nav, &QPdfPageNavigator::currentPageChanged,
+            m_pageSelector, &QPdfPageSelector::setCurrentPage);
 #endif
 
     connect(m_pdfView->pageNavigator(), &QPdfPageNavigator::backAvailableChanged, m_uiAssets.back, &QAction::setEnabled);
@@ -177,9 +181,6 @@ void PdfViewer::openPdfFile()
     const auto documentTitle = m_document->metaData(QPdfDocument::MetaDataField::Title).toString();
     statusMessage(documentTitle.isEmpty() ? "PDF Viewer"_L1 : documentTitle);
     pageSelected(0);
-#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
-    m_pageSelector->setMaximum(m_document->pageCount() - 1);
-#endif
 
     statusMessage(tr("Opened PDF file %1")
                   .arg(QDir::toNativeSeparators(m_file->fileName())));
