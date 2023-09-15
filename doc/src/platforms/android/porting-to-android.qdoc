@@ -9,18 +9,63 @@
 \previouspage android-building.html
 \nextpage deployment-android.html
 
-Most Qt applications should be portable to Android with ease, unless they
+Most Qt applications should be portable to Android with ease unless they
 depend on a specific hardware or software feature not supported by Android.
-If your application is not using any such feature, deployment is the only step
-that might demands some changes to your application.
+
+The porting approach differs depending on whether the existing application is
+QML or Widget based, your intended build tool, and if you are porting from a
+mobile or desktop application.
+
+QML-based applications built with CMake are considered the best approach for
+mobile applications.
+
+\section1 Porting from Qt desktop applications
+
+Most of your existing Qt code should work, but you must make some decisions
+around your UI scalability and layout for different orientations and screen sizes.
+Consider a \l{https://www.qt.io/blog/responsive-layouts-in-qt}{responsive layouts}
+approach to fully take advantage of Qt Qml Applications.
+
+There are considerations that are not directly impacted by using Qt, such
+as app store guidelines, theme guidelines, and others that may impact the way you
+develop your application. These won't be discussed here.
+
+\section1 Adding resources
+
+Most applications need resources. Here, we discuss how that impacts porting your
+application to Android.
+
+\section2 The Qt resource system
 
 \include porting-notes.qdocinc using resources
 
-The other approach is to deploy the resources into the package's \c{assets}
-directory. It is the best option if you want to achieve better
+\section2 Adding resources using the asset approach
+
+The asset approach is the best option for better
 interoperability with the Android APIs. You can access all resources in the
-directory using the "assets:" prefix. Unlike qrc, this approach is Android
-specific, not a cross-platform solution.
+directory using the "assets:" prefix. Unlike qrc, this approach is
+Android-specific, not a cross-platform solution.
+
+\section3 The asset approach with CMake
+
+If you are new to using CMake or CMake with Qt for the first time, see
+\l{Build with CMake}. Here, the focus is on the steps applicable for adding
+resources.
+
+You will likely want to modify a few things that are controlled by the Android
+Manifest file. See \l{Qt Android Manifest File Configuration} for more information
+on that. So you likely have already set \l QT_ANDROID_PACKAGE_SOURCE_DIR like
+so:
+
+\badcode
+set_property(TARGET target_name PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+             "${CMAKE_CURRENT_SOURCE_DIR}/android")
+\endcode
+
+Once that is done, you can access your assets in your application as detailed in
+\l{Assets File System}.
+
+\section3 The asset approach with qmake
 
 To use the "assets:" approach, for example, add the following lines into the
 \c {.pro} file:
@@ -33,7 +78,7 @@ android {
 }
 \endcode
 
-Then you can access that image asset from C++ as follows:
+Then, you can access that image asset from C++ as follows:
 
 \code
 QImage image("assets:/images/happy.png");
@@ -44,7 +89,7 @@ application to Android using the qrc approach:
 
 \list 1
     \li Open your project in Qt Creator and select an Android kit. For more
-        information, see \l{Qt Creator: Configuring Projects}{Configuring Projects in Qt Creator}.
+    information, see \l{Qt Creator: Configuring Projects}{Configuring Projects in Qt Creator}.
     \li Identify all the resources used by your application and add them to one
         or more qrc files. Qt Creator updates your qmake project file with the
         "RESOURCES" variable listing the qrc files you added.
@@ -62,12 +107,12 @@ application to Android using the qrc approach:
         \note QML documents can refer to the contents in qrc files using the
         relative path to the document. Such references do not require the
         "\c{qrc:}" or "\c{:/}" prefix.
-    \li Deploy your application to a device or AVD. For more information, see
+        \li Deploy your application to a device or AVD. For more information, see
         \l {Qt Creator: Deploying Applications to Android Devices}.
 \endlist
 
 \note Qt Quick Controls will use the \l{Material Style}{Material Style} if the
 target device is running Android 3.0 (API 11) or later. The application should
-function normally on devices with Android versions earlier than v3.0, but
-without native style for controls.
+function normally on devices with Android versions earlier than v3.0 but
+without a native style for controls.
 */
