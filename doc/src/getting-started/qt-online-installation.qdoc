@@ -4,10 +4,10 @@
 /*!
     \page qt-online-installation.html
 
-    \title Get and Install Qt with Qt Online Installer
+    \title Get and Install Qt with \QOI
     \brief Downloading and installing the Qt modules and tools that you need.
 
-    The Qt Online Installer gives you the choice of installing only the modules
+    \QOI gives you the choice of installing only the modules
     and tools you need to develop on a particular desktop platform and to run
     your applications on one or several desktop platforms, mobile or embedded
     devices, or MCUs.
@@ -22,12 +22,12 @@
     and wikis. Also, make sure you read the \l{Qt Licensing} page regarding your
     chosen license.
 
-    \section1 2. Download the Installer
+    \section1 2. Download \QOI
 
     Go to your Qt account's download page. By selecting the appropriate unified
-    Qt online installer for your OS, you can install commercial or open source
-    versions of Qt, development tools, and other components. The online
-    installer asks for your Qt account credentials. The installer retrieves the
+    \QOI for your OS, you can install commercial or open source
+    versions of Qt, development tools, and other components. \QOI asks for your
+    Qt account credentials. \QOI retrieves the
     license attached to the account from a server and provides a list of
     available components corresponding to the license.
 
@@ -100,7 +100,7 @@
 
     \section2 Updating or Removing Components
 
-    Once Qt is installed, you can use the \e{Maintenance Tool} under
+    Once Qt is installed, you can use \e{\QMT} under
     \e{<install_dir>} to add components, update, or remove installed
     components.
 

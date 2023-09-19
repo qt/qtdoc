@@ -33,7 +33,7 @@ building Qt as static libraries. You must also have an up-to date version of
 the \l{Ninja} tool installed.
 
 Both CMake and Ninja are open source tools that can be installed by various
-means. They are also available in the Qt Online installer.
+means. They are also available in \QOI.
 
 See \l{Building Qt Sources} for a more detailed overview of the build
 requirements on different platforms.
@@ -136,10 +136,9 @@ release.
 \section1 Build Additional Libraries through Conan
 
 Some Qt modules in Qt 6 are no longer provided as binary packages in
-the Qt online installer, but instead as Conan recipes. Conan is a
+\QOI, but instead as Conan recipes. Conan is a
 general-purpose software package manager for C and C++ developers. Just like
-the build recipes of the modules, it is also made available in the Qt Online
-Installer.
+the build recipes of the modules, it is also made available in \QOI.
 
 For an overview of the process, see
 \l{https://www.qt.io/blog/qt-6-additional-libraries-via-package-manager}

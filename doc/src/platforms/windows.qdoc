@@ -357,7 +357,7 @@
 
     The tool can be found in \c{QTDIR/bin/windeployqt}. It needs to be run
     within the build environment in order to function correctly. When using
-    Qt Installer, the script \c{QTDIR/bin/qtenv2.bat} should be used to set it up.
+    \QOI, the script \c{QTDIR/bin/qtenv2.bat} should be used to set it up.
 
     \c windeployqt takes an \c .exe file or a directory that contains an \c .exe
     file as an argument, and scans the executable for dependencies. If a
@@ -864,12 +864,12 @@
 
     \section1 Step 1: Getting the Sources
 
-    Qt sources can be installed in the Qt Online Installer. Source packages are
+    Qt sources can be installed in \QOI. Source packages are
     also available as \l{https://code.qt.io}{Git repositories}, as archives in
     the \l{Qt Account} (commercial users), and on
     \l{https://download.qt.io}{download.qt.io} (open-source users).
 
-    If you install the sources through the Qt Online Installer, they will
+    If you install the sources through \QOI, they will
     be available in the Qt installation directory, for instance
     \tt{C:\\Qt\\\QtVersion\\Src}.
 
@@ -893,13 +893,13 @@
         \li CMake
         \li Version 3.16 and newer (3.17 and newer for \c{-debug-and-release} builds
             3.21 and newer for \c{-static} builds).
-        \li Required for configuring the Qt build. Available in the Qt Online
-            Installer and on \l{https://cmake.org}{cmake.org}.
+        \li Required for configuring the Qt build. Available in \QOI
+            and on \l{https://cmake.org}{cmake.org}.
     \row
         \li Ninja
         \li -
-        \li Recommended tool for building Qt. Available in the Qt Online
-            Installer and on \l{https://ninja-build.org}{ninja-build.org}.
+        \li Recommended tool for building Qt. Available in \QOI
+            and on \l{https://ninja-build.org}{ninja-build.org}.
     \row
         \li Python
         \li Version 3

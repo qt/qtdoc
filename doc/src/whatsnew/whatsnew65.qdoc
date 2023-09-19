@@ -370,7 +370,7 @@
 
     \section2 WebAssembly
     \list
-        \li Added binary package with multithreading enabled to the Qt installer.
+        \li Added binary package with multithreading enabled to \QOI.
         \li Added support for the \l{https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API}
             {File System Access} API. File dialog calls such as QFileDialog::getOpenFileContent() and
             QFileDialog::saveFileContent() will now use this API, if supported by the browser.

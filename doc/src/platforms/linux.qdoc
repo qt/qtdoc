@@ -349,8 +349,8 @@
 
     This page describes configuring and building \l{Qt for Linux/X11} from
     sources. Note that it is typically easier to install the pre-built Qt
-    libraries and tools via the \l [QtDoc] {Get and Install Qt}
-    {Qt Online Installer}. A lot of Linux distributions also provide Qt packages
+    libraries and tools via \l [QtDoc] {Get and Install Qt}
+    {\QOI}. A lot of Linux distributions also provide Qt packages
     through their package manager. Build Qt from sources, however, if you want
     to customize Qt further or are using a distribution for which no binary Qt
     packages (in the right version) are available.
@@ -360,13 +360,13 @@
 
     \section1 Step 1: Getting the Sources
 
-    Qt sources can be installed in the Qt Online Installer. Source packages are
+    Qt sources can be installed in \QOI. Source packages are
     also available as \l{https://code.qt.io}{Git repositories}, as archives in
     the \l{Qt Account} (commercial users), and on
     \l{https://download.qt.io/official_releases/qt/}{download.qt.io}
     (open-source users).
 
-    If you install the sources through the Qt Online Installer, they will
+    If you install the sources through \QOI, they will
     be available in the Qt installation directory, for example
     \tt{$HOME/Qt/\QtVersion/Src}.
 

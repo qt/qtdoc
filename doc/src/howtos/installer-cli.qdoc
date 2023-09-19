@@ -7,10 +7,8 @@
     \title Get and Install Qt with Command Line Interface
     \brief How to download and install with CLI.
 
-    From Qt Online Installer and Maintenance Tool 4.0 onward, an improved command line
-    interface (CLI) enables installing, uninstalling, updating, and searching
-    components. You can use the command line interface with Qt Online installer
-    and Maintenance Tool.
+    Use the command line interface with \QOI and \QMT to install, uninstall, update,
+    and search components.
 
     The command line interface supports both \b{interactive and non-interactive
     usage (unattended usage)}. The following topics provide examples and
@@ -31,18 +29,18 @@
 
     \section1 Installing Without User Interaction
 
-    By default, Qt Online installer or Maintenance Tool may ask for
+    By default, \QOI or \QMT may ask for
     additional information during installation, which requires user attention.
     Unattended usage via the command line interface is possible by providing all
     the requested information beforehand with appropriate options.
 
-    \section2 New Installation with Qt Online Installer
+    \section2 New Installation with \QOI
 
     You can do new installations from the command line interface without user
     interaction as follows:
 
     \list 1
-        \li Define the \e{Qt Online Installer} executable.
+        \li Define the \e{\QOI} executable.
         \li Define the installation directory with \b{\c{--root}}.
         \li Use the \b{\c{install <list of packages>}} command with \b{options
         for unattended usage}. See the full list of options in
@@ -50,40 +48,40 @@
     \endlist
 
     The following examples demonstrate how you install Qt 6.5.0 binaries
-    with Qt Online installer for Windows, macOS, and Linux. The unattended
+    with \QOI for Windows, macOS, and Linux. The unattended
     commands automatically accept the licenses (\b{\c{--accept-licenses}}), answer
     all message queries with their default answer (\b{\c{--default-answer}}), skip
     asking for permission to continue performing (\b{\c{--confirm-command}}), and
     accept all message queries (\b{\c{accept-messages}}):
 
     \badcode
-    # Windows: new installation with Qt Online installer
+    # Windows: new installation with \QOI
     qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: new installation with Qt Online installer
+    # macOS: new installation with \QOI
     qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_644
 
-    # linux: new installation with Qt Online installer
+    # linux: new installation with \QOI
     qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
     \endcode
 
     \l{Options for Unattended Usage} lists all available options for unattended
     usage.
 
-    \section2 Updating Installation with Maintenance Tool
+    \section2 Updating Installation with \QMT
 
     You can update existing installation from the command line interface without
     user interaction as follows:
 
     \list 1
-        \li Define the \e{Maintenance Tool} executable.
+        \li Define the \e{\QMT} executable.
         \li Use \b{\c{install <list of packages>}} with \b{options for
         unattended usage}. See the full list of options in
         \l{Options for Unattended Usage}.
     \endlist
 
     The following examples demonstrate how you add Qt 6.5.0 binaries
-    with Maintenance Tool to an exsting installation on Windows, macOS, and
+    with \QMT to an exsting installation on Windows, macOS, and
     Linux. The unattended commands automatically accept the licenses
     (\b{\c{--accept-licenses}}), answer all message queries with their default
     answer (\b{\c{--default-answer}}), skip  asking for permission to continue
@@ -91,13 +89,13 @@
     \b{\c{accept-messages}}):
 
     \badcode
-    # Windows: update installation with Maintenance Tool
+    # Windows: update installation with \QMT
     MaintenanceTool.exe --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: update installation with Maintenance Tool
+    # macOS: update installation with \QMT
     MaintenanceTool.dmg --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_64
 
-    # linux: update installation with Maintenance Tool
+    # linux: update installation with \QMT
     MaintenanceTool.run --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
     \endcode
 
@@ -133,7 +131,7 @@
         \li Rejects all message queries.
     \row
         \li \c{--confirm-command}
-        \li By default, Qt Online Installer and Maintenance Tool print a summary
+        \li By default, \QOI and \QMT print a summary
         of components to be affected by the option. Then they ask for
         permission to continue acting, to prevent accidental
         changes. This option skips asking for permission to continue.
@@ -147,7 +145,7 @@
         more information, see \l{Providing Login Information}.
     \row
         \li \c{--file-query <identifier=value>}
-        \li Sometimes the installer asks for a file or a folder location.
+        \li Sometimes \QOI asks for a file or a folder location.
         You can provide the location with \c{--file-query <identifier=value>}.
         For example, \c{--file-query PathForSDP7=<path_to_sdp>}.
 
@@ -198,7 +196,7 @@
 
     \section2 Providing Login Information
 
-    Qt Online Installer and MaintenanceTool have a forced login. The forced
+    \QOI and \QMT have a forced login. The forced
     login uses information on the \e{qtaccount.ini} file if it is available in
     cache. You find \e{qtaccount.ini} as follows:
 
@@ -230,8 +228,8 @@
     \list 1
         \li Define the executable:
             \list
-                \li \e{Qt Online Installer} if you need to do a new installation.
-                \li \e{Maintenance Tool} if you need to update an existing
+                \li \e{\QOI} if you need to do a new installation.
+                \li \e{\QMT} if you need to update an existing
                 installation.
             \endlist
         \li When you do a new installation,
@@ -241,7 +239,7 @@
     \endlist
 
     The following examples demonstrate how you create a new installation
-    of Qt 6.5.0 binaries with Qt Online installer for Windows, macOS, and Linux:
+    of Qt 6.5.0 binaries with \QOI for Windows, macOS, and Linux:
 
     \badcode
     # Windows: new installation with user interaction
@@ -255,16 +253,16 @@
     \endcode
 
     The following examples demonstrate how you update your existing
-    installation by installing the Qt 6.5.0 binaries with Maintenance Tool:
+    installation by installing the Qt 6.5.0 binaries with \QMT:
 
     \badcode
-    # Windows: update installation with Maintenance Tool
+    # Windows: update installation with \QMT
     MaintenanceTool.exe install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: update installation with Maintenance Tool
+    # macOS: update installation with \QMT
     MaintenanceTool.dmg install qt.qt6.650.clang_64
 
-    # Linux: update installation with Maintenance Tool
+    # Linux: update installation with \QMT
     MaintenanceTool.run install qt.qt6.650.gcc_64
     \endcode
 
@@ -278,9 +276,9 @@
         \li The \b{\c{purge}} command uninstalls all installed packages.
     \endlist
 
-    You should use both commands with Maintenance Tool.
+    You should use both commands with \QMT.
 
-    By default, Maintenance Tool prints a summary of components to be affected
+    By default, \QMT prints a summary of components to be affected
     by the command. Then the tool asks for permission to continue acting, to
     prevent accidental changes. Use \b{\c{--confirm-command}} to skip asking for
     permission to continue.
@@ -361,7 +359,7 @@
     \section1 Listing Installed Packages
 
     The \b{\c{list}} command lists all packages you have installed. Use the
-    command with Maintenance Tool as follows:
+    command with \QMT as follows:
 
     \badcode
     # Windows
@@ -377,7 +375,7 @@
     \section1 Checking Updates
 
     The \b{\c{check-updates}} command checks the updates that are available for
-    the installed packages. Use the command with Maintenance Tool as follows:
+    the installed packages. Use the command with \QMT as follows:
 
     \badcode
     # Windows
@@ -394,7 +392,7 @@
     \section1 Updating Packages
 
     The \b{\c{ update}} command updates the installed packages. Use the command
-    with Maintenance Tool as follows:
+    with \QMT as follows:
 
     \badcode
     # windows
@@ -425,7 +423,7 @@
         \li Uninstalls selected packages and their child components.
     \row
         \li \c{ch}, \c{check-updates}
-        \li Shows information about available updates on Maintenance Tool.
+        \li Shows information about available updates on \QMT.
     \row
         \li \c{up}, \c{update <pkg ...>}
         \li Updates packages given as an argument. If no packages are given,
@@ -445,7 +443,7 @@
 
     \section1 Selecting Mirror for Opensource
 
-    The Qt Online Installer has an option for selecting a mirror for opensource
+    \QOI has an option for selecting a mirror for opensource
     metadata and downloads. Set the mirror from the command line with the
     \b{\c{--mirror}} option.
 
