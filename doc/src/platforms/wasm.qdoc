@@ -470,7 +470,7 @@ to your project's \c {CMakeLists.txt}.
 
 Qt for WebAssembly supports multithreading using Emscripten's \l{https://emscripten.org/docs/porting/pthreads.html}
 {Pthreads support}, where each thread is backed by a \l{https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API}{web worker}.
-Enable multithreading by installing the "WebAssembly (multi-threaded)" component from the Qt Maintenance Tool,
+Enable multithreading by installing the "WebAssembly (multi-threaded)" component from \QMT,
 or by building Qt from source and passing the "-feature-thread" flag to configure.
 
 Existing threading code can generally be reused, but may need to be modified to work around

@@ -45,7 +45,7 @@
     \l{cmake-variable-QT_ANDROID_BUILD_ALL_ABIS}{QT_ANDROID_BUILD_ALL_ABIS}
     variable to \c{TRUE} enables the automatic detection of available Qt for
     Android SDKs. The detection mechanism assumes the use of the default
-    directory structure supplied by the Qt installer:
+    directory structure supplied by \QOI:
     \badcode
         <path/to/Qt>/\1
             android_armv7
@@ -55,7 +55,7 @@
     \endcode
 
     The command below shows the easiest way to build an Android multi-ABI
-    package using the Qt for Android SDKs supplied by the Qt installer:
+    package using the Qt for Android SDKs supplied by \QOI:
     \badcode
     <qt_for_android_install_path>/bin/qt-cmake \
         -DQT_ANDROID_BUILD_ALL_ABIS=TRUE \
