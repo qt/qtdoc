@@ -55,13 +55,13 @@
     accept all message queries (\b{\c{accept-messages}}):
 
     \badcode
-    # Windows: new installation with \QOI
+    # Windows: new installation with Qt Online Installer
     qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: new installation with \QOI
+    # macOS: new installation with Qt Online Installer
     qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_644
 
-    # linux: new installation with \QOI
+    # linux: new installation with Qt Online Installer
     qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
     \endcode
 
@@ -89,13 +89,13 @@
     \b{\c{accept-messages}}):
 
     \badcode
-    # Windows: update installation with \QMT
+    # Windows: update installation with Qt Maintenance Tool
     MaintenanceTool.exe --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: update installation with \QMT
+    # macOS: update installation with Qt Maintenance Tool
     MaintenanceTool.dmg --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.clang_64
 
-    # linux: update installation with \QMT
+    # linux: update installation with Qt Maintenance Tool
     MaintenanceTool.run --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.650.gcc_64
     \endcode
 
@@ -256,13 +256,13 @@
     installation by installing the Qt 6.5.0 binaries with \QMT:
 
     \badcode
-    # Windows: update installation with \QMT
+    # Windows: update installation with Qt Maintenance Tool
     MaintenanceTool.exe install qt.qt6.650.win64_msvc2019_64
 
-    # macOS: update installation with \QMT
+    # macOS: update installation with Qt Maintenance Tool
     MaintenanceTool.dmg install qt.qt6.650.clang_64
 
-    # Linux: update installation with \QMT
+    # Linux: update installation with Qt Maintenance Tool
     MaintenanceTool.run install qt.qt6.650.gcc_64
     \endcode
 
