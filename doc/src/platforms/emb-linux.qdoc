@@ -308,10 +308,16 @@
   \section2 LinuxFB
 
   This plugin writes directly to the framebuffer via Linux's fbdev subsystem.
-  Only software-rendered content is supported. Note that on some setups
-  the display performance is expected to be limited.
+  Only software-rendered content is supported. Note that on some setups the
+  display performance is expected to be limited. To use Qt Quick applications
+  with this platform plugin, the \c software scenegraph backend must be used,
+  either by setting \c{QT_QUICK_BACKEND=software} in the environment, or by
+  calling \l{QQuickWindow::}{setGraphicsApi()} with
+  QSGRendererInterface::Software. QWidget applications, or QWindow with a
+  surface type of QSurface::RasterSurface, are supported, but this does not
+  include special widgets such as QOpenGLWidget.
 
-  However, since fbdev is being deprecated in the Linux kernel, the DRM dumb
+  As fbdev is being deprecated in the Linux kernel, DRM dumb
   buffer support is also available. To use it, set the
   \c QT_QPA_FB_DRM environment variable to a non-zero value. When set, provided
   that dumb buffers are supported by your system, legacy framebuffer devices
