@@ -339,9 +339,9 @@
 
     QSemaphore is a generalization of QMutex that protects a certain
     number of identical resources. In contrast, a QMutex protects
-    exactly one resource. The \l{Semaphores Example} shows a typical application
-    of semaphores: synchronizing access to a circular buffer between a producer
-    and a consumer.
+    exactly one resource. The \l{Producer and Consumer using Semaphores} example
+    shows a typical application of semaphores: synchronizing access to a
+    circular buffer between a producer and a consumer.
 
     QWaitCondition synchronizes threads not by enforcing mutual exclusion but by
     providing a \e{condition variable}. While the other primitives make threads
@@ -349,8 +349,9 @@
     particular condition has been met. To allow the waiting threads to proceed,
     call \l{QWaitCondition::wakeOne()}{wakeOne()} to wake one randomly
     selected thread or \l{QWaitCondition::wakeAll()}{wakeAll()} to wake them all
-    simultaneously. The \l{Wait Conditions Example} shows how to solve the
-    producer-consumer problem using QWaitCondition instead of QSemaphore.
+    simultaneously. The \l{Producer and Consumer using Wait Conditions} example
+    shows how to solve the producer-consumer problem using QWaitCondition
+    instead of QSemaphore.
 
     \note Qt's synchronization classes rely on the use of properly
     aligned pointers. For instance, you cannot use packed classes with
@@ -573,7 +574,7 @@
     putting time-consuming operations in a separate worker thread and
     displaying the results on screen in the main thread when the
     worker thread is finished. This is the approach used for
-    implementing the \l{Mandelbrot Example} and
+    implementing the \l{Mandelbrot} example and
     the \l [QtNetwork] {Blocking Fortune Client}
     {Blocking Fortune Client example}.
 
@@ -707,7 +708,7 @@
 
     QObject::connect() itself is thread-safe.
 
-    The \l{Mandelbrot Example} uses a queued
+    The \l{Mandelbrot} example uses a queued
     connection to communicate between a worker thread and the main
     thread. To avoid freezing the main thread's event loop (and, as a
     consequence, the application's user interface), all the
