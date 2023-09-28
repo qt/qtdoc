@@ -45,6 +45,22 @@
             property in CMakeLists.txt. The file \e nodes will be retained. When
             manually writing \c .qrc files you can achieve the same effect
             by setting the \c empty attribute of a \c file XML node to \c true.
+        \li QFileInfo got a new \l {QFileInfo::}{readSymLink()} member function
+            that returns the raw path, and new overloads taking a QTimeZone for
+            functions related to time stamps.
+        \li The QProcess::UnixProcessParameters struct and the
+            QProcess::UnixProcessFlag enum can be used in the new
+            QProcess::setUnixProcessParameters() member function to modify
+            Unix-specific settings and parameters of a child process, such as
+            closing extraneous file descriptors.
+        \li The new QNativeIpcKey class holds a native key used by QSharedMemory
+            and QSystemSemaphore, providing better support for sandboxed
+            applications on Apple platforms. See \l{Native IPC Keys} for more
+            information.
+        \li Most Qt APIs working with time spans have been ported to relevant
+            data types from \c{std::chrono}.
+        \li QXmlStreamReader::hasStandaloneDeclaration() reports whether the
+            document has an explicit standalone declaration.
     \endlist
 
     \section2 Qt GRPC Module
@@ -60,6 +76,9 @@
 
     \list
         \li Added QFont::setFeatures() for direct access to OpenType features in the font.
+
+        \li QPalette now has an \l{QPalette::}{accent()} color entry that uses
+        the systems' accent color by default.
 
         \li The QRhi family of classes are now fully documented and offered as
         APIs with a limited compatibility promise. The Qt Rendering Hardware
@@ -98,12 +117,24 @@
         versions of the QMacPasteboardMime and QWindowsMime types from Qt 5.
         See the \l{Changes to Qt GUI}{porting guide} for help with adapting
         an existing implementation.
+
+        \li QTextListFormat::setStart() allows for a text list to start with an
+        index other than 1.
     \endlist
 
     \section2 Qt Location Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Map items are now rendered more correctly, including those that
+            wrap around the globe or contain holes.
+        \li Map items can now be rendered using different reference surfaces.
+            The QLocation::ReferenceSurface enum provides options \c Map and
+            \c Globe, which can be used with the \l{MapPolygon::}{referenceSurface}
+            properties in the item types to control whether an item is rendered
+            on a flat map, or follows the globes curvature.
+        \li The mouse wheel can change the \l {QtLocation::Map::}{bearing} when the Shift
+            modifier is held, or change the \l {QtLocation::Map::}{tilt} when the
+            Control modifier is held.
     \endlist
 
     \section2 Qt Multimedia Module
@@ -123,12 +154,6 @@
 
         \li \l {QMediaRecorder} has been extended with properties that gives
         better control of video quality, resolution, and bit rates.
-    \endlist
-
-    \section2 Qt Network Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt PDF Module
@@ -326,12 +351,6 @@
         \li QSqlQuery got two new functions boundValueName()/boundValueNames()
     \endlist
 
-    \section2 Qt Test Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
     \section2 Qt TextToSpeech Module
 
     The QTextToSpeech class learned a few more tricks that are available with all
@@ -374,27 +393,18 @@
             fingerprinting.
     \endlist
 
-    \section2 Qt WebView Module
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
     \section2 Qt Widgets Module
 
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QWidget got a new setTabOrder() overload that takes an initializer
+            list, allowing the entire chain to be set with a single call.
+        \li QMessageBox::Option provides the means to control for each message box
+            whether a native message box should be used.
     \endlist
 
     \section1 Platform Changes
 
     \section2 Desktop Platforms
-
-    \section3 Windows
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
 
     \section3 \macos
 
@@ -404,12 +414,6 @@
         \li QMessageBox::setCheckBox() is now respected when using native
             message boxes.
         \li QFileDialog no longer triggers permission dialogs needlessly.
-    \endlist
-
-    \section3 X11
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Mobile Platforms
@@ -445,12 +449,6 @@
                 \li Tier 3 support for the Toradex Apalis iMX8 board added.
             \endlist
         \li Toradex and ST targets are now using latest Yocto LTS version (kirkstone).
-    \endlist
-
-    \section1 List of API Changes
-
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 */
 
