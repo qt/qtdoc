@@ -70,12 +70,6 @@ ApplicationFlowForm {
         PauseAnimation {
             duration: 400
         }
-
-        PropertyAction {
-            target: applicationFlow
-            property: "state"
-            value: "initial"
-        }
     }
 
 
