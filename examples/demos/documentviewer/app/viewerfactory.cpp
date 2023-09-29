@@ -63,9 +63,8 @@ void ViewerFactory::loadViewerPlugins()
     // Load shared plugins
     QDir pluginsDir = QDir(QApplication::applicationDirPath());
 
-#if defined(Q_OS_WIN)
-    if (pluginsDir.dirName().toLower() == "debug"_L1 || pluginsDir.dirName().toLower() == "release"_L1)
-        pluginsDir.cdUp();
+#if defined(Q_OS_WINDOWS)
+    pluginsDir.cd("app"_L1);
 #elif defined(Q_OS_DARWIN)
     if (pluginsDir.dirName() == "macOS"_L1) {
         pluginsDir.cdUp();
