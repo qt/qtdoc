@@ -420,6 +420,22 @@ are still experimental in the browsers or Emscripten.
 \endlist
 
 \section1 Developing with Qt for WebAssembly
+\section2 Building with CMake
+
+If there is a need for Emscripten-specific configuration in CMake,
+the following code can be utilized:
+
+\badcode
+    if(EMSCRIPTEN)
+        # WebAssembly specific code
+    else()
+        # other platforms
+    endif()
+\endcode
+
+This code allows for the accommodation of Emscripten-specific configurations
+while ensuring compatibility with other platforms.
+
 \section2 OpenGL and WebGL
 
 Qt requires WebGL, also for applications which do not use OpenGL directly. All
