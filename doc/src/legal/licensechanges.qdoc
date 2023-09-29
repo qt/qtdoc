@@ -11,6 +11,38 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.6.0
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 8.3.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li Usage of \l{D3D12MemoryAllocator}{D3D12 Memory Allocator},
+        version f128d39b7a95b4235bd228d231646278dc6c24b2 under MIT License is now documented.
+        \li Usage of \l{rhi-miniengine-d3d12-mipmap}{Mipmap generator for D3D12},
+        version 0aa79bad78992da0b6a8279ddb9002c1753cb849 under MIT License is now documented.
+    \endlist
+
+   \section2 Qt OpcUA Module
+
+    \list
+        \li \l{open62541}{Open62541} was updated to version 1.3.6.
+    \endlist
+
+    \section2 Qt Positioning Module
+
+    \list
+        \li Usage of \l {titilliumweb_font}{Titillium Web Font} under SIL
+        OPEN FONT LICENSE Version 1.1 license is now documented.
+        \li Usage of \l {material_symbols_and_icons}{Material Symbols and Icons}
+        under Apache License Version 2.0 is now documented.
+    \endlist
+
     \section1 Qt 6.5.3
 
     \section2 Qt Core Module
