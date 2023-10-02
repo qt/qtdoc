@@ -1,57 +1,54 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Window
 
 Item {
     id: display
-    property real fontSize: Math.floor(Screen.pixelDensity * 5.0)
+    readonly property real fontSize: Math.floor(Screen.pixelDensity * 5.0)
     property bool enteringDigits: false
     readonly property int maxDigits: (width / fontSize) + 1
     property string displayedOperand
-    property string errorString: qsTr("ERROR")
+    readonly property string errorString: qsTr("ERROR")
     readonly property bool isError: displayedOperand === errorString
 
-    function displayOperator(operator)
-    {
-        listView.model.append({ "operator": operator, "operand": "" })
+    function displayOperator(operator) {
+        calculationsListView.model.append({ "operator": operator, "operand": "" })
         enteringDigits = true
-        listView.positionViewAtEnd()
+        calculationsListView.positionViewAtEnd()
     }
 
-    function newLine(operator, operand)
-    {
+    function newLine(operator, operand) {
         displayedOperand = displayNumber(operand)
-        listView.model.append({ "operator": operator, "operand": displayedOperand })
+        calculationsListView.model.append({ "operator": operator, "operand": displayedOperand })
         enteringDigits = false
-        listView.positionViewAtEnd()
+        calculationsListView.positionViewAtEnd()
     }
 
-    function appendDigit(digit)
-    {
+    function appendDigit(digit) {
         if (!enteringDigits)
-            listView.model.append({ "operator": "", "operand": "" })
-        const i = listView.model.count - 1;
-        listView.model.get(i).operand = listView.model.get(i).operand + digit;
+            calculationsListView.model.append({ "operator": "", "operand": "" })
+        const i = calculationsListView.model.count - 1;
+        calculationsListView.model.get(i).operand = calculationsListView.model.get(i).operand + digit;
         enteringDigits = true
-        listView.positionViewAtEnd()
+        calculationsListView.positionViewAtEnd()
     }
 
-    function setDigit(digit)
-    {
-        const i = listView.model.count - 1;
-        listView.model.get(i).operand = digit;
-        listView.positionViewAtEnd()
+    function setDigit(digit) {
+        const i = calculationsListView.model.count - 1;
+        calculationsListView.model.get(i).operand = digit;
+        calculationsListView.positionViewAtEnd()
     }
 
-    function clear()
-    {
+    function clear() {
         displayedOperand = ""
         if (enteringDigits) {
-            const i = listView.model.count - 1
+            const i = calculationsListView.model.count - 1
             if (i >= 0)
-                listView.model.remove(i)
+                calculationsListView.model.remove(i)
             enteringDigits = false
         }
     }
@@ -61,7 +58,7 @@ Item {
     // as possible. If the number cannot be displayed, returns an
     // error string.
     function displayNumber(num) {
-        if (typeof(num) != "number")
+        if (typeof(num) !== "number")
             return errorString;
 
         const intNum = parseInt(num);
@@ -78,7 +75,7 @@ Item {
 
         // Integer part of the number is too long - try
         // an exponential notation
-        if (intNum == num || intLen > maxLen - 3) {
+        if (intNum === num || intLen > maxLen - 3) {
             const expVal = num.toExponential(maxDigits - 6).toString();
             if (expVal.length <= maxLen)
                 return expVal;
@@ -126,32 +123,33 @@ Item {
         }
 
         ListView {
-            id: listView
-            x: 16; y: 30
+            id: calculationsListView
+            x: 16
+            y: 30
             width: display.width
             height: display.height - 50 - y
+            clip: true
             delegate: Item {
-                id: delegateItem
                 height: display.fontSize * 1.1
-                width: listView.width
+                width: calculationsListView.width
+
+                required property string operator
+                required property string operand
+
                 Text {
-                    id: operator
                     x: 6
                     font.pixelSize: display.fontSize
                     color: "#6da43d"
-                    text: model.operator
+                    text: parent.operator
                 }
                 Text {
-                    id: operand
                     font.pixelSize: display.fontSize
-                    anchors.right: delegateItem.right
+                    anchors.right: parent.right
                     anchors.rightMargin: 22
-                    text: model.operand
+                    text: parent.operand
                 }
             }
             model: ListModel { }
         }
-
     }
-
 }
