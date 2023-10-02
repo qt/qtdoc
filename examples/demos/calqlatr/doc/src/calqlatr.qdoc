@@ -101,7 +101,8 @@
 
     \quotefromfile demos/calqlatr/calqlatr.qml
     \skipto AnimationController
-    \printuntil 1; easing.type
+    \printuntil from: 0.97
+    \printuntil }
     \printuntil }
     \printuntil }
     \printuntil }
@@ -152,20 +153,26 @@
     import "content/calculator.js" as CalcEngine
     \endcode
 
-    Importing the engine creates a new instance of it. Therefore, we only do it
-    in the main QML file, \c calqlatr.qml. The root item defined in this file
-    contains helper functions that allow other types to access the calculator
-    engine:
+    By default, \l {Defining JavaScript Resources in QML}{importing a
+    JavaScript file from QML creates a new instance of it}, and any state it
+    contains is unique to that instance. For this example we want the state to
+    be shared amongst all users of the script, so we use \c {.pragma library}
+    to indicate that:
 
-    \quotefromfile demos/calqlatr/calqlatr.qml
-    \skipto operatorPressed
-    \printuntil CalcEngine.disabled
-    \printuntil }
+    \quotefromfile demos/calqlatr/content/calculator.js
+    \skipuntil SPDX-License-Identifier
+    \printuntil .pragma library
 
     When users press a digit, the text from the digit appears on the
     display. When they press an operator, the appropriate calculation is
     performed, and the result can be displayed using the equals (=) operator.
     The clear (C) operator resets the calculator engine.
+
+    \quotefromfile demos/calqlatr/content/calculator.js
+    \skipto isOperationDisabled
+    \printuntil digits = ""
+    \printuntil }
+    \printuntil }
 
     \section1 List of Files
 
