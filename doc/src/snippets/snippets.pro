@@ -90,3 +90,7 @@ SUBDIRS         = brush \
 #                  whatsthis \
                   widget-mask \
                   xml
+
+qtConfig(xcb) {
+    SUBDIRS += porting-qx11info
+}

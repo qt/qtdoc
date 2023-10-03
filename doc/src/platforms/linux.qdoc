@@ -730,10 +730,6 @@
     above. Do this by adding them to the \c LIBS variable in your
     project file.
 
-    From Qt version 5.2 onwards, the officially supported version for
-    OpenSSL is 1.0.0 or later. Versions >= 0.9.7 and < 1.0.0 might work,
-    but are not guaranteed to.
-
     \section2 Qt Plugins
 
     All Qt GUI applications require a plugin that implements the \l {Qt
@@ -786,65 +782,7 @@
 
     \section1 Linux
 
-    There are no known problems with using Qt on production versions of
-    Linux/x86, Linux/ppc, Linux/amd64 and Linux/ia64 (including Altix(R)).
-
-    For information about the specific compilers supported, visit the
+    There are no known problems with using Qt on Linux. For information
+    about the specific compilers and distributions supported, visit the
     \l{Supported Platforms}{supported platforms} page.
-
-    \section2 Installation problems
-
-    Installing the source (\e{.tgz}) will likely conflict with the Qt version
-    from your Linux distribution. This can result in link errors, such as:
-
-    \snippet snippets/code/doc_src_platform-notes.qdoc 0
-
-    This is solved by removing the older version of the library.
-
-    If you have problems installing open source versions of Qt provided by your
-    Linux distribution, for example, from RPM or APT repositories, please
-    consult the maintainers of the distribution.
-
-    Some RPM versions have problems installing some of the Qt RPM archives
-    where installation stops with an error message warning about a
-    \gui{Failed Dependency}. Use the \c{--nodeps} option of \c rpm as workaround
-    this problem.
-
-    \section2 Intel C++ Compiler for Linux
-
-    Qt can be compiled with the Intel C++ compile for Linux, though, this
-    configuration is not tested on a regular basis.
-
-    \section2 Known Issues with Intel C++ Compiler for Linux
-
-    \list
-
-    \li Precompiled header support does not work in version 10.0.025
-       and older. For these compilers, you should configure Qt with
-       -no-pch. Precompiled header support works properly in version
-       10.0.026 and later.
-    \li Version 10.0.026 for Intel 64 is known to miscompile qmake when
-       building in release mode. For now, configure Qt with
-       -debug. Version 10.1.008 and later can compile qmake in release
-       mode.
-    \li Versions 10.1.008 to 10.1.015 for both IA-32 and Intel 64 are
-       known crash with "(0): internal error: 0_47021" when compiling
-       \l{Qt Designer} in release mode. Version 10.1.017 compiles these
-       modules correctly in release mode.
-    \endlist
-
-    \section2 Known Issues with GCC Compilers
-
-    Building Qt with certain versions of GCC has the following known issues:
-
-    \list
-      \li GCC 5.2.1: Nested structs do not get their constructors called under
-          some circumstances:
-      \list
-        \li \l {https://gcc.gnu.org/bugzilla/show_bug.cgi?id=67550}{Related bug}
-            in GCC's bug tracker
-        \li \l {https://codereview.qt-project.org/161071}{A possible workaround}
-      \endlist
-    \endlist
-
 */

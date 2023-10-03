@@ -563,7 +563,9 @@
     required software-based OpenGL, if the application is compatible with it.
 
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
-    need to be added to the \c release folder, too.
+    need to be added to the \c release folder, too. But the binary
+    packages for Qt on Windows do require this. For more details, see also
+    \l{Third-Party Libraries}.
 
     \omit
     \note \l{Qt WebEngine} applications have additional requirements that are
@@ -787,10 +789,6 @@
 
     When looking at the plugin DLLs the exact same dependencies
     are listed.
-
-    From Qt version 5.2 onwards, the officially supported version
-    for OpenSSL is 1.0.0 or later. Versions >= 0.9.7 and < 1.0.0 might
-    work, but are not guaranteed to.
 
     \section2 Qt Plugins
 

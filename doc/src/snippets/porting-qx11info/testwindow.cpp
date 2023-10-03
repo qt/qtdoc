@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the examples of the Qt Toolkit.
+** This file is part of the documentation of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
@@ -48,99 +48,55 @@
 **
 ****************************************************************************/
 
-import QtQuick
+#include "testwindow.h"
 
-Grid {
-    columns: 3
-    columnSpacing: 2
-    rowSpacing: 2
+//! [0]
+#include <QtGui/QGuiApplication>
+//! [0]
+#include <QDebug>
 
-    function updateDimmed(){
-        for (let i = 0; i < children.length; i++){
-            children[i].dimmed = window.isButtonDisabled(children[i].text)
-        }
-    }
+#if defined(Q_OS_UNIX)
+#if QT_VERSION < 0x060000
+#include <QtX11Extras/QX11Info>
+#endif
+#endif
 
-    component DigitButton: CalculatorButton {
-        onPressed: function() {
-            window.digitPressed(text)
-            updateDimmed()
-        }
-    }
+#include <X11/Xlib.h>
+#include <xcb/xcb.h>
 
-    component OperatorButton: CalculatorButton {
-        onPressed: function() {
-            window.operatorPressed(text)
-            updateDimmed()
-        }
-        textColor: "#6da43d"
-        dimmable: true
-    }
+TestWindow::TestWindow(QWindow *parent)
+    : QWindow(parent)
+{
 
-    DigitButton {
-        text: "7"
+#if QT_VERSION < 0x060000
+    Display *display = QX11Info::display();
+    xcb_connection_t *connection = QX11Info::connection();
+    bool isPlatformX11 = QX11Info::isPlatformX11();
+#else
+//! [1]
+    Display *display = nullptr;
+    xcb_connection_t *connection = nullptr;
+    bool isPlatformX11 = false;
+    if (auto *x11Application = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
+        display = x11Application->display();
+        connection = x11Application->connection();
+        isPlatformX11 = true;
     }
-    DigitButton {
-        text: "8"
-    }
-    DigitButton {
-        text: "9"
-    }
-    DigitButton {
-        text: "4"
-    }
-    DigitButton {
-        text: "5"
-    }
-    DigitButton {
-        text: "6"
-    }
-    DigitButton {
-        text: "1"
-    }
-    DigitButton {
-        text: "2"
-    }
-    DigitButton {
-        text: "3"
-    }
-    DigitButton {
-        text: "0"
-    }
-    DigitButton {
-        text: "."
-        dimmable: true
-    }
-    DigitButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "±"
-    }
-    OperatorButton {
-        text: "−"
-    }
-    OperatorButton {
-        text: "+"
-    }
-    OperatorButton {
-        text: "√"
-    }
-    OperatorButton {
-        text: "÷"
-    }
-    OperatorButton {
-        text: "×"
-    }
-    OperatorButton {
-        text: "C"
-    }
-    OperatorButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "="
+    // or
+    // isPlatformX11 = qGuiApp->nativeInterface<QNativeInterface::QX11Application>();
+//! [1]
+#endif
+
+    qDebug() << "Display *display=" << display;
+    if (display)
+        qDebug() << "XConnectionNumber=" << XConnectionNumber(display);
+
+    qDebug() << "xcb_connection_t *xcbConnection=" << connection;
+    if (connection) {
+        const xcb_setup_t *xcbSetup = xcb_get_setup(connection);
+        if (xcbSetup)
+            qDebug() << "protocol_major_version=" << xcbSetup->protocol_major_version << ", protocol_minor_version=" << xcbSetup->protocol_minor_version;
     }
 
-    Component.onCompleted: updateDimmed()
+    qDebug() << "isPlatformX11=" << isPlatformX11;
 }

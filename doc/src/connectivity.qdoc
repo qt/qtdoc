@@ -72,8 +72,7 @@ that there is no HTTP server class in Qt.
 
 For secure communication via SSL, Qt Network offers a wide range of classes
 alongside the central QSslSocket, e.g. QSslCertificate, QSslConfiguration and
-QSslError. The only supported backend for SSL in Qt is OpenSSL, which needs to
-be installed separately.
+QSslError.
 
 Qt also offers HTTP support in QML by either using HTTP explicitly via
 XmlHttpRequest, or by transparently using HTTP URLs in e.g. Image sources.

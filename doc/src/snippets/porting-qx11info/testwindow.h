@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2021 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the examples of the Qt Toolkit.
+** This file is part of the documentation of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
@@ -48,99 +48,16 @@
 **
 ****************************************************************************/
 
-import QtQuick
+#ifndef TESTWINDOW_H
+#define TESTWINDOW_H
 
-Grid {
-    columns: 3
-    columnSpacing: 2
-    rowSpacing: 2
+#include <QtGui/QWindow>
 
-    function updateDimmed(){
-        for (let i = 0; i < children.length; i++){
-            children[i].dimmed = window.isButtonDisabled(children[i].text)
-        }
-    }
+class TestWindow : public QWindow
+{
+    Q_OBJECT
+public:
+    explicit TestWindow(QWindow *parent = nullptr);
+};
 
-    component DigitButton: CalculatorButton {
-        onPressed: function() {
-            window.digitPressed(text)
-            updateDimmed()
-        }
-    }
-
-    component OperatorButton: CalculatorButton {
-        onPressed: function() {
-            window.operatorPressed(text)
-            updateDimmed()
-        }
-        textColor: "#6da43d"
-        dimmable: true
-    }
-
-    DigitButton {
-        text: "7"
-    }
-    DigitButton {
-        text: "8"
-    }
-    DigitButton {
-        text: "9"
-    }
-    DigitButton {
-        text: "4"
-    }
-    DigitButton {
-        text: "5"
-    }
-    DigitButton {
-        text: "6"
-    }
-    DigitButton {
-        text: "1"
-    }
-    DigitButton {
-        text: "2"
-    }
-    DigitButton {
-        text: "3"
-    }
-    DigitButton {
-        text: "0"
-    }
-    DigitButton {
-        text: "."
-        dimmable: true
-    }
-    DigitButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "±"
-    }
-    OperatorButton {
-        text: "−"
-    }
-    OperatorButton {
-        text: "+"
-    }
-    OperatorButton {
-        text: "√"
-    }
-    OperatorButton {
-        text: "÷"
-    }
-    OperatorButton {
-        text: "×"
-    }
-    OperatorButton {
-        text: "C"
-    }
-    OperatorButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "="
-    }
-
-    Component.onCompleted: updateDimmed()
-}
+#endif // TESTWINDOW_H
