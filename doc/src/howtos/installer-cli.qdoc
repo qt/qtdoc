@@ -15,17 +15,186 @@
     information on how you can use the command line interface:
 
     \list
+        \li \l{Component Names For Installation}
         \li \l{Installing Without User Interaction}
         \li \l{Installing With User Interaction}
         \li \l{Uninstalling Packages}
-        \li \l{Searching Packages}
         \li \l{Listing Installed Packages}
         \li \l{Checking Updates}
         \li \l{Updating Packages}
         \li \l{Popular Commands}
         \li \l{Selecting Mirror for Opensource}
-        \li \l{Further Information}
+        \li \l{Summary of Command Line Interface Usage}
     \endlist
+
+    \section1 Component Names for Installation
+
+    \section2 Quick Installation with Alias Packages
+
+    Instead of searching for specific package names for installation, you can
+    use alias packages to install the most common configurations. Alias packages
+    are a shortcut to include the actual packages for an easier installation
+    experience.
+
+    To list the existing alias packages, use the following command on the command
+    line interface:
+
+    \badcode
+    installer.exe / maintenancetool.exe search
+    \endcode
+
+    The contents of the alias packages are listed in the table below.
+
+    \note Qt 6.6.0 release is used in the alias package examples listed below.
+    Always remember to use the packages that match the Qt release you are working
+    on.
+
+    \table
+    \header
+       \li Alias package name
+       \li Qt Online Installer (package content)
+    \row
+       \li qt6.6.0-essentials
+       \li
+          \list
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+             \li essential module headers
+             \li essential module private headers
+             \li essential module runtime tools
+             \li essential module development tools
+          \endlist
+    \row
+       \li qt6.6.0-essentials-dev
+       \li
+          \list
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+             \li essential module headers
+             \li essential module private headers
+             \li essential module runtime tools
+             \li essential module development tools
+         \endlist
+    \row
+       \li qt6.6.0-full
+       \li
+          \list
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+             \li essential module headers
+             \li essential module private headers
+             \li essential module runtime tools
+             \li essential module development tools
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons} {add-on module libraries}
+             \li add-on module headers
+             \li add-on module private headers
+             \li add-on module runtime tools
+             \li add-on module development tools
+             \li sources
+         \endlist
+    \row
+       \li qt6.6.0-full-dev
+       \li
+          \list
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+             \li essential module headers
+             \li essential module private headers
+             \li essential module runtime tools
+             \li essential module development tools
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons} {add-on module libraries}
+             \li add-on module headers
+             \li add-on module private headers
+             \li add-on module runtime tools
+             \li add-on module development tools
+             \li sources
+         \endlist
+    \row
+       \li qt6.6.0-full-dbg
+       \li
+          \list
+             \li Qt debug information files for:
+                \list
+                   \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+                   \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons} {add-on module libraries}
+                \endlist
+          \endlist
+    \row
+       \li qt6.6.0-sdk
+       \li
+       \list
+             \li latest Qt Creator
+             \li qt6.6.0-full-dev (details above)
+             \li qt6.6.0-full-dbg (details above)
+             \li Ninja
+             \li CMake
+          \endlist
+    \endtable
+
+    \b {Qt Online Installer command examples}
+
+    \badcode
+    # Windows: new installation with Qt Online Installer
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe install qt6.6.0-sdk
+
+    # macOS: new installation with Qt Online Installer
+    hdiutil attach qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg
+    /Volumes/qt-unified-macOS-x64-[Qt Online Installer version]-online/qt-unified-macOS-x64-[Qt Online Installer version]-online.app/Contents/MacOS/qt-unified-macOS-x64-[Qt Online Installer version]-online install qt6.6.0-sdk
+    hdiutil detach /Volumes/qt-unified-macOS-x64-[Qt Online Installer version]-online
+
+    # Linux: new installation with Qt Online Installer
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run install qt6.6.0-sdk
+    \endcode
+
+    \section2 Listing Non-Alias Packages
+
+    To list the non-alias packages, use the following command on the command
+    line interface:
+
+    \badcode
+    installer.exe / maintenancetool.exe search --type package
+    \endcode
+
+    \section2 Advanced Searching for Specific Installation Packages
+
+    Search available packages with the \c{search} command and regular
+    expressions: \b{\c{search <regexp>}}. You can filter the results with
+    \b{\c{--filter-packages <regexp>}}. For example, filtering with the display
+    name information can help search.
+
+    For example, the following command finds all MSVC 2019 packages for Qt 6.6.0:
+
+    \badcode
+    search .*660.*msvc2019
+    \endcode
+
+    You get the same result when you filter the search result as follows:
+
+    \badcode
+    search --filter-packages DisplayName=MSVC 2019,Version=6.6.0
+    \endcode
+
+    As a result, you get the following packages:
+
+    \badcode
+    <availablepackages>
+        <package name="qt.qt6.660.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.6.0-0-202303290841"/>
+        <package name="qt.qt6.660.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.6.0-0-202303290841"/>
+    </availablepackages>
+    \endcode
+
+    You can also use filtering when you search all Qt versions that some package
+    is provided for. For example, search all Qt Charts packages provided for
+    Qt versions:
+
+    \badcode
+    search --filter-packages DisplayName=charts
+    \endcode
+
+    The search result is as follows:
+
+    \badcode
+    <availablepackages>
+        <package name="qt.qt5.5125.qtcharts" displayname="Qt Charts" version="5.12.5-0-201909090651"/>
+        <package name="qt.qt6.641.addons.qtcharts" displayname="Qt Charts" version="6.4.1-0-202211101525"/>
+        <package name="qt.qt5.5123.qtcharts" displayname="Qt Charts" version="5.12.3-0-201904161619"/>
+    \endcode
 
     \section1 Installing Without User Interaction
 
@@ -50,19 +219,18 @@
     The following examples demonstrate how you install Qt 6.6.0 binaries
     with \QOI for Windows, macOS, and Linux. The unattended
     commands automatically accept the licenses (\b{\c{--accept-licenses}}), answer
-    all message queries with their default answer (\b{\c{--default-answer}}), skip
-    asking for permission to continue performing (\b{\c{--confirm-command}}), and
-    accept all message queries (\b{\c{accept-messages}}):
+    all message queries with their default answer (\b{\c{--default-answer}}), and
+    skip asking for permission to continue performing (\b{\c{--confirm-command}}):
 
     \badcode
     # Windows: new installation with Qt Online Installer
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.win64_msvc2019_64
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.win64_msvc2019_64
 
     # macOS: new installation with Qt Online Installer
-    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.clang_644
+    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.clang_644
 
     # linux: new installation with Qt Online Installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.gcc_64
     \endcode
 
     \l{Options for Unattended Usage} lists all available options for unattended
@@ -84,19 +252,18 @@
     with \QMT to an exsting installation on Windows, macOS, and
     Linux. The unattended commands automatically accept the licenses
     (\b{\c{--accept-licenses}}), answer all message queries with their default
-    answer (\b{\c{--default-answer}}), skip  asking for permission to continue
-    performing (\b{\c{--confirm-command}}), and accept all message queries
-    \b{\c{accept-messages}}):
+    answer (\b{\c{--default-answer}}), and skip asking for permission to continue
+    performing (\b{\c{--confirm-command}}):
 
     \badcode
     # Windows: update installation with Qt Maintenance Tool
-    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.win64_msvc2019_64
+    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command install qt.qt6.660.win64_msvc2019_64
 
     # macOS: update installation with Qt Maintenance Tool
-    MaintenanceTool.dmg --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.clang_64
+    MaintenanceTool.app/Contents/MacOS/MaintenanceTool --accept-licenses --default-answer --confirm-command install qt.qt6.660.clang_64
 
     # linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run --accept-licenses --default-answer --confirm-command --accept-messages install qt.qt6.660.gcc_64
+    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.660.gcc_64
     \endcode
 
     \section2 Options for Unattended Usage
@@ -311,51 +478,6 @@
     MaintenanceTool.run purge
     \endcode
 
-    \section1 Searching Packages
-
-    Search available packages with the \c{search} command and regular
-    expressions: \b{\c{search <regexp>}}. You can filter the results with
-    \b{\c{--filter-packages <regexp>}}. For example, filtering with the display
-    name information can help search.
-
-    For example, the following command finds all MSVC 2019 packages for Qt 6.6.0:
-
-    \badcode
-    search .*650.*msvc2019
-    \endcode
-
-    You get the same result when you filter the search result as follows:
-
-    \badcode
-    search --filter-packages DisplayName=MSVC 2019,Version=6.6.0
-    \endcode
-
-    As a result, you get the following packages:
-
-    \badcode
-    <availablepackages>
-        <package name="qt.qt6.660.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.6.0-0-202303290841"/>
-        <package name="qt.qt6.660.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.6.0-0-202303290841"/>
-    </availablepackages>
-    \endcode
-
-    You can also use filtering when you search all Qt versions that some package
-    is provided for. For example, search all Qt Charts packages provided for
-    Qt versions:
-
-    \badcode
-    search --filter-packages DisplayName=charts
-    \endcode
-
-    The search result is as follows:
-
-    \badcode
-    <availablepackages>
-        <package name="qt.qt5.5125.qtcharts" displayname="Qt Charts" version="5.12.5-0-201909090651"/>
-        <package name="qt.qt6.641.addons.qtcharts" displayname="Qt Charts" version="6.4.1-0-202211101525"/>
-        <package name="qt.qt5.5123.qtcharts" displayname="Qt Charts" version="5.12.3-0-201904161619"/>
-    \endcode
-
     \section1 Listing Installed Packages
 
     The \b{\c{list}} command lists all packages you have installed. Use the
@@ -461,7 +583,7 @@
     You find the available mirrors from
     \l{https://download.qt.io/online/qtsdkrepository/windows_x86/root/qt/Updates.xml.mirrorlist}.
 
-    \section1 Further Information
+    \section1 Summary of Command Line Interface Usage
 
     \l{https://doc.qt.io/qtinstallerframework/}{Qt Installer Framework Manual}
     provides more detailed information about the command line interface:
