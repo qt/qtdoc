@@ -51,8 +51,6 @@ private slots:
     void pageSelected(int page);
 
     // action handlers
-    void onActionOpenTriggered();
-    void onActionQuitTriggered();
     void onActionZoomInTriggered();
     void onActionZoomOutTriggered();
     void onActionPreviousPageTriggered();
