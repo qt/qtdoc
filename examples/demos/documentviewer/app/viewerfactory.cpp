@@ -66,7 +66,7 @@ void ViewerFactory::loadViewerPlugins()
 #if defined(Q_OS_WINDOWS)
     pluginsDir.cd("app"_L1);
 #elif defined(Q_OS_DARWIN)
-    if (pluginsDir.dirName() == "macOS"_L1) {
+    if (pluginsDir.dirName() == "MacOS"_L1) {
         pluginsDir.cdUp();
         pluginsDir.cdUp();
         pluginsDir.cdUp();
