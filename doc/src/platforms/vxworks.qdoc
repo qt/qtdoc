@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2015 The Qt Company Ltd.
+** Copyright (C) 2022 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -39,13 +39,27 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
+  \section2 Qt 5.15.10 for VxWorks
+
+  In Qt 5.15.10 LTS Commercial, Qt for VxWorks is provided as a source package
+  release. You can build Qt for VxWorks sources only on Linux. Qt 5.15 LTS
+  Commercial is supported until May 2025.
+
+  Qt 5.15.10 was verified on VxWorks 7 SR650 and SR21.11 with
+  \l{https://boundarydevices.com/product/bd-sl-i-mx6/}{BD-SL-i.MX6}.
+  Building Qt for VxWorks was verified on Ubuntu 20.04.
+
+  \section2 Older Qt Releases
+
+  In older Qt releases, Qt for VxWorks was supported as follows:
+
   \list
     \li Qt 5.5 was verified on VxWorks 7 release SR0480 2016-09-16.
     Supported architecture is ARM-v7.
     \note Qt 5.5 is no longer supported.
     \li Qt 5.9 LTS was verified on VxWorks 7 SR0541.
-    \note Support for Qt 5.9 ends May 2020.
-    \li 5.12 LTS is verified on VxWorks 7 SR0541 for gcc and SR650 for clang. Qt 5.12 is supported until
+    \note Support for Qt 5.9 ended May 2020.
+    \li 5.12 LTS is verified on VxWorks 7 SR0541 for gcc and SR650 for clang. Qt 5.12 was supported until
     December 2021.
   \endlist
 
@@ -54,8 +68,8 @@
   \section1 Qt for VxWorks Source Package
 
   Qt for VxWorks is delivered via the \l {Qt Account}, under the name
-  \b {Qt 5.5.1} > \b {Qt VxWorks Platform Source Package}.
-  \note Qt 5.5 is no longer supported.
+  \b {Qt 5.15.10} > \b {Qt VxWorks Platform Source Package}.
+  \note You can build Qt for VxWorks sources only on Linux.
 
   Source packages for up-to-date and supported Qt releases on VxWorks are
   available through Qt Professional Services.
@@ -124,16 +138,15 @@
       \li Notes
   \row
       \li \l {Qt Charts}
-      \li Version 2.0.1
+      \li
   \row
       \li \l {Qt Data Visualization}
-      \li Version 1.2.1
   \row
       \li \l {Qt Virtual Keyboard}
-      \li Version 2.0
+      \li
   \row
       \li \l {Qt Quick Compiler}
-      \li Version 3.0
+      \li
   \row
       \li \l {Qt Concurrent}
       \li
@@ -200,13 +213,15 @@
   \li Linux:
   \badcode
   cd <VxWorks 7 installation directory>
-  ./wrenv.sh -p vxworks-7
+  ./wrenv.sh -p vxworks-7 # for SR0650
+  ./wrenv.sh -p vxworks   # for SR21.11 and later
   \endcode
 
   \li Windows:
   \badcode
   cd <VxWorks 7 installation directory>
-  wrenv -p vxworks-7
+  wrenv -p vxworks-7 # for SR0650
+  wrenv -p vxworks   # for SR21.11 and later
   \endcode
   \endlist
 
@@ -217,20 +232,20 @@
   types of default devices depending on the VxWorks 7 version used.
 
   \list
-  \li \c vxworks-imx6-g++ for SR0541
   \li \c vxworks-imx6-clang for SR0650
+  \li \c vxworks-imx6-g++ for SR0541
   \endlist
-
-  Below is an example configuration for the BD-SL-i.MX6 when using VxWorks 7 SR0541.
-
-  \badcode
-    ./configure -commercial -shared -confirm-license -device vxworks-imx6-g++ -device-option CROSS_COMPILE=arm -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
-  \endcode
 
   Below is an example configuration for the BD-SL-i.MX6 when using VxWorks 7 SR0650.
 
   \badcode
     ./configure -commercial -shared -confirm-license -device vxworks-imx6-clang -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
+  \endcode
+
+  Below is an example configuration for the BD-SL-i.MX6 when using VxWorks 7 SR0541.
+
+  \badcode
+    ./configure -commercial -shared -confirm-license -device vxworks-imx6-g++ -device-option CROSS_COMPILE=arm -prefix /sd1:1/qt5rtp -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_1_1_11_0_VSB -no-gcc-sysroot -extprefix <path_to_host_dir>/qt5rtp -hostprefix <path_to_host_dir>/qt5rtp -no-openssl -nomake tools -nomake examples
   \endcode
 
   The most important parameters are \c -device, \c -device-option CROSS_COMPILE=<arch>,
@@ -531,8 +546,8 @@
   It is not needed for Qt 5 shared libraries.
 
   \badcode
-  putenv "LD_LIBRARY_PATH=/sd0:1/lib"
-  cd "/sd0:1"
+  putenv "LD_LIBRARY_PATH=/sd0a/lib"
+  cd "/sd0a"
   rtpSp("<Qt5_app>", 200, 0x100000, 0, 0x01000000)
   \endcode
 
