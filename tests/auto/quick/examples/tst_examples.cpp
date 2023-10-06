@@ -69,7 +69,8 @@ tst_examples::tst_examples()
         << "examples/quick/shapes/content/interactive.qml"_L1 // relies on resources
         << "examples/demos/addressbook/qml/main.qml"_L1 // relies on resources
         << "examples/demos/robotarm/main.qml"_L1 // relies on custom import
-        << "examples/demos/FX_Material_Showroom/main.qml"_L1; // relies on custom import
+        << "examples/demos/FX_Material_Showroom/main.qml"_L1 // relies on custom import
+        << "examples/demos/car-configurator/main.qml"_L1; // relies on custom import
 
 #if !QT_CONFIG(opengl)
     //No support for Particles

@@ -1,0 +1,2 @@
+add_subdirectory(Quick3DAssets)
+add_subdirectory(ComponentBundles/MaterialBundle)

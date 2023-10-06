@@ -1,0 +1,19 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only WITH Qt-GPL-exception-1.0
+
+import QtQuick
+
+Item {
+    width: 54
+    height: 108
+
+    Rectangle {
+        id: separator1
+
+        width: 2
+        height: 64
+        color: "#b5b5b5"
+        radius: 2
+        anchors.centerIn: parent
+    }
+}
