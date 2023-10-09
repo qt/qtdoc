@@ -36,7 +36,6 @@ public:
 
     AbstractViewer *viewer(QFile *file) const;
 
-
     using ViewerMap = QMap<QString, AbstractViewer *>;
     using ViewerList = QList<AbstractViewer *>;
     QStringList viewerNames(bool showDefault = false) const;
@@ -56,6 +55,7 @@ private:
     void loadViewerPlugins();
     void addViewer(QObject *viewerObject);
     AbstractViewer *viewer(const QMimeType &type) const;
+    AbstractViewer *viewer(const QString &extension) const;
     void unload();
 };
 

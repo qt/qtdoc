@@ -31,10 +31,11 @@ AbstractViewer::AbstractViewer() : m_file(nullptr), m_widget(nullptr)
 
 void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
 {
-    m_file.reset(file);
-    m_widget = widget;
     Q_ASSERT(widget);
     Q_ASSERT(mainWindow);
+    Q_ASSERT(file);
+    m_file.reset(file);
+    m_widget = widget;
     m_uiAssets.mainWindow = mainWindow;
 }
 

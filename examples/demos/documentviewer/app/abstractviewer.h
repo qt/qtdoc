@@ -39,6 +39,7 @@ public:
     virtual bool restoreState(QByteArray &) = 0;
     virtual bool hasContent() const;
     virtual QStringList supportedMimeTypes() const = 0;
+    virtual QStringList supportedExtensions() const { return {}; }
     virtual bool isDefaultViewer() const;
     virtual void cleanup();
     bool isEmpty() const;

@@ -7,3 +7,7 @@ add_subdirectory(txtviewer)
 if(TARGET Qt6::PdfWidgets)
     add_subdirectory(pdfviewer)
 endif()
+
+if(TARGET Qt6::Quick3D)
+    add_subdirectory(q3dviewer)
+endif()
