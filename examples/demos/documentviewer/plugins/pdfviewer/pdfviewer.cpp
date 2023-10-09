@@ -64,6 +64,8 @@ void PdfViewer::cleanup()
     m_bookmarks = nullptr;
     delete m_document;
     m_document = nullptr;
+    disconnect(m_uiAssets.back, &QAction::triggered, this, &PdfViewer::onActionBackTriggered);
+    disconnect(m_uiAssets.forward, &QAction::triggered, this, &PdfViewer::onActionForwardTriggered);
     AbstractViewer::cleanup();
 }
 
