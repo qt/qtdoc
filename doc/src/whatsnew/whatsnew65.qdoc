@@ -55,6 +55,9 @@
             signal. This lets you integrate existing, non-bindable
             properties with \l [QtCore] {Qt Bindable Properties}
             {bindable properties}.
+        \li The \l{qt_generate_deploy_app_script} CMake function preferably accepts
+            an argument called OUTPUT_SCRIPT now. Passing the old FILENAME_VARIABLE
+            is deprecated.
     \endlist
 
     \section2 Qt GUI Module
@@ -295,6 +298,9 @@
                     will always be able to find your QML modules in the
                     resource file system.
             \endlist
+        \li The \l{qt_generate_deploy_qml_app_script} CMake function preferably
+            accepts an argument called OUTPUT_SCRIPT now. Passing the old
+            FILENAME_VARIABLE is deprecated.
     \endlist
 
     \section2 Qt Quick 3D Module
