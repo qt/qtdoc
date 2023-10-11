@@ -525,7 +525,9 @@
     and specify \l{Building a C++ console application}{CMAKE_CXX_STANDARD},
     and \c{CMAKE_CXX_STANDARD_REQUIRED}.
     By passing \c {REQUIRES 6.5} to \c {qt_standard_project_setup}, we opt-in
-    to useful defaults for \l{qt6_add_qml_module}{qt_add_qml_module}.
+    to useful defaults for \l{qt6_add_qml_module}{qt_add_qml_module}. It
+    enables all the \l{Qt CMake policies} up to version 6.5, in particular
+    \l{QTP0001} that defines a sane default resource prefix for QML modules.
 
     \printuntil CMAKE_CXX_STANDARD_REQUIRED
 
