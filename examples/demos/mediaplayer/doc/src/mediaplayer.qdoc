@@ -18,10 +18,119 @@
 
     \include examples-run.qdocinc
 
-    \section1 Overview
+    \section1 Project structure
+
+    \image project_structure.png
+
+    This applications architecture is comprised of three custom QML modules:
+
+    \list
+        \li \c MediaControl
+        \li \c MediaPlayer
+        \li \c Config
+    \endlist
+
+    This is also reflected in the top-level \c CMakeLists.txt file:
+
+    \quotefromfile demos/mediaplayer/CMakeLists.txt
+    \skipto add_subdirectory(MediaPlayer)
+    \printuntil Configplugin
+
+    Each QML module is created using the \l qt_add_qml_module macro, for example
+    see how the Config module is created.
+
+    \quotefile demos/mediaplayer/Config/CMakeLists.txt
+
+    \section1 Qt Quick application
+
     At its core this is a QML application, see
     \l{Getting Started Programming with Qt Quick} for information specific to
     that. This documentation is focused on how this example utilizes the
     \l{Qt Multimedia QML Types}.
+
+    \section1 The custom Config QML module
+
+    This type controls themes and layouts for an application, depending on the
+    target operating system.
+
+    First we declare it a singleton, as we only need it to be instantiated
+    once and creating copies would be a waste of resources.
+
+    To do that we add the following at the top of \c Config.qml
+
+    \qml
+    pragma Singleton
+    \endqml
+
+    We then create a qmldir file in the \c Config directory named \c qmldir that
+    contains the following:
+
+    \quotefile demos/mediaplayer/Config/qmldir
+
+    Now to use it in our application, see how it is referenced in MediaPlayer's
+    Main.qml file:
+
+    \quotefromfile demos/mediaplayer/MediaPlayer/Main.qml
+    \skipto color: Config.mainColor
+    \printto title:
+
+    \section1 The custom MediaControls QML module
+
+    This module holds all the types used to define the application's controls
+    including:
+
+    \image controls.png
+
+    \list
+        \li AudioControl.qml
+        \li ControlImages.qml
+        \li CustomButton.qml
+        \li CustomRadioButton.qml
+        \li CustomSlider.qml
+        \li PlaybackControl.qml
+        \li PlaybackRateControl.qml
+        \li PlaybackSeekControl.qml
+    \endlist
+
+    See each specific type's definition file for detail on how these controls
+    are implemented. They are an evolution of the controls in the
+    \l{QML Media Player Example}.
+
+    \section1 The custom \c MediaPlayer QML module
+
+    This module has the Main.qml file which declares where most of the top level types for the
+    application are used, and crucially where the Qt Multimedia MediaPlayer and VideoOutput QML
+    types are declared.
+
+    \quotefromfile demos/mediaplayer/MediaPlayer/Main.qml
+    \skipto MediaPlayer {
+    \printto Image {
+
+    The module contains the other customs types used for retrieving and displaying file information,
+    as well as calling the file picker.
+
+    \list
+        \li ErrorPopup.qml
+        \li Images.qml
+        \li MetadataInfo.qml
+        \li PlayerMenuBar.qml
+        \li PlaylistInfo.qml
+        \li SettingsInfo.qml
+        \li ThemeInfo.qml
+        \li TouchMenu.qml
+        \li TracksInfo.qml
+        \li TracksOptions.qml
+        \li UrlPopup.qml
+    \endlist
+
+    See each specific type's definition file for detail on how types
+    are implemented. Some are an evolution of those found in
+    \l{QML Media Player Example}.
+
+    \section1 New functionality
+
+    This example application has some new functionality implemented by types, such
+    as \c PlaylistInfo and \c ThemeInfo. See the respective .qml files for detail
+    on how these are implemented.
 
 */
