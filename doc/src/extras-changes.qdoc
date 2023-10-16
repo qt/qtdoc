@@ -155,4 +155,13 @@
 
     Many members of the QtAndroid namespace have replacements in the
     \l {QNativeInterface::}{QAndroidApplication} native interface.
+
+    \section2 Permissions
+
+    The \l {Application Permissions} infrastructure allows requesting a set of
+    permissions in a cross-platform manner.
+
+    The \l {QtAndroidPrivate Namespace} can be used to access Android-specific
+    permissions not covered by the cross-platform permissions system.
+
 */
