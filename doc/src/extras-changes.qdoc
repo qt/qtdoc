@@ -81,14 +81,8 @@
 
     \section2 QWinMime
 
-    The \qt5{qwinmime.html}{QWinMime} class has been removed due to
-    warranting a cross-platform solution. See \qtbug QTBUG-93632 for details.
-
-    Clients that still rely on the functionality can include the private headers
-    \c {<QtGui/private/qtguiapplication_p.h>} and \c {<QtGui/private/qwindowsmime_p.h>}
-    and use the QWindowsApplication native interface to register new MIME types.
-    To enable private headers use \c {QT += gui-private} with \c qmake,
-    or add a project dependency to \c Qt::GuiPrivate with \c CMake.
+    The \qt5{qwinmime.html}{QWinMime} class has been replaced with \l QWindowsMimeConverter.
+    See \l{Changes to Qt GUI#Native clipboard integration} for details.
 
     \section2 QWinJumpList
 
