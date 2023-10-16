@@ -310,6 +310,12 @@
     appropriate translation of \e Back for the current locale. If no translation
     is found, \c qsTr() returns the original string.
 
+    In QML files, the translation context can be set using:
+
+    \code
+    pragma Translator: ChosenContext
+    \endcode
+
     \section2 C++: Use tr()
 
     In C++, use the \l{QObject::}{tr()} function to mark text as translatable
