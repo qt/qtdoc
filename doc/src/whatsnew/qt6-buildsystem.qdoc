@@ -7,9 +7,7 @@
 
 A lot of the work that went into Qt 6 was related to how Qt and its modules are
 built. The target was to make Qt future-proof by moving to a broadly-adopted,
-popular build tool: \l{CMake Documentation}{CMake}. We also took the first steps
-towards making Qt more modular by using \l{Conan} as a package manager for some
-add-ons.
+popular build tool: \l{CMake Documentation}{CMake}.
 
 \section1 Building Qt from Sources
 
@@ -132,17 +130,6 @@ At the time of the release of Qt 6.0, the API for building custom Qt plugins
 or libraries is still in tech preview, which means that it may still change in
 future versions. A public stable API will be made available in a later Qt 6
 release.
-
-\section1 Build Additional Libraries through Conan
-
-Some Qt modules in Qt 6 are no longer provided as binary packages in
-\QOI, but instead as Conan recipes. Conan is a
-general-purpose software package manager for C and C++ developers. Just like
-the build recipes of the modules, it is also made available in \QOI.
-
-For an overview of the process, see
-\l{https://www.qt.io/blog/qt-6-additional-libraries-via-package-manager}
-{Qt 6 Additional Libraries via Package Manager}.
 
 \section1 Related Topics
 \list
