@@ -85,6 +85,7 @@ protected:
     std::unique_ptr<QFile> m_file;
     QList<QAction *> m_actions;
     QWidget *m_widget = nullptr;
+    QList<QMetaObject::Connection> m_connections;
 
 protected slots:
     void maybeSetPrintingEnabled(bool enabled);

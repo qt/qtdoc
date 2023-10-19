@@ -71,8 +71,6 @@ void PdfViewer::cleanup()
     m_bookmarks = nullptr;
     delete m_document;
     m_document = nullptr;
-    disconnect(m_uiAssets.back, &QAction::triggered, this, &PdfViewer::onActionBackTriggered);
-    disconnect(m_uiAssets.forward, &QAction::triggered, this, &PdfViewer::onActionForwardTriggered);
     AbstractViewer::cleanup();
 }
 
@@ -104,11 +102,14 @@ void PdfViewer::initPdfViewer()
             m_pageSelector, &QPdfPageSelector::setCurrentPage);
 #endif
 
-    connect(m_pdfView->pageNavigator(), &QPdfPageNavigator::backAvailableChanged, m_uiAssets.back, &QAction::setEnabled);
+    connect(m_pdfView->pageNavigator(), &QPdfPageNavigator::backAvailableChanged,
+            m_uiAssets.back, &QAction::setEnabled);
     m_actionBack = m_uiAssets.back;
     m_actionForward = m_uiAssets.forward;
-    connect(m_uiAssets.back, &QAction::triggered, this, &PdfViewer::onActionBackTriggered);
-    connect(m_uiAssets.forward, &QAction::triggered, this, &PdfViewer::onActionForwardTriggered);
+    m_connections.append(connect(m_uiAssets.back, &QAction::triggered,
+                                 this, &PdfViewer::onActionBackTriggered));
+    m_connections.append(connect(m_uiAssets.forward, &QAction::triggered,
+                                 this, &PdfViewer::onActionForwardTriggered));
 
     m_toolBar->addSeparator();
     m_toolBar->addWidget(m_zoomSelector);

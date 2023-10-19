@@ -165,10 +165,16 @@ void AbstractViewer::cleanup()
     // and therefore parented on MainWindow
     if (m_file)
         m_file.reset();
+
     qDeleteAll(m_menus);
     m_menus.clear();
     qDeleteAll(m_toolBars);
     m_toolBars.clear();
+
+    for (const auto &connection : m_connections)
+        QObject::disconnect(connection);
+
+    m_connections.clear();
 }
 
 QMenu *AbstractViewer::fileMenu()
