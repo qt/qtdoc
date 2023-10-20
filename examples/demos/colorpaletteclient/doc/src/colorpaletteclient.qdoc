@@ -7,11 +7,11 @@
 \examplecategory {Application Examples}
 \examplecategory {Networking}
 \meta tags {quick, network, http}
-\title Qt Quick Demo - RESTful Color Palette API client
+\title Qt Quick Demo - RESTful API client
 \brief Example of how to create a RESTful API QML client.
 \image colorpalette_listing.png
 
-This example shows how to create a basic QML RESTful application with an imaginary color palette
+This example shows how to create a basic QML RESTful API client with an imaginary color palette
 service. The application uses RESTful communication with the selected server to request and send
 data. The REST service is provided as a QML element whose child elements wrap the individual
 JSON data APIs provided by the server.
@@ -32,15 +32,15 @@ At start the application presents the options for the color palette server to co
 with. The predefined options are:
 \list
     \li \l {https://reqres.in}{reqres.in}, a publicly available REST API test service
-    \li \l {RESTful Color Palette Server} {Qt-based REST API server example} in QtHttpServer
+    \li \l {RESTful API Server} {Qt-based REST API server example} in QtHttpServer
 \endlist
-Once selected, the application issues a test HTTP GET to the color API to check if the service is
+Once selected, the RESTful API client issues a test HTTP GET to the color API to check if the service is
 accessible.
 
 \image colorpalette_urlselection.png
 
 One major difference between the two predefined API options is that the
-\l {RESTful Color Palette Server}{Qt-based REST API server example} is a stateful
+\l {RESTful API Server}{Qt-based REST API server example} is a stateful
 application which allows modifying colors, whereas the \e reqres.in is a stateless API testing
 service. In other words, when using the \e reqres.in backend, modifying the colors has no impact on
 the UI.
