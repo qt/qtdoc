@@ -45,7 +45,7 @@
 
     The contents of the alias packages are listed in the table below.
 
-    \note Qt 6.6.0 release is used in the alias package examples listed below.
+    \note Qt 6.7.0 release is used in the alias package examples listed below.
     Always remember to use the packages that match the Qt release you are working
     on.
 
@@ -54,7 +54,7 @@
        \li Alias package name
        \li Qt Online Installer (package content)
     \row
-       \li qt6.6.0-essentials
+       \li qt6.7.0-essentials
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
@@ -64,7 +64,7 @@
              \li essential module development tools
           \endlist
     \row
-       \li qt6.6.0-essentials-dev
+       \li qt6.7.0-essentials-dev
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
@@ -74,23 +74,7 @@
              \li essential module development tools
          \endlist
     \row
-       \li qt6.6.0-full
-       \li
-          \list
-             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
-             \li essential module headers
-             \li essential module private headers
-             \li essential module runtime tools
-             \li essential module development tools
-             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons} {add-on module libraries}
-             \li add-on module headers
-             \li add-on module private headers
-             \li add-on module runtime tools
-             \li add-on module development tools
-             \li sources
-         \endlist
-    \row
-       \li qt6.6.0-full-dev
+       \li qt6.7.0-full
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
@@ -106,7 +90,23 @@
              \li sources
          \endlist
     \row
-       \li qt6.6.0-full-dbg
+       \li qt6.7.0-full-dev
+       \li
+          \list
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
+             \li essential module headers
+             \li essential module private headers
+             \li essential module runtime tools
+             \li essential module development tools
+             \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-add-ons} {add-on module libraries}
+             \li add-on module headers
+             \li add-on module private headers
+             \li add-on module runtime tools
+             \li add-on module development tools
+             \li sources
+         \endlist
+    \row
+       \li qt6.7.0-full-dbg
        \li
           \list
              \li Qt debug information files for:
@@ -116,12 +116,12 @@
                 \endlist
           \endlist
     \row
-       \li qt6.6.0-sdk
+       \li qt6.7.0-sdk
        \li
        \list
              \li latest Qt Creator
-             \li qt6.6.0-full-dev (details above)
-             \li qt6.6.0-full-dbg (details above)
+             \li qt6.7.0-full-dev (details above)
+             \li qt6.7.0-full-dbg (details above)
              \li Ninja
              \li CMake
           \endlist
@@ -131,15 +131,15 @@
 
     \badcode
     # Windows: new installation with Qt Online Installer
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe install qt6.6.0-sdk
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe install qt6.7.0-sdk
 
     # macOS: new installation with Qt Online Installer
     hdiutil attach qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg
-    /Volumes/qt-unified-macOS-x64-[Qt Online Installer version]-online/qt-unified-macOS-x64-[Qt Online Installer version]-online.app/Contents/MacOS/qt-unified-macOS-x64-[Qt Online Installer version]-online install qt6.6.0-sdk
+    /Volumes/qt-unified-macOS-x64-[Qt Online Installer version]-online/qt-unified-macOS-x64-[Qt Online Installer version]-online.app/Contents/MacOS/qt-unified-macOS-x64-[Qt Online Installer version]-online install qt6.7.0-sdk
     hdiutil detach /Volumes/qt-unified-macOS-x64-[Qt Online Installer version]-online
 
     # Linux: new installation with Qt Online Installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run install qt6.6.0-sdk
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run install qt6.7.0-sdk
     \endcode
 
     \section2 Listing Non-Alias Packages
@@ -158,24 +158,24 @@
     \b{\c{--filter-packages <regexp>}}. For example, filtering with the display
     name information can help search.
 
-    For example, the following command finds all MSVC 2019 packages for Qt 6.6.0:
+    For example, the following command finds all MSVC 2019 packages for Qt 6.7.0:
 
     \badcode
-    search .*660.*msvc2019
+    search .*670.*msvc2019
     \endcode
 
     You get the same result when you filter the search result as follows:
 
     \badcode
-    search --filter-packages DisplayName=MSVC 2019,Version=6.6.0
+    search --filter-packages DisplayName=MSVC 2019,Version=6.7.0
     \endcode
 
     As a result, you get the following packages:
 
     \badcode
     <availablepackages>
-        <package name="qt.qt6.660.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.6.0-0-202303290841"/>
-        <package name="qt.qt6.660.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.6.0-0-202303290841"/>
+        <package name="qt.qt6.670.win64_msvc2019_64" displayname="MSVC 2019 64-bit" version="6.7.0-0-202303290841"/>
+        <package name="qt.qt6.670.win64_msvc2019_arm64" displayname="MSVC 2019 ARM64 (TP)" version="6.7.0-0-202303290841"/>
     </availablepackages>
     \endcode
 
@@ -216,7 +216,7 @@
         \l{Options for Unattended Usage}.
     \endlist
 
-    The following examples demonstrate how you install Qt 6.6.0 binaries
+    The following examples demonstrate how you install Qt 6.7.0 binaries
     with \QOI for Windows, macOS, and Linux. The unattended
     commands automatically accept the licenses (\b{\c{--accept-licenses}}), answer
     all message queries with their default answer (\b{\c{--default-answer}}), and
@@ -224,13 +224,13 @@
 
     \badcode
     # Windows: new installation with Qt Online Installer
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.win64_msvc2019_64
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.670.win64_msvc2019_64
 
     # macOS: new installation with Qt Online Installer
-    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.clang_644
+    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.670.clang_644
 
     # linux: new installation with Qt Online Installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.660.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.670.gcc_64
     \endcode
 
     \l{Options for Unattended Usage} lists all available options for unattended
@@ -248,7 +248,7 @@
         \l{Options for Unattended Usage}.
     \endlist
 
-    The following examples demonstrate how you add Qt 6.6.0 binaries
+    The following examples demonstrate how you add Qt 6.7.0 binaries
     with \QMT to an exsting installation on Windows, macOS, and
     Linux. The unattended commands automatically accept the licenses
     (\b{\c{--accept-licenses}}), answer all message queries with their default
@@ -257,13 +257,13 @@
 
     \badcode
     # Windows: update installation with Qt Maintenance Tool
-    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command install qt.qt6.660.win64_msvc2019_64
+    MaintenanceTool.exe --accept-licenses --default-answer --confirm-command install qt.qt6.670.win64_msvc2019_64
 
     # macOS: update installation with Qt Maintenance Tool
-    MaintenanceTool.app/Contents/MacOS/MaintenanceTool --accept-licenses --default-answer --confirm-command install qt.qt6.660.clang_64
+    MaintenanceTool.app/Contents/MacOS/MaintenanceTool --accept-licenses --default-answer --confirm-command install qt.qt6.670.clang_64
 
     # linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.660.gcc_64
+    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.670.gcc_64
     \endcode
 
     \section2 Options for Unattended Usage
@@ -406,31 +406,31 @@
     \endlist
 
     The following examples demonstrate how you create a new installation
-    of Qt 6.6.0 binaries with \QOI for Windows, macOS, and Linux:
+    of Qt 6.7.0 binaries with \QOI for Windows, macOS, and Linux:
 
     \badcode
     # Windows: new installation with user interaction
-    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir install qt.qt6.660.win64_msvc2019_64
+    qt-unified-windows-x64-[Qt Online Installer version]-online.exe --root C:\Users\[username]\installation_dir install qt.qt6.670.win64_msvc2019_64
 
     # macOS: new installation with user interaction
-    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir install qt.qt6.660.clang_64
+    qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir install qt.qt6.670.clang_64
 
     # linux: new installation with user interaction
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.660.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.670.gcc_64
     \endcode
 
     The following examples demonstrate how you update your existing
-    installation by installing the Qt 6.6.0 binaries with \QMT:
+    installation by installing the Qt 6.7.0 binaries with \QMT:
 
     \badcode
     # Windows: update installation with Qt Maintenance Tool
-    MaintenanceTool.exe install qt.qt6.660.win64_msvc2019_64
+    MaintenanceTool.exe install qt.qt6.670.win64_msvc2019_64
 
     # macOS: update installation with Qt Maintenance Tool
-    MaintenanceTool.dmg install qt.qt6.660.clang_64
+    MaintenanceTool.dmg install qt.qt6.670.clang_64
 
     # Linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run install qt.qt6.660.gcc_64
+    MaintenanceTool.run install qt.qt6.670.gcc_64
     \endcode
 
     \section1 Uninstalling Packages
@@ -450,18 +450,18 @@
     prevent accidental changes. Use \b{\c{--confirm-command}} to skip asking for
     permission to continue.
 
-    The following example uninstalls the Qt 6.6.0 binaries without user
+    The following example uninstalls the Qt 6.7.0 binaries without user
     interaction:
 
     \badcode
     # windows
-    MaintenanceTool.exe --confirm-command remove qt.qt6.660.win64_msvc2019_64
+    MaintenanceTool.exe --confirm-command remove qt.qt6.670.win64_msvc2019_64
 
     # macOS
-    MaintenanceTool.dmg --confirm-command remove install qt.qt6.660.clang_64
+    MaintenanceTool.dmg --confirm-command remove install qt.qt6.670.clang_64
 
     # linux
-    MaintenanceTool.run --confirm-command remove qt.qt6.660.gcc_64
+    MaintenanceTool.run --confirm-command remove qt.qt6.670.gcc_64
     \endcode
 
     The following examples uninstall all packages and ask for permission to
