@@ -41,6 +41,10 @@ qt_add_qml_module(calqlatrexample
         "content/images/paper-grip.png"
     RESOURCE_PREFIX /
 )
+if(ANDROID)
+    set_property(TARGET calqlatrexample PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+          ${CMAKE_CURRENT_SOURCE_DIR}/android)
+endif()
 
 install(TARGETS calqlatrexample
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
