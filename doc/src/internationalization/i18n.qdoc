@@ -283,9 +283,7 @@
 
     \section2 QML: Use qsTr()
 
-    In QML, the translation context is the QML type name.
-
-    You can use the following functions to mark user-visible strings for
+    In QML, you can use the following functions to mark user-visible strings for
     translation in .qml files:
 
     \list
@@ -310,11 +308,15 @@
     appropriate translation of \e Back for the current locale. If no translation
     is found, \c qsTr() returns the original string.
 
-    In QML files, the translation context can be set using:
+
+    The translation context can be set for a given file with:
 
     \code
     pragma Translator: ChosenContext
     \endcode
+
+    The context set via \c qsTranslate() takes precedent over the context set via \c pragma \c Translator.
+    In QML, by default, the translation context is the file name.
 
     \section2 C++: Use tr()
 
