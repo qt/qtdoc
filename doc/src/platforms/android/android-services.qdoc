@@ -81,7 +81,7 @@ You can start the service in the following ways:
         \l {Android: startService()}{startService()}:
 
         \code
-        auto activity = QJniObject(QNativeInterface::QAndroidApplication:context());
+        auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
         QAndroidIntent serviceIntent(activity.object(),
                                      "org/qtproject/example/qtandroidservice/QtAndroidService");
         QJniObject result = activity.callObjectMethod(
