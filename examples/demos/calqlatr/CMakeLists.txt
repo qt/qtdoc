@@ -30,15 +30,16 @@ qt_add_qml_module(calqlatrexample
     URI demos.calqlatr
     VERSION 1.0
     QML_FILES
-        "calqlatr.qml"
+        "Main.qml"
         "content/Display.qml"
         "content/NumberPad.qml"
         "content/CalculatorButton.qml"
+        "content/BackspaceButton.qml"
         "content/calculator.js"
     RESOURCES
-        "content/images/paper-edge-left.png"
-        "content/images/paper-edge-right.png"
-        "content/images/paper-grip.png"
+        "content/images/backspace.svg"
+        "content/images/backspace_fill.svg"
+
     RESOURCE_PREFIX /
 )
 if(ANDROID)

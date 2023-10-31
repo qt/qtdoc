@@ -4,10 +4,11 @@
 import QtQuick
 import QtQuick.Controls
 
-Button {
+RoundButton {
     id: button
-    width: 60
-    height: 64
+    implicitWidth: 38
+    implicitHeight: 38
+    radius: buttonRadius
 
     states: [
         State {
@@ -26,17 +27,52 @@ Button {
 
     property bool dimmable: false
     property bool dimmed: false
-    property color textColor: "#eceeea"
+    readonly property int fontSize: 22
+    readonly property int buttonRadius: 8
+    property color textColor: "#FFFFFF"
+    property color accentColor: "#2CDE85"
+    readonly property color backgroundColor: "#222222"
+    readonly property color borderColor: "#A9A9A9"
+
+    function getBackgroundColor() {
+        if (button.dimmable && button.dimmed)
+            return backgroundColor
+        if (button.pressed)
+            return accentColor
+        return backgroundColor
+    }
+
+    function getBorderColor() {
+        if (button.dimmable && button.dimmed)
+            return borderColor
+        if (button.pressed || button.hovered)
+            return accentColor
+        return borderColor
+    }
+
+    function getTextColor() {
+        if (button.dimmable && button.dimmed)
+            return Qt.darker(textColor)
+        if (button.pressed)
+            return backgroundColor
+        if (button.hovered)
+            return accentColor
+        return textColor
+    }
+
+    background: Rectangle {
+        radius: button.buttonRadius
+        color: getBackgroundColor()
+        border.color: getBorderColor()
+    }
 
     contentItem: Text {
         id: buttonText
         text: button.text
-        font.pixelSize: 48
+        font.pixelSize: button.fontSize
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: button.dimmable && button.dimmed
-            ? Qt.darker(button.textColor)
-            : (button.pressed ? Qt.lighter(button.textColor) : button.textColor)
+        color: getTextColor()
         Behavior on color {
             ColorAnimation {
                 duration: 120
@@ -44,6 +80,4 @@ Button {
             }
         }
     }
-
-    background: null
 }
