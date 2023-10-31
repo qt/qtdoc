@@ -5,14 +5,14 @@ SOURCES += main.cpp
 
 RESOURCES += calqlatr.qrc
 
-OTHER_FILES = calqlatr.qml \
+OTHER_FILES = Main.qml \
     content/Display.qml \
     content/NumberPad.qml \
     content/CalculatorButton.qml \
     content/calculator.js \
-    content/images/paper-edge-left.png \
-    content/images/paper-edge-right.png \
-    content/images/paper-grip.png
+    content/BackspaceButton.qml \
+    content/images/backspace.svg \
+    content/images/backspace_fill.svg \
 
 target.path = $$[QT_INSTALL_EXAMPLES]/demos/calqlatr
 INSTALLS += target

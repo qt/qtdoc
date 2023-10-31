@@ -5,101 +5,142 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import "calculator.js" as CalcEngine
+import QtQuick.Layouts
 
-Grid {
-    id: root
-    columns: 3
-    columnSpacing: 2
-    rowSpacing: 2
+Item {
+    id: controller
+    implicitWidth: isPortraitMode ? portraitModeWidth : landscapeModeWidth
+    implicitHeight: mainGrid.height
 
-    required property Display display
+    readonly property color qtGreenColor: "#2CDE85"
+    readonly property color backspaceRedColor: "#DE2C2C"
+    readonly property int spacing: 5
 
-    function updateDimmed() {
-        for (let i = 0; i < children.length; i++) {
-            children[i].dimmed = CalcEngine.isOperationDisabled(children[i].text)
+    property bool isPortraitMode: root.isPortraitMode
+    property int portraitModeWidth: mainGrid.width
+    property int landscapeModeWidth: scientificGrid.width + mainGrid.width
+
+    function updateDimmed(){
+        for (let i = 0; i < mainGrid.children.length; i++){
+            mainGrid.children[i].dimmed = root.isButtonDisabled(mainGrid.children[i].text)
+        }
+        for (let j = 0; j < scientificGrid.children.length; j++){
+            scientificGrid.children[j].dimmed = root.isButtonDisabled(scientificGrid.children[j].text)
         }
     }
 
     component DigitButton: CalculatorButton {
-        onPressed: function() {
-            CalcEngine.digitPressed(text, root.display)
-            root.updateDimmed()
+        onReleased: {
+            root.digitPressed(text)
+            updateDimmed()
         }
     }
 
     component OperatorButton: CalculatorButton {
-        onPressed: function() {
-            CalcEngine.operatorPressed(text, root.display)
-            root.updateDimmed()
+        onReleased: {
+            root.operatorPressed(text)
+            updateDimmed()
         }
-        textColor: "#6da43d"
+        textColor: controller.qtGreenColor
+        implicitWidth: 48
         dimmable: true
     }
 
     Component.onCompleted: updateDimmed()
 
-    DigitButton {
-        text: "7"
-    }
-    DigitButton {
-        text: "8"
-    }
-    DigitButton {
-        text: "9"
-    }
-    DigitButton {
-        text: "4"
-    }
-    DigitButton {
-        text: "5"
-    }
-    DigitButton {
-        text: "6"
-    }
-    DigitButton {
-        text: "1"
-    }
-    DigitButton {
-        text: "2"
-    }
-    DigitButton {
-        text: "3"
-    }
-    DigitButton {
-        text: "0"
-    }
-    DigitButton {
-        text: "."
-        dimmable: true
-    }
-    DigitButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "±"
-    }
-    OperatorButton {
-        text: "−"
-    }
-    OperatorButton {
-        text: "+"
-    }
-    OperatorButton {
-        text: "√"
-    }
-    OperatorButton {
-        text: "÷"
-    }
-    OperatorButton {
-        text: "×"
-    }
-    OperatorButton {
-        text: "C"
-    }
-    OperatorButton {
-        text: " "
-    }
-    OperatorButton {
-        text: "="
+    Rectangle {
+        id: numberPad
+        anchors.fill: parent
+        radius: 8
+        color: "transparent"
+
+        RowLayout {
+            spacing: controller.spacing
+
+            GridLayout {
+                id: scientificGrid
+                columns: 3
+                columnSpacing: controller.spacing
+                rowSpacing: controller.spacing
+                visible: !isPortraitMode
+
+                OperatorButton { text: "𝑥²" }
+                OperatorButton { text: "⅟𝑥" }
+                OperatorButton { text: "√" }
+                OperatorButton { text: "𝑥³" }
+                OperatorButton { text: "𝑠𝑖𝑛" }
+                OperatorButton { text: "⌊𝑥⌋" }
+                OperatorButton { text: "𝑙𝑜𝑔" }
+                OperatorButton { text: "𝑐𝑜𝑠" }
+                DigitButton {
+                    text: "e"
+                    dimmable: true
+                    implicitWidth: 48
+                }
+                OperatorButton { text: "𝑙𝑛" }
+                OperatorButton { text: "𝑡𝑎𝑛" }
+                DigitButton {
+                    text: "π"
+                    dimmable: true
+                    implicitWidth: 48
+                }
+            }
+
+            GridLayout {
+                id: mainGrid
+                columns: 5
+                columnSpacing: controller.spacing
+                rowSpacing: controller.spacing
+
+                BackspaceButton {}
+                DigitButton { text: "7" }
+                DigitButton { text: "8" }
+                DigitButton { text: "9" }
+                OperatorButton {
+                    text: "÷"
+                    implicitWidth: 38
+                }
+
+                OperatorButton {
+                    text: "AC"
+                    textColor: controller.backspaceRedColor
+                    accentColor: controller.backspaceRedColor
+                }
+                DigitButton { text: "4" }
+                DigitButton { text: "5" }
+                DigitButton { text: "6" }
+                OperatorButton {
+                    text: "×"
+                    implicitWidth: 38
+                }
+
+                OperatorButton {
+                    text: "="
+                    implicitHeight: 81
+                    Layout.rowSpan: 2
+                }
+                DigitButton { text: "1" }
+                DigitButton { text: "2" }
+                DigitButton { text: "3" }
+                OperatorButton {
+                    text: "−"
+                    implicitWidth: 38
+                }
+
+                OperatorButton {
+                    text: "±"
+                    implicitWidth: 38
+                }
+                DigitButton { text: "0" }
+                DigitButton {
+                    text: "."
+                    dimmable: true
+                }
+                OperatorButton {
+                    text: "+"
+                    implicitWidth: 38
+                }
+            }
+        } // RowLayout
     }
 }

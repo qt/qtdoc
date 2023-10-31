@@ -8,12 +8,14 @@ import QtQuick.Window
 
 Item {
     id: display
-    readonly property real fontSize: Math.floor(Screen.pixelDensity * 5.0)
-    property bool enteringDigits: false
-    readonly property int maxDigits: (width / fontSize) + 1
-    property string displayedOperand
+    property int fontSize: 22
+    readonly property int maxDigits: Math.min((width / fontSize) + 1, 9)
+    readonly property color backgroundColor: "#262626"
+    readonly property color qtGreenColor: "#2CDE85"
+    property string displayedOperand: ""
     readonly property string errorString: qsTr("ERROR")
     readonly property bool isError: displayedOperand === errorString
+    property bool enteringDigits: false
 
     function displayOperator(operator) {
         calculationsListView.model.append({ "operator": operator, "operand": "" })
@@ -31,16 +33,36 @@ Item {
     function appendDigit(digit) {
         if (!enteringDigits)
             calculationsListView.model.append({ "operator": "", "operand": "" })
-        const i = calculationsListView.model.count - 1;
-        calculationsListView.model.get(i).operand = calculationsListView.model.get(i).operand + digit;
+        const i = calculationsListView.model.count - 1
+        calculationsListView.model.get(i).operand = calculationsListView.model.get(i).operand + digit
         enteringDigits = true
         calculationsListView.positionViewAtEnd()
     }
 
     function setDigit(digit) {
-        const i = calculationsListView.model.count - 1;
-        calculationsListView.model.get(i).operand = digit;
+        const i = calculationsListView.model.count - 1
+        calculationsListView.model.get(i).operand = digit
         calculationsListView.positionViewAtEnd()
+    }
+
+    function backspace() {
+        const i = calculationsListView.model.count - 1
+        if (i >= 0) {
+            let operand = calculationsListView.model.get(i).operand
+            calculationsListView.model.get(i).operand = operand.toString().slice(0, -1)
+            return
+        }
+        return
+    }
+
+    function isOperandEmpty() {
+        const i = calculationsListView.model.count - 1
+        return i >= 0 ? calculationsListView.model.get(i).operand === "" : true
+    }
+
+    function isDisplayEmpty() {
+        const i = calculationsListView.model.count - 1
+        return i == -1 ? true : (i == 0 ? calculationsListView.model.get(0).operand === ""  : false)
     }
 
     function clear() {
@@ -53,103 +75,93 @@ Item {
         }
     }
 
+    function allClear()
+    {
+        display.clear()
+        calculationsListView.model.clear()
+        enteringDigits = false
+    }
+
     // Returns a string representation of a number that fits in
     // display.maxDigits characters, trying to keep as much precision
     // as possible. If the number cannot be displayed, returns an
     // error string.
     function displayNumber(num) {
         if (typeof(num) !== "number")
-            return errorString;
+            return errorString
 
-        const intNum = parseInt(num);
-        const intLen = intNum.toString().length;
+        // deal with the absolute
+        const abs = Math.abs(num)
 
-        // Do not count the minus sign as a digit
-        const maxLen = num < 0 ? maxDigits + 1 : maxDigits;
-
-        if (num.toString().length <= maxLen) {
-            if (isFinite(num))
-                return num.toString();
-            return errorString;
+        if (abs.toString().length <= maxDigits) {
+            return isFinite(num) ? num.toString() : errorString
         }
 
-        // Integer part of the number is too long - try
-        // an exponential notation
-        if (intNum === num || intLen > maxLen - 3) {
-            const expVal = num.toExponential(maxDigits - 6).toString();
-            if (expVal.length <= maxLen)
-                return expVal;
+        if (abs < 1) {
+            // check if abs < 0.00001, if true, use exponential form
+            // if it isn't true, we can round the number without losing
+            // too much precision
+            if (Math.floor(abs * 100000) === 0) {
+                const expVal = num.toExponential(maxDigits - 6).toString()
+                if (expVal.length <= maxDigits + 1)
+                    return expVal
+
+            } else {
+                // the first two digits are zero and .
+                return num.toFixed(maxDigits - 2)
+            }
+        } else {
+            // if the integer part of num is greater than maxDigits characters, use exp form
+            const intAbs = Math.floor(abs)
+            if (intAbs.toString().length <= maxDigits)
+                return parseFloat(num.toPrecision(maxDigits - 1)).toString()
+
+            const expVal = num.toExponential(maxDigits - 6).toString()
+            if (expVal.length <= maxDigits + 1)
+                return expVal
         }
-
-        // Try a float presentation with fixed number of digits
-        const floatStr = parseFloat(num).toFixed(maxDigits - intLen - 1).toString();
-        if (floatStr.length <= maxLen)
-            return floatStr;
-
-        return errorString;
+        return errorString
     }
 
     Item {
-        id: theItem
-        width: display.width + 32
-        height: display.height
+        anchors.fill: parent
 
         Rectangle {
-            id: rect
-            x: 16
-            color: "white"
-            height: theItem.height
-            width: display.width - 16
-        }
-        Image {
-            anchors.right: rect.left
-            source: "images/paper-edge-left.png"
-            height: theItem.height
-            fillMode: Image.TileVertically
-        }
-        Image {
-            anchors.left: rect.right
-            source: "images/paper-edge-right.png"
-            height: theItem.height
-            fillMode: Image.TileVertically
-        }
+            anchors.fill: parent
+            radius: 8
+            color: display.backgroundColor
 
-        Image {
-            id: grip
-            source: "images/paper-grip.png"
-            anchors.horizontalCenter: theItem.horizontalCenter
-            anchors.bottom: theItem.bottom
-            anchors.bottomMargin: 20
-        }
+            ListView {
+                id: calculationsListView
+                x: 5
+                y: 10
+                width: parent.width
+                height: parent.height - 2 * y
+                clip: true
+                delegate: Item {
+                    height: display.fontSize * 1.1
+                    width: calculationsListView.width
 
-        ListView {
-            id: calculationsListView
-            x: 16
-            y: 30
-            width: display.width
-            height: display.height - 50 - y
-            clip: true
-            delegate: Item {
-                height: display.fontSize * 1.1
-                width: calculationsListView.width
+                    required property string operator
+                    required property string operand
 
-                required property string operator
-                required property string operand
-
-                Text {
-                    x: 6
-                    font.pixelSize: display.fontSize
-                    color: "#6da43d"
-                    text: parent.operator
+                    Text {
+                        x: 6
+                        font.pixelSize: display.fontSize
+                        color: display.qtGreenColor
+                        text: parent.operator
+                    }
+                    Text {
+                        font.pixelSize: display.fontSize
+                        anchors.right: parent.right
+                        anchors.rightMargin: 16
+                        text: parent.operand
+                        color: "white"
+                    }
                 }
-                Text {
-                    font.pixelSize: display.fontSize
-                    anchors.right: parent.right
-                    anchors.rightMargin: 22
-                    text: parent.operand
-                }
+                model: ListModel { }
+                onHeightChanged: positionViewAtEnd()
             }
-            model: ListModel { }
         }
     }
 }

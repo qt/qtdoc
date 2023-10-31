@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include <QGuiApplication>
-#include <QQmlEngine>
-#include <QQmlFileSelector>
-#include <QQuickView>
+#include <QQmlApplicationEngine>
 #include <QQuickStyle>
 
 int main(int argc, char *argv[])
@@ -16,12 +14,11 @@ int main(int argc, char *argv[])
 
     QQuickStyle::setStyle("Basic");
 
-    QQuickView view;
-    view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
-    view.setSource(QUrl("qrc:/demos/calqlatr/calqlatr.qml"));
-    if (view.status() == QQuickView::Error)
-        return -1;
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
+    QQmlApplicationEngine engine;
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
+            &app, []() { QCoreApplication::exit(-1); },
+            Qt::QueuedConnection);
+    engine.loadFromModule("demos.calqlatr", "Main");
+
     return app.exec();
 }
