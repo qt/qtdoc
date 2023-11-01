@@ -70,6 +70,7 @@
         \endlist
         \li \l{CMake Variable Reference}
         \list
+            \li \l{Qt build variables}
             \li \l{Module variables}
             \li \l{Installation variables}
             \li \l{Project variables}
@@ -998,6 +999,33 @@
     \brief Provides a complete reference for CMake variables implemented in Qt.
     \nextpage CMake Property Reference
     \previouspage CMake Command Reference
+
+    \section1 Qt build variables
+
+    When building Qt you can use CMake variables to control the build result.
+
+   \table
+        \header
+            \li Variable
+            \li Description
+        \row
+            \li \l{cmake-variable-QT_HOST_PATH}{QT_HOST_PATH}
+            \li Location of the host Qt installation from which host tools
+                may be used during another Qt build, either a regular one
+                or a cross-compiling one.
+        \row
+            \li \c QT_FORCE_BUILD_TOOLS
+            \li Forces building tools even if host tools have already been
+                found. Useful when cross-compiling Qt to ensure the SDK
+                has cross-built tools.
+        \row
+            \li \c QT_FORCE_FIND_TOOLS
+            \li Uses Qt tools from the pre-built Qt in \c QT_HOST_PATH when you
+                do not cross-compile. The variable only takes effect if
+                \c QT_FORCE_BUILD_TOOLS is set to \c ON. Otherwise
+                \c QT_FORCE_FIND_TOOLS does not affect the default
+                behavior.
+    \endtable
 
     \section1 Module variables
 
