@@ -885,13 +885,13 @@
     choice, for instance \c{C:\dev\Qt\src}.
 
     \note The path to the source directory must not contain any spaces or
-    Windows specific file system characters. The path should also be kept short.
-    This avoids issues with too long file paths in the compilation phase.
+    Windows-specific file system characters. The path should also be kept short.
+    This prevents issues with too long file paths in the compilation phase.
 
-    \section1 Step 2: Install Build Requirements
+    \section1 Step 2: Installing Build Requirements and Set Environment
 
     To build Qt from sources you need a build environment with
-    a supported compiler and various build tools available:
+    a supported compiler and various build tools.
 
     \section2 Build Tools
 
@@ -906,7 +906,7 @@
     \row
         \li Ninja
         \li -
-        \li Recommended tool for building Qt. Available in QOI
+        \li Recommended tool for building Qt. Available in \QOI
             and on \l{https://ninja-build.org}{ninja-build.org}.
     \row
         \li Python
@@ -917,7 +917,7 @@
     \endtable
 
     The executables \c{cmake.exe}, \c{ninja.exe}, and \c{python.exe}
-    must be available in your build environment. You achieve this by adding the
+    must be available in your build environment. Add the
     respective directory to your \c{PATH} environment variable.
 
     \section2 Compilers
@@ -938,64 +938,67 @@
     If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
     for specific build requirements.
 
-    \section1 Step 3: Set the Environment Variables
+    \section2 Setting the Environment
 
-        We recommend creating a desktop link that opens a command
-        prompt with the environment set up similar to the
-        \uicontrol{Command Prompt} menu entries provided by Visual Studio.
-        This is done by creating an application link passing a \c .cmd file setting
-        up the environment and the command line option \c /k (remain open)
-        to \c cmd.exe.
-
-        Assuming the file is called \c{qt6vars.cmd}
-        and the Qt folder is called \tt{C:\\Qt\\\QtVersion\\Src}:
-
-        \badcode \QtVersion
-        REM Set up compiler, in this case Visual Studio Professional 2022 for amd64 CPU's
-        CALL "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" amd64
-        SET _ROOT=C:\Qt\\1\Src
-        SET PATH=%_ROOT%;%PATH%
-        SET _ROOT=
+    For MSVC, do one of the following:
+    \list
+     \li Run the vcvarsall.bat:
+        \badcode
+        "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" amd64
         \endcode
 
-        A desktop link can then be created by specifying the command
-        \c{%SystemRoot%\system32\cmd.exe /E:ON /V:ON  /k C:\Qt\qt6vars.cmd}
-        as application.
+     \li Search on the Windows search bar for the VS Native Tools command prompt.
+    \endlist
 
-        Depending on your individual setup, you might also need to make the
-        installation directories of CMake, Ninja, and Python part of the
-        \c{SET %PATH%} line above.
+    For MinGW: Add MinGW to \c PATH environment variable:
 
-        \note Setups for MinGW are similar; they differ
-        only in that the \c bin folder of the installation should be added to the
-        path instead of calling the Visual Studio setup script. For MinGW, please make
-        sure that no \c sh.exe can be found in the path, as it affects \c {mingw32-make}.
+        \badcode
+        Set PATH=C:\qt\tools\mingw1120_64\bin;%PATH%
+        \endcode
 
-    \section1 Step 4: Build the Qt Library
+    \section1 Step 3: Building the Qt Libraries and Tools
 
-        To configure the Qt library for your machine type, create a build directory
-        and change to this directory. Then call the \c{configure.bat} script.
-        Alternatively, if you have already completed Step 3, you may double-click on
-        the desktop link you created, change to the build directory, type
-        \c{configure} and start configuring the Qt library.
+        To configure your build, create a build directory and run the \c configure.bat script
+        in this directory:
 
-       \note Add the Qt build directory to the list of excluded directories
-             of any anti-virus application that runs on your system.
+        \badcode
+        mkdir C:\dev\qt-build
+        cd C:\dev\qt-build
+        C:\dev\Qt\src\configure.bat
+        \endcode
 
-       \badcode \QtVersion
-           mkdir qt6-build
-           cd qt6-build
-           C:\Qt\\1\Src\configure.bat
-           cmake --build .
-           cmake --install .
-       \endcode
+        By default, Qt is configured for installation in the \c{C:\Qt\Qt-6.5.3} directory.
+        This can be changed by using the \c -prefix option. See the list of
+        \l{Qt Configure Options} to tweak further.
 
-        By default, Qt is configured for installation in the
-        \c{C:\Program Files\Qt} directory, but this can be
-        changed by using the \c{-prefix} option.
+        Then build the libraries and tools:
 
-        The \l{Qt Configure Options}{Configure Options} page contains more
-        information about the configure options.
-        See \l{Qt for Windows - Graphics Acceleration} for specific options
-        regarding graphics acceleration.
+        \badcode
+        cmake --build . --parallel
+        \endcode
+
+        Period after \c {--build} means current folder.
+
+        After building, you need to install the libraries and tools in the desired path
+        (unless you enabled a \l {https://doc.qt.io/qt-6/configure-options.html#developer-builds}
+        {developer build}:
+
+        \badcode
+        cmake --install .
+        \endcode
+
+    \section1 Step 4: Using Qt
+
+        After Qt is installed, you can start building applications with it.
+
+        If you work from the command line, consider adding the Qt tools to your \c PATH
+        environment variable as follows:
+
+        \badcode
+        set PATH=C:\Qt\Qt-6.5.3\bin;%PATH%
+        \endcode
+
+        If you plan to use Qt from an IDE, you need to register the Qt version explicitly
+        there. For Qt Creator, see \l {https://doc.qt.io/qtcreator/creator-project-qmake.html}
+        {Qt Creator: Adding Qt Versions}.
 */
