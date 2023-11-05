@@ -45,6 +45,7 @@ Item {
         RowLayout {
             id: playerButtons
             anchors.fill: parent
+            spacing: Screen.primaryOrientation === Qt.LandscapeOrientation ? 5 : 1
 
             Item {
                 CustomButton {
