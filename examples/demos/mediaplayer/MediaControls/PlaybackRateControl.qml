@@ -10,14 +10,15 @@ Item {
 
     property alias playbackRate: slider.value
 
-    Layout.minimumWidth: 100
+    Layout.minimumWidth: 50
     Layout.maximumWidth: 200
 
     RowLayout {
         anchors.fill: root
-        spacing: 10
+        spacing: root.width >= 85 ? 10 : 2
 
         Image {
+            visible: root.width >= 85
             source: ControlImages.iconSource("Rate_Icon")
         }
 
