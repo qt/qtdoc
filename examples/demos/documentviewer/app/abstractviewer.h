@@ -5,6 +5,17 @@
 #define ABSTRACTVIEWER_H
 
 #include <QObject>
+#include <QtCompilerDetection>
+
+#if defined(QT_SHARED) || !defined(QT_STATIC)
+#  if defined(BUILD_ABSTRACTVIEWER_LIB)
+#    define ABSTRACTVIEWER_EXPORT Q_DECL_EXPORT
+#  else
+#    define ABSTRACTVIEWER_EXPORT Q_DECL_IMPORT
+#  endif
+#else
+#  define ABSTRACTVIEWER_EXPORT
+#endif
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -19,7 +30,7 @@ class QScrollArea;
 class QStatusBar;
 QT_END_NAMESPACE
 
-class AbstractViewer : public QObject
+class ABSTRACTVIEWER_EXPORT AbstractViewer : public QObject
 {
     Q_OBJECT
 
