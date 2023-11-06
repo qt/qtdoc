@@ -7,9 +7,11 @@ set(CMAKE_AUTORCC ON)
 
 qt_standard_project_setup()
 
-qt_add_library(abstractviewer STATIC
+qt_add_library(abstractviewer
     abstractviewer.cpp abstractviewer.h
 )
+
+target_compile_definitions(abstractviewer PRIVATE BUILD_ABSTRACTVIEWER_LIB)
 
 qt_add_executable(documentviewer
     main.cpp
