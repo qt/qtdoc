@@ -315,6 +315,12 @@
     pragma Translator: ChosenContext
     \endcode
 
+    or
+
+    \code
+    pragma Translator: "Chosen::Context"
+    \endcode
+
     The context set via \c qsTranslate() takes precedent over the context set via \c pragma \c Translator.
     In QML, by default, the translation context is the file name.
 
