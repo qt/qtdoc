@@ -19,66 +19,63 @@
     \target android-supported-configurations
     \section1 Supported Configurations
 
-    The following development environments and target system configurations are
-    supported in Qt \QtVer:
-
     \include supported-platforms.qdocinc android
 
     \table 50%
     \header \li {4,1} Target Devices used in Automated Testing
         \header \li Device \li OS Version \li Architecture \li Form Factor
-         \row \li \l{Samsung Galaxy S10}
-             \li Android 9 (API 28)
-             \li armv7, arm64_v8a
-             \li Mobile
-         \row \li \l{Samsung Galaxy Tab S4}
-             \li Android 10 (API 29)
-             \li armv7, arm64_v8a
-             \li Tablet
-         \row \li \l{Pixel 4}
-             \li Android 10 (API 29)
-             \li armv7
-             \li Mobile
         \row \li \l{Pixel 2}
              \li Android 11 (API 30)
              \li arm64_v8a
              \li Mobile
-        \row \li \l{Pixel 2XL}
+        \row \li \l{Pixel 2 XL}
              \li Android 11 (API 30)
              \li arm64_v8a
+             \li Mobile
+        \row \li \l{Pixel 4}
+             \li Android 10 (API 29)
+             \li armv7
              \li Mobile
         \row \li \l{Pixel 4A}
              \li Android 12 (API 31)
              \li armv7, arm64_v8a
              \li Mobile
-         \row \li \l{Google Pixel 6 Pro}
+        \row \li \l{Pixel 6}
+             \li Android 13 (API 33)
+             \li arm64_v8a
+             \li Mobile
+        \row \li \l{Pixel 6 Pro}
              \li Android 12 (API 31)
              \li arm64_v8a
              \li Mobile
-         \row \li \l{Samsung Galaxy S21}
+        \row \li \l{Pixel 6a}
+             \li Android 14 (API 34)
+             \li arm64_v8a
+             \li Mobile
+        \row \li \l{Pixel 7}
+             \li Android 13 (API 33)
+             \li arm64_v8a
+             \li Mobile
+        \row \li \l{Pixel 7 Pro}
+             \li Android 13 (API 33)
+             \li arm64_v8a
+             \li Mobile
+        \row \li \l{Pixel 7a}
+             \li Android 14 (API 34)
+             \li arm64_v8a
+             \li Mobile
+        \row \li \l{Samsung Galaxy S10}
+             \li Android 9 (API 28)
+             \li armv7, arm64_v8a
+             \li Mobile
+        \row \li \l{Samsung Galaxy S21}
              \li Android 12 (API 31)
              \li armv7, arm64_v8a
              \li Mobile
-         \row \li \l{Pixel 7 Pro}
-             \li Android 13 (API 33)
-             \li arm64_v8a
-             \li Mobile
-         \row \li \l{Pixel 7}
-             \li Android 13 (API 33)
-             \li arm64_v8a
-             \li Mobile
-         \row \li \l{Pixel 6}
-             \li Android 13 (API 33)
-             \li arm64_v8a
-             \li Mobile
-         \row \li \l{Pixel 7a}
-             \li Android 14 (API 34)
-             \li arm64_v8a
-             \li Mobile
-         \row \li \l{Pixel 6a}
-             \li Android 14 (API 34)
-             \li arm64_v8a
-             \li Mobile
+        \row \li \l{Samsung Galaxy Tab S4}
+             \li Android 10 (API 29)
+             \li armv7, arm64_v8a
+             \li Tablet
         \endtable
 
     \note Qt for Android support is inclusive of \b{but not limited to} these devices.
