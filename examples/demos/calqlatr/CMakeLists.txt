@@ -42,8 +42,10 @@ qt_add_qml_module(calqlatrexample
     RESOURCE_PREFIX /
 )
 if(ANDROID)
-    set_property(TARGET calqlatrexample PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-          ${CMAKE_CURRENT_SOURCE_DIR}/android)
+    set_target_properties(calqlatrexample
+                         PROPERTIES
+                            QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+                            QT_ANDROID_TARGET_SDK_VERSION "33")
 endif()
 
 install(TARGETS calqlatrexample
