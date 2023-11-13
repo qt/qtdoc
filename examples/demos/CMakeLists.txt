@@ -4,7 +4,6 @@
 if(TARGET Qt6::Quick)
     qt_internal_add_example(samegame)
     qt_internal_add_example(clocks)
-    qt_internal_add_example(tweetsearch)
     qt_internal_add_example(maroon)
     qt_internal_add_example(stocqt)
 endif()

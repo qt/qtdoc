@@ -4,7 +4,6 @@ qtHaveModule(quick) {
     SUBDIRS += \
         samegame \
         clocks \
-        tweetsearch \
         maroon \
         stocqt
 
