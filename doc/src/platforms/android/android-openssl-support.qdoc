@@ -120,6 +120,7 @@ the following step to include those libraries in your project:
 
         \badcode
         if (ANDROID)
+            include(FetchContent)
             FetchContent_Declare(
               android_openssl
               DOWNLOAD_EXTRACT_TIMESTAMP true
