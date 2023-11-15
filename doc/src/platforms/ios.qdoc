@@ -17,6 +17,27 @@
 
     \include supported-platforms.qdocinc ios
 
+    \table 50%
+    \header \li {4,1} Target Devices used in Automated Testing
+        \header \li Device \li OS Version \li Architecture \li Form Factor
+         \row \li \l{iPhone 12}
+             \li iOS 16
+             \li armv8 (arm64)
+             \li Mobile
+         \row \li \l{iPhone 11}
+             \li iOS 16
+             \li armv8 (arm64)
+             \li Mobile
+         \row \li \l{iPad Pro, 3rd generation}
+             \li iOS 15
+             \li armv8 (arm64)
+             \li Tablet
+         \row \li \l{iPad, 6th generation}
+             \li iOS 14
+             \li armv8 (arm64)
+             \li Tablet
+        \endtable
+
     \section1 Getting Started
 
     Qt supports you in building, testing, and deploying applications for iOS. Qt
