@@ -55,7 +55,8 @@ Item {
     }
 
     MouseArea {
-        anchors.fill: parent; onClicked: {
+        anchors.fill: parent
+        onClicked: mouse => {
             if (puzzleTextBubble.opacity == 1) {
                 puzzleTextBubble.opacity = 0;
                 Logic.finishLoadingMap();
