@@ -18,7 +18,7 @@ Item {
     property alias showSeeker: showSeekerAnim
     property alias hideSeeker: hideSeekerAnim
 
-    function getTime(time : int) {
+    function getTime(time : int) : string {
         const h = Math.floor(time / 3600000).toString()
         const m = Math.floor(time / 60000).toString()
         const s = Math.floor(time / 1000 - m * 60).toString()
