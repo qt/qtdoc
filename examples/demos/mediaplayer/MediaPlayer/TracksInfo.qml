@@ -30,7 +30,7 @@ Item {
             TracksOptions {
                 id: audioTracks
                 headerText: qsTr("Audio Tracks")
-                selectedTrack: root.selectedVideoTrack
+                selectedTrack: root.selectedAudioTrack
                 metaData: root.mediaPlayer.audioTracks
                 onSelectedTrackChanged: root.mediaPlayer.activeAudioTrack = audioTracks.selectedTrack
             }
