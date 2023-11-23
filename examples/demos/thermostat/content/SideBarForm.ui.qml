@@ -55,6 +55,7 @@ Column {
 
                     width: internal.delegateWidth
                     height: internal.delegateHeight
+                    visible: Constants.isSmallLayout == false || columnItem.view != "SettingsView"
 
                     RowLayout {
                         anchors.fill: parent

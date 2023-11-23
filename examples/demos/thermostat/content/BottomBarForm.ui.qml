@@ -41,6 +41,9 @@ TabBar {
                 color: "transparent"
             }
 
+            width: menuItem.view == "SettingsView" ? 0 : undefined;
+            height: menuItem.view == "SettingsView" ? 0 : undefined;
+
             icon.width: 24
             icon.height: 24
             icon.source: "images/" + menuItem.iconSource
