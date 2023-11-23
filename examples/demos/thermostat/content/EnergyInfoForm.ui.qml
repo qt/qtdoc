@@ -20,5 +20,5 @@ ThermostatInfo {
     title: qsTr("Energy Usage")
     leftIcon: "images/energy.svg"
     topLabel: qsTr("Total: %1 KWH".arg(totalEnergy))
-    bottomLeftLabel: qsTr("Estimeted Cost: $%1".arg(totalEnergy * costOf1KWH))
+    bottomLeftLabel: qsTr("Estimated Cost: $%1".arg(totalEnergy * costOf1KWH))
 }
