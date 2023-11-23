@@ -45,8 +45,8 @@ Pane {
 
             Image {
                 id: roomIcon
+                source: "images/" + root.model.iconName
 
-                source: "images/living_room.svg"
                 sourceSize.width: internal.iconSize
                 sourceSize.height: internal.iconSize
             }
