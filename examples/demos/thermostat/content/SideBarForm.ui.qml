@@ -42,9 +42,9 @@ Column {
 
             background: Rectangle {
                 color: active ? "#2CDE85" : "transparent"
-                radius: 12
+                radius: Constants.isSmallLayout ? 4 : 12
                 anchors.fill: parent
-                opacity: 0.1
+                opacity: Constants.isSmallLayout ? 0.3 : 0.1
             }
 
             Column {
