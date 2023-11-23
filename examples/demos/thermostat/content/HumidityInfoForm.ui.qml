@@ -19,7 +19,7 @@ ThermostatInfo {
 
     title: qsTr("Humidity")
     leftIcon: "images/drop.svg"
-    topLabel: qsTr("Avarage: %1 %".arg(humidityAvg))
+    topLabel: qsTr("Average: %1 %".arg(humidityAvg))
     bottomLeftLabel: isMore ? qsTr("%1 % more than Last Month".arg(humidityDiff)) :
                               qsTr("%1 % less than Last Month".arg(Math.abs(humidityDiff)))
     bottomLeftIcon: isMore ? "images/up" : "images/down"
