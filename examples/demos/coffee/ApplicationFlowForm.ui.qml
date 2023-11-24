@@ -45,6 +45,7 @@ Rectangle {
         anchors.topMargin: parent.height / 20
         leftPadding: 20
     }
+    //! [Stack view]
     StackView {
         id: stack
         anchors.top: parent.top
@@ -65,6 +66,7 @@ Rectangle {
                 duration: 400
             }
         }
+        //! [Stack view]
         pushExit: Transition {
             PropertyAnimation {
                 property: "x"
@@ -136,3 +138,4 @@ Rectangle {
         }
     }
 }
+
