@@ -135,9 +135,11 @@ Item {
                             Layout.fillWidth: true
                             Layout.preferredWidth: 70
                             Layout.preferredHeight: column.height / 4
+                            //! [Value changed]
                             onValueChanged: {
                                 applicationFlow.coffeeAmount = value
                             }
+                            //! [Value changed]
                         }
                     }
                     RowLayout {

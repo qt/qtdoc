@@ -3,13 +3,13 @@
 
 import QtQuick
 import QtQuick.Controls
-
+//! [Set application window size]
 ApplicationWindow {
     visible: true
     width: Screen.desktopAvailableWidth
     height: Screen.desktopAvailableHeight
     title: qsTr("Coffee")
-
+//! [Set application window size]
     ApplicationFlow {
         width: parent.width
         height: parent.height

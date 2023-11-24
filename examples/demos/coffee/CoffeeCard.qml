@@ -44,6 +44,7 @@ Column {
         id: rectangle
         radius: 8
         gradient: Colors.invertedGreyBorder
+        //! [AbstractButton]
         AbstractButton {
             width: parent.width - 2
             height: parent.height - 2
@@ -64,6 +65,7 @@ Column {
             transitions: Transition {
                 NumberAnimation { properties: "scale"; duration: 50; easing.type: Easing.InOutQuad }
             }
+            //! [AbstractButton]
             contentItem: Rectangle {
                 id: rectangle2
                 anchors.fill: parent

@@ -39,6 +39,7 @@ Item {
             }
         }
     ]
+    //! [Coffees]
     GridLayout {
         id: cards
         anchors.horizontalCenter: parent.horizontalCenter
@@ -78,4 +79,5 @@ Item {
             button.onClicked: applicationFlow.macchiato()
         }
     }
+    //! [Coffees]
 }

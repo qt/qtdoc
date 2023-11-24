@@ -15,7 +15,7 @@ ApplicationFlowForm {
     property int foamAmount
     property double sugarAmount
 
-
+    //! [Theme button]
     function themeButton() {
         if (Colors.currentTheme == Colors.dark) {
             Colors.currentTheme = Colors.light
@@ -23,6 +23,7 @@ ApplicationFlowForm {
             Colors.currentTheme = Colors.dark
         }
     }
+    //! [Theme button]
     function cappuccino() {
         applicationFlow.state = "Settings"
         applicationFlow.coffeeName = "Cappuccino"
@@ -63,11 +64,12 @@ ApplicationFlowForm {
         stack.push(settings)
         coffeeText.text = "Macchiato"
     }
-
+    //! [On clicked]
     home.getStartedbutton.onClicked: {
         applicationFlow.state = "Coffee-selection"
         stack.push(choosingCoffee)
     }
+    //! [On clicked]
     function backButton() {
         stack.pop()
         applicationFlow.state = applicationFlow.previousState
@@ -105,6 +107,7 @@ ApplicationFlowForm {
         applicationFlow.progressBarValue = 0
         applicationFlow.progressCupState = "0"
     }
+    //! [States]
     states: [
         State {
             name: "Home"
@@ -117,6 +120,7 @@ ApplicationFlowForm {
                 logo.sourceSize.width: 70
                 logo.sourceSize.height: 50
             }
+            //! [States]
             PropertyChanges {
                 target: coffeeText
                 visible: false

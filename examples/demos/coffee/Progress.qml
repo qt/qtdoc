@@ -66,7 +66,7 @@ Item {
             }
         }
     ]
-
+    //! [Timer]
     Timer {
         id: timer
         interval: brewTime
@@ -75,18 +75,21 @@ Item {
             applicationFlow.onFinished()
         }
     }
+    //! [Timer]
+    //! [Behavior]
     Behavior on greenBar.width {
         SmoothedAnimation {
             easing.type: Easing.Linear
             velocity: (contentItem.width / brewTime) * 1000
         }
     }
-
+    //! [Behavior]
     GridLayout {
         id: grid
         rowSpacing: 20
         anchors.horizontalCenter: parent.horizontalCenter
         flow: GridLayout.TopToBottom
+        //! [Cup]
         Cup {
             id: cup
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -157,6 +160,7 @@ Item {
 
             }
         }
+        //! [Cup]
         Rectangle {
             id: dialog
             radius: 8
