@@ -60,6 +60,11 @@ set(qml_resource_files
     sounds/onedice.wav
     sounds/rolling.wav
 )
+if(ANDROID)
+    set_target_properties(dice PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+        QT_ANDROID_TARGET_SDK_VERSION "33")
+endif()
 
 qt_add_resources(dice "qml"
     PREFIX
