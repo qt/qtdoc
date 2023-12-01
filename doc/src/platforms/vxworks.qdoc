@@ -1,0 +1,346 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+/*!
+  \page vxworks.html
+  \title Qt for VxWorks
+  \brief Platform support for VxWorks.
+  \keyword VxWorks
+  \ingroup supportedplatform
+
+  Contact The Qt Company for more information:
+  \l {https://www.qt.io/contact-us/}
+
+  \section1 Supported Architectures and VxWorks Releases
+
+  \list
+    \li Qt 6.7 is verified on VxWorks 23.09
+    Supported architecture is ARM-v7.
+  \endlist
+
+  If you are interested in later Qt releases, please \l {https://www.qt.io/contact-us/}{contact} Qt professional services.
+
+  \section1 Requirements for VxWorks
+
+  \section2 Qt Widgets Applications
+
+  \list
+  \li POSIX support
+  \li C++17 support
+  \endlist
+
+  \section2 Qt Quick 2 Applications
+
+  All features which are required for Qt Widgets applications, and in addition the following:
+
+  \list
+  \li GPU device (GPUDEV) for OpenGL ES 2.0
+  \endlist
+
+  \section1 Supported Modules
+
+  Most essential \l{All Modules}{Qt modules} and some add-on modules are supported.
+
+  \section2 Supported Essential modules
+
+  \table 80%
+  \header
+      \li Qt Module
+      \li Supported Features
+      \li Notes
+  \row
+      \li \l {Qt Core}
+      \li
+  \row
+      \li \l {Qt GUI}
+      \li
+  \row
+      \li \l {Qt Network}
+      \li
+  \row
+      \li \l {Qt QML}
+      \li
+  \row
+      \li \l {Qt Quick}
+      \li
+  \row
+      \li \l {Qt Quick Controls}
+      \li
+  \row
+      \li \l {Qt Quick Dialogs}
+      \li
+  \row
+      \li \l {Qt Quick Layouts}
+      \li
+  \row
+      \li \l {Qt Quick Test}
+      \li
+  \row
+      \li \l {Qt Test}
+      \li
+  \row
+      \li \l {Qt Widgets}
+      \li
+  \endtable
+
+  \section2 Supported Add-Ons
+
+  \table 80%
+  \header
+      \li Qt Add-Ons
+      \li Notes
+  \row
+      \li \l {Qt Concurrent}
+      \li
+  \row
+      \li \l {Qt GRPC/Protobuf}
+      \li
+  \row
+      \li \l {Qt Graphs}
+      \li
+  \row
+      \li \l {Qt Image Formats}
+      \li
+  \row
+      \li \l {Qt Multimedia}
+      \li
+  \row
+      \li \l {Qt Native Interfaces}
+      \li
+  \row
+      \li \l {Qt OpenGL}
+      \li
+  \row
+      \li \l {Qt Quick 3D}
+      \li
+  \row
+      \li \l {Qt Quick Compiler}
+      \li
+  \row
+      \li \l {Qt Quick Effects}
+      \li
+  \row
+      \li \l {Qt SQL}
+      \li
+  \row
+      \li \l {Qt SVG}
+      \li
+  \row
+      \li \l {Qt Virtual Keyboard}
+      \li
+  \endtable
+
+  \note You can explicitly exclude unsupported or unused modules from the
+  build via the -skip <module> option when running the configure tool.
+
+  \section1 Platform Notes
+
+  With the release of Qt 5.0, Qt no longer contains its own window system
+  implementation: QWS is no longer a supported platform. For single-process use
+  cases, the \l{Qt Platform Abstraction} is a superior solution.
+
+  There is one plugin that is usable on VxWorks: EGLFS. The availability of this
+  plugins depends on the configuration of Qt.
+
+  \section1 Configuring for a Specific Device
+
+  Building Qt for a given device requires a Qt6 installation for compilation
+  host, a toolchain and a sysroot. Additionally, some devices require vendor
+  specific adaptation code for EGL and OpenGL 2.0 support.
+
+  Before running configure and building Qt 6 it is required to open \e {VxWorks
+  Development Shell} in command prompt.
+
+  \list
+  \li Linux:
+  \badcode
+  cd <VxWorks installation directory>
+  ./wrenv.sh -p vxworks
+  \endcode
+
+  \li Windows:
+  \badcode
+  cd <VxWorks installation directory>
+  wrenv -p vxworks
+  \endcode
+  \endlist
+
+  Below is an example configuration for the BD-SL-i.MX6. For most VxWorks boards
+  the configure command looks very similar. By default, Qt 6 is configured to
+  use shared libraries. To build Qt 6 statically, add \c -static option for configure.
+
+  \badcode
+    ./configure \
+        -cmake-generator "Ninja" \
+        -icu \
+        -no-feature-timezone \
+        -no-feature-vulkan \
+        -platform vxworks-clang \
+        -qt-host-path <path_to_qt6_host_installation_dir> \
+        -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_<vsb_version>_VSB \
+        -qpa "eglfs" \
+        -DQT_QPA_EGLFS_INTEGRATION=eglfs_viv \
+        -prefix /sd0:1/qt6rtp \
+        -extprefix <path_to_host_dir>/qt6rtp \
+        -nomake tools \
+        -nomake examples
+  \endcode
+
+  It is recommended to build Qt 6 using a \e{shadow build}. See \l {Qt Configure Options}
+  for more information.
+
+  \section1 Building and Installing Qt 6
+
+  \badcode
+  ninja
+  ninja install
+  \endcode
+
+  \section1 Platform Plugins for VxWorks Devices
+
+  \section2 EGLFS
+
+  \l {http://www.khronos.org/egl}{EGL} is an interface between OpenGL and the
+  native windowing system. Qt can use EGL for context and surface management.
+  However, the API contains no platform specifics. The creation of a \e {native
+  window} (which will not necessarily be an actual window on the screen) must
+  still be done by platform-specific means. Hence the need for the board or GPU
+  specific adaptation code. Such adaptations are provided either as \e {EGLFS
+  hooks}, a single source file compiled in to the platform plugin, or as
+  dynamically loaded \e {EGL device integration} plugins.
+
+  EGLFS is a platform plugin for running Qt 6 applications on top of EGL and
+  OpenGL ES 2.0 without an actual windowing system (like X11 or Wayland). In
+  addition to Qt Quick 2 and native OpenGL applications it supports
+  software-rendered windows (for example QWidget) too. In the latter case the
+  widgets' contents are rendered using the CPU into images which are then
+  uploaded into textures and composited by the plugin.
+
+  This is the recommended plugin for modern VxWorks devices that include
+  a GPU.
+
+  EGLFS forces the first top-level window (either a QWidget or a
+  QQuickView) to become fullscreen. This window is also chosen to be the \e root
+  widget window into which all other top-level widgets (for example dialogs,
+  popup menus or combobox dropdowns) are composited. This is necessary because
+  with EGLFS there is always exactly one native window and EGL window surface,
+  and these belong to the widget or window that is created first. This approach
+  works well when there is a main window that exists for the entire lifetime of
+  the application and all other widgets are either non top-levels or are created
+  afterwards, once the main window is shown.
+
+  There are further restrictions for OpenGL-based windows. As of Qt 6.7, EGLFS
+  supports a single, fullscreen GL window (for example, an OpenGL-based QWindow,
+  a QQuickView or a QGLWidget). Opening additional OpenGL windows or mixing such
+  windows with QWidget-based content is not supported and will terminate the
+  application with an error message.
+
+  If necessary, EGLFS can be configured via environment variables:
+
+  \list
+
+  \li \c {QT_QPA_EGLFS_FB} - Overrides the framebuffer device. The default is
+  \c /dev/fb0. On most embedded platforms this is not very relevant because the
+  framebuffer is used only for querying settings like the display dimensions.
+  On certain devices, however, this parameter provides the ability to specify
+  which display to use in multiple display setups, similarly to the \c fb
+  parameter in VxWorksFB.
+
+  \li \c {QT_QPA_EGLFS_WIDTH} and \c {QT_QPA_EGLFS_HEIGHT} - Contain the screen
+  width and height in pixels. While EGLFS tries to determine the dimensions
+  from the framebuffer device \e{/dev/fb0}, this doesn't always work and
+  manually specifying the sizes might become necessary.
+
+  \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT} -
+  Physical screen width and height in millimeters. On platforms where the
+  framebuffer device \e{/dev/fb0} is not available or the query is not
+  successful, the values are calculated based on a default DPI of 100. This
+  variable can be used to override any such defaults.
+
+  \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth for the screen. On
+  platforms where the framebuffer device \e{/dev/fb0} is not available or the
+  query is not successful, the default 32 is used. This variable can be used
+  to override any such defaults. Note that this affects only the color depth
+  value reported by QScreen. It has no connection to EGL configurations and the
+  color depth used for OpenGL rendering.
+
+  \li \c {QT_QPA_EGLFS_SWAPINTERVAL} - By default a swap interval of \c 1 is
+  requested. This enables synchronizing to the displays vertical refresh. The
+  value can be overridden with this environment variable. For instance, passing
+  0 disables blocking on swap, resulting in running as fast as possible
+  without any synchronization.
+
+  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green and blue color
+  channel sizes are ignored whenever creating a new context, window or offscreen
+  surface. Instead, the plugin requests a configuration with 8 bits per
+  channel. This can be helpful on devices where configurations with less than 32
+  or 24 bits per pixel are chosen by default but are known not to be suitable,
+  for example, due to banding effects. Instead of changing all the applications,
+  this variable provides an easier shortcut to force 24/32 bpp configurations
+  for a given device.
+
+  \li \c {QT_QPA_EGLFS_DEBUG} - When set, some debugging information is printed
+  on the debug output. For example, the input QSurfaceFormat and the properties
+  of the chosen EGL configuration are printed whenever creating a new
+  context. Together with Qt Quick's \c {QSG_INFO} variable, this can provide
+  useful information for troubleshooting issues related to the EGL
+  configuration.
+
+  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
+  it is also possible to provide device or vendor-specific adaptation in the
+  form of dynamically loaded plugins. This environment variable enforces a
+  specific plugin. For example, setting it to \e{eglfs_kms} uses the KMS/DRM
+  backend. This is only an option when no static, compiled-in hooks were
+  specified in the device makespecs. In practice the traditional compiled-in
+  hooks are rarely used, almost all backends are now migrated to plugins. The
+  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
+  the name of the preferred backend for that particular device. This is
+  optional, but very useful to avoid the need to set this environment variable
+  in case there are more than one plugins present in the target system. In a
+  desktop environment the KMS or the X11 backends are prioritized, depending on
+  the presence of the \c DISPLAY environment variable.
+
+  \endlist
+
+  In addition to \c {QT_QPA_EGLFS_DEBUG}, EGLFS also supports the more modern
+  categorized logging system of Qt. The following logging categories are
+  available:
+
+  \list
+
+    \li \c qt.qpa.egldeviceintegration – Enables logging for dynamically loaded
+    backends. Very useful to check what backend is in use.
+
+    \li \c qt.qpa.input – Enables debug output from the evdev input handler.
+    Very useful to check if a given input device was correctly recognized and
+    opened.
+
+  \endlist
+
+  \section1 Running Qt Applications
+
+  The following example shows how to start an application when Qt 6 is built using
+  shared libraries. With a statically built Qt 6, there is no need to use the
+  LD_LIBRARY_PATH environment variable. This variable is only needed to point
+  the location of VxWorks shared libraries (for example libc and OpenGL ES 2.0).
+  It is not needed for Qt 6 static libraries.
+
+  \badcode
+  putenv "LD_LIBRARY_PATH=/sd0:1/lib"
+  cd "/sd0:1"
+  rtpSp("<Qt6_app>", 200, 0x100000, 0, 0x01000000)
+  \endcode
+
+  \section1 Limitations
+
+  \section2 Video Memory
+
+  Systems with a fixed amount of dedicated video memory may need extra care
+  before running Qt application based on Qt Quick or classes like
+  QOpenGLWidget. The default setting may be insufficient for such applications,
+  especially when they are displayed on a high resolution (for example, full HD)
+  screen. In this case they might start failing in unexpected ways. It is
+  therefore recommended to ensure that there is at least 128 MB of GPU memory
+  available. For systems that do not have a fixed amount of memory reserved for
+  the GPU this is not an issue.
+
+*/
