@@ -1,353 +1,339 @@
-// Copyright (C) 2017 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
-import QtQuick
+import QtQuick 6.5
+import custom.StockEngine
+import QtGraphs3D
 import QtQuick.Layouts
-import "."
+import custom.TimeFormatter
 
 Rectangle {
     id: chart
 
-    property var stockModel: null
     property var startDate: new Date()
     property var endDate: new Date()
-    property string activeChart: "week"
-    property var settings
-    property int gridSize: 4
-    property real gridStep: gridSize ? (canvas.width - canvas.tickMargin) / gridSize : canvas.xGridStep
+    property string timeFrame: "1M"
+    property int currentLiveIndex: -1
 
-    function update() {
-        endDate = new Date(stockModel.newest);
-        if (chart.activeChart === "month") {
-            chart.startDate = new Date(stockModel.newest.getFullYear(),
-                                       stockModel.newest.getMonth() - 1,
-                                       stockModel.newest.getDate());
-            gridSize = 4;
-        }
-        else if (chart.activeChart === "quarter") {
-            chart.startDate = new Date(stockModel.newest.getFullYear(),
-                                       stockModel.newest.getMonth() - 3,
-                                       stockModel.newest.getDate());
-            gridSize = 3;
-        }
-        else if (chart.activeChart === "halfyear") {
-            chart.startDate = new Date(stockModel.newest.getFullYear(),
-                                       stockModel.newest.getMonth() - 6,
-                                       stockModel.newest.getDate());
-            gridSize = 6;
-        }
-        else {
-            chart.startDate = new Date(stockModel.newest.getFullYear(),
-                                       stockModel.newest.getMonth(),
-                                       stockModel.newest.getDate() - 7);
-            gridSize = 0;
-        }
+    property alias highVisible: highSeries.visible
+    property alias lowVisible: lowSeries.visible
+    property alias openVisible: openSeries.visible
+    property alias closeVisible: closeSeries.visible
 
-        canvas.requestPaint();
+    onTimeFrameChanged: update()
+    function update(){
+        volumeModel.clear()
+        highModel.clear()
+        lowModel.clear()
+        openModel.clear()
+        closeModel.clear()
+        updateHistory()
+        currentLiveIndex = -1
+        updateLive()
     }
 
-    GridLayout {
-        anchors.fill: parent
-        columns: 6
-        rows: 3
-        columnSpacing: 4
-        Button {
-            id: weekButton
-            text: "Week"
-            buttonEnabled: chart.activeChart === "week"
-            onClicked: {
-                chart.activeChart = "week";
-                chart.update();
-            }
+    function updateStartDate() {
+        const  timeFrames = new Map([
+                                    ["1w", 7],
+                                    ["1M", 30],
+                                    ["3M", 90],
+                                    ["6M",180]])
+
+        var tf = timeFrames.get(timeFrame)
+        endDate =  StockEngine.getUseLiveData()? new Date() : new Date(StockEngine.stockModel.getHistoryDate(0) + 1)
+        startDate = new Date(endDate.getTime())
+        startDate.setDate(endDate.getDate() -tf);
+    }
+
+    function updateHistory(){
+        updateStartDate()
+        var startPoint = StockEngine.stockModel.indexOf(startDate)
+        var totalPoints = StockEngine.stockModel.historyCount()
+
+        var width = startPoint / 50
+        for (var i = 0; i < totalPoints; i++) {
+            var epochInDays = StockEngine.stockModel.getHistoryDate(i, false) / 86400
+            appendSurfacePoint(openModel, width, epochInDays, StockEngine.stockModel.getOpen(i))
+            appendSurfacePoint(closeModel,width, epochInDays, StockEngine.stockModel.getClose(i))
+            appendSurfacePoint(highModel,width, epochInDays, StockEngine.stockModel.getHigh(i))
+            appendSurfacePoint(lowModel,width, epochInDays, StockEngine.stockModel.getLow(i))
         }
 
-        Button {
-            id: monthButton
-            text: "Month"
-            buttonEnabled: chart.activeChart === "month"
-            onClicked: {
-                chart.activeChart = "month";
-                chart.update();
-            }
+        for (var j = startPoint - 1; j >= 0; j--) {
+            var date = new Date(StockEngine.stockModel.getHistoryDate(j)).toLocaleDateString(Locale.ShortFormat)
+            volumeModel.append({"row": StockEngine.stockModel.getName(),
+                                   "column": date,
+                                   "value": StockEngine.stockModel.getVolume(j) / 1000000})
         }
 
-        Button {
-            id: quarterlyButton
-            text: "3 Months"
-            buttonEnabled: chart.activeChart === "quarter"
-            onClicked: {
-                chart.activeChart = "quarter";
-                chart.update();
+        historyGraph.axisX.min = (startDate.getTime() / 1000).toFixed() / 86400
+        historyGraph.axisX.max = (endDate.getTime() / 1000).toFixed() / 86400
+    }
+
+    function appendSurfacePoint(listModel, width, time, value) {
+        listModel.append({"row": 0,
+                         "column": time,
+                         "value": value})
+        listModel.append({"row": width,
+                         "column": time,
+                         "value": value})
+    }
+
+    function updateLive(){
+        currentLiveIndex = liveSeries.selectedItem
+        priceModel.clear()
+        for (var i= 0; i < StockEngine.stockModel.quoteCount(); i++){
+            var date = new Date(StockEngine.stockModel.getQuoteTime(i))
+            var dayS = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
+            priceModel.insert(0,{"row" : 0,
+                                  "column": dayS,
+                                  "value" : StockEngine.stockModel.getPrice(i)});
+        }
+    }
+
+    ListModel {
+        id: volumeModel
+    }
+    ListModel {
+        id: highModel
+    }
+    ListModel {
+        id: lowModel
+    }
+    ListModel {
+        id: openModel
+    }
+    ListModel {
+        id: closeModel
+    }
+    ListModel {
+        id: priceModel
+    }
+
+    Surface3D {
+        id: historyGraph
+        clip: true
+        visible: true
+        width: parent.width
+        height: parent.height
+        cameraZoomLevel: 170
+        maxCameraZoomLevel:  400
+        minCameraZoomLevel:  80
+
+        axisX: ValueAxis3D {
+            autoAdjustRange: true
+            title: startDate.toDateString() + " - " + endDate.toDateString()
+            formatter: TimeFormatter {
+                id: monthFormatter
+                selectionFormat: "dd-MM-yyyy"
+                epochFormat: TimeFormatter.Day
             }
+
+            labelFormat: "dd-MM-yyyy"
+            titleVisible: true
         }
 
-        Button {
-            id: halfYearlyButton
-            text: "6 Months"
-            buttonEnabled: chart.activeChart === "halfyear"
-            onClicked: {
-                chart.activeChart = "halfyear";
-                chart.update();
-            }
+        axisZ: ValueAxis3D {
+            segmentCount: 1
         }
 
-        Canvas {
-            id: canvas
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.columnSpan: 6
-            // Uncomment below lines to use OpenGL hardware accelerated rendering.
-            // See Canvas documentation for available options.
-            // renderTarget: Canvas.FramebufferObject
-            // renderStrategy: Canvas.Threaded
+        theme: Theme3D {
+            type: Theme3D.Qt
+            windowColor: "#101010"
+            backgroundEnabled: false
+            ambientLightStrength: 1
+            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+            labelTextColor: "white"
+            labelBackgroundColor: "black"
+            font.pointSize: 9
+            font.family: "Roboto"
+        }
 
-            property int pixelSkip: 1
-            property int numPoints: 1
-            property int tickMargin: 34
 
-            property real xGridStep: (canvas.width - tickMargin) / numPoints
-            property real yGridOffset: canvas.height / 26
-            property real yGridStep: canvas.height / 12
-
-            function drawBackground(ctx) {
-                ctx.save();
-                ctx.fillStyle = "#ffffff";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.strokeStyle = "#d7d7d7";
-                ctx.beginPath();
-                // Horizontal grid lines
-                for (var i = 0; i < 12; i++) {
-                    ctx.moveTo(0, canvas.yGridOffset + i * canvas.yGridStep);
-                    ctx.lineTo(canvas.width, canvas.yGridOffset + i * canvas.yGridStep);
+        seriesList: [
+            Surface3DSeries {
+                id: highSeries
+                visible: true
+                baseColor: "green"
+                flatShadingEnabled: true
+                drawMode: Surface3DSeries.DrawSurface
+                itemLabelFormat: "Time: @xLabel High:@yLabel$"
+                ItemModelSurfaceDataProxy {
+                    itemModel: highModel
+                    rowRole: "row"
+                    columnRole: "column"
+                    yPosRole: "value"
                 }
-
-                // Vertical grid lines
-                var height = 35 * canvas.height / 36;
-                var yOffset = canvas.height - height;
-                var xOffset = 0;
-                for (i = 0; i < chart.gridSize; i++) {
-                    ctx.moveTo(xOffset + i * chart.gridStep, yOffset);
-                    ctx.lineTo(xOffset + i * chart.gridStep, height);
+            },
+            Surface3DSeries {
+                id: lowSeries
+                visible: true
+                baseColor: "red"
+                flatShadingEnabled: true
+                drawMode: Surface3DSeries.DrawSurface
+                itemLabelFormat: "Time: @xLabel Low:@yLabel$"
+                ItemModelSurfaceDataProxy {
+                    itemModel: lowModel
+                    rowRole: "row"
+                    columnRole: "column"
+                    yPosRole: "value"
                 }
-                ctx.stroke();
-
-                // Right ticks
-                ctx.strokeStyle = "#666666";
-                ctx.beginPath();
-                var xStart = canvas.width - tickMargin;
-                ctx.moveTo(xStart, 0);
-                ctx.lineTo(xStart, canvas.height);
-                for (i = 0; i < 12; i++) {
-                    ctx.moveTo(xStart, canvas.yGridOffset + i * canvas.yGridStep);
-                    ctx.lineTo(canvas.width, canvas.yGridOffset + i * canvas.yGridStep);
+            },
+            Surface3DSeries {
+                id: openSeries
+                visible: true
+                baseColor: "yellow"
+                flatShadingEnabled: true
+                drawMode: Surface3DSeries.DrawSurface
+                itemLabelFormat: "Time: @xLabel Open:@yLabel$"
+                ItemModelSurfaceDataProxy {
+                    itemModel: openModel
+                    rowRole: "row"
+                    columnRole: "column"
+                    yPosRole: "value"
                 }
-                ctx.moveTo(0, canvas.yGridOffset + 9 * canvas.yGridStep);
-                ctx.lineTo(canvas.width, canvas.yGridOffset + 9 * canvas.yGridStep);
-                ctx.closePath();
-                ctx.stroke();
-
-                ctx.restore();
+            },
+            Surface3DSeries {
+                id: closeSeries
+                visible: true
+                baseColor: "blue"
+                flatShadingEnabled: true
+                drawMode: Surface3DSeries.DrawSurface
+                itemLabelFormat: "Time: @xLabel Close:@yLabel$"
+                ItemModelSurfaceDataProxy {
+                    itemModel: closeModel
+                    rowRole: "row"
+                    columnRole: "column"
+                    yPosRole: "value"
+                }
             }
+        ]
+    }
 
-            // Returns a shortened, readable version of the potentially
-            // large volume number.
-            function volumeToString(value) {
-                if (value < 1000)
-                    return value;
-                var exponent = parseInt(Math.log(value) / Math.log(1000));
-                var shortVal = parseFloat(parseFloat(value) / Math.pow(1000, exponent)).toFixed(1);
+    Bars3D{
+        id: volumeGraph
+        clip: true
+        width: parent.width
+        height: parent.height
+        visible: false
+        cameraZoomLevel: 140
+        maxCameraZoomLevel:  400
+        minCameraZoomLevel:  80
+        orthoProjection: true
 
-                // Drop the decimal point on 3-digit values to make it fit
-                if (shortVal >= 100.0) {
-                    shortVal = parseFloat(shortVal).toFixed(0);
+        valueAxis: ValueAxis3D {
+            labelFormat: "%.1f M"
+            title: "Volume"
+            titleVisible: true
+        }
+        columnAxis: CategoryAxis3D {
+            title: startDate.toDateString() + " - " + endDate.toDateString()
+            titleVisible: true
+        }
+
+        theme: Theme3D {
+            type: Theme3D.Qt
+            windowColor: "#101010"
+            backgroundEnabled: false
+            ambientLightStrength: 1
+            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+            labelTextColor: "white"
+            labelBackgroundColor: "black"
+            font.pointSize: 9
+            font.family: "Roboto"
+        }
+
+        seriesList: [
+            Bar3DSeries {
+                id: volumeSeries
+                itemLabelFormat: "Date:@colLabel : Volume: @valueLabel"
+                ItemModelBarDataProxy {
+                    itemModel: volumeModel
+                    rowRole: "row"
+                    columnRole: "column"
+                    valueRole: "value"
                 }
-                return shortVal + "KMBTG".charAt(exponent - 1);
             }
+        ]
+    }
 
-            function drawScales(ctx, high, low, vol)
-            {
-                ctx.save();
-                ctx.strokeStyle = "#888888";
-                ctx.font = "10px Open Sans"
+    Scatter3D {
+        id: liveGraph
+        clip: true
+        width: parent.width
+        height: parent.height
+        visible: false
+        cameraZoomLevel: 140
+        maxCameraZoomLevel:  400
+        minCameraZoomLevel:  80
+        orthoProjection: true
 
-                ctx.beginPath();
-
-                // prices on y-axis
-                var x = canvas.width - tickMargin + 3;
-                var priceStep = (high - low) / 9.0;
-                for (var i = 0; i < 10; i += 2) {
-                    var price = parseFloat(high - i * priceStep).toFixed(1);
-                    ctx.text(price, x, canvas.yGridOffset + i * yGridStep - 2);
-                }
-
-                // volume scale
-                for (i = 0; i < 3; i++) {
-                    var volume = volumeToString(vol - (i * (vol/3)));
-                    ctx.text(volume, x, canvas.yGridOffset + (i + 9) * yGridStep + 10);
-                }
-
-                ctx.closePath();
-                ctx.stroke();
-                ctx.restore();
+        axisX: ValueAxis3D {
+            title: startDate.toDateString() + " - " + endDate.toDateString()
+            formatter: TimeFormatter {
+                id: minuteFormatter
+                selectionFormat: "hh:mm:ss"
+                epochFormat: TimeFormatter.S
             }
+            titleVisible: true
+        }
 
-            function drawPrice(ctx, from, to, color, price, points, highest, lowest)
-            {
-                ctx.save();
-                ctx.globalAlpha = 0.7;
-                ctx.strokeStyle = color;
+        theme: Theme3D {
+            type: Theme3D.Qt
+            windowColor: "#101010"
+            backgroundEnabled: false
+            ambientLightStrength: 1
+            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+            labelTextColor: "white"
+            labelBackgroundColor: "black"
+            font.pointSize: 9
+            font.family: "Roboto"
+        }
 
-                ctx.lineWidth = numPoints > 200 ? 1 : 3
-
-                ctx.beginPath();
-
-                var end = points.length;
-
-                var range = highest - lowest;
-                if (range == 0) {
-                    range = 1;
-                }
-
-                for (var i = 0; i < end; i += pixelSkip) {
-                    var x = points[i].x;
-                    var y = points[i][price];
-                    var h = 9 * yGridStep;
-
-                    y = h * (lowest - y)/range + h + yGridOffset;
-
-                    if (i == 0) {
-                        ctx.moveTo(x, y);
-                    } else {
-                        ctx.lineTo(x, y);
+        seriesList: [
+            Scatter3DSeries {
+                id: liveSeries
+                baseColor: "green"
+                meshSmooth: true
+                itemLabelFormat: "@xLabel: @yLabel$"
+                ItemModelScatterDataProxy {
+                    itemModel: priceModel
+                    xPosRole: "column"
+                    yPosRole: "value"
+                    zPosRole: "row"
+                    onItemCountChanged: {
+                        var i = liveSeries.selectedItem
+                        liveSeries.selectedItem = currentLiveIndex
                     }
                 }
-                ctx.stroke();
-                ctx.restore();
             }
-
-            function drawVolume(ctx, from, to, color, price, points, highest)
-            {
-                ctx.save();
-                ctx.fillStyle = color;
-                ctx.globalAlpha = 0.8;
-                ctx.lineWidth = 0;
-                ctx.beginPath();
-
-                var end = points.length;
-                var margin = 0;
-
-                if (chart.activeChart === "month" || chart.activeChart === "week") {
-                    margin = 8;
-                    ctx.shadowOffsetX = 4;
-                    ctx.shadowBlur = 3.5;
-                    ctx.shadowColor = Qt.darker(color);
-                }
-
-                // To match the volume graph with price grid, skip drawing the initial
-                // volume of the first day on chart.
-                for (var i = 1; i < end; i += pixelSkip) {
-                    var x = points[i - 1].x;
-                    var y = points[i][price];
-                    y = canvas.height * (y / highest);
-                    y = 3 * y / 12;
-                    ctx.fillRect(x, canvas.height - y + yGridOffset,
-                                 canvas.xGridStep - margin, y);
-                }
-
-                ctx.stroke();
-                ctx.restore();
-            }
-
-            function drawError(ctx, msg)
-            {
-                ctx.save();
-                ctx.strokeStyle = "#888888";
-                ctx.font = "24px Open Sans"
-                ctx.textAlign = "center"
-                ctx.shadowOffsetX = 4;
-                ctx.shadowOffsetY = 4;
-                ctx.shadowBlur = 1.5;
-                ctx.shadowColor = "#aaaaaa";
-                ctx.beginPath();
-
-                ctx.fillText(msg, (canvas.width - tickMargin) / 2,
-                             (canvas.height - yGridOffset - yGridStep) / 2);
-
-                ctx.closePath();
-                ctx.stroke();
-                ctx.restore();
-            }
-
-            onPaint: {
-                numPoints = stockModel.indexOf(chart.startDate);
-                if (chart.gridSize == 0)
-                    chart.gridSize = numPoints
-
-                var ctx = canvas.getContext("2d");
-                ctx.globalCompositeOperation = "source-over";
-                ctx.lineWidth = 1;
-
-                drawBackground(ctx);
-
-                if (!stockModel.ready) {
-                    drawError(ctx, "No data available.");
-                    return;
-                }
-
-                var highestPrice = 0;
-                var highestVolume = 0;
-                var lowestPrice = -1;
-                var points = [];
-                for (var i = numPoints, j = 0; i >= 0 ; i -= pixelSkip, j += pixelSkip) {
-                    var price = stockModel.get(i);
-                    if (parseFloat(highestPrice) < parseFloat(price.high))
-                        highestPrice = price.high;
-                    if (parseInt(highestVolume, 10) < parseInt(price.volume, 10))
-                        highestVolume = price.volume;
-                    if (lowestPrice < 0 || parseFloat(lowestPrice) > parseFloat(price.low))
-                        lowestPrice = price.low;
-                    points.push({
-                                    x: j * xGridStep,
-                                    open: price.open,
-                                    close: price.close,
-                                    high: price.high,
-                                    low: price.low,
-                                    volume: price.volume
-                                });
-                }
-
-                if (settings.drawHighPrice)
-                    drawPrice(ctx, 0, numPoints, settings.highColor, "high", points, highestPrice, lowestPrice);
-                if (settings.drawLowPrice)
-                    drawPrice(ctx, 0, numPoints, settings.lowColor, "low", points, highestPrice, lowestPrice);
-                if (settings.drawOpenPrice)
-                    drawPrice(ctx, 0, numPoints,settings.openColor, "open", points, highestPrice, lowestPrice);
-                if (settings.drawClosePrice)
-                    drawPrice(ctx, 0, numPoints, settings.closeColor, "close", points, highestPrice, lowestPrice);
-
-                drawVolume(ctx, 0, numPoints, settings.volumeColor, "volume", points, highestVolume);
-                drawScales(ctx, highestPrice, lowestPrice, highestVolume);
-            }
-        }
-
-
-        Text {
-            id: fromDate
-            color: "#000000"
-            font.family: Settings.fontFamily
-            font.pointSize: 8
-            Layout.alignment: Qt.AlignLeft
-            text: "| " + startDate.toDateString()
-        }
-        Text {
-            id: toDate
-            color: "#000000"
-            font.family: Settings.fontFamily
-            font.pointSize: 8
-            Layout.alignment: Qt.AlignRight
-            Layout.rightMargin: canvas.tickMargin
-            Layout.columnSpan: 5
-            text: endDate.toDateString() + " |"
-        }
+        ]
     }
+
+    states : [
+        State {
+            name: "History"
+        },
+        State {
+            name: "Volume"
+            PropertyChanges {
+                target: volumeGraph
+                visible: true
+            }
+            PropertyChanges {
+                target: historyGraph
+                visible: false
+            }
+        },
+        State {
+            name: "Live"
+            PropertyChanges {
+                target: liveGraph
+                visible: true
+            }
+            PropertyChanges {
+                target: historyGraph
+                visible: false
+            }
+        }
+    ]
 }
