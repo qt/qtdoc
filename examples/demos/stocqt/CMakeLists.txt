@@ -1,9 +1,11 @@
-# Copyright (C) 2022 The Qt Company Ltd.
+# Copyright (C) 2023 The Qt Company Ltd.
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(stocqt LANGUAGES CXX)
 
+project(StocQt VERSION 0.1 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
@@ -12,75 +14,184 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/stocqt")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+if (ANDROID AND QT_ALLOW_DOWNLOAD)
+    include(FetchContent)
+    FetchContent_Declare(
+        android_openssl
+        DOWNLOAD_EXTRACT_TIMESTAMP true
+        URL      https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+    )
+    FetchContent_MakeAvailable(android_openssl)
+    include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+endif()
 
-qt_add_executable(stocqt
-    main.cpp
+find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
+
+qt_standard_project_setup(REQUIRES 6.5)
+
+qt_add_executable(appStocQt
+    src/main.cpp
 )
 
-set_target_properties(stocqt PROPERTIES
-    WIN32_EXECUTABLE TRUE
+if (ANDROID)
+    add_android_openssl_libraries(appStocQt)
+endif()
+
+qt_add_qml_module(appStocQt
+    URI StocQt
+    NO_RESOURCE_TARGET_PATH
+    VERSION 1.0
+    QML_FILES Main.qml
+    SOURCES
+        src/apihandler.cpp src/apihandler.h
+        src/favoritesmodel.cpp src/favoritesmodel.h
+        src/stockengine.cpp src/stockengine.h
+        src/stocklistmodel.cpp src/stocklistmodel.h
+        src/stockmodel.cpp src/stockmodel.h
+        src/timeformatter.cpp src/timeformatter.h
+)
+qt_add_resources(appStocQt "configuration"
+    PREFIX "/"
+    FILES
+        qtquickcontrols2.conf
+    )
+
+add_subdirectory(content)
+
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+set_target_properties(appStocQt PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appStockQt
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(stocqt PRIVATE
+target_link_libraries(appStocQt PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::Graphs
 )
 
-# Resources:
-set(stocqt_resource_files
-    "content/+windows/Settings.qml"
-    "content/Banner.qml"
-    "content/Button.qml"
-    "content/CheckBox.qml"
-    "content/Settings.qml"
-    "content/StockChart.qml"
-    "content/StockInfo.qml"
-    "content/StockListDelegate.qml"
-    "content/StockListModel.qml"
-    "content/StockListView.qml"
-    "content/StockModel.qml"
-    "content/StockSettingsPanel.qml"
-    "content/StockView.qml"
-    "content/data/AAPL.csv"
-    "content/data/ADSK.csv"
-    "content/data/AMD.csv"
-    "content/data/AMZN.csv"
-    "content/data/CSCO.csv"
-    "content/data/EA.csv"
-    "content/data/EBAY.csv"
-    "content/data/FB.csv"
-    "content/data/GOOG.csv"
-    "content/data/GOOGL.csv"
-    "content/data/INTC.csv"
-    "content/data/MSFT.csv"
-    "content/data/NCLH.csv"
-    "content/data/NFLX.csv"
-    "content/data/NTAP.csv"
-    "content/data/NVDA.csv"
-    "content/data/PYPL.csv"
-    "content/data/QCOM.csv"
-    "content/data/TSLA.csv"
-    "content/data/TXN.csv"
-    "content/images/icon-left-arrow.png"
-    "content/images/wheel-touch.png"
-    "content/images/wheel.png"
-    "content/qmldir"
-    "stocqt.qml"
-)
-
-qt_add_resources(stocqt "stocqt"
-    PREFIX
-        "/demos/stocqt"
-    FILES
-        ${stocqt_resource_files}
-)
-
-install(TARGETS stocqt
+include(GNUInstallDirs)
+install(TARGETS appStocQt
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+)
+
+set (data_resource_files
+    "data/AAPL.json"
+    "data/ABNB.json"
+    "data/ADBE.json"
+    "data/ADI.json"
+    "data/ADP.json"
+    "data/ADSK.json"
+    "data/AEP.json"
+    "data/ALGN.json"
+    "data/AMAT.json"
+    "data/AMD.json"
+    "data/AMGN.json"
+    "data/AMZN.json"
+    "data/ANSS.json"
+    "data/ASML.json"
+    "data/ATVI.json"
+    "data/AVGO.json"
+    "data/AZN.json"
+    "data/BIIB.json"
+    "data/BKNG.json"
+    "data/BKR.json"
+    "data/CDNS.json"
+    "data/CEG.json"
+    "data/CHTR.json"
+    "data/CMCSA.json"
+    "data/COST.json"
+    "data/CPRT.json"
+    "data/CRWD.json"
+    "data/CSCO.json"
+    "data/CSGP.json"
+    "data/CSX.json"
+    "data/CTAS.json"
+    "data/CTSH.json"
+    "data/DDOG.json"
+    "data/DLTR.json"
+    "data/DXCM.json"
+    "data/EA.json"
+    "data/EBAY.json"
+    "data/ENPH.json"
+    "data/EXC.json"
+    "data/FANG.json"
+    "data/FAST.json"
+    "data/FISV.json"
+    "data/FTNT.json"
+    "data/GFS.json"
+    "data/GILD.json"
+    "data/GOOG.json"
+    "data/GOOGL.json"
+    "data/HON.json"
+    "data/IDXX.json"
+    "data/ILMN.json"
+    "data/INTC.json"
+    "data/INTU.json"
+    "data/ISRG.json"
+    "data/JD.json"
+    "data/KDP.json"
+    "data/KHC.json"
+    "data/KLAC.json"
+    "data/LCID.json"
+    "data/LRCX.json"
+    "data/LULU.json"
+    "data/MAR.json"
+    "data/MCHP.json"
+    "data/MDLZ.json"
+    "data/MELI.json"
+    "data/META.json"
+    "data/MNST.json"
+    "data/MRNA.json"
+    "data/MRVL.json"
+    "data/MSFT.json"
+    "data/MU.json"
+    "data/NFLX.json"
+    "data/NVDA.json"
+    "data/NXPI.json"
+    "data/ODFL.json"
+    "data/ORLY.json"
+    "data/PANW.json"
+    "data/PAYX.json"
+    "data/PCAR.json"
+    "data/PDD.json"
+    "data/PEP.json"
+    "data/PYPL.json"
+    "data/QCOM.json"
+    "data/REGN.json"
+    "data/RIVN.json"
+    "data/ROST.json"
+    "data/SBUX.json"
+    "data/SGEN.json"
+    "data/SIRI.json"
+    "data/SNPS.json"
+    "data/TEAM.json"
+    "data/TMUS.json"
+    "data/TSLA.json"
+    "data/TXN.json"
+    "data/VRSK.json"
+    "data/VRTX.json"
+    "data/WBA.json"
+    "data/WBD.json"
+    "data/WDAY.json"
+    "data/XEL.json"
+    "data/ZM.json"
+    "data/ZS.json"
+    "data/QTCOM.HE.json"
+    "data/quotes.json"
+)
+
+qt6_add_resources(appStocQt "data"
+    PREFIX "/"
+    FILES
+        ${data_resource_files}
 )

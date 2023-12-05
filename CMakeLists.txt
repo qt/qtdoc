@@ -28,6 +28,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Network
         QuickControls2
         QmlXmlListModel
+        Graphs
 )
 qt_internal_project_setup()
 

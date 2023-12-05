@@ -6,53 +6,78 @@
     \examplecategory {Data Visualization & 3D}
     \ingroup qtquickdemos
     \example demos/stocqt
-    \brief A configurable stock chart for the NASDAQ-100.
+    \brief A configurable stock chart for 100 stocks.
     \meta {tag} {demo,quick,game}
     \borderedimage qtquick-demo-stocqt.png
 
-    The \e{StocQt} application presents a trend chart for the first stock in
-    the list of NASDAQ-100 stocks. It allows the user to choose another stock
-    from the list, and fetches the required data from the offline dataset
-    using \c XMLHttpRequest.
+    The \e{StocQt} application presents trend charts for a custom
+    list of 100 stocks based on the NASDAQ-100. It allows the user to choose stocks
+    from a list, and fetch the required data from the Financial Modeling Prep API using QNetworkAccessManager or from an offline dataset.
+    The application also allows for favoriting up to 5 stocks for use in comparison charts.
 
-    The application uses several custom types such as Button, CheckBox,
-    StockChart, StockInfo, StockView, and so on. These types are used to
-    present the stock data in a readable form and also let the user customize
+    The application uses several custom types such as Search, StockCheckBox,
+    StockChart, StockView, and SettingsView. These types
+    present the stock data in a readable form and let the user customize
     the trend chart. For example, the user can choose to view the weekly,
-    monthly, quarterly, or half yearly trends in the stock price.
+    monthly, quarterly, or half-yearly trends in the stock price.
 
-    The application uses the ObjectModel type to access the two visual data
-    models that it depends on.
+    The application uses a custom StockEngine singleton implemented in C++ for data handling,
+    such as API requests and favoriting stocks. It implements a custom APIHandler class for fetching the online data.
 
-    \quotefromfile demos/stocqt/stocqt.qml
+    \quotefromfile demos/stocqt/src/apihandler.cpp
+    \skipto getStockHistory
+    \printuntil doc
+    \dots 8
+    \skipto QList
+    \printuntil }
+
+    The application uses the ObjectModel type to access visual data models that it depends on.
+
+    \quotefromfile demos/stocqt/Main.qml
+    \skipto Window
+    \printuntil id
+    \dots 8
     \skipto ListView
     \printuntil id
     \dots 8
     \skipto model
-    \printuntil StockView
+    \printuntil SettingsView
     \printuntil }
     \printuntil }
     \printuntil }
 
-    The StockListView model is a static data model listing the
-    NASDAQ-100 stocks with basic information such as stockId, name, value,
-    change, and so on. This data model is used by the application if the
+    The StockListModel is a custom data model listing the
+    stocks with basic information such as stock ID, name, value,
+    and favorite. This application uses this data model when the
     user wants to choose another stock from the list.
 
-    StockView is a complex data model that presents a trend chart for the
-    selected stock. It uses another custom type, StockChart, which presents
-    the graphical trend of the stock price using a Canvas. This data model
-    is used for most of the time during the lifetime of the application.
+    StockView and FavoriteView are complex data models that present a trend chart for the
+    selected stock or a group of up to 5 stocks. They use another custom type, StockChart or FavoriteChart,
+    which loads the data from the StockEngine into ListModels and presents
+    the graphical trend of the stock price using a Surface3D, Bars3D, or Scatter3D.
 
     \quotefromfile demos/stocqt/content/StockChart.qml
     \skipto Rectangle
     \printuntil id
-    \dots
-    \skipto Canvas
+    \dots 8
+    \skipto function updateHistory(){
+    \printuntil }
+    \dots 8
+    \skipto Surface3D
     \printuntil id
     \dots 8
-    \skipto onPaint
-    \printuntil /^\}$/
+    \skipto Surface3DSeries
+    \printuntil ,
+
+    The SettingsView presents information on the application as well as a dropdown menu for
+    choosing between offline and live data. Using live data also requires the user to provide an API key.
+
+    \quotefromfile demos/stocqt/content/SettingsView.qml
+    \skipto Rectangle
+    \printuntil id
+    \dots 8
+    \skipto function handleKey
+    \printuntil }
 
     To understand the application better, browse through its code using
     Qt Creator.

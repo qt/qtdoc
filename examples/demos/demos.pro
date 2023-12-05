@@ -5,8 +5,7 @@ qtHaveModule(quick) {
         samegame \
         clocks \
         tweetsearch \
-        maroon \
-        stocqt
+        maroon
 
     qtHaveModule(quickcontrols2) {
         SUBDIRS += coffee \
