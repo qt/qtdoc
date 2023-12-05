@@ -1,0 +1,68 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+#ifndef STOCKENGINE_H
+#define STOCKENGINE_H
+
+#include <QObject>
+#include <QSortFilterProxyModel>
+#include <QTimer>
+#include <QVariant>
+#include "apihandler.h"
+#include "favoritesmodel.h"
+#include "stocklistmodel.h"
+#include "stockmodel.h"
+
+class StockEngine : public QObject
+{
+    Q_OBJECT
+public:
+    StockEngine();
+
+    Q_PROPERTY(StockListModel *stockListModel READ getStockListModel NOTIFY onStockListModelChanged)
+    Q_PROPERTY(FavoritesModel *favoritesModel READ getFavoritesModel NOTIFY onFavoritesModelChanged)
+    Q_PROPERTY(StockModel *stockModel READ getStockModel NOTIFY onStockModelChanged)
+    Q_PROPERTY(QSortFilterProxyModel *filterModel READ filterModel NOTIFY filterChanged FINAL)
+
+    StockListModel *getStockListModel();
+    FavoritesModel *getFavoritesModel();
+    StockModel *getStockModel();
+    QString getTimeFrame();
+    QSortFilterProxyModel *filterModel();
+
+public slots:
+    void testApiKey(QString apiKey);
+    void setUseLiveData(bool useLiveData);
+    void updateStockListModel();
+    void updateStockView(const QString stockId);
+    void addFavorite(const QString stockId);
+    void removeFavorite(const QString stockId);
+    void updateFavorites();
+    void updateStockModelHistory(const QString stockId);
+    void updateStockModelQuote();
+    QString getCurrentStockId();
+    QString getCurrentName();
+    bool isFavorite(QString stockId);
+    bool getUseLiveData();
+
+signals:
+    void onStockListModelChanged();
+    void onStockModelChanged();
+    void stockDataReady();
+    void onFavoritesModelChanged();
+    void onFavoritesChanged(bool full);
+    void onDataTypeChanged(bool live);
+    void onApiKeyTested(bool keyValid);
+    void onTimeFrameChanged();
+    void onLiveDataReady(float liveData);
+    void filterChanged();
+
+private:
+    StockListModel m_stockListModel;
+    FavoritesModel m_favoritesModel;
+    StockModel *m_stockModel;
+    ApiHandler m_apiHandler;
+    QSortFilterProxyModel m_proxyModel;
+    QTimer m_liveDataTimer;
+};
+
+#endif // STOCKENGINE_H
