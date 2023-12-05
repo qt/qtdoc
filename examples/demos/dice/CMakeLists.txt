@@ -66,6 +66,14 @@ if(ANDROID)
         QT_ANDROID_TARGET_SDK_VERSION "33")
 endif()
 
+if(IOS)
+    set(asset_catalog_path "ios/Assets.xcassets")
+    target_sources(dice PRIVATE "${asset_catalog_path}")
+    set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_target_properties(dice
+        PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+endif()
+
 qt_add_resources(dice "qml"
     PREFIX
         "/"
