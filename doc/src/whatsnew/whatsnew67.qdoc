@@ -34,7 +34,14 @@
 
     \section2 Qt Multimedia Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li The new \l MediaPlayer::autoPlay and \l Video::autoPlay
+            properties can be used to automatically start playback when
+            a media source has been set.
+        \li The \l QCameraDevice has a new \l
+            {QCameraDevice::}{correctionAngle}
+            property. This property represents the rotation angle needed
+            to compensate for the physical camera rotation of the camera
+            compared to its native orientation.
     \endlist
 
     \section2 Qt Network Module
