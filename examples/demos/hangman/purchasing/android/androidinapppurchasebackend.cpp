@@ -19,9 +19,8 @@ AndroidInAppPurchaseBackend::AndroidInAppPurchaseBackend(QObject *parent)
     , m_isReady(false)
 {
     m_javaObject = QJniObject("org/qtproject/qt/android/purchasing/InAppPurchase",
-                              "(Landroid/content/Context;J)V",
                               QNativeInterface::QAndroidApplication::context(),
-                              this);
+                              jlong(this));
 
     if (!m_javaObject.isValid()) {
         qWarning("Cannot initialize IAP backend for Android due to missing dependency: InAppPurchase class");
