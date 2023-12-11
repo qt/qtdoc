@@ -6,15 +6,15 @@ import QtQuick.Layouts
 Item {
     id: home
     property alias getStartedbutton: getStartedButton
-    property alias grid: grid
+//    property alias grid: grid
 
     states: [
         State {
             name: "portrait"
             PropertyChanges {
                 target: getStartedButton
-                Layout.preferredWidth: applicationFlow.width / 2.2
-                Layout.preferredHeight: applicationFlow.height / 16
+                Layout.preferredWidth: home.width / 2.2
+                Layout.preferredHeight: home.height / 14
                 Layout.topMargin: 20
             }
         },
@@ -30,9 +30,13 @@ Item {
             }
             PropertyChanges {
                 target: getStartedButton
-                Layout.preferredWidth: applicationFlow.width / 4
-                Layout.preferredHeight: applicationFlow.height / 8
+                Layout.preferredWidth: home.width / 4
+                Layout.preferredHeight: home.height / 8
                 Layout.topMargin: 0
+            }
+            PropertyChanges {
+                target: getStartedButton
+                Layout.minimumHeight: 0
             }
         }
     ]
@@ -42,6 +46,20 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: home.top
         flow: GridLayout.TopToBottom
+        states: [
+            State {
+                name: "small"
+                when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                PropertyChanges {
+                    target: header
+                    font.pixelSize:28
+                }
+                PropertyChanges {
+                    target: caption
+                    font.pixelSize:14
+                }
+            }
+        ]
         Image {
             id: image
             Layout.preferredHeight: home.height / 3
@@ -65,6 +83,8 @@ Item {
             text: qsTr(" pick your blend, tailor your flavors, and savor the \n perfection!")
             font.pixelSize: 16
             horizontalAlignment: Text.AlignHCenter
+            Layout.maximumWidth: home.width
+            wrapMode: Text.Wrap
             font.weight: 400
             color: Colors.currentTheme.caption
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -73,6 +93,7 @@ Item {
             id: getStartedButton
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.minimumWidth: 150
+            Layout.minimumHeight: 40
             buttonText: "Get Started"
         }
     }

@@ -18,6 +18,7 @@ Slider {
     transitions: Transition {
         NumberAnimation { properties: "scale"; duration: 10; easing.type: Easing.InOutQuad }
     }
+
     background: Rectangle {
         id: rectangle
         x: slider.leftPadding
@@ -25,12 +26,12 @@ Slider {
         width: slider.availableWidth
         height: 4
         radius: 2
-        color: "#585858"
+        color: Colors.grey
 
         Rectangle {
             width: slider.visualPosition * parent.width
             height: parent.height
-            color: "#2CDE85"
+            color: Colors.green
             radius: 2
         }
     }
@@ -41,23 +42,45 @@ Slider {
         width: 14
         height: width
         radius: 100
-        color: "#1FC974"
+        color: Colors.green
+        states: [
+            State {
+                name: "small"
+                when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                PropertyChanges {
+                    target: handle
+                    width: 10
+                }
+            }
+        ]
         Image {
             id: handleMark
             source: "./images/icons/Polygon.svg"
             anchors.bottom: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 3
+            anchors.bottomMargin: 1
         }
         Rectangle {
+            id: box
             anchors.bottom: handleMark.top
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 3
+            anchors.bottomMargin: 1
             implicitWidth: liquidAmountText.width + 8
             implicitHeight: liquidAmountText.height + 4
             radius: 4
             color: Colors.currentTheme.background
-            border.color: "#4F4A4A"
+            border.color: Colors.grey
+            states: [
+                State {
+                    name: "small"
+                    when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                    PropertyChanges {
+                        target: box
+                        implicitWidth: liquidAmountText.width + 4
+                        implicitHeight: liquidAmountText.height + 2
+                    }
+                }
+            ]
             Text {
                 id: liquidAmountText
                 anchors.verticalCenter: parent.verticalCenter
@@ -66,6 +89,16 @@ Slider {
                 font.pixelSize: 12
                 clip: false
                 color: Colors.currentTheme.textColor
+                states: [
+                    State {
+                        name: "small"
+                        when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                        PropertyChanges {
+                            target: liquidAmountText
+                            font.pixelSize: 8
+                        }
+                    }
+                ]
             }
         }
     }

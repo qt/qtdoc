@@ -59,6 +59,16 @@ Item {
         flow: GridLayout.TopToBottom
         anchors.horizontalCenter: root.horizontalCenter
         rowSpacing: 20
+        states: [
+            State {
+                name: "small"
+                when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                PropertyChanges {
+                    target: grid
+                    rowSpacing: 10
+                }
+            }
+        ]
         Cup {
             id: cup
             coffeeAmount: root.coffeeAmount
@@ -72,7 +82,7 @@ Item {
             gradient: Colors.greyBorder
             radius: 8
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.minimumHeight: 70
+            Layout.minimumHeight: 30
             Layout.minimumWidth: 200
             Rectangle {
                 id: rectangle
@@ -83,19 +93,30 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Colors.currentTheme.cardColor
                 Text {
+                    id: caption
                     text: "Your Coffee is Ready!"
                     color: Colors.currentTheme.textColor
                     font.pixelSize: 18
                     font.weight: 600
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
+                    states: [
+                        State {
+                            name: "small"
+                            when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                            PropertyChanges {
+                                target: caption
+                                font.pixelSize: 16
+                            }
+                        }
+                    ]
                 }
             }
             MultiEffect {
                 source: rectangle
                 anchors.fill: rectangle
                 shadowEnabled: true
-                shadowColor: "white"
+                shadowColor: Colors.shadow
                 shadowOpacity: 0.5
             }
         }

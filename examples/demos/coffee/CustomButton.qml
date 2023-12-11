@@ -24,7 +24,7 @@ AbstractButton {
     contentItem: Rectangle {
         id: rectangle
         border.width: 1
-        border.color: "#898989"
+        border.color: Colors.border
         radius: 10
         anchors.fill: parent
         gradient: if (buttonColor == "grey" && Colors.currentTheme == Colors.dark) {

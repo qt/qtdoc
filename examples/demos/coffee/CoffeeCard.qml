@@ -10,22 +10,21 @@ import QtQuick.Effects
     // and/or personal preference on what looks nice.
 Column {
     id: root
-    spacing: -circle.height / 2
+    spacing: -coffeeCardCircle.height / 2
     rotation: 180
     property alias button: button
-    property alias rectangle: rectangle
-    property alias circle: circle
     property string coffeeName: ""
     property string ingredients: ""
     property int time: 4
     property int cupsLeft: 0
+
     states: [
         State {
             name: "portrait"
             when: applicationFlow.mode == "portrait"
             PropertyChanges {
-                target: rectangle
-                implicitHeight: applicationFlow.height / 3.6
+                target: coffeeCardRectangle
+                implicitHeight: (applicationFlow.stack.height / 2) - 20 - (coffeeCardCircle.height / 2)
                 implicitWidth: applicationFlow.width / 2.4
             }
         },
@@ -33,17 +32,25 @@ Column {
             name: "landscape"
             when: applicationFlow.mode == "landscape"
             PropertyChanges {
-                target: rectangle
+                target: coffeeCardRectangle
                 implicitHeight: applicationFlow.height / 2
-                implicitWidth: applicationFlow.width / 6
+                implicitWidth: applicationFlow.width / 5
             }
         }
     ]
 
     Rectangle {
-        id: rectangle
+        id: coffeeCardRectangle
         radius: 8
         gradient: Colors.invertedGreyBorder
+        states: State {
+                    name: "small"
+                    when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2900
+                    PropertyChanges {
+                        target: coffeeCardRectangle
+                        implicitHeight: ((applicationFlow.stack.height - ((applicationFlow.width / 2.4) / 1.36)) / 2) + 40
+                    }
+                }
         //! [AbstractButton]
         AbstractButton {
             width: parent.width - 2
@@ -56,10 +63,10 @@ Column {
             enabled: (cupsLeft != 0) ? true : false
             states: State {
                 name: "pressed"; when: button.pressed
-                PropertyChanges { target: rectangle; scale: 0.9 }
-                PropertyChanges { target: circle; scale: 0.9 }
-                PropertyChanges { target: rectangle; gradient: Colors.invertedGreenBorder }
-                PropertyChanges { target: circle; gradient: Colors.invertedGreenBorder }
+                PropertyChanges { target: coffeeCardRectangle; scale: 0.9 }
+                PropertyChanges { target: coffeeCardCircle; scale: 0.9 }
+                PropertyChanges { target: coffeeCardRectangle; gradient: Colors.invertedGreenBorder }
+                PropertyChanges { target: coffeeCardCircle; gradient: Colors.invertedGreenBorder }
             }
 
             transitions: Transition {
@@ -67,25 +74,58 @@ Column {
             }
             //! [AbstractButton]
             contentItem: Rectangle {
-                id: rectangle2
+                id: innerCoffeeCardRectangle
                 anchors.fill: parent
                 color: Colors.currentTheme.cardColor
                 radius: 8
+                states: State {
+                            name: "small"
+                            when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 3200
+                            PropertyChanges {
+                                target: coffeeText
+                                font.pixelSize: 14
+                            }
+                            PropertyChanges {
+                                target: ingredientText
+                                font.pixelSize: 10
+                            }
+                            PropertyChanges {
+                                target: timeText
+                                font.pointSize: 10
+                            }
+                            PropertyChanges {
+                                target: actualTimeText
+                                font.pixelSize: 10
+                            }
+                            PropertyChanges {
+                                target: box
+                                radius: 6
+                                Layout.preferredHeight: 18
+                                Layout.preferredWidth: 18
+                            }
+                            PropertyChanges {
+                                target: cupsLeftText
+                                font.pixelSize: 10
+                            }
+                        }
                 ColumnLayout {
                     rotation: 180
+                    anchors.top: parent.top
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width / 1.19
-                    height: parent.height - circle.height / 2
+                    height: parent.height - (coffeeCardCircle.height / 2)
                     Text {
+                        id: coffeeText
                         text: coffeeName
                         color: Colors.currentTheme.textColor
                         font.weight: 700
                         font.pixelSize: 18
+                        Layout.maximumWidth: parent.width
                         Layout.alignment: Qt.AlignHCenter
-                        wrapMode: Text.Wrap
 
                     }
                     Text {
+                        id: ingredientText
                         text: ingredients
                         color: Colors.currentTheme.caption
                         Layout.alignment: Qt.AlignHCenter
@@ -93,6 +133,7 @@ Column {
                         wrapMode: Text.Wrap
                     }
                     Text {
+                        id: timeText
                         text: "Time"
                         font.pointSize: 12
                         color: Colors.currentTheme.caption
@@ -100,35 +141,38 @@ Column {
                     }
                     RowLayout {
                         Layout.bottomMargin: 12
+                        Layout.alignment: Qt.AlignBottom
                         Text {
+                            id: actualTimeText
                             Layout.fillWidth: true
                             text: time + " Mins"
                             font.pixelSize: 14
-                            font.family: "Titillium Web"
                             color: Colors.currentTheme.textColor
                         }
                         Rectangle {
-                            width: 24
-                            height: 24
+                            id: box
+                            Layout.preferredHeight: 24
+                            Layout.preferredWidth: 24
                             color: Colors.currentTheme.cardColor
-                            border.color: "#898989"
+                            border.color: Colors.border
                             border.width: 1
                             radius: 8
                             Text {
+                                id: cupsLeftText
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: cupsLeft
                                 font.pixelSize: 12
                                 font.weight: 600
-                                color: "#1FC974"
+                                color: Colors.green
                             }
                         }
                     }
                 }
                 Rectangle {
                     id: outOfDialog
-                    width: rectangle.width / 1.5
-                    height: rectangle.height / 5
+                    width: coffeeCardRectangle.width / 1.5
+                    height: coffeeCardRectangle.height / 5
                     visible: (cupsLeft != 0) ? false : true
                     radius: 8
                     color: (Colors.currentTheme == Colors.dark) ? Colors.light.cardColor : Colors.dark.cardColor
@@ -144,23 +188,41 @@ Column {
                 }
             }
             MultiEffect {
-                source: rectangle2
-                anchors.fill: rectangle2
+                source: innerCoffeeCardRectangle
+                anchors.fill: innerCoffeeCardRectangle
                 shadowEnabled: true
-                shadowColor: "white"
+                shadowColor: Colors.shadow
                 shadowOpacity: (cupsLeft != 0) ? 0.5 : 0.0
             }
         }
     }
     Rectangle {
-        id: circle
+        id: coffeeCardCircle
         anchors.horizontalCenter: parent.horizontalCenter
         implicitHeight: implicitWidth
-        implicitWidth: rectangle.implicitWidth / 1.36
+        implicitWidth: coffeeCardRectangle.implicitWidth / 1.36
         radius: width * 0.5
         gradient: Colors.invertedGreyBorder
+        states: [
+            State {
+                name: "small"
+                when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 3200 && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) > 1200
+                PropertyChanges {
+                    target: coffeeCardCircle
+                    implicitWidth: coffeeCardRectangle.implicitWidth / 1.5
+                }
+            },
+            State {
+                name: "smaller"
+                when: applicationFlow.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
+                PropertyChanges {
+                    target: coffeeCardCircle
+                    implicitWidth: coffeeCardRectangle.implicitWidth / 2
+                }
+            }
+        ]
         Rectangle {
-            id: circle2
+            id: innerCoffeeCardCircle
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             height: width
@@ -169,8 +231,8 @@ Column {
             color: Colors.currentTheme.cardColor
             Image {
                 source: (Colors.currentTheme == Colors.dark) ? "./images/Cups/card_cup_dark.svg" : "./images/Cups/card_cup_light.svg"
-                sourceSize.width: circle.width / 2.2
-                sourceSize.height: circle.height / 1.9
+                sourceSize.width: coffeeCardCircle.width / 2.2
+                sourceSize.height: coffeeCardCircle.height / 1.9
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rotation: 180
@@ -178,10 +240,10 @@ Column {
 
         }
         MultiEffect {
-            source: circle2
-            anchors.fill: circle2
+            source: innerCoffeeCardCircle
+            anchors.fill: innerCoffeeCardCircle
             shadowEnabled: true
-            shadowColor: "white"
+            shadowColor: Colors.shadow
             shadowOpacity: (cupsLeft != 0) ? 0.5 : 0.0
         }
     }

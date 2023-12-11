@@ -7,7 +7,7 @@ import QtQuick.Effects
 
 Item {
     id: root
-    property alias grid: grid
+//    property alias grid: grid
     property alias continueButton: continueButton
     property alias cancelButton: cancelButton
     property alias dialog: dialog
@@ -40,14 +40,14 @@ Item {
             PropertyChanges {
                 target: continueButton
                 Layout.row: 2
-                Layout.preferredWidth: applicationFlow.width / 2.2
-                Layout.preferredHeight: applicationFlow.height / 16
+                Layout.preferredWidth: root.width / 2.2
+                Layout.preferredHeight: root.height / 14
             }
             PropertyChanges {
                 target: cancelButton
                 Layout.row: 3
-                Layout.preferredWidth: applicationFlow.width / 2.2
-                Layout.preferredHeight: applicationFlow.height / 16
+                Layout.preferredWidth: root.width / 2.2
+                Layout.preferredHeight: root.height / 14
             }
         },
         State {
@@ -80,15 +80,15 @@ Item {
                 target: continueButton
                 Layout.column: 2
                 Layout.row: 2
-                Layout.preferredWidth: applicationFlow.width / 4
-                Layout.preferredHeight: applicationFlow.height / 8
+                Layout.preferredWidth: root.width / 4
+                Layout.preferredHeight: root.height / 8
             }
             PropertyChanges {
                 target: cancelButton
                 Layout.column: 0
                 Layout.row: 2
-                Layout.preferredWidth: applicationFlow.width / 4
-                Layout.preferredHeight: applicationFlow.height / 8
+                Layout.preferredWidth: root.width / 4
+                Layout.preferredHeight: root.height / 8
             }
         }
     ]
@@ -125,7 +125,7 @@ Item {
                 source: rectangle
                 anchors.fill: rectangle
                 shadowEnabled: true
-                shadowColor: "white"
+                shadowColor: Colors.shadow
                 shadowOpacity: 0.5
             }
         }

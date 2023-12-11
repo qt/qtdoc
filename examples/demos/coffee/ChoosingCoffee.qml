@@ -35,7 +35,6 @@ Item {
                 target: cards
                 flow: GridLayout.LeftToRight
                 columns: 4
-                columnSpacing: 25
             }
         }
     ]

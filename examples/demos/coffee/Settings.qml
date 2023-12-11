@@ -9,7 +9,6 @@ Item {
     // Height, width and any other size related properties containing odd looking float or other dividers, multipliers, etc.
     // that do not seem to have any logical origin are just arbitrary and based on original design
     // and/or personal preference on what looks nice.
-    property string coffeeName: ""
     id: root
     property alias confirmButton: confirmButton
     property int coffeeAmount
@@ -34,17 +33,17 @@ Item {
                 Layout.preferredHeight: root.height / 3
             }
             PropertyChanges {
-                target: rectangle
+                target: outerRectangle
                 Layout.row: 1
                 Layout.preferredWidth: root.width / 1.12
-                Layout.preferredHeight: root.height / 3
+                Layout.preferredHeight: root.height / 2.5
             }
             PropertyChanges {
                 target: confirmButton
                 Layout.alignment: Qt.AlignHCenter
                 Layout.row: 2
-                Layout.preferredWidth: applicationFlow.width / 2.2
-                Layout.preferredHeight: applicationFlow.height / 16
+                Layout.preferredWidth: root.width / 2.2
+                Layout.preferredHeight: root.height / 14
             }
         },
         State {
@@ -60,13 +59,12 @@ Item {
                 Layout.column: 0
                 Layout.preferredWidth: height / 1.16
                 Layout.preferredHeight: root.height / 1.5
-                Layout.rightMargin: root.width / 20
             }
 
             PropertyChanges {
-                target: rectangle
-                Layout.preferredWidth: root.width / 2.75
-                Layout.preferredHeight: root.height / 1.5
+                target: outerRectangle
+                Layout.preferredWidth: root.width / 2
+                Layout.preferredHeight: root.height / 1.4
                 Layout.leftMargin: root.width / 20
                 Layout.alignment: Qt.AlignBottom
                 Layout.column: 2
@@ -76,8 +74,8 @@ Item {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                 Layout.row: 1
                 Layout.columnSpan: 3
-                Layout.preferredWidth: applicationFlow.width / 4
-                Layout.preferredHeight: applicationFlow.height / 8
+                Layout.preferredWidth: root.width / 4
+                Layout.preferredHeight: root.height / 8
             }
         }
     ]
@@ -96,222 +94,310 @@ Item {
         }
 
         Rectangle {
-            id: rectangle
+            id: outerRectangle
             radius: 8
             gradient: Colors.greyBorder
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.minimumHeight: 200
-            Layout.minimumWidth: 250
+            property int textPixelSize: 16
+            states: [
+                State {
+                    name: "smallerFont"
+                    when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                    PropertyChanges {
+                        target: outerRectangle
+                        textPixelSize: 14
+                    }
+                }
+            ]
             Rectangle {
-                id: rectangle2
+                id: innerRectangle
                 radius: 8
                 color: Colors.currentTheme.cardColor
                 width: parent.width - 2
                 height: parent.height - 2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-
                 ColumnLayout {
-                    id: column
                     anchors.fill: parent
-                    anchors.margins: 20
-
+                    anchors.margins: 10
+                    spacing: 10
                     RowLayout {
-                        Text {
-                            text: "Coffee"
-                            color: Colors.currentTheme.textColor
-                            font.pixelSize: 16
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 30
-                        }
-                        CustomSlider {
-                            id: coffeeSlider
-                            from: 0
-                            to: 100
-                            value: coffeeAmount
-                            liquidAmount: value
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 70
-                            Layout.preferredHeight: column.height / 4
-                            //! [Value changed]
-                            onValueChanged: {
-                                applicationFlow.coffeeAmount = value
-                            }
-                            //! [Value changed]
-                        }
-                    }
-                    RowLayout {
-                        Text {
-                            text: "Milk"
-                            color: Colors.currentTheme.textColor
-                            font.pixelSize: 16
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 30
-                        }
-                        CustomSlider {
-                            id: milkSlider
-                            from: 0
-                            to: 60
-                            value: milkAmount
-                            liquidAmount: value
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 70
-                            Layout.preferredHeight: column.height / 4
-                            onValueChanged: {
-                                applicationFlow.milkAmount = value
-                            }
-                        }
-                    }
-                    RowLayout {
-                        Text {
-                            text: "Foam"
-                            color: Colors.currentTheme.textColor
-                            font.pixelSize: 16
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 30
-                        }
-                        CustomSlider {
-                            id: foamSlider
-                            from: 0
-                            to: 60
-                            value: foamAmount
-                            liquidAmount: value
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 70
-                            Layout.preferredHeight: column.height / 4
-                            onValueChanged: {
-                                applicationFlow.foamAmount = value
-                            }
-                        }
-                    }
-                    RowLayout {
-                        Text {
-                            text: "Sugar"
-                            color: Colors.currentTheme.textColor
-                            font.pixelSize: 16
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 30
-                        }
-                        Slider {
-                            id: sugarSlider
-                            snapMode: Slider.SnapAlways
-                            stepSize: 0.25
-                            value: sugarAmount
-                            Layout.preferredWidth: foamSlider.width
-                            Layout.preferredHeight: column.height / 4
-                            Layout.alignment: Qt.AlignVCenter
-                            states: State {
-                                name: "pressed"; when: sugarSlider.pressed
-                                PropertyChanges { target: handle; scale: 1.1 }
-                            }
-
-                            transitions: Transition {
-                                NumberAnimation { properties: "scale"; duration: 10; easing.type: Easing.InOutQuad }
-                            }
-                            onValueChanged: {
-                                applicationFlow.sugarAmount = value
-                            }
-                            background: Rectangle {
-                                x: sugarSlider.leftPadding
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Rectangle {
+                            Layout.preferredWidth: parent.width / 4
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            Text {
+                                id: coffeeText
+                                anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
-                                width: sugarSlider.availableWidth
-                                height: 4
-                                radius: 2
-                                color: Colors.currentTheme.background
-
-                                Rectangle {
-                                    id: firstBar
-                                    width: parent.width / 4
-                                    height: parent.height
-                                    color: (sugarSlider.value > 0) ? "#1FC974" : "#585858"
-                                    radius: 2
+                                text: "Coffee"
+                                color: Colors.currentTheme.textColor
+                                font.pixelSize: outerRectangle.textPixelSize
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            CustomSlider {
+                                id: coffeeSlider
+                                from: 0
+                                to: 100
+                                value: coffeeAmount
+                                liquidAmount: value
+                                width: parent.width
+                                height: 10
+                                anchors.verticalCenter: parent.verticalCenter
+                                //! [Value changed]
+                                onValueChanged: {
+                                    applicationFlow.coffeeAmount = value
                                 }
+                                //! [Value changed]
+                            }
+                        }
 
-                                Rectangle {
-                                    id:secondBar
-                                    anchors.left: firstBar.right
-                                    width: parent.width / 4
-                                    height: parent.height
-                                    color: (sugarSlider.value > 0.25) ? "#1FC974" : "#585858"
-                                    radius: 2
-                                }
-
-                                Rectangle {
-                                    id: thirdBar
-                                    anchors.left: secondBar.right
-                                    width: parent.width / 4
-                                    height: parent.height
-                                    color: (sugarSlider.value > 0.50) ? "#1FC974" : "#585858"
-                                    radius: 2
-                                }
-
-                                Rectangle {
-                                    id: fourthBar
-                                    anchors.right: parent.right
-                                    width: parent.width / 4
-                                    height: parent.height
-                                    color: (sugarSlider.value > 0.75) ? "#1FC974" : "#585858"
-                                    radius: 2
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Rectangle {
+                            Layout.preferredWidth: parent.width / 4
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            Text {
+                                id: milkText
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "Milk"
+                                color: Colors.currentTheme.textColor
+                                font.pixelSize: outerRectangle.textPixelSize
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            CustomSlider {
+                                id: milkSlider
+                                from: 0
+                                to: 60
+                                value: milkAmount
+                                liquidAmount: value
+                                width: parent.width
+                                height: 10
+                                anchors.verticalCenter: parent.verticalCenter
+                                onValueChanged: {
+                                    applicationFlow.milkAmount = value
                                 }
                             }
-                            handle: Rectangle {
-                                id: handle
-                                x: sugarSlider.visualPosition * sugarSlider.availableWidth
-                                anchors.verticalCenter: parent.verticalCenter
-                                implicitWidth: 14
-                                implicitHeight: 14
-                                radius: 100
-                                color: "#1FC974"
+                        }
 
-                                Image {
-                                    id: sugarMark
-                                    source: "./images/icons/Polygon.svg"
-                                    anchors.bottom: parent.top
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    anchors.bottomMargin: 3
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Rectangle {
+                            Layout.preferredWidth: parent.width / 4
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            Text {
+                                id: foamText
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "Foam"
+                                color: Colors.currentTheme.textColor
+                                font.pixelSize: outerRectangle.textPixelSize
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            CustomSlider {
+                                id: foamSlider
+                                from: 0
+                                to: 60
+                                value: foamAmount
+                                liquidAmount: value
+                                width: parent.width
+                                height: 10
+                                anchors.verticalCenter: parent.verticalCenter
+                                onValueChanged: {
+                                    applicationFlow.foamAmount = value
+                                }
+                            }
+                        }
+
+                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Rectangle {
+                            Layout.preferredWidth: parent.width / 4
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            Text {
+                                id: sugarText
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "Sugar"
+                                color: Colors.currentTheme.textColor
+                                font.pixelSize: outerRectangle.textPixelSize
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Colors.currentTheme.cardColor
+                            Slider {
+                                id: sugarSlider
+                                snapMode: Slider.SnapAlways
+                                stepSize: 0.25
+                                value: sugarAmount
+                                width: parent.width
+                                height: 10
+                                anchors.verticalCenter: parent.verticalCenter
+                                states: State {
+                                    name: "pressed"; when: sugarSlider.pressed
+                                    PropertyChanges { target: handle; scale: 1.1 }
                                 }
 
-                                Rectangle {
-                                    anchors.bottom: sugarMark.top
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    anchors.bottomMargin: 3
-                                    implicitWidth: sugarText.width + 8
-                                    implicitHeight: sugarText.height + 4
-                                    radius: 4
+                                transitions: Transition {
+                                    NumberAnimation { properties: "scale"; duration: 10; easing.type: Easing.InOutQuad }
+                                }
+                                onValueChanged: {
+                                    applicationFlow.sugarAmount = value
+                                }
+                                background: Rectangle {
+                                    x: sugarSlider.leftPadding
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: sugarSlider.availableWidth
+                                    height: 4
+                                    radius: 2
                                     color: Colors.currentTheme.background
-                                    border.color: "#4F4A4A"
 
-                                    Text {
-                                        id: sugarText
-                                        property int sugarAmount: 0
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        text: sugarAmount + "p"
-                                        font.pixelSize: 12
-                                        clip: false
-                                        color: Colors.currentTheme.textColor
+                                    Rectangle {
+                                        id: firstBar
+                                        width: parent.width / 4
+                                        height: parent.height
+                                        color: (sugarSlider.value > 0) ? Colors.green : Colors.grey
+                                        radius: 2
+                                    }
+
+                                    Rectangle {
+                                        id:secondBar
+                                        anchors.left: firstBar.right
+                                        width: parent.width / 4
+                                        height: parent.height
+                                        color: (sugarSlider.value > 0.25) ? Colors.green : Colors.grey
+                                        radius: 2
+                                    }
+
+                                    Rectangle {
+                                        id: thirdBar
+                                        anchors.left: secondBar.right
+                                        width: parent.width / 4
+                                        height: parent.height
+                                        color: (sugarSlider.value > 0.50) ? Colors.green : Colors.grey
+                                        radius: 2
+                                    }
+
+                                    Rectangle {
+                                        id: fourthBar
+                                        anchors.right: parent.right
+                                        width: parent.width / 4
+                                        height: parent.height
+                                        color: (sugarSlider.value > 0.75) ? Colors.green : Colors.grey
+                                        radius: 2
                                     }
                                 }
-                            }
-                            onMoved: {
-                                sugarText.sugarAmount = sugarSlider.position * 4
+                                handle: Rectangle {
+                                    id: handle
+                                    x: sugarSlider.visualPosition * sugarSlider.availableWidth
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    width: 14
+                                    height: width
+                                    radius: 100
+                                    color: Colors.green
+                                    states: [
+                                        State {
+                                            name: "small"
+                                            when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                                            PropertyChanges {
+                                                target: handle
+                                                width: 10
+                                            }
+                                        }
+                                    ]
+
+                                    Image {
+                                        id: sugarMark
+                                        source: "./images/icons/Polygon.svg"
+                                        anchors.bottom: parent.top
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        anchors.bottomMargin: 1
+                                    }
+
+                                    Rectangle {
+                                        id: box
+                                        anchors.bottom: sugarMark.top
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        anchors.bottomMargin: 1
+                                        implicitWidth: sugarPiecesText.width + 8
+                                        implicitHeight: sugarPiecesText.height + 4
+                                        radius: 4
+                                        color: Colors.currentTheme.background
+                                        border.color: Colors.grey
+                                        states: [
+                                            State {
+                                                name: "small"
+                                                when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                                                PropertyChanges {
+                                                    target: box
+                                                    implicitWidth: sugarPiecesText.width + 4
+                                                    implicitHeight: sugarPiecesText.height + 2
+                                                }
+                                            }
+                                        ]
+
+                                        Text {
+                                            id: sugarPiecesText
+                                            property int sugarAmount: 0
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.horizontalCenter: parent.horizontalCenter
+                                            text: sugarAmount + "p"
+                                            font.pixelSize: 12
+                                            clip: false
+                                            color: Colors.currentTheme.textColor
+                                            states: [
+                                                State {
+                                                    name: "small"
+                                                    when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                                                    PropertyChanges {
+                                                        target: sugarPiecesText
+                                                        font.pixelSize: 8
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                                onMoved: {
+                                    sugarPiecesText.sugarAmount = sugarSlider.position * 4
+                                }
                             }
                         }
+
                     }
                 }
             }
             MultiEffect {
-                source: rectangle2
-                anchors.fill: rectangle2
+                source: innerRectangle
+                anchors.fill: innerRectangle
                 shadowEnabled: true
-                shadowColor: "white"
+                shadowColor: Colors.shadow
                 shadowOpacity: 0.5
             }
         }
