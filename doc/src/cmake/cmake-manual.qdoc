@@ -833,18 +833,18 @@
 
     First, you create the Qt Quick application.
 
-    \snippet snippets/cmake/deploy_non_qml.cmake basic setup
+    \snippet snippets/cmake/deploy_qml.cmake basic setup
 
     You install the application as before.
 
-    \snippet snippets/cmake/deploy_non_qml.cmake installation
+    \snippet snippets/cmake/deploy_qml.cmake installation
 
     To generate the deployment script, you call
     \l{qt_generate_deploy_qml_app_script}{qt_generate_deploy_qml_app_script()}
     instead of
     \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}.
 
-    \snippet snippets/cmake/deploy_non_qml.cmake deployment script
+    \snippet snippets/cmake/deploy_qml.cmake deployment script
 
     On installation, the application binary will be deployed, including the QML
     files and the shared libraries and assets of Qt that are used by the
