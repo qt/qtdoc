@@ -116,6 +116,10 @@ Item {
             color: "#e6e6e6"
         }
     }
+    property color green: "#1FC974"
+    property color shadow: "white"
+    property color border: "#898989"
+    property color grey: "#585858"
     property var currentTheme: dark
     property alias dark: dark
     property alias light: light

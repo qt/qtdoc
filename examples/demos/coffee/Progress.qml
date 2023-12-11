@@ -10,7 +10,6 @@ Item {
     // that do not seem to have any logical origin are just arbitrary and based on original design
     // and/or personal preference on what looks nice.
     id: root
-    property alias grid: grid
     property alias timer: timer
     property alias greenBar: greenBar
     property alias cup: cup
@@ -56,8 +55,6 @@ Item {
                 target: dialog
                 Layout.preferredWidth: root.width / 2.5
                 Layout.preferredHeight: root.height / 5
-                Layout.minimumHeight: 70
-                Layout.minimumWidth: 400
             }
             PropertyChanges {
                 target: control
@@ -166,6 +163,8 @@ Item {
             radius: 8
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             gradient: Colors.greyBorder
+            Layout.minimumHeight: 30
+            Layout.minimumWidth: 350
             Rectangle {
                 id: rectangle
                 width: parent.width - 2
@@ -175,19 +174,30 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Colors.currentTheme.cardColor
                 Text {
+                    id: caption
                     text: "Your Coffee is preparing, Please Wait!"
                     color: Colors.currentTheme.textColor
                     font.pixelSize: 18
                     font.weight: 600
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
+                    states: [
+                        State {
+                            name: "small"
+                            when: ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 2000
+                            PropertyChanges {
+                                target: caption
+                                font.pixelSize: 16
+                            }
+                        }
+                    ]
                 }
             }
             MultiEffect {
                 source: rectangle
                 anchors.fill: rectangle
                 shadowEnabled: true
-                shadowColor: "white"
+                shadowColor: Colors.shadow
                 shadowOpacity: 0.5
             }
         }
@@ -209,7 +219,7 @@ Item {
                     id: greenBar
                     width: control.visualPosition * parent.width
                     height: parent.height
-                    color: "#1FC974"
+                    color: Colors.green
                 }
                 Image {
                     id: circle
@@ -253,7 +263,7 @@ Item {
             }
         }
         Text {
-            color: "#2CDE85"
+            color: Colors.green
             text: qsTr("Brewing...")
             Layout.alignment: Qt.AlignHCenter
             font.pixelSize: 12
