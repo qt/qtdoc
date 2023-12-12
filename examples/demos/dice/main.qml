@@ -48,16 +48,18 @@ ApplicationWindow {
 
         Label {
             id: tapLabel
+            width: parent.width -20 // so text does not touch screen edges
+            height: text.height
             anchors {
                 centerIn: parent
             }
-
             text: qsTr("Tap, click or shake to throw dice")
-            font.pixelSize: 32
             font.bold: true
             style: Text.Raised
             color: "white"
-
+            minimumPixelSize: 10
+            font.pixelSize: 32
+            wrapMode: Text.WordWrap
             NumberAnimation on opacity {
                 id: tapLabelAnimation
                 running: false
@@ -222,7 +224,7 @@ ApplicationWindow {
 
     RoundButton {
         id: iconOpen
-        text: qsTr("\u2630")
+        icon.source: "Menu_Icon.svg"
         x: currDrawerWidth
         onClicked: {
             tapLabel.hide()
