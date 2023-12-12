@@ -44,6 +44,9 @@ set(qml_resource_files
     RoundTable.qml
     Carpet.qml
 
+    #icons
+    Menu_Icon.svg
+
     #maps
     maps/carpet_texture_baseColor.jpeg
     maps/M_Side_Table_Natural_Wenge_Wood_4K_baseColor_small.jpg
