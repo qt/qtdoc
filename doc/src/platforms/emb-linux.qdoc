@@ -254,7 +254,7 @@
   only supported QWindow surface type is QSurface::VulkanSurface. For Qt Quick
   applications this implies that Vulkan-based rendering must be enforced either
   by setting \c{QSG_RHI_BACKEND=vulkan} in the environment, or by calling
-  \l{QQuickWindow::setGraphicsApi(QSGRendererInterface::Vulkan);} early on
+  \l{QQuickWindow::setGraphicsApi}(QSGRendererInterface::Vulkan); early on
   before creating a QQuickWindow or QQuickView.
 
   To use this platform plugin, run the application with \c{-platform vkkhrdisplay}
