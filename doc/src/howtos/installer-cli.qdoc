@@ -289,7 +289,7 @@
         \li In case you want different answers to certain queries, you can use
         this option. For example,
         \c{--auto-answer telemetry-question=Yes,AssociateCommonFiletypes=Yes}.
-        See all message identifiers in \l{Message Identifiers for --auto-answer}.
+        See all message identifiers in \l{Message Identifiers for \--auto-answer}.
     \row
         \li \c{--accept-messages}
         \li Accepts all message queries.
@@ -320,7 +320,7 @@
         question and message type. You can pick up the identifiers from there.
     \endtable
 
-    \section2 Message Identifiers for --auto-answer
+    \section2 Message Identifiers for \--auto-answer
 
     Use the \c{--auto-answer} option to provide answers to certain queries. The
     following table lists known identifiers and values used for
