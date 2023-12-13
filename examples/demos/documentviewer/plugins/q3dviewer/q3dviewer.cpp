@@ -31,15 +31,15 @@ static constexpr QLatin1StringView c_query = QLatin1StringView(":/qml/queryMimeT
 Q3DViewer::Q3DViewer()
 {
     connect(this, &AbstractViewer::uiInitialized, this, &Q3DViewer::openQ3DFile);
-    m_quickView.reset(new QQuickView);
-    m_quickView->setSource(QUrl::fromLocalFile(c_viewer));
-    Q_ASSERT(m_quickView->status() != QQuickView::Status::Error);
 }
 
 void Q3DViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
-    AbstractViewer::init(file, QWidget::createWindowContainer(m_quickView.get(), parent), mainWindow);
+    m_quickView = new QQuickView;
+    m_quickView->setSource(QUrl::fromLocalFile(c_viewer));
+    Q_ASSERT(m_quickView->status() != QQuickView::Status::Error);
+    AbstractViewer::init(file, QWidget::createWindowContainer(m_quickView, parent), mainWindow);
 }
 
 Q3DViewer::~Q3DViewer()
@@ -52,7 +52,8 @@ void Q3DViewer::cleanup()
     if (!m_quickView)
         return;
 
-    m_quickView->close();
+    delete m_quickView;
+    m_quickView = nullptr;
 }
 
 QStringList Q3DViewer::supportedMimeTypes() const
