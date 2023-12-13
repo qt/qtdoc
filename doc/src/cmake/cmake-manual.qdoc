@@ -972,15 +972,29 @@
 
     Use the versionless variants of the CMake commands where possible.
 
-    Versionless imported targets are mostly useful for projects that need to compile with both
-    Qt 5 and Qt 6. Because of the missing target properties, we do not recommend using
-    them by default.
+    Use the versioned targets unless you have to support Qt 5 and Qt 6 in the same project.
+
+    If you have to use versionless targets, be aware of the
+    \l{Pitfalls when using versionless targets}.
 
     Use the versioned versions of the CMake commands and targets if you need to support Qt 5
     versions older than Qt 5.15, or if you cannot control whether your CMake code is
     loaded in a context where \l{QT_NO_CREATE_VERSIONLESS_FUNCTIONS} or
     \l{QT_NO_CREATE_VERSIONLESS_TARGETS} might be defined. In this case you can still simplify
     your code by determining the actual command or target name through a variable.
+
+    \section2 Pitfalls when using versionless targets
+
+    Using the versionless targets has several downsides.
+
+    The versionless targets are \c ALIAS targets and lack the target properties
+    of the versioned targets.
+
+    Projects must not export targets that expose the versionless targets. For
+    example, a library that is consumed by another project must not export
+    targets that link publicly against versionless targets. Otherwise,
+    transitive dependencies might be broken, or the user of that library mixes
+    Qt5 and Qt6 targets involuntarily.
 
     \section2 Unicode support in Windows
 
