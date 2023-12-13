@@ -46,7 +46,7 @@ private:
     };
 
     FileType type() const;
-    std::unique_ptr<QQuickView> m_quickView;
+    QQuickView *m_quickView = nullptr;
 };
 
 #endif // #ifndef Q3DVIEWER_H
