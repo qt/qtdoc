@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app,
                      [](){ QCoreApplication::exit(EXIT_FAILURE);}, Qt::QueuedConnection);
-    engine.loadFromModule("ColorPalette", "MainWindow");
+    engine.loadFromModule("ColorPalette", "Main");
 
     return QGuiApplication::exec();
 }

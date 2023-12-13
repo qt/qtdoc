@@ -17,29 +17,22 @@ qt_add_executable(colorpaletteclient
     main.cpp
 )
 
-set(icon_files)
-foreach(icon IN ITEMS add delete edit file_upload login logout refresh)
-    foreach(scale IN ITEMS "" "@2" "@3" "@4")
-        message("icons/colorpaletteclient/20x20${scale}/${icon}.png")
-        list(APPEND icon_files "icons/colorpaletteclient/20x20${scale}/${icon}.png")
-    endforeach()
-endforeach()
-
 set_target_properties(colorpaletteclient PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-qt_add_resources(colorpaletteclient "theme" FILES
-    ${icon_files}
-    icons/colorpaletteclient/index.theme
-)
+add_subdirectory(QtExampleStyle)
 
 qt_add_qml_module(colorpaletteclient
     URI ColorPalette
-    VERSION 1.0
     QML_FILES
-        MainWindow.qml
+        ColorPalette/Main.qml
+        ColorPalette/ServerSelection.qml
+        ColorPalette/ColorView.qml
+        ColorPalette/ColorDialogEditor.qml
+        ColorPalette/ColorDialogDelete.qml
+        ColorPalette/UserMenu.qml
     SOURCES
         abstractresource.h
         util.h util.cpp
@@ -47,6 +40,20 @@ qt_add_qml_module(colorpaletteclient
         restservice.h restservice.cpp
         paginatedresource.h paginatedresource.cpp
         restaccessmanager.h restaccessmanager.cpp
+    RESOURCES
+        icons/qt.png
+        icons/testserver.png
+        icons/userMask.svg
+        icons/close.svg
+        icons/delete.svg
+        icons/dots.svg
+        icons/edit.svg
+        icons/login.svg
+        icons/logout.svg
+        icons/ok.svg
+        icons/update.svg
+        icons/user.svg
+        icons/plus.svg
 )
 
 target_link_libraries(colorpaletteclient PRIVATE

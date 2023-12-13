@@ -42,8 +42,8 @@ accessible.
 One major difference between the two predefined API options is that the
 \l {RESTful API Server}{Qt-based REST API server example} is a stateful
 application which allows modifying colors, whereas the \e reqres.in is a stateless API testing
-service. In other words, when using the \e reqres.in backend, modifying the colors has no impact on
-the UI.
+service. In other words, when using the \e reqres.in backend, modifying the colors has no lasting
+impact.
 
 \section2 List users and colors
 
@@ -52,16 +52,18 @@ provides the data in chunks called \e pages. The UI listing reflects this pagina
 data on pages.
 
 Viewing the data on UI is done with standard QML views:
-\snippet demos/colorpaletteclient/MainWindow.qml View and model
+\snippet demos/colorpaletteclient/ColorPalette/ColorView.qml View and model
 Where the model is a list of JSON data received from the server.
 
 \section2 Logging in
 
-Logging in happens via the login function provided by the login QML element:
-\snippet demos/colorpaletteclient/MainWindow.qml Login
+Logging in happens via the login function provided by the login popup:
+\snippet demos/colorpaletteclient/ColorPalette/UserMenu.qml Login
 Under the hood the login sends a HTTP POST request. Upon receiving a successful
 response the authorization token is extracted from the response, which in turn is then used in
 subsequent HTTP requests which require the token.
+
+\image colorpalette_userlisting.png
 
 \section2 Editing colors
 
@@ -78,7 +80,7 @@ manager.
 
 The basis of the REST service is the \e RestService element whose children items compose the actual
 service:
-\snippet demos/colorpaletteclient/MainWindow.qml RestService QML element
+\snippet demos/colorpaletteclient/ColorPalette/Main.qml RestService QML element
 
 Upon instantiation the \e RestService element loops its children elements and sets them up
 to use the same network access manager. This way the individual resources share the same access
