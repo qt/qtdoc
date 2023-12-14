@@ -6,8 +6,7 @@ target_link_libraries(CarRenderingApp PRIVATE
     CarConfiguratorContentplugin
     CarRenderingplugin
     CarRenderingMaterialBundleplugin
-    Quick3DAssets_SUVplugin
-    Quick3DAssets_SUV_NewPartsplugin
+    Quick3DAssets_EV_SportsCar_lowplugin
     Quick3DAssets_Uk5ofdeplugin
     Quick3DAssets_Uk5pebvplugin
     Quick3DAssets_Ulbrbdtplugin
