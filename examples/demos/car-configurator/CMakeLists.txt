@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.21.1)
 
 project(CarRenderingApp LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS
+find_package(Qt6 6.6 REQUIRED COMPONENTS
              Core
              Gui
              Qml

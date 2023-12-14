@@ -8,8 +8,6 @@ import QtQuick3D
 import QtQuick3D.Effects
 import QtQuick3D.Helpers
 import CarRendering
-import Quick3DAssets.SUV_CarConfig
-import Quick3DAssets.SUV_CarConfig_NewParts
 import Quick3DAssets.Uk5ofde_LOD0
 import Quick3DAssets.Uk5pebv_LOD0
 import Quick3DAssets.Ulbrbdt_LOD0
@@ -19,13 +17,14 @@ import "FigmaExportCarConfig"
 import "WallEffect1"
 import "WallEffect2"
 import "WallEffect3"
+import Quick3DAssets.EV_SportsCar_low
 
 Rectangle {
     id: root
 
     width: Constants.width
     height: Constants.height
-    color: "black"
+    color: Constants.screenColor
     state: "State1"
     focus: true
     transformOrigin: Item.Top
@@ -36,7 +35,7 @@ Rectangle {
         }
     }
 
-    Component.onCompleted: root.forceActiveFocus
+    Component.onCompleted: root.forceActiveFocus()
 
     // this property tells a parent when this object is completely loaded (including preloaded assets)
     property bool assetPreLoadComplete: false
@@ -144,18 +143,6 @@ Rectangle {
                                 enabled: !demo.running
                                 NumberAnimation{}
                             }
-                            Behavior on eulerRotation.x {
-                                enabled: !demo.running
-                                NumberAnimation{duration: 2000}
-                            }
-                            Behavior on eulerRotation.y {
-                                enabled: !demo.running
-                                NumberAnimation{duration: 2000}
-                            }
-                            Behavior on eulerRotation.z {
-                                enabled: !demo.running
-                                NumberAnimation{duration: 2000}
-                            }
                         }
                     }
                 }
@@ -199,8 +186,11 @@ Rectangle {
 
                 Headlights {
                     id: headlights
-
+                    x: -23
+                    y: -20
                     visible: btnLight.checked
+
+                    z: 17
 
                     eulerRotation.x: 0
                     eulerRotation.y: -45
@@ -222,47 +212,6 @@ Rectangle {
                         scale.x: 42
                         scale.y: 25
                         scale.z: 25
-                    }
-                }
-
-                Suv_CarConfig {
-                    id: suv_CarConfig
-
-                    y: 1
-                    eulerRotation.y: -45
-                    scale.x: 100
-                    scale.y: 100
-                    scale.z: 100
-
-                    PointLight {
-                        id: lightPoint
-
-                        x: 0.774
-                        y: 1.143
-                        color: "#ff2f00"
-                        scope: suv_CarConfig
-                        linearFade: 10
-                        constantFade: 1
-                        quadraticFade: 10
-                        z: -2.60213
-                        brightness: 1
-                    }
-
-                    PointLight {
-                        id: lightPoint1
-
-                        x: -0.832
-                        y: 1.143
-                        color: "#ff2f00"
-                        scope: suv_CarConfig
-                        linearFade: 10
-                        constantFade: 1
-                        quadraticFade: 10
-                        brightness: 1
-                        z: -2.49196
-                    }
-
-                    Suv_CarConfig_NewParts {
                     }
                 }
 
@@ -415,6 +364,43 @@ Rectangle {
                     scale.x: 20
                     receivesReflections: true
                 }
+
+                Ev_SportsCar_low {
+                    id: ev_SportsCar_low
+                    x: -19
+                    eulerRotation.y: -45
+                    scale.z: 120
+                    scale.y: 120
+                    scale.x: 120
+                    lightsOn: btnLight.checked
+
+                    PointLight {
+                        id: lightPoint
+
+                        x: 0.774
+                        y: 1.143
+                        visible: btnLight.checked
+                        color: "#ff2f00"
+                        linearFade: 10
+                        constantFade: 1
+                        quadraticFade: 10
+                        z: -2.60213
+                        brightness: 1
+                    }
+
+                    PointLight {
+                        id: lightPoint1
+                        visible: btnLight.checked
+                        x: -0.832
+                        y: 1.143
+                        color: "#ff2f00"
+                        linearFade: 10
+                        constantFade: 1
+                        quadraticFade: 10
+                        brightness: 1
+                        z: -2.49196
+                    }
+                }
             }
 
             PerspectiveCamera {
@@ -456,7 +442,7 @@ Rectangle {
         Node {
             id: environments1
 
-            SceneEnvironment {
+            ExtendedSceneEnvironment {
                 id: showhall
 
                 lightProbe: _Hall
@@ -469,23 +455,22 @@ Rectangle {
                 antialiasingQuality: perfMode ? SceneEnvironment.Medium : SceneEnvironment.VeryHigh
                 clearColor: "#000000"
                 probeHorizon: 0.5
-                temporalAAEnabled: false
 
                 Texture {
                     id: _Hall
-
                     source: rootWindow.downloadBase + "/content/images/HDR/_Hall.ktx"
                     mipFilter: Texture.Linear
                     scaleV: 2
                 }
+                temporalAAEnabled: false
             }
 
-            SceneEnvironment {
+            ExtendedSceneEnvironment {
                 id: desert
 
                 lightProbe: _Desert
                 depthPrePassEnabled: false
-                probeExposure: 1
+                probeExposure: 1.5
                 tonemapMode: SceneEnvironment.TonemapModeLinear
                 backgroundMode: SceneEnvironment.SkyBox
                 depthTestEnabled: true
@@ -496,7 +481,7 @@ Rectangle {
                 temporalAAEnabled: false
             }
 
-            SceneEnvironment {
+            ExtendedSceneEnvironment {
                 id: videoRoom
 
                 aoSoftness: 0
@@ -510,17 +495,15 @@ Rectangle {
                 backgroundMode: SceneEnvironment.Color
                 depthTestEnabled: true
                 probeHorizon: 0
-                temporalAAEnabled: false
-
                 Vignette {
                     id: vignette
-
                     vignetteStrength: 15
                     vignetteColor: Qt.vector3d(0, 0, 0)
                 }
+                temporalAAEnabled: false
             }
 
-            SceneEnvironment {
+            ExtendedSceneEnvironment {
                 id: studio
 
                 tonemapMode: SceneEnvironment.TonemapModeLinear
@@ -631,6 +614,25 @@ Rectangle {
                 source: rootWindow.downloadBase + "/content/images/HDR/_Desert.ktx"
                 mipFilter: Texture.Linear
                 scaleV: 3
+            }
+
+            Texture {
+                id: concrete1_Height1
+                source: rootWindow.downloadBase + "/content/images/concrete1_Height.png"
+                mipFilter: Texture.Linear
+                scaleV: 10
+                mappingMode: Texture.UV
+                generateMipmaps: true
+                scaleU: 5
+            }
+
+            Texture {
+                id: concrete1_Normalogl1
+                source: rootWindow.downloadBase + "/content/images/concrete1_Normal-ogl.png"
+                mipFilter: Texture.Linear
+                scaleV: 10
+                generateMipmaps: true
+                scaleU: 5
             }
 
             Texture {
@@ -868,7 +870,7 @@ Rectangle {
 
             scale: mainControls.scale
 
-           Row {
+            Row {
                 id: videoRow
 
                 padding: 10
@@ -1041,7 +1043,7 @@ Rectangle {
                 buttonText: "White"
                 group: groupPaint
 
-                onClicked: suv_CarConfig.stateController = 1
+                onClicked: ev_SportsCar_low.stateController = 1
             }
 
             KissButton {
@@ -1051,7 +1053,7 @@ Rectangle {
                 buttonText: "Black"
                 group: groupPaint
 
-                onClicked: suv_CarConfig.stateController = 0
+                onClicked: ev_SportsCar_low.stateController = 0
             }
 
             KissButton {
@@ -1061,7 +1063,7 @@ Rectangle {
                 buttonText: "Yellow"
                 group: groupPaint
 
-                onClicked: suv_CarConfig.stateController = 2
+                onClicked: ev_SportsCar_low.stateController = 2
             }
 
             KissButton {
@@ -1071,7 +1073,7 @@ Rectangle {
                 buttonText: "Red"
                 group: groupPaint
 
-                onClicked: suv_CarConfig.stateController = 3
+                onClicked: ev_SportsCar_low.stateController = 3
             }
 
             KissButtonSeparator {
@@ -1982,8 +1984,23 @@ Rectangle {
 
             PropertyChanges {
                 target: desert
+                lensFlareApplyStarburstTexture: false
+                lensFlareGhostCount: 0
+                lensFlareBloomBias: 1.41332
+                lensFlareEnabled: false
+                vignetteEnabled: false
+                glowBlendMode: ExtendedSceneEnvironment.GlowBlendMode.Screen
+                glowHDRScale: 2.36038
+                glowQualityHigh: true
+                glowHDRMaximumValue: 13
+                glowStrength: 0.40564
+                glowIntensity: 2
+                glowHDRMinimumValue: 0
+                glowLevel: ExtendedSceneEnvironment.GlowLevel.One | ExtendedSceneEnvironment.GlowLevel.Two | ExtendedSceneEnvironment.GlowLevel.Three
+                glowBloom: 1
+                glowEnabled: true
                 aoEnabled: false
-                probeExposure: 2
+                probeExposure: 1.5
             }
 
             PropertyChanges {
@@ -2005,6 +2022,16 @@ Rectangle {
                 blendMode: PrincipledMaterial.SourceOver
                 vertexColorsEnabled: false
                 depthDrawMode: Material.AlwaysDepthDraw
+            }
+
+            PropertyChanges {
+                target: headlights
+                opacity: 0.316
+            }
+
+            PropertyChanges {
+                target: lightPoint1
+                visible: btnLight.checked
             }
         },
         State {
@@ -2087,28 +2114,7 @@ Rectangle {
                 z: 10.0102
             }
 
-            PropertyChanges {
-                target: lightPoint
-                x: 0.774
-                y: 1.143
-                linearFade: 10
-                z: -2.48006
-                scope: suv_CarConfig
-                brightness: 1
-                quadraticFade: 10
-            }
 
-            PropertyChanges {
-                target: lightPoint1
-                x: -0.717
-                y: 1.143
-                z: -2.46253
-                constantFade: 1
-                linearFade: 10
-                scope: suv_CarConfig
-                brightness: 1
-                quadraticFade: 10
-            }
 
         },
         State {
@@ -2239,24 +2245,6 @@ Rectangle {
             PropertyChanges {
                 target: groundMat1
                 opacity: 0.939
-            }
-
-            PropertyChanges {
-                target: lightPoint
-                linearFade: 10
-                brightness: 1
-                quadraticFade: 10
-            }
-
-            PropertyChanges {
-                target: lightPoint1
-                x: -0.701
-                y: 1.143
-                brightness: 1
-                z: -2.40942
-                constantFade: 0
-                linearFade: 10
-                quadraticFade: 10
             }
         }
     ]

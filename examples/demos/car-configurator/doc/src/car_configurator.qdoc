@@ -1,0 +1,61 @@
+// Copyright (C) 2023 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \title Car Configurator
+    \ingroup qtquickdemos
+    \example demos/car-configurator
+    \brief A car model example that demonstrates using \l{Qt Quick 3D} cameras,
+    extended scene environment and Qt Quick 3D.
+    \examplecategory {Application Examples}
+    \meta {tag} {quick, 3d, camera}
+    \image car_configurator_overview.png
+    \include examples-run.qdocinc
+
+    \section1 Overview
+    \e{Car Configurator} shows a car in different scene environments and in
+    different colors. It's implemented with QML and relies on a number of Qt
+    modules, most prominently \l{Qt Quick} and \l{Qt Quick 3D}.
+
+    \note This example does download some assets from an internet server at
+    runtime. Therefore, you will need an internet connection when launching it
+    for the first time.
+
+    You can interact with the car model in
+    two modes:
+
+    \list
+        \li Demo Mode
+        \li User mode
+    \endlist
+
+    \section1 Demo Mode
+    The camera perspective moves along different paths and shows different
+    views of the car.
+
+    \section1 Reset Camera
+    The camera moves to its initial position.
+
+    \section1 Scene environments
+    There are four scene environments available for this example:
+
+    \list
+        \li Desert
+        \li Garage
+        \li Studio
+        \li Animated
+    \endlist
+
+    \section1 Car Colors
+    There are four colors available for the car:
+
+    \list
+        \li White
+        \li Black
+        \li Yellow
+        \li Red
+    \endlist
+
+    \section1 Lights
+    You can turn the lights of the car on and off.
+*/

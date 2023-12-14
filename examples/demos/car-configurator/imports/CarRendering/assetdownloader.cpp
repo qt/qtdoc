@@ -62,7 +62,6 @@ void AssetDownloader::maybeReadZipFile()
     static constexpr QLatin1StringView zipFileName("car-configurator-assets-v1.zip");
 
     QFile zipFile(m_baseLocal.absoluteFilePath(zipFileName));
-    m_downloadPaths.append(zipFileName);
     const QUrl url = QUrl(downloadBase + zipFileName);
     QNetworkRequest request(url);
     QEventLoop loop;
@@ -71,7 +70,6 @@ void AssetDownloader::maybeReadZipFile()
     connect(reply, &QNetworkReply::downloadProgress,
             this, &AssetDownloader::onDownloadProgressChanged);
     loop.exec();
-    m_downloadPaths.clear();
 
     if (reply->error() != QNetworkReply::NoError || !zipFile.open(QIODevice::WriteOnly))
         return;
