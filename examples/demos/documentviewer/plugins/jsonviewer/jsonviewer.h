@@ -16,7 +16,7 @@ class QListWidget;
 class QListWidgetItem;
 class QLineEdit;
 QT_END_NAMESPACE
-
+//! [pluginHeader]
 class JsonViewer : public ViewerInterface
 {
     Q_OBJECT
@@ -25,14 +25,17 @@ class JsonViewer : public ViewerInterface
 public:
     JsonViewer();
     ~JsonViewer() override;
+//! [pluginHeader]
 
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
+//! [pluginReimp]
     QString viewerName() const override { return QLatin1StringView(staticMetaObject.className()); };
     QStringList supportedMimeTypes() const override;
+    bool hasContent() const override;
+    bool supportsOverview() const override { return true; }
+//! [pluginReimp]
     QByteArray saveState() const override;
     bool restoreState(QByteArray &) override;
-    bool supportsOverview() const override { return true; }
-    bool hasContent() const override;
 
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
 protected:
@@ -48,6 +51,7 @@ private slots:
     void onBookmarkAdded();
     void onBookmarkDeleted();
 
+//! [pluginPrivateMembers]
 private:
     bool openJsonFile();
 
@@ -57,6 +61,7 @@ private:
 
     QPointer<QLineEdit> m_searchKey;
 };
+//! [pluginPrivateMembers]
 
 class JsonTreeItem
 {

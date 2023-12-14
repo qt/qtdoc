@@ -31,6 +31,7 @@
 
 using namespace Qt::StringLiterals;
 
+//! [pluginCpp]
 JsonViewer::JsonViewer()
 {
     connect(this, &AbstractViewer::uiInitialized, this, &JsonViewer::setupJsonUi);
@@ -41,6 +42,7 @@ void JsonViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
     AbstractViewer::init(file, new QTreeView(parent), mainWindow);
     m_tree = qobject_cast<QTreeView *>(widget());
 }
+//! [pluginCpp]
 
 JsonViewer::~JsonViewer()
 {
