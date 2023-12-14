@@ -57,16 +57,21 @@ AbstractViewer *ViewerFactory::viewer(QFile *file) const
     return viewer;
 }
 
+//! [loader]
 void ViewerFactory::loadViewerPlugins()
 {
     if (!m_viewers.isEmpty())
         return;
+//! [loader]
 
+//! [static]
     // Load static plugins
     const QObjectList &staticPlugins = QPluginLoader::staticInstances();
     for (auto *plugin : staticPlugins)
         addViewer(plugin);
+//! [static]
 
+//! [shared]
     // Load shared plugins
     QDir pluginsDir = QDir(QApplication::applicationDirPath());
 
@@ -91,6 +96,7 @@ void ViewerFactory::loadViewerPlugins()
 #endif
     }
 }
+//! [shared]
 
 void ViewerFactory::unload()
 {

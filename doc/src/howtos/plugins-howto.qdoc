@@ -139,27 +139,24 @@
         \li Case Insensitive
     \endtable
 
-    If you have a new style class called \c MyStyle that you
+    If you have a new document viewer class called \c JsonViewer that you
     want to make available as a plugin, the class needs to be defined
-    as follows (\c mystyleplugin.h):
+    as follows (\c jsonviewer.h):
 
-    \snippet plugins/doc_src_plugins-howto.cpp 0
+    \snippet demos/documentviewer/plugins/jsonviewer/jsonviewer.h pluginHeader
+    \snippet demos/documentviewer/plugins/jsonviewer/jsonviewer.h pluginPrivateMembers
 
     Ensure that the class implementation is located in a \c .cpp file:
 
-    \snippet plugins/doc_src_plugins-howto.cpp 1
+    \snippet demos/documentviewer/plugins/jsonviewer/jsonviewer.cpp pluginCpp
 
-    (Note that QStylePlugin is case-insensitive, and the lowercase
-    version of the key is used in our
-    \l{QStylePlugin::create()}{create()} implementation; most other
-    plugins are case sensitive.)
+    In addition, a json file (\c jsonviewer.json) containing meta data
+    describing the plugin is required for most plugins. For document viewer
+    plugins it simply contains the name of the viewer plugin.
 
-    In addition, a json file (\c mystyleplugin.json) containing meta data
-    describing the plugin is required for most plugins. For style
-    plugins it simply contains a list of styles that can be created
-    by the plugin:
-
-    \snippet plugins/doc_src_plugins-howto.qdoc 6
+    \code
+    { "Keys": [ "jsonviewer" ] }
+    \endcode
 
     The type of information that needs to be provided in the json file
     is plugin dependent. See the class documentation for
@@ -168,19 +165,24 @@
 
     For database drivers, image formats, text codecs, and most other
     plugin types, no explicit object creation is required. Qt will
-    find and create them as required. Styles are an exception, since
-    you might want to set a style explicitly in code. To apply a
-    style, use code like this:
+    find and create them as required.
 
-    \snippet plugins/doc_src_plugins-howto.cpp 2
-
-    Some plugin classes require additional functions to be
+    Plugin classes may require additional functions to be
     implemented. See the class documentation for details of the
     virtual functions that must be reimplemented for each type of
     plugin.
 
-    The \l{Style Plugin Example} shows how to implement a plugin
-    that extends the QStylePlugin base class.
+    The \l{Document Viewer} {Document Viewer Demo} shows how to implement a plugin
+    that displayes structured contents of a file. Each plugin therefore
+    reimplements virtual functions, which
+    \list
+    \li identify the plugin
+    \li return the MIME types it supports
+    \li inform whether there is content to display and
+    \li how contents are presented
+    \endlist
+
+    \snippet demos/documentviewer/plugins/jsonviewer/jsonviewer.h pluginReimp
 
     \section1 The Low-Level API: Extending Qt Applications
 
@@ -216,17 +218,11 @@
 
     For example, here's the definition of an interface class:
 
-    \snippet plugins/interfaces.h 2
+    \snippet demos/documentviewer/app/viewerinterfaces.h header
 
-    Here's the definition of a plugin class that implements that
-    interface:
+    Here's the interface declaration:
 
-    \snippet plugins/extrafiltersplugin.h 0
-
-    You can take a look at the \l{Echo Plugin Example} which is a trivial
-    example on how to implement a plugin that extends Qt applications.
-    Note that a QCoreApplication instance must be initialized before
-    plugins can be loaded.
+    \snippet demos/documentviewer/app/viewerinterfaces.h macros
 
     See also \l{Creating Custom Widgets for Qt Designer} for information
     about issues that are specific to Qt Designer.
@@ -360,6 +356,25 @@
 
     \note If you are not using CMake or qmake to build your plugin, you need to
     make sure that the \c{QT_STATICPLUGIN} preprocessor macro is defined.
+
+    \section2 Loading plugins
+
+    Plugin types (static or shared) and operating systems require specific
+    approaches to locate and load plugins. It's useful to implement an abstraction
+    for loading plugins.
+
+    \snippet demos/documentviewer/app/viewerfactory.cpp loader
+
+    QPluginLoader::staticInstances() returns a QObjectList with a pointer to each
+    statically linked plugin
+
+
+    \snippet demos/documentviewer/app/viewerfactory.cpp static
+
+    Shared plugins reside in their deployment directories, which may require
+    OS-specific handling.
+
+    \snippet demos/documentviewer/app/viewerfactory.cpp shared
 
     \section1 Deploying and Debugging Plugins
 
