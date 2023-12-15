@@ -29,6 +29,9 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         QuickControls2
         QmlXmlListModel
         Graphs
+        WebSockets
+        Positioning
+        Location
 )
 qt_internal_project_setup()
 
