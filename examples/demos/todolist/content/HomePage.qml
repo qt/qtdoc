@@ -7,7 +7,7 @@ import ToDoList
 
 HomePageForm {
 
-    function cleanDoneTasks(tasks : listModel) : void {
+    function cleanDoneTasks(tasks : ListModel) : void {
         for (var j = 0; j < tasks.count; j++) {
             if (tasks.get(j).done) {
                 tasks.remove(j)
@@ -16,7 +16,7 @@ HomePageForm {
         }
     }
 
-    function getTargetList(dueDateText : string) : listModel {
+    function getTargetList(dueDateText : string) : ListModel {
         var currentDate = new Date()
         var format = Qt.locale().dateFormat(Locale.LongFormat)
         var currentDateStr = currentDate.toLocaleDateString(Qt.locale(), format)
@@ -33,7 +33,7 @@ HomePageForm {
         return destList
     }
 
-    function addTask(tasksList : listModel, titleText : string, dueDateText : string,
+    function addTask(tasksList : ListModel, titleText : string, dueDateText : string,
                      dueTimeText : string, notes : string) : void {
         if (taskList.getTasksCount() < AppSettings.maxTasksCount) {
             const task_id = Database.addTask(titleText, dueDateText, dueTimeText, notes, 0, 0)
@@ -49,7 +49,7 @@ HomePageForm {
         }
     }
 
-    function updateTask(sourceList : listModel, destList : listModel, index : string,
+    function updateTask(sourceList : ListModel, destList : ListModel, index : string,
                        title : string, dueDate : string, dueTime : string, notes : string) : void {
         Database.updateTask(sourceList.get(index).task_id, title, dueDate, dueTime, notes)
 
