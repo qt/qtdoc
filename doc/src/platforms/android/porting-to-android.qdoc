@@ -1,11 +1,11 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
 \page porting-to-android.html
 \title Porting to Android
 \brief Provides instructions to port your existing Qt application to Android.
-\ingroup androidplatform
+\ingroup android-platform-extra-topics
 \previouspage android-building.html
 \nextpage deployment-android.html
 
@@ -41,10 +41,21 @@ application to Android.
 
 \section2 Adding resources using the asset approach
 
+Qt for Android provides a special, virtual file system that is based on
+the \l{Android: Accessing original files}{Android Assets mechanism}.
+Files that are put under the directory "\l {ANDROID_PACKAGE_SOURCE_DIR}/assets/"
+are packaged as part of your application package.
+
 The asset approach is the best option for better
 interoperability with the Android APIs. You can access all resources in the
 directory using the "assets:" prefix. Unlike qrc, this approach is
 Android-specific, not a cross-platform solution.
+
+\note Using \l {The Qt Resource System} entails having \c {qrc} files bundled
+in the shared libraries which must be unpacked first and loaded by the
+linker, while the Android assets are compressed in the \e APK and can
+be directly used in your application. That means using the Android assets
+can take up less space, but it's not a cross-platform solution with Qt.
 
 \section3 The asset approach with CMake
 
@@ -62,57 +73,12 @@ set_property(TARGET target_name PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
              "${CMAKE_CURRENT_SOURCE_DIR}/android")
 \endcode
 
-Once that is done, you can access your assets in your application as detailed in
-\l{Assets File System}.
-
-\section3 The asset approach with qmake
-
-To use the "assets:" approach, for example, add the following lines into the
-\c {.pro} file:
-
-\badcode
-android {
-    assets.files = images/happy.png
-    assets.path = /assets/images/
-    INSTALLS += assets
-}
-\endcode
+Now, you can place your assets directly in that folder or have a custom
+step with CMake to copy them from the main project path to the assets path.
 
 Then, you can access that image asset from C++ as follows:
 
 \code
 QImage image("assets:/images/happy.png");
 \endcode
-
-The following step-by-step instructions guide you to port an existing Qt Quick
-application to Android using the qrc approach:
-
-\list 1
-    \li Open your project in Qt Creator and select an Android kit. For more
-    information, see \l{Qt Creator: Configuring Projects}{Configuring Projects in Qt Creator}.
-    \li Identify all the resources used by your application and add them to one
-        or more qrc files. Qt Creator updates your qmake project file with the
-        "RESOURCES" variable listing the qrc files you added.
-    \li To load or refer to the resources in the qrc file from your C++ code,
-        use the "qrc:" scheme followed by the absolute URL. For example, to
-        load the \c{main.qml} file from \c{resources.qrc}, you can use the
-        following C++ code:
-
-        \code
-        QQuickView viewer;
-        viewer.setSource(QUrl("qrc:/qml/main.qml"));
-        viewer.show();
-        \endcode
-
-        \note QML documents can refer to the contents in qrc files using the
-        relative path to the document. Such references do not require the
-        "\c{qrc:}" or "\c{:/}" prefix.
-        \li Deploy your application to a device or AVD. For more information, see
-        \l {Qt Creator: Deploying Applications to Android Devices}.
-\endlist
-
-\note Qt Quick Controls will use the \l{Material Style}{Material Style} if the
-target device is running Android 3.0 (API 11) or later. The application should
-function normally on devices with Android versions earlier than v3.0 but
-without a native style for controls.
 */

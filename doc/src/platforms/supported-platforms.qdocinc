@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -85,15 +85,23 @@
 
 The following configurations are supported in this Qt release:
 \table 80%
-    \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li Android 8.0 to Android 14 (API level 26 to API 34)
-        \li \c armeabi-v7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 14.0.6 (NDK r26) as provided by Google
-        \li For JDK versions see \l{Java Development Kit (JDK)}
+    \header \li Distribution \li Architecture \li Compiler \li JDK \li Gradle \li Package
+    \row
+        \li Android \AndroidMinVer (API \AndroidMinApiVer) \b {to}
+        \AndroidMaxVer (API \AndroidMaxApiVer)
+        \li \AndroidAbis
+        \li \NdkCompilerVer (NDK \NdkVer or \NdkFullVer)
+        \li JDK \JdkVer
+        \li Gradle \GradleVer and AGP \AGPVer
+        \li Multi-ABI \c{APK}s and \c{AAB}s
 \endtable
- \note It's recommended that Qt user apps use the same NDK r26 version
- used for building these official Qt for Android libraries to avoid missing
- symbol errors.
+
+\note Multi-ABI builds are available only when using CMake. For more information,
+see \l{QT_ANDROID_ABIS}{CMake Android Multi-ABIs}.
+
+\note It's recommended that Qt apps use the same NDK \NdkVer version
+used for building these official Qt for Android libraries to avoid missing
+symbol errors.
 
 //! [android]
 
