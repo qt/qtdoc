@@ -1,9 +1,9 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 /*!
     \page android-platform-notes.html
     \title Android Platform Notes
-    \ingroup androidplatform
+    \ingroup android-platform-extra-topics
     \previouspage Supporting Google Emoji Font Policy
     \nextpage Android GNU C++ Run-time Licensing
     \brief Information particular to building and running Qt applications on Android.
@@ -12,32 +12,13 @@
     applications on Android. See \l{android_support}{Supported Android Versions}
     for what Android versions and API levels are supported.
 
-    \section1 Android Development in Qt Creator
-
-    The easiest way to develop with Qt for Android is to use
-    \l{Qt Creator: Connecting Android Devices}{Qt Creator}. When you use an
-    \b{Android Kit} with a Qt Creator project, it builds your code in addition
-    to some Android specific files that are required for enabling Qt on Android
-    and generating your application bundle. Qt Creator adds these files in a
-    subdirectory of your project called \b android. For more information, see
-    \l{Android Package Templates}.
-
-    \section1 Application Package
-
-    On Android, apps are distributed to devices as \b{APK} packages. For
-    distributing apps in Google Play, a different format called \b{AAB} is used
-    instead. For more information, see \l{Publishing to Google Play}.
-
-    Use Qt Creator to build both \b{APK} and \b{AAB} package formats, or build
-    them manually. For more information, see \l{Deploying an Application on Android}.
-
     \section1 Plugins and Imports Special Considerations
 
     If an application uses plugins that depend on other modules, these modules
     must be listed in the application's dependencies. For more information, see
     \l{Dependencies Detection}.
 
-    \section1 Qt Gui Dependency
+    \section2 Qt GUI Dependency
 
     Given that Android apps typically include GUI elements, the Qt for Android
     plugin is built mainly to provide a GUI, so it implements the various QPA
@@ -45,19 +26,6 @@
     involve a dependency on \l [QtGui]{Qt GUI}. Moreover, it's worth noting that Qt
     Creator only supports Gradle builds and deployments, meaning that command
     line or shell executions are not supported out of the box.
-
-    \section1 Text Special Considerations
-
-    Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache
-    text glyphs does not work as expected on all Android devices, causing text
-    to appear scrambled. To remedy this, a workaround is in place, but it can
-    increase memory consumption and can also affect text rendering performance.
-    The workaround is now used by default on all devices.
-
-    You can disable the workaround by setting the
-    \c QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND environment variable to \e 1 or
-    \e true. However, you should do so only after verifying that text appears
-    correctly on all targeted devices.
 
     \section1 OpenGL Special Considerations
 
@@ -68,29 +36,9 @@
     \note Using OpenGL ES 3.x features will result in the application breaking on older
     devices that only support 2.0.
 
-    \section1 Assets File System
-
-    Qt for Android provides a special, virtual file system which is based on
-    the \l{Android: Accessing original files}{Android Assets mechanism}.
-    Files that are put under the directory (\l{ANDROID_PACKAGE_SOURCE_DIR}/assets/)
-    are packaged as part of your application package. These can be accessed in
-    Qt by prefixing the paths with \c{assets:/}. For more information, see
-    \l{Porting to Android}{Porting Qt applications to Android}.
-
-    \section1 Android Supported Architectures
-
-    Qt for Android currently has binaries for \e{armv7a}, \e{arm64-v8a}, \e{x86}
-    and \e{x86-64}.
-
-    If you want to support several different ABIs in your application in Google
-    Play, the recommendation is to build an Application App Bundle (AAB)
-    containing binaries for each of the ABIs. Based on your AAB, Google Play
-    generates optimized Application Packages (APK) for each device requesting a
-    download.
-
-    For more information, see \l{Building the Android Application}.
-
     \section1 Known Issues
+
+    \section2 Predictive Text
 
     Due to a bug on some devices, when you turn off predictive text with
     \c{ImhNoPredictiveText}, this property is ignored and predictive text is
@@ -102,8 +50,23 @@
     This environment variable is queried each time the keyboard is displayed,
     so it's possible to toggle the workaround on and off, as necessary.
 
+    \section2 Display Cutout Modes
+
     Android LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES is not supported. For more
     information, see \l{QTBUG-114437}.
+
+    \section2 Text Glyph Caching
+
+    Because of a bug in some OpenGL drivers, the mechanism used by Qt to cache
+    text glyphs does not work as expected on all Android devices, causing text
+    to appear scrambled. To remedy this, a workaround is in place, but it can
+    increase memory consumption and can also affect text rendering performance.
+    The workaround is now used by default on all devices.
+
+    You can disable the workaround by setting the
+    \c QT_ANDROID_DISABLE_GLYPH_CACHE_WORKAROUND environment variable to \e 1 or
+    \e true. However, you should do so only after verifying that text appears
+    correctly on all targeted devices.
 
     \section1 Limitations
 

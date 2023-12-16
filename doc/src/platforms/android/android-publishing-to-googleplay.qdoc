@@ -1,17 +1,17 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
 \page android-publishing-to-googleplay.html
 \title Publishing to Google Play
 \brief Provides instructions to prepare your application for publishing.
-\ingroup androidplatform
+\ingroup android-platform-extra-topics
 \previouspage android-3rdparty-libs.html
 \nextpage Supporting Google Emoji Font Policy
 
 \l{Qt for Android} provides a complete solution to develop, build, and package
 your applications for Android. Most of these tasks, especially packaging and
-deployment are handled by Qt Creator providing rich developer experience.
+deployment, are handled by Qt Creator, providing a rich developer experience.
 
 Every time you run the application using Qt Creator, an Android Application
 Package (APK) is created and deployed onto the target of your choice
@@ -20,31 +20,45 @@ publish your application on Google Play.
 
 \section1 Building the App
 
-The following instructions guide you to create an \c{.apk} or \c{.aab}
-that can go live on Google Play
+Once your app has been developed and you want to move forward to publish it
+to Google Play, follow these instructions to create an \c{.apk} or \c{.aab}
+that can go live on Google Play:
 
     \list 1
-        \li Open your project with Qt Creator 4.11 or later choosing a \c{Release Build}.
+        \li Open your project with Qt Creator choosing a \c{Release Build}.
 
         \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
         > \uicontrol {Create Templates} to create the Android package template files
-        such as \c{AndroidManifest.xml} which is the main file of concern here.
+        such as \c{AndroidManifest.xml}, which is the main file of concern here.
 
         \li Check for the following settings in \c{AndroidManifest.xml}:
         \list
             \li Set \uicontrol{Application name} and \uicontrol{Application icon}.
-
-            \li Check the \uicontrol{Permissions} list has all the required permissions.
-
-            \li Check the \uicontrol{Features} list has the software or hardware
-                features that your application depends on, such as GPS or NFC.
+            \li Set the app's name using \c {android:label} under the manifest's
+            \c application section.
+            \li Set the app's version code and name via CMake's properties
+            \l {QT_ANDROID_VERSION_NAME} and \l {QT_ANDROID_VERSION_CODE}.
+            For qmake, use \l {ANDROID_VERSION_NAME} and \l {ANDROID_VERSION_CODE}.
+            For qmake, we will use \l {ANDROID_VERSION_CODE} below, to work around
+            publishing multi-ABIs apps.
         \endlist
-        See \l{Notes on Android project settings} for more information.
+
+        See \l{Qt Android Manifest File Configuration} for more information.
+
+        \li Set \c minimum and \c{target} SDK versions according to your app's needs.
+        This can be done using the CMake properties \l QT_ANDROID_TARGET_SDK_VERSION
+        and \l QT_ANDROID_MIN_SDK_VERSION. Or for \c qmake \l ANDROID_TARGET_SDK_VERSION
+        \l ANDROID_MIN_SDK_VERSION.
+
+        \note As before with Qt 5.15, you can specify these settings in the
+        \c {AndroidManifest.xml}. Be aware that the CMake and qmake properties
+        mentioned above will override these if set there. See \l{Android: App Versioning}
+        for more information on setting these in \c build.gradle.
 
         \li Set up a \l{Android: Android keystore system}{keystore} to sign your
-        \c{.apk} file. You can create a new keystore if you do not have one. For more
+        package. You can create a new keystore if you do not have one. For more
         information, see \l{Qt Creator: Specifying Settings for Packages}
-        {Specifying Settings for Packages in Qt Creator}.
+        {Signing Android Packages}.
 
         \li Locate the generated package:
 
@@ -52,7 +66,7 @@ that can go live on Google Play
         \li For APK packages, locate the \c{.apk} package at:
 
             \badcode
-            <$BUILD_DIR>/android-build/build/outputs/apk/release/android-build-release.apk
+            <build_path>/android-build/build/outputs/apk/release/android-build-release.apk
             \endcode
 
             \note In Qt Creator, select \uicontrol{Projects} > \uicontrol{Build}
@@ -67,7 +81,7 @@ that can go live on Google Play
             the \c{.aab} file, then locate the package at:
 
             \badcode
-            <$BUILD_DIR>/android-build/build/outputs/bundle/release/android-build-release.aab
+            <build_path>/android-build/build/outputs/bundle/release/android-build-release.aab
             \endcode
 
         \endlist
@@ -78,31 +92,31 @@ that can go live on Google Play
     Log into the \l{Google Play Developer Console} and upload the \c{.aab} files,
     along with a description and screen captures resembling the usage of your application.
 
-    For Qt versions that support building a multi-abi bundle (i.e. Qt 5.14 and 5.15),
-    uploading one \c {.aab} with all the supported architectures is enough.
-    However, for Qt versions that don't have the multi-abi build support,
-    publishing your app requires additional steps.
+    \section2 Multi-ABI Bundles
 
-    \section2 Publishing Single-ABI bundles
+    Uploading one \c {.aab} with all the supported architectures is enough for
+    Qt versions that support building a multi-ABI bundle. Qt \QtVer supports
+    building multi-ABI bundles with \b only with CMake. For more information,
+    see \l {QT_ANDROID_ABIS}.
+
+    \section2 Single-ABI bundles
+
+        However, publishing your app requires additional steps for Qt versions
+        that don't have the multi-ABI build support. \c qmake builds in Qt \QtVer
+        fall into this category.
 
         To publish your app that is built using a single ABI kit, you need
         to make sure that each ABI uses a different internal version code.
         The version code is an internal non-public identifier for your app's
         release. Build each one of the architectures you want to support
         and set a different version code for each ABI. This can be done
-        as follows, for CMake:
-
-        \badcode
-        set_property(TARGET scroll_example APPEND PROPERTY QT_ANDROID_VERSION_CODE <unique_version>)
-        \endcode
-
-        Or as follows for qmake:
+        as follows for qmake:
 
         \badcode
         ANDROID_VERSION_CODE = <unique_version>
         \endcode
 
-        The app developer can use a specific scheme for the version code, for example,
+        The app developer can use a specific scheme for the version code. For example,
         the code could have chunks for the platform, the ABI, and the actual
         version. Then, a sample scheme would be \c {<Platform><ABI><AppVersion>}:
 
@@ -119,62 +133,17 @@ that can go live on Google Play
             \endlist
         \endlist
 
-        The resulting version code for a release 1.0 for arm64-v8a ABI,
+        The resulting version code for release 1.0 for arm64-v8a ABI,
         would be \c {16410}.
 
         For more information, see Google's documentation on
-        \l{https://developer.android.com/studio/publish/versioning#appversioning}{app versioning}.
+        \l {Android: App Versioning}{app versioning}.
 
-        The following screenshot shows an example for an app targeting 4 ABIs,
+        The following screenshot shows an example of an app targeting 4 ABIs,
         while each package uses a unique version code, which is different from
         the version name that is the public version string.
 
         \image android-single-abis.png
 
-    For more information on packaging, see \l{Deploying an Application on Android}.
-
-\section1 Notes on Android project settings
-
-    Settings for \uicontrol {Minimum required SDK} and
-    \uicontrol {Target SDK} versions are set in the Gradle build configuration and
-    are controlled by the following variables:
-    For qmake:
-    \list
-        \li \l ANDROID_TARGET_SDK_VERSION
-        \li \l ANDROID_MIN_SDK_VERSION
-    \endlist
-
-    For CMake:
-    \list
-        \li \l QT_ANDROID_TARGET_SDK_VERSION
-        \li \l QT_ANDROID_MIN_SDK_VERSION
-    \endlist
-
-    See \l {CMake Property Reference} for CMake projects, and
-    \l {qmake Variable Reference} for Android-specific settings in qmake projects.
-
-    \note As before with Qt 5.15, you can specify these settings in
-    \c {AndroidManifest.xml}. Be aware that \c build.gradle will override these if
-    set there. See \l{Android: App Versioning} for more information on setting
-    these in \c build.gradle.
-
-    \note By default, Qt adds the permissions and the features based on the module
-    dependencies of your application. If you do not want these default permissions
-    and features, either deselect the checkboxes
-    \uicontrol{Include default permissions for Qt modules} and
-    \uicontrol{Include default features for Qt modules}, or remove the following
-    part from the \c{AndroidManifest.xml} file:
-
-    \badcode
-    <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
-         Remove the comment if you do not require these default permissions. -->
-    <!-- %%INSERT_PERMISSIONS -->
-
-    <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
-         Remove the comment if you do not require these default features. -->
-    <!-- %%INSERT_FEATURES -->
-    \endcode
-
-    For information on the manifest, see \l{Android: App Manifest} and
-    \l{Qt Creator: Editing Manifest Files}.
+    \sa {Deploying an Application on Android}.
 */

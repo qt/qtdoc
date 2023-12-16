@@ -1,11 +1,11 @@
-// Copyright (C) 2022 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
     \title Supporting Google Emoji Font Policy
     \brief Guide for Supporting Google Emoji Font Policy using QML or C++.
     \page android-emojis.html
-    \ingroup androidplatform
+    \ingroup android-platform-extra-topics
     \previouspage Publishing to Google Play
     \nextpage Android Platform Notes
 
@@ -201,11 +201,11 @@
 
     Okay, let's dig into code now!
 
-    We need to add \l{Custom Java Code} to our Android templates. Place
-    it under the \c{src} folder in the android templates folder. You may need to
-    create the \c{src} folder and the folder structure for your java files.
-    You can see this folder structure in the Android Templates Folder image in
-    the previous section in (2).
+    We need to add \l{Deploying an Application on Android}{Java/Kotlin Code} to
+    our Android templates. Place it under the \c{src} folder in the android
+    templates folder. You may need to create the \c{src} folder and the folder
+    structure for your java files. You can see this folder structure in the Android
+    Templates Folder image in the previous section in (2).
 
     To obtain the font in C++, it is necessary for the Java code to:
     \list

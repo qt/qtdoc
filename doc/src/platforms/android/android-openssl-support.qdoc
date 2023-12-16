@@ -1,21 +1,21 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
 \page android-openssl-support.html
-\ingroup androidplatform
+\ingroup android-platform-extra-topics
 \title Adding OpenSSL Support for Android
 \brief How to package OpenSSL libraries with a Qt for Android application.
 \previouspage deployment-android.html
 \nextpage android-manifest-file-configuration.html
 
-The Qt installation package comes with OpenSSL support but the OpenSSL libraries
+The Qt installation package comes with OpenSSL support, but the OpenSSL libraries
 are not part of the package due to legal restrictions in some countries. If your
 application depends on OpenSSL, consider packaging the SSL libraries with your
-Application Package (APK) as the target device may or may not have them.
+Application Package (\c APK or \c AAB) as the target device may or may not have them.
 
 You can use the \l {QSslSocket::supportsSsl()} static function to check for SSL
-support on the target device. First include the header:
+support on the target device. First, include the header:
 \code
 #include <QSslSocket>
 \endcode
@@ -26,14 +26,75 @@ qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
 \endcode
 
 Check Qt Creator's \c {Application Output} section or the Android \c logcat for
-the result.
+that log message.
+
+\section1 Adding OpenSSL Libraries
+
+Using the convenience \l {OpenSSL for Android} repository,
+you can directly include OpenSSL libraries in your own project.
+
+With CMake, add the following to your \c {CMakeLists.txt}:
+
+\badcode
+if (ANDROID)
+    include(FetchContent)
+    FetchContent_Declare(
+        android_openssl
+        DOWNLOAD_EXTRACT_TIMESTAMP true
+        URL https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+    )
+    FetchContent_MakeAvailable(android_openssl)
+    include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+endif()
+\endcode
+
+\b{Or} if you cloned the repository into a subdirectory:
+
+\badcode
+include(<path/to/android_openssl>/android_openssl.cmake)
+\endcode
+
+Then, add the libraries to your targets:
+
+\badcode
+qt_add_executable(your_target_name ..)
+qt_add_executable(your_second_target_name ..)
+
+if (ANDROID)
+    add_android_openssl_libraries(your_target_name your_second_target_name)
+endif()
+\endcode
+
+For \c qmake, add the following to your \c {.pro} file:
+
+\badcode
+android: include(<path/to/android_openssl/openssl.pri)
+\endcode
+
+Alternatively, to add extra libraries, such as \c libcrypto and \c libssl.
+For CMake, use:
+
+\badcode
+set_target_properties(<target_name> PROPERTIES
+    QT_ANDROID_EXTRA_LIBS "<path_to_libs_dir>/libcrypto_3.so" "<path_to_libs_dir>/libssl_3.so"
+)
+\endcode
+
+Or for \c qmake use:
+
+\badcode
+ANDROID_EXTRA_LIBS += \
+    <path_to_libs_dir>/libcrypto_3.so \
+    <path_to_libs_dir>/libssl_3.so
+\endcode
+
+\note When targeting multiple architectures, include OpenSSL libraries
+for all the targeted architectures.
+
+Using Qt Creator, it is possible to add extra libraries. For more
+information, see \l {Qt Creator: Adding Libraries to Projects}.
 
 \section1 Building OpenSSL for Android
-
-A convenient Github repository with a binary and a build script can be used
-without the need for a manual step-by-step build. For more information, see
-\l {OpenSSL for Android}. If you download the repository, you can then skip
-to \l {Using OpenSSL Libraries with Qt for Android}.
 
 The following instructions guide you to build the OpenSSL libraries manually:
 
@@ -43,27 +104,23 @@ The following instructions guide you to build the OpenSSL libraries manually:
     \li Extract the sources to a folder and navigate to that folder using
         the CLI.
         \note If your development platform is Windows, you need \c msys with
-        \c perl v5.14 or later to build OpenSSL.
+        \c perl 5.14 or later to build OpenSSL.
 
-    \li Add the Android LLVM toolchain to your path:
+    \li Add the Android LLVM toolchain to your path, for example, for Linux use:
 
-        \badcode
-        export PATH="<android_ndk_path>/toolchains/llvm/prebuilt/<host>/bin":$PATH
+        \badcode \NdkFullVer
+        export PATH=~/Android/Sdk/ndk/\1/toolchains/llvm/prebuilt/<host>/bin:$PATH
         \endcode
+
+        \include src/platforms/android/android.qdoc Android SDK Paths
 
     \li Configure the OpenSSL sources to build for Android using
-        the following command:
+        the following command, where <arch> can take a value of:
+        \c arm, \c arm64, \c x86 or \c x86_64:
 
-        \badcode
-        ./Configure shared android-<arch> -D__ANDROID_API__=XX
+        \badcode \AndroidMinApiVer
+        ./Configure shared android-<arch> -D__ANDROID_API__=\1
         \endcode
-
-        Where:
-        \list
-             \li <arch> can take a value of: \c arm, \c arm64, \c x86, \c x86_64.
-             \li \c XX is a two-digit number equal to the minimum API level for
-             this Qt version: see \l {Supported Configurations}{Qt for Android support}.
-        \endlist
 
         \note You must consider enabling or disabling the SSL features based on
         the legal restrictions in the region where your application is available.
@@ -78,8 +135,9 @@ The following instructions guide you to build the OpenSSL libraries manually:
         \badcode
         make -j$(nproc) SHLIB_VERSION_NUMBER= build_libs
 
-        cp libcrypto.so "${out_path}/libcrypto_3.so"
-        cp libssl.so "${out_path}/libssl_3.so"
+        mkdir -p ${out_path}
+        cp libcrypto.so ${out_path}/libcrypto_3.so
+        cp libssl.so ${out_path}/libssl_3.so
 
         cd ${out_path}
         patchelf --set-soname libcrypto_3.so libcrypto_3.so
@@ -97,81 +155,6 @@ The following instructions guide you to build the OpenSSL libraries manually:
         \endcode
 
         \note Android does not load versioned libraries.
-\endlist
-
-\section1 Using OpenSSL Libraries with Qt for Android
-
-Depending on the method you obtained the OpenSSL libraries, you can use one of
-the following step to include those libraries in your project:
-
-\list
-
-    \li Using the project files:
-
-        Using the convenience \l {OpenSSL for Android} repository,
-        you can directly add the include projects into your own project, by adding
-        the following to your \c {.pro} file:
-
-        \badcode
-        android: include(<path/to/android_openssl/openssl.pri)
-        \endcode
-
-        If using CMake, add the following to your \c {CMakeLists.txt}:
-
-        \badcode
-        if (ANDROID)
-            include(FetchContent)
-            FetchContent_Declare(
-              android_openssl
-              DOWNLOAD_EXTRACT_TIMESTAMP true
-              URL      https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
-            )
-            FetchContent_MakeAvailable(android_openssl)
-            include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
-        endif()
-        \endcode
-
-        \b{Or} if you cloned the repository into a subdirectory:
-
-        \badcode
-        include(<path/to/android_openssl>/android_openssl.cmake)
-        \endcode
-
-        Then add:
-
-        \badcode
-            qt_add_executable(your_target_name ..)
-            qt_add_executable(your_second_target_name ..)
-
-            if (ANDROID)
-                add_android_openssl_libraries(your_target_name your_second_target_name)
-            endif()
-        \endcode
-
-        Alternatively, you can use the following project variable to add extra
-        libraries, such as \c libcrypto and \c libssl.
-
-        For QMake use:
-
-        \badcode
-        ANDROID_EXTRA_LIBS += \
-            <path_to_libs_dir>/libcrypto_3.so \
-            <path_to_libs_dir>/libssl_3.so
-        \endcode
-
-        For CMake:
-
-        \badcode
-        set_property(TARGET <target name> PROPERTY QT_ANDROID_EXTRA_LIBS
-            <path_to_libs_dir>/libcrypto_3.so
-            <path_to_libs_dir>/libssl_3.so)
-        \endcode
-
-        \note When targeting multiple architectures, include OpenSSL libraries
-              for all the targeted architectures.
-
-    \li Using Qt Creator, it is possible to add extra libraries. For more
-        information, see \l {Qt Creator: Adding Libraries to Projects}.
 \endlist
 
 */
