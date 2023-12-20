@@ -5,7 +5,6 @@ import QtQuick
 ApplicationFlowForm {
     id: applicationFlow
     state: "Home"
-    color: Colors.currentTheme.background
     property int animationDuration: 400
     property string platform: Qt.platform.os
     property string mode: ""
