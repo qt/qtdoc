@@ -327,13 +327,27 @@
 
     \section3 Android
     \list
-        \li Re-factored QPA Android
-        \li Embedding QML to native Java TP
-        \li Android 14 as maximum supported platform, incl. SDK level and target updates
-        \li Android tooling updates: NDK r26b, JDK 17.002
-        \li Mobile category examples aligned with iOS
-        \li Added QNativeInterface::QAndroidScreen that provides access to the Android Display id
-            of a QScreen.
+        \li Re-factored the Android plugin Java code which, consists of:
+        \list
+            \li Simplifying the architecture and the relation between the various
+            classes (for example, between QtActivity, QtActivityLoader, and
+            QtActivityDelegate).
+            \li Moving the QtLoader classes away from the public bindings package.
+            \li Removed usage of reflection.
+        \endlist
+        \li Added preliminary support for child windows for Android to be consistent
+        with Qt and its other QPAs. As a result of that, \l QScreen::grabWindow() is
+        temporarily unsupported for now.
+        \li Set Android 14 as the maximum supported platform version, and the default
+        platform SDK and target levels to API 34.
+        \li Set the supported Android NDK version to r26b (26.1.10909125) and JDK to 17.
+        \li Aligned the Mobile category examples with iOS.
+        \li Added QNativeInterface::QAndroidScreen that provides access to the Android
+        Display id of a QScreen.
+        \li Added support for using ndk-stack with androidtestrunner to pretty print
+        test crash reports.
+        \li Added CMake variable QT_ANDROID_DEPLOYMENT_TYPE to explicitly set
+        the deployment type for the Android package.
     \endlist
 
     \section3 iOS
