@@ -133,10 +133,21 @@
 
     \section2 Qt Quick Module
     \list
+        \li Added the \l {QtQuick::TextDocument::source}{TextEdit.textDocument.source}
+            property for loading from a file, \l {QtQuick::TextDocument::save()}{save()}
+            and \l {QtQuick::TextDocument::saveAs()}{saveAs()} functions for writing.
+            These are intended to replace XMLHttpRequest in text-handling use cases.
+        \li Added \l {QtQuick::TextEdit::cursorSelection}{cursorSelection} property to
+            \l TextEdit and \l TextArea to inspect and modify properties of the selected text.
+        \li Updated the \l{Qt Quick Controls - Text Editor}{Text Editor example} to
+            demonstrate these features.
         \li Added new text renderer which will give better results for
             rendering very large text. It can be selected by setting
             \l{QtQuick::Text::renderType}{renderType} to \c{Text.CurveRendering}.
         \li Text classes got new APIs to work with \l {QtQuick::Text::font.variableAxes}{variable fonts}.
+        \li Rectangle can now have different \l {QtQuick::Rectangle::topLeftRadius}{radii}
+            \l {QtQuick::Rectangle::topRightRadius}{on} \l {QtQuick::Rectangle::bottomLeftRadius}{each}
+            \l {QtQuick::Rectangle::bottomRightRadius}{corner}.
         \li Added preliminary support for embedding QWindows into the Qt Quick scene,
             along with a parent property on Window, to allow setting a visual parent of a Window.
         \li The \l {Item::}{focusReason} and \l {Item::}{focusPolicy}
