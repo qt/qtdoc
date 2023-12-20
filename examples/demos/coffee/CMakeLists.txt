@@ -26,19 +26,29 @@ qt_add_qml_module(coffeemachine
     QML_FILES
         ApplicationFlow.qml
         ApplicationFlowForm.ui.qml
+        ChoosingCoffeeForm.ui.qml
         ChoosingCoffee.qml
         CoffeeCard.qml
+        CoffeeCardForm.ui.qml
         Colors.qml
         CustomButton.qml
+        CustomButtonForm.ui.qml
         CustomSlider.qml
+        CustomSliderForm.ui.qml
         CustomToolBar.qml
-        Cup.qml
+        CustomToolBarForm.ui.qml
+        Cup.ui.qml
         Home.qml
+        HomeForm.ui.qml
         Insert.qml
+        InsertForm.ui.qml
         main.qml
         Progress.qml
+        ProgressForm.ui.qml
         Ready.qml
+        ReadyForm.ui.qml
         Settings.qml
+        SettingsForm.ui.qml
     RESOURCES
         qtquickcontrols2.conf
         images/Cups/card_cup_dark.svg

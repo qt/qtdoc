@@ -9,6 +9,7 @@ Rectangle {
     // that do not seem to have any logical origin are just arbitrary and based on original design
     // and/or personal preference on what looks nice.
     id: root
+    color: Colors.currentTheme.background
     property string previousState: ""
     property string coffeeName: ""
     property alias home: home
@@ -18,8 +19,8 @@ Rectangle {
     property alias ready: ready
     property alias toolbar: toolbar
     property alias progress: progress
-    property alias coffeeText: coffeeText
     property alias stack: stack
+    property alias coffeeText: coffeeText
     property int progressBarValue: 0
     property string progressCupState: "0"
     property int cappuccinos: 4

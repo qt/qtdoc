@@ -119,7 +119,7 @@
     displayed as \c CoffeeCards which are located inside the \l{GridLayout} in
     \c ChoosingCoffee.qml:
 
-    \snippet demos/coffee/ChoosingCoffee.qml Coffees
+    \snippet demos/coffee/ChoosingCoffeeForm.ui.qml Coffees
 
     The implementation of the \c CoffeeCard is located \c CoffeeCard.qml.
 
@@ -150,7 +150,7 @@
     \l{AbstractButton} in \c CoffeeCard.qml which then triggers \l{NumberAnimation}
     through \l{Transition}:
 
-    \snippet demos/coffee/CoffeeCard.qml AbstractButton
+    \snippet demos/coffee/CoffeeCardForm.ui.qml AbstractButton
 
     This will scale the selected coffee card down to smaller size and
     turns the edges of the card to green giving user the expression that the
@@ -199,7 +199,7 @@
     The animation for filling the coffee cup happens with state engines
     \l {Transition} and \l {SmoothedAnimation}.
 
-    \snippet demos/coffee/Progress.qml Cup
+    \snippet demos/coffee/ProgressForm.ui.qml Cup
 
     The progress bar animation is implemented with \l {Behavior}.
 
