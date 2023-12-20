@@ -81,8 +81,7 @@ that there is no HTTP server class in Qt.
 
 For secure communication via SSL, Qt Network offers a wide range of classes
 alongside the central QSslSocket, e.g. QSslCertificate, QSslConfiguration and
-QSslError. The only supported backend for SSL in Qt is OpenSSL, which needs to
-be installed separately.
+QSslError.
 
 For mobile devices, Qt Network offers the \l{Bearer Management}{bearer
 management} API to track the status of a connection (e.g. getting notified about
