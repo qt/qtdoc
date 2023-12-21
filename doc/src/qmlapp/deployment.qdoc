@@ -118,15 +118,27 @@ It can be loaded in a Qt application's \c main.cpp file like this:
 
 This creates a QWindow-based view that displays the contents of \c application.qml.
 
-The application's \c .pro \l{Creating Project Files}{project file} must specify
-the \c quick module for the \c QT variable. For example:
+\section3 Build Files
 
-\code
-    TEMPLATE += app
-    QT += quick
-    SOURCES += main.cpp
-\endcode
-
+\if defined(onlinedocs)
+  \tab {build-qt-app}{tab-cmake}{CMake}{checked}
+  \tab {build-qt-app}{tab-qmake}{qmake}{}
+  \tabcontent {tab-cmake}
+\else
+  \section1 Using CMake
+\endif
+  \include {module-use.qdocinc} {building with cmake} {Quick}
+\if defined(onlinedocs)
+  \endtabcontent
+  \tabcontent {tab-qmake}
+\else
+  \section1 Using qmake
+\endif
+  \include {module-use.qdocinc} {building_with_qmake} {quick}
+  For more information, see \l{Creating Project Files}.
+\if defined(onlinedocs)
+  \endtabcontent
+\endif
 
 \section2 Creating a QQmlEngine Directly
 
