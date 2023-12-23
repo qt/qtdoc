@@ -324,7 +324,7 @@ endfunction()
     by setting the \c QT_QPA_EGLFS_INTEGRATION environment variable.
 
     To change these defaults for the build, without having to force a specific value at
-    run time, the following to CMake cache variables are available once CMake has been run
+    run time, the following two CMake cache variables are available after CMake has been run
     once:
 
     \list
