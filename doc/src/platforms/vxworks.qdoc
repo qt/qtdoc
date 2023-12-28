@@ -143,9 +143,80 @@
 
   \section1 Configuring for a Specific Device
 
+  Prepare your environment by installing VxWorks SDK and obtaining WindRiver
+  license which is needed by installer and for building VxWorks images.
+  Search for appropriate installer in
+  {https://gallery.windriver.com/portal/products}.
+
   Building Qt for a given device requires a Qt6 installation for compilation
   host, a toolchain and a sysroot. Additionally, some devices require vendor
   specific adaptation code for EGL and OpenGL 2.0 support.
+
+  \section2 VxWorks image requirements
+
+  Qt for VxWorks requires certain VxWorks image bundles and components to be
+  embedded in base software to make Qt compile and work properly. The
+  list is by no means complete as it depends on hardware, software and system
+  requirements of your project. However, the following table contains those
+  that are mandatory for certain functionalities to work. Note also that these
+  might change with VxWorks version.
+
+  \table 80%
+    \header
+        \li Layer
+        \li Notes
+
+    \row
+        \li \c BUNDLE_POSIX
+        \li This bundle is necessary for compatibility with POSIX-related
+        functionalities which Qt requires.
+
+    \row
+        \li \c INCLUDE_TMP_DIR
+            \c INCLUDE_RAM_DISK_FORMAT_HRFS
+        \li Including these two components is necessary if you want to
+            use \l {QTemporaryFile}. Note that you should also consider setting
+            \c TMP_DIR_SIZE to appropriate value
+
+  \endtable
+
+  \section1 Building Qt6 for VxWorks
+
+  \section2 Building Qt6 for host
+
+  When cross-building Qt6 for VxWorks, it's best practice to use host tools
+  that use the same source code as cross-build does. This requires building Qt6
+  for host first, but only with limited subset of submodules:
+    \list
+    \li qtbase
+    \li qtdeclarative
+    \li qtquick3d
+    \li qtshadertools
+    \endlist
+
+  Make sure to have all necessary prerequisites for building Qt6 for host. Check
+  details in \l{Building Qt Sources}.
+
+  The commands to configure, build, and install Qt6 for host are the following:
+
+  \badcode
+    ./configure \
+        -cmake-generator "Ninja" \
+        -extprefix <path_to_qt6_host_installation_dir> \
+        -submodules qtbase,qtdeclarative,qtquick3d,qtshadertools \
+        -nomake tests \
+        -nomake examples \
+        -- \
+        -B <host_build_directory>
+    cd <host_build_directory>
+    ninja
+    ninja install
+  \endcode
+
+  After these commands, Qt6 for host is installed in
+  \c {<path_to_qt6_host_installation_dir>}.
+
+  \section2 Building Qt6 for target
 
   Before running configure and building Qt 6 it is required to open \e {VxWorks
   Development Shell} in command prompt.
@@ -164,9 +235,12 @@
   \endcode
   \endlist
 
-  Below is an example configuration for the BD-SL-i.MX6. For most VxWorks boards
+  Below is an example build configuration for the BD-SL-i.MX6. For most VxWorks boards
   the configure command looks very similar. By default, Qt 6 is configured to
   use shared libraries. To build Qt 6 statically, add \c -static option for configure.
+
+  Make sure that {WIND_CC_SYSROOT} environment variable is set to VxWorks VSB root
+  directory.
 
   \badcode
     ./configure \
@@ -182,139 +256,31 @@
         -prefix /sd0:1/qt6rtp \
         -extprefix <path_to_host_dir>/qt6rtp \
         -nomake tools \
-        -nomake examples
+        -nomake examples \
+        -- \
+        -B <target_build_dir> \
+        -DCMAKE_TOOLCHAIN_FILE="$WIND_CC_SYSROOT/mk/rtp.toolchain.cmake"
   \endcode
+
+  In case of building for DKM rather than RTP, use \c -static option and change the
+  \c CMAKE_TOOLCHAIN_FILE value to \c {"$WIND_CC_SYSROOT/mk/dkm.toolchain.cmake"}
 
   It is recommended to build Qt 6 using a \e{shadow build}. See \l {Qt Configure Options}
   for more information.
 
-  \section1 Building and Installing Qt 6
+  When configuration is successful, building and installing Qt6 for VxWorks takes place
+  as follows:
 
   \badcode
+  cd <target_build_dir>
   ninja
   ninja install
   \endcode
 
   \section1 Platform Plugins for VxWorks Devices
 
-  \section2 EGLFS
-
-  \l {http://www.khronos.org/egl}{EGL} is an interface between OpenGL and the
-  native windowing system. Qt can use EGL for context and surface management.
-  However, the API contains no platform specifics. The creation of a \e {native
-  window} (which will not necessarily be an actual window on the screen) must
-  still be done by platform-specific means. Hence the need for the board or GPU
-  specific adaptation code. Such adaptations are provided either as \e {EGLFS
-  hooks}, a single source file compiled in to the platform plugin, or as
-  dynamically loaded \e {EGL device integration} plugins.
-
-  EGLFS is a platform plugin for running Qt 6 applications on top of EGL and
-  OpenGL ES 2.0 without an actual windowing system (like X11 or Wayland). In
-  addition to Qt Quick 2 and native OpenGL applications it supports
-  software-rendered windows (for example QWidget) too. In the latter case the
-  widgets' contents are rendered using the CPU into images which are then
-  uploaded into textures and composited by the plugin.
-
-  This is the recommended plugin for modern VxWorks devices that include
-  a GPU.
-
-  EGLFS forces the first top-level window (either a QWidget or a
-  QQuickView) to become fullscreen. This window is also chosen to be the \e root
-  widget window into which all other top-level widgets (for example dialogs,
-  popup menus or combobox dropdowns) are composited. This is necessary because
-  with EGLFS there is always exactly one native window and EGL window surface,
-  and these belong to the widget or window that is created first. This approach
-  works well when there is a main window that exists for the entire lifetime of
-  the application and all other widgets are either non top-levels or are created
-  afterwards, once the main window is shown.
-
-  There are further restrictions for OpenGL-based windows. As of Qt 6.7, EGLFS
-  supports a single, fullscreen GL window (for example, an OpenGL-based QWindow,
-  a QQuickView or a QGLWidget). Opening additional OpenGL windows or mixing such
-  windows with QWidget-based content is not supported and will terminate the
-  application with an error message.
-
-  If necessary, EGLFS can be configured via environment variables:
-
-  \list
-
-  \li \c {QT_QPA_EGLFS_FB} - Overrides the framebuffer device. The default is
-  \c /dev/fb0. On most embedded platforms this is not very relevant because the
-  framebuffer is used only for querying settings like the display dimensions.
-  On certain devices, however, this parameter provides the ability to specify
-  which display to use in multiple display setups, similarly to the \c fb
-  parameter in VxWorksFB.
-
-  \li \c {QT_QPA_EGLFS_WIDTH} and \c {QT_QPA_EGLFS_HEIGHT} - Contain the screen
-  width and height in pixels. While EGLFS tries to determine the dimensions
-  from the framebuffer device \e{/dev/fb0}, this doesn't always work and
-  manually specifying the sizes might become necessary.
-
-  \li \c {QT_QPA_EGLFS_PHYSICAL_WIDTH} and \c {QT_QPA_EGLFS_PHYSICAL_HEIGHT} -
-  Physical screen width and height in millimeters. On platforms where the
-  framebuffer device \e{/dev/fb0} is not available or the query is not
-  successful, the values are calculated based on a default DPI of 100. This
-  variable can be used to override any such defaults.
-
-  \li \c {QT_QPA_EGLFS_DEPTH} - Overrides the color depth for the screen. On
-  platforms where the framebuffer device \e{/dev/fb0} is not available or the
-  query is not successful, the default 32 is used. This variable can be used
-  to override any such defaults. Note that this affects only the color depth
-  value reported by QScreen. It has no connection to EGL configurations and the
-  color depth used for OpenGL rendering.
-
-  \li \c {QT_QPA_EGLFS_SWAPINTERVAL} - By default a swap interval of \c 1 is
-  requested. This enables synchronizing to the displays vertical refresh. The
-  value can be overridden with this environment variable. For instance, passing
-  0 disables blocking on swap, resulting in running as fast as possible
-  without any synchronization.
-
-  \li \c {QT_QPA_EGLFS_FORCE888} - When set, the red, green and blue color
-  channel sizes are ignored whenever creating a new context, window or offscreen
-  surface. Instead, the plugin requests a configuration with 8 bits per
-  channel. This can be helpful on devices where configurations with less than 32
-  or 24 bits per pixel are chosen by default but are known not to be suitable,
-  for example, due to banding effects. Instead of changing all the applications,
-  this variable provides an easier shortcut to force 24/32 bpp configurations
-  for a given device.
-
-  \li \c {QT_QPA_EGLFS_DEBUG} - When set, some debugging information is printed
-  on the debug output. For example, the input QSurfaceFormat and the properties
-  of the chosen EGL configuration are printed whenever creating a new
-  context. Together with Qt Quick's \c {QSG_INFO} variable, this can provide
-  useful information for troubleshooting issues related to the EGL
-  configuration.
-
-  \li \c {QT_QPA_EGLFS_INTEGRATION} - In addition to the compiled-in \e hooks,
-  it is also possible to provide device or vendor-specific adaptation in the
-  form of dynamically loaded plugins. This environment variable enforces a
-  specific plugin. For example, setting it to \e{eglfs_kms} uses the KMS/DRM
-  backend. This is only an option when no static, compiled-in hooks were
-  specified in the device makespecs. In practice the traditional compiled-in
-  hooks are rarely used, almost all backends are now migrated to plugins. The
-  device makespecs still contain a relevant \c EGLFS_DEVICE_INTEGRATION entry:
-  the name of the preferred backend for that particular device. This is
-  optional, but very useful to avoid the need to set this environment variable
-  in case there are more than one plugins present in the target system. In a
-  desktop environment the KMS or the X11 backends are prioritized, depending on
-  the presence of the \c DISPLAY environment variable.
-
-  \endlist
-
-  In addition to \c {QT_QPA_EGLFS_DEBUG}, EGLFS also supports the more modern
-  categorized logging system of Qt. The following logging categories are
-  available:
-
-  \list
-
-    \li \c qt.qpa.egldeviceintegration – Enables logging for dynamically loaded
-    backends. Very useful to check what backend is in use.
-
-    \li \c qt.qpa.input – Enables debug output from the evdev input handler.
-    Very useful to check if a given input device was correctly recognized and
-    opened.
-
-  \endlist
+  Qt for VxWorks supports EGLFS platform plugin for a \e {native window} substitution.
+  Read more about its configuration in \l{embedded eglfs}{EGLFS}.
 
   \section1 Running Qt Applications
 
