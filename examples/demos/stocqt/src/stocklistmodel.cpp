@@ -5,118 +5,117 @@
 StockListModel::StockListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    m_data.append(new StockListData("QTCOM.HE", "Qt Group"));
-    m_data.append(new StockListData("AAPL", "Apple Inc"));
-    m_data.append(new StockListData("MSFT", "Microsoft Corp"));
-    m_data.append(new StockListData("AMZN", "Amazon.com Inc"));
-    m_data.append(new StockListData("NVDA", "NVIDIA Corp"));
-    m_data.append(new StockListData("TSLA", "Tesla Inc"));
-    m_data.append(new StockListData("GOOG", "Alphabet Inc"));
-    m_data.append(new StockListData("GOOGL", "Alphabet Inc"));
-    m_data.append(new StockListData("META", "Meta Platforms Inc"));
-    m_data.append(new StockListData("AVGO", "Broadcom Inc"));
-    m_data.append(new StockListData("PEP", "PepsiCo Inc"));
-    m_data.append(new StockListData("COST", "Costco Wholesale Corp"));
-    m_data.append(new StockListData("CSCO", "Cisco Systems Inc"));
-    m_data.append(new StockListData("TMUS", "T-Mobile US Inc"));
-    m_data.append(new StockListData("CMCSA", "Comcast Corp"));
-    m_data.append(new StockListData("TXN", "Texas Instruments Inc"));
-    m_data.append(new StockListData("ADBE", "Adobe Inc"));
-    m_data.append(new StockListData("NFLX", "Netflix Inc"));
-    m_data.append(new StockListData("QCOM", "QUALCOMM Inc"));
-    m_data.append(new StockListData("HON", "Honeywell International Inc"));
-    m_data.append(new StockListData("AMD", "Advanced Micro Devices Inc"));
-    m_data.append(new StockListData("AMGN", "Amgen Inc"));
-    m_data.append(new StockListData("SBUX", "Starbucks Corp"));
-    m_data.append(new StockListData("INTU", "Intuit Inc"));
-    m_data.append(new StockListData("INTC", "Intel Corp"));
-    m_data.append(new StockListData("GILD", "Gilead Sciences Inc"));
-    m_data.append(new StockListData("AMAT", "Applied Materials Inc"));
-    m_data.append(new StockListData("BKNG", "Booking Holdings Inc"));
-    m_data.append(new StockListData("ADI", "Analog Devices Inc"));
-    m_data.append(new StockListData("ADP", "Automatic Data Processing Inc"));
-    m_data.append(new StockListData("MDLZ", "Mondelez International Inc"));
-    m_data.append(new StockListData("PYPL", "PayPal Holdings Inc"));
-    m_data.append(new StockListData("REGN", "Regeneron Pharmaceuticals Inc"));
-    m_data.append(new StockListData("ISRG", "Intuitive Surgical Inc"));
-    m_data.append(new StockListData("VRTX", "Vertex Pharmaceuticals Inc"));
-    m_data.append(new StockListData("LRCX", "Lam Research Corp"));
-    m_data.append(new StockListData("CSX", "CSX Corp"));
-    m_data.append(new StockListData("MU", "Micron Technology Inc"));
-    m_data.append(new StockListData("MELI", "MercadoLibre Inc"));
-    m_data.append(new StockListData("ATVI", "Activision Blizzard Inc"));
-    m_data.append(new StockListData("CHTR", "Charter Communications Inc"));
-    m_data.append(new StockListData("PANW", "Palo Alto Networks Inc"));
-    m_data.append(new StockListData("SNPS", "Synopsys Inc"));
-    m_data.append(new StockListData("ASML", "ASML Holding NV"));
-    m_data.append(new StockListData("KLAC", "KLA Corp"));
-    m_data.append(new StockListData("MAR", "Marriott International Inc/MD"));
-    m_data.append(new StockListData("MRNA", "Moderna Inc"));
-    m_data.append(new StockListData("MNST", "Monster Beverage Corp"));
-    m_data.append(new StockListData("CDNS", "Cadence Design Systems Inc"));
-    m_data.append(new StockListData("ORLY", "O'Reilly Automotive Inc"));
-    m_data.append(new StockListData("ABNB", "Airbnb Inc"));
-    m_data.append(new StockListData("KDP", "Keurig Dr Pepper Inc"));
-    m_data.append(new StockListData("KHC", "Kraft Heinz Co/The"));
-    m_data.append(new StockListData("FTNT", "Fortinet Inc"));
-    m_data.append(new StockListData("NXPI", "NXP Semiconductors NV"));
-    m_data.append(new StockListData("AEP", "American Electric Power Co Inc"));
-    m_data.append(new StockListData("MCHP", "Microchip Technology Inc"));
-    m_data.append(new StockListData("CTAS", "Cintas Corp"));
-    m_data.append(new StockListData("ADSK", "Autodesk Inc"));
-    m_data.append(new StockListData("DXCM", "Dexcom Inc"));
-    m_data.append(new StockListData("PDD", "PDD Holdings Inc ADR"));
-    m_data.append(new StockListData("EXC", "Exelon Corp"));
-    m_data.append(new StockListData("AZN", "AstraZeneca PLC ADR"));
-    m_data.append(new StockListData("PAYX", "Paychex Inc"));
-    m_data.append(new StockListData("IDXX", "IDEXX Laboratories Inc"));
-    m_data.append(new StockListData("BIIB", "Biogen Inc"));
-    m_data.append(new StockListData("MRVL", "Marvell Technology Inc"));
-    m_data.append(new StockListData("ROST", "Ross Stores Inc"));
-    m_data.append(new StockListData("WBD", "Warner Bros Discovery Inc"));
-    m_data.append(new StockListData("LULU", "Lululemon Athletica Inc"));
-    m_data.append(new StockListData("PCAR", "PACCAR Inc"));
-    m_data.append(new StockListData("ODFL", "Old Dominion Freight Line Inc"));
-    m_data.append(new StockListData("WDAY", "Workday Inc"));
-    m_data.append(new StockListData("GFS", "GLOBALFOUNDRIES Inc"));
-    m_data.append(new StockListData("XEL", "Xcel Energy Inc"));
-    m_data.append(new StockListData("CPRT", "Copart Inc"));
-    m_data.append(new StockListData("CTSH", "Cognizant Technology Solutions Corp"));
-    m_data.append(new StockListData("DLTR", "Dollar Tree Inc"));
-    m_data.append(new StockListData("ILMN", "Illumina Inc"));
-    m_data.append(new StockListData("WBA", "Walgreens Boots Alliance Inc"));
-    m_data.append(new StockListData("BKR", "Baker Hughes Co"));
-    m_data.append(new StockListData("EA", "Electronic Arts Inc"));
-    m_data.append(new StockListData("FAST", "Fastenal Co"));
-    m_data.append(new StockListData("CSGP", "CoStar Group Inc"));
-    m_data.append(new StockListData("ENPH", "Enphase Energy Inc"));
-    m_data.append(new StockListData("VRSK", "Verisk Analytics Inc"));
-    m_data.append(new StockListData("ANSS", "ANSYS Inc"));
-    m_data.append(new StockListData("CRWD", "Crowdstrike Holdings Inc"));
-    m_data.append(new StockListData("EBAY", "eBay Inc"));
-    m_data.append(new StockListData("FANG", "Diamondback Energy Inc"));
-    m_data.append(new StockListData("CEG", "Constellation Energy Corp"));
-    m_data.append(new StockListData("TEAM", "Atlassian Corp"));
-    m_data.append(new StockListData("ALGN", "Align Technology Inc"));
-    m_data.append(new StockListData("DDOG", "Datadog Inc"));
-    m_data.append(new StockListData("JD", "JD.com Inc ADR"));
-    m_data.append(new StockListData("ZS", "Zscaler Inc"));
-    m_data.append(new StockListData("ZM", "Zoom Video Communications Inc"));
-    m_data.append(new StockListData("RIVN", "Rivian Automotive Inc"));
-    m_data.append(new StockListData("SIRI", "Sirius XM Holdings Inc"));
-    m_data.append(new StockListData("LCID", "Lucid Group Inc"));
-    for (auto stock : m_data) {
-        stock->model->setParent(this);
-    }
+    m_data.append(StockListData("QTCOM.HE", "Qt Group", this));
+    m_data.append(StockListData("AAPL", "Apple Inc", this));
+    m_data.append(StockListData("MSFT", "Microsoft Corp", this));
+    m_data.append(StockListData("AMZN", "Amazon.com Inc", this));
+    m_data.append(StockListData("NVDA", "NVIDIA Corp", this));
+    m_data.append(StockListData("TSLA", "Tesla Inc", this));
+    m_data.append(StockListData("GOOG", "Alphabet Inc", this));
+    m_data.append(StockListData("GOOGL", "Alphabet Inc", this));
+    m_data.append(StockListData("META", "Meta Platforms Inc", this));
+    m_data.append(StockListData("AVGO", "Broadcom Inc", this));
+    m_data.append(StockListData("PEP", "PepsiCo Inc", this));
+    m_data.append(StockListData("COST", "Costco Wholesale Corp", this));
+    m_data.append(StockListData("CSCO", "Cisco Systems Inc", this));
+    m_data.append(StockListData("TMUS", "T-Mobile US Inc", this));
+    m_data.append(StockListData("CMCSA", "Comcast Corp", this));
+    m_data.append(StockListData("TXN", "Texas Instruments Inc", this));
+    m_data.append(StockListData("ADBE", "Adobe Inc", this));
+    m_data.append(StockListData("NFLX", "Netflix Inc", this));
+    m_data.append(StockListData("QCOM", "QUALCOMM Inc", this));
+    m_data.append(StockListData("HON", "Honeywell International Inc", this));
+    m_data.append(StockListData("AMD", "Advanced Micro Devices Inc", this));
+    m_data.append(StockListData("AMGN", "Amgen Inc", this));
+    m_data.append(StockListData("SBUX", "Starbucks Corp", this));
+    m_data.append(StockListData("INTU", "Intuit Inc", this));
+    m_data.append(StockListData("INTC", "Intel Corp", this));
+    m_data.append(StockListData("GILD", "Gilead Sciences Inc", this));
+    m_data.append(StockListData("AMAT", "Applied Materials Inc", this));
+    m_data.append(StockListData("BKNG", "Booking Holdings Inc", this));
+    m_data.append(StockListData("ADI", "Analog Devices Inc", this));
+    m_data.append(StockListData("ADP", "Automatic Data Processing Inc", this));
+    m_data.append(StockListData("MDLZ", "Mondelez International Inc", this));
+    m_data.append(StockListData("PYPL", "PayPal Holdings Inc", this));
+    m_data.append(StockListData("REGN", "Regeneron Pharmaceuticals Inc", this));
+    m_data.append(StockListData("ISRG", "Intuitive Surgical Inc", this));
+    m_data.append(StockListData("VRTX", "Vertex Pharmaceuticals Inc", this));
+    m_data.append(StockListData("LRCX", "Lam Research Corp", this));
+    m_data.append(StockListData("CSX", "CSX Corp", this));
+    m_data.append(StockListData("MU", "Micron Technology Inc", this));
+    m_data.append(StockListData("MELI", "MercadoLibre Inc", this));
+    m_data.append(StockListData("ATVI", "Activision Blizzard Inc", this));
+    m_data.append(StockListData("CHTR", "Charter Communications Inc", this));
+    m_data.append(StockListData("PANW", "Palo Alto Networks Inc", this));
+    m_data.append(StockListData("SNPS", "Synopsys Inc", this));
+    m_data.append(StockListData("ASML", "ASML Holding NV", this));
+    m_data.append(StockListData("KLAC", "KLA Corp", this));
+    m_data.append(StockListData("MAR", "Marriott International Inc/MD", this));
+    m_data.append(StockListData("MRNA", "Moderna Inc", this));
+    m_data.append(StockListData("MNST", "Monster Beverage Corp", this));
+    m_data.append(StockListData("CDNS", "Cadence Design Systems Inc", this));
+    m_data.append(StockListData("ORLY", "O'Reilly Automotive Inc", this));
+    m_data.append(StockListData("ABNB", "Airbnb Inc", this));
+    m_data.append(StockListData("KDP", "Keurig Dr Pepper Inc", this));
+    m_data.append(StockListData("KHC", "Kraft Heinz Co/The", this));
+    m_data.append(StockListData("FTNT", "Fortinet Inc", this));
+    m_data.append(StockListData("NXPI", "NXP Semiconductors NV", this));
+    m_data.append(StockListData("AEP", "American Electric Power Co Inc", this));
+    m_data.append(StockListData("MCHP", "Microchip Technology Inc", this));
+    m_data.append(StockListData("CTAS", "Cintas Corp", this));
+    m_data.append(StockListData("ADSK", "Autodesk Inc", this));
+    m_data.append(StockListData("DXCM", "Dexcom Inc", this));
+    m_data.append(StockListData("PDD", "PDD Holdings Inc ADR", this));
+    m_data.append(StockListData("EXC", "Exelon Corp", this));
+    m_data.append(StockListData("AZN", "AstraZeneca PLC ADR", this));
+    m_data.append(StockListData("PAYX", "Paychex Inc", this));
+    m_data.append(StockListData("IDXX", "IDEXX Laboratories Inc", this));
+    m_data.append(StockListData("BIIB", "Biogen Inc", this));
+    m_data.append(StockListData("MRVL", "Marvell Technology Inc", this));
+    m_data.append(StockListData("ROST", "Ross Stores Inc", this));
+    m_data.append(StockListData("WBD", "Warner Bros Discovery Inc", this));
+    m_data.append(StockListData("LULU", "Lululemon Athletica Inc", this));
+    m_data.append(StockListData("PCAR", "PACCAR Inc", this));
+    m_data.append(StockListData("ODFL", "Old Dominion Freight Line Inc", this));
+    m_data.append(StockListData("WDAY", "Workday Inc", this));
+    m_data.append(StockListData("GFS", "GLOBALFOUNDRIES Inc", this));
+    m_data.append(StockListData("XEL", "Xcel Energy Inc", this));
+    m_data.append(StockListData("CPRT", "Copart Inc", this));
+    m_data.append(StockListData("CTSH", "Cognizant Technology Solutions Corp", this));
+    m_data.append(StockListData("DLTR", "Dollar Tree Inc", this));
+    m_data.append(StockListData("ILMN", "Illumina Inc", this));
+    m_data.append(StockListData("WBA", "Walgreens Boots Alliance Inc", this));
+    m_data.append(StockListData("BKR", "Baker Hughes Co", this));
+    m_data.append(StockListData("EA", "Electronic Arts Inc", this));
+    m_data.append(StockListData("FAST", "Fastenal Co", this));
+    m_data.append(StockListData("CSGP", "CoStar Group Inc", this));
+    m_data.append(StockListData("ENPH", "Enphase Energy Inc", this));
+    m_data.append(StockListData("VRSK", "Verisk Analytics Inc", this));
+    m_data.append(StockListData("ANSS", "ANSYS Inc", this));
+    m_data.append(StockListData("CRWD", "Crowdstrike Holdings Inc", this));
+    m_data.append(StockListData("EBAY", "eBay Inc", this));
+    m_data.append(StockListData("FANG", "Diamondback Energy Inc", this));
+    m_data.append(StockListData("CEG", "Constellation Energy Corp", this));
+    m_data.append(StockListData("TEAM", "Atlassian Corp", this));
+    m_data.append(StockListData("ALGN", "Align Technology Inc", this));
+    m_data.append(StockListData("DDOG", "Datadog Inc", this));
+    m_data.append(StockListData("JD", "JD.com Inc ADR", this));
+    m_data.append(StockListData("ZS", "Zscaler Inc", this));
+    m_data.append(StockListData("ZM", "Zoom Video Communications Inc", this));
+    m_data.append(StockListData("RIVN", "Rivian Automotive Inc", this));
+    m_data.append(StockListData("SIRI", "Sirius XM Holdings Inc", this));
+    m_data.append(StockListData("LCID", "Lucid Group Inc", this));
 }
 
 int StockListModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return m_data.size();
 }
 
 int StockListModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return 8;
 }
 QVariant StockListModel::data(const QModelIndex &index, int role) const
@@ -126,21 +125,21 @@ QVariant StockListModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Roles::idRole:
-        return m_data[index.row()]->stockId;
+        return m_data[index.row()].stockId;
     case Roles::nameRole:
-        return m_data[index.row()]->name;
+        return m_data[index.row()].name;
     case Roles::favoriteRole:
-        return m_data[index.row()]->favorite;
+        return m_data[index.row()].favorite;
     case Roles::dateRole:
-        return m_data[index.row()]->model->getQuoteTime(0);
+        return m_data[index.row()].model->quoteTime(0);
     case Roles::priceRole:
-        return m_data[index.row()]->model->getPrice(0);
+        return m_data[index.row()].model->price(0);
     case Roles::changeRole:
-        return m_data[index.row()]->model->getChange(0);
+        return m_data[index.row()].model->change(0);
     case Roles::changePercentageRole:
-        return m_data[index.row()]->model->getChangePercentage(0);
+        return m_data[index.row()].model->changePercentage(0);
     case Roles::filterRole:
-        return m_data[index.row()]->stockId + " " + m_data[index.row()]->name;
+        return m_data[index.row()].stockId + " " + m_data.at(index.row()).name;
     default:
         return QVariant();
     }
@@ -162,12 +161,12 @@ QHash<int, QByteArray> StockListModel::roleNames() const
     return roles;
 }
 
-void StockListModel::updateDetails(const QList<QuoteData *> &data)
+void StockListModel::updateDetails(const QList<QuoteData> &data)
 {
     beginResetModel();
     for (int i = 0; i < m_data.size(); ++i) {
-        m_data.at(i)->model->appendQuote(data.at(i));
-        m_data.at(i)->favorite = m_favorites.contains(m_data.at(i)->stockId);
+        m_data.at(i).model->appendQuote(data.at(i));
+        m_data[i].favorite = m_favorites.contains(m_data.at(i).stockId);
     }
     endResetModel();
 }
@@ -175,14 +174,14 @@ void StockListModel::updateDetails(const QList<QuoteData *> &data)
 void StockListModel::resetQuotes()
 {
     for (int i = 0; i < m_data.size(); ++i) {
-        m_data.at(i)->model->resetQuote();
+        m_data.at(i).model->resetQuote();
     }
 }
 
 void StockListModel::addFavorite(const QString &stockId)
 {
     for (int i = 0; i < m_data.size(); i++) {
-        StockListData *stock = m_data[i];
+        StockListData *stock = &m_data[i];
         if (stock->stockId == stockId) {
             beginResetModel();
             stock->favorite = true;
@@ -194,7 +193,7 @@ void StockListModel::addFavorite(const QString &stockId)
 void StockListModel::removeFavorite(const QString &stockId)
 {
     for (int i = 0; i < m_data.size(); i++) {
-        StockListData *stock = m_data[i];
+        StockListData *stock = &m_data[i];
         if (stock->stockId == stockId) {
             beginResetModel();
             stock->favorite = false;
@@ -207,7 +206,7 @@ void StockListModel::removeFavorite(const QString &stockId)
     }
 }
 
-StockModel *StockListModel::getStockModel(int index)
+StockModel *StockListModel::stockModel(int index) const
 {
-    return m_data[index]->model;
+    return m_data.at(index).model;
 }

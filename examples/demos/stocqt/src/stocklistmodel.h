@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 #ifndef STOCKLISTMODEL_H
 #define STOCKLISTMODEL_H
 
@@ -15,11 +16,11 @@ public:
     bool favorite = false;
     StockModel *model;
 
-    StockListData(QString stockId, QString name)
+    StockListData(const QString &stockId, const QString &name, QObject *parent = nullptr)
         : stockId(stockId)
         , name(name)
     {
-        model = new StockModel(stockId, name);
+        model = new StockModel(stockId, name, parent);
     };
 };
 
@@ -44,14 +45,14 @@ public:
     int columnCount(const QModelIndex &parent) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void updateDetails(const QList<QuoteData *> &data);
+    void updateDetails(const QList<QuoteData> &data);
     void addFavorite(const QString &stockId);
     void removeFavorite(const QString &stockId);
-    StockModel *getStockModel(int index);
+    StockModel *stockModel(int index) const;
     void resetQuotes();
 
 private:
-    QList<StockListData *> m_data;
+    QList<StockListData> m_data;
     QList<QString> m_favorites;
 };
 
