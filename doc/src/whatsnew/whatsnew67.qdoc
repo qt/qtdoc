@@ -21,6 +21,21 @@
         \li Applied these helper macros to \l QDate, \l QTime, \l QDateTime, \l QTimeZone, and
             \l qfloat16 classes.
         \li Added new class \l QAtomicScopedValueRollback.
+        \li Added \l Qt::Key_micro to eventually replace the misnamed Key_mu: it is
+            the micro sign U+00B5, not the Greek letter mu, U+03BC or U+039C.
+        \li \l{QLocale}'s name(), bcp47Name() and uiLanguages() now let callers
+            specify the separator to use between tags in names.
+        \li \l QLocale now localizes (in so far as it can) the time zone parts of
+            formatted datetimes.
+        \li Date (and datetime) parsing of two-digit years now allows the caller
+            to control the century within which those years are selected.
+        \li \l QCalendar now has a matchCenturyToWeekday(), to support the parsing
+            of two-digit years.
+        \li \l QDateTime now accepts TransitionResolution parameters, allowing
+            callers control over how time-zone transitions are resolved. The
+            default resolution of a datetime in a gap is now valid but its
+            time() and possibly date() now match what toMSecsSinceEpoch()
+            reports, rather than what was asked for.
     \endlist
 
     \section2 Qt Graphs Module
