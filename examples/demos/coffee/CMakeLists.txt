@@ -13,7 +13,7 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}")
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
 qt_standard_project_setup(REQUIRES 6.6)
 
-qt_add_executable(coffee
+qt_add_executable(coffeemachine
     main.cpp
 )
 
@@ -21,8 +21,8 @@ set_source_files_properties(Colors.qml PROPERTIES
     QT_QML_SINGLETON_TYPE TRUE
 )
 
-qt_add_qml_module(coffee
-    URI Coffee
+qt_add_qml_module(coffeemachine
+    URI demos.coffee
     QML_FILES
         ApplicationFlow.qml
         ApplicationFlowForm.ui.qml
@@ -65,19 +65,19 @@ qt_add_qml_module(coffee
         images/Ingredients/sugar.svg
 )
 
-set_target_properties(coffee PROPERTIES
+set_target_properties(coffeemachine PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(coffee PRIVATE
+target_link_libraries(coffeemachine PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
 )
 
-install(TARGETS coffee
+install(TARGETS coffeemachine
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
