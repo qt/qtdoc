@@ -25,11 +25,8 @@
     such as API requests and favoriting stocks. It implements a custom APIHandler class for fetching the online data.
 
     \quotefromfile demos/stocqt/src/apihandler.cpp
-    \skipto getStockHistory
-    \printuntil doc
-    \dots 8
-    \skipto QList
-    \printuntil }
+    \skipto stockHistory
+    \printuntil deleteLater
 
     The application uses the ObjectModel type to access visual data models that it depends on.
 
