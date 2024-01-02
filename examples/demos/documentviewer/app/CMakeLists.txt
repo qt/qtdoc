@@ -62,7 +62,7 @@ if(TARGET Qt6::PrintSupport)
     add_compile_definitions(QT_DOCUMENTVIEWER_PRINTSUPPORT)
 endif()
 
-install(TARGETS documentviewer
+install(TARGETS documentviewer abstractviewer
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
