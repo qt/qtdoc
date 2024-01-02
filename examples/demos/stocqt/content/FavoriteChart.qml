@@ -19,7 +19,7 @@ Rectangle {
         const priceModels = [priceModel1, priceModel2, priceModel3, priceModel4, priceModel5]
         priceModels.forEach((model => model.clear()))
         volumeModel.clear()
-        for (var i = 0; i < StockEngine.favoritesModel.getCount(); i++) {
+        for (var i = 0; i < StockEngine.favoritesModel.count(); i++) {
             updateStock(i, priceModels[i])
         }
     }
@@ -32,11 +32,11 @@ Rectangle {
                                     ["6M",180]])
         var tf = timeFrames.get(timeFrame)
 
-        if (StockEngine.favoritesModel.getCount() === 0) {
+        if (StockEngine.favoritesModel.count() === 0) {
             endDate = new Date()
         } else {
-            var stock = StockEngine.favoritesModel.getAtIndex(0)
-            endDate =  StockEngine.getUseLiveData()? new Date() : new Date(stock.getHistoryDate(0) + 1)
+            var stock = StockEngine.favoritesModel.atIndex(0)
+            endDate =  StockEngine.useLiveData()? new Date() : new Date(stock.historyDate(0) + 1)
         }
 
         startDate = new Date(endDate.getTime())
@@ -45,26 +45,26 @@ Rectangle {
     }
 
     function updateStock(index, priceModel){
-        var stock = StockEngine.favoritesModel.getAtIndex(index)
+        var stock = StockEngine.favoritesModel.atIndex(index)
         var startPoint = stock.indexOf(startDate)
         var totalPoints = stock.historyCount()
         var width = startPoint / 30
 
         for (var i = 0; i < totalPoints; i++) {
-            var epochInDays = stock.getHistoryDate(i, false) / 86400
+            var epochInDays = stock.historyDate(i, false) / 86400
             priceModel.append({"column": epochInDays,
                                   "row": index * width,
-                                  "close": stock.getClose(i)})
+                                  "close": stock.closePrice(i)})
             priceModel.append({"column": epochInDays,
                                   "row": (index * width) + width - (width / 10),
-                                  "close": stock.getClose(i)})
+                                  "close": stock.closePrice(i)})
         }
 
         for (var j = startPoint - 1; j >= 0; j--){
-            var date = new Date(stock.getHistoryDate(j)).toLocaleDateString(Locale.ShortFormat)
-            volumeModel.append({"row": stock.getStockId(),
+            var date = new Date(stock.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
+            volumeModel.append({"row": stock.stockId(),
                                    "column": date,
-                                   "volume": stock.getVolume(j) / 1000000})
+                                   "volume": stock.volume(j) / 1000000})
         }
 
         priceGraph.axisX.min = (startDate.getTime() / 1000).toFixed() / 86400

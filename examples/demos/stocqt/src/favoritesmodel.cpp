@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 #include "favoritesmodel.h"
 
 FavoritesModel::FavoritesModel() {}
@@ -10,32 +11,32 @@ void FavoritesModel::addFavorite(StockModel *stock)
     emit onFavoritesChanged(m_favorites.size() >= 5);
 }
 
-void FavoritesModel::removeFavorite(const QString stockId)
+void FavoritesModel::removeFavorite(const QString &stockId)
 {
     for (int i = 0; i < m_favorites.size(); ++i) {
-        if (m_favorites.at(i)->getStockId() == stockId) {
+        if (m_favorites.at(i)->stockId() == stockId) {
             m_favorites.removeAt(i);
             emit onFavoritesChanged(false);
         }
     }
 }
 
-QList<StockModel *> FavoritesModel::getFavorites()
+QList<StockModel *> FavoritesModel::favorites() const
 {
     return m_favorites;
 }
 
-int FavoritesModel::getCount()
+int FavoritesModel::count() const
 {
     return m_favorites.size();
 }
 
-QColor FavoritesModel::getColor(int index)
+QColor FavoritesModel::color(int index) const
 {
-    return m_colors[index];
+    return m_colors.at(index);
 }
 
-StockModel *FavoritesModel::getAtIndex(int index)
+StockModel *FavoritesModel::atIndex(int index) const
 {
     if (index < 0 || index > m_favorites.count()) {
         qDebug() << "invalid index: " << index;

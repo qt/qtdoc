@@ -19,14 +19,9 @@ Rectangle {
     }
 
     function update() {
-        var favorited = false
-        for (var i = 0; i < StockEngine.favoritesModel.getCount(); i++) {
-            var stock = StockEngine.favoritesModel.getAtIndex(i)
-            if (stock.getStockId() === stockId)
-                favorited = true
-        }
+
         if (mouseArea && dimmer) {
-            if (favorited){
+            if (favorite){
                 mouseArea.enabled = false
                 dimmer.visible = true
             } else {
@@ -120,7 +115,10 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: StockEngine.addFavorite(stockId)
+        onClicked: {
+            addPopup.close()
+            StockEngine.addFavorite(stockId)
+        }
     }
 
     Rectangle {
