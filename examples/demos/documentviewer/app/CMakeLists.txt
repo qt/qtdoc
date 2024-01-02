@@ -50,6 +50,10 @@ if(TARGET pdfviewer)
     list(APPEND plugin_targets pdfviewer)
 endif()
 
+if (TARGET q3dviewer)
+    list(APPEND plugin_targets q3dviewer)
+endif()
+
 if(QT6_IS_SHARED_LIBS_BUILD)
     add_dependencies(documentviewer ${plugin_targets})
 else()
