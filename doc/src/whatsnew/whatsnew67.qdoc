@@ -296,6 +296,16 @@
             and QSvgWidget. The new features are enabled by default.
     \endlist
 
+    \section1 Tools
+
+    \section2 Qt Designer
+    \list
+        \li Qt Designer now writes fully qualified enumeration values to the
+            \c .ui files in order to support scoped enumerations and Qt for
+            Python. Support for reading these values has been back-ported to
+            6.6.1 and 6.5.4.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Desktop Platforms
