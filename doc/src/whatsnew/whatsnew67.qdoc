@@ -150,6 +150,14 @@
             along with a parent property on Window, to allow setting a visual parent of a Window.
         \li The \l {Item::}{focusReason} and \l {Item::}{focusPolicy}
             properties of \l Control were moved to \l Item.
+        \li Added \l QQuickRhiItem as a modern alternative to
+            \l QQuickFramebufferObject. This allows creating custom QQuickItem objects
+            that render 3D graphics via any hardware accelerated graphics API
+            supported by Qt's rendering hardware interface, i.e. OpenGL, Vulkan,
+            Direct3D, or Metal.
+        \li Added a \l{QQuickRenderControl RHI Example}{new QQuickRenderControl example} that uses QRhi and
+            is thus fully portable and works with all the supported 3D APIs. This shows how to redirect
+            the Qt Quick content into a texture in a cross-platform manner.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -193,7 +201,7 @@
                  \li QSSGRenderExtension - Backend implementation for Render Extensions.
                  \li QSSGRenderContextInterface - Aggregate class of the sub-systems used internally
                      by QtQuick3D.
-                 \li QSSGRhiContext, QSSGRhiGraphicsPipelineState, QSSGRhiSamplerDescription - QRhi 
+                 \li QSSGRhiContext, QSSGRhiGraphicsPipelineState, QSSGRhiSamplerDescription - QRhi
                      convenience class used By QtQuick3D.
                  \li QSSGFrameData - Per frame data used by render extensions.
                  \li QSSGRenderHelpers, QSSGModelHelpers, QSSGCameraHelpers, and
