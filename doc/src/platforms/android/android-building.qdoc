@@ -104,11 +104,11 @@
     preferably at the end of \c{~/.profile}:
 
     \badcode
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
     export PATH=$JAVA_HOME/bin:$PATH
     \endcode
 
-    \note JDK 11 or earlier must be used to properly build Qt for Android.
+    \note \note As of Qt 5.15.8, JDK 11 or later is supported for Qt for Android.
 
     \note We use \l{OpenJDK} here, but you can also use other JDK alternatives
     such as \l{AdoptOpenJDK}.
@@ -189,8 +189,6 @@
     \endcode
 
     The command should list javac.exe under the path \e {<JDK_ROOT>} first.
-
-    \note JDK 11 or earlier must be used to properly build Qt for Android.
 
     \note Qt for Android does not support building with Microsoft Visual C++ (MSVC),
     we only support building with MinGW.
