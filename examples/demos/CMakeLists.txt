@@ -47,5 +47,6 @@ endif()
 if(QT_FEATURE_ssl AND TARGET Qt6::WebSockets AND TARGET Qt6::Positioning AND TARGET Qt6::Location AND QT_FEATURE_zstd)
     qt_internal_add_example(lightningviewer)
 else()
-    message(WARNING "The Lightning Viewer Example requires Qt to be built with SSL")
+    message(WARNING "To build the Lightning Viewer Example, ensure the required features and modules are enabled: "
+                    "SSL, WebSocket, Positioning, Location, zstd")
 endif()
