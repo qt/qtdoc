@@ -56,10 +56,10 @@ void LightningProvider::onSocketMessageReceived(const QString &message)
     if (lonIter == object.constEnd())
         return;
 
-    QSharedPointer<LightningItemData> data{new LightningItemData{}};
-    data->timestamp = timeIter->toInteger() / 1000000;  // from 'ns' to 'ms'
-    data->latitude = latIter->toDouble();
-    data->longitude = lonIter->toDouble();
+    LightningItemData data;
+    data.timestamp = timeIter->toInteger() / 1000000;  // from 'ns' to 'ms'
+    data.latitude = latIter->toDouble();
+    data.longitude = lonIter->toDouble();
 
     emit dataReady(data);
 }

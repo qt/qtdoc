@@ -17,7 +17,7 @@ class LightningItemModel : public QAbstractListModel
 public:
     explicit LightningItemModel(QObject *parent = nullptr);
 
-    void insertData(QSharedPointer<LightningItemData> data);
+    void insertData(const LightningItemData &data);
     void getNearestStrikeInfo(const QGeoCoordinate &coordinate,
                               LastStrikeInfo *nearestStrikeInfo) const;
     void getLatestStrikeInfo(const QGeoCoordinate &searchCenter,
@@ -31,7 +31,7 @@ private:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
-    QList<QSharedPointer<LightningItemData>> m_data;
+    QList<LightningItemData> m_data;
 };
 
 #endif // LIGHTNINGITEMMODEL_H

@@ -42,10 +42,10 @@ private:
     long long getLastStrikeTime();
     double getLastStrikeDistance();
     double getLastStrikeDirection();
-    void updateDistanceTime(QSharedPointer<LightningItemData> data);
+    void updateDistanceTime(const LightningItemData &data);
 
 private slots:
-    void onDataReceived(QSharedPointer<LightningItemData> data);
+    void onDataReceived(const LightningItemData &data);
     void onUserPositionChanged(const QGeoPositionInfo &position);
 
 signals:
