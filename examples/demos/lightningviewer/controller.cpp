@@ -56,14 +56,14 @@ double Controller::getLastStrikeDirection()
     return (m_lastStrikeInfo && m_lastStrikeInfo->isValid()) ? m_lastStrikeInfo->direction : -1;
 }
 
-void Controller::updateDistanceTime(QSharedPointer<LightningItemData> data)
+void Controller::updateDistanceTime(const LightningItemData &data)
 {
     if (m_userLocation == nullptr)
         return;
 
-    LastStrikeInfo strikeInfo(data->getDistanceTo(*m_userLocation),
-                              data->timestamp,
-                              data->getDirectionFrom(*m_userLocation));
+    LastStrikeInfo strikeInfo(data.getDistanceTo(*m_userLocation),
+                              data.timestamp,
+                              data.getDirectionFrom(*m_userLocation));
     if (strikeInfo.distance > NOTIFICATION_RADIUS)
         return;
 
@@ -75,7 +75,7 @@ void Controller::updateDistanceTime(QSharedPointer<LightningItemData> data)
     emit lastStrikeInfoUpdated();
 }
 
-void Controller::onDataReceived(QSharedPointer<LightningItemData> data)
+void Controller::onDataReceived(const LightningItemData &data)
 {
     m_model->insertData(data);
 

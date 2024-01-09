@@ -29,7 +29,7 @@ private slots:
     void openSocket();
 
 signals:
-    void dataReady(QSharedPointer<LightningItemData> data);
+    void dataReady(const LightningItemData &data);
 
 private:
     QScopedPointer<QTimer> m_timer;

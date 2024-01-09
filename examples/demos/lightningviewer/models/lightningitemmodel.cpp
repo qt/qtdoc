@@ -35,7 +35,7 @@ LightningItemModel::LightningItemModel(QObject *parent)
 {
 }
 
-void LightningItemModel::insertData(QSharedPointer<LightningItemData> data)
+void LightningItemModel::insertData(const LightningItemData &data)
 {
     if (m_data.size() == HISTORY_SIZE) {
         beginRemoveRows(QModelIndex{}, 0, 0);
@@ -59,10 +59,10 @@ void LightningItemModel::getNearestStrikeInfo(const QGeoCoordinate &coordinate,
 
     for (auto it = m_data.cbegin(); it != m_data.cend(); ++it)
     {
-        const QSharedPointer<const LightningItemData> lightningData = *it;
+        const LightningItemData &lightningData = *it;
 
-        strikeInfo.distance = lightningData->getDistanceTo(coordinate);
-        strikeInfo.timestamp = lightningData->timestamp;
+        strikeInfo.distance = lightningData.getDistanceTo(coordinate);
+        strikeInfo.timestamp = lightningData.timestamp;
 
         if (strikeInfo < *nearestStrikeInfo)
             *nearestStrikeInfo = strikeInfo;
@@ -78,15 +78,15 @@ void LightningItemModel::getLatestStrikeInfo(const QGeoCoordinate &searchCenter,
 
     for (int index = m_data.size() - 1; index >= 0; --index)
     {
-        const QSharedPointer<const LightningItemData> lightningData = m_data[index];
+        const LightningItemData &lightningData = m_data[index];
 
-        const double distance = lightningData->getDistanceTo(searchCenter);
+        const double distance = lightningData.getDistanceTo(searchCenter);
         if (distance > searchRadius)
             continue;
 
         latestStrikeInfo->distance = distance;
-        latestStrikeInfo->timestamp = lightningData->timestamp;
-        latestStrikeInfo->direction = lightningData->getDirectionFrom(searchCenter);
+        latestStrikeInfo->timestamp = lightningData.timestamp;
+        latestStrikeInfo->direction = lightningData.getDirectionFrom(searchCenter);
         break;
     }
 }
@@ -111,15 +111,15 @@ QVariant LightningItemModel::data(const QModelIndex &index, int role) const
     if ((row < 0) or (m_data.size() <= row))
         return QVariant{};
 
-    QSharedPointer<LightningItemData> data = m_data[row];
+    const LightningItemData &data = m_data[row];
 
     switch (static_cast<Role>(role)) {
     case Role::Latitude:
-        return data->latitude;
+        return data.latitude;
     case Role::Longitude:
-        return data->longitude;
+        return data.longitude;
     case Role::Timestamp:
-        return data->timestamp;
+        return data.timestamp;
     default:
         break;
     }
