@@ -46,9 +46,9 @@ Window {
                 nameFilters: root.imageNameFilters
             }
             delegate: Rectangle {
-                required property string fileModified
+                required property date fileModified
                 required property string fileName
-                required property string fileUrl
+                required property url fileUrl
                 id: photoFrame
                 objectName: "frame-" + fileName
                 width: image.width * (1 + 0.10 * image.height / image.width)
