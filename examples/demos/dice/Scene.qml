@@ -12,8 +12,12 @@ Item {
     property real settingsDynamicFriction: 0.5
     property real settingsRestitution: 0.5
 
-    function spawnDice(numberOfDice, rollForce) {
-        diceSpawner.spawnDice(numberOfDice, physicsMaterial, rollForce)
+    function spawnDice(numberOfDice, rollForce, diceWidth) {
+        diceSpawner.spawnDice(numberOfDice, physicsMaterial, rollForce, diceWidth)
+    }
+
+    function setDiceWidth(diceWidth) {
+        diceSpawner.setDiceWidth(diceWidth);
     }
 
     PhysicsWorld {
