@@ -27,7 +27,7 @@ ApplicationWindow {
                 force.x *= multiplier
                 force.y *= multiplier
                 force.z *= multiplier
-                scene.spawnDice(diceSlider.value, force)
+                scene.spawnDice(diceSlider.value, force, diceSize.value)
             }
             previousForce = force.length()
         }
@@ -81,7 +81,7 @@ ApplicationWindow {
             }
             onClicked: {
                 tapLabel.hide()
-                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0))
+                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0), diceSize.value)
             }
         }
 
@@ -194,10 +194,10 @@ ApplicationWindow {
                 }
             }
 
-            // No. dice
+            // Number of dice
             RowLayout {
                 Label {
-                    text: qsTr("No. dice")
+                    text: qsTr("Number of dice")
                     Layout.fillWidth: true
                 }
             }
@@ -208,7 +208,24 @@ ApplicationWindow {
                 to: 10
                 value: 5
                 stepSize: 1
-                onValueChanged: scene.spawnDice(value, Qt.vector3d(0, 0, 0))
+                onValueChanged: scene.spawnDice(value, Qt.vector3d(0, 0, 0), diceSize.value)
+            }
+
+           // Dice size
+            RowLayout {
+                Label {
+                    text: qsTr("Dice size")
+                    Layout.fillWidth: true
+                }
+            }
+            Slider {
+                id: diceSize
+                focusPolicy: Qt.NoFocus
+                from: 1
+                to: 10
+                value: 2
+                stepSize: 1
+                onValueChanged: scene.setDiceWidth(value)
             }
 
             // Throw dice
@@ -217,7 +234,8 @@ ApplicationWindow {
                 Layout.alignment: Qt.AlignHCenter
                 text: qsTr("Throw dice")
                 onClicked: scene.spawnDice(diceSlider.value,
-                                           Qt.vector3d(0, 0, 0))
+                                           Qt.vector3d(0, 0, 0),
+                                           diceSize.value)
             }
         }
     }
