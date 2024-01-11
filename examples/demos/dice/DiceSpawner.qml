@@ -15,13 +15,14 @@ Node {
         return Math.random() * (max - min) + min
     }
 
-    function createDie(position, physicsMaterial, rollForce) {
+    function createDie(position, physicsMaterial, rollForce, diceWidth) {
         let rotation = Qt.vector3d(randomInRange(0, 360),
                                    randomInRange(0, 360), randomInRange(0, 360))
         let settings = {
             "position": position,
             "eulerRotation": rotation,
-            "physicsMaterial": physicsMaterial
+            "physicsMaterial": physicsMaterial,
+            "diceWidth": diceWidth
         }
         let die = dieComponent.createObject(shapeSpawner, settings)
         if (die === null) {
@@ -36,7 +37,7 @@ Node {
         loops: 0
         source: "sounds/rolling.wav"
     }
-    function spawnDice(numberOfDice, physicsMaterial, rollForce) {
+    function spawnDice(numberOfDice, physicsMaterial, rollForce, diceWidth) {
         if (allAtRest()) {
             reset()
             rollSound.play()
@@ -46,7 +47,7 @@ Node {
                 let initialPosition = Qt.vector3d(0.11 * Math.cos(
                                                       index / degrees45),
                                                   index * 2.1, 0)
-                createDie(initialPosition, physicsMaterial, rollForce)
+                createDie(initialPosition, physicsMaterial, rollForce, diceWidth)
             }
         }
     }
@@ -64,5 +65,9 @@ Node {
                           atRest &= die.atRest
                       })
         return atRest
+    }
+
+    function setDiceWidth(diceWidth) {
+        dices.forEach(die => { die.diceWidth = diceWidth; })
     }
 }
