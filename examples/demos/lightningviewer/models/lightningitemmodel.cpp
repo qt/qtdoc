@@ -119,7 +119,7 @@ QVariant LightningItemModel::data(const QModelIndex &index, int role) const
     case Role::Longitude:
         return data.longitude;
     case Role::Timestamp:
-        return data.timestamp;
+        return data.timestamp.count();
     default:
         break;
     }

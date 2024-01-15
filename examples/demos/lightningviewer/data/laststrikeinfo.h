@@ -4,15 +4,17 @@
 #ifndef LASTSTRIKEINFO_H
 #define LASTSTRIKEINFO_H
 
+#include <chrono>
+
 
 struct LastStrikeInfo
 {
     double distance {-1};
-    long long timestamp {0};
+    std::chrono::duration<int> timestamp {0};
     double direction {0};
 
     LastStrikeInfo() { }
-    inline LastStrikeInfo(double distance, long long timestamp, double direction);
+    inline LastStrikeInfo(double distance, std::chrono::duration<int> timestamp, double direction);
     inline LastStrikeInfo(const LastStrikeInfo &other);
 
     bool isValid() const { return !(distance < 0.0); }
@@ -21,7 +23,9 @@ struct LastStrikeInfo
 };
 
 
-LastStrikeInfo::LastStrikeInfo(double distance, long long timestamp, double direction)
+LastStrikeInfo::LastStrikeInfo(double distance,
+                               std::chrono::duration<int> timestamp,
+                               double direction)
     : distance(distance)
     , timestamp(timestamp)
     , direction(direction)
