@@ -8,6 +8,8 @@
 #include <QTimer>
 #include <QWebSocket>
 
+#define SECONDS_FROM_NS(ns) std::chrono::duration<int>{(ns) / 1000000000}
+
 
 namespace {
 constexpr auto REQUEST_MSG = "{\"action\": \"simulatelightningdata\"}";
@@ -57,7 +59,7 @@ void LightningProvider::onSocketMessageReceived(const QString &message)
         return;
 
     LightningItemData data;
-    data.timestamp = timeIter->toInteger() / 1000000;  // from 'ns' to 'ms'
+    data.timestamp = SECONDS_FROM_NS(timeIter->toInteger());
     data.latitude = latIter->toDouble();
     data.longitude = lonIter->toDouble();
 

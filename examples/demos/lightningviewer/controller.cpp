@@ -41,9 +41,10 @@ QAbstractItemModel *Controller::getModel()
     return m_model.get();
 }
 
-long long Controller::getLastStrikeTime()
+int Controller::getLastStrikeTime()
 {
-    return (m_lastStrikeInfo && m_lastStrikeInfo->isValid()) ? m_lastStrikeInfo->timestamp : -1;
+    return (m_lastStrikeInfo && m_lastStrikeInfo->isValid()) ? m_lastStrikeInfo->timestamp.count()
+                                                             : -1;
 }
 
 double Controller::getLastStrikeDistance()

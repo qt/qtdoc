@@ -25,7 +25,7 @@ class Controller : public QObject
     Q_PROPERTY(double lastStrikeDistance
                    READ getLastStrikeDistance
                        NOTIFY lastStrikeInfoUpdated FINAL)
-    Q_PROPERTY(long long lastStrikeTime
+    Q_PROPERTY(int lastStrikeTime
                    READ getLastStrikeTime
                        NOTIFY lastStrikeInfoUpdated FINAL)
     Q_PROPERTY(double lastStrikeDirection
@@ -39,7 +39,7 @@ public:
     QAbstractItemModel *getModel();
 
 private:
-    long long getLastStrikeTime();
+    int getLastStrikeTime();
     double getLastStrikeDistance();
     double getLastStrikeDirection();
     void updateDistanceTime(const LightningItemData &data);
