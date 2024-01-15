@@ -10,6 +10,7 @@ Node {
     id: shapeSpawner
     property var dices: []
     property var dieComponent: Qt.createComponent("PhysicalDie.qml")
+    property bool justSpawned: false
 
     function randomInRange(min, max) {
         return Math.random() * (max - min) + min
@@ -38,7 +39,8 @@ Node {
         source: "sounds/rolling.wav"
     }
     function spawnDice(numberOfDice, physicsMaterial, rollForce, diceWidth) {
-        if (allAtRest()) {
+        if (!justSpawned && allAtRest()) {
+            justSpawned = true;
             reset()
             rollSound.play()
 
@@ -49,6 +51,18 @@ Node {
                                                   index * 2.1, 0)
                 createDie(initialPosition, physicsMaterial, rollForce, diceWidth)
             }
+            spawnTimer.start()
+        }
+    }
+
+    Timer {
+        id: spawnTimer
+        interval: 500
+        running: false
+        repeat: false
+        onRunningChanged: {
+            if (!running)
+                shapeSpawner.justSpawned = false
         }
     }
 
