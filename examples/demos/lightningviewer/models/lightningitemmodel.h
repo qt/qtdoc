@@ -13,6 +13,7 @@ class LastStrikeInfo;
 class LightningItemModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(LightningItemModel)
 
 public:
     explicit LightningItemModel(QObject *parent = nullptr);
