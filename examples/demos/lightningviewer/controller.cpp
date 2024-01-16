@@ -78,6 +78,7 @@ void Controller::onUserPositionChanged(const QGeoPositionInfo &position)
 
     m_userLocation = newCoordinate;
 
+    m_lastStrikeInfo.invalidate();
     m_model.getLatestStrikeInfo(m_userLocation, NOTIFICATION_RADIUS, &m_lastStrikeInfo);
 
     emit lastStrikeInfoUpdated();
