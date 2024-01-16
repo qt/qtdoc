@@ -16,6 +16,7 @@ struct LastStrikeInfo
     LastStrikeInfo() = default;
     inline LastStrikeInfo(double distance, std::chrono::duration<int> timestamp, double direction);
 
+    void invalidate() { distance = -1; }
     bool isValid() const { return !(distance < 0.0); }
     inline bool operator<(const LastStrikeInfo &other) const;
 };
