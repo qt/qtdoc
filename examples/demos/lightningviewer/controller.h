@@ -4,7 +4,9 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "data/laststrikeinfo.h"
 #include "models/lightningitemmodel.h"
+#include "providers/lightningprovider.h"
 
 #include <QObject>
 #include <QTime>
@@ -14,12 +16,10 @@ class QGeoPositionInfo;
 class QGeoPositionInfoSource;
 QT_END_NAMESPACE
 
-class LightningProvider;
-struct LastStrikeInfo;
-
 class Controller : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(Controller)
 
     Q_PROPERTY(QAbstractItemModel* model READ getModel NOTIFY modelUpdated FINAL)
     Q_PROPERTY(double lastStrikeDistance
@@ -53,11 +53,12 @@ signals:
     void modelUpdated();
 
 private:
-    QScopedPointer<LastStrikeInfo> m_lastStrikeInfo;
-    QScopedPointer<LightningItemModel> m_model;
-    QScopedPointer<LightningProvider> m_provider;
-    QScopedPointer<QGeoPositionInfoSource> m_sourcePosition;
-    QScopedPointer<QGeoCoordinate> m_userLocation;
+    LastStrikeInfo m_lastStrikeInfo;
+    LightningItemModel m_model;
+    LightningProvider m_provider;
+    std::unique_ptr<QGeoPositionInfoSource> m_sourcePosition;
+    QGeoCoordinate m_userLocation;
+
 };
 
 #endif // CONTROLLER_H

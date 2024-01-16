@@ -13,13 +13,11 @@ struct LastStrikeInfo
     std::chrono::duration<int> timestamp {0};
     double direction {0};
 
-    LastStrikeInfo() { }
+    LastStrikeInfo() = default;
     inline LastStrikeInfo(double distance, std::chrono::duration<int> timestamp, double direction);
-    inline LastStrikeInfo(const LastStrikeInfo &other);
 
     bool isValid() const { return !(distance < 0.0); }
     inline bool operator<(const LastStrikeInfo &other) const;
-    inline void operator=(const LastStrikeInfo &other);
 };
 
 
@@ -29,10 +27,6 @@ LastStrikeInfo::LastStrikeInfo(double distance,
     : distance(distance)
     , timestamp(timestamp)
     , direction(direction)
-{ }
-
-LastStrikeInfo::LastStrikeInfo(const LastStrikeInfo &other)
-    : LastStrikeInfo(other.distance, other.timestamp, other.direction)
 { }
 
 bool LastStrikeInfo::operator<(const LastStrikeInfo &other) const
@@ -50,13 +44,6 @@ bool LastStrikeInfo::operator<(const LastStrikeInfo &other) const
         return false;
 
     return timestamp > other.timestamp;
-}
-
-void LastStrikeInfo::operator=(const LastStrikeInfo &other)
-{
-    distance = other.distance;
-    timestamp = other.timestamp;
-    direction = other.direction;
 }
 
 #endif // LASTSTRIKEINFO_H
