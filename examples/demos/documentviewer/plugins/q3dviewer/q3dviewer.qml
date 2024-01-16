@@ -53,7 +53,7 @@ Rectangle {
                 }
             ]
 
-            function handleBoundsChanged() {
+            function handleBoundsChanged(bounds) {
                 let scaleF = 1/bounds.maximum.plus(bounds.minimum).length()
                 scale = Qt.vector3d(scaleF, scaleF, scaleF)
                 position = bounds.maximum.plus(bounds.minimum).times(-0.5 * scaleF)
@@ -65,13 +65,14 @@ Rectangle {
                 RuntimeLoader {
                     id: loader
                     source: window.fileName
-
-                    onBoundsChanged: { displayModel.handleBoundsChanged() }
+                    onBoundsChanged: { displayModel.handleBoundsChanged(loader.bounds) }
                 }
             }
 
             onBoundsChanged: {
-                if (window.isMesh) { displayModel.handleBoundsChanged() }
+                if (window.isMesh) {
+                    displayModel.handleBoundsChanged(displayModel.bounds)
+                }
             }
         }
 
