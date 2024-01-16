@@ -90,11 +90,16 @@
     an extended period. Such additional releases are called Long-Term Support (LTS) releases,
     and the minor Qt version is said to be an LTS version. While the initial patch releases of such
     an LTS version are also available to open-source users, immediate access to LTS releases
-    is limited to commercial customers of The Qt Company.
+    is limited to commercial customers of The Qt Company, under the
+    \l{Qt Licensing}{commercial license}.
 
     Typically, every third minor Qt version gets additional LTS releases. The bug fixes
     and security updates provided in such releases, as well as the longer support period,
     make LTS versions a good choice for developing bigger applications.
+
+    Note that, for LTS releases, the \l{Qt WebEngine} module is treated differently: Due to parts
+    of it being only available under LGPL, the Qt WebEngine code remains available under its
+    \l{Qt WebEngine Licensing}{default licenses}.
 
     \section1 Commercial support
 
