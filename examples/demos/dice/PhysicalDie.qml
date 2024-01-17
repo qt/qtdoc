@@ -10,7 +10,7 @@ DynamicRigidBody {
     property bool atRest: true
     receiveContactReports: true
     sendContactReports: true
-    onBodyContact: {
+    onBodyContact: (body, positions, impulses, normals) => {
         motionTimeout.start()
         atRest = false
         let volume = 0
