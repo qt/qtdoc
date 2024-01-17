@@ -642,7 +642,7 @@ Qt for WebAssembly supports the standard Qt startup approach, where the applicat
 creates a QApplication object and calls the exec function:
 
 \code
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
@@ -675,7 +675,7 @@ the top-level window and application objects.
 QApplication *g_app = nullptr;
 AppWindow *g_appWindow = nullptr;
 
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     g_app = new QApplication(argc, argv);
     g_appWindow = new AppWindow();
