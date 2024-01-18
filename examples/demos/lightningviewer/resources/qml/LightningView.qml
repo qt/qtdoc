@@ -25,6 +25,12 @@ ApplicationWindow {
         onRecenterRequested: mapView.recenter();
     }
 
+    Binding {
+        target: LightningController
+        property: "distanceTimeLayerEnabled"
+        value: actionsLayer.distanceLayerVisible
+    }
+
     Component.onCompleted: {
         if ((width < 200) || (height < 200)) {
             width = LightningViewConfig.appWidth

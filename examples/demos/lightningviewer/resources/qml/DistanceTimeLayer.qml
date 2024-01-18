@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 
 Item {
+    id: distanceTimeLayer
     readonly property color titleColor: "white"
     readonly property int titleFontWeight: 700
     readonly property int titleFontSize: 14
@@ -107,9 +108,10 @@ Item {
     Timer {
         id: time
         interval: 1000
-        running: true
+        running: distanceTimeLayer.visible
         repeat: true
         property int now: (new Date()) / 1000
         onTriggered: now = (new Date()) / 1000;
+        onRunningChanged: now = (new Date()) / 1000;
     }
 }
