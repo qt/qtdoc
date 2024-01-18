@@ -50,8 +50,27 @@ double Controller::getLastStrikeDirection()
     return m_lastStrikeInfo.isValid() ? m_lastStrikeInfo.direction : -1;
 }
 
+bool Controller::isDistanceTimeLayerEnabled() const
+{
+    return m_distanceTimeLayerEnabled;
+}
+
+void Controller::updateDistanceTime()
+{
+    if (!isDistanceTimeLayerEnabled())
+        return;
+
+    m_lastStrikeInfo.invalidate();
+    m_model.getLatestStrikeInfo(m_userLocation, NOTIFICATION_RADIUS, &m_lastStrikeInfo);
+
+    emit lastStrikeInfoUpdated();
+}
+
 void Controller::updateDistanceTime(const LightningItemData &data)
 {
+    if (!isDistanceTimeLayerEnabled())
+        return;
+
     LastStrikeInfo strikeInfo(data.getDistanceTo(m_userLocation),
                               data.timestamp,
                               data.getDirectionFrom(m_userLocation));
@@ -78,8 +97,15 @@ void Controller::onUserPositionChanged(const QGeoPositionInfo &position)
 
     m_userLocation = newCoordinate;
 
-    m_lastStrikeInfo.invalidate();
-    m_model.getLatestStrikeInfo(m_userLocation, NOTIFICATION_RADIUS, &m_lastStrikeInfo);
+    updateDistanceTime();
+}
 
-    emit lastStrikeInfoUpdated();
+void Controller::setDistanceTimeLayerEnabled(bool enabled)
+{
+    if (m_distanceTimeLayerEnabled == enabled)
+        return;
+    m_distanceTimeLayerEnabled = enabled;
+    emit distanceTimeLayerEnabledChanged();
+
+    updateDistanceTime();
 }
