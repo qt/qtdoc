@@ -488,21 +488,12 @@
 
     \section2 Building Qt Statically
 
-    To use this approach, you must start by installing a static version
-    of the Qt library:
+    To use this approach, you must start by building a _static_ version
+    of the Qt libraries. Follow the steps in
+    \l{Qt for Linux/X11 - Building from Source}, but remember to add
+    a \c{-static} argument to configure:
 
-    \snippet snippets/code/doc_src_deployment.qdoc 0
-
-    We specify the prefix so that we do not overwrite the existing Qt
-    installation. The example above only builds the Qt libraries,
-    i.e. the examples and Qt Designer will not be built.  When \c make
-    is done, you will find the Qt libraries in the \c /path/to/Qt/lib
-    directory.
-
-    When linking your application against static Qt libraries, note
-    that you might need to add more libraries to the \c LIBS line in
-    your project file. For more information, see the \l {Application
-    Dependencies} section.
+    \include snippets/code/doc_src_deployment.qdoc 0
 
     \section2 Linking the Application to the Static Version of Qt
 

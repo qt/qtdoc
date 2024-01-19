@@ -39,7 +39,7 @@ Rectangle {
                                     ["6M",180]])
 
         var tf = timeFrames.get(timeFrame)
-        endDate =  StockEngine.getUseLiveData()? new Date() : new Date(StockEngine.stockModel.getHistoryDate(0) + 1)
+        endDate =  StockEngine.useLiveData()? new Date() : new Date(StockEngine.stockModel.historyDate(0) + 1)
         startDate = new Date(endDate.getTime())
         startDate.setDate(endDate.getDate() -tf);
     }
@@ -51,18 +51,18 @@ Rectangle {
 
         var width = startPoint / 50
         for (var i = 0; i < totalPoints; i++) {
-            var epochInDays = StockEngine.stockModel.getHistoryDate(i, false) / 86400
-            appendSurfacePoint(openModel, width, epochInDays, StockEngine.stockModel.getOpen(i))
-            appendSurfacePoint(closeModel,width, epochInDays, StockEngine.stockModel.getClose(i))
-            appendSurfacePoint(highModel,width, epochInDays, StockEngine.stockModel.getHigh(i))
-            appendSurfacePoint(lowModel,width, epochInDays, StockEngine.stockModel.getLow(i))
+            var epochInDays = StockEngine.stockModel.historyDate(i, false) / 86400
+            appendSurfacePoint(openModel, width, epochInDays, StockEngine.stockModel.openPrice(i))
+            appendSurfacePoint(closeModel,width, epochInDays, StockEngine.stockModel.closePrice(i))
+            appendSurfacePoint(highModel,width, epochInDays, StockEngine.stockModel.highPrice(i))
+            appendSurfacePoint(lowModel,width, epochInDays, StockEngine.stockModel.lowPrice(i))
         }
 
         for (var j = startPoint - 1; j >= 0; j--) {
-            var date = new Date(StockEngine.stockModel.getHistoryDate(j)).toLocaleDateString(Locale.ShortFormat)
-            volumeModel.append({"row": StockEngine.stockModel.getName(),
+            var date = new Date(StockEngine.stockModel.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
+            volumeModel.append({"row": StockEngine.stockModel.name(),
                                    "column": date,
-                                   "value": StockEngine.stockModel.getVolume(j) / 1000000})
+                                   "value": StockEngine.stockModel.volume(j) / 1000000})
         }
 
         historyGraph.axisX.min = (startDate.getTime() / 1000).toFixed() / 86400
@@ -82,11 +82,11 @@ Rectangle {
         currentLiveIndex = liveSeries.selectedItem
         priceModel.clear()
         for (var i= 0; i < StockEngine.stockModel.quoteCount(); i++){
-            var date = new Date(StockEngine.stockModel.getQuoteTime(i))
+            var date = new Date(StockEngine.stockModel.quoteTime(i))
             var dayS = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
             priceModel.insert(0,{"row" : 0,
                                   "column": dayS,
-                                  "value" : StockEngine.stockModel.getPrice(i)});
+                                  "value" : StockEngine.stockModel.price(i)});
         }
     }
 

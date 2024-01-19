@@ -11,16 +11,16 @@
 
     \section2 Qt Core Module
     \list
-        \li Added QSpan, Qt's reimplementation of C++20 std::span.
-        \li Added Qt::strong_ordering, Qt::weak_ordering, and Qt::partial ordering
-            classes that are a C++17-compatible implementation of std::*_ordering
+        \li Added \l QSpan, Qt's reimplementation of C++20 std::span.
+        \li Added \l{Qt::strong_ordering}, \l{Qt::weak_ordering}, and \l{Qt::partial_ordering}
+            classes that are a C++17-compatible implementation of \c{std::*_ordering}
             classes.
         \li Added helper macros to conveniently implement relational operators in
             Qt classes. These macros provide operator<=>() in C++20 builds, and fall
             back to all six relational operators in C++17 builds.
-        \li Applied these helper macros to QDate, QTime, QDateTime, QTimeZone, and
-            qfloat16 classes.
-        \li Added new class QAtomicScopedValueRollback.
+        \li Applied these helper macros to \l QDate, \l QTime, \l QDateTime, \l QTimeZone, and
+            \l qfloat16 classes.
+        \li Added new class \l QAtomicScopedValueRollback.
     \endlist
 
     \section2 Qt Graphs Module
@@ -296,9 +296,9 @@
         \li Added support for some elements from SVG 1.1 standard. The elements
             are Mask, Symbol, Marker, Pattern, Filter, and Filter Primitives (feMerge,
             feColorMatrix, feGaussianBlur, feOffset, feComposite, feFlood)
-        \li Added QSvg::FeatureSet enum to enable or disable rendering of the
+        \li Added QtSvg::FeatureSet enum to enable or disable rendering of the
             new elements.
-        \li Added setters and getters for the QSvg::FeatureSet for QSvgRenderer
+        \li Added setters and getters for the QtSvg::FeatureSet for QSvgRenderer
             and QSvgWidget. The new features are enabled by default.
     \endlist
 

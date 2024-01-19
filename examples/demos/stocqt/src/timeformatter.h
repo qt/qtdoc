@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 #ifndef TIMEFORMATTER_H
 #define TIMEFORMATTER_H
 

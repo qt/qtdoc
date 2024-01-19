@@ -8,7 +8,7 @@
 
 struct LightningItemData
 {
-    long long timestamp;
+    std::chrono::duration<int> timestamp;
     double latitude;
     double longitude;
 

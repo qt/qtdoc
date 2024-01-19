@@ -3,39 +3,29 @@
 #include "stockmodel.h"
 #include <QDateTime>
 
-StockModel::StockModel(QString stockId, QString name)
-    : m_stockId(stockId)
+StockModel::StockModel(const QString &stockId, const QString &name, QObject *parent)
+    : QObject(parent)
+    , m_stockId(stockId)
     , m_name(name){};
 
-StockModel::~StockModel()
-{
-    while (!m_historyDataList.isEmpty()) {
-        delete m_historyDataList.takeFirst();
-    }
-    while (!m_quoteDataList.isEmpty()) {
-        delete m_quoteDataList.takeFirst();
-    }
-};
-void StockModel::addData(HistoryData *data)
+void StockModel::addData(HistoryData data)
 {
     m_historyDataList.append(data);
     emit historyDataReady();
 }
 
-void StockModel::updateHistory(QList<HistoryData *> data)
+void StockModel::updateHistory(const QList<HistoryData> &data)
 {
-    while (!m_historyDataList.isEmpty())
-        delete m_historyDataList.takeFirst();
     m_historyDataList = data;
     emit historyDataReady();
 }
 
-void StockModel::appendQuote(QuoteData *data)
+void StockModel::appendQuote(QuoteData data)
 {
     // check if already exists
     if (!m_quoteDataList.isEmpty()) {
-        const QuoteData *latest = m_quoteDataList.at(0);
-        if (latest->time == data->time) {
+        const QuoteData latest = m_quoteDataList.at(0);
+        if (latest.time == data.time) {
             return;
         }
     }
@@ -45,8 +35,7 @@ void StockModel::appendQuote(QuoteData *data)
 
 void StockModel::resetQuote()
 {
-    while (!m_quoteDataList.isEmpty())
-        delete m_quoteDataList.takeFirst();
+    m_quoteDataList.clear();
     emit quoteDataReady();
 }
 
@@ -55,125 +44,123 @@ void StockModel::setDataIsLive(bool live)
     m_dataIsLive = live;
 }
 
-int StockModel::historyCount()
+int StockModel::historyCount() const
 {
     return m_historyDataList.count();
 }
 
-int StockModel::quoteCount()
+int StockModel::quoteCount() const
 {
     return m_quoteDataList.count();
 }
 
-QString StockModel::getStockId()
+QString StockModel::stockId() const
 {
     return m_stockId;
 }
-QString StockModel::getName()
+QString StockModel::name() const
 {
     return m_name;
 }
 
-float StockModel::getPrice(int index)
+float StockModel::price(int index) const
 {
     if (m_quoteDataList.isEmpty())
         return 0;
-    return m_quoteDataList.at(index)->price;
+    return m_quoteDataList.at(index).price;
 }
 
-float StockModel::getChange(int index)
+float StockModel::change(int index) const
 {
     if (m_quoteDataList.isEmpty())
         return 0;
-    return m_quoteDataList.at(index)->change;
+    return m_quoteDataList.at(index).change;
 }
-float StockModel::getChangePercentage(int index)
+float StockModel::changePercentage(int index) const
 {
     if (m_quoteDataList.isEmpty())
         return 0;
-    return m_quoteDataList.at(index)->changePercentage;
+    return m_quoteDataList.at(index).changePercentage;
 }
 
-int StockModel::getOpen(int index)
+int StockModel::openPrice(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->open;
+    return m_historyDataList.at(index).open;
 }
-int StockModel::getClose(int index)
+int StockModel::closePrice(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->close;
+    return m_historyDataList.at(index).close;
 }
-int StockModel::getHigh(int index)
+int StockModel::highPrice(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->high;
+    return m_historyDataList.at(index).high;
 }
-int StockModel::getLow(int index)
+int StockModel::lowPrice(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->low;
+    return m_historyDataList.at(index).low;
 }
-int StockModel::getVolume(int index)
+int StockModel::volume(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->volume;
+    return m_historyDataList.at(index).volume;
 }
 
-int StockModel::getAvgVolume()
+int StockModel::avgVolume() const
 {
     long long totalVolume = 0;
     for (int i = 0; i < historyCount(); ++i) {
-        totalVolume += getVolume(i);
+        totalVolume += volume(i);
     }
-    if (historyCount() > 0)
-        return totalVolume / historyCount();
-    else
-        return 0;
+    const int count = historyCount();
+    return (count > 0) ? totalVolume / count : 0;
 }
 
-int StockModel::daysFromNow(int index)
+int StockModel::daysFromNow(int index) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
-    return m_historyDataList.at(index)->time.daysTo(QDateTime::currentDateTime());
+    return m_historyDataList.at(index).time.daysTo(QDateTime::currentDateTime());
 }
 
-long long StockModel::getHistoryDate(int index, bool milliseconds)
+long long StockModel::historyDate(int index, bool milliseconds) const
 {
     if (m_historyDataList.isEmpty())
         return 0;
     if (milliseconds)
-        return m_historyDataList.at(index)->time.toMSecsSinceEpoch();
+        return m_historyDataList.at(index).time.toMSecsSinceEpoch();
     else
-        return m_historyDataList.at(index)->time.toSecsSinceEpoch();
+        return m_historyDataList.at(index).time.toSecsSinceEpoch();
 }
 
-long long StockModel::getQuoteTime(int index, bool milliseconds)
+long long StockModel::quoteTime(int index, bool milliseconds) const
 {
     if (m_quoteDataList.isEmpty() || index >= m_quoteDataList.count())
         return 0;
     if (milliseconds)
-        return m_quoteDataList.at(index)->time.toMSecsSinceEpoch();
+        return m_quoteDataList.at(index).time.toMSecsSinceEpoch();
     else
-        return m_quoteDataList.at(index)->time.toSecsSinceEpoch();
+        return m_quoteDataList.at(index).time.toSecsSinceEpoch();
 }
-int StockModel::indexOf(QDateTime date)
+int StockModel::indexOf(QDateTime date) const
 {
     if (m_historyDataList.empty())
         return -1;
-    auto today = date.addMSecs(-QTime::currentTime().msecsSinceStartOfDay());
+    QDateTime today = date.addMSecs(-QTime::currentTime().msecsSinceStartOfDay());
     bool afterDate = true;
     int index = 0;
     while (afterDate) {
         if (index == m_historyDataList.size() - 1)
             afterDate = false;
-        else if (today.secsTo(m_historyDataList.at(index)->time) < 0) {
+        else if (today.secsTo(m_historyDataList.at(index).time) < 0) {
             afterDate = false;
         } else
             index++;
@@ -181,7 +168,7 @@ int StockModel::indexOf(QDateTime date)
     return index;
 }
 
-bool StockModel::getDataIsLive()
+bool StockModel::dataIsLive() const
 {
     return m_dataIsLive;
 }

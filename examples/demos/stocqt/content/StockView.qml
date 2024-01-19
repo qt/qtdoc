@@ -19,23 +19,23 @@ Rectangle {
     }
 
     function update() {
-        stockDetail.stockId = StockEngine.getCurrentStockId()
-        stockDetail.stockName = StockEngine.getCurrentName()
-        stockDetail.price = qsTr("%L1").arg(StockEngine.stockModel.getPrice(0).toFixed(1))
-        stockDetail.priceChange = qsTr("%L1%").arg(StockEngine.stockModel.getChangePercentage(0).toFixed(2))
+        stockDetail.stockId = StockEngine.currentStockId()
+        stockDetail.stockName = StockEngine.currentName()
+        stockDetail.price = qsTr("%L1").arg(StockEngine.stockModel.price(0).toFixed(1))
+        stockDetail.priceChange = qsTr("%L1%").arg(StockEngine.stockModel.changePercentage(0).toFixed(2))
         star.isFavorite = StockEngine.isFavorite(stockDetail.stockId)
-        keyStats.open = qsTr("%L1$").arg(StockEngine.stockModel.getOpen(0))
-        keyStats.close = qsTr("%L1$").arg(StockEngine.stockModel.getClose(0))
-        keyStats.volume = qsTr("%L1").arg(StockEngine.stockModel.getVolume(0))
-        keyStats.averageVolume = qsTr("%L1").arg(StockEngine.stockModel.getAvgVolume())
-        timeBar.date = qsTr("%1").arg(new Date(StockEngine.stockModel.getHistoryDate(0)).toLocaleDateString(Locale.ShortFormat))
+        keyStats.open = qsTr("%L1$").arg(StockEngine.stockModel.openPrice(0))
+        keyStats.close = qsTr("%L1$").arg(StockEngine.stockModel.closePrice(0))
+        keyStats.volume = qsTr("%L1").arg(StockEngine.stockModel.volume(0))
+        keyStats.averageVolume = qsTr("%L1").arg(StockEngine.stockModel.avgVolume())
+        timeBar.date = qsTr("%1").arg(new Date(StockEngine.stockModel.historyDate(0)).toLocaleDateString(Locale.ShortFormat))
         chart.update()
     }
 
 
     function updateFavorite() {
         star.isFavorite = StockEngine.isFavorite(stockDetail.stockId)
-        star.favoritesFull = StockEngine.favoritesModel.getCount() >= 5
+        star.favoritesFull = StockEngine.favoritesModel.count() >= 5
     }
 
     Rectangle {
@@ -106,11 +106,11 @@ Rectangle {
             width: parent.width
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.fillWidth: true
-            stockId: StockEngine.getCurrentStockId()
-            stockName: StockEngine.getCurrentName()
-            price: StockEngine.stockModel.getClose(0);
-            priceChange: StockEngine.stockModel.getChangePercentage(0) + "%"
-            rising: StockEngine.stockModel.getChangePercentage(0) >= 0
+            stockId: StockEngine.currentStockId()
+            stockName: StockEngine.currentName()
+            price: StockEngine.stockModel.closePrice(0);
+            priceChange: StockEngine.stockModel.changePercentage(0) + "%"
+            rising: StockEngine.stockModel.changePercentage(0) >= 0
             visible: !rectangle.fullscreen
         }
 

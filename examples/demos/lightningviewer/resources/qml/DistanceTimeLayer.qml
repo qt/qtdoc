@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 
 Item {
+    id: distanceTimeLayer
     readonly property color titleColor: "white"
     readonly property int titleFontWeight: 700
     readonly property int titleFontSize: 14
@@ -89,15 +90,14 @@ Item {
 
             function toText(duration_) {
                 if (duration_ > 0) {
-                    duration_ = (duration_ / 1000).toFixed(0);
-                    const dh = (duration_ / 3600).toFixed(0);
-                    const dm = ((duration_ % 3600) / 60).toFixed(0);
-                    const ds = duration_ % 60;
+                    const dh = Math.floor(duration_ / 3600);
+                    const dm = Math.floor((duration_ % 3600) / 60);
+                    const ds = Math.floor(duration_ % 60);
                     if (dh > 0)
                         return `${dh}h ` + qsTr("ago");
                     else if (dm > 0)
                         return `${dm}m ` + qsTr("ago");
-                    else
+                    else if (ds > 0)
                         return `${ds}s ` + qsTr("ago");
                 }
                 return qsTr("now");
@@ -108,9 +108,10 @@ Item {
     Timer {
         id: time
         interval: 1000
-        running: true
+        running: distanceTimeLayer.visible
         repeat: true
-        property date now: new Date()
-        onTriggered: now = new Date();
+        property int now: (new Date()) / 1000
+        onTriggered: now = (new Date()) / 1000;
+        onRunningChanged: now = (new Date()) / 1000;
     }
 }

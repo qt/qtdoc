@@ -611,9 +611,6 @@ Browsers that support the Clipboard API are preferred. Note that a requirement f
 is that the web page is served over a secure connection (e.g. https), and that some browsers
 my require changing configuration flags.
 
-See \l{https:...}{caniuse} for which browsers currently support the
-  Clipboard API. The following versions are known to work:
-
 \list
     \li Chrome version 66 and Safari version 13.1 support the Clipboard API
     \li Firefox version 90 supports the Clipboard API if you enable the
@@ -645,7 +642,7 @@ Qt for WebAssembly supports the standard Qt startup approach, where the applicat
 creates a QApplication object and calls the exec function:
 
 \code
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
@@ -678,7 +675,7 @@ the top-level window and application objects.
 QApplication *g_app = nullptr;
 AppWindow *g_appWindow = nullptr;
 
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     g_app = new QApplication(argc, argv);
     g_appWindow = new AppWindow();

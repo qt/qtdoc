@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import custom.StockEngine
@@ -21,12 +22,12 @@ Rectangle {
         stockLegendModel.clear()
         favoriteListModel.clear()
         favoriteList.currentIndex = 0
-        for (var i = 0; i < StockEngine.favoritesModel.getCount(); i++){
-            var stock = StockEngine.favoritesModel.getAtIndex(i)
-            var stockId = stock.getStockId()
-            var lastOpen = stock.getOpen(0)
-            var lastClose = stock.getClose(0)
-            var color = StockEngine.favoritesModel.getColor(i)
+        for (var i = 0; i < StockEngine.favoritesModel.count(); i++){
+            var stock = StockEngine.favoritesModel.atIndex(i)
+            var stockId = stock.stockId()
+            var lastOpen = stock.openPrice(0)
+            var lastClose = stock.closePrice(0)
+            var color = StockEngine.favoritesModel.color(i)
 
             stockLegendModel.append({"stockId": stockId,
                                         "keyColor": color})
@@ -83,15 +84,15 @@ Rectangle {
             visible: !rectangle.fullscreen
 
             function updateDetails() {
-                if (currentIndex === -1 || StockEngine.favoritesModel.getCount() === 0)
+                if (currentIndex === -1 || StockEngine.favoritesModel.count() === 0)
                     return
-                var stock = StockEngine.favoritesModel.getAtIndex(currentIndex)
-                stockId = stock.getStockId()
-                stockName = stock.getName()
-                price = qsTr("%L1$").arg(stock.getPrice(0).toFixed(1))
-                priceChange = qsTr("%L1%").arg(stock.getChangePercentage(0).toFixed(2))
-                rising = stock.getChange(0) >= 0
-                timeBar.date = qsTr("%1").arg(new Date(stock.getHistoryDate(0)).
+                var stock = StockEngine.favoritesModel.atIndex(currentIndex)
+                stockId = stock.stockId()
+                stockName = stock.name()
+                price = qsTr("%L1$").arg(stock.price(0).toFixed(1))
+                priceChange = qsTr("%L1%").arg(stock.changePercentage(0).toFixed(2))
+                rising = stock.change(0) >= 0
+                timeBar.date = qsTr("%1").arg(new Date(stock.historyDate(0)).
                                               toLocaleDateString(Locale.ShortFormat))
             }
         }
@@ -368,9 +369,6 @@ Rectangle {
                 model: StockEngine.filterModel
                 spacing: 5
                 delegate: AddDelegate {
-                    addButton.onClicked: {
-                        addPopup.close()
-                    }
                     width: listView.width
                 }
             }

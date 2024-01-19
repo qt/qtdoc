@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 #ifndef STOCKENGINE_H
 #define STOCKENGINE_H
 
@@ -18,31 +19,32 @@ class StockEngine : public QObject
 public:
     StockEngine();
 
-    Q_PROPERTY(StockListModel *stockListModel READ getStockListModel NOTIFY onStockListModelChanged)
-    Q_PROPERTY(FavoritesModel *favoritesModel READ getFavoritesModel NOTIFY onFavoritesModelChanged)
-    Q_PROPERTY(StockModel *stockModel READ getStockModel NOTIFY onStockModelChanged)
+    Q_PROPERTY(StockListModel *stockListModel READ stockListModel NOTIFY onStockListModelChanged)
+    Q_PROPERTY(FavoritesModel *favoritesModel READ favoritesModel NOTIFY onFavoritesModelChanged)
+    Q_PROPERTY(StockModel *stockModel READ stockModel NOTIFY onStockModelChanged)
     Q_PROPERTY(QSortFilterProxyModel *filterModel READ filterModel NOTIFY filterChanged FINAL)
 
-    StockListModel *getStockListModel();
-    FavoritesModel *getFavoritesModel();
-    StockModel *getStockModel();
-    QString getTimeFrame();
+    StockListModel *stockListModel();
+    FavoritesModel *favoritesModel();
+    StockModel *stockModel();
+    QString timeFrame();
     QSortFilterProxyModel *filterModel();
 
+    Q_INVOKABLE QString currentStockId() const;
+    Q_INVOKABLE QString currentName() const;
+    Q_INVOKABLE bool isFavorite(const QString &stockId) const;
+    Q_INVOKABLE bool useLiveData() const;
+
 public slots:
-    void testApiKey(QString apiKey);
+    void testApiKey(const QString &apiKey);
     void setUseLiveData(bool useLiveData);
     void updateStockListModel();
-    void updateStockView(const QString stockId);
-    void addFavorite(const QString stockId);
-    void removeFavorite(const QString stockId);
+    void updateStockView(const QString &stockId);
+    void addFavorite(const QString &stockId);
+    void removeFavorite(const QString &stockId);
     void updateFavorites();
-    void updateStockModelHistory(const QString stockId);
+    void updateStockModelHistory(const QString &stockId);
     void updateStockModelQuote();
-    QString getCurrentStockId();
-    QString getCurrentName();
-    bool isFavorite(QString stockId);
-    bool getUseLiveData();
 
 signals:
     void onStockListModelChanged();

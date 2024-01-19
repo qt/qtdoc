@@ -16,6 +16,7 @@ QT_END_NAMESPACE
 class LightningProvider : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(LightningProvider)
 
 public:
     explicit LightningProvider(QObject *parent = nullptr);
@@ -32,8 +33,8 @@ signals:
     void dataReady(const LightningItemData &data);
 
 private:
-    QScopedPointer<QTimer> m_timer;
-    QScopedPointer<QWebSocket> m_webSocket;
+    std::unique_ptr<QTimer> m_timer;
+    std::unique_ptr<QWebSocket> m_webSocket;
 };
 
 #endif // LIGHTNINGPROVIDER_H
