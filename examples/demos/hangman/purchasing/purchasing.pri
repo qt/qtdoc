@@ -42,7 +42,7 @@ android {
         $$JAVA_CLASS_PATH/Base64DecoderException.java
 }
 
-ios {
+mac {
     #Change the following lines to match your unique App ID
     #to enable in-app purchases on iOS
     #For example if your App ID is org.qtproject.qt.iosteam.qthangman"
