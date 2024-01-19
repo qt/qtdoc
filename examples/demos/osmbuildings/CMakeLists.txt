@@ -18,6 +18,10 @@ qt_add_executable(osmbuildings
     main.cpp
 )
 
+if (ANDROID)
+    add_android_openssl_libraries(osmbuildings)
+endif()
+
 set_target_properties(osmbuildings PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
