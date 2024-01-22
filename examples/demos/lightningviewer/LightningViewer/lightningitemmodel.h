@@ -4,7 +4,7 @@
 #ifndef LIGHTNINGITEMMODEL_H
 #define LIGHTNINGITEMMODEL_H
 
-#include "../data/lightningitemdata.h"
+#include "lightningitemdata.h"
 
 #include <QAbstractListModel>
 

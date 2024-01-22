@@ -4,16 +4,17 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "data/laststrikeinfo.h"
-#include "models/lightningitemmodel.h"
-#include "providers/lightningprovider.h"
+#include "laststrikeinfo.h"
+#include "lightningitemmodel.h"
+#include "lightningprovider.h"
 
+#include <QGeoPositionInfoSource>
 #include <QObject>
+#include <QtQmlIntegration>
 #include <QTime>
 
 QT_BEGIN_NAMESPACE
 class QGeoPositionInfo;
-class QGeoPositionInfoSource;
 QT_END_NAMESPACE
 
 class Controller : public QObject
@@ -26,6 +27,9 @@ class Controller : public QObject
     Q_PROPERTY(int lastStrikeTime READ getLastStrikeTime NOTIFY lastStrikeInfoUpdated FINAL)
     Q_PROPERTY(double lastStrikeDirection READ getLastStrikeDirection NOTIFY lastStrikeInfoUpdated FINAL)
     Q_PROPERTY(bool distanceTimeLayerEnabled READ isDistanceTimeLayerEnabled WRITE setDistanceTimeLayerEnabled NOTIFY distanceTimeLayerEnabledChanged FINAL)
+
+    QML_NAMED_ELEMENT(LightningController)
+    QML_SINGLETON
 
 public:
     explicit Controller(QObject *parent = nullptr);

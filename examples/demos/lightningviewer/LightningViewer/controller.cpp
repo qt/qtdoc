@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "controller.h"
-#include "data/laststrikeinfo.h"
-#include "models/lightningitemmodel.h"
-#include "providers/lightningprovider.h"
+#include "laststrikeinfo.h"
+#include "lightningitemmodel.h"
+#include "lightningprovider.h"
 
 #include <QGeoPositionInfoSource>
 

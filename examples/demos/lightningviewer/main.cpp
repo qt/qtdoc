@@ -1,31 +1,22 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include "controller.h"
-
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QQmlContext>
+#include <QQuickStyle>
 
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    Q_INIT_RESOURCE(resources);
-    Q_INIT_RESOURCE(lv_style);
-
-    Controller controller;
+    QQuickStyle::setStyle(QStringLiteral("LightningViewerStyle"));
 
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-
-    QQmlContext *context = engine.rootContext();
-    context->setContextProperty("LightningController", &controller);
-
-    engine.loadFromModule("LightningViewer", "LightningView");
+    engine.loadFromModule("LightningViewer", "Main");
 
     return app.exec();
 }
