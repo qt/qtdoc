@@ -6,8 +6,6 @@ import QtLocation
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import lv_style 1.0
-
 Item {
     id: actionsLayer
 

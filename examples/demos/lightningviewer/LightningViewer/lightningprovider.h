@@ -4,7 +4,7 @@
 #ifndef LIGHTNINGPROVIDER_H
 #define LIGHTNINGPROVIDER_H
 
-#include "../data/lightningitemdata.h"
+#include "lightningitemdata.h"
 
 #include <QObject>
 

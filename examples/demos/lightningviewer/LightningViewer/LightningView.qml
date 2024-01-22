@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Controls
 
-ApplicationWindow {
+Item {
     visible: true
 
     MapView {
@@ -29,12 +29,5 @@ ApplicationWindow {
         target: LightningController
         property: "distanceTimeLayerEnabled"
         value: actionsLayer.distanceLayerVisible
-    }
-
-    Component.onCompleted: {
-        if ((width < 200) || (height < 200)) {
-            width = LightningViewConfig.appWidth
-            height = LightningViewConfig.appHeight
-        }
     }
 }

@@ -2,10 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-
-set(APP_NAME LightningViewerExample)
-
-project(LightningViewerExample VERSION 0.1 LANGUAGES CXX)
+project(LightningViewerExample VERSION 1.0 LANGUAGES CXX)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
@@ -15,41 +12,36 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/${PROJECT_NAME}")
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick WebSockets Positioning)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.6)
 
-set(CMAKE_AUTORCC ON)
-qt_add_executable(${APP_NAME}
+add_subdirectory(LightningViewer)
+add_subdirectory(LightningViewerStyle)
+
+qt_add_executable(${PROJECT_NAME} WIN32
     main.cpp
-    controller.h controller.cpp
-    data/laststrikeinfo.h
-    data/lightningitemdata.h data/lightningitemdata.cpp
-    models/lightningitemmodel.h models/lightningitemmodel.cpp
-    providers/lightningprovider.h providers/lightningprovider.cpp
-    resources/resources.qrc
-    resources/lv_style/lv_style.qrc
 )
 
-target_link_libraries(${APP_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Quick
-    Qt6::WebSockets
-    Qt6::Positioning
+    Qt6::QuickControls2
+    LightningViewer
+    LightningViewerStyle
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(${APP_NAME} PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appLightningViewer
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.examples.LightningViewer"
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
 )
 
-install(TARGETS ${APP_NAME}
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
