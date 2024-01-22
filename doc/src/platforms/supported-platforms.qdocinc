@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2022 The Qt Company Ltd.
+** Copyright (C) 2023 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -39,11 +39,11 @@
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
-    \row \li openSUSE 15.3
+    \row \li openSUSE 15.4
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP3
+    \row \li SUSE Linux Enterprise Server 15 SP4
         \li \c x86_64
         \li GCC 10
         \li
@@ -60,7 +60,7 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.14, 10.15, 11, 12
         \li \c x86_64, \c x86_64h, and \c arm64
-        \li Xcode 12 (11 SDK), \li Xcode 13 (12 SDK)
+        \li Xcode 13 (12 SDK), \li Xcode 14 (13 SDK)
 \endtable
 //! [macos]
 
@@ -68,11 +68,11 @@
 //! [windows]
 \table 80%
     \header \li Operating System \li Architecture \li Compiler
-    \row \li Windows 11 21H2 (1809 or later)
+    \row \li Windows 10 (1809 or later)
         \li \c x86_64
         \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
-    \row \li Windows 10 21H2 (1809 or later)
+    \row \li Windows 11
         \li \c x86_64
         \li MSVC 2022, MSVC 2019, MinGW 11.2
         \li
@@ -108,9 +108,9 @@ The following configurations are supported in this Qt release:
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
-    \row \li iOS 13, iOS 14, iOS 15
+    \row \li iOS 14, iOS 15, iOS 16
         \li \c armv8 (\c arm64)
-        \li Xcode 12 (iOS 14 SDK), {Xcode 13} (iOS 15 SDK)
+        \li Xcode 13 (iOS 15 SDK), \b {Xcode 14} (iOS 16 SDK)
         \li
 \endtable
 //! [ios]
