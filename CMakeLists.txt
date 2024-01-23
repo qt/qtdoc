@@ -32,6 +32,12 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         WebSockets
         Positioning
         Location
+        Svg
+        Sensors
+        Multimedia
+        Charts
+        Pdf
+        PdfWidgets
 )
 qt_internal_project_setup()
 
