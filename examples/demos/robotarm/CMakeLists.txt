@@ -9,7 +9,7 @@ if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
 endif()
 
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quick3d/robotarm")
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/robotarm")
 
 find_package(Qt6 REQUIRED COMPONENTS Gui Qml Quick Quick3D)
 qt_standard_project_setup()
@@ -30,3 +30,9 @@ target_link_libraries(RobotArmApp PUBLIC
 add_subdirectory(Backend)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules)
+
+install(TARGETS RobotArmApp
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+)

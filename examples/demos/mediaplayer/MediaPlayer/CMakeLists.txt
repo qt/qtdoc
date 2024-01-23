@@ -1,3 +1,5 @@
+qt_add_library(MediaPlayer STATIC)
+
 set_source_files_properties(Images.qml
     PROPERTIES
         QT_QML_SINGLETON_TYPE true

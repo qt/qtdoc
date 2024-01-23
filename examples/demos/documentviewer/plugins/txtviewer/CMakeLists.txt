@@ -28,8 +28,8 @@ if(TARGET Qt6::PrintSupport)
     target_link_libraries(txtviewer PRIVATE Qt6::PrintSupport)
 endif()
 
-install(TARGETS jsonviewer
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
+install(TARGETS txtviewer
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
 
