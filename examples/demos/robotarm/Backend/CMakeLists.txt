@@ -1,5 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS Gui)
 
+qt_add_library(backendmodule STATIC)
+
 qt_add_qml_module(backendmodule
     URI Backend
     VERSION 1.0
