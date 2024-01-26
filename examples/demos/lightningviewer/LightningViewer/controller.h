@@ -8,14 +8,10 @@
 #include "lightningitemmodel.h"
 #include "lightningprovider.h"
 
-#include <QGeoPositionInfoSource>
+#include <QGeoPositionInfo>
 #include <QObject>
 #include <QtQmlIntegration>
 #include <QTime>
-
-QT_BEGIN_NAMESPACE
-class QGeoPositionInfo;
-QT_END_NAMESPACE
 
 class Controller : public QObject
 {
@@ -37,6 +33,8 @@ public:
 
     QAbstractItemModel *getModel();
 
+    Q_INVOKABLE void setUserLocation(const QGeoCoordinate &coordinate);
+
 private:
     int getLastStrikeTime();
     double getLastStrikeDistance();
@@ -48,7 +46,6 @@ private:
 
 private slots:
     void onDataReceived(const LightningItemData &data);
-    void onUserPositionChanged(const QGeoPositionInfo &position);
 
 signals:
     void lastStrikeInfoUpdated();
@@ -59,7 +56,6 @@ private:
     LastStrikeInfo m_lastStrikeInfo;
     LightningItemModel m_model;
     LightningProvider m_provider;
-    std::unique_ptr<QGeoPositionInfoSource> m_sourcePosition;
     QGeoCoordinate m_userLocation;
     bool m_distanceTimeLayerEnabled {false};
 };

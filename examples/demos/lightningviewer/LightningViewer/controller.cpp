@@ -6,9 +6,6 @@
 #include "lightningitemmodel.h"
 #include "lightningprovider.h"
 
-#include <QGeoPositionInfoSource>
-
-
 namespace {
 constexpr int NOTIFICATION_RADIUS = 100000;  // meters
 }
@@ -16,14 +13,7 @@ constexpr int NOTIFICATION_RADIUS = 100000;  // meters
 Controller::Controller(QObject *parent)
     : QObject{parent}
 {
-    m_sourcePosition.reset(QGeoPositionInfoSource::createDefaultSource(this));
-
     connect(&m_provider, &LightningProvider::dataReady, this, &Controller::onDataReceived);
-    connect(m_sourcePosition.get(), &QGeoPositionInfoSource::positionUpdated, this,
-            &Controller::onUserPositionChanged);
-
-    m_sourcePosition->setUpdateInterval(3000);
-    m_sourcePosition->startUpdates();
 }
 
 Controller::~Controller()
@@ -89,13 +79,11 @@ void Controller::onDataReceived(const LightningItemData &data)
     updateDistanceTime(data);
 }
 
-void Controller::onUserPositionChanged(const QGeoPositionInfo &position)
+void Controller::setUserLocation(const QGeoCoordinate &coordinate)
 {
-    QGeoCoordinate newCoordinate = position.coordinate();
-    if (m_userLocation == newCoordinate)
+    if (m_userLocation == coordinate)
         return;
-
-    m_userLocation = newCoordinate;
+    m_userLocation = coordinate;
 
     updateDistanceTime();
 }

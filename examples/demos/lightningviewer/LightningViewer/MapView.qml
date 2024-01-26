@@ -9,6 +9,7 @@ Item {
     id: mapView
     property alias lightningLayerVisible: lightningLayer.visible
     property alias distanceLayerVisible: distanceLayer.visible
+    property alias locationAllowed: positionSource.active
     property alias zoomLevel: map.zoomLevel
     property int mapType: MapType.map
 
@@ -19,8 +20,9 @@ Item {
     PositionSource {
         id: positionSource
         updateInterval: 3000
-        active: true
+        active: false
         preferredPositioningMethods: PositionSource.AllPositioningMethods
+        onPositionChanged: LightningController.setUserLocation(position.coordinate)
     }
 
     Map {
