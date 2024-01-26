@@ -14,28 +14,33 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/stocqt")
 
-if (ANDROID AND QT_ALLOW_DOWNLOAD)
-    include(FetchContent)
-    FetchContent_Declare(
-        android_openssl
-        DOWNLOAD_EXTRACT_TIMESTAMP true
-        URL      https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
-    )
-    FetchContent_MakeAvailable(android_openssl)
-    include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
-endif()
-
-find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
-
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appStocQt
     src/main.cpp
 )
 
+option(QT_ANDROID_FETCH_OPENSSL "Fetch Android OpenSSL support for Qt from gitlab" OFF)
+
 if (ANDROID)
-    add_android_openssl_libraries(appStocQt)
+    if (QT_ANDROID_FETCH_OPENSSL)
+        include(FetchContent)
+        FetchContent_Declare(
+            android_openssl
+            DOWNLOAD_EXTRACT_TIMESTAMP true
+            URL      https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+        )
+
+        FetchContent_MakeAvailable(android_openssl)
+        include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+        add_android_openssl_libraries(appStocQt)
+    else()
+        message(WARNING "android_openssl.cmake not found. Live data will not be available.
+            Consider setting QT_ANDROID_FETCH_OPENSSL=TRUE")
+    endif()
 endif()
+
+find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
 
 qt_add_qml_module(appStocQt
     URI StocQt
