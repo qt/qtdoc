@@ -482,6 +482,19 @@ and/or full ES3 emulation by adding
 
 to your project's \c {CMakeLists.txt}.
 
+\section3 Sharing OpenGL contexts
+
+WebGL allows one context per native surface only, and does not support OpenGL
+context sharing. Qt works around this by reusing the native context when
+multiple OpenGLContexts are used.
+
+We recommend limiting OpenGL context usage to one context per native surface,
+for example by using QOpenGLWindow instead of QOpenGLWidget.
+QOpenGLWidget may work, provided that application code restores all relevant
+OpenGL state when making QOpenGLWidget::paintGL() calls, and does not rely on
+persisting the state between QOpenGLWidget::initializeGL() and
+QOpenGLWidget::paintGL() calls.
+
 \section2 Multithreading
 
 Qt for WebAssembly supports multithreading using Emscripten's \l{https://emscripten.org/docs/porting/pthreads.html}
