@@ -107,12 +107,6 @@ configure option. Shared library builds are not supported.
 You need a host build of the same version of Qt and specify that path in the \e
 QT_HOST_PATH CMake variable or by using the \c -qt-host-path configure argument.
 
-Although it should be detected, you may optionally set the
-\e{CMAKE_TOOLCHAIN_FILE} CMake variable to the Emscripten.cmake toolchain file
-that comes with Emscripten SDK. This can be done by setting the environment
-variable \e{CMAKE_TOOLCHAIN_FILE} or by passing
-\c{CMAKE_TOOLCHAIN_FILE=/path/to/Emscripten.cmake} to configure.
-
 \badcode
     ./configure -qt-host-path /path/to/Qt -platform wasm-emscripten -prefix $PWD/qtbase
 \endcode
@@ -140,6 +134,11 @@ Qt for WebAssembly supports building applications using qmake and make, or CMake
    $ /path/to/qt-wasm/qtbase/bin/qt-cmake .
    $ cmake --build .
 \endcode
+
+\note When using vanilla \c CMake (as opposed to \c{qt-cmake} on Linux or
+\c{qt-cmake.bat} on Windows) remember to specify a toolchain file
+with "-DCMAKE_TOOLCHAIN_FILE", as for any other cross-platform build.
+For details see here: \l{Getting started with CMake}.
 
 Building the application generates several output files, including a .wasm file that contains
 the application and Qt code (statically linked), a .html file that can be opened in the browser

@@ -150,12 +150,26 @@
     \l{Module variables}. It furthermore imports the \c{Qt6::Core} target
     that we use below.
 
-    For \c{find_package} to be successful, \c CMake must find the Qt
-    installation. There are different ways you can tell \c CMake about Qt,
-    but the most common and recommended approach is to set the CMake cache
-    variable \c{CMAKE_PREFIX_PATH} to include the Qt 6 installation prefix.
-    Note that \l{Qt Creator Manual}{Qt Creator} will handle this transparently
-    for you.
+    For \c{find_package} to be successful, CMake must find the Qt
+    installation. \l{Qt Creator Manual}{Qt Creator} and \c{qt-cmake}
+    (\c{qt-cmake.bat} on Windows) handle this transparently.
+
+    When using vanilla CMake directly, there are different ways you can tell
+    CMake about Qt, but the most common and recommended approach is to set
+    the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the Qt 6
+    installation prefix. This is a directory where Qt binaries are installed.
+    On Linux, it usually looks something like this:
+    \c{"~/Qt/6.6.1/gcc_64"} and you would pass it on the command line as
+    \c{-DCMAKE_PREFIX_PATH=$HOME/Qt/6.6.1/gcc_64}.
+
+    \note When cross-compiling (compiling for a platform other than the one you
+    are on, such as WebAssembly or Android) and when using vanilla \c{cmake},
+    set \c{CMAKE_TOOLCHAIN_FILE} instead of \c{CMAKE_PREFIX_PATH}. On Linux,
+    the toolchain file (specific to a particular target platform) is typically
+    located at a path similar to this:
+    "~/Qt/6.6.1/wasm_singlethread/lib/cmake/Qt6/qt.toolchain.cmake". It sets
+    the required variables like \c{CMAKE_PREFIX_PATH}, \c{CMAKE_FIND_ROOT_PATH},
+    and \c{QT_HOST_PATH}.
 
     \printuntil qt_standard_project_setup(
 
