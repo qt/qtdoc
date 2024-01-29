@@ -24,15 +24,14 @@
     \endlist
 
     \section2 Qt Graphs Module
-    \section3 Qt Graphs3D
     \list
-        \li Data api doesn't require creating every data item into heap memory.
-        \li Added render to image functionality.
-    \endlist
-    \section3 Qt Graphs2D
-    \list
-        \li Technology Preview of 2D graphs.
-        \li Contains initial support for bar, line and scatter graphs.
+        \li Data API for 3D graphs does not require creating every data item into heap memory.
+        \li Render to image functionality added for Bars3D, Scatter3D, and Surface3D graphs.
+        \li Some redundant classes were removed and the necessary functionality moved elsewhere.
+        \li Enums were made scoped.
+        \li A number of other architectural and functional changes.
+        \li Performance and visual quality improvements.
+        \li Technology Preview added for 2D graphs, which contains initial support for bar, line and scatter graphs.
     \endlist
 
     \section2 Qt GRPC Module
