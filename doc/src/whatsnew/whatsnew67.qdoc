@@ -412,6 +412,7 @@
             translations from. Alternatively, you can let qt_add_translations() collect all
             targets of a project (done via the new qt_collect_i18n_targets() function), with the
             option to opt out of undesired targets on directory or target level.
+        \li CMake: qt_add_translations() has been moved out of technical preview.
     \endlist
 
     \section1 List of API Changes
