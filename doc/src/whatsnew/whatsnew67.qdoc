@@ -176,6 +176,22 @@
             by the QML Compiler.
     \endlist
 
+    \section2 Qt Quick Shapes Module
+    \list
+        \li The \e{Curve Renderer} and the associated property \l{Shape::}{preferredRendererType}
+            are now officially supported and are no longer considered experimental.
+        \li Added \l{ShapePath::}{pathHints} property for characterizing shapes. This may be used
+            by the renderer to optimize processing and rendering the paths.
+        \li Shapes now have an implicit size based on the bounding rect of the shape, and will
+            be appropriately positioned in layouts. The properties \l{Shape::}{fillMode},
+            \l{Shape::}{horizontalAlignment} and \l{Shape::}{verticalAlignment} were added to
+            modify how the shape behaves when the item is given an explicit size which differs from
+            the implicit size.
+        \li The tool \l{svgtoqml} was added as a technology preview. This is a tool which can be
+            used to convert an SVG file into QML code. It is currently considered experimental and
+            has support for a subset of what Qt SVG supports.
+    \endlist
+
     \section2 Qt Quick 3D Module
     \list
         \li QQuick3DRenderExtension is a new class for implementing application side rendering
