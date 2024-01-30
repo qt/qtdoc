@@ -13,7 +13,7 @@ Item {
     id: root
 
     implicitWidth: 380
-    implicitHeight: elements.count ? (elements.count + 1) * 40 : 20
+    implicitHeight: childrenRect.height
 
     required property int selectedTrack
     required property list<mediaMetaData> metaData
@@ -46,7 +46,6 @@ Item {
 
     Column {
         spacing: 16
-        anchors.fill: root
 
         Label {
             id: header
@@ -56,23 +55,23 @@ Item {
             color: Config.secondaryColor
         }
 
-        ListView {
+        Column {
             id: trackList
-            model: elements
             spacing: 18
-            height: root.implicitHeight - header.height
-            width: parent.width
-            clip: true
-            delegate: CustomRadioButton {
-                checked: trackNumber === root.selectedTrack
-                text: language
+            Repeater {
+                model: elements
+                delegate: CustomRadioButton {
 
-                required property int trackNumber
-                required property string language
+                    checked: trackNumber === root.selectedTrack
+                    text: language
 
-                ButtonGroup.group: group
+                    required property int trackNumber
+                    required property string language
 
-                onClicked: root.selectedTrack = trackNumber
+                    ButtonGroup.group: group
+
+                    onClicked: root.selectedTrack = trackNumber
+                }
             }
         }
     }
