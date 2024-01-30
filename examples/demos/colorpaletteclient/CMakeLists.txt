@@ -68,3 +68,6 @@ install(TARGETS colorpaletteclient
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
+
+include(../shared/QtBundleQmlModuleForMacOS.cmake)
+add_qml_module_to_macos_app_bundle("colorpaletteclient" "qtexamplestyle")

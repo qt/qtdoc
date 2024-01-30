@@ -12,6 +12,9 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("colorpaletteclient");
 
     QQmlApplicationEngine engine;
+#ifdef Q_OS_MACOS
+    engine.addImportPath(app.applicationDirPath() + "/../PlugIns");
+#endif
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app,
                      [](){ QCoreApplication::exit(EXIT_FAILURE);}, Qt::QueuedConnection);
     engine.loadFromModule("ColorPalette", "Main");
