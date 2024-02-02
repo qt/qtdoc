@@ -251,20 +251,22 @@ documentation.
 
 \section2  \l{Qt for WebAssembly}{WebAssembly}
 \table 80%
-    \header \li Host Platform \li Architecture \li Compiler \li Browsers
-    \row \li macOS
+    \header \li Platform \li Architecture \li Compiler \li Implementations
+    \row \li Web Browser
         \li \c wasm32
         \li Emscripten 3.1.37
-        \li Safari, Chrome, Firefox
-    \row \li Windows
-        \li \c wasm32
-        \li Emscripten 3.1.37
-        \li Edge, Chrome, Firefox
-    \row \li Linux
-        \li \c wasm32
-        \li Emscripten 3.1.37
-        \li Chrome, Firefox
+        \li Chrome, Edge, Firefox, Safari
 \endtable
+
+Qt for WebAssembly is a platform-agnostic technology that allows running apps on
+compatible browsers regardless of the underlying operating system. Qt for
+WebAssembly is well supported and tested on desktop browsers including Chrome,
+Edge, Firefox, and Safari. While Qt for WebAssembly is designed to function
+smoothly on desktop browsers, it is important to note that some mobile browsers
+may still lack some necessary features for reliably executing WebAssembly apps.
+Therefore, we strongly recommend application providers targeting mobile
+browsers to conduct comprehensive testing to ensure compatibility and
+performance.
 
 //! [web]
 
