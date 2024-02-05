@@ -24,13 +24,13 @@ class RestService : public QObject, public QQmlParserStatus
     QML_ELEMENT
 
 public:
-    explicit RestService(QObject* parent = nullptr);
+    explicit RestService(QObject *parent = nullptr);
     ~RestService() override = default;
 
     bool sslSupported();
 
     QUrl url() const;
-    void setUrl(const QUrl& url);
+    void setUrl(const QUrl &url);
 
     void classBegin() override;
     void componentComplete() override;

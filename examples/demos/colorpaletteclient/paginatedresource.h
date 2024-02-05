@@ -20,7 +20,7 @@ class PaginatedResource : public AbstractResource
     QML_ELEMENT
 
 public:
-    explicit PaginatedResource(QObject* parent = nullptr);
+    explicit PaginatedResource(QObject *parent = nullptr);
     ~PaginatedResource() override = default;
 
     QList<QJsonObject> data() const;
@@ -34,8 +34,8 @@ public:
     void setPage(int page);
 
     Q_INVOKABLE void refreshCurrentPage();
-    Q_INVOKABLE void update(const QVariantMap& data, int id);
-    Q_INVOKABLE void add(const QVariantMap& data);
+    Q_INVOKABLE void update(const QVariantMap &data, int id);
+    Q_INVOKABLE void add(const QVariantMap &data);
     Q_INVOKABLE void remove(int id);
 
 signals:

@@ -16,7 +16,7 @@ static constexpr auto tokenField = "token"_L1;
 static constexpr auto emailField = "email"_L1;
 static constexpr auto idField = "id"_L1;
 
-BasicLogin::BasicLogin(QObject* parent)
+BasicLogin::BasicLogin(QObject *parent)
     : AbstractResource(parent)
 {
 }

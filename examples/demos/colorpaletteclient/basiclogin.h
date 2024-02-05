@@ -18,11 +18,11 @@ class BasicLogin: public AbstractResource
     QML_ELEMENT
 
 public:
-    explicit BasicLogin(QObject* parent = nullptr);
+    explicit BasicLogin(QObject *parent = nullptr);
 
     QString user() const;
     bool loggedIn() const;
-    Q_INVOKABLE void login(const QVariantMap& data);
+    Q_INVOKABLE void login(const QVariantMap &data);
     Q_INVOKABLE void logout();
 
 signals:
