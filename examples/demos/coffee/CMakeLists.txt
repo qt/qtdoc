@@ -64,6 +64,11 @@ qt_add_qml_module(coffeemachine
         images/Ingredients/milk.svg
         images/Ingredients/sugar.svg
 )
+if(ANDROID)
+    set_target_properties(coffeemachine PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+endif()
+
 
 set_target_properties(coffeemachine PROPERTIES
     WIN32_EXECUTABLE TRUE
