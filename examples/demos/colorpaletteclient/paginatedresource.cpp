@@ -17,7 +17,7 @@ static constexpr auto totalPagesField = "total_pages"_L1;
 static constexpr auto currentPageField = "page"_L1;
 static constexpr auto resourceId = "/%1"_L1;
 
-PaginatedResource::PaginatedResource(QObject* parent)
+PaginatedResource::PaginatedResource(QObject *parent)
     : AbstractResource(parent)
 {
 }
@@ -88,7 +88,7 @@ void PaginatedResource::refreshRequestFailed()
     }
 }
 
-void PaginatedResource::update(const QVariantMap& data, int id)
+void PaginatedResource::update(const QVariantMap &data, int id)
 {
     m_manager->put(m_api->createRequest(m_path + resourceId.arg(QString::number(id))), data,
                    this, [this](QRestReply &reply) {
@@ -97,7 +97,7 @@ void PaginatedResource::update(const QVariantMap& data, int id)
                    });
 }
 
-void PaginatedResource::add(const QVariantMap& data)
+void PaginatedResource::add(const QVariantMap &data)
 {
     m_manager->post(m_api->createRequest(m_path), data, this, [this](QRestReply &reply) {
         if (reply.isSuccess())

@@ -16,7 +16,7 @@ RestService::RestService(QObject *parent) : QObject(parent)
     m_serviceApi = std::make_shared<QNetworkRequestFactory>();
 }
 
-void RestService::setUrl(const QUrl& url)
+void RestService::setUrl(const QUrl &url)
 {
     if (m_serviceApi->baseUrl() == url)
         return;

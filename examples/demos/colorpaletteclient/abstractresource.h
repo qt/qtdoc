@@ -14,7 +14,7 @@ class AbstractResource : public QObject
     QML_ANONYMOUS
 
 public:
-    explicit AbstractResource(QObject* parent = nullptr) : QObject (parent)
+    explicit AbstractResource(QObject *parent = nullptr) : QObject (parent)
     {}
 
     virtual ~AbstractResource() = default;
