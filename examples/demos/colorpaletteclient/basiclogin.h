@@ -7,8 +7,6 @@
 #include "abstractresource.h"
 
 #include <QtQml/qqml.h>
-#include <QtCore/qjsonobject.h>
-#include <QtNetwork/qnetworkreply.h>
 
 class BasicLogin: public AbstractResource
 {
@@ -31,8 +29,6 @@ signals:
     void userChanged();
 
 private:
-    void loginRequestFinished(QNetworkReply* reply, const QVariantMap& data);
-    void logoutRequestFinished(QNetworkReply* reply);
     struct User {
         QString email;
         QByteArray token;

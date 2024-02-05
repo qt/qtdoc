@@ -11,18 +11,14 @@ QML_IMPORT_NAME = ColorPalette
 QML_IMPORT_MAJOR_VERSION = 1
 
 SOURCES += main.cpp \
-           util.cpp \
            restservice.cpp \
            paginatedresource.cpp \
            basiclogin.cpp \
-           restaccessmanager.cpp \
 
 HEADERS += abstractresource.h \
-           util.h \
            restservice.h \
            paginatedresource.h \
            basiclogin.h \
-           restaccessmanager.h \
 
 RESOURCES += colorpalette.qrc
 
