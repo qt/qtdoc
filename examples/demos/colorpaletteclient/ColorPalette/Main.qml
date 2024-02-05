@@ -43,18 +43,18 @@ Window {
 
         PaginatedResource {
             id: users
-            path: "/api/users"
+            path: "users"
         }
 
         PaginatedResource {
             id: colors
-            path: "/api/unknown"
+            path: "unknown"
         }
 
         BasicLogin {
             id: colorLogin
-            loginPath: "/api/login"
-            logoutPath: "/api/logout"
+            loginPath: "login"
+            logoutPath: "logout"
         }
     }
     //! [RestService QML element]

@@ -8,19 +8,16 @@
 
 #include <QtQml/qqml.h>
 #include <QtQml/qqmlparserstatus.h>
-#include <QtNetwork/qnetworkaccessmanager.h>
-#include <QtNetwork/qnetworkreply.h>
+#include <QtNetwork/qrestaccessmanager.h>
+#include <QtNetwork/qnetworkrequestfactory.h>
 #include <QtCore/qobject.h>
-#include <QtCore/qstring.h>
-#include <QtCore/qjsonobject.h>
-
-class RestAccessManager;
+#include <QtCore/qurl.h>
 
 class RestService : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
-    Q_PROPERTY(RestAccessManager* network READ network CONSTANT)
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
+    Q_PROPERTY(bool sslSupported READ sslSupported CONSTANT)
     Q_PROPERTY(QQmlListProperty<AbstractResource> resources READ resources)
     Q_CLASSINFO("DefaultProperty", "resources")
     Q_INTERFACES(QQmlParserStatus)
@@ -30,7 +27,7 @@ public:
     explicit RestService(QObject* parent = nullptr);
     ~RestService() override = default;
 
-    RestAccessManager* network() const;
+    bool sslSupported();
 
     QUrl url() const;
     void setUrl(const QUrl& url);
@@ -44,9 +41,10 @@ signals:
     void urlChanged();
 
 private:
-    QUrl m_url;
     QList<AbstractResource*> m_resources;
-    std::shared_ptr<RestAccessManager> m_manager;
+    QNetworkAccessManager m_qnam;
+    std::shared_ptr<QRestAccessManager> m_manager;
+    std::shared_ptr<QNetworkRequestFactory> m_serviceApi;
 };
 
 #endif // RESTSERVICE_H

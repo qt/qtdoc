@@ -6,10 +6,7 @@
 #include "abstractresource.h"
 
 #include <QtQml/qqml.h>
-#include <QtNetwork/qnetworkreply.h>
 #include <QtCore/qjsonobject.h>
-
-class RestAccessManager;
 
 // This class manages a simple paginated Crud resource,
 // where the resource is a paginated list of JSON items
@@ -18,7 +15,7 @@ class PaginatedResource : public AbstractResource
     Q_OBJECT
     Q_PROPERTY(QList<QJsonObject> data READ data NOTIFY dataUpdated)
     Q_PROPERTY(int page READ page WRITE setPage NOTIFY pageUpdated)
-    Q_PROPERTY(int pages READ pages NOTIFY pageUpdated)
+    Q_PROPERTY(int pages READ pages NOTIFY pagesUpdated)
     Q_PROPERTY(QString path MEMBER m_path REQUIRED)
     QML_ELEMENT
 
@@ -44,9 +41,11 @@ public:
 signals:
     void dataUpdated();
     void pageUpdated();
+    void pagesUpdated();
 
 private:
-    void refreshRequestFinished(QNetworkReply* reply);
+    void refreshRequestFinished(const QJsonDocument &json);
+    void refreshRequestFailed();
     QList<QJsonObject> m_data;
     // The total number of pages as reported by the server responses
     int m_pages = 0;

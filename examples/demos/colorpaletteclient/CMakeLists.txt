@@ -35,11 +35,9 @@ qt_add_qml_module(colorpaletteclient
         ColorPalette/UserMenu.qml
     SOURCES
         abstractresource.h
-        util.h util.cpp
         basiclogin.h basiclogin.cpp
         restservice.h restservice.cpp
         paginatedresource.h paginatedresource.cpp
-        restaccessmanager.h restaccessmanager.cpp
     RESOURCES
         icons/qt.png
         icons/testserver.png

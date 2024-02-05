@@ -1,19 +1,21 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include "util.h"
 #include "paginatedresource.h"
-#include "restaccessmanager.h"
-#include <QtNetwork/qnetworkreply.h>
-#include <QtCore/qurlquery.h>
-#include <QtCore/qjsonobject.h>
+
+#include <QtNetwork/qrestaccessmanager.h>
+#include <QtNetwork/qrestreply.h>
+
 #include <QtCore/qjsonarray.h>
+#include <QtCore/qjsondocument.h>
+#include <QtCore/qjsonobject.h>
+#include <QtCore/qurlquery.h>
 
 using namespace Qt::StringLiterals;
 
 static constexpr auto totalPagesField = "total_pages"_L1;
 static constexpr auto currentPageField = "page"_L1;
-static constexpr auto resourceIdentification = "/%1"_L1;
+static constexpr auto resourceId = "/%1"_L1;
 
 PaginatedResource::PaginatedResource(QObject* parent)
     : AbstractResource(parent)
@@ -46,61 +48,68 @@ void PaginatedResource::setPage(int page)
 
 void PaginatedResource::refreshCurrentPage()
 {
-    RestAccessManager::ResponseCallback callback = [this](QNetworkReply* reply, bool success) {
-        if (success)
-            refreshRequestFinished(reply);
-    };
-    QUrlQuery query;
-    query.addQueryItem("page"_L1, QString::number(m_currentPage));
-    m_manager->get(m_path, query, callback);
+    QUrlQuery query{{"page"_L1, QString::number(m_currentPage)}};
+    m_manager->get(m_api->createRequest(m_path, query), this, [this](QRestReply &reply) {
+                       if (const auto json = reply.readJson()) {
+                           refreshRequestFinished(*json);
+                       } else {
+                           refreshRequestFailed();
+                       }
+                });
 }
 
-void PaginatedResource::refreshRequestFinished(QNetworkReply* reply)
+void PaginatedResource::refreshRequestFinished(const QJsonDocument &json)
 {
     m_data.clear();
-    std::optional<QJsonObject> json = byteArrayToJsonObject(reply->readAll());
-    if (json) {
-        QJsonArray data = json->value("data"_L1).toArray();
-        for (const auto& entry : std::as_const(data))
-            m_data.append(entry.toObject());
-        m_pages = json->value(totalPagesField).toInt();
-        m_currentPage = json->value(currentPageField).toInt();
-        emit pageUpdated();
-    } else if (m_currentPage != 1) {
-        // An unexpected response. If we weren't on page 1, try that.
-        // Last resource on currentPage might have been deleted, causing a failure
-        m_pages = 0;
-        setPage(1);
-    }
+    const QJsonArray data = json["data"_L1].toArray();
+    for (const auto &entry : data)
+        m_data.append(entry.toObject());
+    m_pages = json[totalPagesField].toInt();
+    m_currentPage = json[currentPageField].toInt();
+    emit pageUpdated();
+    emit pagesUpdated();
     emit dataUpdated();
+}
+
+void PaginatedResource::refreshRequestFailed()
+{
+    if (m_currentPage != 1) {
+        // A failed refresh. If we weren't on page 1, try that.
+        // Last resource on currentPage might have been deleted, causing a failure
+        setPage(1);
+    } else {
+        // Refresh failed and we we're already on page 1 => clear data
+        m_pages = 0;
+        emit pagesUpdated();
+        if (!m_data.isEmpty()) {
+            m_data.clear();
+            emit dataUpdated();
+        }
+    }
 }
 
 void PaginatedResource::update(const QVariantMap& data, int id)
 {
-    RestAccessManager::ResponseCallback callback = [this](QNetworkReply* reply, bool success) {
-        Q_UNUSED(reply);
-        if (success)
-            refreshCurrentPage();
-    };
-    m_manager->put(m_path + resourceIdentification.arg(QString::number(id)), data, callback);
+    m_manager->put(m_api->createRequest(m_path + resourceId.arg(QString::number(id))), data,
+                   this, [this](QRestReply &reply) {
+                       if (reply.isSuccess())
+                           refreshCurrentPage();
+                   });
 }
 
 void PaginatedResource::add(const QVariantMap& data)
 {
-    RestAccessManager::ResponseCallback callback = [this](QNetworkReply* reply, bool success) {
-        Q_UNUSED(reply);
-        if (success)
+    m_manager->post(m_api->createRequest(m_path), data, this, [this](QRestReply &reply) {
+        if (reply.isSuccess())
             refreshCurrentPage();
-    };
-    m_manager->post(m_path, data, callback);
+    });
 }
 
 void PaginatedResource::remove(int id)
 {
-    RestAccessManager::ResponseCallback callback = [this](QNetworkReply* reply, bool success) {
-        Q_UNUSED(reply);
-        if (success)
-            refreshCurrentPage();
-    };
-    m_manager->deleteResource(m_path + resourceIdentification.arg(QString::number(id)), callback);
+    m_manager->deleteResource(m_api->createRequest(m_path + resourceId.arg(QString::number(id))),
+                              this, [this](QRestReply &reply) {
+                                  if (reply.isSuccess())
+                                      refreshCurrentPage();
+                              });
 }

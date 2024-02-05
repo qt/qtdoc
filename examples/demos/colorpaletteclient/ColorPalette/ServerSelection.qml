@@ -34,12 +34,12 @@ Item {
         id: server
         ListElement {
             title: qsTr("Public REST API Test Server")
-            url: "https://reqres.in"
+            url: "https://reqres.in/api"
             icon: "qrc:/qt/qml/ColorPalette/icons/testserver.png"
         }
         ListElement {
             title: qsTr("Qt-based REST API server")
-            url: "http://127.0.0.1:49425"
+            url: "http://127.0.0.1:49425/api"
             icon: "qrc:/qt/qml/ColorPalette/icons/qt.png"
         }
     }
