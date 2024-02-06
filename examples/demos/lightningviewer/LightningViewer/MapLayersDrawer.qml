@@ -4,7 +4,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 Item {
     id: drawer
@@ -110,15 +109,11 @@ Item {
                     anchors.fill: parent
                     spacing: 10
                     Item { Layout.fillWidth: true }
-                    Item {
-                        Layout.preferredWidth: drawer.iconSize
-                        Layout.preferredHeight: drawer.iconSize
-                        Layout.alignment: Qt.AlignVCenter
-                        ColorOverlay {
-                            anchors.fill: parent
-                            source: Image { source: "icons/map-layers.svg" }
-                            color: "#ABF2CE"
-                        }
+                    IconLabel {
+                        implicitWidth: drawer.iconSize
+                        implicitHeight: drawer.iconSize
+                        icon.source: "icons/map-layers.svg"
+                        icon.color: "#ABF2CE"
                     }
                     Text {
                         text: qsTr("Map Layers")
