@@ -85,6 +85,14 @@ set_target_properties(coffeemachine PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
+if(IOS)
+    set(asset_catalog_path "ios/Assets.xcassets")
+    target_sources(coffeemachine PRIVATE "${asset_catalog_path}")
+    set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_target_properties(coffeemachine
+        PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+endif()
+
 target_link_libraries(coffeemachine PRIVATE
     Qt6::Core
     Qt6::Gui
