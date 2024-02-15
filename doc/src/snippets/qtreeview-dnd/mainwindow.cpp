@@ -39,7 +39,7 @@ void MainWindow::setupItems()
           << tr("  QWidget\tThe basic building block for all other widgets.")
           << tr("  QDialog\tThe base class for dialog windows.")
           << tr("Tools\tUtilities and applications for Qt developers.")
-          << tr("  Qt Designer\tA GUI form designer for Qt applications.")
+          << tr("  Qt Widgets Designer\tA GUI form designer for Qt applications.")
           << tr("  Qt Assistant\tA documentation browser for Qt documentation.");
 
     DragDropModel *model = new DragDropModel(items, this);
