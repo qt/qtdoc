@@ -227,7 +227,6 @@ public class InAppPurchase implements PurchasesUpdatedListener
                                 queriedTitle.equals("") ||
                                 queriedDescription.equals("")) {
                             Log.e(TAG, "Data missing from product details.");
-                            failedProducts.add(queriedProductId);
                             queryFailed(m_nativePointer, queriedProductId);
                         } else {
                             productIdList.add(queriedProductId);
