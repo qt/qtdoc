@@ -144,7 +144,7 @@ Item {
 
         Button {
             Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Connect")
+            text: restPalette.sslSupported ? qsTr("Connect (SSL)") : qsTr("Connect")
 
             buttonColor: "#2CDE85"
             textColor: "#FFFFFF"
