@@ -48,7 +48,7 @@ ApplicationWindow {
 
         Label {
             id: tapLabel
-            width: parent.width -20 // so text does not touch screen edges
+            width: parent.width - 20 // so text does not touch screen edges
             height: text.height
             anchors {
                 centerIn: parent
@@ -81,7 +81,8 @@ ApplicationWindow {
             }
             onClicked: {
                 tapLabel.hide()
-                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0), diceSize.value)
+                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0),
+                                diceSize.value)
             }
         }
 
@@ -105,137 +106,146 @@ ApplicationWindow {
         id: drawer
         height: root.height
         width: column.width + 40
+        Flickable {
+            anchors.fill: parent
+            contentHeight: column.implicitHeight
+            flickableDirection: Flickable.AutoFlickIfNeeded
+            ScrollBar.vertical: ScrollBar {
+                policy: Screen.height < 600 ? ScrollBar.AlwaysOn : ScrollBar.AsNeeded
+            }
+            ColumnLayout {
+                id: column
+                anchors.horizontalCenter: parent.horizontalCenter
 
-        ColumnLayout {
-            id: column
-            anchors.horizontalCenter: parent.horizontalCenter
+                // Static friction
+                RowLayout {
+                    Label {
+                        text: qsTr("Static friction")
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        font.bold: true
+                    }
+                }
+                Slider {
+                    id: staticFrictionSlider
+                    focusPolicy: Qt.NoFocus
+                    from: 0
+                    to: 1
+                    value: 0.5
+                }
 
-            // Static friction
-            RowLayout {
-                Label {
-                    text: qsTr("Static friction")
-                    Layout.fillWidth: true
+                // Dynamic friction
+                RowLayout {
+                    Label {
+                        text: qsTr("Dynamic friction")
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        font.bold: true
+                    }
                 }
-                Label {
-                    font.bold: true
+                Slider {
+                    id: dynamicFrictionSlider
+                    focusPolicy: Qt.NoFocus
+                    from: 0
+                    to: 1
+                    value: 0.5
                 }
-            }
-            Slider {
-                id: staticFrictionSlider
-                focusPolicy: Qt.NoFocus
-                from: 0
-                to: 1
-                value: 0.5
-            }
 
-            // Dynamic friction
-            RowLayout {
-                Label {
-                    text: qsTr("Dynamic friction")
-                    Layout.fillWidth: true
+                // Restitution
+                RowLayout {
+                    Label {
+                        text: qsTr("Restitution")
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        font.bold: true
+                    }
                 }
-                Label {
-                    font.bold: true
+                Slider {
+                    id: restitutionSlider
+                    focusPolicy: Qt.NoFocus
+                    from: 0
+                    to: 1
+                    value: 0.8
+                    stepSize: 0.05
                 }
-            }
-            Slider {
-                id: dynamicFrictionSlider
-                focusPolicy: Qt.NoFocus
-                from: 0
-                to: 1
-                value: 0.5
-            }
 
-            // Restitution
-            RowLayout {
+                // Gravity
                 Label {
-                    text: qsTr("Restitution")
-                    Layout.fillWidth: true
+                    text: qsTr("Gravity")
                 }
-                Label {
-                    font.bold: true
+                GridLayout {
+                    columns: 2
+                    RadioButton {
+                        id: gravityZero
+                        text: qsTr("Zero")
+                        onCheckedChanged: scene.updateGravity()
+                    }
+                    RadioButton {
+                        id: gravityMoon
+                        text: qsTr("Moon")
+                        onCheckedChanged: scene.updateGravity()
+                    }
+                    RadioButton {
+                        id: gravityMars
+                        text: qsTr("Mars")
+                        onCheckedChanged: scene.updateGravity()
+                    }
+                    RadioButton {
+                        id: gravityEarth
+                        text: qsTr("Earth")
+                        onCheckedChanged: scene.updateGravity()
+                        checked: true
+                    }
                 }
-            }
-            Slider {
-                id: restitutionSlider
-                focusPolicy: Qt.NoFocus
-                from: 0
-                to: 1
-                value: 0.8
-                stepSize: 0.05
-            }
 
-            // Gravity
-            Label {
-                text: qsTr("Gravity")
-            }
-            GridLayout {
-                columns: 2
-                RadioButton {
-                    id: gravityZero
-                    text: qsTr("Zero")
-                    onCheckedChanged: scene.updateGravity()
+                // Number of dice
+                RowLayout {
+                    Label {
+                        text: qsTr("Number of dice")
+                        Layout.fillWidth: true
+                    }
                 }
-                RadioButton {
-                    id: gravityMoon
-                    text: qsTr("Moon")
-                    onCheckedChanged: scene.updateGravity()
+                Slider {
+                    id: diceSlider
+                    focusPolicy: Qt.NoFocus
+                    from: 1
+                    to: 10
+                    value: 5
+                    stepSize: 1
+                    onValueChanged: scene.spawnDice(value,
+                                                    Qt.vector3d(0, 0, 0),
+                                                    diceSize.value)
                 }
-                RadioButton {
-                    id: gravityMars
-                    text: qsTr("Mars")
-                    onCheckedChanged: scene.updateGravity()
-                }
-                RadioButton {
-                    id: gravityEarth
-                    text: qsTr("Earth")
-                    onCheckedChanged: scene.updateGravity()
-                    checked: true
-                }
-            }
 
-            // Number of dice
-            RowLayout {
-                Label {
-                    text: qsTr("Number of dice")
-                    Layout.fillWidth: true
+                // Dice size
+                RowLayout {
+                    Label {
+                        text: qsTr("Dice size")
+                        Layout.fillWidth: true
+                    }
                 }
-            }
-            Slider {
-                id: diceSlider
-                focusPolicy: Qt.NoFocus
-                from: 1
-                to: 10
-                value: 5
-                stepSize: 1
-                onValueChanged: scene.spawnDice(value, Qt.vector3d(0, 0, 0), diceSize.value)
-            }
-
-           // Dice size
-            RowLayout {
-                Label {
-                    text: qsTr("Dice size")
-                    Layout.fillWidth: true
+                Slider {
+                    id: diceSize
+                    focusPolicy: Qt.NoFocus
+                    from: 1
+                    to: 10
+                    value: 2
+                    stepSize: 1
+                    onValueChanged: scene.setDiceWidth(value)
                 }
-            }
-            Slider {
-                id: diceSize
-                focusPolicy: Qt.NoFocus
-                from: 1
-                to: 10
-                value: 2
-                stepSize: 1
-                onValueChanged: scene.setDiceWidth(value)
-            }
 
-            // Throw dice
-            Button {
-                id: throwButton
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Throw dice")
-                onClicked: scene.spawnDice(diceSlider.value,
-                                           Qt.vector3d(0, 0, 0),
-                                           diceSize.value)
+                // Throw dice
+                Button {
+                    id: throwButton
+                    Layout.alignment: Qt.AlignHCenter
+                    text: qsTr("Throw dice")
+                    onClicked: scene.spawnDice(diceSlider.value,
+                                               Qt.vector3d(0, 0, 0),
+                                               diceSize.value)
+                }
             }
         }
     }
