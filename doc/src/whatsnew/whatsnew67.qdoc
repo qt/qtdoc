@@ -370,6 +370,14 @@
             object of a QScreen.
     \endlist
 
+    \section3 WebAssembly
+    \list
+        \li Added drop support (drag-and-drop). Qt will now send drop events when the user
+            drops content on application windows.
+        \li OpenGL ES 3 / WebGL2 is now default, with fallback to OpenGL ES2 / WebGL 1.
+        \li Emscripten version updated to 3.1.50
+    \endlist
+
     \section2 Mobile Platforms
 
     \section3 Android
