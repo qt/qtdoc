@@ -26,6 +26,7 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::QuickControls2
 )
 
+qt6_policy(SET QTP0001 NEW)
 qt_add_qml_module(calqlatrexample
     URI demos.calqlatr
     VERSION 1.0
@@ -39,8 +40,6 @@ qt_add_qml_module(calqlatrexample
     RESOURCES
         "content/images/backspace.svg"
         "content/images/backspace_fill.svg"
-
-    RESOURCE_PREFIX /
 )
 if(ANDROID)
     set_target_properties(calqlatrexample
