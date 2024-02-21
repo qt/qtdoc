@@ -10,6 +10,35 @@
     Changes in Qt and \l{Licenses Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.5.5
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{zlib}{Data Compression Library (zlib)} was updated to version 1.3.1.
+        \li \l{pcre2}{PCRE2} was updated to version 10.43.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 3.0.2.
+        \li \l{libpng}{LibPNG} was updated to version 1.6.42.
+        \li \l{md4c}{MD4C} was updated to version 0.5.2.
+    \endlist
+
+    \section2 Qt Multimedia Module
+    \list
+        \li Usage of \l{ffmpeg}{FFmpeg}, version n6.1.1, is now documented.
+        \li Usage of \l{ffmpeg-libjpeg}{libjpeg} is now documented.
+        \li Usage of \l{ffmpeg-zlib}{zlib} is now documented.
+        \li Usage of \l{ffmpeg-boost}{boost} is now documented.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \l{sqlite}{SQLite} was updated to version 3.45.1.
+
     \section1 Qt 6.5.4
 
     \section2 Qt Quick3D Module
