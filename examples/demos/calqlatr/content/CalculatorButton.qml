@@ -10,21 +10,6 @@ RoundButton {
     implicitHeight: 38
     radius: buttonRadius
 
-    states: [
-        State {
-            name: "landscape"
-            when: window.height < window.width
-            PropertyChanges {
-                target: button
-                height: window.height / 8
-            }
-            PropertyChanges {
-                target: buttonText
-                font.pixelSize: 40
-            }
-        }
-    ]
-
     property bool dimmable: false
     property bool dimmed: false
     readonly property int fontSize: 22
@@ -67,7 +52,6 @@ RoundButton {
     }
 
     contentItem: Text {
-        id: buttonText
         text: button.text
         font.pixelSize: button.fontSize
         horizontalAlignment: Text.AlignHCenter
