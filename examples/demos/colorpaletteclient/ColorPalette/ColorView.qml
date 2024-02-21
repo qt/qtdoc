@@ -293,7 +293,7 @@ Item {
 
                 required property var modelData
 
-                width: parent.width
+                width: colorListView.width
                 height: 25
                 RowLayout {
                     anchors.fill: parent

@@ -24,6 +24,8 @@ Popup {
         anchors.fill: parent
 
         ListView {
+            id: userListView
+
             model: userMenu.userMenuUsers.data
             spacing: 5
             footerPositioning: ListView.PullBackFooter
@@ -36,7 +38,7 @@ Popup {
                 id: userInfo
 
                 height: 30
-                width: parent.width
+                width: userListView.width
 
 
                 required property var modelData
