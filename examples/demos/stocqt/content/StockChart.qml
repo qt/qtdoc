@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick 6.5
 import custom.StockEngine
-import QtGraphs3D
+import QtGraphs
 import QtQuick.Layouts
 import custom.TimeFormatter
 
