@@ -14,6 +14,8 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/stocqt")
 
+find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
+
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appStocQt
@@ -40,7 +42,6 @@ if (ANDROID)
     endif()
 endif()
 
-find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
 
 qt_add_qml_module(appStocQt
     URI StocQt
