@@ -433,8 +433,9 @@
             given languages, generating a 'plural-only' .ts file for the native language.
         \li CMake: You can now pass multiple targets to qt_add_translations() to extract
             translations from. Alternatively, you can let qt_add_translations() collect all
-            targets of a project (done via the new qt_collect_i18n_targets() function), with the
-            option to opt out of undesired targets on directory or target level.
+            targets of a project (done via the new qt_collect_translation_source_targets()
+            function), with the option to opt out of undesired targets on directory or
+            target level.
         \li CMake: qt_add_translations() has been moved out of technical preview.
     \endlist
 
