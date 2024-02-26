@@ -25,6 +25,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool hasPlugins() const;
 
 public slots:
     bool openFile(const QString &fileName);
