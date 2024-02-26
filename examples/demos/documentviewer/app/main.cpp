@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QMessageBox>
 
 using namespace Qt::StringLiterals;
 
@@ -28,6 +29,15 @@ int main(int argc, char *argv[])
                                                                 : QString();
 
     MainWindow w;
+
+    // Start application only if plugins are available
+    if (!w.hasPlugins()) {
+        QMessageBox::critical(nullptr,
+                              "No viewer plugins found"_L1,
+                              "Unable to load viewer plugins. Exiting application."_L1);
+        return 1;
+    }
+
     w.show();
     if (!fileName.isEmpty())
         w.openFile(fileName);

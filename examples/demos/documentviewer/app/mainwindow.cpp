@@ -47,6 +47,11 @@ MainWindow::MainWindow(QWidget *parent) :
         connect(ui->actionRecent, &QAction::triggered, button, &QToolButton::showMenu);
 }
 
+bool MainWindow::hasPlugins() const
+{
+    return m_factory ? !m_factory->viewers().isEmpty() : false;
+}
+
 MainWindow::~MainWindow()
 {
     saveSettings();
