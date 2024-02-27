@@ -13,6 +13,8 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/${PROJECT_NAME}")
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Qml Quick Quick3D)
 
+qt_standard_project_setup(REQUIRES 6.5)
+
 qt_add_executable(FxMaterialShowroomApp
     src/app_environment.h
     src/main.cpp
