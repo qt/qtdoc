@@ -26,7 +26,7 @@ Rectangle {
     signal currentFileRemoved()
 
     function getSource() {
-        if (isShuffled) {
+        if (isShuffled && mediaCount > 1) {
             let randomIndex = Math.floor(Math.random() * mediaCount)
             while (randomIndex == currentIndex) {
                 randomIndex = Math.floor(Math.random() * mediaCount)
