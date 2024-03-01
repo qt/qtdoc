@@ -19,14 +19,14 @@
     \include examples-run.qdocinc
 
     \section1 Overview
-    \e{Lightning Viewer} is an application that receives ligtning strike data
+    \e{Lightning Viewer} is an application that receives lightning strike data
     from a \l{WebSocket} and displays it on a map in real-time. It features a
     responsive UI that adapts well to mobile, tablet and desktop-sized screens
     in both landscape and portrait orientation. Lightning strikes appear as
     icons on the map, and a separate overlay shows the distance and time of the
     last strike. These data layers can be hidden and revealed with toggles that
     are accessed by pressing the map layers button. There is also a switch for
-    switching between map types and a button that centers the map at the users
+    switching between map types and a button that centers the map at the user's
     location.
 
     \section1 Application Structure
@@ -71,7 +71,7 @@
     they are placed in a \l{Drawer} defined in \c MapLayersDrawer.qml.
 
     \section1 Lightning strike data source
-    The application receives lightning strike data from a server maintaned by
+    The application receives lightning strike data from a server maintained by
     Qt. The server provides a WebSocket API accepting connections on the
     following URL:
     \code
@@ -80,7 +80,7 @@
 
     When connected, the server accepts two different JSON messages, included in
     \c lightningprovider.cpp as strings with backslashes to escape
-    double-quotes.The first message will trigger the API to forward real world
+    double-quotes. The first message will trigger the API to forward real world
     lightning strikes. The availability or accuracy of this data can not be
     guaranteed, as it depends on third party data providers. As an alternative
     solution, the second message will trigger the API to send simulated
