@@ -48,18 +48,18 @@ ApplicationWindow {
 
         Label {
             id: tapLabel
-            width: parent.width - 20 // so text does not touch screen edges
-            height: text.height
-            anchors {
-                centerIn: parent
-            }
-            text: qsTr("Tap, click or shake to throw dice")
+            anchors.fill: parent
+            padding: parent.width * 0.1
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            fontSizeMode: Text.Fit
             font.bold: true
+            font.pixelSize: 64
+            text: qsTr("Tap, click or shake to throw dice")
+            wrapMode: Text.NoWrap
             style: Text.Raised
             color: "white"
             minimumPixelSize: 10
-            font.pixelSize: 32
-            wrapMode: Text.WordWrap
             NumberAnimation on opacity {
                 id: tapLabelAnimation
                 running: false
