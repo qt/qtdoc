@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.14)
-project(dice LANGUAGES CXX)
+set(appname "qtdice")
+project(${appname} LANGUAGES CXX)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
@@ -14,16 +15,16 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics Multi
 
 qt_standard_project_setup()
 
-qt_add_executable(dice
+qt_add_executable(${appname}
     main.cpp
 )
 
-set_target_properties(dice PROPERTIES
+set_target_properties(${appname} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(dice PRIVATE
+target_link_libraries(${appname} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
@@ -64,27 +65,27 @@ set(qml_resource_files
     sounds/rolling.wav
 )
 if(ANDROID)
-    set_target_properties(dice PROPERTIES
+    set_target_properties(${appname} PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
         QT_ANDROID_TARGET_SDK_VERSION "33")
 endif()
 
 if(IOS)
     set(asset_catalog_path "ios/Assets.xcassets")
-    target_sources(dice PRIVATE "${asset_catalog_path}")
+    target_sources(${appname} PRIVATE "${asset_catalog_path}")
     set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_target_properties(dice
+    set_target_properties(${appname}
         PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
 endif()
 
-qt_add_resources(dice "qml"
+qt_add_resources(${appname} "qml"
     PREFIX
         "/"
     FILES
         ${qml_resource_files}
 )
 
-install(TARGETS dice
+install(TARGETS ${appname}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
