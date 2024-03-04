@@ -19,10 +19,10 @@
     \include examples-run.qdocinc
 
     \section1 Overview
-    \e{Lightning Viewer} is an application that receives lightning strike data
-    from a \l{WebSocket} and displays it on a map in real-time. It features a
-    responsive UI that adapts well to mobile, tablet and desktop-sized screens
-    in both landscape and portrait orientation. Lightning strikes appear as
+    \e{Lightning Viewer} is an application that receives simulated lightning
+    strike data from a \l{WebSocket} and displays it on a map in real-time. It
+    features a responsive UI that adapts well to mobile, tablet and desktop-sized
+    screens in both landscape and portrait orientation. Lightning strikes appear as
     icons on the map, and a separate overlay shows the distance and time of the
     last strike. These data layers can be hidden and revealed with toggles that
     are accessed by pressing the map layers button. There is also a switch for
@@ -38,7 +38,7 @@
     interaction. The \c Controller class manages the data flow between the
     \c LightningItemModel and the QML components. The \c LightningProvider class
     opens a \l{WebSocket} connection to an online server from which it receives
-    a JSON message for each occurring lightning strike. It parses the messages
+    a JSON message for each simulated lightning strike. It parses the messages
     and passes the data on to the \c LightningItemModel via a signal connected
     to a slot in the \c Controller:
 
@@ -71,22 +71,15 @@
     they are placed in a \l{Drawer} defined in \c MapLayersDrawer.qml.
 
     \section1 Lightning strike data source
-    The application receives lightning strike data from a server maintained by
-    Qt. The server provides a WebSocket API accepting connections on the
-    following URL:
+    The application receives simulated lightning strike data from a server
+    maintained by Qt. The server provides a WebSocket API accepting connections
+    on the following URL:
     \code
         wss://ewea0y4bn0.execute-api.eu-north-1.amazonaws.com/production/
     \endcode
-
-    When connected, the server accepts two different JSON messages, included in
-    \c lightningprovider.cpp as strings with backslashes to escape
-    double-quotes. The first message will trigger the API to forward real world
-    lightning strikes. The availability or accuracy of this data can not be
-    guaranteed, as it depends on third party data providers. As an alternative
-    solution, the second message will trigger the API to send simulated
-    lightning strike data:
+    After connecting to the server, the application triggers the live data feed
+    by sending the following JSON message to the server:
     \code
-        "{\"action\": \"forwardlightningdata\"}"
         "{\"action\": \"simulatelightningdata\"}"
     \endcode
 
