@@ -4,12 +4,10 @@
 #include <QtQml/qqmlapplicationengine.h>
 #include <QtQml/qqmlcontext.h>
 #include <QtGui/qguiapplication.h>
-#include <QtGui/qicon.h>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    QIcon::setThemeName("colorpaletteclient");
 
     QQmlApplicationEngine engine;
 #ifdef Q_OS_MACOS
