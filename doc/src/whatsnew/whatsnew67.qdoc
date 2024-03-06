@@ -106,6 +106,14 @@
             The classes are convenience wrappers tuned for RESTful use cases.
     \endlist
 
+    \section2 Qt OPC UA Module
+    \list
+        \li Added the new QOpcUaHistoryEvent and QOpcUaHistoryReadEventRequest
+            classes to enable reading of historical events.
+        \li Added the new QOpcUaGenericStructHandler class and related data
+            classes to support decoding and encoding of generic OPC UA structures.
+    \endlist
+
     \section2 Qt Positioning Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
