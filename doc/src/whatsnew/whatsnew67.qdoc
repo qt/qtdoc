@@ -326,9 +326,9 @@
         \li Added support for some elements from SVG 1.1 standard. The elements
             are Mask, Symbol, Marker, Pattern, Filter, and Filter Primitives (feMerge,
             feColorMatrix, feGaussianBlur, feOffset, feComposite, feFlood)
-        \li Added QtSvg::FeatureSet enum to enable or disable rendering of the
+        \li Added QtSvg::Options flag to enable or disable rendering of the
             new elements.
-        \li Added setters and getters for the QtSvg::FeatureSet for QSvgRenderer
+        \li Added setters and getters for the QtSvg::Options for QSvgRenderer
             and QSvgWidget. The new features are enabled by default.
     \endlist
 
