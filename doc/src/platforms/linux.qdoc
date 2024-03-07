@@ -271,9 +271,18 @@
     \endtable
 
     Development packages for these libraries contain header files that are used
-    when building Qt from its source code. On Debian-based GNU/Linux systems,
-    for example, we recommend that you install the following development
-    packages:
+    when building Qt from its source code. The package names may differ among
+    Linux distributions, and some distributions may not include all packages in
+    the default configuration for their package management system. It's
+    impractical for Qt to maintain a complete overview for all distributions.
+    For example, RedHat and its derivatives are known to require a non-default
+    repository for certain packages (e.g. "Extra Packages for Enterprise Linux"
+    (EPEL) for RHEL, or "CodeReady Linux Builder"). Refer to the documentation
+    for your specific distribution for specifics. RHEL users may contact RedHat
+    support for correct information.
+
+    On Debian-based GNU/Linux systems, as an example, we recommend that you
+    install the following development packages:
 
     \list
     \li libfontconfig1-dev
