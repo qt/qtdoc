@@ -15,7 +15,7 @@ Popup {
     height: column.height + 60
 
     property url path: ""
-    readonly property color borderColor: urlText.text ? (!errorMsg.visible ? "#41CD52" : "red") : Config.secondaryColor
+    readonly property color borderColor: urlText.text ? (!errorMsg.visible ? Config.highlightColor : "red") : Config.secondaryColor
 
     background: Rectangle {
         color: Config.mainColor

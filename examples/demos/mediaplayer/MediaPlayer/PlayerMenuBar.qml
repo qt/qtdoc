@@ -42,15 +42,15 @@ Item {
 
         palette.base: Config.mainColor
         palette.text: Config.secondaryColor
-        palette.highlightedText: "#41CD52"
+        palette.highlightedText: Config.highlightColor
         palette.window: "transparent"
         palette.highlight: Config.mainColor
 
         Menu {
             title: qsTr("&File")
+            palette.base: Config.mainColor
             palette.text: Config.secondaryColor
-            palette.window: Config.mainColor
-            palette.highlightedText: "#41CD52"
+            palette.highlight: Config.highlightColor
 
             MenuItem {
                 text: qsTr("Open &File")

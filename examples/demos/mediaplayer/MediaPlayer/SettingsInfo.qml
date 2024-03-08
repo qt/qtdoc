@@ -40,8 +40,8 @@ Rectangle {
                 id: tab
                 required property int index
                 required property string modelData
-                property color shadowColor:  bar.currentIndex === index ? "#41CD52" : "black"
-                property color textColor:  bar.currentIndex === index ? "#41CD52" : Config.secondaryColor
+                property color shadowColor:  bar.currentIndex === index ? Config.highlightColor : "black"
+                property color textColor:  bar.currentIndex === index ? Config.highlightColor : Config.secondaryColor
 
                 background: Rectangle {
                     opacity: 0.15
