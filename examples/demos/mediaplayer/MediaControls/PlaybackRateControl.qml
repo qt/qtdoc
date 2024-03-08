@@ -4,6 +4,7 @@
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
+import Config
 
 Item {
     id: root
@@ -34,7 +35,7 @@ Item {
 
         Label {
             text: slider.value.toFixed(1) + "x"
-            color: "#41CD52"
+            color: Config.highlightColor
         }
     }
 }

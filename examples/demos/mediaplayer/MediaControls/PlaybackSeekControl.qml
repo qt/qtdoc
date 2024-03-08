@@ -39,7 +39,7 @@ Item {
 
         CustomSlider {
             id: mediaSlider
-            backgroundColor: !Config.activeTheme ? "white" : "#41CD52"
+            backgroundColor: !Config.activeTheme ? "white" : Config.highlightColor
             backgroundOpacity: !Config.activeTheme ? 0.8 : 0.2
             enabled: root.mediaPlayer.seekable
             to: 1.0

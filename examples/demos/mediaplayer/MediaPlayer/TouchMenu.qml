@@ -17,12 +17,12 @@ Menu {
     background: Rectangle {
         color: Config.mainColor
         radius: 15
-        border.color: "#41CD52"
+        border.color: Config.highlightColor
     }
 
     component MenuItemLabel: Label {
         font.pixelSize: 24
-        color: "#41CD52"
+        color: Config.highlightColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         topPadding: 4
@@ -41,7 +41,7 @@ Menu {
         }
 
         background: Rectangle {
-            color: menuItem.pressed ? "#41CD52" : "transparent"
+            color: menuItem.pressed ? Config.highlightColor : "transparent"
             opacity: 0.25
         }
     }
@@ -57,7 +57,7 @@ Menu {
     Rectangle {
         width: parent.width
         implicitHeight: 1
-        color: "#41CD52"
+        color: Config.highlightColor
         opacity: 0.25
     }
 
@@ -70,7 +70,7 @@ Menu {
     Rectangle {
         width: parent.width
         implicitHeight: 1
-        color: "#41CD52"
+        color: Config.highlightColor
         opacity: 0.25
     }
 
@@ -82,7 +82,7 @@ Menu {
 
     Rectangle {
         implicitHeight: 1
-        color: "#41CD52"
+        color: Config.highlightColor
 
         Layout.fillWidth: true
     }

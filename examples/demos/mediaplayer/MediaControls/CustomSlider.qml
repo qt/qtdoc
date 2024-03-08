@@ -3,6 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls.Fusion
+import Config
 
 Slider {
     id: slider
@@ -19,9 +20,9 @@ Slider {
         width: slider.availableWidth
         height: implicitHeight
         radius: 10
-        color: "#41CD52"
+        color: Config.highlightColor
         opacity: 0.2
-        border.color: "#41CD52"
+        border.color: Config.highlightColor
         border.width: 1
     }
 
@@ -38,7 +39,7 @@ Slider {
         x: slider.leftPadding
         y: slider.topPadding + slider.availableHeight / 2 - height / 2
         height: 8
-        color: "#41CD52"
+        color: Config.highlightColor
         radius: 10
     }
 }
