@@ -19,7 +19,15 @@ qt_add_executable(osmbuildings
 )
 
 if (ANDROID)
-    add_android_openssl_libraries(osmbuildings)
+    include(FetchContent)
+    FetchContent_Declare(
+        android_openssl
+        DOWNLOAD_EXTRACT_TIMESTAMP true
+        URL https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+    )
+    FetchContent_MakeAvailable(android_openssl)
+    include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+    add_android_openssl_libraries(LightningViewerExample)
 endif()
 
 set_target_properties(osmbuildings PROPERTIES
