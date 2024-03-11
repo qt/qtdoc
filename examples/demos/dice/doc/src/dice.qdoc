@@ -5,8 +5,8 @@
     \title Dice
     \ingroup qtquickdemos
     \example demos/dice
-    \brief A dice throwing application that demonstrates using Qt Quick 3D Physics
-    and Qt Quick 3D.
+    \brief A dice throwing application using Qt Quick 3D Physics and other
+    Qt Modules.
     \examplecategory {Application Examples}
     \examplecategory {Mobile}
     \meta {tag} {quick,3d,physics, multimedia, sensors}
@@ -15,6 +15,7 @@
     \image dice-screenshot.webp
 
     \section1 Overview
+
     This example application allows you to roll some dice on a table. It's
     implemented with QML and relies on a number of Qt modules that are detailed
     in the following sections.
@@ -49,7 +50,11 @@
     A \l{Qt Quick} UI is provided for configuring the physical material of
     the simulated dice, the magnitude of gravity, and the number and size of dice.
 
-
     \include examples-run.qdocinc
-    \include examples/qtquick3d.qdocinc
+
+    \note The example makes use of the \l{Qt Quick 3D}, \l{Qt Multimedia},
+    \l{Qt Quick 3D Physics} and \l{Qt Sensors} modules which are separate items
+    in the \l{Get and Install Qt}{Qt Online Installer}. If the example fails to
+    configure, please make sure that you have these required packages installed.
+
 */
