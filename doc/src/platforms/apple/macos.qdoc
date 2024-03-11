@@ -1187,5 +1187,11 @@
     \badcode
     MyApp.app
     \endcode
+
+    \section1 Entitlements
+
+    \c When signing, \c macdeployqt will automatically use the first .entitlements file it finds
+    in the Contents/Resources/ subdirectory in the application bundle if present. To prevent errors,
+    ensure that there is at maximum one .entitlements file in this folder.
 */
 
