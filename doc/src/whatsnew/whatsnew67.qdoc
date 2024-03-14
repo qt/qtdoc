@@ -391,6 +391,22 @@
 
     \section2 Embedded Platforms
 
+    \section3 Boot to Qt
+    \list
+        \li Support was added for Yocto 4.3 (Nanbield).
+        \li Support added for ARM Linux development hosts.
+        \li Squish support included in the target images.
+        \li The \l {Support Levels for Target Hardware} was updated with new supported boards
+        for Tier 3:
+            \list
+                \li Amazon AWS EC2 ARM64
+                \li NVIDIA Jetson AGX Orin Developer Kit
+                \li NXP i.MX8M Nano LPDDR4 EVK (replaces DDR4 EVK variant)
+                \li Qualcomm Robotics RB5 Development Kit
+                \li TI SK-AM69
+            \endlist
+    \endlist
+
     \section3 VxWorks
     \list
         \li Added VxWorks 23.09 support as Technology Preview.
@@ -416,6 +432,12 @@
             function), with the option to opt out of undesired targets on directory or
             target level.
         \li CMake: qt_add_translations() has been moved out of technical preview.
+    \endlist
+
+
+    \section3 WebOS
+    \list
+        \li Qt 6.7 has been verified to work with LG webOS OSE 2.25.0 (\l {Qt for webOS}).
     \endlist
 
     \section1 List of API Changes
