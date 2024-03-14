@@ -30,7 +30,7 @@ Popup {
     }
 
     function validateUrl(urlText: string) : bool {
-        const urlPattern = /^((http)|(https)|(rtp)|(rtsp)|(udp)):\/\//
+        const urlPattern = /^([a-z]+:){1,2}\/\/.+/
         return urlPattern.test(urlText)
     }
 
