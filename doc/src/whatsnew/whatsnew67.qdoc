@@ -307,7 +307,8 @@
             is based on \l {https://chromedriver.chromium.org/}{ChromeDriver}.
         \li Added QWebEngineUrlRequestInfo::requestBody to access the body of a request using
             the QIODevice API.
-        \li Added settings {QQuickWebEngineSettings::}{forceDarkMode} and {QWebEngineSettings::}{ForceDarkMode}
+        \li Added settings \l {QQuickWebEngineSettings::}{forceDarkMode}
+            and \l {QWebEngineSettings::}{ForceDarkMode}
             to enable automatically rendering all web contents using a dark theme.
         \li Added signals QWebEngineProfile::clearHttpCacheCompleted and
             QQuickWebEngineProfile::clearHttpCacheCompleted.
