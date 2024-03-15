@@ -11,6 +11,8 @@ import QtCore
 import MediaControls
 import Config
 
+import io.qt.filenameprovider
+
 Rectangle {
     id: root
 
@@ -42,7 +44,7 @@ Rectangle {
             files.insert(index,
                 {
                     path: url,
-                    isMovie: isMovie(url.toString())
+                    isMovie: isMovie(FileNameProvider.getFileName(url.toString()))
                 })
         })
         playlistUpdated()
@@ -56,7 +58,7 @@ Rectangle {
         files.insert(index,
             {
                 path: selectedFile,
-                isMovie: isMovie(selectedFile.toString())
+                isMovie: isMovie(FileNameProvider.getFileName(selectedFile.toString()))
             })
 
     }
@@ -175,8 +177,7 @@ Rectangle {
                     color: root.currentIndex === row.index ? Config.highlightColor : Config.secondaryColor
                     font.pixelSize: 18
                     text: {
-                        const paths = row.path.split('/')
-                        return paths[paths.length - 1]
+                        return FileNameProvider.getFileName(row.path)
                     }
                 }
 
