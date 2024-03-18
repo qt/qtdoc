@@ -79,11 +79,6 @@
             API in Qt 6.6 and is now finalized.
     \endlist
 
-    \section2 Qt Location Module
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
     \section2 Qt Multimedia Module
     \list
         \li The new \l MediaPlayer::autoPlay and \l Video::autoPlay
@@ -113,11 +108,6 @@
             classes to enable reading of historical events.
         \li Added the new QOpcUaGenericStructHandler class and related data
             classes to support decoding and encoding of generic OPC UA structures.
-    \endlist
-
-    \section2 Qt Positioning Module
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt Protobuf Module
@@ -294,16 +284,6 @@
         \li The deprecated <qsql.h> header got removed. Use <qtsqlglobal.h> instead.
     \endlist
 
-    \section2 Qt Test Module
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
-    \section2 Qt TextToSpeech Module
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
-    \endlist
-
     \section2 Qt WebEngine Module
     \list
         \li Added new APIs QWebEngineWebAuthUXRequest and QML type WebEngineWebAuthUXRequest to support
@@ -319,11 +299,6 @@
             to enable automatically rendering all web contents using a dark theme.
         \li Added signals QWebEngineProfile::clearHttpCacheCompleted and
             QQuickWebEngineProfile::clearHttpCacheCompleted.
-    \endlist
-
-    \section2 Qt WebView Module
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt Widgets Module
@@ -372,11 +347,6 @@
     \section3 \macos
     \list
         \li \macos 14 is now a supported build and target platform.
-    \endlist
-
-    \section3 X11
-    \list
-        \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section3 Wayland Client on Linux
