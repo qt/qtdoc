@@ -69,7 +69,10 @@
     \printuntil ,
 
     The SettingsView presents information on the application as well as a dropdown menu for
-    choosing between offline and live data. Using live data also requires the user to provide an API key.
+    choosing between offline and live data. Using live data also requires the user to provide an API
+    key. A personal API key can be generated from the \l{http://financialmodelingprep.com/}
+    {Financial Modeling Prep website}, which can then be inserted into the API key prompt seen when
+    choosing to use live data.
 
     \quotefromfile demos/stocqt/content/SettingsView.qml
     \skipto Rectangle
