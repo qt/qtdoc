@@ -38,14 +38,14 @@
     \row \li Debian 11.6 on ARM
         \li \c arm64
         \li GCC 10
-        \li
+        \li Technology Preview
 \endtable
 //! [linux]
 
 \section2 \l{Qt for macOS}{\macos}
 //! [macos]
 \table 80%
-    \header \li Target Platform \li Architecture \li Build Environment
+    \header \li Target Platform \li Architecture \li Build Environment \li Notes
     \row \li \macos 11, 12, 13, 14
         \li \c x86_64, \c x86_64h, and \c arm64
         \li Xcode 14 (\macos 13 SDK), Xcode 15 (\macos 14 SDK)
@@ -55,7 +55,7 @@
 \section2 \l{Qt for Windows}{Windows}
 //! [windows]
 \table 80%
-    \header \li Operating System \li Architecture \li Compiler
+    \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10 (1809 or later)
         \li \c x86_64
         \li MSVC 2022, MSVC 2019, MinGW 11.2
