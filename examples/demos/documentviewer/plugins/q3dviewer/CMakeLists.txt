@@ -37,8 +37,14 @@ qt_add_resources(Q3Dviewer "qml"
         queryMimeTypes.qml
 )
 
+if(WIN32)
+    set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
+elseif(APPLE)
+    set(install_destination ".")
+else()
+    set(install_destination "${CMAKE_INSTALL_BINDIR}")
+endif()
 install(TARGETS Q3Dviewer
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+    RUNTIME DESTINATION "${install_destination}"
+    LIBRARY DESTINATION "${install_destination}"
 )
-

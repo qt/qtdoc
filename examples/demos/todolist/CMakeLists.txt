@@ -3,8 +3,6 @@
 
 cmake_minimum_required(VERSION 3.18)
 
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/todolist")
-
 project(ToDoListApp LANGUAGES CXX)
 
 find_package(Qt6 6.5 COMPONENTS Gui Qml Quick QuickControls2)
@@ -30,7 +28,16 @@ target_link_libraries(ToDoListApp PRIVATE
 )
 
 install(TARGETS ToDoListApp
-    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
+
+qt_generate_deploy_qml_app_script(
+    TARGET ToDoListApp
+    OUTPUT_SCRIPT deploy_script
+    MACOS_BUNDLE_POST_BUILD
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+)
+install(SCRIPT ${deploy_script})

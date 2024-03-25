@@ -3,8 +3,6 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/thermostat")
-
 project(ThermostatApp LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Qml Quick QuickControls2 Svg Charts)
@@ -32,7 +30,16 @@ target_link_libraries(ThermostatApp PRIVATE
 )
 
 install(TARGETS ThermostatApp
-    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
+
+qt_generate_deploy_qml_app_script(
+    TARGET ThermostatApp
+    OUTPUT_SCRIPT deploy_script
+    MACOS_BUNDLE_POST_BUILD
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+)
+install(SCRIPT ${deploy_script})
