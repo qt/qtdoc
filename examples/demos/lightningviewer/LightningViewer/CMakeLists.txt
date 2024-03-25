@@ -50,3 +50,11 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Quick
     Qt6::WebSockets
 )
+
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewer"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewer"
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir
+    DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewer"
+)

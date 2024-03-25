@@ -8,12 +8,6 @@ project(StocQt VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-if(NOT DEFINED INSTALL_EXAMPLESDIR)
-    set(INSTALL_EXAMPLESDIR "examples")
-endif()
-
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/stocqt")
-
 find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
 
 qt_standard_project_setup(REQUIRES 6.5)
@@ -81,13 +75,6 @@ target_link_libraries(appStocQt PRIVATE
     Qt6::Qml
     Qt6::Quick
     Qt6::Graphs
-)
-
-include(GNUInstallDirs)
-install(TARGETS appStocQt
-    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
 
 set (data_resource_files
@@ -201,3 +188,18 @@ qt6_add_resources(appStocQt "data"
     FILES
         ${data_resource_files}
 )
+
+install(TARGETS appStocQt
+    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+qt_generate_deploy_qml_app_script(
+    TARGET appStocQt
+    OUTPUT_SCRIPT deploy_script
+    MACOS_BUNDLE_POST_BUILD
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+)
+install(SCRIPT ${deploy_script})

@@ -4,12 +4,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(documentviewer LANGUAGES CXX)
 
-if(NOT DEFINED INSTALL_EXAMPLESDIR)
-    set(INSTALL_EXAMPLESDIR "examples")
-endif()
-
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/documentviewer")
-
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
              OPTIONAL_COMPONENTS PrintSupport Pdf PdfWidgets Quick3D)
 

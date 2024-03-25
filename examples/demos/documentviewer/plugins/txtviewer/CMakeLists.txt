@@ -28,8 +28,14 @@ if(TARGET Qt6::PrintSupport)
     target_link_libraries(txtviewer PRIVATE Qt6::PrintSupport)
 endif()
 
+if(WIN32)
+    set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
+elseif(APPLE)
+    set(install_destination ".")
+else()
+    set(install_destination "${CMAKE_INSTALL_BINDIR}")
+endif()
 install(TARGETS txtviewer
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+    RUNTIME DESTINATION "${install_destination}"
+    LIBRARY DESTINATION "${install_destination}"
 )
-

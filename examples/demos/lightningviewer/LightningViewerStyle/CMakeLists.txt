@@ -122,3 +122,11 @@ qt_add_qml_module(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Quick
 )
+
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir
+    DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
+)
