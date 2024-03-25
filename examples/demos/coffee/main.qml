@@ -5,8 +5,8 @@ import QtQuick.Controls
 //! [Set application window size]
 ApplicationWindow {
     visible: true
-    width: Screen.desktopAvailableWidth
-    height: Screen.desktopAvailableHeight
+    width: 1000
+    height: 600
     title: qsTr("Coffee")
 //! [Set application window size]
     ApplicationFlow {

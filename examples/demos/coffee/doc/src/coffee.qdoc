@@ -57,11 +57,13 @@
 
     Here we discuss how these features are implemented.
 
-    \section2 Adapting to different screens
+    \section2 Adapting to screen sizes and orientation
 
-    The app adapts at runtime to different target device screen types by
-    first setting the root object \l {ApplicationWindow} QML type width and
-    height properties to device screen available height and width.
+    The application window root object has initial values for height
+    and width, which will be used as the window size on desktop platforms.
+    The default QWindow::AutomaticVisibility ensures that the window will
+    be shown as maximized or fullscreen on platforms that require it,
+    such as mobile platforms.
 
     \snippet demos/coffee/main.qml Set application window size
 
