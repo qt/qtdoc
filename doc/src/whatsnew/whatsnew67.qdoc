@@ -80,6 +80,11 @@
 
     \section2 Qt Multimedia Module
     \list
+        \li The FFmpeg multimedia backend now links dynamically with
+            FFmpeg on Windows. Prebuilt FFmpeg binaries are provided
+            through the online installer. Windows applications that use
+            the FFmpeg backend must now bundle FFmpeg binaries as part
+            of their installer using windeployqt.
         \li The new \l MediaPlayer::autoPlay and \l Video::autoPlay
             properties can be used to automatically start playback when
             a media source has been set.
