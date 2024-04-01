@@ -729,9 +729,9 @@
 
     \section1 Threads and the SQL Module
 
-    A connection can only be used from within the thread that created it.
-    Moving connections between threads or creating queries from a different
-    thread is not supported.
+    A database connection must only be used from within the thread that
+    created it. Moving a connection into another thread can be done
+    with QSqlDatabase::moveToThread().
 
     In addition, the third party libraries used by the QSqlDrivers can impose
     further restrictions on using the SQL Module in a multithreaded program.
