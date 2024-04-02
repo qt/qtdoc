@@ -19,6 +19,7 @@ qml.files = \
 qml.prefix = /
 
 resources.files = \
+    Menu_Icon.svg \
     maps/M_Side_Table_Natural_Wenge_Wood_4K_baseColor_small.jpg \
     maps/M_Side_Table_Natural_Wenge_Wood_4K_metallicRoughness_small.png \
     maps/M_Side_Table_Natural_Wenge_Wood_4K_normal_small.png \
@@ -28,7 +29,7 @@ resources.files = \
     meshes/object_3.mesh \
     meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh \
 
-qml.prefix = /
+resources.prefix = /
 
 RESOURCES += qml resources
 
