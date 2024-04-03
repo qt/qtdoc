@@ -314,6 +314,8 @@
         \li QCheckBox got a new signal checkStateChanged that emits the
             new check state as a type safe Qt::CheckState enum value.
         \li QDateTimeEdit got a new \l{QDateTimeEdit::}{timeZone} property
+        \li On Systems running Windows 11 and above the new Windows 11 widget
+            style is used by default. This style supports Windows dark mode.
     \endlist
 
     \section2 Qt SVG Module
