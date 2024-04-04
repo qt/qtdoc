@@ -18,7 +18,7 @@ ThermostatInfo {
 
     title: qsTr("Temperature")
     leftIcon: "images/temperature"
-    topLabel: qsTr("Avarage: %1°C".arg(avgTempValue))
+    topLabel: qsTr("Average: %1°C".arg(avgTempValue))
     bottomLeftLabel: qsTr("Minimum: %1°C".arg(minTempValue))
     bottomLeftIcon: "images/minTemp.svg"
     bottomRightLabel: qsTr("Maximum: %1°C".arg(maxTempValue))
