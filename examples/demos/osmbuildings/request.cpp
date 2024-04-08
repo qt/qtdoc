@@ -214,6 +214,21 @@ OSMRequest::OSMRequest(QObject *parent)
     m_queuesTimer.setInterval(0);
 }
 
+bool OSMRequest::isDemoToken() const
+{
+    return "" == m_token;
+}
+
+QString OSMRequest::token() const
+{
+    return m_token;
+}
+
+void OSMRequest::setToken(const QString &token)
+{
+    m_token = token;
+}
+
 void OSMRequest::getBuildingsData(const QQueue<OSMTileData> &buildingsQueue) {
 
     if ( buildingsQueue.isEmpty() )
@@ -240,7 +255,10 @@ void OSMRequest::getBuildingsDataRequest(const OSMTileData &tile)
         }
     }
 
-    QUrl url = QUrl(tr(m_uRL_OSMB_JSON).arg(QString::number(tile.ZoomLevel),QString::number(tile.TileX),QString::number(tile.TileY)) );
+    QUrl url = QUrl(tr(m_uRL_OSMB_JSON).arg(QString::number(tile.ZoomLevel),
+                                            QString::number(tile.TileX),
+                                            QString::number(tile.TileY),
+                                            m_token));
     QNetworkReply * reply = m_networkAccessManager.get( QNetworkRequest(url));
     connect( reply, &QNetworkReply::finished, this, [this, reply, tile, url](){
         reply->deleteLater();
@@ -248,13 +266,11 @@ void OSMRequest::getBuildingsDataRequest(const OSMTileData &tile)
             QByteArray data = reply->readAll();
             emit buildingsDataReady( importGeoJson(QJsonDocument::fromJson( data )), tile.TileX, tile.TileY, tile.ZoomLevel );
         }else {
-            qWarning() << "OSMRequest::getBuildingsData" << reply->error() << url;
+            qWarning() << "OSMRequest::getBuildingsData" << reply->error() << url << reply->readAll();
         }
         --m_buildingsNumberOfRequestsInFlight;
     } );
 }
-
-
 
 void OSMRequest::getMapsData(const QQueue<OSMTileData> &mapsQueue) {
 
@@ -282,7 +298,9 @@ void OSMRequest::getMapsDataRequest(const OSMTileData &tile)
         }
     }
 
-    QUrl url = QUrl(tr(m_uRL_OSMB_MAP).arg(QString::number(tile.ZoomLevel),QString::number(tile.TileX),QString::number(tile.TileY)) );
+    QUrl url = QUrl(tr(m_uRL_OSMB_MAP).arg(QString::number(tile.ZoomLevel),
+                                           QString::number(tile.TileX),
+                                           QString::number(tile.TileY)));
     QNetworkReply * reply = m_networkAccessManager.get( QNetworkRequest(url));
     connect( reply, &QNetworkReply::finished, this, [this, reply, tile, url](){
         reply->deleteLater();
@@ -290,7 +308,7 @@ void OSMRequest::getMapsDataRequest(const OSMTileData &tile)
             QByteArray data = reply->readAll();
             emit mapsDataReady( data, tile.TileX, tile.TileY, tile.ZoomLevel );
         }else {
-            qWarning() << "OSMRequest::getMapsDataRequest" << reply->error() << url;
+            qWarning() << "OSMRequest::getMapsDataRequest" << reply->error() << url << reply->readAll();
         }
         --m_mapsNumberOfRequestsInFlight;
     } );

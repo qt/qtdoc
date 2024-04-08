@@ -93,6 +93,21 @@ int OSMManager::tileSizeY() const
     return m_tileSizeY;
 }
 
+bool OSMManager::isDemoToken() const
+{
+    return m_request->isDemoToken();
+}
+
+void OSMManager::setToken(QString token)
+{
+    m_request->setToken(token);
+}
+
+QString OSMManager::token() const
+{
+    return m_request->token();
+}
+
 void CustomTextureData::setImageData(const QByteArray &data)
 {
     QImage image = QImage::fromData(data).convertToFormat(QImage::Format_RGBA8888);
