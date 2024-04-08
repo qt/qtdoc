@@ -24,10 +24,13 @@ class OSMRequest : public QObject
 
 public:
     explicit OSMRequest(QObject *parent = nullptr);
+    bool isDemoToken() const;
+
+    QString token() const;
+    void setToken(const QString &token);
 
 public slots:
     void getBuildingsData(const QQueue<OSMTileData> &buildingsQueue);
-
     void getMapsData(const QQueue<OSMTileData> &mapsQueue);
 
 signals:
@@ -46,9 +49,10 @@ private:
     QQueue<OSMTileData> m_buildingsQueue;
     QQueue<OSMTileData> m_mapsQueue;
     QNetworkAccessManager m_networkAccessManager;
+    QString m_token;
 
     //%1 = zoom level(15 the default and only one here that seems working), %2 = x tile number, %3 = y tile number
-    const char *m_uRL_OSMB_JSON = "https://d.data.osmbuildings.org/0.2/anonymous/tile/%1/%2/%3.json";
+    const char *m_uRL_OSMB_JSON = "https://983wdxn2c2.execute-api.eu-north-1.amazonaws.com/production/osmbuildingstile?z=%1&x=%2&y=%3&token=%4";
 
     //%1 = zoom level(is dynamic), %2 = x tile number, %3 = y tile number
     const char *m_uRL_OSMB_MAP = "https://tile-a.openstreetmap.fr/hot/%1/%2/%3.png";

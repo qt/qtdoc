@@ -16,12 +16,13 @@ class OSMManager : public QObject
 
 public:
     explicit OSMManager(QObject *parent = nullptr);
-
     int tileSizeX() const;
     int tileSizeY() const;
+    Q_INVOKABLE bool isDemoToken() const;
+    Q_INVOKABLE void setToken(QString token);
+    Q_INVOKABLE QString token() const;
 
 public slots:
-
     void setCameraProperties(const QVector3D &position , const QVector3D &right,
                             float cameraZoom, float minimunZoom, float maximumZoom,
                             float cameraTilt, float minimumTilt, float maxmumTilt);
