@@ -17,8 +17,9 @@
     Qt provides two APIs for creating plugins:
 
     \list
+
     \li A high-level API for writing extensions to Qt itself, such as custom
-    database drivers, image formats, text codecs, and custom styles.
+        database drivers, image formats, text codecs, and styles.
     \li A low-level API for extending Qt applications.
     \endlist
 
@@ -226,6 +227,8 @@
 
     See also \l{Creating Custom Widgets for Qt Widgets Designer} for information
     about issues that are specific to \QD.
+    See the \l{Calendar Backend Plugin Example} for an example of using a plugin
+    to add support for a custom calendar system.
 
     \section1 Locating Plugins
 
