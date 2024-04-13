@@ -150,22 +150,44 @@
 
     \section1 Modules and Features
 
-    Qt consists of different \l{All Modules}{modules} whose sources can be
-    found in different directories inside the top-level source directory.
-    Users can explicitly exclude specific top-level directories to limit build
-    times. Furthermore, each Qt module might have features that can also be
-    explicitly enabled or disabled.
+    The Qt source code is organized in several top-level directories
+    called submodules, for example, \c{qtbase}, \c{qtdeclarative} or
+    \c{qtmultimedia}. Inside these submodules, you find the source code
+    for the different \l{All Modules}{Qt Modules}. \l{Qt Core}, \l{Qt
+    Quick}, and \l{Qt Multimedia} are examples of such Qt modules.
 
-    \section2 Excluding Qt Modules
+    \note Many submodules (top-level source directories) have the same
+    name as the \l{All Modules}{Qt Modules} they implement, but this is
+    not always the case. For instance, \c{qtdeclarative} contains \l{Qt
+    Quick} and \l{Qt Qml}, and various related modules. Consult the
+    README.md file in the respective directories to get an overview.
 
-    \c configure's \b -skip option allows top-level source directories to be
-    excluded from the Qt build. Note that some directories contain multiple Qt
-    modules. For example, to exclude the Qt Wayland Compositor and the
-    Qt Wayland integration plugin from the Qt build, provide
-    \b{-skip qtwayland} as an option to configure.
+    Submodules can be explicitly included or excluded to limit build
+    times. Furthermore, each Qt module might have features that can also
+    be explicitly enabled or disabled.
+
+    \section2 Including and Excluding Qt Submodules
+
+    \c configure's \b -skip option is used to exclude submodules
+    (top-level source directories) from the Qt build. Excluding a
+    submodule excludes all \l{All Modules}{Qt Modules} inside that
+    submodule. The \c{qtwayland} submodule contains both the \l{Qt
+    Wayland Compositor} and the Qt Wayland QPA plugin. Specifying
+    \c{-skip qtwayland} as a configure option will therefore exclude
+    both \l{All Modules}{Qt Modules}.
 
     \badcode
     ~/qt-source/configure -skip qtwayland
+    \endcode
+
+    \c configure's \b -submodules option can be used to configure a
+    build that only builds the listed submodules and their dependencies.
+    For example, by specifying the \c{qtmultimedia} submodule,
+    \l{Qt Multimedia} and all its dependencies will be included in the
+    build. Multiple submodules can be separated by commas.
+
+    \badcode
+    ~/qt-source/configure -submodules qtmultimedia,qtactiveqt
     \endcode
 
     \section2 Including or Excluding Features
