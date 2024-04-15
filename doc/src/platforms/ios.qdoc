@@ -272,15 +272,34 @@
      \li Update the "Run" settings for your project as described in the
          \l{Qt Creator: Specifying Run Settings}
 
-     \li If your application uses imports or plugins which depend on special Qt
-         modules, these Qt modules should be added to the .pro file.
-         For example, if
-         your application uses the Qt Multimedia import in QML, you should add
-         the following to your .pro file:
-
+     \li If your application uses imports or plugins that depend on special Qt
+         modules, these Qt modules should be added to your build configuration file.
+         For example, if your application uses the Qt Multimedia import in QML, you
+         should add the following to your \c .pro or \c CMakeLists.txt file:
+         \br
+         \if defined(onlinedocs)
+           \tab {build-ios-app}{tab-cmake}{CMake}{checked}
+           \tab {build-ios-app}{tab-qmake}{qmake}{}
+           \tabcontent {tab-cmake}
+         \else
+           \section1 Using CMake
+         \endif
+         \badcode
+         find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+         target_link_libraries(my_project PRIVATE Qt6::Multimedia)
+         \endcode
+         \if defined(onlinedocs)
+           \endtabcontent
+           \tabcontent {tab-qmake}
+         \else
+           \section1 Using qmake
+         \endif
          \badcode
          QT += multimedia
          \endcode
+         \if defined(onlinedocs)
+           \endtabcontent
+         \endif
 
          In Qt for iOS, everything is compiled statically and placed into the application
          bundle. The applications are "sandboxed" inside their bundles and cannot make use
