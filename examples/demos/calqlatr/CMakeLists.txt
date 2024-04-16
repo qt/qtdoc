@@ -1,5 +1,5 @@
 # Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
 project(calqlatr LANGUAGES CXX)
@@ -26,6 +26,7 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::QuickControls2
 )
 
+qt6_policy(SET QTP0001 NEW)
 qt_add_qml_module(calqlatrexample
     URI demos.calqlatr
     VERSION 1.0
@@ -39,8 +40,6 @@ qt_add_qml_module(calqlatrexample
     RESOURCES
         "content/images/backspace.svg"
         "content/images/backspace_fill.svg"
-
-    RESOURCE_PREFIX /
 )
 if(ANDROID)
     set_target_properties(calqlatrexample

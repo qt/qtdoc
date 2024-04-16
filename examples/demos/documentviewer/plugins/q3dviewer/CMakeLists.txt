@@ -1,5 +1,5 @@
 # Copyright (C) 2023 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 qt_add_plugin(Q3Dviewer
     CLASS_NAME Q3DViewer
@@ -38,7 +38,7 @@ qt_add_resources(Q3Dviewer "qml"
 )
 
 install(TARGETS Q3Dviewer
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
 

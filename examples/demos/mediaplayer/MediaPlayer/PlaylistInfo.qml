@@ -26,7 +26,7 @@ Rectangle {
     signal currentFileRemoved()
 
     function getSource() {
-        if (isShuffled) {
+        if (isShuffled && mediaCount > 1) {
             let randomIndex = Math.floor(Math.random() * mediaCount)
             while (randomIndex == currentIndex) {
                 randomIndex = Math.floor(Math.random() * mediaCount)
@@ -172,7 +172,7 @@ Rectangle {
                     Layout.fillWidth: true
                     elide: Text.ElideRight
                     font.bold: root.currentIndex === row.index
-                    color: root.currentIndex === row.index ? "#41CD52" : Config.secondaryColor
+                    color: root.currentIndex === row.index ? Config.highlightColor : Config.secondaryColor
                     font.pixelSize: 18
                     text: {
                         const paths = row.path.split('/')

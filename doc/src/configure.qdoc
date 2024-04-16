@@ -89,7 +89,7 @@
     \l{Getting Started Programming with Qt Widgets}{NotePad Example}:
 
     \badcode
-    ~/qt-source/configure -make examples -- -D QT_NO_MAKE_EXAMPLES=ON
+    ~/qt-source/configure -make examples -- -D QT_BUILD_EXAMPLES_BY_DEFAULT=OFF
     cmake --build . --parallel
     cmake --build . --parallel --target notepad
     \endcode

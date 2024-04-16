@@ -40,7 +40,7 @@ void InAppStore::setupBackend()
 #elif defined Q_OS_DARWIN
     d->backend = new IosInAppPurchaseBackend;
 #else
-    return;
+    d->backend = new InAppPurchaseBackend;
 #endif
     d->backend->setStore(this);
 

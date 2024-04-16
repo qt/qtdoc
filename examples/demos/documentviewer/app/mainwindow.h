@@ -46,6 +46,7 @@ private:
     std::unique_ptr<Ui::MainWindow> ui;
     std::unique_ptr<RecentFiles> m_recentFiles;
     std::unique_ptr<ViewerFactory> m_factory;
+    std::array<QMetaObject::Connection, 3> m_viewerConnections;
 
     static constexpr QLatin1StringView settingsDir = QLatin1StringView("WorkingDir");
     static constexpr QLatin1StringView settingsMainWindow = QLatin1StringView("MainWindow");

@@ -64,21 +64,21 @@ Item {
                 rowSpacing: controller.spacing
                 visible: !isPortraitMode
 
-                OperatorButton { text: "𝑥²" }
-                OperatorButton { text: "⅟𝑥" }
+                OperatorButton { text: "x²" }
+                OperatorButton { text: "⅟x" }
                 OperatorButton { text: "√" }
-                OperatorButton { text: "𝑥³" }
-                OperatorButton { text: "𝑠𝑖𝑛" }
-                OperatorButton { text: "⌊𝑥⌋" }
-                OperatorButton { text: "𝑙𝑜𝑔" }
-                OperatorButton { text: "𝑐𝑜𝑠" }
+                OperatorButton { text: "x³" }
+                OperatorButton { text: "sin" }
+                OperatorButton { text: "|x|" }
+                OperatorButton { text: "log" }
+                OperatorButton { text: "cos" }
                 DigitButton {
                     text: "e"
                     dimmable: true
                     implicitWidth: 48
                 }
-                OperatorButton { text: "𝑙𝑛" }
-                OperatorButton { text: "𝑡𝑎𝑛" }
+                OperatorButton { text: "ln" }
+                OperatorButton { text: "tan" }
                 DigitButton {
                     text: "π"
                     dimmable: true

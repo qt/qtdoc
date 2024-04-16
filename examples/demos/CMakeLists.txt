@@ -1,5 +1,5 @@
 # Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 if(TARGET Qt6::Quick)
     qt_internal_add_example(samegame)
@@ -25,10 +25,10 @@ endif()
 if(TARGET Qt6::Quick AND TARGET Qt6::qsb AND TARGET Qt6::Pdf)
     qt_internal_add_example(photosurface)
 endif()
-if(TARGET Qt6::Widgets)
+if(TARGET Qt6::Widgets AND NOT ANDROID)
     qt_internal_add_example(documentviewer)
 endif()
-if(TARGET Qt::Quick AND TARGET Qt::Quick3D)
+if(TARGET Qt::Quick AND TARGET Qt::Quick3D AND TARGET Qt6::Positioning)
     qt_internal_add_example(osmbuildings)
 endif()
 if(TARGET Qt::Quick AND TARGET Qt::QuickControls2 AND TARGET Qt::Quick3D)
@@ -44,7 +44,7 @@ endif()
 if(TARGET Qt::Quick AND TARGET Qt::QuickControls2 AND TARGET Qt::Multimedia)
     qt_internal_add_example(mediaplayer)
 endif()
-if(TARGET Qt6::Quick AND TARGET Qt6::QuickControls2 AND TARGET Qt6::Charts)
+if(TARGET Qt6::Quick AND TARGET Qt6::QuickControls2 AND TARGET Qt6::Charts AND TARGET Qt6::Svg)
     qt_internal_add_example(thermostat)
 endif()
 if(QT_FEATURE_ssl AND TARGET Qt6::WebSockets AND TARGET Qt6::Positioning AND TARGET Qt6::Location AND QT_FEATURE_zstd)

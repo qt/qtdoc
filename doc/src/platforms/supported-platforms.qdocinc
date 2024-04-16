@@ -38,15 +38,15 @@
     \row \li Debian 11.6 on ARM
         \li \c arm64
         \li GCC 10
-        \li
+        \li Technology Preview
 \endtable
 //! [linux]
 
 \section2 \l{Qt for macOS}{\macos}
 //! [macos]
 \table 80%
-    \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 11, 12, 13, 14
+    \header \li Target Platform \li Architecture \li Build Environment \li Notes
+    \row \li \macos 12, 13, 14
         \li \c x86_64, \c x86_64h, and \c arm64
         \li Xcode 14 (\macos 13 SDK), Xcode 15 (\macos 14 SDK)
 \endtable
@@ -55,7 +55,7 @@
 \section2 \l{Qt for Windows}{Windows}
 //! [windows]
 \table 80%
-    \header \li Operating System \li Architecture \li Compiler
+    \header \li Operating System \li Architecture \li Compiler \li Notes
     \row \li Windows 10 (1809 or later)
         \li \c x86_64
         \li MSVC 2022, MSVC 2019, MinGW 11.2
@@ -109,9 +109,9 @@ symbol errors.
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li iOS 14, 15, 16
+    \row \li iOS 16, 17
         \li \c armv8 (\c arm64)
-        \li Xcode 14 (iOS 16 SDK)
+        \li Xcode 15 (iOS 17 SDK)
 \endtable
 //! [ios]
 
@@ -167,12 +167,12 @@ combinations.
     \header \li Vendor \li Board \li OS / Other \li Provided By
     \row \li NVIDIA \li Jetson AGX Orin Development Kit \li Debian 12 \li \l{Enterprise Qt Debian Packages}
     \row \li NXP \li i.MX 8MQuad EVK \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Mini LPPDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Mini LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8M Nano LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8M Plus LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li ST \li STM32MP15 Discovery \li Yocto 4.0 \li \l{Boot to Qt}
     \row \li ST \li STM32MP15 Evaluation \li Yocto 4.0 \li \l{Boot to Qt}
-    \row \li TI \li AM62x \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li TI \li SK-AM62 \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li Toradex \li Colibri iMX6 ULL \li Yocto 4.0 \li \l{Boot to Qt}
 \endtable
 
@@ -202,8 +202,8 @@ See \l{Qt Support Terms and Conditions} for more information.
 //! [tier_support]
 \section2 Android Automotive OS
 
-The \l{Qt for Android Automotive} solution is based on \l{Qt for Android},
-supporting Android 10 and 11, with the Android Automotive car API bindings.
+\l{Qt for Android Automotive}, based on \l{Qt for Android}, extends support
+for Android Automotive OS features on version \AAOSVer.
 
 \section2 webOS OSE
 
@@ -251,28 +251,22 @@ documentation.
 
 \section2  \l{Qt for WebAssembly}{WebAssembly}
 \table 80%
-    \header \li Host Platform \li Architecture \li Compiler \li Browsers
-    \row \li macOS
+    \header \li Platform \li Architecture \li Compiler \li Implementations
+    \row \li Web Browser
         \li \c wasm32
-        \li Emscripten 3.1.25
-        \li Safari, Chrome, Firefox
-    \row \li Windows
-        \li \c wasm32
-        \li Emscripten 3.1.25
-        \li Edge, Chrome, Firefox
-    \row \li Linux
-        \li \c wasm32
-        \li Emscripten 3.1.25
-        \li Chrome, Firefox
-    \row \li iOS
-        \li \c wasm32
-        \li Emscripten 3.1.25
-        \li Safari
-    \row \li Android
-        \li \c wasm32
-        \li Emscripten 3.1.25
-        \li Chrome
+        \li Emscripten 3.1.50
+        \li Chrome, Edge, Firefox, Safari
 \endtable
+
+Qt for WebAssembly is a platform-agnostic technology that allows running apps on
+compatible browsers regardless of the underlying operating system. Qt for
+WebAssembly is well supported and tested on desktop browsers including Chrome,
+Edge, Firefox, and Safari. While Qt for WebAssembly is designed to function
+smoothly on desktop browsers, it is important to note that some mobile browsers
+may still lack some necessary features for reliably executing WebAssembly apps.
+Therefore, we strongly recommend application providers targeting mobile
+browsers to conduct comprehensive testing to ensure compatibility and
+performance.
 
 //! [web]
 

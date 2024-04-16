@@ -32,11 +32,17 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         WebSockets
         Positioning
         Location
+        Svg
+        Sensors
+        Multimedia
+        Charts
+        Pdf
+        PdfWidgets
 )
 qt_internal_project_setup()
 
-# special case begin
 qt_build_repo_begin()
+qt_build_repo_impl_find_package_tests()
 
 if(NOT QT_BUILD_STANDALONE_TESTS)
     add_subdirectory(doc)
@@ -52,24 +58,6 @@ if(NOT QT_BUILD_STANDALONE_TESTS)
 endif()
 
 qt_build_repo_post_process()
-
-if(QT_BUILD_TESTS AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/CMakeLists.txt")
-    add_subdirectory(tests)
-
-    if(NOT QT_BUILD_TESTS_BY_DEFAULT)
-        set_property(DIRECTORY tests PROPERTY EXCLUDE_FROM_ALL TRUE)
-    endif()
-endif()
-
-if(QT_BUILD_EXAMPLES AND BUILD_SHARED_LIBS
-            AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/examples/CMakeLists.txt"
-            AND NOT QT_BUILD_STANDALONE_TESTS)
-    add_subdirectory(examples)
-
-    if(NOT QT_BUILD_EXAMPLES_BY_DEFAULT)
-        set_property(DIRECTORY examples PROPERTY EXCLUDE_FROM_ALL TRUE)
-    endif()
-endif()
-
+qt_build_repo_impl_tests()
 qt_build_repo_end()
-# special case end
+qt_build_repo_impl_examples()

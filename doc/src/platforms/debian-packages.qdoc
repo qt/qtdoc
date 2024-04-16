@@ -1,4 +1,4 @@
-// Copyright (C) 2022 The Qt Company Ltd.
+// Copyright (C) 2024 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -38,7 +38,7 @@
     \badcode
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
 
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-arm64 tqtc-focal main
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-focal main
     \endcode
 
     See \l{Repository information for Qt Releases} for detailed information
@@ -90,7 +90,7 @@
 
     The contents of the Debian alias packages are listed in the table below.
 
-    \note Qt 6.7.0 release is used in the alias package examples listed below.
+    \note Qt 6.8.0 release is used in the alias package examples listed below.
     Always remember to use the packages that match the Qt release you are working
     on. For more information, see \l {Repository information for Qt Releases}.
 
@@ -99,14 +99,14 @@
        \li Alias package name
        \li Package content
     \row
-       \li qt6.7.0-essentials
+       \li qt6.8.0-essentials
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
              \li essential module runtime tools
           \endlist
     \row
-       \li qt6.7.0-essentials-dev
+       \li qt6.8.0-essentials-dev
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
@@ -116,7 +116,7 @@
              \li essential module development tools
           \endlist
     \row
-       \li qt6.7.0-full
+       \li qt6.8.0-full
        \li
           \list
              \li \l {https://doc.qt.io/qt-6/qtmodules.html#qt-essentials} {essential module libraries}
@@ -125,7 +125,7 @@
              \li add-on module runtime tools
           \endlist
     \row
-       \li qt6.7.0-full-dev
+       \li qt6.8.0-full-dev
        \li
           \list
              \li all module libraries
@@ -135,7 +135,7 @@
              \li all module development tools
           \endlist
     \row
-       \li qt6.7.0-full-dbg
+       \li qt6.8.0-full-dbg
        \li
           \list
              \li all module debug libraries
@@ -149,7 +149,7 @@
     \b {Debian Installation Command Example}
 
     \badcode
-    $ sudo apt install qt6.7.0-full-dev
+    $ sudo apt install qt6.8.0-full-dev
     \endcode
 
 
@@ -172,17 +172,17 @@
 
     # add repositories
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-arm64 tqtc-focal main
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-focal main
 
     # update local package cache
     $ sudo apt-get update
 
     # search and install packages
-    $ apt-cache search qt6.7.0-full-dev
+    $ apt-cache search qt6.8.0-full-dev
     ....
     ....
-    # files are installed under /opt/qt-6.7.0
-    $ sudo apt install qt6.7.0-full-dev
+    # files are installed under /opt/qt-6.8.0
+    $ sudo apt install qt6.8.0-full-dev
     \endcode
 
     See \l{Repository information for Qt Releases} to pick the needed
@@ -255,17 +255,17 @@
         \li Package resource list entries for APT
     \row
         \li amd64
-        \li focal-fossa (Ubuntu 20.04)
+        \li jammy-jellyfish (Ubuntu 22.04)
         \li /opt/qt-creator/
-        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtcreator-amd64 tqtc-focal main
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtcreator-amd64 tqtc-jammy main
     \row
         \li arm64
-        \li focal-fossa (Ubuntu 20.04)
+        \li jammy-jellyfish (Ubuntu 22.04)
         \li /opt/qt-creator/
-        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtcreator-arm64 tqtc-focal main
+        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qtcreator-arm64 tqtc-jammy main
     \endtable
 
-    \section2 Qt 6.7.0
+    \section2 Qt 6.8.0
 
     \table
     \header
@@ -275,13 +275,13 @@
         \li Package resource list entries for APT
     \row
         \li amd64
-        \li focal-fossa (Ubuntu 20.04)
-        \li /opt/qt-6.7.0/x86_64-linux-gnu/
-        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-amd64 tqtc-focal main
+        \li jammy-jellyfish (Ubuntu 22.04)
+        \li /opt/qt-6.8.0/x86_64-linux-gnu/
+        \li deb [arch=amd64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-amd64 tqtc-jammy main
     \row
         \li arm64
-        \li focal-fossa (Ubuntu 20.04)
-        \li /opt/qt-6.7.0/aarch64-linux-gnu/
-        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-arm64 tqtc-focal main
+        \li jammy-jellyfish (Ubuntu 22.04)
+        \li /opt/qt-6.8.0/aarch64-linux-gnu/
+        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-6.7.0-arm64 tqtc-jammy main
     \endtable
 */

@@ -967,7 +967,8 @@
         C:\dev\Qt\src\configure.bat
         \endcode
 
-        By default, Qt is configured for installation in the \c{C:\Qt\Qt-6.5.3} directory.
+        By default, Qt is configured for installation in the \c{C:\Qt\Qt-major.minor.patch}
+        directory, where the major.minor.patch triplet represents the Qt version being built.
         This can be changed by using the \c -prefix option. See the list of
         \l{Qt Configure Options} to tweak further.
 

@@ -1,5 +1,5 @@
 # Copyright (C) 2023 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
 project(coffee LANGUAGES CXX)
@@ -26,19 +26,29 @@ qt_add_qml_module(coffeemachine
     QML_FILES
         ApplicationFlow.qml
         ApplicationFlowForm.ui.qml
+        ChoosingCoffeeForm.ui.qml
         ChoosingCoffee.qml
         CoffeeCard.qml
+        CoffeeCardForm.ui.qml
         Colors.qml
         CustomButton.qml
+        CustomButtonForm.ui.qml
         CustomSlider.qml
+        CustomSliderForm.ui.qml
         CustomToolBar.qml
-        Cup.qml
+        CustomToolBarForm.ui.qml
+        Cup.ui.qml
         Home.qml
+        HomeForm.ui.qml
         Insert.qml
+        InsertForm.ui.qml
         main.qml
         Progress.qml
+        ProgressForm.ui.qml
         Ready.qml
+        ReadyForm.ui.qml
         Settings.qml
+        SettingsForm.ui.qml
     RESOURCES
         qtquickcontrols2.conf
         images/Cups/card_cup_dark.svg
@@ -64,11 +74,24 @@ qt_add_qml_module(coffeemachine
         images/Ingredients/milk.svg
         images/Ingredients/sugar.svg
 )
+if(ANDROID)
+    set_target_properties(coffeemachine PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+endif()
+
 
 set_target_properties(coffeemachine PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
+
+if(IOS)
+    set(asset_catalog_path "ios/Assets.xcassets")
+    target_sources(coffeemachine PRIVATE "${asset_catalog_path}")
+    set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_target_properties(coffeemachine
+        PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+endif()
 
 target_link_libraries(coffeemachine PRIVATE
     Qt6::Core

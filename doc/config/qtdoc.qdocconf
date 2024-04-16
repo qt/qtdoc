@@ -48,16 +48,16 @@ qhp.QtDoc.indexRoot           =
 
 qhp.QtDoc.subprojects         = classes qmltypes examples
 qhp.QtDoc.subprojects.classes.title = Classes
-qhp.QtDoc.subprojects.classes.indexTitle = All Classes
-qhp.QtDoc.subprojects.classes.selectors = class fake:headerfile
+qhp.QtDoc.subprojects.classes.indexTitle = All C++ Classes
+qhp.QtDoc.subprojects.classes.selectors = class headerfile
 qhp.QtDoc.subprojects.classes.sortPages = true
 qhp.QtDoc.subprojects.qmltypes.title = QML Types
 qhp.QtDoc.subprojects.qmltypes.indexTitle = All QML Types
-qhp.QtDoc.subprojects.qmltypes.selectors = qmlclass
+qhp.QtDoc.subprojects.qmltypes.selectors = qmltype
 qhp.QtDoc.subprojects.qmltypes.sortPages = true
 qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
 qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
-qhp.QtDoc.subprojects.examples.selectors = fake:example
+qhp.QtDoc.subprojects.examples.selectors = example
 qhp.QtDoc.subprojects.examples.sortPages = true
 
 # Add an image used in example manifests to qhp, as well as thumbnails for YouTube links
@@ -65,7 +65,8 @@ qhp.QtDoc.subprojects.examples.sortPages = true
                                                                images/yIv0vO8B7tQ.jpg \
                                                                images/5OiIqFTjUZI.jpg \
                                                                images/nmvurCcsWos.jpg \
-                                                               images/xNIz78IPBu0.jpg
+                                                               images/xNIz78IPBu0.jpg \
+                                                               ../images/android-studio-plugin/_AkKSLp5FnM.png
 
 # Add an .html file with sidebar content, used in the online style
 HTML.stylesheets             += style/qt5-sidebar.html
@@ -92,7 +93,9 @@ manifestmeta.highlighted.names = "QtDoc/Calqlatr" \
                                  "QtDoc/Robot Arm" \
                                  "QtDoc/Thermostat" \
                                  "QtDoc/To Do List" \
-                                 "QtDoc/Same Game"
+                                 "QtDoc/Same Game" \
+                                 "QtDoc/StocQt" \
+                                 "QtDoc/OSM Buildings"
 
 manifestmeta.examplecategories = "Application Examples" \
                                  "Desktop" \
@@ -100,7 +103,8 @@ manifestmeta.examplecategories = "Application Examples" \
                                  "Embedded" \
                                  "Graphics" \
                                  "Multimedia" \
-                                 "Data Visualization & 3D" \
+                                 "3D" \
+                                 "Data Visualization" \
                                  "Data Processing & I/O" \
                                  "Connectivity" \
                                  "Networking" \

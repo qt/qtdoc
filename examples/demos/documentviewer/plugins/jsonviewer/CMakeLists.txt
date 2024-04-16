@@ -1,5 +1,5 @@
 # Copyright (C) 2023 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 qt_add_plugin(jsonviewer
     CLASS_NAME JsonViewer
@@ -29,7 +29,7 @@ if(TARGET Qt6::PrintSupport)
 endif()
 
 install(TARGETS jsonviewer
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}/plugins"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )
 

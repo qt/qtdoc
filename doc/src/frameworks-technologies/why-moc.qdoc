@@ -105,7 +105,7 @@
     without having to know the exact types of the objects we are connecting.
     This is impossible with a template based solution. This kind of runtime
     introspection opens up new possibilities, for example GUIs that are
-    generated and connected from Qt Designer's XML UI files.
+    generated and connected from \QD's XML UI files.
 
     \section1 Calling Performance is Not Everything
 
@@ -154,7 +154,7 @@
     function, and an advanced property system with introspection and
     extended runtime type information. The property system alone is a
     great advantage: a powerful and generic user interface design tool
-    like Qt Designer would be a lot harder to write - if not impossible -
+    like \QD would be a lot harder to write - if not impossible -
     without a powerful and introspective property system. But it does not
     end here. We also provide a dynamic qobject_cast<T>() mechanism
     that does not rely on the system's RTTI and thus does not share its

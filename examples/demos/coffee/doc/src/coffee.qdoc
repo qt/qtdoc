@@ -1,5 +1,5 @@
 // Copyright (C) 2023 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
 
@@ -57,11 +57,13 @@
 
     Here we discuss how these features are implemented.
 
-    \section2 Adapting to different screens
+    \section2 Adapting to screen sizes and orientation
 
-    The app adapts at runtime to different target device screen types by
-    first setting the root object \l {ApplicationWindow} QML type width and
-    height properties to device screen available height and width.
+    The application window root object has initial values for height
+    and width, which will be used as the window size on desktop platforms.
+    The default QWindow::AutomaticVisibility ensures that the window will
+    be shown as maximized or fullscreen on platforms that require it,
+    such as mobile platforms.
 
     \snippet demos/coffee/main.qml Set application window size
 
@@ -119,7 +121,7 @@
     displayed as \c CoffeeCards which are located inside the \l{GridLayout} in
     \c ChoosingCoffee.qml:
 
-    \snippet demos/coffee/ChoosingCoffee.qml Coffees
+    \snippet demos/coffee/ChoosingCoffeeForm.ui.qml Coffees
 
     The implementation of the \c CoffeeCard is located \c CoffeeCard.qml.
 
@@ -150,7 +152,7 @@
     \l{AbstractButton} in \c CoffeeCard.qml which then triggers \l{NumberAnimation}
     through \l{Transition}:
 
-    \snippet demos/coffee/CoffeeCard.qml AbstractButton
+    \snippet demos/coffee/CoffeeCardForm.ui.qml AbstractButton
 
     This will scale the selected coffee card down to smaller size and
     turns the edges of the card to green giving user the expression that the
@@ -199,7 +201,7 @@
     The animation for filling the coffee cup happens with state engines
     \l {Transition} and \l {SmoothedAnimation}.
 
-    \snippet demos/coffee/Progress.qml Cup
+    \snippet demos/coffee/ProgressForm.ui.qml Cup
 
     The progress bar animation is implemented with \l {Behavior}.
 

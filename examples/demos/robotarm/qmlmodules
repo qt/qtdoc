@@ -19,5 +19,5 @@ set(QML_IMPORT_PATH
 target_link_libraries(RobotArmApp PRIVATE
     robotarm_contentplugin
     RobotArmplugin
-    backendmodule
+    backendmoduleplugin
 )
