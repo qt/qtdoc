@@ -28,6 +28,8 @@ resources.files = \
     meshes/object_2.mesh \
     meshes/object_3.mesh \
     meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh \
+    sounds/onedice.wav \
+    sounds/rolling.wav \
 
 resources.prefix = /
 
