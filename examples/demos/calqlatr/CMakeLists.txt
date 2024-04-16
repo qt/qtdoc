@@ -4,8 +4,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(calqlatr LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
 endif()
@@ -13,6 +11,8 @@ endif()
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/demos/calqlatr")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+
+qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(calqlatrexample WIN32 MACOSX_BUNDLE
     main.cpp
@@ -26,7 +26,6 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::QuickControls2
 )
 
-qt6_policy(SET QTP0001 NEW)
 qt_add_qml_module(calqlatrexample
     URI demos.calqlatr
     VERSION 1.0
