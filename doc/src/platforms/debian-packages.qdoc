@@ -38,7 +38,7 @@
     \badcode
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
 
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-focal main
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-jammy main
     \endcode
 
     See \l{Repository information for Qt Releases} for detailed information
@@ -172,7 +172,7 @@
 
     # add repositories
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
-        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-focal main
+        deb [arch=arm64 signed-by=/home/<user>/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-6.8.0-arm64 tqtc-jammy main
 
     # update local package cache
     $ sudo apt-get update
