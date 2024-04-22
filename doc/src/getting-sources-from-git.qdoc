@@ -1,0 +1,108 @@
+// Copyright (C) 2024 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page getting-sources-from-git.html
+
+    \title Getting Qt Sources from the Git repository
+    \brief This section describes how to clone and initialize Qt from Git
+
+    \section1 Introduction
+
+    This section describes how to get the Qt sources through the Git
+    version control system. This is useful in software development
+    processes that already use Git and when testing different Qt
+    versions. It is also essential if you plan to contribute to Qt.
+
+    \note Qt sources can also be installed using \QOI, downloaded as
+    archives from the \l{Qt Account} (commercial users), or from
+    \l{https://download.qt.io}{download.qt.io} (open-source users).
+
+    Qt is developed and maintained in several Git submodules tied
+    together in a \c{qt5} super module. Getting the Qt sources from Git
+    involves cloning the top-level Git repository via the Git command
+    line and initializing the submodules using the Qt \c{configure}
+    command.
+
+    \note Qt 5 and Qt 6 share the same repository, and you will work
+    against the \c{qt5} repository even if you use Qt 6.
+
+    \section1 Preparations
+
+    Start by reviewing \l {Building Qt Sources} and the requirements
+    section for your platform to make sure all prerequisites have been
+    installed. In addition, you will need a recent version of Git.
+
+    When planning where to clone the Qt sources, keep in mind that Qt
+    supports out-of-source builds, where the source code resides
+    separately from build artifacts. This keeps the Git clone clean and
+    makes it possible to build different versions of Qt from the same
+    source tree. In this overview, the directory containing the Qt
+    sources is referred to as \c{qt-sources}, while the one containing
+    build artifacts is referred to as \c{qt-build}.
+
+    \section1 Cloning the Qt Git repository
+
+    Begin by creating the \c{qt-sources} directory. From within this
+    directory, use Git to clone the sources. In the following, we will
+    use the Git command line interface. Be aware of the trailing '.'
+    character indicating that Qt is cloned into the current directory.
+
+    \badcode \QtVersion
+    git clone --branch v\1 git://code.qt.io/qt/qt5.git .
+    \endcode
+
+    You can also use the https protocol.
+
+    \badcode  \QtVersion
+    git clone --branch v\1 https://code.qt.io/qt/qt5.git .
+    \endcode
+
+    To test out the latest development version, omit the \c{--branch}
+    argument.
+
+    \section1 Initializing the Qt submodules
+
+    Next, create the build directory \c{qt-build}. Within this
+    directory, run the \l{Qt Configure Options}{configure} command with
+    the \c{-init-submodules} option.
+
+    \badcode
+    qt-sources/configure -init-submodules
+    \endcode
+
+    This will recursively initialize all Qt submodules in your
+    \c{qt-sources} directory, which might take some time.
+
+    Note that \c{-init-submodules} can be combined with other \l{Qt
+    Configure Options}{configure} arguments. If you know the Qt
+    submodules you will work with, reduce the configuration time by
+    using the \c{-submodules} argument.
+
+    \badcode
+    qt-sources/configure -init-submodules -submodules qtdeclarative
+    \endcode
+
+    This will initialize \c{qtdeclarative} and required submodules.
+
+    \section1 Building Qt
+
+    With Qt sources set up, proceed to build Qt for your platform as
+    outlined in \l {Building Qt Sources}. The \c{-init-repository}
+    argument is only required during the initial Qt configuration and
+    after switching branches.
+
+    \section1 Contributing to Qt
+
+    For those planning to contribute to Qt, specify the
+    \c{-codereview-username} the first time you configure Qt.
+
+    \badcode
+    qt-sources/configure -init-submodules --codereview-username <Gerrit username>
+    \endcode
+
+    For more information on contributing to Qt and creating a Gerrit
+    username, consult the
+    \l{https://contribute.qt-project.org/}{The Qt Project} homepage.
+
+*/
