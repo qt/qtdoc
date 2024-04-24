@@ -36,7 +36,7 @@ Item {
             PropertyChanges {
                 target: cup
                 Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-                Layout.preferredWidth: height / 1.16
+                Layout.preferredWidth: root.height / 3
                 Layout.preferredHeight: root.height / 2.5
             }
             PropertyChanges {
