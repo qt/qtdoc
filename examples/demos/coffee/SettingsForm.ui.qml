@@ -66,8 +66,9 @@ Item {
             PropertyChanges {
                 target: cup
                 Layout.column: 0
-                Layout.preferredWidth: height / 1.16
-                Layout.preferredHeight: root.height / 1.5
+                Layout.preferredWidth: root.width / 4
+                Layout.preferredHeight: root.height / 5
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
             PropertyChanges {

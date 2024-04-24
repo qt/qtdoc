@@ -24,7 +24,7 @@ Item {
             }
             PropertyChanges {
                 target: cup
-                Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+                Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: height / 1.16
                 Layout.preferredHeight: root.height / 3
                 Layout.row: 0
@@ -32,7 +32,7 @@ Item {
             PropertyChanges {
                 target: dialog
                 Layout.row: 1
-                Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+                Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: root.width / 1.12
                 Layout.preferredHeight: root.height / 7
             }
@@ -60,9 +60,9 @@ Item {
             }
             PropertyChanges {
                 target: cup
-                Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-                Layout.preferredWidth: height / 1.16
+                Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: root.height / 1.5
+                Layout.preferredWidth: root.width / 5
                 Layout.column: 2
                 Layout.row: 0
             }
@@ -97,7 +97,6 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         Cup {
             id: cup
-            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
         }
         Rectangle {
             id: dialog
