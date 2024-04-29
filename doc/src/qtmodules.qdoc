@@ -21,6 +21,7 @@
     A module that is used for a special purpose is considered an add-on module
     even if it is available on all supported platforms.
 
+//! [essentials]
     \grid
         \griditem {qtcore-index.html}{Qt Core} {
             Core non-graphical classes used by other modules.
@@ -64,6 +65,7 @@
             Classes to extend Qt GUI with C++ widgets.
         }
     \endgrid
+//! [essentials]
 
     \note The binary compatibility guarantee does not apply to \l {Qt Test} and
           \l {Qt Quick Test} modules. However, they will remain source compatible.
@@ -79,6 +81,7 @@
     The Qt installers include the option of downloading the add-ons. For more
     information, visit the \l{Getting Started with Qt} page.
 
+//! [addons]
     \grid
         \griditem {activeqt-index.html}{Active Qt} {
             Classes for applications which use ActiveX and COM (Windows only).
@@ -196,6 +199,7 @@
             Handling of XML in a Document Object Model (DOM) API.
         }
     \endgrid
+//! [addons]
 
     \target gpl-licensed-addons
     \section2 Commercial/GPL v3 Licensed Add-Ons
@@ -203,6 +207,7 @@
     The following add-ons are available under Commercial Licenses, or GNU General
     Public License v3:
 
+//! [gpl-licensed-addons]
     \grid
         \griditem {qtcharts-index.html}{Qt Charts} {
             UI Components for displaying visually pleasing charts,
@@ -216,7 +221,7 @@
         }
         \griditem {qtlottieanimation-index.html}{Qt Lottie Animation} {
             A QML API for rendering graphics and animations in JSON format,
-            exported by the \l Bodymovin plugin for Adobe® After Effects.
+            exported by the Bodymovin plugin for Adobe® After Effects.
         }
         \griditem {qtmqtt-index.html}{Qt MQTT} {
             Provides an implementation of the MQTT protocol specification.
@@ -251,11 +256,13 @@
             Qt Core APIs that were in Qt 5 but not Qt 6.
         }
     \endgrid
+//! [gpl-licensed-addons]
 
     \section1 Qt Add-Ons in Technical Preview
 
     The following add-ons are still in development, but are available as technology previews:
 
+//! [techpreview-addons]
     \grid
         \griditem {qthttpserver-index.html}{Qt HTTP Server} {
             A framework for embedding an HTTP server into a Qt application.
@@ -265,12 +272,13 @@
         }
         \griditem {qtgrpc-index.html}{Qt GRPC} {
             Provides an ability to generate Qt-based classes from protobuf specifications
-            used to communicate with gRPC\reg services.
+            used to communicate with gRPC® services.
         }
         \griditem {qtlocation-index.html}{Qt Location} {
             Provides QML and C++ interfaces to create location-aware applications.
         }
     \endgrid
+//! [techpreview-addons]
 
     \section1 Qt Extension Modules
 
@@ -280,6 +288,7 @@
     support, or compatibility promises. You can find specific details in the
     module documentation for each Extension Module.
 
+//! [extensions]
     \grid
         \griditem {qtwebengine-index.html}{Qt WebEngine} {
             Classes and functions for embedding web content in applications using the
@@ -289,6 +298,7 @@
             Classes and functions for rendering PDF documents on desktop platforms.
         }
     \endgrid
+//! [extensions]
 
     \section1 Where to Go from Here
 
