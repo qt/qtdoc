@@ -14,36 +14,45 @@
                 Qt is a full development framework with tools designed to streamline
                 the creation of applications and user interfaces for desktop,
                 embedded, and mobile platforms.
-                \div {class="landingicons"}
-                \div {class="icons1of3"}
-                    \image landing/icon_Qt_78x78px.png
-                    \section1 Qt Framework
-                    Intuitive \l{Qt Reference Pages}{API}s for \l {All Classes}{C++}
-                    and JavaScript-like programming with \l{QML Applications}{Qt Quick}
-                    for rapid UI creation.
-                \enddiv
-                \div {class="icons1of3"}
-                    \image landing/icon_QtCreator_78x78px.png
-                    \section1 Qt Creator IDE
-                    A powerful cross-platform \l{Qt Creator Manual}
-                    {integrated development environment}, including
-                    \l{Qt Creator: Designing User Interfaces}{UI designer}
-                    tools and on-device \l{Qt Creator: Debugging}{debugging}.
-                \enddiv
-                \div {class="icons1of3"}
-                    \image landing/icon_Tools.png
-                    \section1 Tools and Toolchains
-                    \l{Internationalization with Qt}{Internationalization} support,
-                    \l{Qt for Embedded Linux}{embedded} toolchains, \l{Build with CMake}, and more.
-                \enddiv
-                \enddiv
+
+                \section1 Essentials
+
+                \l {Qt Essentials} define the foundation of Qt on all platforms.
+
+                \include qtmodules.qdoc essentials
+
+                \section1 Add-ons and Extensions
+
+                Qt add-on and extension modules bring additional value for specific
+                purposes. For more information, see \l {All Modules}.
+
+                \details {Qt add-ons and extensions}
+
+                    \include qtmodules.qdoc addons
+
+                    Qt add-ons available under Commercial Licenses, or GNU General
+                    Public License v3:
+
+                    \include qtmodules.qdoc gpl-licensed-addons
+
+                    Qt extension modules:
+
+                    \include qtmodules.qdoc extensions
+
+                \enddetails
+
+                \section1 Tools
+
+                A cross-platform \l{Qt Creator Manual}{integrated development environment},
+                design tools, and \l {Development Tools}{more}.
+
                 \section1 Licenses Used in Qt
 
                 Qt Framework and tools are available under both open-source and
                 commercial \l{Qt Licensing}{licenses}.
 
                 The commercially licensed Qt contains additional functionality and
-                productivity tools. For details, see \l{http://www.qt.io/download/}.
+                productivity tools. For details, see \l{https://www.qt.io/download/}.
     \enddiv
     \div {class="col-2 sidebar"}
             \div {class="sectionlist normallist"}
