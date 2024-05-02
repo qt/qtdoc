@@ -448,11 +448,12 @@
 
     \section2 QML Example
 
-    The following QML code snippet replaces \c %n with the value of \c total:
+    The following QML code snippet translates the source text into the correct
+    plural form and replaces \c %n with the value of \c total:
 
     \code
     Text {
-        text: qsTr("%n message(s) saved").arg(total)
+        text: qsTr("%n message(s) saved", "", total)
     }
     \endcode
 
