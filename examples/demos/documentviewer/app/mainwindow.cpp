@@ -83,7 +83,6 @@ bool MainWindow::openFile(const QString &fileName)
         return false;
     }
 
-    ui->actionPrint->setEnabled(m_viewer->hasContent());
     for (const QMetaObject::Connection &connection : m_viewerConnections)
         disconnect(connection);
 
