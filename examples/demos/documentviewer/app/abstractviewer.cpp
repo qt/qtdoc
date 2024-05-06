@@ -176,6 +176,7 @@ void AbstractViewer::cleanup()
         QObject::disconnect(connection);
 
     m_connections.clear();
+    maybeSetPrintingEnabled(false);
 }
 
 QMenu *AbstractViewer::fileMenu()
