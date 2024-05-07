@@ -125,7 +125,7 @@ it to take effect since Qt sets the theme by default. For example, you can use:
 protected void onCreate(Bundle bundle)
 {
     setTheme(android.R.style.Theme_DeviceDefault_DayNight);
-    super.onCreate(bubdle);
+    super.onCreate(bundle);
 }
 \endcode
 
@@ -144,7 +144,7 @@ after extending \l {The Public Java Bindings}{QtActivity}:
 protected void onCreate(Bundle bundle)
 {
     appendApplicationParameters("--flag value");
-    super.onCreate(bubdle);
+    super.onCreate(bundle);
 }
 \endcode
 
@@ -192,6 +192,82 @@ void setActivity(Activity activity)
 Then, the \c QtLoader invokes these methods with the parent context of the loader
 just before loading the native shared libraries.
 
+\section1 How Qt for Android Handles the Android Activity Life-cycle
+
+Qt for Android does not provide an API to directly handle the Android activity
+life-cycle callbacks such as onCreate(), onStart(), onResume(), onPause(),
+onStop(), and onDestroy(). Instead, it handles these under the hood for the user.
+The behavior is outlined in the following sections.
+
+\note These life-cycle events are translated to the
+\l{QGuiApplication::applicationStateChanged} signal.
+
+\section2 Context Handling
+
+\l QAndroidApplication can provide the Android \l{Android: Context}{Context} as
+a \c QJniObject, essential for interacting with the Android system. This context
+can be an Activity or a Service. If there is an Activity, it will be the most
+recently started Activity, regardless of whether there are Services. If there is
+only Services, it will be the most recently started Service.
+
+\note Qt for Android does not support multiple Activites.
+
+\section2 Callbacks
+
+The QtActivityBase class is designed to keep the implementation details of an
+Activity’s various functionalities private within the Qt for Android package.
+This class is a mediator between the Android life-cycle and the Qt framework,
+translating Android life-cycle callbacks into signals and operations to which
+the Qt application can respond.
+
+\section3 onCreate()
+
+When the Activity is created, QtActivityBase initializes the Qt
+environment. This includes loading the Qt libraries, setting up the class loader
+that QJniObject uses, parsing the app’s metadata, and preparing the Qt
+application for execution. It ensures that all necessary initialization specific
+to the Activity is handled.
+
+\section3 onStart()
+
+Calls Android's Activity.OnStart().
+
+\section3 onResume()
+
+When the Activity moves to the foreground, QtActivityBase resumes the Qt
+application. It ensures that paused processes or operations continue and the
+application is again ready for user interaction. It will re-register the display
+manager listener stopped by onPause().
+
+\section3 onPause()
+
+If another activity partially obscures the Activity, QtActivityBase pauses
+the Qt application. It will save the application state or release resources that
+are not needed while the application is not in the foreground.
+
+\section3 onStop()
+
+When the Activity is no longer visible, QtActivityBase stops the Qt
+application, which involves more extensive state saving and resource release,
+preparing the application for potential destruction.
+
+\note The QtThread is suspended at this point.
+
+\section3 onDestroy()
+
+If the Activity is finished or being destroyed by the
+system, QtActivityBase cleans up all resources associated with the
+Qt application. It ensures a proper shutdown and that all necessary cleanup
+operations are performed.
+
+This integration allows developers to focus on building their Qt application
+without worrying about the intricacies of the Android life-cycle, as
+QtActivityBase manages these complexities under the hood.
+
+\section1 Splash Screen Management
+
+\l QAndroidApplication can hide the splash screen with a fade effect, which can
+be timed with the application’s startup sequence, typically after onCreate().
 
 \section1 More About Qt for Android
 
