@@ -19,12 +19,56 @@
 
     \section2 Qt Core Module
     \list
+        \li QChronoTimer is a replacement for QTimer using std::chrono durations throughout.
+        \li QTimer::id() returns a Qt::TimerId, introduced and accepted in place of int timer
+            IDs in new overloads of various methods that take one.
+        \li More support for std::chrono durations to replace integral nanosecond
+            parameters in QAbstractEventDispatcher.
+        \li QString, QByteArray, and QList gain resizeForOverwrite().
+        \li QString, QByteArray gain slice() equivalent to \c{*this = sliced()}.
+        \li QString, QByteArray, QList, QVarLengthArray gain max_size() for stl compat.
+        \li QList supports construction with uninitialized entries to a specified size,
+            where the content-type permits.
+        \li QVarLengthArray::PreallocatedSize tells you the Prealloc parameter.
+        \li QLatin1StringMatcher::indexOf() can now take a QStringView.
+        \li QCollatorSortKey now supports move-construction.
+        \li QStringEncoder and QStringDecoder can now take the encoding name as a QString.
+        \li QThread gains isMainThread(), isCurrentThread().
+        \li QThreadPool::waitForDone() now accepts a QDeadlineTimer in place of int
+            milliseconds.
+        \li QDirListing provides stl-style iteration over directory entries.
+        \li QVersionNumber can now be constructed from a QSpan; it can also be iterated.
+        \li qHash() now accepts quint128 and qint128.
+        \li QMap::qHash() tells you a key's hash value.
+        \li QPointF, QLineF, QRectF, QMarginsF now support fuzzy comparison and null-checks.
+        \li Define QT_ENABLE_STRICT_MODE_UP_TO opts out of various APIs, documented by
+            which version it cuts them out at.
+        \li Define QT_NO_QASCONST to disable qAsConst().
+        \li Define QT_(NO_)USE_NODISCARD_FILE_OPEN to control [[nodiscard]] on open() methods
+            of I/O classes.
+    \endlist
+
+    \section2 Qt Graphs Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt GRPC Module
+    \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt GUI Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QStyleHints::colorScheme now has a setter function, allowing applications to try
+            to override the system setting with an explicit Dark or Light scheme.
+        \li QImage::Format_CMYK8888 a 32bit CMYK image format has been added.
+        \li QColorSpace support for ICC A2B color spaces processing has been added. Along with
+            explicit support for grayscale and CMYK color spaces.
+        \li QColorSpace::transformModel() returns the underlying processing model.
+        \li QColorSpace::colorModel() returns which color model the color space is made for.
+        \li QImage::colorTransformed() and QImage::applyColorTransform() variants with three arguments,
+            has been added to support converting both image format and color space at the same time.
     \endlist
 
     \section2 Qt Location Module
@@ -32,12 +76,30 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Multimedia Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
     \section2 Qt Network Module
+    \list
+        \li QNetworkAccessManager gained support for sending HTTP requests over local socket
+            using the unix+http: or local+http: scheme.
+        \li QDnsLookup gained support for TLS association records, returning the authentic data
+            bit and DNS over TLS on some platforms, see QDnsLookup::isProtocolSupported().
+    \endlist
+
+    \section2 Qt OPC UA Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
     \section2 Qt Positioning Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt Protobuf Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
@@ -57,7 +119,22 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Quick Shapes Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt Quick Timeline Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
     \section2 Qt Quick 3D Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt Quick 3D Physics Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
@@ -68,6 +145,11 @@
     \endlist
 
     \section2 Qt Sql Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Qt SVG Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
@@ -84,7 +166,14 @@
 
     \section2 Qt WebEngine Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li QWebEngineFrame added for frame specific API, such as running javascript on specific frames, or printing
+            specific frames.
+        \li QWebEngineClientHints added to better control the browser identification to web pages using client hints
+            DOM api.
+        \li QWebEngineCertificateError::isMainFrame() indicates the certificate error is from a main or sub frame.
+        \li QWebEngineNavigationRequest::hasFormData() added to indicate a navigation request sending form data.
+        \li QWebEnginePage::ClipboardReadWrite and QWebEnginePage::LocalFontsAccess features added.
+        \li QWebEngineSettings::imageAnimationPolicy() added to control image animation policy.
     \endlist
 
     \section2 Qt WebView Module
@@ -93,6 +182,13 @@
     \endlist
 
     \section2 Qt Widgets Module
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section1 Tools
+
+    \section2 Qt Widgets Designer
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
@@ -121,6 +217,11 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section3 WebAssembly
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
     \section2 Mobile Platforms
 
     \section3 Android
@@ -129,6 +230,23 @@
     \endlist
 
     \section3 iOS
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section2 Embedded Platforms
+
+    \section3 Boot to Qt
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section3 VxWorks
+    \list
+        \li Nothing to see here. //! TODO Clean this up before release.
+    \endlist
+
+    \section3 INTEGRITY
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
