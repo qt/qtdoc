@@ -297,3 +297,52 @@
     To develop a simple application from scratch, see
     \l {Qt Creator: Creating a Mobile Application}.
 */
+
+/*!
+    \page android-supported-versions-selection-guidelines.html
+    \title Qt for Android Supported Versions Selection Guidelines
+    \brief Provides information about supported Android versions under a Qt release.
+
+    To keep the supported versions to a level that’s maintainable
+    by Qt, especially for LTS releases which are expected to live for a period of
+    3 years, Qt for Android has guidelines for selecting the supported
+    versions for a given Qt release. This makes the selection clear and
+    transparent, and help shape proper expectations of support for each Qt for
+    Android release.
+
+    \section1 Minimum Supported Version
+
+    The guidelines for selecting the minimum supported version are:
+
+    \list
+        \li Evaluate the minimum version once a year for the fall release of Qt,
+            which would also cover LTS releases.
+        \li Target at least 90% of the cumulative usage in the market as listed
+            on \l {https://apilevels.com}{apilevels.com} at the time of the
+            platform freeze deadline of a given fall release.
+        \li The selection is done 1 month before the platform freeze, at which
+            time we check what versions would fit the 90% range, and decide
+            whether to select a more recent minimum version or not and to what
+            new minimum version.
+        \li The changes are communicated to the Qt development mailing list,
+            and reflected in the release change log and Qt for Android documentation.
+        \li In exceptional cases where a change is needed to a version that doesn’t
+            respect the criteria above, it will be announced at the time of the
+            platform freeze deadline along with reasons for the decision.
+    \endlist
+
+    The minimum version changes would be reflected in our CI test runs, and in
+    the build system (i.e. CMake and androiddeployqt), thus the released libraries
+    would require said minimum version to run. To target older versions a Qt
+    rebuild with appropriate build system changes would be needed. Even if such
+    builds might work for older versions, note that they would fall outside
+    of Qt official support scope. Although, the official Qt for Android libraries
+    might or might not work for builds targeting older versions than the minimum
+    for the release.
+
+    \section1 Maximum Supported Version
+
+    In a spring Qt release, we aim to support an Android version which was
+    released by Google in the fall of the year before. This becomes the new
+    maximum supported version by Qt.
+*/
