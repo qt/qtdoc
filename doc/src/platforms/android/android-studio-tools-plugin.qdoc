@@ -118,7 +118,7 @@
     \list 1
         \li\l{https://developer.android.com/studio}{Download} and install Android
         Studio version Giraffe | 2023.1.1 Canary 1 or later.
-        \li Head to the plugin's Intellij marketplace page to
+        \li Head to the plugin's IntelliJ marketplace page to
         \l{https://plugins.jetbrains.com/plugin/24060-qt-tools-for-android-studio}{download}
             the plugin's jar file.
         \li Start Android Studio.
@@ -145,7 +145,7 @@
         targeting.
         \image android-studio-plugin/SettingsSet.png
         \list
-            \li For a windows host select \c{qt-qmake.bat}.
+            \li For a Windows host select \c{qt-qmake.bat}.
             \li For other operating systems select \c{qt-cmake}.
         \endlist
     \endlist
@@ -170,7 +170,7 @@
     \endlist
 
     The example projects are located under your Qt installation directory
-    in \c{Qt/Examples/<qt version>/qtdeclarative/examples/platforms/android/}.
+    in \c{Qt/Examples/<qt version>/platforms/android/}.
     To test the examples:
     \list 1
       \li From Android Studio's welcome screen, select \uicontrol{Open}.
