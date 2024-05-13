@@ -84,24 +84,34 @@
 //! [android]
 
 The following configurations are supported in this Qt release:
-\table 80%
-    \header \li Distribution \li Architecture \li Compiler \li JDK \li Gradle \li Package
+
+\table 60%
+    \header \li Section \li Description
     \row
+        \li \b Distribution
         \li Android \AndroidMinVer (API \AndroidMinApiVer) \b {to}
-        \AndroidMaxVer (API \AndroidMaxApiVer)
+            \AndroidMaxVer (API \AndroidMaxApiVer)
+    \row
+        \li \b Architecture
         \li \AndroidAbis
+    \row
+        \li \b Compiler
         \li \NdkCompilerVer (NDK \NdkVer or \NdkFullVer)
+            \note It's recommended that Qt apps use the same NDK \NdkVer version
+            used for building the official Qt for Android libraries to avoid
+            missing symbol errors.
+    \row
+        \li \b JDK
         \li JDK \JdkVer
+    \row
+        \li \b Gradle
         \li Gradle \GradleVer and AGP \AGPVer
+    \row
+        \li \b Package
         \li Multi-ABI \c{APK}s and \c{AAB}s
+            \note Multi-ABI builds are available only when using CMake. For more
+            information, see \l{QT_ANDROID_ABIS}{CMake Android Multi-ABIs}.
 \endtable
-
-\note Multi-ABI builds are available only when using CMake. For more information,
-see \l{QT_ANDROID_ABIS}{CMake Android Multi-ABIs}.
-
-\note It's recommended that Qt apps use the same NDK \NdkVer version
-used for building these official Qt for Android libraries to avoid missing
-symbol errors.
 
 For more information on the supported Android versions, see
 \l {Qt for Android Supported Versions Selection Guidelines}.
