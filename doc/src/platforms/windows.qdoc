@@ -938,6 +938,11 @@
     If you wish to build QDoc manually, refer to \l {Installing Clang for QDoc}
     for specific build requirements.
 
+    \section2 Qt GRPC and Qt Protobuf Dependencies
+    \l {Qt GRPC} and \l {Qt Protobuf} require installing \tt gRPC and \tt Protobuf
+    packages. You can find the installation instructions for the packages in the
+    \l {Example of installation for Windows using vcpkg}.
+
     \section2 Setting the Environment
 
     For MSVC, do one of the following:
