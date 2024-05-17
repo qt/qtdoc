@@ -96,6 +96,15 @@
     Prefix = c:\\SomePath
     \endcode
 
+    Since Qt 6.8, it is possible to provide more than one path per entry.
+    They have to be provided as a comma separated list. For example
+    \code
+    QmlImports = "/path/to/imports1","/path/to/imports2"
+    \endcode
+    It is possible to add spaces before and after the comma. It is also
+    possible to omit the quotes around entries if path do not contain
+    commas or spaces.
+
     \section1 Configuring Arguments to the Platform Plugins
 
     The \c qt.conf may contain a \c Platforms group, whose keys are
