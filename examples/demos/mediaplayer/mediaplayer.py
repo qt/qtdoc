@@ -6,12 +6,27 @@ import sys
 from argparse import ArgumentParser, RawTextHelpFormatter
 from pathlib import Path
 
-from PySide6.QtCore import QDir, QUrl
+from PySide6.QtCore import QDir, QFileInfo, QObject, QUrl, Slot
 from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QQmlApplicationEngine, QmlElement, QmlSingleton
 from PySide6.QtMultimedia import QMediaFormat
 
 _opt_verbose = False
+
+
+QML_IMPORT_NAME = "io.qt.filenameprovider"
+QML_IMPORT_MAJOR_VERSION = 1
+
+
+@QmlElement
+@QmlSingleton
+class FileNameProvider(QObject):
+    def __init__(self, p=None):
+        super().__init__(p)
+
+    @Slot(str, result=str)
+    def getFileName(self, p):
+        return QFileInfo(p).fileName()
 
 
 def nameFilters():
