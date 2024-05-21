@@ -130,11 +130,11 @@
         which is a required Gradle dependency for building Android apps. An example
         of this is:
 
-        \badcode
+        \badcode \AGPVer
         buildscript {
             ...
             dependencies {
-                classpath 'com.android.tools.build:gradle:x.x.x'
+                classpath 'com.android.tools.build:gradle:\1'
             }
         }
         \endcode
