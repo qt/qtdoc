@@ -18,7 +18,6 @@
                  android:icon="@drawable/icon">
         <activity android:name="org.qtproject.qt.android.bindings.QtActivity"
                   android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
-                  android:label="-- %%INSERT_APP_NAME%% --"
                   android:launchMode="singleTop"
                   android:screenOrientation="unspecified"
                   android:exported="true">
@@ -28,8 +27,6 @@
             </intent-filter>
             <meta-data android:name="android.app.lib_name"
                        android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
-            <meta-data android:name="android.app.extract_android_style"
-                       android:value="minimal"/>
         </activity>
     </application>
 </manifest>
