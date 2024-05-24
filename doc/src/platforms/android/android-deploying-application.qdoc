@@ -11,14 +11,24 @@
     This article describes the technical steps required to deploy a Qt
     application to an Android device.
 
-    \section1 Android Application Bundle
+    \section1 Android Packaging Options
 
-    Applications on Android can be packaged in two ways; either as an Application
-    Package (APK) or Android App Bundle (AAB). Both are a type of ZIP file that
-    follows a predefined directory structure. The difference between the two is
-    that APK files can be deployed and executed on a device, whereas AAB is
-    intended to be interpreted by the Google Play store and is used to generate
-    APK files for different device architectures and form factors.
+    You can package code on Android in three ways: either as an Application
+    Package (APK), an Android App Bundle (AAB), or an Android Archive (AAR).
+    Each is a specific type of ZIP format that follow a predefined directory
+    structure. The differences between these formats are:
+
+    \list
+        \li APK files can be deployed and executed on a device.
+        \li An AAB is intended to be interpreted by the Google Play store and
+        is used to generate APK files for different device architectures and
+        form factors.
+        \li An AAR fundamentally differs from the APK and AAB formats in that
+        it is an Android library. You can use it as a dependency for an Android
+        app module, but you cannot run it by itself.
+    \endlist
+
+    \section1 Android Application Bundle
 
     For testing the application locally, the APK format is appropriate,
     as this can be installed and run directly on the device. For distribution

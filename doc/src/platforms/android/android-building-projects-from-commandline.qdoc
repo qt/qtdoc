@@ -148,6 +148,12 @@
     \l{Qt Creator: Signing Android Packages}{Signing Android packages}. Otherwise,
     check the CMake variables \l QT_ANDROID_SIGN_APK and \l QT_ANDROID_SIGN_AAB.
 
+    \section2 Building an AAR (Android Archive) File
+
+    \badcode
+    cmake --build . --target aar
+    \endcode
+
     \section1 Building with qmake
 
     You can continue to use \c qmake to build user projects as in Qt 5.
