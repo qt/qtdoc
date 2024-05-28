@@ -116,7 +116,7 @@ Pane {
 
         Repeater {
             model: [qsTr("Humidity: %1%".arg(humidity)), qsTr(
-                    "Energy Usage: %1 KM/H".arg(energy))]
+                    "Energy Usage: %1 kWh".arg(energy))]
 
             Label {
                 text: modelData
