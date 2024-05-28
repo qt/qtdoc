@@ -71,6 +71,13 @@
             has been added to support converting both image format and color space at the same time.
     \endlist
 
+    \section2 Qt Graphs Module
+    \list
+        \li Brought out of tech preview.
+        \li Split into two submodules: QtGraphs and QtGraphsWidgets to remove
+        the requirement for including widgets into pure QML applications.
+    \endlist
+
     \section2 Qt Location Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
