@@ -10,6 +10,11 @@
     \section1 New and Restored Modules in Qt 6.8
     Qt 6.8 adds the following modules and tools:
 
+    \list
+        \li The \l{svgtoqml} tool is now available out of tech preview. It can be used to generate
+        QML code from SVG documents. It supports a static subset of the \c{SVG Tiny 1.2} profile.
+    \endlist
+
     \section2 New and Restored Modules in Technical Preview
 
     \note API and ABI stability is not guaranteed for modules in
@@ -62,6 +67,13 @@
     \list
         \li QStyleHints::colorScheme now has a setter function, allowing applications to try
             to override the system setting with an explicit Dark or Light scheme.
+        \li Added QFont::ContextFontMerging, which can be used to enable a new font merging
+        algorithm that takes the full string into account when selecting fallback fonts. This may
+        come at some more cost, but in certain cases it will give better results.
+        \li Added QFontDatabase::addApplicationFallbackFontFamily(), which provides a means to
+        override the default system fallback fonts for specific scripts.
+        \li Added QDesktopServices custom and \e https URL scheme support,
+        for \macos, similar to what iOS has.
         \li QImage::Format_CMYK8888 a 32bit CMYK image format has been added.
         \li QColorSpace support for ICC A2B color spaces processing has been added. Along with
             explicit support for grayscale and CMYK color spaces.
@@ -101,6 +113,17 @@
         \li Nothing to see here. //! TODO Clean this up before release.
     \endlist
 
+    \section2 Qt Network Auth Module
+    \list
+        \li Added QOAuthUriSchemeReplyHandler class, which
+        handles private/custom and https URI scheme redirects
+        (on supported platforms).
+        \li Added Proof of Key Code Exchange (PKCE) support to
+        QOAuth2AuthorizationCodeFlow class. PKCE is a recommended
+        security measure to mitigate authorization code interception
+        attacks.
+    \endlist
+
     \section2 Qt Positioning Module
     \list
         \li Nothing to see here. //! TODO Clean this up before release.
@@ -118,7 +141,21 @@
 
     \section2 Qt Quick Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added font.contextFontMerging, which can be used to enable a new font merging algorithm
+        that takes the full text into account when selecting fallback fonts. This may come at some
+        more cost, but in certain cases it will give better results.
+        \li Added the Image.retainWhileLoading property. When set to true on images that load
+        asynchronously, the current image data will be retained until the new image is fully
+        loaded. This can avoid flickering.
+        \li Added ShapePath.fillItem to Qt Quick Shapes. This can be used to take any texture
+        provider item (such as layered items and images) and use them as fill for the shape.
+        \li Added ShapePath.fillTransform to Qt Quick Shapes, which can be used to set an arbitrary
+        transform on the shape's fill, whether it is an item or a gradient.
+        \li Added PlanarTransform, a utility object providing simple functions for specifying 2D
+        transformation matrices.
+        \li Introduced the VectorImage: A component which can be used to render vector graphics
+        directly Qt Quick with hardware acceleration and no pre-rasterization. It currently
+        supports the SVG format (a static subset of the \c{SVG Tiny 1.2} profile.)
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -206,7 +243,10 @@
 
     \section3 Windows
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Changed the font system to use DirectWrite as the default backend. This enables some
+        modern features which were not available with the legacy GDI backend. The previous backend
+        is still available and can be enabled by passing \c{fontengine=gdi} as parameter to the QPA
+        plugin.
     \endlist
 
     \section3 \macos
