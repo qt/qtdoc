@@ -233,7 +233,21 @@
 
     \section3 Android
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Bumped the minimum supported version to Android 9.
+        \li Added support for build.gradle namespace property.
+        \li Added a CMake property \l QT_ANDROID_PACKAGE_NAME to set the package
+            name.
+        \li Updated Gradle to 8.7 and AGP to 8.4.0.
+        \li Added support for
+            \l {Building an AAR (Android Archive) File}{building AAR library packages}.
+        \li Deprecated the native Android backend in Qt Multimedia.
+        \li When opening libraries with QLibrary, JNI_OnLoad is no longer called
+            by default.
+        \li \l {Qt Quick View Android Class}{QtQuickView} and QML Embedding:
+            \list
+                \li Added QtAbstractItemModel as wrapper for \l QAbstractItemModel.
+                \li Added strong typing support for QtQuickView.
+            \endlist
     \endlist
 
     \section3 iOS
