@@ -45,6 +45,11 @@
         \li QVersionNumber can now be constructed from a QSpan; it can also be iterated.
         \li qHash() now accepts quint128 and qint128.
         \li QMap::qHash() tells you a key's hash value.
+        \li QHash can now hash different types from its key, if they are marked as having
+            the equivalent hash result for equivalent values (C++20 only). This works for
+            QString/QStringView and QByteArray/QByteArrayView pairs. On all systems except
+            on ARM processors, the QLatin1StringView also participates in the QString and
+            QStringView hashing.
         \li QPointF, QLineF, QRectF, QMarginsF now support fuzzy comparison and null-checks.
         \li Define QT_ENABLE_STRICT_MODE_UP_TO opts out of various APIs, documented by
             which version it cuts them out at.
