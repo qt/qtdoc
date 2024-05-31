@@ -180,7 +180,28 @@
 
     \section2 Qt Quick 3D Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Technology Preview of XR support for Qt Quick 3D
+            \list
+                \li Support for Head Mounted Displays (HMD) using OpenXR such
+                as the Meta Quest 2 and 3
+                \li Support for Apple Vision Pro
+                \li Multi-view rendering (render both eyes in a single pass)
+                \li Spatial input support via hand tracking or controllers
+                \li Support for spatial anchors
+            \endlist
+        \li Improved Shadow Rendering
+            \list
+                \li Overall quality improvements
+                \li Enhanced shadow debug tooling
+                \li Cascading Shadow Maps
+                \li Percentage-closer filtering (PCF) soft shadows.
+            \endlist
+        \li PrincipledMaterial Enhancements
+            \list
+                \li Additional parameters for adjusting Fresnel
+                \li Support for property masking based on the vertex color attribute
+            \endlist
+        \li CustomMaterial: expose remaining properties from PrincipledMaterial
     \endlist
 
     \section2 Qt Quick 3D Physics Module
