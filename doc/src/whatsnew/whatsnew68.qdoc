@@ -130,14 +130,15 @@
     \list
         \li QNetworkAccessManager gained support for sending HTTP requests over local socket
             using the unix+http: or local+http: scheme.
+        \li QDnsLookup gained support to send DNS over TLS and inform whether the DNS server
+            has performed verification on data authenticity.
+        \li QDnsLookup gained support for TLS Association records.
         \li \l {QNetworkCacheMetaData::headers}{QNetworkCacheMetaData},
             \l {QNetworkProxy::headers}{QNetworkProxy},
             \l {QNetworkRequest::headers}{QNetworkRequest}, and
             \l {QNetworkReply::headers}{QNetworkReply} can now get and set headers.
         \li QNetworkRequestFactory allows setting the \l {QNetworkRequestFactory::}{priority}
             as well as \l {QNetworkRequest::Attribute}{attributes} for future requests.
-        \li QDnsLookup gained support for TLS association records, returning the authentic data
-            bit and DNS over TLS on some platforms, see QDnsLookup::isProtocolSupported().
     \endlist
 
     \section2 Qt OPC UA Module
