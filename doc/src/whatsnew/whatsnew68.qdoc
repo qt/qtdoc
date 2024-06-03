@@ -83,7 +83,12 @@
 
     \section2 Qt GRPC Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Brought out of tech preview.
+        \li Added streaming support to the GrpcQuick module.
+        \li Removed QGrpcInterceptor, QGrpcInterceptorManager and
+        QGrpcInterceptorContinuation.
+        \li Added the \c {writesDone()} method to QGrpcClientStream and
+        QGrpcBidirStream to half-close a stream from the client side.
     \endlist
 
     \section2 Qt GUI Module
