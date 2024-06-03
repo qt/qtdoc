@@ -309,10 +309,20 @@
         \li Deprecated the native Android backend in Qt Multimedia.
         \li When opening libraries with QLibrary, JNI_OnLoad is no longer called
             by default.
-        \li \l {Qt Quick View Android Class}{QtQuickView} and QML Embedding:
+        \li \l QtQuickView and QML Embedding:
             \list
-                \li Added QtAbstractItemModel as wrapper for \l QAbstractItemModel.
-                \li Added strong typing support for QtQuickView.
+                \li Added strong typing support for QtQuickView API.
+                \li Added API to manage QML Components, under this Java classes under
+                    QtQuickView were moved to own classes. This includes:
+                    \list
+                        \li QtQuickView.SignalListener to QtSignalListener
+                        \li QtQuickView.StatusChangeListener to QtQmlStatusChangeListener
+                        \li QtQuickView Status to QtQmlStatus
+                    \endlist
+                \li Added Java classes QtAbstractItemModel, QtAbstractListModel and
+                    QtModelIndex that wraps QAbstractItemModel, QAbstractListModel,
+                    and QModelIndex respectively.
+                \li Added support for QML embedding from a Service.
             \endlist
     \endlist
 
