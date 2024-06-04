@@ -60,6 +60,18 @@
         \li QCryptographicHash and QMessageAuthenticationCode gain
             \l{QCryptographicHash::}{hashInto()} to compute the hash of data into a provided
             buffer.
+        \li More QtCore types with \c {operator<()} now also support
+            \c {operator<=>()} when compiled with C++20 (and \c {compareThreeWay()}
+            even for C++17). These types now consistently support all six relational
+            operators (as hidden friends) and the reverse of each mixed-type
+            comparison they supported. At Qt 6.8 this applies to: \l qfloat16,
+            \l QAnyStringView, \l QByteArray, \l QByteArrayView, \l QCborArray,
+            \l QCborMap, \l QCborValue, \l QChar, \l QDate, \l QDateTime,
+            \l QDeadlineTimer, \l QElapsedTimer, \l QLatin1Char,
+            \l QLatin1StringView, \l QModelIndex, \l QOperatingSystemVersion,
+            \l QPersistentModelIndex, \l QString, \l QStringView, \l QTime,
+            \l QTypeRevision, \l QUrl, \l QUtf8StringView, \l QUuid,
+            and \l QVersionNumber.
     \endlist
 
     \section2 Qt Graphs Module
