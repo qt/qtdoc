@@ -346,9 +346,15 @@
             specific frames.
         \li QWebEngineClientHints added to better control the browser identification to web pages using client hints
             DOM api.
+        \li QWebEnginePermission added to manage new and existing website permissions. The existing permissions API
+            in QWebEnginePage has been deprecated, and replaced by QWebEngineProfile::getPermission() and
+            QWebEngineProfile::listPermissions()
+        \li QWebEngineProfile::setPersistentPermissionsPolicy() added to control how website permissions are
+            persisted across browsing sessions. By default, incoming permissions are saved to disk.
+        \li QWebEnginePermission::ClipboardReadWrite and QWebEnginePermission::LocalFontsAccess permission
+            types added.
         \li QWebEngineCertificateError::isMainFrame() indicates the certificate error is from a main or sub frame.
         \li QWebEngineNavigationRequest::hasFormData() added to indicate a navigation request sending form data.
-        \li QWebEnginePage::ClipboardReadWrite and QWebEnginePage::LocalFontsAccess features added.
         \li QWebEngineSettings::imageAnimationPolicy() added to control image animation policy.
     \endlist
 
