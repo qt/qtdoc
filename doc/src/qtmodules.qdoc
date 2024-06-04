@@ -99,17 +99,6 @@
         \li \l{Qt for Windows}{Windows}
         \li Classes for applications which use ActiveX and COM
     \row
-        \li \l[Qt3D]{Qt 3D}
-        \li All
-        \li All
-        \li Functionality for near-realtime simulation systems with support
-            for 2D and 3D rendering.
-    \row
-        \li \l{Qt 5 Core Compatibility APIs}
-        \li All
-        \li All
-        \li Qt Core APIs that were in Qt 5 but not Qt 6.
-    \row
         \li \l{Qt Bluetooth}{Qt Bluetooth}
         \li All
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Boot to Qt}, \l{Qt for macOS}{macOS}
@@ -362,6 +351,17 @@
         \li \l{Qt for Linux/X11}{Linux}
         \li \l{Qt for Linux/X11}{Linux} and \l{Boot to Qt} targets.
         \li Provides a framework to develop a Wayland compositor.
+    \row
+        \li \l[Qt3D]{Qt 3D}
+        \li All
+        \li All
+        \li Functionality for near-realtime simulation systems with support
+            for 2D and 3D rendering.
+    \row
+        \li \l{Qt 5 Core Compatibility APIs}
+        \li All
+        \li All
+        \li Qt Core APIs that were in Qt 5 but not Qt 6.
     \endtable
 
     \note \b{All*} refers to all supported platforms except INTEGRITY.
