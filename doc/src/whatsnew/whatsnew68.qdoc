@@ -141,6 +141,8 @@
             \l {QNetworkReply::headers}{QNetworkReply} can now get and set headers.
         \li QNetworkRequestFactory allows setting the \l {QNetworkRequestFactory::}{priority}
             as well as \l {QNetworkRequest::Attribute}{attributes} for future requests.
+        \li Added classes QFormDataPartBuilder and QFormDataBuilder to ease the
+            creation of QHttpMultipart messages.
     \endlist
 
     \section2 Qt OPC UA Module
