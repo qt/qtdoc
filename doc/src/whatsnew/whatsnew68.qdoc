@@ -91,6 +91,8 @@
         \li QImage::Format_CMYK8888 a 32bit CMYK image format has been added.
         \li QColorSpace support for ICC A2B color spaces processing has been added. Along with
             explicit support for grayscale and CMYK color spaces.
+        \li Support for QColorSpace::Bt2020, QColorSpace::Bt2100Pq, and QColorSpace::Bt2100Hlg HDR
+            color spaces has been added.
         \li QColorSpace::transformModel() returns the underlying processing model.
         \li QColorSpace::colorModel() returns which color model the color space is made for.
         \li QImage::colorTransformed() and QImage::applyColorTransform() variants with three arguments,
