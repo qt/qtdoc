@@ -11,6 +11,41 @@
     Changes in Qt and \l{Third-Party Code Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.7.2
+
+    \section2 Qt 3D Module
+
+    \list
+        \li \l{assimp}{Open Asset Import Library} was updated to version 5.4.1.
+        \li Usage of \l{miramar-sky}{Miramar Skybox Textures} was removed.
+        \li Usage of \l{substance_share}{Substance Share} was removed.
+    \endlist
+
+    \section2 Qt Quick3D module
+
+    \list
+        \li \l{assimp}{Open Asset Import Library} was updated to version 5.4.1.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 8.5.0.
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 3.0.3.
+    \endlist
+
+    \section2 Qt Sensors Module
+
+    \list
+        \li Usage of \l{android-compass}{Android getRotationMatrix and getOrientation} is now documented.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \list
+        \li \l{sqlite}{SQLite} was updated to version 3.46.0.
+    \endlist
+
     \section1 Qt 6.7.1
 
     \section2 Qt GUI Module
