@@ -719,6 +719,33 @@
         \li Added VxWorks 24.03 support.
     \endlist
 
+    \section3 Boot to Qt
+    \list
+        \li Support was added for Yocto 5.0 (Scarthgap).
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 1:
+            \list
+                \li Raspberry Pi 5.
+            \endlist
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 2:
+            \list
+                \li NVIDIA Jetson AGX Orin Developer Kit
+                    (upgraded from Tier 3).
+                \li Raspberry Pi 4 (downgraded from Tier 1).
+            \endlist
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 3:
+            \list
+                \li NXP iMX95 (as a preview via \l {Qt Customer Portal}).
+                \li Toradex Verdin iMX95 (as a preview via \l {Qt Customer Portal}).
+                \li StarFive VisionFive 2.
+                \li STM32MP13 Discovery (as a preview via \l {Qt Customer Portal}).
+                \li STM32MP15 Evaluation (downgraded from Tier 2).
+                \li NXP iMX8MQuad Evaluation (downgraded from Tier 2).
+            \endlist
+    \endlist
+
     \section1 List of API Changes
 
     These pages contain an overview of API changes in Qt 6.8:
