@@ -204,6 +204,7 @@
         loaded. This can avoid flickering.
         \li Added PlanarTransform, a utility object providing simple functions for specifying 2D
         transformation matrices.
+        \li Added PathRectangle, an optionally rounded rectangle path for Shape and PathView.
         \li Added the \l {QtQuick::Drag::imageSourceSize}{Drag.imageSourceSize} property to control
             the size of the image representing the data being dragged.
         \li Added \l {QQuickRenderTarget::depthTexture} as a way to set a custom depth texture.
