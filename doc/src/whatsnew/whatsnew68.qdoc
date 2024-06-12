@@ -357,7 +357,33 @@
 
     \section2 Qt Test Module
     \list
-        \li Nothing to see here. //! TODO Clean this up before release.
+        \li Added \l{QTEST_THROW_ON_FAIL} and \l{QTEST_THROW_ON_SKIP}
+            C++ macros and \l{Qt Test EnvironmentVariables}
+            {environment variables} that, when defined, change how
+            QCOMPARE()/QVERIFY()/QSKIP() etc exit the test function on
+            failure. Instead of a return, exiting only the
+            immediately-surrounding function, they throw a special
+            exception instead, thereby exiting from subfunctions of
+            the test function, all the way to QtTestLib.
+        \li The QTRY_*_WITH_TIMEOUT macros now also accept chrono
+            literals (was: int milliseconds).
+        \li QTest::failOnWarning() now has a no-parameter overload to
+            support the common case of fail-on-any-warning, without
+            needing to construct a match-everything regular
+            expression.
+        \li \l QSignalSpy no longer inherits from \l QObject. If your
+            code uses the fact that QSignalSpy is-a QObject, you need
+            to redesign around this now.
+        \li The QSignalSpy::signal() method no longer necessarily
+            returns an empty byte array when the connection
+            failed. Use the existing \l{QSignalSpy::}{isValid()}
+            method to determine whether a given QSignalSpy object
+            listens to a valid signal on a valid object.
+        \li The QCOMPARE_xx macros can now only find QTest::toString()
+            expansions that are either found via Argument Dependent
+            Lookup on the type in question or are an instatiation of
+            the QTest::toString<T>() template. This matches the
+            behavior of the QCOMPARE() macro.
     \endlist
 
     \section2 Qt TextToSpeech Module
