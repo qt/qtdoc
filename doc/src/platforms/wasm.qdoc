@@ -58,13 +58,14 @@ The Emscripten versions are:
    \li Qt 6.5: 3.1.25
    \li Qt 6.6: 3.1.37
    \li Qt 6.7: 3.1.50
+   \li Qt 6.8: 3.1.56
 \endlist
 
 Use \c emsdk to install specific \c Emscripten versions. For example, to install
-it for Qt 6.7 enter:
+it for Qt 6.8 enter:
 \list
-    \li ./emsdk install 3.1.50
-    \li ./emsdk activate 3.1.50
+    \li ./emsdk install 3.1.56
+    \li ./emsdk activate 3.1.56
 \endlist
 
 On Windows, Emscripten is in your path after installation. On macOS or Linux
