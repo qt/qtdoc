@@ -45,6 +45,7 @@
             \li \l{Deploying a Qt Widgets application}
             \li \l{Deploying a Qt Quick application}
         \endlist
+        \li \l{Supported CMake versions}
         \li \l{Imported targets}
         \li \l{Qt CMake policies}
         \li \l{Qt 5 and Qt 6 compatibility}
@@ -128,10 +129,9 @@
     \skipto cmake_minimum_required
     \printuntil cmake_minimum_required
 
-    \c cmake_minimum_required() specifies the minimum CMake version that the
-    application requires. Qt itself requires at least CMake version 3.16, except
-    on Apple platforms, or for static builds of Qt - the default in \l{Qt for iOS}
-    and \l{Qt for WebAssembly} - where you need CMake 3.21.1 or newer.
+    \c cmake_minimum_required() specifies the minimum CMake version that is
+    required to successfully configure the project. See \l {Supported CMake
+    versions} for the minimum version required by Qt.
 
     \printuntil project(
 
@@ -795,7 +795,7 @@
     \page cmake-deployment.html
     \title Deployment
     \brief Provides an overview of how to deploy Qt projects.
-    \nextpage Imported targets
+    \nextpage Supported CMake versions
     \previouspage Building projects on the command line
 
     Use Qt's CMake deployment API to deploy Qt projects for desktop platforms.
@@ -873,11 +873,42 @@
 */
 
 /*!
+    \page cmake-supported-cmake-versions.html
+    \title Supported CMake versions
+    \brief Provides an overview of supported CMake versions.
+    \nextpage Imported targets
+    \previouspage Deployment
+
+    \c cmake_minimum_required() specifies the minimum CMake version that is
+    required to successfully configure a project. It also updates the
+    \l {CMake Policy Settings} of the project, which control various aspects
+    of CMake's backwards compatibility behavior.
+
+    Qt projects are required to set version \c 3.16 or newer in the
+    \c cmake_minimum_required command to ensure a working set of
+    policy behaviors.
+
+    The actual version of CMake that should be used to configure the
+    project also depends on the target platform. For most target platforms,
+    it is \c 3.16.
+
+    When targeting the following platforms, you need to use CMake
+    version \c 3.21.1 or newer:
+
+    \list
+        \li static builds of Qt
+        \li Apple platforms (\l{Qt for macOS}, \l{Qt for iOS})
+        \li \l{Qt for WebAssembly}
+    \endlist
+
+*/
+
+/*!
     \page cmake-imported-targets.html
     \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
     \nextpage Qt CMake policies
-    \previouspage Deployment
+    \previouspage Supported CMake versions
 
     Each Qt module that is loaded defines a CMake library target. The target names
     start with \c{Qt6::}, followed by the module name. For example: \c{Qt6::Core}, \c{Qt6::Gui}.
