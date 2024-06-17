@@ -66,6 +66,8 @@
             \li \l{cmake-commands-qtqml}{Qt6::Qml}
             \li \l{cmake-macros-qtremoteobjects}{Qt6::RemoteObjects}
             \li \l{cmake-macros-qtscxml}{Qt6::Scxml}
+            \li \l{cmake-commands-qtwaylandclient}{Qt6::WaylandClient}
+            \li \l{cmake-commands-qtwaylandcompositor}{Qt6::WaylandCompositor}
             \li \l{cmake-macros-qtwidgets}{Qt6::Widgets}
             \li \l{cmake-commands-qtwebenginecore}{Qt6::WebEngineCore}
         \endlist
@@ -1319,6 +1321,16 @@
     \target cmake-commands-qtshadertools
 
     \annotatedlist cmake-commands-qtshadertools
+
+    \section2 Qt6::WaylandClient
+    \target cmake-commands-qtwaylandclient
+
+    \annotatedlist cmake-commands-qtwaylandclient
+
+    \section2 Qt6::WaylandCompositor
+    \target cmake-commands-qtwaylandcompositor
+
+    \annotatedlist cmake-commands-qtwaylandcompositor
 
     \section2 Qt6::Widgets
     \target cmake-macros-qtwidgets
