@@ -154,11 +154,6 @@
             A separate library of \l{Qt OpenGL Widgets C++ Classes} provides a widget for
             rendering OpenGL graphics.
     \row
-        \li \l[QtPDF]{Qt PDF}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
-        \li Classes and functions for rendering PDF documents.
-    \row
         \li \l[QtPositioning]{Qt Positioning}
         \li All
         \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
@@ -264,12 +259,6 @@
         \li All
         \li Provides access to QObject or QML objects from HTML clients for seamless
             integration of Qt applications with HTML/JavaScript clients.
-    \row
-        \li \l[QtWebEngine]{Qt WebEngine}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
-        \li Classes and functions for embedding web content in applications using the
-            \l{http://www.chromium.org/Home}{Chromium browser project}.
     \row
         \li \l[QtWebSockets]{Qt WebSockets}
         \li All
@@ -395,6 +384,35 @@
         \li All
         \li All
         \li Provides QML and C++ interfaces to create location-aware applications.
+    \endtable
+
+    \section1 Qt Extension Modules
+    Qt Extension Modules bring additional functionality to Qt. They may be part
+    of a given Qt release, but can deviate from the other Qt modules in terms of
+    release schedule, platform support, the binaries Qt provides, commercial
+    support, or compatibility promises. You can find specific details in the
+    module documentation for each Extension Module.
+
+    The following table lists the Qt Extension Modules:
+
+    \table 80%
+
+    \header
+        \li Module
+        \li Development Platforms
+        \li Target Platforms
+        \li Description
+    \row
+        \li \l[QtWebEngine]{Qt WebEngine}
+        \li All
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
+        \li Classes and functions for embedding web content in applications using the
+            \l{http://www.chromium.org/Home}{Chromium browser project}.
+    \row
+        \li \l[QtPDF]{Qt PDF}
+        \li All
+        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
+        \li Classes and functions for rendering PDF documents.
     \endtable
 
     \section1 Where to Go from Here
