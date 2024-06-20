@@ -21,6 +21,7 @@ qt6_add_qml_module(CarConfiguratorContent
         WallEffect3/WallEffect3.qml
     RESOURCES
         images/builtWithQt.png
+        assets/assets_download.json
 )
 
 set(QML_IMPORT_PATH

@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 3.21.1)
 
 project(CarRenderingApp LANGUAGES CXX)
 
-find_package(Qt6 6.6 REQUIRED COMPONENTS
+find_package(Qt6 REQUIRED COMPONENTS
              Core
              Gui
              Qml
              Quick
-             Quick3D)
+             Quick3D
+             ExamplesAssetDownloaderPrivate)
 
 qt_standard_project_setup()
 
@@ -20,12 +21,6 @@ qt_add_resources(CarRenderingApp "configuration"
     PREFIX "/"
     FILES
         qtquickcontrols2.conf
-)
-
-qt_add_resources(CarRenderingApp "download"
-    PREFIX "/qt/qml"
-    FILES
-        assets/assets_download.json
 )
 
 target_link_libraries(CarRenderingApp PRIVATE
