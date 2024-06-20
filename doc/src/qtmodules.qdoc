@@ -21,58 +21,52 @@
     A module that is used for a special purpose is considered an add-on module
     even if it is available on all supported platforms.
 
-    The following table lists the Qt essentials:
-
-    \table 80%
-    \header
-        \li Module
-        \li Description
-    \row
-        \li \l[QtCore]{Qt Core}
-        \li Core non-graphical classes used by other modules.
-    \row
-        \li \l[QtDBus]{Qt D-Bus}
-        \li Classes for inter-process communication over the D-Bus protocol.
-    \row
-        \li \l[QtGui]{Qt GUI}
-        \li Base classes for graphical user interface (GUI) components.
-    \row
-        \li \l[QtNetwork]{Qt Network}
-        \li Classes to make network programming easier and more portable.
-    \row
-        \li \l[QtQml]{Qt Qml}
-        \li Classes for QML and JavaScript languages.
-    \row
-        \li \l[QtQuick]{Qt Quick}
-        \li A declarative framework for building highly dynamic applications
-            with custom user interfaces.
-    \row \li \l{Qt Quick Controls}
-         \li Provides lightweight QML types for creating performant user
-             interfaces for desktop, embedded, and mobile devices. These
-             types employ a simple styling architecture and are very efficient.
-    \row
-        \li \l[QtQuickDialogs]{Qt Quick Dialogs}
-        \li Types for creating and interacting with system dialogs from a
-            Qt Quick application.
-    \row
-        \li \l[QtQuickLayouts]{Qt Quick Layouts}
-        \li Layouts are items that are used to arrange Qt Quick 2 based items in
-            the user interface.
-    \row
-        \li \l[QtQuickTest]{Qt Quick Test}
-        \li A unit test framework for QML applications, where the test cases
+    \grid
+        \griditem {qtcore-index.html}{Qt Core} {
+            Core non-graphical classes used by other modules.
+        }
+        \griditem {qtdbus-index.html}{Qt D-Bus} {
+            Classes for inter-process communication over the D-Bus protocol.
+        }
+        \griditem {qtgui-index.html}{Qt GUI} {
+            Base classes for graphical user interface (GUI) components.
+        }
+        \griditem {qtnetwork-index.html}{Qt Network} {
+            Classes to make network programming easier and more portable.
+        }
+        \griditem {qtqml-index.html}{Qt Qml} {
+            Classes for QML and JavaScript languages.
+        }
+        \griditem {qtquick-index.html}{Qt Quick} {
+            A declarative framework for building highly dynamic applications
+            with custom UIs.
+        }
+        \griditem {qtquickcontrols-index.html}{Qt Quick Controls} {
+            Lightweight QML types for creating performant user interfaces for
+            desktop, embedded, and mobile devices.
+        }
+        \griditem {qtquickdialogs-index.html}{Qt Quick Dialogs} {
+            Types for creating and interacting with system dialogs from a Qt
+            Quick application.
+        }
+        \griditem {qtquicklayouts-index.html}{Qt Quick Layouts} {
+            Layouts are items that are used to arrange Qt Quick 2 based items
+            in the user interface.
+        }
+        \griditem {qtquicktest-index.html}{Qt Quick Test} {
+            A unit test framework for QML applications, where the test cases
             are written as JavaScript functions.
-            \note The binary compatibility guarantee does not apply to Qt Quick
-                  Test. However, it will remain source compatible.
-    \row
-        \li \l[QtTestLib]{Qt Test}
-        \li Classes for unit testing Qt applications and libraries.
-            \note The binary compatibility guarantee does not apply to Qt Test.
-                  However, it will remain source compatible.
-    \row
-        \li \l[QtWidgets]{Qt Widgets}
-        \li Classes to extend Qt GUI with C++ widgets.
-    \endtable
+        }
+        \griditem {qttest-index.html}{Qt Test} {
+            Classes for unit testing Qt applications and libraries.
+        }
+        \griditem {qtwidgets-index.html}{Qt Widgets} {
+            Classes to extend Qt GUI with C++ widgets.
+        }
+    \endgrid
+
+    \note The binary compatibility guarantee does not apply to \l {Qt Test} and
+          \l {Qt Quick Test} modules. However, they will remain source compatible.
 
     \section1 Qt Add-Ons
 
@@ -85,335 +79,216 @@
     The Qt installers include the option of downloading the add-ons. For more
     information, visit the \l{Getting Started with Qt} page.
 
-    The following table lists the Qt add-ons:
+    \grid
+        \griditem {activeqt-index.html}{Active Qt} {
+            Classes for applications which use ActiveX and COM (Windows only).
+        }
 
-    \table 80%
-    \header
-        \li Module
-        \li Development Platforms
-        \li Target Platforms
-        \li Description
-    \row
-        \li \l[ActiveQt]{Active Qt}
-        \li \l{Qt for Windows}{Windows}
-        \li \l{Qt for Windows}{Windows}
-        \li Classes for applications which use ActiveX and COM
-    \row
-        \li \l{Qt Bluetooth}{Qt Bluetooth}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for Linux/X11}{Linux}, \l{Boot to Qt}, \l{Qt for macOS}{macOS}
-            and \l{Qt for Windows}{Windows}
-        \li Provides access to Bluetooth hardware.
-    \row
-        \li \l[QtConcurrent]{Qt Concurrent}
-        \li All
-        \li All
-        \li Classes for writing multi-threaded programs without using low-level
+        \griditem {qtbluetooth-index.html}{Qt Bluetooth} {
+            Provides access to Bluetooth hardware.
+        }
+
+        \griditem {qtconcurrent-index.html}{Qt Concurrent} {
+            Classes for writing multi-threaded programs without using low-level
             threading primitives.
-    \row
-        \li \l[QtGraphs]{Qt Graphs}
-        \li All
-        \li All
-        \li Provides functionality for visualizing data in 3D as bar, scatter, and
+        }
+        \griditem {qtgraphs-index.html}{Qt Graphs} {
+            Provides functionality for visualizing data in 3D as bar, scatter, and
             surface graphs, as well as 2D in area, bar, donut, line, pie, scatter, and
             spline graphs.
-    \row
-        \li \l{Qt Help}
-        \li All
-        \li All
-        \li Classes for integrating documentation into applications.
-    \row
-        \li \l[QtImageFormats]{Qt Image Formats}
-        \li All
-        \li All
-        \li Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
-    \row
-        \li \l{Qt Multimedia}
-        \li All
-        \li All*
-        \li A rich set of QML types and C++ classes to handle multimedia content.
+        }
+        \griditem {qthelp-index.html}{Qt Help} {
+            Classes for integrating documentation into applications.
+        }
+        \griditem {qtimageformats-index.html}{Qt Image Formats} {
+            Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
+        }
+        \griditem {qtmultimedia-index.html}{Qt Multimedia} {
+            A rich set of QML types and C++ classes to handle multimedia content.
             Also includes APIs to handle camera access.
-    \row
-        \li \l[QtNFC]{Qt NFC}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
-            \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
-        \li Provides access to Near-Field communication (NFC) hardware. On desktop
-        platforms NDEF access is only supported for Type 4 tags.
-    \row
-        \li \l{Qt OPC UA Overview}{Qt OPC UA}
-        \li All
-        \li All (except QNX, WebAssembly)
-        \li Protocol for data modeling and exchange of data in industrial
+        }
+        \griditem {qtnfc-index.html}{Qt NFC} {
+            Provides access to Near-Field communication (NFC) hardware. On desktop
+            platforms NDEF access is only supported for Type 4 tags.
+        }
+        \griditem {qtopcua-index.html}{Qt OPC UA} {
+            Protocol for data modeling and exchange of data in industrial
             applications.
-    \row
-        \li \l[QtOpenGL]{Qt OpenGL}
-        \li All
-        \li All
-        \li C++ classes that make it easy to use OpenGL in Qt applications.
-            A separate library of \l{Qt OpenGL Widgets C++ Classes} provides a widget for
+        }
+        \griditem {qtopengl-index.html}{Qt OpenGL} {
+            C++ classes that make it easy to use OpenGL in Qt applications.
+            A separate library (Qt OpenGL Widgets) provides a widget for
             rendering OpenGL graphics.
-    \row
-        \li \l[QtPositioning]{Qt Positioning}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS}, \l{Qt for macOS}{macOS},
-            \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
-        \li Provides access to position, satellite info and area monitoring classes.
-    \row
-        \li \l[QtPrintSupport]{Qt Print Support}
-        \li All
-        \li All (except iOS)
-        \li Classes to make printing easier and more portable.
-    \row
-        \li \l{Qt Quick Widgets}
-        \li All
-        \li All
-        \li Provides a C++ widget class for displaying a Qt Quick user interface.
-    \row
-        \li \l{Qt Quick Effects}
-        \li All
-        \li All
-        \li Provides QML types for applying one or more simple graphical effects to
+        }
+        \griditem {qtpositioning-index.html}{Qt Positioning} {
+            Provides access to position, satellite info and area monitoring classes.
+        }
+        \griditem {qtprintsupport-index.html}{Qt Print Support} {
+            Classes to make printing easier and more portable.
+        }
+        \griditem {qtquickwidgets-index.html}{Qt Quick Widgets} {
+            Provides a C++ widget class for displaying a Qt Quick user interface.
+        }
+        \griditem {qtquick-effects-qmlmodule.html}{Qt Quick Effects} {
+            Provides QML types for applying one or more simple graphical effects to
             Qt Quick items.
-    \row
-        \li \l{Qt Quick Particles}
-        \li All
-        \li All
-        \li Provides QML types for particle effects.
-    \row
-        \li \l{Qt Remote Objects}
-        \li All
-        \li All
-        \li Provides an easy to use mechanism for sharing a QObject's API
-             (Properties/Signals/Slots) between processes or devices.
-    \row
-        \li \l{Qt SCXML}{Qt SCXML}
-        \li All
-        \li All
-        \li Provides classes and tools for creating state machines from SCXML files and
+        }
+        \griditem {qtquick-particles-qmlmodule.html}{Qt Quick Particles} {
+            Provides QML types for particle effects.
+        }
+        \griditem {qtremoteobjects-index.html}{Qt Remote Objects} {
+            Provides an easy to use mechanism for sharing a QObject's API
+            (Properties/Signals/Slots) between processes or devices.
+        }
+        \griditem {qtscxml-index.html}{Qt SCXML} {
+            Provides classes and tools for creating state machines from SCXML files and
             embedding them in applications.
-    \row
-        \li \l[QtSensors]{Qt Sensors}
-        \li All
-        \li \l{Qt for Android}{Android}, \l{Qt for iOS}{iOS},
-            and \l{Qt for Windows}{Windows}
-        \li Provides access to sensor hardware.
-    \row
-        \li \l{Qt Serial Bus}{Qt Serial Bus}
-        \li All
-        \li \l{Qt for Linux/X11}{Linux}, \l{Boot to Qt}, \l{Qt for macOS}{macOS}
-            and \l{Qt for Windows}{Windows}
-        \li Provides access to serial industrial bus interfaces. Currently, the module
+        }
+        \griditem {qtsensors-index.html}{Qt Sensors} {
+            Provides access to sensor hardware on Android, iOS, and Windows platforms.
+        }
+        \griditem {qtserialbus-index.html}{Qt Serial Bus} {
+            Provides access to serial industrial bus interfaces. Currently, the module
             supports the CAN bus and Modbus protocols.
-    \row
-        \li \l{Qt Serial Port}{Qt Serial Port}
-        \li All
-        \li \l{Qt for Linux/X11}{Linux}, \l{Boot to Qt}, \l{Qt for macOS}{macOS}
-            and \l{Qt for Windows}{Windows}
-        \li Provides classes to interact with hardware and virtual serial ports.
-    \row
-        \li \l[QtShaderTools]{Qt Shader Tools}
-        \li All
-        \li All
-        \li Provides tools for the cross-platform Qt shader pipeline. These enable
-        processing graphics and compute shaders to make them usable for Qt Quick and other
-        components in the Qt ecosystem.
-    \row
-        \li \l{Qt Spatial Audio}
-        \li All
-        \li All
-        \li Provides support for spatial audio. Create sound scenes in 3D space containing different
+        }
+        \griditem {qtserialport-index.html}{Qt Serial Port} {
+            Provides classes to interact with hardware and virtual serial ports.
+        }
+        \griditem {qtshadertools-index.html}{Qt Shader Tools} {
+            Provides tools for the cross-platform Qt shader pipeline. These enable
+            processing graphics and compute shaders to make them usable for Qt Quick and other
+            components in the Qt ecosystem.
+        }
+        \griditem {qtspatialaudio-index.html}{Qt Spatial Audio} {
+            Provides support for spatial audio. Create sound scenes in 3D space containing different
             sound sources and room related properties such as reverb.
-    \row
-        \li \l[QtSql]{Qt SQL}
-        \li All
-        \li All
-        \li Classes for database integration using SQL.
-    \row
-        \li \l{Qt State Machine}{Qt State Machine}
-        \li All
-        \li All
-        \li Provides classes for creating and executing state graphs.
-    \row
-        \li \l[QtSvg]{Qt SVG}
-        \li All
-        \li All
-        \li Classes for displaying the contents of SVG files. Supports a subset of the
-            \l{http://www.w3.org/TR/SVGTiny12/}{SVG 1.2 Tiny} standard.
-            A separate library of \l{Qt SVG Widgets C++ Classes} provides support for
-            rendering SVG files in a widget UI.
-    \row
-        \li \l[QtTextToSpeech]{Qt TextToSpeech}
-        \li All
-        \li All
-        \li Provides support for synthesizing speech from text and playing it as audio
+        }
+        \griditem {qtsql-index.html}{Qt SQL} {
+            Classes for database integration using SQL.
+        }
+        \griditem {qtstatemachine-index.html}{Qt State Machine} {
+            Provides classes for creating and executing state graphs.
+        }
+        \griditem {qtsvg-index.html}{Qt SVG} {
+            Classes for displaying the contents of SVG files. Supports a subset of the
+            SVG 1.2 Tiny standard. A separate library (Qt SVG Widgets) provides support
+            for rendering SVG files in a widget UI.
+        }
+        \griditem {qttexttospeech-index.html}{Qt TextToSpeech} {
+            Provides support for synthesizing speech from text and playing it as audio
             output.
-    \row
-        \li \l[QtUITools]{Qt UI Tools}
-        \li All
-        \li All
-        \li Classes for loading QWidget based forms created in \QD dynamically, at runtime.
-    \row
-        \li \l[QtWebChannel]{Qt WebChannel}
-        \li All
-        \li All
-        \li Provides access to QObject or QML objects from HTML clients for seamless
+        }
+        \griditem {qtuitools-index.html}{Qt UI Tools} {
+            Classes for loading QWidget based forms created in \QD dynamically, at runtime.
+        }
+        \griditem {qtwebchannel-index.html}{Qt WebChannel} {
+            Provides access to QObject or QML objects from HTML clients for seamless
             integration of Qt applications with HTML/JavaScript clients.
-    \row
-        \li \l[QtWebSockets]{Qt WebSockets}
-        \li All
-        \li All
-        \li Provides \WebSocket communication compliant with \l{https://datatracker.ietf.org/doc/html/rfc6455} {RFC 6455}.
-    \row \li \l[QtWebView]{Qt WebView}
-         \li All
-         \li Platforms with a native web engine.
-         \li Displays web content in a QML application by using APIs native to the platform,
+        }
+        \griditem {qtwebsockets-index.html}{Qt WebSockets} {
+            Provides WebSocket communication compliant with RFC 6455.
+        }
+        \griditem {qtwebview-index.html}{Qt WebView} {
+            Displays web content in a QML application by using APIs native to the platform,
              without the need to include a full web browser stack.
-    \row
-        \li \l[QtXml]{Qt XML}
-        \li All
-        \li All
-        \li Handling of XML in a Document Object Model (DOM) API.
-    \row
-    \header
-        \li {4,1} \target gpl-licensed-addons
-                  Add-ons available under Commercial Licenses, or GNU General
-                  Public License v3
-    \row
-        \li \l{Qt Charts}
-        \li All
-        \li All
-        \li UI Components for displaying visually pleasing charts,
+        }
+        \griditem {qtxml-index.html}{Qt XML} {
+            Handling of XML in a Document Object Model (DOM) API.
+        }
+    \endgrid
+
+    \target gpl-licensed-addons
+    \section2 Commercial/GPL v3 Licensed Add-Ons
+
+    The following add-ons are available under Commercial Licenses, or GNU General
+    Public License v3:
+
+    \grid
+        \griditem {qtcharts-index.html}{Qt Charts} {
+            UI Components for displaying visually pleasing charts,
             driven by static or dynamic data models.
-    \row
-        \li \l[Qt CoAP]{Qt CoAP}
-        \li All
-        \li All
-        \li Implements the client side of CoAP defined by RFC 7252.
-    \row
-        \li \l{Qt Data Visualization}
-        \li All
-        \li All
-        \li UI Components for creating stunning 3D data visualizations.
-    \row
-        \li \l{Qt Lottie Animation}
-        \li All
-        \li All
-        \li A QML API for rendering graphics and animations in JSON format,
+        }
+        \griditem {qtcoap-index.html}{Qt CoAP} {
+            Implements the client side of CoAP defined by RFC 7252.
+        }
+        \griditem {qtdatavisualization-index.html}{Qt Data Visualization} {
+            UI Components for creating stunning 3D data visualizations.
+        }
+        \griditem {qtlottieanimation-index.html}{Qt Lottie Animation} {
+            A QML API for rendering graphics and animations in JSON format,
             exported by the \l Bodymovin plugin for Adobe® After Effects.
-    \row
-        \li \l{Qt MQTT}
-        \li All
-        \li All
-        \li Provides an implementation of the MQTT protocol specification.
-    \row
-        \li \l[QtNetworkAuth]{Qt Network Authorization}
-        \li All
-        \li All
-        \li Provides support for OAuth-based authorization to online services.
-    \row
-        \li \l[QtQuick3D]{Qt Quick 3D}
-        \li All
-        \li All
-        \li Provides a high-level API for creating 3D content or UIs based on
+        }
+        \griditem {qtmqtt-index.html}{Qt MQTT} {
+            Provides an implementation of the MQTT protocol specification.
+        }
+        \griditem {qtnetworkauth-index.html}{Qt Network Authorization} {
+            Provides support for OAuth-based authorization to online services.
+        }
+        \griditem {qtquick3d-index.html}{Qt Quick 3D} {
+            Provides a high-level API for creating 3D content or UIs based on
             Qt Quick.
-    \row
-        \li \l[QtQuick3DPhysics]{Qt Quick 3D Physics}
-        \li All
-        \li All supported platforms except QNX and INTEGRITY.
-        \li Qt Quick 3D Physics provides a high-level QML module adding physical simulation capabilities to Qt Quick 3D.
-    \row
-        \li \l[Qt Quick Timeline]{Qt Quick Timeline}
-        \li All
-        \li All
-        \li Enables keyframe-based animations and parameterization.
-    \row
-        \li \l{Qt Virtual Keyboard}
-        \li All
-        \li \l{Qt for Linux/X11}{Linux} and \l{Qt for Windows}{Windows}
-            desktop, and \l{Boot to Qt} targets.
-        \li A framework for implementing different input methods as
+        }
+        \griditem {qtquick3dphysics-index.html}{Qt Quick 3D Physics} {
+            Qt Quick 3D Physics provides a high-level QML module adding physical
+            simulation capabilities to Qt Quick 3D.
+        }
+        \griditem {qtquicktimeline-index.html}{Qt Quick Timeline} {
+            Enables keyframe-based animations and parameterization.
+        }
+        \griditem {qtvirtualkeyboard-index.html}{Qt Virtual Keyboard} {
+            A framework for implementing different input methods as
             well as a QML virtual keyboard. Supports localized keyboard
             layouts and custom visual themes.
-    \row
-        \li \l{Qt Wayland Compositor}
-        \li \l{Qt for Linux/X11}{Linux}
-        \li \l{Qt for Linux/X11}{Linux} and \l{Boot to Qt} targets.
-        \li Provides a framework to develop a Wayland compositor.
-    \row
-        \li \l{Qt 5 Compatibility APIs: Graphical Effects}
-        \li All
-        \li All
-        \li Qt Graphical Effects module from Qt 5 provided for compatibility.
-    \row
-        \li \l{Qt 5 Core Compatibility APIs}
-        \li All
-        \li All
-        \li Qt Core APIs that were in Qt 5 but not Qt 6.
-    \endtable
+        }
+        \griditem {qtwaylandcompositor-index.html}{Qt Wayland Compositor} {
+            Provides a framework to develop a Wayland compositor on Linux
+            and Boot to Qt targets.
+        }
+        \griditem {qtgraphicaleffects5-index.html}{Qt 5 Compatibility APIs: Graphical Effects} {
+            Qt Graphical Effects module from Qt 5 provided for compatibility.
+        }
+        \griditem {qtcore5-index.html}{Qt 5 Core Compatibility APIs} {
+            Qt Core APIs that were in Qt 5 but not Qt 6.
+        }
+    \endgrid
 
-    \note \b{All*} refers to all supported platforms except INTEGRITY.
+    \section1 Qt Add-Ons in Technical Preview
 
     The following add-ons are still in development, but are available as technology previews:
 
-    \section1 Qt Add-Ons in Technical Preview
-    \table 80%
-    \header
-        \li Module
-        \li Development Platforms
-        \li Target Platforms
-        \li Description
-    \row
-        \li \l[QtHttpServer]{Qt HTTP Server}
-        \li All
-        \li All
-        \li A framework for embedding an HTTP server into a Qt application.
-    \row
-        \li \l[QtProtobuf]{Qt Protobuf}
-        \li All
-        \li All
-        \li Provides an ability to generate Qt-based classes from protobuf specifications.
-    \row
-        \li \l[QtGrpc]{Qt GRPC}
-        \li All
-        \li All
-        \li Provides an ability to generate Qt-based classes from protobuf specifications
+    \grid
+        \griditem {qthttpserver-index.html}{Qt HTTP Server} {
+            A framework for embedding an HTTP server into a Qt application.
+        }
+        \griditem {qtprotobuf-index.html}{Qt Protobuf} {
+            Provides an ability to generate Qt-based classes from protobuf specifications.
+        }
+        \griditem {qtgrpc-index.html}{Qt GRPC} {
+            Provides an ability to generate Qt-based classes from protobuf specifications
             used to communicate with gRPC\reg services.
-    \row
-        \li \l[QtLocation]{Qt Location}
-        \li All
-        \li All
-        \li Provides QML and C++ interfaces to create location-aware applications.
-    \endtable
+        }
+        \griditem {qtlocation-index.html}{Qt Location} {
+            Provides QML and C++ interfaces to create location-aware applications.
+        }
+    \endgrid
 
     \section1 Qt Extension Modules
+
     Qt Extension Modules bring additional functionality to Qt. They may be part
     of a given Qt release, but can deviate from the other Qt modules in terms of
     release schedule, platform support, the binaries Qt provides, commercial
     support, or compatibility promises. You can find specific details in the
     module documentation for each Extension Module.
 
-    The following table lists the Qt Extension Modules:
-
-    \table 80%
-
-    \header
-        \li Module
-        \li Development Platforms
-        \li Target Platforms
-        \li Description
-    \row
-        \li \l[QtWebEngine]{Qt WebEngine}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
-        \li Classes and functions for embedding web content in applications using the
-            \l{http://www.chromium.org/Home}{Chromium browser project}.
-    \row
-        \li \l[QtPDF]{Qt PDF}
-        \li All
-        \li \l{Qt for Windows}{Windows}, \l{Qt for Linux/X11}{Linux}, and \l{Qt for macOS}{\macos}.
-        \li Classes and functions for rendering PDF documents.
-    \endtable
+    \grid
+        \griditem {qtwebengine-index.html}{Qt WebEngine} {
+            Classes and functions for embedding web content in applications using the
+            Chromium browser project.
+        }
+        \griditem {qtpdf-index.html}{Qt PDF} {
+            Classes and functions for rendering PDF documents on desktop platforms.
+        }
+    \endgrid
 
     \section1 Where to Go from Here
 
