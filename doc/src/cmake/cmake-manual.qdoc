@@ -164,15 +164,15 @@
     the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the Qt 6
     installation prefix. This is a directory where Qt binaries are installed.
     On Linux, it usually looks something like this:
-    \c{"~/Qt/6.6.1/gcc_64"} and you would pass it on the command line as
-    \c{-DCMAKE_PREFIX_PATH=$HOME/Qt/6.6.1/gcc_64}.
+    \tt{"~/Qt/\QtVersion/gcc_64"} and you would pass it on the command line as
+    \tt{-DCMAKE_PREFIX_PATH=$HOME/Qt/\QtVersion/gcc_64}.
 
     \note When cross-compiling (compiling for a platform other than the one you
     are on, such as WebAssembly or Android) and when using vanilla \c{cmake},
     set \c{CMAKE_TOOLCHAIN_FILE} instead of \c{CMAKE_PREFIX_PATH}. On Linux,
     the toolchain file (specific to a particular target platform) is typically
     located at a path similar to this:
-    "~/Qt/6.6.1/wasm_singlethread/lib/cmake/Qt6/qt.toolchain.cmake". It sets
+    \tt{"~/Qt/\QtVersion/wasm_singlethread/lib/cmake/Qt6/qt.toolchain.cmake"}. It sets
     the required variables like \c{CMAKE_PREFIX_PATH}, \c{CMAKE_FIND_ROOT_PATH},
     and \c{QT_HOST_PATH}.
 
