@@ -52,15 +52,6 @@
 
     Qt makes it easy to write multithreaded applications. Signals and slots can be used
     to safely communicate between threads in your application.
-    \omit
-    ###Add this explicit list back if the \annotatedlist fails
-    \list
-    \li \l{threads/queuedcustomtype}{Queued Custom Type}\raisedaster
-    \li \l{threads/mandelbrot}{Mandelbrot}\raisedaster
-    \li \l{threads/semaphores}{Semaphores}\raisedaster
-    \li \l{threads/waitconditions}{Wait Conditions}\raisedaster
-    \endlist
-    \endomit
 
     \annotatedlist qtconcurrent-mtexamples
 
@@ -69,20 +60,8 @@
 
     These examples show how to apply the basic techniques of concurrent
     programming to simple problems.
-    \omit
-    ###Add this explicit list back if the \annotatedlist fails
-    \list
-    \li \l{qtconcurrent/imagescaling}{QtConcurrent Asynchronous Image Scaling}
-    \li \l{qtconcurrent/map}{QtConcurrent Map}
-    \li \l{qtconcurrent/progressdialog}{QtConcurrent Progress Dialog}
-    \li \l{qtconcurrent/runfunction}{QtConcurrent Run Function}
-    \li \l{qtconcurrent/wordcount}{QtConcurrent Word Count}
-    \endlist
-    \endomit
 
     \annotatedlist qtconcurrentexamples
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 /*!
@@ -97,7 +76,6 @@
 
     Other classes provide application infrastructure support, handling plugin
     loading and managing configuration files.
-
 */
 
 /*!
@@ -120,8 +98,6 @@
     to provide GUI integration for your database applications.
 
     \annotatedlist sql_examples
-
-    Examples marked with an asterisk (*) are fully documented.
 */
 
 
@@ -135,32 +111,6 @@
     \annotatedlist xml-examples
 
     \image xml-examples.png XML
-
-    Examples marked with an asterisk (*) are fully documented.
-*/
-/*
-###Add these back in to the section above when the examples have documentation
-
-    XML parsing and handling is supported through SAX and DOM compliant APIs
-    as well as streaming classes.
-
-    \list
-    \li \l{xml/dombookmarks}{DOM Bookmarks}
-    \li \l{xml/saxbookmarks}{SAX Bookmarks}
-    \li \l{xml/streambookmarks}{QXmlStream Bookmarks}\raisedaster
-    \li \l{xml/rsslisting}{RSS-Listing}
-    \li \l{xml/xmlstreamlint}{XML Stream Lint Example}\raisedaster
-    \li \l{xml/htmlinfo}{XML HTML Info}
-    \endlist
-
-    \list
-    \li \l{xmlpatterns/recipes}{Recipes}
-    \li \l{xmlpatterns/filetree}{File System Example}
-    \li \l{xmlpatterns/qobjectxmlmodel}{QObject XML Model Example}
-    \li \l{xmlpatterns/xquery/globalVariables}{C++ Source Code Analyzer Example}
-    \li \l{xmlpatterns/schema}{XML Schema Validation}\raisedaster
-    \endlist
-
 */
 
 /*!
@@ -198,26 +148,5 @@
 
     \list
     \li \l{gestures/imagegestures}{Image Gestures}
-    \endlist
-*/
-
-/* //! QDoc marker omitted as ActiveQt is not part of 6.0 release.
-    \page examples-activeqt.html
-    \title ActiveQt Examples
-    \brief Using ActiveX from Qt applications.
-    \ingroup all-examples
-
-    \image activeqt-examples.png ActiveQt
-
-    \list
-    \li \l{activeqt/comapp}{COM App}\raisedaster
-    \li \l{Dot Net Example (ActiveQt)}{Dot Net}\raisedaster
-    \li \l{activeqt/hierarchy}{Hierarchy}\raisedaster
-    \li \l{activeqt/menus}{Menus}\raisedaster
-    \li \l{activeqt/multiple}{Multiple}\raisedaster
-    \li \l{activeqt/opengl}{OpenGL}\raisedaster
-    \li \l{activeqt/qutlook}{Qutlook}\raisedaster
-    \li \l{activeqt/simple}{Simple}\raisedaster
-    \li \l{activeqt/wrapper}{Wrapper}\raisedaster
     \endlist
 */
