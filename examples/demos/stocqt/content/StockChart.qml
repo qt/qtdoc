@@ -119,7 +119,7 @@ Rectangle {
         maxCameraZoomLevel:  400
         minCameraZoomLevel:  80
 
-        axisX: ValueAxis3D {
+        axisX: Value3DAxis {
             autoAdjustRange: true
             title: startDate.toDateString() + " - " + endDate.toDateString()
             formatter: TimeFormatter {
@@ -132,22 +132,22 @@ Rectangle {
             titleVisible: true
         }
 
-        axisZ: ValueAxis3D {
+        axisZ: Value3DAxis {
             segmentCount: 1
         }
 
-        theme: Theme3D {
-            type: Theme3D.Qt
-            windowColor: "#101010"
-            backgroundEnabled: false
-            ambientLightStrength: 1
-            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+        ambientLightStrength: 1
+
+        theme: GraphsTheme {
+            theme: GraphsTheme.Theme.QtGreen
+            backgroundColor: "#101010"
+            backgroundVisible: false
+            grid.mainColor: Qt.rgba(0.2,0.2,0.2,1)
             labelTextColor: "white"
             labelBackgroundColor: "black"
-            font.pointSize: 9
-            font.family: "Roboto"
+            labelFont.pointSize: 9
+            labelFont.family: "Roboto"
         }
-
 
         seriesList: [
             Surface3DSeries {
@@ -220,26 +220,27 @@ Rectangle {
         minCameraZoomLevel:  80
         orthoProjection: true
 
-        valueAxis: ValueAxis3D {
+        valueAxis: Value3DAxis {
             labelFormat: "%.1f M"
             title: "Volume"
             titleVisible: true
         }
-        columnAxis: CategoryAxis3D {
+        columnAxis: Category3DAxis {
             title: startDate.toDateString() + " - " + endDate.toDateString()
             titleVisible: true
         }
 
-        theme: Theme3D {
-            type: Theme3D.Qt
-            windowColor: "#101010"
-            backgroundEnabled: false
-            ambientLightStrength: 1
-            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+        ambientLightStrength: 1
+
+        theme: GraphsTheme {
+            theme: GraphsTheme.Theme.QtGreen
+            backgroundColor: "#101010"
+            backgroundVisible: false
+            grid.mainColor: Qt.rgba(0.2,0.2,0.2,1)
             labelTextColor: "white"
             labelBackgroundColor: "black"
-            font.pointSize: 9
-            font.family: "Roboto"
+            labelFont.pointSize: 9
+            labelFont.family: "Roboto"
         }
 
         seriesList: [
@@ -267,7 +268,7 @@ Rectangle {
         minCameraZoomLevel:  80
         orthoProjection: true
 
-        axisX: ValueAxis3D {
+        axisX: Value3DAxis {
             title: startDate.toDateString() + " - " + endDate.toDateString()
             formatter: TimeFormatter {
                 id: minuteFormatter
@@ -277,16 +278,17 @@ Rectangle {
             titleVisible: true
         }
 
-        theme: Theme3D {
-            type: Theme3D.Qt
-            windowColor: "#101010"
-            backgroundEnabled: false
-            ambientLightStrength: 1
-            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+        ambientLightStrength: 1
+
+        theme: GraphsTheme {
+            theme: GraphsTheme.Theme.QtGreen
+            backgroundColor: "#101010"
+            backgroundVisible: false
+            grid.mainColor: Qt.rgba(0.2,0.2,0.2,1)
             labelTextColor: "white"
             labelBackgroundColor: "black"
-            font.pointSize: 9
-            font.family: "Roboto"
+            labelFont.pointSize: 9
+            labelFont.family: "Roboto"
         }
 
         seriesList: [
