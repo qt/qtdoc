@@ -1186,10 +1186,11 @@
     \li The platform plugin is always deployed.
     \li Debug versions of the plugins are not deployed.
     \li The designer plugins are not deployed.
-    \li The image format plugins are always deployed.
+    \li The image format plugins are always deployed, except the SVG image
+    format plugin which is only deployed if the application uses the \l{Qt SVG} module.
+    \li The icon engine plugins are always deployed.
     \li The print support plugin is always deployed.
     \li SQL driver plugins are deployed if the application uses the \l{Qt SQL} module.
-    \li The SVG icon plugin is deployed if the application uses the \l{Qt SVG} module.
     \li The accessibility plugin is always deployed.
     \li The style plugin is always deployed.
     \endlist
