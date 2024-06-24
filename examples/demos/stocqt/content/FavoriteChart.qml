@@ -102,34 +102,34 @@ Rectangle {
         minCameraZoomLevel:  80
         orthoProjection: true
 
-        valueAxis: ValueAxis3D {
+        valueAxis: Value3DAxis {
             labelFormat: "%.1f M"
             title: "Volume"
             titleVisible: true
         }
-        columnAxis: CategoryAxis3D {
+        columnAxis: Category3DAxis {
             id: columnAxis
             title: startDate.toDateString() + " - " + endDate.toDateString()
             titleVisible: true
         }
-        rowAxis: CategoryAxis3D {
+        rowAxis: Category3DAxis {
             id: rowAxis
             title: "Stock"
             titleVisible: true
         }
 
-        theme: Theme3D {
-            type: Theme3D.Qt
-            windowColor: "#101010"
-            backgroundEnabled: false
-            ambientLightStrength: 1
-            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+        ambientLightStrength: 1
+
+        theme: GraphsTheme {
+            theme: GraphsTheme.Theme.QtGreen
+            backgroundColor: "#101010"
+            backgroundVisible: false
+            grid.mainColor: Qt.rgba(0.2,0.2,0.2,1)
             labelTextColor: "white"
             labelBackgroundColor: "black"
-            font.pointSize: 9
-            font.family: "Roboto"
+            labelFont.pointSize: 9
+            labelFont.family: "Roboto"
         }
-
 
         seriesList: [
             Bar3DSeries {
@@ -163,7 +163,7 @@ Rectangle {
         maxCameraZoomLevel:  400
         minCameraZoomLevel:  80
 
-        axisX: ValueAxis3D {
+        axisX: Value3DAxis {
             autoAdjustRange: true
             title: startDate.toDateString() + " - " + endDate.toDateString()
             formatter: TimeFormatter {
@@ -176,21 +176,21 @@ Rectangle {
             titleVisible: true
         }
 
-        axisZ: ValueAxis3D {
+        axisZ: Value3DAxis {
             segmentCount: 1
         }
 
-        theme: Theme3D {
-            type: Theme3D.Qt
-            windowColor: "#101010"
-            backgroundEnabled: false
-            ambientLightStrength: 1
-            gridLineColor: Qt.rgba(0.2,0.2,0.2,1)
+        ambientLightStrength: 1
+
+        theme: GraphsTheme {
+            theme: GraphsTheme.Theme.QtGreen
+            backgroundColor: "#101010"
+            backgroundVisible: false
+            grid.mainColor: Qt.rgba(0.2,0.2,0.2,1)
             labelTextColor: "white"
             labelBackgroundColor: "black"
-            labelBorderEnabled: false
-            font.pointSize: 9
-            font.family: "Roboto"
+            labelFont.pointSize: 9
+            labelFont.family: "Roboto"
         }
 
         seriesList: [
