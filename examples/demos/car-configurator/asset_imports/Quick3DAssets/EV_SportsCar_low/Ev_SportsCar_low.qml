@@ -4,11 +4,14 @@
 import QtQuick
 import QtQuick3D
 import ComponentBundles.MaterialBundle
+import QtQuick3D.Helpers
+import Quick3DAssets.LightDecal
 
 Node {
     id: node
 
     property int stateController: 0
+    property bool desert: true
 
     // Resources
     property url textureData: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/maps/textureData.jpg"
@@ -29,6 +32,15 @@ Node {
     property url textureData90: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/maps/textureData90.jpg"
     property url textureData105: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/maps/textureData105.png"
     property bool lightsOn: true
+    property alias doorLeftIsOpen: doorLeft.isOpen
+    property alias doorRightIsOpen: doorRight.isOpen
+    property alias hoodIsOpen: hood.isOpen
+    property alias trunkIsOpen: trunkLid.isOpen
+    property alias leftDoorPositionerPos: leftDoorPositioner.scenePosition
+    property alias rightDoorPositionerPos: rightDoorPositioner.scenePosition
+    property alias hoodPositionerPos: hoodPositioner.scenePosition
+    property alias trunkPositionerPos: trunkPositioner.scenePosition
+    property bool headlightsVisible: true
     Texture {
         id: _0_texture
         generateMipmaps: true
@@ -62,6 +74,8 @@ Node {
         generateMipmaps: true
         mipFilter: Texture.Linear
         source: node.textureData45
+        scaleU: 0.5
+        scaleV: 0.5
     }
     Texture {
         id: _9_texture
@@ -92,6 +106,8 @@ Node {
         generateMipmaps: true
         mipFilter: Texture.Linear
         source: node.textureData74
+        scaleU: 0.6
+        scaleV: 0.6
     }
     Texture {
         id: _8_texture
@@ -139,14 +155,16 @@ Node {
     // Nodes:
     Node {
         id: root_object
+        scale.z: 1
+        scale.y: 1
+        scale.x: 1
         objectName: "ROOT"
         Model {
             id: body
             objectName: "Body"
             y: 0.6449694037437439
             source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/body_mesh.mesh"
-            castsShadows: true
-            receivesShadows: true
+            receivesReflections: true
             materials: [
                 carPaint_material,
                 carPaintBlackBump_material,
@@ -156,7 +174,7 @@ Node {
                 glassLights_material12,
                 glassRedLights_material13,
                 glassLightsIllum_material14,
-                glassTextured_material,
+                glassWindsSide_material,
                 intCarpet_material18
             ]
         }
@@ -182,7 +200,7 @@ Node {
             z: 1.7861577272415161
             source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/headlights_mesh.mesh"
             materials: [
-                plasticBlack_material24,
+                chrome_material,
                 chrome_material,
                 chromeLightsBMP_material,
                 glassLightsLens_material,
@@ -190,17 +208,85 @@ Node {
                 metalDark_material
             ]
         }
-        Model {
+        Hood {
             id: hood
-            objectName: "Hood"
             y: 0.7891814112663269
-            z: 0.6023856401443481
-            source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/hood_mesh.mesh"
-            materials: [
-                carPaint_material23,
-                plasticBlack_material24,
-                chrome_material
-            ]
+            isOpen: false
+
+            Model {
+                id: hoodPositioner
+                x: 0
+                y: 0
+                source: "#Cube"
+                z: 1.3
+                scale.z: 0.01
+                scale.y: 0.01
+                scale.x: 0.01
+                materials: invisibleMat
+            }
+
+            Model {
+                id: leftHoodHydraulics
+                x: 0.64
+                y: -0.05
+                source: "#Cylinder"
+                eulerRotation.z: 0
+                eulerRotation.y: -0
+                eulerRotation.x: -50-(hood.eulerRotation.x*1.5)
+                z: 0.58162
+                scale.z: 0.0003
+                scale.y: 0.0025
+                scale.x: 0.0003
+                pivot.y: 46
+                materials: plasticBlack_material
+            }
+
+            Model {
+                id: rightHoodHydraulics
+                x: -0.643
+                y: -0.03
+                source: "#Cylinder"
+                eulerRotation.x: -50-(hood.eulerRotation.x*1.5)
+                eulerRotation.z: 0
+                eulerRotation.y: -0
+                z: 0.59075
+                pivot.y: 46
+                scale.z: 0.0003
+                scale.y: 0.0025
+                scale.x: 0.0003
+                materials: plasticBlack_material
+            }
+            Model {
+                id: leftHoodHydraulicsChrome
+                x: 0.64
+                y: -0.05
+                source: "#Cylinder"
+                eulerRotation.z: 0
+                eulerRotation.y: -0
+                eulerRotation.x: -50-(hood.eulerRotation.x*1.5)
+                z: 0.58162
+                scale.z: 0.00015
+                scale.y: 0.005
+                scale.x: 0.00015
+                pivot.y: 46
+                materials: chrome_material
+            }
+
+            Model {
+                id: rightHoodHydraulicsChrome
+                x: -0.643
+                y: -0.03
+                source: "#Cylinder"
+                eulerRotation.x: -50-(hood.eulerRotation.x*1.5)
+                eulerRotation.z: 0
+                eulerRotation.y: -0
+                z: 0.59075
+                pivot.y: 46
+                scale.z: 0.00015
+                scale.y: 0.005
+                scale.x: 0.00015
+                materials: chrome_material
+            }
         }
         Model {
             id: interior
@@ -236,7 +322,7 @@ Node {
                 intAlcanataraGrey_material,
                 intLeatherBlack_material,
                 intAluminiumBrushed_material,
-                intStitchesRed_material,
+                carPaint_material,
                 intLeatherSeatsPattern_material,
                 intButtons_material,
                 intGrillBump_material
@@ -252,7 +338,7 @@ Node {
                 metalDark_material,
                 plasticBlack_material24,
                 aluminium_material,
-                plasticRed_material,
+                carPaint_material,
                 intLeatherPerforatedBlack_material,
                 intLeatherBlack_material
             ]
@@ -286,18 +372,21 @@ Node {
                 tailLightsIllum_material
             ]
         }
-        Model {
+        TrunkLid {
             id: trunkLid
-            objectName: "TrunkLid"
             y: 1.1552858352661133
-            z: -0.5674706697463989
-            source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/trunkLid_mesh.mesh"
-            materials: [
-                carPaint_material23,
-                carPaintBlackBump_material82,
-                metalDark_material,
-                plasticBlack_material24
-            ]
+
+            Model {
+                id: trunkPositioner
+                x: 0
+                y: -0.13
+                source: "#Cube"
+                z: -1.3
+                scale.z: 0.01
+                scale.y: 0.01
+                scale.x: 0.01
+                materials: invisibleMat
+            }
         }
         Model {
             id: wingFlaps
@@ -385,7 +474,7 @@ Node {
                 wheelTireBump_material,
                 wheelRimBlack_material,
                 chrome_material,
-                carPaint_material23
+                carPaint_material
             ]
         }
         Model {
@@ -399,62 +488,47 @@ Node {
                 wheelTireBump_material,
                 wheelRimBlack_material,
                 chrome_material,
-                carPaint_material23
+                carPaint_material
             ]
         }
-        Model {
+        MyDoorLeft {
             id: doorLeft
-            objectName: "DoorLeft"
             x: 0.8845329880714417
             y: 0.6892746090888977
-            z: 0.8587785363197327
-            source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/doorLeft_mesh.mesh"
-            materials: [
-                carPaint_material23,
-                metalDark_material,
-                plasticBlack_material24,
-                chrome_material,
-                glassLights_material,
-                glassRedLights_material,
-                chromeLightsBMP_material,
-                glassLightsIllum_material,
-                metalMirror_material,
-                aluminium_material,
-                glassWindsSide_material,
-                intAlcanataraGrey_material,
-                intLeatherBlack_material,
-                plasticRed_material,
-                intLeatherSeatsPattern_material,
-                intButtons_material,
-                intGrillBump_material
-            ]
+            receivesReflections: true
+
+
+            Model {
+                id: leftDoorPositioner
+                x: 0.08
+                y: 0
+                source: "#Cube"
+                z: -1.3
+                scale.z: 0.01
+                scale.y: 0.01
+                scale.x: 0.01
+                materials: invisibleMat
+            }
         }
-        Model {
+        DoorRight {
             id: doorRight
-            objectName: "DoorRight"
             x: -0.8845332264900208
             y: 0.6892746090888977
-            z: 0.8587785363197327
-            source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/doorRight_mesh.mesh"
-            materials: [
-                carPaint_material23,
-                metalDark_material,
-                plasticBlack_material24,
-                chrome_material,
-                glassLights_material,
-                glassRedLights_material,
-                chromeLightsBMP_material,
-                glassLightsIllum_material,
-                metalMirror_material,
-                aluminium_material,
-                glassWindsSide_material,
-                intAlcanataraGrey_material,
-                intLeatherBlack_material,
-                plasticRed_material,
-                intLeatherSeatsPattern_material,
-                intButtons_material,
-                intGrillBump_material
-            ]
+
+            scale.x: 1
+
+
+            Model {
+                id: rightDoorPositioner
+                x: -0.12
+                y: 0
+                source: "#Cube"
+                z: -1.3
+                scale.z: 0.01
+                scale.y: 0.01
+                scale.x: 0.01
+                materials: invisibleMat
+            }
         }
         Model {
             id: wheelFrRight
@@ -467,7 +541,7 @@ Node {
                 wheelTireBump_material,
                 wheelRimBlack_material,
                 chrome_material,
-                carPaint_material23
+                carPaint_material
             ]
         }
         Model {
@@ -481,8 +555,12 @@ Node {
                 wheelTireBump_material,
                 wheelRimBlack_material,
                 chrome_material,
-                carPaint_material23
+                carPaint_material
             ]
+        }
+
+        LightDecal {
+            id: lightDecal
         }
     }
 
@@ -491,10 +569,13 @@ Node {
 
         PrincipledMaterial {
             id: chrome_material
+            fresnelPower: 5.8
+            specularAmount: 1
+            clearcoatAmount: 0.75619
             objectName: "Chrome"
-            baseColor: "#ff5a5a5a"
+            baseColor: "#ffffff"
             metalness: 1
-            roughness: 0.10000000149011612
+            roughness: 0.50512
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -525,13 +606,16 @@ Node {
 
         PrincipledMaterial {
             id: glassLightsLens_material
+            opacity: lightsOn? 1 : 0.5
+            clearcoatRoughnessAmount: 0.18232
+            clearcoatAmount: lightsOn? 0 : 2
             objectName: "GlassLightsLens"
             baseColor: lightsOn? "#ffffff" : "#b3141313"
-            metalness: 1
-            roughness: 1
-            emissiveFactor.z: lightsOn ? 1 : 0
-            emissiveFactor.y: lightsOn ? 1 : 0
-            emissiveFactor.x: lightsOn ? 1 : 0
+            metalness: 0.92015
+            roughness: 0.0369
+            emissiveFactor.z: lightsOn? 1 : 0
+            emissiveFactor.y: lightsOn? 1 : 0
+            emissiveFactor.x: lightsOn? 1 : 0
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -539,10 +623,13 @@ Node {
 
         PrincipledMaterial {
             id: glassLights_material
+            opacity: headlightsVisible? 0.6 : 0
+            clearcoatRoughnessAmount: 0.1
+            clearcoatAmount: 0
             objectName: "GlassLights"
-            baseColor: "#26141313"
+            baseColor: "#1c1f23"
             metalness: 1
-            roughness: 0.11977168917655945
+            roughness: 0.41143
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
@@ -550,10 +637,11 @@ Node {
 
         PrincipledMaterial {
             id: metalDark_material
+            clearcoatAmount: 0
             objectName: "MetalDark"
-            baseColor: "#ff040404"
-            metalness: 1
-            roughness: 0.33000001311302185
+            baseColor: "#1a1a1a"
+            metalness: 0.79861
+            roughness: 0.8
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -609,9 +697,9 @@ Node {
             baseColorMap: _9_texture
             roughness: 0.05000000074505806
             emissiveMap: _9_texture
-            emissiveFactor.x: 1
-            emissiveFactor.y: 1
-            emissiveFactor.z: 1
+            emissiveFactor.x: 3
+            emissiveFactor.y: 3
+            emissiveFactor.z: 3
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -690,7 +778,7 @@ Node {
         PrincipledMaterial {
             id: metalDark_material9
             objectName: "MetalDark"
-            baseColor: "#ff040404"
+            baseColor: "#090909"
             metalness: 1
             roughness: 0.33000001311302185
             cullMode: PrincipledMaterial.NoCulling
@@ -700,10 +788,11 @@ Node {
 
         PrincipledMaterial {
             id: plasticBlack_material
+            clearcoatAmount: 0
             objectName: "PlasticBlack"
-            baseColor: "#ff151515"
-            metalness: 1
-            roughness: 0.30000001192092896
+            baseColor: "#0e0e0e"
+            metalness: 0.29461
+            roughness: 0.92173
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -734,8 +823,9 @@ Node {
 
         PrincipledMaterial {
             id: chrome_material11
+            clearcoatAmount: 0.7357
             objectName: "Chrome"
-            baseColor: "#ff5a5a5a"
+            baseColor: "#ffffff"
             metalness: 1
             roughness: 0.10000000149011612
             cullMode: PrincipledMaterial.NoCulling
@@ -745,12 +835,14 @@ Node {
 
         PrincipledMaterial {
             id: glassLights_material12
+            clearcoatRoughnessAmount: 0.02425
+            clearcoatAmount: 0.73028
             objectName: "GlassLights"
-            baseColor: "#26141313"
+            baseColor: "#ff0000"
             metalness: 1
-            roughness: 0.11977168917655945
+            roughness: 0.64424
             cullMode: PrincipledMaterial.NoCulling
-            alphaMode: PrincipledMaterial.Blend
+            alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
         }
 
@@ -811,13 +903,13 @@ Node {
 
         PrincipledMaterial {
             id: tailLightsIllum_material
+            baseColor: "#ffccb6"
             objectName: "TailLightsIllum"
-            baseColor: lightsOn? "#ffff7132" : "#000000"
             metalness: 1
             roughness: 0.858578622341156
-            emissiveFactor.x: lightsOn? 1 : 0
-            emissiveFactor.y: lightsOn? 0.443137 : 0
-            emissiveFactor.z: lightsOn? 0.196078 : 0
+            emissiveFactor.x: lightsOn? 3 : 0
+            emissiveFactor.y: 0
+            emissiveFactor.z: 0
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -858,14 +950,28 @@ Node {
             clearcoatRoughnessAmount: 0.029999999329447746
             indexOfRefraction: 1.4500000476837158
         }
-        CarPaintMaterial {
-                    id: carPaint_material
+        PrincipledMaterial {
+            id: carPaint_material
+            specularAmount: 0.1
+            fresnelScale: 3
+            fresnelBias: -0.1
+            clearcoatFresnelBias: -0.1
+            clearcoatRoughnessAmount: 0.01
+            metalness: 1
+            fresnelScaleBiasEnabled: true
+            fresnelPower: 8
+            clearcoatFresnelScale: 3
+            clearcoatFresnelPower: 8
+            clearcoatFresnelScaleBiasEnabled: true
 
-                    roughness: 0
-                    secondaryColor: "#1e1e1e"
-                    baseColor: "#000000"
-                    objectName: "Car Paint"
-                }
+            clearcoatAmount: 0.51265
+
+
+            roughness: 0.3
+
+            baseColor: "#000000"
+            objectName: "Car Paint"
+        }
 
         PrincipledMaterial {
             id: intCarpet_material18
@@ -891,10 +997,13 @@ Node {
 
         PrincipledMaterial {
             id: wheelTireBump_material
+            baseColorMap: desert? textureDirtTire : textureData901
+            normalStrength: 1
+            specularAmount: 0.24748
             objectName: "WheelTireBump"
-            baseColor: "#ff171717"
+            baseColor: "#ffffff"
             metalness: 1
-            roughness: 0.6000000238418579
+            roughness: 0.89478
             normalMap: _15_texture
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
@@ -914,13 +1023,14 @@ Node {
 
         PrincipledMaterial {
             id: wheelRimBlack_material
+            baseColor: "#acacac"
             objectName: "WheelRimBlack"
             baseColorMap: _16_texture
             metalness: 1
-            roughness: 0.3499999940395355
+            roughness: 0.85566
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
-            clearcoatAmount: 1
+            clearcoatAmount: 0.31042
             clearcoatRoughnessAmount: 0.029999999329447746
             indexOfRefraction: 1.4500000476837158
         }
@@ -928,9 +1038,9 @@ Node {
         PrincipledMaterial {
             id: plasticBlack_material24
             objectName: "PlasticBlack"
-            baseColor: "#ff151515"
+            baseColor: "#ffffff"
             metalness: 1
-            roughness: 0.30000001192092896
+            roughness: 0.91248
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
@@ -938,23 +1048,40 @@ Node {
 
         PrincipledMaterial {
             id: glassWindsSide_material
+            opacity: 0.379
+            roughness: 0.63159
+            clearcoatRoughnessAmount: 0.01919
+            clearcoatAmount: 0.3178
             objectName: "GlassWindsSide"
-            baseColor: "#40121212"
-            metalness: 1
+            baseColor: "#383838"
+            metalness: 0.20139
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
+        }
+
+        PrincipledMaterial {
+            id: invisibleMat
+            opacity: 0
+            alphaMode: PrincipledMaterial.Opaque
+            lighting: PrincipledMaterial.NoLighting
+            objectName: "InvisibleMat"
+        }
+
+        Texture {
+            id: textureData901
+            source: rootWindow.downloadBase + "/content/images/textureData90.jpg"
+        }
+
+        Texture {
+            id: textureDirtTire
+            source: rootWindow.downloadBase + "/content/images/textureDirtTire.jpg"
         }
     }
     states: [
         State {
             name: "black"
             when: stateController == 0
-
-            PropertyChanges {
-                target: carPaint_material
-                roughness: 0.2
-            }
 
             PropertyChanges {
                 target: body
@@ -976,30 +1103,6 @@ Node {
 
             PropertyChanges {
                 target: hood
-                receivesShadows: false
-                castsShadows: false
-            }
-
-            PropertyChanges {
-                target: interior
-                receivesShadows: false
-                castsShadows: false
-            }
-
-            PropertyChanges {
-                target: dash
-                receivesShadows: false
-                castsShadows: false
-            }
-
-            PropertyChanges {
-                target: seats
-                receivesShadows: false
-                castsShadows: false
-            }
-
-            PropertyChanges {
-                target: steeringWheel
                 receivesShadows: false
                 castsShadows: false
             }
@@ -1093,21 +1196,25 @@ Node {
                 receivesShadows: false
                 castsShadows: false
             }
+
+            PropertyChanges {
+                target: metalDark_material9
+                clearcoatAmount: 0.23325
+                roughness: 0.82009
+            }
+
+            PropertyChanges {
+                target: carPaint_material
+                // secondaryColor: "#000000" // Doesn't have this property???
+            }
         },
         State {
             name: "white"
             when: stateController == 1
 
             PropertyChanges {
-                target: carPaint_material23
-                roughness: 0.2
-                clearcoat: 0.5
-                baseColor: "#a6a6a6"
-            }
-            PropertyChanges {
                 target: carPaint_material
-                roughness: 0.2
-                clearcoat: 0.5
+                metalness: 0.1
                 baseColor: "#a6a6a6"
             }
 
@@ -1117,13 +1224,8 @@ Node {
             when: stateController == 2
 
             PropertyChanges {
-                target: carPaint_material23
-                roughness: 0.1
-                baseColor: "#de8517"
-            }
-            PropertyChanges {
                 target: carPaint_material
-                roughness: 0.1
+                metalness: 0.1
                 baseColor: "#de8517"
             }
         },
@@ -1132,13 +1234,68 @@ Node {
             when: stateController == 3
 
             PropertyChanges {
-                target: carPaint_material23
-                baseColor: "#a21010"
-            }
-            PropertyChanges {
                 target: carPaint_material
+                metalness: 0.5
                 baseColor: "#a21010"
             }
+        }
+    ]
+    transitions: [
+        Transition {
+            id: transition
+            ParallelAnimation {
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: metalDark_material9
+                        property: "clearcoatAmount"
+                        duration: 1359
+                    }
+                }
+
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: metalDark_material9
+                        property: "roughness"
+                        duration: 1359
+                    }
+                }
+            }
+
+            ParallelAnimation {
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: carPaint_material
+                        property: "baseColor"
+                        duration: 734
+                    }
+                }
+
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: carPaint_material
+                        property: "metalness"
+                        duration: 734
+                    }
+                }
+            }
+            to: "*"
+            from: "*"
         }
     ]
 }

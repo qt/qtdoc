@@ -87,7 +87,7 @@ Node {
             x: 693.537
             y: 949.598
             color: "#defaff"
-            brightness: 15
+            brightness: 10
             ambientColor: "#000000"
             quadraticFade: 1
             constantFade: 0
@@ -223,7 +223,7 @@ Node {
             constantFade: 0
             quadraticFade: 1
             eulerRotation.y: 175.09207
-            brightness: 15
+            brightness: 10
             coneAngle: 60
             innerConeAngle: 40
         }
@@ -269,6 +269,8 @@ Node {
             property TextureInput smoke: TextureInput {
                 texture: smokeTexture
             }
+            alwaysDirty: false
+            depthDrawMode: Material.OpaqueOnlyDepthDraw
 
             Texture {
                 id: flareTexture

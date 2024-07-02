@@ -45,8 +45,8 @@ Window {
         id: downloader
 
         downloadBase: "https://download.qt.io/learning/examples/"
-        jsonFileName : "car-configurator-assets-v1.json"
-        zipFileName : "car-configurator-assets-v1.zip"
+        jsonFileName : "car-configurator-assets-v2.json"
+        zipFileName : "car-configurator-assets-v2.zip"
         offlineAssetsFilePath: "assets/assets_download.json"
         preferredLocalDownloadDir: "."
     }

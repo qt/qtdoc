@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import QtQuick.Studio.Components
 
 Item {
     id: root
@@ -18,6 +19,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#000000"
         path: "M 0 0 L 144 0 L 144 45 L 0 45 L 0 0 Z"
@@ -32,6 +34,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 12
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 11
@@ -46,6 +49,7 @@ Item {
         },
         State {
             name: "state_color_Light"
+            extend: "state_color_Dark"
 
             PropertyChanges {
                 target: logo
