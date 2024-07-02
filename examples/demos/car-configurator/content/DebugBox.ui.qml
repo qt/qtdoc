@@ -1,8 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 import QtQuick
 import QtQuick3D
+import Quick3DAssets.EV_SportsCar_low
 
 Rectangle {
     id: root
@@ -32,8 +32,7 @@ Rectangle {
 
         Text {
             color: "#ffffff"
-            text: "Sync: " + root.syncTime + " ms"
-                + "\nRender: " + root.renderTime + " ms"
+            text: "Sync: " + root.syncTime + " ms" + "\nRender: " + root.renderTime + " ms"
             font.pixelSize: 18
         }
     }

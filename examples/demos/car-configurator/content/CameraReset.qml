@@ -4,8 +4,8 @@
 import QtQuick
 
 Item {
-    width: Constants.width
-    height: Constants.height
+    width: 1920
+    height: 1080
 
     property vector3d position: Qt.vector3d(0, 0, 0)
     property vector3d rotation: Qt.vector3d(0, 0, 0)

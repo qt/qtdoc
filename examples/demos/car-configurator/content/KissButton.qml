@@ -3,18 +3,20 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Studio.Effects
 import "FigmaExportCarConfig"
+import QtQuick.Studio.DesignEffects
 
 Rectangle {
     id: root
 
-    radius: 17
+    radius: 8
 
     width: 144
     height: 108
     color: root.checked ? "#ffffff"
                         : mouseArea.containsPress ? "#2cde85"
-                                                  : mouseArea.containsMouse ? "#00414a" : "#66111111"
+                                                  : mouseArea.containsMouse ? "#00414a" : "#66000000"
 
     property bool checked: false
     property int iconId: 0
@@ -56,6 +58,8 @@ Rectangle {
         id: buttonText
 
         text: ""
+        font.family: "Titillium Web"
+        font.pointSize: 16
         color: root.checked ? "black" : "white"
         anchors.centerIn: parent
         anchors.verticalCenterOffset: 23
@@ -65,11 +69,16 @@ Rectangle {
         id: iconsON
 
         currentStateIndex: iconId
-        anchors.verticalCenterOffset: -12
+        anchors.verticalCenterOffset: -16
         anchors.centerIn: parent
     }
 
     Item {
         id: __materialLibrary__
+    }
+
+    DesignEffect {
+        backgroundLayer: view3D
+        backgroundBlurRadius: 40
     }
 }

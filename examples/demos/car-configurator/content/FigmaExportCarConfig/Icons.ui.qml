@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
+import QtQuick.Studio.Components
 
 Item {
     id: root
@@ -20,6 +21,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 9
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 5
@@ -37,6 +39,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 6
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 5
@@ -54,6 +57,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 5
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 9
@@ -71,6 +75,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 5
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 9
@@ -86,6 +91,7 @@ Item {
         width: 12
         height: 24
         anchors.centerIn: parent
+        strokeColor: "transparent"
         antialiasing: true
         anchors.horizontalCenterOffset: -2
         anchors.verticalCenterOffset: 0
@@ -97,7 +103,8 @@ Item {
     Image {
         id: black
 
-        source: rootWindow.downloadBase + "/content/FigmaExportCarConfig/assets/icon_paint_black.png"
+        source: rootWindow.downloadBase
+                + "/content/FigmaExportCarConfig/assets/icon_paint_black.png"
         anchors.centerIn: parent
     }
 
@@ -109,6 +116,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 9
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 5
@@ -126,6 +134,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 3
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 5
@@ -143,6 +152,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 3
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 5
@@ -155,14 +165,16 @@ Item {
     Image {
         id: yellow
 
-        source: rootWindow.downloadBase + "/content/FigmaExportCarConfig/assets/icon_paint_yellow.png"
+        source: rootWindow.downloadBase
+                + "/content/FigmaExportCarConfig/assets/icon_paint_yellow.png"
         anchors.centerIn: parent
     }
 
     Image {
         id: white
 
-        source: rootWindow.downloadBase + "/content/FigmaExportCarConfig/assets/icon_paint_white.png"
+        source: rootWindow.downloadBase
+                + "/content/FigmaExportCarConfig/assets/icon_paint_white.png"
         anchors.centerIn: parent
     }
 
@@ -181,6 +193,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 2
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 5
@@ -198,6 +211,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 2
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 5
@@ -215,6 +229,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 6
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 3
@@ -232,6 +247,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 6
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 3
@@ -249,6 +265,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 1
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#222222"
         anchors.bottomMargin: 7
@@ -266,6 +283,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.leftMargin: 1
+        strokeColor: "transparent"
         antialiasing: true
         fillColor: "#ffffff"
         anchors.bottomMargin: 7
