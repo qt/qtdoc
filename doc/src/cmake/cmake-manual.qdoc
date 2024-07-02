@@ -449,24 +449,37 @@
     of this command as shown in the example above.
 
     \section2 Adding translations
+    \target cmake-getting-started-adding-translations
 
-    Translations of strings in a Qt project are encoded in \c{.ts} files. See
-    \l{Internationalization with Qt} for details.
+    Translations of strings in a Qt project are encoded in \c{.ts} files. These
+    \c{.ts} files are compiled into binary \c{.qm} files, which are then loaded
+    by the Qt application at run time. See \l{Internationalization with Qt} for
+    details.
 
-    To add \c{.ts} files to your project, use the
-    \l{qt6_add_translations}{qt_add_translations} command.
+    This section describes how to add a German and French translation to the \c
+    helloworld application.
 
-    The following example adds a German and a French translation file to the
-    \c{helloworld} target:
-
+    Specify both languages with
+    \l{qt6_standard_project_setup}{qt_standard_project_setup}:
     \code
-    qt_add_translations(helloworld
-        TS_FILES helloworld_de.ts helloworld_fr.ts)
+    qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES de fr)
     \endcode
 
-    This creates build system rules to automatically generate \c{.qm} files from
-    the \c{.ts} files. By default, the \c{.qm} files are embedded into a
-    resource and are accessible under the \c{"/i18n"} resource prefix.
+    Then call \l{qt6_add_translations}{qt_add_translations} on the target that
+    shall load the \c{.qm} files:
+    \code
+    qt_add_translations(helloworld)
+    \endcode
+
+    On the first configuration, this command creates the files
+    \c{helloworld_de.ts} and \c{helloworld_fr.ts} in the \e{source directory} of
+    the project. These files will contain the translated strings and are
+    supposed to be put under version control.
+
+    The command also creates build system rules to automatically generate
+    \c{.qm} files from the \c{.ts} files. By default, the \c{.qm} files are
+    embedded into a resource and are accessible under the \c{"/i18n"} resource
+    prefix.
 
     To update the entries in the \c{.ts} file, build the \c{update_translations}
     target:
