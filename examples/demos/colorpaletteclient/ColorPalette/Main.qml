@@ -5,8 +5,6 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 
-import ColorPalette
-
 Window {
     id: window
     width: 500
