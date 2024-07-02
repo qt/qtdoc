@@ -49,8 +49,48 @@
 
     \section2 Using CMake
 
-    Add the \l qt_add_translations command to the \c CMakeLists.txt file to
-    create targets for updating TS files and transforming them into QM files.
+    Make Qt's CMake commands for internationalization available by loading the
+    \c Qt6LinguistTools package.
+
+    \code
+    cmake_minimum_required(VERSION 3.16)
+    project(myproject)
+    find_package(Qt6 COMPONENTS Core LinguistTools)
+    \endcode
+
+    Declare the supported languages with the \c I18N_TRANSLATED_LANGUAGES
+    argument of \l{qt6_standard_project_setup}{qt_standard_project_setup}.
+
+    \code
+    # Declare that the project will have a German and a French translation.
+    qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES de fr)
+    \endcode
+
+    The source code is assumed to have translatable strings in English. You can
+    adjust the language of the strings in the source code with the \c
+    qt_standard_project_setup parameter \c{I18N_SOURCE_LANGUAGE}.
+
+    Call the \l{qt6_add_translations}{qt_add_translations} command on the target
+    that is supposed to load the \c{.qm} files at runtime.
+
+    \code
+    qt_add_translations(myapplication)
+    \endcode
+
+    If they're not yet existing, this will create the files \c{myproject_de.ts}
+    and \c{myproject_fr.ts}. See \l{Automatic Determination of .ts File Paths}
+    on how those file names are constructed.
+
+    This command also creates \c{myproject_en.ts}, which is the plurals-only
+    translation file. See \l{Handle Plural Forms} for more details. The
+    generation of the plurals-only file can be turned off with the \c
+    NO_GENERATE_PLURALS_TS_FILE argument.
+
+    All source files of all targets in the project are considered inputs for the
+    generation of the \c{.ts} files. See the
+    \l{qt6_add_translations}{qt_add_translations} reference documentation on
+    more information how the project's targets are collected and how to exclude
+    targets and single sources.
 
     \section2 Using qmake
 
@@ -87,6 +127,33 @@
     \endcode
 
     \section1 Deploy Translations
+
+    The easiest way to deploy \c .qm files is by embedding them into Qt
+    resources. The \l{qt6_add_translations}{qt_add_translations} CMake command
+    automatically takes care of that. The \c .qm files are accessible under the
+    \c{":/i18n"} resource prefix.
+
+    \code
+    # Automatically embed generated .qm files.
+    qt_add_translations(myapplication)
+    \endcode
+
+    Alternatively, the \c .qm files can be deployed into a directory in the file
+    system. This is desirable for larger applications that don't want to hold
+    all available translations in memory. Pass the \c QM_FILES_OUTPUT_VARIABLE
+    argument to \l{qt6_add_translations}{qt_add_translations}. The command
+    stores the list of generated \c .qm files in the specified variable. Use
+    CMake's regular installation commands on the file names in that list.
+
+    \code
+    # Do not embed generated .qm files.
+    qt_add_translations(myapplication
+        QM_FILES_OUTPUT_VARIABLE qm_files
+    )
+
+    # Install generated .qm files.
+    install(FILES ${qm_files} DESTINATION translations)
+    \endcode
 
     Place the \c .qm files required for the application in a location where the
     loader code using \l QTranslator can find them. Typically, you specify a path
