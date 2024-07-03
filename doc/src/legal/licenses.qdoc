@@ -72,23 +72,24 @@
     \title Third-Party Code Used in Qt
     \brief Information about third-party code used in Qt.
 
-    Qt contains some code that is not provided under the
-    \l{GNU Lesser General Public License (LGPL)} or the
-    \l{Qt Licensing}{Qt Commercial License}, but rather under specific licenses
-    from the original authors.
+    Qt libraries and plugins can contain code that is not intellectual
+    property of The Qt Company, but is available under specific open-source
+    licenses from the original authors.
 
     The Qt Company gratefully acknowledges these and other contributions to Qt.
-    We recommend that programs that use Qt also acknowledge these contributions,
+    We recommend that programs that use Qt also acknowledge these contributions
     and quote these license statements in an appendix to the documentation.
 
-    \note You only need to comply with (and acknowledge) the licenses of the
-          third-party components that you are using with your application.
-          Click the name of the component to see the licensing details.
+    \note You only need to acknowledge and comply with the licenses of the
+    third-party components that you are actually shipping with your
+    application. Click the name of the component to see the licensing details.
 
     \b {Third-party Licenses}
 
-    The following table lists parts (modules) of Qt \QtVersion that incorporate
-    code licensed under third-party open-source licenses:
+    The following sections list third-party components in Qt \QtVersion, grouped by
+    \l{All Modules}{Qt module}. If the third-party component itself consists of
+    parts that are of a different origin (so-called
+    4th-party or Nth-party code), these are listed, too.
 
     \div {class="fixed"}
     \generatelist annotatedattributions
