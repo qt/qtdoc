@@ -14,6 +14,7 @@ Node {
         scale.z: 1
         scale.y: 0.01
         scale.x: 1
+        castsShadows: false
         materials: [
             _mat_defaultMat_material
         ]

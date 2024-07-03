@@ -9,6 +9,7 @@ Node {
 
     Model {
         id: aset_nature_rock_M_uk5pebv_LOD0
+        castsShadows: false
 
         source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Uk5pebv_LOD0/meshes/aset_nature_rock_M_uk5pebv_LOD0.mesh"
 

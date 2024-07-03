@@ -11,7 +11,7 @@ Node {
         id: aset_nature_rock_M_uk5ofde_LOD0
 
         source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Uk5ofde_LOD0/meshes/aset_nature_rock_M_uk5ofde_LOD0.mesh"
-        castsShadows: true
+        castsShadows: false
         receivesShadows: true
 
         PrincipledMaterial {
