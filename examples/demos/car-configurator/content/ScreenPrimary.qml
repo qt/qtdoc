@@ -247,6 +247,7 @@ Rectangle {
                     y: 0.5
                     source: "#Rectangle"
                     receivesReflections: true
+                    castsShadows: false
                     scale.x: 20
                     scale.y: 20
                     scale.z: 20
@@ -267,6 +268,8 @@ Rectangle {
                     eulerRotation.y: 0
                     scale.y: 50
                     scale.z: 35
+                    castsShadows: false
+                    receivesShadows: false
 
                     Model {
                         id: areaLight
@@ -281,6 +284,8 @@ Rectangle {
                         scale.x: 0.1
                         eulerRotation.x: 180
                         z: 11
+                        castsShadows: false
+                        receivesShadows: false
                     }
 
                     Node {
@@ -299,6 +304,8 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 90
                             scale.y: 0.01
+                            castsShadows: false
+                            receivesShadows: false
                         }
 
                         Model {
@@ -314,6 +321,8 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 0
                             scale.y: 0.01
+                            castsShadows: false
+                            receivesShadows: false
                         }
 
                         Model {
@@ -329,6 +338,8 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: -90
                             scale.y: 0.01
+                            castsShadows: false
+                            receivesShadows: false
                         }
 
                         Model {
@@ -344,6 +355,8 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 0
                             scale.y: 0.01
+                            castsShadows: false
+                            receivesShadows: false
                         }
                     }
                     scale.x: 50
@@ -363,6 +376,7 @@ Rectangle {
                     scale.z: 20
                     scale.x: 20
                     receivesReflections: true
+                    castsShadows: false
                 }
 
                 Ev_SportsCar_low {
