@@ -9,6 +9,6 @@ target.path  = $$[QT_INSTALL_EXAMPLES]/demos/clocks
 INSTALLS    += target
 
 OTHER_FILES  += \
-                clocks.qml \
-                content/Clock.qml \
-                content/*.png
+                Clock.qml \
+                Main.qml \
+                images/*.png
