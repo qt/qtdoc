@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     QQuickView view;
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
-    view.setSource(QUrl("qrc:/demos/clocks/clocks.qml"));
+    view.loadFromModule(u"clocks", u"Main");
     if (view.status() == QQuickView::Error)
         return -1;
     view.setResizeMode(QQuickView::SizeRootObjectToView);

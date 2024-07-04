@@ -19,7 +19,7 @@ Item {
             return 240;
     }
 
-    property alias city: cityLabel.text
+    property string city
     property int hours
     property int minutes
     property int seconds
@@ -44,13 +44,13 @@ Item {
         anchors.centerIn: parent
         width: 200; height: 240
 
-        Image { id: background; source: "clock.png"; visible: clock.night == false }
-        Image { source: "clock-night.png"; visible: clock.night == true }
+        Image { id: background; source: "images/clock.png"; visible: clock.night == false }
+        Image { source: "images/clock-night.png"; visible: clock.night == true }
 
 
         Image {
             x: 92.5; y: 27
-            source: "hour.png"
+            source: "images/hour.png"
             transform: Rotation {
                 id: hourRotation
                 origin.x: 7.5; origin.y: 73;
@@ -63,7 +63,7 @@ Item {
 
         Image {
             x: 93.5; y: 17
-            source: "minute.png"
+            source: "images/minute.png"
             transform: Rotation {
                 id: minuteRotation
                 origin.x: 6.5; origin.y: 83;
@@ -76,7 +76,7 @@ Item {
 
         Image {
             x: 97.5; y: 20
-            source: "second.png"
+            source: "images/second.png"
             transform: Rotation {
                 id: secondRotation
                 origin.x: 2.5; origin.y: 80;
@@ -88,7 +88,7 @@ Item {
         }
 
         Image {
-            anchors.centerIn: background; source: "center.png"
+            anchors.centerIn: background; source: "images/center.png"
         }
 
         Text {
@@ -98,6 +98,7 @@ Item {
             font.family: "Helvetica"
             font.bold: true; font.pixelSize: 16
             style: Text.Raised; styleColor: "black"
+            text: clock.city
         }
     }
 }

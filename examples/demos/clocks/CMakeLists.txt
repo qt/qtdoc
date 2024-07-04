@@ -4,56 +4,46 @@
 cmake_minimum_required(VERSION 3.16)
 project(clocks LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
 
-qt_add_executable(clocks
+qt_standard_project_setup(REQUIRES 6.8)
+
+qt_add_executable(clocksexample WIN32 MACOSX_BUNDLE
     main.cpp
 )
 
-set_target_properties(clocks PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
-)
-
-target_link_libraries(clocks PRIVATE
+target_link_libraries(clocksexample PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
 )
 
-# Resources:
-set(clocks_resource_files
-    "clocks.qml"
-    "content/Clock.qml"
-    "content/arrow.png"
-    "content/background.png"
-    "content/center.png"
-    "content/clock-night.png"
-    "content/clock.png"
-    "content/hour.png"
-    "content/minute.png"
-    "content/quit.png"
-    "content/second.png"
+qt_add_qml_module(clocksexample
+    URI clocks
+    QML_FILES
+        Main.qml
+        Clock.qml
+    RESOURCES
+        images/arrow.png
+        images/background.png
+        images/center.png
+        images/clock-night.png
+        images/clock.png
+        images/hour.png
+        images/minute.png
+        images/quit.png
+        images/second.png
 )
 
-qt_add_resources(clocks "clocks"
-    PREFIX
-        "/demos/clocks"
-    FILES
-        ${clocks_resource_files}
-)
-
-install(TARGETS clocks
+install(TARGETS clocksexample
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 qt_generate_deploy_qml_app_script(
-    TARGET clocks
+    TARGET clocksexample
     OUTPUT_SCRIPT deploy_script
     MACOS_BUNDLE_POST_BUILD
     NO_UNSUPPORTED_PLATFORM_ERROR
