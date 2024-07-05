@@ -1,11 +1,11 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick3D
 import QtQuick3D.AssetUtils
-import QtQuick3D.Helpers
-import QtQuick.Controls
 
 Rectangle {
     id: window
