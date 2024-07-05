@@ -21,7 +21,8 @@ ApplicationWindow {
         property real previousForce: 0
         property real multiplier: 100
         onReadingChanged: {
-            let force = Qt.vector3d(reading.x, reading.y, reading.z - 9.81)
+            const accelerometerReading = reading as AccelerometerReading
+            let force = Qt.vector3d(accelerometerReading.x, accelerometerReading.y, accelerometerReading.z - 9.81)
             if (isShake(force, previousForce)) {
                 tapLabel.hide()
                 force.x *= multiplier
@@ -38,8 +39,8 @@ ApplicationWindow {
 
     Scene {
         id: scene
-        x: currDrawerWidth - 10 // pad 10px for rounded corners
-        width: parent.width - currDrawerWidth + 20
+        x: root.currDrawerWidth - 10 // pad 10px for rounded corners
+        width: parent.width - root.currDrawerWidth + 20
         height: parent.height
 
         settingsStaticFriction: staticFrictionSlider.value
@@ -253,7 +254,7 @@ ApplicationWindow {
     RoundButton {
         id: iconOpen
         icon.source: "Menu_Icon.svg"
-        x: currDrawerWidth
+        x: root.currDrawerWidth
         onClicked: {
             tapLabel.hide()
             drawer.open()

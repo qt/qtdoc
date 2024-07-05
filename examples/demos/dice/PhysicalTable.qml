@@ -1,8 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-import QtQuick3D
 import QtQuick3D.Physics
-import QtMultimedia
 
 StaticRigidBody {
     // Model table radius is 0.482967cm. Goal radius is 30 cm

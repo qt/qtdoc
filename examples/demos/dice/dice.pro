@@ -14,9 +14,9 @@ qml.files = \
     PhysicalTable.qml \
     RoundTable.qml \
     Scene.qml \
-    main.qml
+    Main.qml
 
-qml.prefix = /
+qml.prefix = /qt/qml/DiceModule
 
 resources.files = \
     Menu_Icon.svg \
@@ -30,8 +30,9 @@ resources.files = \
     meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh \
     sounds/onedice.wav \
     sounds/rolling.wav \
+    qmldir
 
-resources.prefix = /
+resources.prefix = /qt/qml/DiceModule
 
 RESOURCES += qml resources
 

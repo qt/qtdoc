@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
                     QCoreApplication::exit(-1);
             },
             Qt::QueuedConnection);
-    engine.load(url);
+    engine.loadFromModule(u"DiceModule", u"Main");
 
     return app.exec();
 }
