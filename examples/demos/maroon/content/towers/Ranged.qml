@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import QtMultimedia
+import Maroon
 import "../logic.js" as Logic
-import ".."
 
 TowerBase {
     id: container
@@ -26,7 +27,6 @@ TowerBase {
 
     Image {
         id: proj
-        y: 1000
         SequentialAnimation on y {
             id: projAnim
             running: false
@@ -37,9 +37,9 @@ TowerBase {
             }
             ScriptAction {
                 script: {
-                    if (targetMob && targetMob.hit) {
-                        targetMob.hit(realDamage)
-                        targetMob.inked()
+                    if (container.targetMob && container.targetMob.hit) {
+                        container.targetMob.hit(realDamage)
+                        container.targetMob.inked()
                         projSound.play()
                     }
                 }
@@ -49,6 +49,9 @@ TowerBase {
             }
         }
         source: "../gfx/projectile.png"
+        Component.onCompleted: {
+            y = 1000
+        }
     }
 
     SoundEffect {
@@ -84,8 +87,8 @@ TowerBase {
 
         SequentialAnimation on x {
             loops: Animation.Infinite
-            NumberAnimation { from: x; to: x - 4; duration: 900; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: x - 4; to: x; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.x; to: sprite.x - 4; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.x - 4; to: sprite.x; duration: 900; easing.type: Easing.InOutQuad }
         }
     }
 }

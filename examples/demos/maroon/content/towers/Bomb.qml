@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import QtMultimedia
+import Maroon
 import "../logic.js" as Logic
-import ".."
 
 TowerBase {
     id: container
@@ -36,7 +37,7 @@ TowerBase {
         id: animDelay
         running: false
         interval: shootState.frameCount * shootState.frameDuration
-        onTriggered: finishFire()
+        onTriggered: container.finishFire()
     }
 
     function die()
@@ -84,13 +85,13 @@ TowerBase {
 
         SequentialAnimation on x {
             loops: Animation.Infinite
-            NumberAnimation { from: x; to: x + 4; duration: 900; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: x + 4; to: x; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.x; to: sprite.x + 4; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.x + 4; to: sprite.x; duration: 900; easing.type: Easing.InOutQuad }
         }
         SequentialAnimation on y {
             loops: Animation.Infinite
-            NumberAnimation { from: y; to: y - 4; duration: 900; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: y - 4; to: y; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.y; to: sprite.y - 4; duration: 900; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: sprite.y - 4; to: sprite.y; duration: 900; easing.type: Easing.InOutQuad }
         }
     }
 }

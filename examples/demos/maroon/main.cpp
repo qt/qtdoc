@@ -5,6 +5,8 @@
 #include <QQmlEngine>
 #include <QQmlFileSelector>
 #include <QQuickView>
+#include <QQmlApplicationEngine>
+
 
 int main(int argc, char *argv[])
 {
@@ -12,13 +14,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("Maroon");
 
     QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    engine.loadFromModule(u"Maroon", u"Main");
 
-    QQuickView view;
-    view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
-    view.setSource(QUrl("qrc:/demos/maroon/maroon.qml"));
-    if (view.status() == QQuickView::Error)
-        return -1;
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.show();
     return app.exec();
 }

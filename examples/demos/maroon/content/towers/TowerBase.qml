@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import Maroon
 
 Item {
     property real hp: 1
@@ -13,8 +14,8 @@ Item {
     property int row: 0
     property int col: 0
 
-    width: parent ? parent.squareSize : 0
-    height: parent ? parent.squareSize : 0
+    width: (parent as GameCanvas)?.squareSize ?? 0
+    height: (parent as GameCanvas)?.squareSize ?? 0
     //This is how it is placed on the gameboard, do not modify/animate the X/Y/Z of a TowerBase please
     x: col * width
     y: row * height

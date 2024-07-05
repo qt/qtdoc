@@ -19,31 +19,31 @@ Item {
 
     Image {
         id: img
-        opacity: (canBuild && gameCanvas.coins >= Logic.towerData[towerType-1].cost) ? 1.0 : 0.4
+        opacity: (container.canBuild && (container.gameCanvas as GameCanvas).coins >= Logic.towerData[container.towerType-1].cost) ? 1.0 : 0.4
     }
     Text {
         anchors.right: parent.right
         font.pointSize: 14
         font.bold: true
         color: "#ffffff"
-        text: Logic.towerData[towerType - 1].cost
+        text: Logic.towerData[container.towerType - 1].cost
     }
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            Logic.buildTower(towerType, col, row)
+            Logic.buildTower(container.towerType, container.col, container.row)
             container.clicked()
         }
     }
     Image {
-        visible: col == index && row != 0
+        visible: container.col == container.index && container.row != 0
         source: "gfx/dialog-pointer.png"
         anchors.top: parent.bottom
         anchors.topMargin: 4
         anchors.horizontalCenter: parent.horizontalCenter
     }
     Image {
-        visible: col == index && row == 0
+        visible: container.col == container.index && container.row == 0
         source: "gfx/dialog-pointer.png"
         rotation: 180
         anchors.bottom: parent.top

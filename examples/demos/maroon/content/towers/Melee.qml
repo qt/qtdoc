@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import ".."
+import QtMultimedia
+import Maroon
 
 TowerBase {
     hp: 4
