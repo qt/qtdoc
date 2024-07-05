@@ -25,7 +25,7 @@ Item {
         running: true
         enableCCD: true
         scene: viewport.scene
-        gravity: Qt.vector3d(0, -settingGravity, 0)
+        gravity: Qt.vector3d(0, -item.settingGravity, 0)
         typicalLength: 1
         typicalSpeed: 1000
         minimumTimestep: 15
@@ -34,9 +34,9 @@ Item {
 
     PhysicsMaterial {
         id: physicsMaterial
-        staticFriction: settingsStaticFriction
-        dynamicFriction: settingsDynamicFriction
-        restitution: settingsRestitution
+        staticFriction: item.settingsStaticFriction
+        dynamicFriction: item.settingsDynamicFriction
+        restitution: item.settingsRestitution
     }
 
     OrbitCameraController {

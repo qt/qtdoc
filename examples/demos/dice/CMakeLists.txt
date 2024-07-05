@@ -7,15 +7,10 @@ project(${appname} LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics Multimedia Sensors)
 
-qt_standard_project_setup()
+qt_standard_project_setup(REQUIRES 6.8)
 
-qt_add_executable(${appname}
+qt_add_executable(${appname} WIN32 MACOSX_BUNDLE
     main.cpp
-)
-
-set_target_properties(${appname} PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
 )
 
 target_link_libraries(${appname} PRIVATE
@@ -28,36 +23,6 @@ target_link_libraries(${appname} PRIVATE
     Qt6::Sensors
 )
 
-# Resources:
-set(qml_resource_files
-    main.qml
-    Dice_low.qml
-    DiceSpawner.qml
-    PhysicalDie.qml
-    PhysicalTable.qml
-    Scene.qml
-    RoundTable.qml
-    Carpet.qml
-
-    #icons
-    Menu_Icon.svg
-
-    #maps
-    maps/carpet_texture_baseColor.jpeg
-    maps/M_Side_Table_Natural_Wenge_Wood_4K_baseColor_small.jpg
-    maps/M_Side_Table_Natural_Wenge_Wood_4K_metallicRoughness_small.png
-    maps/M_Side_Table_Natural_Wenge_Wood_4K_normal_small.png
-
-    #meshes
-    meshes/cube_001.mesh
-    meshes/object_2.mesh
-    meshes/object_3.mesh
-    meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh
-
-    #sounds
-    sounds/onedice.wav
-    sounds/rolling.wav
-)
 if(ANDROID)
     set_target_properties(${appname} PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
@@ -72,12 +37,38 @@ if(IOS)
         PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
 endif()
 
-qt_add_resources(${appname} "qml"
-    PREFIX
-        "/"
-    FILES
-        ${qml_resource_files}
+qt_add_qml_module(${appname}
+    URI DiceModule
+    QML_FILES
+        Main.qml
+        Dice_low.qml
+        DiceSpawner.qml
+        PhysicalDie.qml
+        PhysicalTable.qml
+        Scene.qml
+        RoundTable.qml
+        Carpet.qml
+    RESOURCES
+        #icons
+        Menu_Icon.svg
+
+        #maps
+        maps/carpet_texture_baseColor.jpeg
+        maps/M_Side_Table_Natural_Wenge_Wood_4K_baseColor_small.jpg
+        maps/M_Side_Table_Natural_Wenge_Wood_4K_metallicRoughness_small.png
+        maps/M_Side_Table_Natural_Wenge_Wood_4K_normal_small.png
+
+        #meshes
+        meshes/cube_001.mesh
+        meshes/object_2.mesh
+        meshes/object_3.mesh
+        meshes/side_Table_Pine_LOD0_M_Side_Table_Natural_Wenge_Wood_4K_0.mesh
+
+        #sounds
+        sounds/onedice.wav
+        sounds/rolling.wav
 )
+
 
 install(TARGETS ${appname}
     BUNDLE  DESTINATION .
