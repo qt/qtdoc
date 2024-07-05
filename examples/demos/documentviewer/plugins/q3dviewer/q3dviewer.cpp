@@ -25,9 +25,6 @@
 
 using namespace Qt::StringLiterals;
 
-static constexpr QLatin1StringView c_viewer = QLatin1StringView(":/qml/q3dviewer.qml");
-static constexpr QLatin1StringView c_query = QLatin1StringView(":/qml/queryMimeTypes.qml");
-
 Q3DViewer::Q3DViewer()
 {
     connect(this, &AbstractViewer::uiInitialized, this, &Q3DViewer::openQ3DFile);
@@ -37,7 +34,7 @@ void Q3DViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
     m_quickView = new QQuickView;
-    m_quickView->setSource(QUrl::fromLocalFile(c_viewer));
+    m_quickView->loadFromModule(u"Q3DViewer", "Viewer");
     Q_ASSERT(m_quickView->status() != QQuickView::Status::Error);
     AbstractViewer::init(file, QWidget::createWindowContainer(m_quickView, parent), mainWindow);
 }
@@ -64,7 +61,7 @@ QStringList Q3DViewer::supportedMimeTypes() const
 
     QQmlEngine engine;
     QQmlComponent component(&engine);
-    component.loadUrl(QUrl::fromLocalFile(c_query));
+    component.loadFromModule(u"Q3DViewer", "QueryMimeTypes");
     std::unique_ptr<QObject> loader(component.create());
     Q_ASSERT(loader);
 

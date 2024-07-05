@@ -7,7 +7,7 @@ project(documentviewer LANGUAGES CXX)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
              OPTIONAL_COMPONENTS PrintSupport Pdf PdfWidgets Quick3D)
 
-qt_standard_project_setup()
+qt_standard_project_setup(REQUIRES 6.8)
 
 add_compile_definitions(QT_NO_CAST_FROM_ASCII)
 

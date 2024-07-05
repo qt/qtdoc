@@ -17,25 +17,25 @@ target_include_directories(Q3Dviewer PRIVATE
     ../../app
 )
 
+qt_add_qml_module(Q3DViewerModule
+    URI Q3DViewer
+    QML_FILES
+        Viewer.qml
+        QueryMimeTypes.qml
+)
+
 target_link_libraries(Q3Dviewer PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
     Qt6::Quick3D
     abstractviewer
+    Q3DViewerModule
 )
 
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(Q3Dviewer PRIVATE Qt6::PrintSupport)
 endif()
-
-qt_add_resources(Q3Dviewer "qml"
-    PREFIX
-        "/qml"
-    FILES
-        q3dviewer.qml
-        queryMimeTypes.qml
-)
 
 if(WIN32)
     set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
