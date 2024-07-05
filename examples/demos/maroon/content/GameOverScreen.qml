@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Particles
-import "logic.js" as Logic
 
 Item {
     id: gameOverScreen
@@ -56,8 +55,8 @@ Item {
 
 
     Text {
-        visible: gameCanvas != undefined
-        text: "You saved " + gameCanvas.score + " fishes!"
+        visible: gameOverScreen.gameCanvas != undefined
+        text: "You saved " + gameOverScreen.gameCanvas.score + " fishes!"
         anchors.top: img.bottom
         anchors.topMargin: 12
         anchors.horizontalCenter: parent.horizontalCenter
@@ -72,7 +71,7 @@ Item {
         anchors.bottomMargin: 0
         MouseArea {
             anchors.fill: parent
-            onClicked: gameCanvas.gameOver = false//This will actually trigger the state change in main.qml
+            onClicked: gameOverScreen.gameCanvas.gameOver = false//This will actually trigger the state change in Main.qml
         }
     }
 }

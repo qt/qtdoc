@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
+import QtMultimedia
+import Maroon
 import "../logic.js" as Logic
-import ".."
 
 Item  {
     id: container
@@ -15,8 +16,8 @@ Item  {
     property int rof: 30 //In ticks
     property int fireCounter: 0
     property bool dying: false
-    width: parent ? parent.squareSize : 0
-    height: parent ? parent.squareSize : 0
+    width: (parent as GameCanvas)?.squareSize ?? 0
+    height: (parent as GameCanvas)?.squareSize ?? 0
     x: col * width
     z: 1001
     function fire() { }
@@ -122,9 +123,7 @@ Item  {
 
     SpriteSequence {
         id: bubble
-        width: 64
-        height: 64
-        scale: 0.4 + (0.2  * hp)
+        scale: 0.4 + (0.2  * container.hp)
         interpolate: false
         goalSprite: ""
 
@@ -158,20 +157,18 @@ Item  {
         }
         SequentialAnimation on width {
             loops: Animation.Infinite
-            NumberAnimation { from: width * 1; to: width * 1.1; duration: 800; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: width * 1.1; to: width * 1; duration: 1000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.width * 1; to: container.width * 1.1; duration: 800; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.width * 1.1; to: container.width * 1; duration: 1000; easing.type: Easing.InOutQuad }
         }
         SequentialAnimation on height {
             loops: Animation.Infinite
-            NumberAnimation { from: height * 1; to: height * 1.15; duration: 1200; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: height * 1.15; to: height * 1; duration: 1000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.height * 1; to: container.height * 1.15; duration: 1200; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.height * 1.15; to: container.height * 1; duration: 1000; easing.type: Easing.InOutQuad }
         }
     }
 
     SpriteSequence {
         id: ink
-        width: 64
-        height: 64
         scale: bubble.scale
         goalSprite: ""
 
@@ -205,21 +202,21 @@ Item  {
         }
         SequentialAnimation on width {
             loops: Animation.Infinite
-            NumberAnimation { from: width * 1; to: width * 1.1; duration: 800; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: width * 1.1; to: width * 1; duration: 1000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.width * 1; to: container.width * 1.1; duration: 800; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.width * 1.1; to: container.width * 1; duration: 1000; easing.type: Easing.InOutQuad }
         }
         SequentialAnimation on height {
             loops: Animation.Infinite
-            NumberAnimation { from: height * 1; to: height * 1.15; duration: 1200; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: height * 1.15; to: height * 1; duration: 1000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.height * 1; to: container.height * 1.15; duration: 1200; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: container.height * 1.15; to: container.height * 1; duration: 1000; easing.type: Easing.InOutQuad }
         }
 
     }
 
     SequentialAnimation on x {
         loops: Animation.Infinite
-        NumberAnimation { from: x; to: x - 5; duration: 900; easing.type: Easing.InOutQuad }
-        NumberAnimation { from: x - 5; to: x; duration: 900; easing.type: Easing.InOutQuad }
+        NumberAnimation { from: container.x; to: container.x - 5; duration: 900; easing.type: Easing.InOutQuad }
+        NumberAnimation { from: container.x - 5; to: container.x; duration: 900; easing.type: Easing.InOutQuad }
     }
 }
 

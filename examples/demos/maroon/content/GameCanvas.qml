@@ -3,7 +3,6 @@
 
 import QtQuick
 import "logic.js" as Logic
-import "towers" as Towers
 
 Item {
     id: grid
@@ -41,8 +40,8 @@ Item {
 
     Text {
         id: errorText // Mostly for debug purposes
-        text: errorString
-        visible: errored
+        text: grid.errorString
+        visible: grid.errored
         color: "red"
         font.pixelSize: 18
         wrapMode: Text.WordWrap
@@ -62,7 +61,7 @@ Item {
     MouseArea {
         id: ma
         anchors.fill: parent
-        onClicked: {
+        onClicked: function (mouse) {
             if (towerMenu.visible)
                 towerMenu.finish()
             else
@@ -102,7 +101,7 @@ Item {
 
         states: State {
             name: "shown"; when: towerMenu.shown && !grid.gameOver
-            PropertyChanges { target: towerMenu; visible: true; scale: 1; opacity: 1 }
+            PropertyChanges { towerMenu { visible: true; scale: 1; opacity: 1 } }
         }
 
         transitions: Transition {
@@ -153,7 +152,7 @@ Item {
     }
 
 
-    Keys.onPressed: { // Cheat Codes while Testing
+    Keys.onPressed: function (event) { // Cheat Codes while Testing
         if (event.key == Qt.Key_Up && (event.modifiers & Qt.ShiftModifier))
             grid.coins += 10;
         if (event.key == Qt.Key_Left && (event.modifiers & Qt.ShiftModifier))

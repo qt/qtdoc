@@ -26,8 +26,8 @@ Item {
 
         SequentialAnimation on x {
             loops: Animation.Infinite
-            NumberAnimation { from: x + 148; to: x + 25; duration: 2000; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: x + 25; to: x + 148; duration: 1600; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: newGameScreen.x + 148; to: newGameScreen.x + 25; duration: 2000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: newGameScreen.x + 25; to: newGameScreen.x + 148; duration: 1600; easing.type: Easing.InOutQuad }
         }
         SequentialAnimation on anchors.topMargin {
             loops: Animation.Infinite
@@ -42,8 +42,8 @@ Item {
 
         SequentialAnimation on x {
             loops: Animation.Infinite
-            NumberAnimation { from: x + 140; to: x + 40; duration: 2000; easing.type: Easing.InOutQuad }
-            NumberAnimation { from: x + 40; to: x + 140; duration: 1600; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: newGameScreen.x + 140; to: newGameScreen.x + 40; duration: 2000; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: newGameScreen.x + 40; to: newGameScreen.x + 140; duration: 1600; easing.type: Easing.InOutQuad }
         }
         SequentialAnimation on anchors.topMargin {
             loops: Animation.Infinite

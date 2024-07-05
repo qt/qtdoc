@@ -4,7 +4,9 @@
 import QtQuick
 
 Item {
+    id: container
     height: childrenRect.height
+    required property GameCanvas canvas
 
     // Display the number of lives
     Row {
@@ -13,7 +15,7 @@ Item {
         spacing: 5
         Repeater {
             id: rep
-            model: Math.min(10, canvas.lives)
+            model: Math.min(10, container.canvas.lives)
             delegate: Image { source: "gfx/lifes.png" }
         }
     }
@@ -25,7 +27,7 @@ Item {
         spacing: 5
         Image { source: "gfx/scores.png" }
         Text {
-            text: canvas.score
+            text: container.canvas.score
             font.bold: true
         }
     }
@@ -39,7 +41,7 @@ Item {
         Image { source: "gfx/points.png" }
         Text {
             id: pointsLabel
-            text: canvas.coins
+            text: container.canvas.coins
             font.bold: true
         }
     }

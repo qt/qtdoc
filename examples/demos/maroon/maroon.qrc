@@ -1,13 +1,11 @@
 <RCC>
-    <qresource prefix="/demos/maroon">
-        <file>maroon.qml</file>
+    <qresource prefix="/qt/qml/Maroon">
         <file>content/BuildButton.qml</file>
         <file>content/GameCanvas.qml</file>
         <file>content/GameOverScreen.qml</file>
         <file>content/InfoBar.qml</file>
         <file>content/logic.js</file>
         <file>content/NewGameScreen.qml</file>
-        <file>content/SoundEffect.qml</file>
         <file>content/audio/bomb-action.wav</file>
         <file>content/audio/catch-action.wav</file>
         <file>content/audio/catch.wav</file>
@@ -67,5 +65,7 @@
         <file>content/towers/Melee.qml</file>
         <file>content/towers/Ranged.qml</file>
         <file>content/towers/TowerBase.qml</file>
+        <file>Main.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>
