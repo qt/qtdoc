@@ -5,6 +5,12 @@ import QtQuick
 
 Column {
     id: delegate
+
+    required property string title
+    required property string content
+    required property string link
+    required property string pubDate
+
     width: delegate.ListView.view.width
     spacing: 8
 
@@ -54,7 +60,7 @@ Column {
 
             Image {
                 id: titleImage
-                source: content
+                source: delegate.content
                 width: Math.min(delegate.width / 2, sourceSize.width)
                 fillMode: Image.PreserveAspectFit
             }
@@ -63,7 +69,7 @@ Column {
         Text {
             id: titleText
 
-            text: title.replace(/&#39;/g, "'")
+            text: delegate.title.replace(/&#39;/g, "'")
             width: delegate.width - titleImage.width
             wrapMode: Text.WordWrap
             font.pixelSize: 26
@@ -76,7 +82,7 @@ Column {
         font.pixelSize: 12
         textFormat: Text.RichText
         font.italic: true
-        text: timeSinceEvent(pubDate) + " (<a href=\"" + link + "\">Link</a>)"
+        text: delegate.timeSinceEvent(delegate.pubDate) + " (<a href=\"" + delegate.link + "\">Link</a>)"
         onLinkActivated: function(link) {
             Qt.openUrlExternally(link)
         }

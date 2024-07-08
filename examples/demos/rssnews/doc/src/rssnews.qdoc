@@ -40,19 +40,13 @@
         \li \c ScrollBar.qml
     \endlist
 
-    To use the custom types, we add an import statement to the main QML file,
-    rssnews.qml that imports the folder called \c content where the types are
-    located:
-
-    \quotefromfile demos/rssnews/rssnews.qml
-    \skipto content
-    \printuntil "
-
     \section1 Creating the Main Window
 
-    In \c rssnews.qml, we use a \l{Rectangle} type with custom properties to
+    In \c Main.qml, we use a \l{Rectangle} type with custom properties to
     create the app main window:
 
+    \quotefromfile demos/rssnews/Main.qml
+    \skipto Rectangle
     \printuntil isPortrait
 
     We will use the custom properties later for loading XML data and for
@@ -60,7 +54,7 @@
 
     \section1 Creating a Category List
 
-    In \c rssnews.qml, we use the \c RssFeeds custom type that we specify in
+    In \c Main.qml, we use the \c RssFeeds custom type that we specify in
     \c RssFeeds.qml to create a list of feed categories:
 
     \skipto RssFeeds
@@ -81,9 +75,9 @@
     the \c feed role to specify the URL to load the data from, and the \c image
     role to display an image for the category.
 
-    In \c rssnews.qml, we use a \l ListView type to display the category list:
+    In \c Main.qml, we use a \l ListView type to display the category list:
 
-    \quotefromfile demos/rssnews/rssnews.qml
+    \quotefromfile demos/rssnews/Main.qml
     \skipto ListView
     \printuntil }
     \printuntil }
@@ -109,6 +103,8 @@
     \quotefromfile demos/rssnews/content/CategoryDelegate.qml
     \skipto Rectangle
     \printuntil selected
+
+    We use \c required to declare the properties that we expect from the model.
 
     We set the \c selected property to the \c ListView.isCurrentItem attached
     property to specify that \c selected is \c true if \c delegate is the
@@ -145,16 +141,16 @@
     The \c anchors.fill property is set to \c delegate to enable users to tap
     anywhere within the list element.
 
-    We use the \c onClicked signal handler to load the XML data for the category
-    list. If the tapped category is already current, the \c reload() function
-    is called to reload the data.
+    To load the XML data for the category list on a \c clicked event, we set
+    the \c currentIndex of the \c ListView attached property and
+    emit the \c clicked signal() in \c onClicked.
 
     \section1 Downloading XML Data
 
-    In \c rssnews.qml, we use an \l XmlListModel type as a data source for
+    In \c Main.qml, we use an \l XmlListModel type as a data source for
     \l ListView elements to display news items in the selected category:
 
-    \quotefromfile demos/rssnews/rssnews.qml
+    \quotefromfile demos/rssnews/Main.qml
     \skipto XmlListModel {
     \printuntil query
 
@@ -249,7 +245,7 @@
 
     \section1 Creating Scroll Bars
 
-    In \c rssnews.qml, we use our own custom \c ScrollBar type to create scroll
+    In \c Main.qml, we use our own custom \c ScrollBar type to create scroll
     bars in the category and news item list views. In your apps, you can also
     use the \l ScrollView type from the \l {Qt Quick Controls} module.
 
@@ -259,7 +255,7 @@
     horizontal scroll bar in portrait orientation and to the \c Vertical value
     to display a vertical scroll bar in landscape orientation:
 
-    \quotefromfile demos/rssnews/rssnews.qml
+    \quotefromfile demos/rssnews/Main.qml
     \skipto ScrollBar
     \printuntil }
 
@@ -314,10 +310,10 @@
 
     \section1 Creating Footers
 
-    In \c rssnews.qml, we use a \l Component type with a \l Rectangle type to
+    In \c Main.qml, we use a \l Component type with a \l Rectangle type to
     create a footer for the news list view:
 
-    \quotefromfile demos/rssnews/rssnews.qml
+    \quotefromfile demos/rssnews/Main.qml
     \skipto Component
     \printuntil }
     \printuntil }
@@ -329,7 +325,7 @@
 
     \section1 Creating Buttons
 
-    In \c rssnews.qml, we use an \l [QML] {Image} type to create a simple push
+    In \c Main.qml, we use an \l [QML] {Image} type to create a simple push
     button that users can tap to close the app:
 
     \printuntil Qt.quit()
