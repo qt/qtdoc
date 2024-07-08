@@ -647,6 +647,25 @@ which can either fetch a font by URL or using
 The other way to use font is to add it via
 \l{https://doc.qt.io/qt-6/qfontdatabase.html#addApplicationFontFromData}{QFontDatabase::addApplicationFontFromData}.
 
+\section2 Accessibility and Screen Readers
+
+Qt for WebAssembly provides basic support for screen readers. Simple UI elements such
+as buttons and check boxes work, while more complex UI elments such as table or tree
+views may have missing support. Both Qt Widgets and Qt Quick are supported.
+
+The following screen reader / browsers configurations are tested and are known to be
+functional. Other browsers and screen readers may work.
+
+\list
+  \li VoiceOver with Safari on macOS
+  \li VoiceOver with Chrome on macOS
+\endlist
+
+The accessibility implementation works by creating "shadow" html elements which
+provides the accessiblity information for the Qt UI elements. This functionality
+is disabled by default. The end user can activate it by selecting an "activate
+screen reader" button using the screen reader. When activated this will populate
+the web page with accessibility elements.
 
 \section2 Application Startup and the Event Loop
 
