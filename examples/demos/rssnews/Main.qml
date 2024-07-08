@@ -1,10 +1,11 @@
 // Copyright (C) 2017 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Window
 import QtQml.XmlListModel
-import "./content"
 
 Rectangle {
     id: window
@@ -39,21 +40,31 @@ Rectangle {
         id: categories
         property int itemWidth: 190
 
-        width: isPortrait ? parent.width : itemWidth
-        height: isPortrait ? itemWidth : parent.height
-        orientation: isPortrait ? ListView.Horizontal : ListView.Vertical
+        width: window.isPortrait ? parent.width : itemWidth
+        height: window.isPortrait ? itemWidth : parent.height
+        orientation: window.isPortrait ? ListView.Horizontal : ListView.Vertical
         anchors.top: parent.top
         model: rssFeeds
-        delegate: CategoryDelegate { itemSize: categories.itemWidth }
+        delegate: CategoryDelegate {
+            itemSize: categories.itemWidth
+            isLoading: window.loading
+            onClicked: function () {
+                if (window.currentFeed == feed)
+                    feedModel.reload()
+                else
+                    window.currentFeed = feed
+
+            }
+        }
         spacing: 3
     }
 
     ScrollBar {
         id: listScrollBar
 
-        orientation: isPortrait ? Qt.Horizontal : Qt.Vertical
-        height: isPortrait ? 8 : categories.height;
-        width: isPortrait ? categories.width : 8
+        orientation: window.isPortrait ? Qt.Horizontal : Qt.Vertical
+        height: window.isPortrait ? 8 : categories.height;
+        width: window.isPortrait ? categories.width : 8
         scrollArea: categories;
         anchors.right: categories.right
     }
@@ -61,13 +72,13 @@ Rectangle {
     ListView {
         id: list
 
-        anchors.left: isPortrait ? window.left : categories.right
+        anchors.left: window.isPortrait ? window.left : categories.right
         anchors.right: closeButton.left
-        anchors.top: isPortrait ? categories.bottom : window.top
+        anchors.top: window.isPortrait ? categories.bottom : window.top
         anchors.bottom: window.bottom
         anchors.leftMargin: 30
         anchors.rightMargin: 4
-        clip: isPortrait
+        clip: window.isPortrait
         model: feedModel
         footer: footerText
         delegate: NewsDelegate {}
@@ -77,7 +88,7 @@ Rectangle {
         scrollArea: list
         width: 8
         anchors.right: window.right
-        anchors.top: isPortrait ? categories.bottom : window.top
+        anchors.top: window.isPortrait ? categories.bottom : window.top
         anchors.bottom: window.bottom
     }
 
@@ -97,6 +108,7 @@ Rectangle {
         }
     }
 
+
     Image {
         id: closeButton
         source: "content/images/btn_close.png"
@@ -104,7 +116,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.margins: 4
-        opacity: (isPortrait && categories.moving) ? 0.2 : 1.0
+        opacity: (window.isPortrait && categories.moving) ? 0.2 : 1.0
         Behavior on opacity {
             NumberAnimation { duration: 300; easing.type: Easing.OutSine }
         }

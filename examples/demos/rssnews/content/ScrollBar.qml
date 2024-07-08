@@ -58,18 +58,18 @@ Item {
     BorderImage {
         source: "images/scrollbar.png"
         border { left: 1; right: 1; top: 1; bottom: 1 }
-        x: container.orientation == Qt.Vertical ? 2 : position()
-        y: container.orientation == Qt.Vertical ? position() : 2
-        width: container.orientation == Qt.Vertical ? container.width - 4 : size()
-        height: container.orientation == Qt.Vertical ? size() : container.height - 4
+        x: container.orientation == Qt.Vertical ? 2 : container.position()
+        y: container.orientation == Qt.Vertical ? container.position() : 2
+        width: container.orientation == Qt.Vertical ? container.width - 4 : container.size()
+        height: container.orientation == Qt.Vertical ? container.size() : container.height - 4
     }
 
     states: State {
         name: "visible"
         when: container.orientation == Qt.Vertical ?
-                  scrollArea.movingVertically :
-                  scrollArea.movingHorizontally
-        PropertyChanges { target: container; opacity: 1.0 }
+                  container.scrollArea.movingVertically :
+                  container.scrollArea.movingHorizontally
+        PropertyChanges { container { opacity: 1.0 } }
     }
 
     transitions: Transition {

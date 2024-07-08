@@ -6,14 +6,21 @@ import QtQuick
 Rectangle {
     id: delegate
 
+    required property real itemSize
+    required property string name
+    required property string feed
+    required property string image
+    required property int index
+    required property bool isLoading
+
     property bool selected: ListView.isCurrentItem
-    property real itemSize
+
     width: itemSize
     height: itemSize
 
     Image {
         anchors.centerIn: parent
-        source: image
+        source: delegate.image
     }
 
     Text {
@@ -26,27 +33,25 @@ Rectangle {
         }
 
         font { pixelSize: 18; bold: true }
-        text: name
-        color: selected ? "#ffffff" : "#ebebdd"
-        scale: selected ? 1.15 : 1.0
+        text: delegate.name
+        color: delegate.selected ? "#ffffff" : "#ebebdd"
+        scale: delegate.selected ? 1.15 : 1.0
         Behavior on color { ColorAnimation { duration: 150 } }
         Behavior on scale { PropertyAnimation { duration: 300 } }
     }
 
     BusyIndicator {
         scale: 0.8
-        visible: delegate.ListView.isCurrentItem && window.loading
+        visible: delegate.ListView.isCurrentItem && delegate.isLoading
         anchors.centerIn: parent
     }
 
     MouseArea {
         anchors.fill: delegate
         onClicked: {
-            delegate.ListView.view.currentIndex = index
-            if (window.currentFeed == feed)
-                feedModel.reload()
-            else
-                window.currentFeed = feed
+            delegate.ListView.view.currentIndex = delegate.index
+            delegate.clicked()
         }
     }
+    signal clicked()
 }
