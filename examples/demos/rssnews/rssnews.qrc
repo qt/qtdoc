@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/demos/rssnews">
-        <file>rssnews.qml</file>
+    <qresource prefix="/qt/qml/RssNewsModule">
         <file>content/BusyIndicator.qml</file>
         <file>content/CategoryDelegate.qml</file>
         <file>content/NewsDelegate.qml</file>
@@ -21,5 +20,7 @@
         <file>content/images/TopStories.jpg</file>
         <file>content/images/USNational.jpg</file>
         <file>content/images/World.jpg</file>
+        <file>Main.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

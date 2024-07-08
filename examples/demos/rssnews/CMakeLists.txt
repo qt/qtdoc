@@ -4,17 +4,12 @@
 cmake_minimum_required(VERSION 3.16)
 project(rssnews LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml QmlXmlListModel Quick)
 
-qt_add_executable(rssnews
-    main.cpp
-)
+qt_standard_project_setup(REQUIRES 6.8)
 
-set_target_properties(rssnews PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
+qt_add_executable(rssnews WIN32 MACOSX_BUNDLE
+    main.cpp
 )
 
 target_link_libraries(rssnews PRIVATE
@@ -25,36 +20,31 @@ target_link_libraries(rssnews PRIVATE
     Qt6::QmlXmlListModel
 )
 
-# Resources:
-set(rssnews_resource_files
-    "content/BusyIndicator.qml"
-    "content/CategoryDelegate.qml"
-    "content/NewsDelegate.qml"
-    "content/RssFeeds.qml"
-    "content/ScrollBar.qml"
-    "content/images/Asia.jpg"
-    "content/images/Business.jpg"
-    "content/images/Entertainment.jpg"
-    "content/images/Europe.jpg"
-    "content/images/Health.jpg"
-    "content/images/Politics.jpg"
-    "content/images/Science.jpg"
-    "content/images/Sports.jpg"
-    "content/images/Technology.jpg"
-    "content/images/TopStories.jpg"
-    "content/images/USNational.jpg"
-    "content/images/World.jpg"
-    "content/images/btn_close.png"
-    "content/images/busy.png"
-    "content/images/scrollbar.png"
-    "rssnews.qml"
-)
-
-qt_add_resources(rssnews "rssnews"
-    PREFIX
-        "/demos/rssnews"
-    FILES
-        ${rssnews_resource_files}
+qt_add_qml_module(rssnews
+    URI RssNewsModule
+    QML_FILES
+        content/BusyIndicator.qml
+        content/CategoryDelegate.qml
+        content/NewsDelegate.qml
+        content/RssFeeds.qml
+        content/ScrollBar.qml
+        Main.qml
+    RESOURCES
+        content/images/Asia.jpg
+        content/images/Business.jpg
+        content/images/Entertainment.jpg
+        content/images/Europe.jpg
+        content/images/Health.jpg
+        content/images/Politics.jpg
+        content/images/Science.jpg
+        content/images/Sports.jpg
+        content/images/Technology.jpg
+        content/images/TopStories.jpg
+        content/images/USNational.jpg
+        content/images/World.jpg
+        content/images/btn_close.png
+        content/images/busy.png
+        content/images/scrollbar.png
 )
 
 install(TARGETS rssnews
