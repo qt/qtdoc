@@ -197,7 +197,7 @@ Rectangle {
             Surface3DSeries {
                 id: price1
                 baseColor: "red"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Price:@yLabel $"
                 ItemModelSurfaceDataProxy {
@@ -210,7 +210,7 @@ Rectangle {
             Surface3DSeries {
                 id: price2
                 baseColor: "green"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Price:@yLabel $"
                 ItemModelSurfaceDataProxy {
@@ -223,7 +223,7 @@ Rectangle {
             Surface3DSeries {
                 id: price3
                 baseColor: "blue"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Price:@yLabel $"
                 ItemModelSurfaceDataProxy {
@@ -236,7 +236,7 @@ Rectangle {
             Surface3DSeries {
                 id: price4
                 baseColor: "yellow"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Price:@yLabel $"
                 ItemModelSurfaceDataProxy {
@@ -249,7 +249,7 @@ Rectangle {
             Surface3DSeries {
                 id: price5
                 baseColor: "purple"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Price:@yLabel $"
                 ItemModelSurfaceDataProxy {

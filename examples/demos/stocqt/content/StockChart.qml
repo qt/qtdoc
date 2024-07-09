@@ -154,7 +154,7 @@ Rectangle {
                 id: highSeries
                 visible: true
                 baseColor: "green"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel High:@yLabel$"
                 ItemModelSurfaceDataProxy {
@@ -168,7 +168,7 @@ Rectangle {
                 id: lowSeries
                 visible: true
                 baseColor: "red"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Low:@yLabel$"
                 ItemModelSurfaceDataProxy {
@@ -182,7 +182,7 @@ Rectangle {
                 id: openSeries
                 visible: true
                 baseColor: "yellow"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Open:@yLabel$"
                 ItemModelSurfaceDataProxy {
@@ -196,7 +196,7 @@ Rectangle {
                 id: closeSeries
                 visible: true
                 baseColor: "blue"
-                flatShadingEnabled: true
+                shading: Surface3DSeries.Shading.Flat
                 drawMode: Surface3DSeries.DrawSurface
                 itemLabelFormat: "Time: @xLabel Close:@yLabel$"
                 ItemModelSurfaceDataProxy {
