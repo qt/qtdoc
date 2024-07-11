@@ -537,21 +537,21 @@
     Use \c _NoOp functions (in QML) and \c _NOOP macros (in C++) to mark
     translatable string literals for extraction by the \c lupdate tool.
 
-    \section2 QML: Use _NoOp Functions
+    \section2 QML: Use _NOOP Functions
 
     In QML, use the following functions to mark translatable string literals:
 
     \list
-        \li \l [QML] {Qt::}{qsTrNoOp()}
-        \li \l [QML] {Qt::}{qsTranslateNoOp()}
-        \li \l [QML] {Qt::}{qsTrIdNoOp()}
+        \li \l [QML] {Qt::}{QT_TR_NOOP()}
+        \li \l [QML] {Qt::}{QT_TRANSLATE_NOOP()}
+        \li \l [QML] {Qt::}{QT_TRID_NOOP()}
     \endlist
 
     If the user changes the system language without a reboot, depending on the
     system, the strings in arrays and list models and other data structures might
     not be refreshed automatically. To force the texts to be refreshed when they
     are displayed in the UI, you need to declare the strings with the
-    \c {qsTrNoOp()} function. Then, when you populate the objects for display,
+    \c {QT_TR_NOOP()} function. Then, when you populate the objects for display,
     you need to explicitly retrieve the translation for each text.
 
     For example:
@@ -562,7 +562,7 @@
 
         ListElement {
             //: Capital city of Finland
-            name: qsTrNoOp("Helsinki")
+            name: QT_TR_NOOP("Helsinki")
         }
     }
 
