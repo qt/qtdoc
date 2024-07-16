@@ -19,7 +19,7 @@
   \section1 Supported Architectures and VxWorks Releases
 
   \list
-    \li Qt 6.7 is verified on VxWorks 23.09
+    \li Qt 6.7 is verified on VxWorks 24.03
     Supported architecture is ARM-v7.
   \endlist
 
@@ -56,35 +56,46 @@
   \row
       \li \l {Qt Core}
       \li
+      \li No support for \l{QProcess}. \l{QLocalSocket} and \l{QLocalServer} support only SOCK_SEQPACKET.
   \row
       \li \l {Qt GUI}
+      \li
       \li
   \row
       \li \l {Qt Network}
       \li
+      \li
   \row
       \li \l {Qt Qml}
+      \li
       \li
   \row
       \li \l {Qt Quick}
       \li
+      \li
   \row
       \li \l {Qt Quick Controls}
+      \li
       \li
   \row
       \li \l {Qt Quick Dialogs}
       \li
+      \li
   \row
       \li \l {Qt Quick Layouts}
+      \li
       \li
   \row
       \li \l {Qt Quick Test}
       \li
+      \li
   \row
       \li \l {Qt Test}
       \li
+      \li
   \row
       \li \l {Qt Widgets}
+      \li
       \li
   \endtable
 
@@ -165,7 +176,159 @@
   list is by no means complete as it depends on hardware, software and system
   requirements of your project. However, the following table contains those
   that are mandatory for certain functionalities to work. Note also that these
-  might change with VxWorks version.
+  might change with VxWorks versions.
+
+  \section3 Example VSB configuration for i.MX 6 BSP
+
+  You need to add the following features to VSB for Qt to work properly. For
+  more details please check WindRiver VxWorks Documentation.
+
+  \table 80%
+    \header
+        \li Feature
+        \li Notes
+
+    \row
+        \li \c DSI_DSI_KERNEL
+        \li
+
+    \row
+        \li \c IPNET_COREIP
+        \li
+
+    \row
+        \li \c IPNET_DHCPC
+        \li
+
+    \row
+        \li \c SDMMC_DEVICE
+        \li
+
+    \row
+        \li \c SDMMC_HOST
+        \li
+
+    \row
+        \li \c SDMMC_SDHC
+        \li
+
+    \row
+        \li \c SDMMC_STORAGE
+        \li
+
+    \row
+        \li \c SERVICE_UN
+        \li
+
+    \row
+        \li \c SOCKET
+        \li
+
+    \row
+        \li \c USB_EHCI
+        \li
+
+    \row
+        \li \c USB_KEYBOARD
+        \li
+
+    \row
+        \li \c USB_MOUSE
+        \li
+
+    \row
+        \li \c USB_STORAGE
+        \li
+
+    \row
+        \li \c EVDEV
+        \li
+
+    \row
+        \li \c EVDEV_LIB
+        \li
+
+    \row
+        \li \c EVDEV_TI_TSC2004_TS
+        \li
+
+    \row
+        \li \c EVDEV_EETI_EXC7200_TS
+        \li
+
+    \row
+        \li \c AUDIO
+        \li
+
+    \row
+        \li \c GPUDEV_FSLVIVGPU
+        \li
+
+    \row
+        \li \c HASH
+        \li
+
+    \row
+        \li \c OPENSSL
+        \li
+
+    \row
+        \li \c RANDOM_ENTROPY_INJECT
+        \li
+
+    \row
+        \li \c IPNET_SSH
+        \li
+
+    \row
+        \li \c USER_MANAGEMENT
+        \li
+
+    \row
+        \li \c ICU
+        \li
+
+  \endtable
+
+  The following config variables are added implicitly and you need to remove them:
+
+  \table 80%
+    \header
+        \li Variable
+        \li Notes
+
+    \row
+        \li \c _WRS_CONFIG_EVDEV_OPTIMIZED_MODE
+        \li
+
+    \row
+        \li \c _WRS_CONFIG_EVDEV_DISPLAY_POINT_TRANSLATE
+        \li
+
+  \endtable
+
+  You need to add the following variables to the config:
+
+  \table 80%
+    \header
+        \li Variable
+        \li Value
+        \li Notes
+
+    \row
+        \li \c _WRS_CONFIG_RTP_SSP
+        \li \c y
+        \li
+
+    \row
+        \li \c _WRS_CONFIG_RTP_STACK_PROTECTOR
+        \li \c y
+        \li
+
+  \endtable
+
+  \section3 Example VIP configuration for i.MX 6 BSP
+  For more details please check WindRiver VxWorks Documentation.
 
   \table 80%
     \header
@@ -183,6 +346,454 @@
         \li Including these two components is necessary if you want to
             use \l {QTemporaryFile}. Note that you should also consider setting
             \c TMP_DIR_SIZE to appropriate value
+
+    \row
+        \li \c BUNDLE_RTP_DEVELOP
+        \li
+
+    \row
+        \li \c BUNDLE_RTP_DEPLOY
+        \li
+
+    \row
+        \li \c BUNDLE_STANDALONE_SHELL
+        \li
+
+    \row
+        \li \c DRV_AUDIO_FSL_SSI
+        \li
+
+    \row
+        \li \c DRV_AUDIO_FSL_SGTL5000
+        \li
+
+    \row
+        \li \c DRV_FSL_SDHC_CTRL
+        \li
+
+    \row
+        \li \c DRV_IMX_SDHC_CTRL
+        \li
+
+    \row
+        \li \c INCLUDE_EHCI_INIT
+        \li
+
+    \row
+        \li \c INCLUDE_FSL_IMX6Q_SABRELITE
+        \li
+
+    \row
+        \li \c DRV_MMCSTORAGE_CARD
+        \li
+
+    \row
+        \li \c DRV_SDSTORAGE_CARD
+        \li
+
+    \row
+        \li \c INCLUDE_AUDIO_LIB_CORE
+        \li
+
+    \row
+        \li \c INCLUDE_AUDIO_LIB_WAV
+        \li
+
+    \row
+        \li \c INCLUDE_CUSTOM_ENTROPY_ADD
+        \li
+
+    \row
+        \li \c INCLUDE_DEBUG_AGENT_START
+        \li
+
+    \row
+        \li \c INCLUDE_DEFAULT_TIMEZONE
+        \li
+
+    \row
+        \li \c INCLUDE_DISK_UTIL
+        \li
+
+    \row
+        \li \c INCLUDE_DOSFS
+        \li
+
+    \row
+        \li \c INCLUDE_DSAPARAM_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_END
+        \li
+
+    \row
+        \li \c INCLUDE_EVDEV_LIB_CORE
+        \li
+
+    \row
+        \li \c INCLUDE_EVDEV_LIB_KBD
+        \li
+
+    \row
+        \li \c INCLUDE_EVDEV_LIB_KBD_MAP_US
+        \li
+
+    \row
+        \li \c INCLUDE_EVDEV_LIB_PTR
+        \li
+
+    \row
+        \li \c INCLUDE_GENDSA_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_GENRSA_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_GETADDRINFO
+        \li
+
+    \row
+        \li \c INCLUDE_GETNAMEINFO
+        \li
+
+    \row
+        \li \c INCLUDE_HRFS
+        \li
+
+    \row
+        \li \c INCLUDE_HRFS_ACCESS_TIMESTAMP
+        \li
+
+    \row
+        \li \c INCLUDE_HRFS_FORMAT
+        \li
+
+    \row
+        \li \c INCLUDE_HRFS_HISPEED_WRITE_MODE
+        \li
+
+    \row
+        \li \c INCLUDE_IFCONFIG
+        \li
+
+    \row
+        \li \c INCLUDE_IO_REALPATH
+        \li This component is needed to enable the use of the realpath function needed for \c QFileInfo
+
+    \row
+        \li \c INCLUDE_IPATTACH
+        \li
+
+    \row
+        \li \c INCLUDE_IPCOM_SYSLOGD_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPCOM_SYSVAR_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPCOM_USE_RAM_DISK
+        \li
+
+    \row
+        \li \c INCLUDE_IPCOM_USE_TIME_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPDHCPC
+        \li
+
+    \row
+        \li \c INCLUDE_IPDNSC
+        \li
+
+    \row
+        \li \c INCLUDE_IPD_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPFTPC
+        \li
+
+    \row
+        \li \c INCLUDE_IPFTP_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPIFCONFIG_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPNETSTAT_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPNSLOOKUP_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPPING_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPROUTE_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPTRACE_ROUTE_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_IPWRAP_GETHOSTBYADDR
+        \li
+
+    \row
+        \li \c INCLUDE_IPWRAP_GETHOSTBYNAME
+        \li
+
+    \row
+        \li \c INCLUDE_IPWRAP_GETNAMEINFO
+        \li
+
+    \row
+        \li \c INCLUDE_IPWRAP_IFNAME
+        \li
+
+    \row
+        \li \c INCLUDE_IPWRAP_ROUTECMD
+        \li
+
+    \row
+        \li \c INCLUDE_MMAP
+        \li
+
+    \row
+        \li \c INCLUDE_PING
+        \li
+
+    \row
+        \li \c INCLUDE_PIPES
+        \li
+
+    \row
+        \li \c INCLUDE_POSIX_MAPPED_FILES
+        \li
+
+    \row
+        \li \c INCLUDE_POSIX_PIPES
+        \li
+
+    \row
+        \li \c INCLUDE_POSIX_PTHREAD_SCHEDULER
+        \li
+
+    \row
+        \li \c INCLUDE_POSIX_SHM
+        \li
+
+    \row
+        \li \c INCLUDE_RAM_DISK
+        \li
+
+    \row
+        \li \c INCLUDE_RAM_DISK_FORMAT_HRFS
+        \li
+
+    \row
+        \li \c INCLUDE_RANDOM_NUM_GEN
+        \li
+
+    \row
+        \li \c INCLUDE_ROMFS
+        \li
+
+    \row
+        \li \c INCLUDE_ROUTECMD
+        \li
+
+    \row
+        \li \c INCLUDE_SC_PIPE
+        \li
+
+    \row
+        \li \c INCLUDE_SC_POSIX_PIPE
+        \li
+
+    \row
+        \li \c INCLUDE_SD_BUS
+        \li
+
+    \row
+        \li \c INCLUDE_SECURITY
+        \li
+
+    \row
+        \li \c INCLUDE_SEC_KEY_STORE_CMD
+        \li
+
+    \row
+        \li \c INCLUDE_SHELL
+        \li
+
+    \row
+        \li \c INCLUDE_SSH
+        \li
+
+    \row
+        \li \c INCLUDE_STANDALONE_SYM_TBL
+        \li
+
+    \row
+        \li \c INCLUDE_STARTUP_SCRIPT
+        \li
+
+    \row
+        \li \c INCLUDE_TMP_DIR
+        \li
+
+    \row
+        \li \c INCLUDE_UN_COMP
+        \li
+
+    \row
+        \li \c INCLUDE_USB_GEN2_KEYBOARD
+        \li
+
+    \row
+        \li \c INCLUDE_USB_GEN2_MOUSE
+        \li
+
+    \row
+        \li \c INCLUDE_USB_GEN2_STORAGE_INIT
+        \li
+
+    \row
+        \li \c INCLUDE_USER_DATABASE
+        \li
+
+    \row
+        \li \c INCLUDE_USER_IDENTIFICATION
+        \li
+
+    \row
+        \li \c INCLUDE_VRFS
+        \li
+
+    \row
+        \li \c INCLUDE_VXBUS_SHOW
+        \li
+
+    \row
+        \li \c DRV_TOUCH_SCREEN_TI_TSC2004
+        \li
+
+    \row
+        \li \c DRV_TOUCH_SCREEN_EETI_EXC7200
+        \li
+
+    \row
+        \li \c INCLUDE_FBDEV_FSLIPU_0
+        \li
+
+    \row
+        \li \c INCLUDE_FBDEV_SPLASH
+        \li
+
+    \row
+        \li \c INCLUDE_GPUDEV_FSLVIV_API
+        \li
+
+    \row
+        \li \c INCLUDE_GPUDEV_FSLVIV_API_INIT
+        \li
+
+  \endtable
+
+  The following components are added implicitly and you need to remove them:
+
+  \table 80%
+    \header
+        \li Layer
+        \li Notes
+
+    \row
+        \li \c INCLUDE_FTP
+        \li
+
+    \row
+        \li \c INCLUDE_SHELL_SECURITY
+        \li
+
+  \endtable
+
+  \section4 VIP Parameters
+
+  You need to add the following parameters for Qt to run properly on VxWorks:
+
+  \table 80%
+    \header
+        \li Parameter
+        \li Example value
+        \li Notes
+
+    \row
+        \li \c SEC_VAULT_KEY_ENCRYPTING_PW
+        \li \c '"vxTarget"'
+        \li Example value
+
+    \row
+        \li \c UDB_STORAGE_PATH
+        \li \c '"/ram/vxUserDB.txt"'
+        \li Example value
+
+    \row
+        \li \c UDB_HASH_KEY
+        \li \c '"123456789"'
+        \li Example value
+
+    \row
+        \li \c UDB_HASH_KEY_LEN
+        \li \c 9
+        \li Example value, see previous
+
+    \row
+        \li \c FSLVIV_RTP_COMMAND_BUFFER_QUEUE
+        \li \c 32
+        \li For 'arm' architecture
+
+    \row
+        \li \c SYS_CLK_RATE
+        \li \c 100
+        \li
+
+    \row
+        \li \c RTP_PTHREAD_STACK_SIZE_DEFAULT
+        \li \c 131072
+        \li
+
+    \row
+        \li \c TMP_DIR_SIZE
+        \li \c 614400
+        \li Minimum value for passing Qt internal tests
+
+    \row
+        \li \c NUM_FILES
+        \li \c 300
+        \li
+
+    \row
+        \li \c RTP_FD_NUM_MAX
+        \li \c 300
+        \li
+
+    \row
+        \li \c HRFS_DEFAULT_MAX_FILES
+        \li \c 300
+        \li
 
   \endtable
 
@@ -252,10 +863,10 @@
     ./configure \
         -cmake-generator "Ninja" \
         -icu \
-        -no-feature-timezone \
         -no-feature-vulkan \
         -platform vxworks-clang \
         -qt-host-path <path_to_qt6_host_installation_dir> \
+        -submodules "qtbase,qtdeclarative,qtmultimedia,qtquick3d,qtgraphs,qtimageformats,qtsvg,qtshadertools,qtvirtualkeyboard" \
         -sysroot <path_to_vxworks_vsb_dir>/fsl_imx6_<vsb_version>_VSB \
         -qpa "eglfs" \
         -DQT_QPA_EGLFS_INTEGRATION=eglfs_viv \
@@ -291,9 +902,9 @@
   \section1 Running Qt Applications
 
   The following example shows how to start an application when Qt 6 is built using
-  shared libraries. With a statically built Qt 6, there is no need to use the
-  LD_LIBRARY_PATH environment variable. This variable is only needed to point
-  the location of VxWorks shared libraries (for example libc and OpenGL ES 2.0).
+  shared libraries. With a statically built Qt 6, you don't need to use the
+  \c LD_LIBRARY_PATH environment variable for the Qt libraries, but it needs to point
+to the location of VxWorks shared libraries (for example libc and OpenGL ES 2.0).
   It is not needed for Qt 6 static libraries.
 
   \badcode
@@ -308,7 +919,7 @@
 
   Systems with a fixed amount of dedicated video memory may need extra care
   before running Qt application based on Qt Quick or classes like
-  QOpenGLWidget. The default setting may be insufficient for such applications,
+  \l{QOpenGLWidget}. The default setting might be insufficient for such applications,
   especially when they are displayed on a high resolution (for example, full HD)
   screen. In this case they might start failing in unexpected ways. It is
   therefore recommended to ensure that there is at least 128 MB of GPU memory
