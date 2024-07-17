@@ -57,6 +57,21 @@ Qt Android uses some environment variables to enable/disable certain workarounds
 \row
     \li QT_ANDROID_MINIMUM_MOUSE_DOUBLE_CLICK_DISTANCE
     \li
+\row
+    \li QT_ANDROID_BACKGROUND_ACTIONS_QUEUE_SIZE
+    \li When an Android app is paused or inactive, it may continue to receive
+    UI updates from components like a BroadcastReceiver or Service. These updates
+    are queued until the app resumes. The queue can grow indefinitely, leading
+    to extra memory usage and latency when processing these updates once the app is
+    active again.
+    This environment variable addresses this issue by introducing a size limit
+    for the queue. Once the specified limit is reached, the oldest entry is
+    discarded to add the newest entry, therefore preventing unbound growth.
+    By default, the queue is unbound and this environment variable is not set.
+    Additionally, if set to any negative number the queue remains unbound.
+
+    For example, QT_ANDROID_BACKGROUND_ACTIONS_QUEUE_SIZE=100 limits the queue
+    to 100 actions.
 \endtable
 
 \note Though related, these are not the same as CMake commands or variables used
