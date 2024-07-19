@@ -997,10 +997,12 @@
     \brief A summary of the translation rules for plural forms produced by Qt's
     translation tools.
 
-    The table below shows the specific rules that Qt Linguist and \c lrelease
-    follow for a selection of languages. Cells marked \e otherwise indicate the
-    form the tools use when none of the other rules are appropriate for a
-    specific language.
+    Qt Linguist and \c lrelease support plural forms for all languages that are
+    supported by \l QLocale.
+
+    The table below shows the specific rules for a small selection of languages.
+    Cells marked \e otherwise indicate the form the tools use when none of the
+    other rules are appropriate for a specific language.
 
     \table 80%
     \header \li Language \li Rule 1 \li Rule 2 \li Rule 3
