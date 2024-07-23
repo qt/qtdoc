@@ -212,12 +212,17 @@
     \section2 Qt Network Auth Module
     \list
         \li Added QOAuthUriSchemeReplyHandler class, which handles
-            private/custom and https URI scheme redirects (on supported
-            platforms).
+            private/custom and https URI scheme redirects (supported
+            platforms: iOS, Android, and \macos).
         \li Added Proof of Key Code Exchange (PKCE) support to the
             QOAuth2AuthorizationCodeFlow class. PKCE is a recommended
             security measure to mitigate authorization code interception
             attacks.
+        \li Following input from several users we went back and addressed
+            many issues with the aim to generally improve qnetworkauth.
+            This includes several bug fixes, improvements, deprecations,
+            documentation additions, and also an overview documentation
+            to help with getting started.
     \endlist
 
     \section2 Qt Positioning Module
