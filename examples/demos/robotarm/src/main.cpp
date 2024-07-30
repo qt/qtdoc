@@ -12,6 +12,8 @@
 #include "app_environment.h"
 #include "import_qml_plugins.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 int main(int argc, char *argv[])
 {
     set_qt_environment();
@@ -19,7 +21,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    const QUrl url(u"qrc:Main/main.qml"_qs);
+    const QUrl url(u"qrc:Main/main.qml"_s);
     QObject::connect(
             &engine,
             &QQmlApplicationEngine::objectCreated,
