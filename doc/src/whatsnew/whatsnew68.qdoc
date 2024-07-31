@@ -113,6 +113,13 @@
             \li \l QUuid
             \li \l QVersionNumber
         \endlist
+        \li The QtJniTypes namespace, with macros to declare Java types with
+            their JNI signature, is promoted out of technology preview and
+            documented.
+        \li The variadic template versions of QJniObject and QJniEnvironment
+            APIs are no longer preliminary and fully documented.
+        \li The new QJniArray template class makes it easy to work with Java
+            arrays from C++ code.
     \endlist
 
     \section2 Qt Graphs Module
