@@ -228,11 +228,11 @@
     $HOME/qnx_install/bin/qt-cmake -DQT_CHAINLOAD_TOOLCHAIN_FILE=$HOME/qnx.cmake .
     \endcode
 
-    When building applications in Qt Creator using Qt installation that has not been
+    When building applications in \QC using Qt installation that has not been
     built in your machine, the \c {CMAKE_TOOLCHAIN_FILE} variable, pointing to local toolchain
      file, needs to be added to kit configuration (\b {Edit > Preferences > Kits}).
 
-    For more information on connecting and adding kits for QNX devices while using Qt Creator,
+    For more information on connecting and adding kits for QNX devices while using \QC,
     see \l {https://doc.qt.io/qtcreator/creator-developing-qnx.html} {Connecting QNX devices}.
 
     \section1 Third party libraries

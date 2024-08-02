@@ -12,7 +12,7 @@
     and supports a wide range of features and use-cases.
 
     To start your Qt for Android application, download and install Qt for Android
-    and use the Qt Creator IDE, follow the instructions on the
+    and use the \QC IDE, follow the instructions on the
     \l{Getting Started with Qt for Android} page.
 
     If you have an existing Android application try Qt's \l{\QtTAS}{plugin}
@@ -62,8 +62,8 @@
         \li \l{Qt Overviews} - list of topics about application development
         \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
         \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
-        \li \l{Qt Creator: Creating a Mobile Application}
-        \li \l{Qt Creator: Specifying Android Device Settings}
+        \li \l{\QC: Tutorial: Mobile application}
+        \li \l{\QC: Set up Android development environment}
     \endlist
 */
 
@@ -75,7 +75,7 @@
     \nextpage android-how-it-works.html
 
     The video below is a beginner's guide to using the Qt for Android toolchain,
-    including the Qt Creator IDE, to get you started developing Android apps.
+    including the \QC IDE, to get you started developing Android apps.
 
     \youtube 5OiIqFTjUZI
 
@@ -107,9 +107,9 @@
             \endlist
     \endlist
 
-    The easiest way to manage these dependencies is by using Qt Creator's built in
+    The easiest way to manage these dependencies is by using \QC's built in
     Android development setup. For more information, see
-    \l{Qt Creator: Specifying Android Device Settings}.
+    \l{\QC: Set up Android development environment}.
 
     \section2 Manually Installing the Prerequisites
 
@@ -152,7 +152,7 @@
     for your operating system and extract it to the appropriate path as stated below.
 
 //! [Android SDK Paths]
-    The Android SDK is commonly installed by Qt Creator or Android Studio
+    The Android SDK is commonly installed by \QC or Android Studio
     in the following locations:
     \list
         \li Linux: ~/Android/Sdk/
@@ -210,7 +210,7 @@
     \section4 Linux
 
     The following dependencies are needed for using tools such as \c adb or \c gdb which
-    can be used by Qt Creator:
+    can be used by \QC:
 
     \badcode
     sudo apt-get install libstdc++6 libncurses5
@@ -226,7 +226,7 @@
     \l{Qt Examples And Tutorials#Mobile}{Mobile Examples}.
 
     To develop a simple application from scratch, see
-    \l {Qt Creator: Creating a Mobile Application}.
+    \l {\QC: Tutorial: Mobile application}.
 */
 
 /*!

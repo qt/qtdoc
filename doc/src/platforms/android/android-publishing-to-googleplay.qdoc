@@ -11,9 +11,9 @@
 
 \l{Qt for Android} provides a complete solution to develop, build, and package
 your applications for Android. Most of these tasks, especially packaging and
-deployment, are handled by Qt Creator, providing a rich developer experience.
+deployment, are handled by \QC, providing a rich developer experience.
 
-Every time you run the application using Qt Creator, an Android Application
+Every time you run the application using \QC, an Android Application
 Package (APK) is created and deployed onto the target of your choice
 (device or emulator). With a few minor changes to packaging settings, you can
 publish your application on Google Play.
@@ -25,7 +25,7 @@ to Google Play, follow these instructions to create an \c{.apk} or \c{.aab}
 that can go live on Google Play:
 
     \list 1
-        \li Open your project with Qt Creator choosing a \c{Release Build}.
+        \li Open your project with \QC choosing a \c{Release Build}.
 
         \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
         > \uicontrol {Create Templates} to create the Android package template files
@@ -57,8 +57,8 @@ that can go live on Google Play:
 
         \li Set up a \l{Android: Android keystore system}{keystore} to sign your
         package. You can create a new keystore if you do not have one. For more
-        information, see \l{Qt Creator: Specifying Settings for Packages}
-        {Signing Android Packages}.
+        information, see \l{\QC: Android Deploy Configuration}
+        {Specifying Settings for Packages}.
 
         \li Locate the generated package:
 
@@ -69,7 +69,7 @@ that can go live on Google Play:
             <build_path>/android-build/build/outputs/apk/release/android-build-release.apk
             \endcode
 
-            \note In Qt Creator, select \uicontrol{Projects} > \uicontrol{Build}
+            \note In \QC, select \uicontrol{Projects} > \uicontrol{Build}
                 > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
                 \uicontrol{Open package location after build} to build the
                 application's \c{.apk} and open the directory containing the
@@ -77,7 +77,7 @@ that can go live on Google Play:
 
         \li For AAB packages, select \uicontrol{Projects} > \uicontrol{Build}
             > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
-            \uicontrol{Build .aab (Android App Bundle)} for Qt Creator to generate
+            \uicontrol{Build .aab (Android App Bundle)} for \QC to generate
             the \c{.aab} file, then locate the package at:
 
             \badcode

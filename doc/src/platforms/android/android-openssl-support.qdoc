@@ -25,7 +25,7 @@ Then use the following line to check if SSL is supported:
 qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
 \endcode
 
-Check Qt Creator's \c {Application Output} section or the Android \c logcat for
+Check \QC's \c {Application Output} section or the Android \c logcat for
 that log message.
 
 \section1 Adding OpenSSL Libraries
@@ -91,8 +91,9 @@ ANDROID_EXTRA_LIBS += \
 \note When targeting multiple architectures, include OpenSSL libraries
 for all the targeted architectures.
 
-Using Qt Creator, it is possible to add extra libraries. For more
-information, see \l {Qt Creator: Adding Libraries to Projects}.
+Using \QC, it is possible to add extra libraries. For more
+information, see \l {\QC: Add libraries to CMake projects} and
+\l{\QC: Add libraries to qmake projects}.
 
 \section1 Building OpenSSL for Android
 

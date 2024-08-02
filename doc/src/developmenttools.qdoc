@@ -13,12 +13,12 @@
     The easiest way to start application development with Qt is to \l{Downloads}
     {download} and install Qt. Qt installations contain Qt libraries, examples,
     documentation, and the necessary development tools, such as the
-    \l{Qt Creator Manual}{Qt Creator} integrated development environment (IDE).
+    \l{\QC Documentation}{\QC} integrated development environment (IDE).
     For more information, visit the \l{Getting Started with Qt} page.
 
-    \section1 Qt Creator
+    \section1 \QC
 
-    \l{Qt Creator Manual}{Qt Creator} provides you with tools for accomplishing
+    \l{\QC Documentation}{\QC} provides you with tools for accomplishing
     your tasks throughout the whole application development life-cycle, from
     creating a project to deploying the application on the target platforms. Qt
     Creator automates some tasks, such as creating projects, by providing
@@ -33,7 +33,7 @@
 
     \section1 Design Tools
 
-    \b{Qt Widgets Designer} is a tool within Qt Creator for designing and building
+    \b{Qt Widgets Designer} is a tool within \QC for designing and building
     graphical user interfaces (GUIs) for Qt Widgets. You can compose and
     customize your widgets or dialogs in a visual editor, and test them using
     different styles and resolutions. \QD is also available as a
@@ -51,22 +51,22 @@
     is a tool that provides rich and fluid components,
     a code editor, timeline-based animations, visual effects, layouts, and
     a live-preview for prototyping. Qt Design Studio generates code for
-    developers to use in Qt Creator. For more information about the tools for
+    developers to use in \QC. For more information about the tools for
     designers, visit the \l{Qt Design Studio Manual}{Qt Design Studio} manual.
 
 
     \section1 Build Tools
 
-    Qt Creator creates project templates for different build systems. You can
+    \QC creates project templates for different build systems. You can
     create \e kits for different combinations of target platforms and build
-    environments. Qt Creator supports CMake, qmake, Qbs, Autotools, Nimble,
+    environments. \QC supports CMake, qmake, Qbs, Autotools, Nimble,
     Meson, and IncrediBuild projects.
 
-    For more information about project templates and building in Qt Creator,
+    For more information about project templates and building in \QC,
     see:
     \list
-    \li \l{Qt Creator: Build Systems}
-    \li \l{Qt Creator: Building for Multiple Platforms}
+    \li \l{\QC: Select the build system}
+    \li \l{\QC: Build for many platforms}
     \endlist
 
 

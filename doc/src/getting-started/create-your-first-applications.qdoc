@@ -8,7 +8,7 @@
     \brief Creating Qt applications.
 
     Learn the basics of Qt and Qt Quick development by following the tutorials
-    that illustrate how to use \l{Qt Creator Manual}{Qt Creator} or
+    that illustrate how to use \l{\QC Documentation}{\QC} or
     \l{Qt Design Studio Manual}{Qt Design Studio} to create simple applications
     and build and run them on target platforms:
 
@@ -20,24 +20,27 @@
     \row
         \li Qt Widgets
         \li \list
-                \li \l{Qt Creator: Creating a Qt Widget Based Application}
-                    {Text Finder}
+                \li \l{\QC: Tutorial: Qt Widgets application}{Text Finder}
                 \li \l{Getting Started Programming with Qt Widgets}{Notepad}
             \endlist
         \li \l{Qt Widgets Examples}
     \row
         \li Qt Quick
         \li \list
-                \li \l{Qt Creator: Creating a Qt Quick Application}
-                    {Qt Creator: Transitions}
+                \li \l{\QC: Tutorial: Qt Quick application}{\QC: Transitions}
                 \li \l{Getting Started Programming with Qt Quick}
-                    {Qt Creator: Alarms}
+                    {\QC: Alarms}
                 \li \l{Qt Design Studio: Tutorials}{Qt Design Studio: Log In UI}
             \endlist
         \li \l{Qt Quick Examples and Tutorials}
     \row
         \li Python
-        \li \l{Qt for Python Tutorials}
+        \li \list
+                \li \l{Qt for Python Tutorials}
+                \li \l{\QC: Tutorial: Qt Quick and Python}
+                \li \l{\QC: Tutorial: Qt Widgets and Python}
+                \li \l{\QC: Tutorial: Qt Widgets UI and Python}
+            \endlist
         \li \l{Qt for Python Examples}
     \endtable
 
@@ -45,7 +48,7 @@
     applications with Qt 6, see the \l {Qt 6 QML Book}. It focuses on Qt Quick,
     but also provides the information needed to use QML together with C++.
 
-    The following tutorials illustrate how to use Qt Creator or Qt Design Studio
+    The following tutorials illustrate how to use \QC or Qt Design Studio
     to develop simple applications for a particular platform:
 
     \table
@@ -55,8 +58,7 @@
         \li Examples
     \row
         \li Mobile Devices
-        \li \l{Qt Creator: Creating a Mobile Application}
-            {Qt Creator: Accelbubble}
+        \li \l{\QC: Tutorial: Mobile application}{\QC: Accelbubble}
         \li \l[Qt Examples And Tutorials]{Mobile}{Mobile Examples}
     \row
         \li Embedded Devices

@@ -44,7 +44,7 @@
     applications are typically defined using the \l{Build with CMake}{CMake} or
     \l qmake build tools. Both tools can generate an \c .xcodeproj file that
     can then be loaded and built from the command line, or with Xcode.
-    \l{Qt Creator Manual}{Qt Creator} also directly supports building, running,
+    \l{\QC Documentation}{\QC} also directly supports building, running,
     debugging, and profiling CMake and qmake projects for iOS.
 
     The minimum deployment target for Qt applications is specified in
@@ -145,13 +145,13 @@
     \endcode
 
 
-    \section2 Building Applications with Qt Creator
+    \section2 Building Applications with \QC
 
     You can find information on how to set up and run Apple mobile device
-    applications in Qt Creator's manual:
+    applications in \QC documentation:
 
     \list
-        \li \l{Qt Creator: Connecting iOS devices}{Connecting Apple Mobile Devices}.
+        \li \l{\QC: Connect iOS devices}.
     \endlist
 
     As mentioned previously, you must have Xcode installed.
@@ -172,8 +172,8 @@
 
     \section1 Examples for iOS
 
-    In Qt Creator, tested examples on iOS can be looked up. Use the \c ios
-    keyword to search for examples in the Qt Creator Welcome mode. Note that
+    In \QC, tested examples on iOS can be looked up. Use the \c ios
+    keyword to search for examples in the \QC Welcome mode. Note that
     some examples may have limited functionality.
 
     For a list of examples known to work on iOS devices, visit
@@ -239,9 +239,9 @@
     application to iOS using the qrc approach:
 
     \list 1
-     \li Open the existing project in Qt Creator and configure it with
+     \li Open the existing project in \QC and configure it with
          \e {iOS} or \e {iOS Simulator} kit. For more information, see
-         \l{Qt Creator: Configuring Projects}.
+         \l{\QC: Configuring Projects}.
 
      \li Update all local directory imports in the \c{qml} files to use a local
          namespace. For example, to import the QML documents in the "contents"
@@ -253,7 +253,7 @@
 
      \li Identify all the resources used by your application and add them to one
          or more qrc files.
-         Qt Creator updates your qmake project file with the \c RESOURCES
+         \QC updates your qmake project file with the \c RESOURCES
          variable, listing the qrc files you added.
 
      \li To load or refer to the resources in the qrc file from a C++ file,
@@ -269,8 +269,8 @@
          using the relative path to the document. Such references do not
         require the "\c{qrc:}" or "\c{:/}" prefix.
 
-     \li Update the "Run" settings for your project as described in the
-         \l{Qt Creator: Specifying Run Settings}
+     \li Update the "Run" settings for your project as described in
+         \l{\QC: Configure projects for running}
 
      \li If your application uses imports or plugins that depend on special Qt
          modules, these Qt modules should be added to your build configuration file.
@@ -319,7 +319,7 @@
      \li Save the changes to your project and run the application.
     \endlist
 
-    Qt Creator deploys your application on the iOS device, if the
+    \QC deploys your application on the iOS device, if the
     device is detected and configured correctly in Xcode. It is also possible to
     test the application in iOS Simulator. For more information, see
     \l {http://doc.qt.io/qtcreator/creator-developing-ios.html}{Connecting iOS Devices}.
@@ -335,7 +335,7 @@
     \section1 Deployment
 
     Developing, building, running, and debugging a Qt for iOS application can all be done
-    with Qt Creator on \macos. The toolchain is provided by Apple's Xcode,
+    with \QC on \macos. The toolchain is provided by Apple's Xcode,
     and running qmake or CMake on a project targeted for iOS will also generate an
     Xcode project file (.xcodeproj), with initial application settings. As Qt
     Creator does not provide an interface for managing all of the settings specific
@@ -693,7 +693,7 @@
     Verifying that your Qt for iOS application is ready for publishing to App Store can be done
     as described in \l {https://developer.apple.com/Library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html} {Submitting the Application}.
     To submit the application, you can use Xcode, or the Application Loader (installed with Xcode).
-    Qt Creator does not provide an interface for managing all of the settings in an Xcode project configuration.
+    \QC does not provide an interface for managing all of the settings in an Xcode project configuration.
 
     The application should be tested on the iOS versions and devices that it is
     targeted to support. The minimum deployment target for Qt applications

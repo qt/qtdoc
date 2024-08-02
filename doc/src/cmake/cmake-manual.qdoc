@@ -98,7 +98,7 @@
     \c{CMake} is a group of tools that allow to build, test, and package
     applications. Just like Qt, it is available on all major development
     platforms. It is also supported by various IDE's, including
-    \l{Qt Creator Manual}{Qt Creator}.
+    \l{\QC Documentation}{\QC}.
 
     In this section we will show the most basic way to use Qt in a CMake
     project. First, we create a basic console application. Then, we extend the
@@ -158,7 +158,7 @@
     that we use below.
 
     For \c{find_package} to be successful, CMake must find the Qt
-    installation. \l{Qt Creator Manual}{Qt Creator} and \c{qt-cmake}
+    installation. \l{\QC Documentation}{\QC} and \c{qt-cmake}
     (\c{qt-cmake.bat} on Windows) handle this transparently.
 
     When using vanilla CMake directly, there are different ways you can tell

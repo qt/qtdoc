@@ -101,15 +101,15 @@
     the warnings during compilation for the code that will have to be changed
     manually.
 
-    \section1 How to apply Clazy checks within Qt Creator
+    \section1 How to apply Clazy checks within \QC
 
-    You can access Clazy checks within Qt Creator by selecting \uicontrol Tools >
-    \uicontrol Options > \uicontrol Analyzer (or \uicontrol {Qt Creator} >
+    You can access Clazy checks within \QC by selecting \uicontrol Tools >
+    \uicontrol Options > \uicontrol Analyzer (or \uicontrol {\QC} >
     \uicontrol Preferences > \uicontrol Analyzer on macOS).
 
     You must create your own configuration and select the Clazy checks dedicated
     to porting that you can find under Level 2 and Manual Level sections in
-    Qt Creator version 4.14.1, or later. You can use the \e qt6 filter to locate
+    \QC version 4.14.1, or later. You can use the \e qt6 filter to locate
     most of the checks. Be careful to select only the checks present in the above
     given list.
 
@@ -122,11 +122,11 @@
     To run the checks, select \uicontrol Analyze > \uicontrol {Clang-Tidy and Clazy}.
 
     For more information about configuring and running Clazy checks, see
-    \l{Qt Creator: Using Clang Tools}.
+    \l{\QC: Clang Tools}.
 
     \section2 A word of caution
 
-    Within Qt Creator, conflicts between fixits are not being warned against.
+    Within \QC, conflicts between fixits are not being warned against.
     If there is more than one fixit on the same line, be careful when applying
     the fixits.
 

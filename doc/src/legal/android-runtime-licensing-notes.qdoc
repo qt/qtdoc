@@ -13,7 +13,7 @@ apps that depend on features such as STL, exceptions, or RTTI, must include an a
 native run-time library that provides the features they need.
 
 When built with g++, Qt will use the GNU libstdc++ library which is distributed as part of the Google
-Android NDK. Qt Creator will copy this library into the .APK for any Qt-based Android app. The library
+Android NDK. \QC will copy this library into the .APK for any Qt-based Android app. The library
 will then be loaded by the app on start-up to meet the run-time requirements of Qt.The GNU C++ run-time
 is licensed under the
 \l{http://gcc.gnu.org/onlinedocs/libstdc++/manual/appendix_gpl.html}{GNU General Public License version 3} with

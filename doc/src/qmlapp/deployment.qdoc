@@ -15,10 +15,10 @@ creating a QQuickView or a QQmlEngine, as described below. In addition, the Decl
 package includes the \c qml tool, which loads \c .qml files. This tool is useful for developing
 and testing QML code without having to write a C++ application to load the QML runtime.
 
-\section1 Deploying Applications with Qt Creator
+\section1 Deploying Applications with \QC
 
-\l{Qt Creator Manual}{Qt Creator} deploys and packages QML applications to various platforms.
-For mobile devices, Qt Creator can directly bundle applications to the respective platform
+\l{\QC Documentation}{\QC} deploys and packages QML applications to various platforms.
+For mobile devices, \QC can directly bundle applications to the respective platform
 package formats, such as APK.
 
 When you run your applications on the target platform, your application needs to access
@@ -221,8 +221,7 @@ how to do this. It's advisable to still follow the path naming convention outlin
 \section1 Related Information
 \list
     \li \l{Deploying Qt Applications}
-    \li \l{Qt Creator: Running on Multiple Platforms}{Running on Multiple Platforms}
-    \li \l{Qt Creator: Deploying to Devices}{Deploying to Devices}
+    \li \l{\QC: Run on many platforms}
     \li \l{qtqml-cppintegration-data.html}{qtqml-cppintegration-exposecppattributes.html}{Exposing Attributes of C++ Types to QML}
     \li \l{The Qt Resource System}
 \endlist

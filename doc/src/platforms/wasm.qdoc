@@ -199,9 +199,9 @@ to all available addresses.
     python /path/to/qtbase/util/wasm/qtwasmserver/qtwasmserver.py --all
 \endcode
 
-\section2 Building Applications using Qt Creator
+\section2 Building Applications using \QC
 
-    \l{https://doc.qt.io/qtcreator/creator-setup-webassembly.html}{Setting Up Qt Creator for WebAssembly}.
+    \l{\QC: Build applications for the Web}.
 
 \section2 Deploying Applications on the web
 
@@ -751,7 +751,7 @@ usage. Build with optimizations enabled to minimize the overhead.
 \section2 Debugging and Profiling
 
 Wasm debugging is done on browser JavaScript console, debugging applications on Wasm
-directly within Qt Creator is not possible.
+directly within \QC is not possible.
 
 \list
 \li Qt debug and logging output is printed on the JavaScript console, which can be

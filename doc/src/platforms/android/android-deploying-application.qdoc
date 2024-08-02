@@ -50,17 +50,17 @@
 
     \section2 Generating the Application Bundle
 
-    It is recommended to use Qt Creator to
-    \l {Qt Creator: Deploying to Android}{deploy Qt for Android apps}. Otherwise,
+    It is recommended to use \QC to
+    \l {\QC: Android Deploy Configuration}{deploy Qt for Android apps}. Otherwise,
     the same can be done through the command line with the help of CMake or qmake.
     For more information, see \l {Building Qt for Android Projects from Command Line}.
 
     The packaging and deployment process is handled by CMake or qmake which, under
     the hood, use the \l{androiddeployqt} tool to manage the specifics of building
-    and deploying an Android app. Qt Creator also uses the same tool.
+    and deploying an Android app. \QC also uses the same tool.
 
     \section1 Extending Qt with Android Facilities
-    //! To not break Qt Creator link
+    //! To not break \QC link
     \target Android Package Templates
 
     By default, Qt for Android does most of the heavy lifting to get an Android
@@ -73,8 +73,8 @@
 
     The default templates used by Qt are found under the Qt for Android install path,
     for example, under \c {~/Qt/<version>/android_<abi>/src/android/templates} for Unix.
-    To use those templates, it's possible to have Qt Creator copy them to your project,
-    see \l{Qt Creator: Editing Manifest Files}. Or you can manually copy them over to
+    To use those templates, it's possible to have \QC copy them to your project,
+    see \l{\QC: Android Deploy Configuration}. Or you can manually copy them over to
     your project source under a \c android sub-directory. Then make sure to define the
     following property in your \c CMakeLists.txt:
 
@@ -89,7 +89,7 @@
     android: ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     \endcode
 
-    \note When using Qt Creator, files under this path are by default visible
+    \note When using \QC, files under this path are by default visible
     under the project files if CMake is used. To achieve the same behavior with
     qmake, add those file paths manually to your project using \l DISTFILES.
 
@@ -114,7 +114,7 @@
 
     For more information about the \c AndroidManifest.xml, see
     \l{Qt Android Manifest File Configuration}{Android Manifest file documentation},
-    and Qt Creator's page for \l{Qt Creator: Editing Manifest Files}.
+    and {\QC: Android Deploy Configuration}{Editing Manifest Files}.
 
 
     \section2 Gradle Files

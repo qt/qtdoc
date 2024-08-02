@@ -79,18 +79,18 @@ If we save that document as "HelloWorld.qml", we can load and display it.
 \section1 Creating and Running QML Projects
 
 To display the graphical scene defined by the QML document, it may be loaded
-with \l{Qt Creator Manual}{Qt Creator}. For simple UI files such as this one,
+with \l{\QC Documentation}{\QC}. For simple UI files such as this one,
 select \gui{File > New File or Project > Application (Qt Quick) > Qt Quick
-Application - Empty} from within Qt Creator.
+Application - Empty} from within \QC.
 
 Pressing the green \gui{Run} button runs the application. You should see the
 text \gui{Hello, World!} in the center of a red rectangle.
 
-For more information about creating and running projects in Qt Creator, visit
+For more information about creating and running projects in \QC, visit
 the following pages:
 \list
-\li \l{Qt Creator: Creating Qt Quick Projects}{Creating Qt Quick Projects}
-\li \l{Qt Creator: Building and Running an Example}{Building and Running an Example}
+\li \l{\QC: Create Qt Quick Applications}
+\li \l{\QC: Tutorial: Build and run}
 \endlist
 
 \section1 Creating QML Applications with Controls
@@ -153,7 +153,7 @@ The application has two menu items and a button in the middle. Clicking on the
 
 There are also different navigation methods and different controls such as
 buttons and sliders. The following examples are available from
-Qt Creator and demonstrate different controls and layouts.
+\QC and demonstrate different controls and layouts.
 
 \list
 \li \l{Qt Quick Layouts - Basic Example}{Basic Layouts}

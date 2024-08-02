@@ -144,8 +144,8 @@
     \section2 Signing the Android Package
 
     If an APK intended for release is built, then it should be signed.
-    For more information on signing the package with Qt Creator, see
-    \l{Qt Creator: Signing Android Packages}{Signing Android packages}. Otherwise,
+    For more information on signing the package with \QC, see
+    \l{\QC: Android Deploy Configuration}{Signing Android Packages}. Otherwise,
     check the CMake variables \l QT_ANDROID_SIGN_APK and \l QT_ANDROID_SIGN_AAB.
 
     \section2 Building an AAR (Android Archive) File

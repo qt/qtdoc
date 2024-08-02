@@ -35,11 +35,10 @@ your event loop.
 
 \section1 Profiling
 
-The most important tip is: use the QML profiler included with Qt Creator. Knowing
+The most important tip is: use the QML Profiler included in \QC. Knowing
 where time is spent in an application will allow you to focus on problem areas which
-actually exist, rather than problem areas which potentially exist. See the
-\l{Qt Creator: Profiling QML Applications}{Qt Creator manual} for more
-information on how to use the QML profiling tool.
+actually exist, rather than problem areas which potentially exist. See
+\l{\QC: Profiling QML Applications} for more information.
 
 Determining which bindings are being run the most often, or which functions your
 application is spending the most time in, will allow you to decide whether you need

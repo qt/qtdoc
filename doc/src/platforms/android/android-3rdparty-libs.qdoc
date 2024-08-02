@@ -16,9 +16,9 @@
     \section1 Prerequisites
 
     This guide assumes that the \l{androiddeployqt} tool is used for constructing
-    the deployment package. When using Qt Creator for building and deploying,
+    the deployment package. When using \QC for building and deploying,
     androiddeployqt is used behind the scenes, so this also applies to
-    development with Qt Creator. Explaining how to access the library's APIs after
+    development with \QC. Explaining how to access the library's APIs after
     being included in the project is not in the scope of this guide. For
     more information, see \l{Extending Qt with Android Facilities}.
 
@@ -31,7 +31,7 @@
     \c android under the root of the project source. For more information,
     see \l{Android Libraries}.
 
-    If you are using Qt Creator, you can quickly set up the packaging directory
+    If you are using \QC, you can quickly set up the packaging directory
     structure by selecting \uicontrol Projects > \uicontrol Build >
     \uicontrol {Build Android APK} > \uicontrol {Create Templates}. This creates
     a directory for your \l{Extending Qt with Android Facilities}{Android package customizations}.
