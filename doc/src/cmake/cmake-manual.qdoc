@@ -259,6 +259,24 @@
     We add a \l{Qt Widgets Designer} file (\c{mainwindow.ui}) and its corresponding C++
     source file (\c{mainwindow.cpp}) to the application target's sources.
 
+    In specific cases, such as the example below where the include directive
+    uses a relative path, \l{qt6_add_ui}{qt_add_ui} can be used to generate the
+    \c{ui_calculatorform.h} file instead of relying on
+    \l{CMake AUTOUIC Documentation}{AUTOUIC}.
+
+    \l{When to prefer qt_add_ui over AUTOUIC}
+
+    \code
+        #include "src/files/ui_mainwindow.h"
+    \endcode
+
+    \code
+        qt_add_ui(calculatorform SOURCES mainwindow.ui INCLUDE_PREFIX src/files)
+    \endcode
+
+    When \c{qt_add_ui} is used, no need to pass \c{mainwindow.ui} to the
+    \c{qt_add_executable} command.
+
     \printuntil target_link_libraries
 
     In the \c{target_link_libraries} command, we link against \c{Qt6::Widgets}
