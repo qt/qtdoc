@@ -244,6 +244,26 @@
         \li The Qt Protobuf module is promoted out of tech preview.
     \endlist
 
+    \section2 Qt QML Module
+    \list
+        \li Added new features to QML Language Server: semantic highlighting,
+            more JavaScript language support, snippet support for Quick types,
+            documentation hints, QML file renaming, \c{.qmllint.ini} warning
+            configuration support
+        \li Two new \l{CMake policies}{qt_policy} affecting the behavior of
+            \l qt_add_qml_module have been added: \l{QTP0004} eases the use
+            of QML modules when nested folder structures are used. \l{QTP0005}
+            allows the usage of targets when specifying imports and
+            dependencies.
+    \endlist
+    \section3 Qt Quick Compiler
+    \list
+        \li The Qml Script Compiler now records statistics about Qml to Cpp
+            compilation. This information can be displayed by running the
+            all_aotstats target on the project.
+    \endlist
+
+
     \section2 Qt Quick Module
     \list
         \li Added font.contextFontMerging, which can be used to enable a new
