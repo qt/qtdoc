@@ -8,6 +8,7 @@ DynamicRigidBody {
     id: root
     property real diceWidth: 1.9 // cm
     property bool atRest: true
+    property bool isClose: position.length() < 100
     receiveContactReports: true
     sendContactReports: true
     onBodyContact: (body, positions, impulses, normals) => {
@@ -39,6 +40,7 @@ DynamicRigidBody {
         extents: Qt.vector3d(1, 1, 1).times(root.diceWidth)
     }
     Dice_low {
+        receivesShadows: root.isClose
         scale: Qt.vector3d(2.65, 2.65, 2.65).times(root.diceWidth)
     }
     SoundEffect {
