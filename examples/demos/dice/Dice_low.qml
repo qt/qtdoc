@@ -5,6 +5,7 @@ import QtQuick3D
 
 Node {
     id: node
+    property bool receivesShadows: true
 
     // Resources
     PrincipledMaterial {
@@ -24,6 +25,7 @@ Node {
 
     // Nodes:
     Model {
+        receivesShadows: node.receivesShadows
         id: cube_001
         source: "meshes/cube_001.mesh"
         materials: [base_material, dots_material]

@@ -83,7 +83,12 @@ Item {
                 eulerRotation: Qt.vector3d(-45, 25, 0)
                 castsShadow: true
                 brightness: 1
+                shadowFactor: 100
                 shadowMapQuality: Light.ShadowMapQualityVeryHigh
+                softShadowQuality: Light.PCF4
+                shadowBias: 0.2
+                shadowMapFar: camera.clipFar
+                pcfFactor: 0.05
             }
 
             PhysicalTable {
