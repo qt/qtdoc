@@ -6,6 +6,10 @@ qtHaveModule(quick) {
         clocks \
         maroon
 
+    qtHaveModule(quick3d):qtHaveModule(quick3dphysics):qtHaveModule(quick3dxr):qtHaveModule(multimedia) {
+        SUBDIRS += xr_physicsbase_teleportation
+    }
+
     qtHaveModule(quickcontrols2) {
         SUBDIRS += coffee \
                    colorpaletteclient \

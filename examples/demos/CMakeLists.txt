@@ -63,3 +63,6 @@ else()
     message(WARNING "To build the Lightning Viewer Example, ensure the required features and modules are enabled: "
                     "SSL, WebSocket, Positioning, Location, zstd")
 endif()
+if(TARGET Qt::Quick AND TARGET Qt::Quick3D AND TARGET Qt::Quick3DXr AND TARGET Qt::Quick3DPhysics AND TARGET Qt::Multimedia)
+    qt_internal_add_example(xr_physicsbase_teleportation)
+endif()
