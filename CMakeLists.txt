@@ -22,6 +22,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Qml
         Quick
         Quick3D
+        Quick3DXr
         Quick3DPhysics
         Test
         Sql
