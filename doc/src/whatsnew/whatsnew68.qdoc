@@ -16,6 +16,8 @@
             subset of the \c{SVG Tiny 1.2} profile.
         \li The Qt Graphs, Qt HTTP Server, Qt Protobuf, and Qt GRPC modules are
             all promoted out of tech preview state.
+        \li Added \l{Qt Quick Vector Image QML Types}{Qt Quick Vector Image} module for
+            displaying SVG documents as scalable vector graphics in a Qt Quick scene.
     \endlist
 
     \section1 Removed Modules in Qt 6.8
@@ -152,9 +154,6 @@
         \li Added QFont::PreferTypoLineMetrics style strategy, which can be set
             to always prefer the typographical line metrics in OpenType fonts,
             even if the font does not manually set the \e USE_TYPO_METRICS flag.
-        \li Added QFontDatabase::addApplicationFallbackFontFamily(), which
-            provides a means to override the default system fallback fonts for
-            specific scripts.
         \li Added QDesktopServices custom and \e https URL scheme support for
             \macos, similar to what iOS has.
         \li QImage::Format_CMYK8888 32bit CMYK image format has been added.
