@@ -197,6 +197,21 @@
             and \l {QRhi::ResolveDepthStencil} for details.
     \endlist
 
+    \section2 Qt Multimedia Module
+    \list
+        \li Added the classes \l QVideoFrameInput and \l QAudioBufferInput,
+            which can send custom media data to \l QMediaRecorder through
+            \l QMediaCaptureSession.
+        \li Added the class \l QAudioBufferOutput, which can receive
+            decoded audio data from \l QMediaPlayer.
+        \li Added the class \l QAbstractVideoBuffer, allowing the creation
+            of \l QVideoFrame instances with custom video data.
+        \li Added support of \l QScreenCapture on Linux using the Wayland
+            compositor.
+        \li The FFmpeg library is dynamically linked to the FFmpeg plugin, and
+            the utilized shared FFmpeg modules are shipped with Qt Multimedia.
+    \endlist
+
     \section2 Qt Network Module
     \list
         \li QNetworkAccessManager gained support for sending HTTP requests over
@@ -511,6 +526,7 @@
         \li Added options \c PUBLIC_CODE and \c PRIVATE_CODE to
             \l qt6_generate_wayland_protocol_client_sources that control the
             options that are passed to \c wayland-scanner.
+        \li Implemented the screen capture feature in Qt Multimedia.
     \endlist
 
     \section2 Mobile Platforms
