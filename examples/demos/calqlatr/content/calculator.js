@@ -73,6 +73,8 @@ function operatorPressed(op, display) {
 
     if (op === "bs") {
         digits = digits.slice(0, -1)
+        if (digits === "-")
+            digits = ""
         display.backspace()
         return
     }
