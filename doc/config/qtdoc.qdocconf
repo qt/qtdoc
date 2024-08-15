@@ -46,19 +46,10 @@ qhp.QtDoc.virtualFolder       = qtdoc
 qhp.QtDoc.indexTitle          = Qt $QT_VERSION Reference Documentation
 qhp.QtDoc.indexRoot           =
 
-qhp.QtDoc.subprojects         = classes qmltypes examples
-qhp.QtDoc.subprojects.classes.title = Classes
-qhp.QtDoc.subprojects.classes.indexTitle = All C++ Classes
-qhp.QtDoc.subprojects.classes.selectors = class headerfile
-qhp.QtDoc.subprojects.classes.sortPages = true
-qhp.QtDoc.subprojects.qmltypes.title = QML Types
-qhp.QtDoc.subprojects.qmltypes.indexTitle = All QML Types
-qhp.QtDoc.subprojects.qmltypes.selectors = qmltype
-qhp.QtDoc.subprojects.qmltypes.sortPages = true
-qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
-qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
-qhp.QtDoc.subprojects.examples.selectors = example
-qhp.QtDoc.subprojects.examples.sortPages = true
+qhp.QtDoc.subprojects = manual
+qhp.QtDoc.subprojects.manual.title = Qt $QT_VERSION Reference Documentation
+qhp.QtDoc.subprojects.manual.indexTitle = All Topics
+qhp.QtDoc.subprojects.manual.type = manual
 
 # Add an image used in example manifests to qhp, as well as thumbnails for YouTube links
 {HTML.extraimages,DocBook.extraimages,qhp.QtDoc.extraFiles} += images/qt-codesample.png \
@@ -118,3 +109,7 @@ include(../edu/config/qtforeducation.qdocconf)
 #   (qdoc) warning: '\generatelist explanations-webtechnologies' no such group
 #   (qdoc) warning: '\generatelist explanations-positioning' no such group
 warninglimit = 2
+
+# Autogenerate navigation linking based on "All Topics":
+navigation.toctitles = "All Topics"
+navigation.toctitles.inclusive = false
