@@ -48,8 +48,10 @@ Item {
     function backspace() {
         const i = calculationsListView.model.count - 1
         if (i >= 0) {
-            let operand = calculationsListView.model.get(i).operand
-            calculationsListView.model.get(i).operand = operand.toString().slice(0, -1)
+            let operand = calculationsListView.model.get(i).operand.toString().slice(0, -1)
+            if (operand === "-")
+                operand = ""
+            calculationsListView.model.get(i).operand = operand
             return
         }
         return
