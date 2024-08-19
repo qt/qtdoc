@@ -21,7 +21,7 @@ if (ANDROID)
     )
     FetchContent_MakeAvailable(android_openssl)
     include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
-    add_android_openssl_libraries(LightningViewerExample)
+    add_android_openssl_libraries(osmbuildings)
 endif()
 
 set_target_properties(osmbuildings PROPERTIES
