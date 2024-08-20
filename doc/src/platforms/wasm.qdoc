@@ -581,6 +581,11 @@ allows websockets connections over secure wss protocol only.
 
 All other network protocols are not supported.
 
+\note QWebSocketServer is not supported due to browser limitations. Browsers restrict server-side
+socket functionality to ensure security within the web sandbox. Consequently, any functionality
+relying on QWebSocketServer for accepting incoming network connections cannot be utilized within
+the web environment.
+
 \section2 Local File Access
 
 File system access is sandboxed on the web, and this has implications for how the
