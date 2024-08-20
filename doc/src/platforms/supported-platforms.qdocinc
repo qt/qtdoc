@@ -35,11 +35,25 @@
         \li \c x86_64
         \li GCC as provided by Canonical, GCC 11.x
         \li
-    \row \li Debian 11.6 on ARM
-        \li \c arm64
+    \row \li Ubuntu 24.04
+        \li \c {x86_64, arm64}
+        \li GCC as provided by Canonical, GCC 13.x
+        \li See the \l {linux-on-arm-desktop-support}{note}.
+    \row \li Debian 11.6
+        \li \c {x86_64, arm64}
         \li GCC 10
         \li Technology Preview
+
+            See also: \l {Enterprise Qt Debian Packages}.
 \endtable
+
+\target linux-on-arm-desktop-support
+\note For Linux on Arm on desktops, we use Raspberry Pi 5 with 8GB RAM and
+    Ubuntu 24.04 as a reference platform. If you have an issue with another
+    hardware, please try to reproduce the issue on Raspberry Pi 5. We plan to
+    move to regular platform support when a wider range of ARM-based desktop
+    hardware becomes available.
+
 //! [linux]
 
 \section2 \l{Qt for macOS}{\macos}
