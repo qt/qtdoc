@@ -3,7 +3,6 @@
 import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
-import QtQuick.Controls.Basic
 
 Item {
     // Height, width and any other size related properties containing odd looking float or other dividers

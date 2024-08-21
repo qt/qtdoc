@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Controls.Basic
-import QtQuick.Effects
 
 AbstractButton {
     // Height, width and any other size related properties containing odd looking float or other dividers
