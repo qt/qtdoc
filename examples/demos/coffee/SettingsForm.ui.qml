@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 import QtQuick.Effects
 
 Item {
@@ -300,7 +300,8 @@ Item {
                                 }
                                 handle: Rectangle {
                                     id: handle
-                                    x: sugarSlider.leftPadding + sugarSlider.visualPosition * (sugarSlider.availableWidth - width)
+                                    x: sugarSlider.leftPadding + sugarSlider.visualPosition
+                                       * (sugarSlider.availableWidth - width)
                                     anchors.verticalCenter: parent.verticalCenter
                                     width: 14
                                     height: width

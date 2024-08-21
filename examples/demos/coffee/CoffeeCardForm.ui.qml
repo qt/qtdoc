@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
+import QtQuick.Controls.Basic
 import QtQuick.Effects
 
 // Height, width and any other size related properties containing odd looking float or other dividers
@@ -33,7 +33,8 @@ Column {
             when: applicationFlow.mode == "portrait"
             PropertyChanges {
                 target: coffeeCardRectangle
-                implicitHeight: (applicationFlow.stack.height / 2) - 20 - (coffeeCardCircle.height / 2)
+                implicitHeight: (applicationFlow.stack.height / 2) - 20
+                                - (coffeeCardCircle.height / 2)
                 implicitWidth: applicationFlow.width / 2.4
             }
         },
