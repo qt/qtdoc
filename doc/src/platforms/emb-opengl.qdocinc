@@ -35,8 +35,6 @@ uses a subclass of QPaintEngine.  This specialized paint engine can be used
 to improve 2D rendering performance on appropriate hardware.  It can also
 overlay controls and decorations onto 3D scenes drawn using OpenGL.
 
-\tableofcontents
-
 \section1 Using OpenGL ES with Qt
 To use OpenGL-enabled widgets in a Qt for Embedded application, all that is
 required is to subclass QGLWidget and draw into instances of the subclass
