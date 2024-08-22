@@ -570,6 +570,17 @@
 
     \section2 Embedded Platforms
 
+    \section3 QNX
+    \list
+        \li Added QNX 8.0 support as Technology Preview.
+        \li QNX 8.0 doesn't have multimedia support, use \c{-skip qtmultimedia} on configure.
+    \endlist
+
+    \section3 VxWorks
+    \list
+        \li Added VxWorks 24.03 support.
+    \endlist
+
     \section1 List of API Changes
 
     These pages contain an overview of API changes in Qt 6.8:
