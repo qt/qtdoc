@@ -14,14 +14,15 @@
         \li The \l{svgtoqml} tool, used to generate QML code from SVG
             documents, is now out of tech preview. The tool supports a static
             subset of the \c{SVG Tiny 1.2} profile.
-        \li The Qt Graphs, Qt HTTP Server, Qt Protobuf, and Qt GRPC modules are
+        \li The \l{Qt Graphs}, \l{Qt HTTP Server}, \l{Qt Protobuf}, and \l{Qt GRPC}
+            modules are
             all promoted out of tech preview state.
         \li Added \l{Qt Quick Vector Image QML Types}{Qt Quick Vector Image} module for
             displaying SVG documents as scalable vector graphics in a Qt Quick scene.
     \endlist
 
     \section1 Removed Modules in Qt 6.8
-    The following module(s) is deprecated. We strongly advise against using them
+    The following module is deprecated. We strongly advise against using them
     in new code.
 
     \list
@@ -53,11 +54,11 @@
         \li QList supports construction with uninitialized entries to a
             specified size, where the content-type permits.
         \li QVarLengthArray::PreallocatedSize tells you the Prealloc parameter.
-        \li QLatin1StringMatcher::indexOf() can now take a QStringView.
+        \li \l QLatin1StringMatcher::indexIn() can now take a QStringView.
         \li QCollatorSortKey now supports move-construction.
         \li QStringEncoder and QStringDecoder can now take the encoding name as
             a QString.
-        \li QThread gains isMainThread(), isCurrentThread().
+        \li QThread gains \l{QThread::}{isMainThread()}, \l{QThread::}{isCurrentThread()}.
         \li QThreadPool::waitForDone() now accepts a QDeadlineTimer in place of
             int milliseconds.
         \li QDirListing provides stl-style iteration over directory entries.
@@ -126,15 +127,15 @@
 
     \section2 Qt Graphs Module
     \list
-        \li Qt Graphs is promoted out of tech preview.
-        \li The module is split into two submodules, QtGraphs and
-            QtGraphsWidgets, to remove the requirement for including widgets
+        \li \l{Qt Graphs} is promoted out of tech preview.
+        \li The module is split into two submodules, \l{Qt Graphs} and
+            \l{Qt Graphs Widgets}, to remove the requirement for including widgets
             into pure QML applications.
     \endlist
 
     \section2 Qt GRPC Module
     \list
-        \li Qt GRPC is promoted out of tech preview.
+        \li \l{Qt GRPC} is promoted out of tech preview.
         \li Added streaming support to the GrpcQuick module.
         \li Removed QGrpcInterceptor, QGrpcInterceptorManager and
             QGrpcInterceptorContinuation.
@@ -255,7 +256,7 @@
 
     \section2 Qt Protobuf Module
     \list
-        \li The Qt Protobuf module is promoted out of tech preview.
+        \li The \l{Qt Protobuf} module is promoted out of tech preview.
     \endlist
 
     \section2 Qt QML Module
