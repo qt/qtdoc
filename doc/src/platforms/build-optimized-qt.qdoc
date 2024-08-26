@@ -160,13 +160,12 @@
     Optimize QML code generation with CMake project commands. For more information on
     QML code generation, see \l {qt_add_qml_module} and \l {Best Practices for QML and Qt Quick}.
 
-    The commands in the following CMake code snippet make the binary size smaller:
+    The command in the following CMake code snippet makes the binary size smaller:
 
         \badcode
         set_target_properties(
                 ExampleApp
             PROPERTIES
-                QT_QMLCACHEGEN_DIRECT_CALLS ON
                 QT_QMLCACHEGEN_ARGUMENTS "--only-bytecode"
         )
         \endcode
