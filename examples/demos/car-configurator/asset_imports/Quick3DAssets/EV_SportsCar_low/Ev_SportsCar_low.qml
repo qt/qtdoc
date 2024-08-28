@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick3D
-import ComponentBundles.MaterialBundle
 import QtQuick3D.Helpers
 import Quick3DAssets.LightDecal
 
@@ -510,7 +509,7 @@ Node {
                 materials: invisibleMat
             }
         }
-        DoorRight {
+        MyDoorRight {
             id: doorRight
             x: -0.8845332264900208
             y: 0.6892746090888977

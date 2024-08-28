@@ -4,16 +4,18 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Studio.Effects
-import "FigmaExportCarConfig"
+import "doorIcon"
 import QtQuick.Studio.DesignEffects
 
 Rectangle {
     id: root
 
+    property bool menubutton: false
+
     radius: 8
 
-    width: 144
-    height: 108
+    width: 132
+    height: 98
     color: root.checked ? "#ffffff"
                         : mouseArea.containsPress ? "#2cde85"
                                                   : mouseArea.containsMouse ? "#00414a" : "#66000000"
@@ -81,4 +83,20 @@ Rectangle {
         backgroundLayer: view3D
         backgroundBlurRadius: 40
     }
+    states: [
+        State {
+            name: "Normal"
+            when: !menubutton
+        },
+        State {
+            name: "Menu"
+            when: menubutton
+
+            PropertyChanges {
+                target: iconsON
+                anchors.verticalCenterOffset: 0
+                anchors.horizontalCenterOffset: 0
+            }
+        }
+    ]
 }

@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick3D
-import CarRendering
 
 Node {
     id: node
