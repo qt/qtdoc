@@ -8,18 +8,13 @@ import QtQuick3D
 import QtQuick3D.Effects
 import QtQuick3D.Helpers
 import CarRendering
-import Quick3DAssets.Uk5ofde_LOD0
-import Quick3DAssets.Uk5pebv_LOD0
-import Quick3DAssets.Ulbrbdt_LOD0
 import Quick3DAssets.Venodhb_LOD0
-import Quick3DAssets.Ventdee_LOD0
-import "FigmaExportCarConfig"
+import "doorIcon"
 import "WallEffect1"
 import "WallEffect2"
 import "WallEffect3"
 import Quick3DAssets.EV_SportsCar_low
 import Quick3DAssets.Pebbles
-import Quick3DAssets.Hood
 import Quick3DAssets.InteriorShadow
 import Quick3DAssets.ShadowPlane
 
@@ -125,10 +120,8 @@ Rectangle {
                         onEulerRotationChanged: {
                             if (cameraResetAnimation.running)
                                 return
-                            if (cameraRoot.eulerRotation.y > 360)
-                                cameraRoot.eulerRotation.y = 0
-                            else if (cameraRoot.eulerRotation.y < 0)
-                                cameraRoot.eulerRotation.y = 360
+                            cameraRoot.eulerRotation.y -=
+                                    Math.floor(cameraRoot.eulerRotation.y / 360) * 360
                         }
 
                         PerspectiveCamera {
@@ -275,8 +268,6 @@ Rectangle {
                     eulerRotation.y: 0
                     scale.y: 50
                     scale.z: 35
-                    castsShadows: false
-                    receivesShadows: false
 
                     Model {
                         id: areaLight
@@ -291,8 +282,6 @@ Rectangle {
                         scale.x: 0.1
                         eulerRotation.x: 180
                         z: 11
-                        castsShadows: false
-                        receivesShadows: false
                     }
 
                     Node {
@@ -311,8 +300,6 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 90
                             scale.y: 0.01
-                            castsShadows: false
-                            receivesShadows: false
                         }
 
                         Model {
@@ -328,8 +315,6 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 0
                             scale.y: 0.01
-                            castsShadows: false
-                            receivesShadows: false
                         }
 
                         Model {
@@ -345,8 +330,6 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: -90
                             scale.y: 0.01
-                            castsShadows: false
-                            receivesShadows: false
                         }
 
                         Model {
@@ -362,8 +345,6 @@ Rectangle {
                             scale.x: 0.7
                             eulerRotation.x: 0
                             scale.y: 0.01
-                            castsShadows: false
-                            receivesShadows: false
                         }
                     }
                     scale.x: 50
@@ -383,7 +364,6 @@ Rectangle {
                     scale.z: 20
                     scale.x: 20
                     receivesReflections: true
-                    castsShadows: false
                 }
 
                 Ev_SportsCar_low {
@@ -877,12 +857,6 @@ Rectangle {
                 source: rootWindow.downloadBase + "/content/images/backlight.png"
             }
 
-            PrincipledMaterial {
-                id: hidden
-                opacity: 0
-                objectName: "hidden"
-            }
-
             Texture {
                 id: dot
                 source: rootWindow.downloadBase + "/content/images/dot.png"
@@ -892,15 +866,6 @@ Rectangle {
                 id: _Desert1
                 source: rootWindow.downloadBase + "/content/images/_Desert.hdr"
             }
-        }
-
-        Model {
-            id: cube
-            x: 69.256
-            y: -410.507
-            source: "#Cube"
-            z: -903.49817
-            materials: hidden
         }
     }
 
@@ -1065,14 +1030,59 @@ Rectangle {
 
         Row {
             id: mainControls
-
+            property bool isOn: false
             spacing: 8
             width: parent.width
 
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 28 - (1 - mainControls.scale) * 60
-            scale: parent.width / 1920
+            layer.enabled: true
+            rightPadding: 0
+            scale: parent.width / Constants.width
             transformOrigin: Item.Left
+
+
+            NumberAnimation {
+                id: menuOffAnimation
+                target: mainControls
+                property: "x"
+                duration: 1000
+                easing.type: Easing.InOutQuad
+                running: !mainControls.isOn
+                from: 0
+                to: root.width
+            }
+            NumberAnimation {
+                id: menuOnAnimation
+                target: mainControls
+                property: "x"
+                duration: 1000
+                easing.type: Easing.InOutQuad
+                running: mainControls.isOn
+                from: root.width
+                to: 0
+
+            }
+            NumberAnimation {
+                id: menuOnAnimationOpacity
+                target: mainControls
+                property: "opacity"
+                duration: 500
+                easing.type: Easing.InOutQuad
+                running: mainControls.isOn
+                from: 0
+                to: 1
+            }
+            NumberAnimation {
+                id: menuOffAnimationOpacity
+                target: mainControls
+                property: "opacity"
+                duration: 500
+                easing.type: Easing.InOutQuad
+                running: !mainControls.isOn
+                from: 1
+                to: 0
+            }
 
             Item {
                 width: 20
@@ -1212,6 +1222,63 @@ Rectangle {
                 buttonText: "Lights"
                 group: "toggle"
                 checked: true
+            }
+
+            KissButtonSeparator {
+            }
+
+            KissButton {
+                id: rightseparator
+                iconId: btnLight.checked ? 15 : 14
+                group: "toggle"
+                checked: true
+                buttonText: ""
+                width: 70
+                visible: false
+            }
+        }
+
+        KissButton {
+            id: menutoggle
+            menubutton: true
+            anchors.right: parent.right
+            anchors.rightMargin: 30 - (1 - mainControls.scale) * 60
+            iconId: mainControls.isOn ? 25 : 24
+            group: "toggle"
+            checked: false
+            buttonText: ""
+            width: 70
+            scale: parent.width / Constants.width
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 38 - (1 - mainControls.scale) * 60
+            onCheckedChanged: !checked? mainControls.isOn = false : mainControls.isOn = true
+            onClicked: {
+                buttonLoopAnimation.running = false
+                menutoggle.scale = 1
+            }
+
+            SequentialAnimation{
+                id: buttonLoopAnimation
+                running: true
+                loops: -1
+
+                NumberAnimation {
+                    target: menutoggle
+                    property: "scale"
+                    duration: 1000
+                    easing.type: Easing.InOutQuad
+                    from: 1
+                    to: 1.1
+                }
+
+                NumberAnimation {
+                    target: menutoggle
+                    property: "scale"
+                    duration: 1000
+                    easing.type: Easing.InOutQuad
+                    from: 1.1
+                    to: 1
+                }
             }
         }
     }
@@ -1951,129 +2018,128 @@ Rectangle {
         }
     }
 
-    ParallelAnimation{
-            id:cameraResetAnimation
-            running: false
-            property real yVal: 0
-            onFinished: btnDemo.checked? demo.running = true : demo.running = false
-            NumberAnimation {
-                target: cameraRoot
-                property: "eulerRotation.y"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.eulerRotation.y
-                to: cameraResetAnimation.yVal
-
-            }
-            NumberAnimation {
-                target: cameraRoot
-                property: "eulerRotation.x"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.eulerRotation.x
-                to: 9
-
-            }
-            NumberAnimation {
-                target: cameraRoot
-                property: "eulerRotation.z"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.eulerRotation.z
-                to: 0
-
-            }
-            NumberAnimation {
-                target: cameraRoot
-                property: "x"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.x
-                to: 0
-
-            }
-            NumberAnimation {
-                target: cameraRoot
-                property: "y"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.y
-                to: -5
-
-            }
-            NumberAnimation {
-                target: cameraRoot
-                property: "z"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: cameraRoot.z
-                to: 0
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "fieldOfView"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.fieldOfView
-                to:64
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "x"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.x
-                to:-31.83
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "y"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.y
-                to: 223.61
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "z"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.z
-                to:665.36
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "eulerRotation.x"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.eulerRotation.x
-                to:-12.17
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "eulerRotation.y"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.eulerRotation.y
-                to:0
-
-            }
-            NumberAnimation {
-                target: sceneCamera2
-                property: "eulerRotation.z"
-                duration: 1000
-                easing.type: Easing.InOutQuad
-                from: sceneCamera2.eulerRotation.z
-                to:0
-
-            }
+    ParallelAnimation {
+        id:cameraResetAnimation
+        running: false
+        property real yVal: 0
+        onFinished: btnDemo.checked? demo.running = true : demo.running = false
+        NumberAnimation {
+            target: cameraRoot
+            property: "eulerRotation.y"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.eulerRotation.y
+            to: cameraResetAnimation.yVal
         }
+
+        NumberAnimation {
+            target: cameraRoot
+            property: "eulerRotation.x"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.eulerRotation.x
+            to: 9
+        }
+
+        NumberAnimation {
+            target: cameraRoot
+            property: "eulerRotation.z"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.eulerRotation.z
+            to: 0
+        }
+
+        NumberAnimation {
+            target: cameraRoot
+            property: "x"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.x
+            to: 0
+        }
+
+        NumberAnimation {
+            target: cameraRoot
+            property: "y"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.y
+            to: -5
+        }
+
+        NumberAnimation {
+            target: cameraRoot
+            property: "z"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: cameraRoot.z
+            to: 0
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "fieldOfView"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.fieldOfView
+            to:64
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "x"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.x
+            to:-31.83
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "y"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.y
+            to: 223.61
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "z"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.z
+            to:665.36
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "eulerRotation.x"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.eulerRotation.x
+            to:-12.17
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "eulerRotation.y"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.eulerRotation.y
+            to:0
+        }
+
+        NumberAnimation {
+            target: sceneCamera2
+            property: "eulerRotation.z"
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            from: sceneCamera2.eulerRotation.z
+            to:0
+        }
+    }
 
     states: [
         State {
@@ -2257,11 +2323,6 @@ Rectangle {
                 desert: true
                 z: 0
             }
-
-            // PropertyChanges { // Does not exist!!!
-                // target: doorButton
-                // visible: true
-            // }
 
             PropertyChanges {
                 target: shadowPlane

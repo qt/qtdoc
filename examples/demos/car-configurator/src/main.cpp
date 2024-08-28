@@ -40,7 +40,6 @@ int main(int argc, char *argv[])
     engine.addImportPath(":/qt/qml/asset_imports");
     engine.addImportPath(":/qt/qml/content");
     engine.addImportPath(":/qt/qml/imports");
-    engine.addImportPath(":/qt/qml/content/FigmaExportCarConfig");
 
     engine.load(url);
 

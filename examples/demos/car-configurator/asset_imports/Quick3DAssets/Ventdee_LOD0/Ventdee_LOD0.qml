@@ -9,7 +9,6 @@ Node {
 
     Model {
         id: aset_nature_rock_M_ventdee_LOD0
-        castsShadows: false
 
         source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/meshes/aset_nature_rock_M_ventdee_LOD0.mesh"
 

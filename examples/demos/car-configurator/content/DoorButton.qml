@@ -48,9 +48,9 @@ Rectangle {
         id: door_button
     }
     FrameAnimation {
-            running: true
-            onTriggered: updateState()
-        }
+        running: true
+        onTriggered: updateState()
+    }
 
     DesignEffect {
         backgroundLayer: view3D

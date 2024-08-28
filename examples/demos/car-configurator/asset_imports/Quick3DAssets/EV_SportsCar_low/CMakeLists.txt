@@ -7,8 +7,8 @@ qt_add_qml_module(Quick3DAssets_EV_SportsCar_low
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         Ev_SportsCar_low.qml
-        DoorRight.qml
         Hood.qml
         MyDoorLeft.qml
+        MyDoorRight.qml
         TrunkLid.qml
 )

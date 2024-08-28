@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
@@ -45,10 +46,14 @@ Window {
         id: downloader
 
         downloadBase: "https://download.qt.io/learning/examples/"
-        jsonFileName : "car-configurator-assets-v2.json"
-        zipFileName : "car-configurator-assets-v2.zip"
+        jsonFileName : "car-configurator-assets-v3.json"
+        zipFileName : "car-configurator-assets-v3.zip"
         offlineAssetsFilePath: "assets/assets_download.json"
-        preferredLocalDownloadDir: "."
+        preferredLocalDownloadDir: StandardPaths.writableLocation(StandardPaths.AppDataLocation)
+    }
+
+    DirectoryFontLoader {
+        fontDirectory: rootWindow.downloadBase + "/content/fonts"
     }
 
     Connections {

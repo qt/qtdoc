@@ -6,7 +6,7 @@ import QtQuick3D
 
 Model {
     id: doorRight
-    objectName: "DoorRight"
+    objectName: "MyDoorRight"
     z: 0.8587785363197327
     source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/doorRight_mesh.mesh"
     receivesReflections: true
@@ -34,7 +34,6 @@ Model {
     Node {
         id: __materialLibrary__
     }
-
     states: [
         State {
             name: "closed"
@@ -50,6 +49,7 @@ Model {
 
                 eulerRotation.y: 19
                 eulerRotation.x: 39
+                // 30 16 -35
             }
         }
     ]
