@@ -38,6 +38,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Charts
         Pdf
         PdfWidgets
+        ExamplesAssetDownloaderPrivate
 )
 qt_internal_project_setup()
 
