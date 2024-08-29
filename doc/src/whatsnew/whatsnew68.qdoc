@@ -205,7 +205,8 @@
         \li Added the class \l QAbstractVideoBuffer, allowing the creation
             of \l QVideoFrame instances with custom video data.
         \li Added support of \l QScreenCapture on Linux using the Wayland
-            compositor.
+            compositor, which supports the ScreenCast service via XDG Desktop
+            Portal.
         \li The FFmpeg library is dynamically linked to the FFmpeg plugin, and
             the utilized shared FFmpeg modules are shipped with Qt Multimedia.
     \endlist
@@ -524,7 +525,8 @@
         \li Added options \c PUBLIC_CODE and \c PRIVATE_CODE to
             \l qt6_generate_wayland_protocol_client_sources that control the
             options that are passed to \c wayland-scanner.
-        \li Implemented the screen capture feature in Qt Multimedia.
+        \li Implemented the screen capture feature using ScreenCast service via
+            XDG Desktop Portal in Qt Multimedia.
     \endlist
 
     \section2 Mobile Platforms
