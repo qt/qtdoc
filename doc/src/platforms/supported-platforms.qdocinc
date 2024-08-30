@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2022 The Qt Company Ltd.
+** Copyright (C) 2023 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -35,7 +35,7 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li openSUSE 15.1
+    \row \li openSUSE 15.4
         \li \c x86_64
         \li GCC 5 or later, \b {GCC 7}, \b {ICC 19.1}
         \li
@@ -72,7 +72,7 @@
     \header \li Target Platform \li Architecture \li Build Environment
     \row \li \macos 10.13, \macos 10.14, \macos 10.15, \macos 11, \macos 12
         \li \c x86_64 and \c x86_64h and \c arm64
-        \li Xcode 11 or Xcode 12 or \b {Xcode 13} (12 SDK)
+        \li Xcode 11, Xcode 12, Xcode 13 (12 SDK), or \b {Xcode 14} (13 SDK)
 \endtable
 //! [macos]
 
@@ -80,7 +80,7 @@
 //! [windows]
 \table 80%
     \header \li Operating System \li Architecture \li Compiler \li Notes
-    \row \li Windows 11 21H2
+    \row \li Windows 11 22H2
         \li \c x86 and \c x86_64
         \li {MSVC 2019}
         \li
@@ -122,7 +122,8 @@
     \header \li Target Platform \li Architecture \li Build Environment \li Notes
     \row \li iOS 12, iOS 13, iOS 14, iOS 15
         \li \c armv8 (\c arm64)
-        \li  Xcode 11 (iOS 13.2 SDK), Xcode 12 (iOS 14 SDK), \b {Xcode 13} (iOS 15 SDK)
+        \li  Xcode 11 (iOS 13.2 SDK), Xcode 12 (iOS 14 SDK), Xcode 13 (iOS 15 SDK),
+             \b {Xcode 14} (iOS 16 SDK)
         \li
     \row \li tvOS 12, tvOS 13
         \li \c armv8 (\c arm64)

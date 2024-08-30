@@ -1,0 +1,75 @@
+/****************************************************************************
+**
+** Copyright (C) 2023 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page get-and-install-qt.html
+
+    \title Get and Install Qt
+    \brief Downloading and installing with Qt Online Installer or Maintenance
+    Tool.
+
+    You can get Qt, its modules and tools via Qt Online Installer or Maintenance
+    Tool.
+
+    Via Qt Online Installer you can do new installations. Maintenance
+    Tool is included in each Qt installation and with it you can
+    update your Qt installation for example by adding and removing components.
+
+    You can use Qt Online Installer and Maintenance Tool via a graphical user
+    interface or a command line interface. The command line interface
+    enables installing and uninstalling without any user interaction, that is,
+    unattended usage.
+
+    \section1 Using Qt Online Installer
+
+    You can download Qt Online Installer via \l{https://login.qt.io}{Qt Account}
+    as follows:
+
+    \list 1
+        \li Select \uicontrol{Downloads}
+        \li Download Qt Online Installer for your host: Linux, macOS, or Windows
+    \endlist
+
+    See \l{Get and Install Qt with Qt Online Installer} for more information
+    about how to use Qt Online Installer.
+
+    \l{Get and Install Qt with Command Line Interface} describes how you can use
+    Qt Online installer with the command line interface.
+
+    \image qtinstallercomponents.png
+
+    \section1 Using Maintenance Tool
+
+    Once Qt is installed, you can use Maintenance Tool under <install_dir>
+    to add components and to update or remove installed components. Maintenance
+    Tool is included in each Qt installation.
+
+    For more information about how to use Maintenance Tool with the command line
+    interface, see \l{Get and Install Qt with Command Line Interface}.
+
+    \image maintenancetool.png
+*/
