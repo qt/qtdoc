@@ -1,7 +1,5 @@
 <RCC>
-    <qresource prefix="/demos/samegame">
-        <file>samegame.qml</file>
-        <file>content/qmldir</file>
+    <qresource prefix="/qt/qml/SameGameModule">
         <file>content/Settings.qml</file>
         <file>content/gfx/text-p1-won.png</file>
         <file>content/gfx/background-puzzle.png</file>
@@ -69,5 +67,8 @@
         <file>content/PuzzleBlock.qml</file>
         <file>content/samegame.js</file>
         <file>content/SmokeText.qml</file>
+        <file>Main.qml</file>
+        <file>qmldir</file>
+        <file>content/qmldir</file>
     </qresource>
 </RCC>
