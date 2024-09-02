@@ -261,7 +261,7 @@
             platform freeze deadline along with reasons for the decision.
     \endlist
 
-    The minimum version changes would be reflected in our CI test runs, and in
+    The minimum version changes will be reflected in our CI test runs, and in
     the build system (i.e. CMake and androiddeployqt), thus the released libraries
     would require said minimum version to run. To target older versions a Qt
     rebuild with appropriate build system changes would be needed. Even if such
@@ -275,6 +275,13 @@
     In a spring Qt release, we aim to support an Android version which was
     released by Google in the fall of the year before. This becomes the new
     maximum supported version by Qt.
+
+    Qt LTS releases would also support new Android versions coming out to market
+    for up to two years after the initial Qt LTS patch release. This allows users
+    to target newer Android versions to comply with Google Play Store target
+    SDK publishing policies. In effect, new Android versions released in this
+    two year period will become the maximum versions supported for the LTS
+    release in the following patch release of the Qt LTS version.
 
     \section1 Target Devices used in Automated Testing
     \target target-android-devices-in-rta
