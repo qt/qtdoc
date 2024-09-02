@@ -12,7 +12,7 @@ Item {
     property ParticleSystem particleSystem
 
     Behavior on x {
-        enabled: spawned;
+        enabled: block.spawned;
         NumberAnimation{ easing.type: Easing.OutBounce }
     }
     Behavior on y {
@@ -22,11 +22,11 @@ Item {
     Image {
         id: img
         source: {
-            if (type == 0){
+            if (block.type == 0){
                 "gfx/red-puzzle.png";
-            } else if (type == 1) {
+            } else if (block.type == 1) {
                 "gfx/blue-puzzle.png";
-            } else if (type == 2) {
+            } else if (block.type == 2) {
                 "gfx/green-puzzle.png";
             } else {
                 "gfx/yellow-puzzle.png";
@@ -42,13 +42,13 @@ Item {
     //Foreground particles
     BlockEmitter {
         id: particles
-        system: particleSystem
+        system: block.particleSystem
         group: {
-            if (type == 0){
+            if (block.type == 0){
                 "red";
-            } else if (type == 1) {
+            } else if (block.type == 1) {
                 "blue";
-            } else if (type == 2) {
+            } else if (block.type == 2) {
                 "green";
             } else {
                 "yellow";
@@ -59,15 +59,15 @@ Item {
 
     states: [
         State {
-            name: "AliveState"; when: spawned == true && dying == false
-            PropertyChanges { target: img; opacity: 1 }
+            name: "AliveState"; when: block.spawned == true && block.dying == false
+            PropertyChanges { img.opacity: 1 }
         },
 
         State {
-            name: "DeathState"; when: dying == true
-            PropertyChanges { target: img; scale: 2 }
+            name: "DeathState"; when: block.dying == true
+            PropertyChanges { img.scale: 2 }
             StateChangeScript { script: particles.pulse(200); }
-            PropertyChanges { target: img; opacity: 0 }
+            PropertyChanges { img.opacity: 0 }
             StateChangeScript { script: block.destroy(1000); }
         }
     ]

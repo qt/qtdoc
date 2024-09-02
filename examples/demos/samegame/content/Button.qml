@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Particles
 
 Item {
+    id: button
     property alias imgSrc: image.source
     property alias system: emitter.system
     property alias group: emitter.group
@@ -19,7 +20,7 @@ Item {
         width: height/sourceSize.height * sourceSize.width
 
         anchors.horizontalCenter: parent.horizontalCenter
-        rotation: rotatedButton ? ((Math.random() * 3 + 2) * (Math.random() <= 0.5 ? -1 : 1)) : 0
+        rotation: button.rotatedButton ? ((Math.random() * 3 + 2) * (Math.random() <= 0.5 ? -1 : 1)) : 0
         MenuEmitter {
             id: emitter
             anchors.fill: parent

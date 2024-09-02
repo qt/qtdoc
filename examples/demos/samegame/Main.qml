@@ -53,7 +53,7 @@ Rectangle {
             system: gameCanvas.ps
         }
 
-        onPuzzleLost: acc--;//So that nextPuzzle() reloads the current one
+        onPuzzleLost: root.acc--;//So that nextPuzzle() reloads the current one
 
     }
 
@@ -172,7 +172,7 @@ Rectangle {
                     interval: Settings.menuDelay
                     running : false
                     repeat  : false
-                    onTriggered: loadPuzzle();
+                    onTriggered: root.loadPuzzle();
                 }
                 system: gameCanvas.ps
             }
@@ -290,7 +290,7 @@ Rectangle {
             visible: (root.state == "in-game") && gameCanvas.mode == "puzzle" && gameCanvas.puzzleWon
             opacity: gameCanvas.puzzleWon ? 1 : 0
             Behavior on opacity{ NumberAnimation {} }
-            onClicked: {if (gameCanvas.puzzleWon) nextPuzzle();}
+            onClicked: {if (gameCanvas.puzzleWon) root.nextPuzzle();}
             anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 11 }
         }
     }
@@ -317,9 +317,10 @@ Rectangle {
         State {
             name: "in-game"
             PropertyChanges {
-                target: menu
-                opacity: 0
-                visible: false
+                menu {
+                    opacity: 0
+                    visible: false
+                }
             }
         }
     ]

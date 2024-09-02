@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Particles
 
 Item {
+    id: smokeText
     z: 10
     property alias source: img.source
     property alias system: emitter.system
@@ -17,7 +18,7 @@ Item {
         opacity: 0
         id: img
         anchors.centerIn: parent
-        rotation: playerNum == 1 ? -8 : -5
+        rotation: smokeText.playerNum == 1 ? -8 : -5
         Emitter {
             id: emitter
             group: "smoke"
