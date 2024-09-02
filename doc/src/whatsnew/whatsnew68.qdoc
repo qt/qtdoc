@@ -129,6 +129,43 @@
         \li The module is split into two submodules, \l{Qt Graphs} and
             \l{Qt Graphs Widgets}, to remove the requirement for including widgets
             into pure QML applications.
+        \li Unified theming for 2D and 3D graphs.
+            See \l {QtGraphs::GraphsTheme}{GraphsTheme}.
+        \li See migration guides \l {Qt Graphs Migration from Qt Charts}
+        {from Qt Charts} and \l {Qt Graphs Migration from Qt DataVisualization}
+        {from Qt DataVisualization}.
+    \endlist
+    \section3 Qt Graphs3D
+    \list
+        \li Added transparency support for \l {QtGraphs::Bars3D}{Bars3D}
+            and \l {QtGraphs::Scatter3D}{Scatter3D}.
+        \li Added support for \l {QtGraphs::Scene3D::primarySubViewport}{Scene3D.primarySubViewport}
+            and \l {QtGraphs::Scene3D::secondarySubViewport}{Scene3D.secondarySubViewport}.
+        \li Added support for offsetting graph titles' position .
+            See \l {QtGraphs::Abstract3DAxis::titleOffset}{Abstract3DAxis.titleOffset}.
+        \li Added support for label margins.
+            See \l {QtGraphs::GraphsItem3D::labelMargin}{GraphsItem3D.labelMargin}.
+        \li Added support for rendering the grid with a shader and changing the gridline width.
+            See \l {QtGraphs::GraphsItem3D::gridLineType}{GraphsItem3D.gridLineType}
+            and \l {QtGraphs::GraphsTheme::GraphsLine::mainWidth}{GraphsTheme.GraphsLine.mainWidth}.
+    \endlist
+    \section3 Qt Graphs2D
+    \list
+        \li Added support for \l {QtGraphs::AreaSeries}{AreaSeries}.
+        \li Added support for custom bars using QML components.
+            See \l {QtGraphs::BarSeries::barDelegate}{BarSeries.barDelegate}.
+        \li Added support for Stacked and StackedPercent bars.
+            See \l {QtGraphs::BarSeries::barsType}{BarSeries.barsType}.
+        \li Added support for bar graph labels.
+            See \l {QtGraphs::BarSeries::labelsVisible}{BarSeries.labelsVisible}.
+        \li Added model mappers support for different series.
+            See \l {QtGraphs::XYModelMapper}{XYModelMapper},
+            \l {QtGraphs::BarModelMapper}{BarModelMapper} and
+            \l {QtGraphs::PieModelMapper}{PieModelMapper}.
+        \li Added \l {QtGraphs::LegendData}{LegendData} support for all series.
+        \li Added support for dynamic splineseries.
+        \li Added support for axis titles.
+            See \l {QtGraphs::AbstractAxis::titleText}{AbstractAxis.titleText}.
     \endlist
 
     \section2 Qt GRPC Module
