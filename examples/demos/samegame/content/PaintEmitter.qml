@@ -3,18 +3,17 @@
 
 import QtQuick
 import QtQuick.Particles
-import "."
 
 Emitter {
-    property Item block: parent
+    property int blockType: (parent as Block).type
     anchors.fill: parent
     shape: EllipseShape { fill: true }
     group: {
-        if (block.type == 0){
+        if (blockType == 0){
             "redspots";
-        } else if (block.type == 1) {
+        } else if (blockType == 1) {
             "bluespots";
-        } else if (block.type == 2) {
+        } else if (blockType == 2) {
             "greenspots";
         } else {
             "yellowspots";
@@ -34,19 +33,19 @@ Emitter {
     onEmitParticles: {//One group, many colors, for better stacking
         for (var i=0; i<particles.length; i++) {
             var particle = particles[i];
-            if (block.type == 0) {
+            if (blockType == 0) {
                 particle.red = mainIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.green = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.blue = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
-            } else if (block.type == 1) {
+            } else if (blockType == 1) {
                 particle.red = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.green = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.blue = mainIntensity + (Math.random() * colorVariation * 2 - colorVariation);
-            } else if (block.type == 2) {
+            } else if (blockType == 2) {
                 particle.red = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.green = mainIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.blue = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);
-            } else if (block.type == 3) {
+            } else if (blockType == 3) {
                 particle.red = mainIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.green = mainIntensity + (Math.random() * colorVariation * 2 - colorVariation);
                 particle.blue = subIntensity + (Math.random() * colorVariation * 2 - colorVariation);

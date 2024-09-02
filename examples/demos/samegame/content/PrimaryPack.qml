@@ -16,7 +16,7 @@ Item {
         ImageParticle {
             groups: ["yellowspots"]
             color: Qt.darker("yellow");//Actually want desaturated...
-            system: particleSystem
+            system: container.particleSystem
             source: "gfx/particle-paint.png"
             colorVariation: 0.2
             alpha: 0.2
@@ -24,7 +24,7 @@ Item {
         }
         ImageParticle {
             groups: ["redspots"]
-            system: particleSystem
+            system: container.particleSystem
             color: Qt.darker("red");//Actually want desaturated...
             source: "gfx/particle-paint.png"
             colorVariation: 0.2
@@ -33,7 +33,7 @@ Item {
         }
         ImageParticle {
             groups: ["greenspots"]
-            system: particleSystem
+            system: container.particleSystem
             color: Qt.darker("green");//Actually want desaturated...
             source: "gfx/particle-paint.png"
             colorVariation: 0.2
@@ -42,7 +42,7 @@ Item {
         }
         ImageParticle {
             groups: ["bluespots"]
-            system: particleSystem
+            system: container.particleSystem
             color: Qt.darker("blue");//Actually want desaturated...
             source: "gfx/particle-paint.png"
             colorVariation: 0.2
@@ -52,7 +52,7 @@ Item {
     }
     ImageParticle {
         groups: ["yellow"]
-        system: particleSystem
+        system: container.particleSystem
         color: Qt.darker("yellow");//Actually want desaturated...
         source: "gfx/particle-brick.png"
         colorVariation: 0.4
@@ -60,7 +60,7 @@ Item {
     }
     ImageParticle {
         groups: ["red"]
-        system: particleSystem
+        system: container.particleSystem
         color: Qt.darker("red");//Actually want desaturated...
         source: "gfx/particle-brick.png"
         colorVariation: 0.4
@@ -68,7 +68,7 @@ Item {
     }
     ImageParticle {
         groups: ["green"]
-        system: particleSystem
+        system: container.particleSystem
         color: Qt.darker("green");//Actually want desaturated...
         source: "gfx/particle-brick.png"
         colorVariation: 0.4
@@ -76,7 +76,7 @@ Item {
     }
     ImageParticle {
         groups: ["blue"]
-        system: particleSystem
+        system: container.particleSystem
         color: Qt.darker("blue");//Actually want desaturated...
         source: "gfx/particle-brick.png"
         colorVariation: 0.4

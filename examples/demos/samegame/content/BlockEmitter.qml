@@ -3,13 +3,21 @@
 
 import QtQuick
 import QtQuick.Particles
-// Needed for singletons QTBUG-34418
-import "."
 
 Emitter {
+    id: emitter
     property Item block: parent
-    velocity: TargetDirection{targetX: block.width/2; targetY: block.height/2; magnitude: -40; magnitudeVariation: 40}
-    acceleration: TargetDirection{targetX: block.width/2; targetY: block.height/2; magnitude: -100;}
+    velocity: TargetDirection {
+        targetX: emitter.block.width/2
+        targetY: emitter.block.height/2
+        magnitude: -40
+        magnitudeVariation: 40
+    }
+    acceleration: TargetDirection {
+        targetX: emitter.block.width/2
+        targetY: emitter.block.height/2
+        magnitude: -100
+    }
     shape: EllipseShape{fill:true}
     enabled: false;
     lifeSpan: 700; lifeSpanVariation: 100

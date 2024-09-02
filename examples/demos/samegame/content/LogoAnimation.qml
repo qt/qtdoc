@@ -1,6 +1,8 @@
 // Copyright (C) 2017 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Particles
 
@@ -30,7 +32,7 @@ Item {
                     id: emitter
                     anchors.fill: parent
                     group: "red"
-                    system: particleSystem
+                    system: container.particleSystem
                     Connections {
                         target: container
                         function onBoomTime() {
@@ -49,19 +51,19 @@ Item {
         PropertyAction { target: g1; property: "opacity"; value: 1}
         PropertyAction { target: s1; property: "y"; value: 0}
         PropertyAction { target: s1; property: "opacity"; value: 1}
-        NumberAnimation { target: g1; property: "y"; from: -96; to: -48; duration: dur}
+        NumberAnimation { target: g1; property: "y"; from: -96; to: -48; duration: container.dur}
         ParallelAnimation {
-            NumberAnimation { target: g1; property: "y"; from: -48; to: 0; duration: dur}
-            NumberAnimation { target: s1; property: "y"; from: 0; to: 48; duration: dur }
+            NumberAnimation { target: g1; property: "y"; from: -48; to: 0; duration: container.dur}
+            NumberAnimation { target: s1; property: "y"; from: 0; to: 48; duration: container.dur }
         }
-        PauseAnimation { duration: dur }
+        PauseAnimation { duration: container.dur }
         ScriptAction { script: container.boomTime(); }
         ParallelAnimation {
-            NumberAnimation { target: g1; property: "opacity"; to: 0; duration: dur }
-            NumberAnimation { target: s1; property: "opacity"; to: 0; duration: dur }
+            NumberAnimation { target: g1; property: "opacity"; to: 0; duration: container.dur }
+            NumberAnimation { target: s1; property: "opacity"; to: 0; duration: container.dur }
         }
         PropertyAction { target: s1; property: "y"; value: -128}
         PropertyAction { target: s1; property: "opacity"; value: 1}
-        NumberAnimation { target: s1; property: "y"; from: -96; to: 0; duration: dur * 2}
+        NumberAnimation { target: s1; property: "y"; from: -96; to: 0; duration: container.dur * 2}
     }
 }

@@ -4,7 +4,6 @@
 import QtQuick
 import QtQuick.Particles
 import "samegame.js" as Logic
-import "."
 
 Item {
     id: gameCanvas
@@ -50,7 +49,7 @@ Item {
         id: bg
         z: -1
         anchors.fill: parent
-        source: background;
+        source: gameCanvas.background;
         fillMode: Image.PreserveAspectCrop
     }
 
@@ -60,7 +59,7 @@ Item {
             if (puzzleTextBubble.opacity == 1) {
                 puzzleTextBubble.opacity = 0;
                 Logic.finishLoadingMap();
-            } else if (!swapping) {
+            } else if (!gameCanvas.swapping) {
                 Logic.handleClick(mouse.x,mouse.y);
             }
         }
@@ -68,7 +67,7 @@ Item {
 
     Image {
         id: highScoreTextBubble
-        opacity: mode == "arcade" && gameOver && gameCanvas.score == gameCanvas.highScore ? 1 : 0
+        opacity: gameCanvas.mode == "arcade" && gameCanvas.gameOver && gameCanvas.score == gameCanvas.highScore ? 1 : 0
         Behavior on opacity { NumberAnimation {} }
         anchors.centerIn: parent
         z: 10
