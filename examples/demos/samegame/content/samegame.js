@@ -291,10 +291,9 @@ function victoryCheck()
     }
     if (gameOver) {
         var winnerScore = Math.max(gameCanvas.score, gameCanvas.score2);
-        if (gameMode == "multiplayer"){
-            gameCanvas.score = winnerScore;
+        if (gameMode == "multiplayer")
             saveHighScore(gameCanvas.score2);
-        }
+
         saveHighScore(gameCanvas.score);
         gameDuration = new Date() - gameDuration;
         gameCanvas.gameOver = true;
