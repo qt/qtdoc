@@ -41,7 +41,8 @@
 
     \list
         \li Qt creates and controls the Android app.
-        \li Qt Creator, Qt Design Studio, or Visual Studio can be used.
+        \li \l{\QC Documentation}{\QC}, \l{Qt Design Studio}, or Visual Studio
+            can be used.
         \li Main languages are C++ and QML.
         \li Android specifics are more hidden; Qt handles these internally.
         \li To use Android APIs not yet available as Qt APIs, you must use JNI.
@@ -77,7 +78,7 @@
     packagingOptions.jniLibs.useLegacyPackaging true
     \endcode
 
-    \note See the l\{QT_ANDROID_GENERATE_JAVA_QTQUICKVIEW_CONTENTS} CMake
+    \note See the \l{QT_ANDROID_GENERATE_JAVA_QTQUICKVIEW_CONTENTS} CMake
     variable for further information on Java code generation of QML components.
 
     \section1 API examples
