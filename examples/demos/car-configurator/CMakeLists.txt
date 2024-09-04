@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21.1)
+cmake_minimum_required(VERSION 3.19)
 
 option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
 
