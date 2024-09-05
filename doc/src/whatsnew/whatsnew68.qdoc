@@ -241,11 +241,13 @@
             decoded audio data from \l QMediaPlayer.
         \li Added the class \l QAbstractVideoBuffer, allowing the creation
             of \l QVideoFrame instances with custom video data.
+        \li \l QMediaRecorder can write the media output to \l QIODevice.
         \li Added support of \l QScreenCapture on Linux using the Wayland
             compositor, which supports the ScreenCast service via XDG Desktop
             Portal.
         \li The FFmpeg library is dynamically linked to the FFmpeg plugin, and
             the utilized shared FFmpeg modules are shipped with Qt Multimedia.
+        \li Added support for the FFmpeg media backend on iOS.
     \endlist
 
     \section2 Qt Network Module
