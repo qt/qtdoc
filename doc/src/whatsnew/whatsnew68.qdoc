@@ -408,6 +408,11 @@
     \list
         \li Added \l {FluentWinUI3 Style}, a modern native-looking style
             designed for platforms running Windows 11 and above.
+        \li Added a new property \l {Popup::popupType}{popupType} to \l {Popup},
+            and derived types. This can be used to control whether the popup should be
+            in-scene, or appear in its own top-level popup window.
+        \li The macOS style is now capable of creating native
+            \l {Menu}{menus} and \l {MenuBar}{menubars}.
     \endlist
 
     \section2 Qt Quick Shapes Module
