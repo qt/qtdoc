@@ -142,7 +142,7 @@
     during runtime to the implementation chosen by Qt. Alternatively,
     applications are free to make direct OpenGL function calls if they add
     opengl32.lib to their .pro project files: \e{LIBS += opengl32.lib} (Visual
-    Studio) or \e{LIBS += -lopengl32} (MinGW). The result is, from the
+    Studio) or \e{LIBS += -lopengl32} (Mingw-w64). The result is, from the
     application's perspective, equivalent to the \c{-opengl desktop} build
     configuration of Qt.
 
@@ -765,7 +765,7 @@
         \header
             \li Qt
             \li Visual Studio 16 (2019)
-            \li MinGW
+            \li Mingw-w64
         \row
         \li \list
                \li QT6CORE.DLL - The QtCore runtime
@@ -955,7 +955,7 @@
      \li Search on the Windows search bar for the VS Native Tools command prompt.
     \endlist
 
-    For MinGW: Add MinGW to \c PATH environment variable:
+    For Mingw-w64: Add Mingw-w64 to \c PATH environment variable:
 
         \badcode
         Set PATH=C:\qt\tools\mingw1120_64\bin;%PATH%
