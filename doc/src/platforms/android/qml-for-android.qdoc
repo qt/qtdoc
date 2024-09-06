@@ -22,8 +22,8 @@
         \li Main languages are Java and Kotlin, with QML used for specific parts
         such as 3D content.
         \li You can use any Android APIs you want, but you can use JNI if you want more
-        control over communication between your Java code and QML. (See \l{QJniObject}
-        and \l{QJniEnvironment}).
+        control over communication between your Java code and QML. See \l{QJniObject}
+        and \l{QJniEnvironment}.
     \endlist
 
     \section2 How this differs from Qt for Android
@@ -46,7 +46,7 @@
         \li Main languages are C++ and QML.
         \li Android specifics are more hidden; Qt handles these internally.
         \li To use Android APIs not yet available as Qt APIs, you must use JNI.
-        (See \l{QJniObject} and \l{QJniEnvironment})
+        See \l{QJniObject} and \l{QJniEnvironment}.
     \endlist
 
     See \l{How Qt for Android Works} for further details on Qt for Android's architecture.
@@ -67,7 +67,7 @@
         \li \l{Qt Quick View Android Class}
         \li QtAbstractItemModel Android Class
         \li QtAbstractListModel Android Class
-        \li interface QtQmlStatusChangeListener (Which uses the QtQmlStatus enum)
+        \li interface QtQmlStatusChangeListener (which uses the QtQmlStatus enum)
         \li QtModelIndex Android Class
      \endlist
 
