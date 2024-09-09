@@ -46,6 +46,14 @@
 
     \note Support for x86 (32-bit) was removed in QNX SDP 7.1.
 
+    QNX SDP 8.0 is supported as technical preview. QNX SDP 8.0 doesn't support
+    multimedia, which means that qtmultimedia and the dependent components cannot
+    be compiled. Furthermore, qtRemoteObjects hasn't been adapted for QNX SDP 8.0
+    yet, which means that qtRemoteObjects and the dependent components cannot be
+    compiled either.
+    Pre-built Qt binaries and automatic Qt Creator Kits are not available for
+    QNX SDP 8.0, however, manual Kit creation is possible.
+
     \section2 Previous releases
 
     \list
@@ -56,8 +64,7 @@
     \section1 Target hardware
 
     For a specific list of available boards, displays and input devices, contact
-    QNX Software Systems (\l {mailto://info@qnx.com}{info@qnx.com}) or KDAB
-    (\l {mailto://qnx-info@kdab.com}{qnx-info@kdab.com}).
+    QNX Software Systems (\l {mailto://info@qnx.com}{info@qnx.com}).
 
     For target hardware supported by The Qt Company in this release, see
     \l{Support Levels for Target Hardware}. For support on other target devices
@@ -79,6 +86,15 @@
 
     QNX has been tested with Ubuntu 22.04 and Windows hosts but may work on other host
     systems.
+
+    \section1 Pre-built binaries
+
+    The pre-built Qt binaries for QNX are delivered through Qt Online Installer. These
+    binaries have been created using the QNX SDP installation from Qt's continuous
+    integration (CI) system. These binaries are only for preliminary testing and trials,
+    so there is no guarantee that the QNX SDP content matches with the current default
+    installation from QNX Software Center. The safest way to avoid binary compatibility
+    issues is always to build Qt binaries using your own QNX SDP installation.
 
 */
 
@@ -105,6 +121,8 @@
     source qnxsdp-env.sh
     \endcode
 
+    Or run qnxsdp-env.bat on the Windows command shell.
+
     \section1 Host build
 
     A host build of Qt needs to be available to cross-compile Qt. This is because, during
@@ -127,7 +145,7 @@
 
     \badcode
     set(CMAKE_SYSTEM_NAME QNX)
-    set(CMAKE_SYSTEM_PROCESSOR armv7le)
+    set(CMAKE_SYSTEM_PROCESSOR armle-v7)
     set(arch gcc_ntoarmv7le)
 
     set(CMAKE_C_COMPILER qcc)
@@ -142,6 +160,9 @@
 
     The example file is for \c armv7le. The other possibilities are \c aarch64le and \c x86_64,
     depending on your target architecture.
+
+    \note Cmake doesn't pass STRIP, AR, RANLIB and NM variables correctly on QNX, so if used,
+    they need to be specified separately in a toolchain file.
 
     \section1 Configuring and building Qt for QNX
 
@@ -182,6 +203,9 @@
     as enabling it causes the QNX compiler to crash. To disable PCH, use the configuration
     option \c{-no-pch}.
 
+    \note If using QNX SDP 8.0, skip unsupported and their dependent modules using configuration
+    options \c{-skip qtmultimedia -skip qtspeech -skip qtremoteobjects -skip qtinterfaceframework}.
+
     Once the configuration completes without errors, build Qt by running the following:
     \code
     cmake --build . --parallel
@@ -195,7 +219,9 @@
     cmake --install .
     \endcode
 
-    This installs the results to \c{$HOME/qnx_install}.
+    This installs the results to \c{$HOME/qnx_install}. From there the Qt build can be deployed
+    to target device using Qt Creator, scp directly or some another method. The \c{-prefix}
+    configuration parameter (/qt in the example) defines the deployment location on target device.
 
     \sa {Qt Configure Options}, {Configuring Qt}
 
@@ -246,11 +272,12 @@
         \li \c libicui18n
         \li \c libicudata
         \li \c libicuuc
-        \li \c libpng14
+        \li \c libpng16
         \li \c libxml2
         \li \c libsqlite3
         \li \c libssl
         \li \c libcrypto
+        \li \c libzstd
     \endlist
 
     \note This is not a complete list of shared libraries used by Qt on QNX
@@ -399,6 +426,12 @@
             analyzing application startup problems, as you do not need to use
             another tool to see the messages.
     \endlist
+
+    Qt normally uses \c fontconfig to provide access to systemfonts. If a font
+    cache hasn't been created earlier, it will be created at the start-up of the
+    first Qt application. Depending on the setup it can take a very long time
+    and delay applications' start-up significantly. If not needed, fontconfig
+    can be disabled with -DFEATURE_fontconfig=OFF on configure time.
 
 */
 
