@@ -1,6 +1,15 @@
 # Copyright (C) 2022 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+set(IS_NOT_YOCTO TRUE)
+if (DEFINED ENV{BBPATH})
+    set (IS_NOT_YOCTO FALSE)
+endif()
+
+set(QT_EXAMPLES_WITH_FETCHCONTENT ${IS_NOT_YOCTO} CACHE BOOL
+    "Allow examples to use CMake FetchContent module")
+
+
 if(TARGET Qt6::Quick)
     qt_internal_add_example(samegame)
     qt_internal_add_example(clocks)
@@ -34,7 +43,8 @@ endif()
 if(TARGET Qt::Quick AND TARGET Qt::QuickControls2 AND TARGET Qt::Quick3D)
     qt_internal_add_example(robotarm)
     qt_internal_add_example(FX_Material_Showroom)
-    if(NOT WASM AND TARGET Qt::ExamplesAssetDownloaderPrivate AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.19")
+    if(NOT WASM AND TARGET Qt::ExamplesAssetDownloaderPrivate AND QT_EXAMPLES_WITH_FETCHCONTENT
+            AND CMAKE_VERSION VERSION_GREATER_EQUAL "3.19")
         qt_internal_add_example(car-configurator)
     endif()
 endif()
