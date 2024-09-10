@@ -537,10 +537,7 @@ Rectangle {
                 clearColor: "#000000"
                 probeHorizon: 0.5
                 temporalAAEnabled: false
-
-                Fog {
-                    id: fog
-                }
+                fog: Fog {}
             }
 
             ExtendedSceneEnvironment {
@@ -2143,7 +2140,6 @@ Rectangle {
                 temporalAAStrength: 2
                 temporalAAEnabled: true
                 aoDistance: 25
-                fog: fog
                 depthOfFieldBlurAmount: 3
                 depthOfFieldFocusRange: 200
                 depthOfFieldEnabled: true
@@ -2239,7 +2235,7 @@ Rectangle {
             }
 
             PropertyChanges {
-                target: fog
+                target: desert.fog
                 color: "#aea89f"
                 depthCurve: 1
                 transmitCurve: 15
