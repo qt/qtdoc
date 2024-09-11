@@ -545,6 +545,83 @@
             animation policy.
     \endlist
 
+    \section1 Tools
+    \section2 QDoc Documentation Generator
+    \list
+        \li You can now use the \c {\keyword} command to link to a section
+            title, as a means to improve context sensitive help.
+        \li QDoc no longer incorrectly links to non-existing documentation for
+            undocumented property access functions.
+        \li The build system no longer defines \c QDOC2_COMPAT.
+        \li When generating DocBook output, QDoc no longer escapes characters
+            multiple times.
+        \li The \c {\instantiates} command is deprecated. Use the new
+            \c {\nativetype} command instead. The old command now delegates to
+            the new one, and QDoc generates a notice about its deprecation.
+        \li You can specify \c {auto} as return type for functions as a way to
+            mask the full type in the generated documentation.
+        \li Improved formatting of the requisites table in API documentation.
+        \li QDoc generates less duplicate reports in its output to stdout.
+        \li .qhp files now (correctly) contain entries for group items created
+            with the \c {\ingroup} command when there is no related \c {\group}
+            documentation.
+        \li QDoc now generates titles for namespaces in .qhp files, not just for
+            classes and types.
+        \li QDoc now correctly parses \c {-DDEFINE=VALUE} command line options.
+        \li QDoc generates new warnings if:
+        \list
+             \li qhp subproject indexTitle attribute isn't found.
+             \li If the \c {\nativetype} command is used multiple times for the
+                 same C++ class.
+             \li When generating a file multiple times per project.
+             \li Functions previously selected as an overload that aren't
+                 explicitly marked with the \c {\overload} command, that due to
+                 sorting changes are selected as the primary signature. They
+                 must either be documented in full or tagged with the
+                 \c {\overload} command.
+        \endlist
+        \li QDoc no longer warns about undocumented parameters in overloaded
+            constructors, and some unnecessary link warnings were removed.
+        \li Link warnings now report sensible locations.
+        \li QDoc now requires Clang 17 or newer.
+        \li The QDoc manual received multiple updates.
+        \li You can tag trademarks with the new \c {\tm} command. If you define
+            the configuration variable \c {navigation.trademarkspage}, the
+            trademark symbol (\c {tm}) becomes a link to that page.
+        \li The \c {\deprecated command} now accepts future versions.
+        \li QDoc macro arguments now accept formatting commands.
+        \li The \c {\compareswith} command now allows for brace-enclosed
+            arguments.
+        \li The \c {-outputdir} command-line option is now relative to the
+            current working directory. Also, the \c {nosubdirs} configuration
+            variable no longer mangles what is in \c {outputdir}.
+        \li The unused and undocumented \c {clangdefines} configuration variable
+            is removed.
+        \li QDoc no longer generates \c {.qhp.sha1} files.
+        \li QDoc now generates unique references to entries in the table of
+            contents.
+        \li When generating HTML output, QDoc now only decorates links to API
+            entities with \c {translate="no"}.
+        \li Name collisions for multi-project documentation builds have been
+            reduced. This may impact the generated file names in certain
+            configurations.
+        \li CMake targets can now be specified with the new
+            \c{\qtcmaketargetitem} command.
+        \li Support for subscripted function arguments has been removed. This
+            feature was undocumented, unused, and bug-ridden. Its removal saves
+            the construction and attempted matching of regular expressions on
+            every single documented function signature and \c {\a} command
+            argument.
+        \li Links to function signatures are now more consistent in appearance.
+        \li QDoc now supports auto-generated values in QML documentation from
+            C++ enums.
+        \li The \c {outputprefixes} and \c {outputsuffixes} configuration
+            variables now apply to C++ type documentation as well as to QML type
+            and module documentation. This can be convenient in multi-module
+            documentation configurations where two or more modules define the
+            same type names.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Desktop Platforms
