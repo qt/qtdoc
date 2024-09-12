@@ -635,6 +635,20 @@
             plugin.
     \endlist
 
+    \section3 macOS
+    \list
+        \li Added support for macOS 15
+        \li Added support for safe area margins, both for the camera notch in full
+            screen applications, and for windows where the contents extends into
+            the titlebar.
+        \li Fixed flicker when resizing Qt Quick windows, by presenting Metal layer
+            with transaction.
+        \li Enabled running animations when resizing Qt Quick windows.
+        \li Adopted new NSCursor API for window frame resize cursors
+        \li Implemented NSServicesMenuRequestor protocol for Services menu and
+            Writing Tools support.
+    \endlist
+
     \section3 Wayland Client on Linux
     \list
         \li Added a new window decoration style that is used on GNOME and uses
@@ -685,9 +699,16 @@
             \endlist
     \endlist
 
+    \section3 iOS
+    \list
+        \li Added support for iOS 18
+        \li Fixed wrongly reporting UIDevice.currentDevice.orientation via QScreen::orientation()
+        \li Improved accessibility integration.
+    \endlist
+
     \section3 visionOS
     \list
-        \li Qt, and Qt applications can now be built for visionOS.
+        \li Added preliminary support for visionOS.
     \endlist
 
     \section2 Embedded Platforms
