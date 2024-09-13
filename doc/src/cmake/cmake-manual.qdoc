@@ -59,18 +59,19 @@
         \list
             \li \l{cmake-commands-qtcore}{Qt6::Core}
             \li \l{cmake-commands-qtdbus}{Qt6::DBus}
+            \li \l{cmake-commands-qtgrpc}{Qt6::Grpc}
             \li \l{cmake-commands-qtinterfaceframework}{Qt6::InterfaceFramework}
             \li \l{cmake-commands-qtlinguisttools}{Qt6::LinguistTools}
             \li \l{cmake-commands-qtmultimedia}{Qt6::Multimedia}
             \li \l{cmake-commands-qtprotobuf}{Qt6::Protobuf}
-            \li \l{cmake-commands-qtgrpc}{Qt6::Grpc}
             \li \l{cmake-commands-qtqml}{Qt6::Qml}
             \li \l{cmake-macros-qtremoteobjects}{Qt6::RemoteObjects}
             \li \l{cmake-macros-qtscxml}{Qt6::Scxml}
+            \li \l{cmake-commands-qtshadertools}{Qt6::ShaderTools}
             \li \l{cmake-commands-qtwaylandclient}{Qt6::WaylandClient}
             \li \l{cmake-commands-qtwaylandcompositor}{Qt6::WaylandCompositor}
-            \li \l{cmake-macros-qtwidgets}{Qt6::Widgets}
             \li \l{cmake-commands-qtwebenginecore}{Qt6::WebEngineCore}
+            \li \l{cmake-macros-qtwidgets}{Qt6::Widgets}
         \endlist
         \li \l{CMake Variable Reference}
         \list
@@ -1220,10 +1221,6 @@
 
     \annotatedlist cmake-variables-qtcore
 
-    \section2 Qt6::Qml
-
-    \annotatedlist cmake-variables-qtqml
-
     \section2 Qt6::InterfaceFramework
 
     \annotatedlist cmake-variables-qtinterfaceframework
@@ -1231,6 +1228,10 @@
     \section2 Qt6::Multimedia
 
     \annotatedlist cmake-variables-qtmultimedia
+
+    \section2 Qt6::Qml
+
+    \annotatedlist cmake-variables-qtqml
 
     \section1 Standard CMake Variables
 
@@ -1269,17 +1270,6 @@
 
     \annotatedlist cmake-source-file-properties-qtdbus
 
-    \section1 Qt6::Qml
-    \target cmake-properties-qtqml
-
-    \section2 Source File Properties
-
-    \annotatedlist cmake-source-file-properties-qtqml
-
-    \section2 Global Properties
-
-    \annotatedlist cmake-global-properties-qtqml
-
     \section1 Qt6::LinguistTools
     \target cmake-properties-qtlinguisttools
 
@@ -1290,6 +1280,17 @@
     \section2 Directory Properties
 
     \annotatedlist cmake-directory-properties-qtlinguisttools
+
+    \section1 Qt6::Qml
+    \target cmake-properties-qtqml
+
+    \section2 Source File Properties
+
+    \annotatedlist cmake-source-file-properties-qtqml
+
+    \section2 Global Properties
+
+    \annotatedlist cmake-global-properties-qtqml
 
     \section1 Standard CMake Properties
 
@@ -1313,6 +1314,11 @@
 
     \annotatedlist cmake-commands-qtdbus
 
+    \section2 Qt6::Grpc
+    \target cmake-commands-qtgrpc
+
+    \annotatedlist cmake-commands-qtgrpc
+
     \section2 Qt6::InterfaceFramework
     \target cmake-commands-qtinterfaceframework
 
@@ -1332,11 +1338,6 @@
     \target cmake-commands-qtprotobuf
 
     \annotatedlist cmake-commands-qtprotobuf
-
-    \section2 Qt6::Grpc
-    \target cmake-commands-qtgrpc
-
-    \annotatedlist cmake-commands-qtgrpc
 
     \section2 Qt6::Qml
     \target cmake-commands-qtqml
@@ -1368,13 +1369,14 @@
 
     \annotatedlist cmake-commands-qtwaylandcompositor
 
+    \target cmake-commands-qtwebenginecore
+    \section2 Qt6::WebEngineCore
+
+    \annotatedlist cmake-commands-qtwebenginecore
+
     \section2 Qt6::Widgets
     \target cmake-macros-qtwidgets
 
     \annotatedlist cmake-macros-qtwidgets
 
-    \target cmake-commands-qtwebenginecore
-    \section2 Qt6::WebEngineCore
-
-    \annotatedlist cmake-commands-qtwebenginecore
 */
