@@ -61,6 +61,7 @@
             \li \l{cmake-commands-qtdbus}{Qt6::DBus}
             \li \l{cmake-commands-qtinterfaceframework}{Qt6::InterfaceFramework}
             \li \l{cmake-commands-qtlinguisttools}{Qt6::LinguistTools}
+            \li \l{cmake-commands-qtmultimedia}{Qt6::Multimedia}
             \li \l{cmake-commands-qtprotobuf}{Qt6::Protobuf}
             \li \l{cmake-commands-qtgrpc}{Qt6::Grpc}
             \li \l{cmake-commands-qtqml}{Qt6::Qml}
@@ -1227,6 +1228,10 @@
 
     \annotatedlist cmake-variables-qtinterfaceframework
 
+    \section2 Qt6::Multimedia
+
+    \annotatedlist cmake-variables-qtmultimedia
+
     \section1 Standard CMake Variables
 
     \table
@@ -1317,6 +1322,11 @@
     \target cmake-commands-qtlinguisttools
 
     \annotatedlist cmake-commands-qtlinguisttools
+
+    \target cmake-commands-qtmultimedia
+    \section2 Qt6::Multimedia
+
+    \annotatedlist cmake-commands-qtmultimedia
 
     \section2 Qt6::Protobuf
     \target cmake-commands-qtprotobuf
