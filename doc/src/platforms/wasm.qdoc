@@ -732,8 +732,7 @@ Features that require asyncify are:
     \li Nested/secondary event loops exec().
 \endlist
 
-As of Qt 6.4, Asyncify support is enabled in the binary package, but needs to be enabled for
-applications by adding -sASYNCIFY -Os to linker options:
+Enable asyncify by adding the "-sASYNCIFY -Os" flags to the linker options:
 
 CMake:
 \badcode
@@ -747,6 +746,27 @@ QMAKE_LFLAGS += -sASYNCIFY -Os
 
 Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
 usage. Build with optimizations enabled to minimize the overhead.
+
+\section3 Asyncify JSPI (JavaScript Promise Integration)
+
+\l{https://v8.dev/blog/jspi}{JSPI} is a new asyncify backend implemented using
+native browser support instead of code transformations. Compared to Emscripten
+asyncify this improves application link times and does not increase code size.
+
+The \l{https://webassembly.org/features/}{JSPI WebAssembly feature} is current
+in the "Implementation" phase, and is not yet standardized.
+
+Enable JSPI by adding the "-sJSPI" flag to the linker options:
+
+CMake:
+\badcode
+    target_link_options(<your target> PUBLIC -sJSPI)
+\endcode
+
+qmake:
+\badcode
+    QMAKE_LFLAGS += -sJSPI
+\endcode
 
 \section2 Debugging and Profiling
 
@@ -1055,16 +1075,19 @@ The following configure options are relevant when building Qt for WebAssembly fr
         \li Multi-threaded Wasm.
     \row
         \li -feature-wasm-simd128
-        \li Enables WebAssembly SIMD support.
+        \li Enable WebAssembly SIMD support.
     \row
         \li -feature-wasm-exceptions
-        \li Enables WebAssembly exceptions support.
+        \li Enable WebAssembly exceptions support.
     \row
         \li -feature-opengles3
         \li Use opengles3 in addition to the default opengles2.
     \row
         \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
-        \li Use asyncify.
+        \li Enable asyncify support.
+    \row
+        \li -device-option QT_EMSCRIPTEN_ASYNCIFY=2
+        \li Enable asyncify (JSPI) support.
 \endtable
 
 \target disabled features
