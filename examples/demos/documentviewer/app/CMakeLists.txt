@@ -50,8 +50,8 @@ if(TARGET pdfviewer)
     list(APPEND plugin_targets pdfviewer)
 endif()
 
-if (TARGET q3dviewer)
-    list(APPEND plugin_targets q3dviewer)
+if(TARGET Q3Dviewer)
+    list(APPEND plugin_targets Q3Dviewer)
 endif()
 
 if(QT6_IS_SHARED_LIBS_BUILD)
