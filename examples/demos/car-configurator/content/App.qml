@@ -45,7 +45,8 @@ Window {
     AssetDownloader {
         id: downloader
 
-        downloadBase: "https://download.qt.io/learning/examples/"
+        // Use master, to avoid CORS rejection by mirrors of download.qt.io.
+        downloadBase: "https://master.qt.io/learning/examples/"
         jsonFileName : "car-configurator-assets-v3.json"
         zipFileName : "car-configurator-assets-v3.zip"
         offlineAssetsFilePath: "assets/assets_download.json"
