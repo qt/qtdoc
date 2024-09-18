@@ -56,14 +56,18 @@ void Q3DViewer::cleanup()
 QStringList Q3DViewer::supportedMimeTypes() const
 {
     static QStringList mimeTypes;
-    if (!mimeTypes.isEmpty())
+    static bool mimeTypesSearched = false;
+    if (mimeTypesSearched)
         return mimeTypes;
+
+    mimeTypesSearched = true;
 
     QQmlEngine engine;
     QQmlComponent component(&engine);
     component.loadFromModule(u"Q3DViewer", "QueryMimeTypes");
     std::unique_ptr<QObject> loader(component.create());
-    Q_ASSERT(loader);
+    if (!loader)
+        return {};
 
     const auto &mt = qvariant_cast<QList<QMimeType>>(loader->property("supportedMimeTypes"));
     for (const auto &type : mt)
