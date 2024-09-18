@@ -110,6 +110,12 @@ void ViewerFactory::addViewer(QObject *viewerObject)
     if (!interface)
         return;
 
+    // discard viewers, which don't support any MIME types
+    if (interface->supportedMimeTypes().isEmpty()) {
+        delete interface;
+        return;
+    }
+
     // Set custom default viewer
     if (interface->viewer()->isDefaultViewer())
         m_defaultViewer = interface->viewer();
