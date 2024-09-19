@@ -1,6 +1,8 @@
 // Copyright (C) 2018 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -49,14 +51,14 @@ Dialog {
                 id: hoursTumbler
                 model: 24
                 delegate: TumblerDelegate {
-                    text: formatNumber(modelData)
+                    text: alarmDialog.formatNumber(modelData)
                 }
             }
             Tumbler {
                 id: minutesTumbler
                 model: 60
                 delegate: TumblerDelegate {
-                    text: formatNumber(modelData)
+                    text: alarmDialog.formatNumber(modelData)
                 }
             }
         }
@@ -89,7 +91,7 @@ Dialog {
                 Component.onCompleted: updateModel()
 
                 delegate: TumblerDelegate {
-                    text: formatNumber(modelData)
+                    text: alarmDialog.formatNumber(modelData)
                 }
             }
             Tumbler {
@@ -99,7 +101,7 @@ Dialog {
 
                 model: 12
                 delegate: TumblerDelegate {
-                    text: window.locale.standaloneMonthName(modelData, Locale.ShortFormat)
+                    text: alarmDialog.locale.standaloneMonthName(modelData, Locale.ShortFormat)
                 }
             }
             Tumbler {
@@ -113,7 +115,7 @@ Dialog {
 
                 model: years
                 delegate: TumblerDelegate {
-                    text: formatNumber(modelData)
+                    text: alarmDialog.formatNumber(modelData)
                 }
             }
         }
