@@ -4,39 +4,30 @@
 cmake_minimum_required(VERSION 3.16)
 project(alarms LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick)
 
-qt_add_executable(alarms
+qt_standard_project_setup(REQUIRES 6.8)
+
+qt_add_executable(alarms WIN32 MACOSX_BUNDLE
     main.cpp
 )
 
-set_target_properties(alarms PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
+qt_add_qml_module(alarms
+    URI AlarmsModule
+    SOURCES
+        main.cpp
+    QML_FILES
+        AlarmDelegate.qml
+        AlarmDialog.qml
+        AlarmModel.qml
+        TumblerDelegate.qml
+        Main.qml
 )
 
 target_link_libraries(alarms PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
-)
-
-# Resources:
-set(qml_resource_files
-    "AlarmDelegate.qml"
-    "AlarmDialog.qml"
-    "AlarmModel.qml"
-    "TumblerDelegate.qml"
-    "main.qml"
-)
-
-qt_add_resources(alarms "qml"
-    PREFIX
-        "/alarms/"
-    FILES
-        ${qml_resource_files}
 )
 
 qt_add_resources(alarms "controls_conf"

@@ -77,7 +77,7 @@
             \li main.cpp
             \li The main C++ code file for the application.
        \row
-           \li main.qml
+           \li Main.qml
            \li The main QML code file for the application. We will instantiate
                our custom QML types (\c AlarmDialog, \c AlarmModel,
                \c AlarmDelegate, and \c TumblerDelegate) in this file.
@@ -126,19 +126,19 @@
 
     \quotefile tutorials/alarms/qtquickcontrols2.conf
 
-    \section2 \c main.qml
+    \section2 \c Main.qml
 
     \c mainWindow, an ApplicationWindow QML type, is the root item in
     this app.
 
-    \quotefromfile tutorials/alarms/main.qml
+    \quotefromfile tutorials/alarms/Main.qml
     \skipto ApplicationWindow
     \printuntil visible
 
     The ListView \c alarmListView combines the data from \c alarmModel
     with the layout defined in \c alarmDelegate.
 
-    \quotefromfile tutorials/alarms/main.qml
+    \quotefromfile tutorials/alarms/Main.qml
     \skipuntil visible
     \printto RoundButton
 
@@ -202,7 +202,7 @@
     At the bottom of the startup screen, you can see a Button for adding
     alarms.  Click it to open the \b {Add new alarm} dialog.
 
-    \quotefromfile tutorials/alarms/main.qml
+    \quotefromfile tutorials/alarms/Main.qml
     \skipto RoundButton
     \printto AlarmDialog
 
