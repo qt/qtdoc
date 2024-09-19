@@ -91,10 +91,24 @@
             Provides access to Bluetooth hardware.
         }
 
+        \griditem {qtcharts-index.html}{Qt Charts} {
+            UI Components for displaying visually pleasing charts,
+            driven by static or dynamic data models.
+        }
+
+        \griditem {qtcoap-index.html}{Qt CoAP} {
+            Implements the client side of CoAP defined by RFC 7252.
+        }
+
         \griditem {qtconcurrent-index.html}{Qt Concurrent} {
             Classes for writing multi-threaded programs without using low-level
             threading primitives.
         }
+
+        \griditem {qtdatavisualization-index.html}{Qt Data Visualization} {
+            UI Components for creating stunning 3D data visualizations.
+        }
+
         \griditem {qtgraphs-index.html}{Qt Graphs} {
             Provides functionality for visualizing data in 3D as bar, scatter, and
             surface graphs, as well as 2D in area, bar, donut, line, pie, scatter, and
@@ -106,9 +120,19 @@
         \griditem {qtimageformats-index.html}{Qt Image Formats} {
             Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
         }
+        \griditem {qtlottieanimation-index.html}{Qt Lottie Animation} {
+            A QML API for rendering graphics and animations in JSON format,
+            exported by the Bodymovin plugin for Adobe® After Effects.
+        }
+        \griditem {qtmqtt-index.html}{Qt MQTT} {
+            Provides an implementation of the MQTT protocol specification.
+        }
         \griditem {qtmultimedia-index.html}{Qt Multimedia} {
             A rich set of QML types and C++ classes to handle multimedia content.
             Also includes APIs to handle camera access.
+        }
+        \griditem {qtnetworkauth-index.html}{Qt Network Authorization} {
+            Provides support for OAuth-based authorization to online services.
         }
         \griditem {qtnfc-index.html}{Qt NFC} {
             Provides access to Near-Field communication (NFC) hardware. On desktop
@@ -129,6 +153,14 @@
         \griditem {qtprintsupport-index.html}{Qt Print Support} {
             Classes to make printing easier and more portable.
         }
+        \griditem {qtquick3d-index.html}{Qt Quick 3D} {
+            Provides a high-level API for creating 3D content or UIs based on
+            Qt Quick.
+        }
+        \griditem {qtquick3dphysics-index.html}{Qt Quick 3D Physics} {
+            Qt Quick 3D Physics provides a high-level QML module adding physical
+            simulation capabilities to Qt Quick 3D.
+        }
         \griditem {qtquickwidgets-index.html}{Qt Quick Widgets} {
             Provides a C++ widget class for displaying a Qt Quick user interface.
         }
@@ -138,6 +170,9 @@
         }
         \griditem {qtquick-particles-qmlmodule.html}{Qt Quick Particles} {
             Provides QML types for particle effects.
+        }
+        \griditem {qtquicktimeline-index.html}{Qt Quick Timeline} {
+            Enables keyframe-based animations and parameterization.
         }
         \griditem {qtremoteobjects-index.html}{Qt Remote Objects} {
             Provides an easy to use mechanism for sharing a QObject's API
@@ -184,6 +219,15 @@
         \griditem {qtuitools-index.html}{Qt UI Tools} {
             Classes for loading QWidget based forms created in \QD dynamically, at runtime.
         }
+        \griditem {qtvirtualkeyboard-index.html}{Qt Virtual Keyboard} {
+            A framework for implementing different input methods as
+            well as a QML virtual keyboard. Supports localized keyboard
+            layouts and custom visual themes.
+        }
+        \griditem {qtwaylandcompositor-index.html}{Qt Wayland Compositor} {
+            Provides a framework to develop a Wayland compositor on Linux
+            and Boot to Qt targets.
+        }
         \griditem {qtwebchannel-index.html}{Qt WebChannel} {
             Provides access to QObject or QML objects from HTML clients for seamless
             integration of Qt applications with HTML/JavaScript clients.
@@ -198,57 +242,6 @@
         \griditem {qtxml-index.html}{Qt XML} {
             Handling of XML in a Document Object Model (DOM) API.
         }
-    \endgrid
-//! [addons]
-
-    \target gpl-licensed-addons
-    \section2 Commercial/GPL v3 Licensed Add-Ons
-
-    The following add-ons are available under Commercial Licenses, or GNU General
-    Public License v3:
-
-//! [gpl-licensed-addons]
-    \grid
-        \griditem {qtcharts-index.html}{Qt Charts} {
-            UI Components for displaying visually pleasing charts,
-            driven by static or dynamic data models.
-        }
-        \griditem {qtcoap-index.html}{Qt CoAP} {
-            Implements the client side of CoAP defined by RFC 7252.
-        }
-        \griditem {qtdatavisualization-index.html}{Qt Data Visualization} {
-            UI Components for creating stunning 3D data visualizations.
-        }
-        \griditem {qtlottieanimation-index.html}{Qt Lottie Animation} {
-            A QML API for rendering graphics and animations in JSON format,
-            exported by the Bodymovin plugin for Adobe® After Effects.
-        }
-        \griditem {qtmqtt-index.html}{Qt MQTT} {
-            Provides an implementation of the MQTT protocol specification.
-        }
-        \griditem {qtnetworkauth-index.html}{Qt Network Authorization} {
-            Provides support for OAuth-based authorization to online services.
-        }
-        \griditem {qtquick3d-index.html}{Qt Quick 3D} {
-            Provides a high-level API for creating 3D content or UIs based on
-            Qt Quick.
-        }
-        \griditem {qtquick3dphysics-index.html}{Qt Quick 3D Physics} {
-            Qt Quick 3D Physics provides a high-level QML module adding physical
-            simulation capabilities to Qt Quick 3D.
-        }
-        \griditem {qtquicktimeline-index.html}{Qt Quick Timeline} {
-            Enables keyframe-based animations and parameterization.
-        }
-        \griditem {qtvirtualkeyboard-index.html}{Qt Virtual Keyboard} {
-            A framework for implementing different input methods as
-            well as a QML virtual keyboard. Supports localized keyboard
-            layouts and custom visual themes.
-        }
-        \griditem {qtwaylandcompositor-index.html}{Qt Wayland Compositor} {
-            Provides a framework to develop a Wayland compositor on Linux
-            and Boot to Qt targets.
-        }
         \griditem {qtgraphicaleffects5-index.html}{Qt 5 Compatibility APIs: Graphical Effects} {
             Qt Graphical Effects module from Qt 5 provided for compatibility.
         }
@@ -256,7 +249,7 @@
             Qt Core APIs that were in Qt 5 but not Qt 6.
         }
     \endgrid
-//! [gpl-licensed-addons]
+//! [addons]
 
     \section1 Qt Add-Ons in Technical Preview
 
