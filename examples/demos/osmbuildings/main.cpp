@@ -4,15 +4,16 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+using namespace Qt::StringLiterals;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
+    engine.load(QUrl("qrc:/Main.qml"_L1));
     if (engine.rootObjects().isEmpty())
         return -1;
 
-    return app.exec();
+    return QCoreApplication::exec();
 }

@@ -19,7 +19,7 @@ public:
     int tileSizeX() const;
     int tileSizeY() const;
     Q_INVOKABLE bool isDemoToken() const;
-    Q_INVOKABLE void setToken(QString token);
+    Q_INVOKABLE void setToken(const QString &token);
     Q_INVOKABLE QString token() const;
 
 public slots:

@@ -9,6 +9,8 @@
 #include <QThreadPool>
 #include "3rdparty/mapbox/earcut.h"
 
+using namespace Qt::StringLiterals;
+
 OSMGeometry::OSMGeometry(QQuick3DGeometry *parent): QQuick3DGeometry{ parent }
 {
 
@@ -52,17 +54,17 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
     qsizetype globalPermitiveCounter = 0;
 
     for ( const QVariant &baseData : geoVariantsList ) {
-        for ( const QVariant &dataValue : baseData.toMap()["data"].toList() ) {
-            auto featureMap = dataValue.toMap();
-            auto properties = featureMap["properties"].toMap();
-            auto buildingCoords = featureMap["data"].value<QGeoPolygon>().perimeter();
-            float height = 0.15 * properties["height"].toLongLong();
-            float levels = static_cast<float>(properties["levels"].toLongLong());
-            QColor color = QColor::fromString( properties["color"].toString());
-            if ( !color.isValid() || color == QColor::fromString("black") )
-                color = QColor("white");
-            QColor roofColor = QColor::fromString( properties["roofColor"].toString());
-            if ( !roofColor.isValid() || roofColor == QColor::fromString("black") )
+        for ( const QVariant &dataValue : baseData.toMap()["data"_L1].toList() ) {
+            const auto featureMap = dataValue.toMap();
+            const auto properties = featureMap["properties"_L1].toMap();
+            const auto buildingCoords = featureMap["data"_L1].value<QGeoPolygon>().perimeter();
+            float height = 0.15 * properties["height"_L1].toLongLong();
+            float levels = static_cast<float>(properties["levels"_L1].toLongLong());
+            QColor color = QColor::fromString( properties["color"_L1].toString());
+            if ( !color.isValid() || color == QColor(Qt::GlobalColor::black))
+                color = QColor(Qt::GlobalColor::white);
+            QColor roofColor = QColor::fromString( properties["roofColor"_L1].toString());
+            if ( !roofColor.isValid() || roofColor == QColor(Qt::GlobalColor::black) )
                 roofColor = color;
 
             QVector3D subsetMinBound = QVector3D(maxFloat, maxFloat, maxFloat);
@@ -229,7 +231,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     *vbPtr++ = color.blueF();
                     *vbPtr++ = 1.0;
 
-                    float xCoord = ( subsetVertexCounter % 4 ) ? 1.0f : 0.0f;
+                    float xCoord = ( subsetVertexCounter % 4 != 0) ? 1.0F : 0.0F;
 
                     //texcoord
                     *vbPtr++ = xCoord;
@@ -275,29 +277,24 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
             }
 
-            QString shape = properties["shape"].toString();
+            const auto shape = properties["shape"_L1].toString();
             {
 
-                if ( shape == "sphere" )
-                {
+                if ( shape == "sphere"_L1) {
 
                     subsetPolygonCenter = QVector3D(subsetPolygonCenter.x() / roofPolygonVertices.size(),
                                                     subsetPolygonCenter.y() / roofPolygonVertices.size(), height );
 
-                    float sphereRadius = qAbs(roofPolygonVertices[0][0] - subsetPolygonCenter.x());
-                    if ( shape == "sphere" )
-                        sphereRadius *= 2.0;
+                    float sphereRadius = 2.0F * qAbs(roofPolygonVertices[0][0] - subsetPolygonCenter.x());
 
                     sphereRadius = qMax(sphereRadius, 1.0);
-                    float sphereRadiuslengthInv = 1.0f / sphereRadius;
+                    float sphereRadiuslengthInv = 1.0F / sphereRadius;
 
                     const uint32_t sphereSectorCount = 10;
                     const uint32_t sphereStackCount = 10;
 
                     constexpr double sphereSectorStep = 2.0 * M_PI / sphereSectorCount;
                     constexpr double sphereStackStep = M_PI / sphereStackCount;
-                    float sphereSectorAngle;
-                    float sphereStackAngle;
 
                     lastVertexDataCount = vertexData.size();
                     lastIndexDataCount = indexData.size();
@@ -308,19 +305,16 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * striedVertexLen];
                     ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPermitiveCounter * 3];
 
-                    for (uint32_t stackIndex = 0; stackIndex <= sphereStackCount; ++stackIndex)
-                    {
+                    for (uint32_t stackIndex = 0; stackIndex <= sphereStackCount; ++stackIndex) {
                         float k1 = stackIndex * (sphereSectorCount + 1);
                         float k2 = k1 + sphereSectorCount + 1;
 
-                        sphereStackAngle = M_PI / 2.0 - stackIndex * sphereStackStep;
+                        const float sphereStackAngle = M_PI / 2.0 - stackIndex * sphereStackStep;
                         float xy = sphereRadius * qCos(sphereStackAngle);
                         float z = sphereRadius * qSin(sphereStackAngle);
 
-                        for (uint32_t sectorIndex = 0; sectorIndex <= sphereSectorCount; ++sectorIndex,  ++k1, ++k2)
-                        {
-                            if (stackIndex != 0)
-                            {
+                        for (uint32_t sectorIndex = 0; sectorIndex <= sphereSectorCount; ++sectorIndex,  ++k1, ++k2) {
+                            if (stackIndex != 0) {
                                 *ibPtr++ = k1 + globalVertexCounter;
                                 *ibPtr++ = k2 + globalVertexCounter;
                                 *ibPtr++ = k1 + 1 + globalVertexCounter;
@@ -328,8 +322,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                                 ++globalPermitiveCounter;
                             }
 
-                            if (stackIndex != (sphereStackCount-1))
-                            {
+                            if (stackIndex != (sphereStackCount-1)) {
                                 *ibPtr++ = k1 + 1 + globalVertexCounter;
                                 *ibPtr++ = k2 + globalVertexCounter;
                                 *ibPtr++ = k2 + 1 + globalVertexCounter;
@@ -338,7 +331,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
                             }
 
-                            sphereSectorAngle = sectorIndex * sphereSectorStep;
+                            const float sphereSectorAngle = sectorIndex * sphereSectorStep;
 
                             float x = xy * qCos(sphereSectorAngle);
                             float y = xy * qSin(sphereSectorAngle);

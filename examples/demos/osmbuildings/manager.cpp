@@ -7,16 +7,19 @@
 #include <QRgb>
 #include <QtMath>
 
-OSMManager::OSMManager(QObject *parent)
-    : QObject{parent}
+static QString tileKey(int tileX, int tileY, int zoomLevel)
 {
-    m_request = new OSMRequest(this);
+    return QString::number(tileX) + u',' + QString::number(tileY) + u','
+           + QString::number(zoomLevel);
+}
+
+OSMManager::OSMManager(QObject *parent)
+    : QObject{parent},
+      m_request(new OSMRequest(this))
+{
     connect(m_request, &OSMRequest::buildingsDataReady, this, [this](const QList<QVariant> &geoVariantsList
                                                                      , int tileX, int tileY, int zoomLevel){
-        m_buildingsHash[QString::number(tileX) + ","
-                        + QString::number(tileY)
-                        + ","
-                        + QString::number(zoomLevel)] = true;
+        m_buildingsHash.insert(tileKey(tileX, tileY, zoomLevel), true);
         emit buildingsDataReady(geoVariantsList, tileX - m_startBuildingTileX,
                                 tileY - m_startBuildingTileY,
                                 zoomLevel);
@@ -71,15 +74,10 @@ void OSMManager::setCameraProperties(const QVector3D &position, const QVector3D 
 
 void OSMManager::addBuildingRequestToQueue(QQueue<OSMTileData> &queue, int tileX, int tileY, int zoomLevel)
 {
-    QString key = QString::number(tileX) + "," + QString::number(tileY) + "," + QString::number(zoomLevel);
-    if ( m_buildingsHash.contains( key ) )
+    if ( m_buildingsHash.contains( tileKey(tileX, tileY, zoomLevel) ) )
         return;
 
-    OSMTileData tile;
-    tile.ZoomLevel = zoomLevel;
-    tile.TileX = tileX;
-    tile.TileY = tileY;
-    queue.append( tile );
+    queue.append( {tileX, tileY, zoomLevel} );
 
 }
 
@@ -98,7 +96,7 @@ bool OSMManager::isDemoToken() const
     return m_request->isDemoToken();
 }
 
-void OSMManager::setToken(QString token)
+void OSMManager::setToken(const QString &token)
 {
     m_request->setToken(token);
 }
