@@ -17,9 +17,12 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
+  Qt 6.8 is verified on VxWorks 24.03.
+
+  Supported architectures:
   \list
-    \li Qt 6.7 is verified on VxWorks 24.03
-    Supported architecture is ARM-v7.
+    \li ARM-v7—Tested on BD-SL-i.MX6. BSP used: fsl_imx6
+    \li x86_64—Tested on Intel NUC6i3SYH. BSP used: itl_generic
   \endlist
 
   If you are interested in later Qt releases, please \l {https://www.qt.io/contact-us/}{contact} Qt
@@ -175,10 +178,10 @@
   embedded in base software to make Qt compile and work properly. The
   list is by no means complete as it depends on hardware, software and system
   requirements of your project. However, the following table contains those
-  that are mandatory for certain functionalities to work. Note also that these
-  might change with VxWorks versions.
+  that are mandatory for certain functionalities to work (including touchscreen support).
+  Note also that these might change with VxWorks versions.
 
-  \section3 Example VSB configuration for i.MX 6 BSP
+  \section3 Example VSB configuration for the fsl_imx6 and itl_generic BSPs
 
   You need to add the following features to VSB for Qt to work properly. For
   more details please check WindRiver VxWorks Documentation.
@@ -241,6 +244,10 @@
         \li
 
     \row
+        \li \c USB_TOUCHSCREEN
+        \li
+
+    \row
         \li \c EVDEV
         \li
 
@@ -262,7 +269,7 @@
 
     \row
         \li \c GPUDEV_FSLVIVGPU
-        \li
+        \li fsl_imx6 specific
 
     \row
         \li \c HASH
@@ -288,6 +295,22 @@
         \li \c ICU
         \li
 
+    \row
+        \li \c DRM
+        \li itl_generic specific
+
+    \row
+        \li \c ITLI915
+        \li itl_generic specific
+
+    \row
+        \li \c LIBDRM
+        \li itl_generic specific
+
+    \row
+        \li \c MESA
+        \li itl_generic specific
+
   \endtable
 
   The following config variables are added implicitly and you need to remove them:
@@ -304,6 +327,10 @@
     \row
         \li \c _WRS_CONFIG_EVDEV_DISPLAY_POINT_TRANSLATE
         \li
+
+    \row
+        \li \c _WRS_CONFIG_MESA_MANGLE
+        \li itl_generic specific
 
   \endtable
 
@@ -325,20 +352,44 @@
         \li \c y
         \li
 
+    \row
+        \li \c _WRS_CONFIG_MESA_GPUDEV_INTEL_GEN90
+        \li \c y
+        \li itl_generic specific
+
+    \row
+        \li \c _WRS_CONFIG_EVDEV_COMPATIBLE_MODE
+        \li \c y
+        \li Needed in order for Qt to work properly with a touchscreen.
+
   \endtable
 
-  \section3 Example VIP configuration for i.MX 6 BSP
+  \section3 Example VIP configuration for fsl_imx6 and itl_generic BSPs
   For more details please check WindRiver VxWorks Documentation.
 
   \table 80%
     \header
-        \li Layer
+        \li Bundle
         \li Notes
-
     \row
         \li \c BUNDLE_POSIX
         \li This bundle is necessary for compatibility with POSIX-related
         functionalities which Qt requires.
+    \row
+        \li \c BUNDLE_RTP_DEPLOY
+        \li
+    \row
+        \li \c BUNDLE_RTP_DEVELOP
+        \li
+    \row
+        \li \c BUNDLE_STANDALONE_SHELL
+        \li
+  \endtable
+
+  \table 80%
+    \header
+        \li Component
+        \li Notes
 
     \row
         \li \c INCLUDE_TMP_DIR
@@ -346,18 +397,6 @@
         \li Including these two components is necessary if you want to
             use \l {QTemporaryFile}. Note that you should also consider setting
             \c TMP_DIR_SIZE to appropriate value
-
-    \row
-        \li \c BUNDLE_RTP_DEVELOP
-        \li
-
-    \row
-        \li \c BUNDLE_RTP_DEPLOY
-        \li
-
-    \row
-        \li \c BUNDLE_STANDALONE_SHELL
-        \li
 
     \row
         \li \c DRV_AUDIO_FSL_SSI
@@ -441,6 +480,10 @@
 
     \row
         \li \c INCLUDE_EVDEV_LIB_PTR
+        \li
+
+    \row
+        \li \c INCLUDE_EVDEV_LIB_TS
         \li
 
     \row
@@ -672,6 +715,14 @@
         \li
 
     \row
+        \li \c INCLUDE_USB_TOUCH_SCREEN
+        \li
+
+    \row
+        \li \c INCLUDE_USB_TOUCH_SCREEN_INIT
+        \li
+
+    \row
         \li \c INCLUDE_USER_DATABASE
         \li
 
@@ -697,7 +748,7 @@
 
     \row
         \li \c INCLUDE_FBDEV_FSLIPU_0
-        \li
+        \li fsl_imx6 specific
 
     \row
         \li \c INCLUDE_FBDEV_SPLASH
@@ -705,12 +756,27 @@
 
     \row
         \li \c INCLUDE_GPUDEV_FSLVIV_API
-        \li
+        \li fsl_imx6 specific
 
     \row
         \li \c INCLUDE_GPUDEV_FSLVIV_API_INIT
-        \li
+        \li fsl_imx6 specific
 
+    \row
+        \li \c INCLUDE_GPUDEV_ITLGMC_2
+        \li itl_generic specific
+    \row
+        \li \c INCLUDE_I915
+        \li itl_generic specific
+    \row
+        \li \c INCLUDE_MESA_FBDEV
+        \li itl_generic specific
+    \row
+        \li \c INCLUDE_MESA_GPUDEV_DRI
+        \li itl_generic specific
+    \row
+        \li \c INCLUDE_MESA_GPUDEV_DRI_I965
+        \li itl_generic specific
   \endtable
 
   The following components are added implicitly and you need to remove them:
@@ -772,8 +838,8 @@
 
     \row
         \li \c RTP_PTHREAD_STACK_SIZE_DEFAULT
-        \li \c 131072
-        \li
+        \li \c 262144
+        \li Required to make qtquick3d examples work. Can be overridden with the PTHREAD_STACK_SIZE_DEFAULT env variable.
 
     \row
         \li \c TMP_DIR_SIZE
@@ -794,6 +860,12 @@
         \li \c HRFS_DEFAULT_MAX_FILES
         \li \c 300
         \li
+
+    \row
+        \li \c ITLGMC_FBDEV_RESOLUTION_2
+        \li \c '"1024x768-32"'
+        \li Example value for the Xenarc 706TSA touchscreen connected over HDMI.
+
 
   \endtable
 
@@ -904,6 +976,53 @@
       ${GLESv2_LIBRARY}
   )
   unset(_common_lib_path)
+  \endcode
+
+  An example for Intel NUC6i3SYH:
+
+  \badcode
+  # Copyright (C) 2024 The Qt Company Ltd.
+  # SPDX-License-Identifier: BSD-3-Clause
+
+  if(QT_VXWORKS_TOOLCHAIN_FILE)
+      set(_original_toolchain_file "${QT_VXWORKS_TOOLCHAIN_FILE}")
+  elseif(DEFINED ENV{QT_VXWORKS_TOOLCHAIN_FILE})
+      set(_original_toolchain_file "$ENV{QT_VXWORKS_TOOLCHAIN_FILE}")
+  else()
+      message(FATAL_ERROR "QT_VXWORKS_TOOLCHAIN_FILE is not set.")
+  endif()
+
+  if(NOT EXISTS "${_original_toolchain_file}")
+      message(FATAL_ERORR "${_original_toolchain_file} doesn't exists.")
+  endif()
+
+  include("${_original_toolchain_file}")
+  unset(_original_toolchain_file)
+
+  list(APPEND CMAKE_TRY_COMPILE_PLATFORM_VARIABLES QT_VXWORKS_TOOLCHAIN_FILE)
+
+  set(_common_lib_path "${CMAKE_SYSROOT}/usr/lib/common")
+  set(EGL_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to EGL include directory" FORCE)
+  set(EGL_LIBRARY ${_common_lib_path}/libgfxMesaEGL.so CACHE PATH "Path to EGL lib" FORCE)
+  set(GLESv2_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to GLES include directory" FORCE)
+  set(GLESv2_LIBRARY ${_common_lib_path}/libgfxMesaGL.so CACHE PATH "Path to GLES lib" FORCE)
+
+  set(VxWorksPlatformGraphics_DEFINES "-D__vxworks -D__VXWORKS")
+  set(VxWorksPlatformGraphics_LIBRARIES_PACK
+      "${_common_lib_path}/libgfxMesaSw.so"
+      "${_common_lib_path}/libgfxMesa.so"
+      "${_common_lib_path}/libgfxMesaDriI965.so"
+      "${_common_lib_path}/libgfxLibDRM.so"
+      "${_common_lib_path}/libxml.so"
+  )
+
+  set(VxWorksPlatformGraphics_REQUIRED_LIBRARIES
+      ${VxWorksPlatformGraphics_LIBRARIES_PACK}
+      ${EGL_LIBRARY}
+      ${GLESv2_LIBRARY}
+  )
+  unset(_common_lib_path)
+
   \endcode
 
   \section3 Running Qt 6 Configure for the Target
