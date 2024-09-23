@@ -7,19 +7,13 @@
 #include <QRgb>
 #include <QtMath>
 
-static QString tileKey(int tileX, int tileY, int zoomLevel)
-{
-    return QString::number(tileX) + u',' + QString::number(tileY) + u','
-           + QString::number(zoomLevel);
-}
-
 OSMManager::OSMManager(QObject *parent)
     : QObject{parent},
       m_request(new OSMRequest(this))
 {
     connect(m_request, &OSMRequest::buildingsDataReady, this, [this](const QList<QVariant> &geoVariantsList
                                                                      , int tileX, int tileY, int zoomLevel){
-        m_buildingsHash.insert(tileKey(tileX, tileY, zoomLevel), true);
+        m_buildingsHash.insert(OSMTileData{tileX, tileY, zoomLevel}, true);
         emit buildingsDataReady(geoVariantsList, tileX - m_startBuildingTileX,
                                 tileY - m_startBuildingTileY,
                                 zoomLevel);
@@ -74,11 +68,9 @@ void OSMManager::setCameraProperties(const QVector3D &position, const QVector3D 
 
 void OSMManager::addBuildingRequestToQueue(QQueue<OSMTileData> &queue, int tileX, int tileY, int zoomLevel)
 {
-    if ( m_buildingsHash.contains( tileKey(tileX, tileY, zoomLevel) ) )
-        return;
-
-    queue.append( {tileX, tileY, zoomLevel} );
-
+    OSMTileData data{tileX, tileY, zoomLevel};
+    if ( !m_buildingsHash.contains(data) )
+        queue.append(data);
 }
 
 int OSMManager::tileSizeX() const

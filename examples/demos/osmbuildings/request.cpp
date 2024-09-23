@@ -11,6 +11,11 @@
 
 using namespace Qt::StringLiterals;
 
+size_t qHash(OSMTileData data, size_t seed) noexcept
+{
+    return qHashMulti(seed, data.TileX, data.TileY, data.ZoomLevel);
+}
+
 static QString tileKey(const OSMTileData &tile)
 {
     return QString::number(tile.ZoomLevel) + u',' + QString::number(tile.TileX)
