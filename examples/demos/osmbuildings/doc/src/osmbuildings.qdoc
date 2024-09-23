@@ -54,9 +54,9 @@
 
     \quotefromfile demos/osmbuildings/geometry.cpp
     \skipto for ( const QVariant &baseData : geoVariantsList )
-	\printuntil for ( const QGeoCoordinate &buildingPoint : buildingCoords )
-	\dots 3
-	\skipto std::vector<PolygonVertices> roofPolygonsVerices
+        \printuntil for ( const QGeoCoordinate &buildingPoint : buildingCoords )
+        \dots 3
+        \skipto std::vector<PolygonVertices> roofPolygonsVertices
     \printuntil clear()
 
     The downloaded PNG data is sent to a custom QQuick3DTextureData item to convert the PNG format

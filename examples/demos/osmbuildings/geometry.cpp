@@ -24,10 +24,11 @@ void OSMGeometry::updateData(const QList<QVariant> &geoVariantsList)
 }
 
 void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
-{        const int striedVertexLen = 20;
+{
+    constexpr int strideVertexLen = 20;
     /* 3 Position + 3 Normal + 3 Tangent + 3 Binormal + 4 Color + 2 Texcoord0
        + 2 Texcoord1 as Number of Levels and Is Rooftop */
-    constexpr int strideVertex = striedVertexLen * sizeof(float);
+    constexpr int strideVertex = strideVertexLen * sizeof(float);
     constexpr auto convertGeoCoordToVertexPosition = [](const float lat, const float lon) -> QVector3D {
 
         const double scale = 1.212;
@@ -39,7 +40,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
         return QVector3D( x - XOffsetFromCenter, YOffsetFromCenter - y, 0.0 );
     };
 
-    constexpr int stridePermitive = 3 * sizeof(uint32_t);
+    constexpr int stridePrimitive = 3 * sizeof(uint32_t);
 
     QByteArray vertexData;
     QByteArray indexData;
@@ -51,7 +52,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
     QVector3D meshMaxBound = QVector3D(minFloat, minFloat, minFloat);
 
     qsizetype globalVertexCounter = 0;
-    qsizetype globalPermitiveCounter = 0;
+    qsizetype globalPrimitiveCounter = 0;
 
     for ( const QVariant &baseData : geoVariantsList ) {
         for ( const QVariant &dataValue : baseData.toMap()["data"_L1].toList() ) {
@@ -74,10 +75,10 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
             qsizetype lastVertexDataCount = vertexData.size();
             qsizetype lastIndexDataCount = indexData.size();
             vertexData.resize( lastVertexDataCount + numSubsetVertices * strideVertex );
-            indexData.resize( lastIndexDataCount + ( numSubsetVertices - 2 ) * stridePermitive );
+            indexData.resize( lastIndexDataCount + ( numSubsetVertices - 2 ) * stridePrimitive );
 
-            float *vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * striedVertexLen];
-            uint32_t *ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPermitiveCounter * 3];
+            float *vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * strideVertexLen];
+            uint32_t *ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPrimitiveCounter * 3];
 
             qsizetype subsetVertexCounter = 0;
 
@@ -129,7 +130,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     *ibPtr++ = globalVertexCounter + 3;
                     *ibPtr++ = globalVertexCounter + 0;
 
-                    globalPermitiveCounter += 2;
+                    globalPrimitiveCounter += 2;
                 }
 
                 if ( subsetVertexCounter == 2 ) {
@@ -298,12 +299,12 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
                     lastVertexDataCount = vertexData.size();
                     lastIndexDataCount = indexData.size();
-                    uint32_t sphereVetexCount = sphereStackCount * (sphereSectorCount + 1);
-                    vertexData.resize( lastVertexDataCount + sphereVetexCount * strideVertex );
-                    indexData.resize( lastIndexDataCount + sphereVetexCount * 2 * 3 * sizeof(uint32_t) );
+                    uint32_t sphereVertexCount = sphereStackCount * (sphereSectorCount + 1);
+                    vertexData.resize( lastVertexDataCount + sphereVertexCount * strideVertex );
+                    indexData.resize( lastIndexDataCount + sphereVertexCount * 2 * 3 * sizeof(uint32_t) );
 
-                    vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * striedVertexLen];
-                    ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPermitiveCounter * 3];
+                    vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * strideVertexLen];
+                    ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPrimitiveCounter * 3];
 
                     for (uint32_t stackIndex = 0; stackIndex <= sphereStackCount; ++stackIndex) {
                         float k1 = stackIndex * (sphereSectorCount + 1);
@@ -319,7 +320,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                                 *ibPtr++ = k2 + globalVertexCounter;
                                 *ibPtr++ = k1 + 1 + globalVertexCounter;
 
-                                ++globalPermitiveCounter;
+                                ++globalPrimitiveCounter;
                             }
 
                             if (stackIndex != (sphereStackCount-1)) {
@@ -327,7 +328,7 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                                 *ibPtr++ = k2 + globalVertexCounter;
                                 *ibPtr++ = k2 + 1 + globalVertexCounter;
 
-                                ++globalPermitiveCounter;
+                                ++globalPrimitiveCounter;
 
                             }
 
@@ -372,28 +373,28 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
                         }
                     }
-                    subsetVertexCounter += sphereVetexCount;
-                    globalVertexCounter += sphereVetexCount;
+                    subsetVertexCounter += sphereVertexCount;
+                    globalVertexCounter += sphereVertexCount;
                 }
                 {
 
-                    std::vector<PolygonVertices> roofPolygonsVerices;
-                    roofPolygonsVerices.push_back( roofPolygonVertices );
-                    std::vector<uint32_t> roofIndices = mapbox::earcut<uint32_t>(roofPolygonsVerices);
+                    std::vector<PolygonVertices> roofPolygonsVertices;
+                    roofPolygonsVertices.push_back( roofPolygonVertices );
+                    std::vector<uint32_t> roofIndices = mapbox::earcut<uint32_t>(roofPolygonsVertices);
 
                     lastVertexDataCount = vertexData.size();
                     lastIndexDataCount = indexData.size();
                     vertexData.resize( lastVertexDataCount + roofPolygonVertices.size() * strideVertex );
                     indexData.resize( lastIndexDataCount + roofIndices.size() * sizeof(uint32_t) );
 
-                    vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * striedVertexLen];
-                    ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPermitiveCounter * 3];
+                    vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * strideVertexLen];
+                    ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPrimitiveCounter * 3];
 
                     for ( const uint32_t &roofIndex : roofIndices ) {
                         *ibPtr++ = roofIndex + globalVertexCounter;
                     }
-                    qsizetype roofPermitiveCount = roofIndices.size() / 3;
-                    globalPermitiveCounter += roofPermitiveCount;
+                    qsizetype roofPrimitiveCount = roofIndices.size() / 3;
+                    globalPrimitiveCounter += roofPrimitiveCount;
 
                     for ( const PolygonVertex &polygonVertex : roofPolygonVertices ) {
 
