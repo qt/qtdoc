@@ -269,8 +269,13 @@ void OSMRequest::getBuildingsDataRequest(const OSMTileData &tile)
             QByteArray data = reply->readAll();
             emit buildingsDataReady( importGeoJson(QJsonDocument::fromJson( data )), tile.TileX, tile.TileY, tile.ZoomLevel );
         } else {
-            qWarning().noquote() << "OSMRequest::getBuildingsData " << reply->error()
-                                 << url << reply->readAll();
+            const QByteArray message = reply->readAll();
+            static QByteArray lastMessage;
+            if (message != lastMessage) {
+                lastMessage = message;
+                qWarning().noquote() << "OSMRequest::getBuildingsData " << reply->error()
+                                     << url << message;
+            }
         }
         --m_buildingsNumberOfRequestsInFlight;
     } );
@@ -310,8 +315,13 @@ void OSMRequest::getMapsDataRequest(const OSMTileData &tile)
             QByteArray data = reply->readAll();
             emit mapsDataReady( data, tile.TileX, tile.TileY, tile.ZoomLevel );
         } else {
-            qWarning().noquote() << "OSMRequest::getMapsDataRequest" << reply->error()
-                                 << url << reply->readAll();
+            const QByteArray message = reply->readAll();
+            static QByteArray lastMessage;
+            if (message != lastMessage) {
+                lastMessage = message;
+                qWarning().noquote() << "OSMRequest::getMapsDataRequest" << reply->error()
+                                     << url << message;
+            }
         }
         --m_mapsNumberOfRequestsInFlight;
     } );
