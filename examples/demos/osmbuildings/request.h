@@ -7,16 +7,25 @@
 #include <QNetworkAccessManager>
 #include <QQueue>
 #include <QTimer>
+#include <qcomparehelpers.h>
 
-
-struct OSMTileData{
+struct OSMTileData
+{
     int TileX;
     int TileY;
     int ZoomLevel;
-    bool operator ==(const OSMTileData &other) const{
-        return (TileX == other.TileX && TileY == other.TileY && ZoomLevel == other.ZoomLevel);
+
+    friend bool comparesEqual(OSMTileData lhs,
+                              OSMTileData rhs) noexcept
+    {
+        return lhs.TileX == rhs.TileX && lhs.TileY == rhs.TileY
+                && lhs.ZoomLevel == rhs.ZoomLevel;
     }
+
+    Q_DECLARE_EQUALITY_COMPARABLE(OSMTileData)
 };
+
+size_t qHash(OSMTileData data, size_t seed = 0) noexcept;
 
 class OSMRequest : public QObject
 {

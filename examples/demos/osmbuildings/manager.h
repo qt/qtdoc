@@ -34,7 +34,7 @@ signals:
 private:
     void addBuildingRequestToQueue(QQueue<OSMTileData> &queue, int tileX, int tileY, int zoomLevel = 15);
     class OSMRequest *m_request = nullptr;
-    QHash<QString, bool> m_buildingsHash;
+    QHash<OSMTileData, bool> m_buildingsHash;
     const int m_startBuildingTileX = 17605;
     const int m_startBuildingTileY = 10746;
     const int m_tileSizeX = 37;
