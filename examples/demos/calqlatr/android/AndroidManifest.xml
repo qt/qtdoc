@@ -1,5 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.qtproject.calqlatr"
           android:installLocation="auto"
           android:versionCode="-- %%INSERT_VERSION_CODE%% --"
           android:versionName="-- %%INSERT_VERSION_NAME%% --">
@@ -11,7 +10,7 @@
                       android:smallScreens="true"/>
     <application android:name="org.qtproject.qt.android.bindings.QtApplication"
                  android:hardwareAccelerated="true"
-                 android:label="-- %%INSERT_APP_NAME%% --"
+                 android:label="Calqlatr"
                  android:requestLegacyExternalStorage="true"
                  android:allowBackup="true"
                  android:fullBackupOnly="false"
@@ -28,5 +27,15 @@
             <meta-data android:name="android.app.lib_name"
                        android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.qtprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/qtprovider_paths"/>
+        </provider>
     </application>
 </manifest>
