@@ -11,7 +11,7 @@ FetchContent_Declare(
 )
 
 FetchContent_GetProperties(ds)
-FetchContent_Populate(ds)
+FetchContent_MakeAvailable(ds)
 
 target_link_libraries(CarRenderingApp PRIVATE
     QuickStudioComponentsplugin
@@ -25,5 +25,3 @@ target_link_libraries(CarRenderingApp PRIVATE
     QuickStudioEventSystemplugin
     QuickStudioUtilsplugin
 )
-
-add_subdirectory(${ds_SOURCE_DIR} ${ds_BINARY_DIR})
