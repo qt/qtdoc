@@ -15,5 +15,5 @@ if(TARGET Qt6::PrintSupport)
     add_compile_definitions(QT_DOCUMENTVIEWER_PRINTSUPPORT)
 endif()
 
-add_subdirectory(app)
 add_subdirectory(plugins)
+add_subdirectory(app)
