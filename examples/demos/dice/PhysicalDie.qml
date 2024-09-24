@@ -15,9 +15,7 @@ DynamicRigidBody {
         motionTimeout.start()
         atRest = false
         let volume = 0
-        impulses.forEach(vector => {
-                             volume += vector.length()
-                         })
+        impulses.forEach(vector => { volume += vector.length() })
         diceSound.volume = volume / 2000
         if (!diceSound.playing)
             diceSound.play()

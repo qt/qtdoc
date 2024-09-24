@@ -20,6 +20,13 @@ Item {
         diceSpawner.setDiceWidth(diceWidth);
     }
 
+    Screen.onPrimaryOrientationChanged: {
+        var orientation = Screen.primaryOrientation
+        var isPortrait = orientation === Qt.PortraitOrientation
+                || orientation === Qt.InvertedPortraitOrientation
+        viewport.camera.position = Qt.vector3d(0, -20, isPortrait ? 100 : 60)
+    }
+
     PhysicsWorld {
         id: physicsWorld
         running: true
@@ -55,7 +62,7 @@ Item {
             eulerRotation: Qt.vector3d(-14.2885, 410.287, 0)
             PerspectiveCamera {
                 id: camera
-                position: Qt.vector3d(0, -20, 60)
+                position: Qt.vector3d(0, -20, 100)
                 clipFar: 1000
                 clipNear: 0.1
             }

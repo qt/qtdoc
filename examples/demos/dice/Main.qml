@@ -39,8 +39,7 @@ ApplicationWindow {
 
     Scene {
         id: scene
-        x: root.currDrawerWidth - 10 // pad 10px for rounded corners
-        width: parent.width - root.currDrawerWidth + 20
+        width: parent.width
         height: parent.height
 
         settingsStaticFriction: staticFrictionSlider.value
@@ -233,7 +232,7 @@ ApplicationWindow {
                     focusPolicy: Qt.NoFocus
                     from: 1
                     to: 10
-                    value: 2
+                    value: 3.5
                     stepSize: 1
                     onValueChanged: scene.setDiceWidth(value)
                 }
