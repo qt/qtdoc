@@ -59,12 +59,6 @@ private:
     QQueue<OSMTileData> m_mapsQueue;
     QNetworkAccessManager m_networkAccessManager;
     QString m_token;
-
-    //%1 = zoom level(15 the default and only one here that seems working), %2 = x tile number, %3 = y tile number
-    const char *m_uRL_OSMB_JSON = "https://983wdxn2c2.execute-api.eu-north-1.amazonaws.com/production/osmbuildingstile?z=%1&x=%2&y=%3&token=%4";
-
-    //%1 = zoom level(is dynamic), %2 = x tile number, %3 = y tile number
-    const char *m_uRL_OSMB_MAP = "https://tile-a.openstreetmap.fr/hot/%1/%2/%3.png";
 };
 
 
