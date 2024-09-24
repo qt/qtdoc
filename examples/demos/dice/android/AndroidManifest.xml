@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.qtproject.qtdice"
     android:installLocation="auto"
     android:versionCode="-- %%INSERT_VERSION_CODE%% --"
     android:versionName="-- %%INSERT_VERSION_NAME%% --">
-
     <!-- %%INSERT_PERMISSIONS -->
     <!-- %%INSERT_FEATURES -->
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -17,7 +14,7 @@
     <application
         android:name="org.qtproject.qt.android.bindings.QtApplication"
         android:hardwareAccelerated="true"
-        android:label="-- %%INSERT_APP_NAME%% --"
+        android:label="Qt Dice"
         android:requestLegacyExternalStorage="true"
         android:allowNativeHeapPointerTagging="false"
         android:allowBackup="true"
