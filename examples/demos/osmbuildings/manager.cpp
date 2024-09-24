@@ -28,25 +28,26 @@ OSMManager::OSMManager(QObject *parent)
 }
 
 void OSMManager::setCameraProperties(const QVector3D &position, const QVector3D &right,
-                                    float cameraZoom, float minimunZoom, float maximumZoom,
-                                    float cameraTilt, float minimumTilt, float maxmumTilt)
+                                    float cameraZoom, float minimumZoom, float maximumZoom,
+                                    float cameraTilt, float minimumTilt, float maximumTilt)
 {
 
-    float tiltFactor = (cameraTilt - minimumTilt) / qMax(maxmumTilt - minimumTilt, 1.0);
-    float zoomFactor = (cameraZoom - minimunZoom) / qMax(maximumZoom - minimunZoom, 1.0);
+    float tiltFactor = (cameraTilt - minimumTilt) / qMax(maximumTilt - minimumTilt, 1.0);
+    float zoomFactor = (cameraZoom - minimumZoom) / qMax(maximumZoom - minimumZoom, 1.0);
 
+    // Forward vector align to the XY plane
     QVector3D forwardVector = QVector3D::crossProduct(right,
-                                                      QVector3D(0.0, 0.0, -1.0)).normalized(); //Forward vector align to the XY plane
+                                                      QVector3D(0.0, 0.0, -1.0)).normalized();
     QVector3D projectionOfForwardOnXY = position
             + forwardVector * tiltFactor * zoomFactor * 50.0;
 
     QQueue<OSMTileData> queue;
-    for ( int fowardIndex = -20; fowardIndex <= 20; ++fowardIndex ){
+    for ( int forwardIndex = -20; forwardIndex <= 20; ++forwardIndex ){
         for ( int sidewardIndex = -20; sidewardIndex <= 20; ++sidewardIndex ){
-            QVector3D transferedPosition = projectionOfForwardOnXY + QVector3D(float(m_tileSizeX * sidewardIndex)
-                                                                               , float(m_tileSizeY * fowardIndex), 0.0);
-            addBuildingRequestToQueue(queue, m_startBuildingTileX + int(transferedPosition.x() / m_tileSizeX),
-                                m_startBuildingTileY - int(transferedPosition.y() / m_tileSizeY));
+            QVector3D transferredPosition = projectionOfForwardOnXY
+                      + QVector3D(float(m_tileSizeX * sidewardIndex), float(m_tileSizeY * forwardIndex), 0.0);
+            addBuildingRequestToQueue(queue, m_startBuildingTileX + int(transferredPosition.x() / m_tileSizeX),
+                                m_startBuildingTileY - int(transferredPosition.y() / m_tileSizeY));
         }
     }
 

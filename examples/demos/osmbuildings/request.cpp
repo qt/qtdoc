@@ -11,6 +11,12 @@
 
 using namespace Qt::StringLiterals;
 
+//%1 = zoom level(15 the default and only one here that seems working), %2 = x tile number, %3 = y tile number
+static constexpr auto URL_OSMB_JSON = "https://983wdxn2c2.execute-api.eu-north-1.amazonaws.com/production/osmbuildingstile?z=%1&x=%2&y=%3&token=%4"_L1;
+
+//%1 = zoom level(is dynamic), %2 = x tile number, %3 = y tile number
+static constexpr auto URL_OSMB_MAP = "https://tile-a.openstreetmap.fr/hot/%1/%2/%3.png"_L1;
+
 size_t qHash(OSMTileData data, size_t seed) noexcept
 {
     return qHashMulti(seed, data.TileX, data.TileY, data.ZoomLevel);
@@ -26,20 +32,12 @@ QGeoCoordinate importPosition(const QVariant &position)
 {
     QGeoCoordinate returnedCoordinates;
     const auto positionList = position.value<QVariantList>();
-    for (qsizetype i  = 0; i < positionList.size(); ++i) { // Iterating Point coordinates arrays
-        double value = positionList.at(i).toDouble();
-        switch (i) {
-        case 0:
-            returnedCoordinates.setLongitude(value);
-            break;
-        case 1:
-            returnedCoordinates.setLatitude(value);
-            break;
-        case 2:
-            returnedCoordinates.setAltitude(value);
-            break;
-        default:
-            break;
+    if (!positionList.isEmpty()) {
+        returnedCoordinates.setLongitude(positionList.constFirst().toDouble());
+        if (positionList.size() > 1) {
+            returnedCoordinates.setLatitude(positionList.at(1).toDouble());
+            if (positionList.size() > 2)
+                returnedCoordinates.setAltitude(positionList.at(2).toDouble());
         }
     }
     return returnedCoordinates;
@@ -117,8 +115,9 @@ static QVariantList importFeatureCollection(const QVariantMap &inputMap)
         auto singleFeatureMap = importGeometry(inputFeatureMap.value("geometry"_L1).value<QVariantMap>());
         const auto importedProperties = inputFeatureMap.value("properties"_L1).value<QVariantMap>();
         singleFeatureMap.insert("properties"_L1, importedProperties);
-        if (inputFeatureMap.contains("id"_L1)) {
-            auto importedId = inputFeatureMap.value("id"_L1).value<QVariant>();
+        const auto it = inputFeatureMap.constFind("id"_L1);
+        if (it != inputFeatureMap.cend()) {
+            auto importedId = it.value().value<QVariant>();
             singleFeatureMap.insert("id"_L1, importedId);
         }
         returnedObject.append(singleFeatureMap);
@@ -165,8 +164,9 @@ static QVariantList importGeoJson(const QJsonDocument &geoJson)
                 parsedGeoJsonMap = importGeometry(rootGeoJsonObject.value("geometry"_L1).value<QVariantMap>());
                 auto importedProperties = rootGeoJsonObject.value("properties"_L1).value<QVariantMap>();
                 parsedGeoJsonMap.insert("properties"_L1, importedProperties);
-                if (rootGeoJsonObject.contains("id"_L1)){
-                    auto importedId = rootGeoJsonObject.value("id"_L1).value<QVariant>();
+                const auto it = rootGeoJsonObject.constFind("id"_L1);
+                if (it != rootGeoJsonObject.cend()){
+                    auto importedId = it.value().value<QVariant>();
                     parsedGeoJsonMap.insert("id"_L1, importedId);
                 }
                 break;
@@ -263,12 +263,12 @@ void OSMRequest::getBuildingsDataRequest(const OSMTileData &tile)
         }
     }
 
-    QUrl url = QUrl(tr(m_uRL_OSMB_JSON).arg(QString::number(tile.ZoomLevel),
-                                            QString::number(tile.TileX),
-                                            QString::number(tile.TileY),
-                                            m_token));
+    QUrl url = QUrl(QString(URL_OSMB_JSON).arg(QString::number(tile.ZoomLevel),
+                                               QString::number(tile.TileX),
+                                               QString::number(tile.TileY),
+                                               m_token));
     QNetworkReply * reply = m_networkAccessManager.get( QNetworkRequest(url));
-    connect( reply, &QNetworkReply::finished, this, [this, reply, tile, url](){
+    connect( reply, &QNetworkReply::finished, this, [this, reply, tile](){
         reply->deleteLater();
         if ( reply->error() == QNetworkReply::NoError ) {
             QByteArray data = reply->readAll();
@@ -279,7 +279,7 @@ void OSMRequest::getBuildingsDataRequest(const OSMTileData &tile)
             if (message != lastMessage) {
                 lastMessage = message;
                 qWarning().noquote() << "OSMRequest::getBuildingsData " << reply->error()
-                                     << url << message;
+                                     << reply->url() << message;
             }
         }
         --m_buildingsNumberOfRequestsInFlight;
@@ -310,11 +310,11 @@ void OSMRequest::getMapsDataRequest(const OSMTileData &tile)
         }
     }
 
-    QUrl url = QUrl(tr(m_uRL_OSMB_MAP).arg(QString::number(tile.ZoomLevel),
-                                           QString::number(tile.TileX),
-                                           QString::number(tile.TileY)));
+    QUrl url = QUrl(QString(URL_OSMB_MAP).arg(QString::number(tile.ZoomLevel),
+                                              QString::number(tile.TileX),
+                                              QString::number(tile.TileY)));
     QNetworkReply * reply = m_networkAccessManager.get( QNetworkRequest(url));
-    connect( reply, &QNetworkReply::finished, this, [this, reply, tile, url](){
+    connect( reply, &QNetworkReply::finished, this, [this, reply, tile](){
         reply->deleteLater();
         if ( reply->error() == QNetworkReply::NoError ) {
             QByteArray data = reply->readAll();
@@ -325,7 +325,7 @@ void OSMRequest::getMapsDataRequest(const OSMTileData &tile)
             if (message != lastMessage) {
                 lastMessage = message;
                 qWarning().noquote() << "OSMRequest::getMapsDataRequest" << reply->error()
-                                     << url << message;
+                                     << reply->url() << message;
             }
         }
         --m_mapsNumberOfRequestsInFlight;
