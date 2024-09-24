@@ -70,9 +70,22 @@ qt_add_qml_module(coffeemachine
 )
 if(ANDROID)
     set_target_properties(coffeemachine PROPERTIES
-        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-endif()
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+        QT_ANDROID_PACKAGE_NAME "io.qt.coffeemachine"
+        QT_ANDROID_TARGET_SDK_VERSION 35
+        QT_ANDROID_VERSION_CODE 20
+        QT_ANDROID_VERSION_NAME "2.0"
+    )
 
+    qt_import_plugins(coffeemachine
+        INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin
+        EXCLUDE_BY_TYPE qmltooling
+        EXCLUDE_BY_TYPE iconengines
+        EXCLUDE_BY_TYPE networkinformation
+        EXCLUDE_BY_TYPE tls
+        EXCLUDE_BY_TYPE platforminputcontexts
+    )
+endif()
 
 set_target_properties(coffeemachine PROPERTIES
     WIN32_EXECUTABLE TRUE

@@ -112,7 +112,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Colors.currentTheme.cardColor
                 Text {
-                    text: "Please Insert your Cup!"
+                    text: "Please insert your cup."
                     color: Colors.currentTheme.textColor
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter

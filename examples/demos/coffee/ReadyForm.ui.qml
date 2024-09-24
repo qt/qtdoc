@@ -75,7 +75,7 @@ Item {
                 color: Colors.currentTheme.cardColor
                 Text {
                     id: caption
-                    text: "Your Coffee is Ready!"
+                    text: "Your coffee is ready."
                     color: Colors.currentTheme.textColor
                     font.pixelSize: 18
                     font.weight: 600
