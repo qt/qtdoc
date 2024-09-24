@@ -26,7 +26,20 @@ target_link_libraries(${appname} PRIVATE
 if(ANDROID)
     set_target_properties(${appname} PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
-        QT_ANDROID_TARGET_SDK_VERSION "33")
+        QT_ANDROID_PACKAGE_NAME "io.qt.dice"
+        QT_ANDROID_TARGET_SDK_VERSION 35
+        QT_ANDROID_VERSION_CODE 10
+        QT_ANDROID_VERSION_NAME "1.0"
+    )
+
+    qt_import_plugins(${appname}
+        INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin Qt::QJpegPlugin
+        EXCLUDE_BY_TYPE qmltooling
+        EXCLUDE_BY_TYPE iconengines
+        EXCLUDE_BY_TYPE networkinformation
+        EXCLUDE_BY_TYPE tls
+        EXCLUDE_BY_TYPE platforminputcontexts
+    )
 endif()
 
 if(IOS)
