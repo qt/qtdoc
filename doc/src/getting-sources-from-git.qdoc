@@ -98,7 +98,7 @@
     \c{-codereview-username} the first time you configure Qt.
 
     \badcode
-    qt-sources/configure -init-submodules --codereview-username <Gerrit username>
+    qt-sources/configure -init-submodules -codereview-username <Gerrit username>
     \endcode
 
     For more information on contributing to Qt and creating a Gerrit
