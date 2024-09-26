@@ -84,6 +84,18 @@
     \list
         \li \l {Third-Party Code Used in Qt}
     \endlist
+
+    \section1 Software Bill of Materials (SBOM)
+
+    Starting from Qt 6.8, Software Bill of Materials (SBOM) documents of
+    third-party components in Qt are available. Information such as copyrights,
+    licenses, versions, source repositories, and other relevant information are
+    declared in SPDX 2.3 format.
+
+    \list
+        \li \l {Software Bill of Materials}
+    \endlist
+
 */
 
 /*!
@@ -111,6 +123,12 @@
     \l{All Modules}{Qt module}. If the third-party component itself consists of
     parts that are of a different origin (so-called
     4th-party or Nth-party code), these are listed, too.
+
+    Starting from Qt 6.8, Software Bill of Materials (SBOM) documents of
+    third-party components in Qt are available. Information such as copyrights,
+    licenses, versions, source repositories, and other relevant information are
+    declared in SPDX 2.3 format. For more information, visit the
+    \l {Software Bill of Materials} page.
 
     \div {class="fixed"}
     \generatelist annotatedattributions
