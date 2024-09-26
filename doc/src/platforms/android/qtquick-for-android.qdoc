@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \title QML for Android
+    \title Qt Quick for Android
     \brief An overview on using QML in native Android projects.
-    \page qml-for-android.html
+    \page qtquick-for-android.html
     \ingroup android-platform-extra-topics
 
-    \section1 QML for Android overview
+    \section1 Qt Quick for Android overview
 
     The basis of this approach is to offer Qt QML APIs in an embedded way so
     that the app will remain a relatively typical Android app. This approach
@@ -30,10 +30,10 @@
 
     The most prominent difference between these approaches is the project structure.
     Qt for Android applications are CMake projects that can be built for Android or
-    other platforms, while a QML for Android Project is an Android project that
+    other platforms, while a Qt Quick for Android Project is an Android project that
     includes QML content and can only be built for Android.
 
-    \image qml-for-android-comparisson.drawio.svg
+    \image qtquick-for-android-comparisson.drawio.svg
 
     The main objective of the Qt for Android approach is to let Qt handle most of the work
     of the architecture and boilerplate code of the app and let you focus on the
@@ -51,12 +51,12 @@
 
     See \l{How Qt for Android Works} for further details on Qt for Android's architecture.
 
-    \section1 How QML for Android works
+    \section1 How Qt Quick for Android works
 
-    QML for Android offers you \l{Qt Quick Android Classes}{Android APIs} that enable
+    Qt Quick for Android offers you \l{Qt Quick Android Classes}{Android APIs} that enable
     you to insert QML content as an \l{Android: View}{Android View} in your project.
 
-    \image qml-for-android-architecture.drawio.svg
+    \image qtquick-for-android-architecture.drawio.svg
 
     \section1 APIs
 
