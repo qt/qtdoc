@@ -8,6 +8,6 @@ At its core this is a QML application, see
 `Getting Started Programming with Qt Quick <https://doc.qt.io/qt-6/qtdoc-tutorials-alarms-example.html>`_
 for information specific to that.
 
-.. image:: mediaplayer.png
+.. image:: mediaplayerapp.png
    :width: 1000
    :alt: Media Player Screenshot
