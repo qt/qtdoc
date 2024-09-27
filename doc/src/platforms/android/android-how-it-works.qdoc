@@ -67,7 +67,8 @@ operations are executed under this thread:
 
 Similar to Android apps, operations that affect the UI are expected to run in the UI
 thread. Qt does that under the hood for any internal calls that are expected
-to run in the UI. Also, Qt offers an API \l {QAndroidApplication::runOnAndroidMainThread}
+to run in the UI. Also, Qt offers an API
+\l {QNativeInterface::QAndroidApplication::runOnAndroidMainThread()}{runOnAndroidMainThread()}
 to run operations under this thread from C++ code. Using this API, Qt manages when
 the calls are directly posted to the thread if the app is active, or queued if the app
 is paused or in the background.
@@ -204,10 +205,10 @@ The behavior is outlined in the following sections.
 
 \section2 Context Handling
 
-\l QAndroidApplication can provide the Android \l{Android: Context}{Context} as
-a \c QJniObject, essential for interacting with the Android system. This context
-can be an Activity or a Service. If there is an Activity, it will be the most
-recently started Activity, regardless of whether there are Services. If there is
+\l {QNativeInterface::QAndroidApplication}{QAndroidApplication} can provide the Android
+\l{Android: Context}{Context} as a \c QJniObject, essential for interacting with the Android
+system. This context can be an Activity or a Service. If there is an Activity, it will be the
+most recently started Activity, regardless of whether there are Services. If there is
 only Services, it will be the most recently started Service.
 
 \note Qt for Android does not support multiple Activites.
@@ -266,8 +267,9 @@ QtActivityBase manages these complexities under the hood.
 
 \section1 Splash Screen Management
 
-\l QAndroidApplication can hide the splash screen with a fade effect, which can
-be timed with the application’s startup sequence, typically after onCreate().
+\l {QNativeInterface::QAndroidApplication}{QAndroidApplication} can hide the splash screen
+with a fade effect, which can be timed with the application’s startup sequence, typically
+after onCreate().
 
 \section1 More About Qt for Android
 
