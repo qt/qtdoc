@@ -270,51 +270,52 @@
     \li 2.3.5
     \endtable
 
-    Development packages for these libraries contain header files that are used
-    when building Qt from its source code. The package names may differ among
-    Linux distributions, and some distributions may not include all packages in
-    the default configuration for their package management system. It's
-    impractical for Qt to maintain a complete overview for all distributions.
-    For example, RedHat and its derivatives are known to require a non-default
-    repository for certain packages (e.g. "Extra Packages for Enterprise Linux"
-    (EPEL) for RHEL, or "CodeReady Linux Builder"). Refer to the documentation
-    for your specific distribution for specifics. RHEL users may contact RedHat
-    support for correct information.
+    Development packages for the above libraries contain header files that are
+    used when building Qt from its source code. The package names may differ
+    among Linux distributions, and some distributions may not include all
+    packages in the default configuration for their package management system.
 
-    On Debian-based GNU/Linux systems, as an example, we recommend that you
-    install the following development packages:
+    As an example, you can run the following command to install the recommended
+    packages on Debian-based GNU/Linux systems:
 
-    \list
-    \li libfontconfig1-dev
-    \li libfreetype-dev
-    \li libx11-dev
-    \li libx11-xcb-dev
-    \li libxext-dev
-    \li libxfixes-dev
-    \li libxi-dev
-    \li libxrender-dev
-    \li libxcb1-dev
-    \li libxcb-cursor-dev
-    \li libxcb-glx0-dev
-    \li libxcb-keysyms1-dev
-    \li libxcb-image0-dev
-    \li libxcb-shm0-dev
-    \li libxcb-icccm4-dev
-    \li libxcb-sync-dev
-    \li libxcb-xfixes0-dev
-    \li libxcb-shape0-dev
-    \li libxcb-randr0-dev
-    \li libxcb-render-util0-dev
-    \li libxcb-util-dev
-    \li libxcb-xinerama0-dev
-    \li libxcb-xkb-dev
-    \li libxkbcommon-dev
-    \li libxkbcommon-x11-dev
-    \endlist
+    \badcode
+    apt install \
+        libfontconfig1-dev \
+        libfreetype-dev \
+        libx11-dev \
+        libx11-xcb-dev \
+        libxcb-cursor-dev \
+        libxcb-glx0-dev \
+        libxcb-icccm4-dev \
+        libxcb-image0-dev \
+        libxcb-keysyms1-dev \
+        libxcb-randr0-dev \
+        libxcb-render-util0-dev \
+        libxcb-shape0-dev \
+        libxcb-shm0-dev \
+        libxcb-sync-dev \
+        libxcb-util-dev \
+        libxcb-xfixes0-dev \
+        libxcb-xinerama0-dev \
+        libxcb-xkb-dev \
+        libxcb1-dev \
+        libxext-dev \
+        libxfixes-dev \
+        libxi-dev \
+        libxkbcommon-dev \
+        libxkbcommon-x11-dev \
+        libxrender-dev
+    \endcode
 
     Some of these packages depend on others in this list, so installing one
     may cause others to be automatically installed. Other distributions may
     provide system packages with similar names.
+
+    Qt does not maintain a comprehensive package list for all distributions.
+    Some distributions, such as Red Hat and its derivatives, may require
+    additional repositories for certain packages (e.g., EPEL for RHEL).
+    Consult your distribution's documentation for specific package names. RHEL
+    users can contact Red Hat support for detailed information.
 
     \section1 Accessibility Dependencies
 
