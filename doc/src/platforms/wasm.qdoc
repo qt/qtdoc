@@ -978,9 +978,9 @@ Dynamic linking support is currently in developer preview. The implementation is
 and evaluation, but is not suitable for production use. Current limitations and restrictions include:
 
 \list
-\li The Emscripten SDK must be patched. Use emsdk 3.1.37, and apply this
-\l{https://github.com/emscripten-core/emscripten/pull/18418/commits/e9f86cebc3eb18f52e03ec67730f3edaa91d4564}{patch}.
-\li The Chrome browser is not supported, due it not supporting synchronous loading of wasm files larger than 4K.
+\li The Emscripten SDK must be patched. Use emsdk 3.1.52, and apply these patches:
+\l{https://github.com/emscripten-core/emscripten/pull/18418/commits/e9f86cebc3eb18f52e03ec67730f3edaa91d4564}{patch#1} and
+\l{https://github.com/emscripten-core/emscripten/pull/21985/commits/7c4b525373f720450df7c85827795c464c0f2d18}{patch#2}.
 \li Multithreading is not supported.
 \li Asyncify is not supported.
 \endlist
