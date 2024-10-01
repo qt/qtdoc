@@ -135,7 +135,7 @@
     Now that we have a foreign QWindow, we can embed that into a Qt UI.
     We have several options here, as described below.
 
-    \section2 Qt Gui
+    \section2 Embedding in Qt Gui
 
     At the lowest level, we can embed the foreign window by reparenting it into
     another QWindow, via QWindow::setParent(). This approach leaves it up to
@@ -151,7 +151,7 @@
 
     \snippet demos/windowembedding/main.cpp qt-gui
 
-    \section2 Qt Widgets
+    \section2 Embedding in Qt Widgets
 
     For applications built on the Qt Widgets UI stack we follow the same approach
     as for QWindow::fromWinId(), by creating a QWidget representation of the
@@ -165,7 +165,7 @@
 
     \snippet demos/windowembedding/main.cpp qt-widgets
 
-    \section2 Qt Quick
+    \section2 Embedding in Qt Quick
 
     Finally, for applications built on the Qt Quick UI stack, we use the WindowContainer
     item to manage the foreign window.
