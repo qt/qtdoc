@@ -93,7 +93,7 @@ Item {
                 shadowFactor: 100
                 shadowMapQuality: Light.ShadowMapQualityVeryHigh
                 softShadowQuality: Light.PCF4
-                shadowBias: 0.2
+                shadowBias: 0.4
                 shadowMapFar: camera.clipFar
                 pcfFactor: 0.05
             }
