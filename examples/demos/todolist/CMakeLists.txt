@@ -9,7 +9,11 @@ find_package(Qt6 6.5 COMPONENTS Gui Qml Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
-qt_add_executable(ToDoListApp src/main.cpp)
+qt_add_executable(ToDoListApp
+    WIN32
+    MACOSX_BUNDLE
+    src/main.cpp
+)
 
 qt_add_resources(ToDoListApp "configuration"
     PREFIX "/"

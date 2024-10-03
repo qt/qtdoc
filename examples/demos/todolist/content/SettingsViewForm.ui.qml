@@ -72,7 +72,7 @@ Page {
             required property string page
             required property string iconSource
 
-            width: parent.width
+            width: listView.width
             text: settingsItem.setting
             font.pixelSize: AppSettings.fontSize
             icon.source: settingsItem.iconSource

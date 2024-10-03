@@ -11,9 +11,6 @@ T.Dialog {
 
     property var model: [qsTr("Yes"), qsTr("No")]
 
-    signal accepted()
-    signal rejected()
-
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentWidth + leftPadding + rightPadding,
                             implicitHeaderWidth,
