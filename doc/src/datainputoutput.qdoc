@@ -16,7 +16,7 @@ in \l {Qt Core}. All classes that are used for reading and writing data
 inherit from it.
 
 Examples of devices are QFile, QBuffer, QTcpSocket, and QProcess.
-QFile is used for reading and writing text, binary files, and \l resources,
+QFile is used for reading and writing text, binary files, and resources,
 using the QIODevice interface. A QFile may be used by itself or, more
 conveniently, with a QTextStream or QDataStream.
 
