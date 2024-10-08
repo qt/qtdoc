@@ -114,8 +114,15 @@
             surface graphs, as well as 2D in area, bar, donut, line, pie, scatter, and
             spline graphs.
         }
+        \griditem {qtgrpc-index.html}{Qt GRPC} {
+            Provides an ability to generate Qt-based classes from protobuf specifications
+            used to communicate with gRPC® services.
+        }
         \griditem {qthelp-index.html}{Qt Help} {
             Classes for integrating documentation into applications.
+        }
+        \griditem {qthttpserver-index.html}{Qt HTTP Server} {
+            A framework for embedding an HTTP server into a Qt application.
         }
         \griditem {qtimageformats-index.html}{Qt Image Formats} {
             Plugins for additional image formats: TIFF, MNG, TGA, WBMP.
@@ -152,6 +159,9 @@
         }
         \griditem {qtprintsupport-index.html}{Qt Print Support} {
             Classes to make printing easier and more portable.
+        }
+        \griditem {qtprotobuf-index.html}{Qt Protobuf} {
+            Provides an ability to generate Qt-based classes from protobuf specifications.
         }
         \griditem {qtquick3d-index.html}{Qt Quick 3D} {
             Provides a high-level API for creating 3D content or UIs based on
@@ -257,16 +267,6 @@
 
 //! [techpreview-addons]
     \grid
-        \griditem {qthttpserver-index.html}{Qt HTTP Server} {
-            A framework for embedding an HTTP server into a Qt application.
-        }
-        \griditem {qtprotobuf-index.html}{Qt Protobuf} {
-            Provides an ability to generate Qt-based classes from protobuf specifications.
-        }
-        \griditem {qtgrpc-index.html}{Qt GRPC} {
-            Provides an ability to generate Qt-based classes from protobuf specifications
-            used to communicate with gRPC® services.
-        }
         \griditem {qtlocation-index.html}{Qt Location} {
             Provides QML and C++ interfaces to create location-aware applications.
         }
