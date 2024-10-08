@@ -413,6 +413,11 @@
             in-scene, or appear in its own top-level popup window.
         \li The macOS style is now capable of creating native
             \l {Menu}{menus} and \l {MenuBar}{menubars}.
+        \li The types from the (internal) \e QtQuick.Controls.impl module, such as
+            \e PaddedRectangle or \e MnemonicLabel or similar, are \e not accidentally
+            exposed to any document that imports \e QtQuick.Controls or any controls
+            style anymore. Those types are private API and were never supposed to be
+            reachable without explicitly importing \e {QtQuick.Controls.impl}.
     \endlist
 
     \section2 Qt Quick Shapes Module
