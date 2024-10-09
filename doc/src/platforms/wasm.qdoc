@@ -409,17 +409,6 @@ additional limitations, either due to the browser sandbox or due to
 incompleteness of the Qt platform port. See \l {Developing with Qt for WebAssembly}
 for further info.
 
-Qt for WebAssembly Technology Preview modules and features. These features
-may require to reconfigure and build Qt. They may contain features that
-are still experimental in the browsers or Emscripten.
-
-\list
-    \li \l {Thread Support in Qt}{Qt Threading}
-    \li \l {Qt Concurrent}
-    \li \l {#Asyncify}{Emscripten Asyncify}
-    \li \l {Network Programming with Qt}{Qt Sockets}
-\endlist
-
 \section1 Developing with Qt for WebAssembly
 \section2 Building with CMake
 
