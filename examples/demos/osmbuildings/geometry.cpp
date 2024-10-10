@@ -28,6 +28,51 @@ void OSMGeometry::updateData(const QList<QVariant> &geoVariantsList)
     });
 }
 
+static inline void writeIndex(uint32_t *&ibPtr, uint32_t i1, uint32_t i2, uint32_t i3)
+{
+    *ibPtr++ = i1;
+    *ibPtr++ = i2;
+    *ibPtr++ = i3;
+}
+
+static inline void writeVertex(float *&vbPtr, QVector3D pos, QVector3D normal,
+                               QVector3D tangent, QVector3D binormal,
+                               QColor color, float alpha,
+                               float texCoordX, float texCoordY,
+                               float levels, float isRoofTop)
+{
+    //position
+    *vbPtr++ = pos.x();
+    *vbPtr++ = pos.y();
+    *vbPtr++ = pos.z();
+
+    *vbPtr++ = normal.x();
+    *vbPtr++ = normal.y();
+    *vbPtr++ = normal.z();
+
+           //tangent
+    *vbPtr++ = tangent.x();
+    *vbPtr++ = tangent.y();
+    *vbPtr++ = tangent.z();
+
+           //binormal
+    *vbPtr++ = binormal.x();
+    *vbPtr++ = binormal.y();
+    *vbPtr++ = binormal.z();
+
+    *vbPtr++ = color.redF();
+    *vbPtr++ = color.greenF();
+    *vbPtr++ = color.blueF();
+    *vbPtr++ = alpha;
+
+           //texcoord
+    *vbPtr++ = texCoordX;
+    *vbPtr++ = texCoordY;
+
+    *vbPtr++ = levels;
+    *vbPtr++ = isRoofTop;
+}
+
 void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 {
     constexpr int strideVertexLen = 20;
@@ -127,14 +172,10 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                 subsetMaxBound.setZ( qMax( subsetMaxBound.z(), currentExtrudedVertexPos.z() ) );
 
                 if ( subsetVertexCounter < numSubsetVertices - 2 ) {
-                    *ibPtr++ = globalVertexCounter + 3;
-                    *ibPtr++ = globalVertexCounter + 2;
-                    *ibPtr++ = globalVertexCounter + 0;
-
-                    *ibPtr++ = globalVertexCounter + 1;
-                    *ibPtr++ = globalVertexCounter + 3;
-                    *ibPtr++ = globalVertexCounter + 0;
-
+                    writeIndex(ibPtr, globalVertexCounter + 3, globalVertexCounter + 2,
+                               globalVertexCounter + 0);
+                    writeIndex(ibPtr, globalVertexCounter + 1, globalVertexCounter + 3,
+                               globalVertexCounter + 0);
                     globalPrimitiveCounter += 2;
                 }
 
@@ -144,68 +185,10 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     QVector3D binormal = (lastBaseVertexPos - currentBaseVertexPos).normalized();
                     QVector3D normal = QVector3D::crossProduct( binormal, tangent).normalized();
 
-                    //position
-                    *vbPtr++ = lastBaseVertexPos.x();
-                    *vbPtr++ = lastBaseVertexPos.y();
-                    *vbPtr++ = lastBaseVertexPos.z();
-
-                    *vbPtr++ = normal.x();
-                    *vbPtr++ = normal.y();
-                    *vbPtr++ = normal.z();
-
-                    //tangent
-                    *vbPtr++ = tangent.x();
-                    *vbPtr++ = tangent.y();
-                    *vbPtr++ = tangent.z();
-
-                    //binormal
-                    *vbPtr++ = binormal.x();
-                    *vbPtr++ = binormal.y();
-                    *vbPtr++ = binormal.z();
-
-                    *vbPtr++ = color.redF();
-                    *vbPtr++ = color.greenF();
-                    *vbPtr++ = color.blueF();
-                    *vbPtr++ = 1.0;
-
-                    //texcoord
-                    *vbPtr++ = 0.0;
-                    *vbPtr++ = 0.0;
-
-                    *vbPtr++ = levels;
-                    *vbPtr++ = 0.0;
-
-                    //position
-                    *vbPtr++ = lastExtrudedVertexPos.x();
-                    *vbPtr++ = lastExtrudedVertexPos.y();
-                    *vbPtr++ = lastExtrudedVertexPos.z();
-
-                    *vbPtr++ = normal.x();
-                    *vbPtr++ = normal.y();
-                    *vbPtr++ = normal.z();
-
-                    //tangent
-                    *vbPtr++ = tangent.x();
-                    *vbPtr++ = tangent.y();
-                    *vbPtr++ = tangent.z();
-
-                    //binormal
-                    *vbPtr++ = binormal.x();
-                    *vbPtr++ = binormal.y();
-                    *vbPtr++ = binormal.z();
-
-                    *vbPtr++ = color.redF();
-                    *vbPtr++ = color.greenF();
-                    *vbPtr++ = color.blueF();
-                    *vbPtr++ = 1.0;
-
-                    //texcoord
-                    *vbPtr++ = 0.0;
-                    *vbPtr++ = 1.0;
-
-                    *vbPtr++ = levels;
-                    *vbPtr++ = 0.0;
-
+                    writeVertex(vbPtr, lastBaseVertexPos, normal, tangent, binormal, color,
+                                1.0F, 0.0F, 0.0F, levels, 0.0F);
+                    writeVertex(vbPtr, lastExtrudedVertexPos, normal, tangent, binormal, color,
+                                1.0F, 0.0F, 1.0F, levels, 0.0F);
                 }
 
                 if ( subsetVertexCounter >= 2 ) {
@@ -214,68 +197,12 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     QVector3D binormal = (lastBaseVertexPos - currentBaseVertexPos).normalized();
                     QVector3D normal = QVector3D::crossProduct( binormal, tangent).normalized();
 
-                    *vbPtr++ = currentBaseVertexPos.x();
-                    *vbPtr++ = currentBaseVertexPos.y();
-                    *vbPtr++ = currentBaseVertexPos.z();
+                    const float xCoord = ( subsetVertexCounter % 4 != 0) ? 1.0F : 0.0F;
 
-                    *vbPtr++ = normal.x();
-                    *vbPtr++ = normal.y();
-                    *vbPtr++ = normal.z();
-
-                    //tangent
-                    *vbPtr++ = tangent.x();
-                    *vbPtr++ = tangent.y();
-                    *vbPtr++ = tangent.z();
-
-                    //binormal
-                    *vbPtr++ = binormal.x();
-                    *vbPtr++ = binormal.y();
-                    *vbPtr++ = binormal.z();
-
-                    *vbPtr++ = color.redF();
-                    *vbPtr++ = color.greenF();
-                    *vbPtr++ = color.blueF();
-                    *vbPtr++ = 1.0;
-
-                    float xCoord = ( subsetVertexCounter % 4 != 0) ? 1.0F : 0.0F;
-
-                    //texcoord
-                    *vbPtr++ = xCoord;
-                    *vbPtr++ = 0.0;
-
-                    *vbPtr++ = levels;
-                    *vbPtr++ = 0.0;
-
-                    //position
-                    *vbPtr++ = currentExtrudedVertexPos.x();
-                    *vbPtr++ = currentExtrudedVertexPos.y();
-                    *vbPtr++ = currentExtrudedVertexPos.z();
-
-                    *vbPtr++ = normal.x();
-                    *vbPtr++ = normal.y();
-                    *vbPtr++ = normal.z();
-
-                    //tangent
-                    *vbPtr++ = tangent.x();
-                    *vbPtr++ = tangent.y();
-                    *vbPtr++ = tangent.z();
-
-                    //binormal
-                    *vbPtr++ = binormal.x();
-                    *vbPtr++ = binormal.y();
-                    *vbPtr++ = binormal.z();
-
-                    *vbPtr++ = color.redF();
-                    *vbPtr++ = color.greenF();
-                    *vbPtr++ = color.blueF();
-                    *vbPtr++ = 1.0;
-
-                    //texcoord
-                    *vbPtr++ = xCoord;
-                    *vbPtr++ = 1.0;
-
-                    *vbPtr++ = levels;
-                    *vbPtr++ = 0.0;
+                    writeVertex(vbPtr, currentBaseVertexPos, normal, tangent, binormal, color,
+                                1.0, xCoord, 0.0, levels, 0.0);
+                    writeVertex(vbPtr, currentExtrudedVertexPos, normal, tangent, binormal, color,
+                                1.0, xCoord, 1.0, levels, 0.0);
                 }
 
                 subsetVertexCounter += 2;
@@ -321,20 +248,15 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
                         for (uint32_t sectorIndex = 0; sectorIndex <= sphereSectorCount; ++sectorIndex,  ++k1, ++k2) {
                             if (stackIndex != 0) {
-                                *ibPtr++ = k1 + globalVertexCounter;
-                                *ibPtr++ = k2 + globalVertexCounter;
-                                *ibPtr++ = k1 + 1 + globalVertexCounter;
-
+                                writeIndex(ibPtr, k1 + globalVertexCounter,
+                                           k2 + globalVertexCounter, k1 + 1 + globalVertexCounter);
                                 ++globalPrimitiveCounter;
                             }
 
                             if (stackIndex != (sphereStackCount-1)) {
-                                *ibPtr++ = k1 + 1 + globalVertexCounter;
-                                *ibPtr++ = k2 + globalVertexCounter;
-                                *ibPtr++ = k2 + 1 + globalVertexCounter;
-
+                                writeIndex(ibPtr, k1 + 1 + globalVertexCounter,
+                                           k2 + globalVertexCounter, k2 + 1 + globalVertexCounter);
                                 ++globalPrimitiveCounter;
-
                             }
 
                             const float sphereSectorAngle = sectorIndex * sphereSectorStep;
@@ -342,40 +264,17 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                             float x = xy * qCos(sphereSectorAngle);
                             float y = xy * qSin(sphereSectorAngle);
 
-                            //position
-                            *vbPtr++ = x + subsetPolygonCenter.x();
-                            *vbPtr++ = y + subsetPolygonCenter.y();
-                            *vbPtr++ = z + subsetPolygonCenter.z();
+                            QVector3D position{x + subsetPolygonCenter.x(),
+                                               y + subsetPolygonCenter.y(),
+                                               z + subsetPolygonCenter.z()};
 
-                            //normal
-                            *vbPtr++ = x * sphereRadiuslengthInv;
-                            *vbPtr++ = y * sphereRadiuslengthInv;
-                            *vbPtr++ = z * sphereRadiuslengthInv;
-
-                            //tangent
-                            *vbPtr++ = 0.0;
-                            *vbPtr++ = 0.0;
-                            *vbPtr++ = 0.0;
-
-                            //binormal
-                            *vbPtr++ = 0.0;
-                            *vbPtr++ = 0.0;
-                            *vbPtr++ = 0.0;
-
-                            //color
-                            *vbPtr++ = roofColor.redF();
-                            *vbPtr++ = roofColor.greenF();
-                            *vbPtr++ = roofColor.blueF();
-                            *vbPtr++ = 1.0;
-
-                            //texcoord
-                            *vbPtr++ = 1.0;
-                            *vbPtr++ = 1.0;
-
-                            *vbPtr++ = 0.0;
-                            *vbPtr++ = 1.0;
-
-
+                            QVector3D normal{x * sphereRadiuslengthInv,
+                                             y * sphereRadiuslengthInv,
+                                             z * sphereRadiuslengthInv};
+                            QVector3D tangent{0.0F, 0.0F, 0.0F};
+                            QVector3D binormal{0.0F, 0.0F, 0.0F};
+                            writeVertex(vbPtr, position, normal, tangent, binormal, roofColor,
+                                        1.0F, 1.0F, 1.0F, 0.0F, 1.0F);
                         }
                     }
                     subsetVertexCounter += sphereVertexCount;
@@ -402,40 +301,13 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     globalPrimitiveCounter += roofPrimitiveCount;
 
                     for ( const PolygonVertex &polygonVertex : roofPolygonVertices ) {
-
-                        //position
-                        *vbPtr++ = polygonVertex.at(0);
-                        *vbPtr++ = polygonVertex.at(1);
-                        *vbPtr++ = height;
-
-                        //normal
-                        *vbPtr++ = 0.0;
-                        *vbPtr++ = 0.0;
-                        *vbPtr++ = 1.0;
-
-                        //tangent
-                        *vbPtr++ = 1.0;
-                        *vbPtr++ = 0.0;
-                        *vbPtr++ = 0.0;
-
-                        //binormal
-                        *vbPtr++ = 0.0;
-                        *vbPtr++ = 1.0;
-                        *vbPtr++ = 0.0;
-
-                        //color/
-                        *vbPtr++ = roofColor.redF();
-                        *vbPtr++ = roofColor.greenF();
-                        *vbPtr++ = roofColor.blueF();
-                        *vbPtr++ = 1.0;
-
-                        //texcoord
-                        *vbPtr++ = 1.0;
-                        *vbPtr++ = 1.0;
-
-                        *vbPtr++ = 0.0;
-                        *vbPtr++ = 1.0;
-
+                        QVector3D position{float(polygonVertex.at(0)),
+                                           float(polygonVertex.at(1)), height};
+                        QVector3D normal{0.0F, 0.0F, 1.0F};
+                        QVector3D tangent{1.0F, 0.0F, 0.0F};
+                        QVector3D binormal{0.0F, 1.0F, 0.0F};
+                        writeVertex(vbPtr, position, normal, tangent, binormal, roofColor,
+                                    1.0F, 1.0F, 1.0F, 0.0F, 1.0F);
                         ++subsetVertexCounter;
                         ++globalVertexCounter;
                     }
