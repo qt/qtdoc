@@ -65,7 +65,11 @@ void MAIN()
                         texcoord.y * wind.y +
                         windDirStrength.y * 0.3);
 
+#if QSHADER_VIEW_COUNT >= 2
+    vec3 direction = normalize(CAMERA_POSITION[VIEW_INDEX] - vec3(pos.x, 0.0, pos.z));
+#else
     vec3 direction = normalize(CAMERA_POSITION - vec3(pos.x, 0.0, pos.z));
+#endif
     mat3 rotY = rotateY(3.1415 * vcolor.x);
 
     mat3 rotationMatrix = rotZ * rotX * rotY;
