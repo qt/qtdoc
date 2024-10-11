@@ -9,11 +9,15 @@
 #include <QTimer>
 #include <qcomparehelpers.h>
 
+QT_FORWARD_DECLARE_CLASS(QPoint)
+
 struct OSMTileData
 {
     int TileX;
     int TileY;
     int ZoomLevel;
+
+    qreal distanceTo(QPoint p) const;
 
     friend bool comparesEqual(OSMTileData lhs,
                               OSMTileData rhs) noexcept

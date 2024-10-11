@@ -5,7 +5,8 @@
 
 #include <QImage>
 #include <QRgb>
-#include <QtMath>
+
+#include <algorithm>
 
 OSMManager::OSMManager(QObject *parent)
     : QObject{parent},
@@ -51,16 +52,13 @@ void OSMManager::setCameraProperties(const QVector3D &position, const QVector3D 
         }
     }
 
-    int projectedTileX = m_startBuildingTileX + int(projectionOfForwardOnXY.x() / m_tileSizeX);
-    int projectedTileY = m_startBuildingTileY - int(projectionOfForwardOnXY.y() / m_tileSizeY);
+    const QPoint projectedTile{m_startBuildingTileX + int(projectionOfForwardOnXY.x() / m_tileSizeX),
+                               m_startBuildingTileY - int(projectionOfForwardOnXY.y() / m_tileSizeY)};
 
-    std::sort(queue.begin(), queue.end(), [projectedTileX, projectedTileY](const OSMTileData &v1, const OSMTileData &v2)->bool{
-        return qSqrt(qPow(v1.TileX - projectedTileX, 2)
-                     + qPow(v1.TileY - projectedTileY, 2))
-               <
-              qSqrt(qPow(v2.TileX - projectedTileX, 2)
-                        + qPow(v2.TileY - projectedTileY, 2));
-    });
+    auto closer = [projectedTile](const OSMTileData &v1, const OSMTileData &v2) -> bool {
+        return v1.distanceTo(projectedTile) < v2.distanceTo(projectedTile);
+    };
+    std::sort(queue.begin(), queue.end(), closer);
 
     m_request->getBuildingsData( queue );
     m_request->getMapsData( queue );

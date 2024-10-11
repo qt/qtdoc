@@ -8,8 +8,17 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
+#include <QPoint>
+#include <QtMath>
 
 using namespace Qt::StringLiterals;
+
+qreal OSMTileData::distanceTo(QPoint p) const
+{
+    const qreal deltaX = p.x() - TileX;
+    const qreal deltaY = p.y() - TileY;
+    return qSqrt(deltaX * deltaX + deltaY * deltaY);
+}
 
 //%1 = zoom level(15 the default and only one here that seems working), %2 = x tile number, %3 = y tile number
 static constexpr auto URL_OSMB_JSON = "https://983wdxn2c2.execute-api.eu-north-1.amazonaws.com/production/osmbuildingstile?z=%1&x=%2&y=%3&token=%4"_L1;
