@@ -80,7 +80,11 @@ void MAIN()
     PrePos.xz += vcolor.xy;
     PrePos = (MODEL_MATRIX * vec4(PrePos, 1.0)).xyz;
 
+#if QSHADER_VIEW_COUNT >= 2
+    vec3 direction = normalize(CAMERA_POSITION[VIEW_INDEX] - vec3(PrePos.x, 0.0, PrePos.z));
+#else
     vec3 direction = normalize(CAMERA_POSITION - vec3(PrePos.x, 0.0, PrePos.z));
+#endif
     mat3 rotY = rotateY(-atan(direction.x, direction.z));
 
     mat3 rotationMatrix = rotZ * rotX * rotY;
@@ -101,6 +105,10 @@ void MAIN()
     NORMAL = normal;
 
     VERTEX = pos;
+#if QSHADER_VIEW_COUNT >= 2
+    vViewVec = CAMERA_POSITION[VIEW_INDEX] - (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+#else
     vViewVec = CAMERA_POSITION - (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+#endif
     COLOR = vec4(1);
 }
