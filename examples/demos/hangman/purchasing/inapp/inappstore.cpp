@@ -9,7 +9,7 @@
 #include "../android/androidinapppurchasebackend.h"
 #endif
 
-#ifdef Q_OS_IOS
+#ifdef Q_OS_DARWIN
 #include "../ios/iosinapppurchasebackend.h"
 #endif
 
@@ -37,7 +37,7 @@ void InAppStore::setupBackend()
 {
 #if defined Q_OS_ANDROID
     d->backend = new AndroidInAppPurchaseBackend;
-#elif defined Q_OS_IOS
+#elif defined Q_OS_DARWIN
     d->backend = new IosInAppPurchaseBackend;
 #else
     d->backend = new InAppPurchaseBackend;
