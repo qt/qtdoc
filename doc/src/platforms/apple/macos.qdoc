@@ -8,130 +8,23 @@
     \keyword Qt for macOS
     \ingroup supportedplatform
 
-    \macos (previously known as OS X or Mac OS X) is Apple's operating system
-    for the Mac line of computers. It's a UNIX platform, based on the Darwin
-    kernel, and behaves largely similar to other UNIX-like platforms.
-    The main difference is that X11 is not used as the windowing system.
-    Instead, \macos uses its own native windowing system that is accessible
-    through the Cocoa API.
+    Qt for \macos enables building applications for Apple's
+    \l{https://www.apple.com/mac/}{Mac} line of computers.
 
-    To download and install Qt for \macos, follow the instructions on the
-    \l{Getting Started with Qt} page. To build Qt from source, see \l
-    {Qt for \macos - Building from Source}.
+    To develop with Qt for \macos, follow the \l{Getting Started}
+    {getting started guide}; then explore the Qt examples, and
+    \l{Related Topics}{related topics}.
 
     \target macos-supported-versions
-    \section1 Supported Versions
+    \section1 Supported Configurations
 
-    When talking about version support on \macos, it's important to distinguish
-    between the  \l {Build Environment}{build environment}; the platform you're building on
-    or with, and the  \l {Target Platforms}{target platforms}; the platforms you are building
-    for. The following \macos versions are supported.
+    The following versions of the \l{Build Environment}{build environment}
+    and runtime \l {Target Platforms}{target platform} are supported by Qt \qtver.
 
     \include supported-platforms.qdocinc macos
 
-    \section2 Build Environment
-
-    The build environment on \macos is defined \e entirely by the Xcode version used
-    to build your application. Xcode contains both a toolchain (compiler, linker, and other
-    tools), and a \macos platform-SDK (headers and libraries). Together these define how
-    your application is built.
-
-    \note The version of \macos that you are \e running Xcode on does not matter. As long as
-    Apple ships a given Xcode version that runs on your operating system, the build
-    environment will be defined by that Xcode version.
-
-    Xcode can be downloaded from Apple's \l{https://developer.apple.com/download/}{developer
-    website} (including older versions of Xcode).
-
-    You should always be using the latest Xcode available from Apple that has been
-    tested with the Qt version you are using. By always building against the latest
-    available platform SDK, you ensure that Qt can take advantage of new features
-    introduced in recent versions of \macos.
-
-    Once installed, choosing an Xcode installation is done using the \c{xcode-select} tool.
-
-    \code
-    $ sudo xcode-select --switch /Applications/Xcode.app
-    \endcode
-
-    You can inspect the globally selected Xcode installation using the same tool.
-
-    \code
-    $ xcode-select -print-path
-    /Applications/Xcode.app/Contents/Developer
-    \endcode
-
-    The \c xcrun command can then be used to find a particular tool in the toolchain.
-
-    \code
-    $ xcrun -sdk macosx -find clang
-    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
-    \endcode
-
-    or show the platform SDK path used when building.
-
-    \code
-    $ xcrun -sdk macosx --show-sdk-path
-    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk
-    \endcode
-
-    \section2 Target Platforms
-
-    Building for \macos utilizes a technique called \e{weak linking} that allows you to build
-    your application against the headers and libraries of the latest platform SDK, while still
-    allowing your application to be deployed to \macos versions lower than the SDK version.
-    When the binary is run on a \macos version lower than the SDK it was built with, Qt will
-    check at runtime whether or not a platform feature is available before utilizing it.
-
-    In theory this would allow running your application on every single \macos version released,
-    but for practical (and technical) reasons there is a lower limit to this range, known as
-    the \e{deployment target} of your application. If the binary is launched on a \macos version
-    below the deployment target \macos or Qt will give an error message and the application will
-    not run.
-
-    Qt expresses the deployment target via the \l
-    {https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html}
-    {\c CMAKE_OSX_DEPLOYMENT_TARGET} or \c QMAKE_MACOSX_DEPLOYMENT_TARGET variables,
-    which by default is set to the minimum supported deployment target for Qt.
-
-    You only need to raise the deployment target if your own code uses APIs
-    that were added in a \macos version higher than what Qt defaults to,
-    and you are not using \c @available checks to guard their use at runtime.
-
-    To raise the deployment target with CMake:
-
-    \code
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "13.0")
-    \endcode
-
-    or with qmake:
-
-    \code
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.0
-    \endcode
-
-    \note You should not lower the deployment target beyond the default value set by Qt.
-    Doing so will likely lead to crashes at runtime if the binary is then deployed to a
-    \macos version lower than what Qt expected to run on.
-
-    For more information about SDK-based development on \macos, see Apple's \l
-    {https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/cross_development/Introduction/Introduction.html}{developer documentation}.
-
-    \section3 Opting out of \macos behavior changes
-
-    One caveat to using the latest Xcode version and SDK to build your application
-    is that \macos's system frameworks will sometimes decide whether or not to
-    enable behavior changes based on the SDK you built your application with.
-
-    For example, when dark-mode was introduced in \macos 10.14 Mojave, \macos would
-    only treat applications built against the 10.14 SDK as supporting dark-mode, and
-    would leave applications built against earlier SDKs with the default light mode
-    look. This technique allows Apple to ensure that binaries built long before
-    the new SDK and operating system was released will still continue to run without
-    regressions on new \macos releases.
-
-    Building against an older SDK is a last-resort solution, and should only be applied
-    if your application has no other ways of working around the problem.
+    \include apple-common.qdocinc {build-environment} {\macos}
+    \include apple-common.qdocinc {target-platforms} {\macos}
 
     \section2 Architectures
 
@@ -170,7 +63,16 @@
     \c x86_64h ("Haswell") sub-architecture, which improves performance on Intel
     Macs.
 
-    \section1 Generating Xcode Project Files
+    \section1 Getting Started
+
+    \include apple-common.qdocinc {installing-xcode} {macOS}
+
+    \section2 Installing or building Qt
+
+    To install or build Qt, follow the general \l{Getting Started with Qt}
+    {getting started with Qt} guide.
+
+    \section2 Generating Xcode Project Files
 
     By default, CMake and qmake generates project files in Makefile
     format. If you prefer to build and debug your application from
@@ -187,7 +89,7 @@
     qmake ~/src/myapp -spec macx-xcode
     \endcode
 
-    \section1 Deploying Applications on \macos
+    \section2 Deploying Applications on \macos
 
     \macos applications are typically deployed as self-contained application
     bundles. The application bundle contains the application executable as well
@@ -218,31 +120,17 @@
     specifically for the application itself. More information can be found in
     \l{https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html}{Apple's documentation}.
 
-    \include objective-c.qdocinc
+    \section1 Related Topics
 
-    \section1 \macos Issues
+    The following topics provide more details about Qt for \macos:
 
-    The page below covers specific issues and recommendations for creating
-    \macos applications.
     \list
+    \li \l{Qt for \macos - Building from Source}
+    \li \l{Qt for \macos - Deployment}
     \li \l{Qt for \macos - Specific Issues}
     \endlist
 
-    \section1 Where to Go from Here
-
-    We invite you to explore the rest of Qt. We prepared overviews to help
-    you decide which APIs to use and our examples demonstrate how to use our
-    API.
-
-    \list
-    \li \l{Qt Overviews} - list of topics about application development
-    \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
-    \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
-    \endlist
-
-    Qt's vibrant and active community site, \l{http://qt.io} houses
-    a wiki, a forum, and additional learning guides and presentations.
-
+    \include objective-c.qdocinc
 */
 
 /*!
