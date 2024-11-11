@@ -25,6 +25,7 @@ if(TARGET Qt6::Quick AND TARGET Qt6::QuickControls2)
     endif()
 
     if(ANDROID)
+        qt_internal_add_example(android/feature-delivery)
         qt_internal_add_example(android/splashscreen/quick)
         qt_internal_add_example(android/splashscreen/manifest)
     endif()
