@@ -154,6 +154,8 @@
 
   \section1 Platform Notes
 
+  Qt is prepared to be used by RTP applications, there is no support for DKM.
+
   With the release of Qt 5.0, Qt no longer contains its own window system
   implementation: QWS is no longer a supported platform. For single-process use
   cases, the \l{Qt Platform Abstraction} is a superior solution.
@@ -871,20 +873,17 @@
 
   \section1 Building Qt 6 for VxWorks
 
-  \section2 Building Qt 6 for Host
+  \section2 Host build
 
-  When cross-building Qt 6 for VxWorks, it's best practice to use host tools
-  that use the same source code as cross-build does. This requires building Qt 6
-  for host first, but only with limited subset of submodules:
+    A host build of Qt needs to be available to cross-compile Qt. This is because, during
+    the build, certain tools (such as \c{moc}, \c{rcc}, \c{qmlcachegen}, and \c{qsb}) are
+    invoked from the host build. You have the following options:
     \list
-    \li qtbase
-    \li qtdeclarative
-    \li qtquick3d
-    \li qtshadertools
+        \li \l{Building Qt Sources} for the host,
+        \li Installing host build using \QOI.
     \endlist
-
-  Make sure to have all necessary prerequisites for building Qt 6 for host. Check
-  details in \l{Building Qt Sources}.
+    However, it is advisable to ensure that you can build Qt for the desktop target on the
+    host as well since the same tools are also needed when compiling for VxWorks.
 
   \section3 Running the Configure Script
 
@@ -900,8 +899,8 @@
         -- \
         -B <host/build/directory>
     cd <host/build/directory>
-    ninja
-    ninja install
+    cmake --build . --parallel
+    cmake --install .
   \endcode
 
   These commands install Qt 6 for the host in
@@ -1051,9 +1050,6 @@
         -DCMAKE_TOOLCHAIN_FILE=<path/to/cmake/for/graphics/file/created/above> \
   \endcode
 
-  In case of building for DKM rather than RTP, use \c -static option and change the
-  \c CMAKE_TOOLCHAIN_FILE value to \c {"$WIND_CC_SYSROOT/mk/dkm.toolchain.cmake"}
-
   It is recommended to build Qt 6 using a \e{shadow build}. See \l {Qt Configure Options}
   for more information.
 
@@ -1061,8 +1057,8 @@
 
   \badcode
   cd <host build directory>
-  ninja
-  ninja install
+  cmake --build . --parallel
+  cmake --install .
   \endcode
 
   \section1 Platform Plugins for VxWorks Devices
@@ -1081,7 +1077,7 @@
   export QT_VXWORKS_TOOLCHAIN_FILE=<path/to/the/BSP/toolchain.cmake>
   <path/to/Qt6/target/installation/dir>/bin/qt-cmake -G Ninja -S ~/Qt/Examples/Qt-6.8.0/demos/clocks -B <path/to/build/directory>
   cd <path/to/build/directory>
-  ninja
+  cmake --build . --parallel
   \endcode
 
   \section1 Running Qt Applications
