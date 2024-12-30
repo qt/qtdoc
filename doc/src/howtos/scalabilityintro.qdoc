@@ -266,30 +266,32 @@
     For more information about high DPI support in Qt and the supported
     platforms, see \l{High DPI}.
 
-    \section2 High DPI Scaling on \macos and iOS
+    \section2 High DPI Scaling
 
-    On \macos and iOS, applications use high DPI scaling that is an alternative to
-    the traditional DPI scaling. In the traditional approach, the application is
-    presented with an DPI value used to multiply font sizes, layouts, and so on.
-    In the new approach, the operating system provides Qt with a scaling ratio
-    that is used to scale graphics output: allocate larger buffers and set a
-    scaling transform.
+    If a target device supports high DPI scaling, the operating system provides
+    Qt with a scaling ratio that is used to scale graphics output.
 
     The advantage of this approach is that vector graphics and fonts scale
     automatically and existing applications tend to work unmodified. For raster
     content, high-resolution alternative resources are needed, however.
 
-    Scaling is implemented for the QtQuick and QtWidgets stacks, as well as
-    general support in QtGui and the Cocoa platform plugin.
+    Scaling is implemented for the Qt Quick and Qt Widgets stacks, as well as
+    general support in Qt Gui.
+
+    Low level graphics APIs operate in device pixels. This includes code which
+    uses the OpenGL API, and code which uses the QRhi API. For example, this
+    means that a QWindow with a size() of 1280x720 and a
+    QWindow::devicePixelRatio() of 2 has a render target (swapchain) with a
+    device pixel size of 2560x1440.
 
     The OS scales window, event, and desktop geometry. The Cocoa platform plugin
     sets the scaling ratio as QWindow::devicePixelRatio() or
     QScreen::devicePixelRatio(), as well as on the backing store.
 
-    For QtWidgets, QPainter picks up \c devicePixelRatio() from the backing
+    For Qt Widgets, QPainter picks up \c devicePixelRatio() from the backing
     store and interprets it as a scaling ratio.
 
-    However, in OpenGL pixels are always device pixels. For example, geometry
+    However, in OpenGL, pixels are always device pixels. For example, geometry
     passed to glViewport() needs to be scaled by devicePixelRatio().
 
     The specified font sizes (in points or pixels) do not change and strings
@@ -546,5 +548,7 @@
      model data to another child Item, and cross-fade to that
      when the \l{Loader} has completed.
     \endlist
-   */
 
+    \sa {Qt Quick Responsive Layouts}
+
+   */
