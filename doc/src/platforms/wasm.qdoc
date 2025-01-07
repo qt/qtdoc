@@ -638,9 +638,11 @@ saves a file to the local file system via file download
 
 \section2 Clipboard Access
 
-Qt supports copying and pasting text to the system clipboard, with some differences due
-to the web sandbox. In general clipboard access require user permission, which can be obtained
-by handling an input event (e.g. CTRL+c), or by using the
+Qt supports copying and pasting text, urls, known file types and images with
+the system clipboard, with some differences due to the web sandbox. It does not
+support arbitrary application/octet-stream binary data. In general clipboard access
+require user permission, which can be obtained by handling an input event
+(e.g. CTRL+c), or by using the
 \l{https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API}{Clipboard API}.
 
 Browsers that support the Clipboard API are preferred. Note that a requirement for this API
