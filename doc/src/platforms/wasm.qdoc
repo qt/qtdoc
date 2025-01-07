@@ -796,7 +796,7 @@ qmake:
 
 \section2 Debugging and Profiling
 
-Wasm debugging is done on browser JavaScript console, debugging applications on Wasm
+Wasm debugging is done on the browser JavaScript console. Debugging applications on Wasm
 directly within \QC is not possible.
 
 \list
@@ -1105,9 +1105,6 @@ The following configure options are relevant when building Qt for WebAssembly fr
     \row
         \li -feature-wasm-exceptions
         \li Enable WebAssembly exceptions support.
-    \row
-        \li -feature-opengles3
-        \li Use opengles3 in addition to the default opengles2.
     \row
         \li -device-option QT_EMSCRIPTEN_ASYNCIFY=1
         \li Enable asyncify support.
