@@ -1058,9 +1058,19 @@ Qt provides two scripts for generating preload lists, see Quick Start section ab
 
 \list
 \li Nested event loops are not supported. Applications should not call API like QDialog::exec()
-and QEventLoop::exec(). Experimental feature Asyncify could be used.
-\li Printing is not supported
-\li QDnsLookup lookups, QTcpSocket, QSsl do not work and are not supported due to the web sandbox
+and QEventLoop::exec(). The experimental feature Asyncify could be used.
+\li Printing is not supported.
+\li QDnsLookup lookups and QSsl do not work and are not supported due to the web sandbox.
+The browser handles dns lookups and SSL certificates. DNS over HTTP could be used
+by applications needing dns lookups.
+\li QTcpSockets can be used but not all POSIX sockets functions are proxied. A Websockets
+server proxy like \l{https://github.com/novnc/websockify}{Websockify} needs to be used.
+\li All Q*Server classes are not supported by the platform.
+\li QWebSocket connections are supported by Emscripten only on the main thread.
+\li QWebSockets for WebAssembly does not support sending ping or pong frames, as the API available to
+web pages and browsers does not expose this functionality.
+\li To use QtWebsockets, the subprotocol might need to be set to 'mqtt' for using QtMqtt. Use
+QWebSocketHandshakeOptions when you open the QWebSocket.
 \li Fonts: Wasm sandbox does not allow access to system fonts. Font files must be
 distributed with the application, for example in Qt resources or downloading.
 Qt for WebAssembly itself embeds one such font.
@@ -1075,16 +1085,11 @@ is not providing that capability
  set_target_properties(<target> PROPERTIES QT_WASM_INITIAL_MEMORY "150MB")
 \li add_executable in CMakeLists.txt does not produce <target>.html or copy qtloader.js. Use
  qt_add_executable instead.
-\li QWebSocket connections are supported by Emscripten only on the main thread.
-\li QWebSockets for WebAssembly does not support sending ping or pong frames, as the API available to
-web pages and browsers does not expose this functionality.
 \li Runtime error such as "RangeError: Out of memory" can be worked around by
 setting MAXIMUM_MEMORY to a value the device supports, for example
 \badcode
 target_link_options(<your target> PRIVATE -s MAXIMUM_MEMORY=1GB)
 \endcode
-\li To use QtWebsockets, the subprotocol might need to be set to 'mqtt' for using QtMqtt. Use
-QWebSocketHandshakeOptions when you open the QWebSocket.
 \endlist
 
 \section1 Other Topics
