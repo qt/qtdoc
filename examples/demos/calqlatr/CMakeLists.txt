@@ -39,7 +39,7 @@ if(ANDROID)
     set_target_properties(calqlatrexample PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
         QT_ANDROID_PACKAGE_NAME "io.qt.calqlatr"
-        QT_ANDROID_TARGET_SDK_VERSION 35
+        QT_ANDROID_TARGET_SDK_VERSION 34
         QT_ANDROID_VERSION_CODE 10
         QT_ANDROID_VERSION_NAME "1.0"
     )
