@@ -90,10 +90,8 @@ The following configurations are supported in this Qt release:
         \li Gradle \GradleVer and AGP \AGPVer
         \li Multi-ABI \c{APK}s and \c{AAB}s
 \endtable
- \note It's recommended that Qt user apps use the same NDK r25b version
- used for building these official Qt for Android libraries. An NDK version
- more recent than r23b is required if building a project results in an error
- of missing the symbols for \c __emutls_get_address.
+\note It's recommended that you build Qt apps using the same NDK \NdkVer version used for building
+the official Qt for Android libraries to avoid missing symbol errors.
 
 //! [android]
 
