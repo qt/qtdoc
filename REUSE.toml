@@ -30,7 +30,8 @@ SPDX-FileCopyrightText = "Copyright (C) 2024 The Qt Company Ltd."
 SPDX-License-Identifier = "LicenseRef-Qt-Commercial OR BSD-3-Clause"
 
 [[annotations]]
-path = ["**/README*", "**.qdocconf", "doc/config/style/qt5-sidebar.html", "doc/config/style/tree_config.xml", "**.qdocinc"]
+path = ["**/README*", "**.qdocconf", "doc/config/style/qt5-sidebar.html", "doc/config/style/tree_config.xml", "**.qdocinc",
+        "doc**/images/**"]
 comment = "documentation"
 precedence = "closest"
 SPDX-FileCopyrightText = "Copyright (C) 2024 The Qt Company Ltd."
