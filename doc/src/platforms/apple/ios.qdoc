@@ -677,7 +677,8 @@
     QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).last();
     \endcode
 
-    or alternatively the folder in a FileDialog in QML to:
+    or alternatively the \l [QtQuickDialogs] {FileDialog::} {currentFolder} in a
+    \l [QtQuickDialogs] {FileDialog} in QML to:
 
     \badcode
     shortcuts.pictures
