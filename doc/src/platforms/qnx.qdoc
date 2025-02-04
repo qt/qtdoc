@@ -77,10 +77,62 @@
 
     \section1 Supported Qt modules
 
-    All the \l{Qt Essentials} modules are supported in Qt for QNX, except for DBus.
-
-    See \l{Qt Add-Ons} for information about which Qt Add-On modules are
-    supported in Qt for QNX.
+    \table
+        \header
+            \li All Modules category
+            \li QNX 7.1
+            \li QNX 8.0
+        \row
+            \li \l{Qt Essentials}
+            \li All except the following module are supported:
+                \list
+                    \li Qt D-Bus
+                \endlist
+            \li All except the following module are supported:
+                \list
+                    \li Qt D-Bus
+                \endlist
+        \row
+            \li \l{Qt Add-Ons}
+            \li All except the following modules are supported:
+                \list
+                    \li Active Qt
+                    \li Qt Bluetooth
+                    \li Qt NFC
+                    \li Qt OPC UA
+                    \li Qt Positioning
+                    \li Qt Quick 3D Physics
+                    \li Qt Sensors
+                    \li Qt SerialBus
+                    \li Qt SerialPort
+                    \li Qt Wayland Compositor
+                    \li Qt Webview
+                \endlist
+            \li All except the following modules are supported:
+                \list
+                    \li Active Qt
+                    \li Qt Bluetooth
+                    \li Qt Multimedia
+                    \li Qt NFC
+                    \li Qt OPC UA
+                    \li Qt Positioning
+                    \li Qt Quick 3D Physics
+                    \li Qt RemoteObjects
+                    \li Qt Sensors
+                    \li Qt SerialBus
+                    \li Qt SerialPort
+                    \li Qt Wayland Compositor
+                    \li Qt Webview
+                \endlist
+        \row
+            \li \l{Qt Add-Ons in Technical Preview}
+            \li Supported
+            \li Supported
+        \row
+            \li \l{Qt Extension Modules}
+            \li Not supported
+            \li Not supported
+    \endtable
 
     \section1 Host systems
 
