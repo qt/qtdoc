@@ -460,7 +460,7 @@ while ensuring compatibility with other platforms.
 
 \section2 OpenGL and WebGL
 
-Qt for WebAssembly supports hardware accelerated rendering using 
+Qt for WebAssembly supports hardware accelerated rendering using
 \l {https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API} WebGL.
 
 WebGL closely conforms to OpenGL ES, with the following version mapping:
@@ -612,6 +612,35 @@ the web environment.
 
 \note QtMqtt and QtRemoteObjects modules can be used with QtWebSockets as transports.
 They are not officially supported and may or may not work, or have missing functionality.
+
+\section3 Cross-Origin Resource Sharing (CORS) and Policy (CORP)
+
+WebAssembly apps that use networking may require Cross-Origin Resource Sharing
+(CORS) and Cross-Origin Resource Policy (CORP) response headers to be set by the
+server. These restrict HTTP requests that originate from different domains,
+which present a security risk.
+
+Using QHttpServer, the following is an example for setting these headers:
+\code
+    auto headers = response.headers();
+    headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("Access-Control-Allow-Origin", "localhost");
+    headers.append("Access-Control-Allow-Methods", "POST", "GET","OPTIONS");
+
+    headers.append("Cross-Origin-Opener-Policy", "same-origin");
+    headers.append("Cross-Origin-Embedder-Policy", "require-corp");
+    headers.append("Cross-Origin-Resource-Policy", "cross-origin");
+\endcode
+Other well known servers have their own way to configure sending these headers.
+
+The use of a wildcard "*" for Access-Control-Allow-Origin, will result in an error,
+if used with Access-Control-Allow-Credentials.
+
+The included utility script qtwasmserver.py will set these headers if the
+--cross-origin-isolation option is used.
+
+\sa {https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS}
+\sa {https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy}
 
 \section2 Local File Access
 
