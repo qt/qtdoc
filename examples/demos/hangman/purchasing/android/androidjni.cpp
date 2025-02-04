@@ -4,6 +4,7 @@
 #include <QtCore/qdatetime.h>
 #include <jni.h>
 #include <QJniObject>
+#include <QTimeZone>
 
 #include "androidinapppurchasebackend.h"
 
