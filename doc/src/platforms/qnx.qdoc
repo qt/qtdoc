@@ -220,19 +220,21 @@
     \list
         \li Tools for building Qt, as described in \l{Building Qt Sources}, are in place and
             functional for your host platform.
-        \li The toolchain file, \c{$HOME/qnx.cmake}.
-        \li The Qt source code checked out or installed under \c{$HOME/qt}.
-        \li There is a host build of Qt in \c{$HOME/qt-host}.
-        \li The installation location on the local system is set to
+        \li The toolchain file, in this example \c{$HOME/qnx.cmake}.
+        \li The Qt source code checked out or installed, in this example under \c{$HOME/qt}.
+        \li Host build of Qt, in this example \c{$HOME/qt-host}.
+        \li Prefix for the Qt build installation location on the local system, in this example
         \c{$HOME/qnx-install}.
+        \li Prefix for the Qt build deployment location on the target device, in this example
+        \c{/qt}.
     \endlist
 
     After creating and switching to the \c build directory, run the following:
 
     \badcode
     $HOME/qt/configure -nomake examples -nomake tests \
-    -qt-host-path $HOME/qt_host \
-    -extprefix qnx_install \
+    -qt-host-path $HOME/qt-host \
+    -extprefix $HOME/qnx-install \
     -prefix /qt \
     -- -DCMAKE_TOOLCHAIN_FILE=$HOME/qnx.cmake  \
     $HOME/qt
@@ -242,8 +244,8 @@
     this configure command is equivalent to the following direct CMake call:
     \badcode
     cmake -GNinja -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
-    -DQT_HOST_PATH=$HOME/qt_host \
-    -DCMAKE_STAGING_PREFIX=$HOME/qnx_install \
+    -DQT_HOST_PATH=$HOME/qt-host \
+    -DCMAKE_STAGING_PREFIX=$HOME/qnx-install \
     -DCMAKE_INSTALL_PREFIX=/qt \
     -DCMAKE_TOOLCHAIN_FILE=$HOME/qnx.cmake  \
     $HOME/qt
@@ -269,7 +271,7 @@
     cmake --install .
     \endcode
 
-    This installs the results to \c{$HOME/qnx_install}. From there the Qt build can be deployed
+    This installs the results to \c{$HOME/qnx-install}. From there you can deploy the Qt build
     to target device using Qt Creator, scp directly or some another method. The \c{-prefix}
     configuration parameter (/qt in the example) defines the deployment location on target device.
 
@@ -281,10 +283,11 @@
     you can build examples or applications.
 
     With CMake, use the generated \c{qt-cmake} script in the bin directory of the staging location
-    ($HOME/qnx_install in the example) to configure, then run ninja. For example:
+    (\c{$HOME/qnx-install} in the example) to configure the application build and then run ninja.
+    For example:
 
     \badcode
-    $HOME/qnx_install/bin/qt-cmake .
+    $HOME/qnx-install/bin/qt-cmake .
     cmake --build .
     \endcode
 
@@ -299,7 +302,7 @@
     by setting the \c{QT_CHAINLOAD_TOOLCHAIN_FILE} variable as follows:
 
     \badcode
-    $HOME/qnx_install/bin/qt-cmake -DQT_CHAINLOAD_TOOLCHAIN_FILE=$HOME/qnx.cmake .
+    $HOME/qnx-install/bin/qt-cmake -DQT_CHAINLOAD_TOOLCHAIN_FILE=$HOME/qnx.cmake .
     \endcode
 
     When building applications in Qt Creator using Qt installation that has not been
