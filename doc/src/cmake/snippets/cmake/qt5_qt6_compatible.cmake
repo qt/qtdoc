@@ -15,8 +15,13 @@ target_link_libraries(helloworld PRIVATE Qt::Core)
 #! [versionless_targets]
 
 #! [older_qt_versions]
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(Qt6 COMPONENTS Core)
+if(Qt6_FOUND)
+    set(QT_VERSION_MAJOR 6)
+else()
+    find_package(Qt5 REQUIRED COMPONENTS Core)
+    set(QT_VERSION_MAJOR 5)
+endif()
 
 add_executable(helloworld
     ...

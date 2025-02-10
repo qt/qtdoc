@@ -986,11 +986,16 @@
     \previouspage Qt CMake policies
     \nextpage CMake Command Reference
 
-    The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible. However, up to Qt 5.14,
-    all imported Qt library targets and commands contained the version number as part of the name.
-    This makes writing CMake code that should work with both Qt 5 and Qt 6 somewhat cumbersome.
-    Qt 5.15 therefore introduced \e versionless targets and commands to enable writing CMake code
-    that is largely agnostic to the different Qt versions.
+    The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible, though some differences
+    exist in the behavior of these commands and additional interfaces only in the latter versions.
+    This guide is primarily meant for projects looking into gradual migration from one major release
+    to another.
+
+    Up to Qt 5.14, all imported Qt library targets and commands contained the version number as part
+    of the name, for example \c{qt5_add_library}. This makes writing CMake code that should work
+    with both Qt 5 and Qt 6 somewhat cumbersome. Qt 5.15 therefore introduced \e versionless targets
+    and commands, that is \c{qt_add_library}, to enable writing CMake code that is largely agnostic
+    to the different Qt versions.
 
     \section2 Versionless targets
 
@@ -1001,13 +1006,12 @@
 
     Above snippet first tries to find a Qt 6 installation. If that fails, it tries to find a
     Qt 5.15 package. Independent of whether Qt 6 or Qt 5 is used, we can use the imported
-    \c{Qt::Core} target.
+    \c{Qt::Core} target. To skip the Qt 6 check, set
+    \l {https://cmake.org/cmake/help/latest/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html}
+    {\c {CMAKE_DISABLE_FIND_PACKAGE_Qt6}} before the \c{find_package} call.
 
     The versionless targets are defined by default. Set \l{QT_NO_CREATE_VERSIONLESS_TARGETS}
     before the first \c{find_package()} call to disable them.
-
-    \note The imported Qt::Core target will not feature the target properties that are available
-    in the \c Qt6::Core target.
 
     \section2 Versionless commands
 
@@ -1027,24 +1031,16 @@
     Qt version that was found via \c{find_package}. Set the \l{QT_DEFAULT_MAJOR_VERSION} CMake
     variable before the first \c{find_package} call to make the version explicit.
 
-    \section2 Supporting older Qt 5 versions
+    \section2 Supporting Qt 5 versions older than 5.15
 
     If you need to support also Qt 5 versions older than Qt 5.15, you can do so by storing the
-    current version in an CMake variable:
+    current version in an CMake variable (\c{QT_VERSION_MAJOR}):
 
     \snippet snippets/cmake/qt5_qt6_compatible.cmake older_qt_versions
 
-    Here we let \c{find_package(<PackageName>...)} try to find first Qt 6, and if
-    that fails Qt 5, under the name \c{QT}. If either of them is found, \c find_package will
-    succeed, and the CMake variable \c{QT_VERSION_MAJOR} will be defined to either \c{5} or \c{6}.
-
-    We then do load the package for the determined Qt version again by creating the name
-    \c{Qt${QT_VERSION_MAJOR}} on the fly. This is needed because \c{CMAKE_AUTOMOC}
-    expects the package name to be either \c{Qt5} or \c{Qt6}, and will print an error otherwise.
-
-    We can use the same pattern to also specify the name of the imported library.
-    Before calling \c{target_link_libraries}, CMake will resolve \c{Qt${QT_VERSION_MAJOR}::Widgets}
-    to either \c{Qt5::Widgets} or \c{Qt6::Widgets}.
+    Compared to the versionless approach, the targets point to \c{Qt${QT_VERSION_MAJOR}::Core},
+    which gets resolved to either \c{Qt5::Core} or \c{Qt6::Core} during the call of
+    \c{target_link_libraries}.
 
     \section2 Recommended practices
 
@@ -1065,8 +1061,14 @@
 
     Using the versionless targets has several downsides.
 
-    The versionless targets are \c ALIAS targets and lack the target properties
-    of the versioned targets.
+    The versionless targets are usually \c ALIAS targets and you cannot make an \c ALIAS target
+    pointing to an \c ALIAS target. Instead, use the
+    \l {https://cmake.org/cmake/help/latest/prop_tgt/ALIASED_TARGET.html} {\c ALIASED_TARGET}
+    target property.
+
+    For older Qt 6 versions, the imported \c{Qt::Core} target didn't feature all the target
+    properties exposed by \c{Qt6::Core}. This is fixed if you link against Qt 6.8 or newer, with
+    CMake 3.18 or newer.
 
     Projects must not export targets that expose the versionless targets. For
     example, a library that is consumed by another project must not export
