@@ -60,7 +60,9 @@
     Ubuntu 24.04 as a reference platform. If you have an issue with another
     hardware, please try to reproduce the issue on Raspberry Pi 5. We plan to
     move to regular platform support when a wider range of ARM-based desktop
-    hardware becomes available.
+    hardware becomes available. The official binaries are built on Ubuntu
+    24.04 which ships with glibc 2.39, if your glibc is older than what we
+    build with, you need to rebuild from sources.
 
 //! [linux]
 
