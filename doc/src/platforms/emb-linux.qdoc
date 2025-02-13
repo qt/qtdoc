@@ -895,7 +895,7 @@
 
   \section2 Use hardware rendering where possible
   When performance is critical to your application, avoid the use of Qt modules
-  that rely on software rendering, such as \l{Qt Charts}. Prefer modules that rely on
+  that rely on software rendering. Prefer modules that rely on
   hardware rendering instead, where possible.
 
   \section2 Follow the best practices for Qt Quick
