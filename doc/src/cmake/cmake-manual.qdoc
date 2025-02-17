@@ -114,6 +114,57 @@
     \l {https://www.qt.io/academy/course-catalog#-building-with-cmake:-getting-started-with-cmake-and-qt}
     {Building with Cmake: Getting Started with CMake and Qt} course in Qt Academy.
 
+    \section2 Importing Qt
+
+    Currently the only supported method of importing Qt for user projects is by
+    having it pre-installed on the system, or any equivalent workflow that builds
+    Qt ahead of time and makes it available to
+    \l {https://cmake.org/cmake/help/latest/command/find_package.html} {\c find_package}, such as
+    \c{vcpkg}.
+
+    When using \l{\QC Documentation}{\Qt Creator} or \c{qt-cmake} (\c{qt-cmake.bat} on Windows),
+    the Qt installation location is automatically forwarded to the underlying CMake call.
+
+    When using \c{cmake} directly, the general search paths used by CMake should cover most non-user
+    installations of Qt. For more control over which Qt package to use, you can pass
+    \l {https://cmake.org/cmake/help/latest/variable/PackageName_ROOT.html}
+    \c{Qt6_ROOT} as an environment or cache variable pointing to the Qt installation path, or by
+    adding or appending to the \c{CMAKE_PREFIX_PATH} in a similar way. For
+    example, if the installation path is \c{"~/Qt/\QtVersion/gcc_64"}, you would pass it on the
+    command line as \c{-DQt6_ROOT=$HOME/Qt/\QtVersion/gcc_64}.
+
+    \note When cross-compiling (compiling for a platform other than the one you
+    are on, such as WebAssembly or Android) and when using vanilla \c{cmake},
+    set \c{CMAKE_TOOLCHAIN_FILE} instead of search paths like \c{Qt6_ROOT} or \c{CMAKE_PREFIX_PATH}.
+    On Linux, the toolchain file (specific to a particular target platform) is typically
+    located at a path similar to this:
+    \c{"~/Qt/\QtVersion/wasm_singlethread/lib/cmake/Qt6/qt.toolchain.cmake"}. It sets
+    the required variables like \c{CMAKE_PREFIX_PATH}, \c{CMAKE_FIND_ROOT_PATH},
+    and \c{QT_HOST_PATH}.
+
+    \quotefromfile snippets/cmake/import_qt_minimal.cmake
+    \skipto cmake_minimum_required
+    \printuntil
+
+    The Qt package is split into various modules that you need to include
+    depending on the scope of your project, most basic of which is
+
+    \quotefromfile snippets/cmake/helloworld_qtcore.cmake
+    \skipto find_package
+    \printuntil find_package
+
+    Modern CMake supports other dependency providers such as \c{FetchContent},
+    however using Qt with \c{FetchContent} is not supported due to a tight integration
+    of Qt features inside CMake itself. Adding Qt sources via \c{add_subdirectory} and Git
+    submodules is not supported either.
+
+    \note Calling \c{find_package(Qt6)} in a subdirectory other than where it is used, or
+          inside a \c{function} is not supported. Doing so can cause various failures in
+          unpredictable locations.
+
+          Instead, repeatedly call \c{find_package(Qt6)} in all subdirectory scopes that use
+          Qt functions, or move the \c{find_package(Qt6)} call to the root \c{CMakeLists.txt}.
+
     \section2 Building a C++ console application
 
     A \c{CMake} project is defined by files written in the CMake language.
@@ -151,34 +202,14 @@
 
     \printuntil find_package(
 
-    This tells CMake to look up Qt 6, and import the \c {Core} module. There
-    is no point in continuing if \c{CMake} cannot locate the module, so we do
-    set the \c{REQUIRED} flag to let CMake abort in this case.
+    This tells CMake to look up Qt 6, as previously explained in \l{Importing Qt},
+    and import the \c {Core} module. There is no point in continuing if
+    \c{CMake} cannot locate the module, so we do set the \c{REQUIRED} flag to let
+    CMake abort in this case.
 
     If successful, the module will set some CMake variables documented in
     \l{Module variables}. It furthermore imports the \c{Qt6::Core} target
     that we use below.
-
-    For \c{find_package} to be successful, CMake must find the Qt
-    installation. \l{\QC Documentation}{\QC} and \c{qt-cmake}
-    (\c{qt-cmake.bat} on Windows) handle this transparently.
-
-    When using vanilla CMake directly, there are different ways you can tell
-    CMake about Qt, but the most common and recommended approach is to set
-    the CMake cache variable \c{CMAKE_PREFIX_PATH} to include the Qt 6
-    installation prefix. This is a directory where Qt binaries are installed.
-    On Linux, it usually looks something like this:
-    \tt{"~/Qt/\QtVersion/gcc_64"} and you would pass it on the command line as
-    \tt{-DCMAKE_PREFIX_PATH=$HOME/Qt/\QtVersion/gcc_64}.
-
-    \note When cross-compiling (compiling for a platform other than the one you
-    are on, such as WebAssembly or Android) and when using vanilla \c{cmake},
-    set \c{CMAKE_TOOLCHAIN_FILE} instead of \c{CMAKE_PREFIX_PATH}. On Linux,
-    the toolchain file (specific to a particular target platform) is typically
-    located at a path similar to this:
-    \tt{"~/Qt/\QtVersion/wasm_singlethread/lib/cmake/Qt6/qt.toolchain.cmake"}. It sets
-    the required variables like \c{CMAKE_PREFIX_PATH}, \c{CMAKE_FIND_ROOT_PATH},
-    and \c{QT_HOST_PATH}.
 
     \printuntil qt_standard_project_setup(
 
