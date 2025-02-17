@@ -1031,6 +1031,9 @@
   It is recommended to build Qt 6 using a \e{shadow build}. See \l {Qt Configure Options}
   for more information.
 
+  \warning If VxWorks is configured with \c {RTP_MEM_FILL} as false, then Qt configure needs an extra
+  \c {-DCMAKE_CXX_FLAGS="-DQT_RTP_MEM_FILL=1"} argument.
+
   After configuration, build and install Qt 6 for VxWorks with these commands:
 
   \badcode
