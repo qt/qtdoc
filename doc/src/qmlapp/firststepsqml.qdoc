@@ -123,25 +123,24 @@ import QtQuick.Controls
 
 //window containing the application
 ApplicationWindow {
-
-    visible: true
-
-    //title of the application
-    title: qsTr("Hello World")
     width: 640
     height: 480
+    visible: true
+    //title of the application
+    title: qsTr("Hello World")
 
     //menu containing two menu items
-    menuBar: MenuBar {
+    header: MenuBar {
         Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("&Open")
-                onTriggered: console.log("Open action triggered");
+            title: qsTr("&File")
+            Action {
+                text: qsTr("&Open...")
+                onTriggered: console.log("Open action triggered")
             }
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
+            MenuSeparator { }
+            Action {
+                text: qsTr("&Exit")
+                onTriggered: Qt.quit()
             }
         }
     }
