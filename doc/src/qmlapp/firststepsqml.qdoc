@@ -285,21 +285,32 @@ to a property's value. In the following example, a property is animated which
 then gets displayed in a \l Text area:
 
 \qml
-Rectangle {
-    color: "lightgray"
-    width: 200
-    height: 200
+import QtQuick
 
-    property int animatedValue: 0
+Window {
+    id: root
+    width: 200
+    height: 100
+    color: "red"
+    visible: true
+
+    property int animatedValue
+
     SequentialAnimation on animatedValue {
         loops: Animation.Infinite
-        PropertyAnimation { to: 150; duration: 1000 }
-        PropertyAnimation { to: 0; duration: 1000 }
+        PropertyAnimation {
+            to: 150
+            duration: 1000
+        }
+        PropertyAnimation {
+            to: 0
+            duration: 1000
+        }
     }
 
     Text {
         anchors.centerIn: parent
-        text: parent.animatedValue
+        text: root.animatedValue
     }
 }
 \endqml
