@@ -214,28 +214,31 @@ code will also work on a mobile device.
 Keyboard user input can be similarly handled with a simple expression:
 
 \qml
-Rectangle {
+import QtQuick
+
+Window {
+    id: root
     width: 200
     height: 100
     color: "red"
+    visible: true
 
     Text {
+        id: myText
         anchors.centerIn: parent
-        text: "Hello, World!"
-    }
-
-    focus: true
-    Keys.onPressed: {
-        if (event.key == Qt.Key_Return) {
-            color = "blue";
+        text: toggle ? "Hello, World!" : "Goodbye, World!"
+        focus: true
+        property bool toggle: true
+        Keys.onReturnPressed: (event)=>{
+            myText.toggle = !myText.toggle;
             event.accepted = true;
         }
     }
 }
 \endqml
 
-By accepting focus, the color can be changed to blue whenever the return key
-is pressed.
+Now, each time you press the Enter key, the text will alternate between
+"Hello, World" and "Goodbye, World".
 
 \section1 Property Bindings
 
