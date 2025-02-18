@@ -183,10 +183,14 @@ For example, consider the following example:
 \qml
 import QtQuick
 
-Rectangle {
+Window {
+    id: root
     width: 200
     height: 100
-    color: "red"
+    color: isRed ? "red" : "blue"
+    visible: true
+
+    property bool isRed: true  // Track the color state
 
     Text {
         anchors.centerIn: parent
@@ -194,7 +198,7 @@ Rectangle {
     }
 
     TapHandler {
-        onTapped: parent.color = "blue"
+        onTapped: root.isRed = !root.isRed  // Toggle state
     }
 }
 \endqml
@@ -202,7 +206,7 @@ Rectangle {
 This example can be saved as "ClickableHelloWorld.qml" and run with \c qml, the
 \l{qml_runtime_tool}{QML Runtime Tool}.
 Whenever the user clicks anywhere in the window, the rectangle will change
-from red to blue.
+from red to blue. Tapping again will change it back to red.
 
 \note \l TapHandler also emits the tapped signal for touch events, so this
 code will also work on a mobile device.
