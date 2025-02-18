@@ -32,13 +32,14 @@ visual scene. \l{Qt Quick} provides the basic building blocks
 for all user interfaces, such as the objects for displaying images and text and
 for handling user input.
 
-A simple object declaration might be a colored rectangle with some text centered
+A simple object declaration might be a colored window with some text centered
 in it:
 
 \qml
-Rectangle {
-    width: 200
-    height: 100
+Window {
+    width: 640
+    height: 480
+    visible: true
     color: "red"
 
     Text {
@@ -48,23 +49,24 @@ Rectangle {
 }
 \endqml
 
-This defines an object hierarchy with a root \l Rectangle object
+This defines an object hierarchy with a root \l Window object
 which has a child \l Text object. The \c parent of the \l Text object is
-automatically set to the \l Rectangle, and similarly, the \l Text object is
-added to the \c children property of the \l Rectangle object, by QML.
+automatically set to the \l Window, and similarly, the \l Text object is
+added to the \c children property of the \l Window object, by QML.
 
 \section2 Putting it All Together
 
-The \l Rectangle and \l Text types used in the above example are both provided
+The \l Window and \l Text types used in the above example are both provided
 by the \c{QtQuick} import. Putting the import and object declaration
 together, we get a complete QML document:
 
 \qml
 import QtQuick
 
-Rectangle {
-    width: 200
-    height: 100
+Window {
+    width: 640
+    height: 480
+    visible: true
     color: "red"
 
     Text {
