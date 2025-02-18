@@ -247,25 +247,31 @@ in a QML document. The QML language allows properties to be bound to each
 other in various ways, enabling highly dynamic user interfaces.
 
 In the following example, the geometry of each child \l Rectangle is bound to
-that of the parent \l Rectangle. If the geometry of the parent \l Rectangle
+that of the parent \l Window. If the geometry of the parent \l Window object
 were to change, the geometry of each child \l Rectangle would automatically
 update due to the property bindings.
 
 \qml
-Rectangle {
-    width: 400
-    height: 200
+import QtQuick
+
+Window {
+    id: root
+    width: 200
+    height: 100
+    color: "red"
+    visible: true
+
 
     Rectangle {
-        width: parent.width / 2
-        height: parent.height
+        width: root.width / 2
+        height: root.height
         color: "blue"
     }
 
     Rectangle {
-        width: parent.width / 2
-        height: parent.height
-        x: parent.width / 2
+        width: root.width / 2
+        height: root.height
+        x: root.width / 2
         color: "green"
     }
 }
