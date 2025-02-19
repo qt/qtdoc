@@ -71,23 +71,21 @@ controls such as buttons, menus, and views. These controls come with
 several built-in styles that can be used, and also support the creation
 of custom styles.
 
-\section1 Qt Quick Projects
+\section1 Qt Quick Application Development
 
-\l{\QC Documentation}{\QC} sets up project environments for the following types of Qt Quick
-applications:
+\l{\QC Documentation}{\QC} has built-in support for creating Qt Quick
+applications. \l{Qt VS Tools} and \l {Qt Extension for VS Code}
+also allow you to create Qt Quick applications with Visual Studio and Visual
+Studio Code. The \QMLLS can be used from any IDE supporting the language server
+protocol.
 
-\list
-\li \b Scroll - scroll-based navigation
-\li \b Stack - stack-based navigation
-\li \b Swipe - page-based application with swipe navigation
-\li \b Python - \l{Qt for Python} projects can have QML UIs and have \QC
-support
-\endlist
+For a design centric workflow, use \QDS.
 
-For more information about Qt Quick applications, visit the following pages:
+For more information about creating Qt Quick applications, visit the following
+pages:
 \list
 \li \l{\QC: Create Qt Quick Applications}
-\li \l{Design Tools} - tools for designing UIs
+\li \l{\QDS: Getting Started}
 \endlist
 
 \section1 Code Samples and Demos
