@@ -6,7 +6,7 @@
     \ingroup supportedplatform
     \keyword QNX
     \startpage Qt for QNX
-    \nextpage Qt for QNX Support
+    \nextpage Qt for QNX support
     \brief Platform support for QNX is described here.
 
 
@@ -29,30 +29,41 @@
     \page qnx-support.html
     \previouspage Qt for QNX
     \nextpage Building Qt for QNX
-    \title Qt for QNX Support
+    \title Qt for QNX support
     \brief Details support on Qt modules, QNX releases and target architectures.
     \ingroup qnxcontent
 
 
     \section1 QNX releases and architectures
 
-    Qt 6 is currently tested and supported on QNX SDP 7.1, with support for
-    both 32-bit and 64-bit target architectures:
+    Qt 6 is currently tested and supported on QNX SDP 7.1 and on QNX SDP 8.0.
+    Supported target architectures are limited on what QNX SDPs support.
+
+    \section2 QNX SDP 7.1 support
+
+    The following architectures are supported:
 
     \list
-        \li \c ARMle-v7
-        \li \c AArch64le and \c x86-64 (64-bit)
+        \li \c ARMle-v7 (32-bit)
+        \li \c AArch64le (64-bit)
+        \li \c x86-64 (64-bit)
     \endlist
 
-    \note Support for x86 (32-bit) was removed in QNX SDP 7.1.
+    \section2 QNX SDP 8.0 support
 
-    QNX SDP 8.0 is supported as technical preview. QNX SDP 8.0 doesn't support
-    multimedia, which means that qtmultimedia and the dependent components cannot
-    be compiled. Furthermore, qtRemoteObjects hasn't been adapted for QNX SDP 8.0
-    yet, which means that qtRemoteObjects and the dependent components cannot be
-    compiled either.
-    Pre-built Qt binaries and automatic Qt Creator Kits are not available for
-    QNX SDP 8.0, however, manual Kit creation is possible.
+    The following architectures are supported:
+
+    \list
+        \li \c AArch64le (64-bit)
+        \li \c x86-64 (64-bit)
+    \endlist
+
+    \section3 Support notes
+
+    Pre-built Qt binaries are not delivered due to possible binary compatibility
+    issues between different QNX SDP installations. This means that automatic Qt
+    Creator Kits are not available for QNX SDP 8.0 either. However, manual Kit
+    creation is possible.
 
     \section2 Previous releases
 
@@ -69,11 +80,6 @@
     For target hardware supported by The Qt Company in this release, see
     \l{Support Levels for Target Hardware}. For support on other target devices
     \l {https://www.qt.io/contact-us/}{contact The Qt Company} for more details.
-
-    \section2 Qt for QNX licensing
-
-    Qt for QNX is available under the Qt for Device Creation Professional (DCP)
-    license. For more information, see \l{Qt Pricing}.
 
     \section1 Supported Qt modules
 
@@ -112,12 +118,12 @@
                 \list
                     \li Active Qt
                     \li Qt Bluetooth
-                    \li Qt Multimedia
+                    \li Qt Multimedia*
                     \li Qt NFC
                     \li Qt OPC UA
                     \li Qt Positioning
                     \li Qt Quick 3D Physics
-                    \li Qt RemoteObjects
+                    \li Qt Remote Objects
                     \li Qt Sensors
                     \li Qt SerialBus
                     \li Qt SerialPort
@@ -134,6 +140,9 @@
             \li Not supported
     \endtable
 
+    *QNX SDP 8.0 doesn't currently support multimedia, which means that qtMultimedia and
+    the dependent components cannot be compiled.
+
     \section1 Host systems
 
     QNX has been tested with Ubuntu 22.04 and Windows hosts but may work on other host
@@ -141,8 +150,8 @@
 
     \section1 Pre-built binaries
 
-    The pre-built Qt binaries for QNX are delivered through Qt Online Installer. These
-    binaries have been created using the QNX SDP installation from Qt's continuous
+    The pre-built Qt binaries for QNX SDP 7.1 are delivered through Qt Online Installer.
+    These binaries have been created using the QNX SDP installation from Qt's continuous
     integration (CI) system. These binaries are only for preliminary testing and trials,
     so there is no guarantee that the QNX SDP content matches with the current default
     installation from QNX Software Center. The safest way to avoid binary compatibility
@@ -152,18 +161,22 @@
 
 /*!
     \page building-qt-for-qnx.html
-    \previouspage Qt for QNX Support
-    \nextpage Qt for QNX Runtime Target Requirements
+    \previouspage Qt for QNX support
+    \nextpage Qt for QNX runtime target requirements
     \title Building Qt for QNX
     \ingroup qnxcontent
     \brief Describes required packages and necessary configuration for building.
 
     \section1 Setting up QNX SDP
 
-    Building Qt 6 requires downloading and installing QNX SDP 7.1 from the
+    Building Qt 6 requires downloading and installing a QNX SDP from the
     \l{QNX website}.
     \note A suitable license is required. \l {mailto://info@qnx.com}{Contact QNX}
     for more information.
+
+    \note Don't add experimental Wayland packages from QNX Software Center to your
+    QNX SDP 8.0 installation. They are not needed to build Qt but can cause a header
+    conflict when configuring a Qt build.
 
     The compiler and other parts of the toolchain are provided in the SDP
     packages. Initialize your build environment by running the QNX setup script
@@ -237,6 +250,7 @@
     -extprefix $HOME/qnx-install \
     -prefix /qt \
     -- -DCMAKE_TOOLCHAIN_FILE=$HOME/qnx.cmake  \
+    -DCMAKE_SYSTEM_VERSION=710  \
     $HOME/qt
     \endcode
 
@@ -248,8 +262,18 @@
     -DCMAKE_STAGING_PREFIX=$HOME/qnx-install \
     -DCMAKE_INSTALL_PREFIX=/qt \
     -DCMAKE_TOOLCHAIN_FILE=$HOME/qnx.cmake  \
+    -DCMAKE_SYSTEM_VERSION=710  \
     $HOME/qt
     \endcode
+
+    Choose the value of CMAKE_SYSTEM_VERSION based on your QNX SDP version:
+    \list
+        \li 710 for QNX SDP 7.1
+        \li 800 for QNX SDP 8.0
+    \endlist
+
+    If you are working only with one QNX version, you can also define CMAKE_SYSTEM_VERSION
+    in your toolchain file.
 
     \note When building on Windows, PCH (Precompiled Headers) needs to be explicitly disabled,
     as enabling it causes the QNX compiler to crash. To disable PCH, use the configuration
@@ -277,7 +301,7 @@
 
     \sa {Qt Configure Options}, {Configuring Qt}
 
-    \section1 Building Applications for the Target Device
+    \section1 Building applications for the target device
 
     When you have finished the Qt build and it's installed in the staging location,
     you can build examples or applications.
@@ -342,7 +366,7 @@
 /*!
     \page qnx-target-requirements.html
     \previouspage Building Qt for QNX
-    \title Qt for QNX Runtime Target Requirements
+    \title Qt for QNX runtime target requirements
     \ingroup qnxcontent
     \brief Describes target requirements for running qt applications.
 
@@ -356,7 +380,7 @@
     requirements listed in the following sections to ensure that Qt works as
     expected.
 
-    \section1 QNX Screen Graphics Subsystem
+    \section1 QNX screen graphics subsystem
 
     Before any Qt application can be started, the
     \l {http://www.qnx.com/developers/docs/7.1/#com.qnx.doc.screen/topic/manual/cscreen_about.html}
@@ -387,7 +411,7 @@
     waitfor /dev/random
     \endcode
 
-    \section1 System Logger
+    \section1 System logger
 
     QNX provides the
     \l {http://www.qnx.com/developers/docs/7.1/#com.qnx.doc.neutrino.utilities/topic/s/slogger2.html}
@@ -406,7 +430,7 @@
     waitfor /dev/slog2
     \endcode
 
-    \section1 Environment Variables
+    \section1 Environment variables
 
     There is a set of environment variables you should set when starting a Qt
     application. Most of them are actually not specific to QNX Neutrino RTOS.
@@ -459,7 +483,7 @@
     (mm) and should correspond to the actual physical size of the display in the
     final configuration.
 
-    \section2 Troubleshooting the First Start of a Qt Application
+    \section2 Troubleshooting the first start of a Qt application
 
     The only drawback of the flexibility provided by QNX Neutrino RTOS
     is a risk that the run environment is slightly different on your target
