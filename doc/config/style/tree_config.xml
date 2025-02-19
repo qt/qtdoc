@@ -2,32 +2,30 @@
 <node title="Docs">
     <node toc="qtdoc" childrenonly="true"/>
     <node toc="qtcore"/>
-    <node toc="qtdbus"/>
+    <node toc="qtdbus" parent_url="ipc-overview.html"/>
     <node toc="qtgui"/>
     <node toc="qtnetwork"/>
-    <node toc="qtqml"/>
-    <node toc="qtqmlcompiler"/>
-    <node toc="qtqmlcore"/>
-    <node toc="qtqmlmodels"/>
-    <node toc="qtqmlnetwork"/>
-    <node toc="qtqmltest"/>
-    <node toc="qtqmlworkerscript"/>
-    <node toc="qtqmlxmllistmodel"/>
     <node toc="qtquick"/>
-    <node toc="qtquickcontrols"/>
-    <node toc="qtquickdialogs"/>
-    <node toc="qttestlib"/>
+    <node toc="qtqml" parent_url="qtquick-index.html"/>
+    <node toc="qtqmlcompiler" parent_url="qtquick-index.html"/>
+    <node toc="qtqmlcore" parent_url="qtquick-index.html"/>
+    <node toc="qtqmlmodels" parent_url="qtquick-modelviewsdata-topic.html"/>
+    <node toc="qtqmlxmllistmodel" parent_url="qtquick-modelviewsdata-topic.html"/>
+    <node toc="qtqmlnetwork" parent_url="qtquick-index.html"/>
+    <node toc="qtqmltest" parent_url="qtquick-index.html"/>
+    <node toc="qtqmlworkerscript" parent_url="qtquick-index.html"/>
+    <node toc="qtquickcontrols" parent_url="qtquick-index.html"/>
+    <node toc="qtquickdialogs" parent_url="qtquick-index.html"/>
     <node toc="qtwidgets"/>
-    <node title="Add-ons">
+    <node toc="qttestlib"/>
+    <node title="Modules" href="qt-additional-modules.html">
         <node toc="activeqt"/>
-        <node toc="qt3d"/>
         <node toc="qtbluetooth"/>
         <node toc="qtcharts"/>
         <node toc="qtcoap"/>
         <node toc="qtconcurrent"/>
         <node toc="qtcore5compat"/>
         <node toc="qtdatavis3d"/>
-        <node toc="qtdistancefieldgenerator"/>
         <node toc="qtgraphicaleffects5compat"/>
         <node toc="qtgraphs"/>
         <node toc="qtgrpc"/>
@@ -43,12 +41,12 @@
         <node toc="qtnfc"/>
         <node toc="qtopcua"/>
         <node toc="qtopengl"/>
+        <node toc="qtpdf"/>
         <node toc="qtpositioning"/>
         <node toc="qtprintsupport"/>
         <node toc="qtprotobuf"/>
         <node toc="qtquick3d"/>
         <node toc="qtquick3dphysics"/>
-        <node toc="qtquickeffectmaker"/>
         <node toc="qtquicktimeline"/>
         <node toc="qtremoteobjects"/>
         <node toc="qtscxml"/>
@@ -66,20 +64,21 @@
         <node toc="qtwaylandclient"/>
         <node toc="qtwaylandcompositor"/>
         <node toc="qtwebchannel"/>
+        <node toc="qtwebengine"/>
         <node toc="qtwebsockets"/>
         <node toc="qtwebview"/>
         <node toc="qtxml"/>
     </node>
-    <node title="Extension modules">
-        <node toc="qtpdf"/>
-        <node toc="qtwebengine"/>
+    <node title="Tools and utilities" href="qt-tools-utilities.html">
+        <node toc="qdoc"/>
+        <node toc="qmake"/>
+        <node toc="qtassistant"/>
+        <node toc="qtcmake"/>
+        <node toc="qtdesigner"/>
+        <node toc="qtdistancefieldgenerator"/>
+        <node toc="qtquickeffectmaker"/>
+        <node toc="qtlinguist"/>
     </node>
-    <node toc="qdoc" parent_url="topics-app-development.html"/>
-    <node toc="qmake" parent_url="topics-app-development.html"/>
-    <node toc="qtassistant" parent_url="topics-app-development.html"/>
-    <node toc="qtcmake" parent_url="topics-app-development.html"/>
-    <node toc="qtdesigner" parent_url="topics-app-development.html"/>
-    <node toc="qtlinguist" parent_url="topics-app-development.html"/>
 </node>
 
 <!--
