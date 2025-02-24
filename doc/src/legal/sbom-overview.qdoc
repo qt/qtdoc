@@ -183,6 +183,25 @@ Relationship: SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth DEPENDS_ON Doc
 Relationship: SPDXRef-Package-qtnetworkauth CONTAINS SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth
 \endcode
 
+\section1 Yocto builds with meta-qt6
+
+\l{Boot to Qt} uses the meta-qt6 layer to build all Qt modules and the
+generated SBOM documents are available as SPDX files when installing Boot to Qt
+through the \l{Using Qt Online Installer}{Qt Online Installer}.
+The install path depends on the Qt version and the target hardware.
+
+For example, for the Raspberry Pi target, the SBOM .spdx
+documents are at:
+\badcode \QtVersion
+<INSTALL_DIR>/\1/Boot2Qt/raspberrypi-armv8/toolchain/sysroots/cortexa53-poky-linux/usr/lib/sbom/
+\endcode
+
+For more information, visit the following pages:
+\list
+\li \l{Boot to Qt: Using meta-qt6}{Using meta-qt6}
+\li \l{meta-qt6 repository}
+\endlist
+
 \section1 Related Topics
 
 \list
