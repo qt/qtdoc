@@ -82,7 +82,7 @@ is paused or in the background.
 
 \section1 Qt Classes
 
-These next sections go through the various Qt Android classes and their functionality
+These next sections go through the various Qt for Android classes and their functionality
 and role in Qt applications.
 
 \section2 The Public Java Bindings
@@ -110,7 +110,7 @@ public class MyActivity extends QtActivity
 }
 \endcode
 
-\note You must edit the \l {Qt Android Manifest File Configuration}{AndroidManifest.xml}
+\note You must edit the \l {Qt for Android Manifest File Configuration}{AndroidManifest.xml}
 file to use your custom \l {Android: Activity}{Activity} or binding class,
 otherwise, the default one will still be used.
 
@@ -155,7 +155,7 @@ list of parameters passed to the application are parsed using \l {QProcess::spli
 
 \section2 Loading Qt Libraries with QtLoader
 
-Every Qt Android app needs to ensure every native Qt or 3rd party library is first
+Every Qt for Android app needs to ensure every native Qt or 3rd party library is first
 loaded before invoking any functionality from those modules. The build system keeps
 a list of various Qt library dependencies, the QPA plugin, the main app library, and any
 third-party library under the application's \l {Java/Kotlin Code}{libs.xml}
