@@ -47,6 +47,24 @@ about the Qt build procedure.
 For Qt developers and maintainers, the \l{https://wiki.qt.io/SBOM}{SBOM Wiki}
 has specific information for creating SBOM documents.
 
+\section1 REUSE-compliant Qt modules
+
+\l{All Modules}{Qt modules} are \l REUSE compliant starting from Qt 6.9.
+Specifically, license documentation and license checks are part of Qt's
+development process. Various tools check Qt repositories for licenses in files
+or externally in REUSE.toml files.
+
+The \l{reuse-tool} checks for REUSE compliance and generates source SBOMs. An
+internal tool checks that the generated source SBOM files comply with the Qt
+license specification.
+
+For more information about licenses documentation in the Qt sources, visit the
+following:
+\list
+\li \l{QUIP 18: License specification in Qt's modules}
+\li \l{Licensing in Qt sources}
+\endlist
+
 \section1 SPDX Format
 
 The SBOM documents are in \l{https://spdx.github.io/spdx-spec/v2.3}{SPDX 2.3}
