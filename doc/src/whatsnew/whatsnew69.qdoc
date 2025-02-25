@@ -48,6 +48,11 @@
             without going through QJsonDocument. This allows it to parse and
             serialize primitive values like strings or numbers as well as
             compound values.
+        \li QThread gained the ability to set the OS thread quality of service
+            hint using the new \l{QThread::}{setServiceLevel} function.
+        \li QThreadPool can also set the quality of service level for its
+            threads using \l{QThreadPool::}{setServiceLevel}.
+
     \endlist
 
     \section2 Qt Graphs Module
