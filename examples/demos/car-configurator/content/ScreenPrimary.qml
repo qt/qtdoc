@@ -861,11 +861,6 @@ Rectangle {
                 id: dot
                 source: rootWindow.downloadBase + "/content/images/dot.png"
             }
-
-            Texture {
-                id: _Desert1
-                source: rootWindow.downloadBase + "/content/images/_Desert.hdr"
-            }
         }
     }
 
@@ -2193,7 +2188,7 @@ Rectangle {
             PropertyChanges {
                 target: desert
                 probeOrientation.y: -70
-                lightProbe: _Desert1
+                lightProbe: _Desert
                 antialiasingQuality: SceneEnvironment.VeryHigh
                 fxaaEnabled: false
                 specularAAEnabled: false
@@ -2212,7 +2207,7 @@ Rectangle {
                 lensFlareDistortion: 0.20282
                 lensFlareBlurAmount: 2.45517
                 lensFlareApplyDirtTexture: false
-                lensFlareLensColorTexture: _Desert1
+                lensFlareLensColorTexture: _Desert
                 sharpnessAmount: 0
                 whitePoint: 0.83817
                 skyboxBlurAmount: 0.18745
@@ -2253,7 +2248,7 @@ Rectangle {
             PropertyChanges {
                 target: groundMat1
                 opacity: 0.93
-                lightProbe: _Desert1
+                lightProbe: _Desert
                 cullMode: Material.NoCulling
                 vertexColorsEnabled: false
                 depthDrawMode: Material.AlwaysDepthDraw
