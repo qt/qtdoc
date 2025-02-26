@@ -963,6 +963,8 @@
 
   set(VxWorksPlatformGraphics_DEFINES "-D_FSLVIV")
   set(VxWorksPlatformGraphics_LIBRARIES_PACK
+      "${_common_lib_path}/libgfxFslVivEGL.so"
+      "${_common_lib_path}/libgfxFslVivGLESv2.so"
       "${_common_lib_path}/libgfxFslVivGAL.so"
       "${_common_lib_path}/libgfxFslVivGLSLC.so"
       "${_common_lib_path}/libgfxFslVivVDK.so"
@@ -1008,6 +1010,8 @@
 
   set(VxWorksPlatformGraphics_DEFINES "-D__vxworks -D__VXWORKS")
   set(VxWorksPlatformGraphics_LIBRARIES_PACK
+      "${_common_lib_path}/libgfxMesaEGL.so"
+      "${_common_lib_path}/libgfxMesaGL.so"
       "${_common_lib_path}/libgfxMesaSw.so"
       "${_common_lib_path}/libgfxMesa.so"
       "${_common_lib_path}/libgfxMesaDriI965.so"
