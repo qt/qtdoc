@@ -369,6 +369,11 @@
 
     \section3 Windows
     \list
+        \li Added new public CMake API:
+        \list
+            \li Added the \l{qt_add_win_app_sdk} CMake function to add Windows App SDK
+            to the project.
+        \endlist
         \li Added support for rendering additional emoji font formats, such as CBDT and COLRv1.
     \endlist
 
