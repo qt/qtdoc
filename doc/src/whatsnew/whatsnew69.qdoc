@@ -236,6 +236,8 @@
 
     \section2 Qt Quick VectorImage Module
     \list
+         \li Added preliminary support for color animations and transform animations, matching
+             the current support in Qt Svg.
     \endlist
 
     \section2 Qt Shader Tools Module
@@ -343,6 +345,7 @@
 
     \section3 Windows
     \list
+        \li Added support for rendering additional emoji font formats, such as CBDT and COLRv1.
     \endlist
 
     \section3 Wayland Client on Linux
