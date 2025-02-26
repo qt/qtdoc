@@ -277,6 +277,19 @@
 
     \section2 Qt WebEngine Module
     \list
+        \li Has switched internal rendering to use ANGLE, also when Qt uses OpenGL RHI.
+            Improving performance and bug similarity to Chrome.
+        \li QWebEngineProfileBuilder and QML WebEngineProfilePrototype added to configure
+            profiles before creating them and avoiding race conditions.
+        \li QWebEngineLoadingInfo added an \l{QWebEngineLoadingInfo::}{isDownload}
+            property to indicate the load is related to a download.
+        \li QWebEngineUrlRequestInfo also added an \l{QWebEngineUrlRequestInfo::}{isDownload()}
+            method to indicate the request is related to a download.
+        \li QWebEngineSettings and QML WebEngineSettings added three new settings.
+            PrintHeaderAndFooter, and PreferCSSMarginsForPrinting to configure printing.
+            And TouchEventsApiEnabled to turn off TouchEvents API, which some web sites
+            use as a trigger for mobile mode.
+
     \endlist
 
     \section2 Qt Widgets Module
