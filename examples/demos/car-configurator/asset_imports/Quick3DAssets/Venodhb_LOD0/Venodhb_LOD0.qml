@@ -66,16 +66,6 @@ Node {
         }
 
         Texture {
-            id: dot
-            source: rootWindow.downloadBase + "/content/images/dot.png"
-            scaleV: 1
-            scaleU: 1
-            positionV: 1
-            positionU: 1
-            mappingMode: Texture.UV
-        }
-
-        Texture {
             id: dot1
             source: rootWindow.downloadBase + "/content/images/dot.png"
         }
