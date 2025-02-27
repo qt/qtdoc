@@ -1,4 +1,4 @@
-// Copyright (C) 2021 The Qt Company Ltd.
+// Copyright (C) 2024 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -11,19 +11,19 @@
 //! [linux]
 \table 80%
     \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li Red Hat 8.4
+    \row \li Red Hat 8.8
         \li \c x86_64
         \li GCC 10 (toolset)
         \li
-    \row \li Red Hat 9.0
+    \row \li Red Hat 9.2
         \li \c x86_64
         \li GCC 11
         \li
-    \row \li openSUSE 15.4
+    \row \li openSUSE 15.5
         \li \c x86_64
         \li GCC 9
         \li
-    \row \li SUSE Linux Enterprise Server 15 SP4
+    \row \li SUSE Linux Enterprise Server 15 SP5
         \li \c x86_64
         \li GCC 10
         \li
@@ -130,12 +130,12 @@ release, however they may be removed in a future minor release.
 \table
     \header \li{4,1} Tier 1: Reference Targets
     \header \li Vendor \li Board \li OS / Other \li Provided By
-    \row \li Intel \li NUC 10 \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8QuadMax \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8QuadMax \li QNX 7.1 \li \l{Qt for QNX}
+    \row \li Intel \li NUC \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8QuadMax MEK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8QuadMax MEK \li QNX 7.1 \li \l{Qt for QNX}
     \row \li Qualcomm \li SA8155P \li AAOS 10-12 \li \l{Qt for Android Automotive}
     \row \li Qualcomm \li SA8155P \li INTEGRITY 19.03 \li \l{Qt for INTEGRITY}
-    \row \li Raspberry Pi \li Raspberry Pi 4 Model B \li Yocto 4.1 \li \l{Boot to Qt}
+    \row \li Raspberry Pi \li Raspberry Pi 4 64-bit \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li Toradex \li Apalis iMX6 \li Yocto 4.0 \li \l{Boot to Qt}
 \endtable
 
@@ -151,14 +151,15 @@ release, however they may be removed in a future minor release.
 \table
     \header \li{4,1} Tier 2: Verified Targets
     \header \li Vendor \li Board \li OS / Other \li Provided By
-    \row \li NVIDIA \li Jetson AGX Orin \li Debian 12 \li \l{Enterprise Qt Debian Packages}
-    \row \li NXP \li i.MX 8M \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Mini \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Plus \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Nano \li Yocto 4.1 \li \l{Boot to Qt}
-    \row \li ST \li STM32MP157F-DK2 \li Yocto 4.0 \li \l{Boot to Qt}
-    \row \li ST \li STM32MP157F-EV1 \li Yocto 4.0 \li \l{Boot to Qt}
-    \row \li TI \li AM62x \li Yocto 4.1 \li \l{Boot to Qt}
+    \row \li NVIDIA \li Jetson AGX Orin Development Kit \li Debian 12 \li \l{Enterprise Qt Debian Packages}
+    \row \li NVIDIA \li Jetson AGX Xavier Development Kit \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8MQuad EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Mini LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Nano DDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Plus LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li ST \li STM32MP15 Discovery \li Yocto 4.0 \li \l{Boot to Qt}
+    \row \li ST \li STM32MP15 Evaluation \li Yocto 4.0 \li \l{Boot to Qt}
+    \row \li TI \li SK-AM62 \li Yocto 4.3 \li \l{Boot to Qt}
     \row \li Toradex \li Colibri iMX6 ULL \li Yocto 4.0 \li \l{Boot to Qt}
 \endtable
 
@@ -170,6 +171,12 @@ release, however they may be removed in a future minor release.
     \li Hardware not regularly tested.
     \li Releases are available via \QOI.
 \endlist
+
+\table
+    \header \li{4,1} Tier 3: Other Targets
+    \header \li Vendor \li Board \li OS / Other \li Provided By
+    \row \li Toradex \li Apalis iMX8 \li Yocto 4.0 \li \l{Boot to Qt}
+\endtable
 
 See \l{Other Targets} for more information.
 

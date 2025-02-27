@@ -513,7 +513,7 @@ Qt for WebAssembly supports the standard Qt startup approach, where the applicat
 creates a QApplication object and calls the exec function:
 
 \code
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
@@ -546,7 +546,7 @@ the top-level window and application objects.
 QApplication *g_app = nullptr;
 AppWindow *g_appWindow = nullptr;
 
-int main(int argc, char **argc)
+int main(int argc, char **argv)
 {
     g_app = new QApplication(argc, argv);
     g_appWindow = new AppWindow();
@@ -679,7 +679,8 @@ setting MAXIMUM_MEMORY to a value the device supports, for example
 \badcode
 target_link_options(<your target> PRIVATE -s MAXIMUM_MEMORY=1GB)
 \endcode
-
+\li To use QtWebsockets, the subprotocol might need to be set to 'mqtt' for using QtMqtt. Use
+QWebSocketHandshakeOptions when you open the QWebSocket.
 \endlist
 
 \section1 Other Topics
