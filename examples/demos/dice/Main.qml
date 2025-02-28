@@ -18,23 +18,23 @@ ApplicationWindow {
         id: accelerometer
         dataRate: 25
         active: true
-        property real previousForce: 0
-        property real multiplier: 100
-        onReadingChanged: {
-            const accelerometerReading = reading as AccelerometerReading
-            let force = Qt.vector3d(accelerometerReading.x, accelerometerReading.y, accelerometerReading.z - 9.81)
-            if (isShake(force, previousForce)) {
-                tapLabel.opacity = 0
-                force.x *= multiplier
-                force.y *= multiplier
-                force.z *= multiplier
-                scene.rollForce = force
-                scene.spawnDice()
-            }
-            previousForce = force.length()
+        readonly property vector3d force: Qt.vector3d(reading.x, reading.y, reading.z)
+        readonly property bool highForce : Math.abs(force.length() - 9.81) > 16
+
+        onHighForceChanged: {
+            if (!highForce)
+                shakeTimeout.restart()
         }
-        function isShake(force, previousForce) {
-            return ((force.length() > 16) && (force.length() < previousForce))
+    }
+
+    Timer {
+        id: shakeTimeout
+        interval: 200
+        running: false
+        repeat: false;
+        onTriggered: {
+            scene.rollForce = accelerometer.force.times(100.0)
+            scene.spawnDice()
         }
     }
 
