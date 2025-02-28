@@ -13,8 +13,7 @@ DynamicRigidBody {
     sendContactReports: true
     onBodyContact: (body, positions, impulses, normals) => {
         motionTimeout.restart()
-        let volume = 0
-        impulses.forEach(vector => { volume += vector.length() })
+        const volume = impulses.reduce((acc, vector) => acc + vector.length(), 0)
         diceSound.volume = volume / 2000
         if (!diceSound.playing)
             diceSound.play()
