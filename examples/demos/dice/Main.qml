@@ -28,7 +28,8 @@ ApplicationWindow {
                 force.x *= multiplier
                 force.y *= multiplier
                 force.z *= multiplier
-                scene.spawnDice(diceSlider.value, force, diceSize.value)
+                scene.rollForce = force
+                scene.spawnDice()
             }
             previousForce = force.length()
         }
@@ -45,6 +46,8 @@ ApplicationWindow {
         settingsStaticFriction: staticFrictionSlider.value
         settingsDynamicFriction: dynamicFrictionSlider.value
         settingsRestitution: restitutionSlider.value
+        settingsDiceWidth: diceSize.value
+        settingsDiceCount: diceSlider.value
 
         Label {
             id: tapLabel
@@ -81,8 +84,8 @@ ApplicationWindow {
             }
             onClicked: {
                 tapLabel.hide()
-                scene.spawnDice(diceSlider.value, Qt.vector3d(0, 0, 0),
-                                diceSize.value)
+                scene.rollForce = Qt.vector3d(0, 0, 0)
+                scene.spawnDice()
             }
         }
 
@@ -212,12 +215,9 @@ ApplicationWindow {
                     id: diceSlider
                     focusPolicy: Qt.NoFocus
                     from: 1
-                    to: 10
+                    to: 20
                     value: 5
                     stepSize: 1
-                    onValueChanged: scene.spawnDice(value,
-                                                    Qt.vector3d(0, 0, 0),
-                                                    diceSize.value)
                 }
 
                 // Dice size
@@ -233,8 +233,7 @@ ApplicationWindow {
                     from: 1
                     to: 10
                     value: 3.5
-                    stepSize: 1
-                    onValueChanged: scene.setDiceWidth(value)
+                    stepSize: 0.5
                 }
 
                 // Throw dice
@@ -242,9 +241,10 @@ ApplicationWindow {
                     id: throwButton
                     Layout.alignment: Qt.AlignHCenter
                     text: qsTr("Throw dice")
-                    onClicked: scene.spawnDice(diceSlider.value,
-                                               Qt.vector3d(0, 0, 0),
-                                               diceSize.value)
+                    onClicked: {
+                        scene.rollForce = Qt.vector3d(0, 0, 0)
+                        scene.spawnDice()
+                    }
                 }
             }
         }
