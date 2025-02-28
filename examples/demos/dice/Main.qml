@@ -115,14 +115,9 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 // Static friction
-                RowLayout {
-                    Label {
-                        text: qsTr("Static friction")
-                        Layout.fillWidth: true
-                    }
-                    Label {
-                        font.bold: true
-                    }
+                Label {
+                    text: qsTr("Static friction")
+                    Layout.fillWidth: true
                 }
                 Slider {
                     id: staticFrictionSlider
@@ -133,14 +128,9 @@ ApplicationWindow {
                 }
 
                 // Dynamic friction
-                RowLayout {
-                    Label {
-                        text: qsTr("Dynamic friction")
-                        Layout.fillWidth: true
-                    }
-                    Label {
-                        font.bold: true
-                    }
+                Label {
+                    text: qsTr("Dynamic friction")
+                    Layout.fillWidth: true
                 }
                 Slider {
                     id: dynamicFrictionSlider
@@ -151,14 +141,9 @@ ApplicationWindow {
                 }
 
                 // Restitution
-                RowLayout {
-                    Label {
-                        text: qsTr("Restitution")
-                        Layout.fillWidth: true
-                    }
-                    Label {
-                        font.bold: true
-                    }
+                Label {
+                    text: qsTr("Restitution")
+                    Layout.fillWidth: true
                 }
                 Slider {
                     id: restitutionSlider
@@ -199,11 +184,9 @@ ApplicationWindow {
                 }
 
                 // Number of dice
-                RowLayout {
-                    Label {
-                        text: qsTr("Number of dice")
-                        Layout.fillWidth: true
-                    }
+                Label {
+                    text: qsTr("Number of dice")
+                    Layout.fillWidth: true
                 }
                 Slider {
                     id: diceSlider
@@ -215,11 +198,9 @@ ApplicationWindow {
                 }
 
                 // Dice size
-                RowLayout {
-                    Label {
-                        text: qsTr("Dice size")
-                        Layout.fillWidth: true
-                    }
+                Label {
+                    text: qsTr("Dice size")
+                    Layout.fillWidth: true
                 }
                 Slider {
                     id: diceSize
