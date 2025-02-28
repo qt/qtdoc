@@ -87,16 +87,18 @@ Item {
         Node {
             id: scene
 
-            DirectionalLight {
-                eulerRotation: Qt.vector3d(-45, 25, 0)
+            PointLight {
+                y: 80
+                x: 80
+                z: 80
                 castsShadow: true
                 brightness: 1
                 shadowFactor: 100
                 shadowMapQuality: Light.ShadowMapQualityVeryHigh
-                softShadowQuality: Light.PCF4
+                softShadowQuality: Light.PCF64
                 shadowBias: 0.4
-                shadowMapFar: camera.clipFar
-                pcfFactor: 0.05
+                pcfFactor: 0.01
+                quadraticFade: 0.001
             }
 
             PhysicalTable {
