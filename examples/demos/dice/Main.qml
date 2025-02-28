@@ -138,7 +138,7 @@ ApplicationWindow {
                     focusPolicy: Qt.NoFocus
                     from: 0
                     to: 1
-                    value: 0.5
+                    value: 0.4
                     stepSize: 0.05
                 }
 
@@ -152,7 +152,7 @@ ApplicationWindow {
                     focusPolicy: Qt.NoFocus
                     from: 0
                     to: 1
-                    value: 0.8
+                    value: 0.4
                     stepSize: 0.05
                 }
 
