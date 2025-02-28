@@ -7,13 +7,12 @@ import QtQml
 DynamicRigidBody {
     id: root
     property real diceWidth: 1.9 // cm
-    property bool atRest: true
+    property alias atRest: motionTimeout.running
     property bool isClose: position.length() < 100
     receiveContactReports: true
     sendContactReports: true
     onBodyContact: (body, positions, impulses, normals) => {
-        motionTimeout.start()
-        atRest = false
+        motionTimeout.restart()
         let volume = 0
         impulses.forEach(vector => { volume += vector.length() })
         diceSound.volume = volume / 2000
@@ -25,10 +24,6 @@ DynamicRigidBody {
         interval: 500
         running: false
         repeat: false
-        onRunningChanged: {
-            if (!running)
-                root.atRest = true
-        }
     }
 
     massMode: DynamicRigidBody.CustomDensity
