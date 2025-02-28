@@ -116,7 +116,7 @@ ApplicationWindow {
 
                 // Static friction
                 Label {
-                    text: qsTr("Static friction")
+                    text: qsTr("Static friction: %1").arg(staticFrictionSlider.value.toFixed(2))
                     Layout.fillWidth: true
                 }
                 Slider {
@@ -125,11 +125,12 @@ ApplicationWindow {
                     from: 0
                     to: 1
                     value: 0.5
+                    stepSize: 0.05
                 }
 
                 // Dynamic friction
                 Label {
-                    text: qsTr("Dynamic friction")
+                    text: qsTr("Dynamic friction: %1").arg(dynamicFrictionSlider.value.toFixed(2))
                     Layout.fillWidth: true
                 }
                 Slider {
@@ -138,11 +139,12 @@ ApplicationWindow {
                     from: 0
                     to: 1
                     value: 0.5
+                    stepSize: 0.05
                 }
 
                 // Restitution
                 Label {
-                    text: qsTr("Restitution")
+                    text: qsTr("Restitution: %1").arg(restitutionSlider.value.toFixed(2))
                     Layout.fillWidth: true
                 }
                 Slider {
@@ -185,7 +187,7 @@ ApplicationWindow {
 
                 // Number of dice
                 Label {
-                    text: qsTr("Number of dice")
+                    text: qsTr("Number of dice: %1").arg(diceSlider.value)
                     Layout.fillWidth: true
                 }
                 Slider {
@@ -199,7 +201,7 @@ ApplicationWindow {
 
                 // Dice size
                 Label {
-                    text: qsTr("Dice size")
+                    text: qsTr("Dice size: %1cm").arg(diceSize.value.toFixed(1))
                     Layout.fillWidth: true
                 }
                 Slider {
