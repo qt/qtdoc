@@ -24,7 +24,7 @@ ApplicationWindow {
             const accelerometerReading = reading as AccelerometerReading
             let force = Qt.vector3d(accelerometerReading.x, accelerometerReading.y, accelerometerReading.z - 9.81)
             if (isShake(force, previousForce)) {
-                tapLabel.hide()
+                tapLabel.opacity = 0
                 force.x *= multiplier
                 force.y *= multiplier
                 force.z *= multiplier
@@ -64,27 +64,20 @@ ApplicationWindow {
             style: Text.Raised
             color: "white"
             minimumPixelSize: 10
-            NumberAnimation on opacity {
-                id: tapLabelAnimation
-                running: false
-                from: 1
-                to: 0
-                duration: 300
-            }
+            visible: opacity > 0
 
-            function hide() {
-                if (tapLabel.opacity >= 1) {
-                    tapLabelAnimation.running = true
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.OutCirc
                 }
             }
         }
 
         MouseArea {
-            anchors {
-                fill: parent
-            }
+            anchors.fill: parent
             onClicked: {
-                tapLabel.hide()
+                tapLabel.opacity = 0
                 scene.rollForce = Qt.vector3d(0, 0, 0)
                 scene.spawnDice()
             }
@@ -256,7 +249,7 @@ ApplicationWindow {
         icon.source: "Menu_Icon.svg"
         x: root.currDrawerWidth
         onClicked: {
-            tapLabel.hide()
+            tapLabel.opacity = 0
             drawer.open()
         }
     }
