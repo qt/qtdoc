@@ -8,16 +8,15 @@ import QtQuick3D.Helpers
 Item {
     id: item
     property real settingGravity: 980.7
-    property real settingsStaticFriction: 0.5
-    property real settingsDynamicFriction: 0.5
-    property real settingsRestitution: 0.5
+    property alias settingsStaticFriction: physicsMaterial.staticFriction
+    property alias settingsDynamicFriction: physicsMaterial.dynamicFriction
+    property alias settingsRestitution: physicsMaterial.restitution
+    property alias settingsDiceWidth: diceSpawner.diceWidth
+    property alias settingsDiceCount: diceSpawner.count
+    property alias rollForce: diceSpawner.rollForce
 
-    function spawnDice(numberOfDice, rollForce, diceWidth) {
-        diceSpawner.spawnDice(numberOfDice, physicsMaterial, rollForce, diceWidth)
-    }
-
-    function setDiceWidth(diceWidth) {
-        diceSpawner.setDiceWidth(diceWidth);
+    function spawnDice() {
+        diceSpawner.respawn()
     }
 
     Screen.onPrimaryOrientationChanged: {
@@ -41,9 +40,9 @@ Item {
 
     PhysicsMaterial {
         id: physicsMaterial
-        staticFriction: item.settingsStaticFriction
-        dynamicFriction: item.settingsDynamicFriction
-        restitution: item.settingsRestitution
+        staticFriction: 0.5
+        dynamicFriction: 0.5
+        restitution: 0.5
     }
 
     OrbitCameraController {
@@ -104,6 +103,9 @@ Item {
 
             DiceSpawner {
                 id: diceSpawner
+                physicsMaterial: physicsMaterial
+                diceWidth: 3.5
+                rollForce: Qt.vector3d(0, 0, 0)
             }
 
             Carpet {
