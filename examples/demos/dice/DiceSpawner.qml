@@ -23,9 +23,9 @@ Node {
                                                   })
 
         delegate: PhysicalDie {
-            position.x: 0.11 * Math.cos(index / (Math.PI / 4))
-            position.y: index * 2.1
-            position.z: 0
+            position.x: { position.x = diceWidth * Math.cos(index / (Math.PI / 4)) }
+            position.y: { position.y = index * shapeSpawner.diceWidth * 1.41 }
+            position.z: { position.z =  diceWidth * Math.sin(index / (Math.PI / 4)) }
             eulerRotation.x: randomInRange(0, 360)
             eulerRotation.y: randomInRange(0, 360)
             eulerRotation.z: randomInRange(0, 360)
