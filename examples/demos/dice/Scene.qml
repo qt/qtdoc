@@ -14,6 +14,7 @@ Item {
     property alias settingsDiceWidth: diceSpawner.diceWidth
     property alias settingsDiceCount: diceSpawner.count
     property alias rollForce: diceSpawner.rollForce
+    property alias cameraControllerEnabled : orbitCameraController.enabled
 
     function spawnDice() {
         diceSpawner.respawn()
@@ -46,6 +47,7 @@ Item {
     }
 
     OrbitCameraController {
+        id: orbitCameraController
         anchors.fill: parent
         origin: originNode
         camera: camera

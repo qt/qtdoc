@@ -48,6 +48,7 @@ ApplicationWindow {
         settingsRestitution: restitutionSlider.value
         settingsDiceWidth: diceSize.value
         settingsDiceCount: diceSlider.value
+        cameraControllerEnabled: !drawer.visible
 
         Label {
             id: tapLabel
