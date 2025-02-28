@@ -231,6 +231,9 @@ ApplicationWindow {
         id: iconOpen
         icon.source: "Menu_Icon.svg"
         x: root.currDrawerWidth
+        opacity: 1.0 - drawer.position
+        scale: opacity
+        transformOrigin: Item.Center
         onClicked: {
             tapLabel.opacity = 0
             drawer.open()
