@@ -456,6 +456,34 @@
 
     \section3 Boot to Qt
     \list
+        \li Support was added for Yocto 5.1 (Styhead).
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 1:
+            \list
+                \li NVIDIA Jetson AGX Orin Developer Kit (\l{Boot to Qt}, upgraded from Tier 2).
+            \endlist
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 2:
+            \list
+                \li Toradex Apalis iMX6 (\l{Boot to Qt}, downgraded from Tier 1).
+            \endlist
+        \li The \l {Support Levels for Target Hardware} was updated with new
+            supported boards for Tier 3:
+            \list
+                \li Qualcomm RB3 Gen 2 Vision Kit (\l{Boot to Qt}).
+                \li NXP i.MX 8M Mini LPDDR4 EVK (\l{Boot to Qt}, downgraded from Tier 2).
+                \li NXP i.MX 8M Nano LPDDR4 EVK (\l{Boot to Qt}, downgraded from Tier 2).
+                \li NXP i.MX 8M Plus LPDDR4 EVK (\l{Boot to Qt}, downgraded from Tier 2).
+            \endlist
+        \li The following boards are no longer supported:
+            \list
+                \li NVIDIA Jetson AGX Xavier Developer Kit (\l{Boot to Qt}).
+                \li Amazon AWS EC2 ARM64 (\l{Boot to Qt}).
+                \li TI SK-AM69 (\l{Boot to Qt}).
+                \li NXP i.MX 8MQuad EVK (\l{Boot to Qt}).
+                \li NXP i.MX 8QuadXPlus MEK (\l{Boot to Qt}).
+                \li Qualcomm Robotics RB5 Development Kit (\l{Boot to Qt}).
+            \endlist
     \endlist
 
     \section3 RealTime OSs
