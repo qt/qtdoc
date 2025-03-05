@@ -96,6 +96,11 @@
             as a solid brush.
         \li QPainterStateGuard is a new RAII class to ensure balanced
             save/restore operations on a QPainter.
+        \li Added Qt::ExpandedClientAreaHint to request that the window's client area is expanded
+            to areas where it might be obscured by, or conflicting with other UI elements, such as
+            the window's titlebar controls or other system UIs.
+        \li Added Qt::NoTitleBarBackgroundHint to request that the window's title bar is drawn
+            without a background color.
         \li Added QWindow::safeAreaMargins() to reflect the safe area of the window.
         \li Added parsing and automatic detection of emoji sequences in text, ensuring the use of
             color fonts when needed as according to the Unicode specification. This parser can
