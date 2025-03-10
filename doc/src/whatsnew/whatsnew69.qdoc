@@ -165,6 +165,9 @@
 
     \section2 Qt HttpServer Module
     \list
+        \li \l{QHttpServer} can now be configured through \l{QHttpServerConfiguration} and
+            the \l{QAbstractHttpServer::}{configuration} property. Currently, this supports
+            setting \l{QHttpServerConfiguration::}{rateLimitPerSecond}.
     \endlist
 
     \section2 Qt Multimedia Module
