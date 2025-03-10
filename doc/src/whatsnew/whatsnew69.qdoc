@@ -177,6 +177,8 @@
 
     \section2 Qt Network Module
     \list
+        \li Added \l{QHttp2Configuration::}{setMaxConcurrentStreams} which controls the
+            SETTINGS_MAX_CONCURRENT_STREAMS HTTP/2 setting.
     \endlist
 
     \section2 Qt Network Auth Module
