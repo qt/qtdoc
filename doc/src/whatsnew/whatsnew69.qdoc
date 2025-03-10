@@ -24,6 +24,12 @@
 
     \section2 Qt Core Module
     \list
+        \li QString::arg() now has support for UTF-8 (QUtf8StringView) and QAnyStringView
+            arguments. Passing C string literals or QByteArrays to \l{QString::}{arg()} now no
+            longer implicitly converts to QString first.
+        \li QAnyStringView and QUtf8StringView now have a (multi-)\l{QAnyStringView::}{arg()},
+            like QStringView and QLatin1StringView already had. These also support
+            QUtf8StringView and QAnyStringView arguments, like the QString version.
         \li QJniArray can now create an empty array of a fixed size, and change
             values in an array using a non-const iterator or \l{QJniArray::}{operator[]}
         \li QLocale::uiLanguages() now includes fall-back entries obtained by
@@ -52,6 +58,27 @@
             hint using the new \l{QThread::}{setServiceLevel} function.
         \li QThreadPool can also set the quality of service level for its
             threads using \l{QThreadPool::}{setServiceLevel}.
+        \li QFile::supportsMoveToTrash() reports whether QFile::moveToTrash() is
+            implemented on the current operating system.
+        \li QIODevice::readLineInto() allows reading a line of data into a
+            preallocated buffer.
+        \li Use the new Q_STATIC_LOGGING_CATEGORY macro to declare a logging
+            category that is only used in a single translation unit.
+        \li Call the new QSortFilterProxyModel::beingFilterChange() method to
+            make sure that changes of the filtered content are recognized
+            correctly.
+        \li QTimerEvent::matches() makes it easier to test whether a timer event
+            belongs to a specific QBasicTimer.
+        \li QUuid::createUuidV7() allows creating unique identifiers based on
+            \l{https://datatracker.ietf.org/doc/html/rfc9562#name-uuid-version-7}
+            {RFC9562}
+        \li QCommandLineParser::showMessageAndExit() provides a convenient way
+            to display an informative or error message to the user before
+            exiting the application.
+        \li QHash got \l{QHash::}{tryEmplace} and \l{QHash::}{insertOrAssign}
+            APIs to match the respective APIs from the standard library.
+        \li QSpan can now \l{QSpan::}{chop} and \l{QSpan::}{slice} variable-
+            sized spans.
 
     \endlist
 
