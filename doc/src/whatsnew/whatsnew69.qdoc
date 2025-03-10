@@ -183,6 +183,29 @@
 
     \section2 Qt Network Auth Module
     \list
+        \li Added \l {QOAuth2DeviceAuthorizationFlow}, implementing the
+            Device Authorization Grant as specified in RFC 8628.
+        \li Added convenience support for token refreshing.
+            See \l {QAbstractOAuth2::autoRefresh}, \l {QAbstractOAuth2::refreshLeadTime},
+            and \l {QAbstractOAuth2::accessTokenAboutToExpire()}.
+        \li Made it easier to use user-agents other than the system browser. See
+            \l {QOAuthUriSchemeReplyHandler::handleAuthorizationRedirect()}.
+        \li Added \l {QAbstractOAuth2::requestedScopeTokens} and
+            \l {QAbstractOAuth2::grantedScopeTokens} properties to simplify distinguishing
+            between requested and granted scopes.
+        \li Added HTTPS support to \l {QOAuthHttpServerReplyHandler}. See
+            \l {QOAuthHttpServerReplyHandler::listen(const QSslConfiguration&, const QHostAddress&, quint16)}.
+        \li Added \l {QOAuthHttpServerReplyHandler::setCallbackHost()}
+            allowing customization of the hostname part of the redirect URI.
+        \li Added \l {QAbstractOAuth2::setNetworkRequestModifier()}, enabling
+            modification of network requests prior to sending.
+        \li Improved support for acquiring \e {OpenID Connect} ID tokens. See
+            \l {QAbstractOAuth2::idToken}, \l {QAbstractOAuth2::nonce}, and
+            \l {QAbstractOAuth2::nonceMode}.
+        \li Added \l {QAbstractOAuth2::serverReportedErrorOccurred()} signal which
+            deprecates the previous \l {QAbstractOAuth2::error()} signal.  The new
+            signal name clearly indicates that these errors correspond specifically
+            to the cases defined in RFC 6749, rather than general errors.
     \endlist
 
     \section2 Qt OPCUA Module
