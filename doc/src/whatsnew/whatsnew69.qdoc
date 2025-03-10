@@ -147,6 +147,11 @@
 
     \section2 Qt Protobuf Module
     \list
+        \li Improved and refined all documentation.
+        \li Added the \c{HEADER_GUARD} option to specify the mechanism used to
+            guard generated header files.
+        \li Added the \c{protobuf-unsafe-registry} feature to trade
+            safety for performance on accessing custom protobuf serializers.
     \endlist
 
     \section2 Qt QML Module
