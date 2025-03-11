@@ -123,6 +123,13 @@
             as a solid brush.
         \li QPainterStateGuard is a new RAII class to ensure balanced
             save/restore operations on a QPainter.
+        \li QColorSpace got APIs for setting and getting the four primary color
+            space points.
+        \li Added Qt::ExpandedClientAreaHint to request that the window's client area is expanded
+            to areas where it might be obscured by, or conflicting with other UI elements, such as
+            the window's titlebar controls or other system UIs.
+        \li Added Qt::NoTitleBarBackgroundHint to request that the window's title bar is drawn
+            without a background color.
         \li Added QWindow::safeAreaMargins() to reflect the safe area of the window.
         \li Added parsing and automatic detection of emoji sequences in text, ensuring the use of
             color fonts when needed as according to the Unicode specification. This parser can
@@ -132,6 +139,9 @@
             customizing the default emoji font used by the application.
         \li Added QFontInfo::variableAxes() for retrieving information about the variable axes
             supported by a font.
+        \li QImage::flipped() and QImage::flip() provide a Qt::Orientation based
+            API for flipping an image, making code easier to read than the bool-
+            based QImage::mirrored() alternative.
         \li QRhi: when running with OpenGL ES on mobile GPUs with support present,
             GL_EXT_multisampled_render_to_texture is utilized whenever possible. For
             clients such as Qt Quick and Qt Quick 3D this potentially brings significant
@@ -149,6 +159,8 @@
             allowing integration of external rendering/compute engines that rely on
             multiple threads and require appropriate synchronization with the scenegraph
             renderer.
+        \li Use the \l{QPdfWriter::author()} property to set the author of the
+            generated PDF document.
     \endlist
 
     \section2 Qt HttpServer Module
@@ -341,6 +353,18 @@
         \li QHeaderView has been optimized to dramatically reduce memory usage
             for huge models as long as the sections are not resized, hidden or
             reordered.
+        \li The identifier set as the \l{QWidget::accessibleIdentifier} can be
+            used by assistive technologies and by automated testing tools to
+            identify a specific widget.
+        \li The dock location of a QDockWidget can not be explicitly set using
+            the \l{QDockWidget::dockLocation} property.
+        \li QStackedWidget noew emits the \l{QStackedWidget::}{widgetAdded()}
+            signal when a new widgets is added to the stack.
+    \endlist
+
+    \section2 Qt XML Module
+    \list
+        \li QDomNodeList got an \l{QDomNodeList::begin()}{iterator API}.
     \endlist
 
     \section1 Tools
