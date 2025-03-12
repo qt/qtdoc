@@ -1,4 +1,4 @@
-// Copyright (C) 2024 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -43,6 +43,25 @@
 
     See \l{Repository information for Qt Releases} for detailed information
     on how you can configure repositories per Qt release and architecture.
+
+    \section1 Debian Source Packages
+
+    To add the Debian source packages for APT, you need to add a \e {deb-src}
+    entry for the corresponding \e {deb} entry:
+
+    \badcode \QtVersion
+    $ sudo nano /etc/apt/sources.list.d/tqtc.list
+
+        deb [arch=arm64 signed-by=/etc/apt/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-\1-arm64 tqtc-jammy main
+        deb-src [signed-by=/etc/apt/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-\1-arm64 tqtc-jammy main
+    \endcode
+
+    To download source packages (for example, for \e wayland) to the
+    current directory, use the \c {apt source} command:
+
+    \badcode \QtVersion
+    $ sudo apt source qt-\1-wayland-src
+    \endcode
 
     \section1 Installing a Public GPG Key
 
@@ -174,6 +193,10 @@
     $ sudo nano /etc/apt/sources.list.d/tqtc.list
         deb [arch=arm64 signed-by=/etc/apt/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt\1-arm64 tqtc-jammy main
 
+    # add source packages
+    $ sudo nano /etc/apt/sources.list.d/tqtc.list
+        deb-src [signed-by=/etc/apt/keyrings/tqtc/qt-company-debian-repo.gpg] https://debian-packages.qt.io/debian/enterprise/qt-\1-arm64 tqtc-jammy main
+
     # update local package cache
     $ sudo apt-get update
 
@@ -222,9 +245,9 @@
 
     \section2 Difficulties with repository GPG key usage
 
-    An alternative to 'signed-by' usage attribute in the repository config is to
-    install the key in the following way, althoug this is not recommended as
-    it's deprecated way to install it:
+    An alternative to the \c {signed-by} usage attribute in the repository config
+    is to install the key in the following way, although this is not recommended
+    as it's a deprecated way to install it:
 
     \badcode
     $ sudo apt-key add qt-company-debian-repo.gpg
@@ -283,5 +306,10 @@
         \li jammy-jellyfish (Ubuntu 22.04)
         \li /opt/qt-\QtVersion/aarch64-linux-gnu/
         \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-\QtVersion-arm64 tqtc-jammy main
+     \row
+        \li arm64
+        \li bookworm (Debian 12, GLES)
+        \li /opt/qt-\QtVersion/aarch64-linux-gnu/
+        \li deb [arch=arm64 signed-by=<path>] https://debian-packages.qt.io/debian/enterprise/qt-\QtVersion-arm64-gles tqtc-bookworm main
     \endtable
 */
