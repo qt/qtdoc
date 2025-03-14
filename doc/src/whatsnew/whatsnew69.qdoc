@@ -434,7 +434,7 @@
     \list
         \li Support uncompressed native libs within APKs and remove the need
             for \c {packagingOptions.jniLibs.useLegacyPackaging true}.
-        \li Introduce \l {qt_add_android_permission()} CMake function.
+        \li Introduce \l {qt_add_android_permission}() CMake function.
         \li Add \l QT_ANDROID_COMPILE_SDK_VERSION CMake property to set the SDK
             level for building Java code.
         \li Add \l QT_ANDROID_APP_ICON CMake property to set an app's icon.
