@@ -173,7 +173,7 @@
             \l {QtQuick::Rectangle::bottomRightRadius}{corner}.
         \li Added preliminary support for embedding QWindows into the Qt Quick scene,
             along with a parent property on Window, to allow setting a visual parent of a Window.
-        \li The \l {Item::}{focusReason} and \l {Item::}{focusPolicy}
+        \li The \l {Control::}{focusReason} and \l {Item::}{focusPolicy}
             properties of \l Control were moved to \l Item.
         \li Added \l QQuickRhiItem as a modern alternative to
             \l QQuickFramebufferObject. This allows creating custom QQuickItem objects
@@ -306,8 +306,8 @@
             is based on \l {https://chromedriver.chromium.org/}{ChromeDriver}.
         \li Added QWebEngineUrlRequestInfo::requestBody to access the body of a request using
             the QIODevice API.
-        \li Added settings \l {QQuickWebEngineSettings::}{forceDarkMode}
-            and \l {QWebEngineSettings::}{ForceDarkMode}
+        \li Added settings \l [QML] {WebEngineSettings::}{forceDarkMode} (QML)
+            and \l {QWebEngineSettings::}{ForceDarkMode} (C++)
             to enable automatically rendering all web contents using a dark theme.
         \li Added signals QWebEngineProfile::clearHttpCacheCompleted and
             QQuickWebEngineProfile::clearHttpCacheCompleted.

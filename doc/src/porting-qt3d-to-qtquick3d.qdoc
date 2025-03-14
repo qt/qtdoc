@@ -21,7 +21,7 @@ result, Qt 3D provides APIs for both \l{qt3d-cpp.html}{C++} and \l{qt3d-qml.html
 
 In contrast, Qt Quick 3D is a high-level API focused on the rendering of 3D
 content, and designed as an extension of Qt Quick. Consequently, the majority of its APIs
-are \l{qtquick3d-qmlmodule.html}{QML-based}. Therefore, if your current Qt 3D
+are \l{Qt Quick 3D#QML API}{QML-based}. Therefore, if your current Qt 3D
 application relies heavily on C++, migrating to Qt Quick 3D will require transitioning to QML.
 
 \section1 Architectural Differences
@@ -405,7 +405,7 @@ generate texture data at runtime by either using 2D qml content as
 the source, or by subclassing QQuick3DTextureData or using the ProceduralTextureData component.
 These types let you specify texture data by providing size, format, and raw image data.
 There is also the possibility to create textures on the GPU through the use of
-\l[QtQuick3D]{QQuick3DRenderExtensions}{render extensions}.
+\l[QtQuick3D]{QQuick3DRenderExtension}{render extensions}.
 
 For more details on how this is done, check out the
 \l{Qt Quick 3D - Procedural Texture Example}{Qt Quick 3D Procedural Texture Example}.
@@ -484,9 +484,9 @@ solution for your application. Qt Quick 3D does not provide this level of
 customization, since it aims to be easy to use instead of easy to
 customize, but it does provide some ways to extend the rendering pipeline in
 addition to all of the ways listed above. This is done by implementing
-\l[QtQuick3D]{QQuick3DRenderExtensions}, which allow you to add custom render
-passes to the renderer using the same data as the renderer. This is a low
-level API that requires a good understanding of the
+\l[QtQuick3D]{QQuick3DRenderExtension}{render extensions}, which allow you to
+add custom render passes to the renderer using the same data as the renderer.
+This is a low level API that requires a good understanding of the
 Qt Quick 3D \l{Qt Quick 3D Architecture#Scene Rendering}{rendering pipeline},
 as well as the \l[CPP]{QRhi}{Qt Rendering Hardware Interface} (RHI) API.
 

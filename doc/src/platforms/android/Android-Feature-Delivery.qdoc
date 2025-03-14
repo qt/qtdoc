@@ -90,7 +90,7 @@
         \l{https://developer.android.com/guide/playcore/feature-delivery/on-demand#request}{The Android documentation}
         has a simple description of how to request a module.
         \li When adding Java files under the android folder in the project,
-        \l QT_ANROID_PACKAGE_SOURCE_DIR property must be added to the \c CMakeLists.txt:
+        \l QT_ANDROID_PACKAGE_SOURCE_DIR property must be added to the \c CMakeLists.txt:
         \code
         ...
         set_property(TARGET appFDMainApp APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
