@@ -248,7 +248,7 @@ Qt provides a JavaScript API for downloading, compiling, and instantiating
 Qt for WebAssembly applications. This loading API wraps loading functionality
 provided by Emscripten, and provides additional features useful for Qt-based
 applications. It is implemented in the qtloader.js file. A copy of this file is
-written to the build directoty at build time.
+written to the build directory at build time.
 
 Typical usage looks like the following:
 
@@ -280,7 +280,7 @@ supports the following properties:
         \li Callback for when the application has completed loading.
     \row
         \li onExit
-        \li Callback for when the applicataion exits.
+        \li Callback for when the application exits.
 \endtable
 
 The containerElements array is the main interface between Qt and the web page, where the
