@@ -4,7 +4,6 @@
 pragma Singleton
 
 import QtQml
-import QtQuick
 import QtQuick.LocalStorage
 
 QtObject {
@@ -19,15 +18,15 @@ QtObject {
             let db = LocalStorage.openDatabaseSync("ToDoList", "1.0", "ToDoList app database")
 
             db.transaction(function (tx) {
-                tx.executeSql('CREATE TABLE IF NOT EXISTS tasks (
-                    task_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    task_name,
-                    task_dueDate TEXT,
-                    task_dueTime TEXT,
-                    task_notes TEXT,
-                    done INTEGER,
-                    highlighted INTEGER
-                )');
+                tx.executeSql(`CREATE TABLE IF NOT EXISTS tasks (
+                              task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                              task_name,
+                              task_dueDate TEXT,
+                              task_dueTime TEXT,
+                              task_notes TEXT,
+                              done INTEGER,
+                              highlighted INTEGER
+                              )`);
             })
 
             _db = db
@@ -40,8 +39,8 @@ QtObject {
     function addTask(taskName, taskDueDate, taskDueTime, taskNotes, taskDone, taskHighlighted) {
         let results
         root._database().transaction(function(tx){
-            tx.executeSql("INSERT INTO tasks (task_name, task_dueDate, task_dueTime,
-                        task_notes, done, highlighted) VALUES(?,?,?,?,?,?);",
+            tx.executeSql(`INSERT INTO tasks (task_name, task_dueDate, task_dueTime,
+                          task_notes, done, highlighted) VALUES(?,?,?,?,?,?);`,
                         [taskName, taskDueDate, taskDueTime, taskNotes, taskDone, taskHighlighted])
             results = tx.executeSql("SELECT * FROM tasks ORDER BY task_id DESC LIMIT 1")
         })
@@ -50,8 +49,8 @@ QtObject {
 
     function updateTask(taskId, taskName, taskDueDate, taskDueTime, taskNotes) {
         root._database().transaction(function (tx) {
-            tx.executeSql("UPDATE tasks set task_name=?, task_dueDate=?, task_dueTime=?,
-                          task_notes=? WHERE task_id=?",
+            tx.executeSql(`UPDATE tasks set task_name=?, task_dueDate=?, task_dueTime=?,
+                          task_notes=? WHERE task_id=?`,
                           [taskName, taskDueDate, taskDueTime, taskNotes, taskId])
         })
     }
