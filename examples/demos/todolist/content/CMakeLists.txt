@@ -5,6 +5,8 @@ qt_add_library(todolist_content STATIC)
 qt6_add_qml_module(todolist_content
     URI "content"
     VERSION 1.0
+    DEPENDENCIES
+        TARGET CustomControls
     QML_FILES
         App.qml
         CalendarView.qml
