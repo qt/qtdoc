@@ -1006,6 +1006,55 @@
 
   \endcode
 
+  An example for I.MX8:
+
+  \badcode
+  # Copyright (C) 2024 The Qt Company Ltd.
+  # SPDX-License-Identifier: BSD-3-Clause
+
+  if(QT_VXWORKS_TOOLCHAIN_FILE)
+      set(_original_toolchain_file "${QT_VXWORKS_TOOLCHAIN_FILE}")
+  elseif(DEFINED ENV{QT_VXWORKS_TOOLCHAIN_FILE})
+      set(_original_toolchain_file "$ENV{QT_VXWORKS_TOOLCHAIN_FILE}")
+  else()
+      message(FATAL_ERROR "QT_VXWORKS_TOOLCHAIN_FILE is not set.")
+  endif()
+
+  if(NOT EXISTS "${_original_toolchain_file}")
+      message(FATAL_ERORR "${_original_toolchain_file} doesn't exists.")
+  endif()
+
+  include("${_original_toolchain_file}")
+  unset(_original_toolchain_file)
+
+  list(APPEND CMAKE_TRY_COMPILE_PLATFORM_VARIABLES QT_VXWORKS_TOOLCHAIN_FILE)
+
+  set(_common_lib_path "${CMAKE_SYSROOT}/usr/lib/common")
+  set(EGL_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to EGL include directory" FORCE)
+  set(EGL_LIBRARY ${_common_lib_path}/libgfxNxpVivEGL.so CACHE PATH "Path to EGL lib" FORCE)
+  set(GLESv2_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to GLES include directory" FORCE)
+  set(GLESv2_LIBRARY ${_common_lib_path}/libgfxNxpVivGLESv2.so CACHE PATH "Path to GLES lib" FORCE)
+
+  set(VxWorksPlatformGraphics_DEFINES "-D_NXPVIV -D__vxworks -D__VXWORKS__")
+  set(VxWorksPlatformGraphics_LIBRARIES_PACK
+      "${_common_lib_path}/libgfxNxpVivGAL.so"
+      "${_common_lib_path}/libgfxNxpVivEGL.so"
+      "${_common_lib_path}/libgfxNxpVivGLSLC.so"
+      "${_common_lib_path}/libgfxNxpVivGLESv2.so"
+      "${_common_lib_path}/libgfxNxpVivGLESv1_CM.so"
+      "${_common_lib_path}/libgfxNxpVivVSC.so"
+      "${_common_lib_path}/libxml.so"
+  )
+
+  set(VxWorksPlatformGraphics_REQUIRED_LIBRARIES
+      ${VxWorksPlatformGraphics_LIBRARIES_PACK}
+      ${EGL_LIBRARY}
+      ${GLESv2_LIBRARY}
+  )
+  unset(_common_lib_path)
+
+  \endcode
+
   \section3 Running Qt 6 Configure for the Target
 
   Below is an example build configuration for the BD-SL-i.MX6. For most VxWorks boards
@@ -1139,6 +1188,47 @@
     \li Set the stack size to 0x100000.
     \image vxwb-advanced-settings.png "Advanced settings"
   \endlist
+
+  \section1 Qt for VxWorks input plugins
+
+  VxWorks uses its own implementation of \c libevdev, which has an API that is very similar to
+  that of Linux, but differs in capabilities. Because of this Qt implements separate input plugins
+  for VxWorks to handle mouse, keyboard and touchscreen, which are based on
+  {inputs-linux-device.html}{Linux evdev}, with differences that are explained below.
+
+  \section2 VxMouse
+
+  \c VxMouse uses the same configuration scheme as EvdevMouse, except for different environment
+  variable: \c QT_QPA_VXEVDEV_MOUSE_PARAMETERS. Additionally, \c VxMouse ignores \c nocompress,
+  \c dejitter and \c grab parameters.
+
+  \section2 VxKeyboard
+
+  \c VxKeyboard uses the same configuration scheme as EvdevKeyboard, except for different
+  environment variable: \c QT_QPA_VXEVDEV_KEYBOARD_PARAMETERS.
+
+  \section2 VxTouch
+
+  \c VxTouch uses the same configuration scheme as EvdevTouch, except for different environment
+  variables:
+  \list
+    \li \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS
+    \li \c QT_QPA_VXEVDEV_DEBUG
+  \endlist
+
+  Additionally, VxTouch adds two new parameters:
+
+  \table 80%
+  \header
+    \li Parameter
+    \li Description
+  \row
+    \li \c rangex=MIN_X,MAX_X
+    \li Overrides touch point min and max for X axis
+  \row
+    \li \c rangey=MIN_Y,MAX_Y
+    \li Overrides touch point min and max for Y axis
+  \endtable
 
   \section1 Limitations
 
