@@ -11,6 +11,55 @@
     Changes in Qt and \l{Third-Party Code Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.9.0
+
+    \section2 Qt Core module
+
+    \list
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 8.12.
+    \endlist
+
+    \section2 Qt GUI module
+
+    \list
+        \li Usage of \l{emoji-segmenter}{Emoji Segmenter}, version 0.4.0, is now documented.
+        \li Usage of \l{iaccessible2}{IAccessible2 IDL Specification} was removed.
+        li \l{VulkanMemoryAllocator}{Vulkan Memory Allocator} was updated to version 3.1.0.
+    \endlist
+
+    \section2 Qt OpcUA module
+
+    \list
+        \li \l{open62541}{Open62541} was updated to version 1.4.9.
+    \endlist
+
+    \section2 Qt Quick3D module
+
+    \list
+        \li Usage of \l{OpenXR}{OpenXR SDK} was updated to version 1.1.42.
+    \endlist
+
+    \section2 Qt Shadertools module
+
+    \list
+        \li \l{glslang}{glslang} was updated to version 15.1.0.
+        \li \l{SpirvCross}{SPIRV-Cross} was updated to version ebe2aa0cd80f5eb5cd8a605da604cacf72205f3b.
+    \endlist
+
+    \section2 Qt Wayland Compositor module
+
+    \list
+        \li Usage of \l{appmenu}{Wayland KDE DBus Menu Protocol} version 1
+        under LGPL 2.1 or later license is now documented.
+        \li Usage of \l{wlr-data-control-unstable-v1-protocol}{Wlr Data Control Unstable V1 Protocol} version 2
+        under MIT license is now documented.
+        \li Usage of \l{wayland-xdg-system-bell-protocol}{Wayland XDG System Bell Protocol} version 1.18
+        under MIT license is now documented.
+        \li Usage of \l{wayland-xdg-toplevel-icon-protocol}{Wayland xdg-toplevel-icon Protocol} version 1
+        under MIT license is now documented.
+        \li \l{wayland-protocol}{Wayland Protocol} was updated to version 1.23.0
+    \endlist
+
     \section1 Qt 6.8.3
 
     \section2 Qt Core Module
@@ -20,6 +69,7 @@
         \li \l{unicode-character-database}{Unicode Character Database (UCD)} was updated to version 34.
         \li \l{pcre2}{PCRE2} was updated to version 10.45.
         \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} was updated to version 10.45.
+        \li \l{tinycbor}{TinyCBOR} was updated to version 0.6.1.
     \endlist
 
     \section2 Qt GUI Module
