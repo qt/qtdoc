@@ -75,22 +75,30 @@ ParticleSystem3D {
 
     Connections {
         target: explosionTimer
-        onTriggered: explosion_flash.reset()
+        function onTriggered() {
+            explosion_flash.reset()
+        }
     }
 
     Connections {
         target: explosionTimer
-        onTriggered: explosion_smoke.reset()
+        function onTriggered() {
+            explosion_smoke.reset()
+        }
     }
 
     Connections {
         target: explosionTimer
-        onTriggered: explosion.reset()
+        function onTriggered() {
+            explosion.reset()
+        }
     }
 
     Connections {
         target: explosionTimer
-        onTriggered: explosion_sparks.reset()
+        function onTriggered() {
+            explosion_sparks.reset()
+        }
     }
 
     ParticleSystem3D {

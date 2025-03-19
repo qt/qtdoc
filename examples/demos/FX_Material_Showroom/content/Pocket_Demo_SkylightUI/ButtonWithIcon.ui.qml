@@ -40,10 +40,12 @@ Item {
         highlighted: false
         checkable: true
         display: AbstractButton.TextOnly
-        checked: buttonTabs.activeBtn == buttonWithIcon.buttonName
+        checked: buttonTabs.activeBtn === buttonWithIcon.buttonName
         Connections {
             target: button
-            onClicked: buttonTabs.activeBtn = buttonWithIcon.buttonName
+            function onClicked() {
+                buttonTabs.activeBtn = buttonWithIcon.buttonName
+            }
         }
     }
     states: [

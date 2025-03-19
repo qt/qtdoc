@@ -62,8 +62,8 @@ Item {
         y: 30
         width: 28
         height: 28
-        state: list.selection
-               == state_Idle.item_nameText ? "state_name_CheckFilled" : "state_name_CheckEmpty"
+        state: list.selection === state_Idle.item_nameText ? "state_name_CheckFilled"
+                                                           : "state_name_CheckEmpty"
     }
 
     Button {
@@ -72,10 +72,12 @@ Item {
         text: qsTr("")
         anchors.fill: parent
         checkable: true
-        checked: list.selection == state_Idle.item_nameText
+        checked: list.selection === state_Idle.item_nameText
         Connections {
             target: button
-            onClicked: list.selection = state_Idle.item_nameText
+            function onClicked() {
+                list.selection = state_Idle.item_nameText
+            }
         }
     }
 

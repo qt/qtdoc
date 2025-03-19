@@ -62,32 +62,44 @@ ParticleSystem3D {
 
     Connections {
         target: shockwaveTimer
-        onTriggered: shockwave.reset()
+        function onTriggered() {
+            shockwave.reset()
+        }
     }
 
     Connections {
         target: shockwaveTimer
-        onTriggered: pressurewave1.reset()
+        function onTriggered() {
+            pressurewave1.reset()
+        }
     }
 
     Connections {
         target: shockwaveTimer
-        onTriggered: debris.reset()
+        function onTriggered() {
+            debris.reset()
+        }
     }
 
     Connections {
         target: shockwaveTimer
-        onTriggered: debris.startTime = debris.time
+        function onTriggered() {
+            debris.startTime = debris.time
+        }
     }
 
     Connections {
         target: shockwaveTimer
-        onTriggered: debris1.reset()
+        function onTriggered() {
+            debris1.reset()
+        }
     }
 
     Connections {
         target: shockwaveTimer
-        onTriggered: debris1.startTime = debris1.time
+        function onTriggered() {
+            debris1.startTime = debris1.time
+        }
     }
 
     Timer {

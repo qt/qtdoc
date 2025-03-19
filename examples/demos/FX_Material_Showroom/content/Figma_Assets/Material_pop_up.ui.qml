@@ -52,8 +52,13 @@ Item {
         Connections {
             target: mouseAreaList
             property real speed: 0.3
-            onWheel: (wheel) => mouseScroll.curValue = (mouseScroll.curValue + wheel.angleDelta.y * speed
-                        < mouseScroll.minValue) ? mouseScroll.minValue : ((mouseScroll.curValue + wheel.angleDelta.y * speed > mouseScroll.maxValue) ? mouseScroll.maxValue : mouseScroll.curValue + wheel.angleDelta.y * speed)
+            function onWheel(wheel) {
+                mouseScroll.curValue = (mouseScroll.curValue + wheel.angleDelta.y * speed < mouseScroll.minValue)
+                        ? mouseScroll.minValue
+                        : ((mouseScroll.curValue + wheel.angleDelta.y * speed > mouseScroll.maxValue)
+                           ? mouseScroll.maxValue
+                           : mouseScroll.curValue + wheel.angleDelta.y * speed)
+            }
         }
     }
 
@@ -119,12 +124,16 @@ Item {
 
             Connections {
                 target: button
-                onClicked: rectangle1.settingsopen = false
+                function onClicked() {
+                    rectangle1.settingsopen = false
+                }
             }
 
             Connections {
                 target: button
-                onClicked: menutransition_close.start()
+                function onClicked() {
+                    menutransition_close.start()
+                }
             }
         }
     }

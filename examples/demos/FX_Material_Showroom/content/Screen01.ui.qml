@@ -615,9 +615,11 @@ Rectangle {
         Connections {
             target: mouseArea
 
-            onWheel: (wheel) => sceneCamera.fieldOfView += wheel.angleDelta.y * 0.04
+            function onWheel(wheel) {
+                sceneCamera.fieldOfView += wheel.angleDelta.y * 0.04
                              * (sceneCamera.fieldOfView + wheel.angleDelta.y * 0.04 > 0.0)
                              * (sceneCamera.fieldOfView + wheel.angleDelta.y * 0.04 < 60.0)
+            }
         }
 
         PinchArea {
@@ -626,14 +628,15 @@ Rectangle {
 
             Connections {
                 target: pinchArea
-                onPinchUpdated: if (pinch.previousScale - pinch.scale > 0.008
-                                        || pinch.previousScale - pinch.scale < -1 * 0.008) {
-                                    let velocity = (pinch.previousScale
-                                                    - pinch.scale) > 0 ? 1.25 : -1.25
-                                    sceneCamera.fieldOfView += velocity
-                                            * (sceneCamera.fieldOfView + velocity > 0.0)
-                                            * (sceneCamera.fieldOfView + velocity < 60.0)
-                                }
+                function onPinchUpdated() {
+                    if (pinch.previousScale - pinch.scale > 0.008
+                     || pinch.previousScale - pinch.scale < -1 * 0.008) {
+                        let velocity = (pinch.previousScale - pinch.scale) > 0 ? 1.25 : -1.25
+                        sceneCamera.fieldOfView += velocity
+                                * (sceneCamera.fieldOfView + velocity > 0.0)
+                                * (sceneCamera.fieldOfView + velocity < 60.0)
+                    }
+                }
             }
         }
     }

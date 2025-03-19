@@ -61,12 +61,14 @@ Item {
         anchors.fill: parent
         highlighted: true
         checkable: true
-        checked: material_pop_up.state == cardMaterial.selectionID
+        checked: material_pop_up.state === cardMaterial.selectionID
         display: AbstractButton.TextOnly
 
         Connections {
             target: button
-            onClicked: material_pop_up.state = cardMaterial.selectionID
+            function onClicked() {
+                material_pop_up.state = cardMaterial.selectionID
+            }
         }
     }
     states: [

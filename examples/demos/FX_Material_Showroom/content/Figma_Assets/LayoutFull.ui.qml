@@ -51,7 +51,9 @@ Rectangle {
 
         Connections {
             target: settingsbutton
-            onClicked: menutransition_open.start()
+            function onClicked() {
+                menutransition_open.start()
+            }
         }
 
         Rectangle {
