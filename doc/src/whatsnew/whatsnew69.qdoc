@@ -7,19 +7,6 @@
     \ingroup whatsnewqt6
     \brief Lists the new features in Qt 6.9.
 
-    \section1 New and Restored Modules in Qt 6.9
-    Qt 6.9 adds the following modules and tools:
-
-    \list
-    \endlist
-
-    \section1 Removed Modules in Qt 6.9
-    The following module(s) is deprecated. We strongly advise against using them
-    in new code.
-
-    \list
-    \endlist
-
     \section1 New Features in Qt 6.9
 
     \section2 Qt Core Module
@@ -211,10 +198,6 @@
             to the cases defined in RFC 6749, rather than general errors.
     \endlist
 
-    \section2 Qt OPCUA Module
-    \list
-    \endlist
-
     \section2 Qt Protobuf Module
     \list
         \li Improved and refined all documentation.
@@ -234,10 +217,6 @@
             where to break lines based on a maximum allowed line length, ensuring a consistent
             and readable QML document.
     \endlist
-    \section3 Qt Quick Compiler
-    \list
-    \endlist
-
 
     \section2 Qt Quick Module
     \list
@@ -267,13 +246,6 @@
             ContextMenu will not open its own (on right click or the context menu key).
     \endlist
 
-    \section2 Qt Quick Dialogs
-    \list
-    \endlist
-
-    \section2 Qt Quick Shapes Module
-    \list
-    \endlist
 
     \section2 Qt Quick Effects Module
     \list
@@ -323,10 +295,6 @@
              the current support in Qt Svg.
     \endlist
 
-    \section2 Qt Shader Tools Module
-    \list
-    \endlist
-
     \section2 Qt Sql Module
     \list
         \li QSqlDriver gained a new function \l{QSqlDriver::}{connectionName()}
@@ -341,10 +309,6 @@
     \list
         \li Added three new values to QtSvg::Options to disable animations.
         \li Support CSS animation for fill, stroke, and transform properties.
-    \endlist
-
-    \section2 Qt Test Module
-    \list
     \endlist
 
     \section2 Qt VirtualKeyboard Module
@@ -445,14 +409,6 @@
 
     \section2 Desktop Platforms
 
-    \section3 macOS
-    \list
-    \endlist
-
-    \section3 WebAssembly
-    \list
-    \endlist
-
     \section3 Windows
     \list
         \li Added new public CMake API:
@@ -494,14 +450,6 @@
                 the underlying QtQuickViewContent object.
             \li Support multiple embedded views from an Android Service.
         \endlist
-    \endlist
-
-    \section3 iOS
-    \list
-    \endlist
-
-    \section3 visionOS
-    \list
     \endlist
 
     \section2 Embedded Platforms
