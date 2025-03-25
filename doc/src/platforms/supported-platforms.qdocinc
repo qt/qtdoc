@@ -86,6 +86,11 @@ The following configurations are supported in this Qt release:
         \AndroidMaxVer (Api \AndroidMaxApiVer)
         \li \AndroidAbis
         \li \NdkCompilerVer (NDK \NdkVer or \NdkFullVer)
+            \note It's recommended that Qt apps use the same NDK version
+            used for building the official Qt for Android libraries to avoid
+            missing symbol errors. In releases supporting multiple NDKs, the
+            newest supported NDK is used for building Qt.
+    \row
         \li JDK \JdkVer
         \li Gradle \GradleVer and AGP \AGPVer
         \li Multi-ABI \c{APK}s and \c{AAB}s
