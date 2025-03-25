@@ -157,6 +157,42 @@ QWindow *createCalendarWindow()
 }
 //! [x11]
 
+#elif defined(Q_OS_WASM)
+
+//! [webassembly]
+#include <emscripten.h>
+#include <emscripten/val.h>
+using emscripten::val;
+using emscripten::EM_VAL;
+
+EM_JS(EM_VAL, createCalendarElement, (), {
+    var calendar = document.createElement("calendar-date");
+    calendar.innerHTML = "<calendar-month></calendar-month>";
+    return Emval.toHandle(calendar);
+});
+
+QWindow *createCalendarWindow()
+{
+    static bool initializedCalendarComponent = []{
+        return EM_ASM_INT(
+            var script = document.createElement('script');
+            script.src = "https://unpkg.com/cally";
+            script.type = "module";
+            document.head.appendChild(script);
+            return true;
+        );
+    }();
+    Q_ASSERT(initializedCalendarComponent);
+
+    val *calendarElement = new val(val::take_ownership(createCalendarElement()));
+    cleanupFunctions.push_back([calendarElement]{ delete calendarElement; });
+
+    QWindow *window = QWindow::fromWinId(WId(calendarElement));
+    window->setMinimumSize(QSize(250, 300));
+    return window;
+}
+//! [webassembly]
+
 #else
 
 class GrayWindow : public QRasterWindow

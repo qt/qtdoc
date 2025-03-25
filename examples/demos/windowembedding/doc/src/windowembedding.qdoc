@@ -44,6 +44,9 @@
     \row
         \li Android
         \li \l {Android: View}{View}
+    \row
+        \li WebAssembly
+        \li \c emscripten::val*
 
     \endtable
 
@@ -73,6 +76,7 @@
       \tab {from-win-id}{x11}{X11}{}
       \tab {from-win-id}{ios}{iOS}{}
       \tab {from-win-id}{android}{Android}{}
+      \tab {from-win-id}{webassembly}{WebAssembly}{}
     \endif
 
     \if defined(onlinedocs)
@@ -126,6 +130,17 @@
     \endif
     \inlineimage android.webp
     \snippet demos/windowembedding/main.cpp android
+    \if defined(onlinedocs)
+      \endtabcontent
+    \endif
+
+    \if defined(onlinedocs)
+      \tabcontent {webassembly}
+    \else
+      \section2 WebAssembly
+    \endif
+    \inlineimage webassembly.webp
+    \snippet demos/windowembedding/main.cpp webassembly
     \if defined(onlinedocs)
       \endtabcontent
     \endif
