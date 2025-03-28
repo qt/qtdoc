@@ -13,7 +13,13 @@ project(QtDoc # special case
     LANGUAGES CXX C
 )
 
-find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core)
+find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals)
+
+# This should be called as early as possible, just after find_package(BuildInternals) where it is
+# defined.
+qt_internal_project_setup()
+
+find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS Core)
 find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
     OPTIONAL_COMPONENTS
         Gui
@@ -42,7 +48,6 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         ExamplesAssetDownloaderPrivate
         Linguist
 )
-qt_internal_project_setup()
 
 qt_build_repo_begin()
 qt_build_repo_impl_find_package_tests()
