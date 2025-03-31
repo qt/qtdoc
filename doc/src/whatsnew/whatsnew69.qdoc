@@ -71,28 +71,32 @@
 
     \section2 Qt Graphs Module
     \list
-        \li Added transparency support to Surface3D, utilizing order-independent transparency
-            from QtQuick3D. Only approximate technique (WeightedBlended) has been implemented
+        \li Added transparency support to Surface3D, utilizing
+            order-independent transparency from QtQuick3D. Only approximate technique (WeightedBlended) has been implemented
             to QtQuick3D this far, so no accurate techniques can be used yet.
-        \li Added \c rootNode property to allow injecting graphs to a View3D in QtQuick3D
-            applications.
-        \li Added another picking method, \c {doRayPicking}, to be used with View3D graph
-            injections.
-        \li Added \c QSpline3DSeries class to allow users render their data in splines.
-        \li Added \c valueColoringEnabled property to Bars3D, which allows each bar to be
-            colored separately based on its value.
-        \li Added \c scaleLabelsByCount property to QAbstract3DAxis, allowing users to define
-            whether axis labels should be scaled based on the total amount of labels.
-        \li Added \c labelSize property to QAbstract3DAxis, allowing users to set the sizes
+        \li Added \l {GraphsItem3D::}{rootNode} to allow injecting graphs to a
+            View3D in QtQuick3D applications.
+        \li Added another picking method, \l {GraphsItem3D::}{doRayPicking}, to
+            be used with View3D graph injections.
+        \li Added \l QSpline3DSeries class to allow users render their data in
+            splines.
+        \li Added \l {QBar3DSeries::}{valueColoringEnabled} property to Bars3D,
+            which allows each bar to be colored separately based on its value.
+        \li Added \l {QAbstract3DAxis::}{scaleLabelsByCount} property to
+            QAbstract3DAxis, allowing users to define whether axis labels
+            should be scaled based on the total amount of labels.
+        \li Added \l {QAbstract3DAxis::}{labelSize} property to
+            QAbstract3DAxis, allowing users to set the sizes
             of axis labels by each axis.
-        \li Added support for setting the minimum and maximum rotations in X and Y directions
-            to Bars3D, Scatter3D, and Surface3D.
-        \li Added \c alignment property to QAbstractAxis, allowing users to align axes left,
-            right, top, or bottom.
-        \li Added \c plotArea property to QGraphsView, allowing users to define the rectangle a
-            graph will be drawn in.
+        \li Added support for setting the minimum and maximum rotations in X
+            and Y directions to Bars3D, Scatter3D, and Surface3D.
+        \li Added \l {QAbstractAxis::}{alignment} property to QAbstractAxis,
+            allowing users to align axes left, right, top, or bottom.
+        \li Added \l {QGraphsView::}{plotArea} property to QGraphsView,
+            allowing users to define the rectangle a graph will be drawn in.
         \li Added zooming and panning support to QGraphsView.
-        \li Added custom input handling support to area, line, pie, and scatter graphs.
+        \li Added custom input handling support to area, line, pie, and scatter
+            graphs.
     \endlist
 
     \section2 Qt GRPC Module
