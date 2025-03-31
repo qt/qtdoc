@@ -230,8 +230,8 @@
         \li Added SafeArea attached property to manage safe areas of an Item or Window.
         \li Added Shear component for a convenient way of applying shearing transforms to
             items.
-        \li Added FontMetrics.capitalHeight property which was previously missing from the Qt Quick
-            API.
+        \li Added \l {FontMetrics::capitalHeight} property, which was previously
+            missing from the Qt Quick API.
         \li Added FontInfo type for retrieving the results of font resolution, matching the
             QFontInfo class in C++.
         \li Reintroduced support for the FramebufferObject rendering mode of QQuickPaintedItem when
@@ -358,7 +358,7 @@
             identify a specific widget.
         \li The dock location of a QDockWidget can not be explicitly set using
             the \l{QDockWidget::dockLocation} property.
-        \li QStackedWidget noew emits the \l{QStackedWidget::}{widgetAdded()}
+        \li QStackedWidget now emits the \l{QStackedWidget::}{widgetAdded()}
             signal when a new widgets is added to the stack.
     \endlist
 
