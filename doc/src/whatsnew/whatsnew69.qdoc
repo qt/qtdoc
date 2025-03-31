@@ -159,10 +159,13 @@
 
     \section2 Qt Multimedia Module
     \list
-        \li Added \c endOfStreamPolicy property to \c VideoOutput and \c Video, allowing
-            applications to keep the last frame in the output when the video stream is ended.
-        \li Added \c mirrored property to \c VideoOutput and \c Video, allowing applications
-            to flip the presented video around the Y-axis.
+        \li Added \l {QtMultimedia::}{VideoOutput::endOfStreamPolicy}
+            and \l {Video::endOfStreamPolicy} properties, allowing
+            applications to keep the last frame in the output when the video
+            stream is ended.
+        \li Added \l {QtMultimedia::}{VideoOutput::mirrored} and
+            \l {Video::mirrored} properties, allowing applications to flip the
+            presented video around the Y-axis.
     \endlist
 
     \section2 Qt Network Module
