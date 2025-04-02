@@ -10,24 +10,23 @@
     \brief A QML implementation of to do list application that demonstrates how to create application thats looks native on any platform.
     \meta {tag} {demo,quick}
 
-    \table
-    \header
-        \li CustomStyle
-        \li Material
-        \li iOS
-    \row
-        \li \inlineimage CustomStyle_Light.png
-        \li \inlineimage Material_Light.png
-        \li \inlineimage iOS_Light.png
-    \row
-        \li \inlineimage CustomStyle_Dark.png
-        \li \inlineimage Material_Dark.png
-        \li \inlineimage iOS_Dark.png
-    \row
-        \li \inlineimage Settings_CustomStyle.png
-        \li \inlineimage Settings_Material.png
-        \li \inlineimage Settings_iOS.png
-    \endtable
+    \section1 CustomStyle
+    \inlineimage CustomStyle_Light.png
+    \inlineimage CustomStyle_Dark.png
+    \inlineimage Settings_CustomStyle.png
+    \br
+
+    \section1 Material
+    \inlineimage Material_Light.png
+    \inlineimage Material_Dark.png
+    \inlineimage Settings_Material.png
+    \br
+
+    \section1 iOS
+    \inlineimage iOS_Light.png
+    \inlineimage iOS_Dark.png
+    \inlineimage Settings_iOS.png
+    \br
 
     \e{To Do List} demonstrates a sample to-do list application that looks native on any platform. The example can be run and edited in both QtDesignStudio and QtCreator.
     It shows how to create and use a custom style, how to use settings to control the appearance and behavior of the application.
