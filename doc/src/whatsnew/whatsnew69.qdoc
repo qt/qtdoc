@@ -289,11 +289,13 @@
         \li Added new property in XrInputAction to conditionally disable an action without
             having to test for it in all the handler functions.
         \li Added Metal backend for OpenXR to support running in Meta XR Simulator on macOS.
-        \li The property multiViewRenderingEnabled is now read-only and toggling multiview
-            rendering is no longer possible at run-time. If multiview rendering is supported,
-            it is enabled for the lifetime of the application. In porting situations, where
-            multiview rendering is not desired, it can be disabled by setting the environment
-            variable QT_QUICK3D_XR_DISABLE_MULTIVIEW to a non-zero value.
+        \li The property \l {XrView::}{multiViewRenderingEnabled} is now
+            read-only and toggling multiview rendering is no longer possible at
+            run-time. If multiview rendering is supported, it is enabled for
+            the lifetime of the application. In porting situations, where
+            multiview rendering is not desired, it can be disabled by setting
+            the environment variable QT_QUICK3D_XR_DISABLE_MULTIVIEW to a
+            non-zero value.
     \endlist
 
     \section2 Qt Quick VectorImage Module
@@ -424,7 +426,7 @@
     \section3 Wayland Client on Linux
     \list
         \li Added support for the new \c{xdg-toplevel-icon-v1} protocol to make
-            \c{QWindow::setIcon} work if the compositor supports this protocol
+            \l{QWindow::setIcon()} work if the compositor supports this protocol
             as well.
         \li The underlying \c{wl_surface} of a window now shares its lifetime
             and is no longer destroyed when the window is hidden.
@@ -444,12 +446,15 @@
         \li Decouple location and bluetooth permissions for API level 31+.
         \li Allow setting a maximum for queued background UI events.
         \li Add script to easily deploy, run apps and get logs from terminal.
-        \li \l {Qt Quick for Android} and QtQuickView:
+        \li \l {Qt Quick for Android} and
+            \l {Qt Quick View Android Class}{QtQuickView}:
         \list
-            \li Add setData() and dataChanged() methods to QtAbstractItemModel.
+            \li Add setData() and dataChanged() methods to
+                \l {QtAbstractItemModel Android Class}{QtAbstractItemModel}.
             \li Add OnDataChangedListerner callback interface.
-            \li QtQuickViewContent: Add onStatusChanged() overload that passes
-                the underlying QtQuickViewContent object.
+            \li \l {Qt Quick View Android Class}{QtQuickViewContent}: Add
+                onStatusChanged() overload that passes the underlying
+                QtQuickViewContent object.
             \li Support multiple embedded views from an Android Service.
         \endlist
     \endlist
