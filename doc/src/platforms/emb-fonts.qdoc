@@ -63,21 +63,6 @@
     supports TrueType fonts to reduce footprint.
     \endomit
 
-    \target QPF2
-    \section1 Qt Prerendered Font (QPF2)
-
-    The Qt Prerendered Font (QPF2) is an architecture-independent,
-    light-weight and non-scalable font format.
-
-    Qt comes with the cross-platform \l makeqpf tool, included in the
-    \c tools directory, which allows
-    generation of QPF2 files from system fonts.
-
-    QPF2 supports anti-aliasing and complex writing systems, using information
-    from the corresponding TrueType font, if present on the system. The format
-    is designed to be mapped directly to memory. The same format is used to
-    share glyphs from non-prerendered fonts between applications.
-
     \omit
     \section1 Memory Requirements
 
