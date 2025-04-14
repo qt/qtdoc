@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "abstractresource.h"
-#include "qrestaccessmanager.h"
 #include "restservice.h"
 
 #if QT_CONFIG(ssl)
 #include <QtNetwork/qsslsocket.h>
 #endif
+#include <QtNetwork/qrestaccessmanager.h>
 
 RestService::RestService(QObject *parent) : QObject(parent)
 {
