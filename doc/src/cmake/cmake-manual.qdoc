@@ -7,7 +7,6 @@
     \target CMake Manual
     \title Build with CMake
     \brief Describes how to use CMake in your development projects.
-    \nextpage Getting started with CMake
 
     \c{CMake} is a tool to simplify the build process for development projects across different
     platforms. \c CMake automatically generates build systems, such as Makefiles and Ninja
@@ -38,8 +37,6 @@
 /*!
     \page cmake-get-started.html
     \title Getting started with CMake
-    \previouspage Build with CMake
-    \nextpage Building projects on the command line
 
     \c{CMake} is a group of tools that allow to build, test, and package
     applications. Just like Qt, it is available on all major development
@@ -531,8 +528,6 @@
 /*!
     \page cmake-build-qml-application.html
     \title Building a QML application
-    \previouspage Getting started with CMake
-    \nextpage Building a reusable QML module
 
     In \l{Building a C++ console application} we showed the CMakeLists.txt file
     for a simple console application. We will now create a QML application that
@@ -600,8 +595,6 @@
 /*!
     \page cmake-build-reusable-qml-module.html
     \title Building a reusable QML module
-    \previouspage Building a QML application
-    \nextpage Building projects on the command line
 
     The example below demonstrates how to create a library which exposes C++ to QML.
     The directory structure for the example looks like this:
@@ -690,8 +683,6 @@
 /*!
     \page cmake-build-on-cmdline.html
     \title Building projects on the command line
-    \previouspage Getting started with CMake
-    \nextpage Deployment
 
     This page explains how to configure and build existing projects. If you want
     to know how to create a Qt-based CMake project, see the documentation on
@@ -807,8 +798,6 @@
     \page cmake-deployment.html
     \title Deployment
     \brief Provides an overview of how to deploy Qt projects.
-    \nextpage Supported CMake versions
-    \previouspage Building projects on the command line
 
     Use Qt's CMake deployment API to deploy Qt projects for desktop platforms.
     The API supports various target platforms, which you can find in the
@@ -888,8 +877,6 @@
     \page cmake-supported-cmake-versions.html
     \title Supported CMake versions
     \brief Provides an overview of supported CMake versions.
-    \nextpage Imported targets
-    \previouspage Deployment
 
     \c cmake_minimum_required() specifies the minimum CMake version that is
     required to successfully configure a project. It also updates the
@@ -909,8 +896,6 @@
     \page cmake-imported-targets.html
     \title Imported targets
     \brief Provides an overview of the CMake targets imported by Qt.
-    \nextpage Qt CMake policies
-    \previouspage Supported CMake versions
 
     Each Qt module that is loaded defines a CMake library target. The target names
     start with \c{Qt6::}, followed by the module name. For example: \c{Qt6::Core}, \c{Qt6::Gui}.
@@ -940,8 +925,6 @@
     \title Qt CMake policies
     \target qt_cmake_policies
     \brief Provides a list of available Qt CMake policies.
-    \previouspage Imported targets
-    \nextpage Qt 5 and Qt 6 compatibility
 
     Qt CMake policies maintain the backward compatibility
     across multiple releases. Every new policy starts by warning you about a
@@ -958,8 +941,6 @@
 /*!
     \page cmake-qt5-and-qt6-compatibility.html
     \title Qt 5 and Qt 6 compatibility
-    \previouspage Qt CMake policies
-    \nextpage CMake Command Reference
 
     The semantics of the CMake API in Qt 5 and Qt 6 are largely compatible, though some differences
     exist in the behavior of these commands and additional interfaces only in the latter versions.
@@ -1066,8 +1047,6 @@
     \page cmake-variable-reference.html
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
-    \nextpage CMake Property Reference
-    \previouspage CMake Command Reference
 
     \section1 Qt build variables
 
@@ -1215,7 +1194,6 @@
     \page cmake-property-reference.html
     \title CMake Property Reference
     \brief Provides a complete reference for CMake properties implemented in Qt.
-    \previouspage CMake Variable Reference
 
     \section1 \tt Qt6::Core
     \target cmake-properties-qtcore
@@ -1270,8 +1248,6 @@
     \page cmake-command-reference.html
     \title CMake Command Reference
     \brief Provides a complete reference for CMake commands implemented in Qt.
-    \previouspage Qt 5 and Qt 6 compatibility
-    \nextpage CMake Variable Reference
 
     \section2 \tt Qt6::Core
     \target cmake-commands-qtcore
