@@ -75,7 +75,7 @@ Item {
             border.color: ListView.view.currentIndex === index ? "#2CDE85" : "#E0E2E7"
             border.width: 2
 
-            implicitWidth: 180
+            implicitWidth: 210
             implicitHeight: 100
 
             Rectangle {
@@ -131,7 +131,7 @@ Item {
         ListView {
             id: serverList
             Layout.alignment: Qt.AlignHCenter
-            Layout.minimumWidth: 180 * server.count + 20
+            Layout.minimumWidth: 210 * server.count + 20
             Layout.minimumHeight: 100
             orientation: ListView.Horizontal
 
