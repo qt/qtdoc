@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(colorpaletteclient LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Network Gui Qml Quick)
 qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(colorpaletteclient
@@ -50,6 +50,7 @@ qt_add_qml_module(colorpaletteclient
 
 target_link_libraries(colorpaletteclient PRIVATE
     Qt6::Core
+    Qt6::Network
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
