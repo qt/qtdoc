@@ -40,6 +40,7 @@ JsonViewer::JsonViewer()
 void JsonViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     AbstractViewer::init(file, new QTreeView(parent), mainWindow);
+    setTranslationBaseName("jsonviewer"_L1);
     m_tree = qobject_cast<QTreeView *>(widget());
 }
 //! [pluginCpp]
@@ -145,9 +146,15 @@ bool JsonViewer::openJsonFile()
     disablePrinting();
 
     QJsonParseError err;
-    m_file->open(QIODevice::ReadOnly);
-    m_root = QJsonDocument::fromJson(m_file->readAll(), &err);
+
     const QString type = tr("open");
+    if (!m_file->open(QIODevice::ReadOnly)) {
+        statusMessage(tr("Unable to open Json document from %1. %2")
+                      .arg(QDir::toNativeSeparators(m_file->fileName()),
+                           err.errorString()),type);
+        return false;
+    }
+    m_root = QJsonDocument::fromJson(m_file->readAll(), &err);
     if (err.error != QJsonParseError::NoError) {
         statusMessage(tr("Unable to parse Json document from %1. %2")
                       .arg(QDir::toNativeSeparators(m_file->fileName()),

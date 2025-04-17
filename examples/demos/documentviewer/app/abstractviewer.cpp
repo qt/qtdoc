@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "abstractviewer.h"
+#include "translator.h"
 
 #include <QApplication>
 #include <QMainWindow>
@@ -42,6 +43,21 @@ void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
 AbstractViewer::~AbstractViewer()
 {
     AbstractViewer::cleanup();
+}
+
+void AbstractViewer::setTranslationBaseName(const QString &baseName)
+{
+    m_translator.reset(new Translator);
+    m_translator->setBaseName(baseName);
+    m_translator->install();
+}
+
+void AbstractViewer::updateTranslation()
+{
+    if (m_translator) {
+        m_translator->install();
+        retranslate();
+    }
 }
 
 bool AbstractViewer::isEmpty() const

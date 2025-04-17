@@ -7,6 +7,8 @@ qt_standard_project_setup()
 
 qt_add_library(abstractviewer
     abstractviewer.cpp abstractviewer.h
+    translator.cpp translator.h
+    abstractviewerglobal.h
 )
 
 target_compile_definitions(abstractviewer PRIVATE BUILD_ABSTRACTVIEWER_LIB)
@@ -19,6 +21,16 @@ qt_add_executable(documentviewer
     recentfilemenu.cpp recentfilemenu.h
     viewerinterfaces.h
     documentviewer.qrc
+)
+
+qt_add_translations(documentviewer
+    PLURALS_TS_FILE
+        docviewer_en.ts
+    TS_FILES
+        docviewer_de.ts
+    RESOURCE_PREFIX "/translations"
+    MERGE_QT_TRANSLATIONS
+    QT_TRANSLATION_CATALOGS qtbase
 )
 
 set_target_properties(documentviewer PROPERTIES

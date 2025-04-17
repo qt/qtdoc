@@ -7,6 +7,7 @@
 #include "abstractviewer.h"
 #include "recentfiles.h"
 #include "recentfilemenu.h"
+#include "translator.h"
 
 #include <QFileDialog>
 #include <QToolButton>
@@ -17,14 +18,17 @@
 
 using namespace Qt::StringLiterals;
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(Translator &translator, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_translator(translator)
 {
     ui->setupUi(this);
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::onActionOpenTriggered);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onActionAboutTriggered);
     connect(ui->actionAboutQt, &QAction::triggered, this, &MainWindow::onActionAboutQtTriggered);
+    connect(ui->actionDeutsch, &QAction::triggered, this,
+            [this] { onActionSwitchLanguage(QLocale::German); });
+    connect(ui->actionEnglish, &QAction::triggered, this,
+            [this] { onActionSwitchLanguage(QLocale::English); });
 
     m_recentFiles.reset(new RecentFiles(ui->actionRecent));
     connect(m_recentFiles.get(), &RecentFiles::countChanged, this, [&](int count){
@@ -57,9 +61,19 @@ MainWindow::~MainWindow()
     saveSettings();
 }
 
+void MainWindow::onActionSwitchLanguage(QLocale::Language lang)
+{
+    m_translator.setLanguage(lang);
+    m_translator.install();
+    ui->retranslateUi(this);
+    m_viewer->updateTranslation();
+    statusBar()->clearMessage();
+}
+
 void MainWindow::onActionOpenTriggered()
 {
     QFileDialog fileDialog(this, tr("Open Document"), m_currentDir.absolutePath());
+    fileDialog.setOptions(QFileDialog::DontUseNativeDialog);
     while (fileDialog.exec() == QDialog::Accepted
            && !openFile(fileDialog.selectedFiles().constFirst())) {
     }
@@ -102,6 +116,14 @@ bool MainWindow::openFile(const QString &fileName)
     restoreViewerSettings();
     ui->scrollArea->setWidget(m_viewer->widget());
     return true;
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LocaleChange)
+        onActionSwitchLanguage(QLocale::system().language());
+
+    QMainWindow::changeEvent(event);
 }
 
 void MainWindow::onActionAboutTriggered()

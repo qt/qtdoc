@@ -24,6 +24,7 @@ public:
     void init(QFile *file, QWidget *parent, QMainWindow *mainWindow) override;
     QString viewerName() const override { return QLatin1StringView(staticMetaObject.className()); };
     QStringList supportedMimeTypes() const override;
+    void retranslate() override;
     bool hasContent() const override;
     QByteArray saveState() const override { return {}; }
     bool restoreState(QByteArray &) override { return true; }

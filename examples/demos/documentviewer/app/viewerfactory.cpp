@@ -17,6 +17,12 @@
 
 using namespace Qt::StringLiterals;
 
+namespace {
+    struct Tr {
+        Q_DECLARE_TR_FUNCTIONS(ViewerFactory);
+    };
+}
+
 ViewerFactory::ViewerFactory(QWidget *displayWidget, QMainWindow *mainWindow, DefaultPolicy policy)
     : m_defaultPolicy(policy),
       m_displayWidget(displayWidget),
@@ -171,7 +177,7 @@ AbstractViewer *ViewerFactory::viewer(const QMimeType &mimeType) const
     if (!viewer) {
         QMessageBox mbox;
         mbox.setIcon(QMessageBox::Warning);
-        mbox.setText(QObject::tr("No viewers for the chosen file format."));
+        mbox.setText(Tr::tr("No viewers for the chosen file format."));
         mbox.setStandardButtons(QMessageBox::Ok);
         QTimer::singleShot(8000, &mbox, [&mbox]() { mbox.close(); });
         mbox.exec();
@@ -181,7 +187,7 @@ AbstractViewer *ViewerFactory::viewer(const QMimeType &mimeType) const
     if (m_defaultWarning) {
         QMessageBox mbox;
         mbox.setIcon(QMessageBox::Warning);
-        mbox.setText(QObject::tr("Mime type %1 not supported. Falling back to %2.")
+        mbox.setText(Tr::tr("Mime type %1 not supported. Falling back to %2.")
                      .arg(mimeType.name(), viewer->viewerName()));
         mbox.setStandardButtons(QMessageBox::Ok);
         QTimer::singleShot(8000, &mbox, [&mbox](){ mbox.close(); });
@@ -226,7 +232,7 @@ QStringList ViewerFactory::supportedMimeTypes() const
         const QStringList &extensions = viewer->supportedExtensions();
         if (extensions.isEmpty())
             continue;
-        mimeTypes << (QObject::tr("Plus extensions: %1").arg(extensions.join(","_L1)));
+        mimeTypes << (Tr::tr("Plus extensions: %1").arg(extensions.join(","_L1)));
     }
 
     return mimeTypes;

@@ -33,6 +33,17 @@ target_link_libraries(Q3Dviewer PRIVATE
     Q3DViewerModule
 )
 
+qt_add_translations(Q3Dviewer
+    SOURCE_TARGETS Q3Dviewer
+    TS_FILES
+        q3dviewer_de.ts
+    PLURALS_TS_FILE
+        q3dviewer_en.ts
+    LUPDATE_OPTIONS
+        -source-language en
+    RESOURCE_PREFIX "/translations"
+)
+
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(Q3Dviewer PRIVATE Qt6::PrintSupport)
 endif()

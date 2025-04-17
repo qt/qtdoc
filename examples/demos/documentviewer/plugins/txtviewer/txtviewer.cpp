@@ -36,6 +36,7 @@ void TxtViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     AbstractViewer::init(file, new QPlainTextEdit(parent), mainWindow);
     m_textEdit = qobject_cast<QPlainTextEdit *>(widget());
+    setTranslationBaseName("txtviewer"_L1);
 }
 
 QStringList TxtViewer::supportedMimeTypes() const

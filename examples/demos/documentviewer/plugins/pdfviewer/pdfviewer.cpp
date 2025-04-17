@@ -48,6 +48,7 @@ PdfViewer::PdfViewer()
 void PdfViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     AbstractViewer::init(file, new QPdfView(parent), mainWindow);
+    setTranslationBaseName("pdfviewer"_L1);
     m_document = new QPdfDocument(this);
     m_pdfView = qobject_cast<QPdfView *>(widget());
 }

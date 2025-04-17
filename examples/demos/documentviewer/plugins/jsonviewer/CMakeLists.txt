@@ -24,6 +24,17 @@ target_link_libraries(jsonviewer PRIVATE
     abstractviewer
 )
 
+qt_add_translations(jsonviewer
+    SOURCE_TARGETS jsonviewer
+    TS_FILES
+        jsonviewer_de.ts
+    PLURALS_TS_FILE
+        jsonviewer_en.ts
+    LUPDATE_OPTIONS
+        -source-language en
+    RESOURCE_PREFIX "/translations"
+)
+
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(jsonviewer PRIVATE Qt6::PrintSupport)
 endif()

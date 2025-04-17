@@ -64,6 +64,7 @@ void ImageViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
     m_imageLabel->setScaledContents(true);
 
     AbstractViewer::init(file, m_imageLabel, mainWindow);
+    setTranslationBaseName("imgviewer"_L1);
 
     m_toolBar = addToolBar(tr("Images"));
 
@@ -78,6 +79,14 @@ void ImageViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
     m_resetZoomAct = m_toolBar->addAction(tr("Reset Zoom"), this, &ImageViewer::resetZoom);
     m_resetZoomAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomFitBest));
     m_resetZoomAct->setShortcut(QKeySequence(Qt::ControlModifier | Qt::Key_0));
+}
+
+void ImageViewer::retranslate()
+{
+    m_toolBar->setWindowTitle(tr("Images"));
+    m_zoomInAct->setText(tr("Zoom &In"));
+    m_zoomOutAct->setText(tr("Zoom &Out"));
+    m_resetZoomAct->setText(tr("Reset Zoom"));
 }
 
 QStringList ImageViewer::supportedMimeTypes() const

@@ -24,6 +24,17 @@ target_link_libraries(imageviewer PRIVATE
     abstractviewer
 )
 
+qt_add_translations(imageviewer
+    SOURCE_TARGETS imageviewer
+    TS_FILES
+        imgviewer_de.ts
+    PLURALS_TS_FILE
+        imgviewer_en.ts
+    LUPDATE_OPTIONS
+        -source-language en
+    RESOURCE_PREFIX "/translations"
+)
+
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(imageviewer PRIVATE Qt6::PrintSupport)
 endif()

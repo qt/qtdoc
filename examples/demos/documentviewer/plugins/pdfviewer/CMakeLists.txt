@@ -28,6 +28,17 @@ target_link_libraries(pdfviewer PRIVATE
     abstractviewer
 )
 
+qt_add_translations(pdfviewer
+    SOURCE_TARGETS pdfviewer
+    TS_FILES
+        pdfviewer_de.ts
+    PLURALS_TS_FILE
+        pdfviewer_en.ts
+    LUPDATE_OPTIONS
+        -source-language en
+    RESOURCE_PREFIX "/translations"
+)
+
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(pdfviewer PRIVATE Qt6::PrintSupport)
 endif()

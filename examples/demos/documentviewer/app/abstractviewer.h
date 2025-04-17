@@ -4,18 +4,10 @@
 #ifndef ABSTRACTVIEWER_H
 #define ABSTRACTVIEWER_H
 
+#include "abstractviewerglobal.h"
+
 #include <QObject>
 #include <QtCompilerDetection>
-
-#if defined(QT_SHARED) || !defined(QT_STATIC)
-#  if defined(BUILD_ABSTRACTVIEWER_LIB)
-#    define ABSTRACTVIEWER_EXPORT Q_DECL_EXPORT
-#  else
-#    define ABSTRACTVIEWER_EXPORT Q_DECL_IMPORT
-#  endif
-#else
-#  define ABSTRACTVIEWER_EXPORT
-#endif
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -29,6 +21,8 @@ class QTabWidget;
 class QScrollArea;
 class QStatusBar;
 QT_END_NAMESPACE
+
+class Translator;
 
 class ABSTRACTVIEWER_EXPORT AbstractViewer : public QObject
 {
@@ -45,6 +39,7 @@ public:
     virtual bool saveDocument();
     virtual bool saveDocumentAs();
     virtual QString viewerName() const = 0;
+    virtual void retranslate() { };
     virtual bool supportsOverview() const;
     virtual QByteArray saveState() const = 0;
     virtual bool restoreState(QByteArray &) = 0;
@@ -53,6 +48,8 @@ public:
     virtual QStringList supportedExtensions() const { return {}; }
     virtual bool isDefaultViewer() const;
     virtual void cleanup();
+    void setTranslationBaseName(const QString &baseName);
+    void updateTranslation();
     bool isEmpty() const;
     bool isPrintingEnabled() const;
     AbstractViewer *viewer();
@@ -108,6 +105,7 @@ private:
     QList<QMenu *> m_menus;
     QList<QToolBar *> m_toolBars;
     bool m_printingEnabled = false;
+    std::unique_ptr<Translator> m_translator;
 };
 
 #endif // ABSTRACTVIEWER_H

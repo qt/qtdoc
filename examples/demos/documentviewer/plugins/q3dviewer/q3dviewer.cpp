@@ -33,6 +33,7 @@ Q3DViewer::Q3DViewer()
 void Q3DViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
 {
     QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
+    setTranslationBaseName("q3dviewer"_L1);
     m_quickView = new QQuickView;
     m_quickView->loadFromModule(u"Q3DViewer", "Viewer");
     Q_ASSERT(m_quickView->status() != QQuickView::Status::Error);
