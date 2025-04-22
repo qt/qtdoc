@@ -168,6 +168,15 @@ AbstractViewer *ViewerFactory::viewer(const QMimeType &mimeType) const
     }
 
     AbstractViewer *viewer = defaultViewer();
+    if (!viewer) {
+        QMessageBox mbox;
+        mbox.setIcon(QMessageBox::Warning);
+        mbox.setText(QObject::tr("No viewers for the chosen file format."));
+        mbox.setStandardButtons(QMessageBox::Ok);
+        QTimer::singleShot(8000, &mbox, [&mbox]() { mbox.close(); });
+        mbox.exec();
+        return nullptr;
+    }
 
     if (m_defaultWarning) {
         QMessageBox mbox;
