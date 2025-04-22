@@ -17,7 +17,7 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
-  Qt 6.9 is verified on VxWorks 24.03.
+  Qt 6.10 is verified on VxWorks 24.03.
 
   Supported architectures:
   \list
@@ -1110,7 +1110,7 @@
   \badcode
   export WIND_CC_SYSROOT=<path/to/VxWorks/VSB/directory>
   export QT_VXWORKS_TOOLCHAIN_FILE=<path/to/the/BSP/toolchain.cmake>
-  <path/to/Qt6/target/installation/dir>/bin/qt-cmake -G Ninja -S ~/Qt/Examples/Qt-6.9.0/demos/clocks -B <path/to/build/directory>
+  <path/to/Qt6/target/installation/dir>/bin/qt-cmake -G Ninja -S ~/Qt/Examples/Qt-6.10.0/demos/clocks -B <path/to/build/directory>
   cd <path/to/build/directory>
   cmake --build . --parallel
   \endcode
