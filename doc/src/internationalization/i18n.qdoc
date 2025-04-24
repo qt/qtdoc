@@ -274,25 +274,34 @@
     requires an effort and comes with a runtime performance cost.
 
     Use translation functions to mark user-visible UI text for
-    translation in QML and C++ code. Qt indexes each translatable string by
-    the \e{translation context} it is associated with.
-    The same phrase may occur in more than one context without conflict.
-    If a phrase occurs more than once in a particular context, it is translated
-    only once and the translation is applied to every occurrence within the
-    context.
+    translation in QML and C++ code. Qt supports two approaches to
+    identifying translatable text: \e text-based and \e ID-based.
 
-    \section2 QML: Use qsTr()
+    In the \e text-based translation approach, Qt indexes each translatable
+    string by the \e{translation context} and optionally a disambiguating
+    \e{comment} it is associated with. The same phrase may occur in more
+    than one context without conflict. If a phrase occurs more than once in
+    a particular context, it is translated only once and the translation
+    is applied to every occurrence within the context.
+
+    In the \e ID-based Translation approach, each translation is uniquely
+    identified by an explicit ID. The IDs are unique project-wide. If an
+    ID occurs more than once in a project, it is translated only once and
+    the translation is applied to every occurrence within the project.
+
+    \section2 QML
+
 
     In QML, you can use the following functions to mark user-visible strings for
     translation in .qml files:
 
     \list
-        \li \l [QML] {Qt::}{qsTr()}
-        \li \l [QML] {Qt::}{qsTranslate()}
-        \li \l [QML] {Qt::}{qsTrId()}
+        \li \l [QML] {Qt::}{qsTr()}: \e{Text-based translation}
+        \li \l [QML] {Qt::}{qsTranslate()}: \e{Text-based translation}
+        \li \l [QML] {Qt::}{qsTrId()}: \e{ID-based translation}
     \endlist
 
-    Usually, you use the \c qsTr() function:
+    \section3 Text-based qsTr():
 
     \code
     Text {
@@ -302,12 +311,11 @@
     \endcode
 
     This code makes \e Back a key entry in the translation source (TS) files. At
-    runtime, the translation system looks up the keyword \e Back and then
-    gets the corresponding translation value for the current system locale.
-    The result is returned to the \c text property and the UI shows the
-    appropriate translation of \e Back for the current locale. If no translation
-    is found, \c qsTr() returns the original string.
-
+    runtime, the translation system looks up the keyword \e Back in the current
+    context (see below) and then gets the corresponding translation value
+    for the current system locale. The result is returned to the \c text property
+    and the UI shows the appropriate translation of \e Back for the current locale.
+    If no translation is found, \c qsTr() returns the original string.
 
     The translation context can be set for a given file with:
 
@@ -324,9 +332,41 @@
     The context set via \c qsTranslate() takes precedent over the context set via \c pragma \c Translator.
     In QML, by default, the translation context is the file name.
 
-    \section2 C++: Use tr()
+    \section3 ID-based qsTrId():
 
-    In C++, use the \l{QObject::}{tr()} function to mark text as translatable
+    \code
+    Text {
+        id: txt1
+        //% "Back"
+        text: qsTrId("BackID")
+    }
+    \endcode
+
+    This code makes \e "BackID" a unique key entry in the translation source
+    (TS) files, and writes \e "Back" as it's source text. At runtime, the
+    translation system looks up the ID \e "BackID" and then
+    gets the corresponding translation value (or if not translated, the source
+    text) for the current system locale. The result is returned to the \c text
+    property and the UI shows the appropriate translation of \e "BackID" for the
+    current locale. If no entry with ID \e "BackID" in TS files is found,
+    \c qsTrId() returns the ID itself. This should not happen under normal conditions.
+
+    \section2 C++
+
+    In C++, you can use the following functions to mark user-visible strings for
+    translation:
+
+    \list
+        \li \l {QObject::}{tr()}: \e{Text-based translation}
+        \li \l {QCoreApplication::translate()}: \e{Text-based translation}
+        \li \l {QTranslator::translate()}: \e{Text-based translation}
+        \li \l qtTrId(): \e{ID-based translation}
+        \li For more options refer to \l linguist-id-based-i18n.html
+    \endlist
+
+    \section3 Text-based tr()
+
+    Use the \l{QObject::}{tr()} function to mark text as translatable
     and to display translated text. The translation context is the name of the
     QObject subclass the string is used in. To define translation context for new
     QObject-based classes, use the Q_OBJECT macro in each new class definition.
@@ -348,6 +388,26 @@
     QCoreApplication::translate() function directly:
 
     \snippet snippets/code/doc_src_i18n.cpp 1
+
+    \section3 ID-based qtTrId()
+
+    \l qtTrId() returns a translated string identified by ID. So instead of writing
+    the translatable string itself in the function, you write the ID of the
+    translation. The source text (default string) is written using metastring
+    notation \c {//%}. If the text is not translated, the source text annotated by
+    \c {//%} is returned. If no matching ID is found, the ID itself is returned.
+    This should not happen under normal conditions.
+
+    \code
+    //% "Password:"
+    QLabel *label = new QLabel(qtTrId("PasswordID"));
+    \endcode
+
+    This code makes \e "PasswordID" a unique key entry in the translation source
+    (TS) files, and writes \e "Password:" as it's source text. At runtime, the
+    translation system looks up the ID \e "PasswordID" and then
+    gets the corresponding translation value (or if not translated, the source
+    text) for the current system locale.
 
     \note If you disable the \c{const char *} to QString automatic conversion by
     compiling your application with the macro \c QT_NO_CAST_FROM_ASCII defined,
@@ -582,9 +642,9 @@
 
     \section2 C++: Use _NOOP Macros
 
-    For translatable text completely outside a function, use the \l QT_TR_NOOP()
-    and \l QT_TRANSLATE_NOOP() macros that expand to just the text without the
-    context.
+    For translatable text completely outside a function, use the \l QT_TR_NOOP(),
+    \l QT_TRID_NOOP(), and \l QT_TRANSLATE_NOOP() macros that expand to just the text
+    without the context.
 
     An example of \c QT_TR_NOOP():
 
