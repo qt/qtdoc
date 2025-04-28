@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(qtjenny_consumer VERSION 0.1 LANGUAGES CXX)
 
+#! [0]
 if (ANDROID)
     set (gradlew_cmd "./gradlew")
     set (gradlew_arg "--rerun-tasks")
@@ -11,6 +12,7 @@ if (ANDROID)
 else()
     message(FATAL_ERROR "Example only works on Android")
 endif()
+#! [0]
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

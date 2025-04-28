@@ -30,7 +30,9 @@ excludedirs += \
     ../src/platformintegration
 
 # include java files in the list of example sources
-examples.fileextensions =+ *.java
+examples.fileextensions =+ *.java \
+                           *.kt \
+                           *.gradle
 
 # Exclude documentation for the broken examples
 excludefiles += \

@@ -19,6 +19,7 @@ import org.qtproject.qt.qtjenny.NativeProxy
 import org.qtproject.qt.qtjenny.NativeClass
 import org.qtproject.qt.qtjenny.NativeProxyForClasses
 
+//! [1]
 @NativeClass
 @NativeProxy(allMethods = false, allFields = false)
 @NativeProxyForClasses(namespace = "android::os", classes = [BatteryManager::class, VibratorManager::class, Vibrator::class, VibrationEffect::class, Context::class, PowerManager::class, PowerManager.WakeLock::class])
@@ -28,5 +29,6 @@ import org.qtproject.qt.qtjenny.NativeProxyForClasses
 @NativeProxyForClasses(namespace = "android::app", classes = [Activity::class, Notification::class, Notification.Builder::class, NotificationChannel::class, NotificationManager::class])
 @NativeProxyForClasses(namespace = "android::provider", classes = [Settings.Global::class, Settings.System::class, Settings::class])
 @NativeProxyForClasses(namespace = "android::content", classes = [Intent::class])
+//! [1]
 class GenerateCppCode {
 }
