@@ -198,11 +198,13 @@ ApplicationWindow {
                 id: fullWakeLock
 
                 onCheckedChanged: {
+                    //! [3]
                     if (checked) {
                         myBackEnd.setFullWakeLock()
                         if (partialWakeLock.checked)
                             partialWakeLock.click()
                         mainWindow.wakeLockStatus = "Full WakeLock active"
+                    //! [3]
                     } else {
                         myBackEnd.disableFullWakeLock()
                         if (!partialWakeLock.checked)
