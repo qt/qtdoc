@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtMultimedia
-import Maroon
+import examples.Maroon
 import "../logic.js" as Logic
 
 Item  {
@@ -219,4 +219,3 @@ Item  {
         NumberAnimation { from: container.x - 5; to: container.x; duration: 900; easing.type: Easing.InOutQuad }
     }
 }
-

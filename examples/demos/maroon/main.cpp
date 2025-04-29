@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
-    engine.loadFromModule(u"Maroon", u"Main");
+    engine.loadFromModule(u"examples.Maroon", u"Main");
 
     return app.exec();
 }

@@ -20,7 +20,7 @@ target_link_libraries(maroon PRIVATE
 )
 
 qt_add_qml_module(maroon
-    URI Maroon
+    URI examples.Maroon
     QML_FILES
         "content/BuildButton.qml"
         "content/GameCanvas.qml"
