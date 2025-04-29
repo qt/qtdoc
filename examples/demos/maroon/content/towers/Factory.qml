@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtMultimedia
-import Maroon
+import examples.Maroon
 import "../logic.js" as Logic
 
 TowerBase {

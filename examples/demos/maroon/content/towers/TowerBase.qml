@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import Maroon
+import examples.Maroon
 
 Item {
     property real hp: 1
