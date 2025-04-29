@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Hangman
+import examples.Hangman
 
 Rectangle {
     id: storeItem
