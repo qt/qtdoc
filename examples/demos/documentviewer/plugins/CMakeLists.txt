@@ -10,5 +10,5 @@ if(TARGET Qt6::PdfWidgets)
 endif()
 
 if(TARGET Qt6::Quick3D)
-    add_subdirectory(q3dviewer)
+    add_subdirectory(Q3DViewer)
 endif()
