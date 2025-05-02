@@ -24,11 +24,7 @@ qt_add_executable(documentviewer
 )
 
 qt_add_translations(documentviewer
-    PLURALS_TS_FILE
-        docviewer_en.ts
-    TS_FILES
-        docviewer_de.ts
-    RESOURCE_PREFIX "/translations"
+    TS_FILE_BASE docviewer
     MERGE_QT_TRANSLATIONS
     QT_TRANSLATION_CATALOGS qtbase
 )

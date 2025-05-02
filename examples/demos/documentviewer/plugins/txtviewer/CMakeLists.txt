@@ -26,13 +26,7 @@ target_link_libraries(txtviewer PRIVATE
 
 qt_add_translations(txtviewer
     SOURCE_TARGETS txtviewer
-    TS_FILES
-        txtviewer_de.ts
-    PLURALS_TS_FILE
-        txtviewer_en.ts
-    LUPDATE_OPTIONS
-        -source-language en
-    RESOURCE_PREFIX "/translations"
+    TS_FILE_BASE txtviewer
 )
 
 if(TARGET Qt6::PrintSupport)

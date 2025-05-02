@@ -21,7 +21,7 @@ void Translator::install()
     if (!m_translator.isEmpty())
         qApp->removeTranslator(&m_translator);
 
-    if (m_translator.load(s_trLocale, m_baseName, "_"_L1, ":/translations/"_L1)
+    if (m_translator.load(s_trLocale, m_baseName, "_"_L1, ":/i18n/"_L1)
         && qApp->installTranslator(&m_translator)) {
         qInfo() << "Loaded translation" << m_translator.filePath();
     } else {
