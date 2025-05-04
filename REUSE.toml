@@ -30,6 +30,13 @@ SPDX-FileCopyrightText = "Copyright (C) 2024 The Qt Company Ltd."
 SPDX-License-Identifier = "LicenseRef-Qt-Commercial OR BSD-3-Clause"
 
 [[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_generator/**"]
+comment = "this must be after the build system table because example and snippets take precedence over build system"
+precedence = "closest"
+SPDX-FileCopyrightText = "Copyright (C) 2025 The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
 path = ["**/README*", "**.qdocconf", "doc/config/style/qt5-sidebar.html", "doc/config/style/tree_config.xml", "**.qdocinc",
         "doc**/images/**"]
 comment = "documentation"
@@ -43,6 +50,13 @@ precedence = "override"
 comment = "infrastructure"
 SPDX-FileCopyrightText = "Copyright (C) 2024 The Qt Company Ltd."
 SPDX-License-Identifier = "LicenseRef-Qt-Commercial OR BSD-3-Clause"
+
+[[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_generator/**/**.toml"]
+precedence = "closest"
+comment = "infrastructure"
+SPDX-FileCopyrightText = "Copyright (C) 2025 The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = ["**/qt_attribution.json"]
