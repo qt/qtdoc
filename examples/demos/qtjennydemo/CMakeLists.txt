@@ -1,0 +1,50 @@
+cmake_minimum_required(VERSION 3.22)
+
+project(qtjenny_consumer VERSION 0.1 LANGUAGES CXX)
+
+if (ANDROID)
+    set (gradlew_cmd "./gradlew")
+    set (gradlew_arg "--rerun-tasks")
+    set (gradlew_task "kaptReleaseKotlin")
+    execute_process(COMMAND ${gradlew_cmd} ${gradlew_arg} ${gradlew_task}
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/qtjenny_generator")
+else()
+    message(FATAL_ERROR "Example only works on Android")
+endif()
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Qt6 6.8 REQUIRED COMPONENTS Quick)
+
+qt_standard_project_setup(REQUIRES 6.8)
+
+qt_add_executable(appqtjenny_consumer
+    main.cpp
+)
+
+qt_add_qml_module(appqtjenny_consumer
+    URI qtjenny_consumer
+    VERSION 1.0
+    QML_FILES
+        Main.qml
+    SOURCES
+        backend.h
+        backend.cpp
+)
+
+set_target_properties(appqtjenny_consumer PROPERTIES
+    QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+)
+
+target_compile_definitions(appqtjenny_consumer
+    PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_link_libraries(appqtjenny_consumer
+    PRIVATE Qt6::Quick
+)
+
+include(GNUInstallDirs)
+install(TARGETS appqtjenny_consumer
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
