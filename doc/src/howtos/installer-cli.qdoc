@@ -15,6 +15,7 @@
     information on how you can use the command line interface:
 
     \list
+        \li \l{Downloading \QOI with Command Line Interface}
         \li \l{Component Names For Installation}
         \li \l{Installing Without User Interaction}
         \li \l{Installing With User Interaction}
@@ -27,6 +28,22 @@
         \li \l{Summary of Command Line Interface Usage}
     \endlist
 
+    \section1 Downloading \QOI with Command Line Interface
+
+    You can use the \c curl command on the command line interface to download \QOI.
+    To see all the \QOI packages available for different platforms, visit
+    \l {\QOI official releases}.
+
+    To download a specific \QOI package with the same name as the remote file,
+    use the \c -O (uppercase 'O') option.
+
+    The example command below downloads the \c qt-online-installer-linux-x64-online.run
+    package:
+
+    \badcode
+    curl -O https://download.qt.io/official_releases/online_installers/qt-online-installer-linux-x64-online.run
+    \endcode
+
     \section1 Component Names for Installation
 
     \section2 Quick Installation with Alias Packages
@@ -36,12 +53,30 @@
     are a shortcut to include the actual packages for an easier installation
     experience.
 
+    \section3 Listing Existing Alias Packages
+
     To list the existing alias packages, use the following command on the command
-    line interface:
+    line interface.
+
+    \e {Using \QOI}:
 
     \badcode
-    installer.exe / maintenancetool.exe search
+    <installer executable> search
     \endcode
+
+    For details on the \e{\QOI} executables for different platforms,
+    see \l {Installing With User Interaction}.
+
+    \e {Using \QMT}:
+
+    \badcode
+    <maintenancetool executable> search
+    \endcode
+
+    For details on the \e{\QMT} executables for different platforms,
+    see \l {Installing With User Interaction}.
+
+    \section3 Contents of Alias Packages
 
     The contents of the alias packages are listed in the table below.
 
@@ -52,7 +87,7 @@
     \table
     \header
        \li Alias package name
-       \li Qt Online Installer (package content)
+       \li \QOI (package content)
     \row
        \li qt6.8.0-essentials
        \li
@@ -127,7 +162,7 @@
           \endlist
     \endtable
 
-    \b {Qt Online Installer command examples}
+    \b {\QOI command examples}
 
     \badcode
     # Windows: new installation with Qt Online Installer
@@ -142,14 +177,58 @@
     qt-unified-linux-x64-[Qt Online Installer version]-online.run install qt6.8.0-sdk
     \endcode
 
+    \section3 Alias Package Options for Windows
+
+    \note The information in this section is valid for the Qt 6.8, Qt 6.9, and
+          Qt 6.10 releases.
+
+    \e {Windows on ARM64}
+
+    Only the MSVC binaries (msvc2022-arm64) are installed as other Qt binary
+    packages are not available for Windows on Arm (WoA).
+
+    \e {Windows on x86_64}
+
+    By default, only the MinGW binaries are installed.
+
+    However, with \e {Windows on x86_64} you can also install binaries for the
+    following toolchains.
+
+    \list
+        \li llvm-mingw
+        \li msvc2022
+        \li msvc2022-arm64 (for cross-compilation)
+    \endlist
+
+    Using, for example, the \e {qt\QtVersion-essentials} alias package installs
+    the package with the default MinGW binaries.
+
+    To get the \c {Qt essentials} package content with, for example, the MSVC 2022
+    binaries, use the corresponding \e {qt\QtVersion-msvc2022-essentials} alias
+    package.
+
     \section2 Listing Non-Alias Packages
 
     To list the non-alias packages, use the following command on the command
-    line interface:
+    line interface.
+
+    \e {Using \QOI}:
 
     \badcode
-    installer.exe / maintenancetool.exe search --type package
+    <installer executable> search --type package
     \endcode
+
+    For details on the \e{\QOI} executables for different platforms,
+    see \l {Installing With User Interaction}.
+
+    \e {Using \QMT}:
+
+    \badcode
+    <maintenancetool executable> search --type package
+    \endcode
+
+    For details on the \e{\QMT} executables for different platforms,
+    see \l {Installing With User Interaction}.
 
     \section2 Advanced Searching for Specific Installation Packages
 
