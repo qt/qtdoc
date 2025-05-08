@@ -60,4 +60,14 @@
     to contribute to Qt. See \l{Building Qt Sources} for instructions on
     obtaining the Qt source code, information about Qt's prerequisites,
     and guidelines on configuring and building Qt.
+
+    \section1 Copying a Qt installation to another host
+
+    It's best practice to perform a clean installation on each host that uses
+    Qt. However, if you need to copy a Qt installation to another host, you
+    need to do some extra configuring for the commercial license check to work
+    properly. To ensure that the commercial license check works as expected
+    in the copied Qt installation, carry out the steps in
+    \l {Copying a Qt or QA installation to another computer}.
+
 */
