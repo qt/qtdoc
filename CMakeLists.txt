@@ -46,7 +46,7 @@ qt_internal_project_setup()
 qt_build_repo_begin()
 qt_build_repo_impl_find_package_tests()
 
-if(NOT QT_BUILD_STANDALONE_TESTS)
+if(NOT QT_BUILD_STANDALONE_TESTS AND NOT QT_BUILD_STANDALONE_EXAMPLES)
     add_subdirectory(doc)
     add_subdirectory(doc/src/cmake)
     add_subdirectory(doc/src/platformintegration)
