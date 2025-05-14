@@ -43,15 +43,16 @@ if(ANDROID)
         QT_ANDROID_VERSION_CODE 10
         QT_ANDROID_VERSION_NAME "1.0"
     )
-
-    qt_import_plugins(calqlatrexample
-        INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin
-        EXCLUDE_BY_TYPE qmltooling
-        EXCLUDE_BY_TYPE iconengines
-        EXCLUDE_BY_TYPE networkinformation
-        EXCLUDE_BY_TYPE tls
-        EXCLUDE_BY_TYPE platforminputcontexts
-    )
+    if(CMAKE_BUILD_TYPE STREQUAL Release)
+        qt_import_plugins(calqlatrexample
+            INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin
+            EXCLUDE_BY_TYPE qmltooling
+            EXCLUDE_BY_TYPE iconengines
+            EXCLUDE_BY_TYPE networkinformation
+            EXCLUDE_BY_TYPE tls
+            EXCLUDE_BY_TYPE platforminputcontexts
+        )
+    endif()
 endif()
 
 if(IOS)
