@@ -31,6 +31,7 @@ RestAccessManager::RestAccessManager(QObject *parent)
 void RestAccessManager::setUrl(const QUrl& url)
 {
     m_url = url;
+    m_reqresServer = url.host().startsWith("reqres"_L1);
 }
 
 bool RestAccessManager::sslSupported() const
@@ -54,6 +55,8 @@ void RestAccessManager::post(const QString& api, const QVariantMap& value,
     auto request = QNetworkRequest(m_url);
     request.setHeader(QNetworkRequest::KnownHeaders::ContentTypeHeader, contentTypeJson);
     request.setRawHeader(authorizationToken, m_authorizationToken);
+    if (m_reqresServer)
+        request.setRawHeader("x-api-key","reqres-free-v1");
     QNetworkReply* reply = QNetworkAccessManager::post(request,
                                QJsonDocument::fromVariant(value).toJson(QJsonDocument::Compact));
     QObject::connect(reply, &QNetworkReply::finished, reply, [reply, callback](){
@@ -67,6 +70,8 @@ void RestAccessManager::get(const QString& api, const QUrlQuery& parameters,
     m_url.setPath(api);
     m_url.setQuery(parameters);
     auto request = QNetworkRequest(m_url);
+    if (m_reqresServer)
+        request.setRawHeader("x-api-key","reqres-free-v1");
     QNetworkReply* reply = QNetworkAccessManager::get(request);
     QObject::connect(reply, &QNetworkReply::finished, reply, [reply, callback](){
         callback(reply, httpResponseSuccess(reply));
@@ -80,6 +85,8 @@ void RestAccessManager::put(const QString& api, const QVariantMap& value,
     auto request = QNetworkRequest(m_url);
     request.setHeader(QNetworkRequest::KnownHeaders::ContentTypeHeader, contentTypeJson);
     request.setRawHeader(authorizationToken, m_authorizationToken);
+    if (m_reqresServer)
+        request.setRawHeader("x-api-key","reqres-free-v1");
     QNetworkReply* reply = QNetworkAccessManager::put(request,
                              QJsonDocument::fromVariant(value).toJson(QJsonDocument::Compact));
     QObject::connect(reply, &QNetworkReply::finished, reply, [reply, callback](){
@@ -92,6 +99,8 @@ void RestAccessManager::deleteResource(const QString& api, ResponseCallback call
     m_url.setPath(api);
     auto request = QNetworkRequest(m_url);
     request.setRawHeader(authorizationToken, m_authorizationToken);
+    if (m_reqresServer)
+        request.setRawHeader("x-api-key","reqres-free-v1");
     QNetworkReply* reply = QNetworkAccessManager::deleteResource(request);
     QObject::connect(reply, &QNetworkReply::finished, reply, [reply, callback](){
        callback(reply, httpResponseSuccess(reply));
