@@ -41,8 +41,8 @@ void BasicLogin::login(const QVariantMap &data)
                           (*json)[tokenField].toVariant().toByteArray(),
                           data.value(idField).toInt()};
         }
-        QHttpHeaders headers;
-        headers.append("token", m_user ? m_user->token : ""_ba);
+        QHttpHeaders headers = m_api->commonHeaders();
+        headers.replaceOrAppend("token", m_user ? m_user->token : ""_ba);
         m_api->setCommonHeaders(headers);
         emit userChanged();
     });
@@ -53,7 +53,9 @@ void BasicLogin::logout()
     m_manager->post(m_api->createRequest(m_logoutPath), ""_ba, this, [this](QRestReply &reply) {
         if (reply.isSuccess()) {
             m_user.reset();
-            m_api->clearCommonHeaders(); // clears 'token' header
+            QHttpHeaders headers = m_api->commonHeaders();
+            headers.removeAll("token");
+            m_api->setCommonHeaders(headers);
             emit userChanged();
         }
     });
