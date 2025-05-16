@@ -40,6 +40,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Pdf
         PdfWidgets
         ExamplesAssetDownloaderPrivate
+        Linguist
 )
 qt_internal_project_setup()
 
