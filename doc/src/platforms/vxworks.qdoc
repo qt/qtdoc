@@ -285,7 +285,7 @@
 
     \row
         \li \c MESA
-        \li itl_generic specific
+        \li itl_generic and nxp_imx8 specific
 
   \endtable
 
@@ -1038,6 +1038,7 @@
 
   set(VxWorksPlatformGraphics_DEFINES "-D_NXPVIV -D__vxworks -D__VXWORKS__")
   set(VxWorksPlatformGraphics_LIBRARIES_PACK
+      "-Wl,--start-group"
       "${_common_lib_path}/libgfxNxpVivGAL.so"
       "${_common_lib_path}/libgfxNxpVivEGL.so"
       "${_common_lib_path}/libgfxNxpVivGLSLC.so"
@@ -1045,6 +1046,7 @@
       "${_common_lib_path}/libgfxNxpVivGLESv1_CM.so"
       "${_common_lib_path}/libgfxNxpVivVSC.so"
       "${_common_lib_path}/libxml.so"
+      "-Wl,--end-group"
   )
 
   set(VxWorksPlatformGraphics_REQUIRED_LIBRARIES
