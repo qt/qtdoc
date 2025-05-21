@@ -3,7 +3,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts 1.15
-import custom.StockEngine
+import StocQt
 
 Rectangle {
     id: stockDelegate

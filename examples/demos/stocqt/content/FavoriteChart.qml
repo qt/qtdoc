@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick 6.5
 import QtGraphs
-import custom.StockEngine
-import custom.TimeFormatter
+import StocQt
 
 Rectangle {
     id: favoriteChart

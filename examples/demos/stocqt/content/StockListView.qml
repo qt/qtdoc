@@ -4,8 +4,7 @@ import QtQuick 6.5
 import QtQuick.Controls 6.5
 import "components"
 import content
-
-import custom.StockEngine
+import StocQt
 
 Rectangle {
     id: root

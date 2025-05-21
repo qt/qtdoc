@@ -3,7 +3,7 @@
 import QtQuick
 import QtQuick.Layouts 1.15
 import QtQuick.Shapes
-import custom.StockEngine
+import StocQt
 
 Rectangle {
     id: stock

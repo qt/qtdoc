@@ -3,7 +3,7 @@
 import QtQuick
 import QtQuick.Layouts
 import content
-import custom.StockEngine
+import StocQt
 
 Rectangle {
     id: mainWindow
