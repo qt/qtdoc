@@ -4,7 +4,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtGraphs
 import QtQuick.Layouts
-import custom.StockEngine
+import StocQt
 import "components"
 
 Rectangle {

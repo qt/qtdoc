@@ -5,17 +5,11 @@
 #include <QtGraphs/qutils.h>
 #include <QtQml/QQmlEngine>
 #include <QtQuick/QQuickView>
-#include "stockengine.h"
-#include "timeformatter.h"
 
 int main(int argc, char *argv[])
 {
     qputenv("QT_QUICK_CONTROLS_CONF", ":/qtquickcontrols2.conf");
     QGuiApplication app(argc, argv);
-
-    StockEngine StockEngine{};
-    qmlRegisterSingletonInstance("custom.StockEngine", 1, 0, "StockEngine", &StockEngine);
-    qmlRegisterType<TimeFormatter>("custom.TimeFormatter", 1, 0, "TimeFormatter");
 
     QQuickView viewer;
     viewer.setFormat(qDefaultSurfaceFormat(true));

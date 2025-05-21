@@ -36,6 +36,7 @@ if (ANDROID)
     endif()
 endif()
 
+target_include_directories(appStocQt PRIVATE src)
 
 qt_add_qml_module(appStocQt
     URI StocQt

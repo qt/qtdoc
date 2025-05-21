@@ -3,7 +3,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Shapes
-import custom.StockEngine
+import StocQt
 
 Rectangle {
     id: star
