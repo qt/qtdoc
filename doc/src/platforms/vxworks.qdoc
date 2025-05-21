@@ -1110,7 +1110,7 @@
   \badcode
   export WIND_CC_SYSROOT=<path/to/VxWorks/VSB/directory>
   export QT_VXWORKS_TOOLCHAIN_FILE=<path/to/the/BSP/toolchain.cmake>
-  <path/to/Qt6/target/installation/dir>/bin/qt-cmake -G Ninja -S ~/Qt/Examples/Qt-6.9.0/demos/clocks -B <path/to/build/directory>
+  <path/to/Qt6/target/installation/dir>/bin/qt-cmake -G Ninja -S ~/Qt/Examples/Qt-6.9.2/demos/clocks -B <path/to/build/directory>
   cd <path/to/build/directory>
   cmake --build . --parallel
   \endcode
