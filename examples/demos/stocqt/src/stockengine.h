@@ -12,10 +12,14 @@
 #include "favoritesmodel.h"
 #include "stocklistmodel.h"
 #include "stockmodel.h"
+#include <qqmlregistration.h>
 
 class StockEngine : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
+
 public:
     StockEngine();
 

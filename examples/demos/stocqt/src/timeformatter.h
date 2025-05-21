@@ -11,6 +11,7 @@
 class TimeFormatter : public QValue3DAxisFormatter
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(QString selectionFormat READ selectionFormat WRITE setSelectionFormat NOTIFY
                    selectionFormatChanged FINAL)
