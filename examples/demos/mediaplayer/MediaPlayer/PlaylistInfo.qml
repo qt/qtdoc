@@ -10,7 +10,6 @@ import QtQuick.Layouts
 import QtCore
 import MediaControls
 import Config
-
 import io.qt.filenameprovider
 
 Rectangle {
