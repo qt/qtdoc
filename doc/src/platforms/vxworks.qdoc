@@ -145,8 +145,9 @@
   {https://gallery.windriver.com/portal/products}.
 
   Building Qt for a given device requires a Qt 6 installation for compilation
-  host, a toolchain and a sysroot. Additionally, some devices require vendor
-  specific adaptation code for EGL and OpenGL 2.0 support.
+  host, a toolchain and a sysroot. See \l{Cross-compiling Qt} for details.
+  Additionally, some devices require vendor specific adaptation code for EGL and
+  OpenGL 2.0 support.
 
   \section2 VxWorks Image Requirements
 
