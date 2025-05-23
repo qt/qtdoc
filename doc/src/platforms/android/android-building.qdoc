@@ -52,21 +52,7 @@
     With Qt 6, you can build Qt for Android from source code using \c CMake. Qt 6
     for Android requires a host Qt build, which means to build Qt for Android, you
     need to build Qt for the desktop platform used as a host (that is, Linux, \macos,
-    or Windows).
-
-    To configure and do a minimalistic host build to be used with Qt for Android
-    build, use the following command:
-
-    \badcode
-    mkdir ~/dev/build-host
-    cd ~/dev/build-host
-    ./configure -developer-build -nomake tests -nomake examples
-    cmake --build . --target host_tools
-    \endcode
-
-    That will configure a developer build for your host and only build the necessary
-    dependencies used for the Android build. For more information on doing a full
-    and more customizable build for your host, see \l{Building Qt Sources}.
+    or Windows). See \l{Cross-compiling Qt} for details.
 
     To configure Qt for Android, create a shadow build directory to keep the source
     directory clean:

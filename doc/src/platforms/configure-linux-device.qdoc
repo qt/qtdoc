@@ -86,11 +86,8 @@
 
     \section1 Host Tools
 
-    Cross-compiling Qt requires a host build of Qt being available. During the build,
-    tools such as \c moc, \c rcc, \c qmlcachegen, \c qsb, and others, are invoked from
-    there. For example, if one cross-compiles for ARM on an x64 machine, a local x64 build
-    of the same Qt version must be made available first. The path to this Qt build will be
-    passed to configure or cmake.
+    Cross-compiling Qt requires a host build of Qt being available. See
+    \l{Cross-compiling Qt} for details.
 
     \section1 Configuring Qt
 
