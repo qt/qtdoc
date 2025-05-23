@@ -114,8 +114,9 @@ This sets the \c -static, \c -no-feature-thread, and \c{-no-make examples}
 configure options. You can enable thread support with the \c -feature-thread,
 configure option. Shared library builds are not supported.
 
-You need a host build of the same version of Qt and specify that path in the \e
-QT_HOST_PATH CMake variable or by using the \c -qt-host-path configure argument.
+You need a \l{Cross-compiling Qt}{host build of the same version of Qt}. Also,
+set the path to the host build in the \e QT_HOST_PATH CMake variable or by using
+the \c -qt-host-path configure argument.
 
 \badcode
     ./configure -qt-host-path /path/to/Qt -platform wasm-emscripten -prefix $PWD/qtbase
