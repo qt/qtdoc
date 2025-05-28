@@ -15,24 +15,25 @@ platform's native look and feel.
 
 \section1 Building UIs with Qt Quick
 
-Qt Quick is for creating dynamic and fluid user interfaces. The
+\l [Quick]{Qt Quick} is for creating dynamic and fluid user interfaces. The
 \l{Qt Quick Controls} module supplies QML types such as buttons, dialogs, and
 menus. You can use \l{The QML Reference}{QML}, a declarative language,
 to build the UI and JavaScript to implement the logic.
 
 The following list contains related overviews:
 \list
-\li \l{Qt Quick Controls}
-\li \l{QML Applications} - introduction to QML
-\li \l{qtquick-usecase-visual.html}{Visual types in QML}
-\li \l{qtquick-usecase-userinput.html}{Responding to User Input in QML}
-\li \l{qtquick-usecase-animations.html}{Animations in QML}
-\li \l{qtquick-usecase-text.html}{Displaying Text in QML}
-\li \l{qtquick-usecase-layouts.html}{Layouts in QML}
-\li \l{qtquick-usecase-styling.html}{Style and Theme Support}
-\li \l{qtquick-usecase-integratingjs.html}{Integrating JavaScript in QML}
-\li \l{Qt Quick 3D} - add-on for 3D graphics
-\li \l{Qt Shader Tools} - add-on shader effects
+\li \l {Qt Quick Controls}
+\li \l {Getting started with Qt Quick applications}
+\li \l {First Steps with QML}
+\li \l {Glossary Of QML Terms}
+\li \l {Visual types}
+\li \l {Positioners and layouts}
+\li \l {Handling user input}
+\li \l {Displaying text}
+\li \l {Animations}
+\li \l {Integrating JavaScript in QML}
+\li \l {Qt Quick 3D} - add-on for 3D graphics
+\li \l {Qt Shader Tools} - add-on shader effects
 \endlist
 
 \section1 Qt Widgets User Interfaces
@@ -98,7 +99,7 @@ The following table compares Qt Widgets and Qt Quick interfaces.
         \li \inlineimage ok.png
         \li
         \li Qt Widgets often require a mouse cursor for good interaction, whereas
-            Qt Quick provides QML types for touch interaction.
+            Qt Quick provides QML types for both mouse and touch interaction.
     \row
         \li Standard industry widgets
         \li
