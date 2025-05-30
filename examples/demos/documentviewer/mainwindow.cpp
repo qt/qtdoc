@@ -61,11 +61,6 @@ void MainWindow::openFile(const QString &fileName)
     ui->scrollArea->setWidget(m_viewer->widget());
 }
 
-void MainWindow::on_actionAbout_triggered()
-{
-    QMessageBox::aboutQt(this);
-}
-
 void MainWindow::on_actionAboutQt_triggered()
 {
     QMessageBox::aboutQt(this);

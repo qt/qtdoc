@@ -38,9 +38,9 @@
 //! [macos]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li \macos 11, 12, 13
+    \row \li \macos 11, 12, 13, 14
         \li \c x86_64, \c x86_64h, and \c arm64
-        \li Xcode 13 (\macos 12 SDK), Xcode 14 (\macos 13 SDK)
+        \li Xcode 14 (\macos 13 SDK), Xcode 15 (\macos 14 SDK)
 \endtable
 //! [macos]
 
@@ -94,9 +94,9 @@ The following configurations are supported in this Qt release:
 //! [ios]
 \table 80%
     \header \li Target Platform \li Architecture \li Build Environment
-    \row \li iOS 14, 15, 16
+    \row \li iOS 14, 15, 16, 17
         \li \c armv8 (\c arm64)
-        \li Xcode 14 (iOS 16 SDK)
+        \li Xcode 15 (iOS 17 SDK)
 \endtable
 //! [ios]
 
@@ -130,12 +130,12 @@ release, however they may be removed in a future minor release.
 \table
     \header \li{4,1} Tier 1: Reference Targets
     \header \li Vendor \li Board \li OS / Other \li Provided By
-    \row \li Intel \li NUC \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8QuadMax MEK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li Intel \li NUC \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8QuadMax MEK \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8QuadMax MEK \li QNX 7.1 \li \l{Qt for QNX}
     \row \li Qualcomm \li SA8155P \li AAOS 10-12 \li \l{Qt for Android Automotive}
     \row \li Qualcomm \li SA8155P \li INTEGRITY 19.03 \li \l{Qt for INTEGRITY}
-    \row \li Raspberry Pi \li Raspberry Pi 4 64-bit \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li Raspberry Pi \li Raspberry Pi 4 64-bit \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li Toradex \li Apalis iMX6 \li Yocto 4.0 \li \l{Boot to Qt}
 \endtable
 
@@ -152,14 +152,14 @@ release, however they may be removed in a future minor release.
     \header \li{4,1} Tier 2: Verified Targets
     \header \li Vendor \li Board \li OS / Other \li Provided By
     \row \li NVIDIA \li Jetson AGX Orin Development Kit \li Debian 12 \li \l{Enterprise Qt Debian Packages}
-    \row \li NVIDIA \li Jetson AGX Xavier Development Kit \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8MQuad EVK \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Mini LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Nano DDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
-    \row \li NXP \li i.MX 8M Plus LPDDR4 EVK \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li NVIDIA \li Jetson AGX Xavier Development Kit \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8MQuad EVK \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Mini LPDDR4 EVK \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Nano DDR4 EVK \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NXP \li i.MX 8M Plus LPDDR4 EVK \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li ST \li STM32MP15 Discovery \li Yocto 4.0 \li \l{Boot to Qt}
     \row \li ST \li STM32MP15 Evaluation \li Yocto 4.0 \li \l{Boot to Qt}
-    \row \li TI \li SK-AM62 \li Yocto 4.3 \li \l{Boot to Qt}
+    \row \li TI \li SK-AM62 \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li Toradex \li Colibri iMX6 ULL \li Yocto 4.0 \li \l{Boot to Qt}
 \endtable
 

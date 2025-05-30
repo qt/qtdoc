@@ -6,11 +6,20 @@
 #include <QCommandLineParser>
 #include <QDir>
 
+#include "filenameprovider.h"
+
 using namespace Qt::Literals::StringLiterals;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    qmlRegisterSingletonType<FileNameProvider>("io.qt.filenameprovider", 1, 0, "FileNameProvider",
+        [] (QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+            static auto * provider = new FileNameProvider();
+            return provider;
+        }
+    );
 
     QCoreApplication::setApplicationName("MediaPlayer Example");
     QCoreApplication::setOrganizationName("QtProject");

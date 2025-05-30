@@ -70,7 +70,7 @@
              <x>0</x>
              <y>0</y>
              <width>798</width>
-             <height>479</height>
+             <height>454</height>
             </rect>
            </property>
           </widget>
@@ -88,7 +88,7 @@
      <x>0</x>
      <y>0</y>
      <width>983</width>
-     <height>23</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="qtFileMenu">
@@ -103,7 +103,6 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
    </widget>
    <addaction name="qtFileMenu"/>
@@ -140,27 +139,11 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionAbout">
-   <property name="icon">
-    <iconset>
-     <normaloff>.</normaloff>
-     <normalon>:/demos/documentviewer/images/help-about.svgz</normalon>.</iconset>
-   </property>
-   <property name="text">
-    <string>about documentviewer</string>
-   </property>
-   <property name="toolTip">
-    <string>Show information about the Document Viewer deomo.</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H</string>
-   </property>
-  </action>
   <action name="actionForward">
    <property name="icon">
     <iconset>
-     <normaloff>.</normaloff>
-     <normalon>:/demos/documentviewer/images/go-next.svgz</normalon>.</iconset>
+     <normalon>:/demos/documentviewer/images/go-next.svgz</normalon>
+    </iconset>
    </property>
    <property name="text">
     <string>actionForward</string>
@@ -175,8 +158,8 @@
   <action name="actionBack">
    <property name="icon">
     <iconset>
-     <normaloff>.</normaloff>
-     <normalon>:/demos/documentviewer/images/go-previous.svgz</normalon>.</iconset>
+     <normalon>:/demos/documentviewer/images/go-previous.svgz</normalon>
+    </iconset>
    </property>
    <property name="text">
     <string>actionBack</string>
@@ -224,8 +207,7 @@
   </action>
   <action name="actionRecent">
    <property name="icon">
-    <iconset theme="document-open-recent">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open-recent"/>
    </property>
    <property name="text">
     <string>Open</string>
@@ -236,8 +218,7 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Quit</string>
