@@ -41,6 +41,8 @@
       \li {QXmlStreamReader::}{readRawInnerData()} for retrieving the raw inner XML content of an element.
       \li Error handling API for {QXmlStreamWriter} with {QXmlStreamWriter::}{Error} enum, {QXmlStreamWriter::}{error()}, {QXmlStreamWriter::}{errorString()}, and {QXmlStreamWriter::}{raiseError()} functions.
       \li {QXmlStreamWriter::}{stopWritingOnError()} property, allowing users to control whether output halts immediately after encountering an error.
+      \li Added \l QFuture::cancelChain() to cancel the entire continuation
+          chain using any non-finished QFuture from the chain.
     \endlist
 
     \section2 Qt Graphs Module
