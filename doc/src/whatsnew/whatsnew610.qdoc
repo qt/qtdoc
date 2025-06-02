@@ -223,6 +223,13 @@
     \list
     \endlist
 
+    \section3 macOS
+    \list
+      \li Windows that opt into extended dynamic range (EDR) now trigger expose event on screen brightness change
+      \li The titleUIElement accessibility property is now supported
+      \li Service menu integration is now rich-text aware
+    \endlist
+
     \section3 Wayland Client on Linux
     \list
     \endlist
@@ -231,6 +238,17 @@
 
     \section3 Android
     \list
+    \endlist
+
+    \section3 iOS
+    \list
+      \li Added QPointingDevice support for Apple Pencil
+      \li Fixed rotation for standard Apple Pencil
+      \li Added support for hover feature for Apple Pencil 2nd gen or later
+      \li Windows that opt into extended dynamic range (EDR) now trigger expose event on screen brightness change
+      \li Update requests will now be paused when the app moves out of active state
+      \li QScreen now also reports inverted screen orientations
+      \li RLIMIT_STACK now reflects the effective stack size
     \endlist
 
     \section2 Embedded Platforms
