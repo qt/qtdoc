@@ -56,7 +56,8 @@
   Qt provides implementations for both the client and the server side of the protocol.
 
   Normal Qt applications can be run as clients on a Wayland display server by selecting the
-  "wayland" QPA plugin (this is the default on certain systems). In addition, the
+  "wayland" QPA plugin (this is the default on certain systems). You can do
+  this by using the \c {-qpa wayland} option. In addition, the
   \l{Qt Wayland Compositor} module can be used to develop the display server itself.
 
   Qt also has convenience functionality for easily extending the Wayland protocols with new

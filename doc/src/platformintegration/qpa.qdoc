@@ -145,6 +145,18 @@ The \c{QT_QPA_PLATFORM} environment variable and the \c{-platform}
 command line argument allow you to override this default.
 See \l QGuiApplication for more details.
 
+You can pass a semicolon-separated list to install a plugin. In this case,
+the installer will go through the items in the list and install the first
+available plugin.
+
+Example:
+\badcode
+-qpa xcb;wayland
+\endcode
+
+The above line checks whether the \c xcb plugin is available, if it isn't,
+it then checks for the wayland plugin.
+
 \section2 Writing a QPA plugin
 
 There is no detailed tutorial documentation for writing QPA plugins at this
