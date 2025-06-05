@@ -117,7 +117,11 @@
           value into account, with an appropriately positioned and rotated
           pointer image, regardless of the application type. However, special
           cursor implementations, such as the KMS/DRM backend's hardware
-          cursor, may not support rotation.
+          cursor, may not support rotation. This setting has no effect on
+          anything else, including touch input. The touch input backends
+          \c evdevtouch and \c libinput each have their own mechanisms to
+          configure rotation. See \l{Inputs on an Embedded Linux Device}
+          for further information on configuring touch input.
     \row
       \li \c {QT_QPA_EGLFS_FORCEVSYNC}
       \li When set, \c eglfs requests \c FBIO_WAITFORVSYNC on the framebuffer
