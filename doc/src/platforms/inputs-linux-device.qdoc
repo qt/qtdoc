@@ -21,6 +21,20 @@
   available or the \c QT_QPA_EGLFS_NO_LIBINPUT environment variable is set, then Qt's own \c evdev
   handlers are used instead.
 
+  The following environment variables are available when input events are received via \c{libinput}:
+
+  \table
+    \header
+      \li Variable
+      \li Description
+    \row
+      \li \c QT_QPA_LIBINPUT_TOUCH_MATRIX
+      \li Specifies the first two rows of the 3x3 transformation matrix to apply. The
+          values are expected to be separated by spaces. See
+          \l{https://wayland.freedesktop.org/libinput/doc/1.11.2/absolute_axes.html}{the libinput documentation}
+          for details.
+  \endtable
+
   \section2 Input on eglfs and linuxfb without libinput
 
   Parameters like the device node name can be set in the \c QT_QPA_EVDEV_MOUSE_PARAMETERS,
