@@ -70,6 +70,9 @@
         \li Added support for detecting if the system has enabled a setting for increased
             contrast. The \l {QAccessibilityHints::}{contrastPreference} property can be used
             to read the system wide setting.
+        \li QRhi: Added support for enumerating 3D graphics adapters (physical devices),
+            when running on Direct 3D 11, 12, or Vulkan, via the \l{QRhi::}{enumerateAdapters()}
+            function.
     \endlist
 
     \section2 Qt HttpServer Module
