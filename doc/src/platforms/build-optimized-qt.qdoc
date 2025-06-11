@@ -75,9 +75,13 @@
     In addition, you can remove features one by one as described in
     \l {Including or excluding features}.
     This may cause restrictions for available components and functionalities. Not all
-    combinations are tested. Qt tests a specific \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin/platform_configs/qtlite.yaml}
-    {configure option combination in Continuous Integration (CI)}.
-    This configure option combination is capable of running simple QML applications.
+    combinations are tested. Qt tests specific minimal configure option combinations
+    in Continuous Integration (CI) system; it tests a
+    \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin/platform_configs/qtlite.yaml}
+    {highly minimized embedded Linux configuration}, and slightly
+    \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin/platform_configs/quick-minimal.yaml}
+    {less minimized configurations for other platforms}. These configurations are
+    for running Quick applications.
 
     Qt configure command also supports the - - (double dash) command line parameter which allows
     user to inject extra CMake arguments such as -DCMAKE_CXX_FLAGS="-march=native".
