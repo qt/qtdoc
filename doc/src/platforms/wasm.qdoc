@@ -508,18 +508,25 @@ to your project's \c {CMakeLists.txt}.
 For more information regarding Emscripten's OpenGL support visit
 \l{https://emscripten.org/docs/porting/multimedia_and_graphics/OpenGL-support.html}
 
-\section3 Sharing OpenGL contexts
+\section3 OpenGL Context Limitations
 
-WebGL allows one context per native surface only, and does not support OpenGL
-context sharing. Qt works around this by reusing the native context when
-multiple OpenGLContexts are used.
+WebGL does not support multiple contexts per surface. This has implications for
+applications that use QOpenGLContext either directly or indirectly via other
+classes such as QOpenGLWidget.
 
-We recommend limiting OpenGL context usage to one context per native surface,
-for example by using QOpenGLWindow instead of QOpenGLWidget.
-QOpenGLWidget may work, provided that application code restores all relevant
-OpenGL state when making QOpenGLWidget::paintGL() calls, and does not rely on
-persisting the state between QOpenGLWidget::initializeGL() and
-QOpenGLWidget::paintGL() calls.
+Each QOpenGLContext instance should be used with a single surface only. In practice,
+the context gets associated with the surface on the first makeCurrent() call. Calling
+makeCurrent() on a different surface afterward, or from a different QOpenGLContext with
+the same surface, is not supported.
+
+OpenGL context sharing is not supported. Calling QOpenGLContext::setShareContext() has
+no effect, and QOpenGLContext::shareContext() always returns nullptr.
+
+Destroying a surface (for example, a QWindow) causes context loss for the associated context.
+The application should handle this by recreating the context.
+
+QOpenGLWidget and other classes which uses context sharing internally are not
+supported.
 
 \section2 Multithreading
 
