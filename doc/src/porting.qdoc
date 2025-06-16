@@ -120,4 +120,10 @@ A Clazy-based tool is available to facilitate porting from Qt 5 to Qt 6:
 \li \l{Qt 5 and Qt 6 compatibility}{CMake: Qt 5 and Qt 6 compatibility}
     - how to support both Qt 5 and Qt 6 in CMake
 \endlist
+
+\section2 QTextStream Changes
+
+The method QTextStream::setCodec() has been removed in Qt 6. Use
+QTextStream::setEncoding() instead.
+
 */
