@@ -7,9 +7,9 @@
      {\c {MACOSX_BUNDLE}} property on your executable target, as follows:
 
      \badcode
-     qt_add_executable(app)
+     qt_add_executable(MyApp)
      if(APPLE)
-         set_target_properties(tst_manual_ios_assets PROPERTIES MACOSX_BUNDLE TRUE)
+         set_target_properties(MyApp PROPERTIES MACOSX_BUNDLE TRUE)
      endif()
      \endcode
 
