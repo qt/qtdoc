@@ -8,11 +8,11 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
-qt_add_executable(calqlatrexample WIN32 MACOSX_BUNDLE
+qt_add_executable(calqlatr WIN32 MACOSX_BUNDLE
     main.cpp
 )
 
-target_link_libraries(calqlatrexample PRIVATE
+target_link_libraries(calqlatr PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
@@ -20,7 +20,7 @@ target_link_libraries(calqlatrexample PRIVATE
     Qt6::QuickControls2
 )
 
-qt_add_qml_module(calqlatrexample
+qt_add_qml_module(calqlatr
     URI demos.calqlatr
     VERSION 1.0
     QML_FILES
@@ -36,7 +36,7 @@ qt_add_qml_module(calqlatrexample
 )
 
 if(ANDROID)
-    set_target_properties(calqlatrexample PROPERTIES
+    set_target_properties(calqlatr PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
         QT_ANDROID_PACKAGE_NAME "io.qt.calqlatr"
         QT_ANDROID_TARGET_SDK_VERSION 34
@@ -44,7 +44,7 @@ if(ANDROID)
         QT_ANDROID_VERSION_NAME "1.0"
     )
     if(CMAKE_BUILD_TYPE STREQUAL Release)
-        qt_import_plugins(calqlatrexample
+        qt_import_plugins(calqlatr
             INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin
             EXCLUDE_BY_TYPE qmltooling
             EXCLUDE_BY_TYPE iconengines
@@ -57,20 +57,20 @@ endif()
 
 if(IOS)
     set(asset_catalog_path "ios/Assets.xcassets")
-    target_sources(calqlatrexample PRIVATE "${asset_catalog_path}")
+    target_sources(calqlatr PRIVATE "${asset_catalog_path}")
     set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_target_properties(calqlatrexample
+    set_target_properties(calqlatr
         PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
 endif()
 
-install(TARGETS calqlatrexample
+install(TARGETS calqlatr
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 qt_generate_deploy_qml_app_script(
-    TARGET calqlatrexample
+    TARGET calqlatr
     OUTPUT_SCRIPT deploy_script
     MACOS_BUNDLE_POST_BUILD
     NO_UNSUPPORTED_PLATFORM_ERROR
