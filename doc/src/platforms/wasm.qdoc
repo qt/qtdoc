@@ -1033,8 +1033,8 @@ Consider starting with a small example before progressing to a full application 
     \endlist
 \li Create plugin preloading lists by running deployment scripts.
     \list
-    \li <qtpath>/qtbase/util/wasm/preload/deploy_qt_plugins.py <qt_install_dir> <target_dir>
-    \li <qtpath>/qtbase/util/wasm/preload/deploy_qml_imports.py <app_source dir> <qt_host_dir>
+    \li <qtpath>/qtbase/util/wasm/preload/preload_qt_plugins.py <qt_install_dir> <target_dir>
+    \li <qtpath>/qtbase/util/wasm/preload/preload_qml_imports.py <app_source dir> <qt_host_dir>
     <qt_install_dir> <target_dir>
     \endlist
 \endlist
