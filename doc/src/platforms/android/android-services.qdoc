@@ -26,6 +26,11 @@ will be created.
 
 \section2 Create the Service Class
 
+When deciding to use \c QtService or \l{Android: Service}{Android Service}, the same reasoning
+as with \l{Creating a custom Activity}{Activity} applies here. Unless you are using features
+that require the Qt libraries to be loaded, like Qt's native calls and event handling,
+extending \c Service should work.
+
 You can create a service by extending the class \c QtService or
 \l{Android: Service} to your Java class. Depending on whether you want to use
 Qt features in your service or call native C++ functions from Java, you need to

@@ -46,6 +46,17 @@
 
     \annotatedlist android-platform-extra-topics
 
+    \section1 Android Fragments
+
+    You cannot use \l{Android: Fragments}{Android Fragments} in a Qt for Android application.
+
+    However, Qt does offer its own modular components and views with QML. You can combine
+    multiple components in one QML view. For more information, see \l{Qt Qml}.
+
+    If you are integrating \l{Qt Quick for Android} into an Android application, the
+    \l QtQuickView API can be used inside fragments.
+
+
     Qt's vibrant and active \l{https://www.qt.io/developers}{community site}
     houses a wiki, a forum, and additional learning guides and presentations.
 

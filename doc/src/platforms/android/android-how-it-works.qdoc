@@ -93,9 +93,15 @@ and \l {Android: Application}{Application}. These classes are used by default fo
 Android apps and referred to in the Android manifest file. The build system and
 deployment tools take care of including them in the build.
 
-Users can use these classes to change or extend the default behavior. For example,
-to add custom user-defined logic under \l {Android: Activity onCreate()}{onCreate()},
-use the following:
+Users can use these classes to change or extend the default behavior. For example, QtActivity
+extends \c Activity and implements the logic needed to load the Qt libraries or handle events
+and native calls between Android and Qt.
+
+Extending \c QtActivity is generally needed if you need to have Qt's implementation for
+various events and calls between Qt and Android. Otherwise, extending \c Activity should work.
+
+To add custom user-defined logic under \l {Android: Activity onCreate()}{onCreate()},
+you can use the following:
 
 \code
 public class MyActivity extends QtActivity
