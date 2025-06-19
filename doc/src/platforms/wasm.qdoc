@@ -781,23 +781,33 @@ int main(int argc, char **argv)
 }
 \endcode
 
-\section3 Asyncify
+\section3 Asyncify and JSPI
 
-The default build of Qt for WebAssembly does not support reentering the event loop,
-for example by calling QEventLoop::exec() or QDialog::exec(), due to restrictions
-of the web platform.
+The default Qt build for WebAssembly does not support reentering the event loop, such as 
+by calling QEventLoop::exec() or QDialog::exec(), due to web platform restrictions that
+prevent synchronous C++ code from invoking asynchronous JavaScript APIs.
 
-Emscripten's \l{https://emscripten.org/docs/porting/asyncify.html}{asyncify} feature lifts
-these restrictions by allowing synchronous calls (like QEventLoop::exec() and QDialog::exec())
-to yield to the event loop. Nested calls are not supported, and for this reason asyncify is
-not used for the top-level QApplication::exec() call.
-
-Features that require asyncify are:
+Features that require asyncify/JSPI include:
 \list
     \li QDialogs, QMessageBoxes with return values.
     \li Drag and drop (specifically drag).
     \li Nested/secondary event loops exec().
 \endlist
+
+Emscripten provides support for working around these limitations using the
+\l{https://emscripten.org/docs/porting/asyncify.html}{Asyncify} feature. This feature
+is available in two versions:
+
+\list
+    \li Asyncify, implemented via a WebAssembly code post-processing step.
+    \li JSPI, implemented using the WebAssembly \l{https://webassembly.org/features/}{JS Promise Integration} feature.
+\endlist
+
+See the sections below for details on how to enable each option and the trade-offs involved. In brief,
+Asyncify is available today but introduces overhead in the form of longer build times, larger binary sizes,
+and runtime performance costs. JSPI has minimal or no overhead, but it is not yet supported by all browsers.
+
+\section3 Asyncify
 
 Enable asyncify by adding the "-sASYNCIFY -Os" flags to the linker options:
 
@@ -814,16 +824,13 @@ QMAKE_LFLAGS += -sASYNCIFY -Os
 Enabling asyncify adds overhead in the form of increased binary sizes and increased CPU
 usage. Build with optimizations enabled to minimize the overhead.
 
-\section3 Asyncify JSPI (JavaScript Promise Integration)
+\section3 JSPI (JS Promise Integration)
 
-\l{https://v8.dev/blog/jspi}{JSPI} is a new asyncify backend implemented using
-native browser support instead of code transformations. Compared to Emscripten
-asyncify this improves application link times and does not increase code size.
+Unlike Asyncify, using JSPI requires building Qt from source. Pass the
+-feature-wasm-jspi -feature-wasm-exceptions flags to the Qt configure script to enable it.
+(JSPI is not compatible with the default Emscripten emulated exceptions.)
 
-The \l{https://webassembly.org/features/}{JSPI WebAssembly feature} is current
-in the "Implementation" phase, and is not yet standardized.
-
-Enable JSPI by adding the "-sJSPI" flag to the linker options:
+Then, enable JSPI for your application by adding the -sJSPI flag to the linker options:
 
 CMake:
 \badcode
