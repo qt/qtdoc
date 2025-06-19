@@ -39,23 +39,57 @@
       \li The new QRangeModel class provides an implementation of QAbstractItemModel that can
           operate on any C++ range.
       \li {QXmlStreamReader::}{readRawInnerData()} for retrieving the raw inner XML content of an element.
-      \li Error handling API for {QXmlStreamWriter} with {QXmlStreamWriter::}{Error} enum, {QXmlStreamWriter::}{error()}, {QXmlStreamWriter::}{errorString()}, and {QXmlStreamWriter::}{raiseError()} functions.
-      \li {QXmlStreamWriter::}{stopWritingOnError()} property, allowing users to control whether output halts immediately after encountering an error.
+      \li Error handling API for {QXmlStreamWriter} with {QXmlStreamWriter::}{Error} enum,
+          {QXmlStreamWriter::}{error()}, {QXmlStreamWriter::}{errorString()},
+          and {QXmlStreamWriter::}{raiseError()} functions.
+      \li {QXmlStreamWriter::}{stopWritingOnError()} property, allowing users to control
+          whether output halts immediately after encountering an error.
       \li Added \l QFuture::cancelChain() to cancel the entire continuation
           chain using any non-finished QFuture from the chain.
+      \li The new qEnvironmentVariableIntegerValue returns the numerical value of an environment
+          variable, or \c{std::nullopt} if the variable is not set or doesn't hold an integer.
+      \li QFileInfo::isOther() returns true for file system entries that are neither a directory,
+          regular file, or symbolic link.
+      \li Added QSortFilterProxyModel::endFilterChange() taking a
+          \l{QSortFilterProxyModel::}{Direction} parameter, to balance a previous call to
+          \l{QSortFilterProxyModel::}{endFilterChange()}. These APIs replace
+          \l{QSortFilterProxyModel::}{invalidateFilter()}, which will be deprecated starting from
+          Qt 6.13.
+      \li Two new overloads of QMetaObject::connect() make it possible to connect the
+          QMetaMethod of a signal to a slot function or lambda.
+      \li QCBorValue::toStringView() and QJsonValue::toStringView() return a view of the
+          string stored in the value, without any allocations.
+      \li Use \l{QDataStream::operator bool()} and \l{QTextStream::operator bool()}
+          to check whether the stream is in an error state.
+      \li Use \l{QByteArray::}{nullTerminate()} to add a null terminator to a
+          QByteArray or QString, e.g. after constructing them via
+          \l{QByteArray::fromRawData()}. Test whether the array or string is null
+          terminated with \l{QByteArray::}{isNullTerminated()}.
+      \li QByteArray can now implicitly convert to a \l{QByteArray::operator std::string_view()}
+          {std::string_view}.
+    \endlist
+
+    \section2 Qt Dbus Module
+    \list
+      \li QDBusConnectionInterface::serviceCredentials() returns the connection
+          credentials for the process currently holding the specified bus service.
     \endlist
 
     \section2 Qt Graphs Module
     \list
       \li Filled surface graph type added: \l{QSurface3DSeries::DrawFlag::DrawFilledSurface}{DrawFilledSurface}
       \li Text elide support for 2D axes added: \l{QAbstractAxis::textElide}
-      \li Pie slice label hiding support for small sized slices added: \l{QPieSeries::angleSpanVisibleLimit}, \l{QPieSeries::angleSpanVisibleMode}, \l{QPieSeries::VisibleMode}
+      \li Pie slice label hiding support for small sized slices added:
+          \l{QPieSeries::angleSpanVisibleLimit}, \l{QPieSeries::angleSpanVisibleMode}, \l{QPieSeries::VisibleMode}
       \li Multi-axis support for 2D graphs added: \l{QAbstractSeries::axisX}, \l{QAbstractSeries::axisY}
       \li Hover support for 2D series added: \l{QAbstractSeries::isHovered}
       \li Support for controlling plot area clipping in 2D graphs added: \l{QGraphsView::clipPlotArea}
       \li Support for querying data point coordinates in LineSeries added: \l{QLineSeries::getDataPointCoordinates}
-      \li Support for rendering a slice into an image in Bars3D and Surface3D added: \l{Q3DBarsWidgetItem::renderSliceToImage}, \l{Q3DSurfaceWidgetItem::renderSliceToImage}, \l{QtGraphs3D::SliceType}
-      \li \l{Bars3DNode}, \l{Scatter3DNode}, and \l{Surface3DNode} for adding 3D graphs in QtQuick3D applications inside View3Ds added
+      \li Support for rendering a slice into an image in Bars3D and Surface3D added:
+          \l{Q3DBarsWidgetItem::renderSliceToImage}, \l{Q3DSurfaceWidgetItem::renderSliceToImage},
+          \l{QtGraphs3D::SliceType}
+      \li Added \l{Bars3DNode}, \l{Scatter3DNode}, and \l{Surface3DNode} for
+          adding 3D graphs in QtQuick3D applications inside View3Ds
       \li Graph draw ordering support for 2D graphs added: \l{QAbstractSeries::drawOrder}
       \li Option to set timezone for DateTimeAxis added: \l{QDateTimeAxis::timeZone}
       \li Categorized logging support added
@@ -67,12 +101,20 @@
 
     \section2 Qt GUI Module
     \list
-        \li Added support for detecting if the system has enabled a setting for increased
-            contrast. The \l {QAccessibilityHints::}{contrastPreference} property can be used
-            to read the system wide setting.
+        \li QStyleHints::accessibility provides access to user accessibility
+            preferences, such as whether the system has enabled a setting for increased
+            contrast.
+        \li Added \l {QAccessibilityHints} to access individual accessibility
+            settings.
         \li QRhi: Added support for enumerating 3D graphics adapters (physical devices),
             when running on Direct 3D 11, 12, or Vulkan, via the \l{QRhi::}{enumerateAdapters()}
             function.
+        \li Added QSurfaceFormat::setColorComponentType() to allow requesting a
+            floating-point color buffer.
+        \li QPainterPath::setCachingEnabled() can be used to turn on the caching
+            of calculated values, increasing performance for certain operations
+            at the expense of additional memory use.
+        \li Added QPainterPath::trimmed() to return a section of the path.
     \endlist
 
     \section2 Qt HttpServer Module
@@ -177,6 +219,14 @@
     \list
       \li Added support for increased contrast mode for the fusion, macOS, and Windows 11
           widgets styles.
+      \li Default editor event handling in item views has moved into the new
+          \l{QAbstractItemDelegate::handleEditorEvent()} function, which custom
+          event handlers can use to continue with standard event handling.
+      \li Use \l{QListWidget::}{setSupportedDragActions()} in QListWidget,
+          QTableWidget, and QTreeWidget to change the supported drag actions.
+      \li The new QLayout::horizontalSizeConstraint and
+          QLayout::horizontalSizeConstraint properties allow individually setting
+          the horizontal and vertical size constraints of the widget.
     \endlist
 
     \section2 Qt XML Module
@@ -232,9 +282,11 @@
 
     \section3 macOS
     \list
-      \li Windows that opt into extended dynamic range (EDR) now trigger expose event on screen brightness change
+      \li Windows that opt into extended dynamic range (EDR) now trigger expose
+          event on screen brightness change
       \li The titleUIElement accessibility property is now supported
       \li Service menu integration is now rich-text aware
+      \li QOperatingSystemVersion::MacOSTahoe represents macOS 26
     \endlist
 
     \section3 Wayland Client on Linux
@@ -252,7 +304,8 @@
       \li Added QPointingDevice support for Apple Pencil
       \li Fixed rotation for standard Apple Pencil
       \li Added support for hover feature for Apple Pencil 2nd gen or later
-      \li Windows that opt into extended dynamic range (EDR) now trigger expose event on screen brightness change
+      \li Windows that opt into extended dynamic range (EDR) now trigger expose
+          event on screen brightness change
       \li Update requests will now be paused when the app moves out of active state
       \li QScreen now also reports inverted screen orientations
       \li RLIMIT_STACK now reflects the effective stack size
