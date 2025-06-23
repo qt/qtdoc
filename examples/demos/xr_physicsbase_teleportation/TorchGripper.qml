@@ -12,7 +12,7 @@ Node {
 
     XrInputAction {
         id: action
-        actionId: [XrInputAction.SqueezeValue]
+        actionId: [XrInputAction.SqueezeValue, XrInputAction.SqueezePressed]
         onValueChanged: {
             if (gripper.torchBody) {
                 if (value > 0.5) {
