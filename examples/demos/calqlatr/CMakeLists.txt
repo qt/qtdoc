@@ -55,12 +55,19 @@ if(ANDROID)
     endif()
 endif()
 
-if(IOS)
-    set(asset_catalog_path "ios/Assets.xcassets")
-    target_sources(calqlatr PRIVATE "${asset_catalog_path}")
-    set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    set_target_properties(calqlatr
-        PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+if(APPLE)
+    set_target_properties(calqlatr PROPERTIES
+        OUTPUT_NAME "Calqlatr"
+        MACOSX_BUNDLE_BUNDLE_NAME "Calqlatr"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.calqlatr"
+    )
+    if(IOS)
+        set(asset_catalog_path "ios/Assets.xcassets")
+        target_sources(calqlatr PRIVATE "${asset_catalog_path}")
+        set_source_files_properties(${asset_catalog_path} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+        set_target_properties(calqlatr
+            PROPERTIES XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon)
+    endif()
 endif()
 
 install(TARGETS calqlatr
