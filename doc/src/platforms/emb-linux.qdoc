@@ -715,6 +715,99 @@
     }
   \endcode
 
+  \section3 EGLFS hot-plug and hot-reload
+
+  If a KMS-configuration-file is set via \c QT_QPA_EGLFS_KMS_CONFIG,
+  the referenced file will be watched by a QFileSystemWatcher.
+  Any changes to this file will trigger it to be re-read and cause appropriate updates.
+  e.g. layout changes, mode changes, turning screens on/off.
+
+  In a similar fashion, but strictly opt-in, \c QT_QPA_EGLFS_HOTPLUG_ENABLED
+  can be set and will enable a QDeviceDiscovery to watch the KMS-device for any changes
+  like screens connected/plugged-in and disconnected/unplugged.
+
+  Both features can and will often be used in parallel.
+
+  To properly facilitate the dynamic changes that are triggered by hot-plug and hot-reload,
+  it is important to react by creating and destroying windows in the respective
+  appearing and disappearing screens.
+
+  Example code:
+  \badcode
+    #include <QGuiApplication>
+    #include <QQuickView>
+    #include <QQuickItem>
+    #include <QScreen>
+    #include <QQmlContext>
+
+    QHash<QString, QQuickView*> screenNameToViewMap;
+
+    int main(int argc, char* argv[])
+    {
+        QGuiApplication app(argc,argv);
+        app.setQuitOnLastWindowClosed(false);
+
+        auto lRemove = [&](QScreen *screen) {
+            if (screen->name().compare(QStringLiteral("qt_Headless")) == 0)
+                return;
+
+            if (!screenNameToViewMap.contains(screen->name()))
+                return;
+
+            QQuickView *view = screenNameToViewMap.take(screen->name());
+            delete view;
+        };
+
+        auto lAdd = [&](QScreen *screen) {
+            if (screen->handle() == nullptr)
+                return;
+
+            if (screen->name().compare(QStringLiteral("qt_Headless")) == 0)
+                return;
+
+            if (screenNameToViewMap.contains(screen->name()))
+                return;
+
+            QQuickView *view = new QQuickView;
+
+            view->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+            view->setScreen(screen);                    // This is not as important as the next line, but good practice
+            view->setGeometry(screen->geometry());      // This is vital! Otherwise QWindow::show (/QWindowPrivate::create) will change the screen!
+            view->show();
+
+            screenNameToViewMap.insert(screen->name(), view);
+        };
+
+        QObject::connect(&app, &QGuiApplication::screenAdded, &app, lAdd, Qt::QueuedConnection);
+        QObject::connect(&app, &QGuiApplication::screenRemoved, &app, lRemove);
+
+        for (QScreen *screen : app.screens())
+            lAdd(screen);
+
+        return app.exec();
+    }
+  \endcode
+
+  Please note in above example the line regarding QWindow::setGeometry,
+  this is crucial for windows to appear on the screen they are meant to!
+
+  As the same signals exist for QML as well, equivalent code can be written in QML as well.
+
+  Especially for \c QT_QPA_EGLFS_HOTPLUG_ENABLED it is vital to adopt your code,
+  as some screens will act as if disconnected when turned off.
+  Without this feature enabled, neither Qt nor the application level code will be
+  notified about disconnects. All the backend resources will usually just stay intact
+  and therefor the screen will re-appear as if nothing happened.
+  With \c QT_QPA_EGLFS_HOTPLUG_ENABLED, the Qt's resources on the screen
+  (e.g. QScreen, QPlatformScreen, backing-store,..)
+  will be destroyed and will be recreated on connect (e.g. turning the screen back on).
+  And so, the application level resources (e.g. QWindow) need to be recreated as well.
+
+  The fallback screen called "qt_Headless" is there to facilitate any switches to
+  and from a zero-screen configurations. For application level windows,
+  this screen can and should in most cases be ignored.
+
+
   \section2 EGLFS with an eglfs_kms_egldevice backend
 
   This backend, typically used on Tegra devices, is similar to the KMS/DRM
