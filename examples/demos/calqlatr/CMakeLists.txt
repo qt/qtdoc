@@ -70,6 +70,10 @@ if(APPLE)
     endif()
 endif()
 
+if(WIN32)
+    target_sources(calqlatr PRIVATE windows/calqlatr.rc)
+endif()
+
 install(TARGETS calqlatr
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
