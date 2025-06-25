@@ -128,6 +128,12 @@
             \l{https://signalsmith-audio.co.uk/code/stretch/}{Signalsmith Stretch library}.
             The behavior can be customized via the \l {QMediaPlayer::}{pitchCompensation}
             property.
+        \li \l {QCapturableWindow} can now be constructed from \l {QWindow} in both C++ and QML.
+        \li Added a new class \l {QPlaybackOptions} that allows users to control
+            low-level FFmpeg media playback options, for example, playback intent,
+            network timeout, and probe size.
+        \li In \l {QAudioSink} and \l {QAudioSource}, added methods that allow users
+            to operate with the underlying audio buffer in frame count instead of byte count.
     \endlist
 
     \section2 Qt Network Module
