@@ -4,7 +4,11 @@ project(qtjenny_consumer VERSION 0.1 LANGUAGES CXX)
 
 #! [0]
 if (ANDROID)
-    set (gradlew_cmd "./gradlew")
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+        set (gradlew_cmd "gradlew.bat")
+    else()
+         set (gradlew_cmd "./gradlew")
+    endif()
     set (gradlew_arg "--rerun-tasks")
     set (gradlew_task "kaptReleaseKotlin")
     execute_process(COMMAND ${gradlew_cmd} ${gradlew_arg} ${gradlew_task}
