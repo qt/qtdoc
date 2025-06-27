@@ -73,11 +73,7 @@
     There is another file in the \c content directory called \c BackSpaceButton.qml, this is
     a special case of the \c CalculatorButton where we would like to render an image onto the
     button, rather than use text. This button is the same as an \c OperatorButton, but
-    includes an \c icon rather than \c text:
-
-    \quotefromfile demos/calqlatr/content/BackspaceButton.qml
-    \skipto icon.source:
-    \printto }
+    includes an \c icon rather than \c text.
 
     \section1 Responsive Layouts
 
