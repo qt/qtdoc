@@ -18,70 +18,79 @@ Item {
     property bool enteringDigits: false
 
     function displayOperator(operator) {
-        calculationsListView.model.append({ "operator": operator, "operand": "" })
-        enteringDigits = true
-        calculationsListView.positionViewAtEnd()
+        calculationsListView.model.append({
+                                              "operator": operator,
+                                              "operand": ""
+                                          });
+        enteringDigits = true;
+        calculationsListView.positionViewAtEnd();
     }
 
     function newLine(operator, operand) {
-        displayedOperand = displayNumber(operand)
-        calculationsListView.model.append({ "operator": operator, "operand": displayedOperand })
-        enteringDigits = false
-        calculationsListView.positionViewAtEnd()
+        displayedOperand = displayNumber(operand);
+        calculationsListView.model.append({
+                                              "operator": operator,
+                                              "operand": displayedOperand
+                                          });
+        enteringDigits = false;
+        calculationsListView.positionViewAtEnd();
     }
 
     function appendDigit(digit) {
         if (!enteringDigits)
-            calculationsListView.model.append({ "operator": "", "operand": "" })
-        const i = calculationsListView.model.count - 1
-        calculationsListView.model.get(i).operand = calculationsListView.model.get(i).operand + digit
-        enteringDigits = true
-        calculationsListView.positionViewAtEnd()
+            calculationsListView.model.append({
+                                                  "operator": "",
+                                                  "operand": ""
+                                              });
+        const i = calculationsListView.model.count - 1;
+        calculationsListView.model.get(i).operand = calculationsListView.model.get(i).operand
+                + digit;
+        enteringDigits = true;
+        calculationsListView.positionViewAtEnd();
     }
 
     function setDigit(digit) {
-        const i = calculationsListView.model.count - 1
-        calculationsListView.model.get(i).operand = digit
-        calculationsListView.positionViewAtEnd()
+        const i = calculationsListView.model.count - 1;
+        calculationsListView.model.get(i).operand = digit;
+        calculationsListView.positionViewAtEnd();
     }
 
     function backspace() {
-        const i = calculationsListView.model.count - 1
+        const i = calculationsListView.model.count - 1;
         if (i >= 0) {
-            let operand = calculationsListView.model.get(i).operand.toString().slice(0, -1)
+            let operand = calculationsListView.model.get(i).operand.toString().slice(0, -1);
             if (operand === "-")
-                operand = ""
-            calculationsListView.model.get(i).operand = operand
-            return
+                operand = "";
+            calculationsListView.model.get(i).operand = operand;
+            return;
         }
-        return
+        return;
     }
 
     function isOperandEmpty() {
-        const i = calculationsListView.model.count - 1
-        return i >= 0 ? calculationsListView.model.get(i).operand === "" : true
+        const i = calculationsListView.model.count - 1;
+        return i >= 0 ? calculationsListView.model.get(i).operand === "" : true;
     }
 
     function isDisplayEmpty() {
-        const i = calculationsListView.model.count - 1
-        return i == -1 ? true : (i == 0 ? calculationsListView.model.get(0).operand === ""  : false)
+        const i = calculationsListView.model.count - 1;
+        return i == -1 ? true : (i == 0 ? calculationsListView.model.get(0).operand === "" : false);
     }
 
     function clear() {
-        displayedOperand = ""
+        displayedOperand = "";
         if (enteringDigits) {
-            const i = calculationsListView.model.count - 1
+            const i = calculationsListView.model.count - 1;
             if (i >= 0)
-                calculationsListView.model.remove(i)
-            enteringDigits = false
+                calculationsListView.model.remove(i);
+            enteringDigits = false;
         }
     }
 
-    function allClear()
-    {
-        display.clear()
-        calculationsListView.model.clear()
-        enteringDigits = false
+    function allClear() {
+        display.clear();
+        calculationsListView.model.clear();
+        enteringDigits = false;
     }
 
     // Returns a string representation of a number that fits in
@@ -89,14 +98,14 @@ Item {
     // as possible. If the number cannot be displayed, returns an
     // error string.
     function displayNumber(num) {
-        if (typeof(num) !== "number")
-            return errorString
+        if (typeof (num) !== "number")
+            return errorString;
 
         // deal with the absolute
-        const abs = Math.abs(num)
+        const abs = Math.abs(num);
 
         if (abs.toString().length <= maxDigits) {
-            return isFinite(num) ? num.toString() : errorString
+            return isFinite(num) ? num.toString() : errorString;
         }
 
         if (abs < 1) {
@@ -104,25 +113,24 @@ Item {
             // if it isn't true, we can round the number without losing
             // too much precision
             if (Math.floor(abs * 100000) === 0) {
-                const expVal = num.toExponential(maxDigits - 6).toString()
+                const expVal = num.toExponential(maxDigits - 6).toString();
                 if (expVal.length <= maxDigits + 1)
-                    return expVal
-
+                    return expVal;
             } else {
                 // the first two digits are zero and .
-                return num.toFixed(maxDigits - 2)
+                return num.toFixed(maxDigits - 2);
             }
         } else {
             // if the integer part of num is greater than maxDigits characters, use exp form
-            const intAbs = Math.floor(abs)
+            const intAbs = Math.floor(abs);
             if (intAbs.toString().length <= maxDigits)
-                return parseFloat(num.toPrecision(maxDigits - 1)).toString()
+                return parseFloat(num.toPrecision(maxDigits - 1)).toString();
 
-            const expVal = num.toExponential(maxDigits - 6).toString()
+            const expVal = num.toExponential(maxDigits - 6).toString();
             if (expVal.length <= maxDigits + 1)
-                return expVal
+                return expVal;
         }
-        return errorString
+        return errorString;
     }
 
     Item {
@@ -161,7 +169,7 @@ Item {
                         color: "white"
                     }
                 }
-                model: ListModel { }
+                model: ListModel {}
                 onHeightChanged: positionViewAtEnd()
             }
         }

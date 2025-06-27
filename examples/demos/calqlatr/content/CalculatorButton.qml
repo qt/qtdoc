@@ -21,28 +21,28 @@ RoundButton {
 
     function getBackgroundColor() {
         if (button.dimmable && button.dimmed)
-            return backgroundColor
+            return backgroundColor;
         if (button.pressed)
-            return accentColor
-        return backgroundColor
+            return accentColor;
+        return backgroundColor;
     }
 
     function getBorderColor() {
         if (button.dimmable && button.dimmed)
-            return borderColor
+            return borderColor;
         if (button.pressed || button.hovered)
-            return accentColor
-        return borderColor
+            return accentColor;
+        return borderColor;
     }
 
     function getTextColor() {
         if (button.dimmable && button.dimmed)
-            return Qt.darker(textColor)
+            return Qt.darker(textColor);
         if (button.pressed)
-            return backgroundColor
+            return backgroundColor;
         if (button.hovered)
-            return accentColor
-        return textColor
+            return accentColor;
+        return textColor;
     }
 
     background: Rectangle {

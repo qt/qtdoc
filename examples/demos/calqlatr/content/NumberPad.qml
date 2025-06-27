@@ -20,26 +20,27 @@ Item {
     property int portraitModeWidth: mainGrid.width
     property int landscapeModeWidth: scientificGrid.width + mainGrid.width
 
-    function updateDimmed(){
-        for (let i = 0; i < mainGrid.children.length; i++){
-            mainGrid.children[i].dimmed = root.isButtonDisabled(mainGrid.children[i].text)
+    function updateDimmed() {
+        for (let i = 0; i < mainGrid.children.length; i++) {
+            mainGrid.children[i].dimmed = root.isButtonDisabled(mainGrid.children[i].text);
         }
-        for (let j = 0; j < scientificGrid.children.length; j++){
-            scientificGrid.children[j].dimmed = root.isButtonDisabled(scientificGrid.children[j].text)
+        for (let j = 0; j < scientificGrid.children.length; j++) {
+            scientificGrid.children[j].dimmed = root.isButtonDisabled(
+                        scientificGrid.children[j].text);
         }
     }
 
     component DigitButton: CalculatorButton {
         onReleased: {
-            root.digitPressed(text)
-            updateDimmed()
+            root.digitPressed(text);
+            updateDimmed();
         }
     }
 
     component OperatorButton: CalculatorButton {
         onReleased: {
-            root.operatorPressed(text)
-            updateDimmed()
+            root.operatorPressed(text);
+            updateDimmed();
         }
         textColor: controller.qtGreenColor
         implicitWidth: 48
