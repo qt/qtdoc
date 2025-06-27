@@ -26,39 +26,39 @@ RoundButton {
 
     function getBackgroundColor() {
         if (button.dimmable && button.dimmed)
-            return backgroundColor
+            return backgroundColor;
         if (button.pressed)
-            return backspaceRedColor
-        return backgroundColor
+            return backspaceRedColor;
+        return backgroundColor;
     }
 
     function getBorderColor() {
         if (button.dimmable && button.dimmed)
-            return borderColor
+            return borderColor;
         if (button.pressed || button.hovered)
-            return backspaceRedColor
-        return borderColor
+            return backspaceRedColor;
+        return borderColor;
     }
 
     function getIconColor() {
         if (button.dimmable && button.dimmed)
-            return Qt.darker(backspaceRedColor)
+            return Qt.darker(backspaceRedColor);
         if (button.pressed)
-            return backgroundColor
-        return backspaceRedColor
+            return backgroundColor;
+        return backspaceRedColor;
     }
 
     function getIcon() {
         if (button.dimmable && button.dimmed)
-            return "images/backspace.svg"
+            return "images/backspace.svg";
         if (button.pressed)
-            return "images/backspace_fill.svg"
-        return "images/backspace.svg"
+            return "images/backspace_fill.svg";
+        return "images/backspace.svg";
     }
 
     onReleased: {
-        root.operatorPressed("bs")
-        updateDimmed()
+        root.operatorPressed("bs");
+        updateDimmed();
     }
 
     background: Rectangle {
