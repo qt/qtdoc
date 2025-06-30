@@ -9,7 +9,7 @@ using namespace Qt::StringLiterals;
 
 void Translator::setLanguage(QLocale::Language lang)
 {
-    s_trLocale = QLocale(lang);
+    m_trLocale = QLocale(lang);
 }
 
 void Translator::install()
@@ -21,13 +21,13 @@ void Translator::install()
     if (!m_translator.isEmpty())
         qApp->removeTranslator(&m_translator);
 
-    if (m_translator.load(s_trLocale, m_baseName, "_"_L1, ":/i18n/"_L1)
+    if (m_translator.load(m_trLocale, m_baseName, "_"_L1, ":/i18n/"_L1)
         && qApp->installTranslator(&m_translator)) {
         qInfo() << "Loaded translation" << m_translator.filePath();
     } else {
-        if (s_trLocale.language() != QLocale::English) {
+        if (m_trLocale.language() != QLocale::English) {
             qWarning() << "Failed to load translation" << m_baseName <<
-                    "for locale" << s_trLocale.name() << ". Falling back to English translation";
+                    "for locale" << m_trLocale.name() << ". Falling back to English translation";
             setLanguage(QLocale::English);
         }
     }

@@ -19,7 +19,7 @@ public:
 private:
     QTranslator m_translator;
     QString m_baseName;
-    inline static QLocale s_trLocale;
+    QLocale m_trLocale;
 };
 
 #endif // TRANSLATOR_H
