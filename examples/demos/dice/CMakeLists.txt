@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.14)
 set(appname "qtdice")
-project(${appname} LANGUAGES CXX)
+project(Dice LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics Multimedia Sensors)
 

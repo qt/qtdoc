@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(MediaPlayerApp LANGUAGES CXX)
+project(MediaPlayer LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

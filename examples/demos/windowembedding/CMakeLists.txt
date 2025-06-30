@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(windowembedding LANGUAGES CXX)
+project(WindowEmbeddingExample LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Gui Widgets Quick)
 
