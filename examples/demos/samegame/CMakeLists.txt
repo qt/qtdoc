@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(samegame LANGUAGES CXX)
+project(SameGame LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 

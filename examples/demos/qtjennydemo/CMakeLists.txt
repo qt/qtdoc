@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(qtjenny_consumer VERSION 0.1 LANGUAGES CXX)
+project(QtJenny VERSION 0.1 LANGUAGES CXX)
 
 #! [0]
 if (ANDROID)

@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 
-project(ToDoListApp LANGUAGES CXX)
+project(ToDoList LANGUAGES CXX)
 
 find_package(Qt6 6.5 COMPONENTS Gui Qml Quick QuickControls2)
 

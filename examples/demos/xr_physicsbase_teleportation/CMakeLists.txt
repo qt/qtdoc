@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.14)
-project(xr_physicsbase_teleportation LANGUAGES CXX)
+project(XRPhysicsBaseTeleportationDemo LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 

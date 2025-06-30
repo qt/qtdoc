@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-project(ThermostatApp LANGUAGES CXX)
+project(Thermostat LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Gui Qml Quick QuickControls2 Svg Charts)
 
