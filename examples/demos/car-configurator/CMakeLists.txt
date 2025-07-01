@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.19)
 
 option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
 
-project(CarConfigurator LANGUAGES CXX)
+project(CarConfigurator VERSION 1.0 LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS
              Core
@@ -52,6 +52,17 @@ if (ANDROID)
     include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
 
     add_android_openssl_libraries(carconfigurator)
+endif()
+
+if(APPLE)
+    set_target_properties(carconfigurator PROPERTIES
+        OUTPUT_NAME "Car Configurator"
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_NAME "Car Configurator"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.examples.carconfigurator"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    )
 endif()
 
 install(TARGETS carconfigurator
