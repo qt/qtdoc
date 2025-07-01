@@ -7,6 +7,7 @@ import QtQuick.Controls.Material
 
 Text {
     required property int modelData
+    required property int index
     text: modelData
     color: Tumbler.tumbler.Material.foreground
     font: Tumbler.tumbler.font
