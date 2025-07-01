@@ -1,8 +1,11 @@
+# Copyright (C) 2023 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 cmake_minimum_required(VERSION 3.19)
 
 option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
 
-project(CarRenderingApp LANGUAGES CXX)
+project(CarConfigurator LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS
              Core
@@ -15,18 +18,18 @@ find_package(Qt6 REQUIRED COMPONENTS
 
 qt_standard_project_setup(REQUIRES 6.8)
 
-qt_add_executable(CarRenderingApp
+qt_add_executable(carconfigurator
     src/main.cpp
     src/app_environment.h
 )
 
-qt_add_resources(CarRenderingApp "configuration"
+qt_add_resources(carconfigurator "configuration"
     PREFIX "/"
     FILES
         qtquickcontrols2.conf
 )
 
-target_link_libraries(CarRenderingApp PRIVATE
+target_link_libraries(carconfigurator PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
@@ -35,9 +38,9 @@ target_link_libraries(CarRenderingApp PRIVATE
     Qt6::Svg
 )
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/buildsetup.cmake)
-include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules.cmake)
-include(${CMAKE_CURRENT_SOURCE_DIR}/qmlcomponents.cmake)
+include(buildsetup.cmake)
+include(qmlmodules.cmake)
+include(qmlcomponents.cmake)
 
 if (ANDROID)
     FetchContent_Declare(
@@ -48,17 +51,17 @@ if (ANDROID)
     FetchContent_MakeAvailable(android_openssl)
     include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
 
-    add_android_openssl_libraries(CarRenderingApp)
+    add_android_openssl_libraries(carconfigurator)
 endif()
 
-install(TARGETS CarRenderingApp
+install(TARGETS carconfigurator
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 qt_generate_deploy_qml_app_script(
-    TARGET CarRenderingApp
+    TARGET carconfigurator
     OUTPUT_SCRIPT deploy_script
     MACOS_BUNDLE_POST_BUILD
     NO_UNSUPPORTED_PLATFORM_ERROR

@@ -17,7 +17,7 @@ Window {
     visibility: Qt.platform.os === 'android' ? Window.FullScreen : Window.AutomaticVisibility
 
     visible: true
-    title: "CarRendering"
+    title: "Car Configurator"
 
     property url downloadBase
 

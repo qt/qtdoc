@@ -13,7 +13,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(ds)
 FetchContent_MakeAvailable(ds)
 
-target_link_libraries(CarRenderingApp PRIVATE
+target_link_libraries(carconfigurator PRIVATE
     QuickStudioComponentsplugin
     QuickStudioDesignEffectsplugin
     QuickStudioEffectsplugin
