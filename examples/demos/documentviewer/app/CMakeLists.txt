@@ -13,6 +13,8 @@ qt_add_library(abstractviewer
 
 target_compile_definitions(abstractviewer PRIVATE BUILD_ABSTRACTVIEWER_LIB)
 
+set(CMAKE_AUTORCC ON)
+
 qt_add_executable(documentviewer
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
