@@ -148,6 +148,10 @@
             the QML file and works with TreeView.
         \li Added SortFilterProxyModel QML type to sort and filter model data.
             This feature is in tech preview.
+        \li Added the delegateModelAccess property to DelegateModel and all views. You can now
+            write through required properties into the model.
+        \li Added the Synchronizer QML type. Synchronizer keeps two or more properties in sync
+            without using bindings. This feature is in tech preview.
     \endlist
 
     \section2 Qt Quick Module
