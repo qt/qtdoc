@@ -11,6 +11,32 @@
     Changes in Qt and \l{Third-Party Code Used in Qt}{Third Party Modules}
     released with Qt that are relevant to licensing.
 
+    \section1 Qt 6.10.0
+
+    \section2 Qt Core Module
+
+    \list
+        \li Updated \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} to v47.
+        \li \l{doubleconversion}{double-conversion} is up to date with version 3.3.1.
+        \li Updated \l{tika-mimetypes}{Apache Tika MimeType Definitions} to
+            upstream SHA1 dbcbb368e0a913e1a74cca61347fd6ce24bc6d7e.
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 8.14.0
+            and its plugin was updated to 8.10.1.
+    \endlist
+
+    \section2 Qt Network Module
+
+    \list
+        \li \l{psl-data}{The Public Suffix List} was updated to upstream version
+            2025-06-16_09-45-02_UTC.
+    \endlist
+
+    \section2 Qt Testlib Module
+
+    \list
+        \li Updated \l{valgrind}{Valgrind} to version 3.25.1.
+    \endlist
+
     \section1 Qt 6.9.1
 
     \section2 Qt GUI Module
