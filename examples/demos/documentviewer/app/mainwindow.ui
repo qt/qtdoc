@@ -131,8 +131,7 @@
   </widget>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/open.png</normaloff>:/demos/documentviewer/images/open.png</iconset>
+    <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
    </property>
    <property name="text">
     <string>Open</string>
@@ -143,8 +142,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about" resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/help-about.svgz</normaloff>:/demos/documentviewer/images/help-about.svgz</iconset>
+    <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
    </property>
    <property name="text">
     <string>about documentviewer</string>
@@ -158,8 +156,7 @@
   </action>
   <action name="actionForward">
    <property name="icon">
-    <iconset resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/go-next.svgz</normaloff>:/demos/documentviewer/images/go-next.svgz</iconset>
+    <iconset theme="QIcon::ThemeIcon::GoNext"/>
    </property>
    <property name="text">
     <string>actionForward</string>
@@ -173,8 +170,7 @@
   </action>
   <action name="actionBack">
    <property name="icon">
-    <iconset resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/go-previous.svgz</normaloff>:/demos/documentviewer/images/go-previous.svgz</iconset>
+    <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
    </property>
    <property name="text">
     <string>actionBack</string>
@@ -191,8 +187,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset theme="document-print" resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/print2x.png</normaloff>:/demos/documentviewer/images/print2x.png</iconset>
+    <iconset theme="QIcon::ThemeIcon::DocumentPrint"/>
    </property>
    <property name="text">
     <string>Print</string>
@@ -222,8 +217,7 @@
   </action>
   <action name="actionRecent">
    <property name="icon">
-    <iconset resource="documentviewer.qrc">
-     <normaloff>:/demos/documentviewer/images/document-open-recent.svgz</normaloff>:/demos/documentviewer/images/document-open-recent.svgz</iconset>
+    <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
    </property>
    <property name="text">
     <string>Recently opened...</string>
