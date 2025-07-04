@@ -401,6 +401,17 @@
 
     This will give the full screen window a 1-pixel border, thus enabling the
     other top level windows to appear on top.
+
+    \section1 OLE Initialization
+
+    Qt uses \l {OLE} on Windows to be able to support functionality like dragging or clipboard
+    access. To use OLE, Qt has to call \l {OleInitialize}. This in turn will set the thread's
+    concurrency model to \c{COINIT_APARTMENTTHREADED}.
+
+    Calling \c{CoInitializeEx} or \c{winrt::init_apartment} on the UI thread and specifying a
+    concurrency model other than single-threaded apartment (\c{COINIT_APARTMENTTHREADED} or
+    \c{winrt::apartment_type::single_threaded}, respectively) might lead to bugs or application
+    hangs.
 */
 
 /*!
