@@ -225,6 +225,13 @@
   \c{qt.qpa.input=true}. This is useful for detecting which device is being used, or for
   troubleshooting device discovery issues.
 
+  For more detailed logging of input subsystems (mouse, keyboard, touch),
+  enable all input-related logging categories with:
+
+  \code
+  export QT_LOGGING_RULES="qt.qpa.input.*=true;qt.qpa.events=true"
+  \endcode
+
   \section2 Use Custom Mouse Cursor Images
 
   \c eglfs comes with its own set of 32x32-sized mouse cursor images. If these are insufficient,
