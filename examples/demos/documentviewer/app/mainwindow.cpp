@@ -66,7 +66,8 @@ void MainWindow::onActionSwitchLanguage(QLocale::Language lang)
     m_translator.setLanguage(lang);
     m_translator.install();
     ui->retranslateUi(this);
-    m_viewer->updateTranslation();
+    if (m_viewer)
+        m_viewer->updateTranslation();
     statusBar()->clearMessage();
 }
 
