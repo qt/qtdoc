@@ -73,16 +73,6 @@ void JsonViewer::setupJsonUi()
     a->setPriority(QAction::LowPriority);
     a->setShortcut(QKeySequence::New);
 
-    if (!m_searchKey)
-        m_searchKey = new QLineEdit(tb);
-
-    auto *label = new QLabel(tb);
-    const QPixmap magnifier = QPixmap(":/icons/images/magnifier.png"_L1).scaled(QSize(28, 28));
-    label->setPixmap(magnifier);
-    tb->addWidget(label);
-    tb->addWidget(m_searchKey);
-    connect(m_searchKey, &QLineEdit::textEdited, m_tree, &QTreeView::keyboardSearch);
-
     openJsonFile();
 
     if (m_root.isEmpty())
