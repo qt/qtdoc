@@ -62,16 +62,12 @@ void JsonViewer::setupJsonUi()
     QToolBar *tb = addToolBar(tr("Json Actions"));
 
     const QIcon zoomInIcon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn);
-    QAction *a = menu->addAction(zoomInIcon,  tr("&+Expand all"), m_tree, &QTreeView::expandAll);
+    QAction *a = menu->addAction(zoomInIcon, tr("&+Expand all"), m_tree, &QTreeView::expandAll);
     tb->addAction(a);
-    a->setPriority(QAction::LowPriority);
-    a->setShortcut(QKeySequence::New);
 
     const QIcon zoomOutIcon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut);
-    a = menu->addAction(zoomOutIcon,  tr("&-Collapse all"), m_tree, &QTreeView::collapseAll);
+    a = menu->addAction(zoomOutIcon, tr("&-Collapse all"), m_tree, &QTreeView::collapseAll);
     tb->addAction(a);
-    a->setPriority(QAction::LowPriority);
-    a->setShortcut(QKeySequence::New);
 
     openJsonFile();
 
