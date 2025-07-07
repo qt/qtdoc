@@ -93,12 +93,12 @@
    </property>
    <widget class="QMenu" name="qtFileMenu">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionRecent"/>
     <addaction name="actionPrint"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -142,7 +142,7 @@
     <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
    </property>
    <property name="text">
-    <string>Open</string>
+    <string>&amp;Open</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -198,7 +198,7 @@
     <iconset theme="QIcon::ThemeIcon::DocumentPrint"/>
    </property>
    <property name="text">
-    <string>Print</string>
+    <string>&amp;Print</string>
    </property>
    <property name="toolTip">
     <string>Print current file</string>
@@ -228,21 +228,24 @@
     <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
    </property>
    <property name="text">
-    <string>Recently opened...</string>
+    <string>&amp;Recently opened...</string>
    </property>
    <property name="shortcut">
     <string>Meta+R</string>
    </property>
   </action>
-  <action name="actionQuit">
+  <action name="actionExit">
    <property name="icon">
     <iconset theme="application-exit"/>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>E&amp;xit</string>
+   </property>
+   <property name="iconText">
+    <string>E&amp;xit</string>
    </property>
    <property name="toolTip">
-    <string>Quit the application</string>
+    <string>Exits the application</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -250,12 +253,12 @@
   </action>
   <action name="actionEnglish">
    <property name="text">
-    <string>English</string>
+    <string>&amp;English</string>
    </property>
   </action>
   <action name="actionDeutsch">
    <property name="text">
-    <string>Deutsch</string>
+    <string>&amp;Deutsch</string>
    </property>
   </action>
  </widget>
@@ -264,7 +267,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>actionQuit</sender>
+   <sender>actionExit</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>

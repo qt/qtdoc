@@ -73,8 +73,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="96"/>
-        <source>File</source>
-        <translation>Datei</translation>
+        <source>&amp;File</source>
+        <translation>&amp;Datei</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="105"/>
@@ -93,9 +93,9 @@
         <translation>Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="146"/>
-        <source>Open</source>
-        <translation>Öffnen</translation>
+        <location filename="mainwindow.ui" line="145"/>
+        <source>&amp;Open</source>
+        <translation>&amp;Öffnen</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="149"/>
@@ -105,7 +105,6 @@
     <message>
         <location filename="mainwindow.ui" line="158"/>
         <source>About Document Viewer</source>
-        <oldsource>about documentviewer</oldsource>
         <translation>Über Dokumentenanzeige</translation>
     </message>
     <message>
@@ -150,12 +149,27 @@
         <translation>Links</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="206"/>
-        <source>Print</source>
-        <translation>Drucken</translation>
+        <location filename="mainwindow.ui" line="201"/>
+        <source>&amp;Print</source>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="209"/>
+        <location filename="mainwindow.ui" line="231"/>
+        <source>&amp;Recently opened...</source>
+        <translation>&amp;Zuletzt geöffnet...</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="245"/>
+        <source>E&amp;xit</source>
+        <translation>&amp;Beenden</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="248"/>
+        <source>Exits the application</source>
+        <translation>Beendet die Anwendung</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="204"/>
         <source>Print current file</source>
         <translation>Aktuelle Datei drucken</translation>
     </message>
@@ -180,39 +194,26 @@
         <translation>Strg+I</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="237"/>
-        <source>Recently opened...</source>
-        <translation>Kürzlich geöffnet...</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="240"/>
+        <location filename="mainwindow.ui" line="234"/>
         <source>Meta+R</source>
         <translation>Meta+R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="248"/>
-        <source>Quit</source>
-        <translation>Beenden</translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="251"/>
-        <source>Quit the application</source>
-        <translation>Anwendung beenden</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="254"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="259"/>
-        <source>English</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="256"/>
+        <source>&amp;English</source>
+        <oldsource>English</oldsource>
+        <translation>&amp;Englisch</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
-        <source>Deutsch</source>
-        <translation></translation>
+        <location filename="mainwindow.ui" line="261"/>
+        <source>&amp;Deutsch</source>
+        <oldsource>Deutsch</oldsource>
+        <translation>&amp;Deutsch</translation>
     </message>
     <message numerus="yes">
         <location filename="mainwindow.cpp" line="35"/>
