@@ -4,11 +4,11 @@
 <context>
     <name>MainWindow</name>
     <message numerus="yes">
-        <location filename="../../../../../../../../qtdoc/examples/demos/documentviewer/app/mainwindow.cpp" line="35"/>
+        <location filename="../../../app/mainwindow.cpp" line="35"/>
         <source>%n recent files</source>
         <translation>
-            <numerusform>recent file</numerusform>
-            <numerusform>%n recent Files</numerusform>
+            <numerusform>Recent file</numerusform>
+            <numerusform>%n recent files</numerusform>
         </translation>
     </message>
 </context>
