@@ -58,8 +58,6 @@ private:
     QTreeView *m_tree;
     QListWidget *m_toplevel = nullptr;
     QJsonDocument m_root;
-
-    QPointer<QLineEdit> m_searchKey;
 };
 //! [pluginPrivateMembers]
 
