@@ -92,6 +92,13 @@
           password <Qt Account password>
     \endcode
 
+    \warning This file may contain sensitive information. To prevent other users on the system
+    from reading the password, make sure the file has strict permissions:
+
+    \badcode
+    $ sudo chmod 600 /etc/apt/auth.conf
+    \endcode
+
     \section1 Updating Local Package Cache
 
     Update the local package cache as follows:
