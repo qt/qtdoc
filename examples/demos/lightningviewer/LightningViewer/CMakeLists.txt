@@ -1,11 +1,6 @@
 # Copyright (C) 2024 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-cmake_minimum_required(VERSION 3.16)
-project(LightningViewer LANGUAGES CXX)
-
-set(CMAKE_AUTOMOC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Positioning Quick WebSockets)
 
 set_source_files_properties(LightningViewConfig.qml MapType.qml
@@ -13,7 +8,7 @@ set_source_files_properties(LightningViewConfig.qml MapType.qml
         QT_QML_SINGLETON_TYPE TRUE
 )
 
-qt_add_qml_module(${PROJECT_NAME}
+qt_add_qml_module(LightningViewer
     URI LightningViewer
     VERSION 1.0
     SOURCES
@@ -45,13 +40,13 @@ qt_add_qml_module(${PROJECT_NAME}
         icons/user-location.svg
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(LightningViewer PRIVATE
     Qt6::Positioning
     Qt6::Quick
     Qt6::WebSockets
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS LightningViewer
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewer"
     LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewer"
 )

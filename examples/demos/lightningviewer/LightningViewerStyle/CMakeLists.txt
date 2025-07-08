@@ -2,18 +2,13 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(LightningViewerStyle LANGUAGES CXX)
-
-set(CMAKE_AUTOMOC ON)
-
-find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 set_source_files_properties(Config.qml
     PROPERTIES
         QT_QML_SINGLETON_TYPE TRUE
 )
 
-qt_add_qml_module(${PROJECT_NAME}
+qt_add_qml_module(LightningViewerStyle
     URI LightningViewerStyle
     QML_FILES
         Button.qml
@@ -119,11 +114,11 @@ qt_add_qml_module(${PROJECT_NAME}
         light/images/roundbutton-background-hovered@2x.png
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(LightningViewerStyle PRIVATE
     Qt6::Quick
 )
 
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS LightningViewerStyle
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
     LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
 )

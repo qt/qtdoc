@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(LightningViewerExample VERSION 1.0 LANGUAGES CXX)
+project(LightningViewer VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -13,36 +13,36 @@ qt_standard_project_setup(REQUIRES 6.6)
 add_subdirectory(LightningViewer)
 add_subdirectory(LightningViewerStyle)
 
-qt_add_executable(${PROJECT_NAME} WIN32
+qt_add_executable(lightningviewer WIN32
     main.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(lightningviewer PRIVATE
     Qt6::Quick
     Qt6::QuickControls2
     LightningViewer
     LightningViewerStyle
 )
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    MACOSX_BUNDLE TRUE
-    MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.examples.LightningViewer"
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-)
+if(APPLE)
+    set_target_properties(lightningviewer PROPERTIES
+        OUTPUT_NAME "Lightning Viewer"
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.examples.LightningViewer"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    )
+endif()
 
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS lightningviewer
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 qt_generate_deploy_qml_app_script(
-    TARGET ${PROJECT_NAME}
+    TARGET lightningviewer
     OUTPUT_SCRIPT deploy_script
     MACOS_BUNDLE_POST_BUILD
     NO_UNSUPPORTED_PLATFORM_ERROR
@@ -59,5 +59,5 @@ if (ANDROID)
     )
     FetchContent_MakeAvailable(android_openssl)
     include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
-    add_android_openssl_libraries(LightningViewerExample)
+    add_android_openssl_libraries(lightningviewer)
 endif()
