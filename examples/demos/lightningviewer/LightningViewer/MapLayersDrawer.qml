@@ -120,9 +120,7 @@ Item {
                         text: qsTr("Map Layers")
                         Layout.fillHeight: true
                         verticalAlignment: Qt.AlignVCenter
-                        font.family: "SF Pro Display"
                         font.pixelSize: 16
-                        font.styleName: "normal"
                         font.weight: 700
                         color: "#ABF2CE"
                         rightPadding: 2
@@ -166,10 +164,7 @@ Item {
                                 horizontalAlignment: Qt.AlignHCenter
                                 color: drawer.getTextColor(lightningLayerButton.checked,
                                                            lightningLayerButton.hovered)
-                                font.family: "SF Pro Display"
                                 font.pixelSize: 12
-                                font.styleName: "normal"
-                                font.weight: 400
                             }
                             Item { Layout.fillHeight: true }
                         }
@@ -203,10 +198,7 @@ Item {
                                 horizontalAlignment: Qt.AlignHCenter
                                 color: drawer.getTextColor(distanceButton.checked,
                                                            distanceButton.hovered)
-                                font.family: "SF Pro Display"
                                 font.pixelSize: 12
-                                font.styleName: "normal"
-                                font.weight: 400
                             }
                             Item { Layout.fillHeight: true }
                         }

@@ -91,10 +91,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     color: mapLayersItem.getTextColor(lightningLayerButton.checked,
                                                       lightningLayerButton.hovered)
-                    font.family: "SF Pro Display"
                     font.pixelSize: 12
-                    font.styleName: "normal"
-                    font.weight: 400
                 }
                 Item { Layout.fillHeight: true }
             }
@@ -132,10 +129,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     color: mapLayersItem.getTextColor(distanceButton.checked,
                                                       distanceButton.hovered)
-                    font.family: "SF Pro Display"
                     font.pixelSize: 12
-                    font.styleName: "normal"
-                    font.weight: 400
                 }
                 Item { Layout.fillHeight: true }
             }
