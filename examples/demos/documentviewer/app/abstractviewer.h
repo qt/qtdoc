@@ -7,6 +7,7 @@
 #include "abstractviewerglobal.h"
 
 #include <QObject>
+#include <QLocale>
 #include <QtCompilerDetection>
 
 QT_BEGIN_NAMESPACE
@@ -49,7 +50,7 @@ public:
     virtual bool isDefaultViewer() const;
     virtual void cleanup();
     void setTranslationBaseName(const QString &baseName);
-    void updateTranslation();
+    void updateTranslation(QLocale::Language lang);
     bool isEmpty() const;
     bool isPrintingEnabled() const;
     AbstractViewer *viewer();
