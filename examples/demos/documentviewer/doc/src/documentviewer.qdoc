@@ -19,6 +19,7 @@
             and managing previously opened file history.
         \li Controlling cursor behavior when hovering over widgets.
         \li Creating dynamically loaded plugins.
+        \li Localizing the UI to different languages.
     \endlist
 
     \image documentviewer_open.png
@@ -299,4 +300,132 @@
     \dots
     \skipuntil RecentFiles
     \printline }
+
+    \section1 Translations
+
+    The application's user interface is available in English and German.
+    The default language is auto-selected by Qt: German if the system
+    language is German; otherwise, English. Also, the user can switch
+    the language in the \uicontrol Help > \uicontrol Language menu.
+    Each plugin, as well as the main application, is independently
+    responsible for loading its own translations during runtime.
+
+    \section2 CMake integration
+
+    The top-level CMakeLists.txt declares the shipped languages.
+
+    \quotefromfile demos/documentviewer/CMakeLists.txt
+    \skipto qt_standard_project_setup
+    \printuntil )
+
+    The \c documentviewer target defines the main application. It
+    stores and loads the localized strings for the target in
+    docviewer_de.ts and docviewer_en.ts files. Furthermore,
+    it merges the respective \c{qtbase translations} provided by
+    Qt into the generated translation files, so that
+    also Qt dialogs like the print dialog are properly translated:
+
+    \quotefromfile demos/documentviewer/app/CMakeLists.txt
+    \skipto qt_add_translations(documentviewer
+    \printuntil )
+
+    Each plugin level \c CMakeLists.txt invokes \c qt_add_translations only
+    on that plugin's source files (\c SOURCE_TARGETS).
+    Scoping the translation files to the plugin target prevents re-scanning
+    and retranslating the sources of the main application and other plugins:
+
+    \quotefromfile demos/documentviewer/plugins/txtviewer/CMakeLists.txt
+    \skipto qt_add_translations(txtviewer
+    \printuntil )
+
+    \section2 Translator class
+
+    The \c Translator class is a wrapper around Qt's \l QTranslator that manages
+    internationalization for both the main application and each plugin. Each
+    component (main application and plugins) has its own Translator instance,
+    enabling coordinated language switching across the entire application.
+    At startup or when the user selects a new language, \c Translator::install()
+    is called. This method uses \l QTranslator::load() to load translation files
+    based on the QLocale::uiLanguages() and the basename in the Qt resource system.
+    If no matching translation is found, it falls back to English.
+
+    \quotefromfile demos/documentviewer/app/translator.cpp
+    \skipto void Translator::install
+    \printuntil /^\}/
+
+    \section2 Plugin support
+
+    The \c AbstractViewer base class provides three methods so each plugin can
+    manage its own translation:
+
+    \list
+    \li \c AbstractViewer::setTranslationBaseName(): initializes a \c Translator
+    object, sets its basename, and installs it to load the default translations.
+
+    \quotefromfile demos/documentviewer/app/abstractviewer.cpp
+    \skipto setTranslationBaseName
+    \printuntil }
+
+    \li \c AbstractViewer::updateTranslation(): calls \c install() on the existing
+    Translator to install the new translations, and then calls \c retranslate() to
+    refresh all text.
+
+    \quotefromfile demos/documentviewer/app/abstractviewer.cpp
+    \skipto updateTranslation
+    \printuntil /^\}/
+
+    \li \c AbstractViewer::retranslate(): a virtual method that each plugin implements
+    to retranslate its own UI texts. For instance, as reimplemented in ImageViewer:
+
+    \quotefromfile demos/documentviewer/plugins/imageviewer/imageviewer.cpp
+    \skipto retranslate
+    \printuntil }
+
+    \endlist
+
+    \section2 Application startup
+
+    \list
+    \li \e{Main application}: in \c main.cpp we load the application's translation
+    before showing the window:
+
+    \quotefromfile demos/documentviewer/app/main.cpp
+    \skipto Translator mainTranslator;
+    \printuntil mainTranslator.install();
+
+    \li \e Plugins: each plugin calls \c AbstractViewer::setTranslationBaseName()
+    in its \c init() function to initialize a \l{Translator class}{Translator} with
+    their translation file name and install the translations of the current language.
+
+    \quotefromfile demos/documentviewer/plugins/imageviewer/imageviewer.cpp
+    \skipto ImageViewer::init(
+    \printuntil init
+    \dots
+    \skipto setTranslation
+    \printline setTranslation
+    \dots
+
+    \endlist
+
+    \section2 Runtime language switching
+
+    Runtime language switching can be done in two ways:
+    \list 1
+    \li Using the menu \uicontrol Help > \uicontrol Language:
+        Clicking on the \c QMenu item triggers \c MainWindow::onActionSwitchLanguage(),
+        which will install the new language and retranslate the main application and
+        the plugins:
+        \quotefromfile demos/documentviewer/app/mainwindow.cpp
+        \skipto void MainWindow::onActionSwitchLanguage
+        \printuntil }
+    \li Switching the language of the whole system at runtime:
+        The application can react to this by listening to the events and
+        calling \c MainWindow::onActionSwitchLanguage()
+        on the \c QEvent::LocaleChange event.
+        \quotefromfile demos/documentviewer/app/mainwindow.cpp
+        \skipto void MainWindow::changeEvent
+        \printuntil }
+    \endlist
+
+
 */
