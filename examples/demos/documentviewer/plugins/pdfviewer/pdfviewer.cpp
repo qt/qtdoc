@@ -115,7 +115,6 @@ void PdfViewer::initPdfViewer()
     icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut,
                             QIcon(":/demos/documentviewer/images/zoom-out.png"_L1));
     m_actionZoomOut = m_toolBar->addAction(icon, tr("Zoom out"), QKeySequence::ZoomOut);
-    m_actionZoomOut->setToolTip(tr("Decrease zoom level"));
     connect(m_actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);
 
     connect(nav, &QPdfPageNavigator::backAvailableChanged, m_actionBack, &QAction::setEnabled);
@@ -265,7 +264,6 @@ void PdfViewer::retranslate()
         m_actionZoomIn->setText(tr("Zoom in"));
     if (m_actionZoomOut) {
         m_actionZoomOut->setText(tr("Zoom out"));
-        m_actionZoomOut->setToolTip(tr("Decrease zoom level"));
     }
     if (m_pages && m_bookmarks && m_uiAssets.tabs) {
         int pagesIndex = m_uiAssets.tabs->indexOf(m_pages);
