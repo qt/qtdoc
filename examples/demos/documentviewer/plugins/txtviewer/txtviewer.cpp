@@ -46,45 +46,45 @@ QStringList TxtViewer::supportedMimeTypes() const
 
 void TxtViewer::setupTxtUi()
 {
-    QMenu *editMenu = addMenu(tr("&Edit"));
-    QToolBar *editToolBar = addToolBar(tr("Edit"));
+    m_editMenu = addMenu(tr("&Edit"));
+    m_editToolBar = addToolBar(tr("Edit"));
 #if QT_CONFIG(clipboard)
     const QIcon cutIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCut,
                                            QIcon(":/demos/documentviewer/images/cut.png"_L1));
-    QAction *cutAct = new QAction(cutIcon, tr("Cu&t"), this);
-    cutAct->setShortcuts(QKeySequence::Cut);
-    cutAct->setStatusTip(tr("Cut the current selection's contents to the "
+    m_cutAct = new QAction(cutIcon, tr("Cu&t"), this);
+    m_cutAct->setShortcuts(QKeySequence::Cut);
+    m_cutAct->setStatusTip(tr("Cut the current selection's contents to the "
                             "clipboard"));
-    connect(cutAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::cut);
-    editMenu->addAction(cutAct);
-    editToolBar->addAction(cutAct);
+    connect(m_cutAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::cut);
+    m_editMenu->addAction(m_cutAct);
+    m_editToolBar->addAction(m_cutAct);
 
     const QIcon copyIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCopy,
                                             QIcon(":/demos/documentviewer/images/copy.png"_L1));
-    QAction *copyAct = new QAction(copyIcon, tr("&Copy"), this);
-    copyAct->setShortcuts(QKeySequence::Copy);
-    copyAct->setStatusTip(tr("Copy the current selection's contents to the "
+    m_copyAct = new QAction(copyIcon, tr("&Copy"), this);
+    m_copyAct->setShortcuts(QKeySequence::Copy);
+    m_copyAct->setStatusTip(tr("Copy the current selection's contents to the "
                              "clipboard"));
-    connect(copyAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::copy);
-    editMenu->addAction(copyAct);
-    editToolBar->addAction(copyAct);
+    connect(m_copyAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::copy);
+    m_editMenu->addAction(m_copyAct);
+    m_editToolBar->addAction(m_copyAct);
 
     const QIcon pasteIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditPaste,
                                              QIcon(":/demos/documentviewer/images/paste.png"_L1));
-    QAction *pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
-    pasteAct->setShortcuts(QKeySequence::Paste);
-    pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
+    m_pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
+    m_pasteAct->setShortcuts(QKeySequence::Paste);
+    m_pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
                               "selection"));
-    connect(pasteAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::paste);
-    editMenu->addAction(pasteAct);
-    editToolBar->addAction(pasteAct);
+    connect(m_pasteAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::paste);
+    m_editMenu->addAction(m_pasteAct);
+    m_editToolBar->addAction(m_pasteAct);
 
     menuBar()->addSeparator();
 
-    cutAct->setEnabled(false);
-    copyAct->setEnabled(false);
-    connect(m_textEdit, &QPlainTextEdit::copyAvailable, cutAct, &QAction::setEnabled);
-    connect(m_textEdit, &QPlainTextEdit::copyAvailable, copyAct, &QAction::setEnabled);
+    m_cutAct->setEnabled(false);
+    m_copyAct->setEnabled(false);
+    connect(m_textEdit, &QPlainTextEdit::copyAvailable, m_cutAct, &QAction::setEnabled);
+    connect(m_textEdit, &QPlainTextEdit::copyAvailable, m_copyAct, &QAction::setEnabled);
 #endif // QT_CONFIG(clipboard)
 
     openFile();
@@ -193,5 +193,28 @@ bool TxtViewer::saveDocumentAs()
     //newFile();
     m_file->setFileName(files.first());
     return saveDocument();
+}
+
+void TxtViewer::retranslate()
+{
+    if (m_editMenu)
+        m_editMenu->setTitle(tr("&Edit"));
+    if (m_editToolBar)
+        m_editToolBar->setWindowTitle(tr("Edit"));
+    if (m_cutAct) {
+        m_cutAct->setText(tr("Cu&t"));
+        m_cutAct->setStatusTip(tr("Cut the current selection's contents to the "
+                                "clipboard"));
+    }
+    if (m_copyAct) {
+        m_copyAct->setText(tr("&Copy"));
+        m_copyAct->setStatusTip(tr("Copy the current selection's contents to the "
+                                 "clipboard"));
+    }
+    if (m_pasteAct) {
+        m_pasteAct->setText(tr("&Paste"));
+        m_pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
+                                  "selection"));
+    }
 }
 //! [infoPrintAndSave]
