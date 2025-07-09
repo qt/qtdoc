@@ -730,6 +730,38 @@
     are extra information and are generated in the TS file only. They are mainly
     intended for conversions to other formats and are hidden in \QL.
 
+    \section2 Grouping ID-Based Translations
+
+    You can assign each ID-based translation a \e label to organize
+    ID-based entries of large projects into smaller groups.
+
+    To assign a \e label to an ID-based entry, add a \c{//@} comment
+    naming the label, for example in C++:
+
+    \code cpp
+    //% "Open file"
+    //@ FileOperations
+    qtTrId("msg.open");
+    \endcode
+
+    Or in QML:
+    \code qml
+    //% "Open file"
+    //@ FileOperations
+    qsTrId("msg.open");
+    \endcode
+
+    When you open the TS file in \l {Qt Linguist}, the ID-based entries with
+    the same \e label are grouped together, similar to text-based
+    entries that are grouped by context.
+    Any item without a \e label appears under \c{<unnamed label>}.
+
+    \note Label names have no effect on lookup or uniqueness: IDs remain globally
+    unique and can still be loaded via \c{qtTrId("msgid")} without referencing a
+    label. The label tag is used only to improve the translator’s navigation
+    and does not change runtime behavior.
+
+
     \section1 Disambiguate Identical Text
 
     The translation system consolidates the UI text strings into unique items to
