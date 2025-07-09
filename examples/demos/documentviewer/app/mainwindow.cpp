@@ -66,8 +66,9 @@ void MainWindow::onActionSwitchLanguage(QLocale::Language lang)
     m_translator.setLanguage(lang);
     m_translator.install();
     ui->retranslateUi(this);
-    if (m_viewer)
-        m_viewer->updateTranslation();
+    const auto viewerList = m_factory->viewers();
+    for (AbstractViewer *viewer : viewerList)
+        viewer->updateTranslation(lang);
     statusBar()->clearMessage();
 }
 

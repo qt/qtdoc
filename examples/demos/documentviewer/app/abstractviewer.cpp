@@ -52,9 +52,10 @@ void AbstractViewer::setTranslationBaseName(const QString &baseName)
     m_translator->install();
 }
 
-void AbstractViewer::updateTranslation()
+void AbstractViewer::updateTranslation(QLocale::Language lang)
 {
     if (m_translator) {
+        m_translator->setLanguage(lang);
         m_translator->install();
         retranslate();
     }
