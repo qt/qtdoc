@@ -125,10 +125,9 @@
     disabled. This happens after a new document was successfully loaded,
     or, for example, all content was removed.
 
-    \c {void printStatusChanged(AbstractViewer::PrintStatus status);}
+    \c {void showMessage(const QString &message, int timeout = 8000);}
 
-    After starting the printing process, this signal notifies about changes in
-    its progress.
+    This signal is emitted to display a status message to the user.
 
     \c {void documentLoaded(const QString &fileName);}
 
