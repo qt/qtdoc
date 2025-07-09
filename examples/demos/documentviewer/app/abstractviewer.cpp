@@ -19,10 +19,10 @@
 #include <QFile>
 #include <QSettings>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPrintDialog>
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 using namespace Qt::StringLiterals;
 
@@ -196,7 +196,7 @@ void AbstractViewer::cleanup()
 
 void AbstractViewer::print()
 {
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
     static const QString type = tr("Printing");
     if (!hasContent()) {
         statusMessage(tr("No content to print."), type);
@@ -244,7 +244,7 @@ void AbstractViewer::print()
  */
 void AbstractViewer::maybeSetPrintingEnabled(bool enabled)
 {
-#ifndef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifndef DOCUMENTVIEWER_PRINTSUPPORT
     enabled = false;
 #else
     if (!hasContent())

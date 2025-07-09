@@ -32,10 +32,10 @@ public:
     bool supportsOverview() const override { return false; }
     void retranslate() override;
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 private slots:
     void setupTxtUi();

@@ -13,9 +13,5 @@ qt_standard_project_setup(REQUIRES 6.8
 
 add_compile_definitions(QT_NO_CAST_FROM_ASCII)
 
-if(TARGET Qt6::PrintSupport)
-    add_compile_definitions(QT_DOCUMENTVIEWER_PRINTSUPPORT)
-endif()
-
 add_subdirectory(plugins)
 add_subdirectory(app)

@@ -70,9 +70,10 @@ else()
 endif()
 
 if(TARGET Qt6::PrintSupport)
-    target_link_libraries(documentviewer PRIVATE Qt6::PrintSupport)
-    target_link_libraries(abstractviewer PRIVATE Qt6::PrintSupport)
-    add_compile_definitions(QT_DOCUMENTVIEWER_PRINTSUPPORT)
+    target_link_libraries(abstractviewer PUBLIC Qt6::PrintSupport)
+    target_compile_definitions(abstractviewer PUBLIC
+        DOCUMENTVIEWER_PRINTSUPPORT
+    )
 endif()
 
 install(TARGETS documentviewer

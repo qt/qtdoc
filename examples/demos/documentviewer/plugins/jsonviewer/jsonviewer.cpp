@@ -24,7 +24,7 @@
 #include <QJsonValue>
 #include <QMimeData>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
@@ -282,7 +282,7 @@ bool JsonViewer::hasContent() const
     return !m_root.isEmpty();
 }
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 void JsonViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -292,7 +292,7 @@ void JsonViewer::printDocument(QPrinter *printer) const
     doc.print(printer);
 }
 
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 QByteArray JsonViewer::saveState() const
 {

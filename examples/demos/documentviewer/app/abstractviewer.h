@@ -60,7 +60,7 @@ public:
     QWidget *widget() const;
     QList<QMenu *> menus() const;
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     virtual void printDocument(QPrinter *) const {};
 #endif

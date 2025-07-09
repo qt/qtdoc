@@ -19,7 +19,7 @@
 
 #include <QDir>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #  include <QPrinter>
 #endif
 
@@ -198,7 +198,7 @@ void ImageViewer::enableZoomActions()
     m_zoomOutAct->setEnabled(m_scaleFactor > m_minScaleFactor);
 }
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 void ImageViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -213,4 +213,4 @@ void ImageViewer::printDocument(QPrinter *printer) const
     painter.setWindow(pixmap.rect());
     painter.drawPixmap(0, 0, pixmap);
 }
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
