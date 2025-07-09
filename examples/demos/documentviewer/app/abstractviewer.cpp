@@ -196,25 +196,6 @@ void AbstractViewer::cleanup()
     maybeSetPrintingEnabled(false);
 }
 
-QMenu *AbstractViewer::fileMenu()
-{
-    static constexpr QLatin1StringView name = QLatin1StringView("qtFileMenu");
-    static QMenu *fileMenu = nullptr;
-    if (fileMenu)
-        return fileMenu;
-
-    const QList<QMenu *> menus = mainWindow()->findChildren<QMenu *>();
-    for (auto *menu : menus) {
-        if (menu->objectName() == name) {
-            fileMenu = menu;
-            return fileMenu;
-        }
-    }
-    fileMenu = addMenu(tr("&File"));
-    fileMenu->setObjectName(name);
-    return fileMenu;
-}
-
 void AbstractViewer::print()
 {
 #ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
