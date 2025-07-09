@@ -87,7 +87,6 @@ protected:
     void statusMessage(const QString &message, const QString &type = QString(), int timeout = 8000);
     QToolBar *addToolBar(const QString &);
     QMenu *addMenu(const QString &);
-    QMenu *fileMenu();
     QMainWindow *mainWindow() const;
     QStatusBar *statusBar() const;
     QMenuBar *menuBar() const;
