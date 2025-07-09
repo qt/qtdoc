@@ -18,7 +18,7 @@
 #include <QQuickItem>
 #include <QQuick3D>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
@@ -102,12 +102,12 @@ bool Q3DViewer::hasContent() const
     return false;
 }
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 void Q3DViewer::printDocument(QPrinter *printer) const
 {
     Q_UNUSED(printer);
 }
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 QByteArray Q3DViewer::saveState() const
 {

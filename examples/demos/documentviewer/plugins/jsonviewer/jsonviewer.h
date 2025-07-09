@@ -38,7 +38,7 @@ public:
     bool restoreState(QByteArray &) override;
     void retranslate() override;
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
 #endif // QT_ABSTRACTVIEWER_PRINTSUPPORT

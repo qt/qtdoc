@@ -18,7 +18,7 @@
 
 #include <QDir>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPrintDialog>
 #endif
@@ -143,7 +143,7 @@ bool TxtViewer::hasContent() const
     return (!m_textEdit->toPlainText().isEmpty());
 }
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 void TxtViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -151,7 +151,7 @@ void TxtViewer::printDocument(QPrinter *printer) const
 
     m_textEdit->print(printer);
 }
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 bool TxtViewer::saveFile(QFile *file)
 {

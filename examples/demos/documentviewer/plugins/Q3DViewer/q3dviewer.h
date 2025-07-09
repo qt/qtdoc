@@ -31,7 +31,7 @@ public:
     void cleanup() override;
     QStringList supportedExtensions() const override { return {QLatin1StringView("mesh")}; };
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
 #endif // QT_ABSTRACTVIEWER_PRINTSUPPORT

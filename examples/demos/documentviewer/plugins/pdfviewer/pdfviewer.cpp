@@ -31,7 +31,7 @@
 #include <QToolBar>
 #include <QTreeView>
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 #include <QPrinter>
 #include <QPainter>
 #endif
@@ -188,7 +188,7 @@ bool PdfViewer::hasContent() const
     return m_document ? m_document->pageCount() > 0 : false;
 }
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 void PdfViewer::printDocument(QPrinter *printer) const
 {
     if (!hasContent())
@@ -206,7 +206,7 @@ void PdfViewer::printDocument(QPrinter *printer) const
     }
     painter.end();
 }
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 void PdfViewer::bookmarkSelected(const QModelIndex &index)
 {

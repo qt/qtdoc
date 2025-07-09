@@ -38,10 +38,10 @@ public:
     bool restoreState(QByteArray &) override { return true; }
     void retranslate() override;
 
-#ifdef QT_DOCUMENTVIEWER_PRINTSUPPORT
+#ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
     void printDocument(QPrinter *printer) const override;
-#endif // QT_DOCUMENTVIEWER_PRINTSUPPORT
+#endif // DOCUMENTVIEWER_PRINTSUPPORT
 
 public slots:
     void openPdfFile();
