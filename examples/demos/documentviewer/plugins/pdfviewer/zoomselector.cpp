@@ -12,17 +12,9 @@ ZoomSelector::ZoomSelector(QWidget *parent)
 
     addItem(tr("Fit Width"));
     addItem(tr("Fit Page"));
-    addItem(tr("12%"));
-    addItem(tr("25%"));
-    addItem(tr("33%"));
-    addItem(tr("50%"));
-    addItem(tr("66%"));
-    addItem(tr("75%"));
-    addItem(tr("100%"));
-    addItem(tr("125%"));
-    addItem(tr("150%"));
-    addItem(tr("200%"));
-    addItem(tr("400%"));
+
+    for (int i : { 12, 25, 33, 50, 66, 75, 100, 125, 150, 200, 400 })
+        addItem(QString::number(i) + QLocale().percent());
 
     connect(this, &QComboBox::currentTextChanged,
             this, &ZoomSelector::onCurrentTextChanged);
@@ -33,7 +25,7 @@ ZoomSelector::ZoomSelector(QWidget *parent)
 
 void ZoomSelector::setZoomFactor(qreal zoomFactor)
 {
-    setCurrentText(QString::number(qRound(zoomFactor * 100)) + QLatin1String("%"));
+    setCurrentText(QString::number(qRound(zoomFactor * 100)) + QLocale().percent());
 }
 
 void ZoomSelector::reset()
@@ -43,15 +35,15 @@ void ZoomSelector::reset()
 
 void ZoomSelector::onCurrentTextChanged(const QString &text)
 {
-    if (text == QLatin1String("Fit Width")) {
+    if (text == tr("Fit Width")) {
         emit zoomModeChanged(QPdfView::ZoomMode::FitToWidth);
-    } else if (text == QLatin1String("Fit Page")) {
+    } else if (text == tr("Fit Page")) {
         emit zoomModeChanged(QPdfView::ZoomMode::FitInView);
     } else {
         qreal factor = 1.0;
 
         QString withoutPercent(text);
-        withoutPercent.remove(QLatin1Char('%'));
+        withoutPercent.remove(QLocale().percent());
 
         bool ok = false;
         const int zoomLevel = withoutPercent.toInt(&ok);
