@@ -75,6 +75,7 @@ if (APPLE)
 endif()
 
 set(plugin_targets
+    imageviewer
     jsonviewer
     txtviewer
 )
