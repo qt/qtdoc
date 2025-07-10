@@ -96,13 +96,35 @@ endif()
 # installation
 #
 
-install(TARGETS documentviewer
-    BUNDLE  DESTINATION .
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+if(APPLE)
+    set(INSTALL_LIBDIR "Document Viewer.app/Contents/Frameworks")
+    set(INSTALL_PLUGINSDIR "Document Viewer.app/Contents/PlugIns")
+elseif(WIN32)
+    set(INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
+    set(INSTALL_LIBDIR ${CMAKE_INSTALL_BINDIR})
+    set(INSTALL_PLUGINSDIR "plugins")
+else()
+    set(INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
+    set(INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR})
+    set(INSTALL_PLUGINSDIR "plugins")
+endif()
+
+install(TARGETS documentviewer abstractviewer
+    BUNDLE DESTINATION .
+    RUNTIME DESTINATION "${INSTALL_BINDIR}"
+    LIBRARY DESTINATION "${INSTALL_LIBDIR}"
 )
 
-install(TARGETS abstractviewer
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+install(TARGETS ${plugin_targets}
+    DESTINATION "${INSTALL_PLUGINSDIR}"
 )
+
+# Install Qt libraries and plugins
+qt_generate_deploy_app_script(
+    TARGET documentviewer
+    OUTPUT_SCRIPT deploy_script
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    NO_TRANSLATIONS
+)
+
+install(SCRIPT ${deploy_script})

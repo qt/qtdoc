@@ -9,7 +9,7 @@ qt_add_plugin(pdfviewer
 )
 
 set_target_properties(pdfviewer PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/.."
 )
 
 target_link_libraries(pdfviewer PRIVATE
@@ -29,14 +29,3 @@ if(TARGET Qt6::PrintSupport)
     target_link_libraries(pdfviewer PRIVATE Qt6::PrintSupport)
 endif()
 
-if(WIN32)
-    set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
-elseif(APPLE)
-    set(install_destination ".")
-else()
-    set(install_destination "${CMAKE_INSTALL_BINDIR}")
-endif()
-install(TARGETS pdfviewer
-    RUNTIME DESTINATION "${install_destination}"
-    LIBRARY DESTINATION "${install_destination}"
-)
