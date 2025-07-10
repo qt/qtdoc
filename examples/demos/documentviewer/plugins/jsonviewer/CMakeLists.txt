@@ -13,10 +13,6 @@ set_target_properties(jsonviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
 
-target_include_directories(jsonviewer PRIVATE
-    ../../app
-)
-
 target_link_libraries(jsonviewer PRIVATE
     Qt6::Core
     Qt6::Gui
