@@ -7,7 +7,7 @@ qt_add_plugin(txtviewer
 )
 
 set_target_properties(txtviewer PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/.."
 )
 
 target_link_libraries(txtviewer PRIVATE
@@ -25,15 +25,3 @@ qt_add_translations(txtviewer
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(txtviewer PRIVATE Qt6::PrintSupport)
 endif()
-
-if(WIN32)
-    set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
-elseif(APPLE)
-    set(install_destination ".")
-else()
-    set(install_destination "${CMAKE_INSTALL_BINDIR}")
-endif()
-install(TARGETS txtviewer
-    RUNTIME DESTINATION "${install_destination}"
-    LIBRARY DESTINATION "${install_destination}"
-)

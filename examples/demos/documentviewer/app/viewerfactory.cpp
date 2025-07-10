@@ -80,16 +80,23 @@ void ViewerFactory::loadViewerPlugins()
 //! [shared]
     // Load shared plugins
     QDir pluginsDir = QDir(QApplication::applicationDirPath());
-
-#if defined(Q_OS_WINDOWS)
-    pluginsDir.cd("app"_L1);
-#elif defined(Q_OS_DARWIN)
-    if (pluginsDir.dirName() == "MacOS"_L1) {
-        pluginsDir.cdUp();
-        pluginsDir.cdUp();
-        pluginsDir.cdUp();
+#if defined(Q_OS_DARWIN)
+    if (pluginsDir.exists("../PlugIns"_L1)) { // installed build
+        pluginsDir.cd("../PlugIns"_L1);
+    } else {
+        pluginsDir.cd("../../../../plugins"_L1); // non-installed build
     }
+#elif defined(Q_OS_WIN)
+    if (pluginsDir.exists("plugins"_L1)) { // non-installed build
+        pluginsDir.cd("plugins"_L1);
+    } else {
+        pluginsDir.cd("../plugins"_L1); // installed build
+    }
+#else
+    pluginsDir.cd("../plugins"_L1); // installed and non-installed build
 #endif
+
+    // qDebug("Loading plugins from %s...", qUtf8Printable(pluginsDir.path()));
     const auto entryList = pluginsDir.entryList(QDir::Files);
     for (const QString &fileName : entryList) {
         QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));

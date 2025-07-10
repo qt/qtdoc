@@ -7,7 +7,7 @@ qt_add_plugin(imageviewer
 )
 
 set_target_properties(imageviewer PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/.."
 )
 
 target_link_libraries(imageviewer PRIVATE
@@ -25,15 +25,3 @@ qt_add_translations(imageviewer
 if(TARGET Qt6::PrintSupport)
     target_link_libraries(imageviewer PRIVATE Qt6::PrintSupport)
 endif()
-
-if(WIN32)
-    set(install_destination "${CMAKE_INSTALL_BINDIR}/app")
-elseif(APPLE)
-    set(install_destination ".")
-else()
-    set(install_destination "${CMAKE_INSTALL_BINDIR}")
-endif()
-install(TARGETS imageviewer
-    RUNTIME DESTINATION "${install_destination}"
-    LIBRARY DESTINATION "${install_destination}"
-)
