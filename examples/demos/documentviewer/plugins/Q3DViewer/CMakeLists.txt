@@ -13,10 +13,6 @@ set_target_properties(Q3Dviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
 
-target_include_directories(Q3Dviewer PRIVATE
-    ../../app
-)
-
 qt_add_qml_module(Q3DViewerModule
     URI Q3DViewer
     QML_FILES

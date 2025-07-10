@@ -13,10 +13,6 @@ set_target_properties(imageviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
 
-target_include_directories(imageviewer PRIVATE
-    ../../app
-)
-
 target_link_libraries(imageviewer PRIVATE
     Qt6::Core
     Qt6::Gui

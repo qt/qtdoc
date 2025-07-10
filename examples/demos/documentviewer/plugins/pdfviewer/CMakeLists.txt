@@ -15,11 +15,6 @@ set_target_properties(pdfviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
 
-target_include_directories(pdfviewer PRIVATE
-    ../../app
-    ..
-)
-
 target_link_libraries(pdfviewer PRIVATE
     Qt6::Core
     Qt6::Gui

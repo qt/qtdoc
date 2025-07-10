@@ -13,10 +13,6 @@ set_target_properties(txtviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
 
-target_include_directories(txtviewer PRIVATE
-    ../../app
-)
-
 target_link_libraries(txtviewer PRIVATE
     Qt6::Core
     Qt6::Gui
