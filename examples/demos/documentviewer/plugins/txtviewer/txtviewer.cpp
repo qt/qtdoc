@@ -119,7 +119,7 @@ void TxtViewer::openFile()
     }
 
     QTextStream in(m_file.get());
-#ifndef QT_NO_CURSOR
+#if QT_CONFIG(cursor)
     QGuiApplication::setOverrideCursor(Qt::WaitCursor);
 #endif
     if (!m_textEdit->toPlainText().isEmpty()) {
@@ -127,7 +127,7 @@ void TxtViewer::openFile()
         disablePrinting();
     }
     m_textEdit->setPlainText(in.readAll());
-#ifndef QT_NO_CURSOR
+#if QT_CONFIG(cursor)
     QGuiApplication::restoreOverrideCursor();
 #endif
 
