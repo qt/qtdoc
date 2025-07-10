@@ -14,9 +14,7 @@
 #include <QPdfDocument>
 #include <QPdfPageNavigator>
 #include <QPdfView>
-#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
 #include <QPdfPageSelector>
-#endif
 
 #include <QtMath>
 #include <QDir>
@@ -84,7 +82,6 @@ void PdfViewer::initPdfViewer()
     m_zoomSelector = new ZoomSelector(m_toolBar);
 
     auto *nav = m_pdfView->pageNavigator();
-#if QT_VERSION >= QT_VERSION_CHECK(6,6,0)
     m_pageSelector = new QPdfPageSelector(m_toolBar);
     m_toolBar->insertWidget(m_uiAssets.forward, m_pageSelector);
     m_pageSelector->setDocument(m_document);
@@ -94,7 +91,6 @@ void PdfViewer::initPdfViewer()
             this, &PdfViewer::pageSelected);
     connect(nav, &QPdfPageNavigator::currentPageChanged,
             m_pageSelector, &QPdfPageSelector::setCurrentPage);
-#endif
 
     connect(m_pdfView->pageNavigator(), &QPdfPageNavigator::backAvailableChanged,
             m_uiAssets.back, &QAction::setEnabled);
