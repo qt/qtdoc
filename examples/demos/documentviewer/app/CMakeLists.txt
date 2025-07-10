@@ -1,9 +1,5 @@
-cmake_minimum_required(VERSION 3.16)
-project(documentviewer LANGUAGES CXX)
-
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Svg)
-
-qt_standard_project_setup()
+# Copyright (C) 2023 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 qt_add_library(abstractviewer
     abstractviewer.cpp abstractviewer.h

@@ -6,9 +6,6 @@ qt_add_plugin(jsonviewer
     jsonviewer.cpp jsonviewer.h
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
-                 OPTIONAL_COMPONENTS PrintSupport)
-
 set_target_properties(jsonviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
