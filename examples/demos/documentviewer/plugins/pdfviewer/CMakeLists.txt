@@ -1,9 +1,6 @@
 # Copyright (C) 2023 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets PdfWidgets
-                 OPTIONAL_COMPONENTS PrintSupport)
-
 qt_add_plugin(pdfviewer
     CLASS_NAME PdfViewer
     pdfviewer.cpp pdfviewer.h

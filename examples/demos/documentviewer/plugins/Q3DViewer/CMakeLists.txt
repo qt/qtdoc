@@ -6,9 +6,6 @@ qt_add_plugin(Q3Dviewer
     q3dviewer.cpp q3dviewer.h
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets
-                 OPTIONAL_COMPONENTS PrintSupport)
-
 set_target_properties(Q3Dviewer PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/app"
 )
