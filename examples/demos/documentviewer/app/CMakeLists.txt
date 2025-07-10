@@ -52,7 +52,6 @@ qt_add_translations(documentviewer
 
 set_target_properties(documentviewer PROPERTIES
     WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
 )
 
 target_link_libraries(documentviewer PRIVATE
@@ -61,6 +60,18 @@ target_link_libraries(documentviewer PRIVATE
     Qt6::Widgets
     abstractviewer
 )
+
+if (APPLE)
+    set_target_properties(documentviewer PROPERTIES
+        OUTPUT_NAME "Document Viewer"
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_NAME "Document Viewer"
+        MACOSX_BUNDLE_COPYRIGHT "Copyright (C) The Qt Company Ltd. and other contributors."
+        MACOSX_BUNDLE_GUI_IDENTIFIER "io.qt.examples.documentviewer"
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    )
+endif()
 
 set(plugin_targets
     jsonviewer
