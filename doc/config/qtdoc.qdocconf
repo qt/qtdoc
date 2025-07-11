@@ -65,8 +65,7 @@ qhp.QtDoc.subprojects.examples.sortPages = true
                                                                images/xNIz78IPBu0.jpg
 
 # Add an .html file with sidebar content, used in the online style
-HTML.stylesheets             += style/qt5-sidebar.html \
-                                style/tree_config.xml
+HTML.stylesheets             += style/tree_config.xml
 
 macro.indextitle              = "\\title Qt $QT_VER"
 macro.qtver                   = "$QT_VER"
