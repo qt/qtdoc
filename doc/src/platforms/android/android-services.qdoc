@@ -161,10 +161,17 @@ Also, add the \c receiver definition in the body of the \c <application> section
 </receiver>
 \endcode
 
-\note Android 8.0 introduced some limitations on running background services,
-which means using a nomal \c Service class might not work. For more information,
-see Android's recommendation to use either \l {Android: Foreground services}{Foreground services}
-or \l {Android: JobIntentService}{JobIntentService}.
+\section4 Limitations
+
+\list
+    \li Android 15.0 introduced some limitations on launching foreground services,
+    after receiving BOOT_COMPLETED. For more information, see
+    \l {Android: Restrictions on BOOT_COMPLETED}{Restrictions on BOOT_COMPLETED}.
+    \li Android 8.0 introduced some limitations on running background services,
+    which means using a normal \c Service class might not work. For more information,
+    see Android's recommendation to use either \l {Android: Foreground services}{Foreground services}
+    or \l {Android: JobIntentService}{JobIntentService}.
+\endlist
 
 \section2 Manage the Service in AndroidManifest.xml
 
