@@ -45,6 +45,7 @@ qt_add_executable(documentviewer
 )
 
 qt_add_translations(documentviewer
+    SOURCE_TARGETS documentviewer abstractviewer
     TS_FILE_BASE docviewer
     MERGE_QT_TRANSLATIONS
     QT_TRANSLATION_CATALOGS qtbase
