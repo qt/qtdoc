@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "abstractviewer.h"
+#include "logging.h"
 #include "viewerfactory.h"
 #include "viewerinterfaces.h"
 
@@ -54,7 +55,7 @@ AbstractViewer *ViewerFactory::viewer(QFile *file) const
         const auto mimeType = db.mimeTypeForFile(info);
         viewer = ViewerFactory::viewer(mimeType);
         if (!viewer) {
-            qWarning() << "Mime type" << mimeType.name() << "not supported.";
+            qCWarning(lcDocumentViewer) << "Mime type" << mimeType.name() << "not supported.";
             return nullptr;
         }
     }
@@ -127,17 +128,16 @@ void ViewerFactory::loadViewerPlugins()
     pluginsDir.cd("../plugins"_L1); // installed and non-installed build
 #endif
 
-    // qDebug("Loading plugins from %s...", qUtf8Printable(pluginsDir.path()));
+    qCDebug(lcDocumentViewer, "Loading plugins from %s...", qUtf8Printable(pluginsDir.path()));
     const auto entryList = pluginsDir.entryList(QDir::Files);
     for (const QString &fileName : entryList) {
         QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = loader.instance();
         if (plugin)
             addViewer(plugin);
-#if 0
         else
-            qDebug() << loader.errorString();
-#endif
+            qCDebug(lcDocumentViewer)
+                    << "Failed to load" << fileName << "as plugin:" << loader.errorString();
     }
 }
 //! [shared]
@@ -196,7 +196,7 @@ AbstractViewer *ViewerFactory::findViewer(const QString &viewerName) const
         if (viewer->viewerName() == viewerName)
             return viewer;
     }
-    qWarning() << "Plugin" << viewerName << "not loaded.";
+    qCWarning(lcDocumentViewer) << "Plugin" << viewerName << "not loaded.";
     return nullptr;
 }
 

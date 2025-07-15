@@ -71,6 +71,14 @@
     \skipto ViewerList
     \printuntil QStringList supportedMimeTypes() const;
 
+    To debug plugin loading, enable debug output for the
+    \c documentviewer \l{QLoggingCategory}{logging category}. For example,
+    set the \c QT_LOGGING_RULES environment variable:
+
+    \badcode
+    QT_LOGGING_RULES="documentviewer.debug=true"
+    \endcode
+
     The \c viewer() function returns a pointer to the plugin suitable to open
     the QFile passed as an argument:
 
