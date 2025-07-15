@@ -34,7 +34,7 @@
 #include <QPainter>
 #endif
 
-Q_LOGGING_CATEGORY(lcExample, "qt.examples.pdfviewer")
+Q_LOGGING_CATEGORY(lcPdfViewer, "documentviewer.pdfviewer")
 
 using namespace Qt::StringLiterals;
 
@@ -187,7 +187,7 @@ void PdfViewer::openPdfFile()
 
     statusMessage(tr("Opened PDF file %1")
                   .arg(QDir::toNativeSeparators(m_file->fileName())));
-    qCDebug(lcExample) << "Opened file" << m_file->fileName();
+    qCDebug(lcPdfViewer) << "Opened file" << m_file->fileName();
 
     maybeEnablePrinting();
 }

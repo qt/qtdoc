@@ -6,6 +6,7 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QLoggingCategory>
 #include <QMessageBox>
 
 using namespace Qt::StringLiterals;
@@ -16,6 +17,8 @@ struct Tr {
 
 int main(int argc, char *argv[])
 {
+    QLoggingCategory::setFilterRules("documentviewer.debug=false"_L1);
+
     QApplication app(argc, argv);
     QCoreApplication::setOrganizationName("QtProject"_L1);
     QCoreApplication::setApplicationName("DocumentViewer"_L1);

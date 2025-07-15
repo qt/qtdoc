@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "abstractviewer.h"
+#include "logging.h"
 #include "translator.h"
 
 #include <QApplication>
@@ -23,6 +24,8 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #endif // DOCUMENTVIEWER_PRINTSUPPORT
+
+Q_LOGGING_CATEGORY(lcDocumentViewer, "documentviewer")
 
 using namespace Qt::StringLiterals;
 

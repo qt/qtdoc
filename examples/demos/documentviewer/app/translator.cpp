@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "translator.h"
+
+#include "logging.h"
+
 #include <QApplication>
 #include <QDir>
 
@@ -14,20 +17,19 @@ void Translator::setLanguage(QLocale::Language lang)
 
 void Translator::install()
 {
-    if (m_baseName.isEmpty()) {
-        qWarning() << "The basename of the translation is not set. Ignoring.";
-        return;
-    }
+    Q_ASSERT(!m_baseName.isEmpty());
+
     if (!m_translator.isEmpty())
         qApp->removeTranslator(&m_translator);
 
     if (m_translator.load(m_trLocale, m_baseName, "_"_L1, ":/i18n/"_L1)
         && qApp->installTranslator(&m_translator)) {
-        qInfo() << "Loaded translation" << m_translator.filePath();
+        qCInfo(lcDocumentViewer) << "Loaded translation" << m_translator.filePath();
     } else {
         if (m_trLocale.language() != QLocale::English) {
-            qWarning() << "Failed to load translation" << m_baseName <<
-                    "for locale" << m_trLocale.name() << ". Falling back to English translation";
+            qCWarning(lcDocumentViewer)
+                    << "Failed to load translation" << m_baseName << "for locale"
+                    << m_trLocale.name() << ". Falling back to English translation";
             setLanguage(QLocale::English);
         }
     }

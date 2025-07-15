@@ -8,7 +8,7 @@
 qt_add_library(abstractviewer
     abstractviewer.cpp abstractviewer.h
     translator.cpp translator.h
-    abstractviewerglobal.h
+    abstractviewerglobal.h logging.h
 )
 
 target_compile_definitions(abstractviewer PRIVATE BUILD_ABSTRACTVIEWER_LIB)
