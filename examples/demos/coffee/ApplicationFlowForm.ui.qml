@@ -87,6 +87,7 @@ Rectangle {
             }
         }
     }
+
     Component {
         id: choosingCoffee
         ChoosingCoffee {

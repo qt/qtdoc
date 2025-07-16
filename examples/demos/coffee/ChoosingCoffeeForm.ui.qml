@@ -48,28 +48,24 @@ Item {
             coffeeName: "Cappuccino"
             ingredients: "Milk, Espresso, Foam"
             time: 2
-            cupsLeft: applicationFlow.cappuccinos
         }
         CoffeeCard {
             id: latte
             coffeeName: "Latte"
             ingredients: "Coffee, Foam"
             time: 3
-            cupsLeft: applicationFlow.lattes
         }
         CoffeeCard {
             id: espresso
             coffeeName: "Espresso"
             ingredients: "Milk, Espresso"
             time: 2
-            cupsLeft: applicationFlow.espressos
         }
         CoffeeCard {
             id: macchiato
             coffeeName: "Macchiato"
             ingredients: "Milk foam, Espresso"
             time: 4
-            cupsLeft: applicationFlow.macchiatos
         }
     }
     //! [Coffees]

@@ -4,6 +4,10 @@
 ChoosingCoffeeForm {
     required property ApplicationFlow appFlow
     state: appFlow.mode
+    cappuccino.cupsLeft: appFlow.cappuccinos
+    latte.cupsLeft: appFlow.lattes
+    espresso.cupsLeft: appFlow.espressos
+    macchiato.cupsLeft: appFlow.macchiatos
 
     cappuccino.button.onClicked: appFlow.cappuccino()
     macchiato.button.onClicked: appFlow.macchiato()
