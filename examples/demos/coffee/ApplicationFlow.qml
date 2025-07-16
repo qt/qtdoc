@@ -14,6 +14,20 @@ ApplicationFlowForm {
     property int foamAmount
     property double sugarAmount
 
+
+
+    stack.initialItem: Home {
+        id: home
+        appFlow: applicationFlow
+        visible: true
+        //! [On clicked]
+        getStartedbutton.onClicked: {
+            applicationFlow.state = "Coffee-selection"
+            stack.pushItem(choosingCoffee, {appFlow: applicationFlow})
+        }
+        //! [On clicked]
+    }
+
     //! [Theme button]
     function themeButton() {
         if (Colors.currentTheme == Colors.dark) {
@@ -63,12 +77,6 @@ ApplicationFlowForm {
         stack.pushItem(settings, {appFlow: applicationFlow})
         coffeeText.text = "Macchiato"
     }
-    //! [On clicked]
-    home.getStartedbutton.onClicked: {
-        applicationFlow.state = "Coffee-selection"
-        stack.pushItem(choosingCoffee, {appFlow: applicationFlow})
-    }
-    //! [On clicked]
     function backButton() {
         stack.pop()
         applicationFlow.state = applicationFlow.previousState

@@ -11,7 +11,6 @@ Rectangle {
     color: Colors.currentTheme.background
     property string previousState: ""
     property string coffeeName: ""
-    property alias home: home
     property alias choosingCoffee: choosingCoffee
     property alias settings: settings
     property alias insert: insert
@@ -53,10 +52,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.topMargin: parent.height / 20
-        initialItem: Home {
-            id: home
-            visible: true
-        }
+
         pushEnter: Transition {
             PropertyAnimation {
                 property: "x"
