@@ -7,7 +7,6 @@ ApplicationFlowForm {
     state: "Home"
     property int animationDuration: 400
     property string platform: Qt.platform.os
-    property string mode: ""
     property int brewTime
     property int coffeeAmount
     property int milkAmount
@@ -18,7 +17,6 @@ ApplicationFlowForm {
 
     stack.initialItem: Home {
         id: home
-        appFlow: applicationFlow
         visible: true
         //! [On clicked]
         getStartedbutton.onClicked: {

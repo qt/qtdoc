@@ -11,7 +11,7 @@ qt_add_executable(coffeemachine
     main.cpp
 )
 
-set_source_files_properties(Colors.qml PROPERTIES
+set_source_files_properties(Colors.qml Config.qml PROPERTIES
     QT_QML_SINGLETON_TYPE TRUE
 )
 
@@ -25,6 +25,7 @@ qt_add_qml_module(coffeemachine
         CoffeeCard.qml
         CoffeeCardForm.ui.qml
         Colors.qml
+        Config.qml
         CustomButton.qml
         CustomButtonForm.ui.qml
         CustomSlider.qml

@@ -12,7 +12,7 @@ ReadyForm {
     milkAmount: appFlow.milkAmount
     coffeeAmount: appFlow.coffeeAmount
     sugarAmount: appFlow.sugarAmount
-    state: appFlow.mode
+    state: Config.mode
 
     Timer {
         id: timer

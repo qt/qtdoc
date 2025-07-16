@@ -30,7 +30,7 @@ Column {
     states: [
         State {
             name: "portrait"
-            when: applicationFlow.mode == "portrait"
+            when: Config.mode == "portrait"
             PropertyChanges {
                 target: coffeeCardRectangle
                 implicitHeight: (applicationFlow.stack.height / 2) - 20
@@ -40,7 +40,7 @@ Column {
         },
         State {
             name: "landscape"
-            when: applicationFlow.mode == "landscape"
+            when: Config.mode == "landscape"
             PropertyChanges {
                 target: coffeeCardRectangle
                 implicitHeight: applicationFlow.height / 2

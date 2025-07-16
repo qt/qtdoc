@@ -3,8 +3,7 @@
 import QtQuick
 
 HomeForm {
-    required property ApplicationFlow appFlow
-    state: appFlow.mode
+    state: Config.mode
 
     grid.states: [
         State {

@@ -12,7 +12,11 @@ ApplicationWindow {
     ApplicationFlow {
         width: parent.width
         height: parent.height
-        mode: (Screen.height > Screen.width) ? "portrait" : "landscape"
+    }
+
+    Binding {
+        target: Config
+        property: "mode"
+        value: (Screen.height > Screen.width) ? "portrait" : "landscape"
     }
 }
-

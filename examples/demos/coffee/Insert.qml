@@ -3,8 +3,7 @@
 
 InsertForm {
     required property ApplicationFlow appFlow
-
-    state: appFlow.mode
+    state: Config.mode
     continueButton.onClicked: appFlow.continueButton()
     cancelButton.onClicked: appFlow.cancelButton()
 }
