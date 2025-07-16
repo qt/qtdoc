@@ -39,8 +39,8 @@ AbstractButton {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             Text {
-                text: buttonText
-                color: (buttonColor
+                text: button.buttonText
+                color: (button.buttonColor
                         == "green") ? Colors.dark.textColor : Colors.currentTheme.textColor
                 font.pixelSize: 18
                 font.weight: 700
@@ -48,7 +48,7 @@ AbstractButton {
             }
             Image {
                 id: icon
-                visible: showIcon
+                visible: button.showIcon
                 source: (Colors.currentTheme == Colors.dark) ? "./images/icons/keyboard_backspace_white_right.svg" : "./images/icons/keyboard_backspace_black_right.svg"
             }
         }

@@ -4,6 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 
 CoffeeCardForm {
+    id: coffeeCard
 
     coffeeCardRectangle.states: State {
         name: "small"
@@ -16,7 +17,7 @@ CoffeeCardForm {
 
     button.states: State {
         name: "pressed"
-        when: button.pressed
+        when: coffeeCard.button.pressed
         PropertyChanges {
             target: coffeeCardRectangle
             scale: 0.9

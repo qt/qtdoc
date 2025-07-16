@@ -111,7 +111,7 @@ Item {
         ProgressBar {
             id: control
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            value: progressBarValue
+            value: root.progressBarValue
             Layout.topMargin: 20
             background: Rectangle {
                 implicitHeight: 2

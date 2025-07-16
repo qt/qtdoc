@@ -74,7 +74,7 @@ Slider {
                 id: liquidAmountText
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: liquidAmount + "ml"
+                text: slider.liquidAmount + "ml"
                 font.pixelSize: 12
                 clip: false
                 color: Colors.currentTheme.textColor

@@ -3,6 +3,8 @@
 import QtQuick
 
 SettingsForm {
+    id: settingsForm
+
     required property ApplicationFlow appFlow
 
     foamAmount: appFlow.foamAmount
@@ -23,7 +25,7 @@ SettingsForm {
     ]
     sugarSlider.states: State {
         name: "pressed"
-        when: sugarSlider.pressed
+        when: settingsForm.sugarSlider.pressed
         PropertyChanges {
             target: handle
             scale: 1.1
