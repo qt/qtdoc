@@ -30,7 +30,7 @@ ApplicationFlowForm {
         milkAmount = 60
         foamAmount = 60
         brewTime = 5000
-        stack.push(settings)
+        stack.pushItem(settings, {appFlow: applicationFlow})
         coffeeText.text = "Cappuccino"
     }
     function espresso() {
@@ -40,7 +40,7 @@ ApplicationFlowForm {
         milkAmount = 0
         foamAmount = 0
         brewTime = 4000
-        stack.push(settings)
+        stack.pushItem(settings, {appFlow: applicationFlow})
         coffeeText.text = "Espresso"
     }
     function latte() {
@@ -50,7 +50,7 @@ ApplicationFlowForm {
         milkAmount = 20
         foamAmount = 60
         brewTime = 6000
-        stack.push(settings)
+        stack.pushItem(settings, {appFlow: applicationFlow})
         coffeeText.text = "Latte"
     }
     function macchiato() {
@@ -60,7 +60,7 @@ ApplicationFlowForm {
         milkAmount = 5
         foamAmount = 10
         brewTime = 8000
-        stack.push(settings)
+        stack.pushItem(settings, {appFlow: applicationFlow})
         coffeeText.text = "Macchiato"
     }
     //! [On clicked]

@@ -102,9 +102,6 @@ Rectangle {
     Component {
         id: settings
         Settings {
-            foamAmount: applicationFlow.foamAmount
-            milkAmount: applicationFlow.milkAmount
-            coffeeAmount: applicationFlow.coffeeAmount
             state: applicationFlow.mode
         }
     }

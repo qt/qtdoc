@@ -3,6 +3,12 @@
 import QtQuick
 
 SettingsForm {
+    required property ApplicationFlow appFlow
+
+    foamAmount: appFlow.foamAmount
+    milkAmount: appFlow.milkAmount
+    coffeeAmount: appFlow.coffeeAmount
+
     rectangle.states: [
         State {
             name: "smallerFont"
@@ -60,19 +66,19 @@ SettingsForm {
     sugarSlider.onMoved: {
         sugarText.sugarAmount = sugarSlider.position * 4
     }
-    confirmButton.onClicked: applicationFlow.confirmButton()
+    confirmButton.onClicked: appFlow.confirmButton()
     //! [Value changed]
     coffeeSlider.onValueChanged: {
-        applicationFlow.coffeeAmount = coffeeSlider.value
+        appFlow.coffeeAmount = coffeeSlider.value
     }
     //! [Value changed]
     milkSlider.onValueChanged: {
-        applicationFlow.milkAmount = milkSlider.value
+        appFlow.milkAmount = milkSlider.value
     }
     foamSlider.onValueChanged: {
-        applicationFlow.foamAmount = foamSlider.value
+        appFlow.foamAmount = foamSlider.value
     }
     sugarSlider.onValueChanged: {
-        applicationFlow.sugarAmount = sugarSlider.value
+        appFlow.sugarAmount = sugarSlider.value
     }
 }
