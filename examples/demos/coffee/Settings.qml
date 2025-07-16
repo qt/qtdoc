@@ -8,6 +8,7 @@ SettingsForm {
     foamAmount: appFlow.foamAmount
     milkAmount: appFlow.milkAmount
     coffeeAmount: appFlow.coffeeAmount
+    state: appFlow.mode
 
     rectangle.states: [
         State {

@@ -56,7 +56,6 @@ Rectangle {
         initialItem: Home {
             id: home
             visible: true
-            state: applicationFlow.mode
         }
         pushEnter: Transition {
             PropertyAnimation {
@@ -96,20 +95,15 @@ Rectangle {
         id: choosingCoffee
         ChoosingCoffee {
             visible: true
-            state: applicationFlow.mode
         }
     }
     Component {
         id: settings
-        Settings {
-            state: applicationFlow.mode
-        }
+        Settings {}
     }
     Component {
         id: insert
-        Insert {
-            state: applicationFlow.mode
-        }
+        Insert {}
     }
     Component {
         id: progress
@@ -117,12 +111,6 @@ Rectangle {
     }
     Component {
         id: ready
-        Ready {
-            foamAmount: applicationFlow.foamAmount
-            milkAmount: applicationFlow.milkAmount
-            coffeeAmount: applicationFlow.coffeeAmount
-            sugarAmount: applicationFlow.sugarAmount
-            state: applicationFlow.mode
-        }
+        Ready {}
     }
 }
