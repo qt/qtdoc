@@ -66,7 +66,7 @@ ApplicationFlowForm {
     //! [On clicked]
     home.getStartedbutton.onClicked: {
         applicationFlow.state = "Coffee-selection"
-        stack.push(choosingCoffee)
+        stack.pushItem(choosingCoffee, {appFlow: applicationFlow})
     }
     //! [On clicked]
     function backButton() {
@@ -74,7 +74,7 @@ ApplicationFlowForm {
         applicationFlow.state = applicationFlow.previousState
     }
     function confirmButton() {
-        stack.push(insert)
+        stack.pushItem(insert, {appFlow: applicationFlow})
         applicationFlow.state = "Insert"
     }
     function continueButton() {
@@ -97,7 +97,7 @@ ApplicationFlowForm {
         stack.pop(stack.get(1))
     }
     function onFinished() {
-        stack.push(ready)
+        stack.pushItem(ready, {appFlow: applicationFlow})
         applicationFlow.state = "Ready"
     }
     function onReturnToStart() {
