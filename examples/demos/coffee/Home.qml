@@ -3,6 +3,9 @@
 import QtQuick
 
 HomeForm {
+    required property ApplicationFlow appFlow
+    state: appFlow.mode
+
     grid.states: [
         State {
             name: "small"
