@@ -14,7 +14,7 @@ ProgressForm {
     milkAmount: appFlow.milkAmount
     foamAmount: appFlow.foamAmount
     sugarAmount: appFlow.sugarAmount
-    state: appFlow.mode
+    state: Config.mode
     progressBarValue: appFlow.progressBarValue
     cup.state: appFlow.progressCupState
 

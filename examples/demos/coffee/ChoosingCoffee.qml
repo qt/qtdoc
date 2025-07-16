@@ -3,7 +3,7 @@
 
 ChoosingCoffeeForm {
     required property ApplicationFlow appFlow
-    state: appFlow.mode
+    state: Config.mode
     cappuccino.cupsLeft: appFlow.cappuccinos
     latte.cupsLeft: appFlow.lattes
     espresso.cupsLeft: appFlow.espressos

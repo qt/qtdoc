@@ -73,7 +73,7 @@ CoffeeCardForm {
         },
         State {
             name: "smaller"
-            when: applicationFlow.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
+            when: Config.mode == "portrait" && ((Screen.height * Screen.devicePixelRatio) + (Screen.width * Screen.devicePixelRatio)) < 1200
             PropertyChanges {
                 target: coffeeCardCircle
                 implicitWidth: coffeeCardRectangle.implicitWidth / 2
