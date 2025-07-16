@@ -36,7 +36,7 @@ qt_add_qml_module(coffeemachine
         HomeForm.ui.qml
         Insert.qml
         InsertForm.ui.qml
-        main.qml
+        Main.qml
         Progress.qml
         ProgressForm.ui.qml
         Ready.qml

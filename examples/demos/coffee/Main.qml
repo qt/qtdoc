@@ -15,3 +15,4 @@ ApplicationWindow {
         mode: (Screen.height > Screen.width) ? "portrait" : "landscape"
     }
 }
+
