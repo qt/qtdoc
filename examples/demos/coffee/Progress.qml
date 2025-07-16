@@ -3,6 +3,8 @@
 import QtQuick
 
 ProgressForm {
+    id: progressForm
+
     required property ApplicationFlow appFlow
     property alias timer: timer
     property int brewTime: appFlow.brewTime
@@ -19,10 +21,10 @@ ProgressForm {
     //! [Timer]
     Timer {
         id: timer
-        interval: brewTime
+        interval: progressForm.brewTime
         running: true
         onTriggered: {
-            appFlow.onFinished()
+            progressForm.appFlow.onFinished()
         }
     }
     //! [Timer]
@@ -30,7 +32,7 @@ ProgressForm {
     Behavior on greenBar.width {
         SmoothedAnimation {
             easing.type: Easing.Linear
-            velocity: (contentItem.width / brewTime) * 1000
+            velocity: (progressForm.contentItem.width / progressForm.brewTime) * 1000
         }
     }
     //! [Behavior]
@@ -78,24 +80,24 @@ ProgressForm {
         from: "0"
         to: "1"
         SmoothedAnimation {
-            target: cup
+            target: progressForm.cup
             property: "coffeeAmount"
-            velocity: (coffeeAmount / brewTime) * brewingAnimationVelocityFactor
+            velocity: (progressForm.coffeeAmount / progressForm.brewTime) * progressForm.brewingAnimationVelocityFactor
         }
         SmoothedAnimation {
-            target: cup
+            target: progressForm.cup
             property: "milkAmount"
-            velocity: (milkAmount / brewTime) * brewingAnimationVelocityFactor
+            velocity: (progressForm.milkAmount / progressForm.brewTime) * progressForm.brewingAnimationVelocityFactor
         }
         SmoothedAnimation {
-            target: cup
+            target: progressForm.cup
             property: "foamAmount"
-            velocity: (foamAmount / brewTime) * brewingAnimationVelocityFactor
+            velocity: (progressForm.foamAmount / progressForm.brewTime) * progressForm.brewingAnimationVelocityFactor
         }
         SmoothedAnimation {
-            target: cup
+            target: progressForm.cup
             property: "sugarAmount"
-            velocity: (sugarAmount / brewTime) * brewingAnimationVelocityFactor
+            velocity: (progressForm.sugarAmount / progressForm.brewTime) * progressForm.brewingAnimationVelocityFactor
         }
     }
     caption.states: [

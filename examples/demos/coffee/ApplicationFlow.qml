@@ -23,7 +23,7 @@ ApplicationFlowForm {
         //! [On clicked]
         getStartedbutton.onClicked: {
             applicationFlow.state = "Coffee-selection"
-            stack.pushItem(choosingCoffee, {appFlow: applicationFlow})
+            applicationFlow.stack.pushItem(applicationFlow.choosingCoffee, {appFlow: applicationFlow})
         }
         //! [On clicked]
     }

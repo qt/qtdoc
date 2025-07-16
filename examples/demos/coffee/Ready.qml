@@ -3,6 +3,8 @@
 import QtQuick
 
 ReadyForm {
+    id: readyForm
+
     required property ApplicationFlow appFlow
 
     property alias timer: timer
@@ -17,7 +19,7 @@ ReadyForm {
         interval: 3000
         running: true
         onTriggered: {
-            appFlow.onReturnToStart()
+            readyForm.appFlow.onReturnToStart()
         }
     }
     grid.states: [

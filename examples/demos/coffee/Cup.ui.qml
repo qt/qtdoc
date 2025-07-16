@@ -3,6 +3,7 @@
 import QtQuick
 
 Item {
+    id: root
     property int coffeeAmount
     property int milkAmount
     property int foamAmount
@@ -15,7 +16,7 @@ Item {
         anchors.bottom: cup.bottom
         sourceSize.width: cup.width
         anchors.horizontalCenter: parent.horizontalCenter
-        sourceSize.height: milk.height + (foamAmount * (cup.height / 700))
+        sourceSize.height: milk.height + (root.foamAmount * (cup.height / 700))
     }
     Image {
         id: milk
@@ -23,7 +24,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: cup.bottom
         sourceSize.width: cup.width
-        sourceSize.height: coffee.height + (milkAmount * (cup.height / 700))
+        sourceSize.height: coffee.height + (root.milkAmount * (cup.height / 700))
     }
     Image {
         id: coffee
@@ -31,7 +32,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: cup.bottom
         sourceSize.width: cup.width
-        sourceSize.height: (cup.height / 6.4) + (coffeeAmount * (cup.height / 550))
+        sourceSize.height: (cup.height / 6.4) + (root.coffeeAmount * (cup.height / 550))
     }
     Image {
         id: sugar
@@ -39,7 +40,7 @@ Item {
         anchors.horizontalCenter: cup.horizontalCenter
         anchors.top: coffee.top
         sourceSize.width: cup.width / 6
-        opacity: sugarAmount
+        opacity: root.sugarAmount
     }
     Image {
         id: cup

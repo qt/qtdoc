@@ -5,6 +5,7 @@ pragma Singleton
 import QtQuick
 
 Item {
+    id: root
     QtObject {
         id: light
         readonly property color background: "#ffffff"
@@ -24,13 +25,13 @@ Item {
 
     Gradient {
         id: invertedGreyBorder
-        GradientStop { position: 0.0; color: currentTheme.cardColor }
-        GradientStop { position: 1.0; color: currentTheme.borderColor }
+        GradientStop { position: 0.0; color: root.currentTheme.cardColor }
+        GradientStop { position: 1.0; color: root.currentTheme.borderColor }
     }
     Gradient {
         id: greyBorder
-        GradientStop { position: 0.0; color: currentTheme.borderColor }
-        GradientStop { position: 1.0; color: currentTheme.cardColor }
+        GradientStop { position: 0.0; color: root.currentTheme.borderColor }
+        GradientStop { position: 1.0; color: root.currentTheme.cardColor }
     }
     Gradient {
         id: invertedGreenBorder
@@ -49,14 +50,14 @@ Item {
         }
         GradientStop {
             position: 0.0
-            color: currentTheme.cardColor
+            color: root.currentTheme.cardColor
         }
     }
     Gradient {
         id: greenBorder
         GradientStop {
             position: 1.0
-            color: currentTheme.cardColor
+            color: root.currentTheme.cardColor
         }
         GradientStop {
             position: 0.66

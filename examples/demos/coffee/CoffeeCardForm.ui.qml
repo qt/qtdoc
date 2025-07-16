@@ -62,7 +62,7 @@ Column {
             id: button
             hoverEnabled: true
             checkable: true
-            enabled: (cupsLeft != 0) ? true : false
+            enabled: (root.cupsLeft != 0) ? true : false
             transitions: Transition {
                 NumberAnimation {
                     properties: "scale"
@@ -84,7 +84,7 @@ Column {
                     height: parent.height - (coffeeCardCircle.height / 2)
                     Text {
                         id: coffeeText
-                        text: coffeeName
+                        text: root.coffeeName
                         color: Colors.currentTheme.textColor
                         font.weight: 700
                         font.pixelSize: 18
@@ -93,7 +93,7 @@ Column {
                     }
                     Text {
                         id: ingredientText
-                        text: ingredients
+                        text: root.ingredients
                         color: Colors.currentTheme.caption
                         Layout.alignment: Qt.AlignHCenter
                         Layout.maximumWidth: parent.width
@@ -112,7 +112,7 @@ Column {
                         Text {
                             id: actualTimeText
                             Layout.fillWidth: true
-                            text: time + " Mins"
+                            text: root.time + " Mins"
                             font.pixelSize: 14
                             color: Colors.currentTheme.textColor
                         }
@@ -128,7 +128,7 @@ Column {
                                 id: cupsLeftText
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: cupsLeft
+                                text: root.cupsLeft
                                 font.pixelSize: 12
                                 font.weight: 600
                                 color: Colors.green
@@ -140,7 +140,7 @@ Column {
                     id: outOfDialog
                     width: coffeeCardRectangle.width / 1.5
                     height: coffeeCardRectangle.height / 5
-                    visible: (cupsLeft != 0) ? false : true
+                    visible: (root.cupsLeft != 0) ? false : true
                     radius: 8
                     color: (Colors.currentTheme
                             == Colors.dark) ? Colors.light.cardColor : Colors.dark.cardColor
@@ -150,7 +150,7 @@ Column {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Out of " + coffeeName
+                        text: "Out of " + root.coffeeName
                         color: (Colors.currentTheme
                                 == Colors.dark) ? Colors.light.textColor : Colors.dark.textColor
                     }
@@ -161,7 +161,7 @@ Column {
                 anchors.fill: innerCoffeeCardRectangle
                 shadowEnabled: true
                 shadowColor: Colors.shadow
-                shadowOpacity: (cupsLeft != 0) ? 0.5 : 0.0
+                shadowOpacity: (root.cupsLeft != 0) ? 0.5 : 0.0
             }
         }
     }
@@ -194,7 +194,7 @@ Column {
             anchors.fill: innerCoffeeCardCircle
             shadowEnabled: true
             shadowColor: Colors.shadow
-            shadowOpacity: (cupsLeft != 0) ? 0.5 : 0.0
+            shadowOpacity: (root.cupsLeft != 0) ? 0.5 : 0.0
         }
     }
 }
