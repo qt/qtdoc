@@ -113,16 +113,7 @@ Rectangle {
     }
     Component {
         id: progress
-        Progress {
-            brewTime: applicationFlow.brewTime
-            coffeeAmount: applicationFlow.coffeeAmount
-            milkAmount: applicationFlow.milkAmount
-            foamAmount: applicationFlow.foamAmount
-            sugarAmount: applicationFlow.sugarAmount
-            state: applicationFlow.mode
-            progressBarValue: root.progressBarValue
-            cup.state: root.progressCupState
-        }
+        Progress {}
     }
     Component {
         id: ready

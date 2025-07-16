@@ -3,9 +3,18 @@
 import QtQuick
 
 ProgressForm {
+    required property ApplicationFlow appFlow
     property alias timer: timer
-    property int brewTime
+    property int brewTime: appFlow.brewTime
     property int brewingAnimationVelocityFactor: 1200
+
+    coffeeAmount: appFlow.coffeeAmount
+    milkAmount: appFlow.milkAmount
+    foamAmount: appFlow.foamAmount
+    sugarAmount: appFlow.sugarAmount
+    state: appFlow.mode
+    progressBarValue: appFlow.progressBarValue
+    cup.state: appFlow.progressCupState
 
     //! [Timer]
     Timer {
@@ -13,7 +22,7 @@ ProgressForm {
         interval: brewTime
         running: true
         onTriggered: {
-            applicationFlow.onFinished()
+            appFlow.onFinished()
         }
     }
     //! [Timer]
