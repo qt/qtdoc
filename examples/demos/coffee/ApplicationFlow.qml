@@ -78,7 +78,7 @@ ApplicationFlowForm {
         applicationFlow.state = "Insert"
     }
     function continueButton() {
-        stack.push(progress)
+        stack.pushItem(progress, {appFlow: applicationFlow})
         applicationFlow.state = "Progress"
         applicationFlow.progressBarValue = 1
         applicationFlow.progressCupState = "1"
