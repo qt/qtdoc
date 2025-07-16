@@ -114,6 +114,10 @@ ApplicationFlowForm {
         applicationFlow.progressBarValue = 0
         applicationFlow.progressCupState = "0"
     }
+
+    toolbar.onBackClicked: applicationFlow.backButton()
+    toolbar.onThemeChangeRequested: applicationFlow.themeButton()
+
     //! [States]
     states: [
         State {
