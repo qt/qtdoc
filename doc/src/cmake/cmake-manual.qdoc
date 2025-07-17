@@ -464,67 +464,57 @@
     \page cmake-build-qml-application.html
     \title Building a QML application
 
-    In \l{Building a C++ console application} we showed the CMakeLists.txt file
+    In \l{Building a C++ console application}, we showed the CMakeLists.txt file
     for a simple console application. We will now create a QML application that
     uses the \l{Qt Quick} module.
 
-    This is the full project file:
+    Here is the full project file:
     \quotefromfile snippets/cmake/helloworld_qtqml.cmake
     \skipto cmake_minimum_required
     \printuntil
 
-    Let's walk through the changes we have made.
-    In the \c{find_package} call, we replace \c{Core} with \c{Quick}. This
-    will locate the \c{Qt6Quick} module and provide the \c{Qt6::Quick}
-    targets we later link against.
+    Let's walk through the changes we have made, compared to the console
+    application \c CMakeLists.txt:
 
     \quotefromfile snippets/cmake/helloworld_qtqml.cmake
     \skipto find_package(
-    \printuntil find_package(
+    \dots
+    \printline find_package(
 
-    We call \l {qt6_standard_project_setup}{qt_standard_project_setup},
-    and specify \l{Building a C++ console application}{CMAKE_CXX_STANDARD},
-    and \c{CMAKE_CXX_STANDARD_REQUIRED}.
-    By passing \c {REQUIRES 6.5} to \c {qt_standard_project_setup}, we opt-in
-    to useful defaults for \l{qt6_add_qml_module}{qt_add_qml_module}. It
-    enables all the \l{Qt CMake policies} up to version 6.5. In particular
-    \l{QTP0001} that defines a default resource prefix for QML modules, which
-    ensures that they end up under one of the QML engine's default
+    In the \c{find_package()} call, we replace \c{Core} with \c{Quick}. CMake
+    will therefore load the \c{Qt6Quick} module and provide the \c{Qt6::Quick}
+    targets we later link against. CMake will also automatically load packages
+    Quick depends on, like \c Qt6Qml, which defines the \l{qt_add_qml_module}
+    {qt_add_qml_module()} command we use below.
+
+    We also require Qt 6.5 or newer.
+
+    \printline qt_standard_project_setup
+
+    The \l{qt_standard_project_setup}{qt_standard_project_setup()} command sets
+    project-wide defaults for a typical Qt application. By adding \c {REQUIRES 6.5},
+    we enable the policy \l{QTP0001}, which defines a default resource prefix for QML
+    modules created by \l{qt_add_qml_module}{qt_add_qml_module()}.
+
+    \skipto qt_add_qml_module(
+    \dots
+    \printuntil /^\)/
+
+    \l{qt_add_qml_module}{qt_add_qml_module()} adds a QML module named \c hello
+    to the executable, consisting of two QML files and one image. Due to \l{QTP0001},
+    the module will be available at \c {qrc:/qt/qml/hello} in the resource file system,
+    with \c {qrc:/qt/qml/} being one of the QML engine's default
     \l[QtQml]{QML Import Path}{import paths}.
 
-    \printuntil CMAKE_CXX_STANDARD_REQUIRED
+    \l{qt_add_qml_module}{qt_add_qml_module()} also does optimization steps like
+    running the \l{QML script compiler}, and defining a \c helloworld_qmllint
+    target which you can run to get additional suggestions about the \c .qml files
+    from \l qmllint.
 
-
-    Note that the application will still link against \c{Qt6::Core}, because
-    \c{Qt6::Quick} depends on it.
-
-    \l {qt_add_executable} creates and finalizes an application target:
-
-    \printuntil )
-
-    \l {qt_add_qml_module} passes the target of the executable, a URI, module
-    version, and a list of QML files to ensure that myapp becomes a
-    QML module. This places the QML files into
-    \c { qrc:/qt/qml/${URI} } in the resource file system.
-    Moreover, \c qt_add_qml_module ensures that \c qmlcachegen runs.
-    Additionally, it creates a \c myapp_qmllint target, which runs \c qmllint on
-    the files in QML_FILES.
-
-    \printuntil )
-
-    By adding the referenced resources, they get automatically added to
-    the application under the same root path as the QML files – also in the
-    resource file system. By keeping the path in the resource system
-    consistent with the one in the source and build directory, we ensure that
-    the image is always found, as it is resolved relative to FramedImage.qml.
-    It refers to the image in the resource file system if we load main.qml from
-    there, or to the one in the actual file system if we review it with
-    the \c qml tool.
-
-    In the \c{target_link_libraries} command, we link against \c{Qt6::Quick}
-    instead of \c{Qt6::Core}.
-
-    \printuntil target_link_libraries
+    \printline target_link_libraries(
+    In the \c{target_link_libraries()} command, we link our executable
+    against \c{Qt6::Quick}. This automatically also links against targets
+    \c{Qt6::Quick} depends on, including \c{Qt6::Qml} and \c{Qt6::Core}.
 */
 
 /*!
