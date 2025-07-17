@@ -40,7 +40,7 @@ Node {
             id: root
             y: -5.96047e-08
             z: 1.0472
-            eulerRotation.z: rotation4
+            eulerRotation.z: rootNode.rotation4
             source: "meshes/root.mesh"
 
             DefaultMaterial {
@@ -54,7 +54,7 @@ Node {
                 x: 5.32907e-15
                 y: -0.165542
                 z: 1.53472
-                eulerRotation.x: rotation3
+                eulerRotation.x: rootNode.rotation3
                 source: "meshes/forearm.mesh"
                 materials: [plastic_material, steel_material]
 
@@ -63,7 +63,7 @@ Node {
                     x: -7.43453e-07
                     y: 0.667101
                     z: 2.23365
-                    eulerRotation.x: rotation2
+                    eulerRotation.x: rootNode.rotation2
                     source: "meshes/arm.mesh"
 
                     DefaultMaterial {
@@ -83,7 +83,7 @@ Node {
                         x: 7.43453e-07
                         y: 0.0635689
                         z: 2.12289
-                        eulerRotation.x: rotation1
+                        eulerRotation.x: rootNode.rotation1
                         source: "meshes/hand_hinge.mesh"
                         materials: [plastic_material]
 
@@ -110,7 +110,7 @@ Node {
                                 x: -9.3061e-07
                                 y: 0.143685
                                 z: 0.728553
-                                eulerRotation.x: clawsAngle * -1
+                                eulerRotation.x: rootNode.clawsAngle * -1
                                 source: "meshes/hand_grab_t_hinge_1.mesh"
                                 materials: [steel_material]
 
@@ -130,7 +130,7 @@ Node {
                                 x: -9.38738e-07
                                 y: -0.143685
                                 z: 0.728553
-                                eulerRotation.x: clawsAngle
+                                eulerRotation.x: rootNode.clawsAngle
                                 source: "meshes/hand_grab_b_hinge_1.mesh"
                                 materials: [steel_material]
 
