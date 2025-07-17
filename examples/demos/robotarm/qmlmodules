@@ -9,8 +9,8 @@ qt6_add_qml_module(RobotArmApp
     RESOURCE_PREFIX "/"
 )
 
-add_subdirectory(content)
 add_subdirectory(imports)
+add_subdirectory(content)
 
 set(QML_IMPORT_PATH
     ${CMAKE_BINARY_DIR}
