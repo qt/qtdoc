@@ -2,16 +2,14 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Controls.Material
+import QtQuick.Controls.Material as MaterialControls
 import QtQuick3D
-import RobotArm
 
 Item {
     id: root
     property real size: 100
     property bool isFocused: true
-    property View3D view3D: parent
+    property View3D view3D: parent as View3D
     property vector3d scenePosition
     property vector3d screenPosition
     property alias label: label.text
@@ -21,7 +19,7 @@ Item {
 
     visible: x > 0 && y > 0
 
-    Label {
+    MaterialControls.Label {
         id: label
         enabled: root.isFocused
         anchors.bottom: rect.top
@@ -35,7 +33,7 @@ Item {
         color: "Transparent"
         radius: width / 2
         border.width: 2
-        border.color: root.isFocused ? Material.accentColor : Material.secondaryTextColor
+        border.color: root.isFocused ? MaterialControls.Material.accentColor : MaterialControls.Material.secondaryTextColor
 
         anchors.horizontalCenter: parent.left
         anchors.verticalCenter: parent.top
