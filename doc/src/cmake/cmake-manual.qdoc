@@ -168,9 +168,6 @@
     will locate the \c{Qt6Widgets} module and provide the \c{Qt6::Widgets}
     targets we later link against.
 
-    Note that the application will still link against \c{Qt6::Core}, because
-    \c{Qt6::Widgets} depends on it.
-
     \printuntil qt_standard_project_setup(
 
     In addition to \c{CMAKE_AUTOMOC},
@@ -189,7 +186,8 @@
     \printuntil target_link_libraries
 
     In the \c{target_link_libraries} command, we link against \c{Qt6::Widgets}
-    instead of \c{Qt6::Core}.
+    instead of \c{Qt6::Core}. Note that the application will still link against
+    \c{Qt6::Core}, because \c{Qt6::Widgets} depends on it.
 
     \printuntil
 
