@@ -14,16 +14,6 @@
     \list
     \endlist
 
-    \section1 Removed Modules in Qt 6.10
-
-    The following modules are deprecated. We strongly advise against using them
-    in new code.
-
-    \list
-      \li QtCharts
-      \li QtDataVisualization
-    \endlist
-
     \section1 New Features in Qt 6.10
 
     \section2 Qt Core Module
@@ -336,6 +326,23 @@
     \section3 RealTime OSs
     \list
     \endlist
+
+    \section1 Modules Deprecated in Qt 6.10
+
+    The following modules are deprecated. We strongly advise against using them
+    in new code.
+
+    \list
+      \li \l{Qt Charts}
+      \li \l{Qt Data Visualization}
+    \endlist
+
+    The Qt Charts and Qt DataVisualization modules are deprecated. They continue
+    to be part of the licensed software, and remain part of the Qt Project.
+    However, for new code we recommend that you use \l{Qt Graphs}. Also, consult
+    the documentation for \{Qt Graphs Migration from Qt Charts}{migrating from
+    Qt Charts} and \l{Qt Graphs Migration from Qt DataVisualization}{migrating
+    from Qt Data Visualization}.
 
     \section1 List of API Changes
 
