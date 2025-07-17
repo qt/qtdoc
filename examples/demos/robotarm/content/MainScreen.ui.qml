@@ -6,7 +6,6 @@ import QtQuick3D
 import QtQuick.Controls.Material
 import QtQuick.Controls
 import QtQuick.Layouts
-import RobotArm
 import Backend
 import QtQml
 
@@ -114,7 +113,7 @@ Pane {
 
             Connections {
                 target: pose1
-                onClicked: {
+                function onClicked() {
                     rotation1Slider.value = 30
                     rotation2Slider.value = 60
                     rotation3Slider.value = 90
@@ -132,7 +131,7 @@ Pane {
 
             Connections {
                 target: pose2
-                onClicked: {
+                function onClicked() {
                     rotation1Slider.value = 60
                     rotation2Slider.value = 45
                     rotation3Slider.value = 45
@@ -150,7 +149,7 @@ Pane {
 
             Connections {
                 target: pose3
-                onClicked: {
+                function onClicked() {
                     rotation1Slider.value = -90
                     rotation2Slider.value = -60
                     rotation3Slider.value = -45
@@ -168,7 +167,7 @@ Pane {
 
             Connections {
                 target: resetPose
-                onClicked: {
+                function onClicked() {
                     rotation1Slider.value = 0
                     rotation2Slider.value = 0
                     rotation3Slider.value = 0
@@ -309,7 +308,7 @@ Pane {
             }
             AnchorChanges {
                 target: slidersColumn
-                anchors.right: parent.right
+                anchors.right: slidersColumn.parent.right
             }
             PropertyChanges {
                 target: slidersColumn
@@ -354,7 +353,7 @@ Pane {
             AnchorChanges {
                 target: slidersColumn
                 anchors.left: undefined
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: slidersColumn.parent.horizontalCenter
             }
 
             AnchorChanges {
