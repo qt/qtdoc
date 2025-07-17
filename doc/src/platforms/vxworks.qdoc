@@ -1178,7 +1178,8 @@
     \image vxwb-cmake-rtp-project.png "Select cmake RTP project"
     \li Set the VSB which has debugging configured.
     \li Remove set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static") from CMakeLists.txt.
-    \li Add Qt CMake related code to the CMakeLists.txt following \l {https://doc.qt.io/qt-6/cmake-get-started.html#building-a-c-gui-applicationCMakeLists.txt} {Getting started with CMake}.
+    \li Add Qt CMake related code to the CMakeLists.txt following
+        \l{cmake-widgets-application-walkthrough}{Getting started with CMake}.
     \li Before \c {project()} add \c {unset(CMAKE_TOOLCHAIN_FILE CACHE)} and add \c {CMAKE_TOOLCHAIN_FILE} pointing to the Qt6 toolchain file and \c {QT_CHAINLOAD_TOOLCHAIN_FILE} to the VSB toolchain file.
     For example:
     \badcode
