@@ -35,7 +35,7 @@ SettingsViewForm {
     Component.onCompleted: {
         if (!isThemeOptionAvailable) {
             AppSettings.theme = Qt.binding( function() {
-                return  Qt.styleHints.colorScheme === Qt.Dark ? "Dark" : "Light"
+                return  Application.styleHints.colorScheme === Qt.Dark ? "Dark" : "Light"
             })
         }
     }
