@@ -28,7 +28,7 @@ Rectangle {
         repeat  : false
         onTriggered: {
             Logic.cleanUp();
-            nextPuzzle();
+            root.nextPuzzle();
         }
     }
 
