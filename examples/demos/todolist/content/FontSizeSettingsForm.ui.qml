@@ -54,7 +54,7 @@ Page {
             value: AppSettings.fontSize
             to: 21
 
-            onMoved: AppSettings.fontSize = value
+            onMoved: AppSettings.fontSize = slider.value
         }
 
         Label {
