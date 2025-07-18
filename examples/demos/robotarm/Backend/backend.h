@@ -19,7 +19,7 @@ class Backend : public QObject
     Q_PROPERTY(int rotation3Angle READ rotation3Angle WRITE setRot3Angle NOTIFY rot3AngleChanged)
     Q_PROPERTY(int rotation4Angle READ rotation4Angle WRITE setRot4Angle NOTIFY rot4AngleChanged)
     Q_PROPERTY(int clawsAngle READ clawsAngle WRITE setClawsAngle NOTIFY clawsAngleChanged)
-    Q_PROPERTY(QString status READ status BINDABLE bindableStatus)
+    Q_PROPERTY(QString status READ status BINDABLE bindableStatus NOTIFY statusChanged)
     //! [class definition]
 
 public:
@@ -49,6 +49,7 @@ signals:
     void rot3AngleChanged();
     void rot4AngleChanged();
     void clawsAngleChanged();
+    void statusChanged();
 
 private:
     AnimatedParam m_rotation1Angle;
@@ -57,7 +58,7 @@ private:
     AnimatedParam m_rotation4Angle;
     AnimatedParam m_clawsAngle;
 
-    QProperty<QString> m_status;
+    Q_OBJECT_BINDABLE_PROPERTY(Backend, QString, m_status, &Backend::statusChanged)
     QProperty<bool> m_isCollision;
 
     void detectCollision();
