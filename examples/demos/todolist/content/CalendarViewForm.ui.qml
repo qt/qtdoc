@@ -8,6 +8,7 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -135,6 +136,7 @@ Pane {
                 Layout.fillHeight: true
 
                 delegate: Label {
+                    id: monthGridDelegate
                     required property var model
 
                     color: Constants.secondaryColor
@@ -148,7 +150,7 @@ Pane {
                         implicitHeight: 40
                         radius: 20
                         color: "#41CD52"
-                        visible: +root.selectedDate === +model.date
+                        visible: +root.selectedDate === +monthGridDelegate.model.date
                     }
                 }
             }

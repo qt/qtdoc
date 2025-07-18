@@ -8,6 +8,7 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import ToDoList
@@ -96,12 +97,12 @@ Page {
                                        })
                     } else if (settingsItem.page === "Theme") {
                         stackView.push("OtherSettings.qml", {
-                                           "otherSettingsModel": themeSettingsModel,
+                                           "otherSettingsModel": root.themeSettingsModel,
                                            "titleText": qsTr("Theme")
                                        })
                     } else if (settingsItem.page === "Tasks") {
                         stackView.push("OtherSettings.qml", {
-                                           "otherSettingsModel": tasksSettingsModel,
+                                           "otherSettingsModel": root.tasksSettingsModel,
                                            "titleText": qsTr("Tasks")
                                        })
                     } else {
