@@ -91,6 +91,7 @@ Page {
 
             Connections {
                 function onClicked() {
+                    let stackView = (root.Window.window as App).globalNavigationStackView
                     if (settingsItem.page === "Style") {
                         stackView.push(settingsItem.page + "Settings.qml", {
                                            "builtInStyles": root.builtInStyles
