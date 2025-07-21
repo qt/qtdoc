@@ -3,7 +3,9 @@
 
 import QtQuick
 import QtQuick.Controls
+import ToDoList
 
 MaxTasksSettingsForm {
     backButton.onClicked: StackView.view.pop()
+    maxTasksSpinbox.onValueChanged: AppSettings.maxTasksCount = maxTasksSpinbox.value
 }

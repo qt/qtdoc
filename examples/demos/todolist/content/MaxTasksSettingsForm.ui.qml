@@ -17,6 +17,7 @@ Page {
     id: root
 
     property alias backButton: navBar.backButton
+    property alias maxTasksSpinbox: maxTasksSpinbox
 
     topPadding: 12
 
@@ -52,8 +53,6 @@ Page {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 10
-
-            onValueChanged: AppSettings.maxTasksCount = maxTasksSpinbox.value
         }
     }
 }

@@ -178,8 +178,7 @@ Column {
             to: 0
         }
 
-        onFinished: tasksList.visible = false
-    }
+   }
 
     ParallelAnimation {
         id: showTasksList
@@ -197,6 +196,15 @@ Column {
             to: 1
         }
 
-        onStarted: tasksList.visible = true
     }
+
+   Connections {
+       target: hideTasksList
+       function onFinished() { tasksList.visible = false }
+   }
+
+   Connections {
+       target: showTasksList
+       function onStarted() { tasksList.visible = true }
+   }
 }

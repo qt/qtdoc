@@ -5,6 +5,8 @@ import QtQuick
 import ToDoList
 
 ClockForm {
+    onIsHourClockChanged: angle = isHourClock ? hourClockRotation : minutesClockRotation
+
     function rotateClockHand(mousePosition: vector2d, centerPoint: vector2d) {
         var vec = centerPoint.minus(mousePosition)
         var rad = Math.atan2(vec.x, vec.y)
