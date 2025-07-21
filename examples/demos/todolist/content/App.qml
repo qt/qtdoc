@@ -11,6 +11,8 @@ import ToDoList
 Window {
     id: root
 
+    property alias globalNavigationStackView: stackView
+
     width: 360
     height: 800
     minimumHeight: 600
