@@ -23,8 +23,6 @@ Item {
     property alias angle: clockHand.rotation
     property alias centerPoint: mouseArea.centerPoint
 
-    onIsHourClockChanged: angle = isHourClock ? hourClockRotation : minutesClockRotation
-
     Image {
         id: clockHand
 
