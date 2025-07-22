@@ -285,6 +285,26 @@
     \section2 Build System Changes
 
     \list
+        \li Added a \c DISCARD_FILE_CONTENTS option to \c{qt_add_resources()}.
+        \li The \c FILENAME_VARIABLE option of
+            \c{qt6_generate_deploy_[app_]script}, which was deprecated in
+            Qt 6.6.0, has been removed.
+        \li Added the \c NO_PLUGINS argument to \c
+            qt_deploy_runtime_dependencies. This turns off plugin deployment
+            altogether.
+        \li Added the arguments \c INCLUDE_PLUGIN_TYPES,
+            \c EXCLUDE_PLUGIN_TYPES, \c INCLUDE_PLUGINS, and \c EXCLUDE_PLUGINS
+            to \c qt_deploy_runtime_dependencies.
+        \li Added arguments for selecting Qt plugins to
+            \c qt_generate_deploy_app_script.
+        \li \c qt6_import_plugins doesn't have any effect anymore on plugin
+            deployment with the CMake deployment API on Linux.
+        \li \c qt6_deploy_runtime_dependencies now supports the following plugin
+            selection flags on Linux: \c INCLUDE_PLUGINS,
+            \c INCLUDE_PLUGIN_TYPES, \c EXCLUDE_PLUGINS, \c EXCLUDE_PLUGIN_TYPES.
+        \li Added a \c DISCARD_QML_CONTENTS option to \c{qt_add_qml_module()},
+            that removes original QML and JS file contents from the target's
+            resource system.
     \endlist
 
     \section2 Desktop Platforms
