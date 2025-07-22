@@ -285,6 +285,9 @@
     \section2 Build System Changes
 
     \list
+        \li Usage of a private Qt module Foo now requires a call to
+            \c{find_package(Qt6 COMPONENTS FooPrivate)} to make the
+            \c{Qt6::FooPrivate} target available.
         \li Added a \c DISCARD_FILE_CONTENTS option to \c{qt_add_resources()}.
         \li The \c FILENAME_VARIABLE option of
             \c{qt6_generate_deploy_[app_]script}, which was deprecated in
