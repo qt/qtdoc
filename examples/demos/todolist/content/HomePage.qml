@@ -82,7 +82,7 @@ HomePageForm {
                     addTask(todayTasksModel, object.activity,
                             currentDate.toLocaleDateString(Qt.locale(), format), "","")
                 } else {
-                    console.log("error: " + http.status)
+                    console.log("Failed to fetch a random TODO item; the API provider might be down")
                 }
             }
         }

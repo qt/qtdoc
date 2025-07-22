@@ -39,6 +39,9 @@ Item {
         id: clockFace
 
         source: "images/Clock.svg"
+        sourceSize.width: parent.width
+        fillMode: Image.PreserveAspectFit
+
 
         MouseArea {
             id: mouseArea
