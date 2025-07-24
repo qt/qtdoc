@@ -1,6 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
+import Qt.labs.synchronizer
 
 SettingsForm {
     id: settingsForm
@@ -67,22 +68,33 @@ SettingsForm {
             }
         }
     ]
-    sugarSlider.onMoved: {
-        sugarText.sugarAmount = sugarSlider.position * 4
-    }
+
     confirmButton.onClicked: appFlow.confirmButton()
-    //! [Value changed]
-    coffeeSlider.onValueChanged: {
-        coffeeConfig.coffeeAmount = coffeeSlider.value
+
+    //! [synchronizer]
+    Synchronizer {
+         sourceObject: coffeeConfig
+         sourceProperty: "sugarAmount"
+         targetObject: sugarSlider
+         targetProperty: "value"
     }
-    //! [Value changed]
-    milkSlider.onValueChanged: {
-        coffeeConfig.milkAmount = milkSlider.value
+    //! [synchronizer]
+    Synchronizer {
+         sourceObject: coffeeConfig
+         sourceProperty: "foamAmount"
+         targetObject: foamSlider
+         targetProperty: "value"
     }
-    foamSlider.onValueChanged: {
-        coffeeConfig.foamAmount = foamSlider.value
+    Synchronizer {
+         sourceObject: coffeeConfig
+         sourceProperty: "milkAmount"
+         targetObject: milkSlider
+         targetProperty: "value"
     }
-    sugarSlider.onValueChanged: {
-        coffeeConfig.sugarAmount = sugarSlider.value
+    Synchronizer {
+         sourceObject: coffeeConfig
+         sourceProperty: "coffeeAmount"
+         targetObject: coffeeSlider
+         targetProperty: "value"
     }
 }

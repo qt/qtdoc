@@ -41,6 +41,7 @@ ApplicationFlowForm {
         coffeeConfig.milkAmount = 60
         coffeeConfig.foamAmount = 60
         coffeeConfig.brewTime = 5000
+        coffeeConfig.sugarAmount = 0
         stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Cappuccino"
     }
@@ -51,6 +52,7 @@ ApplicationFlowForm {
         coffeeConfig.milkAmount = 0
         coffeeConfig.foamAmount = 0
         coffeeConfig.brewTime = 4000
+        coffeeConfig.sugarAmount = 0
         stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Espresso"
     }
@@ -61,6 +63,7 @@ ApplicationFlowForm {
         coffeeConfig.milkAmount = 20
         coffeeConfig.foamAmount = 60
         coffeeConfig.brewTime = 6000
+        coffeeConfig.sugarAmount = 0
         stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Latte"
     }
@@ -71,6 +74,7 @@ ApplicationFlowForm {
         coffeeConfig.milkAmount = 5
         coffeeConfig.foamAmount = 10
         coffeeConfig.brewTime = 8000
+        coffeeConfig.sugarAmount = 0
         stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Macchiato"
     }
