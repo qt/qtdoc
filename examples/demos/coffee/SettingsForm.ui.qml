@@ -327,10 +327,9 @@ Item {
                                         border.color: Colors.grey
                                         Text {
                                             id: sugarText
-                                            property int sugarAmount: 0
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.horizontalCenter: parent.horizontalCenter
-                                            text: sugarAmount + "p"
+                                            text: (sugarSlider.position * 4) + "p"
                                             font.pixelSize: 12
                                             clip: false
                                             color: Colors.currentTheme.textColor
