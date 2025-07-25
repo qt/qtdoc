@@ -18,7 +18,10 @@ ApplicationWindow {
         id: accelerometer
         dataRate: 25
         active: true
-        readonly property vector3d force: Qt.vector3d(reading.x, reading.y, reading.z)
+        readonly property vector3d force: {
+            let r = reading as AccelerometerReading
+            return Qt.vector3d(r.x, r.y, r.z)
+        }
         readonly property bool highForce : Math.abs(force.length() - 9.81) > 16
 
         onHighForceChanged: {
