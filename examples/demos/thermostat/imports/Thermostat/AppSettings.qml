@@ -6,5 +6,5 @@ import QtQuick
 import QtCore
 
 Settings {
-    property bool isDarkTheme: Qt.styleHints.colorScheme === Qt.Dark
+    property bool isDarkTheme: Application.styleHints.colorScheme === Qt.Dark
 }

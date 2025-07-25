@@ -7,6 +7,7 @@ import QtCharts
 import Thermostat
 
 Pane {
+    id: root
     width: 900
     height: 580
 
@@ -117,7 +118,7 @@ Pane {
                 label: "Energy Usage [wh]"
                 color: internal.energyBarColor
                 borderWidth: 0
-                values: energyValues
+                values: root.energyValues
             }
         }
 
@@ -132,8 +133,8 @@ Pane {
             axisYRight: splineChartAxisY
 
             Component.onCompleted: function () {
-                for (var i = 0; i < tempValues.length; i++) {
-                    spline.append(i * 7, tempValues[i]);
+                for (var i = 0; i < root.tempValues.length; i++) {
+                    spline.append(i * 7, root.tempValues[i]);
                 }
             }
         }
