@@ -21,4 +21,6 @@ qt_add_qml_module(ThermostatCustomControls
         images/keyboard.svg
         images/thermometer.svg
         images/tooltip.svg
+    DEPENDENCIES
+        TARGET Thermostat
 )
