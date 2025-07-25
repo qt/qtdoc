@@ -1,5 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick3D
 import QtQuick3D.Physics
@@ -23,12 +26,13 @@ Node {
                                                   })
 
         delegate: PhysicalDie {
-            position.x: { position.x = diceWidth * Math.cos(index / (Math.PI / 4)) }
-            position.y: { position.y = index * shapeSpawner.diceWidth * 1.41 }
-            position.z: { position.z =  diceWidth * Math.sin(index / (Math.PI / 4)) }
-            eulerRotation.x: randomInRange(0, 360)
-            eulerRotation.y: randomInRange(0, 360)
-            eulerRotation.z: randomInRange(0, 360)
+            required property int index
+            position.x: diceWidth * Math.cos(index / (Math.PI / 4))
+            position.y: index * shapeSpawner.diceWidth * 1.41
+            position.z: diceWidth * Math.sin(index / (Math.PI / 4))
+            eulerRotation.x: shapeSpawner.randomInRange(0, 360)
+            eulerRotation.y: shapeSpawner.randomInRange(0, 360)
+            eulerRotation.z: shapeSpawner.randomInRange(0, 360)
             physicsMaterial: shapeSpawner.physicsMaterial
             diceWidth: shapeSpawner.diceWidth
 
