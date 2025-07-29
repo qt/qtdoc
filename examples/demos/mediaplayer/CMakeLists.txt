@@ -4,9 +4,9 @@ project(MediaPlayer LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Quick QuickControls2 Svg Multimedia)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Quick QuickControls2 Svg Multimedia)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(MediaPlayerApp
     main.cpp
@@ -20,9 +20,9 @@ qt_add_qml_module(MediaPlayerApp
 
 qt_add_ios_ffmpeg_libraries(MediaPlayerApp)
 
+add_subdirectory(Config)
 add_subdirectory(MediaPlayer)
 add_subdirectory(MediaControls)
-add_subdirectory(Config)
 
 target_link_libraries(MediaPlayerApp PRIVATE
     Qt6::Core

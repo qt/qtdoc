@@ -55,5 +55,5 @@ qt_add_qml_module(MediaControls
         "icons/Error.svg"
         "icons/Trash_Icon.svg"
         "icons/Trash_Icon_Dark.svg"
+    DEPENDENCIES TARGET Config
 )
-
