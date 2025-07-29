@@ -21,8 +21,8 @@ qt_add_qml_module(MediaPlayerApp
 qt_add_ios_ffmpeg_libraries(MediaPlayerApp)
 
 add_subdirectory(Config)
-add_subdirectory(MediaPlayer)
 add_subdirectory(MediaControls)
+add_subdirectory(MediaPlayer)
 
 target_link_libraries(MediaPlayerApp PRIVATE
     Qt6::Core
