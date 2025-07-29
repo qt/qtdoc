@@ -107,7 +107,7 @@ ApplicationWindow {
 
         visible: !videoOutput.fullScreen
 
-        onFileOpened: (path) => openFile(path)
+        onFileOpened: (path) => root.openFile(path)
 
         nameFilters : root.nameFilters
         selectedNameFilter : root.selectedNameFilter
