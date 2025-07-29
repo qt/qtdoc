@@ -41,9 +41,9 @@
 
   In the previous snippet:
   \list
-    \li \l {https://doc.qt.io/qt-6/android-manifest-file-configuration.html#qt-specific-meta-data}{android.app.splash_screen_drawable}
+    \li \l {android-manifest-qt-specific-metadata}{android.app.splash_screen_drawable}
     defines the resource file defining the Qt splash screen.
-    \li \l {https://doc.qt.io/qt-6/android-manifest-file-configuration.html#qt-specific-meta-data}{android.app.splash_screen_sticky}
+    \li \l {android-manifest-qt-specific-metadata}{android.app.splash_screen_sticky}
     keeps the Qt splash screen on the screen until QNativeInterface::QAndroidApplication::hideSplashScreen()
     function is called.
     \snippet demos/android/splashscreen/manifest/main.cpp Hide splash screen call
