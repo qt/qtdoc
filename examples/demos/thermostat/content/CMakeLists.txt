@@ -95,4 +95,7 @@ qt_add_qml_module(ThermostatContent
         images/theme.svg
         images/thermostat.svg
         images/up.svg
+    DEPENDENCIES
+        TARGET Thermostat
+        TARGET ThermostatCustomControls
 )
