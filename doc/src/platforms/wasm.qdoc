@@ -666,11 +666,11 @@ These fonts provide a limited character set. Qt provides several options for add
 
 One is using FontLoader in QML,
 which can either fetch a font by URL or using
-\l{https://doc.qt.io/qt-6/resources.html}{Qt Resource System}
+\l{The Qt Resource System}
 (the same way the usual desktop apps work).
 
 The other way to use font is to add it via
-\l{https://doc.qt.io/qt-6/qfontdatabase.html#addApplicationFontFromData}{QFontDatabase::addApplicationFontFromData}.
+\l{QFontDatabase::addApplicationFontFromData}.
 
 \section2 Accessibility and Screen Readers
 
