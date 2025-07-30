@@ -36,9 +36,12 @@ T.Button {
         control.enabled && !control.down && control.hovered && "hovered",
         control.down && "pressed"
     ].filter(Boolean).join("_") || "normal"
+    // Avoid warnings from the auto-generated Config.controls
+    // qmllint disable missing-property
     readonly property var config: (control.flat && Config.controls.flatbutton
         ? Config.controls.flatbutton[__currentState]
         : Config.controls.button[__currentState]) || {}
+    // qmllint enable missing-property
 
     contentItem: IconLabel {
         spacing: control.spacing

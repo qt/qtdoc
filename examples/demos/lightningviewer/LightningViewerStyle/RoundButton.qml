@@ -39,7 +39,8 @@ T.RoundButton {
         control.enabled && !control.down && control.hovered && "hovered",
         control.down && "pressed"
     ].filter(Boolean).join("_") || "normal"
-    readonly property var config: Config.controls.roundbutton[__currentState] || {}
+
+    readonly property var config: Config.controls.roundbutton[__currentState] || {} // qmllint disable missing-property
 
     contentItem: IconLabel {
         spacing: control.spacing
