@@ -15,9 +15,6 @@ Item {
     id: root
 
     property alias model: repeater.model
-    property alias swipeView: swipeView
-    property alias previousItem: previousItem
-    property alias nextItem: nextItem
 
     required property int delegatePreferredHeight
     required property int delegatePreferredWidth
@@ -65,6 +62,14 @@ Item {
 
         TapHandler {
             id: previousItem
+            property Connections _: Connections {
+                function onTapped() {
+                    let prevIndex = swipeView.currentIndex - 1;
+                    if (prevIndex < 0)
+                        prevIndex = swipeView.count - 1
+                    swipeView.setCurrentIndex(prevIndex)
+                }
+            }
         }
     }
 
@@ -77,6 +82,12 @@ Item {
 
         TapHandler {
             id: nextItem
+            property Connections _: Connections {
+                function onTapped(){
+                    let nextIndex = (swipeView.currentIndex + 1) % swipeView.count;
+                    swipeView.setCurrentIndex(nextIndex)
+                }
+            }
         }
     }
 

@@ -76,11 +76,16 @@ Pane {
                 }
 
                 CustomTextField {
+                    id: customTextField
                     Layout.preferredWidth: 102
                     Layout.preferredHeight: 40
                     font.pixelSize: 14
                     text: slider.value
-                    onAccepted: slider.value = +text
+                    Connections {
+                        function onAccepted() {
+                            slider.value = +customTextField.text
+                        }
+                    }
                 }
             }
 
@@ -147,6 +152,7 @@ Pane {
                                 "TH"), qsTr("FR"), qsTr("SA"), qsTr("SU")]
 
                         Label {
+                            id: weekdayLabel
                             property bool checked: false
 
                             text: modelData
@@ -156,7 +162,11 @@ Pane {
                             horizontalAlignment: Text.AlignHCenter
                             color: checked ? "#2CDE85" : Constants.primaryTextColor
                             TapHandler {
-                                onTapped: parent.checked = !parent.checked
+                                property Connections _: Connections {
+                                    function onTapped() {
+                                        weekdayLabel.checked = !weekdayLabel.checked
+                                    }
+                                }
                             }
                         }
                     }

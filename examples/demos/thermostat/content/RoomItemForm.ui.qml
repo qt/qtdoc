@@ -101,7 +101,11 @@ Pane {
         CustomSwitch {
             id: toggle
             checked: root.active
-            onCheckedChanged: model.active = toggle.checked
+            Connections {
+                function onCheckedChanged() {
+                    model.active = toggle.checked
+                }
+            }
         }
     }
 
