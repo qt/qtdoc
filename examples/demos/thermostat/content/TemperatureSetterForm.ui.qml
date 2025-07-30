@@ -9,9 +9,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 */
 import QtQuick
 import QtQuick.Controls.Basic
-import QtQuick.Layouts
 import Thermostat
-import ThermostatCustomControls
 
 Pane {
     width: 1087

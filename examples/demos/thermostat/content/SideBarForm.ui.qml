@@ -15,7 +15,6 @@ import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import QtQuick.Effects
 import Thermostat
-import ThermostatCustomControls
 
 Column {
     id: root

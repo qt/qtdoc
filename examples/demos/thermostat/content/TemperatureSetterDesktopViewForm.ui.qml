@@ -9,7 +9,6 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 */
 import QtQuick
 import QtQuick.Controls.Basic
-import QtQuick.Layouts
 import QtQuick.Effects
 import Thermostat
 import ThermostatCustomControls
