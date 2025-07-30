@@ -26,7 +26,7 @@ QtObject {
             if (folderModel.status == FolderListModel.Ready) {
                 var i
                 for (i = 0; i < count; i++) {
-                    loadFont(folderModel.get(i, "fileURL"))
+                    loader.loadFont(folderModel.get(i, "fileURL"))
                 }
             }
         }

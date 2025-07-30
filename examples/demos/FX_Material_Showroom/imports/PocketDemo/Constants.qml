@@ -7,6 +7,8 @@ import QtQuick
 import QtQuick.Studio.Application
 
 QtObject {
+    id: root
+
     readonly property int width: 1920
     readonly property int height: 1080
 
@@ -26,6 +28,6 @@ QtObject {
 
 
     property StudioApplication application: StudioApplication {
-        fontPath: Qt.resolvedUrl("../../content/" + relativeFontDirectory)
+        fontPath: Qt.resolvedUrl("../../content/" + root.relativeFontDirectory)
     }
 }
