@@ -27,19 +27,19 @@ Item {
     property real minimumHeight: Math.max(1, imageConfig.topOffset + imageConfig.bottomOffset)
 
     BorderImage {
-        x: -imageConfig.leftShadow
-        y: -imageConfig.topShadow
+        x: -root.imageConfig.leftShadow
+        y: -root.imageConfig.topShadow
         width: Math.max(root.minimumWidth, (root.horizontal ? root.width : root.height))
-               + imageConfig.leftShadow + imageConfig.rightShadow
+               + root.imageConfig.leftShadow + root.imageConfig.rightShadow
         height: Math.max(root.minimumHeight, (root.horizontal ? root.height : root.width))
-                + imageConfig.topShadow + imageConfig.bottomShadow
-        source: Qt.resolvedUrl(imageConfig.filePath)
+                + root.imageConfig.topShadow + root.imageConfig.bottomShadow
+        source: Qt.resolvedUrl(root.imageConfig.filePath)
 
         border {
-            top: Math.min(height / 2, imageConfig.topOffset + imageConfig.topShadow)
-            left: Math.min(width / 2, imageConfig.leftOffset + imageConfig.leftShadow)
-            bottom: Math.min(height / 2, imageConfig.bottomOffset + imageConfig.bottomShadow)
-            right: Math.min(width / 2, imageConfig.rightOffset + imageConfig.rightShadow)
+            top: Math.min(height / 2, root.imageConfig.topOffset + root.imageConfig.topShadow)
+            left: Math.min(width / 2, root.imageConfig.leftOffset + root.imageConfig.leftShadow)
+            bottom: Math.min(height / 2, root.imageConfig.bottomOffset + root.imageConfig.bottomShadow)
+            right: Math.min(width / 2, root.imageConfig.rightOffset + root.imageConfig.rightShadow)
         }
 
         transform: [

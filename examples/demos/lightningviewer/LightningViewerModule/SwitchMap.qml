@@ -76,7 +76,7 @@ Item {
         id: timer
         interval: switchMap.showTimeInterval
         running: false
-        onTriggered: opened = false;
+        onTriggered: switchMap.opened = false;
     }
 
     readonly property int behaviorDuration: 250
