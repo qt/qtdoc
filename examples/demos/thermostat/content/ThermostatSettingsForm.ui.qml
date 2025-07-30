@@ -92,7 +92,11 @@ Pane {
 
         currentTemp: root.model.temp
         targetTemp: root.model.thermostatTemp
-        onTargetTempChanged: root.model.thermostatTemp = targetTemp
+        Connections {
+            function onTargetTempChanged() {
+                root.model.thermostatTemp = thermostat.targetTemp
+            }
+        }
     }
 
     ButtonGroup {

@@ -49,7 +49,11 @@ Page {
                 visible: Constants.isSmallLayout || Constants.isMobileLayout
 
                 TapHandler {
-                    onTapped: AppSettings.isDarkTheme = !AppSettings.isDarkTheme
+                    property Connections _: Connections {
+                        function onTapped() {
+                            AppSettings.isDarkTheme = !AppSettings.isDarkTheme
+                        }
+                    }
                 }
             }
         }

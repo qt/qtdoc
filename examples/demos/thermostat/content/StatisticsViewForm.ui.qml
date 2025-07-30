@@ -59,7 +59,11 @@ Pane {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                 model: roomsList
                 currentIndex: root.currentRoomIndex
-                onCurrentIndexChanged: root.currentRoomIndex = currentIndex
+                Connections {
+                    function onCurrentIndexChanged() {
+                        root.currentRoomIndex = comboBox.currentIndex
+                    }
+                }
             }
         }
     }
@@ -91,7 +95,11 @@ Pane {
         isOneColumn: internal.isOneColumn
 
         currentRoomIndex: root.currentRoomIndex
-        onCurrentRoomIndexChanged: root.currentRoomIndex = currentRoomIndex
+        Connections {
+            function onCurrentRoomIndexChanged() {
+                root.currentRoomIndex = swipeView.currentRoomIndex
+            }
+        }
         visible: false
     }
 

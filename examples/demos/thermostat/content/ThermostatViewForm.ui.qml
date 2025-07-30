@@ -68,7 +68,11 @@ Pane {
             CustomComboBox {
                 model: roomsList
                 currentIndex: root.currentRoomIndex
-                onCurrentIndexChanged: root.currentRoomIndex = currentIndex
+                Connections {
+                    function onCurrentIndexChanged() {
+                        root.currentRoomIndex = roomsList.currentIndex
+                    }
+                }
             }
         }
     }

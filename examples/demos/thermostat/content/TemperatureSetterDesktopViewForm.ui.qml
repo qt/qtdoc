@@ -67,9 +67,14 @@ Pane {
         }
 
         CustomTextField {
+            id: customTextField
             anchors.verticalCenter: parent.verticalCenter
             text: slider.value
-            onAccepted: slider.value = +text
+            Connections {
+                function onAccepted() {
+                    slider.value = +customTextField.text
+                }
+            }
         }
 
         CustomSlider {

@@ -56,7 +56,11 @@ ScrollView {
 
             model: root.model
 
-            onIsActiveChanged: root.model.active = isActive
+            Connections {
+                function onIsActiveChanged() {
+                    root.model.active = thermoSettings.isActive
+                }
+            }
         }
 
         ThermostatInfo {
