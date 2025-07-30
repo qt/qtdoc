@@ -228,6 +228,14 @@
           \l {QWebEngineProfileBuilder::}{setAdditionalTrustedCertificates}
     \endlist
 
+    \section2 Qt WebView Module
+    \list
+      \li Added WebView2 plugin for the Windows platform. The new backend uses a native
+          COM API from the Chromium based Edge browser called
+          \l {https://learn.microsoft.com/en-us/microsoft-edge/webview2/}{WebView2}.
+          Therefore, you can now provide web content without shipping Qt WebEngine.
+    \endlist
+
     \section2 Qt Widgets Module
     \list
       \li Added support for increased contrast mode for the fusion, macOS, and Windows 11
