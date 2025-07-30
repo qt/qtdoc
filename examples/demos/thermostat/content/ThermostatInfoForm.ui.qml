@@ -13,7 +13,6 @@ import QtQuick.Controls.Basic
 import QtQuick.Layouts
 import QtQuick.Effects
 import Thermostat
-import ThermostatCustomControls
 
 Pane {
     id: root
