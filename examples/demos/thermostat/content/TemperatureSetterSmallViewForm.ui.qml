@@ -37,7 +37,7 @@ Pane {
             anchors.fill: parent
 
             RowLayout {
-                width: parent.width
+                Layout.preferredWidth: parent.width
 
                 Row {
                     id: row
@@ -76,8 +76,8 @@ Pane {
                 }
 
                 CustomTextField {
-                    width: 102
-                    height: 40
+                    Layout.preferredWidth: 102
+                    Layout.preferredHeight: 40
                     font.pixelSize: 14
                     text: slider.value
                     onAccepted: slider.value = +text
