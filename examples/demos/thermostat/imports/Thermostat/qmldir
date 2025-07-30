@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 module Thermostat
-singleton Constants 1.0 Constants.qml
 singleton AppSettings 1.0 AppSettings.qml
-RoomsModel 1.0 RoomsModel.qml
-
+singleton Constants 1.0 Constants.qml
+singleton RoomsModel 1.0 RoomsModel.qml
+Room 1.0 Room.qml
