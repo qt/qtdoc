@@ -7,7 +7,12 @@
 #include <QGeoPolygon>
 #include <QRandomGenerator>
 #include <QThreadPool>
+
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_CLANG("-Wunused-but-set-variable")
+QT_WARNING_DISABLE_GCC("-Wunused-but-set-variable")
 #include "3rdparty/mapbox/earcut.h"
+QT_WARNING_POP
 
 using namespace Qt::StringLiterals;
 
