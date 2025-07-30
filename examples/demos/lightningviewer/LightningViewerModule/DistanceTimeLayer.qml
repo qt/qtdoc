@@ -28,32 +28,32 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignLeft
-            color: titleColor
-            font.pixelSize: titleFontSize
-            font.weight: titleFontWeight
+            color: distanceTimeLayer.titleColor
+            font.pixelSize: distanceTimeLayer.titleFontSize
+            font.weight: distanceTimeLayer.titleFontWeight
             text: qsTr("Distance:")
         }
         Text {
             Layout.alignment: Qt.AlignRight
-            color: valueColor
-            font.pixelSize: valueFontSize
-            font.weight: valueFontWeight
+            color: distanceTimeLayer.valueColor
+            font.pixelSize: distanceTimeLayer.valueFontSize
+            font.weight: distanceTimeLayer.valueFontWeight
             readonly property double distance: LightningController.lastStrikeDistance
             text: distance < 0 ? "--" : `${(distance/1000).toFixed(1)}km`
         }
 
         Text {
             Layout.alignment: Qt.AlignLeft
-            color: titleColor
-            font.pixelSize: titleFontSize
-            font.weight: titleFontWeight
+            color: distanceTimeLayer.titleColor
+            font.pixelSize: distanceTimeLayer.titleFontSize
+            font.weight: distanceTimeLayer.titleFontWeight
             text: qsTr("Direction:")
         }
         Text {
             Layout.alignment: Qt.AlignRight
-            color: valueColor
-            font.pixelSize: valueFontSize
-            font.weight: valueFontWeight
+            color: distanceTimeLayer.valueColor
+            font.pixelSize: distanceTimeLayer.valueFontSize
+            font.weight: distanceTimeLayer.valueFontWeight
             readonly property real direction: LightningController.lastStrikeDirection
             text: toText(direction.toFixed(0))
 
@@ -74,16 +74,16 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignLeft
-            color: titleColor
-            font.pixelSize: titleFontSize
-            font.weight: titleFontWeight
+            color: distanceTimeLayer.titleColor
+            font.pixelSize: distanceTimeLayer.titleFontSize
+            font.weight: distanceTimeLayer.titleFontWeight
             text: qsTr("Time:")
         }
         Text {
             Layout.alignment: Qt.AlignRight
-            color: valueColor
-            font.pixelSize: valueFontSize
-            font.weight: valueFontWeight
+            color: distanceTimeLayer.valueColor
+            font.pixelSize: distanceTimeLayer.valueFontSize
+            font.weight: distanceTimeLayer.valueFontWeight
             readonly property bool valid: LightningController.lastStrikeTime > 0
             readonly property real duration: time.now - LightningController.lastStrikeTime
             text: valid ? toText(duration) : "--"

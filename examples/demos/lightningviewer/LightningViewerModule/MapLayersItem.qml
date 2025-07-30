@@ -50,7 +50,7 @@ Item {
         Loader {
             Layout.preferredWidth: item ? item.width : mapLayersItem.buttonSize
             Layout.preferredHeight: item ? item.height : mapLayersItem.buttonSize
-            sourceComponent: mapActionButton
+            sourceComponent: mapLayersItem.mapActionButton
         }
         Item {
             Layout.preferredWidth: 47
