@@ -43,7 +43,7 @@ ComboBox {
         width: control.width
 
         background: Rectangle {
-            color: Color.blend(comboBoxItem.down ? palette.midlight : palette.light, palette.highlight, comboBoxItem.visualFocus ? 0.15 : 0.0)
+            color: Utils.rgbBlend(comboBoxItem.down ? palette.midlight : palette.light, palette.highlight, comboBoxItem.visualFocus ? 0.15 : 0.0)
             radius: 8
             visible: comboBoxItem.down || comboBoxItem.highlighted || comboBoxItem.visualFocus
         }
