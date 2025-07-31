@@ -10,6 +10,7 @@ find_package(Qt6 REQUIRED COMPONENTS
              Qml
              Quick
              Quick3D
+             Svg
              ExamplesAssetDownloaderPrivate)
 
 qt_standard_project_setup(REQUIRES 6.8)
@@ -31,6 +32,7 @@ target_link_libraries(CarRenderingApp PRIVATE
     Qt6::Quick
     Qt6::Quick3D
     Qt6::Qml
+    Qt6::Svg
 )
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/buildsetup.cmake)
