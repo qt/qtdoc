@@ -224,9 +224,11 @@
 
     \section2 Qt WebEngine Module
     \list
+      \li Added support for Chromium extensions, using \l{QWebEngineExtensionManager} and \l{QWebEngineExtensionInfo}
       \li Added support for adding additional trusted CA certificates to a website profile
           without adding them to the platform certificate store:
           \l {QWebEngineProfileBuilder::}{setAdditionalTrustedCertificates}
+      \li Added support for Back/Forward cache enabled using \l{QWebEngineSettings::BackForwardCacheEnabled}
     \endlist
 
     \section2 Qt WebView Module
