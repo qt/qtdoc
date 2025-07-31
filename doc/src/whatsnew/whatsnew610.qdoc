@@ -68,20 +68,20 @@
 
     \section2 Qt Graphs Module
     \list
-      \li Filled surface graph type added: \l{QSurface3DSeries::DrawFlag::DrawFilledSurface}{DrawFilledSurface}
-      \li Text elide support for 2D axes added: \l{QAbstractAxis::textElide}
+      \li Filled surface graph type added: \l{QSurface3DSeries::DrawFilledSurface}{DrawFilledSurface}
+      \li Text elide support for 2D axes added: \l{QAbstractAxis::textElideMode}
       \li Pie slice label hiding support for small sized slices added:
-          \l{QPieSeries::angleSpanVisibleLimit}, \l{QPieSeries::angleSpanVisibleMode}, \l{QPieSeries::VisibleMode}
+          \l{QPieSeries::angleSpanVisibleLimit}, \l{QPieSeries::angleSpanLabelVisibility}, \l{QPieSeries::LabelVisibility}
       \li Multi-axis support for 2D graphs added: \l{QAbstractSeries::axisX}, \l{QAbstractSeries::axisY}
       \li Hover support for 2D series added: \l{QAbstractSeries::isHovered}
-      \li Support for controlling plot area clipping in 2D graphs added: \l{QGraphsView::clipPlotArea}
-      \li Support for querying data point coordinates in LineSeries added: \l{QLineSeries::getDataPointCoordinates}
+      \li Support for controlling plot area clipping in 2D graphs added: \l{GraphsView::}{clipPlotArea}
+      \li Support for querying data point coordinates in LineSeries added: \l{QLineSeries::dataPointCoordinatesAt}
       \li Support for rendering a slice into an image in Bars3D and Surface3D added:
           \l{Q3DBarsWidgetItem::renderSliceToImage}, \l{Q3DSurfaceWidgetItem::renderSliceToImage},
-          \l{QtGraphs3D::SliceType}
+          \l{QtGraphs3D::SliceCaptureType}
       \li Added \l{Bars3DNode}, \l{Scatter3DNode}, and \l{Surface3DNode} for
           adding 3D graphs in QtQuick3D applications inside View3Ds
-      \li Graph draw ordering support for 2D graphs added: \l{QAbstractSeries::drawOrder}
+      \li Graph draw ordering support for 2D graphs added: \l{QAbstractSeries::zValue}
       \li Categorized logging support added
     \endlist
 
