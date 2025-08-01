@@ -16,7 +16,7 @@ ParticleSystem3D {
 
         enabled: flash.visible
         lifeSpan: 1000
-        emitBursts: emitBurst1
+        emitBursts: [emitBurst1]
         ModelParticle3D {
             id: modelParticle1
             sortMode: Particle3D.SortDistance
@@ -43,7 +43,7 @@ ParticleSystem3D {
             source: "#Sphere"
             castsReflections: true
             receivesReflections: true
-            materials: flashMat
+            materials: [flashMat]
             scale.y: 1
             receivesShadows: true
             castsShadows: true

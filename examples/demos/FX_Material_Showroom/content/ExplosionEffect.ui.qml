@@ -21,7 +21,7 @@ ParticleSystem3D {
         particleEndScale: 5
         lifeSpan: 500
         particleRotationVelocityVariation.z: 90
-        emitBursts: dynamicBurst3
+        emitBursts: [dynamicBurst3]
         ModelParticle3D {
             id: modelParticle5
             color: "#ffffff"
@@ -42,7 +42,7 @@ ParticleSystem3D {
             source: "#Sphere"
             castsReflections: true
             receivesReflections: true
-            materials: explosion_fireMat
+            materials: [explosion_fireMat]
             receivesShadows: true
             scale.y: 1
             castsShadows: true
@@ -111,7 +111,7 @@ ParticleSystem3D {
             particleEndScale: 30
             enabled: explosion.visible
             lifeSpan: 1000
-            emitBursts: dynamicBurst2
+            emitBursts: [dynamicBurst2]
             ModelParticle3D {
                 id: modelParticle2
                 fadeInDuration: 100
@@ -130,7 +130,7 @@ ParticleSystem3D {
                 source: "#Sphere"
                 castsReflections: true
                 receivesReflections: true
-                materials: explosion_shockwaveMat
+                materials: [explosion_shockwaveMat]
                 scale.y: 1
                 receivesShadows: true
                 castsShadows: true
@@ -163,7 +163,7 @@ ParticleSystem3D {
             particleScale: 0
             particleEndScale: 60
             lifeSpan: 1000
-            emitBursts: dynamicBurst1
+            emitBursts: [dynamicBurst1]
             ModelParticle3D {
                 id: modelParticle3
                 fadeInDuration: burstEmitter3.lifeSpan / 4
@@ -182,7 +182,7 @@ ParticleSystem3D {
                 source: "#Sphere"
                 castsReflections: true
                 receivesReflections: true
-                materials: explosion_flashMat
+                materials: [explosion_flashMat]
                 receivesShadows: true
                 scale.y: 1
                 castsShadows: true
@@ -220,7 +220,7 @@ ParticleSystem3D {
             particleScale: 0
             particleEndScale: 10
             lifeSpan: 5000
-            emitBursts: dynamicBurst
+            emitBursts: [dynamicBurst]
             ModelParticle3D {
                 id: modelParticle4
                 color: "#33ffffff"
@@ -241,7 +241,7 @@ ParticleSystem3D {
                 source: "#Sphere"
                 castsReflections: true
                 receivesReflections: true
-                materials: explosion_smokeMat
+                materials: [explosion_smokeMat]
                 receivesShadows: true
                 scale.y: 1
                 castsShadows: true
@@ -281,7 +281,7 @@ ParticleSystem3D {
             particleEndScale: 0.5
             lifeSpan: 3000
             particleRotationVelocityVariation.z: 90
-            emitBursts: dynamicBurst4
+            emitBursts: [dynamicBurst4]
             ModelParticle3D {
                 id: modelParticle6
                 color: "#ffffff"
@@ -302,7 +302,7 @@ ParticleSystem3D {
                 source: "#Sphere"
                 castsReflections: true
                 receivesReflections: true
-                materials: explosion_sparkMat
+                materials: [explosion_sparkMat]
                 scale.y: 1
                 receivesShadows: true
                 castsShadows: true
@@ -321,7 +321,7 @@ ParticleSystem3D {
 
             Gravity3D {
                 id: gravity7
-                particles: modelParticle6
+                particles: [modelParticle6]
                 system: explosion_sparks
             }
             lifeSpanVariation: lifeSpan

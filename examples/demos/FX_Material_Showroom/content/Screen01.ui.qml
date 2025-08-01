@@ -118,7 +118,7 @@ Rectangle {
                 source: "#Rectangle"
                 eulerRotation.z: 0
                 eulerRotation.x: -90
-                materials: floorMat
+                materials: [floorMat]
                 eulerRotation.y: 0
                 scale.y: 35
                 scale.z: 35
@@ -126,7 +126,7 @@ Rectangle {
                 Model {
                     id: areaLight
                     source: "#Rectangle"
-                    materials: lightMaterial
+                    materials: [lightMaterial]
                     eulerRotation.z: 0
                     eulerRotation.y: 0
                     scale.y: 0.05
@@ -138,7 +138,7 @@ Rectangle {
                 Model {
                     id: pillar
                     source: "#Cube"
-                    materials: asphalt
+                    materials: [asphalt]
                     x: 0
                     y: 38
                     receivesReflections: true
@@ -151,7 +151,7 @@ Rectangle {
                 Model {
                     id: pillar1
                     source: "#Cube"
-                    materials: asphalt
+                    materials: [asphalt]
                     x: 38
                     y: 0
                     receivesReflections: true
@@ -164,7 +164,7 @@ Rectangle {
                 Model {
                     id: pillar2
                     source: "#Cube"
-                    materials: asphalt
+                    materials: [asphalt]
                     x: -38
                     y: 0
                     z: 10.03454
@@ -177,7 +177,7 @@ Rectangle {
                 Model {
                     id: pillar3
                     source: "#Cube"
-                    materials: asphalt
+                    materials: [asphalt]
                     x: 0
                     y: -38
                     z: 9.60788
@@ -196,7 +196,7 @@ Rectangle {
                         y: 35
                         source: "#Rectangle"
                         eulerRotation.z: 0
-                        materials: lightMaterial
+                        materials: [lightMaterial]
                         eulerRotation.y: 0
                         z: 20
                         scale.x: 0.7
@@ -210,7 +210,7 @@ Rectangle {
                         y: 0
                         source: "#Rectangle"
                         eulerRotation.z: 90
-                        materials: lightMaterial
+                        materials: [lightMaterial]
                         eulerRotation.y: -90
                         z: 20
                         scale.x: 0.7
@@ -224,7 +224,7 @@ Rectangle {
                         y: -35
                         source: "#Rectangle"
                         eulerRotation.z: 0
-                        materials: lightMaterial
+                        materials: [lightMaterial]
                         eulerRotation.y: 0
                         z: 20
                         scale.x: 0.7
@@ -238,7 +238,7 @@ Rectangle {
                         y: 0
                         source: "#Rectangle"
                         eulerRotation.z: 90
-                        materials: lightMaterial
+                        materials: [lightMaterial]
                         eulerRotation.y: 90
                         z: 20
                         scale.x: 0.7

@@ -78,7 +78,7 @@ ParticleSystem3D {
         receivesShadows: true
         scale.z: 0.1
         instancing: particleRed4.instanceTable
-        materials: fireMat
+        materials: [fireMat]
         scale.y: 0.1
         scale.x: 0.1
         receivesReflections: true
@@ -94,7 +94,7 @@ ParticleSystem3D {
         uniquePaceVariation: 1
         globalPace.y: 0.1
         uniquePace.y: 0.1
-        particles: particleRed4
+        particles: [particleRed4]
         uniquePace.z: 0.1
         globalPaceStart.y: 0.1
         uniqueAmount.z: 10
