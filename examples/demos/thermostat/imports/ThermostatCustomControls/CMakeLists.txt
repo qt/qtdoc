@@ -6,6 +6,7 @@ qt_add_qml_module(ThermostatCustomControls
     URI "ThermostatCustomControls"
     VERSION 1.0
     QML_FILES
+        CalendarControl.qml
         CustomComboBox.qml
         CustomDial.qml
         CustomRadioButton.qml
@@ -16,7 +17,6 @@ qt_add_qml_module(ThermostatCustomControls
         StatisticsChart.qml
         TemperatureLabel.qml
         ThermostatControl.qml
-        TimeSelector.qml
     RESOURCES
         images/keyboard.svg
         images/thermometer.svg

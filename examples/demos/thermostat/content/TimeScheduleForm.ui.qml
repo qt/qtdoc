@@ -15,6 +15,8 @@ import Thermostat
 import ThermostatCustomControls
 
 Pane {
+    id: root
+
     width: 1087
     height: 361
 
@@ -24,6 +26,8 @@ Pane {
         color: Constants.accentColor
         radius: 12
     }
+
+    required property var scheduleViewRoot
 
     RowLayout {
         width: parent.width
@@ -35,13 +39,35 @@ Pane {
             Layout.fillWidth: true
             color: Constants.primaryTextColor
         }
-        Button {
-            text: "Select Date"
+
+        CustomRoundButton {
+            id: calendarButton
+
+            Layout.preferredWidth: 134
+            Layout.preferredHeight: 40
+
+            Layout.rightMargin: internal.buttonMargin
+
+            text: root.scheduleViewRoot.currentDate
+            icon.source: "images/schedule.svg"
+            icon.width: 20
+            icon.height: 20
+            font.pixelSize: 14
+            display: AbstractButton.TextBesideIcon
+
+            radius: 8
+            checkable: false
+            Connections {
+                function onClicked() {
+                    calendar.visible = !calendar.visible
+                }
+            }
         }
     }
 
     TimeSelector {
         id: timeSelector
+        scheduleViewRoot: root.scheduleViewRoot
         anchors.top: parent.top
         anchors.topMargin: internal.topMargin
         anchors.horizontalCenter: parent.horizontalCenter
@@ -58,12 +84,25 @@ Pane {
         font.family: "Titillium Web"
     }
 
+    CalendarControl {
+        id: calendar
+        visible: false
+        Connections {
+            target: calendar
+            function onSelectedDateChanged() {
+                root.scheduleViewRoot.currentDate
+                        = calendar.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
+            }
+        }
+    }
+
     QtObject {
         id: internal
         property int fontSize: 24
         property int topMargin: 67
         property int topPadding: 20
         property int labelMargin: 12
+        property int buttonMargin: 20
     }
 
     states: [
@@ -76,6 +115,7 @@ Pane {
                 topPadding: 20
                 fontSize: 24
                 labelMargin: 12
+                buttonMargin: 20
             }
         },
         State {
@@ -87,6 +127,7 @@ Pane {
                 topPadding: 16
                 fontSize: 18
                 labelMargin: 12
+                buttonMargin: 0
             }
         },
         State {
@@ -98,6 +139,7 @@ Pane {
                 topPadding: 10
                 fontSize: 14
                 labelMargin: -12
+                buttonMargin: 0
             }
         }
     ]
