@@ -130,7 +130,7 @@ Pane {
                 radius: internal.radius
                 ButtonGroup.group: buttonGroup
                 enabled: root.isActive
-                checked: enabled && root.room.mode == modelData
+                checked: enabled && root.room.mode === modelData
             }
         }
     }
@@ -157,7 +157,7 @@ Pane {
                 radius: internal.radius
                 ButtonGroup.group: buttonGroup
                 enabled: root.isActive
-                checked: enabled && root.room.mode == modelData
+                checked: enabled && root.room.mode === modelData
             }
         }
     }

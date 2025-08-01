@@ -39,14 +39,14 @@ TabBar {
             required property string name
             required property string view
             required property string iconSource
-            readonly property bool active: Constants.currentView == menuItem.view
+            readonly property bool active: Constants.currentView === menuItem.view
 
             background: Rectangle {
                 color: "transparent"
             }
 
-            width: menuItem.view == "SettingsView" ? 0 : undefined;
-            height: menuItem.view == "SettingsView" ? 0 : undefined;
+            width: menuItem.view === "SettingsView" ? 0 : undefined;
+            height: menuItem.view === "SettingsView" ? 0 : undefined;
 
             icon.width: 24
             icon.height: 24
@@ -55,8 +55,8 @@ TabBar {
 
             Connections {
                 function onClicked() {
-                    if (menuItem.view != "SettingsView"
-                            && menuItem.view != Constants.currentView) {
+                    if (menuItem.view !== "SettingsView"
+                            && menuItem.view !== Constants.currentView) {
                         root.stackView.replace(menuItem.view + ".qml", {
                                               "roomsList": root.roomsList
                                           }, StackView.Immediate)
