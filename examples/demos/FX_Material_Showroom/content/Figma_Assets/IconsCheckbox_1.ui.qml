@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Studio.Components
-import QtQuick.Shapes
 
 Item {
     id: iconsCheckbox

@@ -4,7 +4,6 @@
 import QtQuick
 import QtQuick3D
 import QtQuick3D.Particles3D
-import QtQuick3D.Helpers
 
 ParticleSystem3D {
     id: steam

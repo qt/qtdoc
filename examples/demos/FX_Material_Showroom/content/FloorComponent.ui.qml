@@ -2,12 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick3D
-import QtQuick3D.Helpers
-import QtQuick3D.Particles3D
-import "Figma_Assets"
-import "Pocket_Demo_SkylightUI"
 
 Model {
     id: floor

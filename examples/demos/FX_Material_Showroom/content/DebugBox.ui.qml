@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick 6.4
-import QtQuick.Controls 6.4
 import QtQuick3D 6.4
-import QtQuick3D.Helpers 6.4
 
 Rectangle {
     id: debugBox
