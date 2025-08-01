@@ -9,16 +9,8 @@ qt_add_qml_module(QQS_Components
     CLASS_NAME QQS_ComponentsPlugin
     QML_FILES
         ArcItem.qml
-        PieItem.qml
         TriangleItem.qml
         SvgPathItem.qml
-        EllipseItem.qml
-        FlipableItem.qml
         RectangleItem.qml
-        RegularPolygonItem.qml
-        BorderItem.qml
-        IsoItem.qml
-        GroupItem.qml
-        ArcArrow.qml
         StraightArrow.qml
 )
