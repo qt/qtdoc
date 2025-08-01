@@ -9,7 +9,4 @@ qt_add_qml_module(PocketDemo
     VERSION 1.0
     QML_FILES
         Constants.qml
-        DirectoryFontLoader.qml
-        EventListModel.qml
-        EventListSimulator.qml
 )
