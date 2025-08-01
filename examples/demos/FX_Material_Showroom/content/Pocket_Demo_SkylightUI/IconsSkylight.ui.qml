@@ -11,7 +11,6 @@ Item {
     state: "state_icon_SkyMidday"
 
     SvgPathItem {
-        id: vector
         x: 7
         y: 7
         width: 35
