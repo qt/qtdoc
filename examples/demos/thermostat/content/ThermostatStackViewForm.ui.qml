@@ -12,17 +12,18 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import Thermostat
 
 Item {
     id: root
 
     property bool isOneColumn: false
-    property var model
+    required property list<Room> model
     property int currentRoomIndex
 
     StackLayout {
         anchors.fill: parent
-        currentIndex: currentRoomIndex
+        currentIndex: root.currentRoomIndex
 
         Repeater {
             id: repeater
@@ -31,15 +32,12 @@ Item {
             ThermostatScrollView {
                 id: delegate
 
-                required property string name
-                required property var model
+                required property Room modelData
 
+                room: modelData
                 width: root.width
                 height: root.height
                 isOneColumn: root.isOneColumn
-
-                roomName: name
-                isActive: model.active
             }
         }
     }

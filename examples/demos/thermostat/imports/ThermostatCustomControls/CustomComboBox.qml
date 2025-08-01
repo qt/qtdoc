@@ -10,6 +10,8 @@ import Thermostat
 ComboBox {
     id: control
 
+    required property list<Room> roomsList
+
     font.family: "Titillium Web"
     font.pixelSize: 14
     font.weight: 400
@@ -33,10 +35,12 @@ ComboBox {
         verticalAlignment: Text.AlignVCenter
     }
 
+    model: roomsList
     delegate: ItemDelegate {
         id: comboBoxItem
+
+        required property Room modelData
         required property int index
-        required property string name
 
         highlighted: control.highlightedIndex === index
         palette.light: AppSettings.isDarkTheme ? "#000000" : "#DCDCDC"
@@ -51,7 +55,7 @@ ComboBox {
             color: Constants.primaryTextColor
             elide: Text.ElideRight
             font: control.font
-            text: comboBoxItem.name
+            text: comboBoxItem.modelData.name
             verticalAlignment: Text.AlignVCenter
         }
     }

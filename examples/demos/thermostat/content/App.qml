@@ -21,7 +21,7 @@ Window {
         anchors.fill: parent
     }
 
-    Component.onCompleted: function() {
+    Component.onCompleted: {
         Constants.isBigDesktopLayout = Qt.binding( function(){
             return window.width >= Constants.width && window.width >= window.height
         })

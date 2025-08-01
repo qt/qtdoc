@@ -11,16 +11,16 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 
 ThermostatInfo {
-
-    property real maxTempValue: 26
-    property real minTempValue: 18
-    property real avgTempValue: 22
+    required property list<real> temperatureValues
+    property real maxTemp
+    property real minTemp
+    property real avgTemp
 
     title: qsTr("Temperature")
     leftIcon: "images/temperature"
-    topLabel: qsTr("Average: %1°C".arg(avgTempValue))
-    bottomLeftLabel: qsTr("Minimum: %1°C".arg(minTempValue))
+    topLabel: qsTr("Average: %1°C".arg(avgTemp.toFixed(1)))
+    bottomLeftLabel: qsTr("Minimum: %1°C".arg(minTemp.toFixed(1)))
     bottomLeftIcon: "images/minTemp.svg"
-    bottomRightLabel: qsTr("Maximum: %1°C".arg(maxTempValue))
+    bottomRightLabel: qsTr("Maximum: %1°C".arg(maxTemp.toFixed(1)))
     bottomRightIcon: "images/maxTemp.svg"
 }

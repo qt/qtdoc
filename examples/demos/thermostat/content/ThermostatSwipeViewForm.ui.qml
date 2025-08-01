@@ -11,6 +11,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls.Basic
+import Thermostat
 
 Item {
     id: root
@@ -18,7 +19,7 @@ Item {
     property alias swipe: swipeView
     property alias currentRoomIndex: swipeView.currentIndex
 
-    property var model
+    required property list<Room> model
     property bool isOneColumn: false
 
     ListView {
@@ -32,10 +33,10 @@ Item {
         delegate: Label {
             id: labelDelegate
 
-            required property string name
+            required property Room modelData
             required property int index
 
-            text: name
+            text: modelData.name
             font.pixelSize: 12
             font.family: "Titillium Web"
             font.weight: 400
@@ -71,17 +72,13 @@ Item {
 
             ThermostatScrollView {
                 id: delegate
-                required property int index
-                required property string name
-                required property bool active
-                required property var model
+
+                required property Room modelData
+                room: modelData
 
                 width: swipeView.width
                 height: swipeView.height
                 isOneColumn: root.isOneColumn
-
-                roomName: name
-                isActive: model.active
             }
         }
     }

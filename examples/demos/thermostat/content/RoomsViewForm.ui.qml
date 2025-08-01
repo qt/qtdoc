@@ -20,7 +20,7 @@ Pane {
     rightPadding: 27
     bottomPadding: 13
 
-    required property var roomsList
+    required property list<Room> roomsList
 
     background: Rectangle {
         anchors.fill: parent
@@ -68,7 +68,7 @@ Pane {
         delegatePreferredHeight: internal.delegatePreferredHeight
 
         columns: root.width < 1140 ? 1 : 2
-        model: roomsList
+        roomsList: root.roomsList
     }
 
     RoomsSwipeView {
@@ -84,7 +84,7 @@ Pane {
         delegatePreferredHeight: internal.delegatePreferredHeight
         delegatePreferredWidth: internal.delegatePreferredWidth
 
-        model: roomsList
+        roomsList: root.roomsList
         visible: false
     }
 

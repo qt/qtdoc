@@ -11,9 +11,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 
 ThermostatInfo {
-
-    required property var energyValuesModel
-
+    required property list<int> energyValues
     property int totalEnergy: 0
     property real costOf1KWH: 0.23
 

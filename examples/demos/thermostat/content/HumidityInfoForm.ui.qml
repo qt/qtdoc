@@ -10,9 +10,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 
 ThermostatInfo {
-
-    required property var humidityValuesModel
-    property var humidityValues
+    required property list<int> humidityValues
     property int humidityAvg
     property int humidityDiff
     property bool isMore

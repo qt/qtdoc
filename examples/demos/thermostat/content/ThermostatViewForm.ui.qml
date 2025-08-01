@@ -22,7 +22,7 @@ Pane {
     bottomPadding: 15
 
     property int currentRoomIndex: 0
-    required property var roomsList
+    required property list<Room> roomsList
 
     background: Rectangle {
         color: Constants.backgroundColor
@@ -66,11 +66,12 @@ Pane {
             }
 
             CustomComboBox {
-                model: roomsList
+                id: customComboBox
+                roomsList: root.roomsList
                 currentIndex: root.currentRoomIndex
                 Connections {
                     function onCurrentIndexChanged() {
-                        root.currentRoomIndex = roomsList.currentIndex
+                        root.currentRoomIndex = customComboBox.currentIndex
                     }
                 }
             }
@@ -87,7 +88,7 @@ Pane {
         height: internal.contentHeight
 
         isOneColumn: internal.isOneColumn
-        model: roomsList
+        model: root.roomsList
         currentRoomIndex: root.currentRoomIndex
     }
 
@@ -101,7 +102,7 @@ Pane {
 
         isOneColumn: internal.isOneColumn
         currentRoomIndex: root.currentRoomIndex
-        model: roomsList
+        model: root.roomsList
         swipe.onCurrentIndexChanged: root.currentRoomIndex = swipe.currentIndex
     }
 

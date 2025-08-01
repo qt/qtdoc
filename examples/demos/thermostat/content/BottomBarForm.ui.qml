@@ -17,8 +17,9 @@ import Thermostat
 TabBar {
     id: root
 
-    required property var roomsList
-    property alias menuOptions: repeater.model
+    required property list<Room> roomsList
+    required property ListModel menuOptions
+    required property StackView stackView
 
     contentHeight: 56
 
@@ -31,6 +32,7 @@ TabBar {
     Repeater {
         id: repeater
 
+        model: root.menuOptions
         delegate: TabButton {
             id: menuItem
 
@@ -55,8 +57,8 @@ TabBar {
                 function onClicked() {
                     if (menuItem.view != "SettingsView"
                             && menuItem.view != Constants.currentView) {
-                        stackView.replace(menuItem.view + ".qml", {
-                                              "roomsList": roomsList
+                        root.stackView.replace(menuItem.view + ".qml", {
+                                              "roomsList": root.roomsList
                                           }, StackView.Immediate)
                         Constants.currentView = menuItem.view
                     }

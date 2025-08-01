@@ -100,6 +100,7 @@ Pane {
             Repeater {
                 model: [qsTr("Heating"), qsTr("Cooling"), qsTr("Auto")]
                 CustomRadioButton {
+                    required property string modelData
                     text: modelData
                     indicatorSize: 20
                 }
@@ -122,6 +123,7 @@ Pane {
                         "Thu"), qsTr("Fri"), qsTr("Sat"), qsTr("Sun")]
 
                 CustomRoundButton {
+                    required property string modelData
                     text: modelData
                     width: 90
                     height: 50
@@ -140,6 +142,7 @@ Pane {
         Repeater {
             model: [qsTr("Cancel"), qsTr("Save")]
             CustomRoundButton {
+                required property string modelData
                 width: 120
                 height: 48
                 text: modelData

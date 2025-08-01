@@ -13,6 +13,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
+import Thermostat
 
 ScrollView {
     id: scrollView
@@ -20,7 +21,8 @@ ScrollView {
     clip: true
     contentWidth: availableWidth
 
-    property alias model: repeater.model
+    required property list<Room> roomsList
+
     property alias columns: gridLayout.columns
     property alias gridWidth: gridLayout.width
     property alias gridHeight: gridLayout.height
@@ -37,9 +39,12 @@ ScrollView {
         Repeater {
             id: repeater
 
+            model: scrollView.roomsList
             RoomItem {
                 id: roomItem
 
+                required property Room modelData
+                room: modelData
                 Layout.preferredHeight: scrollView.delegatePreferredHeight
                 Layout.preferredWidth: scrollView.delegatePreferredWidth
                 Layout.alignment: Qt.AlignHCenter

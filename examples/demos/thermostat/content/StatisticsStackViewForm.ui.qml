@@ -12,11 +12,12 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import Thermostat
 
 Item {
     id: root
 
-    property alias model: repeater.model
+    required property list<Room> roomsList
 
     property bool isOneColumn: false
     property int currentRoomIndex
@@ -28,9 +29,12 @@ Item {
         Repeater {
             id: repeater
 
+            model: root.roomsList
             StatisticsScrollView {
                 required property int index
+                required property Room modelData
 
+                room: modelData
                 width: root.width
                 height: root.height
 
