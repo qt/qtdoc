@@ -85,4 +85,7 @@ qt_add_qml_module(FXMaterialShowroomContent
         shaders/cloud.vert
         shaders/cloud.frag
         Figma_Assets/assets/qtlogo.png
+    DEPENDENCIES
+        TARGET PocketDemo
+        TARGET CB_MaterialBundle
 )
