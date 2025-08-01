@@ -57,7 +57,7 @@ Column {
 
                     width: internal.delegateWidth
                     height: internal.delegateHeight
-                    visible: Constants.isSmallLayout == false || columnItem.view != "SettingsView"
+                    visible: Constants.isSmallLayout === false || columnItem.view !== "SettingsView"
 
                     RowLayout {
                         anchors.fill: parent
@@ -111,7 +111,7 @@ Column {
                     visible: (Constants.isBigDesktopLayout
                               || Constants.isSmallDesktopLayout)
                              && columnItem.active
-                             && columnItem.view == "SettingsView"
+                             && columnItem.view === "SettingsView"
                     delegate: ItemDelegate {
                         id: item1
                         width: internal.delegateWidth
@@ -149,8 +149,8 @@ Column {
 
             Connections {
                 function onClicked() {
-                    if (columnItem.view != "SettingsView"
-                            && columnItem.view != Constants.currentView) {
+                    if (columnItem.view !== "SettingsView"
+                            && columnItem.view !== Constants.currentView) {
                         root.stackView.replace(columnItem.view + ".qml", {
                                               "roomsList": root.roomsList
                                           }, StackView.Immediate)
