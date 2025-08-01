@@ -57,7 +57,7 @@ ParticleSystem3D {
         source: "#Cube"
         castsReflections: true
         receivesShadows: true
-        materials: rainMat
+        materials: [rainMat]
         instancing: particleRed1.instanceTable
         castsShadows: true
         receivesReflections: true
@@ -120,7 +120,7 @@ ParticleSystem3D {
             scale.x: 1
             scale.y: 1
             instancing: particleRed5.instanceTable
-            materials: splashMat
+            materials: [splashMat]
             receivesReflections: true
             castsShadows: true
             scale.z: 1

@@ -122,7 +122,7 @@ ParticleSystem3D {
         receivesShadows: true
         scale.z: 1
         instancing: particleRed6.instanceTable
-        materials: dustMat
+        materials: [dustMat]
         scale.y: 1
         scale.x: 1
         receivesReflections: true
@@ -139,7 +139,7 @@ ParticleSystem3D {
         uniquePaceVariation: 1
         globalPace.y: 0.1
         uniquePace.y: 100
-        particles: particleRed6
+        particles: [particleRed6]
         uniquePace.z: 100
         globalPaceStart.y: 0.1
         uniqueAmount.z: 0
@@ -165,7 +165,7 @@ ParticleSystem3D {
         castsShadows: false
         scale.z: 0.1
         instancing: particleRed7.instanceTable
-        materials: dustMat
+        materials: [dustMat]
         scale.y: 0.1
         receivesReflections: false
         scale.x: 0.1

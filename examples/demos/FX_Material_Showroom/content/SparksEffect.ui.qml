@@ -58,7 +58,7 @@ ParticleSystem3D {
         receivesShadows: true
         castsShadows: true
         instancing: sparkParticle.instanceTable
-        materials: sparkMat
+        materials: [sparkMat]
         scale.y: .1
         receivesReflections: true
         scale.x: .1
@@ -135,7 +135,7 @@ ParticleSystem3D {
             scale.x: 0.3
             scale.y: 0.1
             instancing: sparkParticle1.instanceTable
-            materials: sparkMat
+            materials: [sparkMat]
             receivesReflections: true
             castsShadows: true
             scale.z: 0.1

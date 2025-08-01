@@ -66,7 +66,7 @@ ParticleSystem3D {
         scale.x: 0.01
         scale.y: 0.01
         instancing: particleRed13.instanceTable
-        materials: steamMat
+        materials: [steamMat]
         receivesReflections: true
         castsShadows: true
         scale.z: 0.1
@@ -79,7 +79,7 @@ ParticleSystem3D {
         uniqueAmount.y: 10
         system: steam
         uniquePaceVariation: 1
-        particles: particleRed13
+        particles: [particleRed13]
         uniquePace.z: 0.1
         globalPaceStart.x: 0.1
         globalAmount.x: 5
@@ -172,7 +172,7 @@ ParticleSystem3D {
             scale.x: 0.1
             scale.y: 0.1
             instancing: particleRed14.instanceTable
-            materials: steamMat
+            materials: [steamMat]
             receivesReflections: true
             castsShadows: true
             scale.z: 0.1
@@ -185,7 +185,7 @@ ParticleSystem3D {
             globalAmount.y: 5
             system: steamJet_thick
             uniquePaceVariation: 1
-            particles: particleRed14
+            particles: [particleRed14]
             globalAmount.x: 5
             globalPaceStart.x: 0.1
             uniquePace.z: 0.1
@@ -213,7 +213,7 @@ ParticleSystem3D {
 
         Gravity3D {
             id: gravity12
-            particles: particleRed14
+            particles: [particleRed14]
             system: steamJet_thick
             magnitude: 1
             direction.y: -8.9
@@ -278,7 +278,7 @@ ParticleSystem3D {
 
         Gravity3D {
             id: gravity11
-            particles: particleRed12
+            particles: [particleRed12]
             system: steamCloud
             magnitude: 1
             direction.y: -8.9
@@ -290,7 +290,7 @@ ParticleSystem3D {
             scale.x: 0.1
             scale.y: 0.1
             instancing: particleRed12.instanceTable
-            materials: steamMat
+            materials: [steamMat]
             receivesReflections: true
             castsShadows: true
             scale.z: 0.1
@@ -303,7 +303,7 @@ ParticleSystem3D {
             uniqueAmount.y: 10
             system: steamCloud
             uniquePaceVariation: 1
-            particles: particleRed12
+            particles: [particleRed12]
             globalAmount.x: 0
             globalPaceStart.x: 0.1
             uniquePace.z: 0.1

@@ -68,7 +68,7 @@ ParticleSystem3D {
         source: "#Sphere"
         castsReflections: true
         receivesReflections: true
-        materials: cloudMat
+        materials: [cloudMat]
         scale.y: 0.1
         receivesShadows: true
         castsShadows: true
@@ -85,7 +85,7 @@ ParticleSystem3D {
         uniqueAmount.z: 1
         globalPaceStart.z: 0.1
         uniquePaceVariation: 1
-        particles: particleRed9
+        particles: [particleRed9]
         globalAmount.z: 0
         uniquePace.z: 0.1
         globalPace.y: 0.1

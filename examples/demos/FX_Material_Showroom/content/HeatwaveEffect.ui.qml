@@ -67,7 +67,7 @@ ParticleSystem3D {
         receivesReflections: true
         receivesShadows: true
         castsShadows: true
-        materials: heatwaveMat
+        materials: [heatwaveMat]
         scale.z: 1
         scale.y: 1
         scale.x: 1

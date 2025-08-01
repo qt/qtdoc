@@ -68,7 +68,7 @@ ParticleSystem3D {
         castsShadows: true
         instancing: particleRed3.instanceTable
         receivesShadows: true
-        materials: snowMat
+        materials: [snowMat]
         receivesReflections: true
     }
 
@@ -89,7 +89,7 @@ ParticleSystem3D {
         globalPace.x: 0
         globalAmount.z: 0
         globalAmount.x: 0
-        particles: particleRed3
+        particles: [particleRed3]
         system: snow
     }
 

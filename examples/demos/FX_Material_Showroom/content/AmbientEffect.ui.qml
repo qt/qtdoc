@@ -46,7 +46,7 @@ ParticleSystem3D {
             uniqueAmount.z: 1
             uniqueAmount.y: 1
             uniqueAmount.x: 1
-            particles: modelShapeParticle
+            particles: [modelShapeParticle]
             system: ambientParticleEffect
         }
 
@@ -59,7 +59,7 @@ ParticleSystem3D {
             positionVariation.z: 500
             positionVariation.y: 500
             positionVariation.x: 500
-            particles: modelShapeParticle
+            particles: [modelShapeParticle]
             system: ambientParticleEffect
         }
         lifeSpan: 5000

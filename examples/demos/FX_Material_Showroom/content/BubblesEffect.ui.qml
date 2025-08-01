@@ -75,7 +75,7 @@ ParticleSystem3D {
         source: "#Sphere"
         castsReflections: true
         receivesReflections: true
-        materials: bubbleMat
+        materials: [bubbleMat]
         receivesShadows: true
         scale.y: 1
         castsShadows: true
