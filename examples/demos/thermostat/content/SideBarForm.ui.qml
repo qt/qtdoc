@@ -20,16 +20,17 @@ import ThermostatCustomControls
 Column {
     id: root
 
-    property alias menuOptions: repeater.model
-    required property var roomsList
+    required property ListModel menuOptions
+    required property list<Room> roomsList
+    required property StackView stackView
 
     leftPadding: internal.leftPadding
     spacing: internal.spacing
 
     Repeater {
         id: repeater
-        model: menuOptions
 
+        model: root.menuOptions
         delegate: ItemDelegate {
             id: columnItem
 
@@ -43,7 +44,7 @@ Column {
             height: column.height
 
             background: Rectangle {
-                color: active ? "#2CDE85" : "transparent"
+                color: columnItem.active ? "#2CDE85" : "transparent"
                 radius: Constants.isSmallLayout ? 4 : 12
                 anchors.fill: parent
                 opacity: Constants.isSmallLayout ? 0.3 : 0.1
@@ -87,7 +88,7 @@ Column {
 
                         Label {
                             id: menuItemName
-                            text: name
+                            text: columnItem.name
                             font.family: "Titillium Web"
                             font.pixelSize: 18
                             font.weight: 600
@@ -117,6 +118,7 @@ Column {
                         width: internal.delegateWidth
                         height: 44
 
+                        required property string modelData
                         RowLayout {
                             id: row
 
@@ -130,7 +132,7 @@ Column {
                             }
 
                             Label {
-                                text: modelData
+                                text: item1.modelData
                                 Layout.fillWidth: true
                                 color: Constants.primaryTextColor
                                 visible: internal.isNameVisible
@@ -150,8 +152,8 @@ Column {
                 function onClicked() {
                     if (columnItem.view != "SettingsView"
                             && columnItem.view != Constants.currentView) {
-                        stackView.replace(columnItem.view + ".qml", {
-                                              "roomsList": roomsList
+                        root.stackView.replace(columnItem.view + ".qml", {
+                                              "roomsList": root.roomsList
                                           }, StackView.Immediate)
                     }
                     Constants.currentView = columnItem.view

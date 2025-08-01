@@ -19,10 +19,7 @@ ScrollView {
     clip: true
     contentWidth: availableWidth
 
-    property alias thermoSettings: thermoSettings
-    property alias roomName: thermoSettings.roomNameText
-    property alias roomIcon: thermoSettings.roomIconSource
-    property alias isActive: thermoSettings.isActive
+    required property Room room
 
     property bool isOneColumn
     property int thermostatControlHeight
@@ -54,19 +51,22 @@ ScrollView {
             Layout.preferredWidth: root.thermostatControlWidth
             Layout.alignment: Qt.AlignHCenter
 
-            model: root.model
+            room: root.room
 
             Connections {
+                target: thermoSettings
                 function onIsActiveChanged() {
-                    root.model.active = thermoSettings.isActive
+                    root.room.active = thermoSettings.isActive
                 }
             }
         }
 
-        ThermostatInfo {
+        TemperatureInfo {
             Layout.preferredHeight: root.delegateHeight
             Layout.preferredWidth: root.delegateWidth
             Layout.alignment: Qt.AlignHCenter
+
+            temperatureValues: root.room.tempStats
         }
 
         HumidityInfo {
@@ -74,7 +74,7 @@ ScrollView {
             Layout.preferredWidth: root.delegateWidth
             Layout.alignment: Qt.AlignHCenter
 
-            humidityValuesModel: root.model.humidityStats
+            humidityValues: root.room.humidityStats
         }
 
         EnergyInfo {
@@ -82,7 +82,7 @@ ScrollView {
             Layout.preferredWidth: root.delegateWidth
             Layout.alignment: Qt.AlignHCenter
 
-            energyValuesModel: root.model.energyStats
+            energyValues: root.room.energyStats
         }
     }
 

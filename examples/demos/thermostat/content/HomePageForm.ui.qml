@@ -15,6 +15,7 @@ import Thermostat
 
 Page {
     id: root
+    property list<Room> roomsList: RoomsModel.data
 
     header: ToolBar {
         id: toolBar
@@ -72,7 +73,7 @@ Page {
         anchors.bottom: parent.bottom
 
         initialItem: RoomsView {
-            roomsList: roomsList
+            roomsList: root.roomsList
         }
     }
 
@@ -86,7 +87,8 @@ Page {
         height: parent.height
 
         menuOptions: menuItems
-        roomsList: roomsList
+        roomsList: root.roomsList
+        stackView: stackView
     }
 
     BottomBar {
@@ -100,11 +102,8 @@ Page {
         visible: false
         position: TabBar.Footer
         menuOptions: menuItems
-        roomsList: roomsList
-    }
-
-    RoomsModel {
-        id: roomsList
+        roomsList: root.roomsList
+        stackView: stackView
     }
 
     ListModel {

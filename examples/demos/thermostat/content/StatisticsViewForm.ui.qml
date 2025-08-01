@@ -22,7 +22,7 @@ Pane {
     bottomPadding: 15
 
     property int currentRoomIndex: 0
-    required property var roomsList
+    required property list<Room> roomsList
 
     background: Rectangle {
         color: Constants.backgroundColor
@@ -57,7 +57,7 @@ Pane {
             CustomComboBox {
                 id: comboBox
                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-                model: roomsList
+                roomsList: root.roomsList
                 currentIndex: root.currentRoomIndex
                 Connections {
                     function onCurrentIndexChanged() {
@@ -79,7 +79,7 @@ Pane {
         height: internal.contentHeight
         isOneColumn: internal.isOneColumn
 
-        model: roomsList
+        roomsList: root.roomsList
         currentRoomIndex: root.currentRoomIndex
     }
 
@@ -88,7 +88,7 @@ Pane {
 
         anchors.top: title.bottom
 
-        model: roomsList
+        roomsList: root.roomsList
 
         width: internal.contentWidth
         height: internal.contentHeight

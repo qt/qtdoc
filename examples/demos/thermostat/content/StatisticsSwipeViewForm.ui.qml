@@ -12,11 +12,12 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls.Basic
+import Thermostat
 
 Item {
     id: root
 
-    property alias model: repeater.model
+    required property list<Room> roomsList
     property alias swipeView: swipeView
     property alias currentRoomIndex: swipeView.currentIndex
 
@@ -25,7 +26,7 @@ Item {
     ListView {
         id: roomSelector
 
-        model: root.model
+        model: root.roomsList
         width: root.width
         height: 28
         spacing: 26
@@ -33,11 +34,11 @@ Item {
         delegate: Label {
             id: labelDelegate
 
-            required property string name
+            required property Room modelData
             required property int index
             readonly property bool isActive: swipeView.currentIndex === index
 
-            text: name
+            text: modelData.name
             font.pixelSize: 12
             font.family: "Titillium Web"
             font.weight: 400
@@ -70,7 +71,11 @@ Item {
         Repeater {
             id: repeater
 
+            model: root.roomsList
             StatisticsScrollView {
+                required property Room modelData
+                room: modelData
+
                 width: swipeView.width
                 height: swipeView.height
 

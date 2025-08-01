@@ -19,13 +19,8 @@ import Thermostat
 Pane {
     id: root
 
-    required property var model
-    property alias buttonGroup: buttonGroup
-    property alias powerButton: powerButton
-    property alias powerToggle: powerToggle
-    property alias roomIconSource: roomIcon.source
-    property alias roomNameText: roomName.text
-    property bool isActive: false
+    required property Room room
+    property bool isActive: room.active
 
     padding: 0
 
@@ -47,7 +42,7 @@ Pane {
 
             Image {
                 id: roomIcon
-                source: "images/" + root.model.iconName
+                source: "images/" + root.room.iconName
 
                 sourceSize.width: internal.iconSize
                 sourceSize.height: internal.iconSize
@@ -63,7 +58,7 @@ Pane {
 
         Label {
             id: roomName
-            text: qsTr("Living room")
+            text: root.room.name
             font.pixelSize: internal.headerSize
             font.weight: 600
             font.family: "Titillium Web"
@@ -92,17 +87,23 @@ Pane {
         anchors.topMargin: internal.thermostatTopMargin
         enabled: root.isActive
 
-        currentTemp: root.model.temp
-        targetTemp: root.model.thermostatTemp
+        currentTemp: root.room.temp
+        targetTemp: root.room.thermostatTemp
         Connections {
+            target: thermostat
             function onTargetTempChanged() {
-                root.model.thermostatTemp = thermostat.targetTemp
+                root.room.thermostatTemp = thermostat.targetTemp
             }
         }
     }
 
     ButtonGroup {
         id: buttonGroup
+        property Connections _: Connections {
+            function onClicked(button) {
+                root.room.mode = button.text
+            }
+        }
     }
 
     Column {
@@ -117,6 +118,7 @@ Pane {
             model: [qsTr("Cool"), qsTr("Fan"), qsTr("Auto")]
 
             CustomRoundButton {
+                required property string modelData
                 width: internal.buttonWidth
                 height: internal.buttonHeight
                 text: modelData
@@ -128,7 +130,7 @@ Pane {
                 radius: internal.radius
                 ButtonGroup.group: buttonGroup
                 enabled: root.isActive
-                checked: enabled && root.model.mode == modelData
+                checked: enabled && root.room.mode == modelData
             }
         }
     }
@@ -144,6 +146,7 @@ Pane {
             model: [qsTr("Heat"), qsTr("Dry"), qsTr("Eco")]
 
             CustomRoundButton {
+                required property string modelData
                 width: internal.buttonWidth
                 height: internal.buttonHeight
                 text: modelData
@@ -154,7 +157,7 @@ Pane {
                 radius: internal.radius
                 ButtonGroup.group: buttonGroup
                 enabled: root.isActive
-                checked: enabled && root.model.mode == modelData
+                checked: enabled && root.room.mode == modelData
             }
         }
     }

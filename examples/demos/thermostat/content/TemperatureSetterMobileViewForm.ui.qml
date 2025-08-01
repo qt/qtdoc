@@ -95,6 +95,7 @@ Pane {
             Repeater {
                 model: [qsTr("Heating"), qsTr("Cooling"), qsTr("Auto")]
                 CustomRadioButton {
+                    required property string modelData
                     text: modelData
                     font.pixelSize: 14
                     indicatorSize: 14
@@ -123,6 +124,7 @@ Pane {
 
                     Label {
                         id: weekdayLabel
+                        required property string modelData
                         property bool checked: false
 
                         text: modelData
@@ -150,6 +152,7 @@ Pane {
                 model: [qsTr("Cancel"), qsTr("Save")]
 
                 CustomRoundButton {
+                    required property string modelData
                     height: 45
                     Layout.fillWidth: true
                     text: modelData
