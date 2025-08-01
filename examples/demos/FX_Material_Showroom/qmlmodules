@@ -5,8 +5,8 @@ qt_add_qml_module(FxMaterialShowroomApp
     QML_FILES main.qml
 )
 
-add_subdirectory(content)
 add_subdirectory(imports)
+add_subdirectory(content)
 
 target_link_libraries(FxMaterialShowroomApp PRIVATE
     FXMaterialShowroomContentplugin
