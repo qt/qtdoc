@@ -6,6 +6,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls.Basic
 import Thermostat
+import ThermostatCustomControls
 
 Rectangle {
     id: root
@@ -13,6 +14,8 @@ Rectangle {
     width: 1010
     height: 200
     radius: 12
+
+    required property var scheduleViewRoot
 
     gradient: Gradient {
         GradientStop {
@@ -31,17 +34,19 @@ Rectangle {
         spacing: 0
 
         Repeater {
-            model: 24
+            model: root.scheduleViewRoot.selectedHours
             Item {
                 id: column
 
+                required property int index
+                required property int modelData
                 height: root.height
                 width: internal.itemWidth
 
                 Label {
                     id: hour
 
-                    text: index
+                    text: column.index
                     font.pixelSize: internal.hourSize
                     horizontalAlignment: Text.AlignHCenter
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -49,7 +54,7 @@ Rectangle {
                     font.weight: 700
                     font.family: "Titillium Web"
                     color: "#2CDE85"
-                    visible: index % 6 == 0 || index === 23
+                    visible: column.index % 6 === 0 || column.index === 23
                 }
 
                 CustomRoundButton {
@@ -62,12 +67,19 @@ Rectangle {
                     radius: 12
                     anchors.top: parent.top
                     anchors.topMargin: internal.itemTopMargin
+                    checked: column.modelData
+                    Connections {
+                        function onClicked() {
+                            root.scheduleViewRoot.selectedHours[column.index]
+                                    = !root.scheduleViewRoot.selectedHours[column.index]
+                        }
+                    }
                 }
 
                 Label {
                     id: bottomHour
 
-                    text: index
+                    text: column.index
                     font.pixelSize: 14
                     horizontalAlignment: Text.AlignHCenter
                     anchors.bottom: parent.bottom

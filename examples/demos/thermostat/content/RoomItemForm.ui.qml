@@ -95,10 +95,13 @@ Pane {
 
         CustomSwitch {
             id: toggle
-            checked: root.room.active
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+            enabled: AppSettings.isThermostatActive
+            checked: root.room.active && AppSettings.isThermostatActive
             Connections {
                 function onCheckedChanged() {
-                    root.room.active = toggle.checked
+                    if (AppSettings.isThermostatActive)
+                        root.room.active = toggle.checked
                 }
             }
         }

@@ -8,22 +8,25 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
+
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Controls.Basic
+import Thermostat
 
 Item {
     id: root
 
-    property alias model: repeater.model
-    property alias swipeView: swipeView
-    property alias currentRoomIndex: swipeView.currentIndex
-
+    required property list<Room> roomsList
+    required property var scheduleViewRoot
+    required property int currentRoomIndex
     property bool isOneColumn: false
 
     ListView {
         id: roomSelector
 
-        model: root.model
+        model: root.roomsList
         width: root.width
         height: 28
         spacing: 26
@@ -31,11 +34,11 @@ Item {
         delegate: Label {
             id: labelDelegate
 
-            required property string name
+            required property Room modelData
             required property int index
             readonly property bool isActive: swipeView.currentIndex === index
 
-            text: name
+            text: modelData.name
             font.pixelSize: 12
             font.family: "Titillium Web"
             font.weight: 400
@@ -64,13 +67,23 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 7
         clip: true
+        currentIndex: root.currentRoomIndex
+        Connections {
+            function onCurrentIndexChanged() {
+                root.currentRoomIndex = swipeView.currentIndex
+            }
+        }
 
         Repeater {
             id: repeater
 
+            model: root.roomsList
             ScheduleScrollView {
+                required property Room modelData
+                room: modelData
                 width: swipeView.width
                 height: swipeView.height
+                scheduleViewRoot: root.scheduleViewRoot
             }
         }
     }

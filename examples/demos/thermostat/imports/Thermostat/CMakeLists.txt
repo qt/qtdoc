@@ -21,6 +21,11 @@ set_source_files_properties(RoomsModel.qml
         QT_QML_SINGLETON_TYPE true
 )
 
+set_source_files_properties(Database.qml
+    PROPERTIES
+        QT_QML_SINGLETON_TYPE true
+)
+
 qt_add_library(Thermostat STATIC)
 qt_add_qml_module(Thermostat
     URI "Thermostat"
@@ -28,6 +33,7 @@ qt_add_qml_module(Thermostat
     QML_FILES
         AppSettings.qml
         Constants.qml
+        Database.qml
         RoomsModel.qml
         Room.qml
         Utils.qml

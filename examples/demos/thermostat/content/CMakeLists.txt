@@ -27,6 +27,8 @@ qt_add_qml_module(ThermostatContent
         RoomsViewForm.ui.qml
         ScheduleScrollView.qml
         ScheduleScrollViewForm.ui.qml
+        ScheduleStackView.qml
+        ScheduleStackViewForm.ui.qml
         ScheduleSwipeView.qml
         ScheduleSwipeViewForm.ui.qml
         ScheduleView.qml
@@ -65,6 +67,7 @@ qt_add_qml_module(ThermostatContent
         ThermostatViewForm.ui.qml
         TimeSchedule.qml
         TimeScheduleForm.ui.qml
+        TimeSelector.qml
     RESOURCES
         images/arrow.svg
         images/Auto.svg

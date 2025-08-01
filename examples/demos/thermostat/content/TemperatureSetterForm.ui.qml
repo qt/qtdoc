@@ -12,6 +12,16 @@ import QtQuick.Controls.Basic
 import Thermostat
 
 Pane {
+    id: root
+
+    required property var scheduleViewRoot
+    property alias saveButtonDesktop: desktopView.saveButton
+    property alias saveButtonMobile: mobileView.saveButton
+    property alias saveButtonSmall: smallView.saveButton
+    property alias cancelButtonDesktop: desktopView.cancelButton
+    property alias cancelButtonMobile: mobileView.cancelButton
+    property alias cancelButtonSmall: smallView.cancelButton
+
     width: 1087
     height: 361
 
@@ -24,16 +34,19 @@ Pane {
 
     TemperatureSetterDesktopView {
         id: desktopView
+        scheduleViewRoot: root.scheduleViewRoot
     }
 
     TemperatureSetterMobileView {
         id: mobileView
         visible: false
+        scheduleViewRoot: root.scheduleViewRoot
     }
 
     TemperatureSetterSmallView {
         id: smallView
         visible: false
+        scheduleViewRoot: root.scheduleViewRoot
     }
 
     states: [

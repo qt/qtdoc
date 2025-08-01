@@ -15,6 +15,9 @@ import Thermostat
 ScrollView {
     id: scrollView
 
+    required property Room room
+    required property var scheduleViewRoot
+    property bool isBackgroundVisible: false
     property int timeScheduleHeight: 361
     property int timeScheduleWidth: 1087
     property int tempSetterHeight: 427
@@ -23,20 +26,29 @@ ScrollView {
     clip: true
     padding: 0
 
+    background: Rectangle {
+        color: Constants.accentColor
+        visible: scrollView.isBackgroundVisible
+        radius: 12
+    }
+
     ColumnLayout {
         width: scrollView.width
         height: scrollView.height
 
         TimeSchedule {
+            id: timeSchedule
             Layout.preferredHeight: scrollView.timeScheduleHeight
             Layout.preferredWidth: scrollView.timeScheduleWidth
             Layout.alignment: Qt.AlignHCenter
+            scheduleViewRoot: scrollView.scheduleViewRoot
         }
 
         TemperatureSetter {
             Layout.preferredHeight: scrollView.tempSetterHeight
             Layout.preferredWidth: scrollView.tempSetterWidth
             Layout.alignment: Qt.AlignHCenter
+            scheduleViewRoot: scrollView.scheduleViewRoot
         }
     }
 
@@ -50,6 +62,7 @@ ScrollView {
                 timeScheduleWidth: 1087
                 tempSetterHeight: 427
                 tempSetterWidth: 1087
+                isBackgroundVisible: false
             }
         },
         State {
@@ -61,6 +74,7 @@ ScrollView {
                 timeScheduleWidth: 327
                 tempSetterHeight: 529
                 tempSetterWidth: 327
+                isBackgroundVisible: false
             }
         },
         State {
@@ -72,6 +86,7 @@ ScrollView {
                 timeScheduleWidth: 400
                 tempSetterHeight: 370
                 tempSetterWidth: 400
+                isBackgroundVisible: true
             }
         }
     ]

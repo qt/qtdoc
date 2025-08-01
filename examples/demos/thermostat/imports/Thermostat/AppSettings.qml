@@ -7,4 +7,5 @@ import QtCore
 
 Settings {
     property bool isDarkTheme: Application.styleHints.colorScheme === Qt.Dark
+    property bool isThermostatActive: true
 }

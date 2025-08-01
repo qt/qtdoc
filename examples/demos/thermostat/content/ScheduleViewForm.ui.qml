@@ -18,7 +18,12 @@ Pane {
     id: root
 
     property int currentRoomIndex: 0
-    required property var roomsList
+    required property list<Room> roomsList
+    property string currentDate
+    property list<int> selectedHours: [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    property list<int> selectedDays: [0,0,0,0,0,0,0]
+    property int currentMode: 2
+    property int currentTemp: 10
 
     background: Rectangle {
         anchors.fill: parent
@@ -29,6 +34,7 @@ Pane {
         id: title
 
         width: parent.width
+
         Label {
             id: header
 
@@ -42,6 +48,7 @@ Pane {
 
         RowLayout {
             id: label
+
             width: parent.width
             Label {
                 text: qsTr("Adjust a timer for specific room temperature")
@@ -54,34 +61,50 @@ Pane {
             }
 
             CustomComboBox {
-                model: roomsList
+                id: customComboBox
+                roomsList: root.roomsList
                 currentIndex: root.currentRoomIndex
-                onCurrentIndexChanged: root.currentRoomIndex = currentIndex
+                Connections {
+                    function onCurrentIndexChanged() {
+                        root.currentRoomIndex = customComboBox.currentIndex
+                    }
+                }
             }
         }
     }
 
-    ScheduleScrollView {
+    ScheduleStackView {
         id: scrollView
+
+        scheduleViewRoot: root
         anchors.top: title.bottom
+        anchors.topMargin: 12
         anchors.leftMargin: 28
 
         width: internal.contentWidth
         height: internal.contentHeight
+
+        roomsList: root.roomsList
+        currentRoomIndex: root.currentRoomIndex
     }
 
     ScheduleSwipeView {
         id: swipeView
-        anchors.top: title.bottom
 
-        model: roomsList
+        scheduleViewRoot: root
+        anchors.top: title.bottom
+        roomsList: root.roomsList
 
         width: internal.contentWidth
         height: internal.contentHeight
 
         visible: false
         currentRoomIndex: root.currentRoomIndex
-        onCurrentRoomIndexChanged: root.currentRoomIndex = currentRoomIndex
+        Connections {
+            function onCurrentRoomIndexChanged() {
+                root.currentRoomIndex = swipeView.currentRoomIndex
+            }
+        }
     }
 
     QtObject {

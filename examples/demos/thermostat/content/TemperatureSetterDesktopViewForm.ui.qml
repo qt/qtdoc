@@ -7,6 +7,8 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Effects
@@ -14,6 +16,13 @@ import Thermostat
 import ThermostatCustomControls
 
 Pane {
+    id: root
+
+    required property var scheduleViewRoot
+    property alias saveButton: saveButton
+    property alias cancelButton: cancelButton
+    property int currentMode: 2
+
     width: 1087
     height: 427
 
@@ -78,7 +87,13 @@ Pane {
 
         CustomSlider {
             id: slider
+            value: root.scheduleViewRoot.currentTemp
             anchors.bottom: parent.bottom
+            Connections {
+                function onValueChanged() {
+                    root.scheduleViewRoot.currentTemp = slider.value
+                }
+            }
         }
     }
 
@@ -100,15 +115,25 @@ Pane {
             Repeater {
                 model: [qsTr("Heating"), qsTr("Cooling"), qsTr("Auto")]
                 CustomRadioButton {
+                    id: radioButton
                     required property string modelData
+                    required property int index
+
                     text: modelData
                     indicatorSize: 20
+                    checked: root.scheduleViewRoot.currentMode === index
+                    Connections {
+                        function onClicked() {
+                            root.scheduleViewRoot.currentMode = radioButton.index
+                        }
+                    }
                 }
             }
         }
 
         Row {
             spacing: 24
+
             Label {
                 font.pixelSize: 24
                 font.weight: 600
@@ -123,12 +148,22 @@ Pane {
                         "Thu"), qsTr("Fri"), qsTr("Sat"), qsTr("Sun")]
 
                 CustomRoundButton {
+                    id: roundButton
+                    required property int index
                     required property string modelData
+
                     text: modelData
                     width: 90
                     height: 50
                     radius: 12
                     font.pixelSize: 24
+                    checked: root.scheduleViewRoot.selectedDays[index]
+                    Connections {
+                        function onClicked() {
+                            root.scheduleViewRoot.selectedDays[roundButton.index]
+                                    = !root.scheduleViewRoot.selectedDays[roundButton.index]
+                        }
+                    }
                 }
             }
         }
@@ -139,18 +174,27 @@ Pane {
         anchors.right: parent.right
         spacing: 24
 
-        Repeater {
-            model: [qsTr("Cancel"), qsTr("Save")]
-            CustomRoundButton {
-                required property string modelData
-                width: 120
-                height: 48
-                text: modelData
-                radius: 12
-                contentColor: "#2CDE85"
-                checkable: false
-                font.pixelSize: 14
-            }
+        CustomRoundButton {
+            id: cancelButton
+
+            width: 120
+            height: 48
+            text: qsTr("Cancel")
+            radius: 12
+            contentColor: "#2CDE85"
+            checkable: false
+            font.pixelSize: 14
+        }
+
+        CustomRoundButton {
+            id: saveButton
+            width: 120
+            height: 48
+            text: qsTr("Save")
+            radius: 12
+            contentColor: "#2CDE85"
+            checkable: false
+            font.pixelSize: 14
         }
     }
 
