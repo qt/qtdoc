@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick3D.Helpers
 
 Item {
     id: material_pop_up
