@@ -42,16 +42,16 @@ Item {
     DragHandler {
         id: dragHandler
         target: null
-        enabled: mouseEnabled
+        enabled: root.mouseEnabled
         onCentroidChanged: {
-            mouseMoved(Qt.vector2d(centroid.position.x, centroid.position.y));
+            root.mouseMoved(Qt.vector2d(centroid.position.x, centroid.position.y));
         }
 
         onActiveChanged: {
             if (active)
-                mousePressed(Qt.vector2d(centroid.position.x, centroid.position.y));
+                root.mousePressed(Qt.vector2d(centroid.position.x, centroid.position.y));
             else
-                mouseReleased(Qt.vector2d(centroid.position.x, centroid.position.y));
+                root.mouseReleased(Qt.vector2d(centroid.position.x, centroid.position.y));
         }
     }
 
@@ -211,7 +211,7 @@ Item {
         repeat: true
         running: root.inputsNeedProcessing
         onTriggered: {
-            processInputs();
+            root.processInputs();
         }
     }
 
@@ -239,7 +239,7 @@ Item {
         function updatePosition(vector, speed, position)
         {
             if (shiftDown)
-                speed *= shiftSpeed;
+                speed *= root.shiftSpeed;
             else
                 speed *= root.speed
 
@@ -247,7 +247,7 @@ Item {
             var velocity = Qt.vector3d(direction.x * speed,
                                        direction.y * speed,
                                        direction.z * speed);
-            controlledObject.position = Qt.vector3d(position.x + velocity.x,
+            root.controlledObject.position = Qt.vector3d(position.x + velocity.x,
                                                     position.y + velocity.y,
                                                     position.z + velocity.z);
         }
@@ -257,43 +257,43 @@ Item {
         }
 
         function processInput() {
-            if (controlledObject == undefined)
+            if (root.controlledObject == undefined)
                 return;
 
             if (moveForward)
-                updatePosition(controlledObject.forward, forwardSpeed, controlledObject.position);
+                updatePosition(root.controlledObject.forward, root.forwardSpeed, root.controlledObject.position);
             else if (moveBack)
-                updatePosition(negate(controlledObject.forward), backSpeed, controlledObject.position);
+                updatePosition(negate(root.controlledObject.forward), root.backSpeed, root.controlledObject.position);
 
             if (moveRight)
-                updatePosition(controlledObject.right, rightSpeed, controlledObject.position);
+                updatePosition(root.controlledObject.right, root.rightSpeed, root.controlledObject.position);
             else if (moveLeft)
-                updatePosition(negate(controlledObject.right), leftSpeed, controlledObject.position);
+                updatePosition(negate(root.controlledObject.right), root.leftSpeed, root.controlledObject.position);
 
             if (moveDown)
-                updatePosition(negate(controlledObject.up), downSpeed, controlledObject.position);
+                updatePosition(negate(root.controlledObject.up), root.downSpeed, root.controlledObject.position);
             else if (moveUp)
-                updatePosition(controlledObject.up, upSpeed, controlledObject.position);
+                updatePosition(root.controlledObject.up, root.upSpeed, root.controlledObject.position);
 
             if (useMouse) {
                 // Get the delta
-                var rotationVector = controlledObject.eulerRotation;
+                var rotationVector = root.controlledObject.eulerRotation;
                 var delta = Qt.vector2d(lastPos.x - currentPos.x,
                                         lastPos.y - currentPos.y);
                 // rotate x
-                var rotateX = -delta.x * xSpeed
-                if (xInvert)
+                var rotateX = -delta.x * root.xSpeed
+                if (root.xInvert)
                     rotateX = -rotateX;
                 rotationVector.y += rotateX;
 
                 // rotate y
-                var rotateY = delta.y * ySpeed
-                if (yInvert)
+                var rotateY = delta.y * root.ySpeed
+                if (root.yInvert)
                     rotateY = -rotateY;
                 if (rotationVector.x + rotateY <= 9 && rotationVector.x + rotateY >= -70.0)
                     rotationVector.x += rotateY;
 
-                controlledObject.setEulerRotation(rotationVector);
+                root.controlledObject.setEulerRotation(rotationVector);
                 lastPos = currentPos;
             }
         }
