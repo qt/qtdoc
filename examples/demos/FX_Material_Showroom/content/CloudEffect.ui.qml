@@ -7,6 +7,9 @@ import QtQuick3D.Particles3D
 
 ParticleSystem3D {
     id: cloud
+
+    required property Camera sceneCamera
+
     ParticleEmitter3D {
         id: modelShapeEmitter7
         x: 0
@@ -25,7 +28,7 @@ ParticleSystem3D {
             sortMode: Particle3D.SortDistance
             alignMode: Particle3D.AlignNone
             maxAmount: 50
-            alignTargetPosition: sceneCamera.position
+            alignTargetPosition: cloud.sceneCamera.position
             fadeInDuration: 12500
             hasTransparency: true
             unifiedColorVariation: false

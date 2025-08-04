@@ -6,10 +6,15 @@ import QtQuick.Controls
 
 Item {
     id: material_pop_up
-    x: (1 - menutransition_open.phase) * -636
+
+    required property real openmenuTransitionPhase
+    required property NumberAnimation closemenuTransition
+    required property QtObject screen
+
+    x: (1 - openmenuTransitionPhase) * -636
     width: 636
     height: 1080
-    opacity: menutransition_open.phase
+    opacity: openmenuTransitionPhase
     property alias setting_panelText: setting_panel.text
     property alias effectsL: listEffects
     property alias modelsL: listModels
@@ -124,14 +129,14 @@ Item {
             Connections {
                 target: button
                 function onClicked() {
-                    rectangle1.settingsopen = false
+                    material_pop_up.screen.settingsopen = false
                 }
             }
 
             Connections {
                 target: button
                 function onClicked() {
-                    menutransition_close.start()
+                    material_pop_up.closemenuTransition.start()
                 }
             }
         }
@@ -155,6 +160,7 @@ Item {
 
     CardMaterial {
         id: card3DModels
+        popUp: material_pop_up
         x: 420
         y: 100
         width: 188
@@ -166,6 +172,7 @@ Item {
 
     CardMaterial {
         id: cardMaterial
+        popUp: material_pop_up
         x: 28
         y: 100
         width: 188
@@ -177,6 +184,7 @@ Item {
 
     CardMaterial {
         id: cardEffects
+        popUp: material_pop_up
         x: 224
         y: 100
         width: 188

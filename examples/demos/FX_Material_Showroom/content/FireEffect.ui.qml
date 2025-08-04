@@ -7,6 +7,9 @@ import QtQuick3D.Particles3D
 
 ParticleSystem3D {
     id: fire
+
+    required property Camera sceneCamera
+
     ParticleEmitter3D {
         id: modelShapeEmitter4
         x: 0
@@ -29,7 +32,7 @@ ParticleSystem3D {
             color: "#ffffff"
             unifiedColorVariation: false
             fadeInDuration: 1250
-            alignTargetPosition: sceneCamera.position
+            alignTargetPosition: fire.sceneCamera.position
             hasTransparency: true
             colorVariation.z: 1
             sortMode: Particle3D.SortDistance

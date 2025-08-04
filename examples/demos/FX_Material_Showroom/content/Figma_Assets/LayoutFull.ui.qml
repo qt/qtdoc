@@ -12,6 +12,9 @@ Rectangle {
     border.color: "#00000000"
     property bool debugOn: button.checked
 
+    required property NumberAnimation openmenuTransition
+    required property real openmenuTransitionPhase
+
     LabelQt {
         id: labelQt
         x: 1644
@@ -35,8 +38,8 @@ Rectangle {
         y: 972
         width: 311
         height: 80
-        scale: 1.0 - menutransition_open.phase * 0.5
-        opacity: 1 - menutransition_open.phase
+        scale: 1.0 - layoutFull.openmenuTransitionPhase * 0.5
+        opacity: 1 - layoutFull.openmenuTransitionPhase
         state: "state_state_Idle"
 
         background: Rectangle {
@@ -52,7 +55,7 @@ Rectangle {
         Connections {
             target: settingsbutton
             function onClicked() {
-                menutransition_open.start()
+                layoutFull.openmenuTransition.start()
             }
         }
 
