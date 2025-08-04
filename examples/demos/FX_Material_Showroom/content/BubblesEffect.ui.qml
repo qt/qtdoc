@@ -7,6 +7,9 @@ import QtQuick3D.Particles3D
 
 ParticleSystem3D {
     id: bubbles
+
+    required property Camera sceneCamera
+
     ParticleEmitter3D {
         id: modelShapeEmitter6
         x: -0
@@ -27,7 +30,7 @@ ParticleSystem3D {
             colorVariation.y: 0.25
             colorVariation.x: 0.25
             maxAmount: 5000
-            alignTargetPosition: sceneCamera.position
+            alignTargetPosition: bubbles.sceneCamera.position
             fadeInDuration: 0
             hasTransparency: true
             unifiedColorVariation: false

@@ -12,6 +12,8 @@ Item {
     property string iconState: "state_icon_SkySunrise"
     property string buttonName: "Sunrise"
 
+    required property QtObject buttonTabs
+
     Rectangle {
         id: bg
         x: 0
@@ -40,11 +42,11 @@ Item {
         highlighted: false
         checkable: true
         display: AbstractButton.TextOnly
-        checked: buttonTabs.activeBtn === buttonWithIcon.buttonName
+        checked: (buttonWithIcon.buttonTabs as ButtonTabs).activeBtn === buttonWithIcon.buttonName
         Connections {
             target: button
             function onClicked() {
-                buttonTabs.activeBtn = buttonWithIcon.buttonName
+                (buttonWithIcon.buttonTabs as ButtonTabs).activeBtn = buttonWithIcon.buttonName
             }
         }
     }

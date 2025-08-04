@@ -29,6 +29,7 @@ Item {
 
     ButtonWithIcon {
         id: buttonWithIcon
+        buttonTabs: buttonTabs
         x: 0
         y: 0
         width: 120
@@ -40,6 +41,7 @@ Item {
 
     ButtonWithIcon {
         id: buttonWithIcon1
+        buttonTabs: buttonTabs
         x: 120
         y: 0
         width: 120
@@ -51,6 +53,7 @@ Item {
 
     ButtonWithIcon {
         id: buttonWithIcon2
+        buttonTabs: buttonTabs
         x: 240
         y: 0
         width: 120

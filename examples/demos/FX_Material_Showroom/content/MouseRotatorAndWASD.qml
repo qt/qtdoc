@@ -6,7 +6,7 @@ import QtQuick3D
 
 Item {
     id: root
-    property Node controlledObject: cameraRoot
+    required property Node controlledObject
 
     property real speed: 1
     property real shiftSpeed: 3

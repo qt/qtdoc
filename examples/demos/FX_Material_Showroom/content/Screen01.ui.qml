@@ -291,6 +291,7 @@ Rectangle {
 
                 RainEffect {
                     id: rain
+                    sceneCamera: sceneCamera
                     visible: material_pop_up.effectsL.selection == "Rain"
                 }
 
@@ -313,6 +314,7 @@ Rectangle {
 
                 FireEffect {
                     id: fire
+                    sceneCamera: sceneCamera
                     visible: material_pop_up.effectsL.selection == "Flames"
                 }
 
@@ -335,6 +337,7 @@ Rectangle {
 
                 DustEffect {
                     id: dust
+                    sceneCamera: sceneCamera
                     visible: material_pop_up.effectsL.selection == "Dust"
                 }
 
@@ -350,6 +353,7 @@ Rectangle {
 
                 BubblesEffect {
                     id: bubbles
+                    sceneCamera: sceneCamera
                     x: 0
                     y: 125.976
                     visible: material_pop_up.effectsL.selection == "Bubbles"
@@ -358,7 +362,7 @@ Rectangle {
 
                 CloudEffect {
                     id: cloud
-
+                    sceneCamera: sceneCamera
                     y: 100
                     visible: material_pop_up.effectsL.selection == "Clouds"
                     time: 10000
@@ -598,6 +602,7 @@ Rectangle {
 
     MouseRotatorAndWASD {
         id: mouseRotatorAndWASD
+        controlledObject: cameraRoot
         anchors.top: parent.top
         anchors.fill: parent
         anchors.leftMargin: 636 * menutransition_open.phase
@@ -1188,6 +1193,8 @@ Rectangle {
 
     LayoutFull {
         id: layoutFull
+        openmenuTransition: menutransition_open
+        openmenuTransitionPhase: menutransition_open.phase
     }
 
     Layout {
@@ -1196,6 +1203,9 @@ Rectangle {
 
     Material_pop_up {
         id: material_pop_up
+        openmenuTransitionPhase: menutransition_open.phase
+        closemenuTransition: menutransition_close
+        screen: rectangle1
     }
 
     Rectangle {

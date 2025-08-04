@@ -7,6 +7,9 @@ import QtQuick3D.Particles3D
 
 ParticleSystem3D {
     id: rain
+
+    required property Camera sceneCamera
+
     ParticleEmitter3D {
 
         enabled: rain.visible
@@ -20,7 +23,7 @@ ParticleSystem3D {
             id: particleRed1
             color: "#ffffff"
             alignMode: Particle3D.AlignTowardsStartVelocity
-            alignTargetPosition: sceneCamera.position
+            alignTargetPosition: rain.sceneCamera.position
             maxAmount: 50000
             hasTransparency: true
             fadeOutDuration: 100
