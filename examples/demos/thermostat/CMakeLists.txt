@@ -11,12 +11,6 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(ThermostatApp src/main.cpp)
 
-qt_add_resources(ThermostatApp "configuration"
-    PREFIX "/"
-    FILES
-        qtquickcontrols2.conf
-)
-
 include(qmlmodules)
 
 target_link_libraries(ThermostatApp PRIVATE

@@ -26,11 +26,6 @@ Project {
     }
 
     Files {
-        filter: "*.conf"
-        files: ["qtquickcontrols2.conf"]
-    }
-
-    Files {
         filter: "qmldir"
         directory: "."
     }
@@ -61,7 +56,6 @@ Project {
     }
 
     Environment {
-        QT_QUICK_CONTROLS_CONF: "qtquickcontrols2.conf"
         QML_COMPAT_RESOLVE_URLS_ON_ASSIGNMENT: "1"
     }
 
