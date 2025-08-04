@@ -111,6 +111,18 @@
     \list
     \endlist
 
+    \section2 Qt Lottie Animation
+    \list
+        \li Added support for solid, null and precomposition layers.
+        \li Added \l{lottietoqml} tool. This is an equivalent tool to \l{svgtoqml} and it converts
+            Lottie files to Qt Quick scenes described in QML. It is currently in tech preview.
+        \li Added a plugin for \l{VectorImage} which enables it to load Lottie files in addition
+            to SVG. This feature is tech preview and requires
+            \l{VectorImage::assumeTrustedSource}{assumeTrustedSource} to be set to \c true.
+        \li Added \l{lottietoqml example} and \l{qtlottieviewer example} to demonstrate usage
+            of \l{Qt Lottie Animation}.
+    \endlist
+
     \section2 Qt Multimedia Module
     \list
         \li Added a native PipeWire audio backend.
@@ -190,6 +202,12 @@
     \section2 Qt Quick VectorImage Module
     \list
       \li Added support for animated SVGs that matches animation support in Qt SVG.
+      \li Added \l{VectorImage::assumeTrustedSource}{API} to indicate whether source file is
+          trusted or not.
+      \li Added \l{VectorImage::animations}{API} to control animation behavior.
+      \li By including a plugin provided by \l{Qt Lottie Animation}, \l{VectorImage} can now also
+          show Lottie files. This feature is regarded as tech preview and requires
+          \l{VectorImage::assumeTrustedSource}{assumeTrustedSource} to be set to \c true.
     \endlist
 
     \section2 Qt Serial Port Module
