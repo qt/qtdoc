@@ -7,7 +7,6 @@ Item {
     id: scrollbar
     width: 4
     height: 764
-    anchors.right: parent.right
     anchors.rightMargin: -24
     property real scrollPos: 0
 
