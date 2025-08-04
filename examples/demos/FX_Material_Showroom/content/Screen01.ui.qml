@@ -628,7 +628,7 @@ Rectangle {
 
             Connections {
                 target: pinchArea
-                function onPinchUpdated() {
+                function onPinchUpdated(pinch) {
                     if (pinch.previousScale - pinch.scale > 0.008
                      || pinch.previousScale - pinch.scale < -1 * 0.008) {
                         let velocity = (pinch.previousScale - pinch.scale) > 0 ? 1.25 : -1.25
