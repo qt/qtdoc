@@ -11,6 +11,8 @@ Item {
     property string checkboxImagesState: "state_type_Materials_Number_1"
     property alias item_nameText: item_name.text
 
+    required property ListSelection selection
+
     Rectangle {
         id: bg
         x: 0
@@ -61,7 +63,7 @@ Item {
         y: 30
         width: 28
         height: 28
-        state: list.selection === state_Idle.item_nameText ? "state_name_CheckFilled"
+        state: state_Idle.selection.selection === state_Idle.item_nameText ? "state_name_CheckFilled"
                                                            : "state_name_CheckEmpty"
     }
 
@@ -71,11 +73,11 @@ Item {
         text: qsTr("")
         anchors.fill: parent
         checkable: true
-        checked: list.selection === state_Idle.item_nameText
+        checked: state_Idle.selection.selection === state_Idle.item_nameText
         Connections {
             target: button
             function onClicked() {
-                list.selection = state_Idle.item_nameText
+                state_Idle.selection.selection = state_Idle.item_nameText
             }
         }
     }

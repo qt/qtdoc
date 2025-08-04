@@ -73,7 +73,6 @@ Item {
         width: 580
         height: 636
         visible: false
-        property alias list: listMaterial
     }
 
     ListEffects {
@@ -83,7 +82,6 @@ Item {
         width: 580
         height: 1050
         visible: false
-        property alias list: listEffects
     }
 
     ListModels {
@@ -93,7 +91,6 @@ Item {
         width: 580
         height: 376
         visible: false
-        property alias list: listModels
     }
 
     Rectangle {
