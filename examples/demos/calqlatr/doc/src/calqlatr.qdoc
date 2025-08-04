@@ -1,23 +1,25 @@
-// Copyright (C) 2017 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
     \title Calqlatr
     \ingroup qtquickdemos
     \example demos/calqlatr
-    \brief A calculator designed for landscape and portrait devices. It uses Qt Quick custom
-    components and responsive layouts for the user interface, and JavaScript for the application
-    logic.
+    \brief A calculator designed for landscape and portrait devices. It uses Qt
+    Quick custom components and responsive layouts for the user interface, and
+    JavaScript for the application logic.
     \meta {tag} {quick,layouts,ios,android}
     \examplecategory {Application Examples}
     \examplecategory {Mobile}
-    \image qtquick-demo-calqlatr.png
+    \image {qtquick-demo-calqlatr.png} {The calculator example UI}
 
     \e{Calqlatr} demonstrates various QML and \l{Qt Quick} features, such as
     displaying custom components and using responsive layouts. The application
     logic is implemented in JavaScript and the UI is implemented in QML.
 
     \include examples-run.qdocinc
+    After running the example, you should be able to use the application as a
+    standard calculator.
 
     \section1 Displaying Custom Components
 
@@ -25,10 +27,10 @@
     defined in their own separate .qml file:
 
     \list
-        \li BackspaceButton.qml
-        \li CalculatorButton.qml
-        \li Display.qml
-        \li NumberPad.qml
+        \li \c BackspaceButton.qml
+        \li \c CalculatorButton.qml
+        \li \c Display.qml
+        \li \c NumberPad.qml
     \endlist
 
     To use these custom types in \c {Main.qml}, add an import statement
@@ -46,11 +48,13 @@
     \skipto NumberPad
     \printuntil }
 
-    Custom components are QML types that can be defined in any QML file, they behave the same as
-    the components that are defined in their own .qml file, like \c NumberPad.qml. In
-    \c NumberPad.qml the \c DigitButton component and the \c OperatorButton component are defined.
-    New properties can be added or exsisting properties can be modified in these components. Here
-    the \c onReleased handler is overwritten for both of the custom components.
+    Custom components are QML types that can be defined in any QML file, they
+    behave the same as the components that are defined in their own .qml file,
+    like \c NumberPad.qml. In \c NumberPad.qml, the \c DigitButton component
+    and the \c OperatorButton component are defined.
+    New properties can be added or exsisting properties can be modified in these
+    components. Here, the \c onReleased handler is overwritten for both of the
+    custom components.
 
     \quotefromfile demos/calqlatr/content/NumberPad.qml
     \skipto DigitButton
@@ -59,27 +63,32 @@
     \printuntil }
     \printuntil }
 
-    In addition, use the \c CalculatorButton type for the different buttons on \c NumberPad.
-    \c CalculatorButton.qml defines basic properties of a button, which you modify for each instance
-    in \c NumberPad.qml. For the digit and operator buttons, a few extra properties are added, such as
-    the \c text, \c width, and \c dimmable properties. Use \c dimmable to visually disable (dimmed)
-    buttons whenever the calculator engine does not accept input from that button.
+    In addition, use the \c CalculatorButton type for the different buttons on
+    \c NumberPad.
+    \c CalculatorButton.qml defines basic properties of a button, which you
+    modify for each instance in \c NumberPad.qml. For the digit and operator
+    buttons, a few extra properties are added, such as
+    the \c text, \c width, and \c dimmable properties. Use \c dimmable to
+    visually disable (dimmed) buttons whenever the calculator engine does not
+    accept input from that button.
 
     \quotefromfile demos/calqlatr/content/NumberPad.qml
     \skipto GridLayout
     \skipto DigitButton
     \printto OperatorButton
 
-    There is another file in the \c content directory called \c BackSpaceButton.qml, this is
-    a special case of the \c CalculatorButton where we would like to render an image onto the
-    button, rather than use text. This button is the same as an \c OperatorButton, but
+    There is another file in the \c content directory called \c
+    BackSpaceButton.qml, this is a special case of the \c CalculatorButton where
+    we would like to render an image onto the button, rather than use text.
+    This button is the same as an \c OperatorButton, but
     includes an \c icon rather than \c text.
 
     \section1 Responsive Layouts
 
-    In this example, responsive layouts arrange the different UI components for both portrait and
-    landscape modes. It also lets you toggle between these two modes. You can notice this in \c Main.qml,
-    which defines a \c ColumnLayout for portrait mode, and \c RowLayout for landscape.
+    In this example, responsive layouts arrange the different UI components for
+    both portrait and landscape modes. It also lets you toggle between these two
+    modes. You can notice this in \c Main.qml, which defines a \c ColumnLayout
+    for portrait mode, and \c RowLayout for landscape.
 
     \quotefromfile demos/calqlatr/Main.qml
     \skipto ColumnLayout
@@ -88,15 +97,18 @@
     \printuntil }
     \printuntil }
 
-    The \c ColumnLayout, represents the portrait layout for the application, and the \c RowLayout
-    represents the landscape layout. The \c visible property handles which layout is used at a given time.
-    The \c id property of the \c NumberPad and \c Display components are used to set the \c target property
-    of the \c LayoutItemProxy types. This allows both layouts to use the same content items. In addition,
-    properties can be forwarded within the \c LayoutItemProxy item to the \c target itself. For example,
-    when the \c NumberPad is instantiated, both layouts require a different \c Layout.alignment.
+    The \c ColumnLayout represents the portrait layout for the application, and
+    the \c RowLayout represents the landscape layout. The \c visible property
+    handles which layout is used at a given time.
+    The \c id property of the \c NumberPad and \c Display components are used to
+    set the \c target property of the \c LayoutItemProxy types. This allows both
+    layouts to use the same content items. In addition, properties can be
+    forwarded within the \c LayoutItemProxy item to the \c target itself. For
+    example, when the \c NumberPad is instantiated, both layouts require a
+    different \c Layout.alignment.
 
-    Toggling between the two layouts is done in the signal handler for the \c isPortraitMode property, by
-    setting their visibilities:
+    Toggling between the two layouts is done in the signal handler for the
+    \c isPortraitMode property by setting their visibilities:
 
     \quotefromfile demos/calqlatr/Main.qml
     \skipto onIsPortraitModeChanged
@@ -104,19 +116,21 @@
     \printuntil }
     \printuntil }
 
-    This is possible because QML creates signal handlers for all self-declared properties,
-    in this case the \c{on<Property>Changed} handler, where <property> is the \c isPortraitMode property.
+    This is possible because QML creates signal handlers for all self-declared
+    properties, in this case the \c{on<Property>Changed} handler, where
+    <property> is the \c isPortraitMode property.
 
-    A responsive layout is also used in \c NumberPad.qml when defining the portrait and landscape
-    layout for the \c NumberPad itself.
+    A responsive layout is also used in \c NumberPad.qml when defining the
+    portrait and landscape layout for the \c NumberPad itself.
 
     \quotefromfile demos/calqlatr/content/NumberPad.qml
     \skipto RowLayout
     \printuntil } // RowLayout
 
-    In this case, two \c LayoutItemProxy items are created. Their \c target properties are set to
-    \c scientificGrid, a \c Grid type, containing all the scientific buttons, and the
-    \c mainGrid, another \c Grid type, containing all the standard buttons.
+    In this case, two \c LayoutItemProxy items are created. Their \c target
+    properties are set to \c scientificGrid, a \c Grid type, containing all the
+    scientific buttons, and the \c mainGrid, another \c Grid type, containing
+    all the standard buttons.
 
     \section1 Animating Button Text Colors
 
@@ -131,10 +145,11 @@
     \printuntil }
 
     The color changes are animated by defining a \c Behavior on the \c color
-    property. When a button is set to \c{dimmed = true}, the button appears darker. When a button is
-    pressed, it lights up green.  In order to dynamically change the \c dimmed property of all the
-    buttons on the \c NumberPad, the \c buttonPressed signal calls the \c NumberPad's \c updateDimmed()
-    function.
+    property. When a button is set to \c{dimmed = true}, the button appears
+    darker. When a button is pressed, it lights up green. In order to
+    dynamically change the \c dimmed property of all the buttons on the
+    \c NumberPad, the \c buttonPressed signal calls the \c NumberPad's
+    \c updateDimmed() function.
 
     \quotefromfile demos/calqlatr/content/NumberPad.qml
     \skipto function updateDimmed()
@@ -144,27 +159,29 @@
 
     \section1 Performing Calculations
 
-    The calculator.js file defines the calculator's engine. It contains variables to store the calculator's
-    state, and functions that are called when the user presses the digit and operator buttons. To use the
-    engine, import calculator.js into the \c Main.qml file using the alias \c CalcEngine:
+    The calculator.js file defines the calculator's engine. It contains
+    variables to store the calculator's state and functions that are called
+    when the user presses the digit and operator buttons. To use the
+    engine, import \c calculator.js into the \c Main.qml file using the alias \c CalcEngine:
 
     \code
     import "content/calculator.js" as CalcEngine
     \endcode
 
     By default, importing a JavaScript file from QML creates a
-    new instance of it, and any state it contains is unique to that instance. The use of
-    \c {.pragma library} allows the state to be shared amongst all users of the script.
+    new instance of it, and any state it contains is unique to that instance.
+    The use of \c {.pragma library} allows the state to be shared amongst all
+    users of the script.
 
     \quotefromfile demos/calqlatr/content/calculator.js
     \skipuntil SPDX-License-Identifier
     \printuntil .pragma library
 
-    When users press a digit, the text from the digit appears on the display. When they press an operator,
-    the appropriate calculation is performed, and the result can be displayed using the equals (=)
-    operator. The all-clear (AC) operator resets the calculator engine.
+    When users press a digit, the text from the digit appears on the display.
+    When they press an operator, the appropriate calculation is performed, and
+    the result can be displayed using the equals (=) operator. The all-clear (AC) operator resets the calculator engine.
 
-    \section1 List of Files
+    \section1 Source files
 
     \sa {QML Applications}
 */
