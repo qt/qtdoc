@@ -100,8 +100,6 @@
         \li QRhi: Added support for enumerating 3D graphics adapters (physical devices),
             when running on Direct 3D 11, 12, or Vulkan, via the \l{QRhi::}{enumerateAdapters()}
             function.
-        \li Added QSurfaceFormat::setColorComponentType() to allow requesting a
-            floating-point color buffer.
         \li QPainterPath::setCachingEnabled() can be used to turn on the caching
             of calculated values, increasing performance for certain operations
             at the expense of additional memory use.
