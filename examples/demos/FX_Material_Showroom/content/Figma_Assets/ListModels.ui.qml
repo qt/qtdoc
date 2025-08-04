@@ -3,12 +3,13 @@
 
 import QtQuick
 
-Item {
+ListSelection {
     id: listModels
     width: 580
     height: 376
     property alias rabbit: rabbit
-    property string selection: "Dragon"
+
+    selection: "Dragon"
 
     State_Idle {
         id: rabbit
@@ -18,6 +19,7 @@ Item {
         height: 88
         item_nameText: "Rabbit"
         checkboxImagesState: "state_type_3DModel_Number_2"
+        selection: listModels
     }
 
     State_Idle {
@@ -28,6 +30,7 @@ Item {
         height: 88
         item_nameText: "None"
         checkboxImagesState: "state_type_3DModel_Number_1"
+        selection: listModels
     }
 
     State_Idle {
@@ -38,6 +41,7 @@ Item {
         height: 88
         item_nameText: "Dragon"
         checkboxImagesState: "state_type_3DModel_Number_4"
+        selection: listModels
     }
 
     State_Idle {
@@ -48,6 +52,7 @@ Item {
         height: 88
         item_nameText: "Qt material ball"
         checkboxImagesState: "state_type_3DModel_Number_3"
+        selection: listModels
     }
 }
 

@@ -3,12 +3,13 @@
 
 import QtQuick
 
-Item {
+ListSelection {
     id: listMaterial
     width: 580
     height: 952
     property alias silverBtn: silverBtn
-    property string selection: "Silver"
+
+    selection: "Silver"
 
     State_Idle {
         id: silverBtn
@@ -18,6 +19,7 @@ Item {
         height: 88
         item_nameText: "Silver"
         checkboxImagesState: "state_type_Materials_Number_10"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -28,6 +30,7 @@ Item {
         height: 88
         item_nameText: "Brushed Steel"
         checkboxImagesState: "state_type_Materials_Number_9"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -38,6 +41,7 @@ Item {
         height: 88
         item_nameText: "Copper"
         checkboxImagesState: "state_type_Materials_Number_8"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -48,6 +52,7 @@ Item {
         height: 88
         item_nameText: "Wax"
         checkboxImagesState: "state_type_Materials_Number_7"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -58,6 +63,7 @@ Item {
         height: 88
         item_nameText: "Wood"
         checkboxImagesState: "state_type_Materials_Number_6"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -68,6 +74,7 @@ Item {
         height: 88
         item_nameText: "Stone"
         checkboxImagesState: "state_type_Materials_Number_5"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -78,6 +85,7 @@ Item {
         height: 88
         item_nameText: "Carbon Fiber"
         checkboxImagesState: "state_type_Materials_Number_4"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -88,6 +96,7 @@ Item {
         height: 88
         item_nameText: "Plastic"
         checkboxImagesState: "state_type_Materials_Number_3"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -98,6 +107,7 @@ Item {
         height: 88
         item_nameText: "Fabric"
         checkboxImagesState: "state_type_Materials_Number_2"
+        selection: listMaterial
     }
 
     State_Idle {
@@ -108,6 +118,7 @@ Item {
         height: 88
         item_nameText: "Leather"
         checkboxImagesState: "state_type_Materials_Number_1"
+        selection: listMaterial
     }
 }
 

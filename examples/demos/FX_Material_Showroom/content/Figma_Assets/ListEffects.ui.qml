@@ -3,12 +3,12 @@
 
 import QtQuick
 
-Item {
+ListSelection {
     id: listEffects
     width: 580
     height: 1050
 
-    property string selection: "None"
+    selection: "None"
 
     State_Idle {
         id: none
@@ -18,6 +18,7 @@ Item {
         height: 88
         item_nameText: "None"
         checkboxImagesState: "state_type_Effects_Number_8"
+        selection: listEffects
     }
 
     State_Idle {
@@ -28,6 +29,7 @@ Item {
         height: 88
         item_nameText: "Rain"
         checkboxImagesState: "state_type_Effects_Number_6"
+        selection: listEffects
     }
 
     State_Idle {
@@ -38,6 +40,7 @@ Item {
         height: 88
         item_nameText: "Snow"
         checkboxImagesState: "state_type_Effects_Number_5"
+        selection: listEffects
     }
 
     State_Idle {
@@ -48,6 +51,7 @@ Item {
         height: 88
         item_nameText: "Smoke"
         checkboxImagesState: "state_type_Effects_Number_4"
+        selection: listEffects
     }
 
     State_Idle {
@@ -58,6 +62,7 @@ Item {
         height: 88
         item_nameText: "Heatwave"
         checkboxImagesState: "state_type_Effects_Number_3"
+        selection: listEffects
     }
 
     State_Idle {
@@ -68,6 +73,7 @@ Item {
         height: 88
         item_nameText: "Sparks"
         checkboxImagesState: "state_type_Effects_Number_2"
+        selection: listEffects
     }
 
     State_Idle {
@@ -78,6 +84,7 @@ Item {
         height: 88
         item_nameText: "Flames"
         checkboxImagesState: "state_type_Effects_Number_1"
+        selection: listEffects
     }
 
     State_Idle {
@@ -88,6 +95,7 @@ Item {
         height: 88
         item_nameText: "Dust"
         checkboxImagesState: "state_type_Effects_Number_7"
+        selection: listEffects
     }
 
     State_Idle {
@@ -98,6 +106,7 @@ Item {
         height: 88
         item_nameText: "Clouds"
         checkboxImagesState: "state_type_Effects_Number_9"
+        selection: listEffects
     }
 
     State_Idle {
@@ -108,6 +117,7 @@ Item {
         height: 88
         item_nameText: "Explosion"
         checkboxImagesState: "state_type_Effects_Number_10"
+        selection: listEffects
     }
 
     State_Idle {
@@ -118,6 +128,7 @@ Item {
         height: 88
         item_nameText: "Bubbles"
         checkboxImagesState: "state_type_Effects_Number_11"
+        selection: listEffects
     }
 }
 

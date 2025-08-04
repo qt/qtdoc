@@ -35,6 +35,7 @@ qt_add_qml_module(FXMaterialShowroomContent
         Figma_Assets/IconsFunctional.ui.qml
         Figma_Assets/LabelQt.ui.qml
         Figma_Assets/LayoutFull.ui.qml
+        Figma_Assets/ListSelection.qml
         Figma_Assets/ListEffects.ui.qml
         Figma_Assets/ListMaterial.ui.qml
         Figma_Assets/ListModels.ui.qml
