@@ -6,14 +6,15 @@ ProgressForm {
     id: progressForm
 
     required property ApplicationFlow appFlow
+    required property CoffeeConfig coffeeConfig
     property alias timer: timer
-    property int brewTime: appFlow.brewTime
+    property int brewTime: coffeeConfig.brewTime
     property int brewingAnimationVelocityFactor: 1200
 
-    coffeeAmount: appFlow.coffeeAmount
-    milkAmount: appFlow.milkAmount
-    foamAmount: appFlow.foamAmount
-    sugarAmount: appFlow.sugarAmount
+    coffeeAmount: coffeeConfig.coffeeAmount
+    milkAmount: coffeeConfig.milkAmount
+    foamAmount: coffeeConfig.foamAmount
+    sugarAmount: coffeeConfig.sugarAmount
     state: Config.mode
     progressBarValue: appFlow.progressBarValue
     cup.state: appFlow.progressCupState
@@ -60,19 +61,19 @@ ProgressForm {
             name: "1"
             PropertyChanges {
                 target: cup
-                coffeeAmount: root.coffeeAmount
+                coffeeAmount: coffeeConfig.coffeeAmount
             }
             PropertyChanges {
                 target: cup
-                milkAmount: root.milkAmount
+                milkAmount: coffeeConfig.milkAmount
             }
             PropertyChanges {
                 target: cup
-                foamAmount: root.foamAmount
+                foamAmount: coffeeConfig.foamAmount
             }
             PropertyChanges {
                 target: cup
-                sugarAmount: root.sugarAmount
+                sugarAmount: coffeeConfig.sugarAmount
             }
         }
     ]

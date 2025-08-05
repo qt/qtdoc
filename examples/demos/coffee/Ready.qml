@@ -6,12 +6,13 @@ ReadyForm {
     id: readyForm
 
     required property ApplicationFlow appFlow
+    required property CoffeeConfig coffeeConfig
 
     property alias timer: timer
-    foamAmount: appFlow.foamAmount
-    milkAmount: appFlow.milkAmount
-    coffeeAmount: appFlow.coffeeAmount
-    sugarAmount: appFlow.sugarAmount
+    foamAmount: coffeeConfig.foamAmount
+    milkAmount: coffeeConfig.milkAmount
+    coffeeAmount: coffeeConfig.coffeeAmount
+    sugarAmount: coffeeConfig.sugarAmount
     state: Config.mode
 
     Timer {

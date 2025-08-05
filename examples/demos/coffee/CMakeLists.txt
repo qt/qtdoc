@@ -24,6 +24,7 @@ qt_add_qml_module(coffeemachine
         ChoosingCoffee.qml
         CoffeeCard.qml
         CoffeeCardForm.ui.qml
+        CoffeeConfig.qml
         Colors.qml
         Config.qml
         CustomButton.qml

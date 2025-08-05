@@ -7,11 +7,10 @@ ApplicationFlowForm {
     state: "Home"
     property int animationDuration: 400
     property string platform: Qt.platform.os
-    property int brewTime
-    property int coffeeAmount
-    property int milkAmount
-    property int foamAmount
-    property double sugarAmount
+
+    CoffeeConfig {
+        id: coffeeConfig
+    }
 
 
 
@@ -38,41 +37,41 @@ ApplicationFlowForm {
     function cappuccino() {
         applicationFlow.state = "Settings"
         applicationFlow.coffeeName = "Cappuccino"
-        coffeeAmount = 60
-        milkAmount = 60
-        foamAmount = 60
-        brewTime = 5000
-        stack.pushItem(settings, {appFlow: applicationFlow})
+        coffeeConfig.coffeeAmount = 60
+        coffeeConfig.milkAmount = 60
+        coffeeConfig.foamAmount = 60
+        coffeeConfig.brewTime = 5000
+        stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Cappuccino"
     }
     function espresso() {
         applicationFlow.state = "Settings"
         applicationFlow.coffeeName = "Espresso"
-        coffeeAmount = 80
-        milkAmount = 0
-        foamAmount = 0
-        brewTime = 4000
-        stack.pushItem(settings, {appFlow: applicationFlow})
+        coffeeConfig.coffeeAmount = 80
+        coffeeConfig.milkAmount = 0
+        coffeeConfig.foamAmount = 0
+        coffeeConfig.brewTime = 4000
+        stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Espresso"
     }
     function latte() {
         applicationFlow.state = "Settings"
         applicationFlow.coffeeName = "Latte"
-        coffeeAmount = 40
-        milkAmount = 20
-        foamAmount = 60
-        brewTime = 6000
-        stack.pushItem(settings, {appFlow: applicationFlow})
+        coffeeConfig.coffeeAmount = 40
+        coffeeConfig.milkAmount = 20
+        coffeeConfig.foamAmount = 60
+        coffeeConfig.brewTime = 6000
+        stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Latte"
     }
     function macchiato() {
         applicationFlow.state = "Settings"
         applicationFlow.coffeeName = "Macchiato"
-        coffeeAmount = 100
-        milkAmount = 5
-        foamAmount = 10
-        brewTime = 8000
-        stack.pushItem(settings, {appFlow: applicationFlow})
+        coffeeConfig.coffeeAmount = 100
+        coffeeConfig.milkAmount = 5
+        coffeeConfig.foamAmount = 10
+        coffeeConfig.brewTime = 8000
+        stack.pushItem(settings, {appFlow: applicationFlow, coffeeConfig})
         coffeeText.text = "Macchiato"
     }
     function backButton() {
@@ -84,7 +83,7 @@ ApplicationFlowForm {
         applicationFlow.state = "Insert"
     }
     function continueButton() {
-        stack.pushItem(progress, {appFlow: applicationFlow})
+        stack.pushItem(progress, {appFlow: applicationFlow, coffeeConfig})
         applicationFlow.state = "Progress"
         applicationFlow.progressBarValue = 1
         applicationFlow.progressCupState = "1"
@@ -103,7 +102,7 @@ ApplicationFlowForm {
         stack.pop(stack.get(1))
     }
     function onFinished() {
-        stack.pushItem(ready, {appFlow: applicationFlow})
+        stack.pushItem(ready, {appFlow: applicationFlow, coffeeConfig})
         applicationFlow.state = "Ready"
     }
     function onReturnToStart() {

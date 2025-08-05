@@ -6,10 +6,11 @@ SettingsForm {
     id: settingsForm
 
     required property ApplicationFlow appFlow
+    required property CoffeeConfig coffeeConfig
 
-    foamAmount: appFlow.foamAmount
-    milkAmount: appFlow.milkAmount
-    coffeeAmount: appFlow.coffeeAmount
+    foamAmount: coffeeConfig.foamAmount
+    milkAmount: coffeeConfig.milkAmount
+    coffeeAmount: coffeeConfig.coffeeAmount
     state: Config.mode
 
     rectangle.states: [
@@ -72,16 +73,16 @@ SettingsForm {
     confirmButton.onClicked: appFlow.confirmButton()
     //! [Value changed]
     coffeeSlider.onValueChanged: {
-        appFlow.coffeeAmount = coffeeSlider.value
+        coffeeConfig.coffeeAmount = coffeeSlider.value
     }
     //! [Value changed]
     milkSlider.onValueChanged: {
-        appFlow.milkAmount = milkSlider.value
+        coffeeConfig.milkAmount = milkSlider.value
     }
     foamSlider.onValueChanged: {
-        appFlow.foamAmount = foamSlider.value
+        coffeeConfig.foamAmount = foamSlider.value
     }
     sugarSlider.onValueChanged: {
-        appFlow.sugarAmount = sugarSlider.value
+        coffeeConfig.sugarAmount = sugarSlider.value
     }
 }
