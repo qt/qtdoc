@@ -5,7 +5,7 @@ import QtQuick
 SettingsForm {
     id: settingsForm
 
-    required property ApplicationFlow appFlow
+    required property var appFlow
     required property CoffeeConfig coffeeConfig
 
     foamAmount: coffeeConfig.foamAmount

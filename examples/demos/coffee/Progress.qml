@@ -5,7 +5,7 @@ import QtQuick
 ProgressForm {
     id: progressForm
 
-    required property ApplicationFlow appFlow
+    required property var appFlow
     required property CoffeeConfig coffeeConfig
     property alias timer: timer
     property int brewTime: coffeeConfig.brewTime
