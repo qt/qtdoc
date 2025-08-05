@@ -12,19 +12,21 @@
     \meta {tag} {quick,3d,physics, multimedia, sensors}
     \meta {docdependencies} {QtQuick3DPhysics,QtMultimedia,QtSensors}
 
-    \image dice-screenshot.webp
+    \image {dice-screenshot.webp} {}
 
-    \section1 Overview
+    This example application simulates rolling a number of dice on a table. The
+    application uses QML and relies on a number of Qt modules, including
+    \l {Qt Quick 3D}, \l {Qt Quick 3D Physics}, \l {Qt Multimedia}, and
+    \l {Qt Sensors}.
 
-    This example application allows you to roll some dice on a table. It's
-    implemented with QML and relies on a number of Qt modules that are detailed
-    in the following sections.
+    \include examples-run.qdocinc
 
-    This particular example is also available in the google play store as
-    Qt Dice.
+    \section1 Relevant modules and classes
 
-    As with any Qt example you can of course still build the application yourself
-    for your target of choice.
+    The example makes use of the \l{Qt Quick 3D}, \l{Qt Multimedia},
+    \l{Qt Quick 3D Physics} and \l{Qt Sensors} modules that are separate items
+    in the \l{Get and Install Qt}{Qt Online Installer}. If the example fails to
+    compile or run, make sure that you have these required packages installed.
 
     \section1 Simulating the physics of rolling dice
 
@@ -50,11 +52,7 @@
     A \l{Qt Quick} UI is provided for configuring the physical material of
     the simulated dice, the magnitude of gravity, and the number and size of dice.
 
-    \include examples-run.qdocinc
+    \section1 Source files
 
-    \note The example makes use of the \l{Qt Quick 3D}, \l{Qt Multimedia},
-    \l{Qt Quick 3D Physics} and \l{Qt Sensors} modules which are separate items
-    in the \l{Get and Install Qt}{Qt Online Installer}. If the example fails to
-    configure, please make sure that you have these required packages installed.
-
+    \sa {Qt Quick Examples and Tutorials} {All Qt Examples}
 */
