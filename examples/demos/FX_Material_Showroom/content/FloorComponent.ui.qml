@@ -85,7 +85,7 @@ Model {
     states: [
         State {
             name: "Dragon"
-            when: floor.aoState == 1
+            when: floor.aoState === 1
 
             PropertyChanges {
                 target: floorMat_local
@@ -96,7 +96,7 @@ Model {
         },
         State {
             name: "Bunny"
-            when: floor.aoState == 2
+            when: floor.aoState === 2
 
             PropertyChanges {
                 target: floorMat_local
@@ -107,7 +107,7 @@ Model {
         },
         State {
             name: "matball"
-            when: floor.aoState == 0
+            when: floor.aoState === 0
 
             PropertyChanges {
                 target: floorMat_local
@@ -118,7 +118,7 @@ Model {
         },
         State {
             name: "none"
-            when: floor.aoState == 3
+            when: floor.aoState === 3
 
             PropertyChanges {
                 target: floorMat_local

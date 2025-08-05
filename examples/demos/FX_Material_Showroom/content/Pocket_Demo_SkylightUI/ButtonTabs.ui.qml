@@ -77,7 +77,7 @@ Item {
     states: [
         State {
             name: "Sunrise"
-            when: buttonTabs.activeBtn == "Sunrise"
+            when: buttonTabs.activeBtn === "Sunrise"
 
             PropertyChanges {
                 target: buttonTabs
@@ -88,7 +88,7 @@ Item {
 
         State {
             name: "Midday"
-            when: buttonTabs.activeBtn == "Midday"
+            when: buttonTabs.activeBtn === "Midday"
 
             PropertyChanges {
                 target: buttonTabs
@@ -99,7 +99,7 @@ Item {
 
         State {
             name: "Sunset"
-            when: buttonTabs.activeBtn == "Sunset"
+            when: buttonTabs.activeBtn === "Sunset"
 
             PropertyChanges {
                 target: buttonTabs

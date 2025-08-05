@@ -257,7 +257,7 @@ Item {
         }
 
         function processInput() {
-            if (root.controlledObject == undefined)
+            if (root.controlledObject)
                 return;
 
             if (moveForward)
