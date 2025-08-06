@@ -197,10 +197,44 @@
 
     \section2 Qt Quick 3D Module
     \list
+        \li Added \l [QtQuick3D]{ParticleEmitter3D::emitMode}{emit-mode} to shaped emitters to allow
+            particles to be emitted based on the surface normals of the shape.
+        \li Implemented \l [QtQuick3D]{ParticleEmitter3D::reversed}{reversed} emitters to enable
+            particles to run from end time to begin time.
+        \li Several lightmap-related improvements and changes:
+            \list
+                \li Introduced texels-per-unit based lightmap sizes, adding
+                    the \l[QtQuick3D]{Model::texelsPerUnit} and \l[QtQuick3D]{Lightmapper::texelsPerUnit}
+                    properties and replacing the now deprecated
+                    \l[QtQuick3D]{Model::lightmapBaseResolution} property.
+                \li Introduced \l[QtQuick3D]{Lightmapper::source}{Lightmapper::source} property to set
+                    one lightmap source for the whole scene, replacing and deprecating
+                    \l[QtQuick3D]{BakedLightmap::loadPrefix}.
+                \li Added a builtin GPU-based Non-local Means (NLM) denoising for baked lightmaps,
+                    controlled via the \l[QtQuick3D]{Lightmapper::denoiseSigma} property.
+                \li The lightmap baking window has been improved to show a progress bar and an
+                    estimation of time remaining.
+                \li Baking is now done in its own RHI context and does not block rendering of the running
+                    application.
+                \li RAM and VRAM usage has been decreased when baking certain scenes.
+                \li Added a lightmap viewer tool for debugging baked lightmap files via GUI or
+                    command-line.
+            \endlist
+        \li Fixed color import for glTF2 baseColorFactor by correctly converting from linear to sRGB,
+            aligning it with the spec.
+        \li Added \l [QtQuick3D.Helpers]{CapsuleGeometry} to QtQuick3D.Helpers with fixed textures,
+            async creation support, and exposed uvProfile property.
     \endlist
 
     \section2 Qt Quick 3D XR Module
     \list
+        \li Exposed \l [QtQuick3D.Xr]{XrSpatialAnchorListModel::requestSceneCapture}{method} for
+         requesting room scanning for spatial anchors.
+    \endlist
+
+    \section2 Qt Quick 3D Physics Module
+    \list
+        \li Deprecated CapsuleGeometry in favor of the improved one in QtQuick3D.
     \endlist
 
     \section2 Qt Quick VectorImage Module
