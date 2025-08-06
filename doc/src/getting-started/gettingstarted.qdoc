@@ -7,7 +7,7 @@
     \title Getting Started with Qt
     \brief Finding your way around Qt.
 
-    Hello and welcome to Qt!
+    Hello and welcome to \l {Explore Qt} {Qt}!
 
     To get you started with Qt, we'll need to know what you'd like to do.
 
@@ -18,24 +18,44 @@
     \row
         \li \b {Design UIs}
             \list
-                \li \l {Tools for Qt Quick UIs}
-                \li \l {Install Qt Design Studio}
+                \li \l {Get and Install Qt}
+                \li \l {Qt Design Studio: Installation}
                 \li \l {Qt for Education}
                        {Install Qt Design Studio with Educational License}
-                \li \l {Get and Install Qt}
-                \li \l {Supported Platforms}
                 \li \l {Create Your First Applications}
-                \li \l {Explore Qt}
+                \li \l {Tools for Qt Quick UIs}
+                \li \l {Supported Platforms}
             \endlist
         \li \b {Develop applications}
             \list
-                \li \l {Solutions for Application Development}
                 \li \l {Get and Install Qt}
                 \li \l {Qt for Education}
                        {Install Qt with Educational License}
-                \li \l {Supported Platforms}
                 \li \l {Create Your First Applications}
-                \li \l {Explore Qt}
+                \li \l {Solutions for Application Development}
+                \li \l {Supported Platforms}
             \endlist
     \endtable
+
+    For visual learning, take the courses in Qt Academy:
+    \table
+        \row
+            \li \b {Qt Academy Courses}
+                \list
+                    \li \l {https://www.qt.io/academy/course-catalog#how-to-install-qt}
+                       {How to Install Qt}
+                    \li \l {https://www.qt.io/academy/course-catalog?q=intro#introduction-to-qt-quick}
+                       {Introduction to Qt Quick}
+                    \li \l {https://www.qt.io/academy/course-catalog?q=qt+quick+app#creating-a-simple-qt-quick-application}
+                       {Create a Simple Qt Quick App}
+                    \li \l {https://www.qt.io/academy/course-catalog#getting-started-with-qt-design-studio}
+                       {Install Qt Design Studio}
+                    \li \l {https://www.qt.io/academy/course-catalog#creating-your-first-app-with-qt-design-studio}
+                       {Create Your First App with Qt Design Studio}
+                    \li \l {https://www.qt.io/academy/course-catalog#the-must-knows-of-ui-design}
+                       {Must-knows of UI Design}
+                \endlist
+    \endtable
+
+    Use \l {Qt Widgets} if you want to use C++ API to create UIs.
 */
