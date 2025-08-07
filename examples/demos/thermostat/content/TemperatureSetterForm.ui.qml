@@ -14,7 +14,7 @@ import Thermostat
 Pane {
     id: root
 
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
     property alias saveButtonDesktop: desktopView.saveButton
     property alias saveButtonMobile: mobileView.saveButton
     property alias saveButtonSmall: smallView.saveButton

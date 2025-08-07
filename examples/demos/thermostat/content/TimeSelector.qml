@@ -15,7 +15,7 @@ Rectangle {
     height: 200
     radius: 12
 
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
 
     gradient: Gradient {
         GradientStop {

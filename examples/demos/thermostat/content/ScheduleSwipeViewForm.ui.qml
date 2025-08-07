@@ -19,7 +19,7 @@ Item {
     id: root
 
     required property list<Room> roomsList
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
     required property int currentRoomIndex
     property bool isOneColumn: false
 

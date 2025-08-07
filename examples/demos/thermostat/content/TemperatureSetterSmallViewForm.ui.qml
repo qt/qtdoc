@@ -19,7 +19,7 @@ import ThermostatCustomControls
 
 Pane {
     id: root
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
     property alias saveButton: saveButton
     property alias cancelButton: cancelButton
 

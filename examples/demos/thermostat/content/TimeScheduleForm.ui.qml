@@ -27,7 +27,7 @@ Pane {
         radius: 12
     }
 
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
 
     RowLayout {
         width: parent.width

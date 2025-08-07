@@ -16,7 +16,7 @@ ScrollView {
     id: scrollView
 
     required property Room room
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
     property bool isBackgroundVisible: false
     property int timeScheduleHeight: 361
     property int timeScheduleWidth: 1087

@@ -19,7 +19,7 @@ Item {
     id: root
 
     required property list<Room> roomsList
-    required property var scheduleViewRoot
+    required property ScheduleViewForm scheduleViewRoot
     property int currentRoomIndex
 
     StackLayout {
