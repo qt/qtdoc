@@ -108,6 +108,9 @@
 
     \section2 Qt HttpServer Module
     \list
+        \li Added whitelist and blacklist of subnets in \l{QHttpServerConfiguration}.
+        \li Added configurable keep-alive timeout in \l{QHttpServerConfiguration}.
+        \li Made \l{QHttpServerRequest} copyable.
     \endlist
 
     \section2 Qt Lottie Animation
