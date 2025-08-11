@@ -41,7 +41,7 @@ Popup {
 
 
                 required property var modelData
-                readonly property bool logged: (modelData.email === loginService.user)
+                readonly property bool logged: (modelData.email === userMenu.userLoginService.user)
 
                 Rectangle {
                     id: userImageCliped

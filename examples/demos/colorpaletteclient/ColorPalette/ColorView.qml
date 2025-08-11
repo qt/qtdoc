@@ -84,8 +84,9 @@ Item {
                             function getCurrentUserImage() {
                                 if (!root.loginService.loggedIn)
                                     return "qrc:/qt/qml/ColorPalette/icons/user.svg";
+                                let users = root.colorViewUsers
                                 for (let i = 0; i < users.data.length; i++) {
-                                    if (users.data[i].email === loginService.user)
+                                    if (users.data[i].email === root.loginService.user)
                                         return users.data[i].avatar;
                                 }
                             }
