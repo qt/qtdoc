@@ -12,24 +12,23 @@
     \examplecategory {Mobile}
     \examplecategory {Networking}
     \examplecategory {Positioning & Location}
-    \image lightningviewer.jpg
+    \image {lightningviewer.jpg} {}
     \meta {tag} {demo, quick, location, positioning, websockets}
     \meta {docdependencies} {QtWebSockets,QtPositioning,QtLocation}
 
-    \include examples-run.qdocinc
-
-    \section1 Overview
     \e{Lightning Viewer} is an application that receives simulated lightning
     strike data from a \l{WebSocket} and displays it on a map in real-time. It
-    features a responsive UI that adapts well to mobile, tablet and desktop-sized
-    screens in both landscape and portrait orientation. Lightning strikes appear as
-    icons on the map, and a separate overlay shows the distance and time of the
-    last strike. These data layers can be hidden and revealed with toggles that
-    are accessed by pressing the map layers button. There is also a switch for
-    switching between map types and a button that centers the map at the user's
-    location.
+    features a responsive UI that adapts well to mobile, tablet and
+    desktop-sized screens in both landscape and portrait orientation. Lightning
+    strikes appear as icons on the map, and a separate overlay shows the
+    distance and time of the last strike. These data layers can be hidden and
+    revealed with toggles that are accessed by pressing the map layers button.
+    There is also a switch for switching between map types and a button that
+    centers the map at the user's location.
 
-    \section1 Application Structure
+    \include examples-run.qdocinc
+
+    \section1 Application structure and relevant classes
     This application follows the Model-View-Controller (MVC) pattern. The
     \c LightningItemModel class serves as the model. It stores a list of
     \c LightningItemData objects and provides methods to insert new data and to
@@ -83,4 +82,9 @@
         "{\"action\": \"simulatelightningdata\"}"
     \endcode
 
+    \section1 Source files
+
+    \sa {All Qt Examples}, {Qt Quick Examples and Tutorials},
+    {Qt Location Examples}, {Qt Positioning Examples},
+    {Qt WebSockets Examples}
 */
