@@ -5,126 +5,118 @@
     \page qt-online-installation.html
 
     \title Get and Install Qt with \QOI
-    \brief Downloading and installing the Qt modules and tools that you need.
+    \brief Downloading and installing Qt modules and tools.
 
-    \QOI gives you the choice of installing only the modules
-    and tools you need to develop on a particular desktop platform and to run
-    your applications on one or several desktop platforms, mobile or embedded
-    devices, or MCUs.
+    \QOI lets you install only the modules and tools you need to develop for a specific desktop
+    platform and deploy your applications to desktop platforms, mobile devices, embedded systems,
+    or MCUs.
 
-    If instead you prefer to build Qt from sources, please see \l{Building Qt
-    Sources}.
+    To install Qt, complete the instructions on this page or take the
+    \l {https://www.qt.io/academy/course-catalog#how-to-install-qt}{How to install Qt} course.
 
-    \section1 1. Create a Qt Account
+    \section1 Before you start
 
-    To begin, create a \l{Qt Account}. This account gives you access to a web
-    portal where you can manage your licenses, as well as access to the forums
-    and wikis. Also, make sure you read the \l{Qt Licensing} page regarding your
-    chosen license.
+    Before you start the installation:
 
-    \section1 2. Download \QOI
+    \list
+      \li Create an account at \l{http://account.qt.io}{Qt Account}.
+      \li Ensure that your platform is supported, see \l{Supported Platforms}.
+    \endlist
 
-    Go to your Qt account's download page. By selecting the appropriate unified
-    \QOI for your OS, you can install commercial or open source
-    versions of Qt, development tools, and other components. \QOI asks for your
-    Qt account credentials. \QOI retrieves the
-    license attached to the account from a server and provides a list of
-    available components corresponding to the license.
+    \section1 Install
 
-    \section1 3. Install Qt
+    \list 1
+      \li On \l{http://account.qt.io}{Qt Account}, go to \uicontrol Downloads and select \QOI for your
+      operating system.
+      \li Run \QOI.
+      \li Select the components that you want to install and follow the instructions to complete
+      the installation.
 
-    To complete the installation, select the components that you want to install
-    and follow the instructions of the installation program.
+      Note the following:
 
-    You must select at least one Qt version for one platform that you want to
-    run your applications on. For example, if you have installed Microsoft
-    Visual Studio 2022 on 64-bit Windows, you could
-    select \e {MSVC 2022 64-bit} under the Qt version you want to develop with.
-
-    However, the easiest way to install Qt for desktop development is to select
-    the default installation for desktop development. You can install additional
-    modules later.
+      \list
+        \li The available selection of components in \QOI depends on your license.
+        \li You can always install, uninstall, and update modules and components after the
+            installation with \QMT (included in every Qt installation).
+      \endlist
 
     \image qtinstallercomponents.webp
 
-    If you also want to run your applications on Android devices, for example,
-    you should select the default installation for mobile development.
+    \endlist
 
-    The following table contains examples of which components to install
-    depending on the platforms where you want to run your applications.
+    See the following table to find examples of which components to install depending on
+    your target platforms.
 
     \table
     \header
-        \li To Develop For
+        \li To develop for
         \li Choose
+        \li Notes
     \row
         \li Desktop
-        \li Default installation for \e {desktop development}.
-
-            If you want to use other than the default toolchain, such as
-            MSVC on Windows, select \e {Custom installation}. Then
-            select the Qt for the toolchain you want to use.
+        \li \uicontrol {Qt <x.x> for desktop development}
+        \li To use something other than the default toolchain, such as
+            MSVC on Windows, select \uicontrol {Custom Installation}. Then
+            select Qt for the toolchain you want to use.
     \row
         \li Mobile Devices
-        \li Default installation for \e {mobile development}.
-
-            If you only want to develop for a particular platform, select
-            \e {Custom installation}. Then select the Qt for the mobile
+        \li \uicontrol {Qt <x.x> for mobile development}
+        \li To develop for a particular platform, select
+            \uicontrol {Custom Installation}. Then select the Qt for the mobile
             device platform that you want to run the applications on. For
             example, \l{Qt for Android} or \l{Qt for iOS}.
     \row
         \li Embedded Devices
-        \li Custom installation, with the necessary Qt modules and toolchains
-            from the \l{Boot to Qt} section, depending on the types
-            of devices that you want to run applications on.
+        \li \uicontrol {Qt <x.x> for embedded development}
+        \li For more information, see the quick start guide for your device in the
+            \l{Boot to Qt}{Boot to Qt documentation}.
     \row
         \li Android Automotive
-        \li Custom installation, with \l{Qt for Android Automotive}.
+        \li \uicontrol {Qt <x.x> for Android Automotive}
+        \li For more information, see the \e {Installing Qt for Android Automotive} part in the
+            \l{Qt for Android Automotive}{Qt for Android Automotive documentation}.
     \row
         \li Automation
-        \li Custom installation, with the necessary Qt modules and toolchains
+        \li \uicontrol {Custom Installation}
+        \li Install necessary Qt modules and toolchains
             from the \l{Qt for Automation}{Qt for Automation/Qt M2M Protocols}
             section, depending on the types of devices that you want to run
             applications on.
     \row
         \li MCUs
-        \li Custom installation, with \l{Qt for MCUs}.
+        \li \uicontrol {Qt for MCU development}
+        \li For more information, see the \e {Installing Qt for MCUs} part in the
+            \l{Qt for MCUs}{Qt for MCUs documentation}.
     \endtable
 
-    To check the platform requirements, see \l{Supported Platforms}.
+    \section1 Getting help
 
-    \section2 Updating or Removing Components
+    To get help with the installation, see these support channels:
 
-    Once Qt is installed, you can use \e{\QMT} under
-    \e{<install_dir>} to add components, update, or remove installed
-    components.
+    \table
+      \header
+        \li User type
+        \li Support channel
+        \li Notes
+      \row
+        \li Commercial
+        \li \l {https://account.qt.io/support}{Qt Support Center}
+        \li None.
+      \row
+        \li Evaluation and open source
+        \li \l {https://forum.qt.io/}{Qt Forum}
+        \li See also the \l {https://wiki.qt.io/Forum_Help}{Help on using the Forum} wiki page.
+      \row
+        \li Non-commercial users
+        \li \l {https://account.qt.io/support}{Qt Support Center}
+        \li Limited help available.
+    \endtable
 
-    \section2 Getting Help
+    \section1 After the installation
 
-    Evaluation and open source users can get help on the
-    \l {https://forum.qt.io/}{Qt forum}. See also the
-    \l {https://wiki.qt.io/Forum_Help}{Help on using the Forum} wiki page.
+    After you have installed Qt, you are ready to start developing applications.
 
-    Non-commercial users can get limited help with the installation process
-    through \l {https://account.qt.io/support}{Qt support}.
+    For more information, see \l{Create Your First Applications} or
+    \l{https://academy.qt.io/catalog}{Qt courses}.
 
-    The primary support channel for commercial customers is their
-    \l {https://account.qt.io/support}{Qt Account}.
-
-    \section1 4. Create Applications
-
-    After the installation, \l{\QC Documentation}{\QC} opens. You can
-    use the project wizard templates to start creating applications that run
-    on your chosen platform.
-
-    If you want to design Qt Quick UIs, open \l{Qt Design Studio Manual}
-    {Qt Design Studio} and use the project wizard templates there.
-
-    \l{Create Your First Applications}{Tell me more}
-
-    \section1 Additional Resources
-
-    \l {https://www.qt.io/courses} {Qt Learning} has a course on
-    \l {https://www.qt.io/courses/how-to-install-qt?hsLang=en}
-       {how to install Qt}.
 */
