@@ -70,7 +70,7 @@ Item {
                 Text {
                     id: labelDelegate
                     anchors.centerIn: parent
-                    font: graphCategoryFont
+                    font: graphsItem.graphCategoryFont
                     text: labelItem.text
                     color: labelItem.labelTextColor
                 }

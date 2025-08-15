@@ -90,7 +90,7 @@ Window {
         property alias dataModel: dataView.dataModel
 
         anchors.fill: parent
-        color: activeTheme.backgroundColor
+        color: mainWindow.activeTheme.backgroundColor
 
         Item {
             id: dataView
@@ -116,11 +116,11 @@ Window {
                 anchors.bottom: dataView.bottom
                 anchors.bottomMargin: 294 * Units.px
 
-                selectionColor: activeTheme.selectionColor
-                backgroundColor: activeTheme.backgroundColor
-                primaryTextColor: activeTheme.primaryTextColor
-                secondaryTextColor: activeTheme.secondaryTextColor
-                borderColor: activeTheme.borderColor
+                selectionColor: mainWindow.activeTheme.selectionColor
+                backgroundColor: mainWindow.activeTheme.backgroundColor
+                primaryTextColor: mainWindow.activeTheme.primaryTextColor
+                secondaryTextColor: mainWindow.activeTheme.secondaryTextColor
+                borderColor: mainWindow.activeTheme.borderColor
                 title: qsTr("Medals")
 
                 Connections {
@@ -162,8 +162,8 @@ Window {
                 anchors.left: dataView.left
                 anchors.leftMargin: 24 * Units.px
                 anchors.topMargin: 70 * Units.px
-                labelTextColor: activeTheme.legendLabelTextColor
-                titleTextColor: activeTheme.secondaryTextColor
+                labelTextColor: mainWindow.activeTheme.legendLabelTextColor
+                titleTextColor: mainWindow.activeTheme.secondaryTextColor
                 series: graphView.graphsItem.series
             }
 
@@ -204,8 +204,8 @@ Window {
                 chartView.marginTop: 47 * Units.px
                 chartView.marginBottom: 80 * Units.px
 
-                theme: activeTheme.graphsTheme
-                labelDelegateTextColor: activeTheme.secondaryTextColor
+                theme: mainWindow.activeTheme.graphsTheme
+                labelDelegateTextColor: mainWindow.activeTheme.secondaryTextColor
             }
         }
     }
