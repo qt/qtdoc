@@ -2,13 +2,15 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "datamodel.h"
-#include "internal/common.hpp"
-#include <csv.hpp>
 #include <QFileInfo>
-#include <QtQml>
-#include <qlogging.h>
-#include <sstream>
+#include <QQmlFile>
+#include <QQmlContext>
 #include <charconv>
+#include <csv.hpp>
+#include <qlogging.h>
+#include <qqml.h>
+#include <qtpreprocessorsupport.h>
+#include <sstream>
 #include <string_view>
 
 DataModel::DataModel(QObject *parent) : QAbstractTableModel(parent) { }
@@ -17,6 +19,7 @@ DataModel::~DataModel() { }
 
 int DataModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_csvData.count() ? m_csvData.at(0).count() : 0;
 }
 
@@ -56,6 +59,7 @@ static int tryConvertToInt(std::string_view team, std::string_view fieldName, st
 {
     int value = -1;
     auto [ptr, ec] = std::from_chars(field.data(), field.data() + field.size(), value);
+    Q_UNUSED(ec);
     if (value == -1)
         qWarning("%s: error in %s field", team.data(), fieldName.data());
 

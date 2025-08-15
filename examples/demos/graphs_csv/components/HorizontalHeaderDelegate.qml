@@ -31,7 +31,7 @@ Rectangle {
         anchors.rightMargin: 2 * Units.px
         anchors.bottom: horizontalHeaderViewDelegate.bottom
         anchors.bottomMargin: 10 * Units.px
-        color: textColor
+        color: horizontalHeaderViewDelegate.textColor
         text: horizontalHeaderViewDelegate.display
         font: horizontalHeaderViewDelegate.horizontalTitleFont
 

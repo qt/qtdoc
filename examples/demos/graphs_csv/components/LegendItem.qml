@@ -37,7 +37,7 @@ Item {
 
         Text {
             id: title
-            color: titleTextColor
+            color: legendItem.titleTextColor
             verticalAlignment: Text.AlignVCenter
             text: qsTr("Selected")
         }
@@ -83,7 +83,7 @@ Item {
                             horizontalAlignment: Text.AlignHCenter
                             color: legendItem.labelTextColor
                             font: legendItem.labelFont
-                            text: legendItem.series.legendData[index].label
+                            text: legendItem.series.legendData[legend1.index].label
                         }
                     }
                 }

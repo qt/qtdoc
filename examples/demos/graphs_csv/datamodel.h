@@ -4,8 +4,9 @@
 #ifndef DATAMODEL_H
 #define DATAMODEL_H
 #include <QAbstractItemModel>
-#include <QtQmlIntegration>
+#include <QtQml/qqml.h>
 #include <QList>
+#include <qtpreprocessorsupport.h>
 
 class DataModel : public QAbstractTableModel
 {
@@ -18,7 +19,11 @@ public:
 
     enum CustomRoles { Background = Qt::UserRole + 1 };
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override { return m_csvData.count(); }
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override {
+      Q_UNUSED(parent)
+      return m_csvData.count();
+    }
+
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

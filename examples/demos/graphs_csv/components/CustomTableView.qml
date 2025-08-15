@@ -56,7 +56,7 @@ Item {
         id: titleLabel
         text: ""
 
-        font: titleFont
+        font: tableviewItem.titleFont
         color: tableviewItem.primaryTextColor
         width: 132 * Units.px
         height: 16 * Units.px
