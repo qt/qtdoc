@@ -132,7 +132,34 @@
     \title Obsolete Classes
     \ingroup classlists
 
-    \brief Classes and members marked obsolete that should not be used in new code.
+    \brief Modules, classes and members marked obsolete that should not be used in new code.
+
+    \section1 Qt modules that are deprecated
+
+    The following Qt modules are now obsolete. They are provided to keep old
+    source code working, but they are no longer maintained, and can be removed
+    in a future major Qt release. We advise against using these modules in new
+    code. Each obsolete module comes with documentation that helps with porting
+    existing code to new and actively maintained alternatives.
+
+    \table
+    \header
+        \li Obsolete module
+        \li New module
+        \li Migration guide
+    \row
+        \li \l{Qt 3D}
+        \li \l{Qt Quick 3D}
+        \li \l{Porting Qt 3D to Qt Quick 3D: A Migration Guide}
+    \row
+        \li \l{Qt Charts}
+        \li \l{Qt Graphs}
+        \li \l{Qt Graphs Migration from Qt Charts}
+    \row
+        \li \l{Qt Data Visualization}
+        \li \l{Qt Graphs}
+        \li \l{Qt Graphs Migration from Qt DataVisualization}
+    \endtable
 
     \section1 C++ classes that are deprecated
 
