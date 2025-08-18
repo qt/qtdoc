@@ -141,6 +141,11 @@
 
     \section2 Qt Network Module
     \list
+        \li Added fromFile() method to QSslCertificate.
+        \li Added setDateTimeValue() to QHttpHeaders, a convenience method for setting
+            date and time values in HTTP headers.
+        \li Added convenience methods to QHttpHeaders to retrieve values as
+            QDateTime, integers, or lists of these types.
     \endlist
 
     \section2 Qt Network Auth Module
