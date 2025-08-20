@@ -88,6 +88,24 @@
 
     \section2 Qt GRPC Module
     \list
+        \li Performance improvements and bug-fixes for the \l{QGrpcHttp2Channel}.
+            Read the blogpost \l{https://www.qt.io/blog/qtgrpc-tips-tricks-sweet-spots}{here}.
+        \li Added the \c{unix-abstract} \l[QtGrpc]{Transportation scheme}
+            to \l{QGrpcHttp2Channel}.
+        \li Added \l{QGrpcOperation::}{serverInitialMetadata} and
+            \l{QGrpcOperation::}{serverTrailingMetadata} interfaces to
+            \l{QGrpcOperation}.
+        \li Added \l{QGrpcCallOptions::filterServerMetadata} and
+            \l{QGrpcChannelOptions::filterServerMetadata} options to control the
+            filtering of the received server-metadata.
+        \li Added \l{QGrpcCallOptions::addMetadata} and
+            \l{QGrpcChannelOptions::addMetadata} for supporting incremental
+            client-metadata updates.
+        \li Deprecated \l{QGrpcChannelOptions::}{metadata} interfaces in favor
+            of QMultiHash based interfaces: \l{QGrpcChannelOptions::metadata(QtGrpc::MultiValue_t)}
+            {metadata(QtGrpc::MultiValue)},
+            \l{QGrpcChannelOptions::setMetadata(const QMultiHash<QByteArray,QByteArray>&)}
+            {setMetadata(QMultiHash)}.
     \endlist
 
     \section2 Qt GUI Module
