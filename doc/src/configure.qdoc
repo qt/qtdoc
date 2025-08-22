@@ -333,6 +333,31 @@
     ensuring a relatively safe state for reconfiguration. The initial
     configure flags will still apply to the reconfigured build.
 
+    \section1 Installing Configure Summary and Options
+
+    Since Qt 6.9, the configure summary files, as well as the options passed to
+    \c configure, can be automatically included as part of the installation.
+
+    This feature is enabled by setting the CMake variable
+    \b{QT_INSTALL_CONFIG_INFO_FILES} to \b {ON}:
+
+    \badcode
+    ~/qt-source/configure -prefix /opt/Qt6 -- -D QT_INSTALL_CONFIG_INFO_FILES=ON
+    \endcode
+
+    During installation, text files for configure summary and options (for each
+    repository part of the build) are copied to the \l {QLibraryInfo::DataPath}
+    {architecture-independent Qt data directory}.
+
+    For example,
+    \badcode
+    /opt/Qt6/config_qtbase.opt
+    /opt/Qt6/config_qtbase.summary
+    /opt/Qt6/config_qtdeclarative.opt
+    /opt/Qt6/config_qtdeclarative.summary
+    ...
+    \endcode
+
     \section1 Specific Options for Platforms
 
     The following pages provide guidelines on how to configure Qt for specific
