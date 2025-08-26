@@ -11,6 +11,20 @@ Node {
 
     property int stateController: 0
     property bool desert: true
+    property bool rain: false
+
+    property real rainStrength : 0.5
+    property real normalFactor : 0.08
+    property real rainSize : 0.8
+    property real rainFrequency : 1.0
+    property real rainPower : 1.0
+    property real rainScale : 0.01
+    property real dripSize : 0.14
+    property real dripSpeed : 0.005
+    property real dripLength : 0.01
+    property real dripSharpness : 10.0
+
+    property list<Node> shapeExluded : [hoodPositioner, trunkPositioner, leftDoorPositioner, rightDoorPositioner]
 
     // Resources
     property url textureData: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/maps/textureData.jpg"
@@ -165,15 +179,15 @@ Node {
             source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/body_mesh.mesh"
             receivesReflections: true
             materials: [
-                carPaint_material,
-                carPaintBlackBump_material,
-                metalDark_material9,
-                plasticBlack_material,
-                chrome_material11,
-                glassLights_material12,
-                glassRedLights_material13,
+                rain ? carPaint_material_rain : carPaint_material,
+                rain ? carPaintBlackBump_material_rain : carPaintBlackBump_material,
+                rain ? metalDark_material9_rain : metalDark_material9,
+                rain ? plasticBlack_material_rain : plasticBlack_material,
+                rain ? chrome_material11_rain : chrome_material11,
+                rain ? glassLights_material12_rain : glassLights_material12,
+                rain ? glassRedLights_material13_rain : glassRedLights_material13,
                 glassLightsIllum_material14,
-                glassWindsSide_material,
+                rain ? glassWindsSide_material_rain : glassWindsSide_material,
                 intCarpet_material18
             ]
         }
@@ -209,6 +223,7 @@ Node {
         }
         Hood {
             id: hood
+            rain: node.rain
             y: 0.7891814112663269
             isOpen: false
 
@@ -374,6 +389,7 @@ Node {
         TrunkLid {
             id: trunkLid
             y: 1.1552858352661133
+            rain: node.rain
 
             Model {
                 id: trunkPositioner
@@ -495,7 +511,7 @@ Node {
             x: 0.8845329880714417
             y: 0.6892746090888977
             receivesReflections: true
-
+            rain: node.rain
 
             Model {
                 id: leftDoorPositioner
@@ -513,7 +529,7 @@ Node {
             id: doorRight
             x: -0.8845332264900208
             y: 0.6892746090888977
-
+            rain: node.rain
             scale.x: 1
 
 
@@ -580,6 +596,28 @@ Node {
             indexOfRefraction: 1.4500000476837158
         }
 
+        RainMaterial {
+            id: chrome_material_rain
+            fresnelPower: 5.8
+            specularAmount: 1
+            clearcoatAmount: 0.75619
+            objectName: "Chrome"
+            baseColor: "#ffffff"
+            metalness: 1
+            roughness: 0.2
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
+
         PrincipledMaterial {
             id: chromeLightsBMP_material
             objectName: "ChromeLightsBMP"
@@ -590,6 +628,27 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
+        }
+
+        RainMaterial {
+            id: chromeLightsBMP_material_rain
+            objectName: "ChromeLightsBMP"
+            baseColor: "#ffff4c4c"
+            metalness: 1
+            specularAmount: 1
+            roughness: 0.2
+            normalTexture: _4_texture.source
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -633,6 +692,29 @@ Node {
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
         }
+        RainMaterial {
+            id: glassLights_material_rain
+            opacity: headlightsVisible? 0.6 : 0
+            clearcoatRoughnessAmount: 0.1
+            clearcoatAmount: 0
+            objectName: "GlassLights"
+            baseColor: "#1c1f23"
+            metalness: 1
+            roughness: 0.2
+            specularAmount: 1
+            blending: true
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
 
         PrincipledMaterial {
             id: metalDark_material
@@ -644,6 +726,27 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
+        }
+
+        RainMaterial {
+            id: metalDark_material_rain
+            clearcoatAmount: 0
+            objectName: "MetalDark"
+            baseColor: "#1a1a1a"
+            metalness: 0.79861
+            roughness: 0.2
+            specularAmount: 1
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -739,6 +842,28 @@ Node {
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
         }
+        RainMaterial {
+            id: carPaintBlackBump_material_rain
+            objectName: "CarPaintBlackBumpRain"
+            baseTexture: _0_texture.source
+            baseColor: "#ff050505"
+            roughness: 0.2
+            normalTexture: _1_texture.source
+            cullMode: PrincipledMaterial.NoCulling
+            blending: true
+            indexOfRefraction: 1.4500000476837158
+            specularAmount: 1
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
 
         PrincipledMaterial {
             id: glassRedLights_material
@@ -748,6 +873,26 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
+        }
+
+        RainMaterial {
+            id: glassRedLights_material_rain
+            objectName: "GlassRedLights"
+            baseColor: "#80250000"
+            metalness: 1
+            blending: true
+            specularAmount: 1
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -784,6 +929,26 @@ Node {
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
         }
+        RainMaterial {
+            id: metalDark_material9_rain
+            objectName: "MetalDark"
+            baseColor: "#090909"
+            metalness: 1
+            specularAmount: 1
+            roughness: 0.2
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
 
         PrincipledMaterial {
             id: plasticBlack_material
@@ -795,6 +960,27 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
+        }
+        RainMaterial {
+            id: plasticBlack_material_rain
+            clearcoatAmount: 0
+            objectName: "PlasticBlack"
+            baseColor: "#0e0e0e"
+            metalness: 0.29461
+            roughness: 0.2
+            specularAmount: 1
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -832,6 +1018,28 @@ Node {
             indexOfRefraction: 1.4500000476837158
         }
 
+        RainMaterial {
+            id: chrome_material11_rain
+            clearcoatAmount: 0.7357
+            objectName: "Chrome"
+            baseColor: "#ffffff"
+            metalness: 1
+            specularAmount: 1
+            roughness: 0.10000000149011612
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
+
         PrincipledMaterial {
             id: glassLights_material12
             clearcoatRoughnessAmount: 0.02425
@@ -845,6 +1053,29 @@ Node {
             indexOfRefraction: 1.4500000476837158
         }
 
+        RainMaterial {
+            id: glassLights_material12_rain
+            clearcoatRoughnessAmount: 0.02425
+            clearcoatAmount: 0.73028
+            objectName: "GlassLights"
+            baseColor: "#ff0000"
+            metalness: 1
+            specularAmount: 1
+            roughness: 0.2
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
+
         PrincipledMaterial {
             id: aluminium_material
             objectName: "Aluminium"
@@ -854,6 +1085,27 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Opaque
             indexOfRefraction: 1.4500000476837158
+        }
+
+        RainMaterial {
+            id: aluminium_material_rain
+            objectName: "Aluminium"
+            baseColor: "#ff808080"
+            metalness: 1
+            specularAmount: 1
+            roughness: 0.20000000298023224
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -886,6 +1138,25 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
+        }
+        RainMaterial {
+            id: glassRedLights_material13_rain
+            objectName: "GlassRedLights"
+            baseColor: "#80250000"
+            metalness: 1
+            blending: true
+            specularAmount: 1
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -927,6 +1198,28 @@ Node {
             indexOfRefraction: 1.4500000476837158
         }
 
+        RainMaterial {
+            id: carPaintBlackBump_material82_rain
+            objectName: "CarPaintBlackBump"
+            baseColor: "#ff050505"
+            baseTexture: _0_texture.source
+            roughness: 0.2
+            normalTexture: _1_texture.source
+            blending: true
+            specularAmount: 1
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
+
         PrincipledMaterial {
             id: wheelBrakeDisk_material
             objectName: "WheelBrakeDisk"
@@ -962,14 +1255,36 @@ Node {
             clearcoatFresnelScale: 3
             clearcoatFresnelPower: 8
             clearcoatFresnelScaleBiasEnabled: true
-
             clearcoatAmount: 0.51265
-
-
             roughness: 0.3
-
             baseColor: "#000000"
             objectName: "Car Paint"
+        }
+        RainMaterial {
+            id: carPaint_material_rain
+            baseColor: "#000000"
+            specularAmount: 0.8
+            fresnelPower: 8
+            fresnelScale: 3
+            fresnelBias: -0.1
+            clearcoatRoughnessAmount: 0.01
+            clearcoatFresnelBias: -0.1
+            clearcoatFresnelScale: 3
+            clearcoatFresnelPower: 8
+            clearcoatAmount: 0.51265
+            roughness: 0.3
+            metalness: 1
+
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -1045,6 +1360,27 @@ Node {
             indexOfRefraction: 1.4500000476837158
         }
 
+        RainMaterial {
+            id: plasticBlack_material24_rain
+            objectName: "PlasticBlack"
+            baseColor: "#ffffff"
+            metalness: 1
+            roughness: 0.91248
+            specularAmount: 1
+            cullMode: PrincipledMaterial.NoCulling
+            indexOfRefraction: 1.4500000476837158
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
+        }
+
         PrincipledMaterial {
             id: glassWindsSide_material
             opacity: 0.379
@@ -1057,6 +1393,29 @@ Node {
             cullMode: PrincipledMaterial.NoCulling
             alphaMode: PrincipledMaterial.Blend
             indexOfRefraction: 1.4500000476837158
+        }
+
+        RainMaterial {
+            id: glassWindsSide_material_rain
+            opacity: 0.379
+            roughness: 0.2
+            clearcoatRoughnessAmount: 0.01919
+            clearcoatAmount: 0.3178
+            objectName: "GlassWindsSide"
+            baseColor: "#383838"
+            metalness: 0.80139
+            indexOfRefraction: 1.4500000476837158
+            specularAmount: 1
+            rainStrength : node.rainStrength
+            normalFactor : node.normalFactor
+            rainSize : node.rainSize
+            rainFrequency : node.rainFrequency
+            rainPower : node.rainPower
+            rainScale : node.rainScale
+            dripSize : node.dripSize
+            dripSpeed : node.dripSpeed
+            dripLength : node.dripLength
+            dripSharpness : node.dripSharpness
         }
 
         PrincipledMaterial {
@@ -1214,9 +1573,9 @@ Node {
             PropertyChanges {
                 target: carPaint_material
                 metalness: 0.1
+                specularAmount: 0.1
                 baseColor: "#a6a6a6"
             }
-
         },
         State {
             name: "yellow"
@@ -1225,6 +1584,7 @@ Node {
             PropertyChanges {
                 target: carPaint_material
                 metalness: 0.1
+                specularAmount: 0.1
                 baseColor: "#de8517"
             }
         },
@@ -1235,6 +1595,169 @@ Node {
             PropertyChanges {
                 target: carPaint_material
                 metalness: 0.5
+                specularAmount: 0.1
+                baseColor: "#a21010"
+            }
+        },
+        State {
+            name: "rainblack"
+            when: stateController == 4
+
+            PropertyChanges {
+                target: body
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: chargingCap
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: headlights
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: hood
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: taillights
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: trunkLid
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: wingFlaps
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: brakeDiskRearLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: hoodEngineCover
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: trunkEngineCover
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: brakeDiskFrLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: brakeCaliperFrLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: brakeCaliperBkLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: wheelFrLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: wheelBkLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: doorRight
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: doorLeft
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: wheelFrRight
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: wheelBkRight
+                receivesShadows: false
+                castsShadows: false
+            }
+
+            PropertyChanges {
+                target: metalDark_material9_rain
+                clearcoatAmount: 0.23325
+                roughness: 0.82009
+            }
+
+            PropertyChanges {
+                target: carPaint_material_rain
+                specularAmount: 0.8
+            }
+        },
+        State {
+            name: "rainwhite"
+            when: stateController == 5
+
+            PropertyChanges {
+                target: carPaint_material_rain
+                metalness: 0.1
+                specularAmount: 0.8
+                baseColor: "#a6a6a6"
+            }
+        },
+        State {
+            name: "rainyellow"
+            when: stateController == 6
+
+            PropertyChanges {
+                target: carPaint_material_rain
+                metalness: 0.1
+                specularAmount: 0.8
+                baseColor: "#de8517"
+            }
+        },
+        State {
+            name: "rainred"
+            when: stateController == 7
+
+            PropertyChanges {
+                target: carPaint_material_rain
+                metalness: 0.5
+                specularAmount: 0.8
                 baseColor: "#a21010"
             }
         }
@@ -1266,6 +1789,18 @@ Node {
                         duration: 1359
                     }
                 }
+
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: metalDark_material9_rain
+                        property: "roughness"
+                        duration: 1359
+                    }
+                }
             }
 
             ParallelAnimation {
@@ -1287,7 +1822,31 @@ Node {
                     }
 
                     PropertyAnimation {
+                        target: carPaint_material_rain
+                        property: "baseColor"
+                        duration: 734
+                    }
+                }
+
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
                         target: carPaint_material
+                        property: "metalness"
+                        duration: 734
+                    }
+                }
+
+                SequentialAnimation {
+                    PauseAnimation {
+                        duration: 50
+                    }
+
+                    PropertyAnimation {
+                        target: carPaint_material_rain
                         property: "metalness"
                         duration: 734
                     }

@@ -162,6 +162,44 @@ Item {
         strokeWidth: 1
     }
 
+    SvgPathItem {
+        id: rainOutline
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 3
+        strokeColor: "transparent"
+        antialiasing: true
+        fillColor: "#ffffff"
+        anchors.bottomMargin: 5
+        anchors.rightMargin: 0
+        anchors.topMargin: 8
+        path: "M0,3.371965169906616 L18.74277114868164,0.23496794700622559 L18.74, 2.3 L0,5.351463794708252 L0,3.371965169906616 Z M0,7.381286144256592 L18.484618186950684,4.579795837402344 L18.4,6.4 L0,9.360783576965332 L0,7.381286144256592 Z M0,11.62546157836914 L19.081355667114258,8.058173751831055 L19,10 L0,13.537857055664062 L0,11.62546157836914 Z M0,18 L0,15.936738967895508 L18,13.219124794006348 L18,15 Z M0,23 L0,20.499645233154297 L19.071756362915039,17.530399322509766 L19,20 Z M19.392356872558594,0 L19.358806610107422,0 M19.409135818481445,1.8955814838409424 L19.358808517456055,1.8955814838409424"
+        strokeWidth: 1
+        rotation: 90
+    }
+
+    SvgPathItem {
+        id: rainFilled
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 3
+        strokeColor: "transparent"
+        antialiasing: true
+        fillColor: "#222222"
+        anchors.bottomMargin: 5
+        anchors.rightMargin: 0
+        anchors.topMargin: 8
+        path: "M0,3.371965169906616 L18.74277114868164,0.23496794700622559 L18.74, 2.3 L0,5.351463794708252 L0,3.371965169906616 Z M0,7.381286144256592 L18.484618186950684,4.579795837402344 L18.4,6.4 L0,9.360783576965332 L0,7.381286144256592 Z M0,11.62546157836914 L19.081355667114258,8.058173751831055 L19,10 L0,13.537857055664062 L0,11.62546157836914 Z M0,18 L0,15.936738967895508 L18,13.219124794006348 L18,15 Z M0,23 L0,20.499645233154297 L19.071756362915039,17.530399322509766 L19,20 Z M19.392356872558594,0 L19.358806610107422,0 M19.409135818481445,1.8955814838409424 L19.358808517456055,1.8955814838409424"
+        strokeWidth: 1
+        rotation: 90
+    }
+
     Image {
         id: yellow
 
@@ -404,6 +442,16 @@ Item {
 
             PropertyChanges {
                 target: animatedFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainOutline
                 visible: false
             }
         },
@@ -1519,7 +1567,15 @@ Item {
         State {
             name: "Menu"
             when: currentStateIndex == 24
+            PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
 
+            PropertyChanges {
+                target: rainOutline
+                visible: false
+            }
             PropertyChanges {
                 target: element
                 visible: false
@@ -1627,7 +1683,15 @@ Item {
                 target: element
                 visible: false
             }
+            PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
 
+            PropertyChanges {
+                target: rainOutline
+                visible: false
+            }
             PropertyChanges {
                 target: lightsFilled
                 visible: false
@@ -1727,6 +1791,16 @@ Item {
             name: "state_Active_Name_Door"
 
             PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainOutline
+                visible: false
+            }
+
+            PropertyChanges {
                 target: pointerOutlined
                 visible: true
             }
@@ -1818,6 +1892,131 @@ Item {
 
             PropertyChanges {
                 target: desertOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainOutline
+                visible: false
+            }
+        },
+        State {
+            name: "state_state_Idle_Name_Rain"
+            when: currentStateIndex === 26
+            extend: "state_state_Idle_Name_Animated"
+
+            PropertyChanges {
+                target: element
+                visible: false
+            }
+
+            PropertyChanges {
+                target: black
+                visible: false
+            }
+
+            PropertyChanges {
+                target: cameraFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: animatedOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: reset
+                visible: false
+            }
+
+            PropertyChanges {
+                target: cameraOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: lightsOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: animatedFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainOutline
+                visible: true
+            }
+        },
+        State {
+            name: "state_state_Active_Name_Rain"
+            when: currentStateIndex === 27
+            extend: "state_state_Idle_Name_Animated"
+
+            PropertyChanges {
+                target: element
+                visible: false
+            }
+
+            PropertyChanges {
+                target: lightsFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: black
+                visible: false
+            }
+
+            PropertyChanges {
+                target: cameraFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: animatedOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: reset
+                visible: false
+            }
+
+            PropertyChanges {
+                target: cameraOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: lightsOutline
+                visible: false
+            }
+
+            PropertyChanges {
+                target: animatedFilled
+                visible: false
+            }
+
+            PropertyChanges {
+                target: rainFilled
+                visible: true
+            }
+
+            PropertyChanges {
+                target: rainOutline
                 visible: false
             }
         }

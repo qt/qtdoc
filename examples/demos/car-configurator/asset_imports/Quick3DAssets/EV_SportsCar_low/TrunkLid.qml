@@ -6,16 +6,17 @@ import QtQuick3D
 
 Model {
     id: trunkLid
+    property bool rain
     objectName: "TrunkLid"
     z: -0.5674706697463989
     source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/trunkLid_mesh.mesh"
     receivesReflections: true
     property bool isOpen: false
     materials: [
-        carPaint_material,
-        carPaintBlackBump_material82,
-        glassWindsSide_material,
-        plasticBlack_material24
+        rain ? carPaint_material_rain : carPaint_material,
+        rain ? carPaintBlackBump_material82_rain : carPaintBlackBump_material82,
+        rain ? glassWindsSide_material_rain : glassWindsSide_material,
+        rain ? plasticBlack_material24_rain : plasticBlack_material24
     ]
 
     Node {

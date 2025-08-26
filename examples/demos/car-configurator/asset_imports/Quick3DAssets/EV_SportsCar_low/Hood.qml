@@ -7,14 +7,15 @@ import QtQuick3D
 Model {
     id: hood
     objectName: "Hood"
+    property bool rain
     z: 0.6023856401443481
     source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/hood_mesh.mesh"
     receivesReflections: true
     property bool isOpen: false
     materials: [
-        carPaint_material,
-        plasticBlack_material24,
-        chrome_material
+        rain ? carPaint_material_rain : carPaint_material,
+        rain ? plasticBlack_material24_rain : plasticBlack_material24,
+        rain ? chrome_material_rain : chrome_material
     ]
 
     Node {

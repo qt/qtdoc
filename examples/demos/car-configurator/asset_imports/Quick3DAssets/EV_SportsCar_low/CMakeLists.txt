@@ -10,4 +10,8 @@ qt_add_qml_module(Ast_SportsCar
         MyDoorLeft.qml
         MyDoorRight.qml
         TrunkLid.qml
+        RainMaterial.qml
+    RESOURCES
+        shaders/rain_material.frag
+        shaders/rain_material.vert
 )
