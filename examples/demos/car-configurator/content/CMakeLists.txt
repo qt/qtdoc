@@ -20,8 +20,11 @@ qt6_add_qml_module(CarConfiguratorContent
         WallEffect1/WallEffect1.qml
         WallEffect2/WallEffect2.qml
         WallEffect3/WallEffect3.qml
+        SceneRain.qml
     RESOURCES
         images/builtWithQt.png
+        images/dot.png
+        images/ripple.png
         assets/assets_download.json
 )
 

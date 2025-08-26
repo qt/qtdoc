@@ -4,7 +4,7 @@
 import QtQuick
 
 Item {
-    width: 54
+    width: 34
     height: 108
 
     Rectangle {

@@ -6,6 +6,7 @@ import QtQuick.Controls
 import QtQuick.Timeline
 import QtQuick3D
 import QtQuick3D.Effects
+import QtQuick3D.Particles3D
 import QtQuick3D.Helpers
 import CarRendering
 import Quick3DAssets.Venodhb_LOD0
@@ -371,6 +372,7 @@ Rectangle {
                     x: -19
                     y: 1.965
                     desert: false
+                    rain: btnRain.checked
                     headlightsVisible: !btnLight.checked
                     trunkIsOpen: trunkbutton.isChecked
                     hoodIsOpen: hoodButton.isChecked
@@ -445,7 +447,7 @@ Rectangle {
                 id: lightDirectional
 
                 castsShadow: false
-                brightness: 0.5
+                brightness: btnRain.checked ? 0.2 : 0.5
                 eulerRotation.z: -180
                 eulerRotation.y: 180
                 eulerRotation.x: -54.99136
@@ -457,12 +459,21 @@ Rectangle {
                 shadowFactor: 100
                 shadowMapQuality: Light.ShadowMapQualityVeryHigh
                 castsShadow: false
-                brightness: 0.5
+                brightness: btnRain.checked ? 0.2 : 0.5
                 eulerRotation.z: -0.00002
                 eulerRotation.y: 0.00002
                 eulerRotation.x: -57.72036
             }
         }
+        SceneRain {
+            id: sceneRain
+            enabled: btnRain.checked
+            scene: scene2
+            center: ev_SportsCar_low.scenePosition
+            extents: Qt.vector3d(1000, 500, 1000)
+            excluded: [shadowPlane, interiorShadow, headlights, ...ev_SportsCar_low.shapeExluded]
+        }
+        //
 
         Node {
             id: environments1
@@ -511,7 +522,7 @@ Rectangle {
                 glowEnabled: true
 
                 depthPrePassEnabled: false
-                probeExposure: 1.5
+                probeExposure: btnRain.checked ? 1.0 : 1.5
                 tonemapMode: SceneEnvironment.TonemapModeLinear
                 backgroundMode: SceneEnvironment.SkyBox
                 depthTestEnabled: true
@@ -1225,6 +1236,16 @@ Rectangle {
                 buttonText: "Lights"
                 group: "toggle"
                 checked: true
+            }
+
+            KissButton {
+                id: btnRain
+
+                iconId: btnRain.checked ? 27 : 26
+                buttonText: "Rain"
+                group: "toggle"
+                checked: false
+                onClicked: ev_SportsCar_low.stateController = btnRain.checked ? ev_SportsCar_low.stateController + 4 : ev_SportsCar_low.stateController
             }
 
             KissButtonSeparator {
@@ -2237,7 +2258,7 @@ Rectangle {
                 glowBloom: 0.15158
                 glowEnabled: false
                 aoEnabled: false
-                probeExposure: 2
+                probeExposure:  btnRain.checked ? 1.0 : 2
             }
 
             PropertyChanges {
