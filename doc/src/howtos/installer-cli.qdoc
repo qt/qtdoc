@@ -309,7 +309,7 @@
     qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.\1.clang_644
 
     # linux: new installation with Qt Online Installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.\1.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.\1.linux_gcc_64
     \endcode
 
     \l{Options for Unattended Usage} lists all available options for unattended
@@ -342,7 +342,7 @@
     MaintenanceTool.app/Contents/MacOS/MaintenanceTool --accept-licenses --default-answer --confirm-command install qt.qt6.\1.clang_64
 
     # linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.\1.gcc_64
+    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.\1.linux_gcc_64
     \endcode
 
     \section2 Options for Unattended Usage
@@ -495,7 +495,7 @@
     qt-unified-macOS-x64-[Qt Online Installer version]-online.dmg --root /home/<username>/installation_dir install qt.qt6.\1.clang_64
 
     # linux: new installation with user interaction
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.\1.gcc_64
+    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir install qt.qt6.\1.linux_gcc_64
     \endcode
 
     The following examples demonstrate how you update your existing
@@ -509,7 +509,7 @@
     MaintenanceTool.dmg install qt.qt6.\1.clang_64
 
     # Linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run install qt.qt6.\1.gcc_64
+    MaintenanceTool.run install qt.qt6.\1.linux_gcc_64
     \endcode
 
     \section1 Uninstalling Packages
@@ -540,7 +540,7 @@
     MaintenanceTool.dmg --confirm-command remove install qt.qt6.\1.clang_64
 
     # linux
-    MaintenanceTool.run --confirm-command remove qt.qt6.\1.gcc_64
+    MaintenanceTool.run --confirm-command remove qt.qt6.\1.linux_gcc_64
     \endcode
 
     The following examples uninstall all packages and ask for permission to
