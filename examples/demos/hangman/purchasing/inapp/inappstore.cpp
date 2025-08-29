@@ -84,9 +84,10 @@ void InAppStore::setupBackend()
 {
     #ifdef Q_OS_ANDROID
     d->backend = new AndroidInAppPurchaseBackend;
-    #endif
-    #ifdef Q_OS_IOS
+    #elif Q_OS_IOS
     d->backend = new IosInAppPurchaseBackend;
+    #else
+    d->backend = new InAppPurchaseBackend;
     #endif
     d->backend->setStore(this);
 
