@@ -454,11 +454,16 @@
     \list
         \li Updated Gradle to version 8.14.2 and Android Gradle Plugin AGP to version 8.10.1.
         \li Added support for Android 12 Splash Screen.
+        \li Added support for Android 16KB page sizes.
+        \li Added an example (QtJennyDemo) for accessing Android APIs via C++ wrappers
+            produced by a code generator (QtJenny).
     \endlist
 
     \section4 Qt Quick for Android
     \list
         \li Added multiple arguments support for signals under QtQuickView.
+        \li Added support to register signal listeners before QML is fully loaded.
+        \li Public Java APIs in javadoc format.
     \endlist
 
     \section3 iOS
