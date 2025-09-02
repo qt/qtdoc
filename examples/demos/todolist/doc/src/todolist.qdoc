@@ -6,31 +6,81 @@
     \ingroup qtquickdemos
     \example demos/todolist
     \examplecategory {Application Examples}
-    \brief A QML implementation of to do list application that demonstrates how to create application thats looks native on any platform.
+    \brief A QML implementation of a to-do list application that demonstrates
+    how to create an application thats looks native on any platform.
     \meta {tag} {demo,quick}
 
-    \section1 CustomStyle
-    \inlineimage CustomStyle_Light.png
-    \inlineimage CustomStyle_Dark.png
-    \inlineimage Settings_CustomStyle.png
-    \br
+    \e{To Do List} demonstrates a sample to-do list application that looks
+    native on any platform. The example can be run and edited in both Qt Design
+    Studio and Qt Creator. It shows how to create and use a custom style and how
+    to use settings to control the appearance and behavior of the application.
+    It also shows how to implement simple drag and drop behavior on delegates.
+    The application uses local storage to store items on the device and
+    XMLHttpRequest to retrieve data from the public API (Random Tasks
+    functionality). The views are controlled by a StackView component.
 
-    \section1 Material
-    \inlineimage Material_Light.png
-    \inlineimage Material_Dark.png
-    \inlineimage Settings_Material.png
-    \br
+    \include examples-run.qdocinc
 
-    \section1 iOS
-    \inlineimage iOS_Light.png
-    \inlineimage iOS_Dark.png
-    \inlineimage Settings_iOS.png
-    \br
+    \if defined(onlinedocs)
+      \tab {to-do-list}{custom-dark}{CustomStyle Dark}{checked}
+      \tab {to-do-list}{custom-light}{CustomStyle Light}{}
+      \tab {to-do-list}{material-dark}{Material Dark}{}
+      \tab {to-do-list}{material-light}{Material Light}{}
+      \tab {to-do-list}{ios-dark}{iOS Dark}{}
+      \tab {to-do-list}{ios-light}{iOS Light}{}
 
-    \e{To Do List} demonstrates a sample to-do list application that looks native on any platform. The example can be run and edited in both QtDesignStudio and QtCreator.
-    It shows how to create and use a custom style, how to use settings to control the appearance and behavior of the application.
-    It also presents how to implement simple drag and drop behavior on delegates. The application uses local storage to store items on the device and XMLHttpRequest to retrieve data from the public API (Random Tasks functionality).
-    The views are controlled by StackView component.
+    \tabcontent {custom-light}
+    \else
+      \section1 CustomStyle Light
+    \endif
+    \inlineimage {CustomStyle_Light.png} {light theme custom style}
+
+    \if defined(onlinedocs)
+      \endtabcontent
+      \tabcontent {custom-dark}
+    \else
+      \section1 CustomStyle Dark
+    \endif
+    \inlineimage {CustomStyle_Dark.png} {Dark theme custom style}
+    \inlineimage {Settings_CustomStyle.png} {Dark theme settings UI}
+
+    \if defined(onlinedocs)
+      \endtabcontent
+      \tabcontent {material-light}
+    \else
+      \section1 Material Light
+    \endif
+    \inlineimage {Material_Light.png} {Light Material theme}
+
+    \if defined(onlinedocs)
+      \endtabcontent
+      \tabcontent {material-dark}
+    \else
+      \section1 Material Dark
+    \endif
+    \inlineimage {Material_Dark.png} {Dark Material theme}
+    \inlineimage {Settings_Material.png} {Dark Material theme settings UI}
+
+    \if defined(onlinedocs)
+      \endtabcontent
+      \tabcontent {ios-light}
+    \else
+      \section1 iOS Light
+    \endif
+    \inlineimage {iOS_Light.png} {Light iOS theme}
+
+    \if defined(onlinedocs)
+      \endtabcontent
+      \tabcontent {ios-dark}
+    \else
+      \section1 iOS Dark
+    \endif
+    \inlineimage {iOS_Dark.png} {Dark iOS theme}
+    \inlineimage {Settings_iOS.png} {Dark theme settings UI}
+
+    \if defined(onlinedocs)
+        \endtabcontent
+    \endif
 
     \section1 Selecting Application Style
     The application supports different styles depending on the target platform.
@@ -108,4 +158,8 @@
     \skipto sendHttpRequest
     \printuntil http.send
     \printuntil }
+
+    \section1 Source files
+
+    \sa {All Qt Examples}, {Qt Quick Examples and Tutorials}
 */
