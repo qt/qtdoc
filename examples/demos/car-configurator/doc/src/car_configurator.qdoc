@@ -11,14 +11,17 @@
     \meta {tag} {quick, 3d, camera}
     \meta {docdependencies} {QtQuick3D}
     \image car_configurator_overview.png
-    \include examples-run.qdocinc
+           {3D side-angle view of a black sports car against a desert backdrop}
 
-    \section1 Overview
     \e{Car Configurator} shows a car in different scene environments and in
     different colors. It's implemented with QML and relies on a number of Qt
     modules, most prominently \l{Qt Quick} and \l{Qt Quick 3D}.
 
-    \note This example does download some assets from an internet server at
+    \include examples-run.qdocinc
+
+    \section1 Platform notes
+
+    This example does download some assets from an internet server at
     runtime. Therefore, you will need an internet connection when launching it
     for the first time.
 
@@ -26,13 +29,18 @@
     two modes:
 
     \list
-        \li Demo Mode
+        \li Demo mode
         \li User mode
     \endlist
 
-    \section1 Demo Mode
+    \section1 Demo mode
+
     The camera perspective moves along different paths and shows different
     views of the car.
+
+    \section1 User mode
+
+    Users can rotate around the car using a mouse or touch input.
 
     \section1 Reset Camera
     The camera moves to its initial position.
@@ -41,11 +49,35 @@
     There are four scene environments available for this example:
 
     \list
-        \li Desert
         \li Garage
-        \li Studio
+        \li Desert
         \li Animated
+        \li Studio
     \endlist
+
+    \section2 Garage Environment
+
+    The garage environment serves as the default setting and provides a clean, industrial presentation space:
+
+    \snippet  demos/car-configurator/content/ScreenPrimary.qml  Showhall Scene Environment
+
+    \section2 Desert Environment
+
+    The desert environment features HDR sky dome lighting, atmospheric fog effects, and specialized ground geometry:
+
+    \snippet demos/car-configurator/content/ScreenPrimary.qml Desert Scene Environment
+
+    \section2 Animated Environment
+
+    The animated environment showcases dynamic content with video wall effects:
+
+    \snippet demos/car-configurator/content/ScreenPrimary.qml Videoroom Scene Environment
+
+    \section2 Studio Environment
+
+    The studio environment provides a clean, professional presentation setting with controlled lighting:
+
+    \snippet demos/car-configurator/content/ScreenPrimary.qml Studio Scene Environment
 
     \section1 Car Colors
     There are four colors available for the car:
@@ -59,4 +91,8 @@
 
     \section1 Lights
     You can turn the lights of the car on and off.
+
+    \section1 Source files
+
+    \sa {All Qt examples}
 */
