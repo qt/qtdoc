@@ -367,6 +367,25 @@
       \li The \l {documentationinheaders-variable} {documentationinheaders}
           option is no longer offered as a technical preview; rather, it is
           considered stable. It was first introduced in Qt 6.9.
+      \li When generating DocBook output, QDoc now includes overload notes.
+      \li Overloaded signals and slots now include a contextual snippet to show
+          their use.
+      \li QDoc can link against Clang libraries from LLVM 21.
+      \li The .index-files include the declared return type from \\fn-commands.
+          This is useful for multi-project builds, when authors override the
+          return type of a function with \c {auto}.
+      \li You can now document your QML enumerations with the new
+          \l {qmlenum-command}{\\qmlenum} command. QDoc creates a new section,
+          QML Enumerations, in the generated documentation.
+      \li Code snippets indentation is now normalized, stripping out excess
+          left margin whitespace. This means that snippets from source that is
+          heavily indented (e.g. in a deeply nested series of \c{if}-statements)
+          will present as if not nested.
+      \li QDoc now correctly parses template aliases with default parameters.
+      \li QDoc no longer auto-links to deprecated functions if there are
+          non-deprecated alternatives.
+      \li You can prevent machine translation of strings using the new
+          \l {notranslate-command}{\\notranslate-command}.
     \endlist
 
     \section1 Platform Changes
