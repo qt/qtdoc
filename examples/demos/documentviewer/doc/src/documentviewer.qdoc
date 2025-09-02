@@ -9,6 +9,8 @@
     \meta {tag} {demo,widgets,mainwindow}
     \brief A Widgets application to display and print JSON, text, and PDF files.
 
+    \image documentviewer_open.png
+           {Document viewer UI showing a 'Select Open Mode' pop-up}
 
     \e{Document Viewer} demonstrates how to use a QMainWindow with static
     and dynamic toolbars, menus, and actions. Additionally, it demonstrates
@@ -22,8 +24,7 @@
         \li Localizing the UI to different languages.
     \endlist
 
-    \image documentviewer_open.png
-
+    \include examples-run.qdocinc
 
     \section1 Creating an application and the main window
 
@@ -38,7 +39,6 @@
     \printuntil exec
     \printline }
 
-
     \section1 MainWindow class
 
     The \c MainWindow class provides an application screen with menus,
@@ -52,7 +52,6 @@
     Designer. The \c mainwindow.ui file provides a QTabWidget on the left,
     showing bookmarks and thumbnails. On the right, there is a QScrollArea for
     viewing file content.
-
 
     \section1 ViewerFactory class
 
@@ -95,7 +94,6 @@
     \skipto m_viewer->initViewer
     \printuntil }
 
-
     \section1 AbstractViewer class
 
     \c AbstractViewer provides a generalized API to view, save, and print a
@@ -134,7 +132,6 @@
 
     This signal notifies the application that a document was successfully
     loaded.
-
 
     \section1 TxtViewer class
 
@@ -180,7 +177,6 @@
     The \c PdfViewer class (and plugin) is a fork of the \l {PDF Viewer
     Widget Example}. It demonstrates the use of QScroller to smoothly
     flick through a document.
-
 
     \section1 Other relevant classes
 
@@ -427,5 +423,7 @@
         \printuntil }
     \endlist
 
+    \section1 Source files
 
+    \sa {All Qt examples}
 */
