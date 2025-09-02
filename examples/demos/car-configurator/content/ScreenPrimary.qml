@@ -467,6 +467,7 @@ Rectangle {
         Node {
             id: environments1
 
+            //! [Showhall Scene Environment]
             ExtendedSceneEnvironment {
                 id: showhall
 
@@ -498,7 +499,9 @@ Rectangle {
                 }
                 temporalAAEnabled: false
             }
+            //! [Showhall Scene Environment]
 
+            //! [Desert Scene Environment]
             ExtendedSceneEnvironment {
                 id: desert
 
@@ -519,7 +522,9 @@ Rectangle {
                 temporalAAEnabled: false
                 fog: Fog {}
             }
+            //! [Desert Scene Environment]
 
+            //! [Videoroom Scene Environment]
             ExtendedSceneEnvironment {
                 id: videoRoom
 
@@ -541,7 +546,9 @@ Rectangle {
                 }
                 temporalAAEnabled: false
             }
+            //! [Videoroom Scene Environment]
 
+            //! [Studio Scene Environment]
             ExtendedSceneEnvironment {
                 id: studio
                 aoEnabled: false
@@ -557,6 +564,7 @@ Rectangle {
                 backgroundMode: SceneEnvironment.Color
                 depthPrePassEnabled: false
             }
+            //! [Studio Scene Environment]
         }
 
         Node {
