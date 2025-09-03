@@ -8,6 +8,11 @@ ApplicationWindow {
     width: 1000
     height: 600
     title: qsTr("Coffee")
+
+    background: Rectangle {
+        color: Colors.currentTheme.background
+    }
+
 //! [Set application window size]
     ApplicationFlow {
         width: parent.width
