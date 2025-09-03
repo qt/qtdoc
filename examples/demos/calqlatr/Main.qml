@@ -20,6 +20,11 @@ Window {
         id: root
         anchors.fill: parent
 
+        anchors.topMargin: parent.SafeArea.margins.top
+        anchors.leftMargin: parent.SafeArea.margins.left
+        anchors.rightMargin: parent.SafeArea.margins.right
+        anchors.bottomMargin: parent.SafeArea.margins.bottom
+
         readonly property int margin: 18
         readonly property color backgroundColor: "#222222"
         readonly property int minLandscapeModeWidth: numberPad.landscapeModeWidth
