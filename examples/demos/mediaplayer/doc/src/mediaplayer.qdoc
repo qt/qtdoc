@@ -2,20 +2,20 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \example demos/mediaplayer
     \title Media Player
     \ingroup multimedia_examples
     \ingroup video_examples_qml
+    \example demos/mediaplayer
+    \meta {tag} {quick,player,multimedia}
+    \meta {docdependencies} {QtMultimedia}
     \examplecategory {Application Examples}
     \examplecategory {Desktop}
     \examplecategory {Mobile}
-    \meta {tag} {quick,player,multimedia}
-    \meta {docdependencies} {QtMultimedia}
     \brief Playing audio and video using Qt Quick.
 
-    \image mediaplayerapp.png
+    \image mediaplayerapp.png {Multimedia application playing audio}
 
-    This example demonstrates a simple multimedia player that can play
+    This example demonstrates a QML application that can play
     audio and video files using various codecs.
 
     \include examples-run.qdocinc
@@ -134,5 +134,10 @@
     This example application has some new functionality implemented by types, such
     as \c PlaylistInfo and \c ThemeInfo. See the respective .qml files for detail
     on how these are implemented.
+
+    \section1 Source files
+
+    \sa {All Qt Examples}, {Qt Quick Examples and Tutorials},
+        {Qt Multimedia Examples}
 
 */
