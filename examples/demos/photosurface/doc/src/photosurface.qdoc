@@ -5,28 +5,28 @@
     \title Photo Surface
     \ingroup qtquickdemos
     \example demos/photosurface
-    \brief A QML app for touch devices that uses a Repeater with a
-    FolderListModel to access content in a folder, and a PinchHandler
-    to handle pinch gestures on the fetched content.
-    \image qtquick-demo-photosurface-small.png
+    \image {qtquick-demo-photosurface-small.png} {A collection of photos}
     \meta {tag} {quick,touch}
     \meta {docdependencies} {QtPdf}
     \examplecategory {Application Examples}
+    \brief A QML app for touch devices that uses a Repeater with a
+    FolderListModel to access content in a folder, and a PinchHandler
+    to handle pinch gestures on the fetched content.
 
-    \e{Photo Surface} demonstrates how to use a \l{Repeater} with a
-    \l FolderListModel and a \l FolderDialog to access images from a folder selected
-    by a user, and how to handle dragging, rotation and pinch zooming within the
-    same item using \l {Qt Quick Input Handlers}.
+    \e{Photo Surface} demonstrates how to use a \l{Repeater} with a \l
+    FolderListModel and a \l FolderDialog to access images from a folder
+    selected by a user. The example also shows how to handle dragging,
+    rotation, and pinch zooming within the same item using \l {Qt Quick Input Handlers}.
 
     All the app code is contained in one QML file, \c photosurface.qml. Inline
-    JavaScript code is used to place, rotate, and scale images on the photo
+    JavaScript code places, rotates, and scales images on the photo
     surface.
 
     \include examples-run.qdocinc
 
     \section1 Creating the Main Window
 
-    To create the main window for the Photo Surface app, we use the \l{Window}
+    To create the main window for the Photo Surface app, use the \l{Window}
     QML type as the root item. It automatically sets up the window for use with
     \l{Qt Quick} graphical types:
 
@@ -36,44 +36,43 @@
 
     \section1 Accessing Folder Contents
 
-    We use a \l{Repeater} QML type together with the \l FolderListModel to display
-    at least the GIF, JPG, and PNG images located in a folder (although main.cpp
+    Use a \l{Repeater} QML type together with the \l FolderListModel to display
+    the GIF, JPG, and PNG images located in a folder (although main.cpp
     may expand the list of supported image types):
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto Repeater
     \printuntil }
 
-    To use the FolderListModel type, we must import it:
+    Import the FolderListModel type:
 
     \code
     import Qt.labs.folderlistmodel
     \endcode
 
-    We use a FolderDialog to enable users to select the folder that contains
+    A FolderDialog enables users to select the folder that contains
     the images:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto FolderDialog
     \printuntil }
 
-    To use the FolderDialog type, we add the following import statement:
+    To use the FolderDialog type, add the following import statement:
 
     \code
     import QtQuick.Dialogs
     \endcode
 
-    We use the \c {folderDialog.open()} function to open the file dialog when the
-    initial slide show finishes, unless a folder path has been given as a command-line
-    argument:
+    The \c {folderDialog.open()} function opens the file dialog when the
+    initial slide show finishes, unless a folder path has been given as a
+    command-line argument:
 
     \skipto Component.onDestruction: {
     \printuntil }
 
-    Users can also click the folder dialog icon to open it. We use
-    an \l{Image} QML type to display the icon. Inside the \l{Image} type,
-    we use a \l TapHandler with the \c onTapped signal handler to call the
-    \c {folderDialog.open()} function:
+    Users can also click the folder dialog icon to open it. Here, an \l{Image}
+    QML type displays the icon. Inside the \l{Image} type, a \l TapHandler with
+    the \c onTapped signal handler calls the \c {folderDialog.open()} function:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipuntil Image {
@@ -84,11 +83,11 @@
 
     \section1 Displaying Images on the Photo Surface
 
-    We use a \l{Rectangle} as a delegate for a \l{Repeater} to provide a frame
-    for each image that the \l FolderListModel finds in the selected folder. We use
-    JavaScript \c Math() methods to place the frames randomly on the photo
-    surface and to rotate them at random angles, as well as to scale the images.
-    The border color indicates the state of interaction:
+    A \l{Rectangle} is used as a delegate for a \l{Repeater} to provide a frame
+    for each image that the \l FolderListModel finds in the selected folder.
+    JavaScript \c Math() methods place the frames randomly on the photo surface,
+    rotate them at random angles, and scale the images. The border
+    color indicates the state of interaction:
 
     \quotefromfile demos/photosurface/photosurface.qml
     \skipto Rectangle
@@ -97,8 +96,8 @@
 
     \section1 Handling Drag and Pinch Gestures, and the Mouse
 
-    We use a \l DragHandler and a \l PinchHandler in each photo frame to
-    handle dragging, pinch zooming and rotation:
+    A \l DragHandler and a \l PinchHandler in each photo frame handle dragging,
+    pinch zooming, and rotation:
 
     \skipto PinchHandler
     \printto HoverHandler
@@ -113,10 +112,10 @@
 
     The \c DragHandler.target property is implicitly set as well, so that you
     can drag a photo with one finger on a touchscreen or touchpad, or with a
-    mouse. In the DragHandler's \c onActiveChanged signal handler, we raise the
-    selected photo frame to the top by increasing the value of its \c z
+    mouse. In the DragHandler's \c onActiveChanged signal handler, the
+    selected photo frame raises to the top by increasing the value of its \c z
     property (while the shared \c highestZ property holds the largest \c z
-    value that has been used so far). When dragging ends, we begin an animation
+    value that has been used so far). When dragging ends, an animation begins
     to keep it moving in the same direction for a little while, slowing down
     and coming to a stop. If you "fling" a photo past the edge of the surface,
     the surface expands to accommodate its new position. You can move around to
@@ -125,12 +124,12 @@
 
     Since you can drag two photos with two fingers via their DragHandlers, and
     you can also pinch one PinchHandler with two fingers, and collections of
-    photos tend to pile on top of each other, we need to adjust
-    \c grabPermissions so that the PinchHandler has priority: when the pinch
+    photos tend to pile on top of each other, you need to adjust \c
+    grabPermissions so that the PinchHandler has priority: when the pinch
     gesture begins, it does not allow the DragHandlers to take over the
     touchpoint grabs again.
 
-    To make the example more interactive on computers without touch devices, we
+    To make the example more interactive on computers without touch devices,
     add the \l HoverHandler on which the border.color above depends, and two
     \l {WheelHandler}{WheelHandlers}. One allows you to hold down the Ctrl key
     and use the mouse wheel to twirl the photo around the mouse cursor; with
@@ -143,5 +142,7 @@
     \printuntil }
     \printuntil }
 
-    \sa {QML Applications}
+    \section1 Source files
+
+    \sa {QML Applications}, {Qt Quick Examples and Tutorials}
 */
