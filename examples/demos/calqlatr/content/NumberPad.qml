@@ -31,14 +31,14 @@ Item {
     }
 
     component DigitButton: CalculatorButton {
-        onReleased: {
+        onClicked: {
             root.digitPressed(text);
             updateDimmed();
         }
     }
 
     component OperatorButton: CalculatorButton {
-        onReleased: {
+        onClicked: {
             root.operatorPressed(text);
             updateDimmed();
         }
@@ -65,14 +65,32 @@ Item {
                 rowSpacing: controller.spacing
                 visible: !isPortraitMode
 
-                OperatorButton { text: "x²" }
-                OperatorButton { text: "⅟x" }
+                OperatorButton {
+                    text: "x²"
+                    Accessible.name: "x squared"
+                }
+                OperatorButton {
+                    text: "⅟x"
+                    Accessible.name: "one over x"
+                }
                 OperatorButton { text: "√" }
-                OperatorButton { text: "x³" }
-                OperatorButton { text: "sin" }
-                OperatorButton { text: "|x|" }
+                OperatorButton {
+                    text: "x³"
+                    Accessible.name: "x cubed"
+                }
+                OperatorButton {
+                    text: "sin"
+                    Accessible.name: "sine"
+                }
+                OperatorButton {
+                    text: "|x|"
+                    Accessible.name: "absolute value"
+                }
                 OperatorButton { text: "log" }
-                OperatorButton { text: "cos" }
+                OperatorButton {
+                    text: "cos"
+                    Accessible.name: "cosine"
+                }
                 DigitButton {
                     text: "e"
                     dimmable: true

@@ -16,6 +16,7 @@ RoundButton {
     // include this text property as the calculator engine
     // differentiates buttons through text. The text is never drawn.
     text: "bs"
+    Accessible.name: "backspace"
 
     property bool dimmable: true
     property bool dimmed: false
@@ -56,7 +57,7 @@ RoundButton {
         return "images/backspace.svg";
     }
 
-    onReleased: {
+    onClicked: {
         root.operatorPressed("bs");
         updateDimmed();
     }

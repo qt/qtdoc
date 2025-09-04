@@ -160,12 +160,14 @@ Item {
                         font.pixelSize: display.fontSize
                         color: display.qtGreenColor
                         text: parent.operator
+                        Accessible.name: parent.operator
                     }
                     Text {
                         font.pixelSize: display.fontSize
                         anchors.right: parent.right
                         anchors.rightMargin: 16
                         text: parent.operand
+                        Accessible.name: parent.operand
                         color: "white"
                     }
                 }
