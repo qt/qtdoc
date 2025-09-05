@@ -5,7 +5,7 @@ import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
-import Assets.Downloader
+import Qt.labs.assetdownloader
 import CarRendering
 
 Window {
