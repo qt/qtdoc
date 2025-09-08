@@ -410,6 +410,8 @@
         \li Added new i18n examples to the documentation.
         \li lrelease now provides the -fail-on-unfinished option to fail the
             build if there are unfinished translations.
+        \li Deprecated using \c{//=} metastring comments to set IDs for
+            text-based translations.
     \endlist
 
     \section1 Platform Changes

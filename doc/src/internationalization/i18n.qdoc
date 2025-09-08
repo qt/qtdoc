@@ -714,11 +714,9 @@
 
     \snippet snippets/code/src_corelib_kernel_qobject.cpp meta data
 
-    In C++, you use an equals sign to add a unique identifier:
-
-    \code
-    //= <id>
-    \endcode
+    \note The use of \c{//=} metastring comments to set IDs for text-based
+    translations is deprecated in Qt 6.10, and will be removed in the
+    upcoming versions.
 
     You can use the keyword \e TRANSLATOR for translator comments.
     Metadata appearing right in front of the TRANSLATOR keyword applies to
