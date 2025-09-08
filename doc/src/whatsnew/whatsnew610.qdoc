@@ -395,6 +395,26 @@
           \l {notranslate-command}{\\notranslate-command}.
     \endlist
 
+    \section2 Qt Linguist
+    \list
+        \li Added support for organizing ID-based translations with custom
+            labels in Qt Linguist and lupdate.
+        \li Introduced a QML form preview feature in Qt Linguist for visual
+            validation of translations in context.
+        \li Updated Qt Linguist with a refreshed UI, including new icons,
+            improved color palette, and better handling of dark mode.
+        \li lupdate and lrelease now support mixing ID-based and
+            text-based translations within the same document.
+        \li Removed the Clang-based parser from lupdate.
+        \li Unified support for meta strings (comments like //: and //~) across
+            different programming languages in lupdate.
+        \li Added new i18n examples to the documentation.
+        \li lrelease now provides the -fail-on-unfinished option to fail the
+            build if there are unfinished translations.
+        \li Deprecated using \c{//=} metastring comments to set IDs for
+            text-based translations.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Build System Changes

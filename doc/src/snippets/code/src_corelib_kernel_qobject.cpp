@@ -424,7 +424,6 @@ if (isSignalConnected(QMetaMethod::fromSignal(&MyObject::valueChanged))) {
 
 //! [meta data]
 //: This is a comment for the translator.
-//= qtn_foo_bar
 //~ loc-layout_id foo_dialog
 //~ loc-blank False
 //~ magic-stuff This might mean something magic.
