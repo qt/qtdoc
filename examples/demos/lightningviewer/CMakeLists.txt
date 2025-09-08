@@ -10,7 +10,7 @@ find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.6)
 
-add_subdirectory(LightningViewer)
+add_subdirectory(LightningViewerModule)
 add_subdirectory(LightningViewerStyle)
 
 qt_add_executable(lightningviewer WIN32
@@ -20,7 +20,7 @@ qt_add_executable(lightningviewer WIN32
 target_link_libraries(lightningviewer PRIVATE
     Qt6::Quick
     Qt6::QuickControls2
-    LightningViewer
+    LightningViewerModule
     LightningViewerStyle
 )
 

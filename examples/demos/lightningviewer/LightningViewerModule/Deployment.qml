@@ -3,7 +3,7 @@
 //
 // This file is not actually loaded by the application, but is used to tell qmlimportscanner that
 // it should deploy the custom plugins and their backing libraries.
-import LightningViewer
+import LightningViewerModule
 import LightningViewerStyle
 
 Item {}
