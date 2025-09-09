@@ -4,7 +4,6 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import "calculator.js" as CalcEngine
 import QtQuick.Layouts
 
 Item {
