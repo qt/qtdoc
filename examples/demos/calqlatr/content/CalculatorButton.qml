@@ -47,8 +47,8 @@ RoundButton {
 
     background: Rectangle {
         radius: button.buttonRadius
-        color: getBackgroundColor()
-        border.color: getBorderColor()
+        color: button.getBackgroundColor()
+        border.color: button.getBorderColor()
     }
 
     contentItem: Text {
@@ -56,7 +56,7 @@ RoundButton {
         font.pixelSize: button.fontSize
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: getTextColor()
+        color: button.getTextColor()
         Behavior on color {
             ColorAnimation {
                 duration: 120

@@ -57,14 +57,9 @@ RoundButton {
         return "images/backspace.svg";
     }
 
-    onClicked: {
-        root.operatorPressed("bs");
-        updateDimmed();
-    }
-
     background: Rectangle {
         radius: button.buttonRadius
-        color: getBackgroundColor()
-        border.color: getBorderColor()
+        color: button.getBackgroundColor()
+        border.color: button.getBorderColor()
     }
 }
