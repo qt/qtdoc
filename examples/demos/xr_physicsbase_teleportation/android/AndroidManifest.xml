@@ -3,8 +3,12 @@
   https://developer.oculus.com/documentation/native/android/mobile-native-manifest/
   https://developer.oculus.com/resources/publish-mobile-manifest/
 -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.qtproject.example.xr_physicsbase_teleportation"
-    android:installLocation="auto" android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
+    android:versionCode="-- %%INSERT_VERSION_CODE%% --"
+    android:versionName="-- %%INSERT_VERSION_NAME%% --">
+    <!-- %%INSERT_PERMISSIONS -->
+    <!-- %%INSERT_FEATURES -->
     <uses-permission android:name="org.khronos.openxr.permission.OPENXR"/>
     <uses-permission android:name="org.khronos.openxr.permission.OPENXR_SYSTEM"/>
     <uses-feature android:name="android.hardware.vr.headtracking" android:required="true" android:version="1" />
@@ -27,7 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="org.khronos.openxr.intent.category.IMMERSIVE_HMD"/>
             </intent-filter>
-            <meta-data android:name="android.app.lib_name" android:value="xr_physicsbase_teleportation"/>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="-- %%INSERT_APP_LIB_NAME%% --" />
         </activity>
         <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.qtprovider"
             android:exported="false" android:grantUriPermissions="true">
