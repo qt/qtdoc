@@ -2,36 +2,21 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \page qtquick-tutorial-alarms.html
-    \title Getting Started Programming with Qt Quick
+    \title Getting Started programming with Qt Quick: An Alarm Application
     \brief A tutorial for Qt Quick based on an alarms application.
+    \examplecategory {Application Examples}
+    \example tutorials/alarms
+    \meta {tag} {quick,alarm,getting started}
 
     This tutorial shows how to develop a simple alarm application as
     an introduction to Qt Quick and Qt Quick Controls.
 
+    In this tutorial you can enter, edit, or delete alarms. An alarm can trigger
+    on a given date, and you can set it to repeat on a series of subsequent days.
     This application is similar to the alarm application usually
-    found on an Android phone. Its features let you enter, edit,
-    or delete alarms. An alarm can trigger on a given date, and you
-    can set it to repeat on a series of subsequent days.
+    found on an Android phone.
 
-    The main screen shows the list of saved alarms:
-
-    \image mainscreen.png "Alarms application"
-
-    The detail screen lets you edit or delete existing alarms:
-
-    \image detailscreen.png "Detail screen"
-
-    The dialog screen is used for adding new alarms. It pops up
-    when you click on the "+" RoundButton on the bottom of the main
-    screen:
-
-    \image addalarms.png "Add alarms"
-
-    The source files are located in the qtdoc repository.
-    You can either fetch the Qt sources from the Qt Project,
-    or install them as part of Qt. The application is also available
-    in the example list of \QC's \uicontrol Welcome mode.
+    \include examples-run.qdocinc
 
     \section1 Creating the Alarms Project
 
@@ -56,10 +41,14 @@
     \uicontrol{Qt Quick Application} > \uicontrol{Choose}.
     Type \e alarms in the \uicontrol{Name} field, and follow the instructions
     of the wizard.
+    Use Qt Quick Application (compact) if you want to use other build systems
+    than CMake or Qt versions lower than 6.
 
-    \image alarms2.png "New Project dialog"
+    \image alarms2.png
+           {Setting up the new project}
 
-    \image alarms3.png "Project Location"
+    \image alarms3.png
+           {Setting the project Location}
 
     The Qt Quick application wizard creates a project that contains
     the following source files:
@@ -206,7 +195,8 @@
 
     The dialog for new alarms:
 
-    \image addalarms.png "Add alarms"
+    \image addalarms.png
+           {Setting up the alarms}
 
     All fields are entered using \l {Tumbler} QML types. If you press \c OK,
     the values selected in the Tumblers are written to \c alarmModel.
@@ -221,6 +211,7 @@
     screen.
 
     \image detailscreen.png
+          {Different alarms settings for different days}
 
     Clicking on an alarm sets \c root.checked to \c true, which makes
     visible the fields of the detail screen.
@@ -250,12 +241,14 @@
     \printuntil root.ListView.view.model.remove
     \printuntil }
 
-    \section2 Summary
+    \section1 Next Steps
 
     The app has no code for adding sound or vibration to the alarm, nor does
-    it store the alarms in any format or database. Maybe it could be an
-    interesting coding project to add those features. Storing the data
-    could be done quickly and easily in \l{JSON Support in Qt}{JSON format}.
+    it store the alarms in any format or database. Challenge yourself by adding
+    these features to the project. Storing the data could be done in
+    \l{JSON Support in Qt}{JSON format}.
 
-    \sa {JSON Support in Qt}
+    \section1 Source files
+
+    \sa {JSON Support in Qt}, {All Qt Examples}, {Qt Quick Examples and Tutorials}
 */
