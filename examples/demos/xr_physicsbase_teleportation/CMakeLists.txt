@@ -2,23 +2,16 @@
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.14)
+
 project(XRPhysicsBaseTeleportationDemo LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
-if(NOT DEFINED INSTALL_EXAMPLESDIR)
-    set(INSTALL_EXAMPLESDIR "examples")
-endif()
-
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/vr/${PROJECT_NAME}")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D Quick3DPhysics Quick3DXr Multimedia)
 
-qt6_policy(SET QTP0002 NEW)
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(${PROJECT_NAME}
     main.cpp
-    android/AndroidManifest.xml
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -33,7 +26,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Quick3D
     Qt::Quick3DPhysics
     Qt::Quick3DXr
-    Qt6::Multimedia
+    Qt::Multimedia
 )
 
 set(qml_singletons
@@ -46,6 +39,16 @@ set(qml_singletons
 
 set_source_files_properties(${qml_singletons}
     PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+
+if(ANDROID)
+    set_target_properties(${PROJECT_NAME}  PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+        QT_ANDROID_PACKAGE_NAME "io.qt.demo.${PROJECT_NAME}"
+        QT_ANDROID_TARGET_SDK_VERSION 34
+        QT_ANDROID_VERSION_CODE 10
+        QT_ANDROID_VERSION_NAME "1.0"
+    )
+endif()
 
 # Resources:
 qt_add_qml_module(${PROJECT_NAME}
@@ -171,11 +174,18 @@ qt_add_qml_module(${PROJECT_NAME}
 
 
 install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
-    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
-    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-if(ANDROID)
-    set_property(TARGET ${PROJECT_NAME} APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
-endif()
+qt_generate_deploy_qml_app_script(
+    TARGET ${PROJECT_NAME}
+    OUTPUT_SCRIPT deploy_script
+    MACOS_BUNDLE_POST_BUILD
+    NO_UNSUPPORTED_PLATFORM_ERROR
+    DEPLOY_USER_QML_MODULES_ON_UNSUPPORTED_PLATFORM
+)
+install(SCRIPT ${deploy_script})
+
+
