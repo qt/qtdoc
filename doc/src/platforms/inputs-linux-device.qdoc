@@ -142,6 +142,12 @@
   If the default built-in keymap is not sufficient, you can specify a different
   one via the \c keymap parameter.
 
+  \note As with other configuration files for \c eglfs, these legacy keymap
+  files are considered trusted content that is fully controlled and managed by
+  the device or platform creator. They are not expected to be exposed to the
+  end-users of the device, and are not meant to allow the loading of
+  user-provided keymap files.
+
   \note Special system key combinations, such as console switching (\uicontrol{Ctrl+Alt+Fx}) or
   zap (\uicontrol{Ctrl+Alt+Backspace}) are not currently supported and are ignored.
 
