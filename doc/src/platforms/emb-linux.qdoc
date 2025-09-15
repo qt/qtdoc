@@ -416,6 +416,10 @@
   Most of these configuration options apply to all KMS/DRM-based backends,
   regardless of the buffer management technology (GBM or EGLStreams).
 
+  \note Configurations files are considered trusted content that is fully
+  controlled and managed by the device or platform creator. They are not
+  expected to be exposed to the end-user in any form.
+
   Here's an example configuration:
 
   \badcode
