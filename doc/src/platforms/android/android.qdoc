@@ -230,6 +230,8 @@
 
     \section4 Linux
 
+    \target emulator dependencies
+
     The following dependencies are needed for using tools such as \c adb or \c gdb which
     can be used by \QC:
 
@@ -237,8 +239,9 @@
     sudo apt-get install libstdc++6 libncurses5
     \endcode
 
-    \target emulator dependencies
-    To run the Android emulator, the following dependencies are also necessary:
+    \note Hardware acceleration is required for acceptable Android emulator performance.
+    Without it, the emulator uses software CPU emulation, which runs extremely slowly.
+    See \l{Android: Emulator Acceleration} for more information.
 
     \section3 Testing the Setup
 
