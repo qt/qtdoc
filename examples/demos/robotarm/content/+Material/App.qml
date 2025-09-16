@@ -1,8 +1,8 @@
-// Copyright (C) 2022 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Material
 import RobotArm
 
 ApplicationWindow {
@@ -15,7 +15,10 @@ ApplicationWindow {
     visible: true
     title: "RobotArm"
 
+    Material.theme: screen.darkMode ? Material.Dark : Material.Light
+
     MainScreen {
+        id: screen
         anchors.fill: parent
     }
 }
