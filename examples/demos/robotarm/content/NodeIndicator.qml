@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls.Material as MaterialControls
+import QtQuick.Controls
 import QtQuick3D
 
 Item {
@@ -19,22 +19,18 @@ Item {
 
     visible: x > 0 && y > 0
 
-    MaterialControls.Label {
+    Label {
         id: label
         enabled: root.isFocused
         anchors.bottom: rect.top
         anchors.horizontalCenter: rect.horizontalCenter
     }
 
-    Rectangle {
+    Circle {
         id: rect
+        isFocused: root.isFocused
         width: root.size
         height: root.size
-        color: "Transparent"
-        radius: width / 2
-        border.width: 2
-        border.color: root.isFocused ? MaterialControls.Material.accentColor : MaterialControls.Material.secondaryTextColor
-
         anchors.horizontalCenter: parent.left
         anchors.verticalCenter: parent.top
     }

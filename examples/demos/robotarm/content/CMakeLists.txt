@@ -8,8 +8,12 @@ qt6_add_qml_module(robotarm_content
     DEPENDENCIES
         TARGET RobotArm
     QML_FILES
+        +Material/App.qml
+        +Material/Circle.qml
+        +Material/LabeledSlider.qml
         App.qml
-        LabeledSlider.ui.qml
+        Circle.qml
+        LabeledSlider.qml
         MainScreen.ui.qml
         NodeIndicator.qml
         RoboticArm.ui.qml
