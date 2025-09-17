@@ -1,149 +1,321 @@
-// Copyright (C) 2023 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
 \page android-publishing-to-googleplay.html
 \title Publishing to Google Play
-\brief Provides instructions to prepare your application for publishing.
+\brief A guide to configure, build, and publish your app with Google Play Console.
 \ingroup android-platform-extra-topics
 \previouspage android-3rdparty-libs.html
 \nextpage Supporting Google Emoji Font Policy
 
-\l{Qt for Android} provides a complete solution to develop, build, and package
-your applications for Android. Most of these tasks, especially packaging and
-deployment, are handled by \QC, providing a rich developer experience.
+\l{\Q4A} provides everything you need to develop, build, and package
+Android apps. This guide shows you how to configure, build, and publish your app
+to Google Play Console.
 
-Every time you run the application using \QC, an Android Application
-Package (APK) is created and deployed onto the target of your choice
-(device or emulator). With a few minor changes to packaging settings, you can
-publish your application on Google Play.
+\section1 Configuring your app
 
-\section1 Building the App
+Configure your Android app settings using CMake APIs or by editing the manifest
+directly. Android apps require various settings in \c{AndroidManifest.xml} and
+Gradle build files. Qt 6 provides convenient CMake APIs to manage these from
+your project.
 
-Once your app has been developed and you want to move forward to publish it
-to Google Play, follow these instructions to create an \c{.apk} or \c{.aab}
-that can go live on Google Play:
+\section2 Set essential app properties
 
-    \list 1
-        \li Open your project with \QC choosing a \c{Release Build}.
+Define your app's package name, version, and Android SDK requirements:
 
-        \li Select \uicontrol Projects > \uicontrol Build > \uicontrol {Build Android APK}
-        > \uicontrol {Create Templates} to create the Android package template files
-        such as \c{AndroidManifest.xml}, which is the main file of concern here.
+\badcode
+set_target_properties(${appname} PROPERTIES
+    QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+    QT_ANDROID_PACKAGE_NAME "io.qt.calqlatr"
+    QT_ANDROID_APP_NAME "Calqlatr"
+    QT_ANDROID_TARGET_SDK_VERSION 35
+    QT_ANDROID_MIN_SDK_VERSION 28
+    QT_ANDROID_VERSION_NAME "1.0"
+    QT_ANDROID_VERSION_CODE 10
+)
+\endcode
 
-        \li Check for the following settings in \c{AndroidManifest.xml}:
-        \list
-            \li Set \uicontrol{Application name} and \uicontrol{Application icon}.
-            \li Set the app's name using \c {android:label} under the manifest's
-            \c application section.
-            \li Set the app's version code and name via CMake's properties
-            \l {QT_ANDROID_VERSION_NAME} and \l {QT_ANDROID_VERSION_CODE}.
-            For qmake, use \l {ANDROID_VERSION_NAME} and \l {ANDROID_VERSION_CODE}.
-            For qmake, we will use \l {ANDROID_VERSION_CODE} below, to work around
-            publishing multi-ABIs apps.
-        \endlist
+\note Check the \l{Android: Target API level requirements}{current Google Play target SDK version requirement} and set \c{QT_ANDROID_TARGET_SDK_VERSION} accordingly. You can target higher versions than the minimum requirement.
 
-        See \l{Qt for Android Manifest File Configuration} for more information.
+\section2 Configure app icons
 
-        \li Set \c minimum and \c{target} SDK versions according to your app's needs.
-        This can be done using the CMake properties \l QT_ANDROID_TARGET_SDK_VERSION
-        and \l QT_ANDROID_MIN_SDK_VERSION. Or for \c qmake \l ANDROID_TARGET_SDK_VERSION
-        \l ANDROID_MIN_SDK_VERSION.
+Set your app icon and create the icon files in the correct directories:
 
-        \note As before with Qt 5.15, you can specify these settings in the
-        \c {AndroidManifest.xml}. Be aware that the CMake and qmake properties
-        mentioned above will override these if set there. See \l{Android: App Versioning}
-        for more information on setting these in \c build.gradle.
+\badcode
+set_target_properties(${appname} PROPERTIES
+    QT_ANDROID_APP_ICON "@drawable/ic_launcher"
+)
+\endcode
 
-        \li Set up a \l{Android: Android keystore system}{keystore} to sign your
-        package. You can create a new keystore if you do not have one. For more
-        information, see \l{\QC: Android Deploy Configuration}
-        {Specifying Settings for Packages}.
+Place your icon files in:
 
-        \li Locate the generated package:
+\badcode
+<QT_ANDROID_PACKAGE_SOURCE_DIR>/res/drawable-<dpi>
+\endcode
 
-        \list
-        \li For APK packages, locate the \c{.apk} package at:
+You can create icon files using:
+\list
+\li \QC Android Icon Generator
+\li \l{Android Studio: Image Asset Studio}
+\li Online Android icon generators
+\endlist
 
-            \badcode
-            <build_path>/android-build/build/outputs/apk/release/android-build-release.apk
-            \endcode
+\section2 Optimize plugin packaging
 
-            \note In \QC, select \uicontrol{Projects} > \uicontrol{Build}
-                > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
-                \uicontrol{Open package location after build} to build the
-                application's \c{.apk} and open the directory containing the
-                package.
+Reduce your app size by specifying which plugins to include. The
+\l{The androiddeployqt Tool}{androiddeployqt} tool may include plugins your app
+doesn't need at runtime:
 
-        \li For AAB packages, select \uicontrol{Projects} > \uicontrol{Build}
-            > \uicontrol{Build Steps} > \uicontrol{Build Android APK} >
-            \uicontrol{Build .aab (Android App Bundle)} for \QC to generate
-            the \c{.aab} file, then locate the package at:
+\badcode
+qt_import_plugins(${appname}
+    INCLUDE_BY_TYPE imageformats Qt::QSvgPlugin Qt::QJpegPlugin
+    EXCLUDE_BY_TYPE iconengines networkinformation tls platforminputcontexts qmltooling
+)
+\endcode
 
-            \badcode
-            <build_path>/android-build/build/outputs/bundle/release/android-build-release.aab
-            \endcode
+\note The \l{qt_import_plugins()} function only includes plugins from your
+target's linked dependencies.
 
-        \endlist
-    \endlist
+\section3 Related documentation
+\list
+\li \l{\Q4A Manifest File Configuration}
+\li \l{The androiddeployqt Tool}
+\endlist
 
-\section1 Uploading the App to Google Play Store
+\section1 Building your app
 
-    Log into the \l{Google Play Developer Console} and upload the \c{.aab} files,
-    along with a description and screen captures resembling the usage of your application.
+Build your app for release and prepare it for Google Play Console submission.
 
-    \section2 Multi-ABI Bundles
+\section2 Configure release build
 
-    Uploading one \c {.aab} with all the supported architectures is enough for
-    Qt versions that support building a multi-ABI bundle. Qt \QtVer supports
-    building multi-ABI bundles with \b only with CMake. For more information,
-    see \l {QT_ANDROID_ABIS}.
+Google Play requires release builds. Debug information can be included as separate files and is encouraged for better crash reporting:
 
-    \section2 Single-ABI bundles
+\if defined(onlinedocs)
+  \tab {release-build}{tab-qtcreator}{via \QC}{checked}
+  \tab {release-build}{tab-cmake}{via CMake}{}
+  \tabcontent {tab-qtcreator}
+\else
+  \section3 via \QC
+\endif
+\list 1
+\li Open your project in \QC
+\li Select \uicontrol{Projects} from the sidebar
+\li Choose \uicontrol{Release} build configuration
+\endlist
+\if defined(onlinedocs)
+  \endtabcontent
+  \tabcontent {tab-cmake}
+\else
+  \section3 via CMake
+\endif
+\badcode
+qt-cmake -DCMAKE_BUILD_TYPE=Release
+\endcode
+\if defined(onlinedocs)
+  \endtabcontent
+\endif
 
-        However, publishing your app requires additional steps for Qt versions
-        that don't have the multi-ABI build support. \c qmake builds in Qt \QtVer
-        fall into this category.
+Ensure debuggable is set to \c{false} in your manifest or Gradle configuration.
 
-        To publish your app that is built using a single ABI kit, you need
-        to make sure that each ABI uses a different internal version code.
-        The version code is an internal non-public identifier for your app's
-        release. Build each one of the architectures you want to support
-        and set a different version code for each ABI. This can be done
-        as follows for qmake:
+\section2 Enable multi-ABI support
 
-        \badcode
-        ANDROID_VERSION_CODE = <unique_version>
-        \endcode
+Build your app for multiple device architectures to maximize compatibility:
 
-        The app developer can use a specific scheme for the version code. For example,
-        the code could have chunks for the platform, the ABI, and the actual
-        version. Then, a sample scheme would be \c {<Platform><ABI><AppVersion>}:
+\if defined(onlinedocs)
+  \tab {multi-abi}{tab-qtcreator2}{via \QC}{checked}
+  \tab {multi-abi}{tab-cmake2}{via CMake}{}
+  \tabcontent {tab-qtcreator2}
+\else
+  \section3 via \QC
+\endif
+\list 1
+\li Go to \uicontrol{Projects} > \uicontrol{Build}
+\li In the CMake configuration settings, set \c{QT_ANDROID_BUILD_ALL_ABIS} to \c{ON}
+\endlist
+\if defined(onlinedocs)
+  \endtabcontent
+  \tabcontent {tab-cmake2}
+\else
+  \section3 via CMake
+\endif
+\badcode
+qt-cmake -DQT_ANDROID_BUILD_ALL_ABIS:BOOL=ON ...
+\endcode
+\if defined(onlinedocs)
+  \endtabcontent
+\endif
 
-        \list
-        \li Platform:
-            \list
-                \li 1 for Arm
-                \li 2 for Intel
-            \endlist
-        \li Architecture:
-            \list
-                \li 32 for 32 bit
-                \li 64 for 64 bit
-            \endlist
-        \endlist
+\section2 Create signing keys
 
-        The resulting version code for release 1.0 for arm64-v8a ABI,
-        would be \c {16410}.
+Google Play Console requires signed app releases. Google recommends using
+Google Play managed signing with two keys:
 
-        For more information, see Google's documentation on
-        \l {Android: App Versioning}{app versioning}.
+\list
+\li \b{Signing key}: Generated and managed by Google when you create your app
+    in Google Play Console
+\li \b{Upload key}: Managed locally to sign app bundles for upload
+\endlist
 
-        The following screenshot shows an example of an app targeting 4 ABIs,
-        while each package uses a unique version code, which is different from
-        the version name that is the public version string.
+\if defined(onlinedocs)
+  \tab {signing-keys}{tab-qtcreator3}{via \QC}{checked}
+  \tab {signing-keys}{tab-cmdline}{via Command Line}{}
+  \tabcontent {tab-qtcreator3}
+\else
+  \section3 via \QC
+\endif
+\list 1
+\li Open \uicontrol{Projects} > \uicontrol{Build}
+\li Select \uicontrol{Build Android APK}
+\li Click \uicontrol{Create} under \uicontrol{Application Signature}
+\li Fill in the keystore details
+\li Enable \uicontrol{Sign package}
+\endlist
 
-        \image android-single-abis.png
+See \l{\QC: Signing Android Packages}{Signing Android Packages} for detailed
+instructions.
+\if defined(onlinedocs)
+  \endtabcontent
+  \tabcontent {tab-cmdline}
+\else
+  \section3 via Command Line
+\endif
+Generate a keystore:
+\badcode
+keytool -genkey -keyalg RSA -keystore upload-key.keystore \
+    -alias play_apps \
+    -storepass <password> -keypass <key-password> \
+    -dname "CN=<n>, OU=<unit>, O=<organisation>, L=<city>, ST=<state>, C=<country>"
+\endcode
 
-    \sa {Deploying an Application on Android}.
+Enable signing:
+\badcode
+qt-cmake -DQT_ANDROID_SIGN_APK:BOOL=ON -DQT_ANDROID_SIGN_AAB:BOOL=ON ...
+\endcode
+
+Set the environment variables:
+\badcode
+export QT_ANDROID_KEYSTORE_PATH=upload-key.keystore
+export QT_ANDROID_KEYSTORE_ALIAS=play_apps
+export QT_ANDROID_KEYSTORE_STORE_PASS=<password>
+export QT_ANDROID_KEYSTORE_KEY_PASS=<key-password>
+\endcode
+\if defined(onlinedocs)
+  \endtabcontent
+\endif
+
+\section2 Generate app bundles (AAB)
+
+Google Play Console now primarily accepts Android App Bundles (AAB) instead of
+APKs. AAB packages allow Google Play to optimize app delivery for each device.
+
+\if defined(onlinedocs)
+  \tab {generate-aab}{tab-qtcreator4}{via \QC}{checked}
+  \tab {generate-aab}{tab-cmake4}{via CMake}{}
+  \tabcontent {tab-qtcreator4}
+\else
+  \section3 via \QC
+\endif
+\list 1
+\li Go to \uicontrol{Projects} > \uicontrol{Build}
+\li Select \uicontrol{Build Android APK}
+\li Under \uicontrol{Advanced Actions}, enable \uicontrol{Build Android App Bundle}
+\li Optionally enable \uicontrol{Open package location after build}
+\li Build your project
+\endlist
+\if defined(onlinedocs)
+  \endtabcontent
+  \tabcontent {tab-cmake4}
+\else
+  \section3 via CMake
+\endif
+Generate an AAB:
+\badcode
+cd build
+cmake --build . --target aab
+\endcode
+
+For a specific target:
+\badcode
+cmake --build . --target appname_make_aab
+\endcode
+
+Your AAB file is saved to:
+\c{/<build-path>/android-build-appname/build/outputs/bundle/release/}
+\if defined(onlinedocs)
+  \endtabcontent
+\endif
+
+\section3 Related documentation
+\list
+\li \l{Android: Use Play App Signing}{Google's Play App Signing guide}
+\li \l{Android: Android App Bundle FAQ}{Android App Bundle FAQ}
+\endlist
+
+\section1 Publishing to Google Play Console
+
+After building and signing your app, publish it to Google Play Console for
+distribution.
+
+\section2 Prepare for upload
+
+Before uploading:
+\list 1
+\li Test your app thoroughly on different devices and Android versions
+\li Prepare promotional materials (screenshots, descriptions, feature graphics)
+\li Review Google Play's content policies and guidelines
+\endlist
+
+\section2 Create your app in Google Play Console
+
+\list 1
+\li Sign in to \l{Google Play Console}
+\li Create a new app or select an existing one
+\li Complete the app details and content rating questionnaire
+\li Set up pricing and distribution settings
+\endlist
+
+To create an account if you don't have one, see Google's
+\l{Android: How to get started with Play Console}{Play Console setup guide}.
+
+\section2 Upload your app bundle
+
+\list 1
+\li Navigate to \uicontrol{Release} > \uicontrol{Production}
+\li Create a new release
+\li Upload your signed AAB file
+\li Add release notes
+\li Review and roll out the release
+\endlist
+
+\section3 Resources
+\list
+\li \l{Android: Create and set up your app in Play Console}{Create and set up your app}
+\li \l{Android: Publish your app in Play Console}{Google's app publishing guide}
+\li \l{Android: Google Play Console webinars}{Google Play Console webinars}
+\endlist
+
+\section1 Special considerations
+
+\section2 Single-ABI builds for legacy projects
+
+For Qt versions that don't support multi-ABI builds (such as qmake projects),
+build each architecture separately with different version codes:
+
+\badcode
+ANDROID_VERSION_CODE = <unique_version>
+\endcode
+
+Consider using a versioning scheme like \c{<Platform><ABI><AppVersion>}:
+\list
+\li Platform: 1 for Arm, 2 for Intel
+\li Architecture: 32 for 32-bit, 64 for 64-bit
+\endlist
+
+Example: Release 1.0 for arm64-v8a uses version code \c{16410}.
+
+See Google's \l{Android: App Versioning}{app versioning} documentation for
+details.
+
+\sa {Deploying an Application on Android}
 */
