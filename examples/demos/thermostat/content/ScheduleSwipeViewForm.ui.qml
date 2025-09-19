@@ -31,6 +31,7 @@ Item {
         height: 28
         spacing: 26
         orientation: ListView.Horizontal
+        clip: true
         delegate: Label {
             id: labelDelegate
 
