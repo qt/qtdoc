@@ -42,7 +42,6 @@ target_link_libraries(photosurfaceexample PRIVATE
 
 qt_add_qml_module(photosurfaceexample
     URI photosurface
-    VERSION 1.0
     QML_FILES
       "photosurface.qml"
       "resources/MomentumAnimation.qml"

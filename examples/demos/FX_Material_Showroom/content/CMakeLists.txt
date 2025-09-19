@@ -2,7 +2,6 @@ qt_add_library(FXMaterialShowroomContent STATIC)
 
 qt_add_qml_module(FXMaterialShowroomContent
     URI "content"
-    VERSION 1.0
     QML_FILES
         AmbientEffect.ui.qml
         App.qml

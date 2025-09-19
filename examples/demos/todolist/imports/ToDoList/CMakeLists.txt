@@ -19,7 +19,6 @@ set_source_files_properties(AppSettings.qml
 qt_add_library(ToDoList STATIC)
 qt6_add_qml_module(ToDoList
     URI "ToDoList"
-    VERSION 1.0
     QML_FILES
         AppSettings.qml
         Constants.qml

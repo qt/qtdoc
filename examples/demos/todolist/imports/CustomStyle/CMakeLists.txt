@@ -6,7 +6,6 @@ qt6_add_qml_module(CustomStyle
     URI "CustomStyle"
     DEPENDENCIES
         TARGET ToDoList
-    VERSION 1.0
     QML_FILES
         Button.qml
         CheckBox.qml

@@ -19,7 +19,6 @@ set_source_files_properties(Units.qml
 
 qt_add_qml_module(appqtgraphscsv
     URI qtgraphscsv
-    VERSION 1.0
     QML_FILES
         Main.qml
         Units.qml

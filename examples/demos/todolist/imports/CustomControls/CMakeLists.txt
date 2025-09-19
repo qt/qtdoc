@@ -4,7 +4,6 @@
 qt_add_library(CustomControls STATIC)
 qt6_add_qml_module(CustomControls
     URI "CustomControls"
-    VERSION 1.0
     DEPENDENCIES
         TARGET ToDoList
     QML_FILES

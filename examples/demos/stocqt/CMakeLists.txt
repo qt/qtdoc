@@ -41,7 +41,6 @@ target_include_directories(appStocQt PRIVATE src)
 qt_add_qml_module(appStocQt
     URI StocQt
     NO_RESOURCE_TARGET_PATH
-    VERSION 1.0
     QML_FILES Main.qml
     SOURCES
         src/apihandler.cpp src/apihandler.h

@@ -10,7 +10,6 @@ set_source_files_properties(LightningViewConfig.qml MapType.qml
 
 qt_add_qml_module(LightningViewerModule
     URI LightningViewerModule
-    VERSION 1.0
     SOURCES
         controller.h controller.cpp
         laststrikeinfo.h

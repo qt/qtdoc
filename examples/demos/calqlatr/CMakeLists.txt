@@ -22,7 +22,6 @@ target_link_libraries(calqlatr PRIVATE
 
 qt_add_qml_module(calqlatr
     URI demos.calqlatr
-    VERSION 1.0
     QML_FILES
         "Main.qml"
         "content/ApplicationState.qml"

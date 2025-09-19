@@ -31,7 +31,6 @@ qt_add_executable(appqtjenny_consumer
 
 qt_add_qml_module(appqtjenny_consumer
     URI qtjenny_consumer
-    VERSION 1.0
     QML_FILES
         Main.qml
     SOURCES

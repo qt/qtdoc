@@ -33,7 +33,6 @@ target_include_directories(hangman PRIVATE
 
 qt_add_qml_module(hangman
     URI examples.Hangman
-    VERSION  1.0
     NO_RESOURCE_TARGET_PATH
     QML_FILES
       qml/GameView.qml

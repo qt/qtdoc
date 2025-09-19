@@ -7,8 +7,6 @@ qt6_add_qml_module(
     stocqt_content
     URI
     "content"
-    VERSION
-    1.0
     QML_FILES
         FavoriteChart.qml
         FavoriteView.qml

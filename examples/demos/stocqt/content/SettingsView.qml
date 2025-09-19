@@ -1,7 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-import QtQuick 6.5
-import QtQuick.Controls 6.5
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import StocQt
 

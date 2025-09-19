@@ -29,7 +29,6 @@ set_source_files_properties(Database.qml
 qt_add_library(Thermostat STATIC)
 qt_add_qml_module(Thermostat
     URI "Thermostat"
-    VERSION 1.0
     QML_FILES
         AppSettings.qml
         Constants.qml

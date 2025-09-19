@@ -4,7 +4,6 @@
 qt_add_library(robotarm_content STATIC)
 qt6_add_qml_module(robotarm_content
     URI "content"
-    VERSION 1.0
     DEPENDENCIES
         TARGET RobotArm
     QML_FILES

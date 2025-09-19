@@ -15,7 +15,6 @@ qt_add_executable(MediaPlayerApp
 
 qt_add_qml_module(MediaPlayerApp
     URI "io.qt.filenameprovider"
-    VERSION 1.0
 )
 
 qt_add_ios_ffmpeg_libraries(MediaPlayerApp)
