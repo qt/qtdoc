@@ -30,6 +30,7 @@ Item {
         width: root.width
         height: 28
         spacing: 26
+        clip: true
         delegate: Label {
             id: labelDelegate
 

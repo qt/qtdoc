@@ -29,9 +29,9 @@ Item {
         width: parent.width
         height: 28
         spacing: 26
+        clip: true
         delegate: Label {
             id: labelDelegate
-
             required property Room modelData
             required property int index
 
