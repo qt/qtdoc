@@ -73,28 +73,28 @@ SettingsForm {
 
     //! [synchronizer]
     Synchronizer {
-         sourceObject: coffeeConfig
+         sourceObject: settingsForm.coffeeConfig
          sourceProperty: "sugarAmount"
-         targetObject: sugarSlider
+         targetObject: settingsForm.sugarSlider
          targetProperty: "value"
     }
     //! [synchronizer]
     Synchronizer {
-         sourceObject: coffeeConfig
+         sourceObject: settingsForm.coffeeConfig
          sourceProperty: "foamAmount"
-         targetObject: foamSlider
+         targetObject: settingsForm.foamSlider
          targetProperty: "value"
     }
     Synchronizer {
-         sourceObject: coffeeConfig
+         sourceObject: settingsForm.coffeeConfig
          sourceProperty: "milkAmount"
-         targetObject: milkSlider
+         targetObject: settingsForm.milkSlider
          targetProperty: "value"
     }
     Synchronizer {
-         sourceObject: coffeeConfig
+         sourceObject: settingsForm.coffeeConfig
          sourceProperty: "coffeeAmount"
-         targetObject: coffeeSlider
+         targetObject: settingsForm.coffeeSlider
          targetProperty: "value"
     }
 }
