@@ -7,7 +7,6 @@ qt_add_library(QQS_App
 
 qt_add_qml_module(QQS_App
     URI QtQuick.Studio.Application
-    VERSION 1.0
     CLASS_NAME QQS_AppPlugin
     SOURCES
         quickstudioapplication.cpp quickstudioapplication_p.h

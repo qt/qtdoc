@@ -9,7 +9,6 @@ set_source_files_properties(Constants.qml
 
 qt6_add_qml_module(RobotArm
         URI "RobotArm"
-        VERSION 1.0
         QML_FILES
             Constants.qml
         RESOURCE_PREFIX "/"

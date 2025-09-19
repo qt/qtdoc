@@ -1,8 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-import QtQuick 6.4
-import QtQuick3D 6.4
+import QtQuick
+import QtQuick3D
 
 Rectangle {
     id: debugBox

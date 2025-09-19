@@ -19,7 +19,6 @@ qt_add_executable(${app_target_name}
 
 qt_add_qml_module(${app_target_name}
     URI ${target_name}
-    VERSION 1.0
     QML_FILES
         Main.qml
         Splash.qml

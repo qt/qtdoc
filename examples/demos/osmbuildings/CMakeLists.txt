@@ -39,7 +39,6 @@ target_link_libraries(osmbuildings PRIVATE
 
 qt_add_qml_module(osmbuildings
     URI Example
-    VERSION 1.0
     QML_FILES Main.qml OSMCameraController.qml
     SOURCES request.h request.cpp
     SOURCES geometry.h geometry.cpp

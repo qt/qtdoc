@@ -1,8 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-import QtQuick 2.10
-import QtQuick.Shapes 1.12
+import QtQuick
+import QtQuick.Shapes
 
 /*!
     \qmltype RectangleItem

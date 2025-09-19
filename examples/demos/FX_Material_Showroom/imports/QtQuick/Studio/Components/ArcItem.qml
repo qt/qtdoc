@@ -1,8 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-import QtQuick 2.9
-import QtQuick.Shapes 1.12
+import QtQuick
+import QtQuick.Shapes
 
 /*!
     \qmltype ArcItem
@@ -361,7 +361,7 @@ Shape {
         root.clearPathElements()
 
         // Outer arc
-        let outerArc = Qt.createQmlObject('import QtQuick 2.15; PathArc {}', path)
+        let outerArc = Qt.createQmlObject('import QtQuick; PathArc {}', path)
         outerArc.x = Qt.binding(function() {
             return root.polarToCartesianX(path.__xCenter, path.__yCenter, path.__xRadius, root.sortedEnd() - 90)
         })
@@ -375,7 +375,7 @@ Shape {
 
         // Straight end
         if (!root.roundEnd && root.outlineArc && !root.isArcFull()) {
-            let pathLine = Qt.createQmlObject('import QtQuick 2.15; PathLine {}', path)
+            let pathLine = Qt.createQmlObject('import QtQuick; PathLine {}', path)
             pathLine.relativeX = Qt.binding(function() {
                 return -path.__arcWidth * root.myCos(root.sortedEnd() - 90)
             })
@@ -387,7 +387,7 @@ Shape {
 
         // Round end
         if (root.roundEnd && root.outlineArc && !root.isArcFull()) {
-            let pathArc = Qt.createQmlObject('import QtQuick 2.15; PathArc {}', path)
+            let pathArc = Qt.createQmlObject('import QtQuick; PathArc {}', path)
             pathArc.relativeX = Qt.binding(function() {
                 return -path.__arcWidth * root.myCos(root.sortedEnd() - 90)
             })
@@ -401,7 +401,7 @@ Shape {
 
         // Open end
         if (root.outlineArc && root.isArcFull()) {
-            let pathMove = Qt.createQmlObject('import QtQuick 2.15; PathMove {}', path)
+            let pathMove = Qt.createQmlObject('import QtQuick; PathMove {}', path)
             pathMove.relativeX = Qt.binding(function() {
                 return -path.__arcWidth * root.myCos(root.sortedEnd() - 90)
             })
@@ -413,7 +413,7 @@ Shape {
 
         // Inner arc
         if (root.outlineArc) {
-            let innerArc = Qt.createQmlObject('import QtQuick 2.15; PathArc {}', path)
+            let innerArc = Qt.createQmlObject('import QtQuick; PathArc {}', path)
             innerArc.x = Qt.binding(function() {
                 return path.startX - path.__arcWidth * root.myCos(root.sortedBegin() - 90)
             })
@@ -429,7 +429,7 @@ Shape {
 
         // Straight begin
         if (!root.roundBegin && root.outlineArc && !root.isArcFull()) {
-            let pathLine = Qt.createQmlObject('import QtQuick 2.15; PathLine {}', path)
+            let pathLine = Qt.createQmlObject('import QtQuick; PathLine {}', path)
             pathLine.x = Qt.binding(function() { return path.startX })
             pathLine.y = Qt.binding(function() { return path.startY })
             path.pathElements.push(pathLine)
@@ -437,7 +437,7 @@ Shape {
 
         // Round begin
         if (root.roundBegin && root.outlineArc && !root.isArcFull()) {
-            let pathArc = Qt.createQmlObject('import QtQuick 2.15; PathArc {}', path)
+            let pathArc = Qt.createQmlObject('import QtQuick; PathArc {}', path)
             pathArc.x = Qt.binding(function() { return path.startX })
             pathArc.y = Qt.binding(function() { return path.startY })
             pathArc.radiusX = Qt.binding(function() { return path.__arcWidth / 2 })
@@ -447,7 +447,7 @@ Shape {
 
         // Open begin
         if (root.outlineArc && root.isArcFull()) {
-            let pathMove = Qt.createQmlObject('import QtQuick 2.15; PathMove {}', path)
+            let pathMove = Qt.createQmlObject('import QtQuick; PathMove {}', path)
             pathMove.x = Qt.binding(function() { return path.startX })
             pathMove.y = Qt.binding(function() { return path.startY })
             path.pathElements.push(pathMove)

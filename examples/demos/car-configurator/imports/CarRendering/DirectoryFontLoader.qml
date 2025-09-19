@@ -10,7 +10,7 @@ QtObject {
     property url fontDirectory
 
     function loadFont(url) {
-        var fontLoader = Qt.createQmlObject('import QtQuick 2.15; FontLoader { source: "' + url + '"; }',
+        var fontLoader = Qt.createQmlObject('import QtQuick; FontLoader { source: "' + url + '"; }',
                                             loader,
                                             "dynamicFontLoader");
     }

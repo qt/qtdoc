@@ -6,7 +6,6 @@ set_source_files_properties(Constants.qml
 qt_add_library(CarRendering STATIC)
 qt6_add_qml_module(CarRendering
     URI "CarRendering"
-    VERSION 1.0
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         Constants.qml

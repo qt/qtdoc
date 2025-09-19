@@ -53,7 +53,6 @@ endif()
 # Resources:
 qt_add_qml_module(${PROJECT_NAME}
     URI EXAMPLE
-    VERSION 1.0
     QML_FILES
         ${qml_singletons}
         Main.qml

@@ -4,7 +4,6 @@
 qt_add_library(ThermostatContent STATIC)
 qt_add_qml_module(ThermostatContent
     URI "content"
-    VERSION 1.0
     QML_FILES
         App.qml
         BottomBar.qml
