@@ -6,80 +6,79 @@
 \title Building Qt Sources
 \brief Building Qt from the source packages
 
-There are two ways to install Qt:
-\list 1
-\li through the \l{Get and Install Qt}{Qt Installers} - downloads and installs Qt
-\li through the \l{Getting Qt Sources from the Git repository}{Qt sources}
+You can install Qt by building Qt sources. This is useful if, for example:
+
+\list
+    \li You need a custom build (for example, with patches or debug options).
+    \li Your platform isn't supported by pre-built packages.
+    \li You're contributing to Qt or debugging its internals.
 \endlist
 
-\note Add the Qt build directory to the list of excluded directories
-      of any anti-virus application that runs on your system.
+\note In most use cases, other than those listed above, the best way to install Qt is with \QOI.
+See \l{Get and Install Qt with Qt Online Installer}.
 
-You can download the Qt installers and sources from the \l Downloads page.
-For more information, visit the \l{Getting Started with Qt} page.
-
-This page lists the relevant information for installing Qt by building the Qt
-sources. The installation procedure is different on each Qt platform. This page
-collects the relevant information for the \l{Supported Platforms}
-{supported platforms}. In addition, this page provides links to any
-module-specific system requirements.
+The installation procedure is different on each Qt platform. This page provides relevant
+information for the supported platforms and links to module-specific system requirements.
 
 \section1 General Installation Information
 
-To build Qt from source, use \c configure to configure Qt for a particular
+When you build Qt sources, you use the \e configure tool to configure Qt for a particular
 platform with a particular set of Qt features or modules. For more information,
-visit the following page:
+see \l{Qt Configure Options}.
 
-\list
-\li \l{Qt Configure Options}
+\section2 The Build and Installation Process
+
+A brief overview of the build and installation process:
+
+\list 1
+  \li Download the Qt source code and set up the initial environment.
+  \li Configure the build according to the use case, such as development on the host
+      system or cross-compilation for a target platform.
+  \li Build (compile) in a separate directory.
+  \li Optional. Install the built artifacts.
 \endlist
 
-It's also possible for you to build an optimized version of Qt according to your specific needs.
-For more information, visit the following page:
+\section1 Platform-Specific Installation Information
 
-\list
-\li \l {Building Optimized Qt}
-\endlist
-
-\section1 Windows
+\section2 Windows
 
 \list
 \li \l{Qt for Windows - Building from Source}
 \endlist
 
-\section1 \macos
+\section2 \macos
 
 \list
 \li \l{Qt for macOS - Building from Source}
 \endlist
 
-\section1 Linux/X11
+\section2 Linux/X11
 
 \list
 \li \l{Qt for X11 Requirements}
 \li \l{Qt for Linux/X11 - Building from Source}
 \endlist
 
-\section1 Embedded Linux
+\section2 Embedded Linux
 
 \list
     \li \l{Configure an Embedded Linux Device}
     \li \l{Qt for Embedded Linux}
 \endlist
 
-\section1 Android
+\section2 Android
 
 \list
 \li \l {Qt for Android - Building from Source}
 \endlist
 
-\section1 iOS
+\section2 iOS
 
 \list
 \li \l {Qt for iOS - Building from Source}
 \endlist
 
-\section1 Module-specific System Requirements
+\section2 Module-specific System Requirements
 
 \list
     \li \l {Qt WebEngine Platform Notes} {Building Qt WebEngine from Source}
@@ -99,6 +98,7 @@ information on the tools and components that are required for each
 configuration.
 
 \list
+    \li \l {Building Optimized Qt}
     \li \l {https://code.qt.io/cgit/qt/qt5.git/tree/coin?h=\qtver}
            {qt/qt5.git CI provisioning for Qt \qtver}
     \li \l {https://wiki.qt.io/CI_Overview}{CI Overview in Qt Wiki}
