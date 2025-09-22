@@ -1091,17 +1091,27 @@
 
         \badcode
         cmake --build . --parallel
+        # or
+        ninja
         \endcode
 
         Period after \c {--build} means current folder.
 
         After building, you need to install the libraries and tools in the desired path
-        (unless you enabled a \l {Developer Builds}
-        {developer build}:
+        (unless you enabled a \l {Developer Builds}{developer build}):
 
         \badcode
         cmake --install .
+        # or
+        ninja install
         \endcode
+
+        \note \b {For CMake version < 4.0.} The \c {cmake --install .} command
+        installs only the release versions of the libraries and tools even if
+        you build both debug and release libraries. To install both the debug
+        and release libraries, use \c {ninja install}. You can also run both the
+        \c {cmake --install . --config Debug} and
+        \c {cmake --install . --config Release} commands.
 
     \section1 Step 4: Building Your Application
 
