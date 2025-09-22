@@ -72,7 +72,7 @@ ScrollView {
                 target: scrollView
                 timeScheduleHeight: 314
                 timeScheduleWidth: 327
-                tempSetterHeight: 529
+                tempSetterHeight: 450
                 tempSetterWidth: 327
                 isBackgroundVisible: false
             }
@@ -84,7 +84,7 @@ ScrollView {
                 target: scrollView
                 timeScheduleHeight: 230
                 timeScheduleWidth: 400
-                tempSetterHeight: 370
+                tempSetterHeight: 300
                 tempSetterWidth: 400
                 isBackgroundVisible: true
             }

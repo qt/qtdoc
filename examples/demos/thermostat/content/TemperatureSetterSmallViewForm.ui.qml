@@ -24,7 +24,6 @@ Pane {
     property alias cancelButton: cancelButton
 
     width: 400
-    height: 370
 
     topPadding: 16
     bottomPadding: 19
