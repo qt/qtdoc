@@ -25,7 +25,7 @@ Pane {
     property alias cancelButton: cancelButton
 
     width: 329
-    height: 527
+    height: 430
 
     topPadding: 16
     bottomPadding: 19
@@ -36,14 +36,15 @@ Pane {
     }
 
     ColumnLayout {
-        anchors.fill: parent
+        width: parent.width
         spacing: 15
         Row {
-            spacing: 10
+            spacing: 15
 
             Item {
                 width: 24
                 height: 24
+                anchors.verticalCenter: parent.verticalCenter
                 Image {
                     id: icon
                     source: "images/temperature.svg"
@@ -64,35 +65,32 @@ Pane {
                 font.family: "Titillium Web"
                 text: qsTr("Set Temperature :")
                 color: Constants.primaryTextColor
+                anchors.verticalCenter: parent.verticalCenter
             }
-        }
 
-        CustomTextField {
-            id: customTextField
-            Layout.preferredWidth: 90
-            Layout.preferredHeight: 40
-            font.pixelSize: 14
-            text: slider.value
-            Connections {
-                function onAccepted() {
-                    slider.value = +customTextField.text
+            CustomTextField {
+                id: customTextField
+                width: 90
+                height: 40
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 14
+                text: slider.value
+                Connections {
+                    function onAccepted() {
+                        slider.value = +customTextField.text
+                    }
                 }
             }
         }
 
-        Item {
-            id: item1
+        CustomSlider {
+            id: slider
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            CustomSlider {
-                id: slider
-                width: parent.width
-                value: root.scheduleViewRoot.currentTemp
-                anchors.bottom: parent.bottom
-                Connections {
-                    function onValueChanged() {
-                        root.scheduleViewRoot.currentTemp = slider.value
-                    }
+            Layout.topMargin: 12
+            value: root.scheduleViewRoot.currentTemp
+            Connections {
+                function onValueChanged() {
+                    root.scheduleViewRoot.currentTemp = slider.value
                 }
             }
         }

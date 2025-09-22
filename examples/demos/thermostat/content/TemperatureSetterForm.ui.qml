@@ -23,7 +23,6 @@ Pane {
     property alias cancelButtonSmall: smallView.cancelButton
 
     width: 1087
-    height: 361
 
     padding: 0
 
