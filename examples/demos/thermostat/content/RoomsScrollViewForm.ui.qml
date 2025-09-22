@@ -19,6 +19,7 @@ ScrollView {
     id: scrollView
 
     clip: true
+    bottomPadding: 10
     contentWidth: availableWidth
 
     required property list<Room> roomsList

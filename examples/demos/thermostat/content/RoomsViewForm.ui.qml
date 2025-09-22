@@ -17,11 +17,6 @@ import ThermostatCustomControls
 Pane {
     id: root
 
-    topPadding: 4
-    leftPadding: 27
-    rightPadding: 27
-    bottomPadding: 13
-
     required property list<Room> roomsList
 
     background: Rectangle {

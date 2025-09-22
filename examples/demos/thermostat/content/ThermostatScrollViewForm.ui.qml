@@ -17,6 +17,7 @@ ScrollView {
     id: root
 
     clip: true
+    bottomPadding: 10
     contentWidth: availableWidth
 
     required property Room room
@@ -37,6 +38,7 @@ ScrollView {
 
         width: root.width
         height: root.height
+        anchors.horizontalCenter: parent.horizontalCenter
         columns: root.isOneColumn ? 1 : 3
         rows: root.isOneColumn ? 10 : 1
         columnSpacing: 24
@@ -88,14 +90,33 @@ ScrollView {
 
     states: [
         State {
-            name: "desktopLayout"
-            when: Constants.isBigDesktopLayout || Constants.isSmallDesktopLayout
+            name: "bigDesktopLayout"
+            when: Constants.isBigDesktopLayout
             PropertyChanges {
                 target: root
                 thermostatControlHeight: 673
-                thermostatControlWidth: 1094
+                thermostatControlWidth: grid.width
                 delegateHeight: 182
                 delegateWidth: 350
+            }
+            PropertyChanges {
+                target: grid
+                width: 1100
+            }
+        },
+        State {
+            name: "smallDesktopLayout"
+            when: Constants.isSmallDesktopLayout
+            PropertyChanges {
+                target: root
+                thermostatControlHeight: 673
+                thermostatControlWidth: grid.width
+                delegateHeight: 182
+                delegateWidth: 290
+            }
+            PropertyChanges {
+                target: grid
+                width: 918
             }
         },
         State {
@@ -104,7 +125,7 @@ ScrollView {
             PropertyChanges {
                 target: root
                 delegateWidth: 327
-                delegateHeight: 100
+                delegateHeight: 120
                 thermostatControlHeight: 694
                 thermostatControlWidth: 327
             }
@@ -115,7 +136,7 @@ ScrollView {
             PropertyChanges {
                 target: root
                 delegateWidth: 332
-                delegateHeight: 80
+                delegateHeight: 90
                 thermostatControlHeight: 250
                 thermostatControlWidth: 400
             }

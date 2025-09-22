@@ -30,19 +30,18 @@
     It shows how to implement different designs depending on the window size.
 
     \section1 Responsive Design
-    As mentioned above, the application has support for a variety of display sizes.It can scale dynamically when the user changes the window size, or the application will select the correct sizes based on the available display on mobile targets.
+    As mentioned above, the application has support for a variety of display sizes. It can scale dynamically when the user changes the window size, or the application will select the correct sizes based on the available display on mobile targets.
     Properties that specify the display size and control which layout is currently in use have been created in \c Constants.qml to achieve this behavior.
 
     \quotefromfile demos/thermostat/imports/Thermostat/Constants.qml
     \skipto isBigDesktopLayout
     \printuntil isSmallLayout
 
-    In \c App.qml, the properties were bound to the window height and width at application startup.
+    In \c App.qml, the properties were bound to the window height and width at application startup. They are mutually exclusive.
 
     \quotefromfile demos/thermostat/content/App.qml
     \skipto Component.onCompleted
-    \printuntil Constants.isSmallLayout
-    \printuntil }
+    \printuntil })
     \printuntil }
 
     The states are then used to control the properties of the component such as width, height, fontSize, position, layout (column or row), etc.

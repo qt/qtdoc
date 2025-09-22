@@ -27,8 +27,7 @@ Pane {
     width: 329
     height: 430
 
-    topPadding: 16
-    bottomPadding: 19
+    bottomPadding: 10
 
     background: Rectangle {
         color: Constants.accentColor

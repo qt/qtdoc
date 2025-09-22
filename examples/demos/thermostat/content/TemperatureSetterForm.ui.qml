@@ -34,6 +34,7 @@ Pane {
     TemperatureSetterDesktopView {
         id: desktopView
         scheduleViewRoot: root.scheduleViewRoot
+        anchors.fill: parent
     }
 
     TemperatureSetterMobileView {

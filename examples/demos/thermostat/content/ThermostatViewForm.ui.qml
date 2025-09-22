@@ -34,7 +34,7 @@ Pane {
         readonly property int contentHeight: root.height - title.height
                                              - root.topPadding - root.bottomPadding
         readonly property int contentWidth: root.width - root.rightPadding - root.leftPadding
-        readonly property bool isOneColumn: contentWidth < 900
+        readonly property bool isOneColumn: Constants.isSmallLayout || Constants.isMobileLayout
     }
 
     Column {

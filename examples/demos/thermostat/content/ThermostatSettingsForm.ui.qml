@@ -109,7 +109,7 @@ Pane {
     Column {
         id: leftButtons
 
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter: thermostat.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 100
         spacing: 25
@@ -137,7 +137,7 @@ Pane {
 
     Column {
         id: rightButtons
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter: thermostat.verticalCenter
         anchors.right: parent.right
         anchors.rightMargin: 100
         spacing: 25
@@ -214,7 +214,7 @@ Pane {
                 optionIconSize: 42
                 headerSpacing: 24
                 headerSize: 24
-                thermostatTopMargin: 14
+                thermostatTopMargin: 60
             }
             PropertyChanges {
                 target: powerButton
@@ -229,6 +229,14 @@ Pane {
             PropertyChanges {
                 target: powerToggle
                 visible: false
+            }
+            PropertyChanges {
+                target: leftButtons
+                anchors.leftMargin: Constants.isSmallDesktopLayout ? 50 : 100
+            }
+            PropertyChanges {
+                target: rightButtons
+                anchors.rightMargin: Constants.isSmallDesktopLayout ? 50 : 100
             }
         },
         State {
@@ -307,20 +315,10 @@ Pane {
                 anchors.leftMargin: 14
                 spacing: 9
             }
-            AnchorChanges {
-                target: leftButtons
-                anchors.verticalCenter: thermostat.verticalCenter
-                anchors.top: undefined
-            }
             PropertyChanges {
                 target: rightButtons
                 anchors.rightMargin: 14
                 spacing: 9
-            }
-            AnchorChanges {
-                target: rightButtons
-                anchors.verticalCenter: thermostat.verticalCenter
-                anchors.top: undefined
             }
             PropertyChanges {
                 target: powerToggle
