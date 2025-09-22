@@ -23,13 +23,9 @@ Pane {
     property alias cancelButton: cancelButton
     property int currentMode: 2
 
-    width: 1087
-    height: 427
-
-    topPadding: 30
-    bottomPadding: 24
-    leftPadding: 16
-    rightPadding: 36
+    width: 1010
+    height: 330
+    padding: 0
 
     background: Rectangle {
         color: Constants.accentColor
@@ -38,9 +34,11 @@ Pane {
 
     Row {
         id: row1
-        width: parent.width
+        width: root.width
         height: 70
         spacing: 80
+        anchors.topMargin: 20
+        anchors.leftMargin: 20
 
         Row {
             anchors.verticalCenter: parent.verticalCenter
@@ -89,6 +87,7 @@ Pane {
             id: slider
             value: root.scheduleViewRoot.currentTemp
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: 8
             Connections {
                 function onValueChanged() {
                     root.scheduleViewRoot.currentTemp = slider.value
@@ -98,11 +97,14 @@ Pane {
     }
 
     Column {
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: row1.bottom
+        anchors.left: parent.left
+        anchors.topMargin: 20
+        anchors.leftMargin: 20
         spacing: 50
         Row {
             id: row
-            spacing: 70
+            spacing: 60
             Label {
                 font.pixelSize: 24
                 font.weight: 600
@@ -153,7 +155,7 @@ Pane {
                     required property string modelData
 
                     text: modelData
-                    width: 90
+                    width: Constants.isSmallDesktopLayout ? 80 : 90
                     height: 50
                     radius: 12
                     font.pixelSize: 24
@@ -167,41 +169,40 @@ Pane {
                 }
             }
         }
-    }
 
-    Row {
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        spacing: 24
+        Row {
+            anchors.right: parent.right
+            anchors.rightMargin: 20
+            spacing: 24
 
-        CustomRoundButton {
-            id: cancelButton
+            CustomRoundButton {
+                id: cancelButton
 
-            width: 120
-            height: 48
-            text: qsTr("Cancel")
-            radius: 12
-            contentColor: "#2CDE85"
-            checkable: false
-            font.pixelSize: 14
-        }
+                width: 120
+                height: 48
+                text: qsTr("Cancel")
+                radius: 12
+                contentColor: "#2CDE85"
+                checkable: false
+                font.pixelSize: 14
+            }
 
-        CustomRoundButton {
-            id: saveButton
-            width: 120
-            height: 48
-            text: qsTr("Save")
-            radius: 12
-            contentColor: "#2CDE85"
-            checkable: false
-            font.pixelSize: 14
+            CustomRoundButton {
+                id: saveButton
+                width: 120
+                height: 48
+                text: qsTr("Save")
+                radius: 12
+                contentColor: "#2CDE85"
+                checkable: false
+                font.pixelSize: 14
+            }
         }
     }
 
     QtObject {
         id: internal
         property int fontSize: 24
-        property int topMargin: 67
         property int iconSize: 34
     }
 }

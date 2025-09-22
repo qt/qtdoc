@@ -72,8 +72,6 @@ Pane {
         id: scrollView
 
         anchors.top: title.bottom
-        anchors.topMargin: 12
-        anchors.leftMargin: 28
 
         width: internal.contentWidth
         height: internal.contentHeight
@@ -109,7 +107,7 @@ Pane {
         readonly property int contentHeight: root.height - title.height
                                              - root.topPadding - root.bottomPadding
         readonly property int contentWidth: root.width - root.rightPadding - root.leftPadding
-        readonly property bool isOneColumn: contentWidth < 900
+        readonly property bool isOneColumn: Constants.isSmallLayout || Constants.isMobileLayout
     }
 
     states: [
@@ -176,12 +174,6 @@ Pane {
             PropertyChanges {
                 target: label
                 visible: false
-            }
-            PropertyChanges {
-                target: root
-                leftPadding: 15
-                rightPadding: 15
-                topPadding: 3
             }
             PropertyChanges {
                 target: scrollView

@@ -106,8 +106,8 @@ Rectangle {
 
     states: [
         State {
-            name: "desktopLayout"
-            when: Constants.isBigDesktopLayout || Constants.isSmallDesktopLayout
+            name: "bigDesktopLayout"
+            when: Constants.isBigDesktopLayout
             PropertyChanges {
                 target: root
                 width: 1010
@@ -121,6 +121,24 @@ Rectangle {
                 columnHeight: 165
                 bottomHourVisibility: true
                 itemTopMargin: 55
+            }
+        },
+        State {
+            name: "smallDesktopLayout"
+            when: Constants.isSmallDesktopLayout
+            PropertyChanges {
+                target: root
+                width: 830
+                height: 200
+            }
+            PropertyChanges {
+                target: internal
+                hourSize: 21
+                itemWidth: 33
+                itemHeight: 120
+                columnHeight: 165
+                bottomHourVisibility: true
+                itemTopMargin: 44
             }
         },
         State {

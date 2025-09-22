@@ -136,7 +136,7 @@ Pane {
     states: [
         State {
             name: "desktopLayout"
-            when: Constants.isBigDesktopLayout || Constants.isSmallDesktopLayout
+            when: Constants.isSmallDesktopLayout || Constants.isBigDesktopLayout
             PropertyChanges {
                 target: root
                 width: 520

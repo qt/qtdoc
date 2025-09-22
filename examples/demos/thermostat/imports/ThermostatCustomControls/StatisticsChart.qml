@@ -8,9 +8,7 @@ import Thermostat
 
 Pane {
     id: root
-    width: 900
-    height: 580
-
+    anchors.fill: parent
     padding: 0
 
     required property list<int> energyValues

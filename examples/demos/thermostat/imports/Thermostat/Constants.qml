@@ -5,15 +5,15 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    readonly property int width: 1440
-    readonly property int height: 1080
-
     property string currentView: "RoomsView"
 
-    property bool isBigDesktopLayout: true
-    property bool isSmallDesktopLayout: false
-    property bool isMobileLayout: false
-    property bool isSmallLayout: false
+    property bool isBigDesktopLayout: layout === Constants.Layout.Desktop
+    property bool isSmallDesktopLayout: layout === Constants.Layout.SmallDesktop
+    property bool isMobileLayout: layout === Constants.Layout.Mobile
+    property bool isSmallLayout: layout === Constants.Layout.Small
+
+    enum Layout { Desktop, SmallDesktop, Mobile, Small }
+    property int layout: Constants.Layout.Desktop
 
     readonly property font smallTitleFont: Qt.font({
             "family": "Inter",
