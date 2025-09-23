@@ -482,8 +482,8 @@
     \l{tools/plugandpaint/app}{Plug & Paint} example application that comes
     with the Qt source package.
 
-    Due to the proliferation of Unix systems (such as commercial Unixes, Linux
-    distributions, and so on), deployment on Unix is a complex
+    Due to the proliferation of Unix systems (such as commercial Unixes or Linux
+    distributions), deployment on Unix is a complex
     topic. Before we start, be aware that programs compiled for one
     Unix flavor will probably not run on a different Unix system. For
     example, unless you use a cross-compiler, you cannot compile your
@@ -548,14 +548,14 @@
     \list
 
     \li You can install the Qt libraries in one of the system
-       library paths (e.g. \c /usr/lib on most systems).
+       library paths (for example, \c /usr/lib on most systems).
 
     \li You can pass a predetermined path to the \c -rpath command-line
        option when linking the application. This will tell the dynamic
        linker to look in this directory when starting your application.
 
     \li You can write a startup script for your application, where you
-       modify the dynamic linker configuration (e.g., adding your
+       modify the dynamic linker configuration (for example, adding your
        application's directory to the \c LD_LIBRARY_PATH environment
        variable. \note If your application will be running with "Set
        user ID on execution," and if it will be owned by root, then
@@ -630,7 +630,7 @@
 
     To verify that the application now can be successfully deployed,
     you can extract this archive on a machine without Qt and without
-    any compiler installed, and try to run it, i.e. run the \c
+    any compiler installed, and try to run it, that is, run the \c
     plugandpaint.sh script.
 
     An alternative to putting the plugins in the \c plugins
@@ -707,7 +707,7 @@
     \section2 Additional Libraries
 
     To find out which libraries your application depends on, run the
-    \c ldd tool (available on most Unices):
+    \c ldd tool (available on most Unixes):
 
     \snippet snippets/code/doc_src_deployment.qdoc 10
 
@@ -728,7 +728,7 @@
     extensions, such as Xinerama and Xrandr, and possibly pull them
     in, including all the libraries that they link against. If you
     can't guarantee the presence of a certain extension, the safest
-    approach is to disable it when configuring Qt (e.g. \c {./configure
+    approach is to disable it when configuring Qt (for example, \c {./configure
     -no-xrandr}).
 
     FontConfig and FreeType are other examples of libraries that
