@@ -19,6 +19,8 @@ ApplicationWindow {
         dataRate: 25
         active: true
         readonly property vector3d force: {
+            if (!reading)
+                return Qt.vector3d(0, 0, 0)
             let r = reading as AccelerometerReading
             return Qt.vector3d(r.x, r.y, r.z)
         }
