@@ -783,6 +783,110 @@
     The \l{How to Create Qt Plugins} document outlines the issues you
     need to pay attention to when building and deploying plugins for
     Qt applications.
+
+    \section1 Walkthrough: Create a DEB Package
+
+    This section describes how to create a DEB package for your Qt application
+    on Linux using CMake deployment API available in Qt 6.5 or newer. There's
+    no dedicated \c linuxdeployqt tool. The current solution only relies on
+    CMake's built-in functionality.
+
+    \section2 Example Project Setup
+
+    Start with a simple CMake project:
+
+    \badcode
+    cmake_minimum_required(VERSION 3.22)
+    project(MyApp)
+
+    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+    qt_standard_project_setup()
+
+    qt_add_executable(MyApp main.cpp)
+    target_link_libraries(MyApp PRIVATE Qt::Widgets)
+    \endcode
+
+    \section2 Step 1: Prepare the Installation
+
+    Add commands for installing the application and generating a deployment
+    script to create a self-contained directory:
+
+    \badcode
+    # Install the executable to "${CMAKE_INSTALL_PREFIX}/bin".
+    install(TARGETS MyApp
+        BUNDLE  DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+
+    # Generate the deployment script for MyApp.
+    qt_generate_deploy_app_script(
+        TARGET MyApp
+        FILENAME_VARIABLE deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
+    )
+
+    # Run the deployment script during installation (on "cmake --install").
+    install(SCRIPT ${deploy_script})
+    \endcode
+
+    Build and install the project:
+
+    \badcode
+    qt-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/tmp/my-application ..
+    cmake --build .
+    cmake --install .
+    \endcode
+
+    The deployment script:
+
+    \list
+    \li Creates a qt.conf file next to the executable that contains information
+        about the directory layout. This is needed at runtime to find the
+        plugins and assets. See the qt.conf documentation for details.
+    \li Inspects the executable and used Qt plugins with CMake's built-in file
+        (GET_RUNTIME_DEPENDENCIES) to determine which Qt libraries to deploy.
+    \li Installs the necessary Qt plugins and Qt libraries.
+    \endlist
+
+    The installation directory can now be copied to a different machine, and
+    the application should still work.
+
+    \section2 Step 2: Create the DEB Package
+
+    After installation, package the directory using CPack. Add the following to
+    your CMake project:
+
+    \badcode
+    set(CPACK_PACKAGE_NAME my-app)
+    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "My amazing application")
+    set(CPACK_PACKAGE_VENDOR "My Company")
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
+    set(CPACK_VERBATIM_VARIABLES ON)
+    set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/myapp")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Package Maintainer <maintainer@example.com>")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS libc6 libstdc++6 libgcc-s1)
+    include(CPack)
+    \endcode
+
+    Reconfigure the project, navigate to the build directory (it must contain
+    the \c CPackConfig.cmake file), and run CPack to generate the DEB package:
+
+    \badcode
+    cpack -G DEB
+    \endcode
+
+    To inspect the contents of the package:
+
+    \badcode
+    dpkg -c my_app-1.0-Linux.deb
+    \endcode
+
+    To install the package:
+
+    \badcode
+    sudo dpkg -i my_app-1.0-Linux.deb
+    \endcode
+
 */
 
 /*!
