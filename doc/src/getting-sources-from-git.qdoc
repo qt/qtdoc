@@ -5,104 +5,108 @@
     \page getting-sources-from-git.html
 
     \title Getting Qt Sources from the Git repository
-    \brief This section describes how to clone and initialize Qt from Git
+    \brief This page describes how to clone and initialize Qt repositories.
 
-    \section1 Introduction
+    This page describes how to get the Qt sources from the public Git
+    repositories. The Git repositories contain the latest development branches
+    and released versions of Qt 6.
 
-    This section describes how to get the Qt sources through the Git
-    version control system. This is useful in software development
-    processes that already use Git and when testing different Qt
-    versions. It is also essential if you plan to contribute to Qt.
+    You can also get the Qt sources \QOI, through your \l{Qt Account}
+    (commercial users), or from \l{https://download.qt.io}{download.qt.io}
+    (open-source users).
 
-    \note Qt sources can also be installed using \QOI, downloaded as
-    archives from the \l{Qt Account} (commercial users), or from
-    \l{https://download.qt.io}{download.qt.io} (open-source users).
+    You need a recent version of \l Git and \l{CMake Documentation} to run the
+    \c init-repository tool when initializing the Git submodules.
 
-    Qt is developed and maintained in several Git submodules tied
-    together in a \c{qt5} super module. Getting the Qt sources from Git
-    involves cloning the top-level Git repository via the Git command
-    line and initializing the submodules using the Qt \c{configure}
-    command.
+    \note These instructions assume you are familiar with using command-line
+    tools.
 
-    \note Qt 5 and Qt 6 share the same repository, and you will work
-    against the \c{qt5} repository even if you use Qt 6.
+    \section1 Cloning the Qt repository
 
-    \section1 Preparations
+    Qt is developed and maintained in several Git submodules in the main
+    \c{qt5.git} repository. Getting the Qt sources from Git
+    involves cloning the top-level Git repository through the command
+    line.
 
-    Start by reviewing \l {Building Qt Sources} and the requirements
-    section for your platform to make sure all prerequisites have been
-    installed. In addition, you will need a recent version of Git.
+    \note Qt 5 and Qt 6 share the same repository, \c{qt5.git}, and you will
+    get the Qt 5 repository even if you use Qt 6.
 
-    When planning where to clone the Qt sources, keep in mind that Qt
-    supports out-of-source builds, where the source code resides
-    separately from build artifacts. This keeps the Git clone clean and
-    makes it possible to build different versions of Qt from the same
-    source tree. In this overview, the directory containing the Qt
-    sources is referred to as \c{qt-sources}, while the one containing
-    build artifacts is referred to as \c{qt-build}.
-
-    \section1 Cloning the Qt Git repository
-
-    Begin by creating the \c{qt-sources} directory. From within this
-    directory, use Git to clone the sources. In the following, we will
-    use the Git command line interface. Be aware of the trailing '.'
-    character indicating that Qt is cloned into the current directory.
-
+    These instructions use Unix-like shell syntax. On Windows,
+    the commands are similar. The command below clones the current version of
+    Qt 6 into a directory named \c{qt}.
     \badcode \QtVersion
-    git clone --branch v\1 git://code.qt.io/qt/qt5.git .
+    git clone --branch v\1 git://code.qt.io/qt/qt5.git qt
     \endcode
 
-    You can also use the https protocol.
-
+    If the git protocol is blocked by your firewall, consider using HTTPS
+    instead:
     \badcode  \QtVersion
-    git clone --branch v\1 https://code.qt.io/qt/qt5.git .
+    git clone --branch v\1 https://code.qt.io/qt/qt5.git qt
     \endcode
 
-    To test out the latest development version, omit the \c{--branch}
-    argument.
+    After cloning, the \c qt directory contains the main Qt Git repository
+    which contains setup files and uninitialized Qt submodules.
 
     \section1 Initializing the Qt submodules
 
-    Next, create the build directory \c{qt-build}. Within this
-    directory, run the \l{Qt Configure Options}{configure} command with
-    the \c{-init-submodules} option.
+    The \c qt5.git repository contains the \l{All Modules}{Qt Modules} as
+    Git submodules. To initialize and clone the submodules, run the
+    \c init-repository tool in the top-level directory.
 
     \badcode
-    qt-sources/configure -init-submodules
+    ./init-repository
     \endcode
 
-    This will recursively initialize all Qt submodules in your
-    \c{qt-sources} directory, which might take some time.
+    On Windows, without a Linux environment, use \c init-repository.bat instead.
+    \badcode
+    init-repository.bat
+    \endcode
 
-    Note that \c{-init-submodules} can be combined with other \l{Qt
-    Configure Options}{configure} arguments. If you know the Qt
-    submodules you will work with, reduce the configuration time by
-    using the \c{-submodules} argument.
+    \c init-repository clones and initializes setup files to build the Qt
+    sources. In addition, there are tools in the repository that
+    help Qt contributors with creating patches, testing code, and generating
+    documentation. For more information about contributing, visit the
+    \l{Contributing to Qt} site.
+
+    If you already have a Qt repository in the same directory, you can pass
+    \c -f to force \c init-repository to reinitialize the submodules.
 
     \badcode
-    qt-sources/configure -init-submodules -submodules qtdeclarative
+    ./init-repository -f
     \endcode
 
-    This will initialize \c{qtdeclarative} and required submodules.
+    \section1 Initializing Qt specific submodules
 
-    \section1 Building Qt
-
-    With Qt sources set up, proceed to build Qt for your platform as
-    outlined in \l {Building Qt Sources}. The \c{-init-repository}
-    argument is only required during the initial Qt configuration and
-    after switching branches.
-
-    \section1 Contributing to Qt
-
-    For those planning to contribute to Qt, specify the
-    \c{-codereview-username} the first time you configure Qt.
-
+    If you only need a specific set of Qt modules, initialize a minimal
+    set of submodules using \c{--module-subset} as an argument to
+    \c{init-repository}. For example, you can initialize only the
+    \l{Qt Essentials} modules by specifying \c essential as the argument.
     \badcode
-    qt-sources/configure -init-submodules -codereview-username <Gerrit username>
+    ./init-repository --module-subset=essential
     \endcode
 
-    For more information on contributing to Qt and creating a Gerrit
-    username, consult the
-    \l{https://contribute.qt-project.org/}{The Qt Project} homepage.
+    For \l{Qt Add-Ons}, use \c addon instead.
+    \badcode
+    ./init-repository --module-subset=addon
+    \endcode
+
+    You can also select several submodules at the same time. For example, to
+    initialize the \c qtgrpc and \c qtmqtt submodules along with their required
+    submodules, run:
+    \badcode
+    ./init-repository --module-subset=qtgrpc,qtmqtt
+    \endcode
+    The \c init-repository tool always initializes a minimum set of submodules.
+
+    For more information, consult the \c init-repository manual by
+    setting \c -help as an argument:
+    \badcode
+    ./init-repository -help
+    \endcode
+
+    \section1 After cloning and initializing
+
+    The next step is to configure and build Qt. Read the
+    \l{Building Qt Sources} page for more information.
 
 */
