@@ -3,20 +3,20 @@
 
 .pragma library
 
-let curVal = 0
-let previousOperator = ""
-let lastOp = ""
+let accumulator = 0
+let pendingOperator = ""
+let lastButton = ""
 let digits = ""
 
 function isOperationDisabled(op, display) {
-    if (digits !== "" && lastOp !== "=" && (op === "π" || op === "e"))
+    if (digits !== "" && lastButton !== "=" && (op === "π" || op === "e"))
         return true
     if (digits === "" && !((op >= "0" && op <= "9") || op === "π" || op === "e" || op === "AC"))
         return true
-    if (op === "bs" && (display.isOperandEmpty() || !((lastOp >= "0" && lastOp <= "9")
-                                                      || lastOp === "π" || lastOp === "e" || lastOp === ".")))
+    if (op === "bs" && (display.isOperandEmpty() || !((lastButton >= "0" && lastButton <= "9")
+                                                      || lastButton === "π" || lastButton === "e" || lastButton === ".")))
         return true
-    if (op === '=' && previousOperator.length != 1)
+    if (op === '=' && pendingOperator.length != 1)
         return true
     if (op === "." && digits.search(/\./) != -1)
         return true
@@ -31,24 +31,24 @@ function isOperationDisabled(op, display) {
 function digitPressed(op, display) {
     if (isOperationDisabled(op, display))
         return
-    if (lastOp === "π" || lastOp === "e")
+    if (lastButton === "π" || lastButton === "e")
         return
     // handle mathematical constants
     if (op === "π") {
-        lastOp = op
+        lastButton = op
         digits = Math.PI.toPrecision(display.maxDigits - 1).toString()
         display.appendDigit(digits)
         return
     }
     if (op === "e") {
-        lastOp = op
+        lastButton = op
         digits = Math.E.toPrecision(display.maxDigits - 1).toString()
         display.appendDigit(digits)
         return
     }
 
     // append a digit to another digit or decimal point
-    if (lastOp.toString().length === 1 && ((lastOp >= "0" && lastOp <= "9") || lastOp === ".") ) {
+    if (lastButton.toString().length === 1 && ((lastButton >= "0" && lastButton <= "9") || lastButton === ".") ) {
         if (digits.length >= display.maxDigits)
             return
         digits = digits + op.toString()
@@ -58,7 +58,7 @@ function digitPressed(op, display) {
         digits = op.toString()
         display.appendDigit(digits)
     }
-    lastOp = op
+    lastButton = op
 }
 
 function operatorPressed(op, display) {
@@ -79,29 +79,29 @@ function operatorPressed(op, display) {
         return
     }
 
-    lastOp = op
+    lastButton = op
 
-    if (previousOperator === "+") {
-        digits = (Number(curVal) + Number(digits.valueOf())).toString()
-    } else if (previousOperator === "−") {
-        digits = (Number(curVal) - Number(digits.valueOf())).toString()
-    } else if (previousOperator === "×") {
-        digits = (Number(curVal) * Number(digits.valueOf())).toString()
-    } else if (previousOperator === "÷") {
-        digits = (Number(curVal) / Number(digits.valueOf())).toString()
+    if (pendingOperator === "+") {
+        digits = (Number(accumulator) + Number(digits.valueOf())).toString()
+    } else if (pendingOperator === "−") {
+        digits = (Number(accumulator) - Number(digits.valueOf())).toString()
+    } else if (pendingOperator === "×") {
+        digits = (Number(accumulator) * Number(digits.valueOf())).toString()
+    } else if (pendingOperator === "÷") {
+        digits = (Number(accumulator) / Number(digits.valueOf())).toString()
     }
 
 
     if (op === "+" || op === "−" || op === "×" || op === "÷") {
-        previousOperator = op
-        curVal = digits.valueOf()
+        pendingOperator = op
+        accumulator = digits.valueOf()
         digits = ""
-        display.displayOperator(previousOperator)
+        display.displayOperator(pendingOperator)
         return
     }
 
-    curVal = 0
-    previousOperator = ""
+    accumulator = 0
+    pendingOperator = ""
 
     if (op === "=") {
         display.newLine("=", Number(digits))
@@ -144,9 +144,9 @@ function operatorPressed(op, display) {
 
     if (op === "AC") {
         display.allClear()
-        curVal = 0
-        lastOp = ""
+        accumulator = 0
+        lastButton = ""
         digits = ""
-        previousOperator = ""
+        pendingOperator = ""
     }
 }
