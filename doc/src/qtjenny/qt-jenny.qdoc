@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \page qtjenny.html
     \title Qt Jenny: Java Code Generator
+    \group qtjenny
+    \ingroup android
     \brief Overview of Qt Jenny
 
     Qt Jenny translates Java APIs to Qt C++ wrappers, allowing Qt C++ programs
@@ -24,6 +25,8 @@
     code, therefore utilizing all the convenience QJniObject brings.
     \endlist
 
+    \section1 Examples
+    See \l {QtJenny Demo} for an example how to use Qt Jenny.
     \section1 How Qt Jenny works
 
     Qt Jenny translates Java APIs to Qt C++ wrappers by the use of the following
