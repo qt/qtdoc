@@ -16,25 +16,134 @@
     \section2 Qt Core Module
 
     \list
-        \li Updated \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} to v47.
-        \li \l{doubleconversion}{double-conversion} is up to date with version 3.3.1.
-        \li Updated \l{tika-mimetypes}{Apache Tika MimeType Definitions} to
-            upstream SHA1 dbcbb368e0a913e1a74cca61347fd6ce24bc6d7e.
-        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 8.14.0
-            and its plugin was updated to 8.10.1.
+        \li \l{tika-mimetypes}{Apache Tika MimeType Definitions} was updated
+            to upstream SHA1 dbcbb368e0a913e1a74cca61347fd6ce24bc6d7e.
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 8.14.2.
+    \endlist
+
+    \section2 Qt Doc Module
+
+    \list
+        \li Usage of \l{graphs_csv}{Vince's CSV Parser}, version 2.3.0, is now documented.
+        \li Usage of \l{graphs_csv_hedley}{Hedley}, version v9, is now documented.
+        \li Usage of \l{graphs_csv_mio}{Mio} is now documented.
+        \li Usage of \l{graphs_csv_string_view}{string_view lite} is now documented.
+        \li Usage of \l{graphs_csv_row_json}{JSON for Modern C++} is now documented.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{VulkanMemoryAllocator}{Vulkan Memory Allocator} was updated to version 3.2.1.
+        \li \l{vulkan-xml-spec}{Vulkan API Registry} was updated to version 1.4.308.
+    \endlist
+
+    \section2 Qt Lottie Module
+
+    \list
+        \li Usage of \l{fingerprint-icon}{Fingerprint Icon} is now documented.
+        \li Usage of \l{google-icons}{Google Icons} is now documented.
+        \li Usage of \l{happy-star}{Happy Star} is now documented.
+        \li Usage of \l{heartbeat-medical}{Heartbeat | Medical} is now documented.
+        \li Usage of \l{surprised-boy}{Surprised Boy} is now documented.
+        \li Usage of \l{usa-map-with-outlines-blue}{USA Map with outlines blue} is now documented.
+        \li Usage of \l{user-authentication}{User Authentication} is now documented.
+        \li Usage of \l{user-interaction}{User Interaction} is now documented.
+        \li Usage of \l{user-interface}{User Interface} is now documented.
+        \li Usage of \l{lottielogo}{Lottie Logo} is now documented.
+        \li Usage of \l{lottiedocs-examples}{Example Lottie files from github.com/LottieFiles/lottie-docs} is now documented.
+    \endlist
+
+    \section2 Qt Quick Module
+
+    \list
+        \li Usage of \l{yoga}{Yoga}, version 2.0.1, under MIT License, is now documented.
+    \endlist
+
+    \section2 Qt Quick3D Module
+
+    \list
+        \li \l{OpenXR}{OpenXR SDK} was updated to version 1.1.49.
+        \li \l{JsonCpp}{JsonCpp} was updated to version 1.9.6.
+    \endlist
+
+    \section2 Qt Wayland Compositor Module
+
+    \list
+        \li Usage of \l{wayland-color-management-protocol}{Wayland Color Management Protocol}, version experimental v4,
+        under MIT License, is now documented.
+        \li Usage of \l{wayland-pointer-warp-protocol}{Wayland Pointer Warp Protocol}, version 1,
+        under MIT License, is now documented.
+    \endlist
+
+    \section1 Qt 6.9.3
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{pcre2}{PCRE2} was updated to version 10.46.
+        \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} was updated to version 10.46.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{freetype}{Freetype 2} was updated to version 2.14.1.
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 11.5.0.
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 3.1.2.
+    \endlist
+
+    \section2 Qt Image Formats
+
+    \list
+        \li \l{libtiff}{TIFF Software Distribution (libtiff)} was updated to version 4.7.1.
+    \endlist
+
+    \section1 Qt 6.9.2
+
+    \section2 Qt 3D Module
+
+    \list
+        \li \l{assimp}{Open Asset Import Library} was updated to version 6.0.2.
+    \endlist
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} was updated to version v47.
+        \li \l{doubleconversion}{double-conversion} was updated to version 3.3.1.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 11.3.3.
+        \li \l{libjpeg}{LibJPEG-turbo} was updated to version 3.1.1.
+        \li \l{libpng}{LibPNG} was updated to version 1.6.50.
     \endlist
 
     \section2 Qt Network Module
 
     \list
-        \li \l{psl-data}{The Public Suffix List} was updated to upstream version
-            2025-06-16_09-45-02_UTC.
+        \li \l{psl-data}{The Public Suffix List} was updated to version 2025-06-16_09-45-02_UTC.
+    \endlist
+
+    \section2 Qt Quick3D Module
+
+    \list
+        \li \l{assimp}{Open Asset Import Library} was updated to version 6.0.2.
+    \endlist
+
+    \section2 Qt SQL Module
+
+    \list
+        \li \l{sqlite}{SQLite} was updated to version 3.50.4.
     \endlist
 
     \section2 Qt Testlib Module
 
     \list
-        \li Updated \l{valgrind}{Valgrind} to version 3.25.1.
+        \li \l{valgrind}{Valgrind} was updated to version 3.25.1.
     \endlist
 
     \section1 Qt 6.9.1
