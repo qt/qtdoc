@@ -189,6 +189,8 @@
             including checks for \QDS-specific limitations, additional JavaScript-related warnings,
             and several new warnings related to QML enums and imports.
         \li Removed support for manipulation of complex row structures from TableModel.
+        \li Changed the order of the role and value parameters in TableModel::setData to resolve
+            ambiguity.
     \endlist
 
     \section2 Qt Quick Module
