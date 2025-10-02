@@ -1,7 +1,6 @@
 // Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Shapes
 import qtjenny_consumer
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -13,14 +12,6 @@ ApplicationWindow {
 
     property string wakeLockStatus: ""
     property bool isPortrait: Screen.primaryOrientation === Qt.LandscapeOrientation ? false : true
-
-    Connections {
-        target: myBackEnd
-        onShowPopup: {
-            popup.open()
-            popupText.text = volumeDisabledReason
-        }
-    }
 
     Popup {
         id: popup
@@ -42,6 +33,11 @@ ApplicationWindow {
 
     BackEnd {
         id: myBackEnd
+
+        onShowPopup: function(volumeDisabledReason) {
+            popup.open()
+            popupText.text = volumeDisabledReason
+        }
     }
 
     Text {
@@ -51,7 +47,7 @@ ApplicationWindow {
         font.pointSize: 26
         anchors {
             bottom: mainGrid.top
-            bottomMargin: isPortrait ? 50 : 10
+            bottomMargin: mainWindow.isPortrait ? 50 : 10
             horizontalCenter: mainGrid.horizontalCenter
         }
     }
@@ -65,9 +61,9 @@ ApplicationWindow {
         GridLayout {
             id: innerGrid
 
-            columns: isPortrait ? 1 : 2
-            rows: isPortrait ? 4 : 2
-            Layout.columnSpan: isPortrait ? 1 : 2
+            columns: mainWindow.isPortrait ? 1 : 2
+            rows: mainWindow.isPortrait ? 4 : 2
+            Layout.columnSpan: mainWindow.isPortrait ? 1 : 2
             Layout.alignment: Qt.AlignHCenter
 
             Text {
@@ -112,7 +108,7 @@ ApplicationWindow {
 
                 text: "Brightness control"
                 font.pointSize: 16
-                Layout.topMargin: isPortrait ? 20 : 0
+                Layout.topMargin: mainWindow.isPortrait ? 20 : 0
             }
 
             Row {
@@ -149,10 +145,10 @@ ApplicationWindow {
 
             columns: 2
             rows: 1
-            Layout.columnSpan: isPortrait ? 1 : 2
-            Layout.topMargin: isPortrait ? 30 : 10
+            Layout.columnSpan: mainWindow.isPortrait ? 1 : 2
+            Layout.topMargin: mainWindow.isPortrait ? 30 : 10
             Layout.alignment: Qt.AlignHCenter
-            columnSpacing: isPortrait ? 20 : 40
+            columnSpacing: mainWindow.isPortrait ? 20 : 40
 
             Button {
                 id: vibrateButton
@@ -182,8 +178,8 @@ ApplicationWindow {
 
             columns: 2
             rows: 2
-            Layout.columnSpan: isPortrait ? 1 : 2
-            Layout.topMargin: isPortrait ? 30 : 10
+            Layout.columnSpan: mainWindow.isPortrait ? 1 : 2
+            Layout.topMargin: mainWindow.isPortrait ? 30 : 10
             Layout.alignment: Qt.AlignLeft
             rowSpacing: 10
 
