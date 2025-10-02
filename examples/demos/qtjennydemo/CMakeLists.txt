@@ -19,6 +19,7 @@ endif()
 #! [0]
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(QT_QML_GENERATE_QMLLS_INI ON)
 
 find_package(Qt6 6.8 REQUIRED COMPONENTS Quick CorePrivate)
 
