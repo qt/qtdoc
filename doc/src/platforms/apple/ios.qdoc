@@ -185,7 +185,6 @@
 
     The following topics provide more details about Qt for iOS:
     \list
-        \li \l {Porting to iOS}{Porting a Qt Quick Application}
         \li \l {Platform Notes - iOS}{Platform Notes}
         \li \l {Qt for iOS - Building from Source}
     \endlist
@@ -224,114 +223,6 @@
     \note A default build will include both simulator and device
     libraries. If you want to build for a single target, use the \c
     -sdk argument with either \c iphoneos or \c iphonesimulator.
-*/
-
-/*!
-    \page porting-to-ios.html
-    \title Porting to iOS
-    \brief Provides instructions to port your existing Qt application to iOS.
-
-    In this section, we are going to port an existing Qt application to
-    \l{Qt for iOS}{iOS} and deploy it to the device.
-
-    Most Qt applications should be portable to iOS with ease, unless they
-    depend on a specific hardware or software feature not supported on iOS.
-    A major part of the porting effort consists of ensuring that all the
-    application's assets (for example, QML files, images, and icons) are
-    deployed correctly to the device.
-
-    \include porting-notes.qdocinc using resources
-
-    The following step-by-step instructions guide you to port an existing Qt Quick
-    application to iOS using the qrc approach:
-
-    \list 1
-     \li Open the existing project in \QC and configure it with
-         \e {iOS} or \e {iOS Simulator} kit. For more information, see
-         \l{\QC: Configuring Projects}.
-
-     \li Update all local directory imports in the \c{qml} files to use a local
-         namespace. For example, to import the QML documents in the "contents"
-         directory relative to \c{main.qml}, use the following import statement:
-
-         \code
-         import "contents" as Contents
-         \endcode
-
-     \li Identify all the resources used by your application and add them to one
-         or more qrc files.
-         \QC updates your qmake project file with the \c RESOURCES
-         variable, listing the qrc files you added.
-
-     \li To load or refer to the resources in the qrc file from a C++ file,
-         use the "\c{qrc:}" prefix for the URL. For example:
-
-         \code
-         QQuickView viewer;
-         viewer.setSource(QUrl("qrc:qml/main.qml"));
-         viewer.show();
-         \endcode
-
-         \note QML documents can refer to files in the resources simply by
-         using the relative path to the document. Such references do not
-        require the "\c{qrc:}" or "\c{:/}" prefix.
-
-     \li Update the "Run" settings for your project as described in
-         \l{\QC: Configure projects for running}
-
-     \li If your application uses imports or plugins that depend on special Qt
-         modules, these Qt modules should be added to your build configuration file.
-         For example, if your application uses the Qt Multimedia import in QML, you
-         should add the following to your \c .pro or \c CMakeLists.txt file:
-         \br
-         \if defined(onlinedocs)
-           \tab {build-ios-app}{tab-cmake}{CMake}{checked}
-           \tab {build-ios-app}{tab-qmake}{qmake}{}
-           \tabcontent {tab-cmake}
-         \else
-           \section1 Using CMake
-         \endif
-         \badcode
-         find_package(Qt6 REQUIRED COMPONENTS Multimedia)
-         target_link_libraries(my_project PRIVATE Qt6::Multimedia)
-         \endcode
-         \if defined(onlinedocs)
-           \endtabcontent
-           \tabcontent {tab-qmake}
-         \else
-           \section1 Using qmake
-         \endif
-         \badcode
-         QT += multimedia
-         \endcode
-         \if defined(onlinedocs)
-           \endtabcontent
-         \endif
-
-         In Qt for iOS, everything is compiled statically and placed into the application
-         bundle. The applications are "sandboxed" inside their bundles and cannot make use
-         of shared object files. Because of this, also the plugins used by the Qt modules
-         need to be statically linked. To do this, define the required plugins using the
-         \l QTPLUGIN variable.
-
-         \omit
-         If your project uses APIs from \l {Qt Sensors}, use the following:
-
-         \badcode
-         QT += sensors
-         QTPLUGIN += qtsensors_ios
-         \endcode
-         \endomit
-
-     \li Save the changes to your project and run the application.
-    \endlist
-
-    \QC deploys your application on the iOS device, if the
-    device is detected and configured correctly in Xcode. It is also possible to
-    test the application in iOS Simulator. For more information, see
-    \l {http://doc.qt.io/qtcreator/creator-developing-ios.html}{Connecting iOS Devices}.
-
-    \sa {Platform Notes - iOS}
 */
 
 /*!
