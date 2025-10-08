@@ -1129,7 +1129,11 @@
         \li Copy files even if the target file exists
     \row
         \li \c{-codesign=<ident>}
-        \li Run \c codesign with the given identity on all executables
+        \li Run \c codesign with the given identity on all executables.
+            By default, ad-hoc signing (\c{-codesign=-}) is used.
+    \row
+        \li \c{-no-codesign}
+        \li Disable code signing
     \row
         \li \c{-hardened-runtime}
         \li Enable Hardened Runtime when code signing
