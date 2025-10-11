@@ -51,12 +51,20 @@
              \li Android 12 (API 31)
              \li arm64_v8a
              \li Mobile
+         \row \li \l{Pixel 6a}
+             \li Android 14 (API 34)
+             \li arm64_v8a
+             \li Mobile
          \row \li \l{Pixel 7}
              \li Android 13 (API 33)
              \li arm64_v8a
              \li Mobile
          \row \li \l{Pixel 7 Pro}
              \li Android 13 (API 33)
+             \li arm64_v8a
+             \li Mobile
+         \row \li \l{Pixel 7a}
+             \li Android 14 (API 34)
              \li arm64_v8a
              \li Mobile
          \row \li \l{Samsung Galaxy S10}
@@ -71,6 +79,10 @@
              \li Android 10 (API 29)
              \li armv7, arm64_v8a
              \li Tablet
+         \row \li \l{Nothing Phone 1}
+             \li Android 14 (API 34)
+             \li arm64_v8a
+             \li Mobile
          \row \li \l{Motorola Moto G5 Plus}
              \li Android 8 [UP1A.230519.001] (API 27)
              \li arm64_v8a
@@ -152,7 +164,7 @@
 
     \section3 Java Development Kit (JDK)
 
-    Qt for Android development requires JDK 11 or above, provided by any of the
+    Qt for Android development requires JDK \JdkVer or above, provided by any of the
     following supported distributions:
 
     \list
@@ -166,17 +178,17 @@
 
     For example for Linux:
 
-    \badcode
-        sudo apt-get install openjdk-11-jdk
-        export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    \badcode \JdkVer
+        sudo apt-get install openjdk-\1-jdk
+        export JAVA_HOME=/usr/lib/jvm/java-\1-openjdk-amd64
     \endcode
 
     Or for \macOS:
 
-    \badcode
-        brew install openjdk@11
-        sudo ln -sfn "$(brew --prefix openjdk@11)/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
-        export JAVA_HOME="$(/usr/libexec/java_home -v 11)"
+    \badcode \JdkVer
+        brew install openjdk@\1
+        sudo ln -sfn "$(brew --prefix openjdk@\1)/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-\1.jdk"
+        export JAVA_HOME="$(/usr/libexec/java_home -v \1)"
     \endcode
 
     \section3 Android SDK Command Line Tools
@@ -202,22 +214,21 @@
 
     \section3 Android SDK
 
-    The required version of the Platform, Platform Tools, and Build Tools for \QtVer is 33.
+    Make sure to install the SDK Platform, Platform Tools, and Build Tools.
+    For Qt \QtVer, use:
 
-    To install all of these run the following command:
-
-    \badcode
-        sdkmanager "platforms;android-33" "platform-tools" "build-tools;33.0.0"
+    \badcode \AndroidPlatFormVer \AndroidBuildToolsVer
+        sdkmanager "platforms;android-\1" "platform-tools" "build-tools;\2"
     \endcode
 
     \section3 Android NDK
 
-    The required version of the Android NDK for \QtVer is 25.1.8937393.
+    The required version of the Android NDK for \QtVer is \NdkFullVer.
 
     To install the NDK run the following command:
 
-    \badcode
-        sdkmanager "ndk;25.1.8937393"
+    \badcode \NdkFullVer
+        sdkmanager "ndk;\1"
     \endcode
 
     Then make sure the \c ANDROID_NDK_ROOT environment variable is pointing to the
@@ -225,8 +236,8 @@
 
     For example for \macOS:
 
-    \badcode
-        export ANDROID_NDK_ROOT="$(brew --prefix)/share/android-commandlinetools/ndk/25.1.8937393/"
+    \badcode \NdkFullVer
+        export ANDROID_NDK_ROOT="$(brew --prefix)/share/android-commandlinetools/ndk/\1/"
     \endcode
 
     \section3 Emulator
@@ -275,7 +286,7 @@
 
     Now you can test your development setup by running the examples shipped with the
     Qt installation. For more information, see
-    \l[Qt Examples And Tutorials]{Mobile}{Mobile Examples}.
+    \l{Qt Examples And Tutorials#Mobile}{Mobile Examples}.
 
     To develop a simple application from scratch, see
     \l {Qt Creator: Creating a Mobile Application}.

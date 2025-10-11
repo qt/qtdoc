@@ -77,11 +77,15 @@
 
 The following configurations are supported in this Qt release:
 \table 80%
-    \header \li Distribution \li Architecture \li Compiler \li Notes
-    \row \li Android 8.0 to Android 13 (API level 26 to API 33)
-        \li \c armeabi-v7a, \c x86, \c arm64-v8, and \c x86_64
-        \li Clang 14.0.6 (NDK r25b) as provided by Google
-        \li For JDK versions see \l{Java Development Kit (JDK)}
+    \header \li Distribution \li Architecture \li Compiler \li JDK \li Gradle \li Package
+    \row
+        \li Android \AndroidMinVer (API \AndroidMinApiVer) \b {to}
+        \AndroidMaxVer (Api \AndroidMaxApiVer)
+        \li \AndroidAbis
+        \li \NdkCompilerVer (NDK \NdkVer or \NdkFullVer)
+        \li JDK \JdkVer
+        \li Gradle \GradleVer and AGP \AGPVer
+        \li Multi-ABI \c{APK}s and \c{AAB}s
 \endtable
  \note It's recommended that Qt user apps use the same NDK r25b version
  used for building these official Qt for Android libraries. An NDK version
@@ -151,8 +155,8 @@ release, however they may be removed in a future minor release.
 \table
     \header \li{4,1} Tier 2: Verified Targets
     \header \li Vendor \li Board \li OS / Other \li Provided By
-    \row \li NVIDIA \li Jetson AGX Orin Development Kit \li Debian 12 \li \l{Enterprise Qt Debian Packages}
-    \row \li NVIDIA \li Jetson AGX Xavier Development Kit \li Yocto 5.0 \li \l{Boot to Qt}
+    \row \li NVIDIA \li Jetson AGX Orin Developer Kit \li Debian 12 \li \l{Enterprise Qt Debian Packages}
+    \row \li NVIDIA \li Jetson AGX Xavier Developer Kit \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8MQuad EVK \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8M Mini LPDDR4 EVK \li Yocto 5.0 \li \l{Boot to Qt}
     \row \li NXP \li i.MX 8M Nano DDR4 EVK \li Yocto 5.0 \li \l{Boot to Qt}

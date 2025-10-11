@@ -130,7 +130,7 @@
     links to and loads at start time (for Qt libraries), or runtime
     (for Qt plugins). This is called a \e shared build and is the default
     configuration on most platforms. The matching configure option is
-    \b{-dynamic}.
+    \b{-shared}.
 
     You can also build Qt such that an executable binary will include all Qt
     modules it links to and all Qt plugins it needs. This is called a
