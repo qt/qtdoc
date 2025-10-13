@@ -15,6 +15,7 @@ qt_standard_project_setup(REQUIRES 6.10)
 set(qml_singletons
     qml/ApplicationConfig.qml
     qml/ToyModel.qml
+    qml/AccessoryState.qml
 )
 set_source_files_properties(${qml_singletons} PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
@@ -35,6 +36,7 @@ qt_add_qml_module(${TARGET_NAME}
     VERSION 1.0
     QML_FILES
         ${qml_singletons}
+        qml/AccessoryModel.qml
         qml/AnimationMaterial.qml
         qml/AnimationModel.qml
         qml/GalleryViewDelegate.qml
@@ -44,12 +46,22 @@ qt_add_qml_module(${TARGET_NAME}
         qml/ShowcaseView.qml
         qml/ToyAnimations.qml
         qml/ToyButton.qml
-        # TODO: add the other qml files
         qml/ToyConfirmPage.qml
         qml/ToyGalleryPage.qml
         qml/ToyHeader.qml
         qml/ToyImage.qml
         qml/ToyLabel.qml
+        qml/ToyCustomizePage.qml
+        qml/ToyView.qml
+        qml/MaximizeView.qml
+        qml/AccessoryView.qml
+        qml/AccessoryState.qml
+        qml/CustomizationCard.qml
+        qml/NameTumbler.qml
+        qml/ColorButton.qml
+        qml/CurrentToyModel.qml
+        qml/OrbitCameraController.qml
+        # TODO: add the other qml files
 )
 
 qt_add_shaders(${TARGET_NAME} "shaders"

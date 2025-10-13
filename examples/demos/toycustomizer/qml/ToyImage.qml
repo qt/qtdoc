@@ -8,6 +8,7 @@ Item {
 
     property alias sourceSize: image.sourceSize
     property alias source: image.source
+    property alias smooth: image.smooth
     property alias color: shaderEffect.color
     property bool colorize: false
 

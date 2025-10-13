@@ -244,19 +244,27 @@ Page {
     }
     Row {
         id: priceRow
-        spacing: ApplicationConfig.responsiveSize(17)
         ToyLabel {
             id: priceLabel
+            implicitWidth: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(219)
+                                                : ApplicationConfig.responsiveSize(330)
+            implicitHeight: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(100)
+                                                         : ApplicationConfig.responsiveSize(150)
             textStyle: ApplicationConfig.isPortrait ? ApplicationConfig.TextStyle.Price_XL
                                                     : ApplicationConfig.TextStyle.Price_XXL
             text: root.__discount > 0 ? `${root.__price * (1 - root.__discount / 100)}`
                                       : `${root.__price}`
         }
+
         ToyImage {
-            height: parent.height * 0.7
-            source: "images/qtCoins"
-            color: priceLabel.color
-            colorize: true
+            source: "icons/currency.svg"
+            sourceSize {
+                width: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(215)
+                                                    : ApplicationConfig.responsiveSize(322)
+                height: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(49)
+                                                     : ApplicationConfig.responsiveSize(73)
+            }
+            smooth: false
             anchors.bottom: parent.bottom
         }
     }

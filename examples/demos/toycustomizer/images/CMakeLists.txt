@@ -51,11 +51,45 @@ qt_target_qml_sources(${TARGET_NAME}
         studio_small_01_4k.hdr
         Tiger_BaseColor.png
         Tiger_NormalMap.png
+        HeadwearImages/BandanaHatImage1.png
+        HeadwearImages/BeanieImage1.png
+        HeadwearImages/CapImage1.png
+        HeadwearImages/HeadphonesImage1.png
+        HeadwearImages/PartyHatImage1.png
+        HeadwearImages/WhiskersImage1.png
+        HeadwearImages/WizardHatImage1.png
+        EyewearImages/EyepatchImage1.png
+        EyewearImages/GlassesImage1.png
+        EyewearImages/IncognitoImage1.png
+        EyewearImages/MonacleImage1.png
+        EyewearImages/NightVisionGogglesImage1.png
+        EyewearImages/SunglassesImage1.png
+        EyesImages/AnnoyedEyesImage1.png
+        EyesImages/ConfusedEyesImage1.png
+        EyesImages/CuteEyesImage1.png
+        EyesImages/PowerPuffEyesImage1.png
+        EyesImages/SmallEyesImage1.png
+        EyesImages/SurprisedEyesImage1.png
+        EyesImages/WideEyesImage1.png
+        ItemsImages/AngelWingsImage1.png
+        ItemsImages/BackpackImage1.png
+        ItemsImages/BowtieImage1.png
+        ItemsImages/BracletsImage1.png
+        ItemsImages/ButterflyWingsImage1.png
+        ItemsImages/NecktieImage1.png
 )
 
 qt_target_qml_sources(${TARGET_NAME}
     PREFIX "/qt/qml/ToyCustomizer/qml/"
     RESOURCES
         icons/back.svg
+        icons/maximize_circle_fill.svg
+        icons/headwear.svg
+        icons/eyewear.svg
+        icons/eyes.svg
+        icons/items.svg
+        icons/names.svg
+        icons/currency.svg
+        icons/check.svg
         icons/exit.svg
 )

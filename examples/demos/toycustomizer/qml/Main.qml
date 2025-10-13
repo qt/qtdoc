@@ -42,6 +42,10 @@ ApplicationWindow {
         }
     }
 
+    AccessoryModel {
+        id: __accessoryModel
+    }
+
     ColumnLayout {
         anchors {
             fill: parent
@@ -95,7 +99,27 @@ ApplicationWindow {
             readonly property int pageStep: Main.Step.Choose
             readonly property string headingText: qsTr("Get to know your buddy")
             onCancelled: stackView.pop()
-            // TODO: onConfirmed: move to the toy customize page
+            onConfirmed: {
+                if (toyIndex < 0)
+                    return
+                const item = stackView.push(toyCustomizePage)
+                item.toyIndex = toyIndex
+            }
+        }
+    }
+
+    Component {
+        id: toyCustomizePage
+        ToyCustomizePage {
+            accessoryModel: __accessoryModel
+            readonly property int pageStep: Main.Step.Customize
+            readonly property string headingText: qsTr("Add some personality")
+            readonly property string headerBodyText: qsTr("You can rotate the toy to preview")
+
+            onCancelled: stackView.pop()
+            // TODO: onConfirmed: go to overview page
+            onShowMaximizeViewRequested: page => stackView.push(page)
+            onHideMaximizeViewRequested: stackView.pop()
         }
     }
 
@@ -104,6 +128,10 @@ ApplicationWindow {
         ListElement {
             text: qsTr("Choose a toy")
             step: Main.Step.Choose
+        }
+        ListElement {
+            text: qsTr("Customize")
+            step: Main.Step.Customize
         }
     }
 }

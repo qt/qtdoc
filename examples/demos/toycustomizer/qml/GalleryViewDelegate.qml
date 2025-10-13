@@ -41,13 +41,11 @@ Item {
             margins: ApplicationConfig.responsiveSize(48)
         }
         spacing: 0
-        Image {
+        ToyImage {
             id: modelImage
             Layout.alignment: Qt.AlignHCenter
-            mipmap: true
             Layout.preferredWidth: ApplicationConfig.responsiveSize(448)
             Layout.preferredHeight: ApplicationConfig.responsiveSize(448)
-            fillMode: Image.PreserveAspectFit
             sourceSize {
                 width: ApplicationConfig.responsiveSize(448)
                 height: ApplicationConfig.responsiveSize(448)
@@ -71,11 +69,14 @@ Item {
             }
             ToyImage {
                 id: qtCoinsImage
-                source: "images/qtCoins.png"
+                source: "icons/currency.svg"
                 color: modelPrice.color
-                Layout.preferredWidth: ApplicationConfig.responsiveSize(156)
-                Layout.preferredHeight: ApplicationConfig.responsiveSize(38)
-                Layout.topMargin: Math.round(ApplicationConfig.responsiveSize(10))
+                colorize: true
+                sourceSize {
+                    width: ApplicationConfig.responsiveSize(133)
+                    height: ApplicationConfig.responsiveSize(30)
+                }
+                Layout.alignment: Qt.AlignBottom
             }
             Item {
                 // filler item
