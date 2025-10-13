@@ -56,27 +56,26 @@ Item {
         }
         ToyLabel {
             id: modelName
-            implicitHeight: ApplicationConfig.responsiveSize(50)
+            implicitHeight: ApplicationConfig.responsiveSize(64)
             textStyle: ApplicationConfig.TextStyle.H3_Bold
             text: delegateItem.name
         }
         RowLayout {
             id: priceItem
             Layout.fillWidth: true
+            spacing: Math.round(ApplicationConfig.responsiveSize(10))
             ToyLabel {
                 id: modelPrice
                 textStyle: ApplicationConfig.TextStyle.Price_M
                 text: Number(delegateItem.originalPrice * (1 - delegateItem.discountPercent / 100)).toLocaleCurrencyString()
             }
-            Image {
+            ToyImage {
                 id: qtCoinsImage
-                fillMode: Image.PreserveAspectFit
                 source: "images/qtCoins.png"
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(102)
-                    height: ApplicationConfig.responsiveSize(29)
-                }
-                Layout.preferredHeight: modelPrice.height
+                color: modelPrice.color
+                Layout.preferredWidth: ApplicationConfig.responsiveSize(156)
+                Layout.preferredHeight: ApplicationConfig.responsiveSize(38)
+                Layout.topMargin: Math.round(ApplicationConfig.responsiveSize(10))
             }
             Item {
                 // filler item

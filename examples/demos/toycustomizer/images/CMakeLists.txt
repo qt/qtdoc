@@ -1,9 +1,11 @@
 # Copyright (C) 2025 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-qt_target_qml_sources(toycustomizer
+qt_target_qml_sources(${TARGET_NAME}
     PREFIX "/qt/qml/ToyCustomizer/qml/images/"
     RESOURCES
+        appLogo.svg
+        builtWithQt.svg
         qtCoins.png
         Bear.png
         Koala.png
@@ -49,4 +51,11 @@ qt_target_qml_sources(toycustomizer
         studio_small_01_4k.hdr
         Tiger_BaseColor.png
         Tiger_NormalMap.png
+)
+
+qt_target_qml_sources(${TARGET_NAME}
+    PREFIX "/qt/qml/ToyCustomizer/qml/"
+    RESOURCES
+        icons/back.svg
+        icons/exit.svg
 )

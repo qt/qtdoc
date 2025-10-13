@@ -49,7 +49,15 @@ ApplicationWindow {
             rightMargin: ApplicationConfig.responsiveSize(200)
             topMargin: ApplicationConfig.responsiveSize(150)
         }
-        // TODO: add ToyHeader
+        ToyHeader {
+            visible: currentPageStep !== Main.Step.None
+            currentPageStep: stackView.currentItem.pageStep ?? Main.Step.None
+            headingText: stackView.currentItem.headingText ?? ""
+            bodyText: stackView.currentItem.headerBodyText ?? ""
+            pageModel: stepModel
+            Layout.fillWidth: true
+            onExitRequested: stackView.popToIndex(0)
+        }
         StackView {
             id: stackView
             initialItem: mainPage
@@ -72,7 +80,22 @@ ApplicationWindow {
         ToyGalleryPage {
             readonly property int pageStep: Main.Step.Choose
             readonly property string headingText: qsTr("Choose your new buddy")
-            // TODO: onToySelected: (index) => { move to next page }
+            onToySelected: (index) => {
+                if (index < 0)
+                    return
+                const item = stackView.push(toyConfirmPage)
+                item.toyIndex = index
+            }
+        }
+    }
+
+    Component {
+        id: toyConfirmPage
+        ToyConfirmPage {
+            readonly property int pageStep: Main.Step.Choose
+            readonly property string headingText: qsTr("Get to know your buddy")
+            onCancelled: stackView.pop()
+            // TODO: onConfirmed: move to the toy customize page
         }
     }
 

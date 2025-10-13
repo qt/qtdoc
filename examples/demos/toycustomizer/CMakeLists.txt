@@ -40,11 +40,15 @@ qt_add_qml_module(${TARGET_NAME}
         qml/GalleryViewDelegate.qml
         qml/Main.qml
         qml/MainPage.qml
+        qml/PageStepper.qml
         qml/ShowcaseView.qml
         qml/ToyAnimations.qml
         qml/ToyButton.qml
         # TODO: add the other qml files
+        qml/ToyConfirmPage.qml
         qml/ToyGalleryPage.qml
+        qml/ToyHeader.qml
+        qml/ToyImage.qml
         qml/ToyLabel.qml
 )
 
@@ -54,6 +58,7 @@ qt_add_shaders(${TARGET_NAME} "shaders"
     FILES
         qml/shaders/buttonpressedshadow.frag
         qml/shaders/buttonpressedshadow.vert
+        qml/shaders/coloroverlay.frag
 )
 
 add_subdirectory(images)

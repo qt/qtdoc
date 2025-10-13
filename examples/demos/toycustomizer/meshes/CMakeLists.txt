@@ -1,7 +1,7 @@
 # Copyright (C) 2025 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-qt_target_qml_sources(toycustomizer
+qt_target_qml_sources(${TARGET_NAME}
     PREFIX "/qt/qml/ToyCustomizer/qml/meshes/"
     RESOURCES
         mesh_022_mesh.mesh
