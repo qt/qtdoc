@@ -77,6 +77,20 @@ qt_target_qml_sources(${TARGET_NAME}
         ItemsImages/BracletsImage1.png
         ItemsImages/ButterflyWingsImage1.png
         ItemsImages/NecktieImage1.png
+        Generic_ColorAtlas2_BaseColor.png
+        Generic_ColorAtlas2_Metallic.png
+        Generic_ColorAtlas2_Roughness.png
+        crazyMouth1.png
+        quteEyes.png
+        PowerpuffEye.png
+        wowmouth.png
+        smallmouth.png
+        incognito_color.png
+        BdayHat_BaseColor.png
+        Wizardhat_BaseColor.png
+        AngelWings_BaseColor.png
+        Backpack_BaseColor.png
+        Butterflywings_BaseColor.png
 )
 
 qt_target_qml_sources(${TARGET_NAME}

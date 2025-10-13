@@ -48,7 +48,7 @@ Item {
             PerspectiveCamera {
                 id: sceneCamera
                 y: 73
-                z: 260
+                z: 280
                 clipNear: 100
                 clipFar: 2000
                 frustumCullingEnabled: true
@@ -79,12 +79,114 @@ Item {
                 Loader3D {
                     id: bearLoader
                     active: true
-                    // TODO: set the source component to the correct toy
-                    sourceComponent: emptyComponent
+                    sourceComponent: {
+                        const item = ToyModel.get(currentToy.index)
+                        if (!item)
+                            return emptyComponent
+                        if (item.name === qsTr("Teddy Bear"))
+                            return bearComponent
+                        if (item.name === qsTr("Koala"))
+                            return koalaComponent
+                        if (item.name === qsTr("Lion"))
+                            return lionComponent
+                        if (item.name === qsTr("Monkey"))
+                            return monkeyComponent
+                        if (item.name === qsTr("Cat"))
+                            return catComponent
+                        if (item.name === qsTr("Reindeer"))
+                            return deerComponent
+                        if (item.name === qsTr("Panda"))
+                            return pandaComponent
+                        if (item.name === qsTr("Sloth"))
+                            return slothComponent
+                        if (item.name === qsTr("Raccoon"))
+                            return raccoonComponent
+                        if (item.name === qsTr("Sheep"))
+                            return sheepComponent
+                        if (item.name === qsTr("Squirrel"))
+                            return squirrelComponent
+                        if (item.name === qsTr("Pig"))
+                            return pigComponent
+                        if (item.name === qsTr("Rabbit"))
+                            return rabbitComponent
+                        if (item.name === qsTr("Tiger"))
+                            return tigerComponent
+                        return emptyComponent
+                    }
 
                     Component {
                         id: emptyComponent
                         QtObject {}
+                    }
+
+                    Component {
+                        id: lionComponent
+                        LionCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: bearComponent
+                        BearCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: koalaComponent
+                        KoalaCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: monkeyComponent
+                        MonkeyCustom {accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: catComponent
+                        CatCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: deerComponent
+                        DeerCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: pandaComponent
+                        PandaCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: slothComponent
+                        SlothCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: raccoonComponent
+                        RaccoonCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: sheepComponent
+                        SheepCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: squirrelComponent
+                        SquirrelCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: rabbitComponent
+                        RabbitCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: pigComponent
+                        PigCustom { accessoryModel: currentToy.accessoryModel }
+                    }
+
+                    Component {
+                        id: tigerComponent
+                        TigerCustom { accessoryModel: currentToy.accessoryModel }
                     }
                 }
             }

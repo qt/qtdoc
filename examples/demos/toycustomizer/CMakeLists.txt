@@ -36,6 +36,7 @@ qt_add_qml_module(${TARGET_NAME}
     VERSION 1.0
     QML_FILES
         ${qml_singletons}
+        qml/AccessoryMaterialLibrary.qml
         qml/AccessoryModel.qml
         qml/AnimationMaterial.qml
         qml/AnimationModel.qml
@@ -47,6 +48,7 @@ qt_add_qml_module(${TARGET_NAME}
         qml/ToyAnimations.qml
         qml/ToyButton.qml
         qml/ToyConfirmPage.qml
+        qml/ToyCustom.qml
         qml/ToyGalleryPage.qml
         qml/ToyHeader.qml
         qml/ToyImage.qml
@@ -59,6 +61,20 @@ qt_add_qml_module(${TARGET_NAME}
         qml/CustomizationCard.qml
         qml/NameTumbler.qml
         qml/ColorButton.qml
+        qml/BearCustom.qml
+        qml/CatCustom.qml
+        qml/DeerCustom.qml
+        qml/SheepCustom.qml
+        qml/LionCustom.qml
+        qml/RaccoonCustom.qml
+        qml/SquirrelCustom.qml
+        qml/MonkeyCustom.qml
+        qml/PandaCustom.qml
+        qml/KoalaCustom.qml
+        qml/SlothCustom.qml
+        qml/TigerCustom.qml
+        qml/RabbitCustom.qml
+        qml/PigCustom.qml
         qml/CurrentToyModel.qml
         qml/OrbitCameraController.qml
         # TODO: add the other qml files

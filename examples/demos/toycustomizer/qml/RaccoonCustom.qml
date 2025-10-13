@@ -1,0 +1,589 @@
+// Copyright (C) 2025 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import QtQuick3D
+
+ToyCustom {
+    id: root
+
+    bodyRigged {
+        x: -0.0010861842893064022
+        y: -0.00500895082950592
+        z: 0.01177152432501316
+        rotation: Qt.quaternion(0.728064, 0.683489, -0.0502389, 0.0155453)
+    }
+    toyNodeModel {
+        source: "meshes/skin_raccoon.mesh"
+        skin: skin
+        materials: raccoonMaterial
+    }
+    universalRigged {
+        x: 1.1641532182693481e-10
+        y: 1.5788828022778034e-09
+        z: 6.402842700481415e-10
+        rotation: Qt.quaternion(0.707107, 4.52749e-08, 0.707107, -5.13665e-08)
+    }
+    universalRiggedPelvis {
+        x: -7.334165275096893e-09
+        y: -0.010523475706577301
+        z: -0.13473661243915558
+        rotation: Qt.quaternion(0.707106, -0.00123975, 0.707106, -0.0012276)
+    }
+    universalRiggedLThigh {
+        x: -0.012414591386914253
+        y: 0.006806924939155579
+        z: 0.06434481590986252
+        rotation: Qt.quaternion(-0.0164643, -0.0243565, 0.999568, -0.000333506)
+    }
+    universalRiggedLCalf {
+        x: 0.0587523989379406
+        y: -5.064066499471664e-07
+        z: 3.2281968742609024e-07
+        rotation: Qt.quaternion(0.989259, 0.0154112, -0.0247382, -0.143236)
+    }
+    universalRiggedLFoot {
+        x: 0.05307982116937637
+        y: -1.8312130123376846e-07
+        z: 2.5727786123752594e-08
+        rotation: Qt.quaternion(0.674376, -0.00462268, 0.0147114, 0.738227)
+    }
+    universalRiggedRThigh {
+        x: -0.012414587661623955
+        y: 0.006806946825236082
+        z: -0.06434483826160431
+        rotation: Qt.quaternion(0.0164535, -0.024393, 0.999567, 0.00033403)
+    }
+    universalRiggedRCalf {
+        x: 0.05875236168503761
+        y: -4.4261105358600616e-07
+        z: -3.55852534994483e-07
+        rotation: Qt.quaternion(0.98929, -0.0154181, 0.0246418, -0.143043)
+    }
+    universalRiggedRFoot {
+        x: 0.05307982861995697
+        y: 1.4691613614559174e-07
+        z: -1.0244548320770264e-08
+        rotation: Qt.quaternion(0.674507, 0.00466852, -0.0146408, 0.738109)
+    }
+    universalRiggedSpine1 {
+        x: 0.006677909754216671
+        y: -0.00051093939691782
+        z: -2.7066562324762344e-09
+        rotation: Qt.quaternion(0.99049, -1.42333e-07, -4.33697e-08, 0.137586)
+    }
+    universalRiggedSpine2 {
+        x: 0.09655270725488663
+        y: 3.4226104617118835e-08
+        z: -1.1292286217212677e-08
+        rotation: Qt.quaternion(0.985061, 1.21029e-06, -1.35199e-07, -0.172207)
+    }
+    universalRiggedSpine3 {
+        x: 0.0822501853108406
+        y: -4.3655745685100555e-08
+        z: -6.56291376799345e-09
+        rotation: Qt.quaternion(0.997682, -1.23477e-06, -1.68028e-08, -0.068047)
+    }
+    universalRiggedRibcage {
+        x: 0.08838813006877899
+        y: -8.102506399154663e-08
+        z: 1.0593794286251068e-08
+        rotation: Qt.quaternion(0.994504, 1.62829e-07, -2.9452e-07, 0.104698)
+    }
+    universalRiggedLCollarbone {
+        x: -0.0025362027809023857
+        y: 0.014830464497208595
+        z: 0.00439986540004611
+        rotation: Qt.quaternion(0.671309, 0.0037681, -0.730239, -0.126811)
+    }
+    universalRiggedLUpperarm {
+        x: 0.14280030131340027
+        y: -1.0989606380462646e-07
+        z: -7.636845111846924e-08
+        rotation: Qt.quaternion(0.941044, 0.206179, -0.240757, 0.118159)
+    }
+    universalRiggedLForearm {
+        x: 0.10050936043262482
+        y: 4.156026989221573e-08
+        z: 7.759808795526624e-08
+        rotation: Qt.quaternion(0.995913, 0.0540124, -0.0201402, 0.0695285)
+    }
+    universalRiggedLPalm {
+        x: 0.11251100152730942
+        y: 1.6763806343078613e-08
+        z: -1.816079020500183e-07
+        rotation: Qt.quaternion(0.693424, -0.718796, -0.0476582, -0.0149872)
+    }
+    accessoryHolderHandLeft {
+        x: -0.008436828851699829
+        y: -0.2557981312274933
+        z: -0.12775938212871552
+        rotation: Qt.quaternion(0.103318, 0.429085, 0.865849, -0.235621)
+    }
+    modelMetalBraceletLeft {
+        x: 0.15564611554145813
+        y: 0.04820524528622627
+        z: -0.2409028559923172
+        rotation: Qt.quaternion(0.707972, 0.0986972, 0.0879472, 0.693758)
+    }
+    universalRiggedRCollarbone {
+        x: -0.0025361895095556974
+        y: 0.014830467291176319
+        z: -0.004399864934384823
+        rotation: Qt.quaternion(0.671308, -0.00376826, 0.73024, -0.126811)
+    }
+    universalRiggedRUpperarm {
+        x: 0.14280031621456146
+        y: -6.332993507385254e-08
+        z: -7.07223080098629e-09
+        rotation: Qt.quaternion(0.941044, -0.206179, 0.240757, 0.118159)
+    }
+    universalRiggedRForearm {
+        x: 0.10050938278436661
+        y: 5.21540641784668e-08
+        z: -4.377216100692749e-08
+        rotation: Qt.quaternion(0.995913, -0.0540125, 0.0201403, 0.0695281)
+    }
+    universalRiggedRPalm {
+        x: 0.11251119524240494
+        y: 7.82310962677002e-08
+        z: -4.423782229423523e-08
+        rotation: Qt.quaternion(0.693424, 0.718796, 0.0476583, -0.0149871)
+    }
+    accessoryHolderHandRight {
+        x: -0.20556066930294037
+        y: -0.3512352705001831
+        z: 0.06121262535452843
+        rotation: Qt.quaternion(0.568684, 0.349602, 0.211173, -0.713991)
+        scale.x: 0.999999
+        scale.y: 1
+        scale.z: 0.999999
+    }
+    modelMetalBraceletRight {
+        x: -0.19480888545513153
+        y: 0.04038748890161514
+        z: -0.32599449157714844
+        rotation: Qt.quaternion(-0.0889828, 0.909527, -0.323377, 0.2455)
+    }
+    universalRiggedNeck {
+        x: 0.00011603045277297497
+        y: -0.0005109418416395783
+        z: -2.0081643015146255e-09
+        rotation: Qt.quaternion(0.999372, -4.29144e-07, 2.16552e-07, -0.0354307)
+    }
+    universalRiggedHead {
+        x: 0.12408065795898438
+        y: 4.237517714500427e-08
+        z: -2.444721758365631e-09
+        rotation: Qt.quaternion(0.999372, 4.3258e-07, -2.2226e-07, 0.035431)
+    }
+    universalRiggedEar_L {
+        x: 0.4717787504196167
+        y: -1.825392246246338e-07
+        z: 0.17517536878585815
+        rotation: Qt.quaternion(0.984193, -0.0126966, -0.157936, 0.0791197)
+    }
+    universalRiggedEar_R {
+        x: 0.4717785716056824
+        y: -1.7974525690078735e-07
+        z: -0.17517592012882233
+        rotation: Qt.quaternion(0.984193, 0.0126967, 0.157936, 0.0791197)
+    }
+    accessoryHolderEyes {
+        x: 0.18901093304157257
+        y: 0.34249967336654663
+        z: -0.004048077389597893
+        rotation: Qt.quaternion(0.718825, -0.136648, -0.681451, -0.0155715)
+    }
+    modelAnnoyedEyes {
+        position: Qt.vector3d(0, -0.0255, -0.01277)
+        rotation: Qt.quaternion(0.98654, 0.14128, -0.0284962, -0.0772424)
+        scale: Qt.vector3d(0.0396734, 0.0396734, 0.0396735)
+    }
+    modelAnnoyedEyebrows {
+        position: Qt.vector3d(0, -2.2, -4.8)
+        scale: Qt.vector3d(6.43903, 6.43903, 6.43903)
+    }
+    modelAnnoyedMouth {
+        position: Qt.vector3d(2.661, -0.85, 1.32538)
+        scale: Qt.vector3d(6.43903, 6.43903, 6.43903)
+    }
+    modelConfusedEyes {
+        x: 0.002872616983950138
+        y: 0.0068146176636219025
+        z: -0.032317809760570526
+        rotation: Qt.quaternion(0.987609, 0.137125, -0.0128826, -0.0752226)
+        scale.x: 0.344056
+        scale.y: 0.344056
+        scale.z: 0.344056
+    }
+    accessoryConfusedMouth {
+        position: Qt.vector3d(0.028, 0.02, 0.6)
+        rotation: Qt.quaternion(0.984932, 0.24, 0, 0)
+        scale: Qt.vector3d(0.7, 0.33, 0.33)
+    }
+    modelCuteEyes {
+        x: 0.002626589499413967
+        y: -0.0032715173438191414
+        z: -0.03782288730144501
+        rotation: Qt.quaternion(0.985714, 0.144845, -0.0113874, -0.0851951)
+        scale.x: 0.0396735
+        scale.y: 0.0396734
+        scale.z: 0.0396735
+    }
+    modelCuteEyebrows {
+        position: Qt.vector3d(0.17329460382461548, -3.12184476852417, -4.2240824699401855)
+        rotation: Qt.quaternion(0.999837, 6.87839e-05, -0.0180035, 0.00130179)
+        scale: Qt.vector3d(6.43903, 6.43903, 6.43903)
+    }
+    modelCuteMouth {
+        position: Qt.vector3d(2.7, -1.3, 2.3)
+        scale: Qt.vector3d(6.43903, 6.43903, 6.43903)
+    }
+    modelPowerpuffEyes {
+        x: -0.004002168774604797
+        y: -0.04327765479683876
+        z: -0.044466905295848846
+        rotation: Qt.quaternion(0.776248, -0.624027, 0.0418585, -0.0792301)
+        scale: Qt.vector3d(0.79, 0.79, 0.79)
+    }
+    modelPowerpuffEyebrows {
+        position: Qt.vector3d(0, 0.165, -0.0812)
+        rotation: Qt.quaternion(0.707107, 0.707107, 0, 0)
+        scale: Qt.vector3d(0.32, 0.32, 0.32)
+    }
+    modelPowerpuffMouth {
+        position: Qt.vector3d(-0.003, -0.26, 0.034)
+        rotation: Qt.quaternion(0.509354, 0.84, 0.00848538, 0.00068334)
+        scale: Qt.vector3d(0.038, 0.022, 0.022)
+    }
+    modelSmallEyes {
+        x: 0.013645531609654427
+        y: 0.014445601031184196
+        z: -0.028406105935573578
+        rotation: Qt.quaternion(0.710811, -0.696372, 0.0550266, -0.0823777)
+    }
+    modelSmallEyebrows {
+        x: -0.003959758207201958
+        y: 0.16851012408733368
+        z: -0.08624135702848434
+        rotation: Qt.quaternion(0.707107, 0.707107, 0, 0)
+        scale.x: 0.255459
+        scale.y: 0.255459
+        scale.z: 0.255459
+    }
+    modelSmallMouth {
+        position: Qt.vector3d(-0.002, -0.185, -0.046)
+        eulerRotation: Qt.vector3d(-55, -1.5, 0.5)
+        scale: Qt.vector3d(0.02, 0.02, 0.02)
+    }
+    modelSurprisedEyes {
+        x: 0.0008958335965871811
+        y: -0.022205978631973267
+        z: -0.06325370073318481
+        rotation: Qt.quaternion(0.995711, 0.0301848, -0.0157461, -0.086022)
+        scale.x: 0.0396734
+        scale.y: 0.0396734
+        scale.z: 0.0396734
+    }
+    modelSurprisedEyebrows {
+        x: -0
+        y: -1.902
+        z: -4.14914
+        scale.x: 6.43903
+        scale.y: 6.43903
+        scale.z: 6.43903
+    }
+    modelSurprisedMouth {
+        position: Qt.vector3d(0.048, -0.2, 5.8)
+        eulerRotation: Qt.vector3d(38, 1.26713, 1.21353)
+        scale: Qt.vector3d(0.6, 0.6, 0.6)
+    }
+    modelWideEyes {
+        x: -0.013641797006130219
+        y: -0.0958433598279953
+        z: -0.02278345823287964
+        rotation: Qt.quaternion(0.989466, 0.11526, -0.00849353, -0.0871826)
+        scale.x: 0.213261
+        scale.y: 0.213261
+        scale.z: 0.213261
+    }
+    modelWideEyes_1 {
+        y: -0.19275055825710297
+        z: 1.4294747114181519
+    }
+    modelWideEyes_2 {
+        y: -0.2383231669664383
+        z: 1.4294745922088623
+    }
+    modelWideEyes_3 {
+        x: 0.004780668765306473
+        y: 0.3995685279369354
+        z: -0.13168172538280487
+        scale.x: 0.303691
+        scale.y: 0.303691
+        scale.z: 0.303691
+    }
+    modelWideMouth {
+        position: Qt.vector3d(0, 0.49, 0.76)
+        rotation: Qt.quaternion(0.978072, 0.208046, -0.00823083, 0.0048813)
+        scale: Qt.vector3d(0.10558327, 0.10558327, 0.10558327)
+    }
+    accessoryHolderEyewear {
+        x: 0.19979217648506165
+        y: 0.3617421090602875
+        z: 0.026170948520302773
+        rotation: Qt.quaternion(0.676818, -0.0683735, -0.726353, -0.0982531)
+    }
+    modelEyePatch {
+        x: -0.13067705929279327
+        y: -0.13895724713802338
+        z: -0.026907101273536682
+        rotation: Qt.quaternion(0.981983, 0.0887153, 0.126944, 0.108274)
+        scale.x: 0.12576
+        scale.y: 0.125759
+        scale.z: 0.125759
+    }
+    modelIncognito {
+        x: -0.03303553909063339
+        y: -0.0005109957419335842
+        z: -0.0067817228846251965
+        rotation: Qt.quaternion(0.730921, 0.107435, -0.0349894, 0.673044)
+        scale.x: 0.205174
+        scale.y: 0.205174
+        scale.z: 0.205174
+    }
+    modelMonocle {
+        x: -0.2173420786857605
+        y: -0.04
+        z: 0.03098738193511963
+        rotation: Qt.quaternion(0.619253, -0.452281, -0.434292, -0.472607)
+        scale.x: 0.0103497
+        scale.y: 0.0103497
+        scale.z: 0.0103496
+    }
+    modelNVGoggles {
+        x: -0.027818314731121063
+        y: 0.08119121193885803
+        z: -0.008172297850251198
+        rotation: Qt.quaternion(0.993711, 0.104748, 0.0372885, 0.0132723)
+        scale.x: 0.0613698
+        scale.y: 0.0613698
+        scale.z: 0.0613698
+    }
+    modelRoundGlasses {
+        x: -0.028860121965408325
+        y: -0.0009482022142037749
+        z: -0.02217557467520237
+        rotation: Qt.quaternion(0.992192, 0.117822, 0.0350279, 0.0211196)
+        scale.x: 0.236699
+        scale.y: 0.236699
+        scale.z: 0.236699
+    }
+    modelSunglasses {
+        x: -0.15279583632946014
+        y: -0.00036639743484556675
+        z: -0.019769633188843727
+        rotation: Qt.quaternion(0.991817, 0.121886, 0.0273882, 0.0263249)
+        scale.x: -0.0557833
+        scale.y: -0.0557833
+        scale.z: -0.0557833
+    }
+    accessoryHolderHeadwear {
+        x: 0.4897215664386749
+        y: -0.11538298428058624
+        z: 0.03171892091631889
+        rotation: Qt.quaternion(0.676818, -0.0683735, -0.726353, -0.0982531)
+    }
+    modelBandana {
+        position: Qt.vector3d(-0.024936, 0.0541, 0.20185)
+        rotation: Qt.quaternion(0.712502, -0.698243, 0.0671323, 0.0170576)
+        scale: Qt.vector3d(0.39, 0.41, 0.33)
+    }
+    modelBeanie {
+        position: Qt.vector3d(-0.015, 0.07, 0.198)
+        rotation: Qt.quaternion(0.372753, 0.114828, -0.0645996, 0.91853)
+        scale: Qt.vector3d(0.161593, 0.161593, 0.161593)
+    }
+    modelCap {
+        position: Qt.vector3d(-0.031, 0.15, 0.05)
+        rotation: Qt.quaternion(0.771718, -0.61766, -0.108644, 0.105566)
+        scale: Qt.vector3d(0.127482, 0.127482, 0.127482)
+    }
+    modelConeHat {
+        x: -0.08551105111837387
+        y: 0.15636561810970306
+        z: -0.17683185636997223
+        rotation: Qt.quaternion(0.770705, -0.62816, 0.0945508, 0.0498882)
+        scale.x: 0.135254
+        scale.y: 0.227668
+        scale.z: 0.135254
+    }
+    modelHeadphones {
+        x: -0.026
+        y: 0.115
+        z: 0.18948
+        scale.y: 0.95832
+        eulerRotation.z: 86.11281
+        eulerRotation.y: -173.14059
+        eulerRotation.x: -48.73408
+    }
+    modelWizardHat {
+        position: Qt.vector3d(-0.032, 0.199, -0.12174)
+        rotation: Qt.quaternion(0.817492, -0.573833, -0.0348425, 0.0347799)
+        scale.x: 0.8
+    }
+    accessoryHolderHead {
+        x: -0.5211950540542603
+        y: 0.02129729464650154
+        z: 0.0345756933093071
+        rotation: Qt.quaternion(0.747446, 0.0335625, -0.661407, -0.0523321)
+    }
+    modelWhiskers {
+        x: -0.017
+        y: -0.01
+        z: 0.01984
+        rotation: Qt.quaternion(0.706654, -0.703127, -0.0784762, 0.00970848)
+    }
+    accessoryHolderBody {
+        x: -0.09632178395986557
+        y: -0.024348465725779533
+        z: -0.007334607187658548
+        rotation: Qt.quaternion(0.726334, 0.0632622, -0.68237, 0.0529949)
+    }
+    modelAngelWings {
+        x: 0.012
+        y: -0.176
+        z: 0.00677
+        rotation: Qt.quaternion(0.993938, 0.105207, -0.0291857, 0.0129278)
+        scale.x: 0.133827
+        scale.y: 0.133827
+        scale.z: 0.133827
+    }
+    modelBackpack {
+        y: -0.231
+        z: -0.0245
+        rotation: Qt.quaternion(0.741539, -0.670845, 0.0089839, 0.00246628)
+        scale.x: 0.176869
+        scale.y: 0.176869
+        scale.z: 0.0940099
+    }
+    modelBowTie {
+        x: 0.026
+        y: 0.12
+        z: -0.17383
+        rotation: Qt.quaternion(0.728906, -0.684532, -0.00655214, -0.00834157)
+        scale.x: 0.0515167
+        scale.y: 0.0515167
+        scale.z: 0.0515167
+    }
+    modelButterflyWings {
+        x: 0.004
+        y: -0.196
+        z: -0.04628
+        rotation: Qt.quaternion(0.999687, 0.0103407, -0.0220312, 0.00574802)
+        scale.x: 0.629903
+        scale.y: 0.629903
+        scale.z: 0.629903
+    }
+    modelNecktie {
+        x: 0.018157316371798515
+        y: 0.00549788773059845
+        z: -0.21858447790145874
+        rotation: Qt.quaternion(0.709103, -0.0177477, -0.0227377, 0.704515)
+        scale.x: 0.195457
+        scale.y: 0.195457
+        scale.z: 0.195457
+    }
+    universalRiggedTail {
+        x: 0.0038796570152044296
+        y: -0.12033335119485855
+        z: 1.201988197863102e-08
+        rotation: Qt.quaternion(0.573576, 6.73634e-08, -3.73057e-08, -0.819152)
+    }
+    universalRiggedLPlatform {
+        x: 0.06558702141046524
+        y: 0.0031835301779210567
+        z: 3.4924596548080444e-10
+        rotation: Qt.quaternion(0.707107, 6.99704e-09, 0.707107, -3.08693e-08)
+    }
+    universalRiggedRPlatform {
+        x: -0.06558702141046524
+        y: 0.0031835490372031927
+        z: 1.57160684466362e-09
+        rotation: Qt.quaternion(0.707107, 6.99704e-09, 0.707107, -3.08693e-08)
+    }
+
+    Skin {
+        id: skin
+        joints: [
+            root.universalRigged,
+            root.universalRiggedPelvis,
+            root.universalRiggedLThigh,
+            root.universalRiggedLCalf,
+            root.universalRiggedLFoot,
+            root.universalRiggedRThigh,
+            root.universalRiggedRCalf,
+            root.universalRiggedRFoot,
+            root.universalRiggedSpine1,
+            root.universalRiggedSpine2,
+            root.universalRiggedSpine3,
+            root.universalRiggedRibcage,
+            root.universalRiggedLCollarbone,
+            root.universalRiggedLUpperarm,
+            root.universalRiggedLForearm,
+            root.universalRiggedLPalm,
+            root.universalRiggedRCollarbone,
+            root.universalRiggedRUpperarm,
+            root.universalRiggedRForearm,
+            root.universalRiggedRPalm,
+            root.universalRiggedNeck,
+            root.universalRiggedHead,
+            root.universalRiggedEar_L,
+            root.universalRiggedEar_R,
+            root.universalRiggedTail,
+            root.universalRiggedLPlatform,
+            root.universalRiggedRPlatform
+        ]
+        inverseBindPoses: [
+            Qt.matrix4x4(0.0519043, 0.996809, -0.0606389, 0.00576316, -0.0913114, 0.0652035, 0.993685, -0.0114698, 0.994469, -0.0460395, 0.0944044, -0.000261716, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0522228, 0.996576, -0.0641058, -0.128969, -0.0911469, 0.0686821, 0.993466, -0.00139632, 0.994467, -0.0460385, 0.0944215, -0.0002617, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.014947, -0.999713, 0.0187414, 0.114625, -0.0934476, 0.0200581, 0.995422, -0.00252568, -0.995512, 0.0131273, -0.0937205, 0.068418, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.0320917, -0.962583, -0.269081, 0.0572759, -0.131203, -0.262833, 0.955879, 0.0159421, -0.990836, 0.06598, -0.117859, 0.0653791, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.101295, -0.176414, 0.97909, 0.0137486, 0.0284221, 0.983237, 0.180101, -0.00460086, -0.99445, 0.0460712, -0.0945831, 0.0658483, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.0804157, -0.996684, 0.0124522, 0.114644, -0.0937198, 0.0199977, 0.995397, -0.00251709, -0.992346, 0.0788786, -0.0950171, -0.0678924, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.00642579, -0.963859, -0.266334, 0.0572613, -0.0752701, -0.265117, 0.961273, 0.0159133, -0.997143, 0.0262239, -0.0708462, -0.0648648, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.100925, -0.176464, 0.979119, 0.0137382, 0.0284187, 0.983232, 0.180134, -0.00459743, -0.994488, 0.0460054, -0.094218, -0.0653321, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0254031, 0.977565, 0.209095, -0.130753, -0.10193, -0.20554, 0.973326, 0.0361195, 0.994467, -0.0460386, 0.0944218, -0.00026168, 0, 0, 0, 1),
+            Qt.matrix4x4(0.058478, 0.989319, -0.133526, -0.226078, -0.0872635, 0.138309, 0.986537, -0.0431407, 0.994467, -0.0460388, 0.0944194, -0.000261597, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0697852, 0.961377, -0.26624, -0.299615, -0.0785178, 0.271356, 0.959271, -0.0846055, 0.994467, -0.0460384, 0.0944218, -0.000261737, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0519049, 0.996809, -0.0606393, -0.397116, -0.0913286, 0.0652047, 0.993684, -0.00195067, 0.994467, -0.046039, 0.0944216, -0.000261503, 0, 0, 0, 1),
+            Qt.matrix4x4(0.984988, -0.154901, -0.0761855, 0.0373135, 0.109374, 0.218576, 0.969671, -0.0821371, -0.133551, -0.963447, 0.232237, 0.384523, 0, 0, 0, 1),
+            Qt.matrix4x4(0.789739, -0.589216, 0.170695, 0.0925487, -0.264039, -0.0753327, 0.961566, 0.0884069, -0.553711, -0.804456, -0.215069, 0.386459, 0, 0, 0, 1),
+            Qt.matrix4x4(0.7191, -0.631624, 0.289737, 0.0225795, -0.429053, -0.0755762, 0.900112, 0.12865, -0.546635, -0.771583, -0.325347, 0.374392, 0, 0, 0, 1),
+            Qt.matrix4x4(0.647125, -0.699699, 0.302738, -0.0505306, 0.622847, 0.714209, 0.319323, -0.385059, -0.439649, -0.0180824, 0.897988, 0.118255, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.963126, -0.0647136, -0.261153, 0.0378261, -0.269049, 0.236095, 0.933741, -0.0820374, 0.00123105, 0.969573, -0.2448, -0.384488, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.858319, -0.51292, 0.0142175, 0.0929824, 0.0707333, -0.0908304, 0.993352, 0.0883186, -0.508218, 0.853618, 0.114242, -0.38618, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.815478, -0.560581, 0.144034, 0.0229833, 0.243624, -0.106718, 0.963981, 0.128473, -0.525019, 0.821194, 0.223597, -0.37411, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.753766, -0.634846, 0.169728, -0.0501621, -0.603671, 0.77099, 0.202869, -0.384736, -0.259649, 0.0504562, -0.964384, -0.118071, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0582418, 0.989689, -0.130857, -0.396133, -0.0874244, 0.135632, 0.986895, -0.0295669, 0.994467, -0.0460385, 0.0944224, -0.000261684, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0519049, 0.996809, -0.0606387, -0.521001, -0.0913286, 0.0652042, 0.993684, 0.00734752, 0.994467, -0.046039, 0.0944216, -0.000261442, 0, 0, 0, 1),
+            Qt.matrix4x4(0.341237, 0.930797, 0.131049, -0.983836, -0.147738, -0.0845753, 0.985404, 0.166654, 0.928295, -0.355617, 0.108654, 0.144001, 0, 0, 0, 1),
+            Qt.matrix4x4(-0.273086, 0.959237, 0.0727211, -0.983675, -0.0483239, -0.0891777, 0.994843, 0.166628, 0.960775, 0.268163, 0.0707072, -0.144498, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0677888, -0.40539, -0.911627, -0.0663271, 0.0802476, 0.912984, -0.400026, -0.165516, 0.994467, -0.0460387, 0.0944215, -0.000261694, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0519046, 0.996809, -0.0606389, 0.00576314, -0.0913114, 0.0652035, 0.993685, -0.0146533, 0.994469, -0.0460398, 0.0944045, -0.0658487, 0, 0, 0, 1),
+            Qt.matrix4x4(0.0519046, 0.996809, -0.0606389, 0.00576318, -0.0913114, 0.0652035, 0.993685, -0.0146533, 0.994469, -0.0460398, 0.0944045, 0.0653253, 0, 0, 0, 1)
+        ]
+    }
+
+    PrincipledMaterial {
+        id: raccoonMaterial
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
+        baseColorMap: Texture { source: "images/Raccoon_BaseColor.png" }
+        normalMap: Texture { source: "images/Raccoon_NormalMap.png" }
+    }
+}

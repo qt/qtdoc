@@ -32,4 +32,56 @@ qt_target_qml_sources(${TARGET_NAME}
         mesh_110_mesh.mesh
         mesh_111_mesh.mesh
         mesh_112_mesh.mesh
+        mesh_002_mesh.mesh
+        mesh_124_mesh.mesh
+        mesh_mesh.mesh
+        plane_016_mesh.mesh
+        skin_bear.mesh
+        skin_deer.mesh
+        skin_cat.mesh
+        skin_sheep.mesh
+        skin_lion.mesh
+        skin_raccoon.mesh
+        skin_squirrel.mesh
+        skin_monkey.mesh
+        skin_panda.mesh
+        skin_koala.mesh
+        skin_sloth.mesh
+        skin_pig.mesh
+        skin_rabbit.mesh
+        skin_tiger.mesh
+        mesh_003_mesh.mesh
+        mesh_013_mesh.mesh
+        torus_001_mesh.mesh
+        cylinder_009_mesh.mesh
+        plane_018_mesh.mesh
+        empty_003_mesh.mesh
+        empty_mesh.mesh
+        mesh_019_mesh.mesh
+        mesh_011_mesh.mesh
+        cylinder_004_mesh.mesh
+        nvgoggles_mesh.mesh
+        plane_014_mesh.mesh
+        plane_015_mesh.mesh
+        cap_mesh.mesh
+        cylinder_002_mesh.mesh
+        mesh_005_mesh.mesh
+        mesh_006_mesh.mesh
+        mesh_009_mesh.mesh
+        mesh_007_mesh.mesh
+        mesh_010_mesh.mesh
+        mesh_015_mesh.mesh
+        mesh_014_mesh.mesh
+        mesh_016_mesh.mesh
+        empty_001_mesh.mesh
+        mesh_004_mesh.mesh
+        plane_017_mesh.mesh
+        cylinder_001_mesh.mesh
+        cylinder_005_mesh.mesh
+        mesh_012_mesh.mesh
+        cone_mesh.mesh
+        cube_001_mesh.mesh
+        torus_002_mesh.mesh
+        plane_001_mesh.mesh
+        mesh_008_mesh.mesh
 )
