@@ -49,6 +49,7 @@ qt_add_qml_module(${TARGET_NAME}
         qml/ToyButton.qml
         qml/ToyConfirmPage.qml
         qml/ToyCustom.qml
+        qml/ToyFinalPage.qml
         qml/ToyGalleryPage.qml
         qml/ToyHeader.qml
         qml/ToyImage.qml
@@ -80,7 +81,6 @@ qt_add_qml_module(${TARGET_NAME}
         qml/PigCustom.qml
         qml/CurrentToyModel.qml
         qml/OrbitCameraController.qml
-        # TODO: add the other qml files
 )
 
 qt_add_shaders(${TARGET_NAME} "shaders"

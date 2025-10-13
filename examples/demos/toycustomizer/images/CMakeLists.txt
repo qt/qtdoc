@@ -6,6 +6,7 @@ qt_target_qml_sources(${TARGET_NAME}
     RESOURCES
         appLogo.svg
         builtWithQt.svg
+        dialogBackground.svg
         qtCoins.png
         Bear.png
         Koala.png

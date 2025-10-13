@@ -8,6 +8,10 @@ import QtQuick.Layouts
 pragma ComponentBehavior: Bound
 
 ApplicationWindow {
+    id: main
+
+    property int lastToyIndex: -1
+
     minimumWidth: 608
     minimumHeight: 960
     width: 1536
@@ -87,8 +91,8 @@ ApplicationWindow {
             onToySelected: (index) => {
                 if (index < 0)
                     return
-                const item = stackView.push(toyConfirmPage)
-                item.toyIndex = index
+                main.lastToyIndex = index
+                stackView.push(toyConfirmPage, { toyIndex: index })
             }
         }
     }
@@ -102,9 +106,20 @@ ApplicationWindow {
             onConfirmed: {
                 if (toyIndex < 0)
                     return
-                const item = stackView.push(toyCustomizePage)
-                item.toyIndex = toyIndex
+                stackView.push(toyCustomizePage, { toyIndex: toyIndex })
             }
+        }
+    }
+
+    Component {
+        id: finalPage
+        ToyFinalPage {
+            onNewOrderRequested: stackView.popToIndex(0)
+            onOrderReviewRequested: stackView.push(toyOverviewPage,
+                                                   {
+                                                       buttonsVisible: false,
+                                                       toyIndex: main.lastToyIndex
+                                                   })
         }
     }
 
@@ -120,7 +135,7 @@ ApplicationWindow {
             onConfirmed: {
                 if (toyIndex < 0)
                     return
-                const item = stackView.push(toyOverviewPage, {toyIndex: toyIndex})
+                stackView.push(toyOverviewPage, {toyIndex: toyIndex})
             }
             onShowMaximizeViewRequested: page => stackView.push(page)
             onHideMaximizeViewRequested: stackView.pop()
@@ -130,11 +145,11 @@ ApplicationWindow {
     Component {
         id: toyOverviewPage
         OverViewPage {
-            accessoryModel: __accessoryModel
             readonly property int pageStep: Main.Step.Overview
             readonly property string headingText: qsTr("Review your order")
+            accessoryModel: __accessoryModel
             onCancelled: stackView.pop()
-            // TODO: onConfirmed: go to final page
+            onConfirmed: stackView.push(finalPage)
         }
     }
 

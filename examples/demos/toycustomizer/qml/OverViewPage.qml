@@ -8,6 +8,7 @@ import QtQuick.Layouts
 Page {
     id: overViewPage
 
+    property bool buttonsVisible: true
     property alias toyIndex: orderGrid.toyIndex
     property alias accessoryModel: orderGrid.accessoryModel
     signal confirmed
@@ -41,13 +42,25 @@ Page {
 
         LayoutItemProxy {
             target: confirmButton
+            visible: overViewPage.buttonsVisible
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: ApplicationConfig.responsiveSize(152)
         }
+        Item {
+            implicitHeight: confirmButton.implicitHeight
+            visible: !overViewPage.buttonsVisible
+        }
+
         LayoutItemProxy {
             target: backButton
+            visible: overViewPage.buttonsVisible
             Layout.leftMargin: ApplicationConfig.responsiveSize(80)
         }
+        Item {
+            implicitHeight: backButton.implicitHeight
+            visible: !overViewPage.buttonsVisible
+        }
+
         LayoutItemProxy {
             target: backgroundRectangle
             Layout.fillWidth: true
@@ -90,6 +103,7 @@ Page {
             Layout.columnSpan: 2
             LayoutItemProxy {
                 target: backButton
+                visible: overViewPage.buttonsVisible
                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             }
         }
@@ -203,7 +217,7 @@ Page {
         }
         LayoutItemProxy {
             target: confirmButton
-            visible: !ApplicationConfig.isPortrait
+            visible: buttonsVisible && !ApplicationConfig.isPortrait
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: ApplicationConfig.responsiveSize(140)
         }
@@ -265,6 +279,7 @@ Page {
 
     ToyButton {
         id: confirmButton
+        visible: false
         type: ToyButton.Type.Primary
         textStyle: ApplicationConfig.TextStyle.Button_L
         text: qsTr("Confirm order")
@@ -273,6 +288,7 @@ Page {
 
     ToyButton {
         id: backButton
+        visible: false
         type: ToyButton.Type.Secondary
         textStyle: ApplicationConfig.TextStyle.Button_L
         icon.source: "icons/shirt.svg"
