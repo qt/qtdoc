@@ -1,0 +1,36 @@
+# Copyright (C) 2025 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+qt_target_qml_sources(toycustomizer
+    PREFIX "/qt/qml/ToyCustomizer/qml/images/"
+    RESOURCES
+        Bear_BaseColor.png
+        Bear_NormalMap.png
+        Cat_BaseColor.png
+        Cat_NormalMap.png
+        Deer_BaseColor.png
+        Deer_NormalMap.png
+        Koala_BaseColor.png
+        Koala_NormalMap.png
+        Lion_BaseColor.png
+        Lion_NormalMap.png
+        Monkey_BaseColor.png
+        Monkey_NormalMap.png
+        Panda_BaseColor.png
+        Panda_NormalMap.png
+        Pig_BaseColor.png
+        Pig_NormalMap.png
+        Rabbit_BaseColor.png
+        Rabbit_NormalMap.png
+        Raccoon_BaseColor.png
+        Raccoon_NormalMap.png
+        Sheep_BaseColor.png
+        Sheep_NormalMap.png
+        Sloth_BaseColor.png
+        Sloth_NormalMap.png
+        Squirrel_BaseColor.png
+        Squirrel_NormalMap.png
+        studio_small_01_4k.hdr
+        Tiger_BaseColor.png
+        Tiger_NormalMap.png
+)

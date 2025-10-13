@@ -8,9 +8,29 @@ import QtQuick.Layouts
 pragma ComponentBehavior: Bound
 
 ApplicationWindow {
-    // TODO: set height and width
+    minimumWidth: 608
+    minimumHeight: 960
+    width: 1536
+    height: 864
     visible: true
     title: qsTr("Toy Customizer")
+
+    enum Step {
+        None,
+        Choose,
+        Customize,
+        Overview
+    }
+
+    onWidthChanged: ApplicationConfig.updateApplicationSize(width, height)
+    onHeightChanged: ApplicationConfig.updateApplicationSize(width, height)
+    Component.onCompleted: {
+        minimumWidth = Math.min(ApplicationConfig.appMinimumWidth, screen.width)
+        minimumHeight = Math.min(ApplicationConfig.appMinimumHeight, screen.height)
+        width = screen.width * 0.7
+        height = screen.height * 0.7
+        ApplicationConfig.updateApplicationSize(width, height)
+    }
 
     background: Rectangle {
         gradient: Gradient {
@@ -27,9 +47,18 @@ ApplicationWindow {
         // TODO: add ToyHeader
         StackView {
             id: stackView
-            // TODO: set initialItem
+            initialItem: mainPage
             Layout.fillHeight: true
             Layout.fillWidth: true
+        }
+    }
+
+    Component {
+        id: mainPage
+        MainPage {
+            readonly property int pageStep: Main.Step.None
+            isCurrent: stackView.depth === 1
+            // TODO: onStartRequested: stackView.push(toyGalleryPage)
         }
     }
 }

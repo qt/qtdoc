@@ -8,9 +8,14 @@ project(ToyCustomizer VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(QT_WASM_INITIAL_MEMORY "200MB")
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick ShaderTools)
 
 qt_standard_project_setup(REQUIRES 6.10)
+
+set(qml_singletons
+    qml/ApplicationConfig.qml
+)
+set_source_files_properties(${qml_singletons} PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 set(TARGET_NAME toycustomizer)
 qt_add_executable(${TARGET_NAME}
@@ -28,9 +33,28 @@ qt_add_qml_module(${TARGET_NAME}
     URI ToyCustomizer
     VERSION 1.0
     QML_FILES
+        ${qml_singletons}
+        qml/AnimationMaterial.qml
+        qml/AnimationModel.qml
         qml/Main.qml
+        qml/MainPage.qml
+        qml/ShowcaseView.qml
+        qml/ToyAnimations.qml
+        qml/ToyButton.qml
         # TODO: add the other qml files
 )
+
+qt_add_shaders(${TARGET_NAME} "shaders"
+    GLSL
+    PREFIX "/qt/qml/ToyCustomizer/"
+    FILES
+        qml/shaders/buttonpressedshadow.frag
+        qml/shaders/buttonpressedshadow.vert
+)
+
+add_subdirectory(images)
+add_subdirectory(animations)
+add_subdirectory(meshes)
 
 add_subdirectory(assets)
 add_dependencies(${TARGET_NAME} assets_complete)
