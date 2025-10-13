@@ -43,7 +43,12 @@ ApplicationWindow {
     }
 
     ColumnLayout {
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            leftMargin: ApplicationConfig.responsiveSize(200)
+            rightMargin: ApplicationConfig.responsiveSize(200)
+            topMargin: ApplicationConfig.responsiveSize(150)
+        }
         // TODO: add ToyHeader
         StackView {
             id: stackView
@@ -58,7 +63,24 @@ ApplicationWindow {
         MainPage {
             readonly property int pageStep: Main.Step.None
             isCurrent: stackView.depth === 1
-            // TODO: onStartRequested: stackView.push(toyGalleryPage)
+            onStartRequested: stackView.push(toyGalleryPage)
+        }
+    }
+
+    Component {
+        id: toyGalleryPage
+        ToyGalleryPage {
+            readonly property int pageStep: Main.Step.Choose
+            readonly property string headingText: qsTr("Choose your new buddy")
+            // TODO: onToySelected: (index) => { move to next page }
+        }
+    }
+
+    ListModel {
+        id: stepModel
+        ListElement {
+            text: qsTr("Choose a toy")
+            step: Main.Step.Choose
         }
     }
 }

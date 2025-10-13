@@ -1,0 +1,73 @@
+// Copyright (C) 2025 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import QtQuick.Controls
+
+Page {
+    id: toyGalleryPage
+
+    signal toySelected(index: int)
+
+    background: Item { visible: false }
+
+    Item {
+        width: {
+            const toyView_minWidth = ApplicationConfig.responsiveSize(1760)
+            if (ApplicationConfig.isPortrait)
+                return toyView_minWidth
+
+            const toyView_horMargin = ApplicationConfig.responsiveSize(790)
+            const toyView_breakpointWidth = toyView_minWidth + 2 * toyView_horMargin
+            if (toyGalleryPage.width < toyView_breakpointWidth)
+                return toyView_minWidth
+            else
+                return toyGalleryPage.width - 2 * toyView_horMargin
+        }
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        GridView {
+            id: toyView
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: Math.floor(parent.width / cellWidth) * cellWidth
+            clip: true
+            cellWidth: Math.floor(ApplicationConfig.responsiveSize(565))
+            cellHeight: ApplicationConfig.responsiveSize(900)
+            snapMode: GridView.SnapToRow
+            model: ToyModel
+            delegate: GalleryViewDelegate {
+                onToySelected: () => toyGalleryPage.toySelected(index)
+            }
+        }
+    }
+
+    Rectangle {
+        id: fadeInView
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+        height: ApplicationConfig.responsiveSize(40)
+        gradient: Gradient {
+            GradientStop {
+                position: 0.0
+                color: "#00DAEBFF"
+            }
+            GradientStop {
+                position: 1.0
+                color: "#91C9FF"
+            }
+        }
+    }
+}

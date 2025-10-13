@@ -4,6 +4,22 @@
 qt_target_qml_sources(toycustomizer
     PREFIX "/qt/qml/ToyCustomizer/qml/images/"
     RESOURCES
+        qtCoins.png
+        Bear.png
+        Koala.png
+        Lion.png
+        Monkey.png
+        Cat.png
+        Deer.png
+        Panda.png
+        Pig.png
+        Sheep.png
+        Rabbit.png
+        Raccoon.png
+        Sloth.png
+        Squirrel.png
+        Tiger.png
+        teddyBear.png
         Bear_BaseColor.png
         Bear_NormalMap.png
         Cat_BaseColor.png
