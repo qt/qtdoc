@@ -20,9 +20,8 @@ Rectangle {
     property int discountPercent: (oldPrice > 0 && hasDiscount)
                                    ? Math.round((discountAmount / oldPrice) * 100) : 0
 
-    function __updateSelectedColor(colorName :string, selectedColor :color) {
-        selectedColorName = colorName
-        colorChosen(selectedColor)
+    function __updateSelectedColor(colorName :string) {
+        colorChosen(colorName)
     }
 
     signal colorChosen(string colorName)
@@ -67,29 +66,29 @@ Rectangle {
 
                 ColorButton {
                     id: greenButton
+                    property string colorName: "#36B45A"
                     label: "Green"
                     buttonColor: "#36B45A"
-                    checked: customizationCard.selectedColorName === label
-                    onClicked: customizationCard.__updateSelectedColor(checked ? label : "",
-                                                                       checked ? buttonColor : "")
+                    checked: customizationCard.selectedColorName === colorName
+                    onClicked: customizationCard.__updateSelectedColor(checked ? colorName : "")
                 }
 
                 ColorButton {
                     id: pinkButton
+                    property string colorName: "#EF4CB0"
                     label: "Pink"
                     buttonColor: "#EF4CB0"
-                    checked: customizationCard.selectedColorName === label
-                    onClicked: customizationCard.__updateSelectedColor(checked ? label : "",
-                                                                       checked ? buttonColor : "")
+                    checked: customizationCard.selectedColorName === colorName
+                    onClicked: customizationCard.__updateSelectedColor(checked ? colorName : "")
                 }
 
                 ColorButton {
                     id: blueButton
+                    property string colorName: "#419DE3"
                     label: "Blue"
                     buttonColor: "#419DE3"
-                    checked: customizationCard.selectedColorName === label
-                    onClicked: customizationCard.__updateSelectedColor(checked ? label : "",
-                                                                       checked ? buttonColor : "")
+                    checked: customizationCard.selectedColorName === colorName
+                    onClicked: customizationCard.__updateSelectedColor(checked ? colorName : "")
                 }
             }
         }

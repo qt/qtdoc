@@ -25,11 +25,20 @@ Rectangle {
         if (key === "bracletsVisible") {
             AccessoryState["metalBracelet_RightVisible"] = vis
             AccessoryState["metalBracelet_LeftVisible"] = vis
-        } else if (key in AccessoryState) {
-            AccessoryState[key] = vis
-        } else {
-            console.warn("Unknown accessory:", key)
+            return
         }
+        AccessoryState[key] = vis
+    }
+
+    function resetAllAccessories() {
+        const accessoryModel = accessoryView.model
+        for (let i = 0; i < accessoryModel.count; ++i) {
+            const item = accessoryModel.get(i)
+            const isDefaultEyes = (item.group === "eyes" && item.name === "Small Eyes")
+            accessoryModel.set(i, { selected: isDefaultEyes, color: "" })
+            accessoryView.setAccessoryVisibility(item.key, isDefaultEyes)
+        }
+        accessoryView.totalSelectedAccessory = 0
     }
 
     TabBar {
@@ -243,6 +252,7 @@ Rectangle {
                 const item = accessoryModel.get(i)
                 if ((item.group === group) && item.selected) {
                     item.selected = false
+                    item.color = ""
                     accessoryView.setAccessoryVisibility(item.key, false)
                     break // since selecting two items from the same category is not possible
                 }
@@ -298,7 +308,7 @@ Rectangle {
                 setSelected(false)
             }
 
-            onColorChosen: colorName => model.color = selectedColorName
+            onColorChosen: (colorName) => model.color = colorName
         }
     }
 

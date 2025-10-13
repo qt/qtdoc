@@ -106,7 +106,9 @@ ApplicationWindow {
             onConfirmed: {
                 if (toyIndex < 0)
                     return
-                stackView.push(toyCustomizePage, { toyIndex: toyIndex })
+                const changed = (toyIndex !== main.lastToyIndex)
+                main.lastToyIndex = toyIndex
+                stackView.push(toyCustomizePage, { toyIndex: toyIndex, reset: changed})
             }
         }
     }

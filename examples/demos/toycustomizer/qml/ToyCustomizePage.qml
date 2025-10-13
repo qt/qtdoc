@@ -11,12 +11,18 @@ Page {
     id: toyCustomizePage
 
     property alias toyIndex: toyView.toyIndex
+    property bool reset: false
     required property AccessoryModel accessoryModel
 
     signal cancelled
     signal confirmed
     signal showMaximizeViewRequested(page: Component)
     signal hideMaximizeViewRequested
+
+    Component.onCompleted: {
+        if (reset)
+            accessoryView.resetAllAccessories()
+    }
 
     background: Item { visible: false }
 
