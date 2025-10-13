@@ -117,9 +117,24 @@ ApplicationWindow {
             readonly property string headerBodyText: qsTr("You can rotate the toy to preview")
 
             onCancelled: stackView.pop()
-            // TODO: onConfirmed: go to overview page
+            onConfirmed: {
+                if (toyIndex < 0)
+                    return
+                const item = stackView.push(toyOverviewPage, {toyIndex: toyIndex})
+            }
             onShowMaximizeViewRequested: page => stackView.push(page)
             onHideMaximizeViewRequested: stackView.pop()
+        }
+    }
+
+    Component {
+        id: toyOverviewPage
+        OverViewPage {
+            accessoryModel: __accessoryModel
+            readonly property int pageStep: Main.Step.Overview
+            readonly property string headingText: qsTr("Review your order")
+            onCancelled: stackView.pop()
+            // TODO: onConfirmed: go to final page
         }
     }
 
@@ -132,6 +147,10 @@ ApplicationWindow {
         ListElement {
             text: qsTr("Customize")
             step: Main.Step.Customize
+        }
+        ListElement {
+            text: qsTr("Order overview")
+            step: Main.Step.Overview
         }
     }
 }

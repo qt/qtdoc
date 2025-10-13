@@ -134,6 +134,7 @@ Rectangle {
                     }
                 }
             }
+            Component.onCompleted: adjectivesProxy.setSelected(currentIndex)
         }
 
         Tumbler {
@@ -166,6 +167,7 @@ Rectangle {
                     }
                 }
             }
+            Component.onCompleted: nounProxy.setSelected(currentIndex)
         }
     }
 }

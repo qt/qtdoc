@@ -53,6 +53,9 @@ qt_add_qml_module(${TARGET_NAME}
         qml/ToyHeader.qml
         qml/ToyImage.qml
         qml/ToyLabel.qml
+        qml/OverViewPage.qml
+        qml/OrderGrid.qml
+        qml/OrderItem.qml
         qml/ToyCustomizePage.qml
         qml/ToyView.qml
         qml/MaximizeView.qml

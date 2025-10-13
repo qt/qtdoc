@@ -106,4 +106,5 @@ qt_target_qml_sources(${TARGET_NAME}
         icons/currency.svg
         icons/check.svg
         icons/exit.svg
+        icons/shirt.svg
 )
