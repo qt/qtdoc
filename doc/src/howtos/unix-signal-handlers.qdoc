@@ -12,7 +12,7 @@
     You \e can't call Qt functions from Unix signal handlers. The
     standard POSIX rule applies: You can only call async-signal-safe
     functions from signal handlers. See \l
-    {http://www.opengroup.org/onlinepubs/000095399/functions/xsh_chap02_04.html#tag_02_04_01}
+    {https://pubs.opengroup.org/onlinepubs/000095399/functions/xsh_chap02_04.html#tag_02_04_03}
     {Signal Actions} for the complete list of functions you can call
     from Unix signal handlers.
 

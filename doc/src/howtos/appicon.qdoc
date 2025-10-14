@@ -148,12 +148,12 @@
 
     In this section we briefly describe the issues involved in providing
     icons for applications for two common Linux desktop environments:
-    \l{http://www.kde.org/}{KDE} and \l{http://www.gnome.org/}{GNOME}.
+    \l{https://www.kde.org/}{KDE} and \l{https://www.gnome.org/}{GNOME}.
     The core technology used to describe application icons
     is the same for both desktops, and may also apply to others, but there
     are details which are specific to each. The main source of information
     on the standards used by these Linux desktops is
-    \l{http://www.freedesktop.org/}{freedesktop.org}. For information
+    \l{https://www.freedesktop.org/}{freedesktop.org}. For information
     on other Linux desktops please refer to the documentation for the
     desktops you are interested in.
 
@@ -166,14 +166,12 @@
     the start menu, and on the panel.
 
     More information about desktop entry files can be found in the
-    \l{http://www.freedesktop.org/Standards/desktop-entry-spec}{Desktop Entry
-    Specification}.
+    \l{https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/}{Desktop Entry Specification}.
 
     Although desktop entry files can usefully encapsulate the application's details,
     we still need to store the icons in the conventional location for each desktop
     environment. A number of locations for icons are given in the
-    \l{http://www.freedesktop.org/Standards/icon-theme-spec}{Icon Theme
-    Specification}.
+    \l{https://www.freedesktop.org/wiki/Specifications/icon-theme-spec/}{Icon Theme Specification}.
 
     Although the path used to locate icons depends on the desktop in use,
     and on its configuration, the directory structure beneath each of
@@ -200,15 +198,13 @@
     user-specific icon path and the system-wide path. Beneath these
     directories, it should be possible to locate and install icons according
     to the conventions described in the
-    \l{http://www.freedesktop.org/Standards/icon-theme-spec}{Icon Theme Specification}.
+    \l{https://www.freedesktop.org/wiki/Specifications/icon-theme-spec/}{Icon Theme Specification}.
 
     If you are developing exclusively for KDE, you may wish to take
-    advantage of the \link
-    http://techbase.kde.org/Development/CMake/Addons_for_KDE
-    KDE build system\endlink to configure your application. This ensures
+    advantage of the \l{https://techbase.kde.org/Development/CMake/Addons_for_KDE}{KDE build system} to configure your application. This ensures
     that your icons are installed in the appropriate locations for KDE.
 
-    The KDE developer website is at \l{http://techbase.kde.org/}.
+    The KDE developer website is at \l{https://techbase.kde.org/}.
 
     \section2 GNOME
 
@@ -221,16 +217,15 @@
 
     The path printed on stdout refers to a location that should contain a directory
     called \c{pixmaps}; the directory structure within the \c pixmaps
-    directory is described in the \link
-    http://www.freedesktop.org/Standards/icon-theme-spec Icon Theme
-    Specification \endlink.
+    directory is described in the
+    \l{https://www.freedesktop.org/wiki/Specifications/icon-theme-spec/}{Icon Theme Specification}.
 
     If you are developing exclusively for GNOME, you may want to use the
     standard set of GNU Build Tools. For more information, see the
-    \l{https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html?highlight=application%20icons#icons}{Integration
-    Guidelines} section. This ensures that your icons are installed in the
+    \l{https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html?highlight=application%20icons#icons}{Integration Guidelines}
+    section. This ensures that your icons are installed in the
     appropriate locations for GNOME.
 
-    The GNOME developer website, \l{http://developer.gnome.org/}, provides
+    The GNOME developer website, \l{https://developer.gnome.org/}, provides
     more insight into developing applications.
 */
