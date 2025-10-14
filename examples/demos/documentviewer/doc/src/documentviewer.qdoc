@@ -139,6 +139,92 @@
     It supports editing text files, copy/cut and paste, printing, and
     saving changes.
 
+    \section2 Class Definition
+
+    \snippet demos/documentviewer/plugins/txtviewer/txtviewer.h interfacing
+
+    The class definition starts with the \c Q_OBJECT macro, which handles
+    signals and slots. It is followed by the \c Q_PLUGIN_METADATA and
+    \c Q_INTERFACES macros which are necessary to register the plugin.
+
+    The class inherits from \c ViewerInterface, which inherits from
+    \c AbstractViewer. The \c ViewerInterface class is used to provide an
+    interface between the main window application and the plugin.
+
+    \c QPluginLoader also requires the file txtviewer.json, which has to contain
+    the plugin's key:
+    \code
+    { "Keys": [ "txtviewer" ] }
+    \endcode
+
+    The class defines no constructor, which means that only a standard
+    constructor without arguments is available. All other functions, including
+    the destructor, re-implement virtual functions of \c ViewerInterface. They
+    are used to exchange data, information, and instructions with the main
+    application.
+
+    \snippet demos/documentviewer/plugins/txtviewer/txtviewer.h classDefinition
+
+    \section2 TxtViewer Class Implementation
+
+    \snippet demos/documentviewer/plugins/txtviewer/txtviewer.cpp init
+
+    We start by including the header files necessary to access all classes used
+    by \c TxtViewer. We also include \c txtviewer.h.
+
+    \c QPrinter and \c QPrintDialog are only included if print support is
+    enabled on the compilation system.
+
+    Note that these headers are not included directly in \c mainwindow.h.
+    Including large headers in other header files can impact build performance.
+    In this case, it would not cause issues, but it is best practice to include
+    only the necessary headers to keep dependencies minimal.
+
+    The implementation starts with an empty destructor. It could be completely
+    omitted. It's good practice to implement it empty in order to point out to
+    code readers that nothing needs to be done in the destructor.
+
+    The destructor is followed by an initialization function, taking three
+    arguments:
+
+    \list
+    \li \c file, the pointer to the file to be opened and displayed.
+    \li \c parent, pointing to the \c QWidget inside which the editor shall be placed.
+    \li \c mainWindow, pointing to the application's main window, where menus and menu bars
+    are handled.
+    \endlist
+
+    The function calls the base init function of \c AbstractViewer. A new
+    QPlainTextEdit widget is created, which will display the file's contents.
+    Then, \c TxtViewer's setup function is connected to the base class'
+    \c uiInitialized signal.
+
+    The next function returns the list of mime types, which the text viewer
+    supports. Only plain text is supported.
+
+    The last initialization function adds viewer specific UI components like
+    menus, icons, buttons, and tooltips. It uses functionality provided by
+    \c AbstractViewer to make sure that these components are removed from the
+    application's main window, once another file is displayed with another
+    viewer plugin.
+
+    \snippet demos/documentviewer/plugins/txtviewer/txtviewer.cpp open
+
+    \c openFile opens a file, transfers its contents into the QPlainTextEdit,
+    and prints a status message for the user, depending on whether or not the
+    opening was successful.
+
+    \snippet demos/documentviewer/plugins/txtviewer/txtviewer.cpp infoPrintAndSave
+
+    The next re-implemented function tells the main application whether or not
+    the viewer plugin is actually displaying content.
+
+    If printing is supported on the compiling system, the next section
+    implements it.
+
+    The last two re-implementations provide functionality to save the current
+    file or to save it under a new name.
+
     \section1 ImageViewer class
 
     \c ImageViewer displays images as supported by QImageReader, using
