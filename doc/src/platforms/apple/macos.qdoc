@@ -427,7 +427,7 @@
 
     By default, Qt is built as a set of frameworks. Frameworks are the
     \macos preferred way of distributing libraries. The
-    \l{http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/index.html}
+    \l{https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183-SW1}
     {Apple's Framework Programming Guide} site has far more information about
     Frameworks.
 
@@ -442,7 +442,7 @@
 
     Alternatively, you can temporarily swap your debug and release versions,
     which is documented in
-    \l{http://developer.apple.com/technotes/tn2004/tn2124.html#SECJUSTONELIB}
+    \l{https://developer.apple.com/library/archive/technotes/tn2124/_index.html}
     {Apple's "Debugging Magic" technical note}.
 
     If you don't want to use frameworks, simply configure Qt with
@@ -675,7 +675,7 @@
     \endlist
     This is specific to \macos and beyond the scope of this document. For
     more information about bundles, see
-    \l {http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFBundles/index.html}{Apple's Developer Website}.
+    \l {https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i-CH1-SW1}{Apple's Developer Website}.
 
     To build your application as a bundle with CMake, set the
     \l {https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE.html}
