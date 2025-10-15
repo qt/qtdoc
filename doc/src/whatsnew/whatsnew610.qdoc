@@ -450,6 +450,13 @@
 
     \section3 Windows
     \list
+        \li Windows on ARM pre-built binaries also include QtWebEngine and QtWebView.
+    \endlist
+
+    \section3 Linux
+    \list
+        \li Linux desktop pre-built binaries are now built using RHEL9, which raises
+        the minimum glibc requirement from 2.28 to 2.34.
     \endlist
 
     \section3 macOS
