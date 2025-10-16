@@ -77,10 +77,13 @@
   To launch the Qt splash screen, we also need to override the Android Activity
   \c onCreate and use an Intent to launch the QtActivity.
 
-  \quotefile demos/android/splashscreen/manifest/android/java/io/qt/qtsplashscreeninandroid/SplashActivity.java
+  \quotefromfile demos/android/splashscreen/manifest/android/java/io/qt/qtsplashscreeninandroid/SplashActivity.java
+  \skipto package
+  \printuntil
 
   In this example the main view contains just a single view with an exit button.
 
-  \quotefile demos/android/splashscreen/manifest/Main.qml
-
+  \quotefromfile demos/android/splashscreen/manifest/Main.qml
+  \skipto import
+  \printuntil
 */
