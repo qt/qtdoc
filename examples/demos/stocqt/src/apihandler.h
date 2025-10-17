@@ -13,9 +13,7 @@ class ApiHandler : public QObject
 public:
     ApiHandler();
 
-    void testApiKey(QString apiKey, std::function<void(bool)> onComplete);
     void setApiKey(QString apiKey);
-    void setUseLiveData(bool useLiveData);
     void stockQuote(const QString &symbols, std::function<void(QList<QuoteData>)> onComplete);
     void stockHistory(const QString &symbol, std::function<void(QList<HistoryData>)> onComplete);
     bool useLiveData() const;
