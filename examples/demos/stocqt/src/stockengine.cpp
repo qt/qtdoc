@@ -33,29 +33,9 @@ QSortFilterProxyModel *StockEngine::filterModel()
     return &m_proxyModel;
 }
 
-void StockEngine::testApiKey(const QString &apiKey)
+void StockEngine::testApiKey()
 {
-    m_apiHandler.testApiKey(apiKey, [this, apiKey](bool valid) {
-        if (valid) {
-            m_apiHandler.setApiKey(apiKey);
-            emit onApiKeyTested(true);
-        } else {
-            emit onApiKeyTested(false);
-        }
-    });
-}
-
-void StockEngine::setUseLiveData(bool useLiveData)
-{
-    if (useLiveData != m_apiHandler.useLiveData()) {
-        m_apiHandler.setUseLiveData(useLiveData);
-        m_stockListModel.resetQuotes();
-        updateStockListModel();
-        if (useLiveData)
-            m_liveDataTimer.start();
-        else
-            m_liveDataTimer.stop();
-    }
+    emit onApiKeyTested(false);
 }
 
 void StockEngine::updateStockListModel()
@@ -139,7 +119,6 @@ void StockEngine::updateStockModelHistory(const QString &stockId)
     m_apiHandler.stockHistory(stockId, [this](QList<HistoryData> dataList) {
         m_stockModel->updateHistory(dataList);
     });
-    m_stockModel->setDataIsLive(m_apiHandler.useLiveData());
 }
 
 void StockEngine::updateStockModelQuote()
@@ -147,7 +126,6 @@ void StockEngine::updateStockModelQuote()
     m_apiHandler.stockQuote(currentStockId(), [this](QList<QuoteData> data) {
         m_stockModel->appendQuote(data.at(0));
     });
-    m_stockModel->setDataIsLive(m_apiHandler.useLiveData());
 }
 
 QString StockEngine::currentStockId() const

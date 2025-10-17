@@ -40,8 +40,7 @@ public:
     Q_INVOKABLE bool useLiveData() const;
 
 public slots:
-    void testApiKey(const QString &apiKey);
-    void setUseLiveData(bool useLiveData);
+    void testApiKey();
     void updateStockListModel();
     void updateStockView(const QString &stockId);
     void addFavorite(const QString &stockId);
