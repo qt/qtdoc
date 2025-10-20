@@ -418,9 +418,9 @@
     \page windows-deployment.html
     \title Qt for Windows - Deployment
 
-    This documentation describes deployment process for \l{Qt for
+    This documentation describes the deployment process for \l{Qt for
     Windows}{Windows}. We refer to the \l{Plug & Paint Example}{Plug & Paint}
-    example application through out the document to demonstrate the deployment
+    example application throughout the document to demonstrate the deployment
     process.
 
     \note Add your Qt build directory to the list of excluded directories
@@ -436,7 +436,7 @@
     easily bundled into an installation package.
 
     The tool can be found in \c{QTDIR/bin/windeployqt}. It needs to be run
-    within the build environment in order to function correctly. When using
+    within the build environment in order to function correctly. When using the
     \QOI, the script \c{QTDIR/bin/qtenv2.bat} should be used to set it up.
 
     \c windeployqt takes an \c .exe file or a directory that contains an \c .exe
@@ -458,9 +458,9 @@
     the target machine. Otherwise, the shared libraries of the compiler runtime are used.
 
     The application may require additional 3rd-party libraries (for example,
-    database libraries), which are not taken into account by windeployqt.
+    database libraries), which are not taken into account by \c windeployqt.
 
-    Additional arguments are described in the tools' help output:
+    Additional arguments are described in the tool's help output:
 
     \badcode
     Usage: windeployqt.exe [options] [files]
