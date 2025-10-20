@@ -419,7 +419,7 @@
     It is important to be aware of these structure as they directly affect the
     deployment of applications.
 
-    Qt provides a deploy tool, \l{The Mac Deployment Tool}{macdeployqt}, to
+    Qt provides a deploy tool, \l{macdeploy}{macdeployqt}, to
     simplify the deployment process. The \l{Qt for \macos - Deployment}
     article covers the deployment process in more detail.
 
@@ -706,8 +706,8 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 27
 
-    You can check the various options that are available by running \c
-    configure -help.
+    You can check the various options that are available by running
+    \c{configure -help}.
 
     \section2 Linking the Application to the Static Version of Qt
 
@@ -1007,7 +1007,7 @@
     distributed. For more information, refer to the
     \l {https://developer.apple.com/}{Apple Developer} website.
 
-    Although the process of deploying an application do have some
+    Although the process of deploying an application does have some
     pitfalls, once you know the various issues you can easily create
     packages that all your \macos users will enjoy.
 
@@ -1066,14 +1066,13 @@
     sections describe a few things that you must be aware of while deploying
     your application.
 
-    \section1 The Mac Deployment Tool
+    \section1 The macOS Deployment Tool
     \target macdeploy
-    The Mac deployment tool can be found in QTDIR/bin/macdeployqt. It is
+    The macOS deployment tool can be found at \c{QTDIR/bin/macdeployqt}. It is
     designed to automate the process of creating a deployable
-    application bundle that contains the Qt libraries as private
-    frameworks.
+    application bundle that contains Qt libraries as private frameworks.
 
-    The mac deployment tool also deploys the Qt plugins, according
+    The macOS deployment tool also deploys the Qt plugins, according
     to the following rules (unless \c {-no-plugins} option is used):
     \list
     \li The platform plugin is always deployed.
@@ -1194,7 +1193,7 @@
 
     \section1 Entitlements
 
-    \c When signing, \c macdeployqt will automatically use the first .entitlements file it finds
+    When signing, \c macdeployqt will automatically use the first .entitlements file it finds
     in the Contents/Resources/ subdirectory in the application bundle if present. To prevent errors,
     ensure that there is at maximum one .entitlements file in this folder.
 */
