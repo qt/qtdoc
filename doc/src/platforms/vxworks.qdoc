@@ -1008,57 +1008,6 @@
 
   \endcode
 
-  An example for I.MX8:
-
-  \badcode
-  # Copyright (C) 2024 The Qt Company Ltd.
-  # SPDX-License-Identifier: BSD-3-Clause
-
-  if(QT_VXWORKS_TOOLCHAIN_FILE)
-      set(_original_toolchain_file "${QT_VXWORKS_TOOLCHAIN_FILE}")
-  elseif(DEFINED ENV{QT_VXWORKS_TOOLCHAIN_FILE})
-      set(_original_toolchain_file "$ENV{QT_VXWORKS_TOOLCHAIN_FILE}")
-  else()
-      message(FATAL_ERROR "QT_VXWORKS_TOOLCHAIN_FILE is not set.")
-  endif()
-
-  if(NOT EXISTS "${_original_toolchain_file}")
-      message(FATAL_ERORR "${_original_toolchain_file} doesn't exists.")
-  endif()
-
-  include("${_original_toolchain_file}")
-  unset(_original_toolchain_file)
-
-  list(APPEND CMAKE_TRY_COMPILE_PLATFORM_VARIABLES QT_VXWORKS_TOOLCHAIN_FILE)
-
-  set(_common_lib_path "${CMAKE_SYSROOT}/usr/lib/common")
-  set(EGL_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to EGL include directory" FORCE)
-  set(EGL_LIBRARY ${_common_lib_path}/libgfxNxpVivEGL.so CACHE PATH "Path to EGL lib" FORCE)
-  set(GLESv2_INCLUDE_DIR ${CMAKE_SYSROOT}/usr/h/public CACHE PATH "Path to GLES include directory" FORCE)
-  set(GLESv2_LIBRARY ${_common_lib_path}/libgfxNxpVivGLESv2.so CACHE PATH "Path to GLES lib" FORCE)
-
-  set(VxWorksPlatformGraphics_DEFINES "-D_NXPVIV -D__vxworks -D__VXWORKS__")
-  set(VxWorksPlatformGraphics_LIBRARIES_PACK
-      "-Wl,--start-group"
-      "${_common_lib_path}/libgfxNxpVivGAL.so"
-      "${_common_lib_path}/libgfxNxpVivEGL.so"
-      "${_common_lib_path}/libgfxNxpVivGLSLC.so"
-      "${_common_lib_path}/libgfxNxpVivGLESv2.so"
-      "${_common_lib_path}/libgfxNxpVivGLESv1_CM.so"
-      "${_common_lib_path}/libgfxNxpVivVSC.so"
-      "${_common_lib_path}/libxml.so"
-      "-Wl,--end-group"
-  )
-
-  set(VxWorksPlatformGraphics_REQUIRED_LIBRARIES
-      ${VxWorksPlatformGraphics_LIBRARIES_PACK}
-      ${EGL_LIBRARY}
-      ${GLESv2_LIBRARY}
-  )
-  unset(_common_lib_path)
-
-  \endcode
-
   \section3 Running Qt 6 Configure for the Target
 
   Below is an example build configuration for the BD-SL-i.MX6. For most VxWorks boards
@@ -1118,17 +1067,69 @@
   cmake --build . --parallel
   \endcode
 
-  \section1 Running Qt Applications
+  \section1 Setting environment variables
 
-  The following example shows how to start an application when Qt 6 is built using
-  shared libraries. With a statically built Qt 6, you don't need to use the
-  \c LD_LIBRARY_PATH environment variable for the Qt libraries, but it needs to point
-  to the location of VxWorks shared libraries (for example libc and OpenGL ES 2.0).
-  It is not needed for Qt 6 static libraries.
+  \table
+    \header
+        \li Variable
+        \li Description
+    \row
+        \li QT_QPA_FONTDIR
+        \li Path to the fonts.
+    \row
+        \li QT_QPA_EGLFS_FB
+        \li Path to the framebuffer device.
+    \row
+        \li LD_LIBRARY_PATH
+        \li Path to the dynamic libraries.
+    \row
+        \li ICU_DATA
+        \li Path to the ICU data.
+    \row
+        \li QT_QPA_EGLFS_INTEGRATION
+        \li Eglfs integration, \c {eglfs_viv} or \c {eglfs_kms}.
+    \row
+        \li QT_QPA_EGLFS_KMS_CONFIG
+        \li Path to \c {kms.conf}.
+   \endtable
+
+  \note QML disk cache doesn't work; disable it with the following variable to prevent the startup from becoming slower:
+  \c {QML_DISABLE_DISK_CACHE}.
+
+  Set environment variables in a startup script as follows, for example:
 
   \badcode
-  putenv "LD_LIBRARY_PATH=/sd0:1/lib"
-  cd "/sd0:1"
+  putgenv("QT_QPA_FONTDIR=/bd0a/fonts")
+  putgenv("QT_QPA_EGLFS_FB=/dev/fb0")
+  putgenv("LD_LIBRARY_PATH=/bd0a/lib/gfx;/bd0a/lib/llvm;/bd0a/lib/icu")
+  putgenv("ICU_DATA=/bd0a/icu/icudt73l.dat")
+  putgenv("QT_QPA_EGLFS_INTEGRATION=eglfs_kms")
+  putgenv("QT_QPA_EGLFS_FB=/dev/fb0")
+  putgenv("QT_QPA_EGLFS_KMS_CONFIG=/bd0a/kms.conf")
+  putgenv("QML_DISABLE_DISK_CACHE=1")
+  \endcode
+
+  The \c {kms.conf} file for the Intel KabyLake device can look like this, for example:
+
+  \badcode
+  {
+    "device": "/dev/dri/card0",
+    "hwcursor": false,
+    "pbuffers": true,
+    "outputs": [
+      {
+        "name": "DP",
+        "mode": "1920x1080"
+      }
+    ]
+  }
+  \endcode
+
+  \section1 Running Qt Applications
+
+  The following example shows how to start an application using VxWorks \c {rtpSp} command:
+
+  \badcode
   rtpSp("<Qt 6 VxWorks application>", 200, 0x100000, 0, 0x01000000)
   \endcode
 
