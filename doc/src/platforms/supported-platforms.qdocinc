@@ -296,9 +296,16 @@ documentation.
     \li
         \list
             \li \c armv7 (i.mx6)
-            \li \c x86_64 (Intel SkyLake)
         \endlist
     \li Clang version 17.0.6.1
+    \li \l{Qt for VxWorks}
+    \row \li VxWorks 25.03
+    \li
+        \list
+            \li \c armv7 (i.mx6)
+            \li \c x86_64 (Intel SkyLake, Intel KabyLake with Intel GPU)
+        \endlist
+    \li Clang version 17.0.6.3
     \li \l{Qt for VxWorks}
     \row \li Zephyr
     \li Platform specific. For details, see \l {Supported Qt for MCUs platforms}.
