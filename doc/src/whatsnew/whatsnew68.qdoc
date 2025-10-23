@@ -418,7 +418,7 @@
             \e PaddedRectangle or \e MnemonicLabel or similar, are \e not accidentally
             exposed to any document that imports \e QtQuick.Controls or any controls
             style anymore. Those types are private API and were never supposed to be
-            reachable without explicitly importing \e {QtQuick.Controls.impl}.
+            reachable without explicitly importing \e QtQuick.Controls.impl.
     \endlist
 
     \section2 Qt Quick Shapes Module

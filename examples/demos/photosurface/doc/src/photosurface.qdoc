@@ -46,9 +46,9 @@
 
     Import the FolderListModel type:
 
-    \code
+    \qml
     import Qt.labs.folderlistmodel
-    \endcode
+    \endqml
 
     A FolderDialog enables users to select the folder that contains
     the images:
@@ -59,9 +59,9 @@
 
     To use the FolderDialog type, add the following import statement:
 
-    \code
+    \qml
     import QtQuick.Dialogs
-    \endcode
+    \endqml
 
     The \c {folderDialog.open()} function opens the file dialog when the
     initial slide show finishes, unless a folder path has been given as a

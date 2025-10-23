@@ -82,7 +82,7 @@ components that correspond to common entity-component combinations used in
 Qt 3D, simplifying the development process.
 
 As an example this is the setup for a renderable entity in Qt3D:
-\code
+\qml
 PhongMaterial {
     id: material
 }
@@ -105,12 +105,12 @@ Entity {
     id: torusEntity
     components: [ torusMesh, material, torusTransform ]
 }
-\endcode
+\endqml
 
 In the above code you can see that the entity is composed of a mesh, a material
 and a transform. In Qt Quick 3D the equivalent code would look like this:
 
-\code
+\qml
 
 Model {
     id: torusModel
@@ -127,7 +127,7 @@ Model {
             id: material
     ]
 }
-\endcode
+\endqml
 
 In this example, the entity is replaced by a \l[QtQuick3D]{Model}, which is a
 subclass of the \l[QtQuick3D]{Node} component
@@ -162,7 +162,7 @@ cast. Additionally, it is possible to cast rays from any point in the scene.
 Both explicit and implicit picking methods can return a list of all hits,
 not just the first one.
 
-\code
+\qml
 import QtQuick
 import QtQuick.Controls
 import QtQuick3D
@@ -222,7 +222,7 @@ ApplicationWindow {
         }
     }
 }
-\endcode
+\endqml
 
 In this example code snippet, a simple scene is created with a sphere model.
 The sphere model is set to be \l[QtQuick3D]{Model::pickable}{pickable},
@@ -234,7 +234,7 @@ called with the x and y coordinates of the click. The result of the pick operati
 is then used to determine if the sphere model was hit. If it was, the material of
 the sphere model is toggled between the red and blue materials.
 
-\code
+\qml
 import QtQuick
 import QtQuick.Controls
 import QtQuick3D
@@ -275,7 +275,7 @@ ApplicationWindow {
         }
     }
 }
-\endcode
+\endqml
 
 In this example code snippet, a simple scene is created with a \l[QML]{Button} in the
 center of the screen. Button is a 2D item, but since it's parent is a \l[QtQuick3D]{Node}, it
@@ -283,7 +283,7 @@ will be projected into 3D space. Such components can be interacted with the
 same way as in 2D space. View3D will automatically handle casting rays into
 the scene and forwarding input events to any 2D items that are part of the scene.
 
-\code
+\qml
 import QtQuick
 import QtQuick.Controls
 import QtQuick3D
@@ -328,7 +328,7 @@ ApplicationWindow {
         }
     }
 }
-\endcode
+\endqml
 
 Similarly in the above code snippet, a cube \l[QtQuick3D]{Model} is created with
 a texture that is a \l[QtQuickControls]{Pane} containing a \l[QtQuickControls]{Button}.
@@ -352,14 +352,14 @@ each frame rendered. In Qt Quick 3D, the equivalent approach is to use the
 FrameAnimation component, a general Qt Quick component that provides timing
 information and a callback mechanism for each rendered frame.
 
-\code
+\qml
 FrameAnimation {
     running: true
     onTriggered: {
         console.log(`currentFrame: ${currentFrame}, frameTime: ${frameTime}`)
     }
 }
-\endcode
+\endqml
 
 This component can be used anywhere in your scene, including as a child of an object where
 you want to perform some action each frame.
@@ -575,7 +575,7 @@ The Qt 3D Animation module defines how different types of animations are
 handled in 3D. In Qt Quick 3D, equivalent functionality is spread across
 several modules, often leveraging existing classes from Qt Quick when possible.
 For instance, you can use the various
-\l{Animation and Transitions in Qt Quick}{animation} classes from the QtQuick
+\l{Animation and Transitions in Qt Quick}{animation} classes from the \l[QML]{QtQuick}
 import to animate properties of 3D nodes.
 
 When importing animations from 3D content creation tools, they are typically
