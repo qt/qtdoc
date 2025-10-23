@@ -4,17 +4,15 @@
 /*!
     \page solutions-for-application-development.html
 
-    \title Solutions for Application Development
+    \title Solutions for Developers
     \brief Qt solutions for developer use cases.
-
     \image front-coding.png
 
     As a developer, you most likely have a favorite operating system, toolchain,
-    and language. At work, the choices might be made for you, but Qt gives you
-    some freedom by enabling you to maintain a single software code base across
-    all operating systems, platforms, and screen types, from desktops and
-    embedded systems to business-critical applications, in-vehicle systems,
-    wearables, and mobile devices connected to the Internet of Things.
+    and language. Qt lets you use one software code base across all operating
+    systems and devices, including desktops, embedded systems,
+    business applications, in-vehicle systems, wearables, and mobile devices
+    connected to the Internet of Things.
 
     The options are endless, but the following table summarizes the solutions
     available for different types of target platforms or industries with links
@@ -22,48 +20,55 @@
 
     \table
     \header
-        \li To Develop For
-        \li You Need
-    \row
-        \li Desktop
-        \li Qt for Linux, \macos, or Windows with the appropriate
-            \l{All Modules}{Qt modules}, depending on what your
-            applications will be used for.
-    \row
-        \li Mobile Devices
-        \li Qt for Linux, \macos, or Windows and for the mobile device
-            platform that you want to run the applications on. For example,
-            \l{Qt for Android} or \l{Qt for iOS}.
-    \row
-        \li Embedded Devices
-        \li \l {Boot to Qt}, \l {Qt for Android Automotive}, or
-            \l {Qt for Automation}.
-    \row
-        \li MCUs
-        \li \l{Qt for MCUs documentation}{Qt for MCUs}
-    \endtable
+            \li To Develop For
+            \li You Need
+        \row
+            \li Desktop
+            \li \l {Qt for Linux/X11} {Qt for Linux}, \l {Qt for macOS} {macOS},
+                or \l {Qt for Windows} {Windows} with the appropriate
+                \l{All Modules}{Qt modules}, depending on what your
+                applications will be used for.
+        \row
+            \li Mobile Devices
+            \li \l{Qt for Android} or \l{Qt for iOS}.
+        \row
+            \li Embedded Devices
+            \li \l {Qt for Embedded Linux}, \l {Qt for WebOS}, \l{Qt for INTEGRITY},
+                \l {Qt for QNX}, \l {Boot to Qt} as a full stack for embedded Linux.
+                \l {Qt for Android Automotive} as a specialized suite for
+                automotive development. \l {Qt Safe Renderer} for
+                safety-critical UI elements.
+        \row
+            \li MCUs (microcontroller unit)
+            \li \l{Qt for MCUs}
+        \row
+            \li Web Browsers
+            \li \l{Qt for WebAssembly}
+        \endtable
 
-    You can use QML, C++, or Python for application development:
+        You can use QML, C++, or Python for application development:
 
-    \table
-    \header
-        \li To Develop With
-        \li You Need
-    \row
-        \li QML and Qt Quick
-        \li Qt for Linux, \macos, or Windows
-    \row
-        \li Qt C++
-        \li Qt for Linux, \macos, or Windows
-    \row
-        \li Python
-        \li \l{Qt for Python}
-    \endtable
+        \table
+        \header
+            \li To Develop With
+            \li You Need
+        \row
+            \li QML and Qt Quick
+            \li \l {Qt for Linux/X11} {Qt for Linux}, \l {Qt for macOS} {macOS},
+             or \l {Qt for Windows} {Windows}
+        \row
+            \li Qt C++
+            \li \l {Qt for Linux/X11} {Qt for Linux}, \l {Qt for macOS} {macOS},
+                or \l {Qt for Windows} {Windows}
+        \row
+            \li Python
+            \li \l{Qt for Python}
+        \endtable
 
-    \list
-        \li \l{Get and Install Qt}
-            {I want to install the necessary tools and modules}
-        \li \l{Create Your First Applications}
-            {I've already installed everything and want to start developing}
+        \list
+            \li \l{Get and Install Qt}
+                {I want to install the necessary tools and modules}
+            \li \l{Create Your First Applications}
+                {I've already installed everything and want to start developing}
     \endlist
 */
