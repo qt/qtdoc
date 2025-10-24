@@ -533,11 +533,11 @@
 
     To deploy the application, we must make sure that we copy the
     relevant Qt libraries (corresponding to the Qt modules used in the
-    application), the \l {Qt Plugins}{platform plugin}, and the executable
+    application), the \l {#Qt Plugins}{platform plugin}, and the executable
     to the same directory tree. Remember that if your application depends
     on compiler specific libraries, these must also be redistributed along
-    with your application. For more information, see the \l {Application
-    Dependencies} section.
+    with your application. For more information, see the \l{#Application
+    Dependencies}{Application Dependencies} section.
 
     We'll cover the plugins shortly, but the main issue with shared
     libraries is that you must ensure that the dynamic linker will
@@ -625,8 +625,8 @@
 
     Remember that if your application depends on compiler specific
     libraries, these must still be redistributed along with your
-    application. For more information, see the \l {Application
-    Dependencies} section.
+    application. For more information, see the \l{#Application
+    Dependencies}{Application Dependencies} section.
 
     To verify that the application now can be successfully deployed,
     you can extract this archive on a machine without Qt and without
@@ -688,8 +688,8 @@
 
     Remember that if your application depends on compiler specific
     libraries, these must still be redistributed along with your
-    application. For more information, see the \l {Application
-    Dependencies} section.
+    application. For more information, see the \l{#Application
+    Dependencies}{Application Dependencies} section.
 
     The \l {tools/plugandpaint/app}{Plug & Paint} example consists of
     several components: The core application (\l

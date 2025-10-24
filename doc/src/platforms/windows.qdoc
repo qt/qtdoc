@@ -607,7 +607,8 @@
     libraries, these must still be redistributed along with your
     application. You can check which libraries your application is
     linking against by using the \c depends tool. For more
-    information, read the \l {Application Dependencies} section.
+    information, read the \l{#Application Dependencies}{Application Dependencies}
+    section.
 
     Since we cannot deploy plugins using the static linking
     approach, the application we have prepared is incomplete. It will
@@ -661,7 +662,7 @@
 
     In contrast to user plugins, Qt plugins must be put into subdirectories
     matching the plugin type. The correct location for the platform plugin
-    is a subdirectory named \c {platforms}. \l{Qt Plugins} section has
+    is a subdirectory named \c {platforms}. \l{#Qt Plugins}{Qt Plugins} section has
     additional information about plugins and how Qt searches for them.
 
     If dynamic OpenGL is used, you may additionally want to include the library
@@ -681,7 +682,8 @@
     libraries, these must be redistributed along with your
     application. You can check which libraries your application is
     linking against by using the \c depends tool. For more
-    information, see the \l {Application Dependencies} section.
+    information, see the \l{#Application Dependencies}{Application Dependencies}
+    section.
 
     We'll cover the plugins shortly, but first we'll check that the
     application will work in a deployed environment: Either copy the
