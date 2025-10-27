@@ -13,8 +13,7 @@ find_package(Qt6 REQUIRED COMPONENTS
              Qml
              Quick
              Quick3D
-             Svg
-             ExamplesAssetDownloaderPrivate)
+             Svg)
 
 qt_standard_project_setup(REQUIRES 6.8)
 

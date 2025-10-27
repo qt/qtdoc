@@ -45,7 +45,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Charts
         Pdf
         PdfWidgets
-        ExamplesAssetDownloaderPrivate
+        TaskTree
         Linguist
 )
 
@@ -65,6 +65,7 @@ if(NOT QT_BUILD_STANDALONE_TESTS AND NOT QT_BUILD_STANDALONE_EXAMPLES)
     qt_install(FILES "${CMAKE_CURRENT_BINARY_DIR}/qtdoc_dummy_file.txt" DESTINATION "${INSTALL_MKSPECSDIR}")
 endif()
 
+qt_build_repo_impl_src()
 qt_build_repo_post_process()
 qt_build_repo_impl_tests()
 qt_build_repo_end()
