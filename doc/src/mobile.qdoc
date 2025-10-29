@@ -7,51 +7,42 @@
     \brief Development for mobile devices.
     \ingroup explanations-platforms
 
-    Qt supports development and deployment of mobile applications.
-
-    The following pages contain information about setting up \QC and
-    how to get started with the mobile platforms:
-    \list
-        \li \l{Qt for Android}{Android}
-        \li \l{Qt for iOS}{iOS}
-    \endlist
+    Qt enables you to develop and deploy applications on mobile platforms such as Android and
+    iOS. This article provides resources and guidance to help you get started.
 
     \section1 Android
 
-    There is support for Android development in Qt 6. With \QC, you can
-    connect to devices, develop, test, and package Android applications.
+    Qt supports the development of Android applications. Use \QC to connect to
+    devices, build, and test Android applications. \QC can sign and package APK
+    files for publishing to Google Play.
 
-    \include supported-platforms.qdocinc android
+    For more information:
 
     \list
         \li \l{Qt for Android}
+        \li \l{https://www.qt.io/academy/course-catalog#getting-started-with-qt-for-android-}{Getting Started with Qt for Android---Qt Academy Course}
     \endlist
 
     \section1 iOS
 
-    There is support for developing Qt applications for Apple iPad and iPhone,
-    via \l{Qt for iOS}. \QC supplements \l Xcode for development
-    and deployment.
+    Qt supports development for Apple iPad and iPhone. Use \QC together with \l
+    Xcode to build, test, and deploy iOS applications. \QC can create project
+    files and connect to Apple devices for testing and deployment.
 
-    \include supported-platforms.qdocinc ios
+    For more information:
 
     \list
         \li \l{Qt for iOS}
         \li \l{Qt for iOS Examples}{iOS Examples}
+        \li \l{https://www.qt.io/academy/course-catalog#getting-started-with-qt-for-ios-}{Getting Started with Qt for iOS---Qt Academy Course}
     \endlist
 
-    \section1 Tools for Mobile Development
+    \section1 Design tools for mobile
 
-    \l{\QC Documentation}{\QC} is the IDE for Qt development. \QC creates project
-    files, test and debug code, and connects to mobile devices. For Android, Qt
-    Creator can sign and package APK files, ready for publishing to Google Play.
-    \l Xcode is necessary for development on Apple platforms and \QC can
-    create project files and connect to Apple devices for testing.
+    Use \l{Design Tools} to create user interfaces and animations for mobile
+    applications. \l {Qt Design Studio} supports importing and converting
+    2D and 3D assets created in
+    \l {https://doc.qt.io/qtdesignstudio/qtbridge-overview.html}{design software} into Qt Quick
+    applications.
 
-    \section2 Design Tools for Mobile
-
-    Design tools aid UI development by allowing designers to create layouts and
-    animation that can be converted into Qt compatible formats. 2D and 3D assets
-    created from design software, such as \l {Qt Design Studio Manual}
-    {Qt Design Studio}, can be integrated into Qt applications.
 */
