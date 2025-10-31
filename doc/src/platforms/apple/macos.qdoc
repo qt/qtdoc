@@ -142,7 +142,7 @@
 
     Building Qt requires a \macos platform SDK and corresponding toolchain to be
     installed on the system. You can get this by installing the Xcode, as described
-    in \l {Qt for \macos#Build Environment}.
+    in \l {Qt for \macos#Build Environment}{Build Environment}.
 
     You should always use the exact same Xcode and SDK version as listed in the
     \l {Qt for \macos#Supported Configurations}{Supported Configurations}, to
@@ -205,7 +205,7 @@
         it as a set of dynamic libraries (dylibs) by specifying the
         \c{-no-framework} option.
 
-        As described in \l {Qt for \macos#Architectures}, Qt will
+        As described in \l {Qt for \macos#Architectures}{Architectures}, Qt will
         build for the architecture of your development machine by
         default. To configure a universal build of Qt with support
         for both Intel and Apple Silicon Macs, add the following argument:
