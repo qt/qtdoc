@@ -47,7 +47,7 @@
     this triggers an annotation processor that processes the annotations in
     \c GenerateCppCode.kt.
 
-    \snippet demos/qtjennydemo/qtjenny_generator/app/src/main/java/org/qtproject/qt/qtjenny_generator/GenerateCppCode.kt 1
+    \snippet demos/qtjennydemo/qtjenny_general/app/src/main/java/org/qtproject/qt/qtjenny_general/GenerateCppCode.kt 1
 
     The annotation processor then generates the C++ headers in the
     \c qtjenny_output directory. Those C++ headers contain the needed JNI
@@ -58,7 +58,7 @@
     implements. These arguments are parsed in the QtJenny compiler and used
     in the generation process.
 
-    \snippet demos/qtjennydemo/qtjenny_generator/app/build.gradle 2
+    \snippet demos/qtjennydemo/qtjenny_general/app/build.gradle 2
 
     \section2 Using the generated C++ headers in the Qt Quick application
 

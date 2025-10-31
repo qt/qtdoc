@@ -21,7 +21,17 @@
                    "file type": "examples and snippets",
                    "spdx": ["LicenseRef-Qt-Commercial OR BSD-3-Clause"]
              },
-         "examples/demos/qtjennydemo/qtjenny_generator": {
+         "examples/demos/qtjennydemo/qtjenny_general": {
+                   "comment": "Example takes precedence",
+                   "file type": "examples and snippets",
+                   "spdx": ["Apache-2.0"]
+              },
+         "examples/demos/qtjennydemo/qtjenny_baseclass": {
+                   "comment": "Example takes precedence",
+                   "file type": "examples and snippets",
+                   "spdx": ["Apache-2.0"]
+              },
+         "examples/demos/qtjennydemo/qtjenny_callback": {
                    "comment": "Example takes precedence",
                    "file type": "examples and snippets",
                    "spdx": ["Apache-2.0"]
@@ -56,11 +66,21 @@
                       "file type": "examples and snippets",
                       "spdx": ["LicenseRef-Qt-Commercial OR BSD-3-Clause"]
             },
-            "examples/demos/qtjennydemo/qtjenny_generator/gradlew.bat": {
+            "examples/demos/qtjennydemo/qtjenny_general/gradlew.bat": {
                       "comment": "Example takes precedence",
                       "file type": "examples and snippets",
                       "spdx": ["Apache-2.0"]
-            }
+            },
+         "examples/demos/qtjennydemo/qtjenny_baseclass/gradlew.bat": {
+                   "comment": "Example takes precedence",
+                   "file type": "examples and snippets",
+                   "spdx": ["Apache-2.0"]
+              },
+         "examples/demos/qtjennydemo/qtjenny_callback/gradlew.bat": {
+                   "comment": "Example takes precedence",
+                   "file type": "examples and snippets",
+                   "spdx": ["Apache-2.0"]
+              }
         }
     },
     {
@@ -186,11 +206,21 @@
                 "file type": "3rd party",
                 "spdx": ["CC-BY-4.0"]
             },
-            "examples/demos/qtjennydemo/qtjenny_generator/": {
+            "examples/demos/qtjennydemo/qtjenny_general/": {
                 "comment": "",
                 "file type": "3rd party",
                 "spdx": ["Apache-2.0"]
-            }
+            },
+         "examples/demos/qtjennydemo/qtjenny_baseclass/": {
+                   "comment": "Example takes precedence",
+                   "file type": "3rd party",
+                   "spdx": ["Apache-2.0"]
+              },
+         "examples/demos/qtjennydemo/qtjenny_callback/": {
+                   "comment": "Example takes precedence",
+                   "file type": "3rd party",
+                   "spdx": ["Apache-2.0"]
+              }
         }
     }
 ]
