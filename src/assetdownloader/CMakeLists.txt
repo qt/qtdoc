@@ -1,7 +1,7 @@
 # Copyright (C) 2025 The Qt Company Ltd.
 # SPDX-License-Identifier: BSD-3-Clause
 
-qt_internal_add_qml_module(QmlAssetDownloaderPrivateNew
+qt_internal_add_qml_module(QmlAssetDownloaderPrivate
     URI "Qt.labs.assetdownloader"
     STATIC
     INTERNAL_MODULE
