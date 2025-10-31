@@ -39,6 +39,16 @@
 
   \section1 Supported Architectures and VxWorks Releases
 
+  \section2 Qt 5.15.16 for VxWorks
+
+  In Qt 5.15.16 LTS Commercial, Qt for VxWorks is provided as a source package
+  release. You can build Qt for VxWorks sources on Linux and Windows. Qt 5.15
+  LTS Commercial is supported until May 2025.
+
+  Qt 5.15.16 was verified on VxWorks 7 SR21.11 with
+  \l{https://ark.intel.com/content/www/us/en/ark/products/89189/intel-nuc-kit-nuc6i3syh.html}{NUC6i3SYB}.
+  Building Qt for VxWorks was verified on Ubuntu 20.04 and Windows 10.
+
   \section2 Qt 5.15.14 for VxWorks
 
   In Qt 5.15.14 LTS Commercial, Qt for VxWorks is provided as a source package
@@ -88,7 +98,8 @@
   \section1 Qt for VxWorks Source Package
 
   Qt for VxWorks is delivered via the \l {Qt Account}, under the name
-  \b {Qt 5.15.10} > \b {Qt VxWorks Platform Source Package}.
+  \b {Qt 5.15.16} > \b {Qt VxWorks Platform Source Package}.
+
   \note You can build Qt for VxWorks sources only on Linux.
 
   Source packages for up-to-date and supported Qt releases on VxWorks are
