@@ -3,13 +3,12 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 
 Item {
     id: switchMap
 
     property bool opened: false
-    property int mapType: MapType.map
+    property int mapType: MapTypeConfig.map
     property int orientation: Qt.Vertical
 
     implicitWidth: width
@@ -31,7 +30,7 @@ Item {
         anchors.fill: parent
         anchors.margins: 10
         Button {
-            readonly property bool selected: switchMap.mapType === MapType.map
+            readonly property bool selected: switchMap.mapType === MapTypeConfig.map
             z: 1 + checked
             x: switchMap.getButtonX(selected)
             y: switchMap.getButtonY(selected)
@@ -43,12 +42,12 @@ Item {
             icon.height: switchMap.iconSize
             checked: switchMap.opened && selected
             visible: switchMap.opened + selected
-            onClicked: switchMap.select(MapType.map);
+            onClicked: switchMap.select(MapTypeConfig.map);
             Behavior on x { NumberAnimation { duration: switchMap.behaviorDuration } }
             Behavior on y { NumberAnimation { duration: switchMap.behaviorDuration } }
         }
         Button {
-            readonly property bool selected: switchMap.mapType === MapType.globe
+            readonly property bool selected: switchMap.mapType === MapTypeConfig.globe
             z: 1 + checked
             x: switchMap.getButtonX(selected)
             y: switchMap.getButtonY(selected)
@@ -60,7 +59,7 @@ Item {
             icon.height: switchMap.iconSize
             checked: switchMap.opened && selected
             visible: switchMap.opened + selected
-            onClicked: switchMap.select(MapType.globe);
+            onClicked: switchMap.select(MapTypeConfig.globe);
             Behavior on x { NumberAnimation { duration: switchMap.behaviorDuration } }
             Behavior on y { NumberAnimation { duration: switchMap.behaviorDuration } }
         }

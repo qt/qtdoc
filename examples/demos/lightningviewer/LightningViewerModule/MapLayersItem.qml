@@ -48,8 +48,8 @@ Item {
         anchors.margins: 15
         spacing: 0
         Loader {
-            Layout.preferredWidth: item ? item.width : mapLayersItem.buttonSize
-            Layout.preferredHeight: item ? item.height : mapLayersItem.buttonSize
+            Layout.preferredWidth: item ? (item as Item).width : mapLayersItem.buttonSize
+            Layout.preferredHeight: item ? (item as Item).height : mapLayersItem.buttonSize
             sourceComponent: mapLayersItem.mapActionButton
         }
         Item {
