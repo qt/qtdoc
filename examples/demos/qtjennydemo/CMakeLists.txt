@@ -1,3 +1,5 @@
+# Copyright (C) 2025 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 cmake_minimum_required(VERSION 3.22)
 
 project(QtJenny VERSION 0.1 LANGUAGES CXX)
@@ -12,7 +14,11 @@ if (ANDROID)
     set (gradlew_arg "--rerun-tasks")
     set (gradlew_task "kaptReleaseKotlin")
     execute_process(COMMAND ${gradlew_cmd} ${gradlew_arg} ${gradlew_task}
-    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/qtjenny_generator")
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/qtjenny_baseclass")
+    execute_process(COMMAND ${gradlew_cmd} ${gradlew_arg} ${gradlew_task}
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/qtjenny_general")
+    execute_process(COMMAND ${gradlew_cmd} ${gradlew_arg} ${gradlew_task}
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/qtjenny_callback")
 else()
     message(FATAL_ERROR "Example only works on Android")
 endif()
@@ -36,6 +42,12 @@ qt_add_qml_module(appqtjenny_consumer
     SOURCES
         backend.h
         backend.cpp
+        volumeandbrightnessobserver.h
+        volumeandbrightnessobserver.cpp
+        contentobserver.h
+        contentobserver.cpp
+        nativedispatch.h
+        nativedispatch.cpp
 )
 
 set_target_properties(appqtjenny_consumer PROPERTIES

@@ -4,6 +4,7 @@ import QtQuick
 import qtjenny_consumer
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQml
 
 ApplicationWindow {
     id: mainWindow
@@ -21,7 +22,6 @@ ApplicationWindow {
         padding: 20
         anchors.centerIn: parent
         width: parent.width / 1.5
-        closePolicy: Popup.CloseOnPressOutside
 
         contentItem: Text {
             id: popupText
@@ -29,14 +29,31 @@ ApplicationWindow {
             wrapMode: Text.WordWrap
             font.pointSize: 15
         }
+
+        Timer {
+            id: popupClosingTimer
+
+            interval: 4000
+            repeat: false
+
+            onTriggered: {
+                myBackEnd.manageWriteSystemSettings()
+                popup.close()
+            }
+        }
     }
 
     BackEnd {
         id: myBackEnd
 
-        onShowPopup: function(volumeDisabledReason) {
+        onShowPopup: function(message) {
+            popupText.text = message
             popup.open()
-            popupText.text = volumeDisabledReason
+            if (!myBackEnd.canWriteSystemSettings) {
+                popup.closePolicy = Popup.NoAutoClose
+                popupClosingTimer.start()
+            } else
+                popup.closePolicy = Popup.CloseOnPressOutside
         }
     }
 
@@ -73,33 +90,17 @@ ApplicationWindow {
                 font.pointSize: 16
             }
 
-            Row {
-                id: volumeControlRow
+            Slider {
+                id: volumeSlider
 
-                spacing: 5
+                from: myBackEnd.minVolume
+                to: myBackEnd.maxVolume
+                stepSize: 1
+                value: myBackEnd.volume
 
-                Button {
-                    id: volumeUpButton
-
-                    text: "+"
-                    highlighted: true
-                    enabled: !myBackEnd.isFixedVolume
-
-                    onClicked: {
-                        myBackEnd.adjustVolume(1)
-                    }
-                }
-
-                Button {
-                    id: volumeDownButton
-
-                    text: "-"
-                    highlighted: true
-                    enabled: !myBackEnd.isFixedVolume
-
-                    onClicked: {
-                        myBackEnd.adjustVolume(0)
-                    }
+                onValueChanged: {
+                    if (myBackEnd.volume != volumeSlider.value)
+                        myBackEnd.volume = volumeSlider.value
                 }
             }
 
@@ -111,31 +112,17 @@ ApplicationWindow {
                 Layout.topMargin: mainWindow.isPortrait ? 20 : 0
             }
 
-            Row {
-                id: brightnessControlRow
+            Slider {
+                id: brightnessSlider
 
-                spacing: 5
+                from: 0
+                to: 255
+                stepSize: 1
+                value: myBackEnd.brightness
 
-                Button {
-                    id: brightnessUpButton
-
-                    text: "+"
-                    highlighted: true
-
-                    onClicked: {
-                        myBackEnd.adjustBrightness(1)
-                    }
-                }
-
-                Button {
-                    id: brightnessDownButton
-
-                    text: "-"
-                    highlighted: true
-
-                    onClicked: {
-                        myBackEnd.adjustBrightness(0)
-                    }
+                onValueChanged: {
+                    if (myBackEnd.brightness != brightnessSlider.value)
+                        myBackEnd.brightness = brightnessSlider.value
                 }
             }
         }

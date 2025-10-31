@@ -1,7 +1,7 @@
 // Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 #include "backend.h"
+#include "volumeandbrightnessobserver.h"
 
 BackEnd::BackEnd(QObject *parent) : QObject{ parent }
 {
@@ -20,15 +20,28 @@ BackEnd::BackEnd(QObject *parent) : QObject{ parent }
     m_layoutParams = m_window.getAttributes();
     m_partialWakeLock = powerManager.newWakeLock(powerManager.PARTIAL_WAKE_LOCK,
         QJniObject::fromString("PARTIALWAKELOCK").object<jstring>());
+    m_brightness = m_system.getInt(m_context.getContentResolver().object<jobject>(),
+                                   QJniObject::fromString(m_system.SCREEN_BRIGHTNESS).object<jstring>());
+    m_maxVolume = m_audioManager.getStreamMaxVolume(m_audioManager.STREAM_MUSIC);
+    m_minVolume = m_audioManager.getStreamMinVolume(m_audioManager.STREAM_MUSIC);
+    m_volume = m_audioManager.getStreamVolume(m_audioManager.STREAM_MUSIC);
 
-    // If system implements a fixed volume policy, disable volume slider
+    // Suggests an audio stream whose volume should be changed by the
+    // hardware volume controls when this activity is in foreground.
+    // With this we can focus on only the music stream, which makes adjusting volume much easier.
+    m_activityContext.setVolumeControlStream(m_audioManager.STREAM_MUSIC);
+
+    // If system implements a fixed volume policy, show popup with error message.
     if (m_audioManager.isVolumeFixed())
         handleVolumeError("Device implements fixed volume setting.", "");
 
-    m_qAndroidApp->runOnAndroidMainThread([&]() {
-        m_layoutParams.setScreenBrightness(0.5);
-        m_window.setAttributes(m_layoutParams);
-    });
+    auto vobs = new VolumeAndBrightnessObserver(this, this);
+
+    connect(vobs, &VolumeAndBrightnessObserver::volumeChangeObserved, this, &BackEnd::onVolumeChangeObserved);
+    connect(vobs, &VolumeAndBrightnessObserver::brightnessChangeObserved, this, &BackEnd::onBrightnessChangeObserved);
+    connect(this, &BackEnd::manageWriteSystemSettings, this, &BackEnd::onManageWriteSystemSettings);
+
+    vobs->start();
 
     createNotification();
 }
@@ -73,68 +86,6 @@ void BackEnd::notify()
                     m_notificationManager.notify(0, m_notification);
             });
     }
-}
-
-// Adjust system volume, either lowering or raising based on given direction
-void BackEnd::adjustVolume(enum Direction direction)
-{
-    if (m_global.getInt(m_context.getContentResolver().object<jobject>(),
-                        QJniObject::fromString("zen_mode").object<jstring>()) != 0) {
-        handleVolumeError("Do not Disturb mode is on",
-                          "Disable Do not Disturb mode to adjust the volume");
-    } else if (m_audioManager.getRingerMode() != m_audioManager.RINGER_MODE_NORMAL) {
-        if (m_audioManager.getRingerMode() == m_audioManager.RINGER_MODE_VIBRATE) {
-            handleVolumeError("Vibrate only mode is on",
-                              "Disable vibrate only mode to adjust volume.");
-        } else if (m_audioManager.getRingerMode() == m_audioManager.RINGER_MODE_SILENT) {
-            handleVolumeError("Silent mode is on", "Disable Silent mode to adjust the volume.");
-        }
-    } else if (direction == Direction::Up) {
-        m_audioManager.adjustVolume(m_audioManager.ADJUST_RAISE, m_audioManager.FLAG_SHOW_UI);
-    } else if (direction == Direction::Down) {
-        m_audioManager.adjustVolume(m_audioManager.ADJUST_LOWER, m_audioManager.FLAG_SHOW_UI);
-    }
-}
-
-// Adjust system brightness, either lowering or raising based on given direction
-void BackEnd::adjustBrightness(enum Direction direction)
-{
-    using namespace android::content;
-    using namespace android::provider;
-
-    IntentProxy m_intent = m_intent.newInstance(QJniObject::fromString(
-        SettingsProxy::ACTION_MANAGE_WRITE_SETTINGS).object<jstring>());
-
-    // Check if app has permission to write system settings.
-    // Start an Activity with the ACTION_MANAGE_WRITE_SETTINGS intent if app
-    // does not have permission to write said settings, after which user
-    // has to manually give the permission to this app.
-    if (!m_system.canWrite(m_context))
-        m_context.startActivity(m_intent);
-
-    int brightness = m_system.getInt(m_context.getContentResolver().object<jobject>(),
-        QJniObject::fromString(m_system.SCREEN_BRIGHTNESS).object<jstring>());
-
-    if (direction == Direction::Up) {
-        if (brightness <= maxBrightness)
-            brightness += 10;
-    } else if (direction == Direction::Down) {
-        if (brightness >= minBrightness)
-            brightness -= 10;
-    }
-
-    double brightnessToDouble = brightnessStep * (brightness / 10.0);
-
-    // We need to set the brightness to system settings and to Window separately, as
-    // synchronization does not happen automatically and updating one or
-    // the other only, leaves the other one out of sync.
-    m_system.putInt(m_context.getContentResolver().object<jobject>(),
-        QJniObject::fromString(m_system.SCREEN_BRIGHTNESS).object<jstring>(),
-        brightness);
-    m_qAndroidApp->runOnAndroidMainThread([this, brightness = brightnessToDouble]() {
-        m_layoutParams.setScreenBrightness(brightness);
-        m_window.setAttributes(m_layoutParams);
-    });
 }
 
 void BackEnd::setPartialWakeLock()
@@ -202,4 +153,78 @@ void BackEnd::handleVolumeError(const QString &problem, const QString &solution)
     const QString message = problem.isEmpty() ? solution
                                               : problem + "\n" + solution;
     emit showPopup(message);
+}
+
+int BackEnd::brightness() const
+{
+    return m_brightness;
+}
+
+void BackEnd::setBrightness(int newBrightness)
+{
+
+    if (m_brightness == newBrightness)
+        return;
+
+    // Check if the app has permission to write system settings.
+    if (!m_system.canWrite(m_context)) {
+        m_canWriteSystemSettings = false;
+        emit showPopup("Writing system settings is not allowed."
+                       " Please give permission to write system settings for this application");
+        return;
+    }
+
+    m_canWriteSystemSettings = true;
+
+    m_brightness = newBrightness;
+
+    double brightnessToDouble = brightnessStep * newBrightness;
+
+    // This keeps the brightness shown in the system bar of Android device in sync.
+    m_system.putInt(m_context.getContentResolver().object<jobject>(),
+                    QJniObject::fromString(m_system.SCREEN_BRIGHTNESS).object<jstring>(),
+                    newBrightness);
+    m_qAndroidApp->runOnAndroidMainThread([this, brightnessToDouble]() {
+        m_layoutParams.setScreenBrightness(brightnessToDouble);
+        m_window.setAttributes(m_layoutParams);
+    });
+}
+
+int BackEnd::volume() const
+{
+    return m_volume;
+}
+
+void BackEnd::setVolume(int newVolume)
+{
+    if (m_volume == newVolume)
+        return;
+    m_audioManager.setStreamVolume(m_audioManager.STREAM_MUSIC, newVolume, m_audioManager.FLAG_SHOW_UI);
+    m_volume = newVolume;
+}
+
+void BackEnd::onVolumeChangeObserved(int volume)
+{
+    if (m_volume == volume)
+        return;
+    m_volume = volume;
+    emit volumeChanged();
+}
+
+void BackEnd::onBrightnessChangeObserved(int brightness)
+{
+    if (m_brightness == brightness)
+        return;
+    m_brightness = brightness;
+    emit brightnessChanged();
+}
+
+void BackEnd::onManageWriteSystemSettings()
+{
+    // Start an Activity with the ACTION_MANAGE_WRITE_SETTINGS intent if app
+    // does not have permission to write system settings, after which user
+    // has to manually give the permission to write system settings to this app.
+    android::content::IntentProxy m_intent = m_intent.newInstance(
+        QJniObject::fromString(android::provider::SettingsProxy::ACTION_MANAGE_WRITE_SETTINGS).object<jstring>());
+    m_context.startActivity(m_intent);
 }

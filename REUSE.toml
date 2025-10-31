@@ -30,7 +30,21 @@ SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
 SPDX-License-Identifier = "LicenseRef-Qt-Commercial OR BSD-3-Clause"
 
 [[annotations]]
-path = ["examples/demos/qtjennydemo/qtjenny_generator/**"]
+path = ["examples/demos/qtjennydemo/qtjenny_general/**"]
+comment = "this must be after the build system table because example and snippets take precedence over build system"
+precedence = "closest"
+SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_callback/**"]
+comment = "this must be after the build system table because example and snippets take precedence over build system"
+precedence = "closest"
+SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_baseclass/**"]
 comment = "this must be after the build system table because example and snippets take precedence over build system"
 precedence = "closest"
 SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
@@ -52,7 +66,21 @@ SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
 SPDX-License-Identifier = "LicenseRef-Qt-Commercial OR BSD-3-Clause"
 
 [[annotations]]
-path = ["examples/demos/qtjennydemo/qtjenny_generator/**/**.toml"]
+path = ["examples/demos/qtjennydemo/qtjenny_general/**/**.toml"]
+precedence = "closest"
+comment = "infrastructure"
+SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_callback/**/**.toml"]
+precedence = "closest"
+comment = "infrastructure"
+SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["examples/demos/qtjennydemo/qtjenny_baseclass/**/**.toml"]
 precedence = "closest"
 comment = "infrastructure"
 SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."

@@ -3,6 +3,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickView>
+#include <nativedispatch.h>
+#include "volumeandbrightnessobserver.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +15,8 @@ int main(int argc, char *argv[])
     qputenv("QT_ANDROID_NO_EXIT_CALL", "true");
 
     QGuiApplication app(argc, argv);
+
+    registerNativeInvocationHandler();
 
     QQmlApplicationEngine engine;
     QObject::connect(

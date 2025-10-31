@@ -11,7 +11,6 @@
 #include <QtCore/private/qandroidextras_p.h>
 #include <QtQml/qqml.h>
 #include <QtGui/qguiapplication.h>
-
 #include <qtjenny_output/jenny/proxy/android_app_ActivityProxy.h>
 #include <qtjenny_output/jenny/proxy/android_app_BuilderProxy.h>
 #include <qtjenny_output/jenny/proxy/android_app_NotificationChannelProxy.h>
@@ -40,37 +39,64 @@ class BackEnd : public QObject
 public:
     explicit BackEnd(QObject *parent = nullptr);
 
-    enum class Direction {
-        Down = 0,
-        Up = 1
-    };
-
-    Q_ENUM(Direction)
-
     Q_INVOKABLE void disableFullWakeLock();
     Q_INVOKABLE void disablePartialWakeLock();
     Q_INVOKABLE void notify();
     Q_INVOKABLE void setFullWakeLock();
     Q_INVOKABLE void setPartialWakeLock();
     Q_INVOKABLE void vibrate();
-    Q_INVOKABLE void adjustBrightness(enum Direction);
-    Q_INVOKABLE void adjustVolume(enum Direction);
 
     Q_PROPERTY(bool isFixedVolume READ isFixedVolume CONSTANT)
+    Q_PROPERTY(bool canWriteSystemSettings MEMBER m_canWriteSystemSettings NOTIFY canWriteSystemSettingsChanged)
+    Q_PROPERTY(int maxVolume READ maxVolume CONSTANT)
+    Q_PROPERTY(int minVolume READ minVolume CONSTANT)
+    Q_PROPERTY(int brightness READ brightness WRITE setBrightness NOTIFY brightnessChanged)
+    Q_PROPERTY(int volume READ volume WRITE setVolume NOTIFY volumeChanged)
+
+    android::os::ContextProxy m_context;
+    android::provider::SystemProxy m_system;
+    android::media::AudioManagerProxy m_audioManager;
+
+    int m_brightness;
+    int m_volume;
 
     bool isFixedVolume() const
     { return m_audioManager.isVolumeFixed(); }
 
+    int maxVolume() const
+    { return m_maxVolume; }
+
+    int minVolume() const
+    { return m_minVolume; }
+
+    int brightness() const;
+    void setBrightness(int newBrightness);
+
+    int volume() const;
+    void setVolume(int newVolume);
+
+public slots:
+    void onVolumeChangeObserved(int volume);
+    void onBrightnessChangeObserved(int brightness);
+    void onManageWriteSystemSettings();
+
 signals:
-    void showPopup(const QString &volumeDisabledReason);
+    void showPopup(const QString &message);
+    void brightnessChanged();
+    void volumeChanged();
+    void manageWriteSystemSettings();
+    void canWriteSystemSettingsChanged();
 
 private:
     const int m_systemVersion = QOperatingSystemVersion::current().version().majorVersion();
 
     static constexpr int vibrateTimeInMillisecs = 1000;
-    static constexpr int maxBrightness = 245;
-    static constexpr int minBrightness = 10;
-    static constexpr double brightnessStep = 10.0 / 255;
+    static constexpr double brightnessStep = 1.0 / 255;
+
+    int m_minVolume;
+    int m_maxVolume;
+
+    bool m_canWriteSystemSettings = true;
 
     void createNotification();
     void handleVolumeError(const QString &problem, const QString &solution);
@@ -79,11 +105,8 @@ private:
     android::app::ActivityProxy m_activityContext;
     android::app::NotificationManagerProxy m_notificationManager;
     android::app::NotificationProxy m_notification;
-    android::media::AudioManagerProxy m_audioManager;
-    android::os::ContextProxy m_context;
     android::os::WakeLockProxy m_partialWakeLock;
     android::provider::GlobalProxy m_global;
-    android::provider::SystemProxy m_system;
     android::view::LayoutParamsProxy m_layoutParams;
     android::view::WindowProxy m_window;
 };
