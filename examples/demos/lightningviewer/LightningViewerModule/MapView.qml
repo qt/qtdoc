@@ -11,7 +11,7 @@ Item {
     property alias distanceLayerVisible: distanceLayer.visible
     property alias locationAllowed: positionSource.active
     property alias zoomLevel: map.zoomLevel
-    property int mapType: MapType.map
+    property int mapType: MapTypeConfig.map
 
     function recenter(coordinate) {
         map.center = coordinate ?? positionSource.position.coordinate;
