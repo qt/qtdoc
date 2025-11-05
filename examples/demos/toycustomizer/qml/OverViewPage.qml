@@ -5,7 +5,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Page {
+Item {
     id: overViewPage
 
     property bool buttonsVisible: true
@@ -13,8 +13,6 @@ Page {
     property alias accessoryModel: orderGrid.accessoryModel
     signal confirmed
     signal cancelled
-
-    background: Item { visible: false }
 
     /* Column Layout for portrait mode */
     ColumnLayout {

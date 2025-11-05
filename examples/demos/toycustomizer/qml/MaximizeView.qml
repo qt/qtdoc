@@ -5,17 +5,13 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-Page {
+Item {
     id: maximizeView
 
     property alias toyIndex: bigToy.index
     property alias accessoryModel: bigToy.accessoryModel
 
-    title: "Preview"
-
     signal hideRequested
-
-    background: Item { visible: false }
 
     ColumnLayout {
         anchors {

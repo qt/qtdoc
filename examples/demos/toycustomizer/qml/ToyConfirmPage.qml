@@ -5,7 +5,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Page {
+Item {
     id: root
 
     property int toyIndex: -1
@@ -17,7 +17,6 @@ Page {
     signal cancelled
     signal confirmed
 
-    background: Item { visible: false }
     Item {
         id: contentItem
 

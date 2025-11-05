@@ -6,12 +6,10 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 
-Page {
+Item {
     id: toyGalleryPage
 
     signal toySelected(index: int)
-
-    background: Item { visible: false }
 
     Item {
         anchors {

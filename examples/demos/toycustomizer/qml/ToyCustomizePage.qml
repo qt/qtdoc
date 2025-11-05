@@ -7,7 +7,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-Page {
+Item {
     id: toyCustomizePage
 
     property alias toyIndex: toyView.toyIndex
@@ -23,8 +23,6 @@ Page {
         if (reset)
             accessoryView.resetAllAccessories()
     }
-
-    background: Item { visible: false }
 
     ColumnLayout {
         id: portraitGridLayout

@@ -5,14 +5,12 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-Page {
+Item {
     id: mainPage
 
     property alias isCurrent: showcaseView.isAnimationRunning
 
     signal startRequested()
-
-    background: Item { visible: false }
 
     GridLayout {
         id: portraitGridLayout
