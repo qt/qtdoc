@@ -12,71 +12,121 @@ Page {
     property var __modelData: ToyModel.get(root.toyIndex) ?? null
     property int __price: root.__modelData ? root.__modelData.originalPrice : 0
     property int __discount: root.__modelData ? root.__modelData.discountPercent : 0
+    property real __imageSourceSize: ApplicationConfig.responsiveSize(1150)
 
     signal cancelled
     signal confirmed
 
     background: Item { visible: false }
+    Item {
+        id: contentItem
 
-    ToyButton {
-        type: ToyButton.Type.Secondary
-        textStyle: ApplicationConfig.TextStyle.Button_L
-        text: qsTr("Back")
-        icon.source: "icons/back.svg"
-        anchors {
-            left: gridBackgroundRect.left
-            bottom: gridBackgroundRect.top
-            bottomMargin: ApplicationConfig.responsiveSize(ApplicationConfig.isPortrait ? 49 : 80)
+        readonly property real horizontalMargins: ApplicationConfig.responsiveSize(200)
+        readonly property real minimumWidth: ApplicationConfig.responsiveSize(1760)
+        readonly property real paddings: ApplicationConfig.responsiveSize(128)
+
+        width: {
+            const maximumWidth = ApplicationConfig.responsiveSize(2848)
+            const preferredWidth = parent.width - 2 * horizontalMargins
+            return Math.min(Math.max(minimumWidth, preferredWidth), maximumWidth)
         }
-        onClicked: root.cancelled()
-    }
 
-    Rectangle {
-        id: gridBackgroundRect
-        radius: ApplicationConfig.responsiveSize(56)
-        color: "white"
         anchors {
-            fill: ApplicationConfig.isPortrait ? portraitGridLayout : landscapeGridLayout
-            topMargin: ApplicationConfig.responsiveSize(520)
-            leftMargin: ApplicationConfig.responsiveSize(-120)
-            rightMargin: ApplicationConfig.responsiveSize(-120)
-            bottomMargin: ApplicationConfig.responsiveSize(-157)
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            leftMargin: horizontalMargins
+            topMargin: ApplicationConfig.responsiveSize(150)
+        }
+
+        state: width < root.width ? "" : "narrow"
+        states: State {
+            name: "narrow"
+            AnchorChanges {
+                target: contentItem
+                anchors {
+                    left: contentItem.parent.left
+                    horizontalCenter: undefined
+                }
+            }
+            PropertyChanges {
+                target: contentItem
+                anchors.leftMargin: 0
+            }
+        }
+
+        ColumnLayout {
+            readonly property real topMargin: ApplicationConfig.responsiveSize(176)
+            spacing: ApplicationConfig.responsiveSize(56)
+            height: contentLayout.height + parent.paddings - topMargin
+            width: contentLayout.width + 2 * parent.paddings
+            anchors {
+                top: parent.top
+                left: parent.left
+                topMargin: topMargin
+            }
+            ToyButton {
+                type: ToyButton.Type.Secondary
+                textStyle: ApplicationConfig.TextStyle.Button_L
+                text: qsTr("Back")
+                icon.source: "icons/back.svg"
+                onClicked: root.cancelled()
+            }
+            Rectangle {
+                id: gridBackgroundRect
+                radius: ApplicationConfig.responsiveSize(56)
+                color: "white"
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+        }
+
+        ColumnLayout {
+            id: contentLayout
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                leftMargin: parent.paddings
+                rightMargin: parent.paddings
+            }
+            LayoutItemProxy {
+                target: portraitGridLayout
+                visible: ApplicationConfig.isPortrait
+                Layout.fillWidth: true
+            }
+            LayoutItemProxy {
+                target: landscapeGridLayout
+                visible: !ApplicationConfig.isPortrait
+                Layout.fillWidth: true
+            }
         }
     }
 
     // GridLayout for portrait mode
     GridLayout {
         id: portraitGridLayout
+
         visible: ApplicationConfig.isPortrait
         columns: 2
         columnSpacing: ApplicationConfig.responsiveSize(64)
-        width: {
-            const minWidth = ApplicationConfig.responsiveSize(1760)
-            if (ApplicationConfig.isPortrait)
-                return minWidth
-            const horMargin = ApplicationConfig.responsiveSize(778)
-            const breakpointWidth = minWidth + 2 * horMargin
-            if (root.width < breakpointWidth)
-                return minWidth
-            else
-                return root.width - 2 * horMargin
-        }
 
-        anchors {
-            top: parent.top
-            horizontalCenter: parent.horizontalCenter
-            leftMargin: ApplicationConfig.responsiveSize(320)
-            rightMargin: ApplicationConfig.responsiveSize(320)
-        }
-
-        LayoutItemProxy {
-            target: toyImage
+        Item {
+            implicitHeight: root.__imageSourceSize
             Layout.columnSpan: 2
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            Layout.minimumWidth: toyImage.sourceSize.width
+            Layout.minimumHeight: toyImage.sourceSize.height
+            Layout.alignment: Qt.AlignCenter
+            LayoutItemProxy {
+                target: toyImage
+                anchors.fill: parent
+                anchors.margins: 10
+            }
         }
 
         ColumnLayout {
+            spacing: ApplicationConfig.responsiveSize(48)
             Layout.fillWidth: true
             Layout.fillHeight: true
             LayoutItemProxy {
@@ -88,7 +138,7 @@ Page {
             LayoutItemProxy {
                 target: descriptionLabel
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.minimumHeight: descriptionLabel.implicitHeight
             }
         }
 
@@ -109,10 +159,6 @@ Page {
                 Layout.preferredWidth: Math.max(portraitPriceLayoutItem.width,
                                                 confirmButton.implicitWidth)
             }
-            Item {
-                implicitWidth: 2
-                Layout.fillHeight: true
-            }
         }
     }
 
@@ -121,42 +167,25 @@ Page {
         id: landscapeGridLayout
         visible: !ApplicationConfig.isPortrait
         columns: 3
-        width: {
-            const minWidth = ApplicationConfig.responsiveSize(1964)
-            if (ApplicationConfig.isPortrait)
-                return minWidth
-            const horMargin = ApplicationConfig.responsiveSize(778)
-            const breakpointWidth = minWidth + 2 * horMargin
-            if (root.width < breakpointWidth)
-                return minWidth
-            else
-                return root.width - 2 * horMargin
-        }
-        anchors {
-            top: parent.top
-            horizontalCenter: parent.horizontalCenter
-            leftMargin: ApplicationConfig.responsiveSize(778)
-            rightMargin: ApplicationConfig.responsiveSize(778)
-        }
 
-        LayoutItemProxy {
-            target: toyImage
-            implicitWidth: ApplicationConfig.responsiveSize(1270)
-            Layout.alignment: Qt.AlignCenter
+        Item {
+            implicitHeight: root.__imageSourceSize
             Layout.fillWidth: true
+            Layout.minimumWidth: toyImage.sourceSize.width
+            Layout.minimumHeight: toyImage.sourceSize.height
+            Layout.alignment: Qt.AlignCenter
+            LayoutItemProxy {
+                target: toyImage
+                anchors.fill: parent
+            }
         }
         Item {
             implicitHeight: 2
             Layout.fillWidth: true
         }
         ColumnLayout {
-            Layout.fillHeight: true
             Layout.topMargin: ApplicationConfig.responsiveSize(522)
             spacing: 0
-            Item {
-                implicitWidth: 2
-                Layout.fillHeight: true
-            }
             LayoutItemProxy {
                 visible: root.__discount > 0
                 target: discountRow
@@ -172,14 +201,11 @@ Page {
                 Layout.topMargin: ApplicationConfig.responsiveSize(80)
                 Layout.preferredWidth: landscapePriceLayoutItem.width
             }
-            Item {
-                implicitWidth: 2
-                Layout.fillHeight: true
-            }
         }
         ColumnLayout {
             Layout.fillWidth: true
             Layout.columnSpan: 3
+            spacing: ApplicationConfig.responsiveSize(64)
             LayoutItemProxy {
                 target: toyNameLabel
             }
@@ -199,8 +225,8 @@ Page {
         id: toyImage
         source: root.__modelData ? root.__modelData.image : ""
         sourceSize {
-            width: ApplicationConfig.responsiveSize(856)
-            height: ApplicationConfig.responsiveSize(1150)
+            width: root.__imageSourceSize
+            height: root.__imageSourceSize
         }
     }
     ToyLabel {

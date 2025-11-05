@@ -29,11 +29,7 @@ Page {
     ColumnLayout {
         id: portraitGridLayout
         visible: ApplicationConfig.isPortrait
-        anchors {
-            fill: parent
-            leftMargin: ApplicationConfig.responsiveSize(-200)
-            rightMargin: ApplicationConfig.responsiveSize(-200)
-        }
+        anchors.fill: parent
 
         LayoutItemProxy {
             target: toyView
@@ -61,49 +57,47 @@ Page {
         }
     }
 
-    Item {
-        id: landscapeItem
-
-        implicitWidth: landscapeLayout.implicitWidth
+    GridLayout {
+        id: landscapeLayout
+        columns: 2
         visible: !ApplicationConfig.isPortrait
-        anchors.fill: parent
+        columnSpacing: ApplicationConfig.responsiveSize(80)
+        anchors {
+            left: parent.left
+            right: parent.right
+            verticalCenter: parent.verticalCenter
+            leftMargin: ApplicationConfig.responsiveSize(200)
+            rightMargin: ApplicationConfig.responsiveSize(200)
+        }
 
-        RowLayout {
-            id: landscapeLayout
-            width: parent.width
-            spacing: ApplicationConfig.responsiveSize(80)
-
-            anchors {
-                top: parent.top
-                bottom: parent.bottom
-                horizontalCenter: parent.horizontalCenter
-            }
-
-            LayoutItemProxy {
-                target: toyView
-                Layout.fillWidth: true
-            }
-
-            ColumnLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                LayoutItemProxy {
-                    target: reviewOrder
-                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                    Layout.preferredWidth: Math.round(ApplicationConfig.responsiveSize(605))
-                    Layout.preferredHeight: Math.round(ApplicationConfig.responsiveSize(188))
-                    Layout.bottomMargin: ApplicationConfig.responsiveSize(48)
-                }
-
-                LayoutItemProxy {
-                    target: accessoryView
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: ApplicationConfig.responsiveSize(1366)
-                    Layout.maximumHeight: ApplicationConfig.responsiveSize(1366)
+        state: height < toyCustomizePage.height ? "" : "narrow"
+        states: State {
+            name: "narrow"
+            AnchorChanges {
+                target: landscapeLayout
+                anchors {
+                    top: landscapeLayout.parent.top
+                    verticalCenter: undefined
                 }
             }
+        }
+
+        LayoutItemProxy {
+            target: reviewOrder
+            Layout.alignment: Qt.AlignRight
+            Layout.columnSpan: 2
+            Layout.bottomMargin: ApplicationConfig.responsiveSize(48)
+        }
+
+        LayoutItemProxy {
+            target: toyView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+
+        LayoutItemProxy {
+            target: accessoryView
+            Layout.fillWidth: true
         }
     }
 
@@ -122,6 +116,7 @@ Page {
 
     ToyView {
         id: toyView
+        implicitWidth: ApplicationConfig.responsiveSize(2080)
         accessoryModel: toyCustomizePage.accessoryModel
         onHideRequested: toyCustomizePage.cancelled()
         onShowRequested: toyCustomizePage.showMaximizeViewRequested(maximizeView)
@@ -129,17 +124,26 @@ Page {
 
     AccessoryView {
         id: accessoryView
+        implicitWidth: ApplicationConfig.responsiveSize(2080)
         target: toyView.toy
         model: toyCustomizePage.accessoryModel
     }
 
     Item {
         id: reviewOrder
+        readonly property real paddings: Math.round(ApplicationConfig.responsiveSize(48))
+        implicitWidth: orderButton.implicitWidth + paddings
+        implicitHeight: orderButton.implicitHeight + paddings
 
         ToyButton {
             id: orderButton
             textStyle: ApplicationConfig.TextStyle.Button_L
             text: qsTr("Review Order")
+            anchors {
+                left: parent.left
+                bottom: parent.bottom
+            }
+
             onClicked: toyCustomizePage.confirmed()
         }
 
@@ -152,10 +156,8 @@ Page {
             visible: accessoryView.totalSelectedAccessory > 0 ? true : false
 
             anchors {
-                right: orderButton.right
-                top: orderButton.top
-                rightMargin: Math.round(ApplicationConfig.responsiveSize(-48))
-                topMargin: Math.round(ApplicationConfig.responsiveSize(-48))
+                top: parent.top
+                right: parent.right
             }
 
             ToyLabel {

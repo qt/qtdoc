@@ -51,13 +51,13 @@ ApplicationWindow {
     }
 
     ColumnLayout {
-        anchors {
-            fill: parent
-            leftMargin: ApplicationConfig.responsiveSize(200)
-            rightMargin: ApplicationConfig.responsiveSize(200)
-            topMargin: ApplicationConfig.responsiveSize(150)
-        }
+        anchors.fill: parent
+
         ToyHeader {
+            Layout.leftMargin: ApplicationConfig.responsiveSize(200)
+            Layout.rightMargin: ApplicationConfig.responsiveSize(200)
+            Layout.topMargin: ApplicationConfig.responsiveSize(150)
+
             visible: currentPageStep !== Main.Step.None
             currentPageStep: stackView.currentItem.pageStep ?? Main.Step.None
             headingText: stackView.currentItem.headingText ?? ""

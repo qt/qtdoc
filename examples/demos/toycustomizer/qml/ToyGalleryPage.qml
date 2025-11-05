@@ -14,22 +14,10 @@ Page {
     background: Item { visible: false }
 
     Item {
-        width: {
-            const toyView_minWidth = ApplicationConfig.responsiveSize(1760)
-            if (ApplicationConfig.isPortrait)
-                return toyView_minWidth
-
-            const toyView_horMargin = ApplicationConfig.responsiveSize(790)
-            const toyView_breakpointWidth = toyView_minWidth + 2 * toyView_horMargin
-            if (toyGalleryPage.width < toyView_breakpointWidth)
-                return toyView_minWidth
-            else
-                return toyGalleryPage.width - 2 * toyView_horMargin
-        }
         anchors {
-            top: parent.top
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
+            fill: parent
+            leftMargin: ApplicationConfig.responsiveSize(200)
+            rightMargin: ApplicationConfig.responsiveSize(200)
         }
 
         GridView {
@@ -39,7 +27,7 @@ Page {
                 bottom: parent.bottom
                 horizontalCenter: parent.horizontalCenter
             }
-            width: Math.floor(parent.width / cellWidth) * cellWidth
+            width: Math.max(cellWidth, Math.floor(parent.width / cellWidth) * cellWidth)
             clip: true
             cellWidth: Math.floor(ApplicationConfig.responsiveSize(565))
             cellHeight: ApplicationConfig.responsiveSize(900)

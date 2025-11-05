@@ -9,8 +9,8 @@ import QtQuick.Layouts
 
 Rectangle {
     id: nameTumbler
-    width: ApplicationConfig.responsiveSize(544)
-    height: ApplicationConfig.responsiveSize(775)
+    implicitWidth: ApplicationConfig.responsiveSize(1152)
+    implicitHeight: ApplicationConfig.responsiveSize(775)
     color: "transparent"
     radius: ApplicationConfig.responsiveSize(16)
 
@@ -95,29 +95,28 @@ Rectangle {
 
         ToyLabel {
             id: nameTublerTitle
-            Layout.row: 0
-            Layout.column: 0
-            Layout.columnSpan: 2
-            Layout.leftMargin: ApplicationConfig.responsiveSize(375)
             text: qsTr("Pick a name for your toy!")
             wrapMode: Text.Wrap
             textStyle: ApplicationConfig.TextStyle.H2_Bold
+
+            Layout.row: 0
+            Layout.column: 0
+            Layout.columnSpan: 2
+            Layout.alignment: Qt.AlignHCenter
         }
 
         Tumbler {
             id: adjectiveTumbler
-            Layout.row: 1
-            Layout.column: 0
-            Layout.preferredWidth: ApplicationConfig.isPortrait ?
-                                       ApplicationConfig.responsiveSize(800) :
-                                       ApplicationConfig.responsiveSize(900)
-            Layout.preferredHeight: ApplicationConfig.isPortrait ?
-                                        ApplicationConfig.responsiveSize(800) :
-                                        ApplicationConfig.responsiveSize(900)
-            Layout.alignment: Qt.AlignHCenter
+
             model: adjectivesProxy
             currentIndex: 5
-            onCurrentIndexChanged: adjectivesProxy.setSelected(currentIndex)
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.row: 1
+            Layout.column: 0
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
             delegate: Item {
                 required property var name
                 required property int index
@@ -134,23 +133,23 @@ Rectangle {
                     }
                 }
             }
+
+            onCurrentIndexChanged: adjectivesProxy.setSelected(currentIndex)
             Component.onCompleted: adjectivesProxy.setSelected(currentIndex)
         }
 
         Tumbler {
             id: nounTumbler
-            Layout.row: 1
-            Layout.column: 1
-            Layout.preferredWidth: ApplicationConfig.isPortrait ?
-                                       ApplicationConfig.responsiveSize(800) :
-                                       ApplicationConfig.responsiveSize(900)
-            Layout.preferredHeight: ApplicationConfig.isPortrait ?
-                                        ApplicationConfig.responsiveSize(800) :
-                                        ApplicationConfig.responsiveSize(900)
-            Layout.alignment: Qt.AlignHCenter
+
             model: nounProxy
             currentIndex: 5
-            onCurrentIndexChanged: nounProxy.setSelected(currentIndex)
+
+            Layout.row: 1
+            Layout.column: 1
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
             delegate: Item {
                 required property var name
                 required property int index
@@ -167,6 +166,8 @@ Rectangle {
                     }
                 }
             }
+
+            onCurrentIndexChanged: nounProxy.setSelected(currentIndex)
             Component.onCompleted: nounProxy.setSelected(currentIndex)
         }
     }

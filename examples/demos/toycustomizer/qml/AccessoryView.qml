@@ -13,6 +13,8 @@ Rectangle {
     property alias model: groupFilterProxyModel.model
     property int totalSelectedAccessory: 0
     property var target: null
+    property real horizontalPaddings: ApplicationConfig.responsiveSize(120)
+    property real verticalPaddings: ApplicationConfig.responsiveSize(100)
 
     color: "#FFFFFF"
     clip: true
@@ -20,6 +22,12 @@ Rectangle {
     topRightRadius: ApplicationConfig.responsiveSize(56)
     bottomLeftRadius: ApplicationConfig.isPortrait ? 0 : ApplicationConfig.responsiveSize(56)
     bottomRightRadius: ApplicationConfig.isPortrait ? 0 : ApplicationConfig.responsiveSize(56)
+
+    implicitHeight: {
+        const tabBarHeight = tabBar.implicitHeight + ApplicationConfig.responsiveSize(120)
+        const listViewHeight = listView.implicitHeight + ApplicationConfig.responsiveSize(200)
+        return tabBarHeight + listViewHeight
+    }
 
     function setAccessoryVisibility(key, vis) {
         if (key === "bracletsVisible") {
@@ -44,9 +52,11 @@ Rectangle {
     TabBar {
         id: tabBar
 
-        property int tabWidth: Math.max(width / 5, ApplicationConfig.responsiveSize(415))
-        property int tabHeight: ApplicationConfig.responsiveSize(144)
+        readonly property real tabMinimumWidth: Math.ceil(ApplicationConfig.responsiveSize(415))
+        property real tabWidth: Math.max(width / 5, tabMinimumWidth)
+        property real tabHeight: ApplicationConfig.responsiveSize(144)
 
+        implicitWidth: 3 * tabMinimumWidth // space for showing 3 buttons
         contentWidth: ApplicationConfig.responsiveSize(1760)
         contentHeight: tabHeight
         clip: true
@@ -55,8 +65,8 @@ Rectangle {
             left: parent.left
             right: parent.right
             top: parent.top
-            leftMargin: ApplicationConfig.responsiveSize(120)
-            rightMargin: ApplicationConfig.responsiveSize(120)
+            leftMargin: accessoryView.horizontalPaddings
+            rightMargin: accessoryView.horizontalPaddings
             topMargin: ApplicationConfig.responsiveSize(120)
         }
 
@@ -71,7 +81,7 @@ Rectangle {
             id: headwearTabButton
             width: tabBar.tabWidth
             height: tabBar.height
-            anchors.left: parent.left
+            anchors.left: parent.right
 
             contentItem: IconLabel {
                 text: qsTr("Headwear")
@@ -130,6 +140,7 @@ Rectangle {
             width: tabBar.tabWidth
             height: tabBar.height
             anchors.left: eyewearTabButton.right
+
             contentItem: IconLabel {
                 text: qsTr("Eyes")
                 color: eyesTabButton.checked ? "#EFF7FF" : "#6A6A8D"
@@ -143,6 +154,7 @@ Rectangle {
                 spacing: ApplicationConfig.responsiveSize(12)
                 anchors.centerIn: parent
             }
+
             background: Rectangle {
                 radius: 20
                 color: "#2269EE"
@@ -157,6 +169,7 @@ Rectangle {
             width: tabBar.tabWidth
             height: tabBar.height
             anchors.left: eyesTabButton.right
+
             contentItem: IconLabel {
                 text: qsTr("Items")
                 color: itemsTabButton.checked ? "#EFF7FF" : "#6A6A8D"
@@ -170,6 +183,7 @@ Rectangle {
                 spacing: ApplicationConfig.responsiveSize(12)
                 anchors.centerIn: parent
             }
+
             background: Rectangle {
                 radius: 20
                 color: "#2269EE"
@@ -184,6 +198,7 @@ Rectangle {
             width: tabBar.tabWidth
             height: tabBar.height
             anchors.left: itemsTabButton.right
+
             contentItem: IconLabel {
                 text: qsTr("Name")
                 color: nameTabButton.checked ? "#EFF7FF" : "#6A6A8D"
@@ -197,6 +212,7 @@ Rectangle {
                 spacing: ApplicationConfig.responsiveSize(12)
                 anchors.centerIn: parent
             }
+
             background: Rectangle {
                 radius: 20
                 color: "#2269EE"
@@ -226,14 +242,20 @@ Rectangle {
 
     ListView {
         id: listView
+
+        readonly property real delegateWidth: ApplicationConfig.responsiveSize(544)
+        readonly property real delegateHeight: ApplicationConfig.responsiveSize(775)
+
+        implicitWidth: 2 * delegateWidth + spacing  // space for showing 2 items
+        implicitHeight: delegateHeight
         visible: tabBar.currentIndex !== 4
         anchors {
             top: tabBar.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            leftMargin: ApplicationConfig.responsiveSize(200)
-            rightMargin: ApplicationConfig.responsiveSize(200)
+            leftMargin: accessoryView.horizontalPaddings
+            rightMargin: accessoryView.horizontalPaddings
             bottomMargin: ApplicationConfig.responsiveSize(100)
             topMargin: ApplicationConfig.responsiveSize(100)
         }
@@ -291,6 +313,8 @@ Rectangle {
                 ListView.view.updateTotalSelectedAccessory()
             }
 
+            implicitWidth: ListView.view.delegateWidth
+            implicitHeight: ListView.view.delegateHeight
             cardName: name
             cardImageSource: Qt.resolvedUrl(image)
             selectedColorName: color
@@ -322,8 +346,8 @@ Rectangle {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            leftMargin: ApplicationConfig.responsiveSize(200)
-            rightMargin: ApplicationConfig.responsiveSize(200)
+            leftMargin: accessoryView.horizontalPaddings
+            rightMargin: accessoryView.horizontalPaddings
         }
     }
 }

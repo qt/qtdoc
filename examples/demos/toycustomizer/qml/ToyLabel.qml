@@ -17,7 +17,6 @@ Item {
     implicitHeight: visible ? label.lineCount * (textMetrics.tightBoundingRect.height
                                                  + ApplicationConfig.responsiveSize(8)) : 0
     implicitWidth: label.implicitWidth
-    clip: true
 
     Label {
         id: label

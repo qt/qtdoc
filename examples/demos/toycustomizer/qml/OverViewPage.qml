@@ -20,35 +20,34 @@ Page {
     ColumnLayout {
         id: portraitLayout
 
+        spacing: ApplicationConfig.responsiveSize(80)
         visible: ApplicationConfig.isPortrait
 
         anchors {
             fill: parent
             topMargin: ApplicationConfig.responsiveSize(200)
-            leftMargin: ApplicationConfig.responsiveSize(-200)
-            rightMargin: ApplicationConfig.responsiveSize(-200)
         }
 
-        LayoutItemProxy {
-            target: breakdownAndConfirm
-            implicitHeight: ApplicationConfig.responsiveSize(268)
-            implicitWidth: ApplicationConfig.responsiveSize(1152)
-            Layout.minimumWidth: ApplicationConfig.responsiveSize(1152)
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.fillWidth: true
-            Layout.leftMargin: ApplicationConfig.responsiveSize(304)
-            Layout.rightMargin: ApplicationConfig.responsiveSize(304)
-        }
-
-        LayoutItemProxy {
-            target: confirmButton
-            visible: overViewPage.buttonsVisible
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: ApplicationConfig.responsiveSize(152)
-        }
         Item {
-            implicitHeight: confirmButton.implicitHeight
-            visible: !overViewPage.buttonsVisible
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.leftMargin: ApplicationConfig.responsiveSize(400)
+            Layout.rightMargin: ApplicationConfig.responsiveSize(400)
+            Layout.minimumHeight: breakdownAndConfirmItem.implicitHeight
+            Layout.minimumWidth: orderBreakdownLayout.implicitWidth
+            Column {
+                id: breakdownAndConfirmItem
+                spacing: ApplicationConfig.responsiveSize(152)
+                anchors.centerIn: parent
+                LayoutItemProxy {
+                    target: orderBreakdownLayout
+                }
+                LayoutItemProxy {
+                    target: confirmButton
+                    visible: overViewPage.buttonsVisible
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
         }
 
         LayoutItemProxy {
@@ -62,11 +61,9 @@ Page {
         }
 
         LayoutItemProxy {
-            target: backgroundRectangle
+            target: orderDetailsItem
+            Layout.alignment: Qt.AlignBottom
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.topMargin: ApplicationConfig.responsiveSize(80)
-            Layout.minimumHeight: ApplicationConfig.responsiveSize(1350)
         }
     }
 
@@ -74,206 +71,180 @@ Page {
     GridLayout {
         id: landscapeLayout
 
-        readonly property int minimumWidth: ApplicationConfig.responsiveSize(3528)
-
         visible: !ApplicationConfig.isPortrait
         columns: 2
         rowSpacing: ApplicationConfig.responsiveSize(80)
-        columnSpacing: {
-            const preferredSpacing = ApplicationConfig.responsiveSize(400)
-            const diffWidth = overViewPage.width - minimumWidth
-            if (diffWidth > 0)
-                return preferredSpacing
-            return Math.max(preferredSpacing + diffWidth, 0)
-        }
-
         anchors {
-            top: parent.top
             horizontalCenter: parent.horizontalCenter
-            topMargin: ApplicationConfig.responsiveSize(120)
-            leftMargin: horizontalMargin()
-            rightMargin: horizontalMargin()
+            verticalCenter: parent.verticalCenter
         }
 
-        function horizontalMargin() {
-            return ApplicationConfig.responsiveSize(440)
+        columnSpacing: {
+            const prefSpacing = ApplicationConfig.responsiveSize(400)
+            const prefWidth = orderBreakdownLayout.width + orderDetailsItem.width + prefSpacing
+            const minMargins = ApplicationConfig.responsiveSize(100)
+            const parentWidth = parent.width - 2 * minMargins
+            const availableWidth = parentWidth - prefWidth
+            if (availableWidth > 0)
+                return prefSpacing
+            const minSpacing = ApplicationConfig.responsiveSize(60)
+            return Math.max(prefSpacing + availableWidth, minSpacing)
         }
 
-        Row {
-            Layout.columnSpan: 2
-            LayoutItemProxy {
-                target: backButton
-                visible: overViewPage.buttonsVisible
-                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+        state: height < parent.height ? "" : "narrow"
+        states: State {
+            name: "narrow"
+            AnchorChanges {
+                target: landscapeLayout
+                anchors {
+                    verticalCenter: undefined
+                    top: landscapeLayout.parent.top
+                }
             }
         }
+
         LayoutItemProxy {
-            target: backgroundRectangle
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.minimumHeight: ApplicationConfig.responsiveSize(1360)
-            Layout.minimumWidth: ApplicationConfig.responsiveSize(2100)
+            target: backButton
+            visible: overViewPage.buttonsVisible
         }
+
+        Column {
+            spacing: ApplicationConfig.responsiveSize(140)
+            Layout.rowSpan: 2
+            Layout.row: 0
+            Layout.column: 1
+            LayoutItemProxy {
+                target: orderBreakdownLayout
+            }
+            LayoutItemProxy {
+                target: confirmButton
+                visible: overViewPage.buttonsVisible
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
         LayoutItemProxy {
-            target: breakdownAndConfirm
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.minimumHeight: ApplicationConfig.responsiveSize(1350)
-            Layout.minimumWidth: ApplicationConfig.responsiveSize(1300)
+            target: orderDetailsItem
+            Layout.row: overViewPage.buttonsVisible ? 1 : 0
+            Layout.column: 0
         }
     }
 
-    ColumnLayout {
-        id: breakdownAndConfirm
+    GridLayout {
+        id: orderBreakdownLayout
 
-        RowLayout {
+        columns: 4
+
+        ToyLabel {
+            id: subTotal
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: qsTr("SubTotal")
+        }
+        Item {
+            implicitHeight: 2
+            implicitWidth: ApplicationConfig.responsiveSize(720)
             Layout.fillWidth: true
-            ToyLabel {
-                id: subTotal
-                Layout.alignment: Qt.AlignLeft
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: qsTr("SubTotal")
-            }
-            Item {
-                Layout.fillWidth: true
-            }
-            ToyLabel {
-                id: subTotalPrice
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: `${orderGrid.totalPrice}`
-            }
-            ToyImage {
-                Layout.alignment: Qt.AlignRight
-                source: "icons/currency.svg"
-                color: subTotalPrice.color
-                colorize: true
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(142)
-                    height: ApplicationConfig.responsiveSize(32)
-                }
+        }
+        ToyLabel {
+            id: subTotalPrice
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: `${orderGrid.totalPrice}`
+        }
+        ToyImage {
+            Layout.alignment: Qt.AlignRight
+            source: "icons/currency.svg"
+            color: subTotalPrice.color
+            colorize: true
+            sourceSize {
+                width: ApplicationConfig.responsiveSize(142)
+                height: ApplicationConfig.responsiveSize(32)
             }
         }
-        RowLayout {
-            Layout.preferredHeight: delivery.height
-            Layout.fillWidth: true
-            ToyLabel {
-                id: delivery
-                Layout.alignment: Qt.AlignLeft
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: qsTr("Delivery")
-            }
-            Item {
-                Layout.fillWidth: true
-            }
-            ToyLabel {
-                id: deliveryPrice
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: qsTr("0")
-            }
-            ToyImage {
-                Layout.alignment: Qt.AlignRight
-                source: "icons/currency.svg"
-                color: deliveryPrice.color
-                colorize: true
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(142)
-                    height: ApplicationConfig.responsiveSize(32)
-                }
-            }
+
+        ToyLabel {
+            id: delivery
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: qsTr("Delivery")
+            Layout.row: 1
+            Layout.column: 0
         }
+        ToyLabel {
+            id: deliveryPrice
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: qsTr("0")
+            Layout.row: 1
+            Layout.column: 2
+        }
+        ToyImage {
+            Layout.alignment: Qt.AlignRight
+            source: "icons/currency.svg"
+            color: deliveryPrice.color
+            colorize: true
+            sourceSize {
+                width: ApplicationConfig.responsiveSize(142)
+                height: ApplicationConfig.responsiveSize(32)
+            }
+            Layout.row: 1
+            Layout.column: 3
+        }
+
         Rectangle {
             id: separator
-            Layout.fillWidth: true
-            Layout.preferredHeight: ApplicationConfig.responsiveSize(5)
             color: "#162655"
-        }
-        RowLayout {
-            Layout.preferredHeight: total.height
+            implicitHeight: ApplicationConfig.responsiveSize(8)
             Layout.fillWidth: true
-            ToyLabel {
-                id: total
-                Layout.alignment: Qt.AlignLeft
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: qsTr("Total")
-            }
-            Item {
-                Layout.fillWidth: true
-            }
-            ToyLabel {
-                id: totalPrice
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                text: `${orderGrid.totalPrice}`
-            }
-            ToyImage {
-                Layout.alignment: Qt.AlignRight
-                source: "icons/currency.svg"
-                color: totalPrice.color
-                colorize: true
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(142)
-                    height: ApplicationConfig.responsiveSize(32)
-                }
-            }
+            Layout.columnSpan: 4
+            Layout.row: 2
+            Layout.column: 0
         }
-        LayoutItemProxy {
-            target: confirmButton
-            visible: buttonsVisible && !ApplicationConfig.isPortrait
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: ApplicationConfig.responsiveSize(140)
+
+        ToyLabel {
+            id: total
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: qsTr("Total")
+            Layout.row: 3
+            Layout.column: 0
+        }
+        ToyLabel {
+            id: totalPrice
+            textStyle: ApplicationConfig.TextStyle.H3_Light
+            text: `${orderGrid.totalPrice}`
+            Layout.row: 3
+            Layout.column: 2
+        }
+        ToyImage {
+            Layout.alignment: Qt.AlignRight
+            source: "icons/currency.svg"
+            color: totalPrice.color
+            colorize: true
+            sourceSize {
+                width: ApplicationConfig.responsiveSize(142)
+                height: ApplicationConfig.responsiveSize(32)
+            }
+            Layout.row: 3
+            Layout.column: 3
         }
     }
 
     Rectangle {
-        id: backgroundRectangle
+        id: orderDetailsItem
+
+        readonly property real paddings: ApplicationConfig.responsiveSize(180)
+
+        implicitWidth: orderGrid.implicitWidth + 2 * paddings
+        implicitHeight: orderGrid.implicitHeight + 2 * paddings
 
         radius: ApplicationConfig.responsiveSize(56)
         bottomLeftRadius: ApplicationConfig.isPortrait ? 0 : radius
         bottomRightRadius: ApplicationConfig.isPortrait ? 0 : radius
         color: "white"
 
-        state: ApplicationConfig.isPortrait ? "portraitAnchored" : "landscapeAnchored"
-        states: [
-            State {
-                name: "portraitAnchored"
-                AnchorChanges {
-                    target: orderGrid
-                    anchors.top: backgroundRectangle.top
-                }
-                PropertyChanges {
-                    target: orderGrid
-                    anchors {
-                        topMargin: ApplicationConfig.responsiveSize(200)
-                        leftMargin: ApplicationConfig.responsiveSize(180)
-                        rightMargin: ApplicationConfig.responsiveSize(180)
-                    }
-                }
-            },
-            State {
-                name: "landscapeAnchored"
-                AnchorChanges {
-                    target: orderGrid
-                    anchors.verticalCenter: backgroundRectangle.verticalCenter
-                }
-                PropertyChanges {
-                    target: orderGrid
-                    anchors {
-                        topMargin: ApplicationConfig.responsiveSize(0)
-                        leftMargin: ApplicationConfig.responsiveSize(200)
-                        rightMargin: ApplicationConfig.responsiveSize(200)
-                    }
-                }
-            }
-        ]
-
         OrderGrid {
             id: orderGrid
             implicitWidth: ApplicationConfig.responsiveSize(1760)
             implicitHeight: ApplicationConfig.responsiveSize(1170)
             accessoryModel: overViewPage.accessoryModel
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
+            anchors.centerIn: parent
         }
     }
 
