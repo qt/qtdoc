@@ -48,7 +48,7 @@ Window {
             Layout.rightMargin: root.isPortraitMode ? root.margin : 0
         }
 
-        NumberPad {
+        NumberPad { // qmllint disable required
             id: numberPad
             Layout.margins: root.margin
 
