@@ -767,6 +767,9 @@ int main(int argc, char **argv)
 }
 \endcode
 
+\note This applies when Asyncify or JSPI is not used. Calling exec() in main() is
+required when using Asyncify or JSPI.
+
 \section3 Asyncify and JSPI
 
 The default Qt build for WebAssembly does not support reentering the event loop, such as 
@@ -792,6 +795,9 @@ is available in two versions:
 See the sections below for details on how to enable each option and the trade-offs involved. In brief,
 Asyncify is available today but introduces overhead in the form of longer build times, larger binary sizes,
 and runtime performance costs. JSPI has minimal or no overhead, but it is not yet supported by all browsers.
+
+\note Calling application exec() in main() was optional in earlier versions of Qt for
+WebAssembly, but is now required when using Asyncify or JSPI.
 
 \section3 Asyncify
 
