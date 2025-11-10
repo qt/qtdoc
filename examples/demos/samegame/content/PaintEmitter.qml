@@ -5,7 +5,7 @@ import QtQuick
 import QtQuick.Particles
 
 Emitter {
-    property int blockType: (parent as Block).type
+    property int blockType: (parent as Block)?.type ?? -1
     anchors.fill: parent
     shape: EllipseShape { fill: true }
     group: {
