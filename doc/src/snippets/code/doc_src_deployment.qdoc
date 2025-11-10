@@ -87,9 +87,10 @@ cd examples\tools\plugandpaint
 
 
 //! [14]
-nmake clean
-qmake -config release
-nmake
+md build_static
+cd build_static
+C:\path\to\static\Qt\bin\qt-cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+ninja
 //! [14]
 
 
@@ -99,18 +100,11 @@ cd examples\tools\plugandpaint
 
 
 //! [16]
-nmake clean
-qmake -config release
-nmake
+md build_shared
+cd build_shared
+C:\path\to\Qt\bin\qt-cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+ninja
 //! [16]
-
-
-//! [17]
-cd ..\plugandpaint/plugins
-nmake clean
-qmake -config release
-nmake
-//! [17]
 
 
 //! [18]

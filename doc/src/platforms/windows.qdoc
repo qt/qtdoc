@@ -576,32 +576,31 @@
 
     If you later need to reconfigure and rebuild Qt from the
     same location, ensure that all traces of the previous configuration are
-    removed by entering the build directory and running \c{nmake distclean} or
-    \c{mingw32-make distclean} before running \c configure again.
+    removed.
 
     \section2 Linking the Application to the Static Version of Qt
 
     As an example, this section will build the \l{tools/plugandpaint/app}{Plug & Paint}
-    example statically.
+    example against a statically built Qt.
 
-    Once Qt finishes building, build the \l{tools/plugandpaint/app}{Plug & Paint}
-    application. First we must go into the directory that contains the
-    application:
+    Once Qt finishes building, build the \l{tools/plugandpaint/app}{Plug &
+    Paint} application. This section assumes that the static Qt build has been
+    installed to \e{C:\\path\\to\\static\\Qt}. First we must go into the directory that
+    contains the application:
 
     \snippet snippets/code/doc_src_deployment.qdoc 13
 
-    Run \c qmake to create a new makefile for the
-    application, and perform a clean build to create the statically linked
-    executable:
+    Now, we create a build directory and call \c qt-cmake to generate the build
+    system files.
 
     \snippet snippets/code/doc_src_deployment.qdoc 14
 
-    You probably want to link against the release libraries, and you can specify
-    this when invoking \c qmake. Now, provided that everything compiled and
-    linked without any errors, we should have a \c plugandpaint.exe file that is
-    ready for deployment. To check that the application has the required
-    libraries, copy the executable to a machine that does not have Qt or any Qt
-    applications installed, and run it on that machine.
+    You probably want to link against the release libraries, and we specified
+    this with the \c CMAKE_BUILD_TYPE variable. Now, provided that everything
+    compiled and linked without any errors, we should have a \c plugandpaint.exe
+    file that is ready for deployment. To check that the application has the
+    required libraries, copy the executable to a machine that does not have Qt
+    or any Qt applications installed, and run it on that machine.
 
     Remember that if your application depends on compiler specific
     libraries, these must still be redistributed along with your
@@ -638,15 +637,10 @@
 
     \snippet snippets/code/doc_src_deployment.qdoc 15
 
-    Now run \c qmake to create a new makefile for the application, and
-    do a clean build to create the dynamically linked executable:
+    Now create a dedicated build directory and run \c qt-cmake to create the
+    build system files:
 
     \snippet snippets/code/doc_src_deployment.qdoc 16
-
-    This builds the core application, the following will build the
-    plugins:
-
-    \snippet snippets/code/doc_src_deployment.qdoc 17
 
     If everything compiled and linked without any errors, we will get
     a \c plugandpaint.exe executable and the \c pnp_basictools.dll and
