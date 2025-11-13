@@ -96,10 +96,11 @@ Item {
                 brightness: 1
                 shadowFactor: 100
                 shadowMapQuality: Light.ShadowMapQualityVeryHigh
-                softShadowQuality: Light.PCF64
-                shadowBias: 0.4
-                pcfFactor: 0.01
+                softShadowQuality: Light.PCF8
+                shadowBias: 0.6
+                pcfFactor: 0.2
                 quadraticFade: 0.001
+                shadowMapFar: 500
             }
 
             PhysicalTable {
