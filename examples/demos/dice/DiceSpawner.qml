@@ -27,16 +27,18 @@ Node {
 
         delegate: PhysicalDie {
             required property int index
-            position.x: diceWidth * Math.cos(index / (Math.PI / 4))
-            position.y: index * shapeSpawner.diceWidth * 1.41
-            position.z: diceWidth * Math.sin(index / (Math.PI / 4))
             eulerRotation.x: shapeSpawner.randomInRange(0, 360)
             eulerRotation.y: shapeSpawner.randomInRange(0, 360)
             eulerRotation.z: shapeSpawner.randomInRange(0, 360)
             physicsMaterial: shapeSpawner.physicsMaterial
             diceWidth: shapeSpawner.diceWidth
 
-            Component.onCompleted: applyCentralForce(shapeSpawner.rollForce)
+            Component.onCompleted: {
+                position.x = diceWidth * Math.cos(index / (Math.PI / 4))
+                position.y = index * shapeSpawner.diceWidth * 1.41
+                position.z = diceWidth * Math.sin(index / (Math.PI / 4))
+                applyCentralForce(shapeSpawner.rollForce)
+            }
         }
     }
 
