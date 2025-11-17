@@ -13,6 +13,7 @@ Rectangle {
     property string cardName
     property bool selected: false
     property string selectedColorName: ""
+    property real modelRating
     property bool isExclusive: false
 
     property real discountAmount: Math.max(oldPrice - newPrice, 0)
@@ -132,7 +133,7 @@ Rectangle {
                     id: modelRating
                     Layout.alignment: Qt.AlignRight
                     textStyle: ApplicationConfig.TextStyle.Body
-                    text: qsTr(`★ 4.85`)
+                    text: qsTr("★ %1").arg(customizationCard.modelRating)
                 }
             }
 

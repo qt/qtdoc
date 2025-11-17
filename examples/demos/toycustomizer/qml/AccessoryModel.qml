@@ -28,6 +28,7 @@ ListModel {
         selected: false
         color: ""
         key: "beanieVisible"
+        modelRating: 3.77
     }
 
     ListElement {
@@ -39,6 +40,7 @@ ListModel {
         selected: false
         color: ""
         key: "capVisible"
+        modelRating: 2.69
     }
 
     ListElement {
@@ -50,6 +52,7 @@ ListModel {
         selected: false
         color: ""
         key: "partyHatVisible"
+        modelRating: 3.31
     }
 
     ListElement {
@@ -61,6 +64,7 @@ ListModel {
         selected: false
         color: ""
         key: "headphonesVisible"
+        modelRating: 4.56
     }
 
     ListElement {
@@ -72,6 +76,7 @@ ListModel {
         selected: false
         color: ""
         key: "wizardHatVisible"
+        modelRating: 3.92
     }
 
     ListElement {
@@ -83,6 +88,7 @@ ListModel {
         selected: false
         color: ""
         key: "whiskersVisible"
+        modelRating: 2.87
     }
 
     ListElement {
@@ -94,6 +100,7 @@ ListModel {
         selected: false
         color: ""
         key: "bandanaVisible"
+        modelRating: 4.12
     }
 
     ListElement {
@@ -105,6 +112,7 @@ ListModel {
         selected: false
         color: ""
         key: "eyePatchVisible"
+        modelRating: 3.17
     }
 
     ListElement {
@@ -116,6 +124,7 @@ ListModel {
         selected: false
         color: ""
         key: "incognitoVisible"
+        modelRating: 1.98
     }
 
     ListElement {
@@ -127,6 +136,7 @@ ListModel {
         selected: false
         color: ""
         key: "monacleVisible"
+        modelRating: 2.34
     }
 
     ListElement {
@@ -138,6 +148,7 @@ ListModel {
         selected: false
         color: ""
         key: "nvGogglesVisible"
+        modelRating: 1.58
     }
 
     ListElement {
@@ -149,6 +160,7 @@ ListModel {
         selected: false
         color: ""
         key: "sunglassesVisible"
+        modelRating: 5.00
     }
 
     ListElement {
@@ -160,6 +172,7 @@ ListModel {
         selected: false
         color: ""
         key: "roundGlassesVisible"
+        modelRating: 4.85
     }
 
     ListElement {
@@ -171,6 +184,7 @@ ListModel {
         selected: true
         color: ""
         key: "smallEyesVisible"
+        modelRating: 3.07
     }
 
     ListElement {
@@ -182,6 +196,7 @@ ListModel {
         selected: false
         color: ""
         key: "cuteEyesVisible"
+        modelRating: 4.89
     }
 
     ListElement {
@@ -193,6 +208,7 @@ ListModel {
         selected: false
         color: ""
         key: "annoyedEyesVisible"
+        modelRating: 2.45
     }
 
     ListElement {
@@ -204,6 +220,7 @@ ListModel {
         selected: false
         color: ""
         key: "surprisedEyesVisible"
+        modelRating: 1.73
     }
 
     ListElement {
@@ -215,6 +232,7 @@ ListModel {
         selected: false
         color: ""
         key: "confusedEyesVisible"
+        modelRating: 4.02
     }
 
     ListElement {
@@ -226,6 +244,7 @@ ListModel {
         selected: false
         color: ""
         key: "powerpuffEyesVisible"
+        modelRating: 4.52
     }
 
     ListElement {
@@ -237,6 +256,7 @@ ListModel {
         selected: false
         color: ""
         key: "wideEyesVisible"
+        modelRating: 1.92
     }
 
     ListElement {
@@ -248,6 +268,7 @@ ListModel {
         selected: false
         color: ""
         key: "butterflyWingsVisible"
+        modelRating: 4.23
     }
 
     ListElement {
@@ -259,6 +280,7 @@ ListModel {
         selected: false
         color: ""
         key: "angelWingsVisible"
+        modelRating: 4.38
     }
 
     ListElement {
@@ -270,6 +292,7 @@ ListModel {
         selected: false
         color: ""
         key: "bowtieVisible"
+        modelRating: 4.46
     }
 
     ListElement {
@@ -281,6 +304,7 @@ ListModel {
         selected: false
         color: ""
         key: "backpackVisible"
+        modelRating: 3.92
     }
 
     ListElement {
@@ -292,6 +316,7 @@ ListModel {
         selected: false
         color: ""
         key: "necktieVisible"
+        modelRating: 3.46
     }
 
     ListElement {
@@ -303,6 +328,7 @@ ListModel {
         selected: false
         color: ""
         key: "bracletsVisible"
+        modelRating: 2.68
     }
 
     // Adjectives

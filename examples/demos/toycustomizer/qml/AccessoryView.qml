@@ -283,6 +283,7 @@ Rectangle {
             required selected
             required newPrice
             required oldPrice
+            required modelRating
 
             function setSelected(selected :bool) {
                 model.selected = selected
