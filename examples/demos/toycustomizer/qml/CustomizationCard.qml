@@ -30,9 +30,9 @@ Rectangle {
 
     width: ApplicationConfig.responsiveSize(544)
     height: ApplicationConfig.responsiveSize(775)
-    color: "#FFFFFF"
+    color: customizationCard.selected ? "#DAEBFF" : "#FFFFFF"
     radius: ApplicationConfig.responsiveSize(16)
-    border.color: "#D7D6E1"
+    border.color: customizationCard.selected ? "#2269EE" : "#D7D6E1"
     border.width: ApplicationConfig.responsiveSize(4)
 
     ColumnLayout {
