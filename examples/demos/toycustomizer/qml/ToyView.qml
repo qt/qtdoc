@@ -51,14 +51,14 @@ Rectangle {
         ToyButton {
             id: maximizeButton
             type: ToyButton.Type.Secondary
-            leftPadding: 0
-            rightPadding: 0
-            icon.source: "icons/maximize_circle_fill.svg"
-            icon.color: "#2269EE"
-            icon.width: ApplicationConfig.responsiveSize(96)
-            icon.height: ApplicationConfig.responsiveSize(96)
-            background: Item {}
-
+            flat: true
+            text: qsTr("Maximize")
+            color: pressed ? "#1A53DB" : hovered ? "#1C44B1" : "#2269EE"
+            icon {
+                source: "icons/maximize_circle_fill.svg"
+                width: ApplicationConfig.responsiveSize(96)
+                height: ApplicationConfig.responsiveSize(96)
+            }
             onClicked: toyView.showRequested()
             Layout.alignment: Qt.AlignRight | Qt.AlignTop
         }
