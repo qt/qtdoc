@@ -16,13 +16,15 @@ Item {
 
     implicitWidth: {
         if (!isMaximized)
-            return ApplicationConfig.responsiveSize(921)
+            return ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(1051)
+                                                : ApplicationConfig.responsiveSize(1366)
         return ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(1664)
                                             : ApplicationConfig.responsiveSize(1699)
     }
     implicitHeight: {
         if (!isMaximized)
-            return ApplicationConfig.responsiveSize(1238)
+            return ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(1051)
+                                                : ApplicationConfig.responsiveSize(1366)
         return ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(2237)
                                             : ApplicationConfig.responsiveSize(2318)
     }
@@ -47,12 +49,13 @@ Item {
 
             PerspectiveCamera {
                 id: sceneCamera
-                y: 73
+                y: 92
                 z: 280
                 clipNear: 100
                 clipFar: 2000
                 frustumCullingEnabled: true
-                fieldOfView: 39
+                fieldOfView: 40
+                eulerRotation: Qt.vector3d(0, 0, -3)
             }
 
             SpotLight {

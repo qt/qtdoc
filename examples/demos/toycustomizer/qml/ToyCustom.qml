@@ -112,7 +112,7 @@ Node {
     property alias modelButterflyWings: butterflyWings
     property alias modelNecktie: necktie
 
-    scale: Qt.vector3d(115, 115, 110)
+    scale: Qt.vector3d(125, 125, 125)
 
     Node {
         id: bodyRigged

@@ -15,52 +15,43 @@ Rectangle {
     signal hideRequested
     signal showRequested
 
-    implicitWidth: gridLayout.implicitWidth
-    implicitHeight: gridLayout.implicitHeight
+    implicitWidth: currentToy.implicitWidth
+    implicitHeight: currentToy.implicitHeight
 
-    GridLayout {
-        id: gridLayout
-
-        columns: 3
-        rows: 2
+    CurrentToyModel {
+        id: currentToy
+        isMaximized: false
         anchors.fill: parent
+    }
 
-        ToyButton {
-            id: backButton
-            type: ToyButton.Type.Secondary
-            textStyle: ApplicationConfig.TextStyle.Button_L
-            text: qsTr("Back")
-            icon.source: "icons/back.svg"
-            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-            onClicked: toyView.hideRequested()
+    ToyButton {
+        id: backButton
+        type: ToyButton.Type.Secondary
+        textStyle: ApplicationConfig.TextStyle.Button_L
+        text: qsTr("Back")
+        icon.source: "icons/back.svg"
+        anchors {
+            left: parent.left
+            top: parent.top
         }
+        onClicked: toyView.hideRequested()
+    }
 
-        Item {
-            implicitWidth: currentToy.implicitWidth
-            implicitHeight: currentToy.implicitHeight
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            CurrentToyModel {
-                id: currentToy
-                anchors.fill: parent
-                isMaximized: false
-            }
+    ToyButton {
+        id: maximizeButton
+        type: ToyButton.Type.Secondary
+        flat: true
+        text: qsTr("Maximize")
+        color: pressed ? "#1A53DB" : hovered ? "#1C44B1" : "#2269EE"
+        icon {
+            source: "icons/maximize_circle_fill.svg"
+            width: ApplicationConfig.responsiveSize(96)
+            height: ApplicationConfig.responsiveSize(96)
         }
-
-        ToyButton {
-            id: maximizeButton
-            type: ToyButton.Type.Secondary
-            flat: true
-            text: qsTr("Maximize")
-            color: pressed ? "#1A53DB" : hovered ? "#1C44B1" : "#2269EE"
-            icon {
-                source: "icons/maximize_circle_fill.svg"
-                width: ApplicationConfig.responsiveSize(96)
-                height: ApplicationConfig.responsiveSize(96)
-            }
-            onClicked: toyView.showRequested()
-            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+        anchors {
+            right: parent.right
+            top: parent.top
         }
+        onClicked: toyView.showRequested()
     }
 }

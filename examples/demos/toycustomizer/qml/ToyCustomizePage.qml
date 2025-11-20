@@ -32,8 +32,8 @@ Item {
         LayoutItemProxy {
             target: toyView
             Layout.fillWidth: true
-            Layout.preferredWidth: ApplicationConfig.responsiveSize(708)
-            Layout.preferredHeight: ApplicationConfig.responsiveSize(952)
+            Layout.preferredWidth: ApplicationConfig.responsiveSize(1051)
+            Layout.preferredHeight: ApplicationConfig.responsiveSize(1051)
             Layout.alignment: Qt.AlignVCenter | Qt.AlignTop
             Layout.leftMargin: ApplicationConfig.responsiveSize(200)
             Layout.rightMargin: ApplicationConfig.responsiveSize(200)
