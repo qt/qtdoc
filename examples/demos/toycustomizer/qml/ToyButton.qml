@@ -24,17 +24,18 @@ RoundButton {
         pixelSize: ApplicationConfig.responsiveFontSize(textStyle)
     }
 
-    property color __contentColor: {
+    property color color: {
         if (type === ToyButton.Type.Primary)
             return "#EFF7FF"
         else
             return pressed ? "#162655" : hovered ? "#162655" : "#162655"
     }
-    icon.color: __contentColor
+    icon.color: control.color
     icon.height: ApplicationConfig.responsiveSize(48)
     icon.width: ApplicationConfig.responsiveSize(48)
 
     background: Rectangle {
+        visible: !control.flat
         implicitHeight: control.contentItem.implicitHeight + topPadding + bottomPadding
         radius: control.radius
         color: "transparent"
@@ -98,6 +99,6 @@ RoundButton {
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.__contentColor
+        color: control.color
     }
 }
