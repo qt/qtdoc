@@ -1048,8 +1048,9 @@ and evaluation, but is not suitable for production use. Current limitations and 
 
 Qt applications built with dynamic linking require two additional files to be present alongside the binaries:
 qt_plugins.json and qt_qml_imports.json. These files specify a list of shared libraries that will be loaded
-at application startup. There are helper scripts available to generate them: preload_qt_plugins.py and preload_qml_imports.py.
-To demonstrate how to use these scripts, a helper script named generate_default_preloads_for_<target>.sh will be provided.
+at application startup. There is a helper tool available to generate them: wasmdeployqt.
+To demonstrate how to use this tool, you can run it with the --help flag to get an overview of
+necessary flags needed to run the tool and example usage.
 
 The web server hosting the application must have the Qt shared libraries available.
 This can be accomplished by copying the contents of the Qt installation folder to the web server,
@@ -1063,16 +1064,10 @@ Consider starting with a small example before progressing to a full application 
 \list 1
 \li Build Qt from source, pass the “-shared” option to the Qt configure script. Use the '-prefix' option to set the install directory.
 \li Build your application using Qt from step 1.
-\li Deploy the Qt installation by copying or linking to a directory named "qt" in the application directory
+\li Create plugin preloading lists by running the deployment tool from your application build directory.
     \list
-    \li ln -s <qtpath> qt
-    \li cp -r <qtpath> qt
-    \endlist
-\li Create plugin preloading lists by running deployment scripts.
-    \list
-    \li <qtpath>/qtbase/util/wasm/preload/preload_qt_plugins.py <qt_install_dir> <target_dir>
-    \li <qtpath>/qtbase/util/wasm/preload/preload_qml_imports.py <app_source dir> <qt_host_dir>
-    <qt_install_dir> <target_dir>
+    \li <qtpath>/qtbase/bin/wasmdeployqt --qt-wasm-dir=<Path to the Qt for WebAssembly directory>
+    --qml-root-path=<Root directory for QML files> --qt-host-dir=<Path to the Qt host directory>
     \endlist
 \endlist
 
@@ -1088,7 +1083,7 @@ the Qt loader expects to find the Qt libraries and plugins in a directory name "
 file which loads the application.
 
 If you are already copying the application to the web server as a part of deployment, then copying Qt as well
-is a possible option. If you are serving the application directly from its build directroy - often the case during
+is a possible option. If you are serving the application directly from its build directory - often the case during
 development phases - then creating a symlink to Qt can work well.
 
 Prepare for the second step by creating preload lists for Qt components such as plugins and Qt Quick imports. Preloading
@@ -1097,7 +1092,7 @@ are dowloaded on demand, is also possbile but is not covered here.
 
 Preloading is implemented by the Qt JavaScript loader, which downloads files from the web server to the in-memory
 file system provided by Emscripten. Which files to download is specified using json-formatted download lists.
-Qt provides two scripts for generating preload lists, see Quick Start section above.
+Qt provides a tool for generating preload lists, see Quick Start section above.
 
 \section2 Known Issues
 
