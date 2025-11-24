@@ -10,10 +10,10 @@ Item {
     required property real oldPrice
     required property real newPrice
     property real __discountPercent: Math.round(Math.max(oldPrice - newPrice, 0) / oldPrice * 100)
-    property alias name: toyName.text
+    property alias name: itemName.text
     property bool priceVisible: true
     property bool isSelected: false
-    property alias label: toyLabel.text
+    property alias label: itemLabel.text
     property alias image: toyImage.source
 
     RowLayout {
@@ -27,20 +27,22 @@ Item {
             id: layout
             spacing: ApplicationConfig.responsiveSize(20)
             ToyLabel {
-                id: toyLabel
+                id: itemLabel
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 textStyle: ApplicationConfig.TextStyle.H3_Light
                 color: "#6A6A8D"
             }
             RowLayout {
                 ToyLabel {
-                    id: toyName
-                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    id: itemName
+                    visible: orderItem.isSelected
                     textStyle: ApplicationConfig.TextStyle.H3_Light
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 Item {
                     // filler
                     implicitHeight: 2
+                    visible: orderItem.isSelected
                     Layout.fillWidth: true
                 }
                 LayoutItemProxy {
@@ -50,17 +52,18 @@ Item {
                     Layout.fillHeight: true
                 }
             }
-            Item {
-                // pushes category label and item name to a right height
-                Layout.fillHeight: true
-            }
         }
-        Image {
-            id: toyImage
-            visible: orderItem.isSelected
-            sourceSize {
-                width: ApplicationConfig.responsiveSize(190)
-                height: ApplicationConfig.responsiveSize(190)
+        Item {
+            implicitWidth: ApplicationConfig.responsiveSize(190)
+            implicitHeight: ApplicationConfig.responsiveSize(190)
+            Image {
+                id: toyImage
+                visible: orderItem.isSelected
+                sourceSize {
+                    width: ApplicationConfig.responsiveSize(190)
+                    height: ApplicationConfig.responsiveSize(190)
+                }
+                anchors.centerIn: parent
             }
         }
     }

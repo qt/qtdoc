@@ -260,7 +260,7 @@ Item {
         visible: false
         type: ToyButton.Type.Secondary
         textStyle: ApplicationConfig.TextStyle.Button_L
-        icon.source: "icons/shirt.svg"
+        icon.source: "icons/back.svg"
         text: qsTr("Back")
         onClicked: overViewPage.cancelled()
     }
