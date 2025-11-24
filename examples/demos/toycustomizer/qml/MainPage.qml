@@ -12,6 +12,28 @@ Item {
 
     signal startRequested()
 
+    ColumnLayout {
+        spacing: ApplicationConfig.responsiveSize(60)
+        anchors {
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: ApplicationConfig.responsiveSize(80)
+        }
+
+        ToyImage {
+            implicitHeight: ApplicationConfig.responsiveSize(460)
+            implicitWidth: ApplicationConfig.responsiveSize(1000)
+            source: "images/appLogo.svg"
+            Layout.alignment: Qt.AlignHCenter
+        }
+        ToyImage {
+            implicitHeight: ApplicationConfig.responsiveSize(120)
+            implicitWidth: ApplicationConfig.responsiveSize(384)
+            source: "images/builtWithQt.svg"
+            Layout.alignment: Qt.AlignHCenter
+        }
+    }
+
     GridLayout {
         id: portraitGridLayout
         visible: ApplicationConfig.isPortrait
@@ -20,9 +42,8 @@ Item {
 
         anchors {
             fill: parent
-            top: parent.top
             bottomMargin: ApplicationConfig.responsiveSize(320)
-            topMargin: ApplicationConfig.responsiveSize(200)
+            topMargin: ApplicationConfig.responsiveSize(420)
         }
 
         LayoutItemProxy {
@@ -51,10 +72,8 @@ Item {
         visible: !ApplicationConfig.isPortrait
         anchors {
             fill: parent
-            bottomMargin: ApplicationConfig.responsiveSize(320)
-            topMargin: ApplicationConfig.responsiveSize(200)
-            leftMargin: ApplicationConfig.responsiveSize(320)
-            rightMargin: ApplicationConfig.responsiveSize(420)
+            margins: ApplicationConfig.responsiveSize(320)
+            topMargin: ApplicationConfig.responsiveSize(420)
         }
 
         LayoutItemProxy {

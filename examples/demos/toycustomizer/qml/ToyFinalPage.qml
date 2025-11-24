@@ -17,6 +17,7 @@ Item {
             top: parent.top
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
+            topMargin: ApplicationConfig.responsiveSize(80)
         }
 
         state: root.width < layout.width ? "narrow" : ""
