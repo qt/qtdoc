@@ -49,16 +49,53 @@ Rectangle {
         accessoryView.totalSelectedAccessory = 0
     }
 
+    component AccessoryTabButton: TabButton {
+        id: tabButton
+
+        readonly property color color: tabButton.checked ? "#EFF7FF" : "#6A6A8D"
+
+        width: Math.max(tabBar.width / 5, ApplicationConfig.responsiveSize(415))
+        height: tabBar.height
+
+        font {
+            family: "Winky Sans"
+            pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
+            weight: tabButton.checked ? Font.Bold : Font.Normal
+        }
+
+        icon {
+            width: ApplicationConfig.responsiveSize(36)
+            height: ApplicationConfig.responsiveSize(36)
+            color: tabButton.color
+        }
+
+        contentItem: IconLabel {
+            id: contentItem
+            font: tabButton.font
+            icon: tabButton.icon
+            text: tabButton.text
+            color: tabButton.color
+            spacing: ApplicationConfig.responsiveSize(12)
+            anchors.centerIn: parent
+        }
+
+        background: Rectangle {
+            radius: 20
+            color: "#2269EE"
+            border.color: "#5EAAFC"
+            border.width: ApplicationConfig.responsiveSize(4)
+            visible: tabButton.checked
+        }
+    }
+
     TabBar {
         id: tabBar
 
         readonly property real tabMinimumWidth: Math.ceil(ApplicationConfig.responsiveSize(415))
-        property real tabWidth: Math.max(width / 5, tabMinimumWidth)
-        property real tabHeight: ApplicationConfig.responsiveSize(144)
-
         implicitWidth: 3 * tabMinimumWidth // space for showing 3 buttons
+
         contentWidth: ApplicationConfig.responsiveSize(1760)
-        contentHeight: tabHeight
+        contentHeight: ApplicationConfig.responsiveSize(144)
         clip: true
 
         anchors {
@@ -77,149 +114,39 @@ Rectangle {
             border.color: "#D7D6E1"
         }
 
-        TabButton {
+        AccessoryTabButton {
             id: headwearTabButton
-            width: tabBar.tabWidth
-            height: tabBar.height
-            anchors.left: parent.right
-
-            contentItem: IconLabel {
-                text: qsTr("Headwear")
-                color: headwearTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                font.family: "Winky Sans"
-                font.pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
-                font.weight: headwearTabButton.checked ? Font.Bold : Font.Normal
-                icon.source: "icons/headwear.svg"
-                icon.width: ApplicationConfig.responsiveSize(36)
-                icon.height: ApplicationConfig.responsiveSize(36)
-                icon.color: headwearTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                spacing: ApplicationConfig.responsiveSize(12)
-                anchors.centerIn: parent
-            }
-
-            background: Rectangle {
-                radius: 20
-                color: "#2269EE"
-                border.color: "#5EAAFC"
-                border.width: ApplicationConfig.responsiveSize(4)
-                visible: headwearTabButton.checked
-            }
+            icon.source: "icons/headwear.svg"
+            text: qsTr("Headwear")
+            anchors.left: parent.left
         }
 
-        TabButton {
+        AccessoryTabButton {
             id: eyewearTabButton
-            width: tabBar.tabWidth
-            height: tabBar.height
+            icon.source: "icons/eyewear.svg"
+            text: qsTr("Eyewear")
             anchors.left: headwearTabButton.right
-
-            contentItem: IconLabel {
-                text: qsTr("Eyewear")
-                color: eyewearTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                font.family: "Winky Sans"
-                font.pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
-                font.weight: eyewearTabButton.checked ? Font.Bold : Font.Normal
-                icon.source: "icons/eyewear.svg"
-                icon.width: ApplicationConfig.responsiveSize(36)
-                icon.height: ApplicationConfig.responsiveSize(36)
-                icon.color: eyewearTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                spacing: ApplicationConfig.responsiveSize(12)
-                anchors.centerIn: parent
-            }
-
-            background: Rectangle {
-                radius: 20
-                color: "#2269EE"
-                border.color: "#5EAAFC"
-                border.width: ApplicationConfig.responsiveSize(4)
-                visible: eyewearTabButton.checked
-            }
         }
 
-        TabButton {
+        AccessoryTabButton {
             id: eyesTabButton
-            width: tabBar.tabWidth
-            height: tabBar.height
+            icon.source: "icons/eyes.svg"
+            text: qsTr("Eyes")
             anchors.left: eyewearTabButton.right
-
-            contentItem: IconLabel {
-                text: qsTr("Eyes")
-                color: eyesTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                font.family: "Winky Sans"
-                font.pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
-                font.weight: eyesTabButton.checked ? Font.Bold : Font.Normal
-                icon.source: "icons/eyes.svg"
-                icon.width: ApplicationConfig.responsiveSize(36)
-                icon.height: ApplicationConfig.responsiveSize(36)
-                icon.color: eyesTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                spacing: ApplicationConfig.responsiveSize(12)
-                anchors.centerIn: parent
-            }
-
-            background: Rectangle {
-                radius: 20
-                color: "#2269EE"
-                border.color: "#5EAAFC"
-                border.width: ApplicationConfig.responsiveSize(4)
-                visible: eyesTabButton.checked
-            }
         }
 
-        TabButton {
+        AccessoryTabButton {
             id: itemsTabButton
-            width: tabBar.tabWidth
-            height: tabBar.height
+            icon.source: "icons/items.svg"
+            text: qsTr("Items")
             anchors.left: eyesTabButton.right
-
-            contentItem: IconLabel {
-                text: qsTr("Items")
-                color: itemsTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                font.family: "Winky Sans"
-                font.pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
-                font.weight: itemsTabButton.checked ? Font.Bold : Font.Normal
-                icon.source: "icons/items.svg"
-                icon.width: ApplicationConfig.responsiveSize(36)
-                icon.height: ApplicationConfig.responsiveSize(36)
-                icon.color: itemsTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                spacing: ApplicationConfig.responsiveSize(12)
-                anchors.centerIn: parent
-            }
-
-            background: Rectangle {
-                radius: 20
-                color: "#2269EE"
-                border.color: "#5EAAFC"
-                border.width: ApplicationConfig.responsiveSize(4)
-                visible: itemsTabButton.checked
-            }
         }
 
-        TabButton {
+        AccessoryTabButton {
             id: nameTabButton
-            width: tabBar.tabWidth
-            height: tabBar.height
+            icon.source: "icons/names.svg"
+            text: qsTr("Name")
             anchors.left: itemsTabButton.right
-
-            contentItem: IconLabel {
-                text: qsTr("Name")
-                color: nameTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                font.family: "Winky Sans"
-                font.pixelSize: Math.round(ApplicationConfig.responsiveSize(48))
-                font.weight: nameTabButton.checked ? Font.Bold : Font.Normal
-                icon.source: "icons/names.svg"
-                icon.width: ApplicationConfig.responsiveSize(36)
-                icon.height: ApplicationConfig.responsiveSize(36)
-                icon.color: nameTabButton.checked ? "#EFF7FF" : "#6A6A8D"
-                spacing: ApplicationConfig.responsiveSize(12)
-                anchors.centerIn: parent
-            }
-
-            background: Rectangle {
-                radius: 20
-                color: "#2269EE"
-                border.color: "#5EAAFC"
-                border.width: ApplicationConfig.responsiveSize(4)
-                visible: nameTabButton.checked
-            }
         }
     }
 
