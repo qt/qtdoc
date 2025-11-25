@@ -33,19 +33,9 @@ Item {
             target: toyView
             Layout.fillWidth: true
             Layout.preferredWidth: ApplicationConfig.responsiveSize(1051)
-            Layout.preferredHeight: ApplicationConfig.responsiveSize(1051)
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignTop
-            Layout.leftMargin: ApplicationConfig.responsiveSize(200)
-            Layout.rightMargin: ApplicationConfig.responsiveSize(200)
-        }
-
-        LayoutItemProxy {
-            target: reviewOrder
-            Layout.alignment: Qt.AlignRight | Qt.AlignBottom
-            Layout.rightMargin: ApplicationConfig.responsiveSize(200)
-            Layout.bottomMargin: ApplicationConfig.responsiveSize(100)
-            Layout.preferredWidth: Math.round(ApplicationConfig.responsiveSize(444))
-            Layout.preferredHeight: Math.round(ApplicationConfig.responsiveSize(144))
+            Layout.preferredHeight: ApplicationConfig.responsiveSize(1181)
+            Layout.leftMargin: ApplicationConfig.responsiveSize(100)
+            Layout.rightMargin: ApplicationConfig.responsiveSize(100)
         }
 
         LayoutItemProxy {
@@ -55,47 +45,27 @@ Item {
         }
     }
 
-    GridLayout {
+    RowLayout {
         id: landscapeLayout
-        columns: 2
         visible: !ApplicationConfig.isPortrait
-        columnSpacing: ApplicationConfig.responsiveSize(80)
         anchors {
-            left: parent.left
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-            leftMargin: ApplicationConfig.responsiveSize(200)
-            rightMargin: ApplicationConfig.responsiveSize(200)
+            fill: parent
+            leftMargin: ApplicationConfig.responsiveSize(100)
+            rightMargin: ApplicationConfig.responsiveSize(100)
         }
-
-        state: height < toyCustomizePage.height ? "" : "narrow"
-        states: State {
-            name: "narrow"
-            AnchorChanges {
-                target: landscapeLayout
-                anchors {
-                    top: landscapeLayout.parent.top
-                    verticalCenter: undefined
-                }
-            }
-        }
-
-        LayoutItemProxy {
-            target: reviewOrder
-            Layout.alignment: Qt.AlignRight
-            Layout.columnSpan: 2
-            Layout.bottomMargin: ApplicationConfig.responsiveSize(48)
-        }
+        spacing: ApplicationConfig.responsiveSize(100)
 
         LayoutItemProxy {
             target: toyView
+            implicitHeight: ApplicationConfig.responsiveSize(1602)
             Layout.fillWidth: true
-            Layout.fillHeight: true
         }
 
         LayoutItemProxy {
             target: accessoryView
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.maximumHeight: ApplicationConfig.responsiveSize(1366)
         }
     }
 
@@ -116,8 +86,10 @@ Item {
         id: toyView
         implicitWidth: ApplicationConfig.responsiveSize(2080)
         accessoryModel: toyCustomizePage.accessoryModel
+        totalSelectedAccessory: accessoryView.totalSelectedAccessory
         onHideRequested: toyCustomizePage.cancelled()
         onShowRequested: toyCustomizePage.showMaximizeViewRequested(maximizeView)
+        onConfirmRequested: toyCustomizePage.confirmed()
     }
 
     AccessoryView {
@@ -125,47 +97,5 @@ Item {
         implicitWidth: ApplicationConfig.responsiveSize(2080)
         target: toyView.toy
         model: toyCustomizePage.accessoryModel
-    }
-
-    Item {
-        id: reviewOrder
-        readonly property real paddings: Math.round(ApplicationConfig.responsiveSize(48))
-        implicitWidth: orderButton.implicitWidth + paddings
-        implicitHeight: orderButton.implicitHeight + paddings
-
-        ToyButton {
-            id: orderButton
-            textStyle: ApplicationConfig.TextStyle.Button_L
-            text: qsTr("Review Order")
-            anchors {
-                left: parent.left
-                bottom: parent.bottom
-            }
-
-            onClicked: toyCustomizePage.confirmed()
-        }
-
-        Rectangle {
-            id: totalAccessory
-            width: Math.round(ApplicationConfig.responsiveSize(115))
-            height: Math.round(ApplicationConfig.responsiveSize(115))
-            radius: width / 2
-            color: "#FFFFFF"
-            visible: accessoryView.totalSelectedAccessory > 0 ? true : false
-
-            anchors {
-                top: parent.top
-                right: parent.right
-            }
-
-            ToyLabel {
-                anchors.centerIn: parent
-                text: accessoryView.totalSelectedAccessory
-                font {
-                    family: "DynaPuff"
-                    pixelSize: 13
-                }
-            }
-        }
     }
 }

@@ -11,9 +11,11 @@ Rectangle {
     property alias toyIndex: currentToy.index
     property alias toy: currentToy.toy
     property alias accessoryModel: currentToy.accessoryModel
+    property int totalSelectedAccessory: 0
 
     signal hideRequested
     signal showRequested
+    signal confirmRequested
 
     implicitWidth: currentToy.implicitWidth
     implicitHeight: currentToy.implicitHeight
@@ -53,5 +55,49 @@ Rectangle {
             top: parent.top
         }
         onClicked: toyView.showRequested()
+    }
+
+    Item {
+        id: reviewOrder
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            bottomMargin: ApplicationConfig.responsiveSize(24)
+        }
+        implicitWidth: orderButton.implicitWidth
+        implicitHeight: orderButton.implicitHeight
+
+        ToyButton {
+            id: orderButton
+            height: ApplicationConfig.responsiveSize(144)
+            textStyle: ApplicationConfig.TextStyle.Button_L
+            text: qsTr("Review Order")
+            onClicked: toyView.confirmRequested()
+        }
+
+        Rectangle {
+            id: totalAccessory
+            width: Math.round(ApplicationConfig.responsiveSize(115))
+            height: Math.round(ApplicationConfig.responsiveSize(115))
+            radius: width / 2
+            color: "#FFFFFF"
+            visible: toyView.totalSelectedAccessory > 0 ? true : false
+
+            anchors {
+                right: orderButton.right
+                top: orderButton.top
+                rightMargin: Math.round(ApplicationConfig.responsiveSize(-48))
+                topMargin: Math.round(ApplicationConfig.responsiveSize(-48))
+            }
+
+            ToyLabel {
+                anchors.centerIn: parent
+                text: toyView.totalSelectedAccessory
+                font {
+                    family: "DynaPuff"
+                    pixelSize: 13
+                }
+            }
+        }
     }
 }
