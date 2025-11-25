@@ -214,6 +214,8 @@ Rectangle {
             for (let i = 0; i < accessoryModel.count; ++i) {
                 const item = accessoryModel.get(i)
                 if (item.selected) {
+                    if (item.group === "adjectives" || item.group === "noun")
+                        continue
                     if (item.name === "Small Eyes")
                         continue
                     ++total
