@@ -92,8 +92,7 @@ it is usually preferable to use a vector image format instead.
 
 The \l{VectorImage} component can be used to include scalable vector graphics directly in your
 Qt Quick application. It currently supports the SVG format by default. By deploying a plugin with
-your application, it can also be made to support the Lottie format. Note that this support is
-currently considered experimental.
+your application, it can also be made to support the Lottie format.
 
 The \l{VectorImage} parses the document and creates a Qt Quick scene in memory that represents its
 contents, using Qt Quick Shapes and other primitives. Therefore it will behave the same as if the
