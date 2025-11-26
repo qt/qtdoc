@@ -33,14 +33,14 @@ Item {
         }
 
         ToyImage {
-            implicitHeight: 128
+            sourceSize.height: 128
             source: "images/appLogo.svg"
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
         }
 
         ToyImage {
-            implicitHeight: 32
+            sourceSize.height: 32
             source: "images/builtWithQt.svg"
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true

@@ -21,84 +21,49 @@ Item {
         }
 
         ToyImage {
-            implicitHeight: ApplicationConfig.responsiveSize(460)
-            implicitWidth: ApplicationConfig.responsiveSize(1000)
             source: "images/appLogo.svg"
+            sourceSize {
+                height: ApplicationConfig.responsiveSize(460)
+                width: ApplicationConfig.responsiveSize(1000)
+            }
             Layout.alignment: Qt.AlignHCenter
         }
         ToyImage {
-            implicitHeight: ApplicationConfig.responsiveSize(120)
-            implicitWidth: ApplicationConfig.responsiveSize(384)
             source: "images/builtWithQt.svg"
+            sourceSize {
+                height: ApplicationConfig.responsiveSize(120)
+                width: ApplicationConfig.responsiveSize(384)
+            }
             Layout.alignment: Qt.AlignHCenter
         }
     }
 
-    GridLayout {
-        id: portraitGridLayout
-        visible: ApplicationConfig.isPortrait
-        columns: 1
+    ColumnLayout {
         width: ApplicationConfig.responsiveSize(1760)
 
         anchors {
             fill: parent
-            bottomMargin: ApplicationConfig.responsiveSize(320)
+            bottomMargin: ApplicationConfig.responsiveSize(160)
             topMargin: ApplicationConfig.responsiveSize(420)
         }
 
-        LayoutItemProxy {
-            target: showcaseView
+        ShowcaseView {
+            id: showcaseView
+            implicitWidth:  ApplicationConfig.responsiveSize(2089)
+            implicitHeight: ApplicationConfig.responsiveSize(1980)
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredWidth:  ApplicationConfig.responsiveSize(2089)
-            Layout.preferredHeight: ApplicationConfig.responsiveSize(1980)
         }
 
-        Item {
-            implicitWidth: 2
-            Layout.fillHeight: true
-        }
-
-        LayoutItemProxy {
-            target: chooseButton
+        ToyButton {
+            implicitWidth: ApplicationConfig.responsiveSize(881)
+            implicitHeight: ApplicationConfig.responsiveSize(288)
+            textStyle: ApplicationConfig.TextStyle.H2_Bold
+            text: qsTr("Tap to Start")
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            onClicked: mainPage.startRequested()
         }
     }
 
-    GridLayout {
-        id: landscapeGridLayout
-        columns: 2
-        visible: !ApplicationConfig.isPortrait
-        anchors {
-            fill: parent
-            margins: ApplicationConfig.responsiveSize(320)
-            topMargin: ApplicationConfig.responsiveSize(420)
-        }
-
-        LayoutItemProxy {
-            target: showcaseView
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        }
-
-        LayoutItemProxy {
-            target: chooseButton
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-        }
-    }
-
-    ShowcaseView {
-        id: showcaseView
-    }
-
-    ToyButton {
-        id: chooseButton
-        textStyle: ApplicationConfig.TextStyle.H2_Bold
-        text: qsTr("Tap to Start")
-        Layout.preferredWidth: ApplicationConfig.responsiveSize(881)
-        Layout.preferredHeight: ApplicationConfig.responsiveSize(288)
-        onClicked: mainPage.startRequested()
-    }
 }

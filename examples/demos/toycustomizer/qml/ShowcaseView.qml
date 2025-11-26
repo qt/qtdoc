@@ -10,8 +10,6 @@ View3D {
 
     property alias isAnimationRunning: toyAnimations.isAnimationRunning
 
-    anchors.fill: parent
-    z: -1
     environment: extendedSceneEnvironment
 
     PrincipledMaterial {
