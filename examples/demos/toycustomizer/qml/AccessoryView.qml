@@ -11,7 +11,6 @@ Rectangle {
     id: accessoryView
 
     property alias model: groupFilterProxyModel.model
-    property int totalSelectedAccessory: 0
     property var target: null
     property real horizontalPaddings: ApplicationConfig.responsiveSize(120)
     property real verticalPaddings: ApplicationConfig.responsiveSize(100)
@@ -27,26 +26,6 @@ Rectangle {
         const tabBarHeight = tabBar.implicitHeight + ApplicationConfig.responsiveSize(120)
         const listViewHeight = listView.implicitHeight + ApplicationConfig.responsiveSize(200)
         return tabBarHeight + listViewHeight
-    }
-
-    function setAccessoryVisibility(key, vis) {
-        if (key === "bracletsVisible") {
-            AccessoryState["metalBracelet_RightVisible"] = vis
-            AccessoryState["metalBracelet_LeftVisible"] = vis
-            return
-        }
-        AccessoryState[key] = vis
-    }
-
-    function resetAllAccessories() {
-        const accessoryModel = accessoryView.model
-        for (let i = 0; i < accessoryModel.count; ++i) {
-            const item = accessoryModel.get(i)
-            const isDefaultEyes = (item.group === "eyes" && item.name === "Small Eyes")
-            accessoryModel.set(i, { selected: isDefaultEyes, color: "" })
-            accessoryView.setAccessoryVisibility(item.key, isDefaultEyes)
-        }
-        accessoryView.totalSelectedAccessory = 0
     }
 
     component AccessoryTabButton: TabButton {
@@ -202,26 +181,10 @@ Rectangle {
                 if ((item.group === group) && item.selected) {
                     item.selected = false
                     item.color = ""
-                    accessoryView.setAccessoryVisibility(item.key, false)
+                    accessoryModel.setAccessoryVisibility(item.key, false)
                     break // since selecting two items from the same category is not possible
                 }
             }
-        }
-
-        function updateTotalSelectedAccessory() {
-            let total = 0
-            const accessoryModel = accessoryView.model
-            for (let i = 0; i < accessoryModel.count; ++i) {
-                const item = accessoryModel.get(i)
-                if (item.selected) {
-                    if (item.group === "adjectives" || item.group === "noun")
-                        continue
-                    if (item.name === "Small Eyes")
-                        continue
-                    ++total
-                }
-            }
-            accessoryView.totalSelectedAccessory = total
         }
 
         delegate: CustomizationCard {
@@ -238,8 +201,8 @@ Rectangle {
 
             function setSelected(selected :bool) {
                 model.selected = selected
-                accessoryView.setAccessoryVisibility(key, selected)
-                ListView.view.updateTotalSelectedAccessory()
+                accessoryView.model.setAccessoryVisibility(key, selected)
+                accessoryView.model.updateTotalSelectedAccessory()
             }
 
             implicitWidth: ListView.view.delegateWidth

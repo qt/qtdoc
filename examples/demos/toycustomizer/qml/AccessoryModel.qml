@@ -4,6 +4,42 @@
 import QtQuick
 
 ListModel {
+    property int totalSelectedAccessory: 0
+
+    function resetAllAccessories() {
+        for (let i = 0; i < count; ++i) {
+            const item = get(i)
+            const isDefaultEyes = (item.group === "eyes" && item.name === "Small Eyes")
+            set(i, { selected: isDefaultEyes, color: "" })
+            setAccessoryVisibility(item.key, isDefaultEyes)
+        }
+        totalSelectedAccessory = 0
+    }
+
+    function setAccessoryVisibility(key, vis) {
+        if (key === "bracletsVisible") {
+            AccessoryState["metalBracelet_RightVisible"] = vis
+            AccessoryState["metalBracelet_LeftVisible"] = vis
+            return
+        }
+        AccessoryState[key] = vis
+    }
+
+    function updateTotalSelectedAccessory() {
+        let total = 0
+        for (let i = 0; i < count; ++i) {
+            const item = get(i)
+            if (item.selected) {
+                if (item.group === "adjectives" || item.group === "noun")
+                    continue
+                if (item.name === "Small Eyes")
+                    continue
+                ++total
+            }
+        }
+        totalSelectedAccessory = total
+    }
+
     function groups() {
         return ["headwear", "eyewear", "eyes", "items"]
     }

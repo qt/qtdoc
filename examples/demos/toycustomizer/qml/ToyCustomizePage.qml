@@ -21,7 +21,7 @@ Item {
 
     Component.onCompleted: {
         if (reset)
-            accessoryView.resetAllAccessories()
+            accessoryModel.resetAllAccessories()
     }
 
     ColumnLayout {
@@ -86,7 +86,6 @@ Item {
         id: toyView
         implicitWidth: ApplicationConfig.responsiveSize(2080)
         accessoryModel: toyCustomizePage.accessoryModel
-        totalSelectedAccessory: accessoryView.totalSelectedAccessory
         onHideRequested: toyCustomizePage.cancelled()
         onShowRequested: toyCustomizePage.showMaximizeViewRequested(maximizeView)
         onConfirmRequested: toyCustomizePage.confirmed()

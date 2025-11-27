@@ -11,7 +11,6 @@ Rectangle {
     property alias toyIndex: currentToy.index
     property alias toy: currentToy.toy
     property alias accessoryModel: currentToy.accessoryModel
-    property int totalSelectedAccessory: 0
 
     signal hideRequested
     signal showRequested
@@ -81,7 +80,7 @@ Rectangle {
             height: Math.round(ApplicationConfig.responsiveSize(115))
             radius: width / 2
             color: "#FFFFFF"
-            visible: toyView.totalSelectedAccessory > 0 ? true : false
+            visible: toyView.accessoryModel.totalSelectedAccessory > 0 ? true : false
 
             anchors {
                 right: orderButton.right
@@ -92,7 +91,7 @@ Rectangle {
 
             ToyLabel {
                 anchors.centerIn: parent
-                text: toyView.totalSelectedAccessory
+                text: toyView.accessoryModel.totalSelectedAccessory
                 font {
                     family: "DynaPuff"
                     pixelSize: 13

@@ -91,7 +91,6 @@ ApplicationWindow {
             onToySelected: (index) => {
                 if (index < 0)
                     return
-                main.lastToyIndex = index
                 stackView.push(toyConfirmPage, { toyIndex: index })
             }
         }
@@ -110,18 +109,6 @@ ApplicationWindow {
                 main.lastToyIndex = toyIndex
                 stackView.push(toyCustomizePage, { toyIndex: toyIndex, reset: changed})
             }
-        }
-    }
-
-    Component {
-        id: finalPage
-        ToyFinalPage {
-            onNewOrderRequested: stackView.popToIndex(0)
-            onOrderReviewRequested: stackView.push(toyOverviewPage,
-                                                   {
-                                                       buttonsVisible: false,
-                                                       toyIndex: main.lastToyIndex
-                                                   })
         }
     }
 
@@ -152,6 +139,18 @@ ApplicationWindow {
             accessoryModel: __accessoryModel
             onCancelled: stackView.pop()
             onConfirmed: stackView.push(finalPage)
+        }
+    }
+
+    Component {
+        id: finalPage
+        ToyFinalPage {
+            onNewOrderRequested: stackView.popToIndex(0)
+            onOrderReviewRequested: stackView.push(toyOverviewPage,
+                                                   {
+                                                       buttonsVisible: false,
+                                                       toyIndex: main.lastToyIndex
+                                                   })
         }
     }
 
