@@ -22,40 +22,50 @@ Item {
             left: parent.left
             right: parent.right
             bottom: separator.top
+            topMargin: ApplicationConfig.responsiveSize(20)
+            bottomMargin: ApplicationConfig.responsiveSize(40)
         }
         ColumnLayout {
             id: layout
             spacing: ApplicationConfig.responsiveSize(20)
-            ToyLabel {
-                id: itemLabel
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                textStyle: ApplicationConfig.TextStyle.H3_Light
-                color: "#6A6A8D"
+            Item {
+                implicitWidth: itemLabel.implicitWidth
+                implicitHeight: itemLabel.implicitHeight
+                Layout.fillWidth: true
+                Layout.bottomMargin: ApplicationConfig.responsiveSize(40)
+                ToyLabel {
+                    id: itemLabel
+                    textStyle: ApplicationConfig.TextStyle.H3_Light
+                    color: "#6A6A8D"
+                }
             }
             RowLayout {
-                ToyLabel {
-                    id: itemName
-                    visible: orderItem.isSelected
-                    textStyle: ApplicationConfig.TextStyle.H3_Light
+                LayoutItemProxy {
+                    target: orderItem.isSelected ? itemName : notSelectedLabel
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 }
                 Item {
-                    // filler
-                    implicitHeight: 2
-                    visible: orderItem.isSelected
-                    Layout.fillWidth: true
+                   implicitHeight: 2
+                   visible: orderItem.isSelected
+                   Layout.fillWidth: true
+                   Layout.fillHeight: true
                 }
                 LayoutItemProxy {
-                    target: orderItem.isSelected ? selectedItem : notSelectedLabel
-                    visible: !orderItem.isSelected || orderItem.priceVisible
+                    target: selectedItem
+                    visible: orderItem.isSelected && orderItem.priceVisible
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                 }
+            }
+            Item {
+               implicitWidth: 2
+               Layout.fillHeight: true
             }
         }
         Item {
             implicitWidth: ApplicationConfig.responsiveSize(190)
             implicitHeight: ApplicationConfig.responsiveSize(190)
+            Layout.topMargin: ApplicationConfig.responsiveSize(48)
             Image {
                 id: toyImage
                 visible: orderItem.isSelected
@@ -77,6 +87,12 @@ Item {
         }
         height: ApplicationConfig.responsiveSize(5)
         color: "#D7D6E1"
+    }
+
+    ToyLabel {
+        id: itemName
+        textStyle: ApplicationConfig.TextStyle.H3_Light
+        visible: false
     }
     ToyLabel {
         id: notSelectedLabel

@@ -155,57 +155,56 @@ Item {
             bottom: parent.bottom
             left: parent.left
             right: parent.right
-            topMargin: ApplicationConfig.responsiveSize(120)
-            bottomMargin: ApplicationConfig.responsiveSize(90)
+            topMargin: ApplicationConfig.responsiveSize(90)
         }
         columns: 2
         columnSpacing: Math.floor(ApplicationConfig.responsiveSize(120))
-        rowSpacing: Math.floor(ApplicationConfig.responsiveSize(120))
+        rowSpacing: Math.floor(ApplicationConfig.responsiveSize(80))
 
         GridOrderItem {
             id: toy
             group: OrderGrid.ModelGroup.Toy
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             isSelected: true // this should be always true as there is always a toy in an order
             label: "Toy"
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
         GridOrderItem {
             id: face
             group: OrderGrid.ModelGroup.Face
+            label: "Face"
             Layout.fillWidth: true
             Layout.fillHeight: true
-            label: "Face"
         }
         GridOrderItem {
             id: headwear
             group: OrderGrid.ModelGroup.Headwear
+            label: "HeadWear"
             Layout.fillWidth: true
             Layout.fillHeight: true
-            label: "HeadWear"
         }
         GridOrderItem {
             id: accessory
             group: OrderGrid.ModelGroup.Item
+            label: "Accessory"
             Layout.fillWidth: true
             Layout.fillHeight: true
-            label: "Accessory"
         }
         GridOrderItem {
             id: eyewear
             group: OrderGrid.ModelGroup.Eyeswear
+            label: "Eyewear"
             Layout.fillWidth: true
             Layout.fillHeight: true
-            label: "Eyewear"
         }
         GridOrderItem {
             id: name
             group: OrderGrid.ModelGroup.Name
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             label: "Name"
             isSelected: true
             priceVisible: false
+            Layout.fillWidth: true
+            Layout.fillHeight: true
         }
     }
 }
