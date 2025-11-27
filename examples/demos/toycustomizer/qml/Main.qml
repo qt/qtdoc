@@ -74,6 +74,12 @@ ApplicationWindow {
         }
     }
 
+    ToyBusyIndicator {
+        id: busyIndicator
+        visible: !(stackView.currentItem.ready ?? true)
+        anchors.fill: parent
+    }
+
     Component {
         id: mainPage
         MainPage {
@@ -107,7 +113,7 @@ ApplicationWindow {
                     return
                 const changed = (toyIndex !== main.lastToyIndex)
                 main.lastToyIndex = toyIndex
-                stackView.push(toyCustomizePage, { toyIndex: toyIndex, reset: changed})
+                stackView.push(toyCustomizePage, { toyIndex: toyIndex, reset: changed })
             }
         }
     }

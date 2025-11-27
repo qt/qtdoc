@@ -47,6 +47,7 @@ qt_add_qml_module(${TARGET_NAME}
         qml/ShowcaseView.qml
         qml/ToyAnimations.qml
         qml/ToyButton.qml
+        qml/ToyBusyIndicator.qml
         qml/ToyConfirmPage.qml
         qml/ToyCustom.qml
         qml/ToyFinalPage.qml

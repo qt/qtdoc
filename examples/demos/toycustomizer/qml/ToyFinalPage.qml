@@ -7,6 +7,9 @@ import QtQuick.Layouts
 Item {
     id: root
 
+    readonly property bool ready: (bearImage.status === Image.Ready) ||
+                                  (dialogBackgroundImage.status === Image.Ready)
+
     signal orderReviewRequested
     signal newOrderRequested
 
@@ -60,12 +63,14 @@ Item {
         Item {
             id: bearDialogItem
             implicitWidth: bearImage.implicitWidth + bearImage.leftMargin
+            visible: root.ready
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             Image {
                 id: bearImage
                 readonly property int leftMargin: 96
+                asynchronous: true
                 fillMode: Image.PreserveAspectFit
                 source: "images/teddyBear.png"
                 sourceClipRect: Qt.rect(90, 110, 540, 650)
@@ -87,6 +92,8 @@ Item {
 
                 ToyImage {
                     id: dialogBackgroundImage
+                    asynchronous: true
+                    showBusyIndicator: false
                     source: "images/dialogBackground.svg"
                     sourceSize {
                         height: 256
@@ -128,6 +135,12 @@ Item {
                     }
                 }
             }
+        }
+
+        Item {
+            implicitWidth: 2
+            visible: !root.ready
+            Layout.fillHeight: true
         }
     }
 }

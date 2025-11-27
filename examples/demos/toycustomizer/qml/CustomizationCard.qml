@@ -20,6 +20,7 @@ Rectangle {
     property bool hasDiscount: discountAmount > 0
     property int discountPercent: (oldPrice > 0 && hasDiscount)
                                    ? Math.round((discountAmount / oldPrice) * 100) : 0
+    readonly property bool ready: toyImage.status === Image.Ready
 
     function __updateSelectedColor(colorName :string) {
         colorChosen(colorName)
@@ -52,12 +53,13 @@ Rectangle {
 
             ToyImage {
                 id: toyImage
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                asynchronous: true
                 implicitHeight: customizationCard.selected ? ApplicationConfig.responsiveSize(120)
                                                            : ApplicationConfig.responsiveSize(340)
                 implicitWidth: customizationCard.selected ? ApplicationConfig.responsiveSize(158)
                                                           : ApplicationConfig.responsiveSize(448)
                 source: customizationCard.cardImageSource
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
             RowLayout {
@@ -116,6 +118,8 @@ Rectangle {
                 }
                 ToyImage {
                     id: qtCoinsImage
+                    asynchronous: true
+                    showBusyIndicator: false
                     source: "icons/currency.svg"
                     color: newPriceLabel.color
                     colorize: true
