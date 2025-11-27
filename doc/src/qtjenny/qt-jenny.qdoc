@@ -43,13 +43,13 @@
     code that the Qt CMake project uses. The CMake project triggers the
     code generation at project configuration time
     (in other words, when you run CMake). For an application that
-    just invokes methods but does not need to implement any callbacks,
+    invokes methods but does not need to implement any callbacks,
     a single code-generation project is enough. For an application
     that uses both method invocations and interface callbacks, two generation
-    projects are needed, one for the method proxies and one for the
+    projects are needed: one for the method proxies and one for the
     callback hierarchy. For an application that needs to extend
-    classes, three generation projects are needed, one for method proxies,
-    one for Java glue code, and one for callback hierarchy.
+    classes, three generation projects are needed: one for the method proxies,
+    one for the Java glue code, and one for the callback hierarchy.
 
     The example code in \l {QtJenny Demo} uses three generation projects,
     since it uses class extension.
