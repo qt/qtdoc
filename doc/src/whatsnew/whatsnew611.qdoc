@@ -1,0 +1,315 @@
+// Copyright (C) 2025 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page whatsnew611.html
+    \title What's New in Qt 6.11
+    \ingroup whatsnewqt6
+    \brief Lists the new features in Qt 6.11.
+    \meta sortkey 611
+
+    \section1 New and Restored Modules in Qt 6.11
+
+    Qt 6.11 adds the following modules and tools:
+
+    \list
+      \li \l {Qt Canvas Painter} - Accelerated 2D painting solution for Qt Quick
+          and QRhi-based render targets.
+      \li \l {Qt Open API} - An extension of the upstream Open API generator that
+          generates Qt HTTP clients.
+      \li \l {Qt Task Tree} - Provides a declarative way to compose and execute
+          asynchronous task workflows.
+    \endlist
+
+    \section1 New Features in Qt 6.11
+
+    \section2 Qt CoAP Module
+    \list
+      \li \l QCoapClient::bindInterface allows to bind the communication to a specific
+          network interface.
+    \endlist
+
+    \section2 Qt Core Module
+    \list
+      \li \l QDate is now weakly incrementable, i.e. implemnents pre- and post-fix increment
+          (and decrement) operators, and can be used in a C++20 \c{std::views::iota}.
+      \li \l QJniObject APIs can now be called with \c{std::expected} (or an equivalent type)
+          as the return type, in which case Java exceptions are not consumed by the framework
+          and instead passed back to the caller as the unexpected result.
+      \li \l QRangeModel::ItemAccess provides a customization point for accessing role data
+          of a multi-role item type.
+      \li \l QRangeModel can now be used with C++ ranges that don't provide a constant
+          \c{std::begin/end} implementation, such as C++20 \c{std::views::filter}.
+      \li With ranges that use the same QObject subclass for multi-role items, the new
+          \l QRangeModel::autoConnectPolicy can be set to Full or OnRead to connect the
+          changed-signals of all exposed properties of QObject items to the corresponding
+          \l {QAbstractItemModel::}{dataChanged()} signal emission.
+      \li \l QRangeModelAdapter provides a typical C++ container API to the range a QRangeModel
+          operates on, ensuring that relevant QAbstractItemModel signals are emitted on
+          changes, without user code having to work with QModelIndex. This new class is under
+          technology preview.
+    \endlist
+
+    \section2 Qt DBus Module
+    \list
+    \endlist
+
+    \section2 Qt Graphs Module
+    \list
+      \li Added new \l{QCustomSeries} class to allow users to create their own 2D graph
+          types, such as candlestick or box-plot graphs
+      \li Added multi-axis support to 3D graphs in the form of
+          \l{QBar3DSeries::rowAxis}{rowAxis}, \l{QBar3DSeries::valueAxis}{valueAxis}, and
+          \l{QBar3DSeries::columnAxis}{columnAxis} properties in \l{QBar3DSeries}, and
+          \l{QScatter3DSeries::axisX}{axisX}, \l{QScatter3DSeries::axisY}{axisY}, and
+          \l{QScatter3DSeries::axisZ}{axisZ} properties in \l{QScatter3DSeries} and
+          \l{QSurface3DSeries}
+      \li Added \l{QPieSlice::subSlicesCount}{subSlicesCount},
+          \l{QPieSlice::subSlicesSum}{subSlicesSum},
+          \l{QPieSlice::subSlicesRatio}{subSlicesRatio}, and
+          \l{QPieSlice::sliceChildren}{sliceChildren} properties in \l{QPieSlice} to allow
+          creating sub slices in pie and donut graphs
+      \li Added \l{QDateTimeAxis::visualMin}{visualMin} and
+          \l{QDateTimeAxis::visualMax}{visualMax} properties in \l{QDateTimeAxis} and
+          \l{QValueAxis} to hold the visible axis ranges
+      \li Added \l{QAreaSeries::gradient}{gradient} and
+          \l{QAreaSeries::selectedGradient}{selectedGradient} properties in \l{QAreaSeries}
+          to allow using gradients in area graphs
+      \li Added \l{QBarCategoryAxis::labelPosition}{labelPosition} property in
+          \l{QBarCategoryAxis} to allow adjusting the label placement in bar graphs
+      \li Added \l{QDateTimeAxis::timeZone}{timeZone} property in \l{QDateTimeAxis} to allow
+          setting your own time zone for the axis
+      \li Added \l{QDateTimeAxis::pan}{pan} and \l{QDateTimeAxis::zoom}{zoom} properties
+          in \l{QDateTimeAxis} to allow panning and zooming the same way as in \l{QValueAxis}
+      \li Added \l{QAbstractAxis::color}{color} and \l{QAbstractAxis::subColor}{subColor}
+          properties in \l{QAbstractAxis} to allow overriding theme colors for the axes
+      \li Added \l{QLineSeries::joinStyle}{joinStyle}, \l{QLineSeries::lineStyle}{lineStyle},
+          \l{QLineSeries::strokeStyle}{strokeStyle}, \l{QLineSeries::dashOffset}{dashOffset},
+          and \l{QLineSeries::dashPattern}{dashPattern} properties in \l{QLineSeries} to
+          allow further styling in line graphs
+      \li Added \l{QSplineSeries::optimized}{optimized} property in \l{QSplineSeries} to
+          allow using Catmull-Rom interpolation instead of the more performance-heavy and
+          accurate default method
+      \li Added \l{QBar3DSeries::customRowLabels}{customRowLabels} and
+          \l{QBar3DSeries::customColumnLabels}{customColumnLabels} properties in
+          \l{QBar3DSeries} to allow overriding row and column labels
+      \li Added \l{QCustom3DItem::rotationAbsolute}{rotationAbsolute} property in
+          \l{QCustom3DItem} to fix problems in custom item rotations
+      \li Added \l{QSurface3DSeries::rowsSanitized}{rowsSanitized} property in
+          \l{QSurface3DSeries} to automatically remove rows with invalid data
+      \li Added \l{QQuickGraphsItem::cutoffMargin}{cutoffMargin} in \l{QQuickGraphsItem}
+          and \l{Q3DGraphsWidgetItem} to adjust the sensitivity of culling items near graph
+          margins
+    \endlist
+
+    \section2 Qt GRPC Module
+    \list
+    \endlist
+
+    \section2 Qt GUI Module
+    \list
+    \endlist
+
+    \section2 Qt HttpServer Module
+    \list
+    \endlist
+
+    \section2 Qt Lottie Animation
+    \list
+    \endlist
+
+    \section2 Qt Multimedia Module
+    \list
+    \endlist
+
+    \section2 Qt Network Module
+    \list
+    \endlist
+
+    \section2 Qt Protobuf Module
+    \list
+    \endlist
+
+    \section2 Qt QML Module
+    \list
+        \li Added workspace support in QML Language Server.
+        \li Added go to C++ definition support in QML Language Server.
+        \li Added support to silence context property warnings via a \c{.contextProperties.ini} configuration file for qmllint.
+    \endlist
+
+    \section2 Qt Quick Module
+    \list
+    \endlist
+
+    \section2 Qt Quick Controls Module
+    \list
+    \endlist
+
+    \section2 Qt Quick Dialogs Module
+    \list
+    \endlist
+
+    \section2 Qt Quick Effects Module
+    \list
+    \endlist
+
+    \section2 Qt Quick 3D Module
+    \list
+    \endlist
+
+    \section2 Qt Quick 3D XR Module
+    \list
+    \endlist
+
+    \section2 Qt Quick 3D Physics Module
+    \list
+    \endlist
+
+    \section2 Qt Quick VectorImage Module
+    \list
+    \endlist
+
+    \section2 Qt Serial Port Module
+    \list
+    \endlist
+
+    \section2 Qt Serial Bus Module
+    \list
+    \endlist
+
+    \section2 Qt Sql Module
+    \list
+    \endlist
+
+
+    \section2 Qt SVG Module
+    \list
+    \endlist
+
+    \section2 Qt Test Module
+    \list
+    \endlist
+
+    \section2 Qt VirtualKeyboard Module
+    \list
+    \endlist
+
+    \section2 Qt WebEngine Module
+    \list
+    \endlist
+
+    \section2 Qt WebView Module
+    \list
+    \endlist
+
+    \section2 Qt Widgets Module
+    \list
+    \endlist
+
+    \section2 Qt XML Module
+    \list
+    \endlist
+
+    \section2 Qt Mqtt Module
+    \list
+    \endlist
+
+    \section1 Tools
+
+    \section2 QDoc Documentation Generator
+    \list
+    \endlist
+
+    \section2 Qt Linguist
+    \list
+    \endlist
+
+    \section1 Platform Changes
+
+    \section2 Build System Changes
+
+    \list
+    \endlist
+
+    \section2 Desktop Platforms
+
+    \section3 Windows
+    \list
+    \endlist
+
+    \section3 Linux
+    \list
+    \endlist
+
+    \section3 macOS
+    \list
+    \endlist
+
+    \section3 Wayland Client on Linux
+    \list
+    \endlist
+
+    \section2 Mobile Platforms
+
+    \section3 Android
+
+    \section4 Qt for Android
+    \list
+    \li Qt Jenny now supports implementing Java interfaces and extending Java classes in C++.
+    \endlist
+
+    \section4 Qt Quick for Android
+    \list
+    \endlist
+
+    \section3 iOS
+    \list
+    \endlist
+
+    \section2 Embedded Platforms
+
+    \section3 Boot to Qt
+    \list
+    \endlist
+
+    \section3 Real-Time Operating Systems
+    \list
+    \endlist
+
+    \section1 Modules Deprecated in Qt 6.11
+
+    The following modules are deprecated. We strongly advise against using them
+    in new code.
+
+    \list
+    \endlist
+
+    For more information about the life-cycle of modules in Qt, see
+    \l{https://contribute.qt-project.org/quips/14#deprecating-a-module}{QUIP-14}.
+
+    \section1 List of API Changes
+
+    These pages contain an overview of API changes in Qt 6.11:
+    \list
+        \li \l {New Classes and Functions in Qt 6.11}
+        \li \l {Obsolete Classes}
+    \endlist
+
+    \section1 Known Issues
+
+    For information about known issues in Qt 6.11, see
+    \l{https://wiki.qt.io/index.php?title=Qt_6.11_Known_Issues}{the Qt Wiki}.
+*/
+
+/*!
+    \page newclasses611.html
+    \title New Classes and Functions in Qt 6.11
+    \ingroup whatsnewqt6-api
+    \meta sortkey 611
+    \brief A list of new APIs in Qt 6.11.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 6.11.
+
+    \sincelist 6.11
+*/
