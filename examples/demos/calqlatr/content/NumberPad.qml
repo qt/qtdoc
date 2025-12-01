@@ -10,7 +10,7 @@ Item {
     id: controller
 
     required property bool isPortraitMode
-    required property ApplicationState state // qmllint disable shadow
+    required property ApplicationState applicationState
 
     readonly property color qtGreenColor: "#2CDE85"
     readonly property color backspaceRedColor: "#DE2C2C"
@@ -24,17 +24,17 @@ Item {
 
     function updateDimmed() {
         for (let i = 0; i < mainGrid.children.length; i++) {
-            mainGrid.children[i].dimmed = state.isButtonDisabled(mainGrid.children[i].text);
+            mainGrid.children[i].dimmed = applicationState.isButtonDisabled(mainGrid.children[i].text);
         }
         for (let j = 0; j < scientificGrid.children.length; j++) {
-            scientificGrid.children[j].dimmed = state.isButtonDisabled(
+            scientificGrid.children[j].dimmed = applicationState.isButtonDisabled(
                         scientificGrid.children[j].text);
         }
     }
 
     component DigitButton: CalculatorButton {
         onClicked: {
-            controller.state.digitPressed(text);
+            controller.applicationState.digitPressed(text);
             controller.updateDimmed();
         }
     }
@@ -45,7 +45,7 @@ Item {
         textColor: controller.qtGreenColor
 
         onClicked: {
-            controller.state.operatorPressed(text);
+            controller.applicationState.operatorPressed(text);
             controller.updateDimmed();
         }
     }
@@ -116,7 +116,7 @@ Item {
 
                 BackspaceButton {
                     onClicked: {
-                        controller.state.operatorPressed(this.text);
+                        controller.applicationState.operatorPressed(this.text);
                         controller.updateDimmed();
                     }
                 }

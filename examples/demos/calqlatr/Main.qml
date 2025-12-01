@@ -53,7 +53,7 @@ Window {
             Layout.margins: root.margin
 
             isPortraitMode: root.isPortraitMode
-            state: state
+            applicationState: state
         }
 
         // define the responsive layouts
