@@ -49,6 +49,8 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Linguist
 )
 
+find_package(Qt6 QUIET CONFIG OPTIONAL_COMPONENTS QuickStudioComponents)
+
 qt_build_repo_begin()
 qt_build_repo_impl_find_package_tests()
 
