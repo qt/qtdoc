@@ -43,17 +43,4 @@
 
     The QSystemTrayIcon class exposes all of the above features via an intuitive
     Qt-style API that can be used on all desktop platforms.
-
-    \section1 Desktop Widgets
-
-    On systems where the user's desktop is displayed using more than one screen,
-    certain types of applications may need to obtain information about the
-    configuration of the user's workspace to ensure that new windows and dialogs
-    are opened in appropriate locations.
-
-    The QDesktopWidget class can be used to monitor the positions of widgets and
-    notify applications about changes to the way the desktop is split over the
-    available screens. This enables applications to implement policies for
-    positioning new windows so that, for example, they do not distract a user
-    who is working on a specific task.
 */
