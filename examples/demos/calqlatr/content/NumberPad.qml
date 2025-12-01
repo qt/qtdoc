@@ -10,7 +10,7 @@ Item {
     id: controller
 
     required property bool isPortraitMode
-    required property ApplicationState state
+    required property ApplicationState state // qmllint disable shadow
 
     readonly property color qtGreenColor: "#2CDE85"
     readonly property color backspaceRedColor: "#DE2C2C"
