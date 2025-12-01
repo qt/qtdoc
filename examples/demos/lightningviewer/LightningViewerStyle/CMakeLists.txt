@@ -8,6 +8,8 @@ set_source_files_properties(Config.qml
         QT_QML_SINGLETON_TYPE TRUE
 )
 
+qt_add_library(LightningViewerStyle STATIC)
+
 qt_add_qml_module(LightningViewerStyle
     URI LightningViewerStyle
     QML_FILES
@@ -116,12 +118,4 @@ qt_add_qml_module(LightningViewerStyle
 
 target_link_libraries(LightningViewerStyle PRIVATE
     Qt6::Quick
-)
-
-install(TARGETS LightningViewerStyle
-    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
-    LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
-)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir
-    DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerStyle"
 )

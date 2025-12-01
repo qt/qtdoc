@@ -8,6 +8,8 @@ set_source_files_properties(LightningViewConfig.qml MapTypeConfig.qml
         QT_QML_SINGLETON_TYPE TRUE
 )
 
+qt_add_library(LightningViewerModule STATIC)
+
 qt_add_qml_module(LightningViewerModule
     URI LightningViewerModule
     SOURCES
@@ -43,12 +45,4 @@ target_link_libraries(LightningViewerModule PRIVATE
     Qt6::Positioning
     Qt6::Quick
     Qt6::WebSockets
-)
-
-install(TARGETS LightningViewerModule
-    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerModule"
-    LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerModule"
-)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir
-    DESTINATION "${CMAKE_INSTALL_BINDIR}/LightningViewerModule"
 )
