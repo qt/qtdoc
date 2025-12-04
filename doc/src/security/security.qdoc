@@ -15,9 +15,10 @@
     release. Qt also has an established process for handling security
     vulnerabilities.
 
-    \section1 Qt Project Security Policy
+    \section1 Qt Project security policy
 
-    The Qt Project specifies its security policy in \l{https://contribute.qt-project.org/quips/15}{QUIP 15}.
+    The Qt Project specifies its security policy in
+    \l{https://contribute.qt-project.org/quips/15}{QUIP 15}.
     A summary of the security policy:
 
     \list
@@ -28,7 +29,7 @@
         \li Reporting Security Issues: the Core Security Team monitors security
             issues for Qt modules and affected third-party components.
         \li Handling Security Issues: the maintainers, Core Security Team,
-            Chief Maintainer, and the Qt Company share and handle security
+            Chief Maintainer, and Qt Group share and handle security
             issues.
         \li Disclosure of confirmed security issues at
             \l{https://cve.mitre.org/}{Common Vulnerabilities and Exposures database}
@@ -40,7 +41,7 @@
               {Qt Project Mailing List Information Page}.
     \endlist
 
-    \section1 Reporting Security Issues
+    \section1 Reporting security issues
 
     To report security issues in \l{https://www.qt.io/product}{Qt Products},
     send an email to Security Mail List at \l{mailto:security@qt-project.org}.
@@ -52,18 +53,41 @@
     contact the
     \l{https://wiki.qt.io/Maintainers}{Chief Maintainer} directly.
 
-    To report issues regarding The Qt Company services such as the website or
+    To report issues regarding Qt Group services such as the website or
     Qt Account, email \l{mailto:security@qt.io}.
 
-    \section2 Qt Group Commercial security agreement
+    \section2 Qt Group commercial security agreement
 
     For commercial licensees, use the \e{Security Issues} category in the
-    support portal to report issues to the Qt Company Support team. The
+    support portal to report issues to the Qt Group Support team. The
     reporter will be sent an acknowledgment when the issue is forwarded to the
     Security Mail List.
 
     Visit the
     \l{https://www.qt.io/terms-conditions/responsible-vulnerability-disclosure-process}{Responsible Vulnerability Disclosure Agreement} page for more information.
+
+    \section1 Qt vulnerabilities
+
+    When technical experts confirm a security issue in one of the Qt products,
+    a Common Vulnerabilities and Exposures entry (CVE) will be
+    created. A CVE consists of an ID and a description. Further metadata
+    is added over time.
+
+    For Qt products, The Qt Company is managing the CVE creation process as the
+    responsible \l{https://www.cve.org/PartnerInformation/ListofPartners/partner/TQtC}
+    {CVE Numbering Authority (CNA)}. It lists new CVEs in the
+    \l{https://wiki.qt.io/List_of_known_vulnerabilities_in_Qt_products}
+    {List of known vulnerabilities in Qt Products}, but also contributes to
+    the \l{https://www.cve.org/}{central CVE database}.
+
+    To uniquely identify products affected by a vulnerability, CVEs contain entries
+    in the \e{Common Platform Enumeration} (CPE) format. For issues in the Qt Framework, the
+    \e vendor and \e product parts of such a CPE are \c qt:qt.
+    For example, a hypothetical CVE that affects Qt \QtVersion will have the following CPE:
+
+    \badcode \QtVersion
+    cpe:2.3:a:qt:qt:\1:*:*:*:*:*:*:*
+    \endcode
 
     \section1 Software Bill of Materials (SBOM)
 
@@ -78,7 +102,7 @@
         \li \l{https://spdx.dev/learn/overview/#producing}{SPDX Format Overview}
     \endlist
 
-    \section1 Untrusted Data
+    \section1 Untrusted data
 
     Several Qt modules handle data such as user input and executable resources.
     Qt expects application developers to handle untrusted data appropriately.
@@ -100,14 +124,6 @@
     contact lists, calendar, camera, and microphone.
 
     For more information, see \l{Application Permissions}.
-
-    \section1 Qt Vulnerabilities
-
-    The Qt Project maintains a list of known vulnerabilities as a wiki
-    which includes affected versions and possible mitigation.
-
-    For more information, see \l{https://wiki.qt.io/List_of_known_vulnerabilities_in_Qt_products}
-    {List of known vulnerabilities in Qt Products}
 
     \section1 Extended Security Maintenance for Qt 5.15
 
