@@ -1,7 +1,9 @@
 # Copyright (C) 2025 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-cmake_minimum_required(VERSION 3.16)
+# The minimum required version of cmake is set to 3.18 since
+# the cmake archiving command is introduced in this version.
+cmake_minimum_required(VERSION 3.18)
 
 project(ToyCustomizer VERSION 0.1 LANGUAGES CXX)
 
@@ -22,13 +24,6 @@ set_source_files_properties(${qml_singletons} PROPERTIES QT_QML_SINGLETON_TYPE T
 set(TARGET_NAME toycustomizer)
 qt_add_executable(${TARGET_NAME}
     main.cpp
-)
-
-qt_add_resources(${TARGET_NAME} "fonts"
-    FILES
-        fonts/WinkySans/WinkySans-VariableFont_wght.ttf
-        fonts/WinkySans/WinkySans-Italic-VariableFont_wght.ttf
-        fonts/DynaPuff/DynaPuff-VariableFont_wdth,wght.ttf
 )
 
 qt_add_qml_module(${TARGET_NAME}
@@ -86,19 +81,20 @@ qt_add_qml_module(${TARGET_NAME}
 
 qt_add_shaders(${TARGET_NAME} "shaders"
     GLSL
-    PREFIX "/qt/qml/ToyCustomizer/"
+    PREFIX "/qt/qml/ToyCustomizer"
     FILES
         qml/shaders/buttonpressedshadow.frag
         qml/shaders/buttonpressedshadow.vert
         qml/shaders/coloroverlay.frag
 )
 
-add_subdirectory(images)
-add_subdirectory(animations)
-add_subdirectory(meshes)
+target_sources(${TARGET_NAME} PRIVATE ${ASSETS_FONTS})
 
 add_subdirectory(assets)
-add_dependencies(${TARGET_NAME} assets_complete)
+add_subdirectory(animations)
+add_subdirectory(fonts)
+add_subdirectory(images)
+add_subdirectory(meshes)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
