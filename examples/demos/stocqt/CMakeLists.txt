@@ -10,7 +10,7 @@ set(CMAKE_AUTOMOC ON)
 
 find_package(Qt6 ${PROJECT_VERSION} REQUIRED COMPONENTS Core Gui Qml Quick Graphs)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appStocQt
     src/main.cpp
