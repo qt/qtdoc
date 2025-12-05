@@ -15,9 +15,9 @@
     \list
       \li \l {Qt Canvas Painter} - Accelerated 2D painting solution for Qt Quick
           and QRhi-based render targets.
-      \li \l {Qt Open API} - An extension of the upstream Open API generator that
+      \li \l {Qt OpenAPI} - An extension of the upstream Open API generator that
           generates Qt HTTP clients.
-      \li \l {Qt Task Tree} - Provides a declarative way to compose and execute
+      \li \l {Qt TaskTree} - Provides a declarative way to compose and execute
           asynchronous task workflows.
     \endlist
 
@@ -31,7 +31,7 @@
 
     \section2 Qt Core Module
     \list
-      \li \l QDate is now weakly incrementable, i.e. implemnents pre- and post-fix increment
+      \li \l QDate is now weakly incrementable, i.e. implements pre- and post-fix increment
           (and decrement) operators, and can be used in a C++20 \c{std::views::iota}.
       \li \l QJniObject APIs can now be called with \c{std::expected} (or an equivalent type)
           as the return type, in which case Java exceptions are not consumed by the framework
@@ -93,11 +93,9 @@
       \li Added \l{QBar3DSeries::customRowLabels}{customRowLabels} and
           \l{QBar3DSeries::customColumnLabels}{customColumnLabels} properties in
           \l{QBar3DSeries} to allow overriding row and column labels
-      \li Added \l{QCustom3DItem::rotationAbsolute}{rotationAbsolute} property in
-          \l{QCustom3DItem} to fix problems in custom item rotations
       \li Added \l{QSurface3DSeries::rowsSanitized}{rowsSanitized} property in
           \l{QSurface3DSeries} to automatically remove rows with invalid data
-      \li Added \l{QQuickGraphsItem::cutoffMargin}{cutoffMargin} in \l{QQuickGraphsItem}
+      \li Added \l{GraphsItem3D::cutoffMargin}{cutoffMargin} in \l{GraphsItem3D}
           and \l{Q3DGraphsWidgetItem} to adjust the sensitivity of culling items near graph
           margins
     \endlist
