@@ -118,6 +118,8 @@
 
     \section2 Qt Multimedia Module
     \list
+      \li Added callback-based overloads for the start methods of \l{QAudioSource} and \l{QAudioSink} to
+          allow real-time audio processing.
     \endlist
 
     \section2 Qt Network Module
