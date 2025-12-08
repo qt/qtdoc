@@ -154,6 +154,12 @@
 
     \section2 Qt Quick Controls Module
     \list
+    \li Added \l DoubleSpinBox, which is similar to \l SpinBox but supports
+        floating-point values.
+    \li Added \l {DialogButtonBox::}{defaultButton} and
+        \l {DialogButtonBox::}{defaultStandardButton} to \l DialogButtonBox.
+        When set, the respective button will be highlighted and receive
+        activeFocus whenever the DialogButtonBox gets focus.
     \endlist
 
     \section2 Qt Quick Dialogs Module
