@@ -116,6 +116,13 @@
 
     \section2 Qt Lottie Animation
     \list
+      \li Added support for path fill rules.
+      \li Added CMAKE command \l{qt_target_qml_from_lottie()} for converting from Lottie to QML at
+          build time.
+      \li \l{lottietoqml} and \l{VectorImage} backend are no longer tech preview.
+      \li \l{VectorImage}: Added support for animating shapes along paths.
+      \li \l{VectorImage}: Added support for morphing animations (interpolating between two shapes.)
+      \li \l{VectorImage}: Added support for matte layers.
     \endlist
 
     \section2 Qt Multimedia Module
@@ -141,6 +148,8 @@
 
     \section2 Qt Quick Module
     \list
+      \li Added CMAKE command \l{qt_target_qml_from_svg()} for converting from SVG to QML at build
+          time.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -169,6 +178,11 @@
 
     \section2 Qt Quick VectorImage Module
     \list
+      \li Added support for SVG masks.
+      \li Added support for SVG post-processing filters to match the support in \l{Qt SVG}:
+          feGaussianBlur, feColorMatrix, feOffset, feFlood, feBlend, feComposite and feMerge.
+      \li Added support for animating shapes along paths.
+      \li Added support for the SVG <symbol> tag.
     \endlist
 
     \section2 Qt Serial Port Module
