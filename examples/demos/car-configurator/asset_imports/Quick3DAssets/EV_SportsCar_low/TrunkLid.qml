@@ -12,6 +12,7 @@ Model {
     source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/trunkLid_mesh.mesh"
     receivesReflections: true
     property bool isOpen: false
+    pickable: true
     materials: [
         rain ? carPaint_material_rain : carPaint_material,
         rain ? carPaintBlackBump_material82_rain : carPaintBlackBump_material82,

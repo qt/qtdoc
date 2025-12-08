@@ -18,6 +18,8 @@ import Quick3DAssets.EV_SportsCar_low
 import Quick3DAssets.Pebbles
 import Quick3DAssets.InteriorShadow
 import Quick3DAssets.ShadowPlane
+import Quick3DAssets.Snow
+import QtQuick3D.Particles3D
 
 Rectangle {
     id: root
@@ -79,12 +81,151 @@ Rectangle {
         }
     }
 
+
+    component ParticleMask : View3D {
+        id: particleMaskView
+        width: 2048
+        height: 2048
+        property alias cameraPosition: particleMaskCamera.position
+        property alias clipNear: particleMaskCamera.clipNear
+        property alias clipFar: particleMaskCamera.clipFar
+        property alias viewProjection: particleMaskCamera.viewProjection
+        property alias brushPositionInUV: particleMaskShader.brushPositionInUV
+        property alias brushSize: particleMaskShader.brushSize
+        property alias maskSource: particleMaskSource
+        property alias particleSize: snowParticleSystem.spriteScale
+
+        camera: particleMaskCamera
+
+        Node {
+            position: originalSnowParticleSystem.scenePosition
+            OrthographicCamera {
+                id: particleMaskCamera
+                y: 350.
+                clipNear: 240.
+                clipFar: 260.
+                eulerRotation.x: -90
+                horizontalMagnification: 1
+                verticalMagnification: 1
+
+                property real overrideNear: 1
+                property real overrideFar: 2000
+
+                property matrix4x4 viewProjection: Qt.matrix4x4()
+                onScenePositionChanged: {
+                    viewProjection = viewProjectionMatrix()
+                }
+                onSceneRotationChanged: {
+                    viewProjection = viewProjectionMatrix()
+                }
+                onHorizontalMagnificationChanged: {
+                    viewProjection = viewProjectionMatrix()
+                }
+                onVerticalMagnificationChanged: {
+                    viewProjection = viewProjectionMatrix()
+                }
+
+                function projectionMatrix() {
+                    let width = particleMaskView.width * particleMaskCamera.horizontalMagnification
+                    let invHeight = 1. - particleMaskView.height * particleMaskCamera.verticalMagnification
+                    let near = particleMaskCamera.overrideNear
+                    let far = particleMaskCamera.overrideFar
+                    let top = -invHeight * 0.5
+                    let bottom = invHeight * 0.5
+                    let left = -width * 0.5
+                    let right = width * 0.5
+
+                    return Qt.matrix4x4(
+                                2 / width, 0, 0, -(left + right) / width,
+                                0, 2 / invHeight, 0, -(top + bottom) / invHeight,
+                                0, 0, -2 / (far - near), -(near + far) / (far - near),
+                                0, 0, 0, 1
+                                )
+
+                }
+                function viewMatrix() {
+                    return particleMaskCamera.sceneTransform.inverted()
+                }
+                function viewProjectionMatrix() {
+                    return projectionMatrix().times(viewMatrix())
+                }
+            }
+            SnowParticlesSystem {
+                id: snowParticleSystem
+                spriteScale: 6
+            }
+        }
+
+        environment: SceneEnvironment {
+            clearColor: "black"
+            tonemapMode: SceneEnvironment.TonemapModeNone
+            effects: [
+                Effect {
+                    id: particleMaskShader
+                    property vector2d brushPositionInUV: Qt.vector2d(-10., -10.)
+                    property real brushSize: 0.03
+                    property TextureInput lastColorTexture: TextureInput {
+                        texture: Texture {
+                            sourceItem: ShaderEffectSource {
+                                id: particleMaskSource
+                                sourceItem: particleMaskView
+                                hideSource: true
+                                textureMirroring: GraphicsInfo.api == GraphicsInfo.OpenGL ?
+                                                      ShaderEffectSource.NoMirroring :
+                                                      ShaderEffectSource.MirrorVertically
+                            }
+                        }
+                    }
+                    passes: Pass {
+                        shaders: Shader {
+                            stage: Shader.Fragment
+                            shader: "qrc:/qt/qml/Quick3DAssets/Snow/snow_mask_effect.frag"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+
+    ParticleMask {
+        id: particleMaskGround
+        clipNear: 345
+        clipFar: 355
+        particleSize: 7
+        width: 1500
+        height: 1500
+    }
+
+    ParticleMask {
+        id: particleMaskCar
+        clipNear: 260
+        clipFar: 270
+        particleSize: 6
+        width: 512
+        height: 512
+    }
+
     View3D {
         id: view3D
+        visible: true
 
         anchors.fill: parent
         camera: sceneCamera2
         environment: showhall
+
+        Texture {
+            id: particleMaskGroundTexture
+            sourceItem: particleMaskGround.maskSource
+            scaleU: -1
+            scaleV: -1
+        }
+
+        Texture {
+            id: particleMaskCarTexture
+            sourceItem: particleMaskCar.maskSource
+            scaleU: -1
+            scaleV: -1
+        }
 
         Node {
             id: scene2
@@ -354,17 +495,110 @@ Rectangle {
 
                 Model {
                     id: animatedstateFloor
-
-                    y: 0
                     visible: false
-                    source: "#Rectangle"
-                    eulerRotation.x: -90
+                    geometry: PlaneGeometry {
+                        width: 100.0
+                        height: 100.0
+                        plane: PlaneGeometry.XZ
+                        meshResolution: Qt.size(200, 200)
+                    }
                     materials: rectMaterial4
-                    scale.y: 20
-                    eulerRotation.y: 0
-                    scale.z: 20
-                    scale.x: 20
+                    scale.z: 15
+                    scale.y: 15
+                    scale.x: 15
                     receivesReflections: true
+                    castsReflections: true
+                }
+                Model {
+                    visible: animatedstateFloor.visible
+                    source: "#Rectangle"
+                    pickable: true
+                    materials: rectMaterialBase
+                    y: -0.1
+                    eulerRotation.x: -90
+                    scale.x: 45
+                    scale.y: 45
+                    scale.z: 45
+                    receivesReflections: true
+                    castsReflections: true
+                }
+
+                component SnowParticlesSystem: ParticleSystem3D {
+                    id: psystem
+                    property real spriteScale: 2
+
+                    useRandomSeed: false
+                    visible: btnSnow.checked
+                    startTime: 5000
+
+                    SpriteParticle3D {
+                        id: spriteParticle
+                        sprite: Texture {
+                            source: "qrc:/qt/qml/Quick3DAssets/Snow/snow.png"
+                        }
+                        maxAmount: 20000
+                        color: "#ffffff"
+                        colorVariation: Qt.vector4d(0.0, 0.0, 0.0, 0.5);
+                        fadeInDuration: 500
+                        fadeOutDuration: 500
+                        billboard: true
+                        spriteSequence: SpriteSequence3D {
+                            frameCount: 8
+                            frameIndex: 0
+                            interpolate: false
+                            randomStart: true
+                            duration: 16000
+                        }
+                    }
+
+                    ParticleEmitter3D {
+                        id: emitter
+
+                        system: psystem
+                        particle: spriteParticle
+                        position: Qt.vector3d(0, 350, 0)
+                        depthBias: -10
+                        scale: Qt.vector3d(15.0, 5.0, 15.0)
+                        shape: ParticleShape3D {
+                            type: ParticleShape3D.Sphere
+                        }
+                        particleScale: psystem.spriteScale
+                        particleScaleVariation: psystem.spriteScale * 0.5
+                        velocity: VectorDirection3D {
+                            direction: Qt.vector3d(0, -100, 0)
+                            directionVariation: Qt.vector3d(20, 50, 20)
+                        }
+                        emitRate: 2000
+                        lifeSpan: 2000
+                    }
+
+                    PointRotator3D {
+                        pivotPoint: Qt.vector3d(0, 0, 0)
+                        direction: Qt.vector3d(0, 1, 0)
+                        magnitude: 20
+                        system: psystem
+                    }
+
+                    ShapeAffector3D {
+                        id: carBottomMask
+                        scale: Qt.vector3d(5.3, 1, 2.5)
+                        position: Qt.vector3d(-20.0, 0, 0)
+                        eulerRotation.y: 45
+                        shapeType: ShapeAffector3D.Sphere
+                    }
+                }
+
+                SnowParticlesSystem {
+                    id: originalSnowParticleSystem
+                    visible: btnSnow.checked
+
+                    ShapeAffector3D {
+                        id: carInteriorMask
+                        eulerRotation.y: 45
+                        scale: Qt.vector3d(2.5, 1.5, 2.05)
+                        position:Qt.vector3d(-25, 67, 6)
+                        shapeType: ShapeAffector3D.Sphere
+                    }
                 }
 
                 Ev_SportsCar_low {
@@ -373,6 +607,7 @@ Rectangle {
                     y: 1.965
                     desert: false
                     rain: btnRain.checked
+                    snowStrength: __materialLibrary__.snowStrength
                     headlightsVisible: !btnLight.checked
                     trunkIsOpen: trunkbutton.isChecked
                     hoodIsOpen: hoodButton.isChecked
@@ -471,9 +706,8 @@ Rectangle {
             scene: scene2
             center: ev_SportsCar_low.scenePosition
             extents: Qt.vector3d(1000, 500, 1000)
-            excluded: [shadowPlane, interiorShadow, headlights, ...ev_SportsCar_low.shapeExluded]
+            excluded: [animatedstateFloor, shadowPlane, interiorShadow, headlights, ...ev_SportsCar_low.shapeExluded]
         }
-        //
 
         Node {
             id: environments1
@@ -799,19 +1033,59 @@ Rectangle {
                 scaleU: 20
             }
 
-            PrincipledMaterial {
+            property real snowStrength: 1.0
+            NumberAnimation {
+                running: !btnSnow.checked
+                target: __materialLibrary__
+                property: "snowStrength"
+                to: 0
+                duration: 10000
+            }
+
+            NumberAnimation {
+                running: btnSnow.checked
+                target: __materialLibrary__
+                property: "snowStrength"
+                to: 1.
+                duration: 5000
+            }
+
+            PrincipledExSnowMaterial {
                 id: rectMaterial4
                 specularAmount: 0.5
                 clearcoatAmount: 0
-                specularTint: 0
+                snowStrength: __materialLibrary__.snowStrength
+                snowViewProjection: particleMaskGround.viewProjection
+                snowDisplacementMap: particleMaskGroundTexture
+                snowMaxDisplacement: 5
+                // specularTint: 0
                 baseColor: "#222222"
                 objectName: "rectMaterial4"
                 baseColorMap: vlkhcah_2K_Albedo1
-                depthDrawMode: Material.OpaqueOnlyDepthDraw
                 normalMap: vlkhcah_2K_Normal1
+                roughnessChannel: Material.G
                 roughnessMap: vlkhcah_2K_Roughness1
                 roughness: 0.35
                 occlusionMap: vlkhcah_2K_AO1
+                clearcoatRoughnessAmount: 0
+            }
+
+
+            PrincipledMaterial {
+                id: rectMaterialBase
+                specularAmount: 0.5
+                clearcoatAmount: 0
+                // specularTint: 0
+                baseColor: "#222222"
+                objectName: "rectMaterialBase"
+                baseColorMap: vlkhcah_2K_Albedo1Tile
+                normalMap: vlkhcah_2K_Normal1Tile
+                roughnessChannel: Material.G
+                roughnessMap: vlkhcah_2K_Roughness1Tile
+                roughness: 0.35
+                occlusionMap: vlkhcah_2K_AO1Tile
+                clearcoatRoughnessAmount: 0
+                opacityMap: sphereMask
             }
 
             DefaultMaterial {
@@ -839,36 +1113,72 @@ Rectangle {
                 id: vlkhcah_2K_Albedo1
                 source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Albedo.jpg"
                 mipFilter: Texture.Linear
-                scaleV: 20
+                scaleV: 3
                 generateMipmaps: true
-                scaleU: 20
+                scaleU: 3
             }
 
             Texture {
                 id: vlkhcah_2K_AO1
                 source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_AO.jpg"
                 mipFilter: Texture.Linear
-                scaleV: 20
+                scaleV: 3
                 generateMipmaps: true
-                scaleU: 20
+                scaleU: 3
             }
 
             Texture {
                 id: vlkhcah_2K_Normal1
                 source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Normal.jpg"
                 mipFilter: Texture.Linear
-                scaleV: 20
+                scaleV: 3
                 generateMipmaps: true
-                scaleU: 20
+                scaleU: 3
             }
 
             Texture {
                 id: vlkhcah_2K_Roughness1
                 source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Roughness.jpg"
                 mipFilter: Texture.Linear
-                scaleV: 20
+                scaleV: 3
                 generateMipmaps: true
-                scaleU: 20
+                scaleU: 3
+            }
+
+            Texture {
+                id: vlkhcah_2K_Albedo1Tile
+                source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Albedo.jpg"
+                mipFilter: Texture.Linear
+                scaleV: 9
+                generateMipmaps: true
+                scaleU: 9
+            }
+
+            Texture {
+                id: vlkhcah_2K_AO1Tile
+                source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_AO.jpg"
+                mipFilter: Texture.Linear
+                scaleV: 9
+                generateMipmaps: true
+                scaleU: 9
+            }
+
+            Texture {
+                id: vlkhcah_2K_Normal1Tile
+                source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Normal.jpg"
+                mipFilter: Texture.Linear
+                scaleV: 9
+                generateMipmaps: true
+                scaleU: 9
+            }
+
+            Texture {
+                id: vlkhcah_2K_Roughness1Tile
+                source: rootWindow.downloadBase + "/content/images/vlkhcah_2K_Roughness.jpg"
+                mipFilter: Texture.Linear
+                scaleV: 9
+                generateMipmaps: true
+                scaleU: 9
             }
 
             Texture {
@@ -880,12 +1190,56 @@ Rectangle {
                 id: dot
                 source: rootWindow.downloadBase + "/content/images/dot.png"
             }
+
+            Texture {
+                id: sphereMask
+                source: "qrc:/qt/qml/Quick3DAssets/Snow/sphere.png"
+            }
         }
+
+
     }
 
     MouseRotatorAndWASD {
         xInvert: false
         yInvert: true
+    }
+
+    Timer {
+        id: releaseTimer
+        running: false
+        interval: 1000
+        onTriggered: {
+            particleMaskGround.brushPositionInUV = Qt.vector2d(-10., -10.)
+            particleMaskCar.brushPositionInUV = Qt.vector2d(-10., -10.)
+        }
+    }
+
+    DragHandler {
+        id: dragHandler
+
+        target: null
+        enabled: true
+        acceptedButtons: Qt.RightButton
+
+        onCentroidChanged: {
+            let result = view3D.pick(centroid.position.x, centroid.position.y)
+
+            if (result) {
+                if (result.scenePosition.y > animatedstateFloor.scenePosition.y) {
+                    const viewWidth = particleMaskCar.width
+                    particleMaskCar.brushPositionInUV = Qt.vector2d(((result.scenePosition.x - originalSnowParticleSystem.scenePosition.x) / viewWidth + 0.5),
+                                                                   ((result.scenePosition.z - originalSnowParticleSystem.scenePosition.z) / viewWidth + 0.5))
+                    particleMaskCar.brushSize = sceneCamera2.scenePosition.minus(ev_SportsCar_low.scenePosition).length() / viewWidth * 0.03
+                }else {
+                    const viewWidth = particleMaskGround.width
+                    particleMaskGround.brushPositionInUV = Qt.vector2d(((result.scenePosition.x - originalSnowParticleSystem.scenePosition.x) / viewWidth + 0.5),
+                                                                   ((result.scenePosition.z - originalSnowParticleSystem.scenePosition.z) / viewWidth + 0.5))
+                    particleMaskGround.brushSize = sceneCamera2.scenePosition.minus(ev_SportsCar_low.scenePosition).length() / viewWidth * 0.03
+                }
+                releaseTimer.restart()
+            }
+        }
     }
 
     PinchWidget {
@@ -957,6 +1311,64 @@ Rectangle {
             anchors.topMargin: 15
 
             sView: view3D
+        }
+
+
+        Item {
+            id: weatherControls
+
+            visible: btnWeather.checked
+            width: weatherRow.width
+            height: weatherRow.height
+            anchors.right: mainControls.right
+            anchors.rightMargin: 95
+            anchors.bottomMargin: 5
+            anchors.bottom: mainControls.top
+
+            scale: mainControls.scale
+
+            Column {
+                id: weatherRow
+
+                spacing: 5
+
+                KissButton {
+                    id: btnRain
+                    visible: btnWeather.checked
+
+                    iconId: btnRain.checked ? 27 : 26
+                    buttonText: "Rain"
+                    group: "toggle"
+                    checked: false
+                    onClicked: {
+                        ev_SportsCar_low.stateController = btnRain.checked ? ev_SportsCar_low.stateController + 4 : ev_SportsCar_low.stateController
+                        if (checked)
+                            btnSnow.checked = false
+                    }
+                }
+
+                KissButton {
+                    id: btnSnow
+
+                    visible: btnWeather.checked
+                    iconId: btnSnow.checked ? 29 : 28
+                    buttonText: "Snow"
+                    group: "toggle"
+                    checked: false
+                    property bool btnAnimatedCheckState: btnAnimated.checked
+                    onBtnAnimatedCheckStateChanged: {
+                        if (!btnAnimatedCheckState && checked)
+                            btnSnow.toggleCheck()
+                    }
+                    onClicked: {
+                        if (checked) {
+                            btnRain.checked = false
+                            if (!btnAnimated.checked)
+                                btnAnimated.toggleCheck()
+                        }
+                    }
+                }
+            }
         }
 
         Rectangle {
@@ -1172,7 +1584,6 @@ Rectangle {
                 buttonText: "Animated"
                 iconId: btnAnimated.checked ? 13 : 1
                 group: groupScene
-
             }
 
             KissButtonSeparator {
@@ -1239,13 +1650,18 @@ Rectangle {
             }
 
             KissButton {
-                id: btnRain
+                id: btnWeather
 
-                iconId: btnRain.checked ? 27 : 26
-                buttonText: "Rain"
+                iconId: btnWeather.checked ? 31 : 30
+                buttonText: "Weather"
                 group: "toggle"
                 checked: false
-                onClicked: ev_SportsCar_low.stateController = btnRain.checked ? ev_SportsCar_low.stateController + 4 : ev_SportsCar_low.stateController
+                onClicked: {
+                    if (!checked) {
+                        btnRain.checked = false
+                        btnSnow.checked = false
+                    }
+                }
             }
 
             KissButtonSeparator {
@@ -1359,7 +1775,7 @@ Rectangle {
             }
 
             Keyframe {
-                value: 22.85
+                value: 23.85
                 frame: 21004
             }
 
@@ -2296,11 +2712,6 @@ Rectangle {
             }
 
             PropertyChanges {
-                target: rectMaterial4
-                lightProbe: _Desert
-            }
-
-            PropertyChanges {
                 target: backlight_red
                 x: -0.001
                 y: 252.129
@@ -2483,12 +2894,6 @@ Rectangle {
             }
 
             PropertyChanges {
-                target: rectMaterial4
-                normalStrength: 1
-                metalness: 0.18864
-            }
-
-            PropertyChanges {
                 target: videoRoom
                 temporalAAStrength: 2
                 temporalAAEnabled: true
@@ -2553,14 +2958,7 @@ Rectangle {
 
             PropertyChanges {
                 target: animatedstateFloor
-                x: -0
-                y: -0
                 visible: true
-                castsReflections: true
-                receivesReflections: true
-                scale.y: 66.01047
-                scale.x: 49.36702
-                z: -23.71246
             }
 
             PropertyChanges {
@@ -2584,17 +2982,6 @@ Rectangle {
             }
 
             PropertyChanges {
-                target: rectMaterial2
-                lighting: PrincipledMaterial.FragmentLighting
-                cullMode: Material.BackFaceCulling
-                depthDrawMode: Material.NeverDepthDraw
-                alphaMode: PrincipledMaterial.Blend
-                specularAmount: 0.25
-                clearcoatAmount: 0
-                roughness: 0.4
-            }
-
-            PropertyChanges {
                 target: principledMaterial2
                 cullMode: Material.NoCulling
                 baseColor: "#ffffff"
@@ -2604,46 +2991,6 @@ Rectangle {
             PropertyChanges {
                 target: sceneObjects1
                 z: -750
-            }
-
-            PropertyChanges {
-                target: vlkhcah_2K_Albedo1
-                scaleU: 20
-            }
-
-            PropertyChanges {
-                target: vlkhcah_2K_AO1
-                scaleU: 20
-            }
-
-            PropertyChanges {
-                target: vlkhcah_2K_Normal1
-                scaleU: 20
-            }
-
-            PropertyChanges {
-                target: vlkhcah_2K_Roughness1
-                scaleU: 20
-            }
-
-            PropertyChanges {
-                target: rectMaterial4
-                opacityMap: dot
-                clearcoatRoughnessAmount: 0
-                roughnessChannel: Material.G
-                roughness: 0.30017
-                metalness: 0.16695
-                normalStrength: 0.5
-            }
-
-            PropertyChanges {
-                target: groundMat1
-                opacity: 1
-            }
-
-            PropertyChanges {
-                target: studio
-                lightProbe: _Desert
             }
 
             PropertyChanges {
