@@ -8,9 +8,9 @@
     \brief Lists the new features in Qt 6.11.
     \meta sortkey 611
 
-    \section1 New and Restored Modules in Qt 6.11
+    \section1 New Modules in Qt 6.11
 
-    Qt 6.11 adds the following modules and tools:
+    Qt 6.11 adds the following modules:
 
     \list
       \li \l {Qt Canvas Painter} - Accelerated 2D painting solution for Qt Quick
@@ -20,6 +20,9 @@
       \li \l {Qt TaskTree} - Provides a declarative way to compose and execute
           asynchronous task workflows.
     \endlist
+
+    The new modules are in \e{Technical Preview}, excluding their API from
+    \l{Compatibility promises}{Qt's compatibility promises}.
 
     \section1 New Features in Qt 6.11
 
@@ -367,17 +370,6 @@
     \section3 Real-Time Operating Systems
     \list
     \endlist
-
-    \section1 Modules Deprecated in Qt 6.11
-
-    The following modules are deprecated. We strongly advise against using them
-    in new code.
-
-    \list
-    \endlist
-
-    For more information about the life-cycle of modules in Qt, see
-    \l{https://contribute.qt-project.org/quips/14#deprecating-a-module}{QUIP-14}.
 
     \section1 List of API Changes
 
