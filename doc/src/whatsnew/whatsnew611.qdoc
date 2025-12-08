@@ -160,6 +160,8 @@
         \li Introduced \c{override} and \c{virtual} keywords which, together with the existing \c{final} keyword and tooling support,
             help prevent accidental property shadowing and allow explicit property overriding in QML.
             See \l{qtqml-syntax-overridesemantics.html}{Property Shadowing and Override Semantics} for details.
+        \li Gave the \l easingCurve value type a name and transformed the
+            \l Easing namespace into a singleton.
     \endlist
 
     \section2 Qt Quick Module
