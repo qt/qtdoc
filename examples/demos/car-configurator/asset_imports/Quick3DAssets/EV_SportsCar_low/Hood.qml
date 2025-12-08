@@ -6,8 +6,9 @@ import QtQuick3D
 
 Model {
     id: hood
+    property bool rain: false
     objectName: "Hood"
-    property bool rain
+    pickable: true
     z: 0.6023856401443481
     source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/hood_mesh.mesh"
     receivesReflections: true

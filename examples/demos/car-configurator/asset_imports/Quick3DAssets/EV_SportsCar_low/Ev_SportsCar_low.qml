@@ -5,12 +5,13 @@ import QtQuick
 import QtQuick3D
 import QtQuick3D.Helpers
 import Quick3DAssets.LightDecal
-
+import Quick3DAssets.Snow
 Node {
     id: node
 
     property int stateController: 0
     property bool desert: true
+    property real snowStrength: 0.6
     property bool rain: false
 
     property real rainStrength : 0.5
@@ -175,6 +176,7 @@ Node {
         Model {
             id: body
             objectName: "Body"
+            pickable: true
             y: 0.6449694037437439
             source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/body_mesh.mesh"
             receivesReflections: true
@@ -1242,8 +1244,12 @@ Node {
             clearcoatRoughnessAmount: 0.029999999329447746
             indexOfRefraction: 1.4500000476837158
         }
-        PrincipledMaterial {
+
+        PrincipledExSnowMaterial {
             id: carPaint_material
+            snowStrength: node.snowStrength
+            snowViewProjection: particleMaskCar.viewProjection
+            snowDisplacementMap: particleMaskCarTexture
             specularAmount: 0.1
             fresnelScale: 3
             fresnelBias: -0.1
@@ -1381,8 +1387,11 @@ Node {
             dripSharpness : node.dripSharpness
         }
 
-        PrincipledMaterial {
+        PrincipledExSnowMaterial {
             id: glassWindsSide_material
+            snowStrength: node.snowStrength
+            snowViewProjection: particleMaskCar.viewProjection
+            snowDisplacementMap: particleMaskCarTexture
             opacity: 0.379
             roughness: 0.63159
             clearcoatRoughnessAmount: 0.01919

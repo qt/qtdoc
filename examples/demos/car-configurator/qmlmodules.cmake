@@ -12,4 +12,5 @@ target_link_libraries(carconfigurator PRIVATE
     Ast_ShadowPlaneplugin
     Ast_Venodhbplugin
     Ast_Ventdeeplugin
+    Ast_Snowplugin
 )

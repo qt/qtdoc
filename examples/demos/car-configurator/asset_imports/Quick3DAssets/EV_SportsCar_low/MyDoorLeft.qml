@@ -6,6 +6,7 @@ import QtQuick3D
 
 Model {
     id: doorLeft
+    pickable: true
     objectName: "DoorLeft"
     property bool rain
     z: 0.8587785363197327
