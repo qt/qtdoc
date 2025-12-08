@@ -166,10 +166,48 @@
 
     \section2 Qt Quick 3D Module
     \list
+        \li Added QML API for user-defined render passes, enabling custom rendering pipelines
+            directly in QML without C++ knowledge
+        \li Added \l{ExtendedSceneEnvironment::ssrEnabled}{ssrEnabled} property in
+            \l{ExtendedSceneEnvironment} to enable screen-space reflections (SSR)
+        \li Added screen-space global illumination (SSGI) effect to
+            \l{ExtendedSceneEnvironment}, providing ambient occlusion and real-time indirect
+            lighting
+        \li Added per-object motion vector generation for Temporal AA and motion blur effects
+        \li Added layering support to allow grouping nodes and controlling which layers the
+            camera renders
+        \li Added linked list order-independent transparency (OIT) rendering method
+        \li Added \c{NORMAL_ROUGHNESS_TEXTURE} support in post-processing effects and custom
+            materials
+        \li Added blue noise sampling to PCF soft shadows for improved quality with less
+            visible noise patterns
+        \li Added proper handling of pre-multiplied alpha for Qt Quick content in textures
+        \li Added \c{VIEW_MATRIX} and \c{PROJECTION_MATRIX} exposure to post-processing
+            effects
+        \li Added \l{QQuick3DViewport::pickInRect}{pickInRect()} method in
+            \l{QQuick3DViewport} for rectangle-based object selection
+        \li Added \l{View3D::closestPointPick}{closestPointPick()} method in \l{View3D} to
+            find the closest point on a surface to a given point
+        \li Added \l{View3D::rayPick}{rayPick()} overload that accepts a specific model
+            parameter
+        \li Added scene shape for particle emitters that dynamically calculates shapes based
+            on scene geometry
+        \li Added \l{QQuick3DTextureProviderExtension} API for simplified custom texture
+            provider creation
+        \li Added \l{QSSGFrameData::scheduleRenderResults}{scheduleRenderResults()} function
+            in \l{QSSGFrameData} to request specific render pass results
+        \li Updated Assimp to v6.0.2
     \endlist
 
     \section2 Qt Quick 3D XR Module
     \list
+        \li Added OpenGL desktop Linux support (Monado, Xlib, Wayland platforms)
+        \li Extended \l{XrView::processTouch}{processTouch()} to deliver touch events to any
+            pickable \l{Model}, not just \l{XrItem}
+        \li Enhanced \l{XrView::touchpointState}{touchpointState()} to return surface position
+            and normal vector information for 3D touch interactions
+        \li Added Popup and Menu support in \l{XrItem} through dedicated QQuickOverlay
+        \li Updated OpenXR to v1.1.49
     \endlist
 
     \section2 Qt Quick 3D Physics Module
