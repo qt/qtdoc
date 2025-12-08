@@ -93,6 +93,8 @@
       \li Added \l{QBar3DSeries::customRowLabels}{customRowLabels} and
           \l{QBar3DSeries::customColumnLabels}{customColumnLabels} properties in
           \l{QBar3DSeries} to allow overriding row and column labels
+      \li Added \l{QCustom3DItem::rotationAbsolute}{rotationAbsolute} property in
+          \l{QCustom3DItem} to fix problems in custom item rotations
       \li Added \l{QSurface3DSeries::rowsSanitized}{rowsSanitized} property in
           \l{QSurface3DSeries} to automatically remove rows with invalid data
       \li Added \l{GraphsItem3D::cutoffMargin}{cutoffMargin} in \l{GraphsItem3D}
