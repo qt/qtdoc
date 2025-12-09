@@ -144,6 +144,9 @@
         \li Added workspace support in QML Language Server.
         \li Added go to C++ definition support in QML Language Server.
         \li Added support to silence context property warnings via a \c{.contextProperties.ini} configuration file for qmllint.
+        \li Introduced \c{override} and \c{virtual} keywords which, together with the existing \c{final} keyword and tooling support,
+            help prevent accidental property shadowing and allow explicit property overriding in QML.
+            See \l{qtqml-syntax-overridesemantics.html}{Property Shadowing and Override Semantics} for details.
     \endlist
 
     \section2 Qt Quick Module
