@@ -315,6 +315,15 @@
     \section2 Build System Changes
 
     \list
+    \li Added a -generate-vcpkg-manifest configure option. This generates a
+        vcpkg.json file in the build directory. To just generate the
+        manifest without configuring Qt, run configure with
+        -generate-vcpkg-manifest -dry-run.
+    \li When configuring with -vcpkg, generate a vcpkg manifest file in the
+        build directory, and set VCPKG_MANIFEST_DIR to the build directory to
+        use that manifest file. You can turn off the manifest generation with
+        -no-generate-vcpkg-manifest. You can turn off setting the manifest
+        directory by passing -- -UVCPKG_MANIFEST_DIR to configure.
     \endlist
 
     \section2 Desktop Platforms
