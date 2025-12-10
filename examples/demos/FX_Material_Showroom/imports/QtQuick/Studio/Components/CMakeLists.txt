@@ -8,8 +8,5 @@ qt_add_qml_module(QQS_Components
     CLASS_NAME QQS_ComponentsPlugin
     QML_FILES
         ArcItem.qml
-        TriangleItem.qml
         SvgPathItem.qml
-        RectangleItem.qml
-        StraightArrow.qml
 )
