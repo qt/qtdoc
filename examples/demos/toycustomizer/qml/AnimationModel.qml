@@ -1,6 +1,7 @@
 // Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
+pragma Singleton
 import QtQuick
 
 ListModel {
@@ -19,34 +20,13 @@ ListModel {
         rotY: 0.562917
         rotZ: 0.443977
         rotW: 0.544596
-    }
-    ListElement {
-        name: "Cat"
-        meshSource: "meshes/mesh_081_mesh.mesh"
-        baseColor: "images/Cat_BaseColor.png"
-        normalMap: "images/Cat_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_025_mesh.mesh"
-        x: 0.20962657034397125
-        y: 0.3361199200153351
-        z: -2.99792714031355e-06
-        rotX: -0.499714
-        rotY: 0.500278
-        rotZ: 0.499705
-        rotW: 0.500303
-    }
-    ListElement {
-        name: "Deer"
-        meshSource: "meshes/mesh_112_mesh.mesh"
-        baseColor: "images/Deer_BaseColor.png"
-        normalMap: "images/Deer_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_027_mesh.mesh"
-        x: 0.22925449907779694
-        y: 0.3361198902130127
-        z: -3.0128287562547484e-06
-        rotX: -0.499714
-        rotY: 0.500278
-        rotZ: 0.499705
-        rotW: 0.500303
+        customMesh: "meshes/skin_bear.mesh"
+        mouthPosX: -0.013
+        mouthPosY: 0.339
+        mouthPosZ: 0.004
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 20
     }
     ListElement {
         name: "Koala"
@@ -61,6 +41,13 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
+        customMesh: "meshes/skin_koala.mesh"
+        mouthPosX: 0
+        mouthPosY: 0.255
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
     ListElement {
         name: "Lion"
@@ -75,6 +62,13 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
+        customMesh: "meshes/skin_lion.mesh"
+        mouthPosX: 0.024
+        mouthPosY: 0.355
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 20
     }
     ListElement {
         name: "Monkey"
@@ -89,6 +83,55 @@ ListModel {
         rotY: 0.556042
         rotZ: 0.436832
         rotW: 0.556022
+        customMesh: "meshes/skin_monkey.mesh"
+        mouthPosX: 0.051
+        mouthPosY: 0.328
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
+    }
+    ListElement {
+        name: "Cat"
+        meshSource: "meshes/mesh_081_mesh.mesh"
+        baseColor: "images/Cat_BaseColor.png"
+        normalMap: "images/Cat_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_025_mesh.mesh"
+        x: 0.20962657034397125
+        y: 0.3361199200153351
+        z: -2.99792714031355e-06
+        rotX: -0.499714
+        rotY: 0.500278
+        rotZ: 0.499705
+        rotW: 0.500303
+        customMesh: "meshes/skin_cat.mesh"
+        mouthPosX: 0.025
+        mouthPosY: 0.348
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
+    }
+    ListElement {
+        name: "Deer"
+        meshSource: "meshes/mesh_112_mesh.mesh"
+        baseColor: "images/Deer_BaseColor.png"
+        normalMap: "images/Deer_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_027_mesh.mesh"
+        x: 0.22925449907779694
+        y: 0.3361198902130127
+        z: -3.0128287562547484e-06
+        rotX: -0.499714
+        rotY: 0.500278
+        rotZ: 0.499705
+        rotW: 0.500303
+        customMesh: "meshes/skin_deer.mesh"
+        mouthPosX: 0.002
+        mouthPosY: 0.366
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
     ListElement {
         name: "Panda"
@@ -103,6 +146,13 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
+        customMesh: "meshes/skin_panda.mesh"
+        mouthPosX: -0.012
+        mouthPosY: 0.333
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
     ListElement {
         name: "Pig"
@@ -117,48 +167,7 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
-    }
-    ListElement {
-        name: "Rabbit"
-        meshSource: "meshes/mesh_107_mesh.mesh"
-        baseColor: "images/Rabbit_BaseColor.png"
-        normalMap: "images/Rabbit_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_094_mesh.mesh"
-        x: 0.20979340374469757
-        y: 0.34487655758857727
-        z: -9.77618619799614e-05
-        rotX: -0.435229
-        rotY: 0.562917
-        rotZ: 0.443977
-        rotW: 0.544596
-    }
-    ListElement {
-        name: "Raccoon"
-        meshSource: "meshes/mesh_101_mesh.mesh"
-        baseColor: "images/Raccoon_BaseColor.png"
-        normalMap: "images/Raccoon_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_095_mesh.mesh"
-        x: 0.20962657034397125
-        y: 0.3361199200153351
-        z: -2.99792714031355e-06
-        rotX: -0.499714
-        rotY: 0.500278
-        rotZ: 0.499705
-        rotW: 0.500303
-    }
-    ListElement {
-        name: "Sheep"
-        meshSource: "meshes/mesh_105_mesh.mesh"
-        baseColor: "images/Sheep_BaseColor.png"
-        normalMap: "images/Sheep_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_096_mesh.mesh"
-        x: 0.20962657034397125
-        y: 0.3361199200153351
-        z: -2.99792714031355e-06
-        rotX: -0.499714
-        rotY: 0.500278
-        rotZ: 0.499705
-        rotW: 0.500303
+        customMesh: "meshes/skin_pig.mesh"
     }
     ListElement {
         name: "Sloth"
@@ -173,13 +182,41 @@ ListModel {
         rotY: 0.515163
         rotZ: 0.481426
         rotW: 0.522317
+        customMesh: "meshes/skin_sloth.mesh"
+        mouthPosX: -0.006
+        mouthPosY: 0.300
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
     ListElement {
-        name: "Squirrel"
-        meshSource: "meshes/mesh_109_mesh.mesh"
-        baseColor: "images/Squirrel_BaseColor.png"
-        normalMap: "images/Squirrel_NormalMap.png"
-        eyesMeshSource: "meshes/mesh_098_mesh.mesh"
+        name: "Rabbit"
+        meshSource: "meshes/mesh_107_mesh.mesh"
+        baseColor: "images/Rabbit_BaseColor.png"
+        normalMap: "images/Rabbit_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_094_mesh.mesh"
+        x: 0.20979340374469757
+        y: 0.34487655758857727
+        z: -9.77618619799614e-05
+        rotX: -0.435229
+        rotY: 0.562917
+        rotZ: 0.443977
+        rotW: 0.544596
+        customMesh: "meshes/skin_rabbit.mesh"
+        mouthPosX: -0.011
+        mouthPosY: 0.320
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
+    }
+    ListElement {
+        name: "Raccoon"
+        meshSource: "meshes/mesh_101_mesh.mesh"
+        baseColor: "images/Raccoon_BaseColor.png"
+        normalMap: "images/Raccoon_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_095_mesh.mesh"
         x: 0.20962657034397125
         y: 0.3361199200153351
         z: -2.99792714031355e-06
@@ -187,6 +224,34 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
+        customMesh: "meshes/skin_raccoon.mesh"
+        mouthPosX: 0.007
+        mouthPosY: 0.334
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
+    }
+    ListElement {
+        name: "Sheep"
+        meshSource: "meshes/mesh_105_mesh.mesh"
+        baseColor: "images/Sheep_BaseColor.png"
+        normalMap: "images/Sheep_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_096_mesh.mesh"
+        x: 0.20962657034397125
+        y: 0.3361199200153351
+        z: -2.99792714031355e-06
+        rotX: -0.499714
+        rotY: 0.500278
+        rotZ: 0.499705
+        rotW: 0.500303
+        customMesh: "meshes/skin_sheep.mesh"
+        mouthPosX: 0.007
+        mouthPosY: 0.306
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
     ListElement {
         name: "Tiger"
@@ -201,5 +266,33 @@ ListModel {
         rotY: 0.500278
         rotZ: 0.499705
         rotW: 0.500303
+        customMesh: "meshes/skin_tiger.mesh"
+        mouthPosX: 0.007
+        mouthPosY: 0.344
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
+    }
+    ListElement {
+        name: "Squirrel"
+        meshSource: "meshes/mesh_109_mesh.mesh"
+        baseColor: "images/Squirrel_BaseColor.png"
+        normalMap: "images/Squirrel_NormalMap.png"
+        eyesMeshSource: "meshes/mesh_098_mesh.mesh"
+        x: 0.20962657034397125
+        y: 0.3361199200153351
+        z: -2.99792714031355e-06
+        rotX: -0.499714
+        rotY: 0.500278
+        rotZ: 0.499705
+        rotW: 0.500303
+        customMesh: "meshes/skin_squirrel.mesh"
+        mouthPosX: 0.007
+        mouthPosY: 0.330
+        mouthPosZ: 0
+        mouthRotZ: 0
+        mouthRotX: 0
+        mouthRotY: 35
     }
 }

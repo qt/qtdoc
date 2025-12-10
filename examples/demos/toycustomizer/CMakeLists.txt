@@ -16,6 +16,7 @@ set(qml_singletons
     qml/ApplicationConfig.qml
     qml/ToyModel.qml
     qml/AccessoryState.qml
+    qml/AnimationModel.qml
 )
 set_source_files_properties(${qml_singletons} PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
@@ -39,7 +40,7 @@ qt_add_qml_module(${TARGET_NAME}
         qml/AccessoryMaterialLibrary.qml
         qml/AccessoryModel.qml
         qml/AnimationMaterial.qml
-        qml/AnimationModel.qml
+        qml/CustomModel.qml
         qml/GalleryViewDelegate.qml
         qml/Main.qml
         qml/MainPage.qml
@@ -66,22 +67,13 @@ qt_add_qml_module(${TARGET_NAME}
         qml/CustomizationCard.qml
         qml/NameTumbler.qml
         qml/ColorButton.qml
-        qml/BearCustom.qml
-        qml/CatCustom.qml
-        qml/DeerCustom.qml
-        qml/SheepCustom.qml
-        qml/LionCustom.qml
-        qml/RaccoonCustom.qml
-        qml/SquirrelCustom.qml
-        qml/MonkeyCustom.qml
-        qml/PandaCustom.qml
-        qml/KoalaCustom.qml
-        qml/SlothCustom.qml
-        qml/TigerCustom.qml
-        qml/RabbitCustom.qml
-        qml/PigCustom.qml
         qml/CurrentToyModel.qml
         qml/OrbitCameraController.qml
+        qml/EyesAccessories.qml
+        qml/MouthAccessories.qml
+        qml/EyewearAccessories.qml
+        qml/HeadwearAccessories.qml
+        qml/BodyAccessories.qml
 )
 
 qt_add_shaders(${TARGET_NAME} "shaders"
