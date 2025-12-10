@@ -80,11 +80,7 @@ Node {
 
     property string currentAnimal: "Bear"
     property int currentIndex: 0
-    property var currentElement: animationModel.get(node.currentIndex)
-
-    AnimationModel {
-        id: animationModel
-    }
+    property var currentElement: AnimationModel.get(node.currentIndex)
 
     // Nodes:
     Node {
@@ -109,7 +105,6 @@ Node {
                 source: node.currentElement.meshSource
                 skin: skin
                 materials: [animationMaterial]
-                visible: node.currentAnimal === node.currentElement.name
             }
             Node {
                 id: universalRigged
@@ -361,7 +356,6 @@ Node {
                                             scale: Qt.vector3d(1, 1, 1)
                                             source: node.currentElement.eyesMeshSource
                                             materials: [ defaultEyes_material ]
-                                            visible: node.currentAnimal === node.currentElement.name
                                         }
                                     }
                                 }
@@ -427,7 +421,7 @@ Node {
                 id: bearAnim
                 loops: 1
                 onFinished: {
-                    node.currentIndex = (node.currentIndex + 1) % animationModel.count
+                    node.currentIndex = (node.currentIndex + 1) % AnimationModel.count
                     node.currentAnimal = node.currentElement.name
                 }
                 duration: 8400
