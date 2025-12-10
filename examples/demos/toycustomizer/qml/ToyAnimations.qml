@@ -693,7 +693,6 @@ Node {
 
         AnimationMaterial {
             id: animationMaterial
-            materialName: node.currentElement.name
             baseColorSource: node.currentElement.baseColor
             normalMapSource: node.currentElement.normalMap
         }

@@ -7,11 +7,9 @@ import QtQuick3D
 PrincipledMaterial {
     id: animationMaterial
 
-    property string materialName
     property string baseColorSource
     property string normalMapSource
 
-    objectName: materialName
     baseColorMap: baseColorTexture
     normalMap: normalMapTexture
     baseColor: "#ffffff"

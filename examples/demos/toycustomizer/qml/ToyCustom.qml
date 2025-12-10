@@ -288,7 +288,6 @@ Node {
 
     AnimationMaterial {
         id: animationMaterial
-        materialName: root.currentElement.name
         baseColorSource: root.currentElement.baseColor
         normalMapSource: root.currentElement.normalMap
     }

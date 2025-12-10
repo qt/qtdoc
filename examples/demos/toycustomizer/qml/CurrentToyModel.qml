@@ -82,10 +82,6 @@ Item {
                 currentElement: AnimationModel.get(currentToy.index)
                 accessoryModel: currentToy.accessoryModel
             }
-
-            Node {
-                id: accessoriesRoot
-            }
         }
 
         OrbitCameraController {

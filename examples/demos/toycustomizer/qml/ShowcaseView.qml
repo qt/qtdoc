@@ -12,14 +12,6 @@ View3D {
 
     environment: extendedSceneEnvironment
 
-    PrincipledMaterial {
-        id: defaultMaterial
-        roughness: 1
-        alphaMode: PrincipledMaterial.Opaque
-        objectName: "Default Material"
-        baseColor: "#add6ff"
-    }
-
     Texture {
         id: studio_small_01_4k
         source: "images/studio_small_01_4k.hdr"
