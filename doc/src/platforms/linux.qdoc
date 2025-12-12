@@ -1,4 +1,4 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -10,7 +10,10 @@
     Qt's support for different Linux platforms is extensive and mature.
 
     To download and install Qt for Linux, follow the instructions on the
-    \l{Getting Started with Qt} page.
+    \l{Getting Started with Qt} page. You can also install Qt using your
+    distribution's package manager; see
+    \l{Qt for Linux - Alternative ways of installing Qt}{Alternative ways of installing Qt for Linux}
+    for more information.
 
     \target linux-supported-configurations
     \section1 Supported Configurations
@@ -902,4 +905,155 @@
     There are no known problems with using Qt on Linux. For information
     about the specific compilers and distributions supported, visit the
     \l{Supported Platforms}{supported platforms} page.
+*/
+
+/*!
+\page linux-alternative-installers.html
+\title Qt for Linux - Alternative ways of installing Qt
+\brief This article explains how to install Qt on Linux using \QOI, distribution
+packages, and Flatpak.
+
+\section1 Overview
+
+You can install Qt Framework as well as design and development tools on Linux
+from these sources:
+
+\list
+\li \l{Get and Install Qt with \QOI}{\QOI} (Recommended).
+
+    \list
+    \li Gives you access to latest versions of Qt, on the day of their release.
+    \li Allows you to install older versions of Qt, in parallel to newer ones.
+    \li Features all Qt modules, including ones that are commercial-only.
+    \li Preconfigures Qt versions in \QC and \QDS.
+    \endlist
+
+    \QOI is full-featured, flexible, and fully supports commercial use cases,
+    including shipping distribution-independent builds of your application. It
+    is also the one supported best by The Qt Company and The Qt Project. We
+    recommend it if you plan to develop with Qt.
+
+
+\li Native package managers.
+
+    \list
+    \li Do not require a Qt Account.
+    \li Typically ship a recent version of Qt 6 (though not always the latest one).
+    \li Qt libraries and tools use third-party modules from the package manager,
+        instead of bundled ones.
+    \li May miss some of the Qt modules (especially commercial-only ones) and
+        tools.
+    \li May require additional configuration after installation.
+    \endlist
+
+    You can install Qt Framework, \QDS, and \QC using:
+
+    \list
+    \li Distribution's package manager (for Qt Framework and \QC).
+    \li Flatpak (for \QDS and \QC).
+    \endlist
+
+    Installing Qt Framework from native package managers is lightweight and easy
+    to automate. It relieves you from selecting and maintaining a particular Qt
+    version, at the expense of flexibility and control. It works best if you
+    need to install Qt only as a dependency for a local application, or plan to
+    make your application available via the native package manager.
+
+\endlist
+
+\section1 Installing Qt and \QC using your distribution's package manager
+
+Many Linux distributions provide Qt packages and \QC through their package
+managers.
+
+\section2 Installing Qt on Ubuntu and Debian-based systems
+
+Use the following commands to find and install the packages required for
+building Qt applications on Debian-based systems:
+
+\list
+\li To see available packages:
+    \badcode
+    apt list qt6-*dev*
+    \endcode
+\li To install specific dev packages, for example, \c qtbase and
+    \c qtdeclarative:
+    \badcode
+    sudo apt install qt6-{base,declarative}-dev
+    \endcode
+\li To install all the available dev packages with the documentation, build
+    tools, and \QC:
+    \badcode
+    sudo apt install qt6-*{dev,doc}* qtcreator cmake clazy g++
+    \endcode
+\endlist
+
+See also: \l{Enterprise Qt Debian Packages}
+
+\section2 Installing Qt on Fedora-based systems
+
+Use the following commands to find and install the packages required for
+building Qt applications on Fedora-based systems:
+
+\list
+\li To see available packages:
+    \badcode
+    dnf repoquery qt6-*devel*
+    \endcode
+
+\li To install specific dev packages, for example, \c qtbase and
+    \c qtdeclarative:
+    \badcode
+    sudo dnf install qt6-{qtbase,qtdeclarative}*devel*
+    \endcode
+
+\li To install all the available dev packages with the documentation, build
+    tools, and \QC:
+    \badcode
+    sudo dnf install qt6-*{devel,doc}* qt-creator
+    \endcode
+\endlist
+
+
+\section2 Installing Qt on openSUSE-based systems
+
+Use the following commands to find and install the packages required for
+building Qt applications on openSUSE-based systems:
+
+\list
+\li To see available packages:
+    \badcode
+    zypper se qt6*devel*
+    \endcode
+\li To install specific devel packages, for example, \c base and \c declarative:
+    \badcode
+    sudo zypper in qt6-{base,declarative}*devel
+    \endcode
+\li To install all the available devel packages with the documentation, and \QC:
+    \badcode
+    sudo zypper in qt6*{devel,docs,creator}*
+    \endcode
+\endlist
+
+\section1 Installing \QC and \QDS using Flatpak
+
+You can install \QC and \QDS as Flatpak applications from the Flathub
+repository:
+
+\list
+\li \QC is available at \l {https://flathub.org/en/apps/io.qt.QtCreator}.
+\li \QDS is available at \l {https://flathub.org/en/apps/io.qt.qtdesignstudio}.
+\endlist
+
+Refer to your distribution documentation for instructions on how to install
+Flatpak applications on your system.
+
+\section1 Additional configuration
+
+After installing Qt Framework and \QC from your distribution's package manager,
+you may need to configure your development environment. For example, you may
+want to create and configure Qt versions and kits in \QC.
+
+Refer to the \l{\QC: Configuring \QC} page for details.
+
 */
