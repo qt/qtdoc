@@ -72,6 +72,9 @@
     To install or build Qt, follow the general \l{Getting Started with Qt}
     {getting started with Qt} guide.
 
+    You can also follow \l{Alternative ways of installing Qt for macOS} for information on
+    how to install Qt from Homebrew.
+
     \section2 Generating Xcode Project Files
 
     By default, CMake and qmake generates project files in Makefile
@@ -1194,3 +1197,68 @@
     ensure that there is at maximum one .entitlements file in this folder.
 */
 
+/*!
+\page macos-installation.html
+\title Qt for \macos - Alternative ways of installing Qt
+\brief This article explains how to install Qt on macOS using \QOI and Homebrew.
+
+\section1 Overview
+
+You can install the Qt Framework, design, and development tools on \macos from
+these sources:
+
+\list
+\li Using the \l{Get and Install Qt with \QOI}{\QOI} (Recommended).
+    \list
+    \li Gives you access to latest versions of Qt, on the day of their release.
+    \li Allows you to install older versions of Qt, in parallel to newer ones.
+    \li Features all Qt modules, including commercial-only ones.
+    \li Preconfigures Qt versions in \QC and \QDS.
+    \li Allows you to browse the Qt documentation and examples locally.
+    \endlist
+
+    \QOI is full-featured, flexible, and fully supports commercial use cases. It
+    is also the one supported best by The Qt Company and The Qt Project. We
+    recommend it if you plan to develop with Qt, or bundle Qt as part of
+    application.
+\li Using the Homebrew package manager.
+    \list
+    \li Does not require a Qt Account.
+    \li Installs a recent version of Qt 6 (though not always the latest one).
+    \li Allows you to install most (but not all) Qt modules.
+    \li Does not provide a local version of the Qt documentation or examples.
+    \li Allows you to share third-party modules with other libraries and
+        applications.
+    \endlist
+
+    Homebrew is lightweight and good for automation. Homebrew works great if you
+    need to install Qt as a dependency for a \macos application, but do not plan
+    to do development work with Qt yourself, nor need special or commercial-only
+    Qt modules.
+\endlist
+
+\section1 Installing Qt Using the \QOI
+
+See \l{Get and Install Qt with \QOI} for information about how to use \QOI.
+
+\section1 Installing Qt using Homebrew
+
+To install Qt, \QC, and \QDS with Homebrew, install Homebrew first using the
+\l{https://brew.sh/}{installation command}. Then run the following commands in
+a terminal:
+
+\code
+brew install qt
+brew install --cask qt-creator
+brew install --cask qt-design-studio
+\endcode
+
+When you start \QC or \QDS, you need to set the path to the Qt version
+installed by Homebrew. By default, Homebrew installs Qt in
+\c {/opt/homebrew/Cellar/qt/<version>/}.
+
+For more information on setting up a Qt Kit in \QC, see \l{\QC: Add Qt versions}.
+
+\image link-qt-kit.webp {Choose a linked Qt Kit in Qt Creator}
+
+*/
