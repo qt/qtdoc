@@ -15,7 +15,6 @@ qt_add_qml_module(FXMaterialShowroomContent
         FloorComponent.ui.qml
         HeatwaveEffect.ui.qml
         LineparticleEffect.ui.qml
-        MouseRotatorAndWASD.qml
         RainEffect.ui.qml
         Screen01.ui.qml
         ShockwaveEffect.ui.qml

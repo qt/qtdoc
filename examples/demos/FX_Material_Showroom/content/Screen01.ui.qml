@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick3D
 import QtQuick3D.Effects
+import QtQuick3D.Helpers
 import PocketDemo
 import ComponentBundles.MaterialBundle
 import "Figma_Assets"
@@ -600,8 +601,8 @@ Rectangle {
         }
     }
 
-    MouseRotatorAndWASD {
-        id: mouseRotatorAndWASD
+    WasdController {
+        id: wasdController
         controlledObject: cameraRoot
         anchors.top: parent.top
         anchors.fill: parent
