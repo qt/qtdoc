@@ -111,6 +111,16 @@
 
     \section2 Qt GUI Module
     \list
+        \li Accessibility events of the new QAccessible::RoleChange type get emitted by the
+            docking window framework when dock widgets change between docked and floating.
+        \li The new accessibility role \l{QAccessible::Role}{Switch} is used by the Switch
+            type in Qt Quick Controls.
+        \li The new accessible attribute \l {QAccessible::Attribute}{Orientation} is used by
+            sliders and similar controls to report their orientation to accessibility clients.
+        \li QRawFont got an API to get the \l {QRawFont::}{glyphCount()} and to look up the
+            \l {QRawFont::}{glyphName()} for a glyph index of the font.
+        \li QTextCharFormat got new APIs to set \l {QTextCharFormat::setFontFeatures()}
+            {font features} and \l {QTextCharFormat::setFontVariableAxes()}{variable axes}.
     \endlist
 
     \section2 Qt HttpServer Module
