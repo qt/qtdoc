@@ -13,6 +13,7 @@ Item {
     clip: true
 
     property int currentStateIndex: 0
+    required property url downloadBase
 
     SvgPathItem {
         id: animatedOutline
@@ -104,7 +105,7 @@ Item {
     Image {
         id: black
 
-        source: rootWindow.downloadBase + "/content/doorIcon/assets/black_state_Idle_Name_Black.png"
+        source: root.downloadBase + "/content/doorIcon/assets/black_state_Idle_Name_Black.png"
         anchors.centerIn: parent
     }
 
@@ -261,7 +262,7 @@ Item {
     Image {
         id: yellow
 
-        source: rootWindow.downloadBase
+        source: root.downloadBase
                 + "/content/doorIcon/assets/yellow_state_Idle_Name_Yellow.png"
         anchors.centerIn: parent
     }
@@ -269,14 +270,14 @@ Item {
     Image {
         id: white
 
-        source: rootWindow.downloadBase + "/content/doorIcon/assets/white_state_Idle_Name_White.png"
+        source: root.downloadBase + "/content/doorIcon/assets/white_state_Idle_Name_White.png"
         anchors.centerIn: parent
     }
 
     Image {
         id: red
 
-        source: rootWindow.downloadBase + "/content/doorIcon/assets/red_state_Idle_Name_Red.png"
+        source: root.downloadBase + "/content/doorIcon/assets/red_state_Idle_Name_Red.png"
         anchors.centerIn: parent
     }
 
@@ -391,7 +392,7 @@ Item {
     Image {
         id: pointerOutlined
         visible: false
-        source: rootWindow.downloadBase + "/content/images/PointerOutlined.svg"
+        source: root.downloadBase + "/content/images/PointerOutlined.svg"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -402,21 +403,21 @@ Item {
     Image {
         id: menu
         visible: false
-        source: rootWindow.downloadBase + "/content/images/Menu.svg"
+        source: root.downloadBase + "/content/images/Menu.svg"
         fillMode: Image.PreserveAspectFit
     }
 
     Image {
         id: close
         visible: false
-        source: rootWindow.downloadBase + "/content/images/Close.svg"
+        source: root.downloadBase + "/content/images/Close.svg"
         fillMode: Image.PreserveAspectFit
     }
 
     states: [
         State {
             name: "state_state_Idle_Name_Animated"
-            when: currentStateIndex === 1
+            when: root.currentStateIndex === 1
 
             PropertyChanges {
                 target: element
@@ -535,7 +536,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Video_2"
-            when: currentStateIndex === 2
+            when: root.currentStateIndex === 2
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -569,7 +570,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Reset_camera"
-            when: currentStateIndex === 3
+            when: root.currentStateIndex === 3
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -584,7 +585,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Studio"
-            when: currentStateIndex === 4
+            when: root.currentStateIndex === 4
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -669,7 +670,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Video_3"
-            when: currentStateIndex === 5
+            when: root.currentStateIndex === 5
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -708,7 +709,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Video_3"
-            when: currentStateIndex === 6
+            when: root.currentStateIndex === 6
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -741,7 +742,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Demo_mode"
-            when: currentStateIndex === 7
+            when: root.currentStateIndex === 7
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -761,7 +762,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Demo_mode"
-            when: currentStateIndex === 8
+            when: root.currentStateIndex === 8
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -786,7 +787,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Video_1"
-            when: currentStateIndex === 9
+            when: root.currentStateIndex === 9
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -816,7 +817,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Video_1"
-            when: currentStateIndex === 10
+            when: root.currentStateIndex === 10
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -846,7 +847,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Black"
-            when: currentStateIndex === 11
+            when: root.currentStateIndex === 11
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -881,7 +882,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Video_2"
-            when: currentStateIndex === 12
+            when: root.currentStateIndex === 12
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -919,7 +920,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Animated"
-            when: currentStateIndex === 13
+            when: root.currentStateIndex === 13
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -959,7 +960,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Lights"
-            when: currentStateIndex === 14
+            when: root.currentStateIndex === 14
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1004,7 +1005,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Lights"
-            when: currentStateIndex === 15
+            when: root.currentStateIndex === 15
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1054,7 +1055,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Yellow"
-            when: currentStateIndex === 16
+            when: root.currentStateIndex === 16
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1109,7 +1110,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_White"
-            when: currentStateIndex === 17
+            when: root.currentStateIndex === 17
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1169,7 +1170,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Red"
-            when: currentStateIndex === 18
+            when: root.currentStateIndex === 18
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1234,7 +1235,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Garage"
-            when: currentStateIndex === 19
+            when: root.currentStateIndex === 19
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1304,7 +1305,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Garage"
-            when: currentStateIndex === 20
+            when: root.currentStateIndex === 20
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1379,7 +1380,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Studio"
-            when: currentStateIndex === 21
+            when: root.currentStateIndex === 21
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1459,7 +1460,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Desert"
-            when: currentStateIndex === 22
+            when: root.currentStateIndex === 22
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1549,7 +1550,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Desert"
-            when: currentStateIndex === 23
+            when: root.currentStateIndex === 23
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -1644,7 +1645,7 @@ Item {
         },
         State {
             name: "Menu"
-            when: currentStateIndex == 24
+            when: root.currentStateIndex == 24
             PropertyChanges {
                 target: rainFilled
                 visible: false
@@ -1776,7 +1777,7 @@ Item {
         },
         State {
             name: "Close"
-            when: currentStateIndex == 25
+            when: root.currentStateIndex == 25
             PropertyChanges {
                 target: element
                 visible: false
@@ -2065,7 +2066,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Rain"
-            when: currentStateIndex === 26
+            when: root.currentStateIndex === 26
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -2140,7 +2141,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Rain"
-            when: currentStateIndex === 27
+            when: root.currentStateIndex === 27
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -2220,7 +2221,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Snow"
-            when: currentStateIndex === 28
+            when: root.currentStateIndex === 28
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -2295,7 +2296,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Snow"
-            when: currentStateIndex === 29
+            when: root.currentStateIndex === 29
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -2375,7 +2376,7 @@ Item {
         },
         State {
             name: "state_state_Idle_Name_Weather"
-            when: currentStateIndex === 30
+            when: root.currentStateIndex === 30
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {
@@ -2450,7 +2451,7 @@ Item {
         },
         State {
             name: "state_state_Active_Name_Weather"
-            when: currentStateIndex === 31
+            when: root.currentStateIndex === 31
             extend: "state_state_Idle_Name_Animated"
 
             PropertyChanges {

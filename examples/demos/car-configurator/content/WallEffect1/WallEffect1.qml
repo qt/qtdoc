@@ -42,6 +42,7 @@ Item {
     // This property affects the angle of the movement of the clouds if iTime is animated. This is a helper property that results in correctly calculated cloudsXSpeed and cloudsYSpeed values. The angle is in degrees and 0 is vertically aligned movement from bottom to top.
     property real cloudsMovementAngle: 0
     property real cloudsSpeed: 0.05
+    required property url downloadBase
 
     FrameAnimation {
         id: frameAnimation
@@ -72,11 +73,11 @@ Item {
 
             anchors.fill: parent
             visible: false
-            source: rootWindow.downloadBase + "/content/WallEffect1/fog.png"
+            source: rootItem.downloadBase + "/content/WallEffect1/fog.png"
         }
 
-        vertexShader: rootWindow.downloadBase + "/content/WallEffect1/walleffect1.vert.qsb"
-        fragmentShader: rootWindow.downloadBase + "/content/WallEffect1/walleffect1.frag.qsb"
+        vertexShader: rootItem.downloadBase + "/content/WallEffect1/walleffect1.vert.qsb"
+        fragmentShader: rootItem.downloadBase + "/content/WallEffect1/walleffect1.frag.qsb"
         anchors.fill: parent
 
         mesh: GridMesh {

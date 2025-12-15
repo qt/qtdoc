@@ -7,7 +7,6 @@ import QtQuick3D
 PointLight {
     id: pointLight
     color: "#fdffe3"
-    scope: ev_SportsCar_low
     shadowFilter: 93
     shadowBias: 1
     shadowMapFar: 100
@@ -28,7 +27,7 @@ PointLight {
     states: [
         State {
             name: "On"
-            when: isOn
+            when: pointLight.isOn
 
             PropertyChanges {
                 target: pointLight
@@ -37,7 +36,7 @@ PointLight {
         },
         State {
             name: "Off"
-            when: !isOn
+            when: !pointLight.isOn
 
             PropertyChanges {
                 target: pointLight

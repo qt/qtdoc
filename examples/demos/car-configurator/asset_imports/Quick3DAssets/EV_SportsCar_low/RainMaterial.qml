@@ -46,7 +46,7 @@ CustomMaterial {
 
     property real uTime: 0.0
     property TextureInput uBase: TextureInput {
-        enabled: baseTex.source.length > 0
+        enabled: !baseTex.source.toString().length > 0
         texture: Texture {
             generateMipmaps: true
             mipFilter: Texture.Linear
@@ -54,7 +54,7 @@ CustomMaterial {
         }
     }
     property TextureInput uNormal: TextureInput {
-        enabled: normalTex.source.length > 0
+        enabled: !normalTex.source.toString().length > 0
         texture: Texture {
             generateMipmaps: true
             mipFilter: Texture.Linear

@@ -6,6 +6,7 @@ import QtQuick3D
 
 Node {
     id: node
+    required property url downloadBase
 
     // Nodes:
     Model {
@@ -13,9 +14,9 @@ Node {
         objectName: "Headlights.002"
         y: 0.5664713978767395
         z: 1.7861577272415161
-        source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/LightDecal/meshes/mesh_012_mesh.mesh"
+        source: node.downloadBase + "/asset_imports/Quick3DAssets/LightDecal/meshes/mesh_012_mesh.mesh"
         materials: [
-            chrome_material
+            chrome_001_material
         ]
     }
 

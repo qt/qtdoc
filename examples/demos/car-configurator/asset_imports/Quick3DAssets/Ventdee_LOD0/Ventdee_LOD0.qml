@@ -6,11 +6,12 @@ import QtQuick3D
 
 Node {
     id: root
+    required property url downloadBase
 
     Model {
         id: aset_nature_rock_M_ventdee_LOD0
 
-        source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/meshes/aset_nature_rock_M_ventdee_LOD0.mesh"
+        source: root.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/meshes/aset_nature_rock_M_ventdee_LOD0.mesh"
 
         PrincipledMaterial {
             id: _mat_Default_OBJ_material
@@ -23,19 +24,19 @@ Node {
             Texture {
                 id: ventdee_2K_Albedo
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Albedo.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Albedo.jpg"
             }
 
             Texture {
                 id: ventdee_2K_Normal_LOD0
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Normal_LOD0.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Normal_LOD0.jpg"
             }
 
             Texture {
                 id: ventdee_2K_Roughness
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Roughness.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Ventdee_LOD0/images/ventdee_2K_Roughness.jpg"
             }
         }
         materials: [

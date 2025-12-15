@@ -9,6 +9,7 @@ Node {
     scale.z: 0.01
     scale.y: 0.01
     scale.x: 0.01
+    required property url downloadBase
 
     Node {
         id: leftLight
@@ -257,8 +258,8 @@ Node {
             sourceBlend: CustomMaterial.SrcAlpha
             destinationBlend: CustomMaterial.OneMinusSrcAlpha
             cullMode: Material.NoCulling
-            vertexShader: rootWindow.downloadBase + "/content/shaders/flaremat.vert"
-            fragmentShader: rootWindow.downloadBase + "/content/shaders/flaremat.frag"
+            vertexShader: root.downloadBase + "/content/shaders/flaremat.vert"
+            fragmentShader: root.downloadBase + "/content/shaders/flaremat.frag"
 
             property real uTime: 0
 
@@ -275,12 +276,12 @@ Node {
             Texture {
                 id: flareTexture
 
-                source: rootWindow.downloadBase + "/content/images/headlightflare.png"
+                source: root.downloadBase + "/content/images/headlightflare.png"
             }
             Texture {
                 id: smokeTexture
 
-                source: rootWindow.downloadBase + "/content/images/smoke.png"
+                source: root.downloadBase + "/content/images/smoke.png"
             }
         }
     }

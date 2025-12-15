@@ -9,28 +9,20 @@ Model {
     property bool rain
     objectName: "TrunkLid"
     z: -0.5674706697463989
-    source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/trunkLid_mesh.mesh"
     receivesReflections: true
     property bool isOpen: false
     pickable: true
-    materials: [
-        rain ? carPaint_material_rain : carPaint_material,
-        rain ? carPaintBlackBump_material82_rain : carPaintBlackBump_material82,
-        rain ? glassWindsSide_material_rain : glassWindsSide_material,
-        rain ? plasticBlack_material24_rain : plasticBlack_material24
-    ]
-
     Node {
         id: __materialLibrary__
     }
     states: [
         State {
             name: "closed"
-            when: !isOpen
+            when: !trunkLid.isOpen
         },
         State {
             name: "open"
-            when: isOpen
+            when: trunkLid.isOpen
 
             PropertyChanges {
                 target: trunkLid

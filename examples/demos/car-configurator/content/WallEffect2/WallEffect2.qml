@@ -39,6 +39,7 @@ Item {
     //
     // The value ranges from "#00000000" to "#ffffffff". By default, the property is set to "#00000000" (no change).
     property color levelAdjustMinimumOutput: Qt.rgba(0, 0, 0, 0)
+    required property url downloadBase
 
     FrameAnimation {
         id: frameAnimation
@@ -56,8 +57,8 @@ Item {
         readonly property alias levelAdjustMinimumInput: rootItem.levelAdjustMinimumInput
         readonly property alias levelAdjustMinimumOutput: rootItem.levelAdjustMinimumOutput
 
-        vertexShader: rootWindow.downloadBase + '/content/WallEffect2/walleffect2.vert.qsb'
-        fragmentShader: rootWindow.downloadBase + '/content/WallEffect2/walleffect2.frag.qsb'
+        vertexShader: rootItem.downloadBase + '/content/WallEffect2/walleffect2.vert.qsb'
+        fragmentShader: rootItem.downloadBase + '/content/WallEffect2/walleffect2.frag.qsb'
         anchors.fill: parent
     }
 }

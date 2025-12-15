@@ -6,6 +6,7 @@ import QtQuick3D
 
 Node {
     id: node
+    required property url downloadBase
     property bool doorOpen: false
     onDoorOpenChanged: doorOpen? openDoor.running = true : closeDoor.running = true
     property bool hoodOpen: false
@@ -69,7 +70,7 @@ Node {
         scale.x: 4.24742
         scale.y: 4.24742
         scale.z: 4.24742
-        source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/ShadowPlane/meshes/plane_008_mesh.mesh"
+        source: node.downloadBase + "/asset_imports/Quick3DAssets/ShadowPlane/meshes/plane_008_mesh.mesh"
         materials: shadowMat_material
         morphTargets: [
             morphTarget,
@@ -84,12 +85,12 @@ Node {
             property real hoodWeight: morphTarget5.weight
             property real doorWeight: morphTarget.weight
             id: shadowMat_material
-            vertexShader: rootWindow.downloadBase + "/content/shaders/shadowmat.vert"
+            vertexShader: node.downloadBase + "/content/shaders/shadowmat.vert"
             shadingMode: CustomMaterial.Shaded
             alwaysDirty: true
             destinationBlend: CustomMaterial.OneMinusSrcAlpha
             sourceBlend: CustomMaterial.SrcAlpha
-            fragmentShader: rootWindow.downloadBase + "/content/shaders/shadowmat.frag"
+            fragmentShader: node.downloadBase + "/content/shaders/shadowmat.frag"
             depthDrawMode: Material.AlwaysDepthDraw
             objectName: "shadowMat"
             cullMode: Material.BackFaceCulling

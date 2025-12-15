@@ -6,12 +6,12 @@ import QtQuick3D
 
 Node {
     id: node
-
+    required property url downloadBase
     // Nodes:
     Model {
         id: plane
         objectName: "Plane"
-        source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Pebbles/meshes/plane_mesh.mesh"
+        source: node.downloadBase + "/asset_imports/Quick3DAssets/Pebbles/meshes/plane_mesh.mesh"
         materials: [
             mat_material,
             grass_material
@@ -45,7 +45,7 @@ Node {
 
         Texture {
             id: venodhb_2K_Albedo
-            source: rootWindow.downloadBase + "/content/images/venodhb_2K_Albedo.jpg"
+            source: node.downloadBase + "/content/images/venodhb_2K_Albedo.jpg"
         }
     }
 }

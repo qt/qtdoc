@@ -10,15 +10,8 @@ Model {
     objectName: "Hood"
     pickable: true
     z: 0.6023856401443481
-    source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/EV_SportsCar_low/meshes/hood_mesh.mesh"
     receivesReflections: true
     property bool isOpen: false
-    materials: [
-        rain ? carPaint_material_rain : carPaint_material,
-        rain ? plasticBlack_material24_rain : plasticBlack_material24,
-        rain ? chrome_material_rain : chrome_material
-    ]
-
     Node {
         id: __materialLibrary__
     }
@@ -26,11 +19,11 @@ Model {
     states: [
         State {
             name: "closed"
-            when: !isOpen
+            when: !hood.isOpen
         },
         State {
             name: "open"
-            when: isOpen
+            when: hood.isOpen
 
             PropertyChanges {
                 target: hood

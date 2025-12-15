@@ -2,9 +2,11 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick3D
 
 PinchArea {
+    id: pinchArea
+    required property PerspectiveCamera camera
     anchors.fill: parent
 
     onPinchUpdated: pinchEvent => {
@@ -12,8 +14,8 @@ PinchArea {
         if (pinchEvent.previousScale - pinchEvent.scale > threshold
          || pinchEvent.previousScale - pinchEvent.scale < -1 * threshold) {
             let velocity = (pinchEvent.previousScale - pinchEvent.scale) > 0 ? 1.25 : -1.25
-            sceneCamera2.fieldOfView += velocity * (sceneCamera2.fieldOfView + velocity > 0.0)
-                                                 * (sceneCamera2.fieldOfView + velocity < 120.0)
+            camera.fieldOfView += velocity * (camera.fieldOfView + velocity > 0.0)
+                                                 * (camera.fieldOfView + velocity < 120.0)
         }
     }
 
@@ -27,10 +29,10 @@ PinchArea {
         Connections {
             target: mouseArea
 
-            onWheel: wheel => {
-                sceneCamera2.fieldOfView += wheel.angleDelta.y * 0.04
-                * (sceneCamera2.fieldOfView + wheel.angleDelta.y * 0.04 > 0.0)
-                * (sceneCamera2.fieldOfView + wheel.angleDelta.y * 0.04 < 120.0)
+            function onWheel(wheel) {
+                pinchArea.camera.fieldOfView += wheel.angleDelta.y * 0.04
+                * (pinchArea.camera.fieldOfView + wheel.angleDelta.y * 0.04 > 0.0)
+                * (pinchArea.camera.fieldOfView + wheel.angleDelta.y * 0.04 < 120.0)
             }
         }
     }

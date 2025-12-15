@@ -6,6 +6,7 @@ import QtQuick3D
 
 Node {
     id: root
+    required property url downloadBase
 
     Model {
         id: aset_nature_rock_M_venodhb_LOD0
@@ -41,7 +42,7 @@ Node {
             Texture {
                 id: venodhb_2K_Albedo
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Albedo.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Albedo.jpg"
                 generateMipmaps: true
                 mipFilter: Texture.Nearest
                 scaleV: 60
@@ -51,7 +52,7 @@ Node {
             Texture {
                 id: venodhb_2K_Normal_LOD0
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Normal_LOD0.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Normal_LOD0.jpg"
                 scaleV: 60
                 scaleU: 60
             }
@@ -59,7 +60,7 @@ Node {
             Texture {
                 id: venodhb_2K_Roughness
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Roughness.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Roughness.jpg"
                 scaleV: 60
                 scaleU: 60
             }
@@ -67,7 +68,7 @@ Node {
 
         Texture {
             id: dot1
-            source: rootWindow.downloadBase + "/content/images/dot.png"
+            source: root.downloadBase + "/content/images/dot.png"
         }
 
         PrincipledMaterial {
@@ -83,7 +84,7 @@ Node {
             Texture {
                 id: venodhb_2K_Albedo2
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Albedo.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Albedo.jpg"
                 generateMipmaps: true
                 mipFilter: Texture.Nearest
                 scaleV: 10
@@ -93,7 +94,7 @@ Node {
             Texture {
                 id: venodhb_2K_Normal_LOD02
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Normal_LOD0.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Normal_LOD0.jpg"
                 scaleV: 10
                 scaleU: 10
             }
@@ -101,7 +102,7 @@ Node {
             Texture {
                 id: venodhb_2K_Roughness2
 
-                source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Roughness.jpg"
+                source: root.downloadBase + "/asset_imports/Quick3DAssets/Venodhb_LOD0/images/venodhb_2K_Roughness.jpg"
                 scaleV: 10
                 scaleU: 10
             }

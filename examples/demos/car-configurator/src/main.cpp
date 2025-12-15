@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "app_environment.h"
-#include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
 
 #include <QGuiApplication>
