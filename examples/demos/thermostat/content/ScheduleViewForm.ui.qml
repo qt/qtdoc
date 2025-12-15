@@ -24,6 +24,8 @@ Pane {
     property list<int> selectedDays: [0,0,0,0,0,0,0]
     property int currentMode: 2
     property int currentTemp: 10
+    property alias scheduleViewRootForScrollView: scrollView.scheduleViewRoot
+    property alias scheduleViewRootForSwipView: swipeView.scheduleViewRoot
 
     background: Rectangle {
         anchors.fill: parent
@@ -76,7 +78,6 @@ Pane {
     ScheduleStackView {
         id: scrollView
 
-        scheduleViewRoot: root
         anchors.top: title.bottom
         anchors.topMargin: 12
         anchors.leftMargin: 28
@@ -91,7 +92,6 @@ Pane {
     ScheduleSwipeView {
         id: swipeView
 
-        scheduleViewRoot: root
         anchors.top: title.bottom
         roomsList: root.roomsList
 
