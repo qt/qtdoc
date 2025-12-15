@@ -5,6 +5,7 @@ import QtQuick
 import Thermostat
 
 ScheduleViewForm {
+    id: root
     function getCurrentDate() {
         let currentDate = new Date()
         return currentDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
@@ -43,4 +44,7 @@ ScheduleViewForm {
             setDefaultValues()
         }
     }
+
+    scheduleViewRootForScrollView: root
+    scheduleViewRootForSwipView: root
 }
