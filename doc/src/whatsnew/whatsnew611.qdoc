@@ -285,6 +285,15 @@
 
     \section2 Qt Widgets Module
     \list
+        \li QWizard got a new \l{QWizard::}{bannerStretchPolicy} property that
+            configures how the banner should be sized within the wizard.
+        \li QAbstractItemView got a new \l{QAbstractItemView::}{keyboardSearchFlags}
+            property that allows tuning how the default implementation of
+            keyboardSearch() matches the given string against the model's data.
+        \li QColumnView got a new \l{QColumnView::}{previewColumnVisible} property
+            that specifies whether the preview column is visible.
+        \li The new QStyleOptionMenuItemV2 class adds a flag that indicates whether
+            the mouse is pressed on the item getting rendered by the style.
     \endlist
 
     \section2 Qt XML Module
