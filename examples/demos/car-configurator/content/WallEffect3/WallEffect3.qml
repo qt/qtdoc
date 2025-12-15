@@ -19,6 +19,7 @@ Item {
     property color electricCloudColor: Qt.rgba(0.499001, 0.532998, 0.919005, 1)
     // Defines color of the light. The default value is white (1.0, 1.0, 1.0, 1.0).
     property color lightColor: Qt.rgba(1, 1, 1, 1)
+    required property url downloadBase
 
     FrameAnimation {
         id: frameAnimation
@@ -32,8 +33,8 @@ Item {
         readonly property alias electricCloudColor: rootItem.electricCloudColor
         readonly property alias lightColor: rootItem.lightColor
 
-        vertexShader: rootWindow.downloadBase + '/content/WallEffect3/walleffect3.vert.qsb'
-        fragmentShader: rootWindow.downloadBase + '/content/WallEffect3/walleffect3.frag.qsb'
+        vertexShader: rootItem.downloadBase + '/content/WallEffect3/walleffect3.vert.qsb'
+        fragmentShader: rootItem.downloadBase + '/content/WallEffect3/walleffect3.frag.qsb'
         anchors.fill: parent
     }
 }

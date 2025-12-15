@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Studio.Effects
 import "doorIcon"
 import QtQuick.Studio.DesignEffects
 
@@ -25,6 +23,8 @@ Rectangle {
     property var group: null
 
     property alias buttonText: buttonText.text
+    property alias designEffectBackgroundLayer: designEffect.backgroundLayer
+    required property url downloadBase
 
     signal clicked
 
@@ -70,9 +70,10 @@ Rectangle {
     Icons {
         id: iconsON
 
-        currentStateIndex: iconId
+        currentStateIndex: root.iconId
         anchors.verticalCenterOffset: -16
         anchors.centerIn: parent
+        downloadBase: root.downloadBase
     }
 
     Item {
@@ -80,17 +81,17 @@ Rectangle {
     }
 
     DesignEffect {
-        backgroundLayer: view3D
+        id: designEffect
         backgroundBlurRadius: 40
     }
     states: [
         State {
             name: "Normal"
-            when: !menubutton
+            when: !root.menubutton
         },
         State {
             name: "Menu"
-            when: menubutton
+            when: root.menubutton
 
             PropertyChanges {
                 target: iconsON

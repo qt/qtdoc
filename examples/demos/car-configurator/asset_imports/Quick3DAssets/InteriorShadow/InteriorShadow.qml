@@ -3,13 +3,12 @@
 
 import QtQuick
 import QtQuick3D
-import Quick3DAssets.InteriorShadow
 
 Node {
     id: node
-
+    required property url downloadBase
     // Resources
-    property url textureData: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/InteriorShadow/maps/textureData.png"
+    property url textureData: downloadBase + "/asset_imports/Quick3DAssets/InteriorShadow/maps/textureData.png"
     Texture {
         id: _0_texture
         generateMipmaps: true
@@ -23,7 +22,7 @@ Node {
         objectName: "Interior"
         y: 0.7498878240585327
         z: 0.1537650227546692
-        source: rootWindow.downloadBase + "/asset_imports/Quick3DAssets/InteriorShadow/meshes/mesh_005_mesh.mesh"
+        source: node.downloadBase + "/asset_imports/Quick3DAssets/InteriorShadow/meshes/mesh_005_mesh.mesh"
         materials: [
             material_001_material
         ]

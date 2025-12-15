@@ -4,17 +4,19 @@
 import QtQuick
 
 Item {
+    id: root
     width: 1920
     height: 1080
 
-    property vector3d position: Qt.vector3d(0, 0, 0)
-    property vector3d rotation: Qt.vector3d(0, 0, 0)
+    property vector3d pos: Qt.vector3d(0, 0, 0)
+    property vector3d rot: Qt.vector3d(0, 0, 0)
 
+    // TODO: maybe a dead code?
     function resetPosition(pos) {
-        pos = position
+        root.pos = pos
     }
 
     function resetRotation(rot) {
-        rot = rotation
+        root.rot = rot
     }
 }

@@ -4,7 +4,7 @@
 #ifndef PARTICLEAFFECTOR_H
 #define PARTICLEAFFECTOR_H
 
-#include <QtQuick3DParticles/private/qquick3dparticlescaleaffector_p.h>
+#include <QtQuick3DParticles/private/qquick3dparticleaffector_p.h>
 #include <QtQuick3DParticles/private/qquick3dparticleemitter_p.h>
 #include <QVector3D>
 

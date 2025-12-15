@@ -5,6 +5,7 @@ import QtQuick
 import "doorIcon"
 import QtQuick.Controls
 import QtQuick.Studio.DesignEffects
+import QtQuick3D
 
 Rectangle {
     id: doorButton
@@ -16,18 +17,22 @@ Rectangle {
     scale: 1
     property bool isChecked: checkBox.checked
     property bool isRendered: true
-    property vector3d trackedWorldPosition: cube.scenePosition
+    property alias designEffectBackgroundLayer: designEffect.backgroundLayer
+    required property url downloadBase
+    required property var rootItem
+    required property PerspectiveCamera camera
+    required property vector3d trackedWorldPosition
 
     function updateState() {
-        var scenePosition = sceneCamera2.mapToViewport(trackedWorldPosition)
-        doorButton.x = scenePosition.x * root.width
-        doorButton.y = scenePosition.y * root.height
+        var scenePosition = camera.mapToViewport(trackedWorldPosition)
+        doorButton.x = scenePosition.x * rootItem.width
+        doorButton.y = scenePosition.y * rootItem.height
     }
 
     Component.onCompleted: updateState()
 
     Connections {
-        target: sceneCamera2
+        target: doorButton.camera
         function onSceneTransformChanged() { doorButton.updateState() }
     }
 
@@ -39,21 +44,22 @@ Rectangle {
     }
 
     Connections {
-        target: root
+        target: doorButton.rootItem
         function onWidthChanged() { doorButton.updateState() }
         function onHeightChanged() { doorButton.updateState() }
     }
 
     Door_button {
         id: door_button
+        downloadBase: doorButton.downloadBase
     }
     FrameAnimation {
         running: true
-        onTriggered: updateState()
+        onTriggered: doorButton.updateState()
     }
 
     DesignEffect {
-        backgroundLayer: view3D
+        id: designEffect
         backgroundBlurRadius: 10
         backgroundBlurVisible: true
     }
@@ -61,11 +67,11 @@ Rectangle {
     states: [
         State {
             name: "rendered"
-            when: isRendered
+            when: doorButton.isRendered
         },
         State {
             name: "NotRendered"
-            when: !isRendered
+            when: !doorButton.isRendered
 
             PropertyChanges {
                 target: doorButton

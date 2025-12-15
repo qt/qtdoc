@@ -13,7 +13,9 @@ qt_add_qml_module(Ast_Snow
         particleAffector.h
         particleAffector.cpp
     QML_FILES
+        ParticleMask.qml
         PrincipledExSnowMaterial.qml
+        SnowParticlesSystem.qml
     RESOURCES
         snow_normal_displacement.png
         sparkles.png
@@ -22,7 +24,7 @@ qt_add_qml_module(Ast_Snow
         snow_mask_effect.frag
 )
 
-target_link_libraries(Ast_Snow
+ target_link_libraries(Ast_Snow
     PRIVATE
     Qt6::Quick3DParticlesPrivate
 )

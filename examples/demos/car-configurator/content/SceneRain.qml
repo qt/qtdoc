@@ -89,6 +89,7 @@ ParticleSystem3D {
             amount: 1
         }
     }
+
     ParticleEmitter3D {
         id: emitter
         particle: rainParticle
@@ -96,7 +97,6 @@ ParticleSystem3D {
         lifeSpan: 1000
         shape: ParticleSceneShape3D {
             id: particlePlane
-            shapeResolution: 50
         }
         velocity: VectorDirection3D {
             direction: Qt.vector3d(0, 800, 0)

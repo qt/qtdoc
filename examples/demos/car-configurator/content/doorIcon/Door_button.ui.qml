@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
 
 Rectangle {
     id: door_button
@@ -10,6 +9,7 @@ Rectangle {
     height: 48
     color: "transparent"
     radius: 8
+    property alias downloadBase: icons.downloadBase
 
     Icons {
         id: icons

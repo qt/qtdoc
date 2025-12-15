@@ -559,6 +559,7 @@ CustomMaterial {
         property var heightAmountVertexColorMaskInfluence: [0., 0., 0., 0.]
         property var roughnessVertexColorMaskInfluence: [0., 0., 0., 0.]
         property var metalnessVertexColorMaskInfluence: [0., 0., 0., 0.]
+        property var snowNormalStrengthVertexColorMaskInfluence: [0., 0., 0., 0.]
     }
 
     onAlphaModeChanged: {
