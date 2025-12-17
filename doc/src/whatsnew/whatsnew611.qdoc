@@ -162,6 +162,9 @@
             See \l{qtqml-syntax-overridesemantics.html}{Property Shadowing and Override Semantics} for details.
         \li Gave the \l easingCurve value type a name and transformed the
             \l Easing namespace into a singleton.
+        \li Added APIs to QQmlContext to get the \l{QQmlContext::childContexts()}
+            {list of child contexts} and to \l{QQmlContext::findObjectRecursively()}{find an object
+            by id}.
     \endlist
 
     \section2 Qt Quick Module
