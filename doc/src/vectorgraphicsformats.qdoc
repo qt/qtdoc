@@ -140,7 +140,7 @@ In addition, the following extended features are supported from SVG 1.1 and SVG 
 \row
     \li Masks
     \li Yes
-    \li No
+    \li Yes
     \li
 \row
     \li Clip paths
@@ -160,12 +160,12 @@ In addition, the following extended features are supported from SVG 1.1 and SVG 
 \row
     \li Reusable symbols
     \li Yes
-    \li No
+    \li Yes
     \li
 \row
     \li Post-processing filters
     \li Yes
-    \li No
+    \li Yes
     \li feColorMatrix, feFlood, feGaussianBlur, feOffset and feMerge.
 \endtable
 
@@ -193,6 +193,11 @@ currently unsupported). Animations should be exported in the CSS keyframes forma
     \li Yes
     \li Yes
     \li
+\row
+    \li Offset-path animations
+    \li Yes
+    \li Yes
+    \li Animating item position and orientation along a path
 \endtable
 
 \section1 File Format: Lottie
@@ -270,7 +275,7 @@ rasterizer) and VectorImage (also including pre-converting files using \l{lottie
 \row
     \li Mattes
     \li Yes
-    \li No
+    \li Yes
     \li
 \row
     \li Masks
@@ -346,8 +351,13 @@ support for a selected subset of properties that are commonly used to create ani
 \row
     \li Path animations
     \li Yes
-    \li No
+    \li Yes
     \li Morphing animations of control points of shapes.
+\row
+    \li Movement along paths
+    \li Yes
+    \li Yes
+    \li Animating item position and orientation along a path
 \row
     \li Other property animations
     \li Yes
