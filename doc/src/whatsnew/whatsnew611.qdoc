@@ -362,6 +362,12 @@
 
     \section3 macOS
     \list
+    \li Sandboxed applications can now access files outside of the application
+        sandbox (so called security scoped resources) for both reading and writing.
+        Files or folders chosen by the user via file dialogs or similar native mechanism
+        are automatically and transparently handled, including persistent access across
+        application and device restarts.
+    \li Added QNativeInterface::QCocoaScreen for accessing the underlying NSScreen.
     \endlist
 
     \section3 Wayland Client on Linux
@@ -383,6 +389,14 @@
 
     \section3 iOS
     \list
+    \li Added support for file icons in the platform theme.
+    \li Added support for QFileOpenEvent for external requests to open files.
+    \li Sandboxed applications can now access files outside of the application
+        sandbox (so called security scoped resources) for both reading and writing.
+        Files or folders chosen by the user via file dialogs or similar native mechanism
+        are automatically and transparently handled, including persistent access across
+        application and device restarts.
+    \li Added support for native save dialogs.
     \endlist
 
     \section2 Embedded Platforms
