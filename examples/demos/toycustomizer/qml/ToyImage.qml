@@ -10,7 +10,6 @@ Item {
     property bool showBusyIndicator: true
     property alias sourceSize: image.sourceSize
     property alias source: image.source
-    property alias smooth: image.smooth
     readonly property alias status: image.status
     property alias color: shaderEffect.color
     property bool colorize: false

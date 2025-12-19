@@ -289,7 +289,6 @@ Item {
                 height: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(49)
                                                      : ApplicationConfig.responsiveSize(73)
             }
-            smooth: false
             anchors.bottom: parent.bottom
         }
     }
