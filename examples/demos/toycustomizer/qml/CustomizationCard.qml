@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Layouts
 
-Rectangle {
+Item {
     id: customizationCard
 
     property int oldPrice
@@ -32,10 +32,14 @@ Rectangle {
 
     width: ApplicationConfig.responsiveSize(544)
     height: ApplicationConfig.responsiveSize(775)
-    color: customizationCard.selected ? "#DAEBFF" : "#FFFFFF"
-    radius: ApplicationConfig.responsiveSize(16)
-    border.color: customizationCard.selected ? "#2269EE" : "#D7D6E1"
-    border.width: ApplicationConfig.responsiveSize(4)
+
+    Rectangle {
+        anchors.fill: parent
+        color: customizationCard.selected ? "#DAEBFF" : "#FFFFFF"
+        radius: ApplicationConfig.responsiveSize(16)
+        border.color: customizationCard.selected ? "#2269EE" : "#D7D6E1"
+        border.width: ApplicationConfig.responsiveSize(4)
+    }
 
     ColumnLayout {
         id: accessoryColumn

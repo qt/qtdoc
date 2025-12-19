@@ -88,7 +88,7 @@ qt_add_shaders(${TARGET_NAME} "shaders"
         qml/shaders/coloroverlay.frag
 )
 
-target_sources(${TARGET_NAME} PRIVATE ${ASSETS_FONTS})
+set_target_properties(${TARGET_NAME} PROPERTIES QT_RESOURCES_ASSETS_FONTS ON)
 
 add_subdirectory(assets)
 add_subdirectory(animations)
