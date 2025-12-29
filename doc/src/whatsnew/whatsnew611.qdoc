@@ -308,6 +308,50 @@
 
     \section2 QDoc Documentation Generator
     \list
+    \li Added comprehensive support for QML singleton types, including a new
+        \c{\qmlsingletontype} command, automatic detection of the
+        \c{QML_SINGLETON} macro, and recognition of \c{pragma singleton} in
+        QML files.
+    \li QDoc now has full support for QML module aliases (\c{import ... as ...}
+        syntax), including linking, syntax highlighting for qualified
+        identifiers, and correct markup for property notation such as
+        \c{anchors.fill} and attached properties such as
+        \c{Component.onCompleted}.
+    \li You can use the new \c{\toc}/\c{\endtoc} and \c{\tocentry} command for
+        specifying hierarchical table of contents structures in documentation
+        source files. QDoc generates \c{<project>_toc.xml} files for navigation
+        sidebars.
+    \li The \l {overload-command}{\\overload} command now takes an optional
+        argument. Use the \c{\overload primary} syntax to designate the primary
+        function in an overload set.
+    \li QDoc now generates contextual connection examples for overloaded signals
+        and slots.
+    \li The \c{includeprivate} configuration variable enables documentation of
+        private C++ members. Pure virtual functions are now unconditionally
+        documented.
+    \li The \c{logwarnings} configuration variable makes QDoc write all warnings
+        to a \c{<project>-qdoc-warnings.log} file.
+    \li QDoc warnings now include the project name prefix for multi-module
+        builds.
+    \li \b{Configuration Improvements}:
+        \list
+        \li \c{imagesoutputdir}: Custom output subdirectory for images to
+            solve file name clashes in multi-module builds.
+        \li \c{internalfilepatterns}: Automatically marks classes as internal
+            based on file/path name patterns, such as \c{*_p.h}.
+        \endlist
+    \li Formatting commands now work in \c{\title} arguments, \c{\generatelist}
+        works correctly in Qt help project TOC structures, and custom enumerator
+        prefixes are supported in \c{\qmlenum}.
+    \li The HTML structure for QML and C++ member documentation is unified. This
+        change introduces new CSS classes (\c{qml-member}, \c{qml-property},
+        \c{qml-method}, \c{qml-property-group}) in QDoc's HTML output.
+    \li \b{Code Parsing}: Improved scoped enum resolution, QML inheritance
+        handling with cycle detection, and correct preservation of declared
+        types and variable information in index files.
+    \li Added LLVM/Clang 21 compatibility, with minimum supported version
+        updated to 17.0.6.
+    \li The \c{\tableofcontents} command is officially deprecated.
     \endlist
 
     \section2 Qt Linguist
