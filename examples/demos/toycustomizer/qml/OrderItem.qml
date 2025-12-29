@@ -16,7 +16,11 @@ Item {
     property alias label: itemLabel.text
     property alias image: toyImage.source
 
+    implicitHeight: mainLayout.implicitHeight
+
     RowLayout {
+        id: mainLayout
+
         anchors {
             top: parent.top
             left: parent.left
@@ -43,6 +47,7 @@ Item {
                 LayoutItemProxy {
                     target: orderItem.isSelected ? itemName : notSelectedLabel
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    Layout.fillWidth: true
                 }
                 Item {
                    implicitHeight: 2
@@ -91,11 +96,13 @@ Item {
 
     ToyLabel {
         id: itemName
+        wrapMode: Text.Wrap
         textStyle: ApplicationConfig.TextStyle.H3_Light
         visible: false
     }
     ToyLabel {
         id: notSelectedLabel
+        wrapMode: Text.Wrap
         visible: !orderItem.isSelected
         text: qsTr("Not Selected")
     }
