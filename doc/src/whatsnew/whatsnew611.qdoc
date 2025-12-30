@@ -376,6 +376,10 @@
         See \l{Using lcheck} for more details.
     \li Added support for C++ attributes in lupdate parser
     \li Deprecated use of //= metastrings in lupdate parser.
+    \li Deprecated \c {lupdate -pro} option for processing .pro files directly.
+        Use \c {lupdate-pro} instead.
+    \li Removed lprodump executable. Its functionality is now available via
+        the \c {lupdate-pro -dump-json} option.
     \endlist
 
     \section1 Platform Changes
