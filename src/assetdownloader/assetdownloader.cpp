@@ -14,7 +14,7 @@
 #include <QtCore/QTemporaryDir>
 #include <QtCore/QTemporaryFile>
 
-#include <QtTaskTree/QConcurrentCall>
+#include <QtTaskTree/QThreadFunction>
 #include <QtTaskTree/QNetworkReplyWrapper>
 #include <QtTaskTree/QSingleTaskTreeRunner>
 
@@ -439,10 +439,10 @@ void AssetDownloader::start()
         return DoneResult::Success;
     };
 
-    const auto onReadAssetsFileSetup = [storage](QConcurrentCall<DownloadableAssets> &async) {
-        async.setConcurrentCallData(readAssetsFileContent, storage->jsonContent);
+    const auto onReadAssetsFileSetup = [storage](QThreadFunction<DownloadableAssets> &async) {
+        async.setThreadFunctionData(readAssetsFileContent, storage->jsonContent);
     };
-    const auto onReadAssetsFileDone = [storage](const QConcurrentCall<DownloadableAssets> &async) {
+    const auto onReadAssetsFileDone = [storage](const QThreadFunction<DownloadableAssets> &async) {
         storage->assets = async.result();
         storage->assetsToDownload = storage->assets.files;
     };
@@ -466,11 +466,11 @@ void AssetDownloader::start()
         return DoneResult::Success; // Ignore zip download failure
     };
 
-    const auto onUnzipSetup = [this, storage](QConcurrentCall<void> &async) {
+    const auto onUnzipSetup = [this, storage](QThreadFunction<void> &async) {
         if (storage->zipContent.isEmpty())
             return SetupResult::StopWithSuccess;
 
-        async.setConcurrentCallData(unzip, storage->zipContent, storage->tempDir, d->m_zipFileName);
+        async.setThreadFunctionData(unzip, storage->zipContent, storage->tempDir, d->m_zipFileName);
         d->clearProgress(tr("Unzipping..."));
         return SetupResult::Continue;
     };
@@ -507,10 +507,10 @@ void AssetDownloader::start()
     };
 
     const auto onAssetWriteSetup = [storage, downloadIterator, assetStorage](
-                                           QConcurrentCall<void> &async) {
+                                           QThreadFunction<void> &async) {
         const QString filePath = storage->tempDir.absoluteFilePath(
             storage->assetsToDownload.at(downloadIterator.iteration()).toString());
-        async.setConcurrentCallData(writeAsset, *assetStorage, filePath);
+        async.setThreadFunctionData(writeAsset, *assetStorage, filePath);
     };
     const auto onAssetWriteDone = [this, storage](DoneWith result) {
         if (result != DoneWith::Success) {
@@ -531,11 +531,11 @@ void AssetDownloader::start()
         d->setProgress(0, storage->assets.files.size(), tr("Copying assets..."));
     };
 
-    const auto onAssetCopySetup = [this, storage, copyIterator](QConcurrentCall<void> &async) {
+    const auto onAssetCopySetup = [this, storage, copyIterator](QThreadFunction<void> &async) {
         const QString fileName = storage->assets.files.at(copyIterator.iteration()).toString();
         const QString sourcePath = storage->tempDir.absoluteFilePath(fileName);
         const QString destPath = d->m_localDownloadDir.absoluteFilePath(fileName);
-        async.setConcurrentCallData(copyAndCheck, sourcePath, destPath);
+        async.setThreadFunctionData(copyAndCheck, sourcePath, destPath);
     };
     const auto onAssetCopyDone = [this, storage] {
         StorageData &storageData = *storage;
@@ -556,24 +556,24 @@ void AssetDownloader::start()
         storage,
         onGroupSetup(onSetup),
         QNetworkReplyWrapperTask(onJsonDownloadSetup, onJsonDownloadDone),
-        QConcurrentCallTask<DownloadableAssets>(onReadAssetsFileSetup, onReadAssetsFileDone, CallDone::OnSuccess),
+        QThreadFunctionTask<DownloadableAssets>(onReadAssetsFileSetup, onReadAssetsFileDone, CallDone::OnSuccess),
         Group {
             onGroupSetup(onSkipIfAllAssetsPresent),
             QNetworkReplyWrapperTask(onZipDownloadSetup, onZipDownloadDone),
-            QConcurrentCallTask<void>(onUnzipSetup, onUnzipDone),
+            QThreadFunctionTask<void>(onUnzipSetup, onUnzipDone),
             For (downloadIterator) >> Do {
                 parallelIdealThreadCountLimit,
                 onGroupSetup(onAssetsDownloadGroupSetup),
                 Group {
                     assetStorage,
                     QNetworkReplyWrapperTask(onAssetDownloadSetup, onAssetDownloadDone),
-                    QConcurrentCallTask<void>(onAssetWriteSetup, onAssetWriteDone)
+                    QThreadFunctionTask<void>(onAssetWriteSetup, onAssetWriteDone)
                 }
             },
             For (copyIterator) >> Do {
                 parallelIdealThreadCountLimit,
                 onGroupSetup(onAssetsCopyGroupSetup),
-                QConcurrentCallTask<void>(onAssetCopySetup, onAssetCopyDone, CallDone::OnSuccess),
+                QThreadFunctionTask<void>(onAssetCopySetup, onAssetCopyDone, CallDone::OnSuccess),
                 onGroupDone(onAssetsCopyGroupDone)
             }
         }
