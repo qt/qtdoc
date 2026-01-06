@@ -402,6 +402,11 @@
 
     \section3 Windows
     \list
+    \li Added experimental support for \l{https://learn.microsoft.com/windows/arm/arm64ec}{ARM64EC}
+        when using Visual Studio 2026. To use this configuration add \c{/arm64EC} to \c{CFLAGS} as
+        well as \c{/arm64EC} and \c{/d2arm64ECMarkAllFuncsPatchable} to your \c{CXXFLAGS}
+        environment variables on your Windows on ARM machine and configure and build Qt as you
+        normally do.
     \endlist
 
     \section3 Linux
