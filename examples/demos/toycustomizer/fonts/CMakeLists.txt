@@ -7,7 +7,10 @@ set(assets_fonts
     DynaPuff/DynaPuff-VariableFont_wdth,wght.ttf
 )
 
-qt_add_resources(${TARGET_NAME} "fonts" FILES ${assets_fonts})
+qt_add_resources(${TARGET_NAME} "fonts"
+    PREFIX "/qt/qml/ToyCustomizer/qml/fonts/"
+    FILES ${assets_fonts}
+)
 
 set(clean_fonts
     "${assets_fonts}"

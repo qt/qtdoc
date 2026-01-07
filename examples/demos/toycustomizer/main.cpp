@@ -9,10 +9,6 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    QFontDatabase::addApplicationFont(":/fonts/DynaPuff/DynaPuff-VariableFont_wdth,wght.ttf");
-    QFontDatabase::addApplicationFont(":/fonts/WinkySans/WinkySans-VariableFont_wght.ttf");
-    QFontDatabase::addApplicationFont(":/fonts/WinkySans/WinkySans-Italic-VariableFont_wght.ttf");
-
     QQmlApplicationEngine engine;
     QObject::connect(
         &engine,

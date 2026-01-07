@@ -46,6 +46,16 @@ ApplicationWindow {
         }
     }
 
+    FontLoader {
+        source: "fonts/DynaPuff/DynaPuff-VariableFont_wdth,wght.ttf"
+    }
+    FontLoader {
+        source: "fonts/WinkySans/WinkySans-VariableFont_wght.ttf"
+    }
+    FontLoader {
+        source: "fonts/WinkySans/WinkySans-Italic-VariableFont_wght.ttf"
+    }
+
     AccessoryModel {
         id: __accessoryModel
     }
