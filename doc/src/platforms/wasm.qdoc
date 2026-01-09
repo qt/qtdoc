@@ -40,7 +40,7 @@ Applications should use the same version since Emscripten does not guarantee
 \l{https://github.com/emscripten-core/emscripten/blob/main/ChangeLog.md}{ABI compatibility}
 between versions.
 
-The supported version of Emscripten for \QtVersion is Emscripten 4.0.7.
+The supported version of Emscripten for \QtVersion is Emscripten 5.0.5.
 
 Refer to the \l{https://emscripten.org/docs/getting_started/index.html}
 {Emscripten documentation} for more information about installing the
@@ -49,8 +49,8 @@ Emscripten SDK.
 Use \c emsdk to install specific \c Emscripten versions. For example, to install
 it for \QtVersion enter:
 \list
-    \li ./emsdk install 4.0.7
-    \li ./emsdk activate 4.0.7
+    \li ./emsdk install 5.0.5
+    \li ./emsdk activate 5.0.5
 \endlist
 
 After installation, you should have the Emscripten compiler in your path.
