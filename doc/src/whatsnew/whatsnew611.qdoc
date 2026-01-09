@@ -146,6 +146,10 @@
 
     \section2 Qt Network Module
     \list
+      \li \l QNetworkRequest can now specify the TCP Keep Alive parameters for the current
+          request. Also, the default TCP Keep Alive parameters have been changed in
+          \l QNetworkAccessManager and now the inactive connections are terminated after two
+          minutes of inactivity.
     \endlist
 
     \section2 Qt Protobuf Module
