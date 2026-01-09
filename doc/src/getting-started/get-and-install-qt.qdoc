@@ -1,63 +1,66 @@
-// Copyright (C) 2022 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
     \page get-and-install-qt.html
 
     \title Get and Install Qt
-    \brief Downloading and installing with \QOI or \QMT.
+    \brief Overview of the different ways to download and install Qt.
 
-    You can get Qt, its modules and tools via \QOI or \QMT.
+    You can install Qt on your computer in different ways. The table below outlines each
+    method and when it is most useful.
 
-    Via \QOI you can do new installations. \QMT is included in each Qt installation
-    and with it you can update your Qt installation for example by adding and
-    removing components.
+    \table
+      \header
+        \li Method
+        \li Description
+        \li When to use
+      \row
+        \li \l{Get and Install Qt with \QOI}{\QOI (GUI)}
+        \li A graphical installer that lets you choose Qt versions, modules, and tools
+            interactively. In most cases, this is the best way to install Qt.
+        \li
+          \list
+            \li You're new to Qt.
+            \li You prefer a visual interface.
+            \li You're installing Qt on a desktop computer.
+          \endlist
+      \row
+        \li \l{Get and Install Qt with Command Line Interface}{\QOI (command line)}
+        \li Allows unattended installation using scripts or automation tools.
+        \li
+          \list
+            \li You need to install Qt on multiple machines.
+            \li You're setting up CI/CD pipelines.
+            \li You want to automate the installation without user interaction.
+          \endlist
+      \row
+        \li \l{Building Qt Sources}{Build from sources}
+        \li Download and compile Qt manually from source code.
+        \li
+          \list
+            \li You need a custom build (for example, with patches or debug options).
+            \li Your platform isn't supported by prebuilt packages.
+            \li You're contributing to Qt or debugging its internals.
+          \endlist
+      \row
+        \li Package managers:
+          \list
+            \li \l{Qt for macOS - Alternative ways of installing Qt}{macOS}
+            \li \l{Qt for Linux - Alternative ways of installing Qt}{Linux}
+          \endlist
+        \li Allows you to install a recent version of Qt without requiring a Qt account.
+        \li
+          \list
+            \li Lightweight and good for automation.
+            \li You need to install Qt as a dependency for your applications, but don't plan
+            to do development work with Qt yourself.
+            \li You don't need special or commercial-only modules.
+          \endlist
+    \endtable
 
-    You can use \QOI and \QMT via a graphical user
-    interface or a command line interface. The command line interface
-    enables installing and uninstalling without any user interaction, that is,
-    unattended usage.
+After you have installed Qt, you can add, update, and remove components with \QMT
+(included in every Qt installation). For more information, see
+\l{Add, update, and remove installed Qt components}{Add, update, and remove components}.
 
-    To learn the basics of getting and installing Qt, take the
-    \l {https://www.qt.io/academy/course-catalog#how-to-install-qt}
-    {How to Install Qt} course in Qt Academy.
-
-
-    \section1 Using \QOI
-
-    You can download \QOI via \l{https://login.qt.io}{Qt Account}
-    as follows:
-
-    \list 1
-        \li Select \uicontrol{Downloads}
-        \li Download \QOI for your host: Linux (ARM64 or x64), macOS, or Windows (ARM64 or x64)
-    \endlist
-
-    See \l{Get and Install Qt with \QOI} for more information
-    about how to use \QOI.
-
-    \l{Get and Install Qt with Command Line Interface} describes how you can use
-    \QOI with the command line interface.
-
-    \image qtinstallercomponents.webp
-
-    \section1 Using \QMT
-
-    After you install Qt, use \QMT under <install_dir> to
-    add, update, or remove installed components.
-
-    For more information about how to use \QMT with the command line
-    interface, see \l{Get and Install Qt with Command Line Interface}.
-
-    \image maintenancetool.webp
-
-    \section1 Building Qt from sources
-
-    You can also build Qt yourself. This can be useful in many
-    scenarios, for example, if no prebuilt packages exist for your
-    platform, if you need to modify Qt during debugging, or if you plan
-    to contribute to Qt. See \l{Building Qt Sources} for instructions on
-    \l{Getting Qt Sources from the Git repository}{obtaining the Qt source code},
-    information about Qt's prerequisites, and guidelines on configuring and
-    building Qt.
 */
