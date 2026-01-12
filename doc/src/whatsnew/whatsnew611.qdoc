@@ -154,6 +154,9 @@
 
     \section2 Qt Protobuf Module
     \list
+        \li The \l qprotobufmessage_cast() function provides safe downcasting of
+            \l QProtobufMessage pointers. Similar to \l qobject_cast() or \c dynamic_cast(),
+            it enables easy and safe run-time type checking and conversion.
     \endlist
 
     \section2 Qt Qml Module
