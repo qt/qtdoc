@@ -125,6 +125,25 @@
 
     \section2 Qt HttpServer Module
     \list
+        \li Added support for HTTP/1.0 clients.
+        \li Qt 6.11 introduces configurable request size limits to \l QHttpServerConfiguration,
+            allowing applications to protect against oversized requests. New methods include
+            \l {QHttpServerConfiguration::}{setMaximumUrlSize()},
+            \l {QHttpServerConfiguration::}{setMaximumTotalHeaderSize()},
+            \l {QHttpServerConfiguration::}{setMaximumHeaderFieldSize()},
+            \l {QHttpServerConfiguration::}{setMaximumHeaderFieldCount()},
+            and \l {QHttpServerConfiguration::}{setMaximumBodySize()}. When limits
+            are exceeded, the server responds with appropriate HTTP error codes (414, 431,
+            or 413).
+        \li Route handlers can now return \c QFuture<void> and respond using a
+            \l {QHttpServerResponder}&& argument in another thread, enabling CPU-intensive
+            request processing to be offloaded from the main server thread. For HTTP/2
+            connections, multiple requests can be processed concurrently, while HTTP/1.x
+            connections process requests sequentially but still benefit from background
+            processing. Socket I/O always remains in the QHttpServer thread.
+        \li \l {QHttpServerResponder::}{isResponseCanceled()} was added to
+            \l QHttpServerResponder, allowing handlers to detect when a client
+            has disconnected and exit early to avoid unnecessary processing.
     \endlist
 
     \section2 Qt Lottie Animation
