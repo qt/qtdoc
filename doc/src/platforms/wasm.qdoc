@@ -601,7 +601,7 @@ socket functionality to ensure security within the web sandbox. Consequently, an
 relying on QWebSocketServer for accepting incoming network connections cannot be utilized within
 the web environment.
 
-\note QtMqtt and QtRemoteObjects modules can be used with QtWebSockets as transports.
+\note \l{Qt MQTT} and QtRemoteObjects modules can be used with QtWebSockets as transports.
 They are not officially supported and may or may not work, or have missing functionality.
 See \l QMqttClient::connectToHostWebSocket and the \l {QtRemoteObjects WebSockets Applications} example.
 
