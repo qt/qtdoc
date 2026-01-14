@@ -11,11 +11,13 @@ import QtQuick.Shapes
 
 import QtExampleStyle
 
-Item {
+Rectangle {
     id: root
     required property BasicLogin loginService
     required property PaginatedResource colors
     required property PaginatedResource colorViewUsers
+
+    color: UIStyle.background
 
     ColorDialogEditor {
         id: colorPopup
@@ -43,10 +45,10 @@ Item {
     ColumnLayout {
         // The main application layout
         anchors.fill :parent
-
+        spacing: 0
         ToolBar {
             Layout.fillWidth: true
-            Layout.minimumHeight: 25 + 4
+            Layout.minimumHeight: 35
 
             UserMenu {
                 id: userMenu
@@ -57,11 +59,81 @@ Item {
 
             RowLayout {
                 anchors.fill: parent
-                Text {
-                    text: qsTr("QHTTP Server")
-                    font.pixelSize: 8
-                    color: "#667085"
+                anchors.leftMargin: 5
+                anchors.rightMargin: 5
+
+                AbstractButton {
+                    Layout.preferredWidth: 25
+                    Layout.preferredHeight: 25
+                    Layout.alignment: Qt.AlignVCenter
+
+                    Rectangle {
+                        anchors.fill: parent
+                        radius: 4
+                        color: UIStyle.buttonBackground
+                        border.color: UIStyle.buttonOutline
+                        border.width: 1
+                    }
+
+                    Image {
+                        source: UIStyle.iconPath("plus")
+                        fillMode: Image.PreserveAspectFit
+                        anchors.fill: parent
+                        sourceSize.width: width
+                        sourceSize.height: height
+
+                    }
+                    visible: root.loginService.loggedIn
+                    onClicked: colorPopup.createNewColor()
                 }
+
+                AbstractButton {
+                    Layout.preferredWidth: 25
+                    Layout.preferredHeight: 25
+                    Layout.alignment: Qt.AlignVCenter
+
+                    Rectangle {
+                        anchors.fill: parent
+                        radius: 4
+                        color: UIStyle.buttonBackground
+                        border.color: UIStyle.buttonOutline
+                        border.width: 1
+                    }
+
+                    Image {
+                        source: UIStyle.iconPath("update")
+                        fillMode: Image.PreserveAspectFit
+                        anchors.fill: parent
+                        sourceSize.width: width
+                        sourceSize.height: height
+                    }
+
+                    onClicked: {
+                        root.colors.refreshCurrentPage()
+                        root.colorViewUsers.refreshCurrentPage()
+                    }
+                }
+
+                Item { Layout.fillWidth: true }
+
+                Image {
+                    Layout.preferredWidth: 25
+                    Layout.preferredHeight: 25
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                    source: "qrc:/qt/qml/ColorPalette/icons/qt.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                    text: qsTr("Color Palette")
+                    font.pixelSize: UIStyle.fontSizeM
+                    font.bold: true
+                    color: UIStyle.titletextColor
+                }
+
                 Item { Layout.fillWidth: true }
 
                 AbstractButton {
@@ -83,7 +155,7 @@ Item {
 
                             function getCurrentUserImage() {
                                 if (!root.loginService.loggedIn)
-                                    return "qrc:/qt/qml/ColorPalette/icons/user.svg";
+                                    return UIStyle.iconPath("user");
                                 let users = root.colorViewUsers
                                 for (let i = 0; i < users.data.length; i++) {
                                     if (users.data[i].email === root.loginService.user)
@@ -112,13 +184,14 @@ Item {
                         userMenu.open()
                         var pos = mapToGlobal(Qt.point(x, y))
                         pos = userMenu.parent.mapFromGlobal(pos)
-                        userMenu.x = x - userMenu.width + 25 + 3
-                        userMenu.y = y + 25 + 3
+                        userMenu.x = x - userMenu.width + 50
+                        userMenu.y = y + 15
                     }
 
                     Shape {
                        id: bubble
                        x: -text.width - 25
+                       y: -3
                        anchors.margins: 3
 
                        preferredRendererType: Shape.CurveRenderer
@@ -127,7 +200,8 @@ Item {
 
                        ShapePath {
                            strokeWidth: 0
-                           fillColor: "#667085"
+                           fillColor: UIStyle.highlightColor
+                           strokeColor: UIStyle.highlightBorderColor
                            startX: 5; startY: 0
                            PathLine { x: 5 + text.width + 6; y: 0 }
                            PathArc { x: 10 + text.width + 6; y: 5; radiusX: 5; radiusY: 5}
@@ -147,7 +221,7 @@ Item {
                            x: 8
                            y: 8
                            id: text
-                           color: "white"
+                           color: UIStyle.textColor
                            text: qsTr("Log in to edit")
                            font.bold: true
                            horizontalAlignment: Qt.AlignHCenter
@@ -155,83 +229,7 @@ Item {
                        }
                    }
                 }
-            }
 
-            Image {
-                anchors.centerIn: parent
-                source: "qrc:/qt/qml/ColorPalette/icons/qt.png"
-                fillMode: Image.PreserveAspectFit
-                height: 25
-            }
-
-        }
-        ToolBar {
-            Layout.fillWidth: true
-            Layout.minimumHeight: 32
-
-            RowLayout {
-                anchors.fill: parent
-                Text {
-                    Layout.alignment: Qt.AlignVCenter
-                    text: qsTr("Color Palette")
-                    font.pixelSize: 14
-                    font.bold: true
-                    color: "#667085"
-                }
-
-                Item { Layout.fillWidth: true }
-
-                AbstractButton {
-                    Layout.preferredWidth: 25
-                    Layout.preferredHeight: 25
-                    Layout.alignment: Qt.AlignVCenter
-
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 4
-                        color: "#192CDE85"
-                        border.color: "#DDE2E8"
-                        border.width: 1
-                    }
-
-                    Image {
-                        source: UIStyle.iconPath("plus")
-                        fillMode: Image.PreserveAspectFit
-                        anchors.fill: parent
-                        sourceSize.width: width
-                        sourceSize.height: height
-
-                    }
-                    visible: root.loginService.loggedIn
-                    onClicked: colorPopup.createNewColor()
-                }
-
-                AbstractButton {
-                    Layout.preferredWidth: 25
-                    Layout.preferredHeight: 25
-                    Layout.alignment: Qt.AlignVCenter
-
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 4
-                        color: "#192CDE85"
-                        border.color: "#DDE2E8"
-                        border.width: 1
-                    }
-
-                    Image {
-                        source: UIStyle.iconPath("update")
-                        fillMode: Image.PreserveAspectFit
-                        anchors.fill: parent
-                        sourceSize.width: width
-                        sourceSize.height: height
-                    }
-
-                    onClicked: {
-                        root.colors.refreshCurrentPage()
-                        root.colorViewUsers.refreshCurrentPage()
-                    }
-                }
             }
         }
 
@@ -253,7 +251,7 @@ Item {
             header:  Rectangle {
                 height: 32
                 width: parent.width
-                color: "#F0F1F3"
+                color: UIStyle.background
 
                 RowLayout {
                     anchors.fill: parent
@@ -262,28 +260,33 @@ Item {
                         Layout.alignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
 
-                        font.pixelSize: 12
-                        color: "#667085"
+                        font.pixelSize: UIStyle.fontSizeS
+                        color: UIStyle.titletextColor
                     }
                     HeaderText {
                         id: headerName
                         text: qsTr("Color Name")
-                        Layout.preferredWidth: colorListView.width * 0.3
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: 30
                     }
                     HeaderText {
                         id: headerRgb
                         text: qsTr("Rgb Value")
-                        Layout.preferredWidth: colorListView.width * 0.25
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: 25
                     }
                     HeaderText {
                         id: headerPantone
                         text: qsTr("Pantone Value")
-                        Layout.preferredWidth: colorListView.width * 0.25
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: 25
+                        font.pixelSize: UIStyle.fontSizeS
                     }
                     HeaderText {
                         id: headerAction
                         text: qsTr("Action")
-                        Layout.preferredWidth: colorListView.width * 0.2
+                        Layout.fillWidth: true
+                        Layout.horizontalStretchFactor: 20
                     }
                 }
             }
@@ -294,7 +297,8 @@ Item {
                 required property var modelData
 
                 width: colorListView.width
-                height: 25
+                height: (colorListView.height - 55) / 6 - colorListView.spacing
+                // Header: 35, Footer 20, 55 together
                 RowLayout {
                     anchors.fill: parent
                     anchors.leftMargin: 5
@@ -304,7 +308,7 @@ Item {
                         id: colorSample
                         Layout.alignment: Qt.AlignVCenter
                         implicitWidth: 36
-                        implicitHeight: 21
+                        implicitHeight: 36
                         radius: 6
                         color: colorInfo.modelData.color
                     }
@@ -314,18 +318,24 @@ Item {
                         horizontalAlignment: Qt.AlignLeft
                         leftPadding: 5
                         text: colorInfo.modelData.name
+                        color: UIStyle.textColor
+                        font.pixelSize: UIStyle.fontSizeS
                     }
 
                     Text {
                         Layout.preferredWidth: colorInfo.width * 0.25
                         horizontalAlignment: Qt.AlignHCenter
                         text: colorInfo.modelData.color
+                        color: UIStyle.textColor
+                        font.pixelSize: UIStyle.fontSizeS
                     }
 
                     Text {
                         Layout.preferredWidth: colorInfo.width * 0.25
                         horizontalAlignment: Qt.AlignHCenter
                         text: colorInfo.modelData.pantone_value
+                        color: UIStyle.textColor
+                        font.pixelSize: UIStyle.fontSizeS
                     }
 
                     Item {

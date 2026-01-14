@@ -46,6 +46,16 @@ qt_add_qml_module(colorpaletteclient
         icons/update.svg
         icons/user.svg
         icons/plus.svg
+        icons/close_dark.svg
+        icons/delete_dark.svg
+        icons/dots_dark.svg
+        icons/edit_dark.svg
+        icons/login_dark.svg
+        icons/logout_dark.svg
+        icons/ok_dark.svg
+        icons/update_dark.svg
+        icons/user_dark.svg
+        icons/plus_dark.svg
 )
 
 target_link_libraries(colorpaletteclient PRIVATE

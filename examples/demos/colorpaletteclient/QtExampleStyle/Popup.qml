@@ -20,8 +20,8 @@ T.Popup {
     background: Rectangle {
         id: bg
         radius: 8
-        border.color: "#E0E2E7"
+        border.color: UIStyle.buttonOutline
         border.width: 2
-        color: "#FFFFFF"
+        color: UIStyle.background
     }
 }

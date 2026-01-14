@@ -14,9 +14,19 @@ T.TextField {
 
     background: Rectangle {
         implicitWidth: 200
-        implicitHeight: 40
-        radius: 8
-        color: control.enabled ? "transparent" : "#353637"
-        border.color: "#E0E2E7"
+        radius: 5
+
+        color: control.readOnly
+               ? UIStyle.buttonGray
+               : UIStyle.background
+
+        border.color: UIStyle.buttonOutline
     }
+
+    color: control.readOnly
+              ? Qt.rgba(UIStyle.textColor.r,
+                        UIStyle.textColor.g,
+                        UIStyle.textColor.b,
+                        0.6)
+              : UIStyle.textColor
 }

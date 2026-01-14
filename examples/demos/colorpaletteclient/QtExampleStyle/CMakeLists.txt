@@ -22,6 +22,9 @@ qt_add_qml_module(qtexamplestyle
         Popup.qml
         UIStyle.qml
         TextField.qml
+        ToolBar.qml
+        ToolButton.qml
+        Label.qml
 )
 
 target_link_libraries(qtexamplestyle PUBLIC

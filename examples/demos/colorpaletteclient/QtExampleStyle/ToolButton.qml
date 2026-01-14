@@ -1,11 +1,11 @@
-// Copyright (C) 2023 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
 import QtQuick.Controls.impl
 import QtQuick.Templates as T
 
-T.Button {
+T.ToolButton {
     id: control
 
     property alias buttonColor: rect.color
@@ -17,21 +17,23 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    leftPadding: 15
-    rightPadding: 15
-    topPadding: 10
-    bottomPadding: 10
+    leftPadding: 4
+    rightPadding: 4
+    topPadding: 4
+    bottomPadding: 4
 
     background: Rectangle {
         id: rect
-        radius: 8
-        border.color: UIStyle.buttonOutline
+        color: "transparent"
         border.width: 1
-        color: UIStyle.buttonBackground
+        radius: 3
+        border.color: control.hovered
+                      ? UIStyle.buttonOutline
+                      : "transparent"
     }
 
-    icon.width: 24
-    icon.height: 24
+    icon.width: 15
+    icon.height: 15
     icon.color: UIStyle.textColor
 
     contentItem: IconLabel {

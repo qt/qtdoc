@@ -32,16 +32,16 @@ Popup {
         spacing: 10
 
         Text {
-            color: "#222222"
+            color: UIStyle.titletextColor
             text: qsTr("Delete Color?")
-            font.pixelSize: 16
+            font.pixelSize: UIStyle.fontSizeL
             font.bold: true
         }
 
         Text {
-            color: "#222222"
+            color: UIStyle.textColor
             text: qsTr("Are you sure, you want to delete color") + " \"" + colorDeleter.colorName + "\"?"
-            font.pixelSize: 12
+            font.pixelSize: UIStyle.fontSizeM
         }
 
         RowLayout {
@@ -58,8 +58,8 @@ Popup {
                 Layout.fillWidth: true
                 text: qsTr("Delete")
 
-                buttonColor: "#CC1414"
-                textColor: "#FFFFFF"
+                buttonColor: UIStyle.colorRed
+                textColor: UIStyle.textOnLightBackground
 
                 onClicked: {
                     colorDeleter.deleteClicked(colorDeleter.colorId)
