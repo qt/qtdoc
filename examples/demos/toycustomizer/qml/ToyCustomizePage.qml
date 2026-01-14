@@ -32,6 +32,7 @@ Item {
         LayoutItemProxy {
             target: toyView
             Layout.fillWidth: true
+            Layout.fillHeight: true
             Layout.preferredWidth: ApplicationConfig.responsiveSize(1051)
             Layout.preferredHeight: ApplicationConfig.responsiveSize(1181)
             Layout.leftMargin: ApplicationConfig.responsiveSize(100)
@@ -41,7 +42,6 @@ Item {
         LayoutItemProxy {
             target: accessoryView
             Layout.fillWidth: true
-            Layout.fillHeight: true
         }
     }
 
