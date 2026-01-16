@@ -336,8 +336,29 @@
     \li The \c{includeprivate} configuration variable enables documentation of
         private C++ members. Pure virtual functions are now unconditionally
         documented.
+    \li \b{C++20 Concepts}: QDoc now extracts and displays C++20 requires
+        clauses for function and class templates. Both template-head and
+        trailing constraint positions are supported.
+    \li The \l {code-command}{\\code} command now accepts an optional argument
+        to specify the programming language for the code block. Use "text" to
+        disable syntax highlighting.
+    \li The \c{\meta keywords} argument adds custom keywords as HTML \c{<meta>}
+        elements for search engine optimization and post-processing.
+    \li Explicit linking to QML attached properties is now supported using the
+        "attached" link criterion, allowing disambiguation when regular and
+        attached property names conflict.
+    \li Template declarations with more than two parameters are now rendered in
+        a multi-line format for improved readability. The HTML output uses the
+        \c{template-block} CSS class for custom styling.
+    \li QDoc now warns about undocumented C++ properties declared with
+        \c{Q_PROPERTY}, ensuring consistent documentation coverage across all
+        API elements.
+    \li QDoc now warns about self-linking in \c{\sa} commands where a document
+        links to itself.
     \li The \c{logwarnings} configuration variable makes QDoc write all warnings
-        to a \c{<project>-qdoc-warnings.log} file.
+        to a \c{<project>-qdoc-warnings.log} file. The new
+        \c{logwarnings.disablecliargs} sub-option omits CLI arguments from the
+        log header for portable logs.
     \li QDoc warnings now include the project name prefix for multi-module
         builds.
     \li \b{Configuration Improvements}:
@@ -346,6 +367,10 @@
             solve file name clashes in multi-module builds.
         \li \c{internalfilepatterns}: Automatically marks classes as internal
             based on file/path name patterns, such as \c{*_p.h}.
+        \li \c{projectroot}: Sets the root directory for converting absolute
+            paths to relative paths in warning logs, improving portability
+            across build environments. Also available as the
+            \c{QDOC_PROJECT_ROOT} environment variable.
         \endlist
     \li Formatting commands now work in \c{\title} arguments, \c{\generatelist}
         works correctly in Qt help project TOC structures, and custom enumerator
