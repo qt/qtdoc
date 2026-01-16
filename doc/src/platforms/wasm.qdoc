@@ -603,6 +603,7 @@ the web environment.
 
 \note QtMqtt and QtRemoteObjects modules can be used with QtWebSockets as transports.
 They are not officially supported and may or may not work, or have missing functionality.
+See \l QMqttClient::connectToHostWebSocket and the \l {QtRemoteObjects WebSockets Applications} example.
 
 \section3 Cross-Origin Resource Sharing (CORS) and Policy (CORP)
 
