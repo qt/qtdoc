@@ -27,7 +27,7 @@
     All listed modules were ported to Qt 6 and the CMake build system.
 
     \list
-        \li \l [QtPDF]{Qt PDF} (in Technical Preview)
+        \li \l [QtPDF]{Qt PDF} (in Technology Preview)
     \endlist
 
 
@@ -111,16 +111,16 @@
                 \l{qt_standard_project_setup}{qt_standard_project_setup()}
             \li for deploying applications:
                 \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
-                (in Technical Preview)
+                (in Technology Preview)
             \li for generating a qt.conf file at installation time:
                 \l{qt_deploy_qt_conf}{qt_deploy_qt_conf()}
-                 (in Technical Preview)
+                 (in Technology Preview)
             \li for deploying runtime dependencies at installation time:
                 \l{qt_deploy_runtime_dependencies}{qt_deploy_runtime_dependencies()}
-                 (in Technical Preview)
+                 (in Technology Preview)
             \li for performing platform-specific tasks associated with a Qt project:
                 \l{qt_finalize_project}{qt_finalize_project()}
-                 (in Technical Preview)
+                 (in Technology Preview)
         \endlist
     \endlist
 
@@ -252,19 +252,19 @@
         \list
             \li for registering a target's foreign types in a QML module:
                 \l{qt_generate_foreign_qml_types}{qt_generate_foreign_qml_types()}
-                (in Technical Preview)
+                (in Technology Preview)
             \li for compiling QML code into C++:
                 \l{qt_target_compile_qml_to_cpp}{qt_target_compile_qml_to_cpp()}
-                (in Technical Preview)
+                (in Technology Preview)
             \li for deploying QML applications:
                 \l{qt_generate_deploy_qml_app_script}{qt_generate_deploy_qml_app_script()}
-                (in Technical Preview)
+                (in Technology Preview)
             \li for deploying the runtime components of QML modules at installation time:
                 \l{qt_deploy_qml_imports}{qt_deploy_qml_imports()}
-                (in Technical Preview)
+                (in Technology Preview)
             \li for querying information about a QML module:
                 \l{qt_query_qml_module}{qt_query_qml_module()}
-                (in Technical Preview)
+                (in Technology Preview)
         \endlist
     \endlist
 
@@ -279,7 +279,7 @@
         \li Particles3D: New \c DynamicBurst element for declarative dynamic emitting
             and for emitting at trail start/end times.
         \li Added \l [QML] ResourceLoader component for explicit setting of resource lifetimes
-            (in Technical Preview)
+            (in Technology Preview)
         \li PrincipledMaterial: Added support for ClearCoat, Transmission, and Refraction.
         \li glTF2: Importers now support the following additional extensions: KHR_materials_clearcoat,
             KHR_materials_ior, KHR_materials_transmission, KHR_materials_volume

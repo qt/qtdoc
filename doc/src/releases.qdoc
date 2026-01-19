@@ -52,7 +52,7 @@
     still compile when built with any other Qt 6 release (though maybe with warnings due to API
     being deprecated).
 
-    Note that modules or APIs marked as \e{Technical Preview}, \e{under development}, or
+    Note that modules or APIs marked as \e{Technology Preview}, \e{under development}, or
     \e{subject to change}, as well as pre-releases, are excluded from this promise.
 
     There are situations where adding new functionality or fixing issues still requires
@@ -70,7 +70,7 @@
     There is no universal C++ standard for Application Binary Interfaces (ABIs), so
     this promise only applies when using the same toolchain (compiler) and
     system environment for both versions. It is also valid only for dynamic builds of Qt,
-    excludes pre-releases and modules or API marked as \e{Technical Preview}, and requires both
+    excludes pre-releases and modules or API marked as \e{Technology Preview}, and requires both
     Qt versions to be built with the same \l{Qt configure options}{configuration}.
 
     \section1 Release schedules

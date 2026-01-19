@@ -12,7 +12,7 @@
 
     Qt 6.6 adds the following modules and tools:
 
-    \section2 New and Restored Modules in Technical Preview
+    \section2 New and Restored Modules in Technology Preview
 
     \note API and ABI stability is not guaranteed.
 
@@ -23,7 +23,7 @@
     backends, instead of relying on OpenGL 2.1, like Qt Data Visualization does.
 
     The module will provide most, if not all of the functionality of Qt Data Visualization.
-    Some advanced features may be incomplete in Technical Preview.
+    Some advanced features may be incomplete in Technology Preview.
 
     \section1 New Features in Qt 6.6
 
@@ -303,10 +303,10 @@
 
     \section2 Qt Quick Layouts Module
     \list
-        \li Added LayoutItemProxy, a helper item for writing responsive layouts (in Technical Preview)
+        \li Added LayoutItemProxy, a helper item for writing responsive layouts (in Technology Preview)
         \li Added \l {RowLayout::}{uniformCellSizes}, \l {ColumnLayout::}{uniformCellSizes},
             \l {GridLayout::}{uniformCellWidths} and \l {GridLayout::}{uniformCellHeights} properties
-            as applicable to each type of \l {Qt Quick Layouts}{Layout} (in Technical Preview)
+            as applicable to each type of \l {Qt Quick Layouts}{Layout} (in Technology Preview)
         \li StackLayout will now update \l {StackLayout::}{currentIndex} if an Item
             is inserted or removed at an index less than or equal to the current index.
     \endlist
