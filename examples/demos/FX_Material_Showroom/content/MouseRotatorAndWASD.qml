@@ -277,17 +277,17 @@ Item {
 
             if (useMouse) {
                 // Get the delta
-                var rotationVector = root.controlledObject.eulerRotation;
-                var delta = Qt.vector2d(lastPos.x - currentPos.x,
+                let rotationVector = root.controlledObject.eulerRotation;
+                let delta = Qt.vector2d(lastPos.x - currentPos.x,
                                         lastPos.y - currentPos.y);
                 // rotate x
-                var rotateX = -delta.x * root.xSpeed
+                let rotateX = -delta.x * root.xSpeed
                 if (root.xInvert)
                     rotateX = -rotateX;
                 rotationVector.y += rotateX;
 
                 // rotate y
-                var rotateY = delta.y * root.ySpeed
+                let rotateY = delta.y * root.ySpeed
                 if (root.yInvert)
                     rotateY = -rotateY;
                 if (rotationVector.x + rotateY <= 9 && rotationVector.x + rotateY >= -70.0)

@@ -455,7 +455,7 @@ Shape {
     }
 
     function clearPathElements() {
-        for (var i = 0; i !== path.pathElements.length; ++i)
+        for (let i = 0; i !== path.pathElements.length; ++i)
             path.pathElements[i].destroy()
 
         path.pathElements = []

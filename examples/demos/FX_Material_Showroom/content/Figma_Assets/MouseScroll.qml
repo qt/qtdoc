@@ -261,7 +261,7 @@ Item {
         function processInput()
         {
             if (useMouse) {
-                var delta = lastPos.y - currentPos.y;
+                let delta = lastPos.y - currentPos.y;
                 if (delta > 0)
                     root.curValue = root.curValue+delta < root.maxValue ? root.curValue+delta : root.maxValue;
                 else if (delta < 0)
