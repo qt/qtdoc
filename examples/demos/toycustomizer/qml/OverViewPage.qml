@@ -18,7 +18,7 @@ Item {
     ColumnLayout {
         id: portraitLayout
 
-        spacing: ApplicationConfig.responsiveSize(80)
+        spacing: ApplicationConfig.responsiveSize(60)
         visible: ApplicationConfig.isPortrait
 
         anchors {
@@ -27,25 +27,18 @@ Item {
         }
 
         Item {
-            Layout.fillWidth: true
+            implicitWidth: 2
             Layout.fillHeight: true
-            Layout.leftMargin: ApplicationConfig.responsiveSize(400)
-            Layout.rightMargin: ApplicationConfig.responsiveSize(400)
-            Layout.minimumHeight: breakdownAndConfirmItem.implicitHeight
-            Layout.minimumWidth: orderBreakdownLayout.implicitWidth
-            Column {
-                id: breakdownAndConfirmItem
-                spacing: ApplicationConfig.responsiveSize(152)
-                anchors.centerIn: parent
-                LayoutItemProxy {
-                    target: orderBreakdownLayout
-                }
-                LayoutItemProxy {
-                    target: confirmButton
-                    visible: overViewPage.buttonsVisible
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-            }
+        }
+
+        LayoutItemProxy {
+            target: orderGrid
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        Item {
+            implicitWidth: 2
+            Layout.fillHeight: true
         }
 
         LayoutItemProxy {
@@ -59,8 +52,7 @@ Item {
         }
 
         LayoutItemProxy {
-            target: orderDetailsItem
-            Layout.alignment: Qt.AlignBottom
+            target: whiteAreaItem
             Layout.fillWidth: true
         }
     }
@@ -79,7 +71,7 @@ Item {
 
         columnSpacing: {
             const prefSpacing = ApplicationConfig.responsiveSize(400)
-            const prefWidth = orderBreakdownLayout.width + orderDetailsItem.width + prefSpacing
+            const prefWidth = whiteAreaItem.width + breakdownAndConfirmItem.width + prefSpacing
             const minMargins = ApplicationConfig.responsiveSize(100)
             const parentWidth = parent.width - 2 * minMargins
             const availableWidth = parentWidth - prefWidth
@@ -106,25 +98,72 @@ Item {
             visible: overViewPage.buttonsVisible
         }
 
-        Column {
-            spacing: ApplicationConfig.responsiveSize(140)
+        LayoutItemProxy {
+            target: breakdownAndConfirmItem
             Layout.rowSpan: 2
             Layout.row: 0
             Layout.column: 1
-            LayoutItemProxy {
-                target: orderBreakdownLayout
-            }
-            LayoutItemProxy {
-                target: confirmButton
-                visible: overViewPage.buttonsVisible
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
         }
 
         LayoutItemProxy {
-            target: orderDetailsItem
+            target: whiteAreaItem
             Layout.row: overViewPage.buttonsVisible ? 1 : 0
             Layout.column: 0
+        }
+    }
+
+    Item {
+        id: whiteAreaItem
+
+        readonly property real horizontalPaddings: ApplicationConfig.responsiveSize(100)
+        readonly property real verticalPaddings: overViewPage.buttonsVisible ?
+                                             ApplicationConfig.responsiveSize(100) :
+                                             ApplicationConfig.responsiveSize(244)
+
+        implicitWidth: whiteAreaLayout.implicitWidth + 2 * horizontalPaddings
+        implicitHeight: whiteAreaLayout.implicitHeight + 2 * verticalPaddings
+        visible: false
+
+        Rectangle {
+            id: whiteAreaRect
+            radius: ApplicationConfig.responsiveSize(64)
+            color: "white"
+            anchors.fill: parent
+
+            Binding {
+                when: ApplicationConfig.isPortrait
+                whiteAreaRect {
+                    bottomLeftRadius: 0
+                    bottomRightRadius: 0
+                }
+            }
+        }
+
+        ColumnLayout {
+            id: whiteAreaLayout
+            anchors.centerIn: parent
+            LayoutItemProxy {
+                target: orderGrid
+                visible: !ApplicationConfig.isPortrait
+            }
+            LayoutItemProxy {
+                target: breakdownAndConfirmItem
+                visible: ApplicationConfig.isPortrait
+            }
+        }
+    }
+
+    Column {
+        id: breakdownAndConfirmItem
+        spacing: ApplicationConfig.responsiveSize(152)
+        visible: false
+        LayoutItemProxy {
+            target: orderBreakdownLayout
+        }
+        LayoutItemProxy {
+            target: confirmButton
+            visible: overViewPage.buttonsVisible
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 
@@ -224,26 +263,13 @@ Item {
         }
     }
 
-    Rectangle {
-        id: orderDetailsItem
-
-        readonly property real paddings: ApplicationConfig.responsiveSize(180)
-
-        implicitWidth: orderGrid.implicitWidth + 2 * paddings
-        implicitHeight: orderGrid.implicitHeight + 2 * paddings
-
-        radius: ApplicationConfig.responsiveSize(56)
-        bottomLeftRadius: ApplicationConfig.isPortrait ? 0 : radius
-        bottomRightRadius: ApplicationConfig.isPortrait ? 0 : radius
-        color: "white"
-
-        OrderGrid {
-            id: orderGrid
-            implicitWidth: ApplicationConfig.responsiveSize(1760)
-            implicitHeight: ApplicationConfig.responsiveSize(1170)
-            accessoryModel: overViewPage.accessoryModel
-            anchors.centerIn: parent
-        }
+    OrderGrid {
+        id: orderGrid
+        visible: false
+        implicitWidth: ApplicationConfig.responsiveSize(1760)
+        implicitHeight: ApplicationConfig.responsiveSize(1170)
+        accessoryModel: overViewPage.accessoryModel
+        anchors.centerIn: parent
     }
 
     ToyButton {
