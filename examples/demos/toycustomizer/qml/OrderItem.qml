@@ -91,7 +91,7 @@ Item {
             right: parent.right
         }
         height: ApplicationConfig.responsiveSize(5)
-        color: "#D7D6E1"
+        color: "#A0AFC5"
     }
 
     ToyLabel {
