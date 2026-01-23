@@ -169,6 +169,7 @@
             QJSValue alone.
         \li The qt6_add_qml_module CMake function (still in Tech Preview) adds
             a qmllint target, which runs qmllint on the target's QML files.
+        \li Added \c{freeze()} and multi-\c{insert()} to \l{QQmlPropertyMap}.
     \endlist
 
     \section2 Qt Quick 3D Module
