@@ -248,6 +248,12 @@
             the new \l{qt6_generate_foreign_qml_types}{qt_generate_foreign_qml_types()} CMake API.
         \li qmlcachegen compiles suitable functions and expressions to C++ now, for improved
             performance.
+        \li Added generalized group properties support in \l{Binding} and
+            \l{PropertyChanges}, allowing group property syntax
+            (e.g., \c{someId.someProperty}) to be used in these contexts.
+        \li Introduced basic QML Language Server.
+        \li Introduced support for namespaces as extensions to other
+            namespaces, via QML_NAMESPACE_EXTENDED.
         \li Added new public CMake API:
         \list
             \li for registering a target's foreign types in a QML module:

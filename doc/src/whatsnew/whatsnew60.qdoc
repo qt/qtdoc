@@ -159,6 +159,52 @@
             \li
         \endtable
 
+    \section1 New Features in Qt 6.0
+
+    \section2 Qt QML Module
+    \list
+      \li QML Language
+      \list
+        \li Added JavaScript URL object support, providing native URL handling
+            in QML JavaScript code.
+        \li Allowed imports without version. If you omit the version from a QML
+            import statement the latest version of the module is imported.
+      \endlist
+      \li Module System
+      \list
+        \li Added \c import directive in qmldir files. This enables optional
+            imports and declarative module imports, allowing modules to declare
+            their dependencies explicitly.
+        \li Added qmlRegisterModuleImport() for procedurally adding imports to
+            a module. Don't do this unless you know what you're doing.
+        \li Added support for specifying resource (\c{:/some/path}) paths in
+            the QML2_IMPORT_PATH environment variable.
+        \li QML plugins can be optional now. The \c{optional} directive in
+            qmldir files specifies that the plugin doesn't have to be loaded if
+            the module's types are already present in the binary. This is
+            commonly the case for modules like QtQuick or QtQml.
+        \li Introduced support for purely-redirecting QML modules that only
+            import and re-export other modules without providing their own
+            types.
+      \endlist
+      \li Type System
+      \list
+        \li Introduced override behaviors
+            QML_LIST_PROPERTY_ASSIGN_BEHAVIOR_{APPEND|REPLACE|REPLACE_IF_NOT_DEFAULT}
+            for QQmlListProperty, giving more control over QML operations on
+            C++-declared list properties.
+        \li Added support for user-defined sequence types. Custom list types
+            can now be registered and used directly in QML using
+            QML_SEQUENTIAL_CONTAINER, enabling type-safe list properties
+            without needing to wrap elements in JavaScript objects.
+        \li Introduced two-component revision format (Major, Minor) for QML type
+            versioning, providing more granular control over API evolution.
+        \li Allowed singletons to be extended via QML_EXTENDED.
+        \li Allowed namespaces as extensions to types via QML_EXTENDED_NAMESPACE.
+        \li Allowed QML types from foreign namespaces via QML_FOREIGN_NAMESPACE.
+      \endlist
+    \endlist
+
     \section1 List of API Changes
 
     These pages contain an overview of API changes in Qt 6.0:

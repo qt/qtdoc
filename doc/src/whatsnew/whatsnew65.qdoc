@@ -278,6 +278,9 @@
             qml constructs, notably translation bindings, inline
             components, singletons, and signal handlers for C++-defined
             signals.
+        \li Introduced \c{pragma FunctionSignatureBehavior} to control enforcement
+            of type annotations on JavaScript functions. Previously, type annotations
+            were only hints; this pragma makes them enforceable for better type safety.
         \li The \l {QML script compiler} can handle additional constructs. In
             particular:
             \list
@@ -302,6 +305,8 @@
         \li The \l{qt_generate_deploy_qml_app_script} CMake function preferably
             accepts an argument called OUTPUT_SCRIPT now. Passing the old
             FILENAME_VARIABLE is deprecated.
+        \li Introduced \c{pragma NativeMethodBehavior: AcceptThisObject} to control
+            how native methods handle the \c this object when called from QML.
     \endlist
 
     \section2 Qt Quick 3D Module
