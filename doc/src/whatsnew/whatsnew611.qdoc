@@ -225,6 +225,14 @@
 
     \section2 Qt Quick Effects Module
     \list
+        \li Qt 6.11 adds four new properties to \l{RectangularShadow}
+            for independent corner radius control: \l{RectangularShadow::}{topLeftRadius},
+            \l{RectangularShadow::}{topRightRadius},
+            \l{RectangularShadow::}{bottomLeftRadius}, and
+            \l{RectangularShadow::}{bottomRightRadius}. Each property
+            falls back to the existing \l{RectangularShadow::}{radius} property
+            if not set, or creates a sharp corner when set to zero, enabling more
+            flexible shadow shapes with different corner radii per corner.
     \endlist
 
     \section2 Qt Quick 3D Module
