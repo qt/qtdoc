@@ -123,7 +123,23 @@
     \endlist
 
     \section2 Qt GRPC Module
+
     \list
+        \li Added the new Client Interception mechanism to QtGrpc to enable
+            interception and modification of outgoing requests and incoming responses.
+        \li Qt 6.11 adds comparison operators (\c{operator==} and \c{operator!=}) for
+            \l QGrpcCallOptions and \l QGrpcChannelOptions, enabling direct equality
+            checks between option objects.
+        \li \l QGrpcOperation class introduces a
+            \l{QGrpcOperation::}{serverInitialMetadataReceived()} signal that notifies
+            RPC handlers as soon as the server initial metadata is received.
+        \li \l QGrpcChannelOptions class now provides
+            \l{QGrpcChannelOptions::}{filterServerMetadata()} and
+            \l{QGrpcChannelOptions::}{setFilterServerMetadata()} methods to control
+            whether protocol-related metadata is included in server responses.
+        \li The \l QtGrpc namespace introduces the \l{QtGrpc::}{RpcType} enum and
+            \l{QtGrpc::}{RpcDescriptor} struct to describe gRPC methods with their
+            service name, method name, and communication pattern.
     \endlist
 
     \section2 Qt GUI Module
