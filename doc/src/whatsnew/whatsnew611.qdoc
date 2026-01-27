@@ -340,6 +340,13 @@
 
     \section2 Qt VirtualKeyboard Module
     \list
+    \li Qt 6.11 introduces the \l{VirtualKeyboardSettings::}{arrowKeyNavigationEnabled} property in
+        \l VirtualKeyboardSettings, allowing developers to control whether arrow keys (Left, Right,
+        Up, Down) and the Return can be used for navigating between keyboard keys when the input
+        panel is visible. The property default is based on the build-time configuration flag
+        \c QT_VIRTUALKEYBOARD_ARROW_KEY_NAVIGATION.
+    \li Added \l{KeyboardStyle::}{keyboardDesignMaximumHeight} property
+        to \l KeyboardStyle type. Use this to prevent the keyboard overlapping most of the screen.
     \endlist
 
     \section2 Qt WebEngine Module
