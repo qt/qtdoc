@@ -197,6 +197,8 @@
     \list
       \li Added CMAKE command \l{qt_target_qml_from_svg()} for converting from SVG to QML at build
           time.
+      \li Added APIs to \l Flickable to \l{Flickable::positionViewAtChild}{position} or \l{Flickable::flickToChild}{flick}
+          the view to a child and to \l{Flickable::flickTo}{flick to a position}.
     \endlist
 
     \section2 Qt Quick Controls Module
