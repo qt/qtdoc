@@ -395,6 +395,10 @@
 
     \section2 Qt SVG Module
     \list
+        \li Added support for CSS motion path animation through \c offset-path and \c offset-distance.
+            Note that \c offset-path supports only the path function for defining a path.
+        \li Added support for CSS animation timing function on an animation as a whole. Currently,
+            only the predefined keywords are supported (\c linear, \c step-start, \c ease, etc.).
     \endlist
 
     \section2 Qt Test Module
