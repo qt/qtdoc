@@ -313,6 +313,19 @@
 
     \section2 Qt WebEngine Module
     \list
+    \li Qt WebEngine is now based on Chromium 140.
+    \li Chromium has added new Rust components which are intended to replace their C++ counterparts.
+        Qt WebEngine can now be optionally built using these Rust components. This requires
+        installing a Rust toolchain and configuring with \c{-feature-webengine-rust-build}.
+        The default behavior is to build with the older C++ components.
+    \li Added \l{QWebEngineProfile::PersistentCookiesPolicy::}{OnlyPersistentCookies}
+        policy to prevent session cookies from being saved to disk.
+    \li Added \l{QWebEngineSettings::}{TrimAccessibilityIdentifiers} setting to force
+        HTML 'id' attributes to be used as automation IDs for accessibility.
+    \li Added support for the HTML \c inputmode global attribute.
+    \li Improved \c fetch() API handling of redirects to cross-origin resources.
+    \li Removed Pepper Plugin API code.
+    \li Enabled \c chrome://usb-internals debug page.
     \endlist
 
     \section2 Qt WebView Module
