@@ -103,6 +103,9 @@
       \li Added \l{GraphsItem3D::cutoffMargin}{cutoffMargin} in \l{GraphsItem3D}
           and \l{Q3DGraphsWidgetItem} to adjust the sensitivity of culling items near graph
           margins
+      \li Added support for multiple \l{QBarSeries} in one \l{QGraphsView}.
+      \li Added support for negative values in \l{QBarSeries}.
+      \li Added support for invalid values in \l{LineSeries} which results in visual gaps.
     \endlist
 
     \section2 Qt GRPC Module
