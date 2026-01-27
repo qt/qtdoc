@@ -333,6 +333,8 @@
             that specifies whether the preview column is visible.
         \li The new QStyleOptionMenuItemV2 class adds a flag that indicates whether
             the mouse is pressed on the item getting rendered by the style.
+        \li QTabBar now emits \l{QTabBar::}{tabCloseRequested} when a tab is middle clicked
+            if \l{QTabBar::}{tabsClosable} is true.
     \endlist
 
     \section2 Qt XML Module
