@@ -317,7 +317,21 @@
     \endlist
 
     \section2 Qt Test Module
+
     \list
+        \li Added \l{QTest::currentGlobalDataTag()} function to retrieve the name of the
+            current global test data.
+        \li Added \l{QTest::defaultTryTimeout} to allow configuring the default timeout
+            used by the QTRY_* functions.
+        \li \l QCOMPARE now prints the sign for negative zeroes and NaN values, and
+            prints NaN payloads.
+        \li \l QTEST_THROW_ON_FAIL and \l QTEST_THROW_ON_SKIP now work when the QCOMPARE/QSKIP
+            is invoked from within QtConcurrent.
+        \li \l {QTest::failOnWarning()} now fails on any message type >= warning, including
+            critical messages.
+        \li On \macos, display sleep and App Nap are now unconditionally disabled for
+            the entire test execution.
+        \li Updated Callgrind support to Valgrind v3.25.1, adding support for RISCV 64-bit Linux.
     \endlist
 
     \section2 Qt VirtualKeyboard Module
