@@ -194,6 +194,11 @@
         \li Added APIs to QQmlContext to get the \l{QQmlContext::childContexts()}
             {list of child contexts} and to \l{QQmlContext::findObjectRecursively()}{find an object
             by id}.
+        \li Added GroupAttributesTogether option to qmlformat. This implies the NormalizeOrder option
+            and reorders QML categories without sorting attributes (property definitions, property bindings,
+            methods, signals, and enums).
+        \li Added SingleLineEmptyObjects option to qmlformat.
+            This prevents empty objects from expanding into a second line.
     \endlist
 
     \section2 Qt Quick Module
