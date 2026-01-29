@@ -166,9 +166,6 @@
             Qt Quick 3D Physics provides a high-level QML module adding physical
             simulation capabilities to Qt Quick 3D.
         }
-        \griditem {qtquickwidgets-index.html}{Qt Quick Widgets} {
-            Provides a C++ widget class for displaying a Qt Quick user interface.
-        }
         \griditem {qtquick-effects-qmlmodule.html}{Qt Quick Effects} {
             Provides QML types for applying one or more simple graphical effects to
             Qt Quick items.
@@ -178,6 +175,9 @@
         }
         \griditem {qtquicktimeline-index.html}{Qt Quick Timeline} {
             Enables keyframe-based animations and parameterization.
+        }
+        \griditem {qtquickwidgets-index.html}{Qt Quick Widgets} {
+            Provides a C++ widget class for displaying a Qt Quick user interface.
         }
         \griditem {qtremoteobjects-index.html}{Qt Remote Objects} {
             Provides an easy to use mechanism for sharing a QObject's API
@@ -262,14 +262,14 @@
 
 //! [techpreview-addons]
     \grid
+        \griditem {qtcanvaspainter-index.html}{Qt Canvas Painter} {
+            Provides a hardware-accelerated painting API on QRhi.
+        }
         \griditem {qtlocation-index.html}{Qt Location} {
             Provides QML and C++ interfaces to create location-aware applications.
         }
         \griditem {qttasktree-index.html}{Qt TaskTree} {
             Provides a declarative way to compose and execute asynchronous task workflows.
-        }
-        \griditem {qtcanvaspainter-index.html}{Qt Canvas Painter} {
-            Provides a hardware-accelerated painting API on QRhi.
         }
     \endgrid
 //! [techpreview-addons]
@@ -284,12 +284,12 @@
 
 //! [extensions]
     \grid
+        \griditem {qtpdf-index.html}{Qt PDF} {
+            Classes and functions for rendering PDF documents on desktop platforms.
+        }
         \griditem {qtwebengine-index.html}{Qt WebEngine} {
             Classes and functions for embedding web content in applications using the
             Chromium browser project.
-        }
-        \griditem {qtpdf-index.html}{Qt PDF} {
-            Classes and functions for rendering PDF documents on desktop platforms.
         }
     \endgrid
 //! [extensions]
