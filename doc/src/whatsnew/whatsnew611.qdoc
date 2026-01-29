@@ -221,6 +221,12 @@
 
     No noteworthy changes.
 
+    \section2 Qt Positioning Module
+    \list
+        \li \l{Qt for WebAssembly} applications can now use the browser's GeoLocation API as
+            backend.
+    \endlist
+
     \section2 Qt Protobuf Module
     \list
         \li The \l qprotobufmessage_cast() function provides safe downcasting of
@@ -620,6 +626,14 @@
 
     \section3 Real-Time Operating Systems
     \list
+    \endlist
+
+    \section2 Web Platforms
+
+    \section3 WebAssembly
+
+    \list
+        \li \l{Qt Positioning} got a backend for the GeoLocation API.
     \endlist
 
     \section1 List of API Changes
