@@ -4,7 +4,7 @@
 /*!
 \page sbom.html
 \title Software Bill of Materials
-\brief Qt package information in SPDX format
+\brief Qt package information in SPDX and CycloneDX formats
 \ingroup licensing
 
 A Software Bill of Materials (SBOM) document is a declaration of installed
@@ -40,6 +40,9 @@ cmake --install .
 
 This build process creates SBOM documents in JSON and \c{tag:value}
 format as specified by the \l{SPDX Format}{SPDX} format.
+
+Starting from Qt 6.11, the build process optionally creates
+\l{CycloneDX Format}{CycloneDX} SBOM documents.
 
 See \l{Building Qt Sources} and \l{Qt Configure Options} for more information
 about the Qt build procedure.
@@ -141,9 +144,9 @@ An SPDX package for a third-party component typically contains at least:
 code
 \endlist
 
-\section1 SBOM Example
+\section1 SPDX SBOM Example
 
-The following is an example of an SBOM document for the
+The following is an example of an SPDX SBOM document for the
 \l{Qt Network Authorization} module. The SBOM filename is
 \c qtnetworkauth-6.9.0.spdx and is in the installation's \c sbom directory.
 Note that the SBOM document contains several other packages not listed in the
@@ -181,6 +184,114 @@ Relationship: SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth DEPENDS_ON Doc
 Relationship: SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth DEPENDS_ON DocumentRef-qtbase:SPDXRef-Package-qtbase-qt-module-Gui
 Relationship: SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth DEPENDS_ON DocumentRef-qtbase:SPDXRef-Package-qtbase-qt-module-Network
 Relationship: SPDXRef-Package-qtnetworkauth CONTAINS SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth
+\endcode
+
+\section1 CycloneDX Format
+
+Starting from Qt 6.11, the build process optionally creates SBOM
+documents in \l{https://cyclonedx.org/docs/1.6/json/}{CycloneDX v1.6} format.
+
+To require CycloneDX generation, configure Qt with:
+
+\badcode
+./configure -sbom -sbom-cyclonedx-v1_6 -sbom-cyclonedx-v1_6-required
+\endcode
+
+Generating CycloneDX documents requires the following dependencies:
+
+\list
+\li \l{https://www.python.org/downloads/}{Python} version 3.9 or newer
+\li Python packages:
+    \list
+    \li cyclonedx-python-lib[json-validation]
+    \li tomli
+    \endlist
+\endlist
+
+You can use Python's \c pip tool to install the required packages:
+\badcode
+pip install 'cyclonedx-python-lib[json-validation]' tomli
+\endcode
+
+CycloneDX documents provide similar information as SPDX documents,
+including components, licenses, dependencies, and security metadata.
+
+Compared to SPDX, the CycloneDX information contains less detail about
+some areas like licenses and relationship types.
+
+Installed CycloneDX SBOM documents have filenames in the format:
+\c <module>-<version>.cdx.json.
+
+\section1 CycloneDX SBOM Example
+
+The following is an example of a CycloneDX SBOM document for the
+\l{Qt Network Authorization} module. The SBOM filename is
+\c qtnetworkauth-6.11.0.cdx.json and is in the installation's \c sbom
+directory. Note that the SBOM document contains several other
+components not listed in the following example.
+
+\code
+{
+  "components": [
+    {
+      "bom-ref": "SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth",
+      "copyright": "Copyright (C) The Qt Company Ltd. and other contributors.",
+      "cpe": "cpe:2.3:a:qt:qt:6.11.0:*:*:*:*:*:*:*",
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "concluded",
+            "id": "GPL-3.0-only"
+          }
+        }
+      ],
+      "name": "NetworkAuth",
+      "properties": [
+        {
+          "name": "qt:sbom:entity_type",
+          "value": "QT_MODULE"
+        },
+        {
+          "name": "qt:sbom:is_qt_entity_type",
+          "value": "true"
+        },
+        {
+          "name": "spdx:external-reference:package-manager:purl",
+          "value": "pkg:github/qt/qtnetworkauth?library_name=NetworkAuth#src/oauth"
+        },
+        {
+          "name": "spdx:external-reference:security:cpe23",
+          "value": "cpe:2.3:a:qt:qtnetworkauth:6.11.0:*:*:*:*:*:*:*"
+        }
+      ],
+      "purl": "pkg:generic/TheQtCompany/qtnetworkauth-NetworkAuth?library_name=NetworkAuth&vcs_url=https://code.qt.io/qt/qtnetworkauth.git#src/oauth",
+      "supplier": {
+        "name": "TheQtCompany",
+        "url": [
+          "https://qt.io"
+        ]
+      },
+      "type": "library",
+      "version": "6.11.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "SPDXRef-Package-qtbase-qt-module-Core",
+        "SPDXRef-Package-qtbase-qt-module-Gui",
+        "SPDXRef-Package-qtbase-qt-module-Network",
+        "SPDXRef-Package-qtbase-qt-module-PlatformModuleInternal"
+      ],
+      "ref": "SPDXRef-Package-qtnetworkauth-qt-module-NetworkAuth"
+    }
+  ],
+  "serialNumber": "urn:uuid:ce0d41b5-0fe8-5383-bf31-ff353a05b8be",
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}
 \endcode
 
 \section1 Yocto builds with meta-qt6
