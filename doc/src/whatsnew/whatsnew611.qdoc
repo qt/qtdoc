@@ -227,6 +227,12 @@
             backend.
     \endlist
 
+    \section2 Qt PrintSupport Module
+    \list
+        \li Accessibility improvements to print dialogs: Label buddies and proper focus
+            order were established to improve screen reader support and keyboard navigation.
+    \endlist
+
     \section2 Qt Protobuf Module
     \list
         \li The \l qprotobufmessage_cast() function provides safe downcasting of
