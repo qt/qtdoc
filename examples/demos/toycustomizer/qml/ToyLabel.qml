@@ -12,25 +12,45 @@ Item {
     property alias color: label.color
     property alias font: label.font
     property alias textStyle: label.textStyle
+    property int lineHeightMode: Text.ProportionalHeight
+    property real lineHeight: 1.65
 
     visible: text !== ""
-    implicitHeight: visible ? label.lineCount * (textMetrics.tightBoundingRect.height
-                                                 + ApplicationConfig.responsiveSize(8)) : 0
+    implicitHeight: visible ? (label.lineHeight * (label.lineCount - 1) + label.textHeight) : 0
     implicitWidth: label.implicitWidth
 
     Label {
         id: label
 
         property int textStyle: ApplicationConfig.TextStyle.Body_L
+        readonly property real textHeight: textMetrics.tightBoundingRect.height
 
-        y: (control.height - height) / 2
-        width: control.width
+        y: textMetrics.boundingRect.y - textMetrics.tightBoundingRect.y
+        anchors {
+            left: parent.left
+            right: parent.right
+        }
+
         color: "#162655"
-        verticalAlignment: Qt.AlignVCenter
         font {
             pixelSize: ApplicationConfig.responsiveFontSize(textStyle)
             family: ApplicationConfig.fontFamily()
             bold: ApplicationConfig.isBoldText(textStyle)
+        }
+
+        // In Proportional mode, lineHeight depends on the font height,
+        // which doesn't match the actual rendered text height.
+        // Instead, label.lineHeightMode is set to Text.FixedHeight and
+        // label.lineHeight is calculated from the true rendered height
+        // (label.textHeight), scaled by the control's lineHeight and mode.
+        lineHeightMode: Text.FixedHeight
+        lineHeight: {
+            switch (control.lineHeightMode) {
+            case Text.ProportionalHeight:
+                return control.lineHeight * textHeight
+            case Text.FixedHeight:
+                return control.lineHeight
+            }
         }
     }
 

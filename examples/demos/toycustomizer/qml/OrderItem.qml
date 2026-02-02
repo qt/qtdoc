@@ -99,6 +99,7 @@ Item {
         wrapMode: Text.Wrap
         textStyle: ApplicationConfig.TextStyle.H3_Light
         visible: false
+        lineHeight: 1
     }
     ToyLabel {
         id: notSelectedLabel
