@@ -69,6 +69,7 @@ qt_add_qml_module(${TARGET_NAME}
         qml/EyewearAccessories.qml
         qml/HeadwearAccessories.qml
         qml/BodyAccessories.qml
+        qml/ColorIcon.qml
 )
 
 qt_add_shaders(${TARGET_NAME} "shaders"

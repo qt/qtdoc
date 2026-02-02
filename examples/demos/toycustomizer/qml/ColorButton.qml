@@ -24,15 +24,13 @@ RoundButton {
         border.width: ApplicationConfig.responsiveSize(4)
     }
 
-    ToyImage {
+    ColorIcon {
         id: checkIcon
+        implicitWidth: ApplicationConfig.responsiveSize(32)
+        implicitHeight: ApplicationConfig.responsiveSize(32)
         source: "icons/check.svg"
         visible: colorButton.checked ? true : false
         anchors.centerIn: parent
-        sourceSize {
-            width: ApplicationConfig.responsiveSize(32)
-            height: ApplicationConfig.responsiveSize(32)
-        }
     }
 
     ToyLabel {
