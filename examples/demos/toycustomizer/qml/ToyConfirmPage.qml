@@ -281,15 +281,11 @@ Item {
                                       : `${root.__price}`
         }
 
-        ToyImage {
-            source: "icons/currency.svg"
-            sourceSize {
-                width: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(215)
-                                                    : ApplicationConfig.responsiveSize(322)
-                height: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(49)
-                                                     : ApplicationConfig.responsiveSize(73)
-            }
+        ColorIcon {
+            implicitWidth: ApplicationConfig.isPortrait ? 102 : 153
+            implicitHeight: ApplicationConfig.isPortrait ? 24 : 36
             anchors.bottom: parent.bottom
+            source: "icons/currency.svg"
         }
     }
     ToyButton {

@@ -118,14 +118,11 @@ Item {
                 textStyle: ApplicationConfig.TextStyle.Price_M
                 text: `${orderItem.newPrice}`
             }
-            ToyImage {
+            ColorIcon {
+                implicitWidth: 51
+                implicitHeight: 12
                 source: "icons/currency.svg"
                 color: toyPrice.color
-                colorize: true
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(142)
-                    height: ApplicationConfig.responsiveSize(32)
-                }
             }
         }
         RowLayout {

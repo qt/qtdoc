@@ -120,18 +120,11 @@ Item {
                     textStyle: ApplicationConfig.TextStyle.Price_M
                     text: customizationCard.newPrice
                 }
-                ToyImage {
-                    id: qtCoinsImage
-                    asynchronous: true
-                    showBusyIndicator: false
+                ColorIcon {
+                    implicitWidth: 51
+                    implicitHeight: 12
                     source: "icons/currency.svg"
                     color: newPriceLabel.color
-                    colorize: true
-                    sourceSize {
-                        width: ApplicationConfig.responsiveSize(133)
-                        height: ApplicationConfig.responsiveSize(30)
-                    }
-                    Layout.alignment: Qt.AlignBottom
                 }
                 Item {
                     Layout.fillWidth: true

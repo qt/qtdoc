@@ -67,15 +67,11 @@ Item {
                 textStyle: ApplicationConfig.TextStyle.Price_M
                 text: Number(delegateItem.originalPrice * (1 - delegateItem.discountPercent / 100)).toLocaleCurrencyString()
             }
-            ToyImage {
-                id: qtCoinsImage
+            ColorIcon {
                 source: "icons/currency.svg"
                 color: modelPrice.color
-                colorize: true
-                sourceSize {
-                    width: ApplicationConfig.responsiveSize(133)
-                    height: ApplicationConfig.responsiveSize(30)
-                }
+                implicitWidth: 51
+                implicitHeight: 12
                 Layout.alignment: Qt.AlignBottom
             }
             Item {
