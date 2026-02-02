@@ -103,6 +103,9 @@ Item {
         ToyLabel {
             Layout.fillWidth: true
             text: customizationCard.cardName
+            // Setting lineHeight to 1 means no spacing between the lines
+            // if the text is wrapped to new line.
+            lineHeight: 1
             wrapMode: Text.Wrap
             textStyle: ApplicationConfig.TextStyle.H3_Bold
         }
