@@ -12,11 +12,31 @@ Item {
     signal toySelected(index: int)
 
     Item {
-        anchors {
-            fill: parent
-            leftMargin: ApplicationConfig.responsiveSize(200)
-            rightMargin: ApplicationConfig.responsiveSize(200)
+        readonly property real minimumWidth: {
+            const minHorMargins = ApplicationConfig.responsiveSize(200)
+            const cellWidth = toyView.cellWidth
+            const columnCount_min = 2
+            return columnCount_min * cellWidth
         }
+
+        readonly property real horizontalMargins: {
+            const minHorMargins = ApplicationConfig.responsiveSize(200)
+            const pageWidth = toyGalleryPage.width
+            const cellWidth = toyView.cellWidth
+            const columnCount_max = ApplicationConfig.isPortrait ? 4 : 5
+            const columnCount_min = 3
+            let columnCount = Math.floor((pageWidth - 2 * minHorMargins) / cellWidth)
+            columnCount = Math.min(Math.max(columnCount_min, cellWidth), columnCount_max)
+            const gridWidth = columnCount * cellWidth
+            return Math.max(minHorMargins, (pageWidth - gridWidth) / 2)
+        }
+
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+        }
+        width: Math.max(toyGalleryPage.width - 2 * horizontalMargins, minimumWidth)
 
         GridView {
             id: toyView
