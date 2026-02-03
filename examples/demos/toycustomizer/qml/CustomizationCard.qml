@@ -30,8 +30,8 @@ Item {
     signal chooseRequested
     signal removeRequested
 
-    width: ApplicationConfig.responsiveSize(544)
-    height: ApplicationConfig.responsiveSize(775)
+    implicitWidth: ApplicationConfig.responsiveSize(558)
+    implicitHeight: ApplicationConfig.responsiveSize(820)
 
     Rectangle {
         anchors.fill: parent
@@ -50,7 +50,7 @@ Item {
             rightMargin: ApplicationConfig.responsiveSize(48)
             bottomMargin: ApplicationConfig.responsiveSize(48)
         }
-        spacing: ApplicationConfig.responsiveSize(4)
+        spacing: 6
 
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -58,9 +58,9 @@ Item {
             ToyImage {
                 id: toyImage
                 asynchronous: true
-                implicitHeight: customizationCard.selected ? ApplicationConfig.responsiveSize(120)
+                implicitHeight: customizationCard.selected ? ApplicationConfig.responsiveSize(230)
                                                            : ApplicationConfig.responsiveSize(340)
-                implicitWidth: customizationCard.selected ? ApplicationConfig.responsiveSize(158)
+                implicitWidth: customizationCard.selected ? ApplicationConfig.responsiveSize(302)
                                                           : ApplicationConfig.responsiveSize(448)
                 source: customizationCard.cardImageSource
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -69,7 +69,7 @@ Item {
             RowLayout {
                 id: colorSelectionLayout
                 visible: customizationCard.selected
-                spacing: ApplicationConfig.responsiveSize(48)
+                spacing: 24
 
                 ColorButton {
                     id: greenButton
@@ -111,7 +111,7 @@ Item {
         }
 
         ColumnLayout {
-            spacing: ApplicationConfig.responsiveSize(0)
+            spacing: 4
 
             RowLayout {
                 id: priceAndRatingLayout
@@ -171,6 +171,7 @@ Item {
             enabled: !customizationCard.isExclusive || !customizationCard.selected
             type: ToyButton.Type.Secondary
             textStyle: ApplicationConfig.TextStyle.Button_L
+            font.bold: false
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.preferredWidth: ApplicationConfig.responsiveSize(448)
