@@ -21,6 +21,7 @@ Item {
     property int totalPrice: 0
     property int toyIndex: -1
     required property AccessoryModel accessoryModel
+    property bool wrap: false
 
     property var __model: ToyModel.get(selection.toyIndex) ?? null
     property var __modelFace: null
@@ -136,6 +137,8 @@ Item {
         priceVisible: oldPrice > 0
     }
 
+    implicitWidth: orders.implicitWidth
+
     Component.onCompleted: pickSelected()
 
     ToyLabel {
@@ -158,8 +161,9 @@ Item {
             topMargin: ApplicationConfig.responsiveSize(90)
         }
         columns: 2
-        columnSpacing: Math.floor(ApplicationConfig.responsiveSize(120))
+        columnSpacing: Math.floor(ApplicationConfig.responsiveSize(80))
         rowSpacing: Math.floor(ApplicationConfig.responsiveSize(80))
+        uniformCellWidths: true
 
         GridOrderItem {
             id: toy
@@ -168,6 +172,7 @@ Item {
             label: "Toy"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
         GridOrderItem {
             id: face
@@ -175,6 +180,7 @@ Item {
             label: "Face"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
         GridOrderItem {
             id: headwear
@@ -182,6 +188,7 @@ Item {
             label: "HeadWear"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
         GridOrderItem {
             id: accessory
@@ -189,6 +196,7 @@ Item {
             label: "Accessory"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
         GridOrderItem {
             id: eyewear
@@ -196,6 +204,7 @@ Item {
             label: "Eyewear"
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
         GridOrderItem {
             id: name
@@ -205,6 +214,7 @@ Item {
             priceVisible: false
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.minimumWidth: !selection.wrap ? implicitWidth : -1
         }
     }
 }

@@ -149,8 +149,8 @@ Rectangle {
     ListView {
         id: listView
 
-        readonly property real delegateWidth: ApplicationConfig.responsiveSize(544)
-        readonly property real delegateHeight: ApplicationConfig.responsiveSize(775)
+        readonly property real delegateWidth: ApplicationConfig.responsiveSize(560)
+        readonly property real delegateHeight: ApplicationConfig.responsiveSize(820)
 
         implicitWidth: 2 * delegateWidth + spacing  // space for showing 2 items
         implicitHeight: delegateHeight
@@ -162,8 +162,8 @@ Rectangle {
             bottom: parent.bottom
             leftMargin: accessoryView.horizontalPaddings
             rightMargin: accessoryView.horizontalPaddings
-            bottomMargin: ApplicationConfig.responsiveSize(100)
-            topMargin: ApplicationConfig.responsiveSize(100)
+            bottomMargin: ApplicationConfig.responsiveSize(80)
+            topMargin: ApplicationConfig.responsiveSize(80)
         }
 
         orientation: ListView.Horizontal
@@ -207,6 +207,8 @@ Rectangle {
 
             implicitWidth: ListView.view.delegateWidth
             implicitHeight: ListView.view.delegateHeight
+            anchors.verticalCenter: ListView.view.contentItem.verticalCenter
+
             cardName: name
             cardImageSource: Qt.resolvedUrl(image)
             selectedColorName: color

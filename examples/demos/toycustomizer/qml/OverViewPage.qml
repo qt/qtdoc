@@ -11,6 +11,8 @@ Item {
     property bool buttonsVisible: true
     property alias toyIndex: orderGrid.toyIndex
     property alias accessoryModel: orderGrid.accessoryModel
+    readonly property bool narrowWidth: width < 1112
+
     signal confirmed
     signal cancelled
 
@@ -33,6 +35,9 @@ Item {
 
         LayoutItemProxy {
             target: orderGrid
+            // Give the OrderGrid 20 pixel margins on horizontal sides (left+right=40).
+            Layout.preferredWidth: Math.min(orderGrid.implicitWidth, portraitLayout.width - 40)
+            Layout.minimumWidth: 472
             Layout.alignment: Qt.AlignHCenter
         }
 
@@ -72,12 +77,12 @@ Item {
         columnSpacing: {
             const prefSpacing = ApplicationConfig.responsiveSize(400)
             const prefWidth = whiteAreaItem.width + breakdownAndConfirmItem.width + prefSpacing
-            const minMargins = ApplicationConfig.responsiveSize(100)
+            const minMargins = ApplicationConfig.responsiveSize(60)
             const parentWidth = parent.width - 2 * minMargins
             const availableWidth = parentWidth - prefWidth
             if (availableWidth > 0)
                 return prefSpacing
-            const minSpacing = ApplicationConfig.responsiveSize(60)
+            const minSpacing = ApplicationConfig.responsiveSize(40)
             return Math.max(prefSpacing + availableWidth, minSpacing)
         }
 
@@ -115,12 +120,15 @@ Item {
     Item {
         id: whiteAreaItem
 
-        readonly property real horizontalPaddings: ApplicationConfig.responsiveSize(100)
+        readonly property real horizontalPaddings: ApplicationConfig.responsiveSize(80)
         readonly property real verticalPaddings: overViewPage.buttonsVisible ?
-                                             ApplicationConfig.responsiveSize(100) :
-                                             ApplicationConfig.responsiveSize(244)
+                                             ApplicationConfig.responsiveSize(80) :
+                                             ApplicationConfig.responsiveSize(200)
 
-        implicitWidth: whiteAreaLayout.implicitWidth + 2 * horizontalPaddings
+        // For the smaller width of the page the white area should have fixed width,
+        // as the minimum width, to force layouting and text wrapping.
+        implicitWidth: overViewPage.narrowWidth ? 576 : (whiteAreaLayout.implicitWidth +
+                                                         2 * horizontalPaddings)
         implicitHeight: whiteAreaLayout.implicitHeight + 2 * verticalPaddings
         visible: false
 
@@ -142,13 +150,16 @@ Item {
         ColumnLayout {
             id: whiteAreaLayout
             anchors.centerIn: parent
+            width: parent.width - 2 * parent.horizontalPaddings
             LayoutItemProxy {
                 target: orderGrid
                 visible: !ApplicationConfig.isPortrait
+                Layout.fillWidth: true
             }
             LayoutItemProxy {
                 target: breakdownAndConfirmItem
                 visible: ApplicationConfig.isPortrait
+                Layout.alignment: Qt.AlignCenter
             }
         }
     }
@@ -265,11 +276,16 @@ Item {
 
     OrderGrid {
         id: orderGrid
+
+        // This is a break-point width when there is not enough width to show
+        // all the items with their preferred widths.
+        readonly property real narrowWidth: ApplicationConfig.isPortrait ? 640 : 584
+
         visible: false
-        implicitWidth: ApplicationConfig.responsiveSize(1760)
+        implicitWidth: ApplicationConfig.responsiveSize(2280)
         implicitHeight: ApplicationConfig.responsiveSize(1170)
         accessoryModel: overViewPage.accessoryModel
-        anchors.centerIn: parent
+        wrap: width < narrowWidth
     }
 
     ToyButton {

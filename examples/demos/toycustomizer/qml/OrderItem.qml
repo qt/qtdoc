@@ -10,13 +10,14 @@ Item {
     required property real oldPrice
     required property real newPrice
     property real __discountPercent: Math.round(Math.max(oldPrice - newPrice, 0) / oldPrice * 100)
-    property alias name: itemName.text
+    property string name
     property bool priceVisible: true
     property bool isSelected: false
     property alias label: itemLabel.text
     property alias image: toyImage.source
 
     implicitHeight: mainLayout.implicitHeight
+    implicitWidth: mainLayout.implicitWidth
 
     RowLayout {
         id: mainLayout
@@ -36,7 +37,7 @@ Item {
                 implicitWidth: itemLabel.implicitWidth
                 implicitHeight: itemLabel.implicitHeight
                 Layout.fillWidth: true
-                Layout.bottomMargin: ApplicationConfig.responsiveSize(40)
+                Layout.bottomMargin: ApplicationConfig.responsiveSize(24)
                 ToyLabel {
                     id: itemLabel
                     textStyle: ApplicationConfig.TextStyle.H3_Light
@@ -44,8 +45,12 @@ Item {
                 }
             }
             RowLayout {
-                LayoutItemProxy {
-                    target: orderItem.isSelected ? itemName : notSelectedLabel
+                ToyLabel {
+                    id: itemName
+                    wrapMode: Text.WordWrap
+                    textStyle: ApplicationConfig.TextStyle.H4
+                    lineHeight: 1
+                    text: orderItem.isSelected ? orderItem.name : qsTr("Not Selected")
                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                     Layout.fillWidth: true
                 }
@@ -94,19 +99,6 @@ Item {
         color: "#A0AFC5"
     }
 
-    ToyLabel {
-        id: itemName
-        wrapMode: Text.Wrap
-        textStyle: ApplicationConfig.TextStyle.H3_Light
-        visible: false
-        lineHeight: 1
-    }
-    ToyLabel {
-        id: notSelectedLabel
-        wrapMode: Text.Wrap
-        visible: !orderItem.isSelected
-        text: qsTr("Not Selected")
-    }
     ColumnLayout {
         id: selectedItem
         visible: orderItem.isSelected && orderItem.priceVisible

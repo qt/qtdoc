@@ -38,9 +38,9 @@ Item {
         id: content
         anchors {
             fill: parent
-            margins: ApplicationConfig.responsiveSize(48)
+            margins: 10
         }
-        spacing: 0
+        spacing: 6
         ToyImage {
             id: modelImage
             Layout.alignment: Qt.AlignHCenter
@@ -61,7 +61,7 @@ Item {
         RowLayout {
             id: priceItem
             Layout.fillWidth: true
-            spacing: Math.round(ApplicationConfig.responsiveSize(10))
+            spacing: 4
             ToyLabel {
                 id: modelPrice
                 textStyle: ApplicationConfig.TextStyle.Price_M
@@ -114,7 +114,7 @@ Item {
             implicitHeight: ApplicationConfig.responsiveSize(105)
             implicitWidth: ApplicationConfig.responsiveSize(448)
             type: ToyButton.Type.Secondary
-            textStyle: ApplicationConfig.TextStyle.Button_S
+            textStyle: ApplicationConfig.TextStyle.Button_M
             text: qsTr("Choose")
             Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.fillWidth: true

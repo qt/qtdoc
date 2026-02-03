@@ -184,7 +184,7 @@ Item {
         }
         ColumnLayout {
             Layout.topMargin: ApplicationConfig.responsiveSize(522)
-            spacing: 0
+            spacing: 16
             LayoutItemProxy {
                 visible: root.__discount > 0
                 target: discountRow
@@ -238,11 +238,11 @@ Item {
         spacing: 8
         ToyLabel {
             text: qsTr("%1 reviews").arg(root.__modelData ? root.__modelData.reviews : 0)
-            textStyle: ApplicationConfig.TextStyle.H3
+            textStyle: ApplicationConfig.TextStyle.H3_Light
         }
         ToyLabel {
             text: qsTr("★%1").arg(root.__modelData ? root.__modelData.rating : 0)
-            textStyle: ApplicationConfig.TextStyle.H3
+            textStyle: ApplicationConfig.TextStyle.H3_Light
         }
     }
     ToyLabel {
@@ -254,27 +254,31 @@ Item {
     }
     Row {
         id: discountRow
-        spacing: ApplicationConfig.responsiveSize(24)
+        spacing: 8
         ToyLabel {
-            textStyle: ApplicationConfig.TextStyle.Price_ML
+            id: originalPriceLabel
+            anchors.verticalCenter: parent.verticalCenter
+            textStyle: ApplicationConfig.isPortrait ? ApplicationConfig.TextStyle.Price_ML
+                                                    : ApplicationConfig.TextStyle.Price_L
             text: qsTr("%1").arg(root.__price)
             font.strikeout: true
             color: "#6A6A8D"
         }
         ToyLabel {
-            textStyle: ApplicationConfig.TextStyle.Price_ML
+            id: discountLabel
+            anchors.verticalCenter: parent.verticalCenter
+            textStyle: ApplicationConfig.isPortrait ? ApplicationConfig.TextStyle.Price_M
+                                                    : ApplicationConfig.TextStyle.Price_ML
             text: qsTr("%1%").arg(-root.__discount)
             color: "#6A6A8D"
         }
     }
     Row {
         id: priceRow
+        spacing: 8
+
         ToyLabel {
             id: priceLabel
-            implicitWidth: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(219)
-                                                : ApplicationConfig.responsiveSize(330)
-            implicitHeight: ApplicationConfig.isPortrait ? ApplicationConfig.responsiveSize(100)
-                                                         : ApplicationConfig.responsiveSize(150)
             textStyle: ApplicationConfig.isPortrait ? ApplicationConfig.TextStyle.Price_XL
                                                     : ApplicationConfig.TextStyle.Price_XXL
             text: root.__discount > 0 ? `${root.__price * (1 - root.__discount / 100)}`
