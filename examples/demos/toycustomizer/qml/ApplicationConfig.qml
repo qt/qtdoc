@@ -45,14 +45,16 @@ QtObject {
         Body,
         Body_Bold,
         Body_L,
-        Button_L,
         Button_S,
+        Button_M,
+        Button_L,
         Caption,
         H1,
+        H2,
         H2_Bold,
-        H3,
         H3_Bold,
         H3_Light,
+        H4,
         Price_S,
         Price_M,
         Price_ML,
@@ -63,8 +65,8 @@ QtObject {
 
     function responsiveFontSize(style) {
         // The font sizes are based on Dongle font family.
-        // For other font families we multiply them by '0.7'.
-        const designFontSize = __design.fontSize(style) * 0.7
+        // For other font families we multiply them by '0.9'.
+        const designFontSize = __design.fontSize(style) * 0.9
         return Math.round(responsiveSize(designFontSize))
     }
 
@@ -102,13 +104,16 @@ QtObject {
             case ApplicationConfig.TextStyle.Price_S:
                 return 56
             case ApplicationConfig.TextStyle.Price_M:
+            case ApplicationConfig.TextStyle.Button_M:
+            case ApplicationConfig.TextStyle.H4:
                 return 72
             case ApplicationConfig.TextStyle.Body_L:
             case ApplicationConfig.TextStyle.Button_L:
-            case ApplicationConfig.TextStyle.H3:
             case ApplicationConfig.TextStyle.H3_Bold:
             case ApplicationConfig.TextStyle.H3_Light:
                 return 80
+            case ApplicationConfig.TextStyle.H2:
+                return 92
             case ApplicationConfig.TextStyle.H1:
                 return 112
             case ApplicationConfig.TextStyle.H2_Bold:

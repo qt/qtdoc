@@ -115,7 +115,7 @@ Item {
                     ToyLabel {
                         color: "#162655"
                         text: qsTr("Your order has been confirmed!")
-                        textStyle: ApplicationConfig.TextStyle.H1
+                        textStyle: ApplicationConfig.TextStyle.H2
                         font.bold: false
                         Layout.columnSpan: 2
                         Layout.alignment: Qt.AlignCenter
