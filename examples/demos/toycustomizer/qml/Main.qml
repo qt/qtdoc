@@ -13,9 +13,9 @@ ApplicationWindow {
     property int lastToyIndex: -1
 
     minimumWidth: 608
-    minimumHeight: 960
+    minimumHeight: 946
     width: 1536
-    height: 864
+    height: 946
     visible: true
     title: qsTr("Toy Customizer")
 
