@@ -105,7 +105,7 @@ Item {
                     blur: barSeries.blur
                     opacity: barSeries.opa
                     width: barSeries.sizeFactor * barRectangle.width * Units.px
-                    height: 0.9 * barRectangle.height * Units.px
+                    height: 0.9 * Math.min(barRectangle.height, 600) * Units.px
                     cached: true
                 }
 
