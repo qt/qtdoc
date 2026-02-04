@@ -556,7 +556,7 @@ void AssetDownloader::start()
         storage,
         onGroupSetup(onSetup),
         QNetworkReplyWrapperTask(onJsonDownloadSetup, onJsonDownloadDone),
-        QThreadFunctionTask<DownloadableAssets>(onReadAssetsFileSetup, onReadAssetsFileDone, CallDone::OnSuccess),
+        QThreadFunctionTask<DownloadableAssets>(onReadAssetsFileSetup, onReadAssetsFileDone, CallDoneFlag::OnSuccess),
         Group {
             onGroupSetup(onSkipIfAllAssetsPresent),
             QNetworkReplyWrapperTask(onZipDownloadSetup, onZipDownloadDone),
@@ -573,7 +573,7 @@ void AssetDownloader::start()
             For (copyIterator) >> Do {
                 parallelIdealThreadCountLimit,
                 onGroupSetup(onAssetsCopyGroupSetup),
-                QThreadFunctionTask<void>(onAssetCopySetup, onAssetCopyDone, CallDone::OnSuccess),
+                QThreadFunctionTask<void>(onAssetCopySetup, onAssetCopyDone, CallDoneFlag::OnSuccess),
                 onGroupDone(onAssetsCopyGroupDone)
             }
         }
