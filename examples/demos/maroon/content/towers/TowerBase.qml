@@ -21,9 +21,7 @@ Item {
     y: row * height
     z: 1000
 
-    function fire() { }
-    function spawn() { } //After all game properties are set
-    function die() { stdDeath.start(); destroy(1000); }
+    function dieImpl() { stdDeath.start(); destroy(1000); }
     function sell() { destroy(); }
 
     SequentialAnimation on opacity {

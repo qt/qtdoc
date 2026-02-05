@@ -40,6 +40,8 @@ TowerBase {
         sprite.jumpTo("shoot")
     }
 
+    function die() { dieImpl(); }
+
     SoundEffect {
         id: shootSound
         source: "../audio/melee-action.wav"

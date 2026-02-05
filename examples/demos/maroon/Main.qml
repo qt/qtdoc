@@ -61,7 +61,7 @@ Window {
             y: -(height - 480)
             width: 320
 
-            GameOverScreen { gameCanvas: canvas }
+            GameOverScreen { gameCanvas: gameCanvasId }
 
             Item {
                 id: canvasArea
@@ -138,14 +138,14 @@ Window {
                 }
 
                 GameCanvas {
-                    id: canvas
+                    id: gameCanvasId
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 20
                     x: 32
                     focus: true
                 }
 
-                InfoBar { anchors.bottom: canvas.top; anchors.bottomMargin: 6; width: parent.width; canvas: canvas }
+                InfoBar { anchors.bottom: canvas.top; anchors.bottomMargin: 6; width: parent.width; canvas: gameCanvasId }
 
                 //3..2..1..go
                 Timer {
@@ -182,7 +182,7 @@ Window {
             interval: 4000
             running: false
             repeat: false
-            onTriggered: Logic.startGame(canvas);
+            onTriggered: Logic.startGame(gameCanvasId);
         }
 
         states: [
@@ -202,6 +202,6 @@ Window {
             NumberAnimation { properties: "x,y"; duration: 1200; easing.type: Easing.OutQuad }
         }
 
-        Component.onCompleted: gameState = Logic.newGameState(canvas);
+        Component.onCompleted: gameState = Logic.newGameState(gameCanvasId);
     }
 }
