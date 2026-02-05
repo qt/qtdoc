@@ -15,10 +15,10 @@ ApplicationWindow {
     visible: true
     title: "RobotArm"
 
-    Material.theme: screen.darkMode ? Material.Dark : Material.Light
+    Material.theme: mainScreen.darkMode ? Material.Dark : Material.Light
 
     MainScreen {
-        id: screen
+        id: mainScreen
         anchors.fill: parent
     }
 }
