@@ -5,23 +5,33 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Slider {
+/* the RowLayout is in theory not necessary, but it is important for tooling
+   that the type has the same shape independent of which Style is used
+*/
+RowLayout {
+    id: root
     property string labelText: qsTr("Text")
+    property alias from: slider.from
+    property alias to: slider.to
     required property real sliderWidth
-    stepSize: 1
+    property alias value: slider.value
+    Slider {
+        id: slider
+        stepSize: 1
 
-    Layout.preferredWidth: sliderWidth
+        Layout.preferredWidth: root.sliderWidth
 
-    Label {
-        text: parent.labelText
-        anchors.left: parent.left
-        anchors.bottom: parent.top
-        bottomPadding: -12
-    }
-    Label {
-        text: parent.value
-        anchors.right: parent.right
-        anchors.bottom: parent.top
-        bottomPadding: -12
+        Label {
+            text: root.labelText
+            anchors.left: parent.left
+            anchors.bottom: parent.top
+            bottomPadding: -12
+        }
+        Label {
+            text: parent.value
+            anchors.right: parent.right
+            anchors.bottom: parent.top
+            bottomPadding: -12
+        }
     }
 }
