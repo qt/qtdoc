@@ -59,6 +59,8 @@ TowerBase {
         coin.target = Logic.gameState.mapToItem(container, 240, -32)
     }
 
+    function die() { dieImpl(); }
+
     Image {
         id: coin
         property var target: { "x" : 0, "y" : 0 }

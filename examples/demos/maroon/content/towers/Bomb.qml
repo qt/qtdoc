@@ -20,11 +20,11 @@ TowerBase {
     }
 
     function finishFire() {
-        var sCol = Math.max(0, col - 1)
-        var eCol = Math.min(Logic.gameState.cols - 1, col + 1)
-        var killList = new Array()
-        for (var i = sCol; i <= eCol; i++) {
-            for (var j = 0; j < Logic.gameState.mobs[i].length; j++)
+        let sCol = Math.max(0, col - 1)
+        let eCol = Math.min(Logic.gameState.cols - 1, col + 1)
+        let killList = new Array()
+        for (let i = sCol; i <= eCol; i++) {
+            for (let j = 0; j < Logic.gameState.mobs[i].length; j++)
                 if (Math.abs(Logic.gameState.mobs[i][j].y - container.y) < Logic.gameState.squareSize * detonationRange)
                     killList.push(Logic.gameState.mobs[i][j])
             while (killList.length > 0)

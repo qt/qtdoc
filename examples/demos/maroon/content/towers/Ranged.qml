@@ -24,7 +24,7 @@ TowerBase {
         shootSound.play()
         sprite.jumpTo("shoot")
     }
-
+    function die() { dieImpl(); }
     Image {
         id: proj
         SequentialAnimation on y {
