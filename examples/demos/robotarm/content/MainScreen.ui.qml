@@ -180,10 +180,8 @@ Pane {
     View3D {
         anchors.fill: parent
 
-        camera: camera
+        camera: perspectiveCamera
         Node {
-            id: scene
-
             PointLight {
                 x: 760
                 z: 770
@@ -205,7 +203,7 @@ Pane {
             }
 
             PerspectiveCamera {
-                id: camera
+                id: perspectiveCamera
                 x: 1050
                 y: 375
                 z: -40
