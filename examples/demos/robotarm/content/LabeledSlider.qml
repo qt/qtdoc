@@ -11,7 +11,7 @@ RowLayout {
     required property real from
     required property real to
     required property real sliderWidth
-    property real value: 0
+    property alias value: rotationSlider.value
 
     spacing: 2
 
@@ -24,7 +24,6 @@ RowLayout {
         Layout.minimumWidth: 160
         from: root.from
         to: root.to
-        value: root.value
     }
     Label {
         text: rotationSlider.value.toFixed(0)
