@@ -541,6 +541,10 @@
 
     \section3 Windows
     \list
+    \li Added support and detection of Windows 11 25H2 (Build 10.0.26200) via
+        \l{QOperatingSystemVersion::Windows11_25H2}{QOperatingSystemVersion}.
+    \li There are various accessibility improvements to top-level windows and focus.
+    \li Improved refresh rate update handling.
     \li Added experimental support for \l{https://learn.microsoft.com/windows/arm/arm64ec}{ARM64EC}
         when using Visual Studio 2026. To use this configuration add \c{/arm64EC} to \c{CFLAGS} as
         well as \c{/arm64EC} and \c{/d2arm64ECMarkAllFuncsPatchable} to your \c{CXXFLAGS}
