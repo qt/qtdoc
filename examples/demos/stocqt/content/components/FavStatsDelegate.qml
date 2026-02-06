@@ -1,19 +1,21 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 import QtQuick.Shapes
-import StocQt
 
 Rectangle {
-    id: stock
+    id: root
     width: 311
     height: 32
     color: "transparent"
     property alias selectButton: mouseArea
+    required property string stockId
+    required property string open
+    required property string close
 
     RowLayout {
-        id: row
+        id: rowLayout
         anchors.fill: parent
 
         Text {
@@ -21,7 +23,7 @@ Rectangle {
             width: 28
             height: 14
             color: "#f2f2f2"
-            text: stockId
+            text: root.stockId
             font.pixelSize: 12
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignTop
@@ -41,7 +43,7 @@ Rectangle {
                 id: openNumber
                 anchors.right: dash.left
                 color: "#5ECCA3"
-                text: open + "$"
+                text: root.open + "$"
                 font.pixelSize: 12
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignTop
@@ -66,7 +68,7 @@ Rectangle {
                 id: closeNumber
                 anchors.right: parent.right
                 color: "#FA8A8A"
-                text: close + "$"
+                text: root.close + "$"
                 font.pixelSize: 12
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignTop
@@ -82,7 +84,7 @@ Rectangle {
             Layout.rightMargin: 10
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             isFavorite: true
-            stock: stockId
+            stock: root.stockId
         }
     }
 

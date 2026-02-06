@@ -18,13 +18,13 @@ CheckBox {
         radius: 4
         border.color: cb.checked ? "#000000" : "#4d3c3535"
         anchors.fill: parent
-        color: cb.checked? activeColor : "transparent"
+        color: cb.checked? cb.activeColor : "transparent"
 
         Text {
             id: ctext
             width: 42
             height: 22
-            color: cb.checked ? activeTextColor : "#bfbfbf"
+            color: cb.checked ? cb.activeTextColor : "#bfbfbf"
             text: qsTr("Low")
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: 12

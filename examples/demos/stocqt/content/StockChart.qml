@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick 6.5
 import QtGraphs
-import QtQuick.Layouts
 import StocQt
 
 Rectangle {
@@ -37,7 +36,7 @@ Rectangle {
                                     ["3M", 90],
                                     ["6M",180]])
 
-        var tf = timeFrames.get(timeFrame)
+        let tf = timeFrames.get(timeFrame)
         endDate =  StockEngine.useLiveData()? new Date() : new Date(StockEngine.stockModel.historyDate(0) + 1)
         startDate = new Date(endDate.getTime())
         startDate.setDate(endDate.getDate() -tf);
@@ -45,20 +44,20 @@ Rectangle {
 
     function updateHistory(){
         updateStartDate()
-        var startPoint = StockEngine.stockModel.indexOf(startDate)
-        var totalPoints = StockEngine.stockModel.historyCount()
+        let startPoint = StockEngine.stockModel.indexOf(startDate)
+        let totalPoints = StockEngine.stockModel.historyCount()
 
-        var width = startPoint / 50
-        for (var i = 0; i < totalPoints; i++) {
-            var epochInDays = StockEngine.stockModel.historyDate(i, false) / 86400
+        let width = startPoint / 50
+        for (let i = 0; i < totalPoints; i++) {
+            let epochInDays = StockEngine.stockModel.historyDate(i, false) / 86400
             appendSurfacePoint(openModel, width, epochInDays, StockEngine.stockModel.openPrice(i))
             appendSurfacePoint(closeModel,width, epochInDays, StockEngine.stockModel.closePrice(i))
             appendSurfacePoint(highModel,width, epochInDays, StockEngine.stockModel.highPrice(i))
             appendSurfacePoint(lowModel,width, epochInDays, StockEngine.stockModel.lowPrice(i))
         }
 
-        for (var j = startPoint - 1; j >= 0; j--) {
-            var date = new Date(StockEngine.stockModel.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
+        for (let j = startPoint - 1; j >= 0; j--) {
+            let date = new Date(StockEngine.stockModel.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
             volumeModel.append({"row": StockEngine.stockModel.name(),
                                    "column": date,
                                    "value": StockEngine.stockModel.volume(j) / 1000000})
@@ -80,9 +79,9 @@ Rectangle {
     function updateLive(){
         currentLiveIndex = liveSeries.selectedItem
         priceModel.clear()
-        for (var i= 0; i < StockEngine.stockModel.quoteCount(); i++){
-            var date = new Date(StockEngine.stockModel.quoteTime(i))
-            var dayS = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
+        for (let i= 0; i < StockEngine.stockModel.quoteCount(); i++){
+            let date = new Date(StockEngine.stockModel.quoteTime(i))
+            let dayS = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
             priceModel.insert(0,{"row" : 0,
                                   "column": dayS,
                                   "value" : StockEngine.stockModel.price(i)});
@@ -120,7 +119,7 @@ Rectangle {
 
         axisX: Value3DAxis {
             autoAdjustRange: true
-            title: startDate.toDateString() + " - " + endDate.toDateString()
+            title: chart.startDate.toDateString() + " - " + chart.endDate.toDateString()
             formatter: TimeFormatter {
                 id: monthFormatter
                 selectionFormat: "dd-MM-yyyy"
@@ -225,7 +224,7 @@ Rectangle {
             titleVisible: true
         }
         columnAxis: Category3DAxis {
-            title: startDate.toDateString() + " - " + endDate.toDateString()
+            title: chart.startDate.toDateString() + " - " + chart.endDate.toDateString()
             titleVisible: true
         }
 
@@ -268,7 +267,7 @@ Rectangle {
         orthoProjection: true
 
         axisX: Value3DAxis {
-            title: startDate.toDateString() + " - " + endDate.toDateString()
+            title: chart.startDate.toDateString() + " - " + chart.endDate.toDateString()
             formatter: TimeFormatter {
                 id: minuteFormatter
                 selectionFormat: "hh:mm:ss"
@@ -302,8 +301,8 @@ Rectangle {
                     yPosRole: "value"
                     zPosRole: "row"
                     onItemCountChanged: {
-                        var i = liveSeries.selectedItem
-                        liveSeries.selectedItem = currentLiveIndex
+                        let i = liveSeries.selectedItem
+                        liveSeries.selectedItem = chart.currentLiveIndex
                     }
                 }
             }

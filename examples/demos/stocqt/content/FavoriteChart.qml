@@ -18,7 +18,7 @@ Rectangle {
         const priceModels = [priceModel1, priceModel2, priceModel3, priceModel4, priceModel5]
         priceModels.forEach((model => model.clear()))
         volumeModel.clear()
-        for (var i = 0; i < StockEngine.favoritesModel.count(); i++) {
+        for (let i = 0; i < StockEngine.favoritesModel.count(); i++) {
             updateStock(i, priceModels[i])
         }
     }
@@ -29,12 +29,12 @@ Rectangle {
                                     ["1M", 30],
                                     ["3M", 90],
                                     ["6M",180]])
-        var tf = timeFrames.get(timeFrame)
+        let tf = timeFrames.get(timeFrame)
 
         if (StockEngine.favoritesModel.count() === 0) {
             endDate = new Date()
         } else {
-            var stock = StockEngine.favoritesModel.atIndex(0)
+            let stock = StockEngine.favoritesModel.atIndex(0)
             endDate =  StockEngine.useLiveData()? new Date() : new Date(stock.historyDate(0) + 1)
         }
 
@@ -44,13 +44,13 @@ Rectangle {
     }
 
     function updateStock(index, priceModel){
-        var stock = StockEngine.favoritesModel.atIndex(index)
-        var startPoint = stock.indexOf(startDate)
-        var totalPoints = stock.historyCount()
-        var width = startPoint / 30
+        let stock = StockEngine.favoritesModel.atIndex(index)
+        let startPoint = stock.indexOf(startDate)
+        let totalPoints = stock.historyCount()
+        let width = startPoint / 30
 
-        for (var i = 0; i < totalPoints; i++) {
-            var epochInDays = stock.historyDate(i, false) / 86400
+        for (let i = 0; i < totalPoints; i++) {
+            let epochInDays = stock.historyDate(i, false) / 86400
             priceModel.append({"column": epochInDays,
                                   "row": index * width,
                                   "close": stock.closePrice(i)})
@@ -59,8 +59,8 @@ Rectangle {
                                   "close": stock.closePrice(i)})
         }
 
-        for (var j = startPoint - 1; j >= 0; j--){
-            var date = new Date(stock.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
+        for (let j = startPoint - 1; j >= 0; j--){
+            let date = new Date(stock.historyDate(j)).toLocaleDateString(Locale.ShortFormat)
             volumeModel.append({"row": stock.stockId(),
                                    "column": date,
                                    "volume": stock.volume(j) / 1000000})
@@ -107,12 +107,12 @@ Rectangle {
             titleVisible: true
         }
         columnAxis: Category3DAxis {
-            id: columnAxis
-            title: startDate.toDateString() + " - " + endDate.toDateString()
+            id: columnAxisId
+            title: favoriteChart.startDate.toDateString() + " - " + favoriteChart.endDate.toDateString()
             titleVisible: true
         }
         rowAxis: Category3DAxis {
-            id: rowAxis
+            id: rowAxisId
             title: "Stock"
             titleVisible: true
         }
@@ -164,7 +164,7 @@ Rectangle {
 
         axisX: Value3DAxis {
             autoAdjustRange: true
-            title: startDate.toDateString() + " - " + endDate.toDateString()
+            title: favoriteChart.startDate.toDateString() + " - " + favoriteChart.endDate.toDateString()
             formatter: TimeFormatter {
                 id: monthFormatter
                 selectionFormat: "dd-MM-yyyy"

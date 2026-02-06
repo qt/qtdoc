@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: bottom_Navbar
@@ -11,9 +10,9 @@ Rectangle {
     color: "#1D1D1D"
     border.color: "#3C3535"
 
-    property alias favoriteButton: favoriteButton
-    property alias homeButton: homeButton
-    property alias settingsButton: settingsButton
+    property alias favoriteButton: favoriteButtonMouse
+    property alias homeButton: homeButtonMouse
+    property alias settingsButton: settingsButtonMouse
 
     state: "Home"
 
@@ -76,9 +75,8 @@ Rectangle {
                 }
 
                 MouseArea {
-                    id: homeButton
+                    id: homeButtonMouse
                     anchors.fill: parent
-                    onClicked: mainWindow.stateGroup.state = "ListView"
                 }
             }
 
@@ -126,7 +124,7 @@ Rectangle {
                 }
 
                 MouseArea {
-                    id: favoriteButton
+                    id: favoriteButtonMouse
                     anchors.fill: parent
                 }
                 Layout.preferredWidth: 56
@@ -179,7 +177,7 @@ Rectangle {
                 }
 
                 MouseArea {
-                    id: settingsButton
+                    id: settingsButtonMouse
                     anchors.fill: parent
                 }
             }

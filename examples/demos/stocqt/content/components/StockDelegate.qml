@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 import StocQt
 
 Rectangle {
@@ -11,7 +10,14 @@ Rectangle {
     height: 81
     color: "transparent"
     property alias selectButton: mouseArea
-    property alias stockName: nameText.text
+
+    required property string stockId
+    required property real price
+    required property real change
+    required property real changePercentage
+    required property string name
+    required property real date
+    required property bool favorite
 
     state: change >= 0 ? "Rising" : "Falling"
 
@@ -41,7 +47,7 @@ Rectangle {
                     Layout.preferredWidth: 24
                     Layout.preferredHeight: 24
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    source: "../images/logos/" + stockId + ".svg"
+                    source: "../images/logos/" + stockDelegate.stockId + ".svg"
                 }
 
                 Rectangle {
@@ -62,7 +68,7 @@ Rectangle {
                             width: 35
                             height: 16
                             color: "#f2f2f2"
-                            text: stockId
+                            text: stockDelegate.stockId
                             font.pixelSize: 16
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignTop
@@ -80,7 +86,7 @@ Rectangle {
                             width: 145
                             height: 16
                             color: "#bfbfbf"
-                            text: name
+                            text: stockDelegate.name
                             font.pixelSize: 12
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignTop
@@ -112,7 +118,7 @@ Rectangle {
                         width: 66
                         height: 11
                         color: "#bfbfbf"
-                        text: qsTr("%1").arg(new Date(date).toLocaleString(Locale.ShortFormat))
+                        text: qsTr("%1").arg(new Date(stockDelegate.date).toLocaleString(Locale.ShortFormat))
                         font.pixelSize: 10
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
@@ -147,8 +153,8 @@ Rectangle {
                     Layout.preferredWidth: 24
                     Layout.preferredHeight: 24
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                    isFavorite: favorite
-                    stock: stockId
+                    isFavorite: stockDelegate.favorite
+                    stock: stockDelegate.stockId
                 }
 
                 Text {
@@ -158,7 +164,7 @@ Rectangle {
                     width: 37
                     height: 21
                     color: "#f2f2f2"
-                    text: qsTr("%L1").arg(price.toFixed(1))
+                    text: qsTr("%L1").arg(stockDelegate.price.toFixed(1))
                     font.pixelSize: 14
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignTop
@@ -176,7 +182,7 @@ Rectangle {
                     width: 72
                     height: 14
                     color: "#5ecca3"
-                    text: qsTr("%L1 (%L2%)").arg(change.toFixed()).arg(changePercentage.toFixed(1))
+                    text: qsTr("%L1 (%L2%)").arg(stockDelegate.change.toFixed()).arg(stockDelegate.changePercentage.toFixed(1))
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignTop
@@ -198,7 +204,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 60
         onClicked: {
-            StockEngine.updateStockView(stockId)
+            StockEngine.updateStockView(stockDelegate.stockId)
         }
     }
 

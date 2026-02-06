@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: keystats
@@ -99,7 +98,7 @@ Rectangle {
                 anchors.topMargin: 6
                 anchors.bottomMargin: 6
                 Text {
-                    id: open
+                    id: openName
                     x: 0
                     y: 6
                     width: 28
@@ -156,7 +155,7 @@ Rectangle {
                 anchors.bottomMargin: 6
                 spacing: 201
                 Text {
-                    id: volume
+                    id: volumeName
                     x: 0
                     y: 6
                     width: 40

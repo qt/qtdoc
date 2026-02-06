@@ -1,8 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtGraphs
 import QtQuick.Layouts
 import StocQt
 import "components"
@@ -10,6 +8,7 @@ import "components"
 Rectangle {
     id: rectangle
     color: "#101010"
+    required property StateGroup stateGroup
     property bool portrait: width < height
     property bool fullscreen: false
 
@@ -42,11 +41,11 @@ Rectangle {
         id: banner
         x: 0
         width: parent.width
-        height: portrait? 42 : 0
+        height: rectangle.portrait? 42 : 0
         color: parent.color
         anchors.top: parent.top
         anchors.topMargin: 3
-        visible: portrait
+        visible: rectangle.portrait
 
         Image {
             id: logo2
@@ -78,7 +77,7 @@ Rectangle {
                 y: 0
                 width: 24
                 height: 24
-                onClicked: mainWindow.stateGroup.state = "ListView"
+                onClicked: rectangle.stateGroup.state = "ListView"
             }
         }
     }
@@ -87,9 +86,18 @@ Rectangle {
         id: tab
         anchors.top: banner.bottom
         width: parent.width
-        historyButton.onClicked: chart.state = "History"
-        volumeButton.onClicked: chart.state = "Volume"
-        liveButton.onClicked: chart.state = "Live"
+        historyButton.onClicked: {
+            tab.state = "History"
+            chart.state = "History"
+        }
+        volumeButton.onClicked: {
+            tab.state = "Volume"
+            chart.state = "Volume"
+        }
+        liveButton.onClicked: {
+            tab.state = "LiveData"
+            chart.state = "Live"
+        }
     }
 
     GridLayout {
@@ -98,8 +106,8 @@ Rectangle {
         anchors.top: tab.bottom
         anchors.bottom: parent.bottom
         layoutDirection: Qt.RightToLeft
-        rows: portrait? 4 : 2
-        columns: portrait? 1 : 2
+        rows: rectangle.portrait? 4 : 2
+        columns: rectangle.portrait? 1 : 2
 
         StockDetail {
             id: stockDetail
@@ -123,7 +131,7 @@ Rectangle {
             Layout.rowSpan: 2
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.maximumWidth: portrait || rectangle.fullscreen ? parent.width : parent.width / 2
+            Layout.maximumWidth: rectangle.portrait || rectangle.fullscreen ? parent.width : parent.width / 2
 
             TimeBar {
                 id: timeBar
@@ -152,7 +160,7 @@ Rectangle {
                 }
 
                 Image {
-                    id: fullscreen
+                    id: fullscreenImage
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
                     anchors.bottomMargin: 5
@@ -182,7 +190,7 @@ Rectangle {
             color: "#00ffffff"
             Layout.alignment: Qt.AlignRight | Qt.AlignBottom
             Layout.fillWidth: true
-            Layout.fillHeight: !portrait
+            Layout.fillHeight: !rectangle.portrait
             visible: !rectangle.fullscreen
             Text {
                 id: overview

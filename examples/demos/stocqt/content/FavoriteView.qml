@@ -1,5 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+pragma ComponentBehavior: Bound
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
@@ -22,12 +23,12 @@ Rectangle {
         stockLegendModel.clear()
         favoriteListModel.clear()
         favoriteList.currentIndex = 0
-        for (var i = 0; i < StockEngine.favoritesModel.count(); i++){
-            var stock = StockEngine.favoritesModel.atIndex(i)
-            var stockId = stock.stockId()
-            var lastOpen = stock.openPrice(0)
-            var lastClose = stock.closePrice(0)
-            var color = StockEngine.favoritesModel.color(i)
+        for (let i = 0; i < StockEngine.favoritesModel.count(); i++){
+            let stock = StockEngine.favoritesModel.atIndex(i)
+            let stockId = stock.stockId()
+            let lastOpen = stock.openPrice(0)
+            let lastClose = stock.closePrice(0)
+            let color = StockEngine.favoritesModel.color(i)
 
             stockLegendModel.append({"stockId": stockId,
                                         "keyColor": color})
@@ -43,11 +44,11 @@ Rectangle {
     Rectangle {
         id: banner
         width: parent.width
-        height: portrait? 42 : 0
+        height: rectangle.portrait ? 42 : 0
         color: parent.color
         anchors.top: parent.top
         anchors.topMargin: 3
-        visible: portrait
+        visible: rectangle.portrait
 
         Image {
             id: logo2
@@ -64,8 +65,14 @@ Rectangle {
         anchors.top: banner.bottom
         anchors.rightMargin: 0
         anchors.leftMargin: 0
-        priceButton.onClicked: chart.state = "Price"
-        volumeButton.onClicked: chart.state = "Volume"
+        priceButton.onClicked: {
+            tab.state = "PriceActive"
+            chart.state = "Price"
+        }
+        volumeButton.onClicked: {
+            tab.state = "VolumeActive"
+            chart.state = "Volume"
+        }
     }
 
     GridLayout {
@@ -74,8 +81,8 @@ Rectangle {
         anchors.top: tab.bottom
         anchors.bottom: parent.bottom
         layoutDirection: Qt.RightToLeft
-        rows: portrait? 4 : 2
-        columns: portrait? 1 : 2
+        rows: rectangle.portrait? 4 : 2
+        columns: rectangle.portrait? 1 : 2
 
         StockDetail {
             id: profile
@@ -84,9 +91,9 @@ Rectangle {
             visible: !rectangle.fullscreen
 
             function updateDetails() {
-                if (currentIndex === -1 || StockEngine.favoritesModel.count() === 0)
+                if (rectangle.currentIndex === -1 || StockEngine.favoritesModel.count() === 0)
                     return
-                var stock = StockEngine.favoritesModel.atIndex(currentIndex)
+                var stock = StockEngine.favoritesModel.atIndex(rectangle.currentIndex)
                 stockId = stock.stockId()
                 stockName = stock.name()
                 price = qsTr("%L1$").arg(stock.price(0).toFixed(1))
@@ -106,7 +113,7 @@ Rectangle {
             Layout.rowSpan: 2
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.maximumWidth: portrait || rectangle.visible? parent.width : parent.width / 2
+            Layout.maximumWidth: rectangle.portrait || rectangle.visible? parent.width : parent.width / 2
 
             TimeBar {
                 id: timeBar
@@ -134,8 +141,10 @@ Rectangle {
                     }
 
                     delegate: Rectangle {
+                        id: legendItem
                         width: legendRect.width / 5
                         color: "transparent"
+                        required property color keyColor
                         RowLayout {
                             id: layout
                             anchors.fill: parent
@@ -145,13 +154,13 @@ Rectangle {
                                 height: 8
                                 radius: 180
                                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                color: keyColor
+                                color: legendItem.keyColor
                             }
 
                             Text {
                                 id: tag_name
                                 color: "#BFBFBF"
-                                text: stockId
+                                text: StockEngine.currentStockId()
                                 font.pixelSize: 12
                                 font.weight: Font.Medium
                                 font.family: "Roboto"
@@ -175,7 +184,7 @@ Rectangle {
                 }
 
                 Image {
-                    id: fullscreen
+                    id: fullscreenId
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
                     anchors.bottomMargin: 5
@@ -197,7 +206,7 @@ Rectangle {
             width: parent.width
             Layout.alignment: Qt.AlignRight | Qt.AlignBottom
             Layout.fillWidth: true
-            Layout.fillHeight: !portrait
+            Layout.fillHeight: !rectangle.portrait
             visible: !rectangle.fullscreen
 
             Text {
@@ -217,7 +226,7 @@ Rectangle {
             }
 
             Rectangle {
-                id: add
+                id: addId
                 width: 64
                 height: 22
 
@@ -230,7 +239,7 @@ Rectangle {
                 radius: 4
                 Component.onCompleted: StockEngine.onFavoritesChanged.connect(setFavoritesFull)
                 function setFavoritesFull(full) {
-                    add.full = full
+                    addId.full = full
                 }
                 Text{
                     anchors.fill: parent
@@ -239,7 +248,7 @@ Rectangle {
                     text: qsTr("ADD")
                     width: 25
                     height: 14
-                    color: add.full? "#787878" : "#f2f2f2"
+                    color: addId.full? "#787878" : "#f2f2f2"
                     font.pixelSize: 12
                     font.weight: Font.DemiBold
                     font.family: "Roboto"
@@ -254,7 +263,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 5
                     anchors.verticalCenter: parent.verticalCenter
-                    property color plusColor: add.full? "#787878" : "#f2f2f2"
+                    property color plusColor: addId.full? "#787878" : "#f2f2f2"
                     Rectangle {
                         width: 2
                         height: 8
@@ -272,9 +281,9 @@ Rectangle {
                 }
 
                 MouseArea {
-                    id: addButton
+                    id: addButtonId
                     anchors.fill: parent
-                    enabled: !add.full
+                    enabled: !addId.full
                     onClicked: {
                         StockEngine.filterModel.setFilterFixedString("")
                         addPopup.open()
@@ -310,10 +319,11 @@ Rectangle {
                         id: favoriteListModel
                     }
                     delegate: FavStatsDelegate {
+                        id: favStatsDelegate
                         width: favoriteList.width
-
+                        required property int index
                         selectButton.onClicked: {
-                            favoriteList.currentIndex = index
+                            favoriteList.currentIndex = favStatsDelegate.index
                         }
                     }
                     onCurrentIndexChanged: {
@@ -337,7 +347,7 @@ Rectangle {
             modal: true
             anchors.centerIn: parent
             background: Rectangle {
-                id: background
+                id: backgroundId
                 radius: 5
                 color: "#1D1D1D"
             }
@@ -369,7 +379,8 @@ Rectangle {
                 model: StockEngine.filterModel
                 spacing: 5
                 delegate: AddDelegate {
-                    width: listView.width
+                    width: addListView.width
+                    popup: addPopup
                 }
             }
         }

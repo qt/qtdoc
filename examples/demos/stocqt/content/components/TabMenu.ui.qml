@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: tabMenu
@@ -10,9 +9,9 @@ Rectangle {
     height: 44
     color: "transparent"
 
-    property alias historyButton: historyButton
-    property alias volumeButton: volumeButton
-    property alias liveButton: liveButton
+    property alias historyButton: historyButtonMouse
+    property alias volumeButton: volumeButtonMouse
+    property alias liveButton: liveButtonMouse
 
     state: "History"
 
@@ -39,9 +38,8 @@ Rectangle {
 
             MouseArea
             {
-                id: historyButton
+                id: historyButtonMouse
                 anchors.fill: parent
-                onClicked: tabMenu.state = "History"
             }
 
             RowLayout {
@@ -100,9 +98,8 @@ Rectangle {
 
             MouseArea
             {
-                id: volumeButton
+                id: volumeButtonMouse
                 anchors.fill: parent
-                onClicked: tabMenu.state = "Volume"
 
             }
 
@@ -163,9 +160,8 @@ Rectangle {
 
             MouseArea
             {
-                id: liveButton
+                id: liveButtonMouse
                 anchors.fill: parent
-                onClicked: tabMenu.state = "LiveData"
             }
 
             RowLayout {

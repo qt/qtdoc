@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: timeBar
@@ -66,7 +65,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked: {
                     timeBar.state = "week"
-                    selectedTimeframe = "1w"
+                    timeBar.selectedTimeframe = "1w"
                 }
             }
         }
@@ -113,7 +112,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked:{
                     timeBar.state = "month"
-                    selectedTimeframe = "1M"
+                    timeBar.selectedTimeframe = "1M"
                 }
             }
         }
@@ -162,7 +161,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked:{
                     timeBar.state = "threeMonth"
-                    selectedTimeframe = "3M"
+                    timeBar.selectedTimeframe = "3M"
                 }
             }
         }
@@ -210,7 +209,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked: {
                     timeBar.state = "sixMonth"
-                    selectedTimeframe = "6M"
+                    timeBar.selectedTimeframe = "6M"
                 }
             }
         }
