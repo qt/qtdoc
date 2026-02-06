@@ -1,7 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Layouts
 import content
 import StocQt
 
@@ -13,7 +12,7 @@ Rectangle {
     color: "#101010"
 
     property alias currentIndex: root.currentIndex
-    property alias stateGroup: stateGroup
+    property alias stateGroup: stateList
     property bool portrait: width < height
 
     ListView {
@@ -43,6 +42,7 @@ Rectangle {
                     visible: false
                     width: root.width
                     height: root.height
+                    stateGroup: stateList
                 }
 
                 StockListView {
@@ -51,6 +51,7 @@ Rectangle {
                     anchors.fill: parent
                     width: root.width
                     height: root.height
+                    stateGroup: stateList
                 }
             }
 
@@ -72,7 +73,7 @@ Rectangle {
     Navbar {
         id: navbar
         width: parent.width
-        height: portrait? 72 : 40
+        height: mainWindow.portrait? 72 : 40
         anchors.bottom: parent.bottom
         state: "Home"
         homeButton.onClicked: root.currentIndex = 0
@@ -86,7 +87,7 @@ Rectangle {
     }
 
     StateGroup {
-        id: stateGroup
+        id: stateList
         states: [
             State {
                 name: "ListView"

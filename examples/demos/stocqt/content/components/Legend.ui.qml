@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: legend
@@ -10,10 +9,10 @@ Rectangle {
     height: 22
     color: "transparent"
 
-    property alias high: high
-    property alias low: low
-    property alias open: open
-    property alias close: close
+    property alias high: highCheckbox
+    property alias low: lowCheckbox
+    property alias open: openCheckbox
+    property alias close: closeCheckbox
 
     RowLayout {
         anchors.fill: parent
@@ -22,7 +21,7 @@ Rectangle {
         spacing: 8
 
         StockCheckbox {
-            id: high
+            id: highCheckbox
             cbText: "high"
             activeColor: "#33279646"
             activeTextColor: "#279646"
@@ -33,7 +32,7 @@ Rectangle {
             checked: true
         }
         StockCheckbox {
-            id: low
+            id: lowCheckbox
             cbText: "low"
             activeColor: "#33cc5e87"
             activeTextColor: "#CC5E87"
@@ -44,7 +43,7 @@ Rectangle {
             checked: true
         }
         StockCheckbox {
-            id: open
+            id: openCheckbox
             cbText: "open"
             activeColor: "#33cca35e"
             activeTextColor: "#CCA35E"
@@ -54,7 +53,7 @@ Rectangle {
             Layout.preferredWidth: 43
         }
         StockCheckbox {
-            id: close
+            id: closeCheckbox
             cbText: "close"
             activeColor: "#325e87cc"
             activeTextColor: "#5E87CC"

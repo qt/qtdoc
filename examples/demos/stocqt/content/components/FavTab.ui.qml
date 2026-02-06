@@ -1,8 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Rectangle {
     id: favTab
@@ -11,8 +10,8 @@ Rectangle {
     color: "transparent"
     state: "PriceActive"
 
-    property alias priceButton: priceButton
-    property alias volumeButton: volumeButton
+    property alias priceButton: priceButtonMouse
+    property alias volumeButton: volumeButtonMouse
 
     RowLayout {
         anchors.fill: parent
@@ -78,9 +77,8 @@ Rectangle {
             }
 
             MouseArea {
-                id: priceButton
+                id: priceButtonMouse
                 anchors.fill: parent
-                onClicked: favTab.state = "PriceActive"
             }
         }
 
@@ -139,9 +137,8 @@ Rectangle {
             }
 
             MouseArea {
-                id: volumeButton
+                id: volumeButtonMouse
                 anchors.fill: parent
-                onClicked: favTab.state = "VolumeActive"
             }
         }
     }

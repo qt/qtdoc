@@ -1,8 +1,6 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Shapes
 import StocQt
 
 Rectangle {
@@ -24,25 +22,25 @@ Rectangle {
 
     Image {
         id: starFilled
-        visible: isFavorite
+        visible: star.isFavorite
         source: "../images/starFilled.svg"
         MouseArea {
             id: buttonFilled
             anchors.fill: parent
-            onClicked: StockEngine.removeFavorite(stock)
+            onClicked: StockEngine.removeFavorite(star.stock)
         }
     }
 
     Image {
         id: starEmpty
-        visible: !isFavorite
-        source: favoritesFull? "../images/starMuted.svg" : "../images/starEmpty.svg"
+        visible: !star.isFavorite
+        source: star.favoritesFull? "../images/starMuted.svg" : "../images/starEmpty.svg"
 
         MouseArea {
-            visible: !favoritesFull
+            visible: !star.favoritesFull
             id: buttonEmpty
             anchors.fill: parent
-            onClicked: StockEngine.addFavorite(stock)
+            onClicked: StockEngine.addFavorite(star.stock)
         }
     }
 }

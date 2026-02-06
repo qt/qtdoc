@@ -1,9 +1,7 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-import QtQuick 6.5
-import QtQuick.Controls 6.5
+import QtQuick
 import QtQuick.Layouts
-import StocQt
 
 Rectangle {
     id: rectangle
@@ -14,15 +12,15 @@ Rectangle {
     Rectangle {
         id: banner
         width: parent.width
-        height: portrait? 70 : 0
+        height: rectangle.portrait? 70 : 0
         color: parent.color
         anchors.top: parent.top
         anchors.topMargin: 10
-        visible: portrait
+        visible: rectangle.portrait
 
         Image {
             id: logoBig
-            visible: root.width < root.height
+            visible: rectangle.width < rectangle.height
             source: "images/qtLogo.png"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
@@ -31,7 +29,7 @@ Rectangle {
 
         Image {
             id: logoSmall
-            visible: root.width > root.height
+            visible: rectangle.width > rectangle.height
             source: "images/qtLogo2.png"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
@@ -45,7 +43,7 @@ Rectangle {
         anchors.top: banner.bottom
         anchors.bottom: parent.bottom
         flow: GridLayout.TopToBottom
-        rows: portrait? 2 : 1
+        rows: rectangle.portrait? 2 : 1
         columns: 2
         anchors.bottomMargin: 10
         anchors.topMargin: 10

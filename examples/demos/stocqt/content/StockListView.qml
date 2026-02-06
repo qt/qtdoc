@@ -1,13 +1,15 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+pragma ComponentBehavior: Bound
+
 import QtQuick 6.5
-import QtQuick.Controls 6.5
 import "components"
 import content
 import StocQt
 
 Rectangle {
     id: root
+    required property StateGroup stateGroup
     property var chosenElement: null
     color: "#101010"
 
@@ -63,7 +65,7 @@ Rectangle {
 
         currentIndex: -1
         delegate: StockDelegate {
-            selectButton.onClicked: mainWindow.stateGroup.state = "StockView"
+            selectButton.onClicked: root.stateGroup.state = "StockView"
             width: listView.width
         }
     }

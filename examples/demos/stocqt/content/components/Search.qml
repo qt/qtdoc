@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.15
-import QtQuick.Shapes
+import QtQuick.Layouts
 import StocQt
 
 Rectangle {
@@ -44,10 +43,10 @@ Rectangle {
 
             TextField {
                 id: textField
-                width: 269
-                height: 21
                 color: "#787878"
-                background: Rectangle
+                background: Rectangle {
+                    color: "transparent"
+                }
                 font.pixelSize: 14
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter

@@ -1,8 +1,8 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
+import QtQuick.Controls 2.15
 import StocQt
 
 Rectangle {
@@ -13,6 +13,14 @@ Rectangle {
     radius: 2
     property alias addButton: mouseArea
 
+    required property string stockId
+    required property bool favorite
+    required property real price
+    required property real change
+    required property real changePercentage
+    required property string name
+    required property Popup popup
+
     Component.onCompleted: {
         update()
         StockEngine.onFavoritesChanged.connect(update)
@@ -21,7 +29,7 @@ Rectangle {
     function update() {
 
         if (mouseArea && dimmer) {
-            if (favorite){
+            if (addDelegate.favorite){
                 mouseArea.enabled = false
                 dimmer.visible = true
             } else {
@@ -49,7 +57,7 @@ Rectangle {
                 id: priceText
                 height: 15
                 color: "#f2f2f2"
-                text: qsTr("%L1").arg(price.toFixed(1))
+                text: qsTr("%L1").arg(addDelegate.price.toFixed(1))
                 font.pixelSize: 10
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignTop
@@ -62,8 +70,8 @@ Rectangle {
             Text {
                 id: price_status
                 height: 9
-                color: change >= 0? "#5ecca3" : "#fa8a8a"
-                text: qsTr("%L1 (%L2%)").arg(change.toFixed()).arg(changePercentage.toFixed(1))
+                color: addDelegate.change >= 0? "#5ecca3" : "#fa8a8a"
+                text: qsTr("%L1 (%L2%)").arg(addDelegate.change.toFixed()).arg(addDelegate.changePercentage.toFixed(1))
                 font.pixelSize: 8
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignTop
@@ -78,7 +86,7 @@ Rectangle {
         id: idText
         height: 27
         color: "#f2f2f2"
-        text: stockId
+        text: addDelegate.stockId
         anchors.left: parent.left
         anchors.top: parent.top
         font.pixelSize: 12
@@ -97,7 +105,7 @@ Rectangle {
         width: 169
         height: 20
         color: "#f2f2f2"
-        text: name
+        text: addDelegate.name
         anchors.left: idText.right
         anchors.top: parent.top
         font.pixelSize: 5
@@ -116,8 +124,8 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onClicked: {
-            addPopup.close()
-            StockEngine.addFavorite(stockId)
+            addDelegate.popup.close()
+            StockEngine.addFavorite(addDelegate.stockId)
         }
     }
 
