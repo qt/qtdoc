@@ -561,11 +561,13 @@
     \list
     \li Qt Jenny now supports implementing Java interfaces and extending Java classes in C++.
     \li Support for Play Store's Feature Delivery.
+    \li Support for Android 16.
     \endlist
 
     \section4 Qt Quick for Android
     \list
     \li Added QtQuickView.invokeMethod() for calling QML functions from Java/Kotlin.
+    \li Support for registering signals before QML View is loaded.
     \endlist
 
     \section3 iOS
