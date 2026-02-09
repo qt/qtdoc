@@ -1,82 +1,136 @@
-// Copyright (C) 2023 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \group android
-    \title Qt for Android
-    \brief Provides information about Android support in Qt.
-    \ingroup supportedplatform
-    \nextpage android-getting-started.html
+\group android
+\title Qt for Android
+\brief Provides information about Android support in Qt.
+\ingroup supportedplatform
 
-    Qt for \tm Android enables you to develop Qt applications for Android devices,
-    and supports a wide range of features and use-cases.
+Qt has two ways for you to develop applications for Android:
 
-    To start your Qt for Android application, download and install Qt for Android
-    and use the \QC IDE, follow the instructions on the
-    \l{Getting Started with Qt for Android} page.
+\list
+\li \l {qt-for-android-overview}{Qt for Android} for developing full Qt
+    applications.
+\li \l {qt-quick-for-android-overview}{Qt Quick for Android} for integrating
+    Qt Quick content into native Android applications.
+\endlist
 
-    If you have an existing Android application, try \l{Qt Quick for Android}. It includes
-    \l{\QtTAS}{plugin} for Google's Android Studio. Find it on the IntelliJ marketplace.
-    This enables you to add Qt Quick content to your Android app as a \l {Android: View}{View}.
+\section1 \Q4A
+\target qt-for-android-overview
 
-     To build Qt from source, see
-     \l{Qt for Android - Building from Source}{Building from Source}.
+Qt for \tm Android enables you to develop Qt applications for Android devices,
+and supports a wide range of features and use-cases.
 
-    \target android-supported-configurations
-    \section1 Supported Configurations
+Qt for Android provides the platform integration, runtime bridges, build and
+packaging support, and platform plugins that connect the cross-platform Qt
+libraries (such as Qt Core, Qt GUI, Qt Quick, and Qt Widgets) to
+Android-specific services and the Android SDK.
 
-    \include supported-platforms.qdocinc android
+Qt applications run on Android devices by handling the interaction between the
+native Android (Java/Kotlin) side and the Qt (C++) side, including event
+propagation, lifecycle management, and rendering.
 
-    \section1 Explore Qt for Android
 
-    To learn about developing with Qt for Android, here are the main topics
-    to check:
+\section2 Key Features and Capabilities
+
+The main features of Qt for Android:
+
+\list
+\li \b{Cross-platform development.} A Qt application for Android is typically a
+    QML application with the code behind it written in C++. With minimal or no
+    adjustments, you can write your application code once and deploy it on
+    multiple platforms.
+\li \b{Native performance.} Since the Qt runtime is compiled for Android, it
+    provides native performance and access to native capabilities of Android
+    devices.
+\li \b{Rich UI components.} Use Qt's extensive set of \l{Qt Quick} components
+    for responsive interfaces.
+
+    You can also use the extensive module ecosystem of Qt to add features to
+    your application:
+    \list
+    \li \l {Qt Quick Controls} for ready-made UI controls that feature a
+        customizable \l {Material Style} that adapts to Android's look and feel.
+    \li \l {Qt Widgets} for traditional desktop-style widgets, if needed.
+    \li \l {Qt Quick 3D} for displaying 3D graphics in your applications.
+    \li \l {Qt Quick Shapes} for vector graphics and custom shapes.
+    \li \l {Important Concepts In Qt Quick - Graphical Effects}{Particles and graphical effects}
+        for advanced visual effects.
+    \li \l {Qt Multimedia} for audio and video playback and recording.
+    \li \l {Qt Graphs} for 2D and 3D data visualization.
+    \li \l {Qt Virtual Keyboard} for on-screen keyboard support.
+    \li \l {Qt Sensors} for accessing device sensors.
+    \li \l {Qt Location} for mapping and location-based services.
+    \li \l {Qt Bluetooth} for Bluetooth connectivity.
+    \li \l {Qt Network} for secure network communication and cryptography.
+    \endlist
+\li \b{C++ integration.} Ideal for applications that rely on existing C++
+    libraries or require high-performance native code.
+\li \b{Mature and consistent APIs.} Qt's stable modules reduce platform
+    fragmentation and make it easier to maintain feature parity between
+    platforms.
+\endlist
+
+\section2 Explore Qt for Android
+
+To learn about developing with Qt for Android, here are the main topics
+to check:
+
+\list
+    \li \l {Getting Started with Qt for Android}
+    \li \l {How Qt for Android Works}
+    \li \l {Qt for Android Manifest File Configuration}
+    \li \l {Building Qt for Android Projects from Command Line}
+    \li \l {Deploying an Application on Android}
+    \li \l {The androiddeployqt Tool}
+    \li \l {Qt for Android - Building from Source}{Building Qt for Android from Source}
+    \li \l {Qt Jenny: Java Code Generator}
+\endlist
+
+\section2 Android Fragments
+
+You cannot use \l{Android: Fragments}{Android Fragments} in a Qt for Android
+application. However, Qt does offer its own modular components and views with
+QML. You can combine multiple components in one QML view. For more information,
+see \l{QML Documents}.
+
+If you are integrating \l{Qt Quick for Android} into an Android application, you
+can use the \l QtQuickView API inside Android Fragments.
+
+\section1 Qt Quick for Android
+\target qt-quick-for-android-overview
+
+The Qt Quick for Android lets you add Qt Quick components to your native
+Android application UI as a \l {Android: View}{View}. This is particularly
+useful for integrating complex UI elements, animations, or 3D graphics into
+specific parts of your app without rewriting the entire application in Qt.
+Unlike Qt for Android, which replaces the entire UI with Qt, Qt Quick for
+Android complements your existing native Android UI.
+
+With Qt Quick for Android, you can extend your native application's UI with
+these components:
 
     \list
-        \li \l {Getting Started with Qt for Android}
-        \li \l {Deploying an Application on Android}
-        \li \l {How Qt for Android Works}
-        \li \l {Qt for Android - Building from Source}{Building Qt for Android from Source}
-        \li \l {Building Qt for Android Projects from Command Line}
-        \li \l {The androiddeployqt Tool}
-        \li \l {Qt for Android Manifest File Configuration}
-        \li \l{Qt Jenny: Java Code Generator}
+    \li \l {Qt Quick} and \l {Qt Quick Controls} for ready-made UI controls that
+        feature a customizable \l {Material Style} that adapts to Android's look
+        and feel.
+    \li \l {Qt Quick 3D} for displaying 3D graphics in your applications.
+    \li \l {Qt Quick Shapes} for vector graphics and custom shapes.
+    \li \l {Important Concepts In Qt Quick - Graphical Effects}{Particles and graphical effects}
+        for advanced visual effects.
+    \li \l {Qt Graphs} for 2D and 3D data visualization.
     \endlist
 
-    The following topics also provide more details about Qt for Android:
+Qt Quick for Android includes a \l{\QtTAS}{plugin} for Google's Android Studio.
+You can find it on the IntelliJ marketplace.
 
-    \annotatedlist android-platform-extra-topics
+\target android-supported-configurations
+\section1 Supported Configurations
 
-    \section1 Android Fragments
-
-    You cannot use \l{Android: Fragments}{Android Fragments} in a Qt for Android application.
-
-    However, Qt does offer its own modular components and views with QML. You can combine
-    multiple components in one QML view. For more information, see \l{Qt Qml}.
-
-    If you are integrating \l{Qt Quick for Android} into an Android application, the
-    \l QtQuickView API can be used inside fragments.
-
-
-    Qt's vibrant and active \l{https://www.qt.io/developers}{community site}
-    houses a wiki, a forum, and additional learning guides and presentations.
-
-    For information about licensing, check \l {Android GNU C++ Run-time Licensing}.
-
-    \section1 Where to Go from Here
-
-    We invite you to explore the rest of Qt. We prepared overviews which help
-    you decide which APIs to use and our examples demonstrate how to use our
-    APIs.
-
-    \list
-        \li \l{Qt Overviews} - list of topics about application development
-        \li \l{Qt Examples and Tutorials}{Examples and Tutorials} - code samples and tutorials
-        \li \l{Qt Reference Pages} - a listing of C++ and QML APIs
-        \li \l{\QC: Tutorial: Mobile application}
-        \li \l{\QC: Set up Android development environment}
-    \endlist
+\include supported-platforms.qdocinc android
 */
+
 
 /*!
     \page android-getting-started.html
