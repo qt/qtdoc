@@ -3,9 +3,10 @@
 
 /*!
     \page linux.html
-    \title Qt for Linux/X11
-    \brief Platform support for Linux/X11.
+    \title Qt for Linux
+    \brief Qt natively supports Linux.
     \ingroup supportedplatform
+    \keyword Qt for Linux/X11
 
     Qt's support for different Linux platforms is extensive and mature.
 
@@ -27,7 +28,7 @@
     The Qt installers for Linux assume that a C++ compiler, debugger,
     make, and other development tools are provided by the host
     operating system. In addition, building graphical Qt applications requires
-    \l {Qt for X11 Requirements}, and OpenGL libraries and headers installed.
+    \l {Qt for Linux - Requirements}, and OpenGL libraries and headers installed.
     Most Linux distributions do not install all of these by default, but setting
     up a development environment is still straightforward.
 
@@ -61,8 +62,8 @@
 
     Below, you will find more information about building Qt from source.
     \list
-    \li \l {Qt for X11 Requirements}
-    \li \l{Qt for Linux/X11 - Building from Source}
+    \li \l {Qt for Linux - Requirements}
+    \li \l{Qt for Linux - Building from Source}
     \endlist
 
     \section1 Deployment and Other Issues
@@ -71,8 +72,8 @@
     Linux/X11 applications.
 
     \list
-    \li \l{Qt for Linux/X11 - Deployment}
-    \li \l{Qt for Linux/X11 - Specific Issues}
+    \li \l{Qt for Linux - Deployment}
+    \li \l{Qt for Linux - Specific Issues}
     \endlist
 
     \section1 Where to Go from Here
@@ -93,8 +94,9 @@
 
 /*!
     \page linux-requirements.html
-    \title Qt for X11 Requirements
-    \brief Setting up the X11 environment for Qt.
+    \title Qt for Linux - Requirements
+    \keyword {Qt for X11 Requirements}
+    \brief Setting up the Linux environment for Qt.
 
     \section1 Platform Plugin Dependencies
 
@@ -357,10 +359,11 @@
 
 /*!
     \page linux-building.html
-    \title Qt for Linux/X11 - Building from Source
+    \title Qt for Linux - Building from Source
+    \keyword {Qt for Linux/X11 - Building from Source}
     \brief How to configure and build Qt on Linux/X11 platforms.
 
-    This page describes configuring and building \l{Qt for Linux/X11} from
+    This page describes configuring and building \l{Qt for Linux} from
     sources. Note that it is typically easier to install the pre-built Qt
     libraries and tools via \l [QtDoc] {Get and Install Qt}
     {\QOI}. A lot of Linux distributions also provide Qt packages
@@ -420,7 +423,7 @@
 
     Qt also relies on the availability of various libraries and development
     packages, which are typically installed by the package manager of the
-    respective resolution. See \l{Qt for X11 Requirements} for the details.
+    respective resolution. See \l{Qt for Linux - Requirements} for the details.
 
     \section1 Step 3: Build the Qt Libraries and Tools
 
@@ -478,11 +481,13 @@
 
 /*!
     \page linux-deployment.html
-    \title Qt for Linux/X11 - Deployment
+    \title Qt for Linux - Deployment
+    \keyword {Qt for Linux/X11 - Deployment}
+    \brief Deployment of Qt applications on Linux.
 
-    This documentation discusses specific deployment issues for \l{Qt for
-    Linux/X11}. We will demonstrate the procedures in terms of deploying the
-    \l{tools/plugandpaint/app}{Plug & Paint} example application that comes
+    This documentation discusses specific deployment issues for
+    \l{Qt for Linux}. We will demonstrate the procedures in terms of deploying
+    the \l{tools/plugandpaint/app}{Plug & Paint} example application that comes
     with the Qt source package.
 
     Due to the proliferation of Unix systems (such as commercial Unixes or Linux
@@ -654,7 +659,7 @@
 
     To use this approach, you must start by building a _static_ version
     of the Qt libraries. Follow the steps in
-    \l{Qt for Linux/X11 - Building from Source}, but remember to add
+    \l{Qt for Linux - Building from Source}, but remember to add
     a \c{-static} argument to configure:
 
     \include snippets/code/doc_src_deployment.qdoc 0
@@ -894,8 +899,9 @@
 
 /*!
     \page linux-issues.html
-    \title Qt for Linux/X11 - Specific Issues
-    \brief A description of issues with Qt that are specific to Linux/X11.
+    \title Qt for Linux - Specific Issues
+    \keyword {Qt for Linux/X11 - Specific Issues}
+    \brief A description of issues with Qt that are specific to Linux.
 
     This page contains information about the X11 platforms Qt is currently
     known to run on, with links to platform-specific notes.
