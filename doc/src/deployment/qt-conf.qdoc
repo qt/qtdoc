@@ -70,7 +70,7 @@
     \endtable
 
     Absolute paths are used as specified in the \c qt.conf file. All
-    paths are relative to the \c Prefix. On Windows and X11, the \c
+    paths are relative to the \c Prefix. On Windows and Linux, the \c
     Prefix is relative to the directory containing the application
     executable (QCoreApplication::applicationDirPath()). On \macos,
     the \c Prefix is relative to the \c Contents in the application
