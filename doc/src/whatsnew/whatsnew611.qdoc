@@ -641,6 +641,17 @@
 
     \section3 Linux
     \list
+    \li The Wayland plugin gained server-side key repeat, preference for server-side decorations,
+        experimental support for \c{xx-session-management-v1}, and numerous stability fixes
+        (popups, scrolling, offscreen surfaces, clipboard).
+    \li The legacy X11 native painting engine (XRender) for XCB was removed. Use of this engine
+        required enabling it at compile time with a CMake option (\c{-xcb-native-painting})
+        and enabling at runtime with the \c QT_XCB_NATIVE_PAINTING environment variable.
+    \li Accessibility was enhanced by adding support for the AT-SPI Collection
+        interface, which provides a more efficient mechanism for retrieving accessible
+        objects within an application’s accessibility hierarchy. This interface also
+        enables browse mode support in the Orca screen reader.
+    \li XKB: key mapping was extended for \l Qt::Key_Call / \l Qt::Key_Hangup.
     \endlist
 
     \section3 macOS
@@ -660,10 +671,6 @@
     \li File paths selected via native open/save panels are now NFC
         normalized, ensuring consistent file name comparisons regardless
         of whether the filesystem stores names in NFD form.
-    \endlist
-
-    \section3 Wayland Client on Linux
-    \list
     \endlist
 
     \section2 Mobile Platforms
@@ -697,6 +704,14 @@
     \endlist
 
     \section2 Embedded Platforms
+    \section3 Linux
+
+    \list
+    \li EGLFS/KMS now supports hot-plug and hot-reload of displays at runtime (guarded by
+        \c QT_QPA_EGLFS_HOTPLUG_ENABLED environment variable).
+    \li A new ConnMan-based \l QNetworkInformation backend was added.
+    \li DirectFB: Qt::Key_Call mapping was added.
+    \endlist
 
     \section3 Boot to Qt
     \list
