@@ -100,7 +100,7 @@
           \l{QLineSeries::strokeStyle}{strokeStyle}, \l{QLineSeries::dashOffset}{dashOffset},
           and \l{QLineSeries::dashPattern}{dashPattern} properties in \l{QLineSeries} to
           allow further styling in line graphs
-      \li Added \l{QSplineSeries::optimized}{optimized} property in \l{QSplineSeries} to
+      \li Added \l[QML]{SplineSeries::optimized}{optimized} property in \l{QSplineSeries} to
           allow using Catmull-Rom interpolation instead of the more performance-heavy and
           accurate default method
       \li Added \l{QBar3DSeries::customRowLabels}{customRowLabels} and
@@ -113,7 +113,7 @@
       \li Added \l{GraphsItem3D::cutoffMargin}{cutoffMargin} in \l{GraphsItem3D}
           and \l{Q3DGraphsWidgetItem} to adjust the sensitivity of culling items near graph
           margins
-      \li Added support for multiple \l{QBarSeries} in one \l{QGraphsView}.
+      \li Added support for multiple \l{QBarSeries} in one \l[QML]{GraphsView}.
       \li Added support for negative values in \l{QBarSeries}.
       \li Added support for invalid values in \l{LineSeries} which results in visual gaps.
     \endlist
@@ -182,7 +182,7 @@
     \section2 Qt Lottie Animation
     \list
       \li Added support for path fill rules.
-      \li Added CMAKE command \l{qt_target_qml_from_lottie()} for converting from Lottie to QML at
+      \li Added CMAKE command \l{qt_target_qml_from_lottie} for converting from Lottie to QML at
           build time.
       \li \l{lottietoqml} and \l{VectorImage} backend are no longer tech preview.
       \li \l{VectorImage}: Added support for animating shapes along paths.
@@ -250,7 +250,7 @@
 
     \section2 Qt Quick Module
     \list
-      \li Added CMAKE command \l{qt_target_qml_from_svg()} for converting from SVG to QML at build
+      \li Added CMAKE command \l{qt_target_qml_from_svg} for converting from SVG to QML at build
           time.
       \li Added APIs to \l Flickable to \l{Flickable::positionViewAtChild}{position} or \l{Flickable::flickToChild}{flick}
           the view to a child and to \l{Flickable::flickTo}{flick to a position}.
@@ -302,8 +302,8 @@
         \li Added proper handling of pre-multiplied alpha for Qt Quick content in textures
         \li Added \c{VIEW_MATRIX} and \c{PROJECTION_MATRIX} exposure to post-processing
             effects
-        \li Added \l{QQuick3DViewport::pickInRect}{pickInRect()} method in
-            \l{QQuick3DViewport} for rectangle-based object selection
+        \li Added \l{View3D::pickInRect()}{pickInRect()} method in
+            \l{View3D} for rectangle-based object selection
         \li Added \l{View3D::closestPointPick}{closestPointPick()} method in \l{View3D} to
             find the closest point on a surface to a given point
         \li Added \l{View3D::rayPick}{rayPick()} overload that accepts a specific model
@@ -412,8 +412,9 @@
 
     \section2 Qt Widgets Module
     \list
-        \li QWizard got a new \l{QWizard::}{bannerStretchPolicy} property that
-            configures how the banner should be sized within the wizard.
+        \li QWizard got a new \l{QWizard::StretchBanner}{StretchBanner}
+            option to stretch the banner across the entire width of
+            the wizard.
         \li QAbstractItemView got a new \l{QAbstractItemView::}{keyboardSearchFlags}
             property that allows tuning how the default implementation of
             keyboardSearch() matches the given string against the model's data.
