@@ -93,7 +93,7 @@
             and Y directions to Bars3D, Scatter3D, and Surface3D.
         \li Added \l {QAbstractAxis::}{alignment} property to QAbstractAxis,
             allowing users to align axes left, right, top, or bottom.
-        \li Added \l {QGraphsView::}{plotArea} property to QGraphsView,
+        \li Added \c{plotArea} property to QGraphsView,
             allowing users to define the rectangle a graph will be drawn in.
         \li Added zooming and panning support to QGraphsView.
         \li Added custom input handling support to area, line, pie, and scatter
@@ -453,12 +453,12 @@
         \li Allow setting a maximum for queued background UI events.
         \li Add script to easily deploy, run apps and get logs from terminal.
         \li \l {Qt Quick for Android} and
-            \l {Qt Quick View Android Class}{QtQuickView}:
+            \l {QtQuickView}:
         \list
             \li Add setData() and dataChanged() methods to
-                \l {QtAbstractItemModel Android Class}{QtAbstractItemModel}.
+                \l {QtAbstractItemModel}.
             \li Add OnDataChangedListerner callback interface.
-            \li \l {Qt Quick View Android Class}{QtQuickViewContent}: Add
+            \li \l {QtQuickViewContent}: Add
                 onStatusChanged() overload that passes the underlying
                 QtQuickViewContent object.
             \li Support multiple embedded views from an Android Service.

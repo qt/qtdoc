@@ -220,9 +220,10 @@
         See \l{QML Application Permissions} for more information.
         \li The XMLHttpRequest object has now been updated with two more features,
         in order to bring it closer to modern browsers.
-        The \l {XMLHttpRequest::}{responseURL} property has been added, which can be
-        used to confirm whether any redirects has occurred.
-        Similarly, the \l {XMLHttpRequest::}{overrideMimeType} method has been added,
+        The \l{string XMLHttpRequest::responseURL}{responseURL} property has been
+        added, which can be used to confirm whether any redirects has occurred.
+        Similarly, the \l{void XMLHttpRequest::overrideMimeType(mime)}
+        {overrideMimeType()} method has been added,
         which can be used to make the XMLHttpRequest object parse the response based on
         a specific mime type, rather than what's in the Content-Type header of the response.
         \li The QML language server has gotten initial support for go-to definition
