@@ -27,8 +27,8 @@ Column {
         var date = new Date([d[0], d[2], d[1], d[3], d[4], 'GMT' + d[5]].join(' '));
 
         if (!isNaN(date.getDate())) {
-            var age = new Date() - date;
-            var minutes = Math.floor(Number(age) / 60000);
+            let age = new Date() - date;
+            let minutes = Math.floor(Number(age) / 60000);
             if (minutes < 1440) {
                 if (minutes < 2)
                     result = qsTr("Just now");
