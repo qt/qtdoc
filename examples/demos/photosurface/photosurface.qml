@@ -46,10 +46,10 @@ Window {
                 nameFilters: root.imageNameFilters
             }
             delegate: Rectangle {
+                id: photoFrame
                 required property date fileModified
                 required property string fileName
                 required property url fileUrl
-                id: photoFrame
                 objectName: "frame-" + fileName
                 width: image.width * (1 + 0.10 * image.height / image.width)
                 height: image.height * 1.10
@@ -74,7 +74,7 @@ Window {
                 }
 
                 Text {
-                    text: fileName + " ❖ " + Qt.formatDateTime(fileModified, Locale.LongFormat)
+                    text: photoFrame.fileName + " ❖ " + Qt.formatDateTime(photoFrame.fileModified, Locale.LongFormat)
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
                     font.pixelSize: (parent.height - image.height) / 3
