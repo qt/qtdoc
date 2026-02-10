@@ -616,7 +616,16 @@
         Files or folders chosen by the user via file dialogs or similar native mechanism
         are automatically and transparently handled, including persistent access across
         application and device restarts.
-    \li Added QNativeInterface::QCocoaScreen for accessing the underlying NSScreen.
+    \li Added \l QNativeInterface::QCocoaScreen for accessing the underlying NSScreen.
+    \li Converting between CGImageRef and QImage now supports a wider
+        range of image formats, including \l QImage::Format_RGB30 and
+        floating-point formats important for HDR content.
+    \li The Apple icon engine now respects the layout direction of the
+        painter, producing RTL-specific icons if available in the
+        SF Symbols icon set.
+    \li File paths selected via native open/save panels are now NFC
+        normalized, ensuring consistent file name comparisons regardless
+        of whether the filesystem stores names in NFD form.
     \endlist
 
     \section3 Wayland Client on Linux
