@@ -8,7 +8,7 @@ import ToDoList
 HomePageForm {
 
     function cleanDoneTasks(tasks : ListModel) : void {
-        for (var j = 0; j < tasks.count; j++) {
+        for (let j = 0; j < tasks.count; j++) {
             if (tasks.get(j).done) {
                 tasks.remove(j)
                 j--
@@ -59,7 +59,7 @@ HomePageForm {
                                "notes" : notes})
 
         if (sourceList != destList) {
-            var taskObj = sourceList.get(index)
+            let taskObj = sourceList.get(index)
             destList.insert(0, taskObj)
             sourceList.remove(index, 1)
         }
@@ -76,9 +76,9 @@ HomePageForm {
         http.onreadystatechange = function() {
             if (http.readyState == 4) {
                 if (http.status == 200) {
-                    var object = JSON.parse(http.responseText.toString());
-                    var currentDate = new Date()
-                    var format = Qt.locale().dateFormat(Locale.LongFormat)
+                    let object = JSON.parse(http.responseText.toString());
+                    let currentDate = new Date()
+                    let format = Qt.locale().dateFormat(Locale.LongFormat)
                     addTask(todayTasksModel, object.activity,
                             currentDate.toLocaleDateString(Qt.locale(), format), "","")
                 } else {
