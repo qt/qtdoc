@@ -115,6 +115,7 @@ void MapLoader::stateChanged(PlayStoreLoader::State state)
             break;
         case PlayStoreLoader::State::Canceled:
             emit installCanceled();
+            mHandler.release();
             break;
         case PlayStoreLoader::State::Installing:
             emit showToast("Installing");
