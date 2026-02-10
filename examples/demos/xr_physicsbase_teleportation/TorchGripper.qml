@@ -8,7 +8,7 @@ import QtQuick3D.Xr
 Node {
     id: gripper
     property alias hand: action.hand
-    property Node torchBody: null
+    property Torch torchBody: null
 
     XrInputAction {
         id: action

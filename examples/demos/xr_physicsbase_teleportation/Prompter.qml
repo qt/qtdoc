@@ -1,12 +1,11 @@
 // Copyright (C) 2024 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
-import QtQuick3D
 import QtQuick3D.Xr
 
 XrItem {
     id: prompter
-    property int prompt: Prompt.None
+    property int prompt: Prompter.None
     enum Prompt {
         None,
         DarknessFalling,

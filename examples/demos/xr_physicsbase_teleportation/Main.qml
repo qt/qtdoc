@@ -4,9 +4,7 @@ import QtQuick
 import QtQuick3D
 import QtQuick3D.Helpers
 import QtQuick3D.Physics
-import QtQuick3D.Physics.Helpers as Helpers
 import QtQuick3D.Xr
-import QtQuick3D.Particles3D
 
 XrView {
     id: xrView
@@ -176,7 +174,7 @@ XrView {
     }
 
     House {
-
+        id: house
     }
 
     Chair {
@@ -193,7 +191,7 @@ XrView {
         position: Qt.vector3d(0, 350, -300)
         eulerRotation: Qt.vector3d(-90, 0, 0)
         windEnabled: !character.inTheHouse
-
+        houseFire: house.fire
         onAttachedToChanged: {
             if (attachedTo)
                 prompter.prompt = Prompter.LightupTorch
