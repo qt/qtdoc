@@ -64,6 +64,17 @@
 
     \include apple-common.qdocinc {installing-xcode} {iOS}
 
+    The architecture of the Qt for iOS simulator libraries
+    is \c x86_64, which means the iOS Simulator must run under
+    Rosetta on Apple Silicon Macs. In Xcode 26 and later this
+    requires deleting the default installed iOS platform component
+    in the Xcode settings, and then manually installing the universal
+    iOS platform component:
+
+    \badcode
+        xcodebuild -downloadPlatform iOS -architectureVariant universal
+    \endcode
+
     For testing Qt applications in the simulator that comes with Xcode,
     this is all you need. However, for running applications on a physical
     device and/or publishing your applications in the App Store, you must
