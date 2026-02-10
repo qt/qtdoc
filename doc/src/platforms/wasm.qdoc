@@ -1020,7 +1020,7 @@ Note that calling QApplication::exec() is not supported when exceptions are enab
 internal implementation details. Instead, write main() in the form where it returns early and
 does not call exec(), as described in \l{Application Startup and the Event Loop}.
 
-\section2 Shared Libraries and Dynamic Linking Developer Preview
+\section2 Shared Libraries and Dynamic Linking (Technology Preview)
 
 Qt for WebAssembly uses static linking by default, where the application is deployed as a single
 WebAssembly file which contains the Qt libraries and application code. Dynamic linking is an alternative
@@ -1039,7 +1039,7 @@ libraries and plugins:
 \li <qtpath>/qml/QtQuick/Window/libquickwindowplugin.so
 \endlist
 
-Dynamic linking support is currently in developer preview. The implementation is suitable for prototyping
+Dynamic linking support in \QtVer is in Technology Preview. The implementation is suitable for prototyping
 and evaluation, but is not suitable for production use. Current limitations and restrictions include:
 
 \list
