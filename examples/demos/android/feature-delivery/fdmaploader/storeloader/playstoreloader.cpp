@@ -277,7 +277,7 @@ void PlayStoreLoader::uninstallModules(const QString & callId,
     Q_ASSERT(javaList.isValid());
 
     for (const auto& qtModule : modules) {
-        if (!javaList.callMethod<jboolean>("add", qtModule)) {
+        if (!javaList.callMethod<jboolean>("add", QJniObject::fromString(qtModule))) {
             qWarning() <<Q_FUNC_INFO <<"Failed to add module: " <<qtModule <<"J: "
                 <<qtModule;
         }
