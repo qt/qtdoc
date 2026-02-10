@@ -206,8 +206,8 @@
     \section2 Structuring projects
 
     Projects that contain more than just one target will benefit from a clear
-    project file structure. We will use CMake's \l{CMake add_subdirectory
-    documentation}{subdirectory feature}.
+    project file structure. We will use CMake's
+    \l{add_subdirectory()}{subdirectory feature}.
 
     As we plan to extend the project with more targets, we move the source files
     of the application into a subdirectory and create a new \c{CMakeLists.txt}
