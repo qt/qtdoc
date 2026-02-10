@@ -8,6 +8,7 @@ import com.google.android.play.core.splitinstall.SplitInstallManager;
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
 import com.google.android.play.core.splitinstall.SplitInstallRequest;
 import com.google.android.play.core.splitinstall.SplitInstallHelper;
+import com.google.android.play.core.splitinstall.SplitInstallException;
 import com.google.android.play.core.splitinstall.testing.FakeSplitInstallManagerFactory;
 
 import java.util.Arrays;
@@ -75,8 +76,18 @@ public class PlayStoreLoader implements PlayStoreLoaderListenerCallback
                     PlayStoreLoaderListener listener = m_listeners.get(callId);
                     if (listener != null)
                         listener.setSessionId(sessionId);
-                });
+                })
 //! [Call To Split Install]
+                .addOnFailureListener(exception -> {
+                    int errorCode = -128;
+                    String message = "splitInstall() failed.";
+                    if (exception != null) {
+                        message = exception.getMessage();
+                        if (exception instanceof SplitInstallException)
+                            errorCode = ((SplitInstallException) exception).getErrorCode();
+                    }
+                    errorOccurred(callId, errorCode, message);
+                });
     }
 
     /**
