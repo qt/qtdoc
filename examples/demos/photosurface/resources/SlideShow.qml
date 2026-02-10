@@ -52,7 +52,7 @@ Item {
         }
         TapHandler {
             id: tap
-            onTapped: quit()
+            onTapped: root.quit()
         }
     }
 
