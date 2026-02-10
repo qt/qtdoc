@@ -8,6 +8,7 @@ DynamicRigidBody {
     id: torch
     objectName: "Torch"
 
+    required property Fire houseFire
     property bool windEnabled: false
     property vector3d globalWindDir: Qt.vector3d(0.5, 0, -0.5)
     property Node attachedTo: null
@@ -26,7 +27,7 @@ DynamicRigidBody {
     }
 
     FrameAnimation {
-        running: (attachedTo)
+        running: torch.attachedTo !== null
         onRunningChanged: {
             if (running) {
                 torch.collisionShapes = null
@@ -93,10 +94,10 @@ DynamicRigidBody {
             collisionShapes: [SphereShape{}]
             onBodyEntered: (body)=>{
                                if (body.objectName === "Fire") {
-                                   if (body.parent.isOn)
+                                   if (torch.houseFire.isOn)
                                    fire.start()
                                    else if (fire.isOn)
-                                   body.parent.start()
+                                   torch.houseFire.start()
 
 
                                }

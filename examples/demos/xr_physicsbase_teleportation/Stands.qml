@@ -2,17 +2,10 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 import QtQuick
 import QtQuick3D
-import QtQuick3D.Helpers
 import QtQuick3D.Physics
 
 Node {
     id: stand
-    property var poses : [
-        Qt.vector3d(1000, 0, 1000),
-        Qt.vector3d(1000, 0, -1000),
-        Qt.vector3d(-1000, 0, 1000),
-        Qt.vector3d(-1000, 0, -1000)
-    ]
 
     Firewood {
         instancing: FileInstancing {
@@ -23,10 +16,18 @@ Node {
     Repeater3D {
         model: 4
         delegate: StaticRigidBody {
+            id: standDelegate
+            required property int index
+            property list<vector3d> poses : [
+                Qt.vector3d(1000, 0, 1000),
+                Qt.vector3d(1000, 0, -1000),
+                Qt.vector3d(-1000, 0, 1000),
+                Qt.vector3d(-1000, 0, -1000)
+            ]
             scale: Qt.vector3d(3, 1.9, 3)
-            position: Qt.vector3d(stand.poses[index].x,
+            position: Qt.vector3d(standDelegate.poses[index].x,
                                   50 * scale.y,
-                                  stand.poses[index].z)
+                                  standDelegate.poses[index].z)
             collisionShapes: BoxShape {}
 
             Model {

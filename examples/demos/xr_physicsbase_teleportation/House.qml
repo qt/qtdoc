@@ -6,6 +6,7 @@ import QtQuick3D.Physics
 
 Node {
     id: house
+    property alias fire: fire
 
     // Resources
     Texture {

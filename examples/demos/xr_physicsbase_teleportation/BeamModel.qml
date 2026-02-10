@@ -47,12 +47,12 @@ Model {
 
             const rings = beamParts.length
 
-            for (var i = 0; i < rings; ++i) {
+            for (let i = 0; i < rings; ++i) {
                 const pos = beamParts[i]
                 const fwd = i > 0 ? beamParts[i].minus(beamParts[i - 1]) : beamParts[1].minus(beamParts[0])
                 const quat = Quaternion.fromAxisAndAngle(fwd, 360/segments)
                 let perp = Qt.vector3d(0, tubeRadius, 0)
-                for (var j = 0; j <= segments; ++j) {
+                for (let j = 0; j <= segments; ++j) {
                     const posX = pos.x + perp.x
                     const posY = pos.y + perp.y
                     const posZ = pos.z + perp.z

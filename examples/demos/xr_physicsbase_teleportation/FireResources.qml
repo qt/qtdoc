@@ -51,8 +51,8 @@ Node {
             let index = 0
             let blade = 0.0;
 
-            for (var xx = 0.; xx < countX; ++xx) {
-                for (var zz = 0.; zz < countZ; ++zz) {
+            for (let xx = 0.; xx < countX; ++xx) {
+                for (let zz = 0.; zz < countZ; ++zz) {
 
                     pos.x = xx * xOffset
                     pos.z = zz * zOffset
@@ -63,7 +63,7 @@ Node {
                     const fBlade = blade / (countX*countZ)
                     ++blade
 
-                    for (var ss = 0.; ss <= segments; ++ss) {
+                    for (let ss = 0.; ss <= segments; ++ss) {
 
                         const uvY = ss / segments
 
