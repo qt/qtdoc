@@ -22,7 +22,7 @@
 
   \section1 Using the Qt Quick splash screen on Android
 
-  To use a QML \l View as a splash screen, you define a View and add a few items specific to
+  To use a QML view as a splash screen, you define a view and add a few items specific to
   splash screen functionality.
 
   \snippet demos/android/splashscreen/quick/Splash.qml Splash view header
@@ -44,7 +44,7 @@
   \snippet demos/android/splashscreen/quick/Splash.qml Exit function for timer
 
   The timer allows appropriate time for the splash screen to appear. This can be
-  used in conjunction with \l{Loader::onLoaded()} signal or possibly with another
+  used in conjunction with \l{Loader::loaded}{Loader.loaded()} signal or possibly with another
   signal originating from the app implementation when the app is ready to be
   shown.
 
