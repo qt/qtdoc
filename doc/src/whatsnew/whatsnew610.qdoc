@@ -55,8 +55,8 @@
       \li Use \l{QByteArray::}{nullTerminate()} to add a null terminator to a
           QByteArray or QString, e.g. after constructing them via
           \l{QByteArray::fromRawData()}. Test whether the array or string is null
-          terminated with \l{QByteArray::}{isNullTerminated()}.
-      \li QByteArray can now implicitly convert to a \l{QByteArray::operator std::string_view()}
+          terminated with \l{QByteArray::}{nullTerminated()}.
+      \li QByteArray can now implicitly convert to a \l{qbytearray-operator-std-string_view}
           {std::string_view}.
     \endlist
 
@@ -138,7 +138,7 @@
         \li Added a plugin for \l{VectorImage} which enables it to load Lottie files in addition
             to SVG. This feature is tech preview and requires
             \l{VectorImage::assumeTrustedSource}{assumeTrustedSource} to be set to \c true.
-        \li Added \l{lottietoqml example} and \l{qtlottieviewer example} to demonstrate usage
+        \li Added \l{lottietoqml Example} and \l{qtlottieviewer Example} to demonstrate usage
             of \l{Qt Lottie Animation}.
     \endlist
 
@@ -219,7 +219,7 @@
 
     \section2 Qt Quick 3D Module
     \list
-        \li Added \l [QtQuick3D]{ParticleEmitter3D::emitMode}{emit-mode} to shaped emitters to allow
+        \li Added \l [QtQuick3D]{ParticleEmitter3D::emitType}{emitType} to shaped emitters to allow
             particles to be emitted based on the surface normals of the shape.
         \li Implemented \l [QtQuick3D]{ParticleEmitter3D::reversed}{reversed} emitters to enable
             particles to run from end time to begin time.
@@ -407,7 +407,7 @@
         \li lupdate and lrelease now support mixing ID-based and
             text-based translations within the same document.
         \li Removed the Clang-based parser from lupdate.
-        \li Unified support for meta strings (comments like //: and //~) across 
+        \li Unified support for meta strings (comments like //: and //~) across
             different programming languages in lupdate.
         \li Added new i18n examples to the documentation.
         \li lrelease now provides the -fail-on-unfinished option to fail the
