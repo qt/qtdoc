@@ -7,18 +7,22 @@ import QtQuick.Layouts
 import QtQuick.Dialogs
 import io.qt.fdmaploader
 
-Window {
+ApplicationWindow {
     id: window
     width: 640
     height: 480
     visible: true
     title: qsTr("MapLoader")
 
-    Image {
-        id: image
-        Component.onCompleted: {
-            if (loadedImages.count > 0) {
-                image.source = loadedImages[0];
+    background: Item {
+        id: windowBackground
+        anchors.fill: parent
+        Image {
+            id: image
+            Component.onCompleted: {
+                if (loadedImages.count > 0) {
+                    image.source = loadedImages.get(0).name;
+                }
             }
         }
     }
@@ -39,9 +43,14 @@ Window {
 
     GridLayout {
         id: buttonLayout
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.margins: 5
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+
         columns: 3
 
         BasicButton {
