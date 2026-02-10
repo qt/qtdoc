@@ -46,6 +46,8 @@ qt_add_qml_module(osmbuildings
     SOURCES 3rdparty/mapbox/earcut.h
     RESOURCES customshaderbuildings.frag customshaderbuildings.vert customshadertiles.frag
     NO_RESOURCE_TARGET_PATH
+    DEPENDENCIES
+        QtQuick3D
 )
 
 install(TARGETS osmbuildings
