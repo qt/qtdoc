@@ -70,13 +70,13 @@
     The \c{fdmaploader/storeloader} folder contains interface class
     \c{PlayStoreLoader} for the Feature Delivery API. The API is not complete,
     but contains relevant functions for loading and removing feature modules.
-    Module loading is initiated with a call to \l{PlayStoreLoader::loadModule}.
+    Module loading is initiated with a call to \c{PlayStoreLoader::loadModule}.
     Status of the process can be monitored with signals provided by
     \c{PlayStoreLoaderHandler}. A handle to the callbacks can be obtained with
-    \l{PlayStoreLoader::getHandler} function. The example API also provides a
+    \c{PlayStoreLoader::getHandler} function. The example API also provides a
     way to check already installed modules with
-    \l{PlayStoreLoader::getInstalledModules} function and a option to remove
-    installed modules with \l{PlayStoreLoader::uninstallModules}
+    \c{PlayStoreLoader::getInstalledModules} function and a option to remove
+    installed modules with \c{PlayStoreLoader::uninstallModules}.
 
     This example is designed so that a developer can easily add their own
     content to test the Feature Delivery. To exceed the Play Store maximum
