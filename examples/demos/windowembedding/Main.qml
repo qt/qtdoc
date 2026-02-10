@@ -5,10 +5,11 @@ import QtQuick
 
 //! [qt-quick]
 Window {
+    id: root
     title: "Qt Quick"
     color: "#2CDE85"
 
-    required property QtObject calendarWindow;
+    property alias calendarWindow: calendar.window
 
     property int contentsMargins: 20
 
@@ -17,7 +18,6 @@ Window {
 
     WindowContainer {
         id: calendar
-        window: calendarWindow
         width: window.minimumWidth
         height: window.minimumHeight
         anchors.centerIn: parent
