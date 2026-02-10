@@ -40,7 +40,7 @@ Item {
             ny = scrollArea.visibleArea.xPosition * container.width;
 
         if (ny > 3) {
-            var t;
+            let t;
             if (container.orientation == Qt.Vertical)
                 t = Math.ceil(container.height - 3 - ny);
             else
