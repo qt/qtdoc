@@ -729,6 +729,9 @@
 
     \list
         \li \l{Qt Positioning} got a backend for the GeoLocation API.
+        \li Use the new \c wasmdeployqt tool to deploy and ship dynamically linked
+            \l{Qt for WebAssembly} applications. This replaces the previous
+            \c preload_qt_plugins.py and \c preload_qml_imports.py Python scripts.
     \endlist
 
     \section1 List of API Changes
