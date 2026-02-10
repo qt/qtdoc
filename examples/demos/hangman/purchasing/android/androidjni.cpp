@@ -85,7 +85,7 @@ static JNINativeMethod methods[] = {
     {"purchaseFailed", "(JIILjava/lang/String;)V", (void *)purchaseFailed}
 };
 
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *)
+extern "C" JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *)
 {
     static bool initialized = false;
     if (initialized){
