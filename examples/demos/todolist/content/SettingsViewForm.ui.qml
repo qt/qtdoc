@@ -118,7 +118,7 @@ Page {
     Connections {
         target: Component
         function onCompleted() {
-            for (var i = 0; i < settings.count; i++) {
+            for (let i = 0; i < settings.count; i++) {
                 if (settings.get(i).page === "Theme"
                         && !root.isThemeOptionAvailable) {
                     settings.remove(i)

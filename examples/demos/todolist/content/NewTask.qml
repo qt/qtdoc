@@ -34,8 +34,8 @@ NewTaskForm {
 
     function createTask() : void {
         if (titleText) {
-            var date = Date.fromLocaleDateString(Qt.locale(), dueDateText, localeDateFormat)
-            var dateStr = date.toLocaleDateString(Qt.locale(), localeLongDateFormat)
+            let date = Date.fromLocaleDateString(Qt.locale(), dueDateText, localeDateFormat)
+            let dateStr = date.toLocaleDateString(Qt.locale(), localeLongDateFormat)
 
             newTaskCreated(titleText, dateStr, dueTimeText, notes)
             closeView()
@@ -44,12 +44,12 @@ NewTaskForm {
 
     function updateTask(index : int) : void {
         if (titleText) {
-            var date = Date.fromLocaleDateString(Qt.locale(), dueDateText, localeDateFormat)
+            let date = Date.fromLocaleDateString(Qt.locale(), dueDateText, localeDateFormat)
             if (isNaN(date)) {
                date = Date.fromLocaleDateString(Qt.locale(), dueDateText, localeLongDateFormat)
             }
 
-            var dateStr = date.toLocaleDateString(Qt.locale(), localeLongDateFormat)
+            let dateStr = date.toLocaleDateString(Qt.locale(), localeLongDateFormat)
 
             taskUpdated(index, titleText, dateStr, dueTimeText, notes)
             closeView()

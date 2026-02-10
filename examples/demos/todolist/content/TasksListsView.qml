@@ -25,7 +25,7 @@ TasksListsViewForm {
 
     function getDoneTasksCount(listModel) : int {
         var count = 0
-        for (var i = 0; i < listModel.count; i++) {
+        for (let i = 0; i < listModel.count; i++) {
             if (listModel.get(i).done) {
                 count++
             }
@@ -36,9 +36,9 @@ TasksListsViewForm {
     function checkThisWeekDate(taskDate : string) : bool {
         var dateTmp = new Date()
         var format = Qt.locale().dateFormat(Locale.LongFormat)
-        for (var i = 1; i <= 7; i++) {
+        for (let i = 1; i <= 7; i++) {
             dateTmp.setDate(dateTmp.getDate() + 1)
-            var dateStr = dateTmp.toLocaleDateString(Qt.locale(),format)
+            let dateStr = dateTmp.toLocaleDateString(Qt.locale(),format)
             if (taskDate === dateStr) {
                 return true
             }
