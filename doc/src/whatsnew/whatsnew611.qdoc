@@ -13,7 +13,7 @@
     Qt 6.11 adds the following modules:
 
     \list
-      \li \l {Qt Canvas Painter} - Accelerated 2D painting solution for Qt Quick
+      \li \l {Qt Canvas Painter} - An accelerated 2D painting solution for Qt Quick
           and QRhi-based render targets.
       \li \l {Qt OpenAPI} - An extension of the upstream Open API generator that
           generates Qt HTTP clients, typically used for RESTful APIs.
@@ -23,8 +23,35 @@
           Qt Quick Controls through a set of shared design attributes.
     \endlist
 
-    The new modules are in \e{Technical Preview}, excluding their API from
-    \l{Compatibility promises}{Qt's compatibility promises}.
+    The new modules are in \e{Technology Preview}, excluding their API from
+    \l{Compatibility promises}{Qt's compatibility promises}. But we very
+    much welcome feedback to further improve them! Be it via the
+    \l{https://account.qt.io/support}{Qt Support Center}
+    the \l{Qt Bug Tracker}, the \l{https://forum.qt.io/}{Qt Forum}, or
+    the comments of the linked blog posts.
+
+    \section2 Qt Canvas Painter Module
+
+    \l{Qt Canvas Painter} is an accelerated 2D painting solution for Qt Quick
+    and QRhi-based render targets. See the
+    \l{https://www.qt.io/blog/2d-rendering-introducing-qt-canvas-painter}
+    {Introducing Qt Canvas Painter} blog post for a first overview.
+
+    \section2 Qt OpenAPI Module
+
+    \l{Qt OpenAPI} extends an \l{https://openapi-generator.tech/}{Open API generator}
+    to generate Qt HTTP clients, typically used for RESTful APIs.
+
+    \section2 Qt TaskTree Module
+    \l {Qt TaskTree} provides a declarative way to compose and execute
+    asynchronous task workflows in C++. See the
+    \l{https://www.qt.io/blog/qt-task-tree-coming-soon-in-qt-6.11}{Introduction} blog post
+    series for an overview.
+
+    \section2 Qt Labs StyleKit Module
+
+    \l{Qt Labs StyleKit} is a dedicated styling API that streamlines styling
+    Qt Quick Controls through a set of shared design attributes.
 
     \section1 New Features in Qt 6.11
 
