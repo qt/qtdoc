@@ -6,16 +6,16 @@ import QtQuick.Particles
 
 Emitter {
     id: emitter
-    property Item block: parent
+    property Item parentBlock: parent
     velocity: TargetDirection {
-        targetX: emitter.block.width/2
-        targetY: emitter.block.height/2
+        targetX: emitter.parentBlock.width/2
+        targetY: emitter.parentBlock.height/2
         magnitude: -40
         magnitudeVariation: 40
     }
     acceleration: TargetDirection {
-        targetX: emitter.block.width/2
-        targetY: emitter.block.height/2
+        targetX: emitter.parentBlock.width/2
+        targetY: emitter.parentBlock.height/2
         magnitude: -100
     }
     shape: EllipseShape{fill:true}
