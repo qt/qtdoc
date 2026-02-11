@@ -17,7 +17,7 @@ Item {
 
     function read(metadata) {
         if (metadata) {
-            for (var key of metadata.keys()) {
+            for (const key of metadata.keys()) {
                 if (metadata.stringValue(key)) {
                     elements.append({
                         name: metadata.metaDataKeyToString(key),
