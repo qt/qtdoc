@@ -38,6 +38,7 @@ Popup {
         currentColor = data.color
         colorPantoneField.text = data.pantone_value
         colorId = data.id
+        colorDialog.selectedColor = currentColor
         open()
     }
 
