@@ -35,7 +35,7 @@ Popup {
     function updateColor(data) {
         newColor = false
         colorNameField.text = data.name
-        currentColor = data.color
+        currentColor = Qt.color(data.color)
         colorPantoneField.text = data.pantone_value
         colorId = data.id
         colorDialog.selectedColor = currentColor
