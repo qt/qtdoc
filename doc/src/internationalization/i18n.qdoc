@@ -566,7 +566,7 @@
 
     QML does not have special in-string modifiers for formatting dates and times.
     Instead, you need to query the current locale (geographical region) and use
-    the methods of \l {QtQml::}{Date} to format the string.
+    the methods of \l{The Date JavaScript Object}{Date} to format the string.
 
     \c Qt.locale() returns a \l {QtQml::}{Locale} object which contains
     information about the locale. In particular, the \l {QtQml::Locale::name}
@@ -584,9 +584,9 @@
     }
     \endcode
 
-    To localize currency numbers, use the \l {QtQml::}{Number} type. It has
-    similar functions as the \c Date type for converting numbers into localized
-    currency strings.
+    To localize currency numbers, use the \l{The Number JavaScript Object}{Number}
+    type. It has similar functions as the \c Date type for converting numbers
+    into localized currency strings.
 
     \section2 C++: Use QLocale Class
 
