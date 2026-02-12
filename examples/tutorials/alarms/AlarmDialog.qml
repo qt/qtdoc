@@ -68,10 +68,6 @@ Dialog {
 
             Layout.leftMargin: 20
 
-            property alias dayTumbler: dayTumbler
-            property alias monthTumbler: monthTumbler
-            property alias yearTumbler: yearTumbler
-
             readonly property var days: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
             Tumbler {
@@ -82,7 +78,7 @@ Dialog {
                     var previousIndex = dayTumbler.currentIndex
                     var array = []
                     var newDays = datePicker.days[monthTumbler.currentIndex]
-                    for (var i = 1; i <= newDays; ++i)
+                    for (let i = 1; i <= newDays; ++i)
                         array.push(i)
                     dayTumbler.model = array
                     dayTumbler.currentIndex = Math.min(newDays - 1, previousIndex)
