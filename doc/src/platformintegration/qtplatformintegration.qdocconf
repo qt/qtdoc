@@ -20,3 +20,17 @@ qhp.QtPlatformIntegration.namespace           = org.qt-project.qtplatformintegra
 qhp.QtPlatformIntegration.virtualFolder       = qtplatformintegration
 qhp.QtPlatformIntegration.indexTitle          = "Platform Integration"
 qhp.QtPlatformIntegration.filterAttributes    = qt $QT_VERSION
+
+qhp.QtPlatformIntegration.subprojects = qpa typeconversions nativeinterfaces
+
+qhp.QtPlatformIntegration.subprojects.qpa.title = "Qt Platform Abstraction"
+qhp.QtPlatformIntegration.subprojects.qpa.indexTitle = "Qt Platform Abstraction"
+qhp.QtPlatformIntegration.subprojects.qpa.selectors = none
+
+qhp.QtPlatformIntegration.subprojects.typeconversions.title = "Type Conversions"
+qhp.QtPlatformIntegration.subprojects.typeconversions.indexTitle = "Type Conversions"
+qhp.QtPlatformIntegration.subprojects.typeconversions.selectors = none
+
+qhp.QtPlatformIntegration.subprojects.nativeinterfaces.title = "Native Interfaces"
+qhp.QtPlatformIntegration.subprojects.nativeinterfaces.indexTitle = "Native Interfaces"
+qhp.QtPlatformIntegration.subprojects.nativeinterfaces.selectors = none
