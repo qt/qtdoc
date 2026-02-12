@@ -158,8 +158,7 @@
           Similarly, the display won't freeze, even when one client freezes.
 
           \note If your client is mandated by law to render safety-critical
-          information, consider using
-          \l{https://doc.qt.io/QtSafeRenderer/}{Qt Safe Renderer}.
+          information, consider using \l{Qt Safe Renderer}.
     \row
       \li Protection against possible memory leaks
       \li In a multi-process system, if one client has a memory leak and

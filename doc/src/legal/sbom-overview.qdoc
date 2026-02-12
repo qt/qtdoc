@@ -16,7 +16,7 @@ security vulnerability management.
 
 Starting from Qt 6.8, Qt's build system can generate SBOM documents tailored
 for different platforms and build configurations.
-The \l{Using Qt Online Installer}{Qt Online Installer} places the SBOM
+The \l{Get and Install Qt with \QOI}{Qt Online Installer} places the SBOM
 documents in an \c{sbom} directory located in the installation directory of the
 respective Qt version.
 For example, for the Qt \QtVersion Android arm64-v8a installation, the SBOM
@@ -298,7 +298,7 @@ components not listed in the following example.
 
 \l{Boot to Qt} uses the meta-qt6 layer to build all Qt modules and the
 generated SBOM documents are available as SPDX files when installing Boot to Qt
-through the \l{Using Qt Online Installer}{Qt Online Installer}.
+through the \l{Get and Install Qt with \QOI}{Qt Online Installer}.
 The install path depends on the Qt version and the target hardware.
 
 For example, for the Raspberry Pi target, the SBOM .spdx
