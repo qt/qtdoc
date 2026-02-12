@@ -30,7 +30,7 @@ static QStringList imageFormats()
     QStringList result;
     const QByteArrayList &allFormats = QImageReader::supportedImageFormats();
     for (const auto &format : allFormats) {
-        if (format != "tif" && format != "cur") // duplicate/non-existent
+        if (format != "pdf" && format != "tif" && format != "cur") // duplicate/non-existent
             result.append("image/"_L1 + QLatin1StringView(format));
     }
     return result;
