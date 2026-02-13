@@ -34,13 +34,13 @@
     These instructions use Unix-like shell syntax. On Windows,
     the commands are similar. The command below clones the current version of
     Qt 6 into a directory named \c{qt}.
-    \badcode \QtVersion
+    \code [text] \QtVersion
     git clone --branch v\1 git://code.qt.io/qt/qt5.git qt
     \endcode
 
     If the git protocol is blocked by your firewall, consider using HTTPS
     instead:
-    \badcode  \QtVersion
+    \code [text]  \QtVersion
     git clone --branch v\1 https://code.qt.io/qt/qt5.git qt
     \endcode
 
@@ -53,12 +53,12 @@
     Git submodules. To initialize and clone the submodules, run the
     \c init-repository tool in the top-level directory.
 
-    \badcode
+    \code [text]
     ./init-repository
     \endcode
 
     On Windows, without a Linux environment, use \c init-repository.bat instead.
-    \badcode
+    \code [text]
     init-repository.bat
     \endcode
 
@@ -71,7 +71,7 @@
     If you already have a Qt repository in the same directory, you can pass
     \c -f to force \c init-repository to reinitialize the submodules.
 
-    \badcode
+    \code [text]
     ./init-repository -f
     \endcode
 
@@ -81,26 +81,26 @@
     set of submodules using \c{--module-subset} as an argument to
     \c{init-repository}. For example, you can initialize only the
     \l{Qt Essentials} modules by specifying \c essential as the argument.
-    \badcode
+    \code [text]
     ./init-repository --module-subset=essential
     \endcode
 
     For \l{Qt Add-Ons}, use \c addon instead.
-    \badcode
+    \code [text]
     ./init-repository --module-subset=addon
     \endcode
 
     You can also select several submodules at the same time. For example, to
     initialize the \c qtgrpc and \c qtmqtt submodules along with their required
     submodules, run:
-    \badcode
+    \code [text]
     ./init-repository --module-subset=qtgrpc,qtmqtt
     \endcode
     The \c init-repository tool always initializes a minimum set of submodules.
 
     For more information, consult the \c init-repository manual by
     setting \c -help as an argument:
-    \badcode
+    \code [text]
     ./init-repository -help
     \endcode
 

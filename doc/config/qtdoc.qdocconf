@@ -16,6 +16,9 @@ headerdirs  += ../src
 imagedirs   += ../src/images \
                ../images
 
+# Plain text markup can be specified for code blocks
+codelanguages += text
+
 sourcedirs  += \
     ../src
 
