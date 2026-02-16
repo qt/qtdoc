@@ -725,6 +725,16 @@ is disabled by default. The end user can activate it by selecting an "activate
 screen reader" button using the screen reader. When activated this will populate
 the web page with accessibility elements.
 
+\section2 Drag and drop
+
+\since 6.11 Drag & drop is supported as follows:
+
+\list
+    \li Drop is supported (files and mime types supported by the browser).
+    \li Application internal drag-and-drop is supported.
+    \li Drag out of the application is not supported.
+\endlist
+
 \section2 Application Startup and the Event Loop
 
 Qt for WebAssembly supports the standard Qt startup approach, where the application
