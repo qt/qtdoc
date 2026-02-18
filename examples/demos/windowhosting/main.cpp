@@ -265,7 +265,7 @@ int main(int argc, char* argv[])
     QApplication app(argc,argv);
     QCoreApplication::setOrganizationName("QtProject");
     QCoreApplication::setOrganizationDomain("qt-project.org");
-    QCoreApplication::setApplicationName("Window Embedding");
+    QCoreApplication::setApplicationName("Window Hosting");
 
     QShortcut quitShortcut(QKeySequence::Quit, &app, &app,
         &QCoreApplication::quit, Qt::ApplicationShortcut);
@@ -298,7 +298,7 @@ int main(int argc, char* argv[])
     //! [qt-quick]
     QQmlApplicationEngine engine;
     engine.setInitialProperties({{ "calendarWindow", QVariant::fromValue(createCalendarWindow()) }});
-    engine.loadFromModule("windowembedding", "Main");
+    engine.loadFromModule("windowhosting", "Main");
     //! [qt-quick]
 
     auto &quickWindow = *qobject_cast<QQuickWindow *>(engine.rootObjects().first());

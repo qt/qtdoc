@@ -33,25 +33,12 @@
 
     For a complete list of all type conversions, see the \l{Type Conversions} overview.
 
-    \section1 Window Embedding
+    \section1 Integrating with other UI toolkits
 
-    Windows created by the underlying platform APIs may be used as both
-    parent containers for Qt windows, or embedded into Qt windows as child
-    windows.
+    \include platformintegration.qdocinc mixing-qt-with-other-ui-toolkits-intro
 
-    The former is useful if the application is mainly written using the native
-    platform APIs, but where parts of the application uses Qt, for example
-    to draw a specialized UI. To embed Qt into the window hierarchy of the
-    native application, use QWindow::winId() to get the native handle for
-    the Qt window, and then use the native APIs to re-parent the window
-    into the native UI.
-
-    The latter is useful if the native platform, or another toolkit, exposes
-    a specialized control as a native window. By using QWindow::fromWinId()
-    to wrap the native window handle in a QWindow, the window can then be
-    re-parented into the Qt window hierarchy as any other QWindow. To re-parent
-    this QWindow into a Qt Widget based UI, use the widgets-specific
-    QWidget::createWindowContainer() function.
+    See \l{Mixing Qt with other UI toolkits} for a deep-dive into how Qt supports
+    these two use-cases.
 
     \section1 Event Handling
 
@@ -131,8 +118,7 @@
 
     \section2 Adopting existing native handles
 
-    Similarly to the \l{Window Embedding}{window embedding} use-case, there are
-    situations where the native platform, or another toolkit, has created a native
+    In some situations the native platform, or another toolkit, has created a native
     handle that you would like to pass on to Qt \mdash wrapping the existing handle
     instead of creating a new one.
 

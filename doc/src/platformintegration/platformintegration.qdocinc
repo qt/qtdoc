@@ -32,4 +32,51 @@ on \macos, via the QNativeInterface::QCocoaGLContext native interface:
 \endcode
 //! [native-interface-handle-access-example]
 
+//! [mixing-qt-with-other-ui-toolkits-intro]
+Qt provides a comprehensive set of cross-platform UI components and controls
+that cover the vast majority of application development needs. However, there
+are situations where integrating Qt with other UI toolkits becomes necessary
+or beneficial.
+
+One scenario is embedding Qt UIs into applications built with
+other toolkits, for example when implementing plugins for an
+existing application, or when gradually introducing Qt into an existing codebase.
+
+Another scenario is hosting native or third-party UI elements in a Qt
+application, for example to access specialized controls that Qt
+doesn't provide.
+//! [mixing-qt-with-other-ui-toolkits-intro]
+
+//! [winid-types]
+\table
+\header
+    \li Platform
+    \li WId type
+\row
+    \li \macos
+    \li \l{macOS: NSView}{\c NSView}\c*
+\row
+    \li Windows
+    \li \l{Windows: HWND}{\c HWND}
+\row
+    \li X11
+    \li \c xcb_window_t
+\row
+    \li iOS
+    \li \l{iOS: UIView}{\c UIView}\c*
+\row
+    \li Android
+    \li \l {Android: View}{View}
+\row
+    \li WebAssembly
+    \li \c emscripten::val*
+\endtable
+//! [winid-types]
+
+//! [winid-ownership-note]
+\note Qt does not take (exclusive) ownership of the native window handle
+when creating a foreign window, so the application is responsible for
+keeping the native window alive for the lifetime of the foreign QWindow.
+//! [winid-ownership-note]
+
 */

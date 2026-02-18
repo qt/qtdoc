@@ -2,19 +2,19 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \title Window Embedding Example
+    \title Window Hosting Example
     \ingroup examples-widgets
-    \example demos/windowembedding
+    \example demos/windowhosting
     \examplecategory {User Interface Components}
     \meta {tag} {demo,gui,quick,widgets}
-    \brief A demonstration of how to embed non-Qt UI elements into Qt applications.
+    \brief A demonstration of how to host non-Qt UI elements in Qt applications.
 
     Qt offers a wide range of UI controls for both Qt Widget and Qt Quick-based
     applications, but sometimes it may be desirable to use controls from other
     UI toolkits, such as the platform's native UI toolkit.
 
     To integrate these controls, we build upon the QWindow abstraction in Qt, by creating a
-    QWindow representation of the native UI control, that can then be embedded within the Qt UI.
+    QWindow representation of the native UI control, that can then be hosted within the Qt UI.
     A window created in this manner is known in Qt as a \e{foreign window}, as it represents a
     control created by a foreign (to Qt) UI toolkit.
 
@@ -25,39 +25,14 @@
 
     Each platform defines what native type the WId opaque type maps to.
 
-    \table
-    \header
-        \li Platform
-        \li WId type
-    \row
-        \li \macos
-        \li \l{macOS: NSView}{\c NSView}\c*
-    \row
-        \li Windows
-        \li \l{Windows: HWND}{\c HWND}
-    \row
-        \li X11
-        \li \c xcb_window_t
-    \row
-        \li iOS
-        \li \l{iOS: UIView}{\c UIView}\c*
-    \row
-        \li Android
-        \li \l {Android: View}{View}
-    \row
-        \li WebAssembly
-        \li \c emscripten::val*
-
-    \endtable
+    \include platformintegration.qdocinc winid-types
 
     The result is a QWindow that represents the native window handle.
 
-    \note Qt does not take (exclusive) ownership of the native window handle
-    when creating a foreign window, so the application is responsible for
-    keeping the native window alive for the lifetime of the foreign QWindow.
+    \include platformintegration.qdocinc winid-ownership-note
 
     Now, before we can create a QWindow using QWindow::fromWinId() we need a native window handle.
-    In this example, we will embed a month calendar control, as most platforms have it in their
+    In this example, we will host a month calendar control, as most platforms have it in their
     native UI toolkits, or otherwise readily available. The specifics of how to create the
     calendar on each platform are shown in the code snippets below.
 
@@ -66,9 +41,10 @@
     returning from \c main().
 
     In addition to creating the native window handle and turning that into a QWindow,
-    we also set a minimum size on the resulting QWindow, based on that the native toolkit
-    can tell us about the preferred minimum size of the calendar control. This allows
-    Qt to lay out the embedded foreign window properly.
+    we also set a minimum size on the resulting QWindow, based on what the native toolkit
+    reports as the preferred minimum size of the calendar control. This allows
+
+    Qt to lay out the hosted foreign window properly.
 
     \if defined(onlinedocs)
       \tab {from-win-id}{macos}{macOS}{checked}
@@ -84,8 +60,8 @@
     \else
       \section2 macOS
     \endif
-    \inlineimage macos.webp
-    \snippet demos/windowembedding/main.cpp macos
+    \inlineimage macos.webp {Qt GUI, Qt Widgets, and Qt Quick windows hosting a macOS calendar}
+    \snippet demos/windowhosting/main.cpp macos
     \if defined(onlinedocs)
       \endtabcontent
     \endif
@@ -96,7 +72,8 @@
       \section2 Windows
     \endif
     \inlineimage windows.webp
-    \snippet demos/windowembedding/main.cpp windows
+                 {Qt GUI, Qt Widgets, and Qt Quick windows hosting a Windows calendar}
+    \snippet demos/windowhosting/main.cpp windows
     \if defined(onlinedocs)
       \endtabcontent
     \endif
@@ -106,8 +83,8 @@
     \else
       \section2 X11
     \endif
-    \inlineimage x11.webp
-    \snippet demos/windowembedding/main.cpp x11
+    \inlineimage x11.webp {Qt GUI, Qt Widgets, and Qt Quick windows hosting a GTK calendar}
+    \snippet demos/windowhosting/main.cpp x11
     \if defined(onlinedocs)
       \endtabcontent
     \endif
@@ -117,8 +94,9 @@
     \else
       \section2 iOS
     \endif
-    \inlineimage ios.webp
-    \snippet demos/windowembedding/main.cpp ios
+    \inlineimage ios.webp {Qt GUI, Qt Widgets, and Qt Quick containers hosting an iOS calendar}
+
+    \snippet demos/windowhosting/main.cpp ios
     \if defined(onlinedocs)
       \endtabcontent
     \endif
@@ -128,8 +106,9 @@
     \else
       \section2 Android
     \endif
-    \inlineimage android.webp
-    \snippet demos/windowembedding/main.cpp android
+    \inlineimage android.webp {Qt GUI, Qt Widgets, and Qt Quick containers hosting an Android calendar}
+
+    \snippet demos/windowhosting/main.cpp android
     \if defined(onlinedocs)
       \endtabcontent
     \endif
@@ -139,56 +118,57 @@
     \else
       \section2 WebAssembly
     \endif
-    \inlineimage webassembly.webp
-    \snippet demos/windowembedding/main.cpp webassembly
+    \inlineimage webassembly.webp {Qt GUI, Qt Widgets, and Qt Quick windows hosting a calendar on a WebAssembly calendar}
+    \snippet demos/windowhosting/main.cpp webassembly
     \if defined(onlinedocs)
       \endtabcontent
     \endif
 
-    \section1 Embedding a foreign window
+    \section1 Hosting a foreign window
 
-    Now that we have a foreign QWindow, we can embed that into a Qt UI.
+    Now that we have a foreign QWindow, we can host it in a Qt UI.
     We have several options here, as described below.
 
-    \section2 Embedding in Qt Gui
+    \section2 Hosting in Qt GUI
 
-    At the lowest level, we can embed the foreign window by reparenting it into
+    At the lowest level, we can host the foreign window by reparenting it into
     another QWindow, via QWindow::setParent(). This approach leaves it up to
     the application developer to handle positioning, resizing, and other aspects
-    of managing the embedded child window, so we generally advice against
+    of managing the hosted child window, so we generally advise against
+
     integrating on this level, if at all possible.
 
     In this example we first create a minimal container window implementation.
 
-    \snippet demos/windowembedding/main.cpp qt-gui-container-window
+    \snippet demos/windowhosting/main.cpp qt-gui-container-window
 
     Which we can then reparent our foreign window into.
 
-    \snippet demos/windowembedding/main.cpp qt-gui
+    \snippet demos/windowhosting/main.cpp qt-gui
 
-    \section2 Embedding in Qt Widgets
+    \section2 Hosting in Qt Widgets
 
     For applications built on the Qt Widgets UI stack we follow the same approach
     as for QWindow::fromWinId(), by creating a QWidget representation of the
     QWindow, via QWidget::createWindowContainer().
 
     We could then reparent the widget into another widget, via QWidget::setParent(),
-    with the same caveats as the Qt Gui example above of having to manage positioning,
+    with the same caveats as the Qt GUI example above of having to manage positioning,
     resizing, etc. manually. In this example we prefer to add the window container
     widget to a QVBoxLayout, which allows us to automatically center the foreign
     window inside the top level widget.
 
-    \snippet demos/windowembedding/main.cpp qt-widgets
+    \snippet demos/windowhosting/main.cpp qt-widgets
 
-    \section2 Embedding in Qt Quick
+    \section2 Hosting in Qt Quick
 
     Finally, for applications built on the Qt Quick UI stack, we use the WindowContainer
     item to manage the foreign window.
 
-    \snippet demos/windowembedding/Main.qml qt-quick
+    \snippet demos/windowhosting/Main.qml qt-quick
 
     In this example the foreign window is exposed to the QML engine as an initial property,
     but this could be solved in different ways depending on the needs of the application.
 
-    \snippet demos/windowembedding/main.cpp qt-quick
+    \snippet demos/windowhosting/main.cpp qt-quick
 */
