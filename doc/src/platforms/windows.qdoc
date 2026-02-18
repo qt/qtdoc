@@ -428,149 +428,295 @@
 
     \section1 The Windows Deployment Tool
     \target windeployqt
-    The Windows deployment tool \c windeployqt is designed to automate the
-    process of creating a deployable folder containing the \l{Qt}-related
-    dependencies (libraries, QML imports, plugins, and translations) required
-    to run the application from that folder.
-    It creates an installation tree for Windows desktop applications, which can be
-    easily bundled into an installation package.
+    The recommended and easiest way to deploy a Qt application on Windows is to
+    use the windeployqt tool, which automatically collects all required Qt
+    libraries, plugins, QML modules, and runtime dependencies into a
+    ready-to-run deployment folder.
 
-    The tool can be found in \c{QTDIR/bin/windeployqt}. It needs to be run
-    within the build environment in order to function correctly. When using the
-    \QOI, the script \c{QTDIR/bin/qtenv2.bat} should be used to set it up.
+    It creates an installation tree for Windows desktop applications, which can
+    be easily bundled into an installation package.
 
-    \c windeployqt takes an \c .exe file or a directory that contains an \c .exe
-    file as an argument, and scans the executable for dependencies. If a
-    directory is passed with the \c{--qmldir} argument, \c windeployqt uses the
-    \c qmlimportscanner tool to scan QML files inside the directory for QML import
-    dependencies. Identified dependencies are then copied to the executable's
-    directory.
+    \note The application may require additional 3rd-party libraries
+    (for example, database libraries), which are not taken into account by
+    windeployqt.
 
-    In case Qt was built with the configure switch \c{-relocatable} turned off,
-    \c windeployqt replaces the hardcoded local paths in Qt6Core.dll by
-    relative ones.
+    \section2 Setting up the build environment
 
-    For Windows desktop applications, the required runtime files for the compiler
-    are also copied to the deployable folder by default (unless the option
-    \c --no-compiler-runtime is specified). In the case of release builds using
-    Microsoft Visual C++, these consist of the Visual C++ Redistributable Packages,
-    which are intended for recursive installation by the application's installer on
-    the target machine. Otherwise, the shared libraries of the compiler runtime are used.
+    If you have installed Qt through \QOI, you must set up the build
+    environment before you run windeployqt. To do this, run:
 
-    The application may require additional 3rd-party libraries (for example,
-    database libraries), which are not taken into account by \c windeployqt.
-
-    Additional arguments are described in the tool's help output:
-
-    \badcode
-    Usage: windeployqt.exe [options] [files]
-    Qt Deploy Tool 6.11.0
-
-    The simplest way to use windeployqt is to add the bin directory of your Qt
-    installation (e.g. <QT_DIR\bin>) to the PATH variable and then run:
-    windeployqt <path-to-app-binary>
-
-    If your application uses Qt Quick, run:
-    windeployqt --qmldir <path-to-app-qml-files> <path-to-app-binary>
-
-    Options:
-     -?, -h, --help                            Displays help on commandline
-                                               options.
-     --help-all                                Displays help, including generic Qt
-                                               options.
-     -v, --version                             Displays version information.
-     --dir <directory>                         Use directory instead of binary
-                                               directory.
-     --qmake <path>                            Use specified qmake instead of
-                                               qmake from PATH. Deprecated, use
-                                               qtpaths instead.
-     --qtpaths <path>                          Use specified qtpaths.exe instead
-                                               of qtpaths.exe from PATH.
-     --libdir <path>                           Copy libraries to path.
-     --plugindir <path>                        Copy plugins to path.
-     --translationdir <path>                   Copy translations to path.
-     --qml-deploy-dir <path>                   Copy qml files to path.
-     --debug                                   Assume debug binaries.
-     --release                                 Assume release binaries.
-     --pdb                                     Deploy .pdb files (MSVC).
-     --force                                   Force updating files.
-     --dry-run                                 Simulation mode. Behave normally,
-                                               but do not copy/update any files.
-     --no-patchqt                              Do not patch the Qt6Core library.
-     --ignore-library-errors                   Ignore errors when libraries cannot
-                                               be found.
-     --no-plugins                              Skip plugin deployment.
-     --include-soft-plugins                    Include in the deployment all
-                                               relevant plugins by taking into
-                                               account all soft dependencies.
-     --skip-plugin-types <plugin types>        A comma-separated list of plugin
-                                               types that are not deployed
-                                               (qmltooling,generic).
-     --add-plugin-types <plugin types>         A comma-separated list of plugin
-                                               types that will be added to
-                                               deployment
-                                               (imageformats,iconengines)
-     --include-plugins <plugins>               A comma-separated list of
-                                               individual plugins that will be
-                                               added to deployment (scene2d,qjpeg)
-     --exclude-plugins <plugins>               A comma-separated list of
-                                               individual plugins that will not be
-                                               deployed (qsvg,qpdf)
-     --no-libraries                            Skip library deployment.
-     --qmldir <directory>                      Scan for QML-imports starting from
-                                               directory.
-     --qmlimport <directory>                   Add the given path to the QML
-                                               module search locations.
-     --no-quick-import                         Skip deployment of Qt Quick
-                                               imports.
-     --translations <languages>                A comma-separated list of languages
-                                               to deploy (de,fi).
-     --no-translations                         Skip deployment of translations.
-     --no-system-d3d-compiler                  Skip deployment of the system D3D
-                                               compiler.
-     --no-system-dxc-compiler                  Skip deployment of the system DXC
-                                               (dxcompiler.dll, dxil.dll).
-     --compiler-runtime                        Deploy compiler runtime (Desktop
-                                               only).
-     --no-compiler-runtime                     Do not deploy compiler runtime
-                                               (Desktop only).
-     --json                                    Print to stdout in JSON format.
-     --no-opengl-sw                            Do not deploy the software
-                                               rasterizer library.
-     --no-ffmpeg                               Do not deploy the FFmpeg libraries.
-     --force-openssl                           Deploy openssl plugin but ignore
-                                               openssl library dependency
-     --openssl-root <directory>                Directory containing openSSL
-                                               libraries.
-     --list <option>                           Print only the names of the files
-                                               copied.
-                                               Available options:
-                                                source:   absolute path of the
-                                               source files
-                                                target:   absolute path of the
-                                               target files
-                                                relative: paths of the target
-                                               files, relative
-                                                          to the target directory
-                                                mapping:  outputs the source and
-                                               the relative
-                                                          target, suitable for use
-                                               within an
-                                                          Appx mapping file
-     --verbose <level>                         Verbose level (0-2).
-
-    Qt libraries can be added by passing their name (-xml) or removed by passing
-    the name prepended by --no- (--no-xml).
-
-    Arguments:
-    [files]                                   Binaries or directory containing
-                                              the binary.
+    \code
+      <qt-installation-folder>/bin/qtenv2.bat
     \endcode
+
+    \section2 Usage
+
+    windeployqt is located in \c{<qt-installation-folder>/bin/}, it takes an
+    \c{.exe} file or a directory that contains an \c{.exe} file as an
+    argument, and scans the executable for dependencies.
+
+    Note the following:
+    \list
+      \li If a directory is passed with the \c{--qmldir} argument, windeployqt
+          uses the qmlimportscanner tool to scan QML files inside the directory for
+          QML import dependencies. Identified dependencies are then copied to the
+          executable's directory.
+      \li If Qt was built with the configure switch \c{-relocatable} turned off,
+          windeployqt replaces the hardcoded local paths in \c{Qt6Core.dll} with
+          relative paths.
+      \li For Windows desktop applications, windeployqt copies the required
+          compiler runtime files by default unless \c {--no-compiler-runtime} is
+          specified. For release builds using Microsoft Visual C++, this means
+          the tool expects the application installer to include the official
+          Visual C++ Redistributable Packages.
+
+         If the redistributable is not available, windeployqt may fall back to
+         using the compiler's shared runtime DLLs found on the developer
+         machine. These individual DLLs
+         \e{are not intended or licensed for redistribution}, and should not be
+         shipped directly. Only the official Microsoft Redistributable installer
+         should be used for deployment on end-user systems.
+    \endlist
+
+    \section3 Common use cases
+
+    \section4 Deploying a standard Qt Widgets application
+
+    \code
+      windeployqt.exe .\build\MyApp.exe
+    \endcode
+
+    \section4 Deploying a Qt Quick application with QML sources
+
+    \code
+      windeployqt.exe --qmldir .\qml .\build\MyApp.exe
+    \endcode
+
+    \section4 Performing a dry run
+
+    A dry run simulates deployment without copying or updating anything.
+
+    \code
+      windeployqt.exe --dry-run MyApp.exe
+    \endcode
+
+    \section3 Options
+
+    \section4 General
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{-?}, \c{-h}, \c{--help}
+        \li Show help for command-line options.
+      \row
+        \li \c{--help-all}
+        \li Show full help including generic Qt options.
+      \row
+        \li \c{-v}, \c{--version}
+        \li Show version information.
+    \endtable
+
+    \section4 Input and output control
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--dir <path>}
+        \li Use this directory as the deployment target instead of the binary
+            directory.
+      \row
+        \li \c{--libdir <path>}
+        \li Copy Qt libraries to this directory.
+      \row
+        \li \c{--plugindir <path>}
+        \li Copy Qt plugins to this directory.
+      \row
+        \li \c{--qml-deploy-dir <path>}
+        \li Copy QML files to this directory.
+      \row
+        \li \c{--translationdir <path>}
+        \li Copy translations to this directory.
+    \endtable
+
+    \section4 Qt path resolution
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--qtpaths <path>}
+        \li Use a specific \c{qtpaths.exe} file for resolving Qt locations.
+    \endtable
+
+    \section4 Build configuration
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--debug}
+        \li Assume debug binaries.
+      \row
+        \li \c{--release}
+        \li Assume release binaries.
+      \row
+        \li \c{--pdb}
+        \li Deploy MSVC \c{.pdb} files.
+    \endtable
+
+    \section4 Deployment behaviour
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--force}
+        \li Overwrite existing files.
+      \row
+        \li \c{--dry-run}
+        \li Simulate deployment without copying or updating anything.
+      \row
+        \li \c{--ignore-library-errors}
+        \li Continue even if some libraries are missing.
+      \row
+        \li \c{--json}
+        \li Output deployment information in JSON format.
+      \row
+        \li \c{--nopatchqt}
+        \li Skip patching the QtCore library.
+      \row
+        \li \c{--no-libraries}
+        \li Skip library deployment.
+      \row
+        \li \c{--verbose <level>}
+        \li Verbosity level (0–2).
+    \endtable
+
+    \section4 Plugins
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--no-plugins}
+        \li Skip plugin deployment.
+      \row
+        \li \c{--include-soft-plugins}
+        \li Include all relevant plugins based on soft dependencies.
+      \row
+        \li \c{--skip-plugin-types <types>}
+        \li A comma-separate list of specific plugin categories to not add to
+            deployment.
+      \row
+        \li \c{--add-plugin-types <types>}
+        \li A comma-separate list of plugin types to add to deployment.
+      \row
+        \li \c{--include-plugins <plugins>}
+        \li A comma-separate list of specific plugins (by name) to add to
+            deployment.
+      \row
+        \li \c{--exclude-plugins <plugins>}
+        \li A comma-separate list of specific plugins (by name) to not add to
+            deployment.
+    \endtable
+
+    \section4 QML
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--qmldir <directory>}
+        \li Scan for QML imports starting at this directory.
+      \row
+        \li \c{--qmlimport <directory>}
+        \li Additional QML module search path.
+      \row
+        \li \c{--no-quick-import}
+        \li Skip deployment of Qt Quick imports.
+    \endtable
+
+    \section4 Translations
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--translations <languages>}
+        \li A comma-separated list of languages to deploy translations for.
+      \row
+        \li \c{--no-translations}
+        \li Skip translations.
+    \endtable
+
+    \section4 System and runtime components
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--no-system-d3d-compiler}
+        \li Skip system D3D compiler.
+      \row
+        \li \c{--no-system-dxc-compiler}
+        \li Skip system DXC compiler.
+      \row
+        \li \c{--compiler-runtime}
+        \li Deploy runtime compiler (Desktop only).
+      \row
+        \li \c{--no-compiler-runtime}
+        \li Do not deploy runtime compiler (Desktop only).
+      \row
+        \li \c{--no-opengl-sw}
+        \li Skip software OpenGL renderer.
+      \row
+        \li \c{--no-ffmpeg}
+        \li Skip FFmpeg libraries.
+      \row
+        \li \c{--force-openssl}
+        \li Deploy OpenSSL plugin but ignore library dependency.
+      \row
+        \li \c{--openssl-root <directory>}
+        \li Directory containing OpenSSL libraries.
+    \endtable
+
+    \section4 File list output
+
+    \table
+      \header
+        \li Option
+        \li Description
+      \row
+        \li \c{--list <option>}
+        \li Print only filenames to stdout.
+
+            Options:
+            \list
+              \li \c{source}: absolute path of the source files.
+              \li \c{target}: absolute path of the target files.
+              \li \c{relative}: paths of the target files, relative to the
+                  target directory.
+              \li \c{mapping}:  outputs the source and the relative target,
+                  suitable for use within an Appx mapping file.
+            \endlist
+    \endtable
 
     \section1 Static Linking
 
     To build static applications, build Qt statically by configuring Qt with
-    \c -static:
+    \c{-static}:
 
     \snippet snippets/code/doc_src_deployment.qdoc 11
 
