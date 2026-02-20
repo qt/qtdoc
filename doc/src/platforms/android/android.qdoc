@@ -31,6 +31,7 @@ Qt applications run on Android devices by handling the interaction between the
 native Android (Java/Kotlin) side and the Qt (C++) side, including event
 propagation, lifecycle management, and rendering.
 
+\image images/android_overview_apps.webp "Qt for Android demo applications running on an Android emulator"
 
 \section2 Key Features and Capabilities
 
@@ -79,6 +80,7 @@ to check:
 
 \list
     \li \l {Getting Started with Qt for Android}
+    \li \l {Qt for Android Prerequisites}
     \li \l {How Qt for Android Works}
     \li \l {Qt for Android Manifest File Configuration}
     \li \l {Building Qt for Android Projects from Command Line}
@@ -131,180 +133,31 @@ You can find it on the IntelliJ marketplace.
 \include supported-platforms.qdocinc android
 */
 
-
 /*!
-    \page android-getting-started.html
-    \title Getting Started with Qt for Android
-    \brief Provides instructions to install and configure your development environment.
-    \previouspage android.html
-    \nextpage android-how-it-works.html
+\page android-getting-started.html
+\title Getting Started with Qt for Android
+\brief A beginner's guide to install Qt and the Android toolchain and create your first Qt for Android app with Qt Creator IDE.
 
-    The video below is a beginner's guide to using the Qt for Android toolchain,
-    including the \QC IDE, to get you started developing Qt for Android apps.
+The video below is a beginner's guide to using the Qt for Android toolchain,
+including the \QC IDE, to get you started developing Qt for Android apps.
 
-    \youtube 5OiIqFTjUZI
+\youtube 5OiIqFTjUZI
 
-    To learn the basics of getting started with Qt for Android, take the
-    \l {https://www.qt.io/academy/course-catalog#getting-started-with-qt-for-android-}
-    {Getting Started with Qt for Android} course in Qt Academy.
+To learn the basics of getting started with Qt for Android, take the
+\l {Qt Academy - Getting Started with Qt for Android}{Getting Started with Qt for Android}
+course in the Qt Academy.
 
-    The rest of this page has more detailed getting started information.
+To get started with Qt for Android:
 
-    To download and install Qt for Android, follow the instructions on the
-    \l{Getting Started with Qt} page.
+    \list 1
+    \li Download and install Qt. To do this, follow the instructions on the
+        \l{Get and Install Qt} page.
+    \li Install all the necessary tools and configure the development
+        environment. For details, see \l {Qt for Android Prerequisites}.
+    \li To develop a simple application from scratch, see
+        \l {\QC: Tutorial: Mobile application}.
+\endlist
 
-    \section1 Android Development Prerequisites
-
-    In order to develop with \l{Qt for Android}, you will need the following
-    prerequisites:
-
-    \list
-        \li \l {Java Development Kit (JDK)}
-        \li \l {Android: Android command line tools}{Android Command Line Tools}
-            which includes:
-            \list
-                \li \l{Android: The Android NDK}{Android NDK}: for building C++ code.
-                \li \l{Android: Android SDK Platforms}{Android SDK Platform} and
-                    \l{Android: Android SDK Build Tools}{Android SDK Build Tools}: for building
-                    Android apps for specific API versions.
-                \li \l{Android: Android SDK Platform Tools}{Android SDK Platform Tools}:
-                    for deploying and managing Android dependencies.
-            \endlist
-    \endlist
-
-    The easiest way to manage the dependencies is by using \QC's built-in
-    Android development setup. When you first open \QC after installing Qt for
-    Android, you are asked if you want to run the Android setup wizard. This also
-    sets up OpenSSL for Android.
-
-    \section2 Using an existing SDK location
-
-    If you already have an Android SDK setup, you don't need to run this wizard. Instead, in
-    \QC go to \uicontrol{Preferences > Devices > Android} and browse to your existing JDK
-    and SDK paths. See common \l{Android SDK paths}. For more information, see
-    \l{\QC: Set up Android development environment}.
-
-    \section2 Manually Installing the Prerequisites
-
-    If you prefer to manually install the prerequisites please follow
-    these next steps.
-
-    \section3 Java Development Kit (JDK)
-
-    Qt for Android development requires JDK \JdkVer or above, provided by any of the
-    following supported distributions:
-
-    \list
-        \li \l{Adoptium}
-        \li \l{OpenJDK}
-        \li \l{Java SE Development Kit}
-    \endlist
-
-    Install your preferred JDK. If your installer doesn't set the
-    \c JAVA_HOME environment variable that points to the location of
-    the installed JDK, you can set it manually. For example on Linux:
-
-    \badcode \JdkVer
-    sudo apt-get install openjdk-\1-jdk
-    export JAVA_HOME=/usr/lib/jvm/java-\1-openjdk-amd64
-    \endcode
-
-    Or on \macOS:
-
-    \badcode \JdkVer
-    brew install openjdk@\1
-    sudo ln -sfn "$(brew --prefix openjdk@\1)/libexec/openjdk.jdk" \
-        "/Library/Java/JavaVirtualMachines/openjdk-\1.jdk"
-    export JAVA_HOME="$(/usr/libexec/java_home -v \1)"
-    \endcode
-
-    \section3 Android SDK Command Line Tools
-
-    Download the latest version of the
-    \l{Android: Android command line tools}{Android SDK Command Line Tools}
-    for your operating system and extract it to the appropriate path as stated below.
-
-    \section4 Android SDK paths
-
-//! [Android SDK Paths]
-    The Android SDK is commonly installed by \QC or Android Studio
-    in the following locations:
-    \list
-        \li Linux: ~/Android/Sdk/
-        \li \macos: ~/Library/Android/sdk/
-        \li Windows: C:\\Users\\<USER>\\AppData\\Local\\Android\\Sdk\\
-    \endlist
-//! [Android SDK Paths]
-
-    Or use your OS's package manager, for example for \macOS:
-
-    \badcode
-    brew install android-commandlinetools
-    \endcode
-
-    \section3 Android SDK Mandatory Packages
-
-    Make sure to install the SDK Platform, Platform Tools, and Build Tools.
-    For Qt \QtVer, use:
-
-    \badcode \AndroidPlatformVer \AndroidBuildToolsVer
-    sdkmanager "platform-tools" "platforms;android-\1" "build-tools;\2"
-    \endcode
-
-    \section3 Android NDK
-
-    Qt \QtVer uses NDK \NdkFullVer, you can install it by running:
-
-    \badcode \NdkFullVer
-    sdkmanager "ndk;\1"
-    \endcode
-
-    For example for \macOS:
-
-    \section3 Emulator
-
-    If you wish to use the \l{Android: Android Emulator}{Android Emulator},
-    you can install it by running:
-
-    \badcode
-    sdkmanager "emulator"
-    \endcode
-
-    \section3 Platform Specific Configurations
-
-    \section4 Windows
-
-    The default USB driver on Windows does not allow debugging using
-    Android Debug Bridge (ADB) tool. You must install the additional USB driver
-    provided by the \e extras Android SDK package. Install it by running the following:
-
-    \badcode
-    sdkmanager.bat "extras;google;usb_driver"
-    \endcode
-
-    \section4 Linux
-
-    \target emulator dependencies
-
-    The following dependencies are needed for using tools such as \c adb or \c gdb which
-    can be used by \QC:
-
-    \badcode
-    sudo apt-get install libstdc++6 libncurses5
-    \endcode
-
-    \note Hardware acceleration is required for acceptable Android emulator performance.
-    Without it, the emulator uses software CPU emulation, which runs extremely slowly.
-    See \l{Android: Emulator Acceleration} for more information.
-
-    \section3 Testing the Setup
-
-    Now you can test your development setup by running the examples shipped with the
-    Qt installation. For more information, see
-    \l{Qt Examples And Tutorials#Mobile}{Mobile Examples}.
-
-    To develop a simple application from scratch, see
-    \l {\QC: Tutorial: Mobile application}.
 */
 
 /*!
