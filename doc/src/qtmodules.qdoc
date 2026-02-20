@@ -42,14 +42,8 @@
             Provides core system functionality in QML, exposing platform‑independent application
             permissions and essential system‑related types.
         }
-        \griditem {qtqmlcompiler-index.html}{Qt Qml Compiler} {
-            Contains shared functionality needed by QML tooling like the Qt Quick Compiler and qmllint.
-        }
         \griditem {qmlworkerscript-index.html}{Qt Qml WorkerScript} {
             Enables the use of threads in a Qt Quick application.
-        }
-        \griditem {qtqmlnetwork-index.html}{Qt Qml Network} {
-            Exposes the Qt C++ Network functionality to QML.
         }
         \griditem {qtqmlmodels-index.html}{Qt Qml Models} {
             Contains types for defining data models in QML.
@@ -79,9 +73,6 @@
         }
         \griditem {qtwidgets-index.html}{Qt Widgets} {
             Classes to extend Qt GUI with C++ widgets.
-        }
-        \griditem {qml-xmllistmodel.html}{Qt XmlListModel} {
-            Allows you to create a read-only model from XML data in QML.
         }
     \endgrid
 //! [essentials]
@@ -172,6 +163,15 @@
         }
         \griditem {qtprotobuf-index.html}{Qt Protobuf} {
             Provides an ability to generate Qt-based classes from protobuf specifications.
+        }
+        \griditem {qtqmlcompiler-index.html}{Qt Qml Compiler} {
+            Contains shared functionality needed by QML tooling like the Qt Quick Compiler and qmllint.
+        }
+        \griditem {qtqmlnetwork-index.html}{Qt Qml Network} {
+            Exposes the Qt C++ Network functionality to QML.
+        }
+        \griditem {qml-xmllistmodel.html}{Qt Qml XmlListModel} {
+            Allows you to create a read-only model from XML data in QML.
         }
         \griditem {qtquick3d-index.html}{Qt Quick 3D} {
             Provides a high-level API for creating 3D content or UIs based on
