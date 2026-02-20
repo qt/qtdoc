@@ -113,7 +113,7 @@ The following instructions guide you to build the OpenSSL libraries manually:
         export PATH=~/Android/Sdk/ndk/\1/toolchains/llvm/prebuilt/<host>/bin:$PATH
         \endcode
 
-        \include src/platforms/android/android.qdoc Android SDK Paths
+        \include src/platforms/android/android-prerequisites.qdoc Android SDK Paths
 
     \li Configure the OpenSSL sources to build for Android using
         the following command, where <arch> can take a value of:

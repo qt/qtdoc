@@ -15,7 +15,7 @@
     \section1 Prerequisites
 
     To build Qt for Android from source please ensure all requirements
-    from \l{Getting Started with Qt for Android} are met before continuing.
+    from \l{Qt for Android Prerequisites} are met before continuing.
 
     \section2 Windows
 
@@ -71,7 +71,7 @@
         -android-abis <abi> -android-sdk ~/Android/Sdk -android-ndk ~/Android/Sdk/ndk/\1
     \endcode
 
-    \include src/platforms/android/android.qdoc Android SDK Paths
+    \include src/platforms/android/android-prerequisites.qdoc Android SDK Paths
 
     \include use-ninja-note.qdocinc ninja-note
 
