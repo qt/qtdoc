@@ -74,7 +74,7 @@ Window {
         }
         Component.onCompleted: {
             // Generate more colors for the series
-            for (var i = 0; i < mainWindow.seriesBaseColors.length; ++i) {
+            for (let i = 0; i < mainWindow.seriesBaseColors.length; ++i) {
                 mainWindow.allSeriesColors[i + 8] = Qt.lighter(mainWindow.seriesBaseColors[i]);
                 mainWindow.allSeriesColors[i + 16] = Qt.darker(mainWindow.seriesBaseColors[i]);
                 mainWindow.allSeriesColors[i + 24] = Qt.lighter(Qt.lighter(mainWindow.seriesBaseColors[i]));
