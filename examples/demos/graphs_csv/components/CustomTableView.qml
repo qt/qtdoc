@@ -17,7 +17,7 @@ Item {
     property alias tableViewModel: tv.model
     property alias horizontalHeaderViewModel: hHeaderView.model
     property alias title: titleLabel.text
-    property alias dataSelectionModel: tv.dataSelectionModel
+    property alias dataSelectionModel: tv.selectionModel
 
     property color borderColor
     property color primaryTextColor
@@ -35,17 +35,17 @@ Item {
         })
 
     function extractBarSetGategories(first, count) {
-        var categories = [];
+        let categories = [];
         const last = first + count;
-        for (var i = first; i < last; ++i)
+        for (let i = first; i < last; ++i)
             categories.push(tv.model.headerData(i, Qt.Horizontal, Qt.DisplayRole) + " medals");
         return categories;
     }
 
     function fillHorizontalHeaderModel(rowLength) {
         hHeaderView.model.clear();
-        for (var i = 0; i < rowLength; ++i) {
-            var h = tv.model.headerData(i, Qt.Horizontal, Qt.DisplayRole);
+        for (let i = 0; i < rowLength; ++i) {
+            let h = tv.model.headerData(i, Qt.Horizontal, Qt.DisplayRole);
             hHeaderView.model.append({
                 "display": h
             });
@@ -105,7 +105,6 @@ Item {
     TableView {
         id: tv
 
-        property alias dataSelectionModel: dataSelectionModel
         anchors.top: hHeaderView.bottom
         anchors.left: vHeaderView.right
 
@@ -137,7 +136,7 @@ Item {
         keyNavigationEnabled: false
 
         selectionModel: ItemSelectionModel {
-            id: dataSelectionModel
+            id: dataSelectionModelId
         }
 
         delegate: Rectangle {
