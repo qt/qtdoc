@@ -557,6 +557,9 @@
         builds.
     \li \b{Configuration Improvements}:
         \list
+        \li \c{codelanguages}: Specifies additional programming languages
+            accepted in \\code blocks, allowing documentation to include
+            code in languages without built-in syntax highlighting markers.
         \li \c{imagesoutputdir}: Custom output subdirectory for images to
             solve file name clashes in multi-module builds.
         \li \c{internalfilepatterns}: Automatically marks classes as internal
