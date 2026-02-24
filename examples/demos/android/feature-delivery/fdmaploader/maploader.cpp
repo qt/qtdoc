@@ -14,7 +14,7 @@ MapLoader::MapLoader(QObject* parent):
         qDebug() <<Q_FUNC_INFO <<"Installed module: " <<module;
 }
 
-//! Module Loading
+//! [Module Loading]
 Q_INVOKABLE void MapLoader::loadModuleFromStore(const QString& moduleName)
 {
     if (!mHandler.get())
@@ -43,7 +43,7 @@ Q_INVOKABLE void MapLoader::loadModuleFromStore(const QString& moduleName)
             mHandler.release();
     });
 }
-//! Module Loading
+//! [Module Loading]
 
 Q_INVOKABLE void MapLoader::removeModule(const QString& moduleName)
 {
