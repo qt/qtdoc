@@ -15,6 +15,9 @@ find_package(Qt6 REQUIRED COMPONENTS
              Quick
              Quick3D
              Svg
+             TaskTree
+             Network
+             Concurrent
              OPTIONAL_COMPONENTS
              QuickStudioComponents)
 
