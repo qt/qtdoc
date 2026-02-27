@@ -1,4 +1,4 @@
-# Copyright (C) 2025 Qt Company Ltd.
+# Copyright (C) 2025 The Qt Company Ltd.
 # SPDX-License-Identifier: BSD-3-Clause
 
 if(QT_FEATURE_gui
