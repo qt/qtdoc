@@ -492,6 +492,16 @@
       windeployqt.exe --qmldir .\qml .\build\MyApp.exe
     \endcode
 
+    \section4 Generating an appx manifest for packaging
+
+    Use this when preparing your application for packaging as a Windows appx package.
+
+    The \c --appx option creates an \c AppxManifest.xml, and \c --appx-certificate specifies the certificate to embed into the manifest.
+
+    \code
+      windeployqt.exe --appx --appx-certificate MyCompany.cer .\build\MyApp.exe
+    \endcode
+
     \section4 Performing a dry run
 
     A dry run simulates deployment without copying or updating anything.
@@ -589,6 +599,9 @@
       \row
         \li \c{--json}
         \li Output deployment information in JSON format.
+      \row
+        \li \c{--appx}
+        \li Create an \c {AppxManifest.xml} file for the Windows Store.
       \row
         \li \c{--nopatchqt}
         \li Skip patching the QtCore library.
@@ -690,6 +703,9 @@
       \row
         \li \c{--openssl-root <directory>}
         \li Directory containing OpenSSL libraries.
+      \row
+        \li \c{--appx-certificate <.cer file>}
+        \li Path to appx certificate to sign appx package.
     \endtable
 
     \section4 File list output
