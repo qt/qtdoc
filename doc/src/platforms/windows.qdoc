@@ -794,7 +794,193 @@
     in the application's own directory. Any number of additional paths
     can be added.
 
-    \section2 Manifest files
+    \section1 Windows Application Manifest Generation
+
+    When building on Windows, Qt automatically generates and embeds
+    an application manifest for executable targets.
+
+    The generated manifest:
+
+    \list
+        \li Declares Windows 10 and Windows 11 compatibility
+        \li Enables long path awareness
+        \li Sets the application version (from \c PROJECT_VERSION)
+        \li Defines a project identifier
+        \li Configures the requested execution level
+        \li Disables the default linker-generated manifest (\c /MANIFEST:NO)
+    \endlist
+
+    If a custom \c .manifest file is already provided in the target sources,
+    Qt does not override it.
+
+    Declaring Windows 10/11 compatibility enables modern Windows behavior,
+    including:
+
+    \list
+        \li Opt-in to modern window manager behavior
+        \li Support for \c WS_EX_LAYERED on child windows
+            (supported since Windows 8 but gated by compatibility awareness)
+        \li Long path support (> 260 characters)
+        \li Explicit execution level configuration
+    \endlist
+
+    Without an appropriate compatibility declaration, Windows may apply
+    legacy behavior to the application.
+
+    \section2 Default Manifest Contents
+
+    \section3 Application Identity
+
+    The manifest contains an \c assemblyIdentity element:
+
+    \code
+    <assemblyIdentity
+        type="win32"
+        name="com.yourcompany.myapp"
+        version="1.0.0.0"
+        processorArchitecture="*" />
+    \endcode
+
+    \list
+        \li \c name — project identifier
+        \li \c version — normalized to a four-part Windows version
+    \endlist
+
+    By default, the identifier is:
+
+    \code
+    com.yourcompany.<target_name>
+    \endcode
+
+    It can be overridden per target using the
+    \c QT_WINDOWS_APP_PROJECT_IDENTIFIER property:
+
+    \code
+    set_target_properties(myapp PROPERTIES
+        QT_WINDOWS_APP_PROJECT_IDENTIFIER "org.example.myapp"
+    )
+    \endcode
+
+    Windows application manifests require a four-part version number:
+
+    \code
+    Major.Minor.Build.Revision
+    \endcode
+
+    Each segment must be an integer in the range 0–65535.
+
+    The value is derived from \c PROJECT_VERSION and normalized as follows:
+
+    \list
+        \li If missing → defaults to \c 1.0.0.0
+        \li Fewer than four segments → padded with zeros
+        \li More than four segments → truncated
+        \li Values < 0 → clamped to 0
+        \li Values > 65535 → clamped to 65535 (warning emitted)
+    \endlist
+
+    Examples:
+
+    \code
+    2.3        -> 2.3.0.0
+    1.2.3.4.5  -> 1.2.3.4
+    70000.1    -> 65535.1.0.0
+    \endcode
+
+    \section3 Windows Compatibility
+
+    The manifest declares support for Windows 10 and Windows 11.
+
+    \code
+    <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+    \endcode
+
+    {8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a} GUID corresponds with these
+    operating systems: Windows 10, Windows 11, Windows Server 2016,
+    Windows Server 2019 and Windows Server 2022.
+
+    More information on: \l {https://learn.microsoft.com/en-us/windows/win32/sbscs/application-manifests#supportedos}{Microsoft Application Manifests}.
+
+    \section3 Long Path Awareness
+
+    \code
+    <ws2:longPathAware>true</ws2:longPathAware>
+    \endcode
+
+    Enables use of file paths longer than 260 characters,
+    when supported by the operating system.
+
+    \section3 Execution Level
+
+    \code
+    <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+    \endcode
+
+    The default level is \c asInvoker.
+
+    To set the execution level, use the
+    \c QT_WINDOWS_APP_PROJECT_EXECUTION_LEVEL property.
+
+    Valid values:
+
+    \list
+        \li \c asInvoker (default)
+        \li \c highestAvailable
+        \li \c requireAdministrator
+    \endlist
+
+    Example:
+
+    \code
+    set_target_properties(myapp PROPERTIES
+        QT_WINDOWS_APP_PROJECT_EXECUTION_LEVEL "requireAdministrator"
+    )
+    \endcode
+
+    If an invalid value is provided, a warning is emitted and
+    \c asInvoker is used.
+
+    \section2 Providing a Custom Manifest
+
+    Qt detects the manifest file and skips automatic generation,
+    if an executable already includes a \c .manifest file in its sources:
+
+    \code
+    add_executable(myapp
+        main.cpp
+        myapp.manifest
+    )
+    \endcode
+
+    \section2 Complete Example
+
+    The following example demonstrates a Windows executable
+    using the automatically generated manifest with customized
+    identifier and execution level:
+
+    \code
+    cmake_minimum_required(VERSION 3.21)
+    project(MyApp VERSION 2.5.1)
+
+    find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+
+    qt_add_executable(MyApp
+        main.cpp
+    )
+
+    set_target_properties(MyApp PROPERTIES
+        QT_WINDOWS_APP_PROJECT_IDENTIFIER "org.example.myapp"
+        QT_WINDOWS_APP_PROJECT_EXECUTION_LEVEL "highestAvailable"
+    )
+    \endcode
+
+    In this example, the generated manifest version will be:
+
+    \code
+    2.5.1.0
+    \endcode
+
+    \section2 Manifest files with qmake
 
     When deploying an application compiled with Visual Studio, there are some
     additional steps to be taken.
