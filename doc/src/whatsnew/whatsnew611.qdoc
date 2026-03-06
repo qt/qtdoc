@@ -88,6 +88,11 @@
           operates on, ensuring that relevant QAbstractItemModel signals are emitted on
           changes, without user code having to work with QModelIndex. This new class is under
           technology preview.
+      \li On Windows, Qt now automatically generates an application manifest for
+          executables built with CMake. The manifest derives the application version from
+          \c PROJECT_VERSION, supports customization of the project identifier and execution
+          level via CMake variables, declares compatibility with Windows 10 and Windows 11,
+          and enables \c longPathAware.
     \endlist
 
     \section2 Qt Concurrent Module
