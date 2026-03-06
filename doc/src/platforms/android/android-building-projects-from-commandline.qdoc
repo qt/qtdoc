@@ -150,8 +150,26 @@
 
     \section2 Building an AAR (Android Archive) File
 
+    \note AAR build support was introduced in Qt 6.8.
+
+    An \l{Android: Android Archive (AAR)}{Android Archive (AAR)} is an Android
+    library format. Unlike an APK or AAB, it cannot be run standalone; instead
+    it is intended to be embedded as a dependency in a native Android
+    application. This is the typical setup when hosting Qt/QML content inside a
+    native Android activity.
+
+    To produce an AAR, define your Qt application with \l qt_add_executable as
+    usual. AAR build targets are created automatically alongside the APK and AAB
+    targets. Build all AAR packages in a project with:
+
     \badcode
     cmake --build . --target aar
+    \endcode
+
+    To build only the AAR for a specific target named \c myapp:
+
+    \badcode
+    cmake --build . --target myapp_make_aar
     \endcode
 
     \section1 Building with qmake
