@@ -25,28 +25,33 @@
     field.
 
     \image qt-edu-qbsp.png
+           {Qt Account downloads page with QBSP product selected}
 
     Download the correct version of the \e {.qbsp} file for your development
     host (Windows or Linux).
 
     \image qt-edu-qbsp-download.png
+           {QBSP download options for Linux and Windows hosts}
 
     \section1 2. Run the maintenance tool
 
     Go to Qt's installation folder, and run \uicontrol {MaintenanceTool}.
 
     \image qt-edu-maintenancetool.png
+           {Qt installation folder with MaintenanceTool selected}
 
     Maintenance tool allows you to modify your existing Qt installation.
     Navigate to \uicontrol {Custom installation} and select
     \uicontrol {Next}.
 
     \image qt-edu-custominstallation.png
+           {Qt Installer with Custom installation option selected}
 
     Select \uicontrol {Browse QBSP files}. In the file dialog window, locate
     and select the \c {.qbsp} file you downloaded from your Qt Account.
 
     \image qt-edu-browse-qbsp.png
+           {Qt Installer component selection with Browse QBSP files button}
 
     After this, the list of available components is updated. Under
     \uicontrol {Boot to Qt Software Stack}, select \uicontrol {Raspberry Pi}

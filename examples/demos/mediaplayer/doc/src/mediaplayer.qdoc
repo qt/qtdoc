@@ -23,6 +23,8 @@
     \section1 Project structure
 
     \image project_structure.png
+           {Qt Creator project structure with Config, MediaControls, and
+           MediaPlayer modules}
 
     This applications architecture is comprised of three custom QML modules:
 
@@ -82,6 +84,8 @@
     including:
 
     \image controls.png
+           {Media player controls with progress slider, play button, and
+           volume slider}
 
     \list
         \li AudioControl.qml
