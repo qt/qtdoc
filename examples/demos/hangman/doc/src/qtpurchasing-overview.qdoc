@@ -13,6 +13,7 @@
 
    \section1 What is this demo?
    \image qthangman-example.png
+          {Hangman game with letter keyboard and hidden word dashes}
 
    This demo is a mobile game application based on the classic word guessing game
    Hangman, where vowels can be purchased through the demo's internal store. In the
@@ -74,6 +75,7 @@
    \snippet demos/hangman/qml/StoreView.qml 1
 
    \image qthangman-store-example.png
+          {Hangman Store with vowel purchase options and prices}
 
    In addition to registering the products, the demo also provide an interface to
    actually purchase the registered product. The demo defines a custom component

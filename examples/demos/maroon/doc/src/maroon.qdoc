@@ -11,6 +11,7 @@
     \meta {tag} {demo,quick,game,touch,particles,sound}
 
     \image qtquick-demo-maroon-med-2.png
+           {Gameplay with sea creatures in bubbles and starfish enemies}
 
     \e{Maroon in Trouble} demonstrates QML features that are useful when
     developing games:
@@ -60,6 +61,7 @@
     button that the players can press to start a new game.
 
     \image qtquick-demo-maroon-med-1.png
+           {Title screen with New Game button}
 
     Tapping the button initiates a countdown timer that triggers the creation
     of the game canvas by using the GameCanvas type. Another \l{Timer} type
@@ -69,12 +71,14 @@
     the bubbles.
 
     \image qtquick-demo-maroon-med-2.png
+           {Gameplay with sea creatures in bubbles and starfish enemies}
 
     When the game finishes, a screen created by using the GameOverScreen type
     appears. On this screen, the players can see their score and start a new
     game.
 
     \image qtquick-demo-maroon-med-3.jpg
+           {Game Over screen showing saved fish count and New Game button}
 
     The screens are all created on the same background and use some of the same
     images and animations.
@@ -277,6 +281,7 @@
     \section1 Using Timers
 
     \image qtquick-demo-maroon-med-4.jpg
+           {Countdown sequence showing 3, 2, 1, GO before game starts}
 
     In Main.qml, we use the \l{Timer} type with a \l{Repeater} type to display
     a countdown sequence before using another timer to start a new game. Both
@@ -374,6 +379,7 @@
     \c {helpImage.visible} property to \c false.
 
     \image qtquick-demo-maroon-med-6.jpg
+           {Help screen showing game instructions and creature types}
 
     We use anchoring to position the help button at the bottom center of the
     game canvas.
@@ -538,6 +544,7 @@
     \section1 Adding Dialogs
 
     \image qtquick-demo-maroon-med-5.jpg
+           {Weapon purchase menu showing tower options with costs}
 
     In GameCanvas.qml, we use an \l{Image} type with some custom properties to
     create a menu where the players can buy tower objects:
