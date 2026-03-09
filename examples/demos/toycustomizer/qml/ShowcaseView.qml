@@ -10,7 +10,7 @@ View3D {
 
     property alias isAnimationRunning: toyAnimations.isAnimationRunning
 
-    environment: extendedSceneEnvironment
+    environment: sceneEnvironment
 
     PrincipledMaterial {
         id: defaultMaterial
@@ -45,43 +45,30 @@ View3D {
         }
 
         SpotLight {
-            id: spotlight
-            x: -28.94
-            y: 1236.083
+            x: 80
+            y: 220
+            z: 280
             visible: true
+            eulerRotation.x: -25
             color: "#e7e7e7"
-            shadowBias: 5
-            quadraticFade: 0.3
-            innerConeAngle: 26
-            coneAngle: 71
-            linearFade: 1.4
             brightness: 16
-            shadowMapQuality: Light.ShadowMapQualityVeryHigh
-            shadowFactor: 93
+            coneAngle: 100
+            innerConeAngle: 26
+            linearFade: 1.4
+            quadraticFade: 0.3
             castsShadow: true
-            eulerRotation.x: -80
-            z: 510.89325
+            shadowMapQuality: Light.ShadowMapQualityVeryHigh
+            shadowBias: 5
+            shadowFactor: 93
         }
     }
 
-    ExtendedSceneEnvironment {
-        id: extendedSceneEnvironment
-        clearColor: "#add6ff"
-        probeOrientation.y: 179
-        probeHorizon: 0.2
-        antialiasingQuality: SceneEnvironment.High
-        fxaaEnabled: true
-        antialiasingMode: SceneEnvironment.MSAA
-        glowUseBicubicUpscale: true
-        glowQualityHigh: true
-        glowEnabled: false
-        probeExposure: 1
+    SceneEnvironment {
+        id: sceneEnvironment
         backgroundMode: SceneEnvironment.Transparent
-        lightProbe: studio_small_01_4k
-        exposure: 1.12117
-        aoSoftness: 48.16217
-        aoDistance: 15
-        aoStrength: 94
-        aoEnabled: true
+        clearColor: "transparent"
+        antialiasingMode: SceneEnvironment.MSAA
+        antialiasingQuality: SceneEnvironment.High
+
     }
 }
