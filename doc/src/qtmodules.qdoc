@@ -300,6 +300,35 @@
     \endgrid
 //! [techpreview-addons]
 
+    \section1 Deprecated Qt Add-Ons
+
+    The following Qt add-ons are now obsolete. They are provided to keep old
+    source code working, but they are no longer maintained, and can be removed
+    in a future major Qt release. We advise against using these modules in new
+    code.
+
+    Each obsolete module comes with documentation that helps with porting
+    existing code to actively maintained alternatives.
+
+    \table
+    \header
+        \li Obsolete module
+        \li Alternative module
+        \li Migration guide
+    \row
+        \li \l{Qt 3D}
+        \li \l{Qt Quick 3D}
+        \li \l{Porting Qt 3D to Qt Quick 3D: A Migration Guide}
+    \row
+        \li \l{Qt Charts}
+        \li \l{Qt Graphs}
+        \li \l{Qt Graphs Migration from Qt Charts}
+    \row
+        \li \l{Qt Data Visualization}
+        \li \l{Qt Graphs}
+        \li \l{Qt Graphs Migration from Qt DataVisualization}
+    \endtable
+
     \section1 Qt Extension Modules
 
     Qt Extension Modules bring additional functionality to Qt. They may be part
