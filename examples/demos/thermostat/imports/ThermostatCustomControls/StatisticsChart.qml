@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtQuick.Controls.Basic
-import QtCharts
+import QtGraphs
 import Thermostat
 
 Pane {
@@ -19,31 +19,30 @@ Pane {
         color: Constants.accentColor
     }
 
-    ValuesAxis {
+    ValueAxis {
         id: barChartAxisY
 
         min: 0
         max: 2000
-        labelsColor: internal.energyBarColor
-        labelsFont.family: "Titillium Web"
-        labelsFont.pixelSize: internal.axisFontSize
+        titleText: qsTr("Energy Usage [Wh]")
+        titleColor: internal.energyBarColor
+        tickInterval: 500
     }
 
-    ValuesAxis {
+    ValueAxis {
         id: splineChartAxisY
 
+        alignment: Qt.AlignRight
         min: 0
         max: 40
         tickAnchor: 5
         tickInterval: 10
-        tickType: ValuesAxis.TicksDynamic
-        labelsColor: internal.splineChartColor
-        labelsFont.family: "Titillium Web"
+        titleText: qsTr("Temperature [°C]")
+        titleColor: internal.splineChartColor
         lineVisible: false
-        labelsFont.pixelSize: internal.axisFontSize
     }
 
-    ValuesAxis {
+    ValueAxis {
         id: splineChartAxisX
 
         visible: false
@@ -54,40 +53,37 @@ Pane {
     BarCategoryAxis {
         id: barChartAxisX
 
-        labelsColor: internal.energyBarColor
+        color: internal.energyBarColor
         gridVisible: false
-        labelsFont.family: "Titillium Web"
-        labelsFont.pixelSize: internal.axisFontSize
-        truncateLabels: false
+        textElideMode: Qt.ElideNone
         categories: [qsTr("Jan"), qsTr("Feb"), qsTr("Mar"), qsTr("Apr"), qsTr("May"), qsTr("Jun"), qsTr("Jul"), qsTr("Aug"), qsTr("Sep"), qsTr("Oct"), qsTr("Nov"), qsTr("Dec")]
     }
 
-    ChartView {
+    GraphsView {
         id: chart
 
         anchors.fill: parent
-        antialiasing: true
+        marginLeft: 0
+        marginRight: 0
+        marginTop: 36
+        marginBottom: 0
 
-        margins.left: 0
-        margins.right: 0
-        margins.top: 0
-        margins.bottom: 0
+        axisX: barChartAxisX
+        axisY: barChartAxisY
 
-        legend.alignment: Qt.AlignTop
-        legend.markerShape: Legend.MarkerShapeCircle
-        legend.font.family: "Titillium Web"
-        legend.font.weight: 400
-        legend.font.pixelSize: internal.fontSize
-        legend.labelColor: Constants.primaryTextColor
+        theme: GraphsTheme {
+            axisXLabelFont.family: "Titillium Web"
+            axisXLabelFont.pixelSize: internal.axisFontSize
+            axisYLabelFont.family: "Titillium Web"
+            axisYLabelFont.pixelSize: internal.axisFontSize
 
-        dropShadowEnabled: internal.dropShadowEnabled
-        backgroundColor: Constants.accentColor
+            colorScheme: AppSettings.isDarkTheme ? GraphsTheme.ColorScheme.Dark : GraphsTheme.ColorScheme.Light
+            backgroundVisible: false
+        }
 
         BarSeries {
             id: mySeries
 
-            axisX: barChartAxisX
-            axisY: barChartAxisY
             barWidth: internal.barWidth
 
             BarSet {
@@ -108,7 +104,7 @@ Pane {
             width: internal.lineWidth
 
             axisX: splineChartAxisX
-            axisYRight: splineChartAxisY
+            axisY: splineChartAxisY
 
             Component.onCompleted: {
                 for (let i = 0; i < root.tempValues.length; ++i) {
@@ -125,7 +121,6 @@ Pane {
         property int axisFontSize: 14
         property int lineWidth: 5
         property real barWidth: 0.5
-        property bool dropShadowEnabled: true
         readonly property color energyBarColor: AppSettings.isDarkTheme ? "#2CDE85" : "#00414A"
         readonly property color splineChartColor: AppSettings.isDarkTheme ? "#D9D9D9" : "#2CDE85"
     }
@@ -140,7 +135,6 @@ Pane {
                 axisFontSize: 14
                 lineWidth: 5
                 barWidth: 0.5
-                dropShadowEnabled: true
             }
         },
         State {
@@ -152,7 +146,6 @@ Pane {
                 axisFontSize: 8
                 lineWidth: 2
                 barWidth: 0.7
-                dropShadowEnabled: false
             }
         },
         State {
@@ -164,7 +157,6 @@ Pane {
                 axisFontSize: 10
                 lineWidth: 2
                 barWidth: 0.6
-                dropShadowEnabled: false
             }
         }
     ]

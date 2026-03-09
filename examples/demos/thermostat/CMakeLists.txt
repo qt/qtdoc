@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Thermostat LANGUAGES CXX)
 
-find_package(Qt6 6.8 REQUIRED COMPONENTS Gui Qml Quick QuickControls2 Svg Charts)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Graphs Gui Qml Quick QuickControls2 Svg Widgets)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
@@ -15,12 +15,13 @@ include(qmlmodules)
 
 target_link_libraries(ThermostatApp PRIVATE
     Qt6::Core
+    Qt6::Graphs
     Qt6::Gui
-    Qt6::Quick
     Qt6::Qml
-    Qt6::Svg
-    Qt6::Charts
+    Qt6::Quick
     Qt6::QuickControls2
+    Qt6::Svg
+    Qt6::Widgets
 )
 
 install(TARGETS ThermostatApp
