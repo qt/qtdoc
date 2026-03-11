@@ -11,12 +11,12 @@ import qtgraphscsv
 Item {
     id: graphsItem
 
-    property alias series: chartView.barSeries
-    property alias chartView: chartView
-    property alias modelMapper: chartView.modelMapper
-    property alias categoryAxis: chartView.categoryAxis
-    property alias theme: chartView.theme
-    property alias labelDelegateTextColor: chartView.labelTextColor
+    property alias series: graphsView.barSeries
+    property alias chartView: graphsView
+    property alias modelMapper: graphsView.modelMapper
+    property alias categoryAxis: graphsView.categoryAxis
+    property alias theme: graphsView.theme
+    property alias labelDelegateTextColor: graphsView.labelTextColor
 
     readonly property font graphCategoryFont: ({
             "family": "Inter",
@@ -39,12 +39,12 @@ Item {
     }
 
     GraphsView {
-        id: chartView
+        id: graphsView
         anchors.fill: graphsItem
 
         property alias modelMapper: barModelMapper
         property alias barSeries: barSeries
-        property alias categoryAxis: categoryAxis
+        property alias categoryAxis: barCategoryAxis
         property alias barRadius: barSeries.radius
         property alias barBlur: barSeries.blur
         property alias opa: barSeries.opa
@@ -57,15 +57,15 @@ Item {
         marginBottom: 80 * Units.px
 
         axisX: BarCategoryAxis {
-            id: categoryAxis
+            id: barCategoryAxis
             subGridVisible: false
 
-            property color labelDelegateTextColor: chartView.labelTextColor
+            property color labelDelegateTextColor: graphsView.labelTextColor
 
             labelDelegate: Item {
                 id: labelItem
                 property string text
-                property color labelTextColor: categoryAxis.labelDelegateTextColor
+                property color labelTextColor: barCategoryAxis.labelDelegateTextColor
 
                 Text {
                     id: labelDelegate
