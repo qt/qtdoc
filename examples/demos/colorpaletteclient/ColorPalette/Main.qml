@@ -21,7 +21,7 @@ Window {
         id: serverview
         anchors.fill: parent
         onServerSelected: {colorview.visible = true; serverview.visible = false}
-        colorResources: colors
+        colorResources: colorPalette
         restPalette: paletteService
         colorUsers: users
     }
@@ -31,7 +31,7 @@ Window {
         anchors.fill: parent
         visible: false
         loginService: colorLogin
-        colors: colors
+        colors: colorPalette
         colorViewUsers: users
     }
 
@@ -45,7 +45,7 @@ Window {
         }
 
         PaginatedResource {
-            id: colors
+            id: colorPalette
             path: "unknown"
         }
 
