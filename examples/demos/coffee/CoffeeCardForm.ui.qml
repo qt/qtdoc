@@ -10,12 +10,12 @@ import QtQuick.Effects
 // and/or personal preference on what looks nice.
 Column {
     id: root
-    spacing: -coffeeCardCircle.height / 2
+    spacing: -cardCircle.height / 2
     rotation: 180
     property alias button: button
     property alias coffeeCardRectangle: coffeeCardRectangle
     property alias innerCoffeeCardRectangle: innerCoffeeCardRectangle
-    property alias coffeeCardCircle: coffeeCardCircle
+    property alias coffeeCardCircle: cardCircle
     property alias coffeeText: coffeeText
     property alias ingredientText: ingredientText
     property alias timeText: timeText
@@ -34,7 +34,7 @@ Column {
             PropertyChanges {
                 target: coffeeCardRectangle
                 implicitHeight: (applicationFlow.stack.height / 2) - 20
-                                - (coffeeCardCircle.height / 2)
+                                - (cardCircle.height / 2)
                 implicitWidth: applicationFlow.width / 2.4
             }
         },
@@ -81,7 +81,7 @@ Column {
                     anchors.top: parent.top
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width / 1.19
-                    height: parent.height - (coffeeCardCircle.height / 2)
+                    height: parent.height - (cardCircle.height / 2)
                     Text {
                         id: coffeeText
                         text: root.coffeeName
@@ -166,7 +166,7 @@ Column {
         }
     }
     Rectangle {
-        id: coffeeCardCircle
+        id: cardCircle
         anchors.horizontalCenter: parent.horizontalCenter
         implicitHeight: implicitWidth
         implicitWidth: coffeeCardRectangle.implicitWidth / 1.36
@@ -182,8 +182,8 @@ Column {
             color: Colors.currentTheme.cardColor
             Image {
                 source: (Colors.currentTheme == Colors.dark) ? "./images/Cups/card_cup_dark.svg" : "./images/Cups/card_cup_light.svg"
-                sourceSize.width: coffeeCardCircle.width / 2.2
-                sourceSize.height: coffeeCardCircle.height / 1.9
+                sourceSize.width: cardCircle.width / 2.2
+                sourceSize.height: cardCircle.height / 1.9
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rotation: 180
