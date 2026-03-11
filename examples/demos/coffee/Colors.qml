@@ -16,7 +16,7 @@ Item {
     }
 
     Theme {
-        id: light
+        id: lightTheme
         background: "#ffffff"
         textColor: "#121111"
         borderColor: "#D8D8D8"
@@ -24,7 +24,7 @@ Item {
         caption: "#898989"
     }
     Theme {
-        id: dark
+        id: darkTheme
         background: "#121212"
         textColor: "#FEFEFE"
         borderColor: "#3E3E3E"
@@ -130,9 +130,9 @@ Item {
     property color shadow: "white"
     property color border: "#898989"
     property color grey: "#585858"
-    property Theme currentTheme: dark
-    property alias dark: dark
-    property alias light: light
+    property Theme currentTheme: darkTheme
+    property alias dark: darkTheme
+    property alias light: lightTheme
     property alias invertedGreenBorder: invertedGreenBorder
     property alias invertedGreyBorder: invertedGreyBorder
     property alias greyBorder: greyBorder
