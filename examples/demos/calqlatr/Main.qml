@@ -8,8 +8,8 @@ Window {
     visible: true
     width: 320
     height: 480
-    minimumWidth: Math.max(numberPad.portraitModeWidth, display.minWidth) + root.margin * 2
-    minimumHeight: display.minHeight + numberPad.height + root.margin * 3
+    minimumWidth: Math.max(numberPad.portraitModeWidth, calcDisplay.minWidth) + root.margin * 2
+    minimumHeight: calcDisplay.minHeight + numberPad.height + root.margin * 3
     color: root.backgroundColor
 
     Item {
@@ -24,17 +24,17 @@ Window {
         readonly property int margin: 18
         readonly property color backgroundColor: "#222222"
         readonly property int minLandscapeModeWidth: numberPad.landscapeModeWidth
-                                                     + display.minWidth + margin * 3
+                                                     + calcDisplay.minWidth + margin * 3
 
         property bool isPortraitMode: root.width < root.minLandscapeModeWidth
 
         ApplicationState {
-            id: state
-            display: display
+            id: appState
+            display: calcDisplay
         }
 
         Display {
-            id: display
+            id: calcDisplay
             readonly property int minWidth: 210
             readonly property int minHeight: 60
 
@@ -53,7 +53,7 @@ Window {
             Layout.margins: root.margin
 
             isPortraitMode: root.isPortraitMode
-            applicationState: state
+            applicationState: appState
         }
 
         // define the responsive layouts
@@ -63,8 +63,8 @@ Window {
             visible: root.isPortraitMode
 
             LayoutItemProxy {
-                target: display
-                Layout.minimumHeight: display.minHeight
+                target: calcDisplay
+                Layout.minimumHeight: calcDisplay.minHeight
             }
             LayoutItemProxy {
                 target: numberPad
@@ -78,7 +78,7 @@ Window {
             visible: !root.isPortraitMode
 
             LayoutItemProxy {
-                target: display
+                target: calcDisplay
             }
             LayoutItemProxy {
                 target: numberPad
@@ -88,27 +88,27 @@ Window {
 
         Keys.onPressed: function (event) {
             switch (event.key) {
-                case Qt.Key_0: state.digitPressed("0"); break;
-                case Qt.Key_1: state.digitPressed("1"); break;
-                case Qt.Key_2: state.digitPressed("2"); break;
-                case Qt.Key_3: state.digitPressed("3"); break;
-                case Qt.Key_4: state.digitPressed("4"); break;
-                case Qt.Key_5: state.digitPressed("5"); break;
-                case Qt.Key_6: state.digitPressed("6"); break;
-                case Qt.Key_7: state.digitPressed("7"); break;
-                case Qt.Key_8: state.digitPressed("8"); break;
-                case Qt.Key_9: state.digitPressed("9"); break;
-                case Qt.Key_E: state.digitPressed("e"); break;
-                case Qt.Key_P: state.digitPressed("π"); break;
-                case Qt.Key_Plus: state.operatorPressed("+"); break;
-                case Qt.Key_Minus: state.operatorPressed("-"); break;
-                case Qt.Key_Asterisk: state.operatorPressed("×"); break;
-                case Qt.Key_Slash: state.operatorPressed("÷"); break;
+                case Qt.Key_0: appState.digitPressed("0"); break;
+                case Qt.Key_1: appState.digitPressed("1"); break;
+                case Qt.Key_2: appState.digitPressed("2"); break;
+                case Qt.Key_3: appState.digitPressed("3"); break;
+                case Qt.Key_4: appState.digitPressed("4"); break;
+                case Qt.Key_5: appState.digitPressed("5"); break;
+                case Qt.Key_6: appState.digitPressed("6"); break;
+                case Qt.Key_7: appState.digitPressed("7"); break;
+                case Qt.Key_8: appState.digitPressed("8"); break;
+                case Qt.Key_9: appState.digitPressed("9"); break;
+                case Qt.Key_E: appState.digitPressed("e"); break;
+                case Qt.Key_P: appState.digitPressed("π"); break;
+                case Qt.Key_Plus: appState.operatorPressed("+"); break;
+                case Qt.Key_Minus: appState.operatorPressed("-"); break;
+                case Qt.Key_Asterisk: appState.operatorPressed("×"); break;
+                case Qt.Key_Slash: appState.operatorPressed("÷"); break;
                 case Qt.Key_Enter:
-                case Qt.Key_Return: state.operatorPressed("="); break;
+                case Qt.Key_Return: appState.operatorPressed("="); break;
                 case Qt.Key_Comma:
-                case Qt.Key_Period: state.digitPressed("."); break;
-                case Qt.Key_Backspace: state.operatorPressed("bs"); break;
+                case Qt.Key_Period: appState.digitPressed("."); break;
+                case Qt.Key_Backspace: appState.operatorPressed("bs"); break;
             }
         }
     }
