@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
              QmlAssetDownloaderPrivate
              Quick
              Quick3D
+             Quick3DParticles
              Svg
              TaskTree
              Network
