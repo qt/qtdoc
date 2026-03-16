@@ -511,9 +511,17 @@
 
     \section1 Using QCursor on the QNX platform
 
-    QNX supports changing your cursor shape for a window, but you'll need to deploy
-    and specify the images associated with the shapes you want to use through the
-    Screen configuration file, \c {graphics.conf}. See the cursor-type parameter of
+    Custom cursor support on QNX is disabled by default. To enable it, set the
+    \c{QT_QPA_QNX_CUSTOM_CURSOR} environment variable before starting your Qt application:
+
+    \badcode
+    export QT_QPA_QNX_CUSTOM_CURSOR=1
+    \endcode
+
+    When custom cursor support is enabled, QNX supports changing your cursor shape for a
+    window, but you'll need to deploy and specify the images associated with the shapes
+    you want to use through the Screen configuration file, \c {graphics.conf}. See the
+    cursor-type parameter of
     \l {https://www.qnx.com/developers/docs/8.0/com.qnx.doc.screen/topic/manual/cscreen_config_intro.html#screen_winmgr_display}{Configure display subsection}
     for more details. In addition to the default cursor, no additional cursors are provided in QNX.
     Therefore, any extra cursor graphics must be provided manually in bitmap format.
