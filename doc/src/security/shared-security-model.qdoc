@@ -1,0 +1,248 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page shared-security-model.html
+    \title Qt Shared Security Model
+    \brief Understanding security responsibilities in Qt applications.
+    \ingroup security
+
+    The Qt Shared Security Model defines the distribution of security
+    responsibilities among Qt application developers, the Qt Group and
+    Qt Project as providers of the Qt Framework, and operators or device
+    manufacturers.
+    The model establishes clear expectations regarding responsibility for
+    security across the various layers of the technology stack in a typical
+    Qt application or device.
+
+    This page provides guidance for developers building Qt applications and for
+    security researchers reporting security issues in Qt.
+
+    \section1 Overview
+
+    Security in Qt applications is a shared responsibility. Qt provides secure
+    frameworks and libraries, but the ultimate security of an application
+    depends on how developers use these components and how they handle
+    application-specific concerns.
+
+    A typical Qt application can be visualized as a stack:
+
+    \image {shared-security-model.svg}{Layers of responsibility: App, Qt, Process, OS,
+    Hardware}
+
+    \section1 Roles and responsibilities
+
+    \section2 Responsibilities of the application developer
+
+    You, as an application developer, are responsible for the security of the
+    application-specific code, assets, and configuration. You also assume
+    responsibility for any standalone third-party libraries that are shipped
+    with the application.
+
+    Qt aims to provide a user-friendly, safe-by-default API. However, it is your
+    responsibility to use the API diligently, and for example check for error
+    conditions and handle them appropriately. For an overview of security
+    considerations when using Qt, see \l{Security in Qt}.
+
+    Review your application in terms of which data sources are trusted and which
+    are untrusted. Make sure to validate and sanitize untrusted data using
+    appropriate Qt APIs. See also \l{Handling Untrusted Data} for more information.
+
+    Plan mechanisms to update the application and apply Qt security updates in a
+    timely manner. Follow Qt releases and security announcements, and update Qt
+    accordingly. Also, ensure that you obtain Qt from a trusted source.
+
+    If you ship Qt as part of your application, limit the number of libraries
+    and plugins to reduce the attack surface. For example, ship only the image
+    plugins for the formats you actually need.
+
+    When switching Qt defaults, be careful that you don't accidentally disable
+    security features or weaken security guarantees. For example, don't disable
+    SSL/TLS certificate validation unless you have a very good reason to do so.
+    Another example is changes to the Qt search paths, for instance through
+    \l{qt.conf}. Make sure all paths are trustworthy.
+
+    \section2 Responsibilities of Qt
+
+    The Qt Group and Qt Project are responsible for the security of the Qt
+    framework itself, including all
+    officially distributed binaries and redistributables. This includes
+    maintaining and updating any third-party components bundled with Qt
+    libraries and plugins, tracking known vulnerabilities, and providing timely
+    fixes.
+
+    Qt aims to provide APIs that are secure by default. Common use cases are
+    designed to minimize the risk of misuse, while operations with security
+    implications require explicit developer action.
+
+    Qt provides APIs a developer can use to process and validate
+    \l{Untrusted data}{data from untrusted sources}, such as user input, network
+    communication, or external files. Where it is unreasonable for a developer
+    to implement their own validation, Qt provides built-in validation.
+    For example, Qt's image decoders are designed to securely parse
+    image files. There might be APIs though where neither is possible or
+    reasonable; in these cases, the documentation warns about calling the API
+    with untrusted data.
+
+    \section2 Responsibilities of operator or device manufacturer
+
+    Both Qt and the application have to rely on the security and integrity of
+    the operating environment (hardware, operating system, and
+    services). On desktop systems, this
+    is typically the responsibility of the operator of the application;
+    for example, by keeping the operating system up-to-date.
+    On embedded devices, it is the responsibility of the device manufacturer.
+
+    This includes the \e{process environment} that the Qt application is running
+    in. For instance, all desktop applications expect the directories in the
+    \c{PATH} environment variable to be trustworthy.
+
+    \section1 Security issue acceptance criteria
+
+    Security researchers should use the following guidelines when determining
+    whether a potential security issue should be reported to the Qt Project:
+
+    \section2 Issues Qt will accept
+
+    The Qt Group and the Qt Project accept security issues that:
+
+    \list
+        \li \b{Affect Qt framework code}: Vulnerabilities in Qt's own code,
+            including memory corruption bugs, type confusion, use-after-free,
+            buffer overflows, and similar memory safety issues in Qt libraries.
+        \li \b{Affect bundled third-party components}: Security vulnerabilities
+            in third-party libraries and components that are bundled with Qt.
+        \li \b{Break security guarantees}: Issues where Qt APIs fail to provide
+            documented security guarantees or violate reasonable security
+            expectations for security-critical APIs.
+        \li \b{Affect default configurations}: Security issues in default Qt
+            configurations that could affect typical applications without
+            developer intervention.
+    \endlist
+
+    Qt also expects security issues to have a realistic attack scenario. Issues
+    that cannot be exploited in practice or require unrealistic conditions
+    will be treated as defects, but not considered security issues.
+
+    \section2 Issues Qt will not accept
+
+    The Qt Group and Qt Project do not accept reports for security issues that:
+
+    \list
+        \li \b{Require insecure application code}: Issues that only manifest
+            when the application developer writes insecure code or misuses Qt
+            APIs in ways that are not in line with documentation or established
+            best practices.
+        \li \b{Are based on application-specific logic flaws}: Security issues in
+            application-specific logic, such as authentication bypasses,
+            authorization flaws, or business logic vulnerabilities.
+        \li \b{Depend on malicious application code}: Issues that require the
+            application to execute malicious code. Qt assumes that application
+            developers control their own code and resources.
+        \li \b{Require malicious QML/JavaScript}: \l{Qt Qml} assumes all QML and
+            JavaScript code is provided by the application developer. Running
+            untrusted QML code is not supported. See \l{Handling Untrusted Data}
+            for more information.
+        \li \b{Depend on issues in operating environment}: Vulnerabilities in the
+            underlying operating system, hardware, or system libraries that are
+            not bundled with Qt.
+        \li \b{Depend on an insecure process environment}: Attacks that require
+            an insecure process environment, such as untrusted directories in the
+            \c{PATH} or \c{QT_PLUGIN_PATH} environment variables, are outside the
+            scope of Qt's security responsibility.
+    \endlist
+
+    Furthermore, reports for cybersecurity issues need a realistic attack scenario that
+    \list
+        \li \b{Crosses a security boundary}: For example, issues which require an
+            attacker already having access to the application process and being able to
+            execute code are not considered security issues.
+        \li \b{Is not based on social engineering}: Issues that primarily rely on social
+            engineering or tricking users rather than technical vulnerabilities
+            in Qt.
+    \endlist
+
+    \section1 Frequently asked questions
+
+    \section2 Who is responsible for validating user input?
+
+    The application developer is responsible for validating user input.
+    While Qt provides validation tools (see \l{QValidator} and
+    \l{Qt Quick Text Input Handling and Validators}{QML Validators}), it is
+    the application's responsibility to use these tools appropriately and
+    implement application-specific validation logic.
+
+    \section2 Is Qt responsible for SQL injection vulnerabilities?
+
+    No. SQL injection vulnerabilities typically result from improper use of SQL
+    APIs. Developers must use parameterized queries and prepared statements
+    (such as \l{QSqlQuery::prepare}{QSqlQuery::prepare}) to prevent SQL
+    injection. However, Qt is responsible for ensuring that these secure APIs
+    function correctly.
+
+    \section2 What about cross-site scripting (XSS) in Qt applications?
+
+    XSS prevention is primarily the application developer's responsibility.
+    Developers must properly sanitize and escape data when displaying untrusted
+    content, especially in web views or rich text components. Qt provides APIs
+    like \l{QString::toHtmlEscaped} to assist with this, and \l{Qt WebEngine}
+    implements web platform security features, but the application must use
+    these correctly.
+
+    \section2 Who handles encryption and secure communications?
+
+    Both Qt and the application developer share responsibility:
+    \list
+        \li Qt provides secure networking APIs (\l{QSslSocket},
+            \l{QNetworkAccessManager}) with secure defaults.
+        \li Application developers must properly use these APIs, implement
+            certificate validation, manage keys securely, and handle sensitive
+            data appropriately. If they bundle OpenSSL with the application, it
+            is also their responsibility to keep it up to date and apply
+            security patches.
+    \endlist
+
+    \section2 Is loading untrusted QML code a security issue?
+
+    Running untrusted QML code is explicitly not supported and is considered a
+    misuse of the QML engine. \l{Qt Qml} is designed with the assumption that
+    all QML and JavaScript code is trusted and provided by the application
+    developer. If your application needs to load untrusted content, use
+    appropriate sandboxing mechanisms or alternative approaches, like a custom
+    Domain-Specific Language (DSL).
+
+    \section2 What about image file vulnerabilities?
+
+    Qt considers image decoding a security-critical API and takes responsibility
+    for securely parsing image files from untrusted sources. Security issues in
+    Qt's image decoders (buffer overflows, crashes, and similar issues) should be
+    reported to the Qt Group or Qt Project. However, applications must still
+    validate image sources, handle large images appropriately, and manage
+    application-specific image security concerns.
+
+    \section2 How do I report a security issue?
+
+    See \l{Reporting Security Issues} in the \l{Security in Qt} page for
+    detailed instructions on reporting security issues to the Qt Project.
+
+    \section2 What versions of Qt receive security updates?
+
+    Security updates are provided for supported Qt versions. See
+    \l{Qt Releases} for information about
+    supported versions and \l{Extended Security Maintenance for Qt 5.15}
+    {Extended Security Maintenance} for end-of-support versions.
+
+    \section1 Additional Resources
+
+    For more information about security in Qt, see:
+
+    \list
+        \li \l{Security in Qt}
+        \li \l{Handling Untrusted Data}
+        \li \l{Application Permissions}
+        \li \l{https://contribute.qt-project.org/quips/15}{QUIP 15}
+            Qt Project Security Policy
+        \li \l{https://wiki.qt.io/List_of_known_vulnerabilities_in_Qt_products}
+            {List of Known Vulnerabilities in Qt Products}
+    \endlist
+*/
