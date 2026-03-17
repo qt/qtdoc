@@ -17,7 +17,7 @@ ListModel {
     }
 
     function setAccessoryVisibility(key, vis) {
-        if (key === "bracletsVisible") {
+        if (key === "braceletsVisible") {
             AccessoryState["metalBracelet_RightVisible"] = vis
             AccessoryState["metalBracelet_LeftVisible"] = vis
             return
@@ -357,13 +357,13 @@ ListModel {
 
     ListElement {
         group: "items"
-        name: "Braclets"
+        name: "Bracelets"
         newPrice: 450
         oldPrice: 790
         image: "images/ItemsImages/BracletsImage1.png"
         selected: false
         color: ""
-        key: "bracletsVisible"
+        key: "braceletsVisible"
         modelRating: 2.68
     }
 

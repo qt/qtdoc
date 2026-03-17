@@ -399,6 +399,6 @@ Node {
 
     AccessoryGenericMaterial {
         id: items_generic
-        accessoryName: "Braclets"
+        accessoryName: "Bracelets"
     }
 }
