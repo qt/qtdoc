@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:148.0) Gecko/20100101 Firefox/148.0" version="29.5.2">
+  <diagram name="Page-1" id="8Yciy1Ye5aGsE7YlElxW">
+    <mxGraphModel dx="1097" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_fkTrqeEEz86iH6kMKwt-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=bottom;" value="Application" vertex="1">
+          <mxGeometry height="100" width="330" x="440" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="_fkTrqeEEz86iH6kMKwt-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=bottom;" value="Qt Redistributables" vertex="1">
+          <mxGeometry height="90" width="330" x="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;OS&lt;/div&gt;" vertex="1">
+          <mxGeometry height="45" width="330" x="440" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;Responsibility&lt;/div&gt;&lt;div&gt;of Operator&lt;br&gt;/ Device Manufacturer&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="80" x="320" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Responsibility of Qt" vertex="1">
+          <mxGeometry height="90" width="80" x="320" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Hardware (CPU, GPU, NPU, Memory, IO Devices, ...)" vertex="1">
+          <mxGeometry height="40" width="330" x="440" y="392" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-12" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="375" y="260" as="sourcePoint" />
+            <mxPoint x="820" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Application Configuration" vertex="1">
+          <mxGeometry height="60" width="90" x="660" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-18" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;imageWidth=24;" value="Third-Party Code (Bundled)" vertex="1">
+          <mxGeometry height="60" width="90" x="560" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;div&gt;Responsibility&lt;/div&gt;&lt;div&gt;of Developer&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="80" x="320" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-20" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="370" y="150" as="sourcePoint" />
+            <mxPoint x="820" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Application&lt;br&gt;Binaries&lt;br&gt;&amp;amp; Assets" vertex="1">
+          <mxGeometry height="60" width="90" x="460" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-24" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;imageWidth=24;" value="&lt;div&gt;Safe Defaults&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="90" x="660" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-26" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;imageWidth=24;" value="&lt;div&gt;Qt Libraries&lt;/div&gt;&lt;div&gt;and Plugins&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="90" x="460" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Process&amp;nbsp;&lt;br&gt;Environment" vertex="1">
+          <mxGeometry height="50" width="330" x="440" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="xG6ti6LflYiybfOkEo7e-36" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Third Party Binaries&lt;br&gt;(Non-Bundled)" vertex="1">
+          <mxGeometry height="60" width="90" x="560" y="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
