@@ -639,6 +639,11 @@
         \li \c{--qmldir <directory>}
         \li Scan for QML imports starting at this directory.
       \row
+        \li \c{--qmlimporttimeout <ms>}
+        \li Set the timeout in milliseconds for the \c qmlimportscanner
+        to run. The default value is 30000 ms. Increase this value if
+        \c qmlimportscanner times out on large or complex QML codebases.
+      \row
         \li \c{--qmlimport <directory>}
         \li Additional QML module search path.
       \row
