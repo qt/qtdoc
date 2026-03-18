@@ -663,9 +663,11 @@
     required software-based OpenGL, if the application is compatible with it.
 
     If Qt was configured to link against ICU or OpenSSL, the respective DLL's
-    need to be added to the \c release folder, too. But the binary
-    packages for Qt on Windows do require this. For more details, see also
-    \l{Third-Party Libraries}.
+    might need to be added to the \c release folder, too. But the binary
+    packages for Qt on Windows do not require this. If you configured Qt with a
+    specific version of ICU or OpenSSL, windeployqt should pick up the DLL's
+    of the respective libraries if they can be found inside Qt's \c [bin]
+    directory. For more details, see also \l{Third-Party Libraries}.
 
     \omit
     \note \l{Qt WebEngine} applications have additional requirements that are
