@@ -14,29 +14,30 @@ The table below summarizes their differences.
 
 \table
 \header
-    \li
+    \li Feature
     \li String-based
     \li Functor-based
 \row
-    \li Type checking is done at...
-    \li Run-time
-    \li Compile-time
+    \li Type checking
+    \li Done at run-time
+    \li Done at compile-time
 \row
-    \li Can perform implicit type conversions
-    \li
-    \li Y
+    \li Can perform implicit type conversions.
+    \li No
+    \li Yes
 \row
-    \li Can connect signals to lambda expressions
-    \li
-    \li Y
+    \li Can connect signals to lambda expressions.
+    \li No
+    \li Yes
 \row
-    \li Can connect signals to slots which have more arguments than the signal (using default parameters)
-    \li Y
-    \li
+    \li Can connect signals to slots with more arguments than the signal
+        (using default parameters).
+    \li Yes
+    \li No
 \row
-    \li Can connect C++ functions to QML functions
-    \li Y
-    \li
+    \li Can connect C++ functions to QML functions.
+    \li Yes
+    \li No
 \endtable
 
 The following sections explain these differences in detail and demonstrate how
@@ -45,17 +46,25 @@ to use the features unique to each connection syntax.
 
 \section1 Type Checking and Implicit Type Conversions
 
-String-based connections type-check by comparing strings at run-time. There are
-three limitations with this approach:
+String-based connections type-check by comparing strings at run-time.
 
-\list 1
-\li Connection errors can only be detected after the program has started running.
-\li Implicit conversions cannot be done between signals and slots.
-\li Typedefs and namespaces cannot be resolved.
-\endlist
+These limitations apply:
 
-Limitations 2 and 3 exist because the string comparator does not have access to
-C++ type information, so it relies on exact string matching.
+\table
+    \header
+        \li Limitation
+        \li Reason
+    \row
+        \li Connection errors can only be detected after the program has started
+            running.
+        \li N/A
+    \row
+        \li Implicit conversions cannot be done between signals and slots.
+        \li {1, 2} The string comparator does not have access to C++ type
+            information, so it relies on exact string matching.
+    \row
+        \li Typedefs and namespaces cannot be resolved.
+\endtable
 
 In contrast, functor-based connections are checked by the compiler. The compiler
 catches errors at compile-time, enables implicit conversions between compatible
@@ -165,7 +174,7 @@ In contrast, with the functor-based syntax, you must explicitly specify which
 version of an overloaded signal or slot you want to connect to.
 
 For example, \l QLCDNumber has three versions of the \c display() slot:
-\list 1
+\list
 \li \c QLCDNumber::display(int)
 \li \c QLCDNumber::display(double)
 \li \c QLCDNumber::display(QString)
