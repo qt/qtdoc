@@ -20,6 +20,7 @@ qt_add_qml_module(LightningViewerModule
         ActionsLayer.qml
         DistanceTimeLayer.qml
         LightningMapLayer.qml
+        LightningSplash.qml
         LightningView.qml
         LightningViewConfig.qml
         Main.qml
@@ -37,7 +38,16 @@ qt_add_qml_module(LightningViewerModule
         icons/map.svg
         icons/recenter.svg
         icons/user-location.svg
+        icons/lightning.png
 )
+
+if (TARGET Qt6::Lottie)
+    qt_target_qml_from_lottie(LightningViewerModule
+                              CURVE_RENDERER
+                              OPTIMIZE_PATHS
+                              FILES icons/lightning.json
+                              OUTPUTS LightningAnimation.qml)
+endif()
 
 target_link_libraries(LightningViewerModule PRIVATE
     Qt6::Positioning

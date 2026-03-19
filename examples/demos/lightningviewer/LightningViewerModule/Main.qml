@@ -11,6 +11,12 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    LightningSplash {
+        anchors.centerIn: parent
+        width: parent.width / 3
+        height: width
+    }
+
     Component.onCompleted: {
         if ((width < 200) || (height < 200)) {
             width = LightningViewConfig.appWidth

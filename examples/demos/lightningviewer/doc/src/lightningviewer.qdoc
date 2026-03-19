@@ -54,7 +54,10 @@
     \c LightningView.qml serves as the main view of the application. It is
     responsible for displaying the map and lightning data through the component
     \c MapView.qml, and the user controls through the component
-    \c ActionsLayer.qml.
+    \c ActionsLayer.qml. When the application starts up, the component \c LightningSplash.qml
+    is displayed on top of the main view. If the \l{Qt Lottie Animation} module is available, then
+    this splash screen will show a vector animation imported from a Lottie file using the
+    \l{qt_target_qml_from_lottie()} cmake function. Otherwise, it will show a static image.
 
     \c MapView.qml handles map zooming and panning. It uses a \l{PositionSource}
     to obtain the user’s current location and a \l{Map} to display the map.
