@@ -165,11 +165,11 @@
         \li \l QGrpcOperation class introduces a
             \l{QGrpcOperation::}{serverInitialMetadataReceived()} signal that notifies
             RPC handlers as soon as the server initial metadata is received.
-        \li \l QGrpcChannelOptions class now provides
+        \li \l QGrpcChannelOptions and \l QGrpcCallOptions classes now provide
             \l{QGrpcChannelOptions::}{filterServerMetadata()} and
             \l{QGrpcChannelOptions::}{setFilterServerMetadata()} methods to control
             whether protocol-related metadata is included in server responses.
-        \li The \l QtGrpc namespace introduces the \l{QtGrpc::}{RpcType} enum and
+        \li The \l[CPP]{QtGrpc} namespace introduces the \l{QtGrpc::}{RpcType} enum and
             \l{QtGrpc::}{RpcDescriptor} struct to describe gRPC methods with their
             service name, method name, and communication pattern.
     \endlist
