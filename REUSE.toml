@@ -51,8 +51,8 @@ SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
 SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
-path = ["**/README*", "**.qdocconf", "doc/config/style/tree_config.xml", "**.qdocinc",
-        "doc**/images/**"]
+path = ["README.md", "CONTRIBUTING.md", "**.qdocconf",
+        "doc/config/style/tree_config.xml", "**.qdocinc", "doc**/images/**"]
 comment = "documentation"
 precedence = "closest"
 SPDX-FileCopyrightText = "Copyright (C) The Qt Company Ltd."
