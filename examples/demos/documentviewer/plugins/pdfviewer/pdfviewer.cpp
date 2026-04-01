@@ -119,6 +119,7 @@ void PdfViewer::initPdfViewer()
     connect(m_zoomSelector, &ZoomSelector::zoomModeChanged, m_pdfView, &QPdfView::setZoomMode);
     connect(m_zoomSelector, &ZoomSelector::zoomFactorChanged, m_pdfView, &QPdfView::setZoomFactor);
     m_zoomSelector->reset();
+    connect(m_pdfView, &QPdfView::zoomFactorChanged, m_zoomSelector, &ZoomSelector::setZoomFactor);
 
     QPdfBookmarkModel *bookmarkModel = new QPdfBookmarkModel(this);
     bookmarkModel->setDocument(m_document);
