@@ -18,6 +18,7 @@ public slots:
     void setZoomFactor(qreal zoomFactor);
 
     void reset();
+    void retranslate();
 
 signals:
     void zoomModeChanged(QPdfView::ZoomMode zoomMode);

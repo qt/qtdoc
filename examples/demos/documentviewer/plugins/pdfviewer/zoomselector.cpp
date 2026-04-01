@@ -5,22 +5,36 @@
 
 #include <QLineEdit>
 
+#include <array>
+
+static constexpr std::array factors= { 12, 25, 33, 50, 66, 75, 100, 125, 150, 200, 400 };
+
 ZoomSelector::ZoomSelector(QWidget *parent)
     : QComboBox(parent)
 {
+    setSizeAdjustPolicy(QComboBox::AdjustToContents);
     setEditable(true);
 
-    addItem(tr("Fit Width"));
-    addItem(tr("Fit Page"));
+    // ZoomMode::FitToWidth, ZoomMode::FitInView + factors
+    addItems(QStringList(2 + factors.size(), QString{}));
 
-    for (int i : { 12, 25, 33, 50, 66, 75, 100, 125, 150, 200, 400 })
-        addItem(QString::number(i) + QLocale().percent());
+    retranslate();
 
     connect(this, &QComboBox::currentTextChanged,
             this, &ZoomSelector::onCurrentTextChanged);
 
     connect(lineEdit(), &QLineEdit::editingFinished,
             this, [this](){onCurrentTextChanged(lineEdit()->text()); });
+}
+
+void ZoomSelector::retranslate()
+{
+    int i = 0;
+    setItemText(i++, tr("Fit Width"));
+    setItemText(i++, tr("Fit Page"));
+    const QString &percent = QLocale().percent();
+    for (auto factor : factors)
+        setItemText(i++, QString::number(factor) + percent);
 }
 
 void ZoomSelector::setZoomFactor(qreal zoomFactor)
@@ -35,9 +49,9 @@ void ZoomSelector::reset()
 
 void ZoomSelector::onCurrentTextChanged(const QString &text)
 {
-    if (text == tr("Fit Width")) {
+    if (text == itemText(0)) {
         emit zoomModeChanged(QPdfView::ZoomMode::FitToWidth);
-    } else if (text == tr("Fit Page")) {
+    } else if (text == itemText(1)) {
         emit zoomModeChanged(QPdfView::ZoomMode::FitInView);
     } else {
         qreal factor = 1.0;

@@ -270,4 +270,6 @@ void PdfViewer::retranslate()
         if (bookmarksIndex >= 0)
             m_uiAssets.tabs->setTabText(bookmarksIndex, tr("Bookmarks"));
     }
+    if (m_zoomSelector)
+        m_zoomSelector->retranslate();
 }
