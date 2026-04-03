@@ -14,7 +14,7 @@ DynamicRigidBody {
     onBodyContact: (body, positions, impulses, normals) => {
         motionTimeout.restart()
         const volume = impulses.reduce((acc, vector) => acc + vector.length(), 0)
-        diceSound.audioOutput.volume = volume / 2000
+        diceSound.volume = volume / 2000
         if (!diceSound.playing)
             diceSound.play()
     }
@@ -35,11 +35,9 @@ DynamicRigidBody {
         receivesShadows: root.isClose
         scale: Qt.vector3d(2.65, 2.65, 2.65).times(root.diceWidth)
     }
-
-    MediaPlayer {
-            id: diceSound
-            source: "sounds/onedice.wav"
-            loops: 0
-            audioOutput: AudioOutput {}
+    SoundEffect {
+        id: diceSound
+        loops: 0
+        source: "sounds/onedice.wav"
     }
 }
