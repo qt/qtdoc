@@ -36,7 +36,6 @@ public:
     bool hasContent() const override;
     QByteArray saveState() const override { return QByteArray(); }
     bool restoreState(QByteArray &) override { return true; }
-    void retranslate() override;
 
 #ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
@@ -60,6 +59,7 @@ private slots:
     void onActionForwardTriggered();
 
 private:
+    void retranslate() override;
     void populateQuestions();
 
     const qreal zoomMultiplier = qSqrt(2.0);

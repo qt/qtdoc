@@ -437,8 +437,8 @@
 
     \section2 Plugin support
 
-    The \c AbstractViewer base class provides three methods so each plugin can
-    manage its own translation:
+    The \c AbstractViewer base class provides translation support so each plugin
+    can manage its own translations autonomously:
 
     \list
     \li \c AbstractViewer::setTranslationBaseName(): initializes a \c Translator
@@ -448,12 +448,13 @@
     \skipto setTranslationBaseName
     \printuntil }
 
-    \li \c AbstractViewer::updateTranslation(): calls \c install() on the existing
-    Translator to install the new translations, and then calls \c retranslate() to
-    refresh all text.
+    \li \c AbstractViewer::eventFilter(): installed on the main window in
+    \c init(), this method listens for \l QEvent::LanguageChange events. When the
+    locale has changed, it reinstalls the plugin's translator for the new language
+    and calls \c retranslate() to refresh all text.
 
     \quotefromfile demos/documentviewer/app/abstractviewer.cpp
-    \skipto updateTranslation
+    \skipto eventFilter
     \printuntil /^\}/
 
     \li \c AbstractViewer::retranslate(): a virtual method that each plugin implements
@@ -464,6 +465,14 @@
     \printuntil }
 
     \endlist
+
+    Widgets that are owned by a plugin and contain translatable strings can
+    handle \l QEvent::LanguageChange directly. For example, \c ZoomSelector
+    overrides \c changeEvent() to retranslate its combo box items:
+
+    \quotefromfile demos/documentviewer/plugins/pdfviewer/zoomselector.cpp
+    \skipto ZoomSelector::changeEvent
+    \printuntil /^\}/
 
     \section2 Application startup
 
@@ -491,23 +500,28 @@
 
     \section2 Runtime language switching
 
-    Runtime language switching can be done in two ways:
+    Runtime language switching can be triggered in two ways:
     \list 1
+    \li Switching the language of the whole system at runtime:
+        The operating system sends a \l QEvent::LocaleChange event to the
+        application.
     \li Using the menu \uicontrol Help > \uicontrol Language:
         Clicking on the \c QMenu item triggers \c MainWindow::onActionSwitchLanguage(),
-        which will install the new language and retranslate the main application and
-        the plugins:
+        which sets the default locale and posts a \l QEvent::LocaleChange event,
+        to enter the same flow as a system locale change:
         \quotefromfile demos/documentviewer/app/mainwindow.cpp
         \skipto void MainWindow::onActionSwitchLanguage
         \printuntil }
-    \li Switching the language of the whole system at runtime:
-        The application can react to this by listening to the events and
-        calling \c MainWindow::onActionSwitchLanguage()
-        on the \c QEvent::LocaleChange event.
-        \quotefromfile demos/documentviewer/app/mainwindow.cpp
-        \skipto void MainWindow::changeEvent
-        \printuntil }
     \endlist
+
+    In both cases, \c MainWindow::changeEvent() handles the events.
+    \l QEvent::LocaleChange installs the new translator, and the resulting
+    \l QEvent::LanguageChange retranslates the main window UI.
+    Plugins react via their event filters.
+
+    \quotefromfile demos/documentviewer/app/mainwindow.cpp
+    \skipto void MainWindow::changeEvent
+    \printuntil /^\}/
 
     \section1 Source files
 

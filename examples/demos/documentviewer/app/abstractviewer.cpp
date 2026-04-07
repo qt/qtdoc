@@ -38,6 +38,7 @@ void AbstractViewer::init(QFile *file, QWidget *widget, QMainWindow *mainWindow)
     m_file.reset(file);
     m_widget = widget;
     m_uiAssets.mainWindow = mainWindow;
+    mainWindow->installEventFilter(this);
 }
 
 AbstractViewer::~AbstractViewer()
@@ -52,13 +53,21 @@ void AbstractViewer::setTranslationBaseName(const QString &baseName)
     m_translator->install();
 }
 
-void AbstractViewer::updateTranslation(QLocale::Language lang)
+bool AbstractViewer::eventFilter(QObject *, QEvent *event)
 {
-    if (m_translator) {
-        m_translator->setLanguage(lang);
-        m_translator->install();
+    if (event->type() != QEvent::LanguageChange)
+        return false;
+
+    const QLocale locale;
+    if (locale != m_currentLocale) {
+        m_currentLocale = locale;
+        if (m_translator) {
+            m_translator->setLanguage(locale.language());
+            m_translator->install();
+        }
         retranslate();
     }
+    return false;
 }
 
 bool AbstractViewer::isEmpty() const
@@ -179,6 +188,9 @@ void AbstractViewer::cleanup()
 {
     // delete all objects created by the viewer which need to be displayed
     // and therefore parented on MainWindow
+    if (m_uiAssets.mainWindow)
+        m_uiAssets.mainWindow->removeEventFilter(this);
+
     if (m_file)
         m_file.reset();
 
