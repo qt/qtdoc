@@ -36,7 +36,6 @@ public:
 //! [pluginReimp]
     QByteArray saveState() const override;
     bool restoreState(QByteArray &) override;
-    void retranslate() override;
 
 #ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
@@ -54,6 +53,7 @@ private slots:
 
 //! [pluginPrivateMembers]
 private:
+    void retranslate() override;
     bool openJsonFile();
 
     QTreeView *m_tree;

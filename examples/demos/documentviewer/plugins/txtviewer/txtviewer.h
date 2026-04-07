@@ -30,7 +30,6 @@ public:
     QByteArray saveState() const override { return {}; }
     bool restoreState(QByteArray &) override { return true; }
     bool supportsOverview() const override { return false; }
-    void retranslate() override;
 
 #ifdef DOCUMENTVIEWER_PRINTSUPPORT
 protected:
@@ -41,6 +40,7 @@ private slots:
     void setupTxtUi();
 
 private:
+    void retranslate() override;
     void openFile();
     bool saveFile (QFile *file);
 

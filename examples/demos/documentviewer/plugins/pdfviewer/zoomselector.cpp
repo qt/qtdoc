@@ -3,6 +3,7 @@
 
 #include "zoomselector.h"
 
+#include <QEvent>
 #include <QLineEdit>
 
 #include <array>
@@ -35,6 +36,13 @@ void ZoomSelector::retranslate()
     const QString &percent = QLocale().percent();
     for (auto factor : factors)
         setItemText(i++, QString::number(factor) + percent);
+}
+
+void ZoomSelector::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+        retranslate();
+    QComboBox::changeEvent(event);
 }
 
 void ZoomSelector::setZoomFactor(qreal zoomFactor)

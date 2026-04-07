@@ -63,13 +63,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::onActionSwitchLanguage(QLocale::Language lang)
 {
-    m_translator.setLanguage(lang);
-    m_translator.install();
-    ui->retranslateUi(this);
-    const auto viewerList = m_factory->viewers();
-    for (AbstractViewer *viewer : viewerList)
-        viewer->updateTranslation(lang);
-    statusBar()->clearMessage();
+    QLocale::setDefault(QLocale(lang));
+    QEvent event(QEvent::LocaleChange);
+    QCoreApplication::sendEvent(this, &event);
 }
 
 void MainWindow::onActionOpenTriggered()
@@ -122,8 +118,18 @@ bool MainWindow::openFile(const QString &fileName)
 
 void MainWindow::changeEvent(QEvent *event)
 {
-    if (event->type() == QEvent::LocaleChange)
-        onActionSwitchLanguage(QLocale::system().language());
+    switch (event->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        statusBar()->clearMessage();
+        break;
+    case QEvent::LocaleChange:
+        m_translator.setLanguage(QLocale().language());
+        m_translator.install();
+        break;
+    default:
+        break;
+    }
 
     QMainWindow::changeEvent(event);
 }
