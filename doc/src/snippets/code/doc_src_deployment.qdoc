@@ -305,7 +305,7 @@ install_name_tool -change /path/to/Qt/lib/QtGui.framework/Versions/4.0/QtGui
 
 
 //! [46]
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
 if (pluginsDir.dirName() == "MacOS") {
     pluginsDir.cdUp();
 }
