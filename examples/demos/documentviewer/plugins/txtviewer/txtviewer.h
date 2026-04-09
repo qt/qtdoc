@@ -45,8 +45,6 @@ private:
     bool saveFile (QFile *file);
 
     QPlainTextEdit *m_textEdit;
-    QMenu *m_editMenu = nullptr;
-    QToolBar *m_editToolBar = nullptr;
     QAction *m_cutAct = nullptr;
     QAction *m_copyAct = nullptr;
     QAction *m_pasteAct = nullptr;

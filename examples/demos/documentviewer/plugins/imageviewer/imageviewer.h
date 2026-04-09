@@ -49,7 +49,6 @@ private:
     void enableZoomActions();
 
     QLabel *m_imageLabel{};
-    QToolBar *m_toolBar{};
     QAction *m_zoomInAct{};
     QAction *m_zoomOutAct{};
     QAction *m_resetZoomAct{};

@@ -39,8 +39,23 @@ Q_LOGGING_CATEGORY(lcExample, "qt.examples.pdfviewer")
 using namespace Qt::StringLiterals;
 
 PdfViewer::PdfViewer()
+    : m_actionZoomIn(new QAction(this)),
+      m_actionZoomOut(new QAction(this))
+
 {
     connect(this, &AbstractViewer::uiInitialized, this, &PdfViewer::initPdfViewer);
+
+    QIcon icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn,
+                                  QIcon(":/demos/documentviewer/images/zoom-in.png"_L1));
+    m_actionZoomIn->setIcon(icon);
+    m_actionZoomIn->setShortcut(QKeySequence::ZoomIn);
+    connect(m_actionZoomIn, &QAction::triggered, this, &PdfViewer::onActionZoomInTriggered);
+
+    icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut,
+                            QIcon(":/demos/documentviewer/images/zoom-out.png"_L1));
+    m_actionZoomOut->setIcon(icon);
+    m_actionZoomOut->setShortcut(QKeySequence::ZoomOut);
+    connect(m_actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);
 }
 
 void PdfViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
@@ -78,12 +93,12 @@ QStringList PdfViewer::supportedMimeTypes() const
 
 void PdfViewer::initPdfViewer()
 {
-    m_toolBar = addToolBar(tr("PDF"));
-    m_zoomSelector = new ZoomSelector(m_toolBar);
+    QToolBar *toolBar = addToolBar();
+    m_zoomSelector = new ZoomSelector(toolBar);
 
     auto *nav = m_pdfView->pageNavigator();
-    m_pageSelector = new QPdfPageSelector(m_toolBar);
-    m_toolBar->insertWidget(m_uiAssets.forward, m_pageSelector);
+    m_pageSelector = new QPdfPageSelector(toolBar);
+    toolBar->insertWidget(m_uiAssets.forward, m_pageSelector);
     m_pageSelector->setDocument(m_document);
     connect(m_pageSelector, &QPdfPageSelector::currentPageChanged,
             this, &PdfViewer::pageSelected);
@@ -101,17 +116,12 @@ void PdfViewer::initPdfViewer()
     m_connections.append(connect(m_uiAssets.forward, &QAction::triggered,
                                  this, &PdfViewer::onActionForwardTriggered));
 
-    m_toolBar->addSeparator();
-    m_toolBar->addWidget(m_zoomSelector);
+    toolBar->addSeparator();
+    toolBar->addWidget(m_zoomSelector);
 
-    QIcon icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn, QIcon(":/demos/documentviewer/images/zoom-in.png"_L1));
-    m_actionZoomIn = m_toolBar->addAction(icon, tr("Zoom in"), QKeySequence::ZoomIn);
-    connect(m_actionZoomIn, &QAction::triggered, this, &PdfViewer::onActionZoomInTriggered);
+    toolBar->addAction(m_actionZoomIn);
 
-    icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut,
-                            QIcon(":/demos/documentviewer/images/zoom-out.png"_L1));
-    m_actionZoomOut = m_toolBar->addAction(icon, tr("Zoom out"), QKeySequence::ZoomOut);
-    connect(m_actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);
+    toolBar->addAction(m_actionZoomOut);
 
     connect(nav, &QPdfPageNavigator::backAvailableChanged, m_actionBack, &QAction::setEnabled);
     connect(nav, &QPdfPageNavigator::forwardAvailableChanged, m_actionForward, &QAction::setEnabled);
@@ -156,10 +166,12 @@ void PdfViewer::initPdfViewer()
        m_pages->setCurrentIndex(m_pages->model()->index(page, 0));
     });
 
-    m_uiAssets.tabs->addTab(m_pages, tr("Pages"));
-    m_uiAssets.tabs->addTab(m_bookmarks, tr("Bookmarks"));
+    m_uiAssets.tabs->addTab(m_pages, {});
+    m_uiAssets.tabs->addTab(m_bookmarks, {});
     QScroller::grabGesture(m_pdfView->viewport(), QScroller::ScrollerGestureType::LeftMouseButtonGesture);
     HoverWatcher::watcher(m_pdfView->viewport());
+
+    retranslate();
 }
 
 void PdfViewer::openPdfFile()
@@ -255,13 +267,11 @@ void PdfViewer::onActionForwardTriggered()
 
 void PdfViewer::retranslate()
 {
-    if (m_toolBar)
-        m_toolBar->setWindowTitle(tr("PDF"));
-    if (m_actionZoomIn)
-        m_actionZoomIn->setText(tr("Zoom in"));
-    if (m_actionZoomOut) {
-        m_actionZoomOut->setText(tr("Zoom out"));
-    }
+    if (toolBars().isEmpty())
+        return;
+    toolBars().at(0)->setWindowTitle(tr("PDF"));
+    m_actionZoomIn->setText(tr("Zoom in"));
+    m_actionZoomOut->setText(tr("Zoom out"));
     if (m_pages && m_bookmarks && m_uiAssets.tabs) {
         int pagesIndex = m_uiAssets.tabs->indexOf(m_pages);
         if (pagesIndex >= 0)

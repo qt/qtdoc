@@ -56,11 +56,9 @@ private:
     void retranslate() override;
     bool openJsonFile();
 
-    QTreeView *m_tree;
+    QTreeView *m_tree = nullptr;
     QListWidget *m_toplevel = nullptr;
     QJsonDocument m_root;
-    QMenu *m_jsonMenu = nullptr;
-    QToolBar *m_jsonToolBar = nullptr;
     QAction *m_expandAllAction = nullptr;
     QAction *m_collapseAllAction = nullptr;
 };

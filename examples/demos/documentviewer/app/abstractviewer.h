@@ -57,6 +57,7 @@ public:
 
     QList<QAction *> actions() const;
     QWidget *widget() const;
+    QList<QToolBar *> toolBars() const;
     QList<QMenu *> menus() const;
 
 #ifdef DOCUMENTVIEWER_PRINTSUPPORT
@@ -85,8 +86,8 @@ protected:
 
     virtual void retranslate() { };
     void statusMessage(const QString &message, const QString &type = QString(), int timeout = 8000);
-    QToolBar *addToolBar(const QString &);
-    QMenu *addMenu(const QString &);
+    QToolBar *addToolBar();
+    QMenu *addMenu();
     QMainWindow *mainWindow() const;
     QStatusBar *statusBar() const;
     QMenuBar *menuBar() const;

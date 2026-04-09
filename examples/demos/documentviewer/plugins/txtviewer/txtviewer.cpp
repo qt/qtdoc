@@ -26,8 +26,26 @@
 using namespace Qt::StringLiterals;
 
 TxtViewer::TxtViewer()
+    : m_cutAct(new QAction(this)),
+      m_copyAct(new QAction(this)),
+      m_pasteAct(new QAction(this))
 {
     connect(this, &AbstractViewer::uiInitialized, this, &TxtViewer::setupTxtUi);
+
+    const QIcon cutIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCut,
+                                           QIcon(":/demos/documentviewer/images/cut.png"_L1));
+    m_cutAct->setIcon(cutIcon);
+    m_cutAct->setShortcuts(QKeySequence::Cut);
+
+    const QIcon copyIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCopy,
+                                            QIcon(":/demos/documentviewer/images/copy.png"_L1));
+    m_copyAct->setIcon(copyIcon);
+    m_copyAct->setShortcuts(QKeySequence::Copy);
+
+    const QIcon pasteIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditPaste,
+                                             QIcon(":/demos/documentviewer/images/paste.png"_L1));
+    m_pasteAct->setIcon(pasteIcon);
+    m_pasteAct->setShortcuts(QKeySequence::Paste);
 }
 
 TxtViewer::~TxtViewer() = default;
@@ -46,38 +64,20 @@ QStringList TxtViewer::supportedMimeTypes() const
 
 void TxtViewer::setupTxtUi()
 {
-    m_editMenu = addMenu(tr("&Edit"));
-    m_editToolBar = addToolBar(tr("Edit"));
+    QMenu *editMenu = addMenu();
+    QToolBar *editToolBar = addToolBar();
 #if QT_CONFIG(clipboard)
-    const QIcon cutIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCut,
-                                           QIcon(":/demos/documentviewer/images/cut.png"_L1));
-    m_cutAct = new QAction(cutIcon, tr("Cu&t"), this);
-    m_cutAct->setShortcuts(QKeySequence::Cut);
-    m_cutAct->setStatusTip(tr("Cut the current selection's contents to the "
-                            "clipboard"));
     connect(m_cutAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::cut);
-    m_editMenu->addAction(m_cutAct);
-    m_editToolBar->addAction(m_cutAct);
+    editMenu->addAction(m_cutAct);
+    editToolBar->addAction(m_cutAct);
 
-    const QIcon copyIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditCopy,
-                                            QIcon(":/demos/documentviewer/images/copy.png"_L1));
-    m_copyAct = new QAction(copyIcon, tr("&Copy"), this);
-    m_copyAct->setShortcuts(QKeySequence::Copy);
-    m_copyAct->setStatusTip(tr("Copy the current selection's contents to the "
-                             "clipboard"));
     connect(m_copyAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::copy);
-    m_editMenu->addAction(m_copyAct);
-    m_editToolBar->addAction(m_copyAct);
+    editMenu->addAction(m_copyAct);
+    editToolBar->addAction(m_copyAct);
 
-    const QIcon pasteIcon = QIcon::fromTheme(QIcon::ThemeIcon::EditPaste,
-                                             QIcon(":/demos/documentviewer/images/paste.png"_L1));
-    m_pasteAct = new QAction(pasteIcon, tr("&Paste"), this);
-    m_pasteAct->setShortcuts(QKeySequence::Paste);
-    m_pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
-                              "selection"));
     connect(m_pasteAct, &QAction::triggered, m_textEdit, &QPlainTextEdit::paste);
-    m_editMenu->addAction(m_pasteAct);
-    m_editToolBar->addAction(m_pasteAct);
+    editMenu->addAction(m_pasteAct);
+    editToolBar->addAction(m_pasteAct);
 
     menuBar()->addSeparator();
 
@@ -104,6 +104,8 @@ void TxtViewer::setupTxtUi()
         if (bar->value() < bar->maximum())
             bar->setValue(bar->value() + 1);
     });
+
+    retranslate();
 }
 //! [init]
 
@@ -197,24 +199,16 @@ bool TxtViewer::saveDocumentAs()
 
 void TxtViewer::retranslate()
 {
-    if (m_editMenu)
-        m_editMenu->setTitle(tr("&Edit"));
-    if (m_editToolBar)
-        m_editToolBar->setWindowTitle(tr("Edit"));
-    if (m_cutAct) {
-        m_cutAct->setText(tr("Cu&t"));
-        m_cutAct->setStatusTip(tr("Cut the current selection's contents to the "
-                                "clipboard"));
-    }
-    if (m_copyAct) {
-        m_copyAct->setText(tr("&Copy"));
-        m_copyAct->setStatusTip(tr("Copy the current selection's contents to the "
-                                 "clipboard"));
-    }
-    if (m_pasteAct) {
-        m_pasteAct->setText(tr("&Paste"));
-        m_pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
-                                  "selection"));
-    }
+    if (toolBars().isEmpty())
+        return;
+    menus().at(0)->setTitle(tr("&Edit"));
+    toolBars().at(0)->setWindowTitle(tr("Edit"));
+
+    m_cutAct->setText(tr("Cu&t"));
+    m_cutAct->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
+    m_copyAct->setText(tr("&Copy"));
+    m_copyAct->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
+    m_pasteAct->setText(tr("&Paste"));
+    m_pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
 }
 //! [infoPrintAndSave]
