@@ -47,10 +47,26 @@ static QString msgOpen(const QString &name, const QImage &image)
 }
 
 //! [init]
-ImageViewer::ImageViewer() : m_formats(imageFormats())
+ImageViewer::ImageViewer()
+    : m_zoomInAct(new QAction(this)),
+      m_zoomOutAct(new QAction(this)),
+      m_resetZoomAct(new QAction(this)),
+      m_formats(imageFormats())
 {
     connect(this, &AbstractViewer::uiInitialized, this, &ImageViewer::setupImageUi);
     QImageReader::setAllocationLimit(1024); // MB
+
+    m_zoomInAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
+    m_zoomInAct->setShortcut(QKeySequence::ZoomIn);
+    connect(m_zoomInAct, &QAction::triggered, this, &ImageViewer::zoomIn);
+
+    m_zoomOutAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
+    m_zoomOutAct->setShortcut(QKeySequence::ZoomOut);
+    connect(m_zoomOutAct, &QAction::triggered, this, &ImageViewer::zoomOut);
+
+    m_resetZoomAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomFitBest));
+    m_resetZoomAct->setShortcut(QKeySequence(Qt::ControlModifier | Qt::Key_0));
+    connect(m_resetZoomAct, &QAction::triggered, this, &ImageViewer::resetZoom);
 }
 //! [init]
 
@@ -66,24 +82,19 @@ void ImageViewer::init(QFile *file, QWidget *parent, QMainWindow *mainWindow)
     AbstractViewer::init(file, m_imageLabel, mainWindow);
     setTranslationBaseName("imgviewer"_L1);
 
-    m_toolBar = addToolBar(tr("Images"));
+    QToolBar *toolBar = addToolBar();
+    toolBar->addAction(m_zoomInAct);
+    toolBar->addAction(m_zoomOutAct);
+    toolBar->addAction(m_resetZoomAct);
 
-    m_zoomInAct = m_toolBar->addAction(tr("Zoom &In"), this, &ImageViewer::zoomIn);
-    m_zoomInAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomIn));
-    m_zoomInAct->setShortcut(QKeySequence::ZoomIn);
-
-    m_zoomOutAct = m_toolBar->addAction(tr("Zoom &Out"), this, &ImageViewer::zoomOut);
-    m_zoomOutAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut));
-    m_zoomOutAct->setShortcut(QKeySequence::ZoomOut);
-
-    m_resetZoomAct = m_toolBar->addAction(tr("Reset Zoom"), this, &ImageViewer::resetZoom);
-    m_resetZoomAct->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::ZoomFitBest));
-    m_resetZoomAct->setShortcut(QKeySequence(Qt::ControlModifier | Qt::Key_0));
+    retranslate();
 }
 
 void ImageViewer::retranslate()
 {
-    m_toolBar->setWindowTitle(tr("Images"));
+    if (toolBars().isEmpty())
+        return;
+    toolBars().at(0)->setWindowTitle(tr("Images"));
     m_zoomInAct->setText(tr("Zoom &In"));
     m_zoomOutAct->setText(tr("Zoom &Out"));
     m_resetZoomAct->setText(tr("Reset Zoom"));

@@ -63,7 +63,6 @@ private:
     void populateQuestions();
 
     const qreal zoomMultiplier = qSqrt(2.0);
-    QToolBar *m_toolBar = nullptr;
     ZoomSelector *m_zoomSelector = nullptr;
     QPdfPageSelector *m_pageSelector = nullptr;
     QPdfDocument *m_document = nullptr;

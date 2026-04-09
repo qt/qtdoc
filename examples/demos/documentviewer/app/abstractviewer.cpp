@@ -115,6 +115,11 @@ QWidget *AbstractViewer::widget() const
     return m_widget;
 }
 
+QList<QToolBar *> AbstractViewer::toolBars() const
+{
+    return m_toolBars;
+}
+
 QList<QMenu *> AbstractViewer::menus() const
 {
     return m_menus;
@@ -167,17 +172,18 @@ void AbstractViewer::statusMessage(const QString &message, const QString &type, 
     emit showMessage(msg, timeout);
 }
 
-QToolBar *AbstractViewer::addToolBar(const QString &title)
+QToolBar *AbstractViewer::addToolBar()
 {
-    auto *bar = mainWindow()->addToolBar(title);
+    auto *bar = new QToolBar();
+    mainWindow()->addToolBar(bar);
     bar->setObjectName(viewerName() + "ToolBar"_L1);
     m_toolBars.append(bar);
     return bar;
 }
 
-QMenu *AbstractViewer::addMenu(const QString &title)
+QMenu *AbstractViewer::addMenu()
 {
-    QMenu *menu = new QMenu(title, menuBar());
+    QMenu *menu = new QMenu(menuBar());
     menu->setObjectName(viewerName() + "Menu"_L1);
     menuBar()->insertMenu(m_uiAssets.help, menu);
     m_menus.append(menu);
