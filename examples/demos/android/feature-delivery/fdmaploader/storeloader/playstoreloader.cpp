@@ -91,7 +91,7 @@ void userConfirmationRequestedNative(JNIEnv *, jobject, jstring callId, int erro
     \a total Total amount of bytes to be downloaded.
 */
 
-void downloadProgressChangedNative(JNIEnv *, jobject, jstring callId, long bytes, long total)
+void downloadProgressChangedNative(JNIEnv *, jobject, jstring callId, jlong bytes, jlong total)
 {
     auto *handler = loaderInstance->findHandler(callId);
     if (!handler)
