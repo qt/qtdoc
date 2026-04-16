@@ -54,6 +54,27 @@
     sudo zypper install -t pattern devel_basis
     \endcode
 
+    \section2 Supported Glibc Versions
+
+    The Qt installer and Qt Framework components and tools are built
+    against a specific glibc version, and cannot be run on a system
+    with an older glibc version.
+
+    \table
+    \header
+        \li Qt release
+        \li Required glibc version
+    \row
+        \li \b{Qt 6.8}+
+        \li glibc 2.28+
+    \row
+        \li \b{Qt 6.10}+
+        \li glibc 2.34+
+    \endtable
+
+    \note If you build Qt from source, there is no limitation for the
+    glibc version.
+
     \section1 Building Qt from Source
 
     You can also build Qt from the source package and configure it according
