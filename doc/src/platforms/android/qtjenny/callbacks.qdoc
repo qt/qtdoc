@@ -50,7 +50,7 @@ between different parts of extending Java classes in C++.
 \image {../images/qtjenny-callback-extended-class.drawio.svg} {How it works}
 
 The way it works is that we generate a Java subclass, which then
-invokes a generic \c {invoke()} method of a \c {NativeInvocationHandler], which
+invokes a generic \c {invoke()} method of a \c {NativeInvocationHandler}, which
 is a project-supplied Java class.
 
 The \c {NativeInvocationHandler} calls a native
