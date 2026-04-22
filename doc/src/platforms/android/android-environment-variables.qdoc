@@ -36,6 +36,11 @@ Qt for Android uses some environment variables to enable/disable certain workaro
     \li QT_ANDROID_DISABLE_ACCESSIBILITY
     \li Disable \l{Assistive Tools}{Accessibility}. This prevents the processing
     of accessibility events.
+\row
+    \li QT_ANDROID_NO_FULLSCREEN_KEYBOARD
+    \li Do not allow Android to display full-screen IME.
+    \note This variable is valid only for Qt 6.8.8, 6.11.1, 6.12 or newer. For Qt 6.12 and
+    newer it's recommended to use \l {Qt::ImhNoFullscreen} instead.
 \endtable
 
 \section2 Less commonly used variables
