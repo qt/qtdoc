@@ -93,13 +93,15 @@
 
     Starting from Qt 6.8, the Qt installation includes Software Bill of
     Materials (SBOM) documents, containing information about installed Qt
-    modules, packages, and third-party components in SPDX format. SBOM files
-    allow users to track Qt installed packages for vulnerability management and
-    license compliance.
+    modules, packages, and third-party components in SPDX format. Since
+    Qt 6.11, the SBOM documents are also available in CycloneDX format.
+    Use the documents in either of these formats to track Qt installed
+    packages for vulnerability management and license compliance.
 
     \list
         \li \l{Software Bill of Materials}
         \li \l{https://spdx.dev/learn/overview/#producing}{SPDX Format Overview}
+        \li \l{https://cyclonedx.org/specification/overview/}{CycloneDX Specification Overview}
     \endlist
 
     \section1 Untrusted data
