@@ -166,7 +166,7 @@ To get started with Qt for Android:
     \brief Provides information about supported Android versions under a Qt release.
 
     To keep the supported versions to a level that’s maintainable
-    by Qt, especially for LTS releases which are expected to live for a period of
+    by Qt, especially for \l{lts-releases}{LTS releases} which are expected to live for a period of
     3 years, Qt for Android has guidelines for selecting the supported
     versions for a given Qt release. This makes the selection clear and
     transparent, and help shape proper expectations of support for each Qt for
@@ -178,7 +178,7 @@ To get started with Qt for Android:
 
     \list
         \li Evaluate the minimum version once a year for the fall release of Qt,
-            which would also cover LTS releases.
+            which would also cover \l{lts-releases}{LTS releases}.
         \li Target at least 90% of the cumulative usage in the market as listed
             on \l {https://apilevels.com}{apilevels.com} at the time of the
             platform freeze deadline of a given fall release.
@@ -208,7 +208,7 @@ To get started with Qt for Android:
     released by Google in the fall of the year before. This becomes the new
     maximum supported version by Qt.
 
-    Qt LTS releases would also support new Android versions coming out to market
+    \l{lts-releases}{Qt LTS releases} would also support new Android versions coming out to market
     for up to two years after the initial Qt LTS patch release. This allows users
     to target newer Android versions to comply with Google Play Store target
     SDK publishing policies. In effect, new Android versions released in this
