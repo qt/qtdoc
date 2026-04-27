@@ -317,8 +317,10 @@
         recommended to set it on a permanent basis.
     \row
         \li \c QT_FONT_DPI
-        \li Sets a global DPI. This is a legacy environment variable provided
-        for backwards compatibility.
+        \li Sets a global logical DPI. On embedded platforms without a native
+        windowing system (such as EGLFS), this is the recommended way to
+        configure scaling. On other platforms, avoid this variable and use the
+        operating system's scaling settings instead.
     \row
         \li \c QT_SCALE_FACTOR
         \li Sets a global scale factor. For debugging and testing purposes.
