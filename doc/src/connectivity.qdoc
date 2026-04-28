@@ -1,4 +1,4 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
@@ -7,128 +7,130 @@
 \brief Qt's network and connectivity features.
 \ingroup explanations-networkingandconnectivity
 
-Qt provides classes for both high-level and low-level network communication,
-classes for web integration, and classes for inter-process communication (IPC).
+Qt provides modules for network communication, web integration,
+and device connectivity. You can deploy networked applications
+on multiple platforms and devices.
 
-For high-level network traffic, \l{Qt Network} provides an abstraction layer
-over the operations used, showing only high-level classes and functions. Qt
-Network can also handle lower level protocols like TCP and UDP. Classes like
-QTcpSocket and QUdpSocket enable the developer to send and receive messages
-using the TCP or UDP protocol. Name resolution is done with QHostInfo. QHostInfo
-is called before creating a network connection with QTcpSocket or QUdpSocket.
-Filtering and redistributing network traffic via proxies can be handled by the
-QNetworkProxy class.
+\section1 Communicating over a network with Qt Network
 
-Qt provides \e connectivity options to connect systems or applications using modules like
-\l {Qt Bluetooth}, which provides connectivity between Bluetooth enabled devices.
-\l {Qt Serial Bus} provides classes and functions to access the various industrial
-serial buses and protocols, and \l {Qt NFC} provides connectivity between NFC enabled devices.
-Also, \l{Qt Serial Port} provides the basic functionality, including configuring, I/O operations,
-and getting and setting the control signals of the RS-232 pinouts.
+The \l{Qt Network} module provides the main networking APIs in Qt.
+Its C++ API allows applications to use the native network
+capabilities of the operating system in a safe and efficient way. You can use
+Qt for various scenarios, such as sending and receiving data over TCP or UDP
+sockets, performing HTTP/HTTPS requests for REST APIs or web services,
+downloading and uploading files, handling proxies and authentication, and
+establishing secure connections using SSL/TLS.
 
-Qt offers functionalities for \l {Inter-Process Communication}.
-The class QProcess is used to start external programs. \l{Qt D-Bus} provides support
-for D-Bus, an inter-process communication and remote procedure calling mechanism.
-It communicates via a central server application called a bus. However,
-it is also possible to let applications communicate directly with each other.
-QSharedMemory provides access to a shared memory segment by multiple threads
-and processes. However, a single process can exclusively lock that shared memory.
+For more information, see the \l{Network Programming with Qt} overview.
 
-\section1 Network Communication
+\section1 Accessing resources from QML
 
-Qt supports a wide range of network communication, with a focus on HTTP, TCP, and
-UDP.
+QML types can load resources from URLs. The resources can be images, text
+files, source files, or other types of files. This can simplify connecting
+to different data sources. For more information, see the
+\l{Resource Loading and Network Transparency} overview.
 
-At the HTTP level, the \l{Qt Network} module offers the network access API,
-which consists mainly of QNetworkRequest, QNetworkAccessManager, and
-QNetworkReply. The QNetworkRequest resembles an HTTP request, which
-gets passed to the QNetworkAccessManager to send the request on the wire; this
-class returns a QNetworkReply, which enables parsing the HTTP reply. The network
-access API internally uses the socket classes mentioned below (for TCP and SSL).
+You can also use
+\l{The XMLHttpRequest JavaScript Object}{XMLHttpRequest} in QML JavaScript
+to perform HTTP client functionality, such as submitting form data or loading
+data asynchronously from a server.
 
-QTcpSocket, QUdpSocket, and QSslSocket should be used for communication at the socket level.
-These classes offer a synchronous API through the waitFor* methods as well as an
-asynchronous API; if possible (that is if the event loop is running), the asynchronous
-API should always be preferred. Qt also offers QTcpServer to enable the server-side
-part of a TCP communication.
+\section1 Communicating using WebSockets
 
-For secure communication via SSL, Qt Network offers a wide range of classes
-alongside the central QSslSocket. For example, QSslCertificate, QSslConfiguration, and
-QSslError.
+\l{Qt WebSockets} provides WebSocket functionality to Qt applications.
+The WebSocket protocol is for client-server communication that requires
+real-time, persistent, and fully asynchronous connections. Compared to
+HTTP, WebSocket offers lower latency and higher throughput.
+WebSocket uses an HTTP 1.1 GET request for the initial handshake procedure but
+the packet format is different.
 
-Qt also offers HTTP support in QML by either using HTTP explicitly via
-XmlHttpRequest, or by transparently using HTTP URLs in Image sources for example.
+Applications that benefit from WebSockets include financial market data
+feeds and messaging services. For examples, see the
+\l{Qt WebSockets Examples} page.
 
-Related Topics:
+\section1 Running web services
+
+The \l{Qt HTTP Server} module provides classes for developing web services
+over a network. Qt HTTP Server supports HTTP/1.1 and HTTP/2 protocols and
+provides routing capabilities for creating RESTful APIs.
+
+The \l{Qt OpenAPI} module generates Qt HTTP client code from OpenAPI
+specification files. It uses the Qt Network RESTful APIs such as
+QRestAccessManager to create type-safe C++ clients for REST services.
+
+\note Qt OpenAPI is in Technology Preview.
+
+\section1 Integrating web content into Qt applications
+
+\l{Qt WebEngine} provides Chromium-based web content rendering with
+integration to other Qt modules. You can use Qt WebEngine to embed
+Chromium's rendering engine and process web content in your Qt application.
+Qt WebEngine supports HTML5, WebGL, and other Chromium features. For a list
+of Qt WebEngine features, see the \l{Qt WebEngine Features} page.
+
+\l{Qt WebChannel} can integrate JavaScript content into your Qt
+application. Use QWebChannel to expose C++ objects in your
+application and use a \l{Qt WebChannel JavaScript API}{JavaScript library} to
+access those objects from your web client. Qt objects, properties,
+and signals are then accessible from a QWebChannel object in JavaScript. Qt
+WebChannel uses WebSockets and works within Qt WebEngine.
+
+\l{Qt WebView} is a lightweight web view that displays web content
+in your application. It is based on the platform's native web view.
+
+\section1 Connecting wirelessly with Bluetooth and NFC
+
+Bluetooth is a wireless technology standard for exchanging data over short
+distances. Bluetooth is common in consumer devices and newer versions include
+Bluetooth Low Energy (BLE) devices with enhanced security measures. With the
+\l{Qt Bluetooth} module, you can scan for Bluetooth devices, connect to
+devices, and exchange data. Qt Bluetooth supports both Classic and BLE
+devices. For more information, see the \l{Qt Bluetooth Overview}.
+
+Near-field communication (NFC) is a short-range wireless technology with a
+low data rate and low power usage. NFC is ideal for transferring small packets
+of data when two devices are near each other. Use the \l{Qt NFC} module and
+its API to establish connectivity between NFC-enabled devices.
+
+\section1 Communicating through serial buses and ports
+
+Qt offers two modules for communicating through serial buses and ports.
+\l{Qt Serial Bus} provides an interface to various industrial serial buses and
+protocols, such as CAN bus and ModBus. \l{Qt Serial Port} provides an interface
+to RS-232 pinouts such as configuration, I/O operations, and control signal
+read and write operations.
+
+\section1 Communicating with high-level protocols and services
+
+Several Qt modules are for high-level networked communication and
+inter-process communication (IPC). There is also support for Machine-to-Machine
+(M2M) industry protocols and for smaller IoT systems. For example, there are Qt
+modules for \l{Qt D-Bus}{D-Bus}, \l{Qt GRPC}{gRPC}, \l{Qt MQTT}{MQTT}, and
+\l{Qt CoAP}{CoAP}.
+
+For more information, see the \l{Inter-process communication in Qt} page.
+
+\section1 Securing networked applications
+
+For networked and connected devices, be aware of the security considerations.
+Implement robust security measures and application design to protect your users,
+their data, and your networked systems.
+
+These are some security measures that you can implement:
 \list
-    \li \l {Network Programming with Qt}
-    \li \l {Secure Sockets Layer (SSL) Classes}
-    \li \l {Resource Loading and Network Transparency} - network and URL transparency in QML
-    \li \l {Qt Network Authorization} - set of APIs that enable Qt applications to
-           obtain limited access to online accounts and HTTP services without exposing
-           users' passwords.
-    \li \l {Qt Remote Objects} - an inter-process communication (IPC) module that enables
-           information exchange between processes or computers.
-    \li \l {Qt MQTT} - machine-to-machine (M2M) protocol that uses the publish-and-subscribe
-           paradigm to provide a channel with minimal communication overhead.
-    \li \l {Qt OPC UA} - server that offers access to data that is organized in a mesh of nodes
-           connected by references. The use of different reference types and nodes containing
-           metadata enables a client to navigate and interpret the data without knowing their
-           structure in advance.
-    \li \l {Qt WebSockets} - web-based protocol designed to enable a two-way interactive
-           communication session between a client application and a remote host. It enables
-           the two entities to send data back and forth if the initial handshake succeeds.
-    \li \l {Qt WebChannel} - enables peer-to-peer communication between a server
-           (QML/C++ application) and a client (HTML/JavaScript or QML application). It is
-           supported out of the box by Qt WebEngine. In addition, it can work on all browsers
-           that support WebSockets, enabling Qt WebChannel clients to run in any JavaScript
-           environment (including QML). This requires implementing a custom transport based
-           on Qt WebSockets.
-    \li \l [QtProtobuf]{Qt Protobuf} - a generator that can be used to generate Qt-based classes
-           from \c .proto files.
-    \li \l [QtGrpc]{Qt GRPC} - allows you to define data and messages in proto files and then
-           use the code generators, which generate code allowing accessors for fields and gRPC
-           services in the Qt framework.
-    \li \l {Qt OpenAPI} - a generator that can be used to generate
-           Qt-based HTTP client classes from .yaml OpenAPI specification files.
+\li Use encryption when sending or receiving data.
+    See \l{Secure Sockets Layer (SSL) Classes}.
+\li Use strong authentication and authorization mechanisms.
+    See \l{Qt Network Authorization}.
+\li Validate and process untrusted data.
+    See \l{Handling Untrusted Data}.
+\li Set rate limits and monitor traffic to prevent misuse.
+\li Incorporate salting or nonce techniques to protect against
+    monitoring and replay attacks.
+\li Update your environment to fix security vulnerabilities.
 \endlist
 
-\section1 Connectivity
-
-Qt supports a range of connectivity options, with a focus on \l {Qt Serial Bus},
-\l {Qt Serial Port}, \l {Qt Bluetooth} and \l{Qt NFC}.
-
-\list
-    \li \l {Qt Serial Bus} - provides classes and functions to access the various
-            industrial serial buses and protocols, such as CAN, ModBus, and others.
-    \li \l {Qt Serial Port} - provides the basic functionality, which includes
-            configuring, I/O operations, getting and setting the control signals
-            of the RS-232 pinouts.
-    \li \l {Qt Bluetooth} - provides classes and functions to use Bluetooth devices,
-            which includes scanning for devices, gathering information, and exchanging
-            data between them. Qt Bluetooth supports both Classic and Low Energy
-            Bluetooth technologies.
-    \li \l {Qt NFC} - provides classes and functions to establish connectivity between
-            NFC enabled devices. NFC is a short-range (less than 20 centimeters)
-            wireless technology with a maximum transfer rate of 424 Kbps. NFC is
-            ideal for transferring small packets of data when two devices are placed together.
-\endlist
-
-Related Topics:
-
-\list
-\li \l {Inter-process communication in Qt}
-\li \l {Qt D-Bus} - module documentation
-    \list
-    \li \l {Using Qt D-Bus Adaptors}
-    \li \l {Declaring Signals in D-Bus Adaptors}
-    \li \l {Declaring Slots in D-Bus Adaptors}
-    \li \l {The Qt D-Bus Type System}
-    \li \l {Qt D-Bus XML compiler (qdbusxml2cpp)}
-    \endlist
-\li \l {QProcess}
-\li \l {QLocalSocket}
-\li \l {QSharedMemory}
-\endlist
+For more information about Qt's security policies and measures, see
+\l{Security in Qt}.
 
 */

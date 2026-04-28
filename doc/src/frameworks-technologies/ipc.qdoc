@@ -1,69 +1,158 @@
-// Copyright (C) 2016 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-    \page ipc-overview.html
-    \title Inter-process communication in Qt
-    \brief Overview of Inter-process communication in Qt applications.
+\page ipc-overview.html
+\title Inter-process communication in Qt
+\brief Overview of inter-process communication in Qt applications.
 
+Qt provides several ways to implement inter-process communication
+(IPC) in applications. The IPC functionality in Qt includes:
 
-    Qt provides several ways to implement Inter-process communication
-    (IPC) in Qt applications.
+\list
+\li Synchronizing processes and sharing resources
+\li Exchanging byte-level data locally or over a network
+\li Sharing replicated Qt objects between processes or systems
+\li Passing structured messages or remote procedure calls (RPC)
+\li Using M2M industry standard protocols for IoT and industrial systems
+\endlist
 
-    \section1 TCP/IP
+Many of the IPC mechanisms are for networked devices and use network protocols
+such as TCP, UDP, and HTTP. The \l{Networking and Connectivity} overview covers
+the networking topic in more detail.
 
-    The cross-platform \l{Qt Network} module provides classes that make
-    network programming portable and easy. It offers high-level
-    classes (e.g. QNetworkAccessManager) that communicate using
-    specific application-level protocols, and lower-level classes
-    (e.g., QTcpSocket, QTcpServer, QSslSocket) for implementing
-    protocols.
+Qt supports structured data formats such as JSON, XML, Protobuf, and CBOR. For
+more information about structured data, see the
+\l{Data processing and I/O} overview pages.
 
-    \section1 Local Server/Socket
+\section1 Synchronizing processes and sharing resources
 
-    The cross-platform \l{Qt Network} module provides classes that make
-    local network programming portable and easy. It offers the QLocalServer
-    and QLocalSocket classes that allow for network-like communication in a
-    local setup. Their TCP counterparts can be used as drop-in replacement to
-    make the communication work across networks.
+For processes that share local resources or systems that synchronize actions
+and data, you can use system semaphores and shared memory. These
+functionalities are part of the \l{Qt Core} module.
 
-    \section1 Shared Memory
+Qt provides classes for inter-process synchronization, including
+\l{QSystemSemaphore}. Similar to \l{QSemaphore},
+it is accessible by multiple processes on the same system. It is globally
+identified by a \e key, which in Qt is represented by the
+\l{QNativeIpcKey} class. Additionally, depending on the OS, Qt may support
+multiple different backends for sharing memory.
 
-    The cross-platform shared memory class, QSharedMemory, provides
-    access to the operating system's shared memory implementation.
-    It allows safe access to shared memory segments by multiple threads
-    and processes. Additionally, QSystemSemaphore can be used to control
-    access to resources shared by the system, as well as to communicate
-    between processes.
+For a thorough explanation, see the following pages:
+\list
+\li \l{Synchronization Primitives}
+\li \l{Shared Memory}
+\li \l{Native IPC Keys}
+\endlist
 
-    \section1 D-Bus protocol
+\section2 Shared memory
 
-    The \l{Qt D-Bus} module is a Unix-only library you can use to
-    implement IPC using the D-Bus protocol. It extends Qt's
-    \l{signalsandslots.html} {Signals and Slots} mechanism to the IPC
-    level, allowing a signal emitted by one process to be connected to
-    a slot in another process. The \l{Qt D-Bus} documentation has detailed
-    information on how to use the \l{Qt D-Bus} module.
+The cross-platform shared memory class, QSharedMemory, provides access to the
+operating system's shared memory implementation. It allows safe access to
+shared memory segments by multiple threads and processes. Additionally,
+QSystemSemaphore controls access to resources shared by the system and
+enables communication between processes.
 
+\section1 Creating child processes
 
-    \section1 QProcess Class
+The \l{QProcess} class can start external programs as child processes and
+communicate with them. It provides an API for monitoring and
+controlling the state of the child process. QProcess gives access to the input
+and output channels of the child process by inheriting from QIODevice.
 
-    The cross-platform class \l{QProcess} can be used to start external
-    programs as child processes, and to communicate with them. It provides
-    an API for monitoring and controlling the state of the child
-    process. QProcess gives access to the input/output channels of child
-    process by inheriting from QIODevice.
+\section1 Sharing Qt objects among remote processes or systems
 
-    \section1 Session Management
+The \l{Qt Remote Objects} module provides a remote object mechanism to enable
+devices and processes to share Qt objects. It uses a \e Source object that
+is synchronized with \e Replica objects using an intermediary \e Node. These
+Replicas are essentially proxies that mirror the Source object's properties,
+signals, and slots so that remote processes can interact with the object
+without direct knowledge of the network transport.
 
-    On Linux, Windows and macOS, Qt provides support for session
-    management. Sessions allow events to be propagated to processes, for
-    example, to notify when a shutdown occurs. The process and applications
-    can then perform any necessary operations such as save open documents.
+\section1 Sending messages with Remote Procedure Calls (RPC)
 
-    \list
-    \li \l{Session Management}
-    \endlist
+Remote Procedure Call (RPC) is a high-level mechanism that abstracts the
+underlying network communication. With RPC, a client can call functions that
+execute on a remote server as if they were local function calls. Multiple
+languages provide support for RPC technologies, simplifying implementation in
+complex systems that use multiple programming languages.
 
-    \sa {Inter-Process Communication}{IPC topic in Qt Core}
+The \l{Qt GRPC} module implements Remote Procedure Calls (RPC) using the gRPC
+protocol. gRPC is a widely adopted framework for sending messages in serialized
+format, most commonly using HTTP/2 for efficient network communication.
+gRPC is well-suited for communication in modular microservices and low-latency
+applications such as chat and streaming platforms.
+
+\section1 Using M2M industry standard protocols
+
+Machine-to-Machine (M2M) industry protocols are specific to systems that are
+under strict resource constraints such as sensors and automation systems. Often
+they are specific to the industry and use cases such as manufacturing,
+healthcare, and environmental monitoring. These systems are often low power and
+have limited processing capabilities.
+
+The \l{Qt MQTT} module provides MQTT functionality to Qt applications. MQTT is
+a protocol that uses the publish and subscribe pattern to send information
+within a system. In an MQTT system, a \e broker manages the sending and
+receiving to \e clients. Clients can be publishers, subscribers, or both. MQTT
+is effective in low-bandwidth and high-latency environments such as industrial
+and manufacturing systems.
+
+The \l{Qt CoAP} module provides Constrained Application Protocol (CoAP) to Qt
+applications. CoAP is a protocol that uses UDP and RESTful principles to send
+information within constrained systems. CoAP is especially designed to take
+advantage of compact datagram messages and low overhead.
+
+The \l{Qt OPC UA} module provides OPC UA to Qt applications. It uses a client
+and server IPC mechanism for industrial systems. OPC UA is for complex systems
+and has built-in security measures.
+
+You can implement hybrid systems with MQTT, CoAP, and OPC UA. For example, you
+can implement the cloud communication in MQTT, the main system with OPC UA, and
+connect the individual sensors and devices using CoAP.
+
+One protocol may be widely adopted in a specific industry and its development
+ecosystem. The system architecture and the messages are also formed
+differently. For example, MQTT mainly uses TCP while CoAP uses UDP.
+Consequently, MQTT can use TLS and CoAP can use DTLS for secure transfers.
+
+\section1 Using the D-Bus protocol
+
+The \l{Qt D-Bus} module is a Unix-only library you can use to implement IPC
+using the D-Bus protocol. It extends Qt's \l{Signals and Slots} mechanism to
+the IPC level, allowing a signal emitted by one process to be connected to a
+slot in another process.
+
+\section1 Using sessions in applications
+
+On Linux/X11, Windows, and macOS, Qt provides support for session management.
+Sessions allow events to be propagated to processes, for example, to notify
+when a shutdown occurs. The processes and applications can then perform any
+necessary operations such as saving open documents. For more information, see
+the \l{Session Management} page.
+
+\section1 IPC security considerations
+
+Because data is transferred among processes or systems, you need to consider
+privacy and security issues. Attackers can intercept data within networks and
+foreign processes can monitor data within a system.
+
+These are some security measures that you can implement:
+\list
+\li Use encryption when sending or receiving data.
+    See \l{Secure Sockets Layer (SSL) Classes}.
+\li Use strong authentication and authorization mechanisms.
+    See \l{Qt Network Authorization}.
+\li Validate and process untrusted data.
+    See \l{Handling Untrusted Data}.
+\li Set rate limits and monitor traffic to prevent misuse.
+\li Incorporate salting or nonce techniques to protect against
+    monitoring and replay attacks.
+\li Update your environment to fix security vulnerabilities.
+\endlist
+
+The \l{Security in Qt} page discusses Qt's security policies and measures. Qt
+modules may implement different protocols and therefore may have additional
+security considerations.
+
 */
