@@ -1,22 +1,419 @@
-// Copyright (C) 2025 The Qt Company Ltd.
+// Copyright (C) 2026 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
     \page qt-tools-utilities.html
     \title Tools and utilities
+    \brief Lists development tools for the Qt Framework, grouped by their
+           primary function.
 
-    \section1 Manuals
+    Qt provides a comprehensive set of command-line and graphical development
+    tools covering the full development workflow: configuring builds,
+    preprocessing assets, generating boilerplate from interface descriptions
+    (Protobuf, gRPC, D-Bus, SCXML, OPC UA, Remote Objects), running and
+    analyzing QML code, managing translations, deploying to target platforms,
+    and importing 3D assets.
 
-    \list
-        \li \l{qdoc-index.html}{QDoc Manual}
-        \li \l{qmake-manual.html}{qmake Manual}
-        \li \l{qtassistant-index.html}{Qt Assistant Manual}
-        \li \l{cmake-manual.html}{Build with CMake}
-        \li \l{qtdesigner-manual.html}{Qt Widgets Designer Manual}
-        \li \l{qtquickeffectmaker-index.html}{Qt Quick Effect Maker}
-        \li \l{qtdistancefieldgenerator-index.html}{Qt Distance Field Generator Manual}
-        \li \l{qtlinguist-index.html}{Qt Linguist Manual}
+    The tools listed on this page are included in the Qt Framework and
+    installed with Qt. For the broader Qt ecosystem, including
+    \l{\QC Documentation}{\QC},
+    IDE extensions, AI tooling, QA tools, and commercial add-ons, see
+    \l{https://www.qt.io/development/tools}{Qt development tools} and
+    \l{https://www.qt.io/quality-assurance}{Qt QA software tools} on qt.io.
+
+    \section1 Build system
+
+    Tools that drive Qt's build configuration and project file generation.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{qmake Manual}{qmake}
+        \li Qt's traditional build system. Generates platform-specific Makefiles
+            from \c{.pro} project files.
+    \row
+        \li \l{qt-cmake}
+        \li Qt's primary build system is CMake. qt-cmake is a CMake wrapper that
+            locates the Qt installation automatically, eliminating the need to
+            set \c{CMAKE_PREFIX_PATH} when configuring Qt projects.
+    \endtable
+
+    \section1 Code generators
+
+    Tools that generate C++ source from class declarations, or from interface
+    and protocol description files.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Using the Meta-Object Compiler (moc)}{Meta-Object Compiler (moc)}
+        \li Processes C++ class declarations that use Qt macros and generates
+            the introspection code that powers signals and slots, dynamic
+            properties, and runtime type information.
+    \row
+        \li \l{Qt D-Bus XML compiler (qdbusxml2cpp)}
+        \li Generates C++ proxy and adaptor classes from a D-Bus introspection
+            XML description.
+    \row
+        \li \l{Using the Qt SCXML Compiler (qscxmlc)}{Qt SCXML Compiler (qscxmlc)}
+        \li Compiles SCXML state machine descriptions into C++ classes that
+            integrate directly into a Qt application.
+    \row
+        \li \l{Qt Remote Objects Compiler}{Qt Remote Objects Compiler (repc)}
+        \li Generates source and replica C++ classes from \c{.rep} interface
+            files for use with \l{Qt Remote Objects}.
+    \row
+        \li \l{The Qt OPC UA data type generator}{Qt OPC UA data type generator (qopcuaxmldatatypes2cpp)}
+        \li Generates C++ data type code from OPC UA NodeSet2 XML files for
+            use with \l{Qt OPC UA}.
+    \row
+        \li \l{The qtgrpcgen Tool}{qtgrpcgen}
+        \li Generates Qt-compatible gRPC client and server stub C++ classes from
+            \c{.proto} files.
+    \row
         \li \l{Qt Jenny: Java Code Generator}
-    \endlist
+        \li Generates C++ wrapper classes for Java APIs, enabling Qt APIs
+            to be called from Java or Kotlin on Android.
+    \row
+        \li \l{User Interface Compiler (uic)}
+        \li Converts \c{.ui} form files created in Qt Designer into C++ header
+            files.
+    \endtable
+
+    \section1 Asset conditioning
+
+    Tools that preprocess and convert source assets into forms consumed by the
+    build or runtime: UI forms, binary resources, shaders, scalable vector
+    graphics, distance field atlases, and animation files.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Resource Compiler (rcc)}
+        \li Embeds application resources such as images, QML files, and
+            translation files, into the application binary or as standalone
+            \c{.rcc} files.
+    \row
+        \li \l{svgtoqml}
+        \li Converts SVG files to QML components using Qt Quick Shapes, enabling
+            scalable vector graphics without a raster image dependency.
+    \row
+        \li \l{QSB Manual}{Qt Shader Baker (qsb)}
+        \li Compiles GLSL shaders into a multi-target package format (\c{.qsb})
+            consumable by Qt's graphics stack across Vulkan, Metal, Direct3D,
+            and OpenGL backends.
+    \row
+        \li \l{Qt Distance Field Generator Manual}{Qt Distance Field Generator}
+        \li Pre-generates distance field texture atlases for text rendering,
+            reducing startup time on resource-constrained embedded targets.
+    \row
+        \li \l{lottietoqml}
+        \li Converts Lottie JSON animation files (as exported from Adobe After
+            Effects and compatible tools) to QML components using
+            \l{Qt Lottie Animation}.
+    \endtable
+
+    \section1 QML compilation
+
+    Tools for compiling QML and JavaScript files to bytecode or native C++
+    ahead of time, reducing startup cost at runtime.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{QML script compiler}
+        \li Compiles functions and expressions in QML and JavaScript files to a
+            byte code that can be interpreted or Just-in-time compiled by the
+            QML engine.
+    \row
+        \li \l{QML type compiler}
+        \li Translates QML types into C++ types that are ahead-of-time compiled
+            as part of the user code.
+    \endtable
+
+    \section1 Formatters and linters
+
+    Tools for analyzing and formatting QML source files.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{qmllint}
+        \li Static analyzer for QML files. Detects binding errors, deprecated
+            API usage, and other common mistakes at development time.
+    \row
+        \li \l{qmlformat}
+        \li Formats QML files in accordance with the \l{QML Coding Conventions}.
+    \row
+        \li \l{QML Language Server}
+        \li An LSP-compatible language server providing code completion,
+            go-to-definition, and live diagnostics in any editor that supports
+            the Language Server Protocol.
+    \row
+        \li \l{qmlcontextpropertydump}
+        \li Scans a C++ source folder for potential context property definitions,
+            and stores them in a format readable by \l{qmllint} and
+            \l{QML Language Server}.
+    \endtable
+
+    \section1 3D assets
+
+    Tools for importing and converting 3D content, and pre-processing physics
+    collision data at build time.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Balsam Asset Import Tool}
+        \li Imports 3D assets in formats such as FBX, glTF 2, and OBJ and
+            converts them to Qt Quick 3D's native format.
+    \row
+        \li \l{Balsam Asset Import Tool#balsam-ui}{Balsam UI}
+        \li A graphical front end for the Balsam tool.
+    \row
+        \li \l{Cooker tool}{Cooker}
+        \li Pre-processes and bakes collision meshes for
+            \l {Qt Quick 3D Physics} at build time, avoiding runtime cost on
+            target devices.
+    \row
+        \li \l{The Material Editor tool}{Material Editor (materialeditor)}
+        \li A GUI tool for authoring \l{CustomMaterial}{CustomMaterials}
+            for \l{Qt Quick 3D}.
+    \row
+        \li \l{Instancer Tool}{Instancer}
+        \li Converts \l{Qt Quick 3D} instancing tables from \l{FileInstancing}
+            XML to a binary format for direct memory mapping at runtime.
+    \endtable
+
+    \section1 Translation and localization
+
+    Tools for extracting, converting, and compiling translation files.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Qt Linguist Manual}{Qt Linguist}
+        \li Qt's translation environment. Provides translators with a
+            workflow for reviewing source strings, entering translations, and
+            validating \c{.ts} files before release.
+    \endtable
+
+    The following tools are part of Qt Linguist.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Using lupdate}{lupdate}
+        \li Extracts translatable strings from C++ and QML source files and
+            creates or updates \c{.ts} translation files.
+    \row
+        \li \l{Using lupdate-pro}{lupdate-pro}
+        \li Variant of \c{lupdate} that reads \c{.pro} project files to locate
+            source files.
+    \row
+        \li \l{Using lrelease}{lrelease}
+        \li Compiles \c{.ts} translation files into binary \c{.qm} format for
+            use at runtime.
+    \row
+        \li \l{Using lrelease-pro}{lrelease-pro}
+        \li Variant of \c{lrelease} that reads \c{.pro} project files.
+    \row
+        \li \l{Using lconvert}{lconvert}
+        \li Converts between translation file formats (TS, XLIFF, PO, and
+            others).
+    \row
+        \li \l{Using ltext2id}{ltext2id}
+        \li Converts text-based translation files to ID-based format.
+    \row
+        \li \l{Using lcheck}{lcheck}
+        \li Validates \c{.ts} files and reports common errors. Suitable for use
+            in CI pipelines.
+    \endtable
+
+    \section1 Testing and diagnostics
+
+    Tools for testing Qt applications, inspecting D-Bus services, and
+    diagnosing runtime issues. For automated GUI and system-level testing,
+    see \l{Squish GUI Test Automation Tool}{Squish}.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Qt D-Bus Viewer}
+        \li A graphical browser for D-Bus services. Inspect objects, interfaces,
+            and properties, and call methods interactively.
+    \row
+        \li \l{qmlpreview}
+        \li Hot-reloads QML files on a connected device or host as they are
+            saved, without restarting the application.
+    \row
+        \li \l{The androidtestrunner Tool}{androidtestrunner}
+        \li Runs Qt auto-tests on Android devices or emulators and collects
+            the results.
+    \row
+        \li \l{The qml utility}
+        \li Loads and runs QML files without a compiled application wrapper.
+            Useful for rapid prototyping and testing individual QML components.
+    \endtable
+
+    \section1 Profiling and tracing
+
+    Tools for collecting and analyzing runtime performance data from Qt and
+    QML applications.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{qmlprofiler}
+        \li Retrieves QML tracing data from an application. The collected data
+            can then be visualized in Qt Creator.
+    \endtable
+
+    \section1 Deployment tools
+
+    Tools for packaging Qt applications for distribution to target platforms.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{The androiddeployqt Tool}
+        \li Assembles a deployable Android APK or AAB from a compiled Qt
+            application, bundling the required Qt libraries and assets.
+    \row
+        \li \l{The macOS Deployment Tool}
+        \li Automates the process of creating a deployable application bundle
+            that contains Qt libraries as private frameworks.
+    \row
+        \li \l{The Windows Deployment Tool}
+        \li Collects all required Qt libraries, plugins, QML
+            modules, and runtime dependencies into a ready-to-run deployment
+            folder.
+    \endtable
+
+    \section1 Qt Application Manager
+
+    Qt Application Manager is the framework for building embedded System UIs
+    that manage, sandbox, and control the lifecycle of applications.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Qt Application Manager}
+        \li The main application manager tool. Acts as a compositing window
+            manager and application lifecycle controller for embedded System
+            UIs.
+    \endtable
+
+    The following command-line utilities are part of the Qt Application Manager
+    suite.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Controller (appman)}
+        \li Remote-controls a running appman instance: start and stop
+            applications, install packages, and query runtime state.
+    \row
+        \li \l{Packager (appman)}
+        \li Creates, signs, and verifies application packages for installation
+            by the application manager.
+    \row
+        \li \l{Package-Server (appman)}
+        \li A lightweight development HTTP server that distributes application
+            packages for over-the-air installation testing.
+    \endtable
+
+    \section1 ActiveQt, Windows COM integration
+
+    Tools for working with COM and ActiveX on Windows: generating C++ bindings
+    from type libraries, producing documentation, and testing ActiveX controls.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{The dumpcpp Tool (ActiveQt)}{dumpcpp}
+        \li Generates C++ namespace and class definitions from a Windows COM
+            type library, allowing Qt/C++ code to drive COM servers.
+    \row
+        \li \l{The dumpdoc Tool (ActiveQt)}{dumpdoc}
+        \li Generates HTML documentation for a COM object from its type library.
+    \row
+        \li \l{IDC - The Interface Description Compiler (ActiveQt)}
+               {Interface Description Compiler (idc)}
+        \li Post-processes Qt plugin DLLs to register them as COM servers and
+            generate the necessary IDL and type library metadata.
+    \row
+        \li \l{testcon - An ActiveX Test Container (ActiveQt)}
+               {ActiveX Test Container (testcon)}
+        \li An interactive container for testing and exploring ActiveX controls.
+    \endtable
+
+    \section1 UI design
+
+    Tools for designing visual effects and application forms.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{Qt Quick Effect Maker}
+        \li A visual node-based tool for designing and previewing custom
+            fragment shader effects for Qt Quick items.
+    \row
+        \li \l{Qt Widgets Designer Manual}{Qt Widgets Designer}
+        \li A WYSIWYG form and widget designer for Qt Widgets applications,
+            producing \c{.ui} files consumed by \c{uic}.
+    \endtable
+
+    \section1 Documentation tools
+
+    Tools for generating and browsing Qt documentation.
+
+    \table
+    \header
+        \li Tool
+        \li Description
+    \row
+        \li \l{QDoc Manual}{QDoc}
+        \li Qt's documentation generator. Reads annotated C++ source and
+            \c{.qdocconf} configuration files to produce HTML or Qt Help output.
+    \row
+        \li \l{Qt Assistant Manual}{Qt Assistant}
+        \li Qt's offline documentation browser. Embeds in applications
+            to provide context-sensitive help.
+    \row
+        \li \l{Generating Qt Help}{qhelpgenerator}
+        \li Compiles Qt Help Project (\c{.qhp}) files into compressed \c{.qch}
+            archives consumable by Qt Assistant and the Qt help framework.
+    \endtable
 
 */
