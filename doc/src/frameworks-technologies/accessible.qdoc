@@ -640,9 +640,9 @@
         text: "y = 8x - 9"
         font.family: "Helvetica"
 
-        Accessibility.role: Accessible.Equation
-        Accessibility.name: myMathEquation.text
-        Accessibility.description: qsTr("Linear equation")
+        Accessible.role: Accessible.Equation
+        Accessible.name: myMathEquation.text
+        Accessible.description: qsTr("Linear equation")
         Accessible.onPressAction: {
             // Highlight the x variable
             ...
@@ -667,9 +667,9 @@
     \qml
     Image {
         source: "pie-chart-683.png"
-        Accessibility.role: Accessible.Chart
-        Accessibility.name: qsTr("Pie chart")
-        Accessibility.description: qsTr("Pie chart that shows the distribution
+        Accessible.role: Accessible.Chart
+        Accessible.name: qsTr("Pie chart")
+        Accessible.description: qsTr("Pie chart that shows the distribution
         of sales from three store locations: Durban representing 60 percent,
         Johannesburg 20 percent, and Cape Town 20 percent")
         Accessible.onPressAction: {
