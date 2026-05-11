@@ -58,6 +58,7 @@ if(NOT QT_BUILD_STANDALONE_TESTS AND NOT QT_BUILD_STANDALONE_EXAMPLES)
     add_subdirectory(doc)
     add_subdirectory(doc/src/cmake)
     add_subdirectory(doc/src/platformintegration)
+    add_subdirectory(doc/src/platforms/android/qtjenny)
     add_dependencies(QtDoc qtcmake)
     add_dependencies(QtDoc qtplatformintegration)
 

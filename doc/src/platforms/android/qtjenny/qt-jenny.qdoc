@@ -11,8 +11,6 @@
     to invoke Java functionality. This is particularly useful on a
     platform with Java system APIs, like Android.
 
-    \annotatedlist qtjenny
-
     \section1 Features
 
     Qt Jenny's features:
@@ -27,6 +25,7 @@
 
     \section1 Examples
     See \l {QtJenny Demo} for an example how to use Qt Jenny.
+
     \section1 How Qt Jenny works
 
     Qt Jenny translates Java APIs to Qt C++ wrappers by the use of the following
@@ -54,7 +53,7 @@
     The example code in \l {QtJenny Demo} uses three generation projects,
     since it uses class extension.
 
-    \image {../images/qtjenny-sequence.drawio.svg} {How it works}
+    \image qtjenny-sequence.drawio.svg {How it works}
 
     \section1 Reference
 
@@ -66,5 +65,17 @@
     permissive licenses:
 
     \annotatedlist attributions-qtjenny
+
+*/
+
+/*!
+\page qtjenny-examples.html
+\title Qt Jenny Examples
+
+Qt Jenny examples:
+
+\list
+\li \l {QtJenny: Generating C++ proxy classes to access Android APIs}
+\endlist
 
 */

@@ -41,7 +41,7 @@
     gradle task in each of \c qtjenny_general, \c qtjenny_callback
     and \c qtjenny_baseclass gradle projects.
 
-    \snippet demos/qtjennydemo/CMakeLists.txt 0
+    \snippet CMakeLists.txt 0
 
     Running the \c qtjenny_consumer project launches the UI application.
 
@@ -53,7 +53,7 @@
 
     Code snippet from the \c GenerateCppCode.kt file of \c qtjenny_general :
 
-    \snippet demos/qtjennydemo/qtjenny_general/app/src/main/java/org/qtproject/qt/qtjenny_general/GenerateCppCode.kt 1
+    \snippet qtjenny_general/app/src/main/java/org/qtproject/qt/qtjenny_general/GenerateCppCode.kt 1
 
     In the case of \c qtjenny_general the annotation processor generates
     the C++ headers to \c qtjenny_output directory. Those C++ headers contain
@@ -64,7 +64,7 @@
     implements. These arguments are parsed in the QtJenny compiler and used
     in the generation process.
 
-    \snippet demos/qtjennydemo/qtjenny_general/app/build.gradle 2
+    \snippet qtjenny_general/app/build.gradle 2
 
 
     \section2 qtjenny_general
@@ -111,7 +111,7 @@
     functions of \c Backend class, that activate the wake lock and set the wake
     lock status text that will be shown to user in the UI.
 
-    \snippet demos/qtjennydemo/Main.qml 3
+    \snippet Main.qml 3
 
     Setting partial wake lock uses the \c WakeLockProxy class that connects
     to \c PowerManager.WakeLock Android API. Setting full wake lock is done

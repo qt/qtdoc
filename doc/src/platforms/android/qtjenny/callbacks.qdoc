@@ -27,7 +27,7 @@ classes in some situations, a prominent example being \c {ContentObserver}.
 The following diagram illustrates the structure and logical division
 between different parts of implementing Java interfaces in C++.
 
-\image {../images/qtjenny-callback-interface.drawio.svg} {How it works}
+\image qtjenny-callback-interface.drawio.svg {How it works}
 
 The way it works is that we use a \c {java.reflect.Proxy}, which wraps
 a Java interface, and dispatches calls of the interface methods
@@ -47,10 +47,10 @@ class, and overrides the virtual functions in it.
 The following diagram illustrates the structure and logical division
 between different parts of extending Java classes in C++.
 
-\image {../images/qtjenny-callback-extended-class.drawio.svg} {How it works}
+\image qtjenny-callback-extended-class.drawio.svg {How it works}
 
 The way it works is that we generate a Java subclass, which then
-invokes a generic \c {invoke()} method of a \c {NativeInvocationHandler], which
+invokes a generic \c {invoke()} method of a \c {NativeInvocationHandler}, which
 is a project-supplied Java class.
 
 The \c {NativeInvocationHandler} calls a native

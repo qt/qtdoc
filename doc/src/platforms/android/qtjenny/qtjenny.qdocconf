@@ -1,0 +1,48 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+include($QT_INSTALL_DOCS/config/exampleurl-qtdoc.qdocconf)
+
+project = QtJenny
+navigation.landingpage = "Qt Jenny: Java Code Generator"
+navigation.landingtitle = Qt Jenny
+description = "Translates Java APIs to Qt C++ wrappers"
+version = $QT_VERSION
+
+# Instruct Clang not to look for a module header
+moduleheader =
+
+depends += qtcore qtquick qtqml qtdoc qtquickcontrols
+sourcedirs += .
+imagedirs  += images
+
+# qtjenny has no dedicated root directory for examples;
+# list examples/demos/qtjennydemo explicitly
+qtjennydemo     = ../../../../../examples/demos/qtjennydemo
+exampledirs     = ${qtjennydemo}
+examples       += ${qtjennydemo}/CMakeLists.txt
+
+# include java files in the list of example sources
+examples.fileextensions =+ *.java \
+                           *.kt \
+                           *.gradle
+
+qhp.projects = QtJenny
+
+qhp.QtJenny.file                = qtjenny.qhp
+qhp.QtJenny.namespace           = org.qt-project.qtjenny.$QT_VERSION_TAG
+qhp.QtJenny.virtualFolder       = qtjenny
+qhp.QtJenny.indexTitle          = "Qt Jenny: Java Code Generator"
+qhp.QtJenny.filterAttributes    = qt $QT_VERSION
+
+qhp.QtJenny.subprojects = manual examples
+
+qhp.QtJenny.subprojects.manual.title = "Qt Jenny"
+qhp.QtJenny.subprojects.manual.indexTitle = "All Qt Jenny Topics"
+qhp.QtJenny.subprojects.manual.type = manual
+
+qhp.QtJenny.subprojects.examples.title = "Examples"
+qhp.QtJenny.subprojects.examples.indexTitle = "Qt Jenny Examples"
+qhp.QtJenny.subprojects.examples.selectors = example
+
+# Autogenerate navigation linking based on "All Qt Jenny Topics":
+navigation.toctitles = "All Qt Jenny Topics"
+navigation.toctitles.inclusive = false
