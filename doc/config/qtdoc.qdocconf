@@ -27,7 +27,8 @@ exampledirs += \
 excludedirs += \
     ../src/snippets \
     ../src/cmake \
-    ../src/platformintegration
+    ../src/platformintegration \
+    ../src/platforms/android/qtjenny
 
 # include java files in the list of example sources
 examples.fileextensions =+ *.java \
