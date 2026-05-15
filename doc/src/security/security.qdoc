@@ -133,17 +133,30 @@
 
     For more information, see \l{Application Permissions}.
 
-    \section1 Extended Security Maintenance for Qt 5.15
+    \section1 Extended Security Maintenance
 
     We acknowledge that your product may have a lifecycle that is longer than
     our usual support window for a given Qt release. We now offer maintenance
     services for customers with an end-of-support (EoS) version of Qt.
 
-    Extended Security Maintenance for \b {Qt 5.15} begins 26th of May 2025. The
-    Extended Security Maintenance subscription service provides you access to
-    Critical Vulnerability and Security (CVS) maintenance patches relating to
+    The Extended Security Maintenance subscription service provides you access
+    to Critical Vulnerability and Security (CVS) maintenance patches relating to
     Qt libraries for select \l{lts-releases}{Long Term Support (LTS) releases}
     after the end-of-support (EoS).
+
+    The ESM service is available for the following versions:
+
+    \table
+    \header
+        \li Version
+        \li ESM since
+    \row
+        \li Qt 5.15 LTS
+        \li 2025-05-26
+    \row
+        \li Qt 6.5 LTS
+        \li 2026-03-30
+    \endtable
 
     For more information, see \l {https://www.qt.io/qt-support/} {Qt Support}.
 */
