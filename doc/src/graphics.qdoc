@@ -13,6 +13,7 @@ abstracts the platforms' underlying graphics APIs so that developers can focus
 on the application code.
 
 \inlineimage rhiarch.png
+             {Qt Rendering Hardware Interface layered between Qt and the target graphics APIs}
 
 The Qt Rendering Hardware Interface (RHI) translates 3D graphics call from
 Qt applications to the available graphics APIs on the target platform.
@@ -69,6 +70,7 @@ content and 3D user interfaces based on Qt Quick. It extends the
 implement 3D content on 2D Qt Quick applications.
 
 \inlineimage blogs/BenchmarkDemoQt6.png
+             {Qt 6 benchmark demo running a Qt Quick 3D scene}
 
 
 \section1 Shader Effects
@@ -86,6 +88,7 @@ The following list contains information about shader effects.
 \endlist
 
 \inlineimage blogs/qtquick3D.png
+             {Qt Quick 3D scene illustrating shader effects}
 
 
 \section1 High-Level Graphics with Qt GUI
