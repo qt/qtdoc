@@ -14,6 +14,7 @@
 #include <QMimeType>
 #include <QPluginLoader>
 #include <QTimer>
+#include <QTemporaryFile>
 
 using namespace Qt::StringLiterals;
 
@@ -60,6 +61,36 @@ AbstractViewer *ViewerFactory::viewer(QFile *file) const
 
     Q_ASSERT(viewer);
     viewer->init(file, m_displayWidget, m_mainWindow);
+    return viewer;
+}
+
+AbstractViewer *ViewerFactory::viewer(const QByteArray &data, const QString &mimeType) const
+{
+    Q_ASSERT(!data.isEmpty());
+
+    QMimeDatabase db;
+    QMimeType qtMime = db.mimeTypeForName(mimeType);
+
+    if (!qtMime.isValid() ||
+        qtMime.name() == QStringLiteral("application/octet-stream")) {
+        qtMime = db.mimeTypeForData(data);
+    }
+
+    // Find via mime type
+    AbstractViewer *viewer = ViewerFactory::viewer(qtMime);
+    QTemporaryFile *tmpFile = new QTemporaryFile(viewer);
+
+    if (!tmpFile->open()) {
+        delete tmpFile;
+        return nullptr;
+    }
+
+    tmpFile->write(data);
+    tmpFile->flush();
+    tmpFile->seek(0);
+
+    Q_ASSERT(viewer);
+    viewer->init(tmpFile, m_displayWidget, m_mainWindow);
     return viewer;
 }
 
