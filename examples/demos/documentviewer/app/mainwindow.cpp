@@ -9,9 +9,13 @@
 #include "recentfilemenu.h"
 #include "translator.h"
 
+#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
 #include <QFileDialog>
 #include <QToolButton>
 #include <QMessageBox>
+#include <QMimeData>
 
 #include <QDir>
 #include <QSettings>
@@ -34,6 +38,8 @@ MainWindow::MainWindow(Translator &translator, QWidget *parent)
     connect(m_recentFiles.get(), &RecentFiles::countChanged, this, [&](int count){
         ui->actionRecent->setText(tr("%n recent files", nullptr, count));
     });
+
+    setAcceptDrops(true);
 
     readSettings();
     m_factory.reset(new ViewerFactory(ui->viewArea, this));
@@ -109,11 +115,111 @@ bool MainWindow::openFile(const QString &fileName)
         connect(ui->actionPrint, &QAction::triggered, m_viewer, &AbstractViewer::print),
         connect(m_viewer, &AbstractViewer::showMessage, statusBar(), &QStatusBar::showMessage)
     };
+    m_viewer->initViewer(ui->actionBack, ui->actionForward, ui->menuHelp->menuAction(), ui->tabWidget);
+    restoreViewerSettings();
+    ui->scrollArea->setWidget(m_viewer->widget());
+    return true;
+}
+
+bool MainWindow::openData(const QByteArray &data, const QString &mimeType)
+{
+    resetViewer();
+
+    m_viewer = m_factory->viewer(data, mimeType);
+
+    for (const QMetaObject::Connection &connection : m_viewerConnections)
+        disconnect(connection);
+
+    m_viewerConnections = {
+        connect(m_viewer, &AbstractViewer::printingEnabledChanged, ui->actionPrint,
+                &QAction::setEnabled),
+        connect(ui->actionPrint, &QAction::triggered, m_viewer, &AbstractViewer::print),
+        connect(m_viewer, &AbstractViewer::showMessage, statusBar(), &QStatusBar::showMessage)
+    };
 
     m_viewer->initViewer(ui->actionBack, ui->actionForward, ui->menuHelp->menuAction(), ui->tabWidget);
     restoreViewerSettings();
     ui->scrollArea->setWidget(m_viewer->widget());
     return true;
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->acceptProposedAction();
+    return;
+}
+
+void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+    event->acceptProposedAction();
+    return;
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    const QMimeData *mime = event->mimeData();
+
+    if (mime->hasUrls()) {
+        for (const QUrl &url : mime->urls()) {
+            if (url.isLocalFile()) {
+                if (openFile(url.toLocalFile())) {
+                    event->acceptProposedAction();
+                    return;
+                }
+            }
+        }
+    }
+
+    for (const QString &format : mime->formats()) {
+        QByteArray data = mime->data(format);
+
+#ifdef Q_OS_WIN
+        if (format.contains(QStringLiteral("FileContents"))) {
+            for (int i = 0; ; ++i) {
+                QString indexed = format + QStringLiteral(";index=") + QString::number(i);
+                data = mime->data(indexed);
+
+                if (data.isEmpty())
+                    break;
+
+                openData(data, QStringLiteral("application/octet-stream"));
+                event->acceptProposedAction();
+                return;
+            }
+        }
+#endif
+
+        if (data.isEmpty())
+            continue;
+
+        else if (format.contains(QStringLiteral("image/"))) {
+            openData(data, format);
+            event->acceptProposedAction();
+            return;
+        }
+
+        else if (mime->hasImage())
+            continue;
+
+        else if (format == QStringLiteral("application/json") ||
+                 format == QStringLiteral("text/plain")) {
+            QString detectedFormat = format;
+
+            if (format == QStringLiteral("text/plain")) {
+                QByteArray trimmed = data.trimmed();
+
+                if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+                    detectedFormat = QStringLiteral("application/json");
+                }
+            }
+
+            openData(data, detectedFormat);
+            event->acceptProposedAction();
+            return;
+        }
+
+    }
+    event->ignore();
 }
 
 void MainWindow::changeEvent(QEvent *event)
