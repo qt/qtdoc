@@ -155,6 +155,7 @@
             (like the pie menu in the pointer handlers example) while using \c timeHeld
             to directly drive an "opening" animation.
             \image ../images/piemenu.gif
+                   {Animated pie menu opening on long press with radial buttons}
         \li \l QQuickItem::clipRect() now provides the region visible in the \l {QQuickItem::viewportItem()}{viewport}
             (the parent \l [QML] Flickable or \l [QML] Window), and can be used to limit scene graph node
             vertices as an optimization in custom items, at the cost of having
