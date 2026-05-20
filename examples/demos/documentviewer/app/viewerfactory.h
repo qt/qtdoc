@@ -35,6 +35,7 @@ public:
     void setDefaultWarning(bool on) { m_defaultWarning = on; }
 
     AbstractViewer *viewer(QFile *file) const;
+    AbstractViewer *viewer(const QByteArray &data, const QString &mimeType) const;
 
     using ViewerMap = QMap<QString, AbstractViewer *>;
     using ViewerList = QList<AbstractViewer *>;
