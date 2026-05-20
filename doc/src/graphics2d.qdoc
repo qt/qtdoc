@@ -44,6 +44,7 @@ Each path can have a stroke defined by a rich set of options. In addition, it ca
 either a solid color, a gradient, an image, or even another Qt Quick item.
 
 \image 2dgraphics/tiger.png
+       {GhostScript tiger rendered with Qt Quick Shapes paths}
 
 The \l{Qt Quick Examples - Shapes}{Qt Quick Shapes example} shows how the classic GhostScript tiger
 can be rendered using paths constructed with Qt Quick Shapes.
@@ -105,6 +106,7 @@ Pregenerating the QML file means it can be precompiled as part of the applicatio
 save some time when loading it.
 
 \image 2dgraphics/weatherforecastexample.png
+       {Weather Forecast example with SVG-derived weather symbols, maps, and icons}
 
 The \l{Weather Forecast Example} shows how \l{svgtoqml} can be used in an application. Weather
 symbols, maps and icons are SVG files that have been converted to QML and loaded as items in the
@@ -149,6 +151,7 @@ images are rasterized on build-time by a third party tool, or at run-time when Q
 is a trade-off between load time and convenience/deployment size.
 
 \image 2dgraphics/vectorimageexample.png
+       {Vector Image example showing one SVG at multiple scales with different renderers}
 
 The \l{Vector Image Example} shows an SVG file displayed at different scales using \l{Image},
 \l{VectorImage} and a QML file generated with \l{svgtoqml}. When displayed at its source size,
@@ -166,6 +169,7 @@ renderer.
 properties.
 
 \image 2dgraphics/lottietoqmlexample.png
+       {Grid of animated Lottie files converted to QML}
 
 The \l{lottietoqml Example} shows how animated Lottie files can be converted to QML. As seen in
 this screenshot, multiple animated images are laid out in a grid. They can each be zoomed without
@@ -183,6 +187,7 @@ The \l{MultiEffect} component allows applying one or more of a pre-defined set o
 to an item.
 
 \image 2dgraphics/quickeffectmaker.png
+       {Qt Quick Effect Maker visual tool for chaining and authoring effects}
 
 For more complex use cases, the \l{Qt Quick Effect Maker} provides a visual tool where you can
 string together pre-defined and custom effects and generate the shader code for use with

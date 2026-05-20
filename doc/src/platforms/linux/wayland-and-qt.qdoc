@@ -132,9 +132,11 @@
   systems.
 
   \image ../images/wayland-multi-process.png
+         {Diagram of a multi-process Wayland client architecture}
   \caption Multi-Process Client Architecture
 
   \image ../images/wayland-single-process-eglfs.png
+         {Diagram of a single-process EGLFS client architecture}
   \caption Single Process Client Architecture
 
   The \l{Qt Wayland Compositor} module is ideal for creating the display server and compositor
@@ -319,6 +321,7 @@
   hardware all the time.
 
   \image ../images/wayland-single-process-develop.png
+         {Diagram of a single-process Wayland client development setup}
   \caption Single-Process Client Development
 
   If you develop on a Linux machine, you can also run the compositor within a
