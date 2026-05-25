@@ -42,6 +42,7 @@ find_package(Qt6 ${PROJECT_VERSION} QUIET CONFIG
         Svg
         Sensors
         Multimedia
+        MultimediaQuick
         Charts
         Pdf
         PdfWidgets
