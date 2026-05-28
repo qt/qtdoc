@@ -114,3 +114,19 @@ include(../edu/config/qtforeducation.qdocconf)
 #   (qdoc) warning: '\generatelist explanations-webtechnologies' no such group
 #   (qdoc) warning: '\generatelist explanations-positioning' no such group
 warninglimit = 2
+
+# Apple platform versions
+macro.macOSMinSdkVersion = $QT_SUPPORTED_MIN_MACOS_SDK_VERSION
+macro.macOSMinXcodeVersion = $QT_SUPPORTED_MIN_MACOS_XCODE_VERSION
+macro.macOSMinVersion = $QT_SUPPORTED_MIN_MACOS_VERSION
+macro.macOSMaxVersionTested = $QT_SUPPORTED_MAX_MACOS_VERSION_TESTED
+
+macro.iOSMinSdkVersion = $QT_SUPPORTED_MIN_IOS_SDK_VERSION
+macro.iOSMinXcodeVersion = $QT_SUPPORTED_MIN_IOS_XCODE_VERSION
+macro.iOSMinVersion = $QT_SUPPORTED_MIN_IOS_VERSION
+macro.iOSMaxVersionTested = $QT_SUPPORTED_MAX_IOS_VERSION_TESTED
+
+macro.visionOSMinSdkVersion = $QT_SUPPORTED_MIN_VISIONOS_SDK_VERSION
+macro.visionOSMinXcodeVersion = $QT_SUPPORTED_MIN_VISIONOS_XCODE_VERSION
+macro.visionOSMinVersion = $QT_SUPPORTED_MIN_VISIONOS_VERSION
+macro.visionOSMaxVersionTested = $QT_SUPPORTED_MAX_VISIONOS_VERSION_TESTED

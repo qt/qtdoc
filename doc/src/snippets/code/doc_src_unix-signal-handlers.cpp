@@ -39,14 +39,18 @@ MyDaemon::MyDaemon(QObject *parent)
     if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sigtermFd))
        qFatal("Couldn't create TERM socketpair");
     snHup = new QSocketNotifier(sighupFd[1], QSocketNotifier::Read, this);
-    connect(snHup, SIGNAL(activated(QSocketDescriptor)), this, SLOT(handleSigHup()));
+    connect(snHup, &QSocketNotifier::activated, this, &MyDaemon::handleSigHup);
     snTerm = new QSocketNotifier(sigtermFd[1], QSocketNotifier::Read, this);
-    connect(snTerm, SIGNAL(activated(QSocketDescriptor)), this, SLOT(handleSigTerm()));
+    connect(snTerm, &QSocketNotifier::activated, this, &MyDaemon::handleSigTerm);
 
     ...
 }
 //! [1]
 
+//! [Init]
+int MyDaemon::sighupFd[2] = {0, 0};
+int MyDaemon::sigtermFd[2] = {0, 0};
+//! [Init]
 
 //! [2]
 static int setup_unix_signal_handlers()

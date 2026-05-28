@@ -6,7 +6,10 @@ import QtQuick
 Rectangle {
 
 //![0]
-Rectangle { color: "blue"; width: parent.width / 3 }
+Rectangle {
+    color: "blue"
+    width: parent.width / 3
+}
 //![0]
 
 //![1]
@@ -31,6 +34,9 @@ function calculateWidth(object : Item) : double
     return w;
 }
 
-Rectangle { color: "blue"; width: calculateWidth(parent) }
+Rectangle {
+    color: "blue"
+    width: calculateWidth(parent)
+}
 //![2]
 }

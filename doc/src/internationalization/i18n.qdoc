@@ -803,10 +803,42 @@
     In QML, use \l QQmlApplicationEngine to automatically load translation files
     from a subdirectory called \c i18n in the directory that contains the main
     QML file. The translation file names must have the prefix \c qml_.
-    For example, \c qml_en_US.qm.
+    For example, \c qml_en_US.qm. See the following CMake code snippets for how
+    to set up a multilingual app:
+
+    \badcode
+    ...
+    find_package(Qt6 6.5 REQUIRED COMPONENTS Quick LinguistTools)
+    qt_standard_project_setup(REQUIRES 6.5 I18N_TRANSLATED_LANGUAGES ja_JP)
+
+    qt_add_qml_module(appmultilingual_demo
+        URI multilingual_demo
+        QML_FILES
+            Main.qml
+    )
+
+    qt_add_translations(appmultilingual_demo
+        TS_FILE_BASE qml
+        TS_FILE_DIR i18n
+        RESOURCE_PREFIX /qt/qml/multilingual_demo/i18n
+    )
+    ...
+    \endcode
 
     Applications reload translations when the \l QJSEngine::uiLanguage or
-    \l {Qt::uiLanguage}{Qt.uiLanguage} property value changes.
+    \l {Qt::uiLanguage}{Qt.uiLanguage} property value changes. The following
+    code snippet changes the language dynamically when the user clicks
+    the button:
+
+    \qml
+    Button {
+        anchors.centerIn: parent
+        text: qsTr("Translate")
+        onClicked: {
+            Qt.uiLanguage = Qt.uiLanguage === "en" ? "ja" : "en"
+        }
+    }
+    \endqml
 
     \section2 C++: Use QTranslator
 

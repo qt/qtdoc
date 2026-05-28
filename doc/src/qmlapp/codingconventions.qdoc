@@ -66,11 +66,12 @@ When handling parameters in signal handlers use functions which name them explic
 
 \section1 JavaScript Code
 
-If the script is a single expression, we recommend writing it inline:
+For better readability and maintainability, we generally declare each property on a separate line,
+even for simple expressions.
 
 \snippet qmlapp/codingconventions/javascript.qml 0
 
-If the script is only a couple of lines long, we generally use a block:
+For script expressions spanning multiple lines, we use a block format:
 
 \snippet qmlapp/codingconventions/javascript.qml 1
 

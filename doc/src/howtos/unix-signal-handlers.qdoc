@@ -46,6 +46,10 @@
 
     \snippet snippets/code/doc_src_unix-signal-handlers.cpp 1
 
+    Initialize the static members in the implementation file:
+
+    \snippet snippets/code/doc_src_unix-signal-handlers.cpp Init
+
     Somewhere else in your startup code, you install your Unix signal
     handlers with sigaction(2).
 
