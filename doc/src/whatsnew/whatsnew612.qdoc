@@ -43,6 +43,14 @@
 
     \section2 Qt Lottie Animation
     \list
+        \li Added support for text layers.
+        \li Added support for gradient strokes.
+        \li Added support for animated paths in ellipses, rects and polystar shapes.
+        \li Added support for stroke and fill animations.
+        \li Added support for Auto Orient on layers.
+        \li Added support for time remapping and stretching.
+        \li Added LottieVectorImageController for additional, Lottie-specific control over
+            animations.
     \endlist
 
     \section2 Qt Multimedia Module
@@ -67,6 +75,8 @@
 
     \section2 Qt Quick Module
     \list
+        \li Added \l{QtQuick.Shapes::ShapePath::strokeGradient}{strokeGradient} property to
+            \l{ShapePath}.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -95,6 +105,14 @@
 
     \section2 Qt Quick VectorImage Module
     \list
+        \li Added \l{QtQuick.VectorImage::VectorImage::asynchronous}{asynchronous} property for
+            loading vector image.
+        \li Added \l{QtQuick.VectorImage::VectorImage::status}{status} property for tracking the
+            progress of loading the image.
+        \li Added \l{QtQuick.VectorImage::VectorImage::retainWhileLoading}{retainWhileLoading}
+            to be used in combination with \c asynchronous.
+        \li Added \l{QtQuick.VectorImage::VectorImage::generatedItem}{generatedItem} property for
+            accessing the generated subtree.
     \endlist
 
     \section2 Qt Serial Port Module
