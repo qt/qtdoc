@@ -120,6 +120,9 @@ include(../edu/config/qtforeducation.qdocconf)
 #   (qdoc) warning: '\generatelist explanations-programminglanguages' no such group
 warninglimit = 3
 
+# Report warnings for images without alt text
+reportmissingalttextforimages = true
+
 # Autogenerate navigation linking based on "All Topics":
 navigation.toctitles = "All Topics"
 navigation.toctitles.inclusive = false
