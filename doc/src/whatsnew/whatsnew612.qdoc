@@ -415,6 +415,16 @@
           \l{AnimatedImage}.
     \endlist
 
+    \section2 Qt Labs StyleKit Module
+    \list
+      \li Introduced \l{QStyleKitStyle}, a \l{QStyle} subclass that
+          applies StyleKit-based styling to \l{QWidget} applications.
+      \li The style now provides implementations for the
+          \l[QtQuickControls]{RoundButton} and
+          \l[QtQuickControls]{MenuSeparator} Qt Quick Controls
+          types, replacing the generic fallback.
+    \endlist
+
     \section2 Qt TaskTree Module
     \list
       \li \l{QtTaskTree::For} gained an overload accepting \c qsizetype
