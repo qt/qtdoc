@@ -349,6 +349,12 @@
 
     \section2 Qt Test Module
     \list
+      \li Benchmark results now include variance and standard deviation
+          across measurement backends (time, CPU ticks, events, Valgrind).
+      \li The plain-text benchmark logger now formats floating-point
+          results using scientific notation for consistency.
+      \li When non-existent test functions are specified on the command
+          line alongside valid ones, the valid tests are still executed.
     \endlist
 
     \section2 Qt VirtualKeyboard Module
