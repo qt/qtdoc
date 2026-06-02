@@ -17,6 +17,28 @@
 
     \section1 New Features in Qt 6.12
 
+    \section2 Qt Canvas Painter Module
+    \list
+      \li The \l{Qt Canvas Painter} module is moving out of Technology Preview
+          state, and is now fully maintained (supported).
+      \li The module gained \l{QtCanvas2D}, a new QML API backed by Qt Canvas
+          Painter. This API remains in technology preview.
+      \li \l{QCanvasPath} gained an
+          \l{QCanvasPath::addPath(QStringView, const QTransform &)}{addPath()}
+          overload for parsing SVG path strings directly.
+      \li \l{QCanvasPainter} gained \l{QCanvasPainter::FillRule} and
+          \l{QCanvasPainter::setFillRule()} to support the EvenOdd fill
+          rule for path fills.
+      \li \l{QCanvasGradient} gained
+          \l{QCanvasGradient::setImage()}{setImage()} to create gradients
+          directly from an image.
+      \li \l{QCanvasRadialGradient} gained constructors and
+          \l{QCanvasRadialGradient::setInnerCenterPosition()}{setInnerCenterPosition()}
+          /
+          \l{QCanvasRadialGradient::setOuterCenterPosition()}{setOuterCenterPosition()}
+          to support non-symmetric (two-center) radial gradients.
+    \endlist
+
     \section2 Qt Core Module
     \list
     \endlist
