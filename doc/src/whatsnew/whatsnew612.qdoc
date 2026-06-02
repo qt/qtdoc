@@ -112,6 +112,31 @@
 
     \section2 Qt Graphs Module
     \list
+      \li Qt Canvas Painter can now be used as a rendering backend for
+          2D graphs. Enable it at configure time with the
+          \c{-feature-graphs-2d-high-performance-backend} configure flag.
+      \li Added \l[QtGraphs]{QLogValueAxis} (\l{QtGraphs::}{LogValueAxis}
+          in QML), a new logarithmic axis type for 2D graphs.
+      \li \l[QtGraphs]{QXYSeries} gained
+          \l[QtGraphs]{QXYSeries::declarativePoints}{declarativePoints},
+          \l[QtGraphs]{QXYSeries::declarativePointHint}{declarativePointHint},
+          \l[QtGraphs]{QXYSeries::declarativeMin}{declarativeMin}, and
+          \l[QtGraphs]{QXYSeries::stepSize}{stepSize} properties for
+          declarative data input from QML.
+      \li \l[QtGraphs]{QPieSeries} gained
+          \l[QtGraphs]{QPieSeries::sliceData}{sliceData} and
+          \l[QtGraphs]{QPieSeries::sliceLabels}{sliceLabels} properties
+          for declarative data input from QML.
+      \li \l[QtGraphs]{QValueAxis} and \l[QtGraphs]{QLogValueAxis}
+          gained a
+          \l[QtGraphs]{QValueAxis::labelPostFormat}{labelPostFormat}
+          property for customizing axis label text.
+      \li \l[QtGraphs]{Q3DGraphsWidgetItem} gained
+          \l[QtGraphs]{Q3DGraphsWidgetItem::panEnabled}{panEnabled} and
+          \l[QtGraphs]{Q3DGraphsWidgetItem::panModeEnabled}{panModeEnabled}
+          properties to enable panning in 3D graphs.
+      \li \l[QtGraphs]{QDateTimeAxis} gained a
+          \l[QtGraphs]{QDateTimeAxis::tickCount}{tickCount} property.
     \endlist
 
     \section2 Qt GRPC Module
