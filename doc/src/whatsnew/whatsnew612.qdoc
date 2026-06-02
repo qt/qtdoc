@@ -371,6 +371,20 @@
 
     \section2 Qt Widgets Module
     \list
+      \li \l{QTreeView} gained \l{QTreeView::itemDecorationRect()}, which
+          returns the bounding rectangle of the decoration (icon) for a
+          given index.
+      \li \l{QStyle::StandardPixmap} gained
+          \l{QStyle::SP_TabScrollLeftButton},
+          \l{QStyle::SP_TabScrollRightButton},
+          \l{QStyle::SP_TabScrollUpButton}, and
+          \l{QStyle::SP_TabScrollDownButton} for tab bar scroll buttons.
+      \li \l{QDialogButtonBox} gained \l{QDialogButtonBox::standardButtonText()}
+          and \l{QDialogButtonBox::standardButtonShortcut()}, which return the
+          text and the shortcut of a \l{QDialogButtonBox::StandardButton}
+          respectively.
+      \li On macOS, \l{QMainWindow}'s unified title and toolbar mode has
+          been modernized to use effect views for background styling.
     \endlist
 
     \section2 Qt XML Module
