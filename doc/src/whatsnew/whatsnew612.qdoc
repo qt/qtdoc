@@ -470,6 +470,13 @@
 
     \section2 Qt WebEngine Module
     \list
+      \li \l{QWebEngineNavigationRequest} gained a
+          \l{QWebEngineNavigationRequest::}{userInitiated}
+          property to distinguish user-initiated navigations from
+          programmatic ones.
+      \li \l{QWebEngineProfile} gained
+          \l{QWebEngineProfile::}{setCryptoModulePasswordFunction()}
+          to provide a callback for unlocking PKCS#11 hardware tokens.
     \endlist
 
     \section2 Qt PDF Module
