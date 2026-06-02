@@ -382,6 +382,10 @@
 
     \section2 Qt Quick 3D Physics Module
     \list
+      \li Added five joint types for constraining physical bodies:
+          \l{DistanceJoint}, \l{FixedJoint}, \l{PrismaticJoint},
+          \l{RevoluteJoint}, and \l{SphericalJoint}. All share the
+          common base type \l{PhysicsJoint}.
     \endlist
 
     \section2 Qt Quick VectorImage Module
