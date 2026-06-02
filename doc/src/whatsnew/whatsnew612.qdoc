@@ -222,6 +222,23 @@
 
     \section2 Qt Multimedia Module
     \list
+      \li \l{QScreenCapture} and \l{QWindowCapture} gained a
+          \l{QScreenCapture::}{frameRate} property to control the
+          capture frame rate. The same property is available on the
+          \l{ScreenCapture::frameRate}{ScreenCapture} and
+          \l{WindowCapture::frameRate}{WindowCapture} QML types.
+      \li \l{QAudioSource} and \l{QAudioSink} gained
+          \l{QAudioSource::nativePeriodFrameCount}{nativePeriodFrameCount()}
+          and
+          \l{QAudioSource::setNativePeriodFrameCount()}{setNativePeriodFrameCount()}
+          for querying and controlling the native audio buffer period size.
+      \li Added \l{QMediaCaptureSession::setNativeVideoSource()} and the
+          \l GStreamerVideoSource QML element, enabling a custom GStreamer
+          pipeline to feed video frames into a \l{QMediaCaptureSession}.
+      \li \l{QMediaMetaData::ThumbnailImage} is deprecated; backends will
+          no longer populate it. Use \l{QMediaMetaData::}{CoverArtImage} instead.
+      \li \l{QSoundEffect} now always emits \l{QSoundEffect::}{sourceChanged} after
+          \l{QSoundEffect::}{setSource()}, even when the URL does not change.
     \endlist
 
     \section2 Qt Network Module
