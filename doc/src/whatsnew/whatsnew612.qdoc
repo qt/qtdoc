@@ -240,6 +240,19 @@
           range within that header.
     \endlist
 
+    \section2 Qt OpenAPI Module
+    \list
+      \li \l{qt_add_openapi_client()} gained \c GENERATE_DOCUMENTATION,
+          \c DOCUMENTATION_OUTPUT_DIRECTORY options to generate Doxygen based
+          documentation alongside the client code.
+      \li Added support for the
+          \l{oneOf}{https://swagger.io/docs/specification/v3_0/data-models/oneof-anyof-allof-not/#oneof}
+          schema feature.
+      \li Renamed generated model property getters. Q_PROPERTY now exposes
+          the same property names as those used in the YAML file.
+      \li Generated client API methods are no longer virtual.
+    \endlist
+
     \section2 Qt Positioning Module
     \list
       \li \l{QGeoSatelliteInfo::SatelliteSystem} gained entries for the
