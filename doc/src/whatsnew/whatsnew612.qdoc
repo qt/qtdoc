@@ -141,6 +141,21 @@
 
     \section2 Qt GRPC Module
     \list
+        \li Added client-side request compression. The new
+            \l{QtGrpc::CompressionAlgorithm} enum can be selected through
+            \l{QGrpcChannelOptions::setRequestCompression()} and
+            \l{QGrpcCallOptions::setRequestCompression()} to compress outgoing
+            messages.
+        \li Added \l{QGrpcChannelOptions::}{supportedCompressionAlgorithms()},
+            \l{QGrpcChannelOptions::}{acceptedCompressionAlgorithms()} and
+            \l{QGrpcChannelOptions::}{setAcceptedCompressionAlgorithms()} to
+            \l QGrpcChannelOptions to control which compression algorithms the
+            client advertises in the \c{grpc-accept-encoding} request header and
+            is willing to accept in server responses.
+        \li Added \l{QGrpcChannelOptions::}{maximumReceiveMessageSize()} and
+            \l{QGrpcChannelOptions::}{setMaximumReceiveMessageSize()} to
+            QGrpcChannelOptions and QGrpcCallOptions to bound the size of
+            incoming messages.
     \endlist
 
     \section2 Qt GUI Module
