@@ -458,6 +458,16 @@
     \list
     \endlist
 
+    \section2 Qt PDF Module
+    \list
+      \li \l{QPdfSearchModel} gained a
+          \l{QPdfSearchModel::}{status} property and a
+          \l{QPdfSearchModel::}{Status} enum to track whether a search
+          is in progress, idle, or complete.
+      \li \l{QPdfView} now supports control-mouse-wheel zooming centered
+          on the cursor position.
+    \endlist
+
     \section2 Qt WebView Module
     \list
     \endlist
