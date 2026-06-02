@@ -17,6 +17,13 @@
 
     \section1 New Features in Qt 6.12
 
+    \section2 Qt Bluetooth Module
+    \list
+      \li The Android backend now respects the advertising minimum and
+          maximum interval parameters provided via \l QLowEnergyAdvertisingParameters
+          when starting the BTLE advertising.
+    \endlist
+
     \section2 Qt Canvas Painter Module
     \list
       \li The \l{Qt Canvas Painter} module is moving out of Technology Preview
