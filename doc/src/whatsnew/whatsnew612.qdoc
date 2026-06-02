@@ -48,6 +48,62 @@
 
     \section2 Qt Core Module
     \list
+      \li \l{QRangeModel}'s \l{QRangeModel::}{RowOptions} and
+          \l{QRangeModel::}{ItemAccess} customization points were extended to
+          support \c headerData(), and per-row and per-item \c flags().
+          \l{QRangeModel} gained \l{QRangeModel#Drag'n'drop handling}
+          {drag'n'drop handling} support with custom and type-safe mime type
+          handling in both customization points, and with
+          \l{QRangeModel::}{supportedDragActions} and
+          \l{QRangeModel::}{supportedDropActions} properties.
+          \l{QRangeModel} now also implements \l{QRangeModel::}{sort()} with
+          support of a \l{QRangeModel::}{sortCollator} for locale-aware sorting,
+          and \l{QRangeModel::}{match()} for fast content matching.
+      \li Added \l{qSharedPointerStaticCast} as a new free function for
+          static casts of \l{QSharedPointer}.
+      \li \l{QSortFilterProxyModel} gained the
+          \l{QSortFilterProxyModel::DataChangeRelevance}{DataChangeRelevance}
+          enum and the virtual
+          \l{QSortFilterProxyModel::dataChangeRelevances()}{dataChangeRelevances()}
+          method, allowing subclasses to control whether a source
+          \c dataChanged signal triggers re-filtering or re-sorting.
+      \li The new \l{QAbstractItemModel::compareData()} is a new protected API for
+          comparing two QVariants in a way that is specifically designed for item
+          view use cases.
+      \li \l{qfloat16} gained increment and decrement operators and a
+          unary \l{qfloat16::operator+()}{operator+}.
+      \li \l{QVariant} gained constructors from rvalue references.
+      \li \l{QMap} and \l{QMultiMap} now implement all six relational
+          operators.
+      \li \l{QVarLengthArray} gained
+          \l{QVarLengthArray::removeAt()}{removeAt()}, matching the
+          \l{QList} API.
+      \li \l{QTimeZone} now accepts CLDR-canonical IANA alias IDs in its
+          constructor and in
+          \l{QTimeZone::isTimeZoneIdAvailable()}{isTimeZoneIdAvailable()}.
+          \l{QTimeZone::availableTimeZoneIds()} now includes those aliases.
+      \li \l{QFile::copy()} now accepts an optional
+          \l{QFileDevice::Permissions} argument.
+          \l{QSaveFile} now defers applying the requested permissions until
+          \l{QSaveFile::commit()}{commit()}.
+      \li \l{Qt::compareThreeWay()} gained an overload for
+          \c{std::pair}.
+      \li \l{QCalendarPermission} gained a
+          \l{QCalendarPermission::AccessMode}{WriteOnly} access mode.
+      \li \l{QFileSystemWatcher} can now use \c inotify on FreeBSD 15 and
+          later.
+      \li \l{QStandardPaths} on macOS now includes the system-wide
+          \c{/Library/Preferences} directory in
+          \l{QStandardPaths::standardLocations()}{standardLocations()}.
+          On iOS, \l{QStandardPaths::}{PublicShareLocation} returns the correct path and
+          \l{QStandardPaths::}{TemplatesLocation} is properly reported as unsupported.
+      \li \l{QEasingCurve} gained
+          \l{QEasingCurve::cubicBezier()}{cubicBezier()}, a convenience
+          helper for creating cubic Bezier easing curves.
+      \li \l{QJsonObject} gained \l{QJsonObject::cbegin()}{cbegin()} and
+          \l{QJsonObject::cend()}{cend()} STL-style const iterators.
+          \l{QJsonDocument} gained rvalue constructors from
+          \l{QJsonArray} and \l{QJsonObject}.
     \endlist
 
     \section2 Qt D-Bus Module
