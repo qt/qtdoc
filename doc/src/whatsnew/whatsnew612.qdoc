@@ -338,10 +338,28 @@
 
     \section2 Qt Quick 3D Module
     \list
+      \li Added the \l{SkyMaterial} QML type for rendering a
+          procedural sky and generating image-based lighting data.
+      \li Added \l{QuadTextureProvider} to \l{QtQuick3D.Helpers} import.
+          A QML type used to render a quad texture using a
+          custom fragment shader.
+      \li \l{Model} gained an \l{Model::}{instancingLodFactor} property for manual
+          level-of-detail control when using GPU instancing.
+      \li \l{ExtendedSceneEnvironment} gained
+          \l{ExtendedSceneEnvironment::}{ssrThickness} and
+          \l{ExtendedSceneEnvironment::}{ssrMaxSteps} properties for finer control
+          of screen-space reflections.
+      \li \l{RuntimeLoader} gained \l{RuntimeLoader::}{query()} and
+          \l{RuntimeLoader::}{queryAll()} methods for finding objects
+          by name or type within a dynamically loaded scene.
     \endlist
 
     \section2 Qt Quick 3D XR Module
     \list
+      \li Added support for mono view configuration
+          (\c XR_VIEW_CONFIGURATION_TYPE_PRIMARY_MONO), enabling Qt
+          Quick 3D XR applications to run on 2D XR devices such as
+          AR glasses.
     \endlist
 
     \section2 Qt Quick 3D Physics Module
