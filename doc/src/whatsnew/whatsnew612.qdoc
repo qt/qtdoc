@@ -318,8 +318,30 @@
 
     \section2 Qt Quick Module
     \list
-        \li Added \l{QtQuick.Shapes::ShapePath::strokeGradient}{strokeGradient} property to
-            \l{ShapePath}.
+      \li Added the \l[QML]{Color} QML singleton, providing utility
+          functions for color manipulation.
+      \li \l{AnimatedImage} type gained \l{AnimatedImage::}{loops},
+          \l{AnimatedImage::}{finishBehavior} properties, and
+          a \l{AnimatedImage::}{finished()} signal.
+      \li The \l[QML]{Text} type now correctly renders all
+          \l{QTextCharFormat::UnderlineStyle} values (such as
+          \c DashUnderline, \c WaveUnderline, and \c SpellCheckUnderline)
+          that can be applied via HTML markup in \c RichText mode or
+          through \l{QTextCharFormat} in the C++ API. Previously all
+          underline styles were rendered as solid lines.
+      \li Added \l{ShapePath::}{strokeGradient}
+          property to \l{ShapePath} type.
+      \li \l{Rectangle::color} can now be reset to its default value
+          (white) by assigning \c undefined to the property in QML.
+      \li The \l[QML]{FolderListModel} type in \l {Qt.labs.folderlistmodel} gained
+          \l[QML]{FolderListModel}{showDot} and
+          \l[QML]{FolderListModel}{showDotDot} properties.
+      \li The \l{VectorImage} type in \l{QtQuick.VectorImage} gained
+          \l{QtQuick.VectorImage::VectorImage::asynchronous}{asynchronous},
+          \l{QtQuick.VectorImage::VectorImage::status}{status},
+          \l{QtQuick.VectorImage::VectorImage::retainWhileLoading}{retainWhileLoading},
+          and \l{QtQuick.VectorImage::VectorImage::generatedItem}{generatedItem}
+          properties.
     \endlist
 
     \section2 Qt Quick Controls Module
@@ -390,18 +412,6 @@
           \l{DistanceJoint}, \l{FixedJoint}, \l{PrismaticJoint},
           \l{RevoluteJoint}, and \l{SphericalJoint}. All share the
           common base type \l{PhysicsJoint}.
-    \endlist
-
-    \section2 Qt Quick VectorImage Module
-    \list
-        \li Added \l{QtQuick.VectorImage::VectorImage::asynchronous}{asynchronous} property for
-            loading vector image.
-        \li Added \l{QtQuick.VectorImage::VectorImage::status}{status} property for tracking the
-            progress of loading the image.
-        \li Added \l{QtQuick.VectorImage::VectorImage::retainWhileLoading}{retainWhileLoading}
-            to be used in combination with \c asynchronous.
-        \li Added \l{QtQuick.VectorImage::VectorImage::generatedItem}{generatedItem} property for
-            accessing the generated subtree.
     \endlist
 
     \section2 Qt Serial Port Module
