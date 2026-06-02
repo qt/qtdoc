@@ -288,11 +288,29 @@
 
     \section2 Qt Qml Module
     \list
-        \li Added new method insertRow to QQmlTreemodel to insert rows into
-        specific positions in the model.
-        \li Added new method moveRows to QQmlTreemodel to rearrange the
-        structure of the model.
-    \endlist
+      \li \l{QQmlEngine} gained
+          \l{QQmlEngine::}{setExternalSingletonInstance()} to register an
+          externally created C++ object as a QML singleton.
+          \l{QML_UNCREATABLE} can now be combined with \l{QML_SINGLETON}.
+      \li \l[QML]{string}{string.arg()} in QML now accepts multiple arguments,
+          consistent with JavaScript conventions.
+      \li Added \l{Qt::escapeHtml()}{Qt.escapeHtml()} global function for
+          escaping HTML special characters in QML.
+      \li When instantiating a component with missing required properties,
+          the engine now reports an error instead of silently constructing
+          an incomplete object.
+      \li \l{QtQml.Models} import: The \l{SortFilterProxyModel}{SortFilterProxyModel}
+          gained \l{RangeFilter},
+          \l{RegExpFilter}, \l{AllOfFilter}, and \l{AnyOfFilter}
+          composite filter types, and an improved \l{FunctionFilter}
+          accepting role names as separate arguments.
+      \li \l{Qt.labs.qmlmodels} import: \l[QML]{TreeModel} gained
+          \l{TreeModel::}{insertRow()} and \l{TreeModel::}{moveRows()} methods.
+      \li \l{Qt Qml Compiler}: \c{QQmlSA::FixSuggestion::hint()},
+          \c{QQmlSA::FixSuggestion::setHint()} were removed.
+          \c{QQmlSA::FixSuggestion::fixDescription()} was renamed to
+          \l{QQmlSA::FixSuggestion::description()}.
+      \endlist
 
     \section2 Qt Quick Module
     \list
