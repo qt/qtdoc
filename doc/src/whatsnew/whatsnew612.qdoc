@@ -248,6 +248,12 @@
 
     \section2 Qt Protobuf Module
     \list
+      \li Qt properties in the generated message classes are now marked with
+          the \l{The Property System}{FINAL modifier} by default. This
+          enables QML tooling to apply performance optimizations and generate
+          more efficient code.
+          Use the new option \c GENERATE_NON_FINAL_PROPERTIES
+          of \l{qt_add_protobuf}{qt_add_protobuf()} to revert to the old behavior.
     \endlist
 
     \section2 Qt Qml Module
