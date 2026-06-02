@@ -160,6 +160,26 @@
 
     \section2 Qt GUI Module
     \list
+      \li Added indirect rendering support to \l{QRhi}. Buffers of type
+          \c IndirectDrawBuffer can now be created, and indirect draw calls
+          issued via \l QRhiCommandBuffer.
+      \li \l{QRhi} gained the \l{QRhi::}{ShaderDrawParameters} feature flag to query
+          support for shader draw parameter built-ins (e.g. \c gl_DrawID).
+      \li The \l{QRhi} Vulkan backend now uses \c VK_EXT_device_fault to
+          report additional details on device loss.
+      \li \l{QAccessibilityHints} gained a \l{QAccessibilityHints}{motionPreference}
+          property for reduced-motion accessibility preferences.
+      \li \l{QStyleHints} gained \l{QStyleHints}{toolTipWakeUpDelay}, allowing
+          applications to query or adjust the delay before a tooltip
+          appears.
+      \li \l{QImageReader} gained \l{QImageReader::}{effectiveSize()}, which
+          returns the image size respecting \l{QImageReader::}{autoTransform()}.
+      \li \l{QTextCursor::deletePreviousChar()} (Backspace) now correctly
+          handles multi-code-unit emoji sequences.
+      \li On Android, pressing the back key now calls \c moveTaskToBack()
+          instead of exiting the application.
+      \li Added \l{Qt::InputMethodHint::ImhNoFullscreen} to request that
+          the input method does not occupy the full screen.
     \endlist
 
     \section2 Qt HTTP Server Module
