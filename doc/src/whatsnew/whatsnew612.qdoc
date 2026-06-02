@@ -415,6 +415,15 @@
           \l{AnimatedImage}.
     \endlist
 
+    \section2 Qt TaskTree Module
+    \list
+      \li \l{QtTaskTree::For} gained an overload accepting \c qsizetype
+          for the iteration count. Use this as a shortcut for
+          \c{For(RepeatInterator(n))}.
+      \li \l{QtTaskTree::Forever} is now
+          implicitly convertible to \l{QtTaskTree::Group}.
+    \endlist
+
     \section2 Qt Test Module
     \list
       \li Benchmark results now include variance and standard deviation
