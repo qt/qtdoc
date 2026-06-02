@@ -792,6 +792,18 @@
 
     \section3 Wayland Client on Linux
     \list
+      \li Added support for the \c XdgSessionManager Wayland protocol
+          extension for session restoration.
+      \li The bradient client-side decoration theme now shows minimize,
+          maximize, and close button hints.
+    \endlist
+
+    \section3 Wayland Compositor
+    \list
+      \li Added support for \c linux-dmabuf-v1 stable protocol, version 4.
+          To use it, select "linux-dmabuf-v1" as the client buffer
+          integration. The previous (version 3) implementation can still be
+          used under the name "linux-dmabuf-unstable-v1" for compatibility.
     \endlist
 
     \section3 HarmonyOS
