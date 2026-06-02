@@ -124,6 +124,11 @@
 
     \section2 Qt HTTP Server Module
     \list
+      \li \l{QHttpServerConfiguration} gained
+          \l{QHttpServerConfiguration::setMaximumConnections()}{setMaximumConnections()}
+          to limit the total number of simultaneous connections, and
+          \l{QHttpServerConfiguration::setMaximumConnectionsPerHost()}{setMaximumConnectionsPerHost()}
+          to limit connections per IP address.
     \endlist
 
     \section2 Qt Lottie Animation
