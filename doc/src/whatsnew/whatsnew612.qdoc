@@ -285,6 +285,24 @@
 
     \section2 Qt Quick Controls Module
     \list
+      \li Added the \c QtQuick.Controls.Native style.
+          \c{import QtQuick.Controls.Native} chooses the best-suited style for
+          the platform you compile for at compile time. It therefore combines the
+          benefits of compile-time style selection with the possibility to have a
+          platform-specific look-and-feel for your application.
+      \li \l{ToolTip} gained a \l{ToolTip::}{policy} property to control automatic
+          tooltip visibility.
+      \li \l{ComboBox} gained a \l{ComboBox::}{highlightOnHover} property.
+      \li \l{RangeSlider} gained a \l{RangeSlider::}{crossingEnabled} property to allow or
+          prevent the two handles from crossing each other.
+      \li \l[QtQuickControls]{Menu} gained a \l{Menu::}{separatorsCollapsible} property.
+      \li \l[QtQuickControls]{MenuItem} now displays the keyboard shortcut from an
+          associated \l[QtQuickControls]{Action}.
+      \li \l {SearchField} now allows navigation with keys if its TextInput is empty.
+      \li A subset of the existing \l {TextField} APIs were added to \l
+        {SearchField} for convenience: selectTextByMouse, selectedText, selectionStart,
+        selectionEnd, cursorPosition, select(), selectWord(), and deselect().
+
     \endlist
 
     \section2 Qt Quick Dialogs Module
