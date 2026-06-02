@@ -156,16 +156,33 @@
           to limit connections per IP address.
     \endlist
 
-    \section2 Qt Lottie Animation
+    \section2 Qt Lottie Animation Module
     \list
-        \li Added support for text layers.
-        \li Added support for gradient strokes.
-        \li Added support for animated paths in ellipses, rects and polystar shapes.
-        \li Added support for stroke and fill animations.
-        \li Added support for Auto Orient on layers.
-        \li Added support for time remapping and stretching.
-        \li Added LottieVectorImageController for additional, Lottie-specific control over
-            animations.
+      \li Added support for the Lottie
+          \l{https://lottiefiles.github.io/lottie-docs/layers/#text-layer}{text layer},
+          including glyph path rendering.
+      \li Added support for animated dimensions in Lottie
+          \l{https://lottiefiles.github.io/lottie-docs/shapes/#ellipse}{ellipse},
+          \l{https://lottiefiles.github.io/lottie-docs/shapes/#rectangle}{rectangle},
+          and
+          \l{https://lottiefiles.github.io/lottie-docs/shapes/#polystar}{polystar}
+          shape elements, as well as gradient strokes, layer masks, and the layer Auto Orient
+          feature.
+      \li Added support for the Lottie
+          \l{https://lottiefiles.github.io/lottie-docs/layers/#time-remapping}{time remapping}
+          and
+          \l{https://lottiefiles.github.io/lottie-docs/breakdown/precomps/#speeding-up-and-slowing-down}{time stretching}
+          features.
+      \li Introduced \l{LottieVectorImageController} for controlling Lottie
+          animation playback in a \l{VectorImage}. The type exposes
+          \l{LottieVectorImageController::currentFrame}{currentFrame},
+          \l{LottieVectorImageController::frameRate}{frameRate},
+          \l{LottieVectorImageController::startFrame}{startFrame}, and
+          \l{LottieVectorImageController::endFrame}{endFrame} properties,
+          along with playback methods such as
+          \l{LottieVectorImageController::play()}{play()},
+          \l{LottieVectorImageController::pause()}{pause()}, and
+          \l{LottieVectorImageController::gotoAndPlay()}{gotoAndPlay()}.
     \endlist
 
     \section2 Qt Multimedia Module
