@@ -1,0 +1,107 @@
+# tasklist.qdocconf
+# ─────────────────────────────────────────────────────────────────────────────
+# QDoc macro set for multi-step Quick Start Guide widgets.
+# Navigation and progress bar are driven by tasklist.js.
+#
+# USAGE IN .qdoc SOURCE
+# ─────────────────────
+#   \tasklist {Build your first Qt Quick application} {in 5 steps}
+#
+#   \taskstep {qs1}{step-install}{Install Qt and Qt Quick}{checked}
+#   \taskstep {qs1}{step-qml}{Create Your First QML File}{}
+#   \taskstep {qs1}{step-cpp}{Create C++ Main File}{}
+#   \taskstep {qs1}{step-cmake}{Configure Build System}{}
+#   \taskstep {qs1}{step-build}{Build and Run}{}
+#
+#   \tasksection {step-install}
+#   Step content as normal QDoc markup...
+#   \endtasksection
+#
+#   \tasksection {step-qml}
+#   ...
+#   \endtasksection
+#
+#   \endtasklist
+#
+# MACRO ARGUMENTS
+# ───────────────
+# \taskstep  \1  group id  — shared name="" for the radio group (unique per guide on the page)
+#            \2  step id   — unique HTML id for this step's radio input
+#            \3  label     — visible step title in the sidebar
+#            \4  checked   — write "checked" for the default step, empty for others
+#
+# Previous/Next navigation and the progress bar are injected automatically by
+# tasklist.js based on the order of \taskstep declarations.
+#
+# HOW IT WORKS
+# ────────────
+# All radio inputs and sidebar labels are flat siblings inside .qs-guide.
+# CSS grid places labels into the left column and panels into the right column.
+# A hard-stop gradient on .qs-guide provides the two-tone column background.
+# Each \taskstep emits an inline <style> that uses :checked ~ sibling selectors
+# to show the active panel and highlight the active sidebar label —
+# exactly the same mechanism as the built-in \tab macro.
+#
+# WIRING INTO YOUR PROJECT
+# ────────────────────────
+# Add to your main .qdocconf:
+#      include(tasklist.qdocconf)
+# The HTML.stylesheets, HTML.headerstyles, HTML.scripts, and HTML.headerscripts
+# variables are set automatically by this file via +=.
+# ─────────────────────────────────────────────────────────────────────────────
+
+HTML.stylesheets   += style/tasklist.css
+HTML.headerstyles  += "<link rel=\"stylesheet\" href=\"style/tasklist.css\">"
+HTML.scripts       += style/tasklist.js
+HTML.headerscripts += "<script src=\"scripts/tasklist.js\" defer></script>"
+
+
+# ── \tasklist{title}{subtitle} ───────────────────────────────────────────────
+# Opens the guide wrapper and emits the header. The grid layout and two-tone
+# column background are applied via CSS on this element.
+macro.tasklist.HTML = \
+    "<div class=\"qs-guide\">" \
+        "<div class=\"qs-header\">" \
+            "<h1 class=\"qs-title\">\1</h1>" \
+            "<p class=\"qs-subtitle\">\2</p>" \
+        "</div>"
+
+
+# ── \taskstep{group}{id}{label}{checked} ─────────────────────────────────────
+# Emits a hidden radio input, a sidebar label, and an inline <style> block.
+# The style block uses two :checked ~ sibling rules:
+#   1. Show this step's content panel
+#   2. Highlight this step's sidebar label as active
+macro.taskstep.HTML = \
+    "<input class=\"qs-input\" translate=\"no\" type=\"radio\"" \
+           " name=\"guide_\1\" id=\"\2\" \4/>" \
+    "<label class=\"qs-step-label\" for=\"\2\">\3</label>" \
+    "<style translate=\"no\">" \
+        "#\2:checked ~ .qs-panel.\2{display:flex;}" \
+        "#\2:checked ~ .qs-step-label[for=\"\2\"]{" \
+            "border-left-color:var(--qs-accent);" \
+            "background:var(--qs-active-bg);" \
+            "color:var(--qs-heading-color);}" \
+    "</style>"
+
+
+# ── \tasksection{id} ────────────────────────────────────────────────────────
+# Opens a content panel div. The id must match the step id used in \taskstep.
+# display:none by default; the inline <style> from \taskstep switches it to
+# display:flex when the corresponding radio is checked.
+macro.tasksection.HTML = \
+    "<div class=\"qs-panel \1\">"
+
+
+
+# ── \endtasksection ─────────────────────────────────────────────────────────
+macro.endtasksection.HTML = \
+    "</div>"
+
+
+# ── \endtasklist ────────────────────────────────────────────────────────────────
+# Closes the guide and emits the progress bar. Progress is driven by
+# tasklist.js, loaded via HTML.headerscripts in the qdocconf.
+macro.endtasklist.HTML = \
+    "<div class=\"qs-progress-wrap\"><div class=\"qs-progress-fill\"></div></div>" \
+    "</div>"

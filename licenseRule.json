@@ -112,6 +112,11 @@
                 "file type": "",
                 "spdx": ["LicenseRef-Qt-Commercial OR BSD-3-Clause"]
             },
+            "doc/config/style/.*\\.(js|css)": {
+                "comment": "Default",
+                "file type": "documentation",
+                "spdx": ["LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only"]
+            },
             "dist/": {
                 "comment": "Default",
                 "file type": "documentation",

@@ -1,0 +1,184 @@
+/* tasklist.css
+ * Styles for the QDoc \tasklist … \endtasklist macro set.
+ * Uses CSS custom properties defined in offline2.css (style-conv) so colors
+ * automatically follow the Qt documentation light/dark theme.
+ */
+
+.qs-guide {
+  --qs-accent:   #41cd52;
+  --qs-nav-width: 210px;
+  --qs-mono:     'Droid Sans Mono', monospace;
+}
+
+/* ── Outer wrapper — CSS grid ────────────────────────────────────────────── */
+.qs-guide {
+  font-family:  'Titillium Web', Arial, Helvetica, sans-serif;
+  font-size:    16px;
+  font-weight:  400;
+  color:        var(--main-color);
+  overflow:     hidden;
+  margin:       2em 0;
+  display:      grid;
+  grid-template-columns: var(--qs-nav-width) 1fr;
+  background:   linear-gradient(
+    to right,
+    var(--content-bg-color-alt) var(--qs-nav-width),
+    var(--content-bg-color)     var(--qs-nav-width)
+  );
+  border: 1px solid var(--content-border-color);
+}
+
+/* ── Header — spans both columns ─────────────────────────────────────────── */
+.qs-header {
+  grid-column:   1 / -1;
+  padding:       16px 20px 12px;
+  background:    var(--main-bg-color);
+  border-bottom: 1px solid var(--content-border-color);
+}
+.qs-title {
+  margin: 0 0 3px;
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--main-color-alt);
+}
+.qs-subtitle {
+  margin: 0;
+  color: var(--main-color);
+  font-size: .875em;
+  opacity: .7;
+}
+
+/* ── Hidden inputs and injected <style> elements ─────────────────────────── */
+.qs-input,
+style { display: none; }
+
+/* ── Sidebar labels (column 1) ───────────────────────────────────────────── */
+.qs-step-label {
+  grid-column:  1;
+  display:      flex;
+  align-items:  center;
+  padding:      9px 14px;
+  cursor:       pointer;
+  font-size:    .875em;
+  line-height:  1.4;
+  color:        var(--main-color);
+  border-left:  3px solid transparent;
+  border-right: 1px solid var(--content-border-color);
+  transition:   background .15s, border-color .15s;
+  user-select:  none;
+}
+.qs-step-label:hover {
+  background: var(--content-active-color);
+}
+/* Active state applied by inline :checked ~ style from \taskstep */
+
+/* ── Content panels (column 2) ───────────────────────────────────────────── */
+.qs-panel {
+  grid-column:    2;
+  grid-row:       2 / span 100;
+  display:        none;
+  flex-direction: column;
+  padding:        18px 20px 0;
+  min-height:     280px;
+}
+.qs-panel h2:first-child {
+  margin: 0 0 4px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--main-color-alt);
+}
+.qs-panel > p:first-of-type {
+  margin-top: 4px;
+  color: var(--main-color);
+  font-size: .875em;
+  opacity: .7;
+}
+
+/* Code blocks — match Qt doc pre style */
+.qs-panel pre,
+.qs-panel code {
+  font-family: var(--qs-mono);
+  font-size:   .8em;
+}
+.qs-panel pre {
+  background:  #3a4055;
+  color:       #ffffff;
+  line-height: 1.5;
+  overflow-x:  auto;
+  padding:     25px;
+  margin:      12px 0 0;
+  flex:        1;
+}
+
+/* ── Footer nav (inside each panel) ─────────────────────────────────────── */
+.qs-footer {
+  display:         flex;
+  justify-content: space-between;
+  padding:         12px 0 14px;
+  margin-top:      auto;
+  border-top:      1px solid var(--content-border-color);
+}
+.qs-btn {
+  display:     inline-flex;
+  align-items: center;
+  gap:         5px;
+  padding:     6px 14px;
+  border:      1px solid var(--content-border-color);
+  background:  var(--content-active-color);
+  color:       var(--main-color);
+  font-family: 'Titillium Web', Arial, Helvetica, sans-serif;
+  font-size:   .875em;
+  font-weight: 300;
+  cursor:      pointer;
+  transition:  opacity .15s;
+  user-select: none;
+}
+.qs-btn:hover {
+  opacity: .75;
+}
+.qs-btn.qs-hidden {
+  visibility:     hidden;
+  pointer-events: none;
+}
+.qs-btn-next {
+  background:   var(--qs-accent);
+  border-color: var(--qs-accent);
+  color:        #000;
+  font-weight:  600;
+}
+
+/* ── Progress bar ────────────────────────────────────────────────────────── */
+.qs-progress-wrap {
+  grid-column: 1 / -1;
+  height:      4px;
+  background:  var(--content-active-color);
+}
+.qs-progress-fill {
+  height:     100%;
+  background: var(--qs-accent);
+  width:      0%;
+  transition: width .3s ease;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 580px) {
+  .qs-guide {
+    grid-template-columns: 1fr;
+    background: var(--main-bg-color);
+  }
+  .qs-step-label {
+    grid-column:   1;
+    display:       inline-flex;
+    width:         auto;
+    border-left:   none;
+    border-right:  none;
+    border-bottom: 2px solid transparent;
+    font-size:     .8em;
+    padding:       7px 10px;
+  }
+  .qs-panel {
+    grid-column: 1;
+    grid-row:    auto;
+  }
+  .qs-progress-wrap { grid-column: 1; }
+}

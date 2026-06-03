@@ -140,3 +140,6 @@ macro.visionOSMinSdkVersion = $QT_SUPPORTED_MIN_VISIONOS_SDK_VERSION
 macro.visionOSMinXcodeVersion = $QT_SUPPORTED_MIN_VISIONOS_XCODE_VERSION
 macro.visionOSMinVersion = $QT_SUPPORTED_MIN_VISIONOS_VERSION
 macro.visionOSMaxVersionTested = $QT_SUPPORTED_MAX_VISIONOS_VERSION_TESTED
+
+include(config/tasklist.qdocconf)
+include(config/checklist.qdocconf)

@@ -1,0 +1,89 @@
+# checklist.qdocconf
+# ─────────────────────────────────────────────────────────────────────────────
+# QDoc macro set for interactive checklist widgets.
+# Checkboxes strike through items when checked; a per-section progress bar
+# and percentage are updated by checklist.js.
+#
+# USAGE IN .qdoc SOURCE
+# ─────────────────────
+#   \checklist {Migration Checklist} {Track your progress migrating from Qt Widgets to Qt Quick}
+#
+#   \checklistsection {Planning}
+#   \list
+#   \li Identify all UI components in your Widget application
+#   \li List custom QWidget subclasses that need conversion
+#   \li Document existing signal/slot connections
+#   \endlist
+#   \endchecklistsection
+#
+#   \checklistsection {Architecture Setup}
+#   \list
+#   \li Set up Qt Quick project structure
+#   \li Configure CMake/qmake for QML module
+#   \endlist
+#   \endchecklistsection
+#
+#   \endchecklist
+#
+# MACRO ARGUMENTS
+# ───────────────
+# \checklist  \1  title    — heading displayed above the checklist
+#                  \2  subtitle — subheading describing the checklist purpose
+#
+# \checklistsection \1  title   — section heading; each section has its own
+#                                 progress bar and percentage counter
+#
+# Items use standard \list / \li QDoc commands. checklist.js injects
+# checkboxes at runtime so \c{}, \l{}, and other QDoc commands work freely.
+#
+# HOW IT WORKS
+# ────────────
+# checklist.js injects a checkbox <input> and wraps content in a <label> for
+# each <li> at runtime. The CSS :checked ~ span rule handles the strikethrough.
+# checklist.js counts checked vs total checkboxes per .cl-section and updates
+# the progress bar width and percentage text.
+#
+# WIRING INTO YOUR PROJECT
+# ────────────────────────
+# Add to your main .qdocconf:
+#      include(checklist.qdocconf)
+# The HTML.stylesheets, HTML.headerstyles, HTML.scripts, and HTML.headerscripts
+# variables are set automatically by this file via +=.
+# ─────────────────────────────────────────────────────────────────────────────
+
+HTML.stylesheets   += style/checklist.css
+HTML.headerstyles  += "<link rel=\"stylesheet\" href=\"style/checklist.css\">"
+HTML.scripts       += style/checklist.js
+HTML.headerscripts += "<script src=\"scripts/checklist.js\" defer></script>"
+
+
+# ── \checklist{title}{subtitle} ─────────────────────────────────────────
+macro.checklist.HTML = \
+    "<div class=\"cl-guide\">" \
+        "<div class=\"cl-header\">" \
+            "<h1 class=\"cl-title\">\1</h1>" \
+            "<p class=\"cl-subtitle\">\2</p>" \
+        "</div>"
+
+
+# ── \checklistsection{title} ─────────────────────────────────────────────────
+# Opens a section card with its own header and progress bar.
+# Items are written using standard \list / \li QDoc commands. checklist.js
+# injects a checkbox <input> into each <li> at runtime.
+macro.checklistsection.HTML = \
+    "<div class=\"cl-section\">" \
+        "<div class=\"cl-section-header\">" \
+            "<h2 class=\"cl-section-title\">\1</h2>" \
+            "<span class=\"cl-percent\">0% complete</span>" \
+        "</div>" \
+        "<div class=\"cl-progress-wrap\"><div class=\"cl-progress-fill\"></div></div>"
+
+
+# ── \endchecklistsection ─────────────────────────────────────────────────────
+macro.endchecklistsection.HTML = \
+    "</div>"
+
+
+# ── \endchecklist ─────────────────────────────────────────────────────────────
+macro.endchecklist.HTML = \
+    "</div>"

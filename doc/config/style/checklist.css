@@ -1,0 +1,132 @@
+/* checklist.css
+ * Styles for the QDoc \checklist … \endchecklist macro set.
+ * Uses CSS custom properties defined in offline2.css (style-conv) so colors
+ * automatically follow the Qt documentation light/dark theme.
+ */
+
+.cl-guide {
+  --cl-accent:  #41cd52;
+  --cl-border:  #ccc;
+}
+
+/* ── Outer wrapper ───────────────────────────────────────────────────────── */
+.cl-guide {
+  font-family: 'Titillium Web', Arial, Helvetica, sans-serif;
+  font-size:   16px;
+  font-weight: 400;
+  color:       var(--main-color);
+  background:  var(--main-bg-color);
+  border:      1px solid var(--cl-border);
+  padding:     20px 24px;
+  margin:      2em 0;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.cl-title {
+  margin: 0 0 4px;
+  font-size: 1.5em;
+  font-weight: 300;
+  color: var(--main-color-alt);
+}
+.cl-subtitle {
+  margin: 0 0 20px;
+  color: var(--main-color);
+  font-size: .875em;
+  line-height: 1.25em;
+  opacity: .7;
+}
+
+/* ── Section card ───────────────────────────────────────────────────────── */
+.cl-section {
+  background:    var(--content-bg-color);
+  border:        1px solid var(--cl-border);
+  padding:       16px 20px 8px;
+  margin-bottom: 12px;
+}
+.cl-section:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Section header ─────────────────────────────────────────────────────── */
+.cl-section-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     baseline;
+  margin-bottom:   8px;
+}
+.cl-section-title {
+  margin: 0;
+  font-size: 1.35em;
+  font-weight: 300;
+  color: var(--main-color-alt);
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.cl-percent {
+  font-size:   .8em;
+  color:       var(--main-color);
+  opacity:     .6;
+  flex-shrink: 0;
+}
+
+/* ── Progress bar ───────────────────────────────────────────────────────── */
+.cl-progress-wrap {
+  height:        4px;
+  background:    var(--content-active-color);
+  margin-bottom: 14px;
+}
+.cl-progress-fill {
+  height:     100%;
+  background: var(--cl-accent);
+  width:      0%;
+  transition: width .25s ease;
+}
+
+/* ── Item list — override Qt global .context ul > li list-arrow ─────────── */
+.cl-section ul {
+  list-style:       none;
+  list-style-image: none !important;
+  margin:           0;
+  padding:          0;
+}
+.cl-section li {
+  list-style:       none;
+  list-style-image: none !important;
+  margin-left:      0 !important;
+  margin-top:       0 !important;
+  margin-bottom:    2px;
+}
+
+/* ── Item label ─────────────────────────────────────────────────────────── */
+.cl-item-label {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  padding:     6px 4px;
+  cursor:      pointer;
+  line-height: 1.25em;
+  transition:  background .12s;
+  user-select: none;
+  color:       var(--main-color);
+}
+.cl-item-label:hover {
+  background: var(--content-bg-color-alt);
+}
+
+/* ── Checkbox — use native rendering for cross-browser reliability ────────── */
+.cl-checkbox {
+  flex-shrink:    0;
+  width:          15px;
+  height:         15px;
+  cursor:         pointer;
+  vertical-align: middle;
+  accent-color:   var(--cl-accent);
+}
+
+/* ── Strikethrough on checked items ─────────────────────────────────────── */
+.cl-checkbox:checked ~ span {
+  text-decoration: line-through;
+  opacity:         .5;
+}
