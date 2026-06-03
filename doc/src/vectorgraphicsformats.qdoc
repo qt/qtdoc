@@ -30,8 +30,7 @@ As a baseline, Qt supports the static features of the SVG 1.2 Tiny profile. A de
 features supported by this profile is available in the
 \l{https://www.w3.org/TR/SVGMobile12/}{SVG 1.2 Tiny specification}.
 
-In addition, some extended features are supported. These are currently only supported by the
-software rasterizer and not the hardware-accelerated renderer in \l{VectorImage} or \l{svgtoqml}.
+In addition, certain \l[QtSvg]{extended features} are supported.
 
 Interactive features of SVG are not supported, but interaction can easily be implemented in either
 \l{Qt Quick} or \l{Qt Widgets}. Some specific animation types are also supported, using either the
@@ -42,162 +41,180 @@ expect. Unsupported features will be ignored as far as it is possible, so that S
 on unsupported features will still show, but they may have omissions or errors.
 
 \table
-\header
-    \li High-level Feature
-    \li Software Rasterizer
-    \li VectorImage
-    \li Comment
 \row
-    \li Transformations
-    \li Yes
-    \li Yes
-    \li
+    \li \b{Transforms}
+    \li \b{Supported}
 \row
-    \li Basic shapes
-    \li Yes
-    \li Yes
-    \li Circles, rectangles, ellipses, lines, polylines and polygons
+    \li Position
+    \li 👍
 \row
-    \li Arbitrary shapes
-    \li Yes
-    \li Yes
-    \li Composite paths built from arbitrary bezier curves and lines.
+    \li Scale
+    \li 👍
 \row
-    \li Raster images
-    \li Yes
-    \li Yes
-    \li Both embedded and stored on file system
+    \li Rotation
+    \li 👍
 \row
-    \li Indirections
-    \li Yes
-    \li Yes
-    \li Specifically the "use" element
+    \li Skew
+    \li 👍
 \row
-    \li Conditional processing
-    \li Yes
-    \li Yes
-    \li Specifically the "switch" element
+    \li \b{Shapes}
+    \li \b{Supported}
 \row
-    \li Simple text layouts
-    \li Yes
-    \li Yes
-    \li
+    \li Ellipse/circle
+    \li 👍
 \row
-    \li Embedded fonts
-    \li Yes
-    \li Yes
-    \li
+    \li Rectangle
+    \li 👍
 \row
-    \li Solid color fills
-    \li Yes
-    \li Yes
-    \li
+    \li Polylines and polygons
+    \li 👍
 \row
-    \li Gradient fills
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Customizable strokes
-    \li Yes
-    \li Yes
-    \li Customizable width, line caps, line joins, and dashes
-\row
-    \li Cosmetic strokes
-    \li Yes
-    \li No
-    \li Outlines that do not scale with the view
-\row
-    \li Gradient strokes
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Multimedia
-    \li No
-    \li No
-    \li
-\row
-    \li Scripting
-    \li No
-    \li No
-    \li
-\row
-    \li Linking
-    \li No
-    \li No
-    \li
-\endtable
-
-In addition, the following extended features are supported from SVG 1.1 and SVG 2.0:
-
-\table
-\header
-    \li High-level Feature
-    \li Software Rasterizer
-    \li VectorImage
-    \li Comment
-\row
-    \li Masks
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Clip paths
-    \li No
-    \li No
-    \li
-\row
-    \li Patterns
-    \li Yes
-    \li No
-    \li
+    \li Bezier paths
+    \li 👍
 \row
     \li Markers
-    \li Yes
-    \li No
-    \li
+    \li 👍
 \row
-    \li Reusable symbols
-    \li Yes
-    \li Yes
-    \li
+    \li Symbols
+    \li 👍
 \row
-    \li Post-processing filters
-    \li Yes
-    \li Yes
-    \li feColorMatrix, feFlood, feGaussianBlur, feOffset and feMerge.
-\endtable
-
-And finally, the following property animations are supported (animations not listed here are
-currently unsupported). Animations should be exported in the CSS keyframes format for best results.
-
-\table
-\header
-    \li Animation Feature
-    \li Software Rasterizer
-    \li VectorImage
-    \li Comment
+    \li \b{Shape renderable}
+    \li \b{Supported}
 \row
-    \li Transform animations
-    \li Yes
-    \li Yes
-    \li
+    \li Fill
+    \li 👍
 \row
-    \li Color animations
-    \li Yes
-    \li Yes
-    \li
+    \li Stroke
+    \li 👍
 \row
-    \li Opacity animations
-    \li Yes
-    \li Yes
-    \li
+    \li Linear gradient
+    \li 👍
 \row
-    \li Offset-path animations
-    \li Yes
-    \li Yes
-    \li Animating item position and orientation along a path
+    \li Radial gradient
+    \li 👍
+\row
+    \li Conical gradient
+    \li 👍
+\row
+    \li Patterns
+    \li 👍
+\row
+    \li Gradient stroke
+    \li 👍
+\row
+    \li Stroke caps
+    \li 👍
+\row
+    \li Stroke joins
+    \li 👍
+\row
+    \li Stroke styles (dashed, etc.)
+    \li 👍
+\row
+    \li Cosmetic strokes
+    \li 👍
+\row
+    \li \b{Text}
+    \li \b{Supported}
+\row
+    \li Spans
+    \li 👍
+\row
+    \li Glyphs
+    \li 👍
+\row
+    \li \b{Post-processing effects}
+    \li \b{Supported}
+\row
+    \li Masks
+    \li 👍
+\row
+    \li \e{feColorMatrix}
+    \li 👍
+\row
+    \li \e{feFlood}
+    \li 👍
+\row
+    \li \e{feOffset}
+    \li 👍
+\row
+    \li \e{feGaussianBlur}
+    \li 👍
+\row
+    \li \e{feMerge}
+    \li 👍
+\row
+    \li Remaining filters
+    \li 🚫
+\row
+    \li \b{CSS animations}
+    \li \b{Supported}
+\row
+    \li Colors
+    \li 👍
+\row
+    \li Gradients
+    \li 👍
+\row
+    \li Opacity
+    \li 👍
+\row
+    \li Transforms
+    \li 👍
+\row
+    \li \e{Offset-path}
+    \li 👍
+\row
+    \li Motion paths
+    \li 👍
+\row
+    \li Easing curves
+    \li 👍
+\row
+    \li Remaining properties
+    \li 🚫
+\row
+    \li \b{SMIL animations}
+    \li \b{Supported}
+\row
+    \li \e{animateTransform}
+    \li 👍
+\row
+    \li \e{animateColor}
+    \li 👍
+\row
+    \li \e{animate}
+    \li 🚫
+\row
+    \li \e{animateMotion}
+    \li 🚫
+\row
+    \li \e{set}
+    \li 🚫
+\row
+    \li \b{Other}
+    \li \b{Supported}
+\row
+    \li Raster images
+    \li 👍
+\row
+    \li \e{Use} element
+    \li 👍
+\row
+    \li \e{Switch} element
+    \li 👍
+\row
+    \li Clip paths
+    \li 🚫
+\row
+    \li Multimedia
+    \li 🚫
+\row
+    \li Scripting
+    \li 🚫
+\row
+    \li Linking
+    \li 🚫
 \endtable
 
 \section1 File Format: Lottie
@@ -213,7 +230,8 @@ tool.
 In order to use Lottie files with VectorImage, the \c vectorimageformats plugin included with the
 \l{Qt Lottie Animation} module must be deployed together with the application. In addition,
 the \l{QtQuick.VectorImage::VectorImage::assumeTrustedSource}{assumeTrustedSource} property of
-the VectorImage must be set to \c true.
+the VectorImage must be set to \c true. Detailed control of the animation playback is available in
+\l{LottieVectorImageController}.
 
 The \l{lottietoqml} tool can be used to pre-convert Lottie source files to QML. An example of this
 can be found in the \l{lottietoqml Example}.
@@ -222,147 +240,180 @@ The following is a list of the high-level features supported by the LottieAnimat
 rasterizer) and VectorImage (also including pre-converting files using \l{lottietoqml}.)
 
 \table
-\header
-    \li High-level Feature
-    \li LottieAnimation
-    \li VectorImage
-    \li Comment
 \row
-    \li Transformations
-    \li Yes
-    \li Yes
-    \li
+    \li \b{Transforms}
+    \li \b{Supported}
 \row
-    \li Shapes
-    \li Yes
-    \li Yes
-    \li
+    \li Position
+    \li 👍
 \row
-    \li Solid fills
-    \li Yes
-    \li Yes
-    \li
+    \li Scale
+    \li 👍
 \row
-    \li Gradient fills
-    \li Yes
-    \li Yes
-    \li
+    \li Rotation
+    \li 👍
 \row
-    \li Customizable strokes
-    \li Yes
-    \li Yes
-    \li Customizable width, line caps, line joins, and dashes
+    \li Skew
+    \li 👍
 \row
-    \li Gradient strokes
-    \li No
-    \li No
-    \li
+    \li Opacity
+    \li 👍
 \row
-    \li Image layers
-    \li Yes
-    \li Yes
-    \li Embedded data only
+    \li Anchor point
+    \li 👍
 \row
-    \li Precomposition layers
-    \li Yes
-    \li Yes
-    \li
+    \li Auto orient
+    \li 👍
 \row
-    \li Path trimming
-    \li Yes
-    \li Yes
-    \li
+    \li \b{Shapes}
+    \li \b{Supported}
 \row
-    \li Mattes
-    \li Yes
-    \li Yes
-    \li
+    \li Ellipse/circle
+    \li 👍
 \row
-    \li Masks
-    \li No
-    \li No
-    \li
+    \li Rectangle
+    \li 👍
 \row
-    \li Repeaters
-    \li Yes
-    \li No
-    \li
+    \li Rounded rectangle
+    \li 👍
+\row
+    \li Polystar
+    \li 👍
+\row
+    \li Bezier paths
+    \li 👍
+\row
+    \li Trimmed paths
+    \li 👍
+\row
+    \li \b{Shape renderable}
+    \li \b{Supported}
+\row
+    \li Fill
+    \li 👍
+\row
+    \li Stroke
+    \li 👍
+\row
+    \li Linear gradient
+    \li 👍
+\row
+    \li Radial gradient
+    \li 👍
+\row
+    \li Gradient stroke
+    \li 👍
+\row
+    \li Stroke caps
+    \li 👍
+\row
+    \li Stroke joins
+    \li 👍
+\row
+    \li Stroke styles (dashed, etc.)
+    \li 👍
+\row
+    \li \b{Text}
+    \li \b{Supported}
+\row
+    \li Fill
+    \li 👍
+\row
+    \li Stroke
+    \li 🚫
+\row
+    \li Fonts
+    \li 👍
+\row
+    \li Glyphs
+    \li 👍
+\row
+    \li \b{Post-processing effects}
+    \li \b{Supported}
+\row
+    \li Alpha mattes
+    \li 👍
+\row
+    \li Luminance mattes
+    \li 👍
 \row
     \li Layer effects
-    \li Fill effect only
-    \li No
-    \li
+    \li 🚫
 \row
-    \li Text layers
-    \li No
-    \li No
-    \li
+    \li \b{Merged paths}
+    \li \b{Supported}
 \row
-    \li Multimedia
-    \li No
-    \li No
-    \li Audio and camera layers not supported.
+    \li Add
+    \li 👍
+\row
+    \li Subtract
+    \li 🚫
+\row
+    \li Intersect
+    \li 🚫
+\row
+    \li \b{Masks}
+    \li \b{Supported}
+\row
+    \li Mask path
+    \li 👍
+\row
+    \li Union
+    \li 👍
+\row
+    \li Additional operations
+    \li 🚫
+\row
+    \li \b{Animations}
+    \li \b{Supported}
+\row
+    \li Colors
+    \li 👍
+\row
+    \li Gradients
+    \li 👍
+\row
+    \li Opacity
+    \li 👍
+\row
+    \li Transforms
+    \li 👍
+\row
+    \li Path interpolation
+    \li 👍
+\row
+    \li Trims
+    \li 👍
+\row
+    \li Markers
+    \li 🚫
+\row
+    \li Merged paths
+    \li 🚫
+\row
+    \li Remaining properties
+    \li 🚫
+\row
+    \li Easing curves
+    \li 👍
+\row
+    \li Time stretch
+    \li 👍
+\row
+    \li Time remap
+    \li 👍
+\row
+    \li \b{Other}
+    \li \b{Supported}
+\row
+    \li Raster images
+    \li 👍
+\row
+    \li \e{Precomp} layers
+    \li 👍
 \row
     \li Expressions
-    \li No
-    \li No
-    \li
-\row
-    \li 3D Layers
-    \li No
-    \li No
-    \li
-\row
-    \li Time remapping
-    \li No
-    \li No
-    \li
-\endtable
-
-In principle, almost any property in the Lottie format can be animated. For extensive support
-of animatable properties, use LottieAnimation. The VectorImage type (and \l{lottietoqml}) provides
-support for a selected subset of properties that are commonly used to create animations.
-
-\table
-\header
-    \li High-level Feature
-    \li LottieAnimation
-    \li VectorImage
-    \li Comment
-\row
-    \li Transform animations
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Path trim animations
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Color animations
-    \li Yes
-    \li Yes
-\row
-    \li Opacity animations
-    \li Yes
-    \li Yes
-    \li
-\row
-    \li Path animations
-    \li Yes
-    \li Yes
-    \li Morphing animations of control points of shapes.
-\row
-    \li Movement along paths
-    \li Yes
-    \li Yes
-    \li Animating item position and orientation along a path
-\row
-    \li Other property animations
-    \li Yes
-    \li No
-    \li
+    \li 🚫
 \endtable
 
 \section1 File Format: Font Files as a Vector Image Format
