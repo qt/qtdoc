@@ -465,6 +465,34 @@
 
     \section1 Tools
 
+    \section2 QML Command Line Tools
+
+    \list
+      \li Added the \c{--only-explicit-categories} option to \l qmllint to suppress all
+          default warnings.
+      \li Non-registered types used in properties and methods of registered types are now
+          recorded in qmltypes as "opaque" types. This avoids warnings in tooling, allows
+          auto-completion and go-to-definition to work in \l qmlls, and enables binding
+          compilation to C++ in more places.
+      \li Changed \l qmllint and \l qmlls to only warn once on unknown types, instead of
+          generating warnings foreach binding and usage of the unknown type.
+      \li Added new warnings to \l qmllint and \l qmlls for:
+        \list
+          \li Shadowed QML type members.
+          \li Incompatible file selected variants (opt-in).
+          \li Recursively instantiated QML types.
+          \li QML types referred by their filename instead of their qmldir or
+              \c {QT_QML_SOURCE_TYPENAME} name.
+          \li Javascript usages of the \c{new Array()} overload taking more than 1 argument.
+        \endlist
+      \li Added functionality in QML Language Server to:
+          \list
+            \li Wrap Components into a Loader via a code action.
+            \li Find C++ definitions of types declared via \c{QML_FOREIGN}.
+            \li Show progress during background rebuilds of QML type information.
+          \endlist
+    \endlist
+
     \section2 QDoc Documentation Generator
     \list
     \endlist
