@@ -150,6 +150,14 @@
             an insecure process environment, such as untrusted directories in the
             \c{PATH} or \c{QT_PLUGIN_PATH} environment variables, are outside the
             scope of Qt's security responsibility.
+        \li \b{Depend on private Qt headers}: Use of private headers is contrary
+            to the intended purpose of Qt and is not a supported configuration.
+            Weaknesses reachable only through the use of private headers fall
+            outside the intended purpose and supported conditions of use on which
+            Qt's cybersecurity risk assessment is based, and are therefore not
+            treated as vulnerabilities. We nonetheless welcome reports about
+            such weaknesses, as they may indicate opportunities to improve the
+            robustness of Qt.
     \endlist
 
     Furthermore, reports for cybersecurity issues need a realistic attack scenario that
