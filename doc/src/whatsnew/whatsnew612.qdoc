@@ -295,6 +295,12 @@
     \list
     \endlist
 
+    \section2 Qt Quick Test Module
+    \list
+      \li \l{TestCase}'s \l{TestCase::}{optional} property is deprecated in
+          \l{Qt Quick Test}. Use \l{TestCase::}{skip()} instead.
+    \endlist
+
     \section2 Qt Quick 3D Module
     \list
     \endlist
