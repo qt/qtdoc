@@ -425,6 +425,41 @@
     \section2 Build System Changes
 
     \list
+      \li Building and using Qt now requires CMake 3.25 or later.
+      \li Added the \c{static_compiler_runtime} CMake feature to statically
+          link the C++ runtime libraries. On Windows (MSVC) this uses the
+          Hybrid CRT method, removing the dependency on the Visual C++
+          Redistributable.
+      \li The following CMake API has been taken out of Technology Preview
+          and is now fully supported:
+          \l{qt_finalize_project}{qt_finalize_project()},
+          \l{qt_extract_metatypes}{qt_extract_metatypes()},
+          \l{qt_deploy_translations}{qt_deploy_translations()},
+          \l{QT_TARGETS_FOLDER},
+          \l{QT_RESOURCE_PREFIX},
+          \l{QT_DEPLOY_SUPPORT}, and
+          \l{QT_ENABLE_VERBOSE_DEPLOYMENT}.
+      \li The \c{qt_no_entrypoint} target property has been renamed to
+          \l{QT_NO_ENTRYPOINT}. The old name is still recognized for
+          backward compatibility.
+      \li Added CMake policy \c{QTP0006}. When set to \c{NEW},
+          \l{qt_generate_wayland_protocol_client_sources}{qt_generate_wayland_protocol_client_sources()}
+          and
+          \l{qt_generate_wayland_protocol_server_sources}{qt_generate_wayland_protocol_server_sources()}
+          default to
+          \c{PRIVATE_CODE} instead of \c{PUBLIC_CODE}.
+      \li \l{qt_add_shaders}{qt_add_shaders()} progress messages are now logged at
+          \c{DEBUG} level instead of \c{NOTICE}, suppressing them from
+          the default build output. Pass \c{--log-level=NOTICE} to
+          CMake to restore the previous behaviour.
+      \li \l{qt_add_qml_module}{qt_add_qml_module()} gained a \c{NO_GENERATE_QTCONF} option
+          to suppress automatic \c{qt.conf} generation in the build
+          directory.
+      \li The build system now offers a <exe>_qmlpreview
+          target for each executable with a QML module. When you "build" that
+          target, the build system starts the \l qmlpreview utility with the correct
+          arguments and allows you to QML-preview your executable. In particular
+          it automatically resolves the .qrc file paths.
     \endlist
 
     \section2 Desktop Platforms
