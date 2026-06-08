@@ -785,6 +785,17 @@
         \li Added VxWorks 26.03 support.
     \endlist
 
+    \section2 WebAssembly
+
+    \list
+      \li \l{QAudioSource} and \l{QAudioSink} now use the Web Audio API
+          AudioWorklets backend instead of OpenAL, enabling browser-native
+          low-latency audio capture.
+      \li Video frames are now uploaded to WebGL using
+          \c{texImage2D} for zero-copy rendering when using \l{Qt Quick}.
+      \li Added \l{QCameraFormat} support.
+    \endlist
+
     \section1 Modules Deprecated in Qt 6.12
 
     The following modules are deprecated. We strongly advise against using them
