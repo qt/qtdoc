@@ -515,6 +515,16 @@
 
     \section3 iOS
     \list
+      \li \l{QStandardPaths::PublicShareLocation} now returns
+          \c{<APPROOT>/Public} (matching \c{NSSharedPublicDirectory})
+          instead of the previously synthesized path inside the
+          Documents directory.
+      \li \l{QStandardPaths::standardLocations}{standardLocations}(\c{PicturesLocation})
+          no longer contains a duplicate entry for the writable
+          Documents/Pictures path.
+      \li \l{QStandardPaths::TemplatesLocation} is now correctly
+          reported as not supported on iOS, matching the existing
+          documentation.
     \endlist
 
     \section2 Embedded Platforms
