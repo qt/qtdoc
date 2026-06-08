@@ -474,6 +474,26 @@
 
     \section3 macOS
     \list
+      \li \l{QScreen::grabWindow()} now uses ScreenCaptureKit instead
+          of the deprecated \c{CGDisplayCreateImageForRect}. A
+          permission prompt will be shown the first time the API is
+          used.
+      \li \l{QWindow}{QWindows} parented into non-flipped
+          \c{NSView}s now maintain their position relative to the
+          superview's top-left corner when the superview is resized.
+      \li \l{QCocoaNativeInterface::setEmbeddedInForeignView()} is no
+          longer necessary or supported to embed a Qt view hierarchy
+          in a foreign \c{NSView}. Qt now manages this automatically.
+      \li Sandboxed apps built against a static Qt build
+          are now relocatable by default on Apple platforms.
+      \li \l{QMainWindow}'s unified title and toolbar mode is now
+          implemented via \l{Qt::ExpandedClientAreaHint} and
+          \l{Qt::NoTitleBarBackgroundHint} instead of the deprecated
+          textured \c{NSWindow} style.
+      \li \l{QStandardPaths::standardLocations()} now includes the
+          system-wide \c{/Library/Preferences} directory for
+          \c{ConfigLocation}, \c{GenericConfigLocation}, and
+          \c{AppConfigLocation}.
     \endlist
 
     \section3 Wayland Client on Linux
