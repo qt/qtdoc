@@ -18,7 +18,7 @@ class RestService : public QObject, public QQmlParserStatus
     Q_OBJECT
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(bool sslSupported READ sslSupported CONSTANT)
-    Q_PROPERTY(QQmlListProperty<AbstractResource> resources READ resources)
+    Q_PROPERTY(QQmlListProperty<AbstractResource> resources READ resources CONSTANT)
     Q_CLASSINFO("DefaultProperty", "resources")
     Q_INTERFACES(QQmlParserStatus)
     QML_ELEMENT
