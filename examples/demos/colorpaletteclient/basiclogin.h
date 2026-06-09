@@ -34,7 +34,7 @@ private:
     struct User {
         QString email;
         QByteArray token;
-        int id;
+        int id = 0;
     };
     QString m_loginPath;
     QString m_logoutPath;
