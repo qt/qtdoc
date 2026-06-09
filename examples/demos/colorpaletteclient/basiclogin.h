@@ -13,8 +13,8 @@ class BasicLogin: public AbstractResource
     Q_OBJECT
     Q_PROPERTY(QString user READ user NOTIFY userChanged)
     Q_PROPERTY(bool loggedIn READ loggedIn NOTIFY userChanged)
-    Q_PROPERTY(QString loginPath MEMBER m_loginPath REQUIRED)
-    Q_PROPERTY(QString logoutPath MEMBER m_logoutPath REQUIRED)
+    Q_PROPERTY(QString loginPath MEMBER m_loginPath NOTIFY loginPathChanged REQUIRED)
+    Q_PROPERTY(QString logoutPath MEMBER m_logoutPath NOTIFY logoutPathChanged REQUIRED)
     QML_ELEMENT
 
 public:
@@ -27,6 +27,8 @@ public:
 
 signals:
     void userChanged();
+    void loginPathChanged();
+    void logoutPathChanged();
 
 private:
     struct User {

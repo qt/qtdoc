@@ -16,7 +16,7 @@ class PaginatedResource : public AbstractResource
     Q_PROPERTY(QList<QJsonObject> data READ data NOTIFY dataUpdated)
     Q_PROPERTY(int page READ page WRITE setPage NOTIFY pageUpdated)
     Q_PROPERTY(int pages READ pages NOTIFY pagesUpdated)
-    Q_PROPERTY(QString path MEMBER m_path REQUIRED)
+    Q_PROPERTY(QString path MEMBER m_path NOTIFY pathChanged REQUIRED)
     QML_ELEMENT
 
 public:
@@ -42,6 +42,7 @@ signals:
     void dataUpdated();
     void pageUpdated();
     void pagesUpdated();
+    void pathChanged();
 
 private:
     void refreshRequestFinished(const QJsonDocument &json);
