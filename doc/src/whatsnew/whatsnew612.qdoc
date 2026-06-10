@@ -453,6 +453,10 @@
 
     \section2 Qt Linguist
     \list
+    \li lupdate now preserves the existing line endings in \c{.ts} files.
+        On Windows, files with CRLF line endings are updated in-place
+        with CRLF; files with LF line endings and new files keep LF.
+    \li Qt Linguist has a new option -web-help to use online web documentation if desired.
     \endlist
 
     \section1 Platform Changes
