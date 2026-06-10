@@ -7,75 +7,63 @@
         "QtParts": [ "examples" ],
 
         "Path": "csv-parser",
-        "Description": "CSV parser with simple, intuitive syntax.",
-        "Version": "2.3.0",
-        "DownloadLocation": "https://github.com/vincentlaucsb/csv-parser/archive/refs/tags/2.3.0.zip",
+        "Description": "CSV parser with simple, intuitive syntax. Single-header version bundling all dependencies.",
+        "Version": "5.3.0",
+        "DownloadLocation": "https://github.com/vincentlaucsb/csv-parser/archive/refs/tags/5.3.0.zip",
         "Homepage": "https://github.com/vincentlaucsb/csv-parser",
         "License": "MIT License",
         "LicenseId": "MIT",
-        "Copyright": "Copyright (c) 2017-2019 Vincent La"
+        "Copyright": "Copyright (c) 2017-2026 Vincent La"
     },
     {
-        "Id": "graphs_csv_hedley",
-        "Name": "Hedley",
+        "Id": "classify_scalar",
+        "Name": "classify_scalar",
         "QDocModule": "qtdoc",
-        "QtUsage": "Used to read a CSV file in the graphs_csv example.",
+        "QtUsage": "Bundled internal helper for csv-parser (scalar classification)",
         "QtParts": [ "examples" ],
 
-        "Path": "csv-parser",
-        "Files": [ "include/external/hedley.h" ],
-        "Description": "Hedley is a single C/C++ header you can include in your project to enable compiler-specific features while retaining compatibility with all compilers.",
-        "Version": "v9",
-        "DownloadLocation": "https://github.com/nemequ/hedley/releases/tag/v9",
-        "Homepage": "https://nemequ.github.io/hedley/",
-        "License": "Creative Commons Zero v1.0 Universal",
-        "LicenseId": "CC0-1.0",
-        "Copyright": "Evan Nemerson <evan@nemerson.com>"
+        "Path": "csv-parser/include/external",
+        "Files": [ "classify_scalar.hpp" ],
+        "Description": "Lightweight scalar classification helper used by csv-parser.",
+        "Version": "1.1.0",
+        "DownloadLocation": "https://github.com/vincentlaucsb/classify_scalar",
+        "Homepage": "https://github.com/vincentlaucsb/classify_scalar",
+        "License": "MIT License",
+        "LicenseId": "MIT",
+        "Copyright": "Copyright (c) 2026 Vincent La"
     },
     {
-        "Id": "graphs_csv_mio",
-        "Name": "Mio",
+        "Id": "mio",
+        "Name": "mio",
         "QDocModule": "qtdoc",
-        "QtUsage": "Used to read a CSV file in the graphs_csv example.",
+        "QtUsage": "Bundled minimal memory-mapped I/O helper used by csv-parser",
         "QtParts": [ "examples" ],
 
-        "Path": "csv-parser",
-        "Files": [ "include/external/mio.hpp" ],
-        "Description": "An easy to use header-only cross-platform C++11 memory mapping library",
-        "Homepage": "https://github.com/vimpunk/mio",
+        "Path": "csv-parser/include/external",
+        "Files": [ "mio.hpp" ],
+        "Description": "Minimal cross-platform memory-mapped file helper (vendored and lightly patched).",
+        "Version": "unknown",
+        "DownloadLocation": "https://github.com/mandreyel/mio",
+        "Homepage": "https://github.com/mandreyel/mio",
         "License": "MIT License",
         "LicenseId": "MIT",
         "Copyright": "Copyright 2017 https://github.com/mandreyel"
     },
     {
-        "Id": "graphs_csv_string_view",
-        "Name": "string_view lite",
+        "Id": "string_view_lite",
+        "Name": "string-view lite",
         "QDocModule": "qtdoc",
-        "QtUsage": "Used to read a CSV file in the graphs_csv example.",
+        "QtUsage": "Bundled lightweight string_view implementation used by csv-parser",
         "QtParts": [ "examples" ],
 
-        "Path": "csv-parser",
-        "Files": [ "include/external/string_view.hpp" ],
-        "Description": "A single-file header-only version of a C++17-like string_view for C++98, C++11 and later",
+        "Path": "csv-parser/include/external",
+        "Files": [ "string_view.hpp" ],
+        "Description": "string-view lite, a C++17-like string_view for earlier C++ standards.",
+        "Version": "1.8.0",
+        "DownloadLocation": "https://github.com/martinmoene/string-view-lite",
         "Homepage": "https://github.com/martinmoene/string-view-lite",
         "License": "Boost Software License 1.0",
         "LicenseId": "BSL-1.0",
-        "Copyright": "Copyright 2017-2019 by Martin Moene"
-    },
-    {
-        "Id": "graphs_csv_row_json",
-        "Name": "JSON for Modern C++",
-        "QDocModule": "qtdoc",
-        "QtUsage": "Used to read a CSV file in the graphs_csv example.",
-        "QtParts": [ "examples" ],
-
-        "Path": "csv-parser",
-        "Files": [ "include/internal/csv_row_json.cpp" ],
-        "Homepage": "https://json.nlohmann.me/",
-        "License": "MIT License",
-        "LicenseId": "MIT",
-        "Copyright": "Copyright © 2013-2015 Niels Lohmann."
+        "Copyright": "Copyright 2017-2020 Martin Moene"
     }
 ]
-
-
