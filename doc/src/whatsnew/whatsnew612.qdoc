@@ -545,6 +545,10 @@
           target, the build system starts the \l qmlpreview utility with the correct
           arguments and allows you to QML-preview your executable. In particular
           it automatically resolves the .qrc file paths.
+      \li \l{rcc} now deduplicates resource data using content-based SHA256
+          hashing. Identical files embedded in a Qt resource collection are
+          stored only once, reducing the size of compiled-in resources
+          without any change to application source code.
     \endlist
 
     \section2 Desktop Platforms
