@@ -632,16 +632,33 @@
     \li Qt Linguist has a new option -web-help to use online web documentation if desired.
     \endlist
 
+    \section2 Resource Compiler (rcc)
+
+    \list
+      \li \l{rcc} now deduplicates resource data using content-based SHA256
+          hashing. Identical files embedded in a Qt resource collection are
+          stored only once, reducing the size of compiled-in resources
+          without any change to application source code.
+    \endlist
+
     \section1 Platform Changes
 
     \section2 Build System Changes
 
+    \section3 Building Qt
+
     \list
-      \li Building and using Qt now requires CMake 3.25 or later.
+      \li Building Qt now requires CMake 3.25 or later.
       \li Added the \c{static_compiler_runtime} CMake feature to statically
           link the C++ runtime libraries. On Windows (MSVC) this uses the
           Hybrid CRT method, removing the dependency on the Visual C++
           Redistributable.
+    \endlist
+
+    \section3 CMake API
+
+    \list
+      \li Using Qt now requires CMake 3.25 or later.
       \li The following CMake API has been taken out of Technology Preview
           and is now fully supported:
           \l{qt_finalize_project}{qt_finalize_project()},
@@ -672,10 +689,6 @@
           target, the build system starts the \l qmlpreview utility with the correct
           arguments and allows you to QML-preview your executable. In particular
           it automatically resolves the .qrc file paths.
-      \li \l{rcc} now deduplicates resource data using content-based SHA256
-          hashing. Identical files embedded in a Qt resource collection are
-          stored only once, reducing the size of compiled-in resources
-          without any change to application source code.
     \endlist
 
     \section2 Desktop Platforms
