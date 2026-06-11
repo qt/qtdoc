@@ -118,7 +118,6 @@
                 \list
                     \li Active Qt
                     \li Qt Bluetooth
-                    \li Qt Multimedia*
                     \li Qt NFC
                     \li Qt OPC UA
                     \li Qt Positioning
@@ -140,8 +139,9 @@
             \li Not supported
     \endtable
 
-    *QNX SDP 8.0 doesn't currently support multimedia, which means that qtMultimedia and
-    the dependent components cannot be compiled.
+    \note On QNX SDP 8.0, Qt Multimedia compiles and is supported, but audio playback and
+    recording are not yet available, as the audio backend has not yet been implemented for
+    QNX SDP 8.0.
 
     \section1 Host systems
 
@@ -279,7 +279,7 @@
     option \c{-no-pch}.
 
     \note If using QNX SDP 8.0, skip unsupported and their dependent modules using configuration
-    options \c{-skip qtmultimedia -skip qtspeech -skip qtremoteobjects -skip qtinterfaceframework}.
+    options \c{-skip qtremoteobjects -skip qtinterfaceframework}.
 
     Once the configuration completes without errors, build Qt by running the following:
     \code
@@ -392,6 +392,14 @@
 
     Most of the recent sample OS build scripts in the SDP include sections with
     all components and start commands for the Screen. You can  use them as a reference.
+
+    \section1 Vulkan
+
+    If you use Vulkan rendering, the target image must provide a Vulkan loader
+    (\c{libvulkan.so}) and a \c Screen graphics driver that implements the
+    \c VK_QNX_screen_surface extension. For more information, see
+    \l {https://www.qnx.com/developers/docs/8.0/com.qnx.doc.screen/topic/manual/cscreen_rendering-hardware-vulkan.html}
+    {Vulkan rendering APIs}.
 
     \section1 IPv6 support
 

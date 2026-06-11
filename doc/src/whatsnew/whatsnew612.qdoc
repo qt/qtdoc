@@ -769,7 +769,17 @@
 
     \section3 Real-Time Operating Systems
 
-    \e{To be updated.}
+    \section4 QNX
+    \list
+        \li Added Vulkan support on QNX.
+        \li Qt Multimedia now builds on QNX 8.0. Audio playback and recording are not yet
+            available, as the audio backend has not yet been implemented for QNX SDP 8.0.
+    \endlist
+
+    \section4 VxWorks
+    \list
+        \li Added VxWorks 26.03 support.
+    \endlist
 
     \section1 Modules Deprecated in Qt 6.12
 
