@@ -438,6 +438,8 @@
           \c{For(RepeatInterator(n))}.
       \li \l{QtTaskTree::Forever} is now
           implicitly convertible to \l{QtTaskTree::Group}.
+      \li \l{QtTaskTree::ListIterator} gained an overload accepting
+          a getter function returning QList.
     \endlist
 
     \section2 Qt Test Module
