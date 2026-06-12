@@ -219,7 +219,7 @@
 
     \section2 Qt Quick 3D Module
     \list
-        \li Added \l [QtQuick3D]{ParticleEmitter3D::emitType}{emitType} to shaped emitters to allow
+        \li Added \l [QtQuick3D]{ParticleEmitter3D::}{emitMode} to shaped emitters to allow
             particles to be emitted based on the surface normals of the shape.
         \li Implemented \l [QtQuick3D]{ParticleEmitter3D::reversed}{reversed} emitters to enable
             particles to run from end time to begin time.
