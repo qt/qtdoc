@@ -66,9 +66,9 @@
       \li Added \l{qSharedPointerStaticCast} as a new free function for
           static casts of \l{QSharedPointer}.
       \li \l{QSortFilterProxyModel} gained the
-          \l{QSortFilterProxyModel::DataChangeRelevance}{DataChangeRelevance}
+          \l{QSortFilterProxyModel::}{DataChangeRelevanceFlag}
           enum and the virtual
-          \l{QSortFilterProxyModel::dataChangeRelevances()}{dataChangeRelevances()}
+          \l{QSortFilterProxyModel::}{dataChangeRelevanceFlags()}
           method, allowing subclasses to control whether a source
           \c dataChanged signal triggers re-filtering or re-sorting.
       \li The new \l{QAbstractItemModel::compareData()} is a new protected API for
@@ -267,8 +267,8 @@
           \c DOCUMENTATION_OUTPUT_DIRECTORY options to generate Doxygen based
           documentation alongside the client code.
       \li Added support for the
-          \l{oneOf}{https://swagger.io/docs/specification/v3_0/data-models/oneof-anyof-allof-not/#oneof}
-          schema feature.
+          \l{https://swagger.io/docs/specification/v3_0/data-models/oneof-anyof-allof-not/#oneof}
+          {oneOf} schema feature.
       \li Renamed generated model property getters. Q_PROPERTY now exposes
           the same property names as those used in the YAML file.
       \li Generated client API methods are no longer virtual.
@@ -750,7 +750,7 @@
       \li \l{QWindow}{QWindows} parented into non-flipped
           \c{NSView}s now maintain their position relative to the
           superview's top-left corner when the superview is resized.
-      \li \l{QCocoaNativeInterface::setEmbeddedInForeignView()} is no
+      \li \c{QCocoaNativeInterface::setEmbeddedInForeignView()} is no
           longer necessary or supported to embed a Qt view hierarchy
           in a foreign \c{NSView}. Qt now manages this automatically.
       \li Sandboxed apps built against a static Qt build

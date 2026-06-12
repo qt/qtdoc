@@ -15,7 +15,7 @@ provides step-by-step instructions to help you get started.
 To develop with \l{Qt for Android}, you will need the following prerequisites:
 
 \list
-    \li \l {Java Development Kit (JDK)}
+    \li Java Development Kit (JDK)
     \li \l {Android: Android command line tools}{Android Command Line Tools}
         which includes:
         \list
@@ -83,13 +83,14 @@ If you prefer to manually install the prerequisites, follow these next steps.
     \l{Android: Android command line tools}{Android SDK Command Line Tools} for
     your operating system and extract it to the appropriate path as stated below.
 
+    \target Android SDK paths
     //! [Android SDK Paths]
     The Android SDK is commonly installed by \QC or Android Studio
     in the following locations:
     \list
-        \li Linux: ~/Android/Sdk/
-        \li \macos: ~/Library/Android/sdk/
-        \li Windows: C:\\Users\\<USER>\\AppData\\Local\\Android\\Sdk\\
+        \li Linux: \c {~/Android/Sdk/}
+        \li \macos: \c {~/Library/Android/sdk/}
+        \li Windows: \c {C:\Users\<USER>\AppData\Local\Android\Sdk\}
     \endlist
     //! [Android SDK Paths]
 
