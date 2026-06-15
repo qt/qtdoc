@@ -470,6 +470,8 @@
           is in progress, idle, or complete.
       \li \l{QPdfView} now supports control-mouse-wheel zooming centered
           on the cursor position.
+      \li \l{QPdfDocument::}{render()} gained optional arguments to
+          specify image format and background color.
     \endlist
 
     \section2 Qt WebView Module
