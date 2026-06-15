@@ -698,13 +698,44 @@
           target, the build system starts the \l qmlpreview utility with the correct
           arguments and allows you to QML-preview your executable. In particular
           it automatically resolves the .qrc file paths.
+      \li Two new target values, \l{QT_WINDOWS_APP_PROJECT_IDENTIFIER}
+          and \l{QT_WINDOWS_APP_PROJECT_EXECUTION_LEVEL} are now available.
+          See also the \l{Windows} section below.
     \endlist
 
     \section2 Desktop Platforms
 
     \section3 Windows
-
-    \e{To be updated.}
+    \list
+      \li CMake projects now automatically generate and embed an
+          application manifest for Windows executables built with
+          \l{qt_add_executable}. The manifest declares Windows 10/11
+          compatibility, enables long-path awareness, and configures
+          the UAC execution level. Two new CMake target properties
+          control the generated manifest:
+          \l{QT_WINDOWS_APP_PROJECT_IDENTIFIER} sets the assembly
+          identity name, and \l{QT_WINDOWS_APP_PROJECT_EXECUTION_LEVEL}
+          sets the execution level.
+          See \l{Qt for Windows - Deployment} for details.
+      \li \l{windeployqt} gains \c{--appx} and \c{--appx-certificate}
+          options for generating an \c{AppxManifest.xml} suitable for
+          packaging as a Windows Store appx package.
+      \li \l{QOperatingSystemVersion::Windows11_25H2} (10.0.26200) is
+          added as a named OS version constant.
+      \li \l{QScreen::colorSpace()} now returns the screen's actual
+          color space derived from its ICC profile on Windows, using
+          \c{ColorProfileGetDisplayDefault}.
+      \li The DirectWrite font backend now reads each font's GASP table
+          to select the appropriate antialiasing strategy per font and
+          point size, matching the font designer's intent more closely.
+      \li The shader disk cache is re-enabled for current Intel GPU
+          drivers. It had been unconditionally disabled for Intel
+          graphics on Windows for several years; a driver version check
+          is now used instead, improving Qt Quick 3D performance on
+          modern Intel hardware.
+      \li \l{QWizard} no longer applies the Aero wizard style when the
+          system is in dark mode, where it does not render correctly.
+    \endlist
 
     \section3 Linux
 
