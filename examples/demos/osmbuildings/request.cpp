@@ -204,6 +204,11 @@ static QVariantList importGeoJson(const QJsonDocument &geoJson)
     return returnedList;
 }
 
+void OSMRequest::stop()
+{
+    if (m_queuesTimer.isActive())
+        m_queuesTimer.stop();
+}
 
 OSMRequest::OSMRequest(QObject *parent)
     : QObject{parent}

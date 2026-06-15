@@ -3,16 +3,18 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Window
 import QtQuick3D
 import QtQuick3D.Helpers
 import Example
 
-Window {
+ApplicationWindow {
     width: 1024
     height: 768
     visible: true
     title: qsTr("OSM Buildings")
+    id: window
 
     OSMManager {
         id: osmManager
@@ -280,5 +282,16 @@ Window {
                 }
             }
         }
+    }
+
+    Action {
+        id: quitAction
+        shortcut: StandardKey.Quit
+        onTriggered: window.close()
+    }
+
+    onClosing: function(close) {
+         osmManager.stop();
+         close.accepted = true;
     }
 }

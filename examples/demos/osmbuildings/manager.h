@@ -4,10 +4,16 @@
 #ifndef OSMMANAGER_H
 #define OSMMANAGER_H
 
+#include "request.h"
+
 #include <QQuick3DTextureData>
 #include <QtQmlIntegration>
+
 #include <QVector3D>
-#include "request.h"
+
+#include <QMetaObject>
+
+#include <array>
 
 class OSMManager : public QObject
 {
@@ -26,15 +32,17 @@ public slots:
     void setCameraProperties(const QVector3D &position , const QVector3D &right,
                             float cameraZoom, float minimunZoom, float maximumZoom,
                             float cameraTilt, float minimumTilt, float maxmumTilt);
+    void stop();
 
 signals:
     void buildingsDataReady(const QList<QVariant> &geoVariantsList, int tileX, int tileY, int zoomLevel);
-    void mapsDataReady(class QByteArray mapData, int tileX, int tileY, int zoomLevel);
+    void mapsDataReady(const QByteArray &mapData, int tileX, int tileY, int zoomLevel);
 
 private:
     void addBuildingRequestToQueue(QQueue<OSMTileData> &queue, int tileX, int tileY, int zoomLevel = 15);
     class OSMRequest *m_request = nullptr;
     QHash<OSMTileData, bool> m_buildingsHash;
+    std::array<QMetaObject::Connection, 2> m_connections;
     const int m_startBuildingTileX = 17605;
     const int m_startBuildingTileY = 10746;
     const int m_tileSizeX = 37;
