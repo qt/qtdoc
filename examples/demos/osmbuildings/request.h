@@ -44,6 +44,7 @@ public:
 public slots:
     void getBuildingsData(const QQueue<OSMTileData> &buildingsQueue);
     void getMapsData(const QQueue<OSMTileData> &mapsQueue);
+    void stop();
 
 signals:
     void buildingsDataReady( const QList<QVariant> &geoVariantsList, int tileX, int tileY, int zoomLevel );

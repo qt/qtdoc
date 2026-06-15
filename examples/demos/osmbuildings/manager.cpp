@@ -6,26 +6,42 @@
 #include <QImage>
 #include <QRgb>
 
+#include <QThreadPool>
+
 #include <algorithm>
 
 OSMManager::OSMManager(QObject *parent)
     : QObject{parent},
       m_request(new OSMRequest(this))
 {
-    connect(m_request, &OSMRequest::buildingsDataReady, this, [this](const QList<QVariant> &geoVariantsList
-                                                                     , int tileX, int tileY, int zoomLevel){
+    auto buildingsDataHandler = [this](const QList<QVariant> &geoVariantsList,
+                                       int tileX, int tileY, int zoomLevel) {
         m_buildingsHash.insert(OSMTileData{tileX, tileY, zoomLevel}, true);
         emit buildingsDataReady(geoVariantsList, tileX - m_startBuildingTileX,
                                 tileY - m_startBuildingTileY,
                                 zoomLevel);
-    });
+    };
 
-    connect(m_request, &OSMRequest::mapsDataReady, this, [this](const QByteArray &mapData, int tileX, int tileY, int zoomLevel){
+    m_connections[0] = connect(m_request, &OSMRequest::buildingsDataReady,
+                               this, buildingsDataHandler);
+
+    auto mapsDataHandler = [this](const QByteArray &mapData,
+                                  int tileX, int tileY, int zoomLevel) {
         emit mapsDataReady(mapData, tileX - m_startBuildingTileX,
                            tileY - m_startBuildingTileY,
                            zoomLevel);
-    });
+    };
 
+    m_connections[1] = connect(m_request, &OSMRequest::mapsDataReady, this, mapsDataHandler);
+}
+
+void OSMManager::stop()
+{
+    m_request->stop();
+    for (auto &conn : m_connections)
+        QObject::disconnect(std::exchange(conn, QMetaObject::Connection{}));
+    // Stop the threads started by OSMGeometry in the global pool
+    QThreadPool::globalInstance()->waitForDone();
 }
 
 void OSMManager::setCameraProperties(const QVector3D &position, const QVector3D &right,
