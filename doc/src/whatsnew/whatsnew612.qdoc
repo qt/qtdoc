@@ -82,6 +82,11 @@
       \li \l{QVarLengthArray} gained
           \l{QVarLengthArray::removeAt()}{removeAt()}, matching the
           \l{QList} API.
+      \li The \l {QDateTime::}{fromString()} methods of \l QDateTime,
+          \l QDate, and \l QTime, as well as \l QLocale's
+          \l {QLocale::}{toDateTime()}, \l {QLocale::}{toDate()}, and
+          \l {QLocale::}{toTime()}, now use a new parser that is faster
+          on many formats.
       \li \l{QTimeZone} now accepts CLDR-canonical IANA alias IDs in its
           constructor and in
           \l{QTimeZone::isTimeZoneIdAvailable()}{isTimeZoneIdAvailable()}.
