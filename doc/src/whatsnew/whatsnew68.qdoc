@@ -495,9 +495,9 @@
     \list
         \li Completed support for shaders compatible with multiview rendering.
             Added the \c MULTIVIEW keyword to the
-            \l {Qt Shader Tools Build System Integration}.
+            \l{qt_add_shaders}{qt_add_shaders()} CMake function.
         \li Added depfile support for shaders processed at build time via
-            \l{Qt Shader Tools Build System Integration}{qt_add_shaders()}.
+            \l{qt_add_shaders}{qt_add_shaders()}.
             Touching a file included via the \c{#include} directive in a shader
             will now trigger a recompilation of that shader file when building
             the project the next time.
