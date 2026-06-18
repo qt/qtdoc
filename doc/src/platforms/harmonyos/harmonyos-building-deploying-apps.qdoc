@@ -1,0 +1,52 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page harmonyos-building-deploying-apps.html
+\title Building and Deploying Qt Applications for HarmonyOS
+\brief How to package a Qt application into a HAP and deploy it to HarmonyOS.
+\previouspage harmonyos-building.html
+
+\note Qt for HarmonyOS is in technology preview and may change in future
+releases.
+
+This page describes how to build and package a Qt application for HarmonyOS,
+and how to run it on a device or the emulator.
+
+\section1 Packaging into a HAP
+
+\note You can build Qt applications for HarmonyOS with either CMake or qmake,
+but packaging an application into a HAP and deploying it is only supported with
+CMake.
+
+HarmonyOS applications ship as HarmonyOS Ability Packages (HAPs).
+When you create a Qt application executable with
+\l{qt6_add_executable}{qt_add_executable()} while targeting HarmonyOS, Qt
+automatically generates a \c {<target>_make_hap} build target. Building that
+target produces the HAP for your application:
+
+\badcode
+cmake --build . --target <target>_make_hap
+\endcode
+
+\section1 How deployment works
+
+The \c {<target>_make_hap} target runs \c harmonydeployqt, the HarmonyOS
+deployment tool. It follows the same approach as \l{The androiddeployqt
+Tool}{androiddeployqt}: it collects the application's shared library, the
+HarmonyOS platform plugin (\c libqohos.so), the required Qt modules, and, for Qt
+Quick applications, the QML modules, and places them into a HarmonyOS
+application template. It then invokes the OpenHarmony \c hvigor build tool to
+assemble the final HAP.
+
+To configure the metadata written into the HarmonyOS manifests (\c app.json5 and
+\c module.json5) and to declare permissions, use the commands described in \l{Qt
+for HarmonyOS CMake API}.
+
+\section1 Running the application
+
+Install and run the resulting HAP on a connected HarmonyOS device or on the
+emulator. The most convenient way to deploy and debug is to open the generated
+project in \l{https://developer.huawei.com/consumer/en/deveco-studio/} {DevEco
+Studio} and use its run and debug tooling.
+*/

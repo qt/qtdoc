@@ -1,0 +1,48 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page harmonyos-prerequisites.html
+\title Qt for HarmonyOS Prerequisites
+\brief Provides instructions to install the tools required to develop Qt
+applications for HarmonyOS.
+\previouspage Qt for HarmonyOS
+\nextpage harmonyos-building.html
+
+\note Qt for HarmonyOS is in technology preview and may change in future
+releases.
+
+To develop Qt applications for HarmonyOS, you need to set up your development
+host with the OpenHarmony SDK and the related command-line tools.
+
+The same prerequisites apply whether you build \l{Qt for HarmonyOS} from source
+or use a pre-built Qt for HarmonyOS to build and deploy your own applications.
+
+\section1 Prerequisites
+
+\list
+    \li The OpenHarmony SDK command-line tools, which provide the compiler
+        toolchain, the system libraries, and the \c hvigor build tool used to
+        assemble a HarmonyOS Ability Package (HAP).
+    \li Optionally, \l {https://developer.huawei.com/consumer/en/deveco-studio/}
+        {DevEco Studio}, the official IDE for HarmonyOS, which is convenient for
+        running and debugging applications on a device or the emulator.
+\endlist
+
+\section1 Supported development hosts
+
+The Qt for HarmonyOS toolchain is currently developed and tested on Linux.
+
+\section1 Setting up the SDK
+
+After installing the OpenHarmony SDK command-line tools, point Qt at the SDK so
+that the build system can locate the toolchain and system libraries. This is
+required both when configuring a Qt for HarmonyOS build from source and when
+building applications against a pre-built Qt. You can do this in two ways:
+
+\list
+    \li Set the \c OHOS_SDK_ROOT environment variable to the SDK root path.
+    \li Pass the path to \l{Qt for HarmonyOS - Building from Source}{configure}
+        using the \c -ohos-sdk option.
+\endlist
+*/
