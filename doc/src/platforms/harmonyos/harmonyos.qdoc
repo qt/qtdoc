@@ -1,0 +1,57 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\group harmonyos
+\title Qt for HarmonyOS
+\brief Provides information about HarmonyOS support in Qt.
+\ingroup supportedplatform
+
+\note Qt for HarmonyOS is in technology preview and may change in future
+releases.
+
+Qt for HarmonyOS enables you to develop Qt applications for HarmonyOS devices.
+
+Qt for HarmonyOS provides the platform integration, build and packaging support,
+and the platform plugin that connect the cross-platform Qt libraries (such as Qt
+Core, Qt GUI, Qt Quick, and Qt Widgets) to HarmonyOS. A Qt application is
+packaged into a HarmonyOS Ability Package (HAP) and runs on the device through
+the HarmonyOS platform plugin.
+
+\section1 Key features and capabilities
+
+\list
+\li \b{Cross-platform development.} Write your application code once, typically
+    a Qt Quick application with a C++ back-end, and deploy it on HarmonyOS
+    alongside the other platforms that Qt supports, with minimal or no
+    adjustments.
+\li \b{Native performance.} The Qt runtime is compiled for HarmonyOS, so it runs
+    as native code on the device.
+\li \b{Rich UI components.} Use \l{Qt Quick} and \l{Qt Quick Controls} for
+    responsive interfaces, or \l{Qt Widgets} for traditional widget-based UIs.
+\li \b{C++ integration.} Reuse existing C++ libraries and high-performance
+    native code.
+\endlist
+
+\section1 Explore Qt for HarmonyOS
+
+To learn about developing with Qt for HarmonyOS, see the following topics:
+
+\list
+    \li \l {Qt for HarmonyOS Prerequisites}
+    \li \l {Qt for HarmonyOS - Building from Source}
+    \li \l {Building and Deploying Qt Applications for HarmonyOS}
+    \li \l {Qt for HarmonyOS CMake API}
+\endlist
+
+\section1 Supported configurations
+
+Building and developing with Qt for HarmonyOS is only supported on a Linux
+development host. The following target architectures are supported:
+
+\table
+\header \li Architecture \li Target
+\row \li \c arm64-v8a \li Physical devices
+\row \li \c x86_64 \li Emulator
+\endtable
+*/

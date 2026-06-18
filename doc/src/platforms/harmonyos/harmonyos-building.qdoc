@@ -1,0 +1,63 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page harmonyos-building.html
+\title Qt for HarmonyOS - Building from Source
+\brief How to configure and build Qt for HarmonyOS from source.
+\previouspage harmonyos-prerequisites.html
+\nextpage harmonyos-building-deploying-apps.html
+
+\note Qt for HarmonyOS is in technology preview and may change in future
+releases.
+
+This page describes how to configure and build \l{Qt for HarmonyOS} from source.
+
+\section1 Prerequisites
+
+Before continuing, make sure you meet all requirements from
+\l{Qt for HarmonyOS Prerequisites}.
+
+
+Building Qt for HarmonyOS is a cross-compilation: you build the Qt libraries for
+the HarmonyOS target using build tools from a matching host Qt build. You
+therefore need a Qt build for your host platform first. For general background
+on cross-compiling Qt, see \l{Qt for Device Creation} and \l{Cross-compiling
+Qt}.
+
+\section1 Configuring and building
+
+Configure Qt for HarmonyOS by pointing the build at the OpenHarmony SDK and the
+host Qt build:
+
+\badcode
+configure -ohos-sdk <SDK_ROOT> -qt-host-path <HOST_QT_PATH> -ohos-arch arm64-v8a
+cmake --build .
+\endcode
+
+The relevant configure options are:
+
+\list
+    \li \c -ohos-sdk sets the OpenHarmony SDK root path. If omitted,
+        \c configure uses the value of the \c OHOS_SDK_ROOT environment
+        variable.
+    \li \c -ohos-arch sets the target architecture. Use \c arm64-v8a for
+        physical devices and \c x86_64 for the emulator. If omitted,
+        \c configure selects an architecture based on the SDK.
+    \li \c -qt-host-path specifies the path to the Qt host build used for
+        cross-compiling.
+\endlist
+
+\section1 Installing
+
+After the build finishes, install Qt for HarmonyOS:
+
+\badcode
+cmake --install .
+\endcode
+
+By default, Qt is installed into \c /usr/local/Qt-<version>. Pass the \c -prefix
+option to \c configure to install into a different location. The resulting Qt
+for HarmonyOS installation is what you use to build and deploy applications, as
+described in \l{Building and Deploying Qt Applications for HarmonyOS}.
+*/

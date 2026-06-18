@@ -163,6 +163,31 @@ For more information on the supported Android versions, see
 \include apple-common.qdocinc {forward-compatibility} {iOS}
 //! [ios]
 
+\section2 \l{Qt for HarmonyOS}{HarmonyOS}
+//! [harmonyos]
+
+\note Qt for HarmonyOS is in technology preview and may change in future
+releases.
+
+The following configurations are supported in this Qt release:
+
+\table 60%
+    \header \li Section \li Description
+    \row
+        \li \b Host
+        \li Linux
+    \row
+        \li \b Architecture
+        \li \c arm64-v8a (physical devices) and \c x86_64 (emulator)
+    \row
+        \li \b Package
+        \li HarmonyOS Ability Package (HAP)
+\endtable
+
+For more information, see \l{Qt for HarmonyOS}.
+
+//! [harmonyos]
+
 For information about support of WebAssembly on mobile platforms, see notes
 on \l {Qt for WebAssembly#Supported Browsers}{supported browsers}.
 
