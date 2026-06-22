@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include "timeformatter.h"
-#include <QtGraphs/qvalue3daxis.h>
-#include <QtQml/qqmlextensionplugin.h>
+#include <QValue3DAxis>
+#include <qqmlextensionplugin.h>
 
 TimeFormatter::TimeFormatter(QObject *parent)
     : QValue3DAxisFormatter(parent)

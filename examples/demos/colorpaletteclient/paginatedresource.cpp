@@ -3,13 +3,13 @@
 
 #include "paginatedresource.h"
 
-#include <QtNetwork/qrestaccessmanager.h>
-#include <QtNetwork/qrestreply.h>
+#include <QRestAccessManager>
+#include <QRestReply>
 
-#include <QtCore/qjsonarray.h>
-#include <QtCore/qjsondocument.h>
-#include <QtCore/qjsonobject.h>
-#include <QtCore/qurlquery.h>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QUrlQuery>
 
 using namespace Qt::StringLiterals;
 

@@ -4,9 +4,9 @@
 #ifndef INAPPPRODUCTQMLTYPE_H
 #define INAPPPRODUCTQMLTYPE_H
 
-#include <QtQml/qqmlparserstatus.h>
+#include <QQmlParserStatus>
 #include <QObject>
-#include <QtQml/qqml.h>
+#include <qqmlregistration.h>
 
 #include "inappstoreqmltype.h"
 #include "../inapp/inappproduct.h"

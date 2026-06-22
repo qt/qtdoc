@@ -8,7 +8,7 @@
 #include <QCoreApplication>
 #include <QPointer>
 
-#include <QtCore/qjniarray.h>
+#include <QJniArray>
 
 #include <jni.h>
 

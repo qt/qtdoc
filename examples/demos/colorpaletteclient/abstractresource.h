@@ -3,10 +3,10 @@
 #ifndef ABSTRACTRESOURCE_H
 #define ABSTRACTRESOURCE_H
 
-#include <QtQml/qqml.h>
-#include <QtNetwork/qrestaccessmanager.h>
-#include <QtNetwork/qnetworkrequestfactory.h>
-#include <QtCore/qobject.h>
+#include <qqmlregistration.h>
+#include <QRestAccessManager>
+#include <QNetworkRequestFactory>
+#include <QObject>
 
 class AbstractResource : public QObject
 {

@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QBuffer>
 #include <QRandomGenerator>
-#include <QtConcurrent/QtConcurrentRun>
+#include <QtConcurrentRun>
 #include <mutex>
 
 #include "hangmangame.h"

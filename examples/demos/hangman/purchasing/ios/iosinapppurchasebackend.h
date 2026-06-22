@@ -8,7 +8,7 @@
 #include "../inapp/inappproduct.h"
 #include "../inapp/inapptransaction.h"
 
-#include <QtCore/QHash>
+#include <QHash>
 
 Q_FORWARD_DECLARE_OBJC_CLASS(QT_MANGLE_NAMESPACE(InAppPurchaseManager));
 

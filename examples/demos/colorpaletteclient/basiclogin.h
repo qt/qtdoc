@@ -6,7 +6,7 @@
 
 #include "abstractresource.h"
 
-#include <QtQml/qqml.h>
+#include <qqmlregistration.h>
 
 class BasicLogin: public AbstractResource
 {

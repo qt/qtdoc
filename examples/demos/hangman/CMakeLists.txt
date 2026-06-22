@@ -12,7 +12,7 @@ set(CMAKE_AUTOMOC ON)
 
 set(OUTPUT_DIRECTORY "${INSTALL_EXAMPLESDIR}/demos/hangman")
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+find_package(Qt6 REQUIRED COMPONENTS Concurrent Core Gui Qml Quick QuickControls2)
 
 qt_add_executable(hangman
     MANUAL_FINALIZATION
@@ -87,6 +87,7 @@ if(IOS)
 endif()
 
 target_link_libraries(hangman PRIVATE
+    Qt6::Concurrent
     Qt6::Core
     Qt6::Gui
     Qt6::Qml

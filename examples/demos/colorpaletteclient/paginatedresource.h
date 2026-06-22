@@ -5,8 +5,8 @@
 
 #include "abstractresource.h"
 
-#include <QtQml/qqml.h>
-#include <QtCore/qjsonobject.h>
+#include <qqmlregistration.h>
+#include <QJsonObject>
 
 // This class manages a simple paginated Crud resource,
 // where the resource is a paginated list of JSON items
