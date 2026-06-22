@@ -4,8 +4,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(qtexamplestyle LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2)
 
 set_source_files_properties(UIStyle.qml
