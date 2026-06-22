@@ -6,11 +6,8 @@
 
 #include "viewerinterfaces.h"
 #include <QCache>
+#include <QQuickView>
 #include <QTemporaryDir>
-
-QT_BEGIN_NAMESPACE
-class QQuickView;
-QT_END_NAMESPACE
 
 class Q3DViewer : public ViewerInterface
 {

@@ -5,11 +5,10 @@
 #define OSMREQUEST_H
 
 #include <QNetworkAccessManager>
+#include <QPoint>
 #include <QQueue>
 #include <QTimer>
 #include <qcomparehelpers.h>
-
-QT_FORWARD_DECLARE_CLASS(QPoint)
 
 struct OSMTileData
 {

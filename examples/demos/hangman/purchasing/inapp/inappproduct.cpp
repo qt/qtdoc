@@ -3,8 +3,6 @@
 
 #include "inappproduct.h"
 
-QT_BEGIN_NAMESPACE
-
 class InAppProductPrivate
 {
 public:

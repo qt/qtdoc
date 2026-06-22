@@ -12,8 +12,6 @@
 #include "../inapp/inappstore.h"
 
 
-QT_BEGIN_NAMESPACE
-
 AndroidInAppPurchaseBackend::AndroidInAppPurchaseBackend(QObject *parent)
     : InAppPurchaseBackend(parent)
     , m_isReady(false)
@@ -281,4 +279,3 @@ void AndroidInAppPurchaseBackend::purchaseSucceeded(int requestCode,
                                                                   this);
     emit transactionReady(transaction);
 }
-QT_END_NAMESPACE

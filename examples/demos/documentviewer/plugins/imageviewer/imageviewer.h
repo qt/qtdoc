@@ -6,9 +6,8 @@
 
 #include "viewerinterfaces.h"
 
+#include <QLabel>
 #include <QSizeF>
-
-QT_FORWARD_DECLARE_CLASS(QLabel)
 
 class ImageViewer : public ViewerInterface
 {

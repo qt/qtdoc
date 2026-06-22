@@ -5,19 +5,16 @@
 #define PDFVIEWER_H
 
 #include "viewerinterfaces.h"
+#include <QListView>
 #include <QLoggingCategory>
+#include <QMainWindow>
+#include <QPdfDocument>
+#include <QPdfPageSelector>
+#include <QPdfView>
+#include <QTabWidget>
+#include <QTreeView>
 
 Q_DECLARE_LOGGING_CATEGORY(lcExample)
-
-QT_BEGIN_NAMESPACE
-class QMainWindow;
-class QPdfDocument;
-class QPdfView;
-class QPdfPageSelector;
-class QListView;
-class QTabWidget;
-class QTreeView;
-QT_END_NAMESPACE
 
 class ZoomSelector;
 class PdfViewer : public ViewerInterface

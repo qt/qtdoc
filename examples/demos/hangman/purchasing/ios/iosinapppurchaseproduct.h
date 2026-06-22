@@ -10,8 +10,6 @@
 
 @class SKProduct;
 
-QT_BEGIN_NAMESPACE
-
 class IosInAppPurchaseBackend;
 
 class IosInAppPurchaseProduct : public InAppProduct
@@ -26,8 +24,6 @@ public:
 private:
     SKProduct *m_nativeProduct;
 };
-
-QT_END_NAMESPACE
 
 Q_DECLARE_METATYPE(IosInAppPurchaseProduct*)
 

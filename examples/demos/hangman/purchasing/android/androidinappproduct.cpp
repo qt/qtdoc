@@ -4,8 +4,6 @@
 #include "androidinappproduct.h"
 #include "androidinapppurchasebackend.h"
 
-QT_BEGIN_NAMESPACE
-
 AndroidInAppProduct::AndroidInAppProduct(AndroidInAppPurchaseBackend *backend,
                                            const QString &price,
                                            const QString &title,
