@@ -62,7 +62,7 @@ public:
     void setType(ProductType type);
     ProductType type() const;
 
-Q_SIGNALS:
+signals:
     void purchaseSucceeded(InAppTransaction *transaction);
     void purchaseFailed(InAppTransaction *transaction);
     void purchaseRestored(InAppTransaction *transaction);
@@ -78,7 +78,7 @@ protected:
     void componentComplete();
     void classBegin() {}
 
-private Q_SLOTS:
+private slots:
     void handleTransaction(InAppTransaction *transaction);
     void handleProductRegistered(InAppProduct *product);
     void handleProductUnknown(InAppProduct::ProductType, const QString &identifier);
