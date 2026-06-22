@@ -156,8 +156,6 @@
 @end
 
 
-QT_BEGIN_NAMESPACE
-
 IosInAppPurchaseBackend::IosInAppPurchaseBackend(QObject *parent)
     : InAppPurchaseBackend(parent)
     , m_iapManager(0)
@@ -246,7 +244,5 @@ void IosInAppPurchaseBackend::setParentToBackend(QObject *object)
 {
     object->setParent(this);
 }
-
-QT_END_NAMESPACE
 
 #include "moc_iosinapppurchasebackend.cpp"

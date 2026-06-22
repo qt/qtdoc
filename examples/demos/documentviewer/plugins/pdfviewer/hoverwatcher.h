@@ -6,10 +6,7 @@
 #include <QObject>
 #include <QEvent>
 #include <QScroller>
-
-QT_BEGIN_NAMESPACE
-class QWidget;
-QT_END_NAMESPACE
+#include <QWidget>
 
 class HoverWatcher : public QObject
 {

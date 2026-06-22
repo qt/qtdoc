@@ -11,8 +11,6 @@
 
 #include "inappproduct.h"
 
-QT_BEGIN_NAMESPACE
-
 class InAppProduct;
 class InAppTransactionPrivate;
 class InAppTransaction: public QObject

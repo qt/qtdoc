@@ -6,22 +6,19 @@
 
 #include "abstractviewerglobal.h"
 
-#include <QObject>
+#include <QAction>
+#include <QFile>
 #include <QLocale>
+#include <QMainWindow>
+#include <QMenu>
+#include <QMenuBar>
+#include <QObject>
+#include <QPrinter>
+#include <QScrollArea>
+#include <QStatusBar>
+#include <QTabWidget>
+#include <QToolBar>
 #include <QtCompilerDetection>
-
-QT_BEGIN_NAMESPACE
-class QAction;
-class QFile;
-class QMainWindow;
-class QMenu;
-class QMenuBar;
-class QPrinter;
-class QToolBar;
-class QTabWidget;
-class QScrollArea;
-class QStatusBar;
-QT_END_NAMESPACE
 
 class Translator;
 

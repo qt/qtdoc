@@ -12,8 +12,6 @@
 
 Q_FORWARD_DECLARE_OBJC_CLASS(QT_MANGLE_NAMESPACE(InAppPurchaseManager));
 
-QT_BEGIN_NAMESPACE
-
 class IosInAppPurchaseProduct;
 class IosInAppPurchaseTransaction;
 
@@ -45,7 +43,5 @@ private:
 private slots:
     void setParentToBackend(QObject *object);
 };
-
-QT_END_NAMESPACE
 
 #endif // IOSINAPPPURCHASEBACKEND_H
