@@ -53,7 +53,7 @@ signals:
     void productUnknown(InAppProduct::ProductType productType, const QString &identifier);
     void transactionReady(InAppTransaction *transaction);
 
-private Q_SLOTS:
+private slots:
     void registerPendingProducts();
     void registerProduct(InAppProduct *);
 

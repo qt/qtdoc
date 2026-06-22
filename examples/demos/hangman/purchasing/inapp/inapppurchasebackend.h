@@ -40,7 +40,7 @@ public:
     void setStore(InAppStore *store) { m_store = store; }
     InAppStore *store() const { return m_store; }
 
-Q_SIGNALS:
+signals:
     void ready();
     void transactionReady(InAppTransaction *transaction);
     void productQueryFailed(InAppProduct::ProductType productType, const QString &identifier);
