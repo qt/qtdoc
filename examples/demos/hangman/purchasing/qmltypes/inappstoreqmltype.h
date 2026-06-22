@@ -7,7 +7,7 @@
 #include <QList>
 #include <QObject>
 #include <QQmlListProperty>
-#include <QtQml/qqml.h>
+#include <qqmlregistration.h>
 
 #include "inappproductqmltype.h"
 #include "../inapp/inappstore.h"

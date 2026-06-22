@@ -8,7 +8,7 @@
 #include <QStringList>
 #include <QMutex>
 #include <QSettings>
-#include <QtQml/qqml.h>
+#include <qqmlregistration.h>
 
 #include "purchasing/inapp/inappproduct.h"
 #include "purchasing/inapp/inapppurchasebackend.h"

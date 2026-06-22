@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 #include <QtQuick>
-#include <QtGui/QGuiApplication>
-#include <QtQml/QQmlApplicationEngine>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 #include "hangmangame.h"
 #include "purchasing/qmltypes/inappstoreqmltype.h"

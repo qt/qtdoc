@@ -6,12 +6,13 @@
 
 #include "abstractresource.h"
 
-#include <QtQml/qqml.h>
-#include <QtQml/qqmlparserstatus.h>
-#include <QtNetwork/qrestaccessmanager.h>
-#include <QtNetwork/qnetworkrequestfactory.h>
-#include <QtCore/qobject.h>
-#include <QtCore/qurl.h>
+#include <qqmlregistration.h>
+#include <QQmlListProperty>
+#include <QQmlParserStatus>
+#include <QRestAccessManager>
+#include <QNetworkRequestFactory>
+#include <QObject>
+#include <QUrl>
 
 class RestService : public QObject, public QQmlParserStatus
 {

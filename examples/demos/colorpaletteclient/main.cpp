@@ -1,9 +1,9 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include <QtQml/qqmlapplicationengine.h>
-#include <QtQml/qqmlcontext.h>
-#include <QtGui/qguiapplication.h>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QGuiApplication>
 
 int main(int argc, char *argv[])
 {

@@ -3,12 +3,12 @@
 
 #include "basiclogin.h"
 
-#include <QtNetwork/qhttpheaders.h>
-#include <QtNetwork/qrestaccessmanager.h>
-#include <QtNetwork/qrestreply.h>
+#include <QHttpHeaders>
+#include <QRestAccessManager>
+#include <QRestReply>
 
-#include <QtCore/qjsondocument.h>
-#include <QtCore/qjsonobject.h>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 using namespace Qt::StringLiterals;
 
