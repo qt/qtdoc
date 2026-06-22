@@ -32,8 +32,6 @@ endif()
 # documentviewer library
 #
 
-set(CMAKE_AUTORCC ON)
-
 qt_add_executable(documentviewer
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
