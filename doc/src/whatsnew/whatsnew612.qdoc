@@ -810,11 +810,11 @@
 
     Key CMake target properties for HarmonyOS deployment include:
     \list
-    \li \c{QT_HARMONYOS_EXTRA_LIBS} — additional shared libraries to
+    \li \l{QT_HARMONYOS_EXTRA_LIBS} — additional shared libraries to
         bundle in the HAP.
-    \li \c{QT_HARMONYOS_EXTRA_PLUGINS} — additional Qt plugins to
+    \li \l{QT_HARMONYOS_EXTRA_PLUGINS} — additional Qt plugins to
         deploy.
-    \li \c{QT_HARMONYOS_PACKAGE_SOURCE_DIR} — a directory whose
+    \li \l{QT_HARMONYOS_PACKAGE_SOURCE_DIR} — a directory whose
         contents are merged into the generated HarmonyOS project
         template before the HAP is built.
     \endlist
