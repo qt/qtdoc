@@ -9,9 +9,6 @@ set(target_uri io.qt.fdmaploader)
 project(${target_name} VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 
 find_package(Qt6 6.10 REQUIRED COMPONENTS Quick)
 
