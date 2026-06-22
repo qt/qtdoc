@@ -5,7 +5,7 @@
 #include "iosinapppurchaseproduct.h"
 #include "iosinapppurchasetransaction.h"
 
-#include <QtCore/QString>
+#include <QString>
 
 #import <StoreKit/StoreKit.h>
 

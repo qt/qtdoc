@@ -5,7 +5,7 @@
 #define IosINAPPPURCHASETRANSACTION_H
 
 #include "../inapp/inapptransaction.h"
-#include <QtCore/QString>
+#include <QString>
 
 #import <StoreKit/StoreKit.h>
 #import <Foundation/Foundation.h>

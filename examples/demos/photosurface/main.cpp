@@ -1,18 +1,18 @@
 // Copyright (C) 2017 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include <QtQml/QQmlApplicationEngine>
-#include <QtQml/QQmlContext>
-#include <QtQuick/QQuickWindow>
-#include <QtGui/QGuiApplication>
-#include <QtGui/QImageReader>
-#include <QtCore/QCommandLineParser>
-#include <QtCore/QCommandLineOption>
-#include <QtCore/QDebug>
-#include <QtCore/QDir>
-#include <QtCore/QMimeDatabase>
-#include <QtCore/QStandardPaths>
-#include <QtCore/QUrl>
+#include <QCommandLineOption>
+#include <QCommandLineParser>
+#include <QDebug>
+#include <QDir>
+#include <QGuiApplication>
+#include <QImageReader>
+#include <QMimeDatabase>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickWindow>
+#include <QStandardPaths>
+#include <QUrl>
 
 static QStringList imageNameFilters()
 {

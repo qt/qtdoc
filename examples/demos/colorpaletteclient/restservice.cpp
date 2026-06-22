@@ -5,9 +5,9 @@
 #include "restservice.h"
 
 #if QT_CONFIG(ssl)
-#include <QtNetwork/qsslsocket.h>
+#include <QSslSocket>
 #endif
-#include <QtNetwork/qrestaccessmanager.h>
+#include <QRestAccessManager>
 
 using namespace Qt::StringLiterals;
 

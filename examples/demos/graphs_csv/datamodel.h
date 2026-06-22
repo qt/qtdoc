@@ -4,8 +4,9 @@
 #ifndef DATAMODEL_H
 #define DATAMODEL_H
 #include <QAbstractItemModel>
-#include <QtQml/qqml.h>
 #include <QList>
+#include <QUrl>
+#include <qqmlregistration.h>
 #include <qtpreprocessorsupport.h>
 
 class DataModel : public QAbstractTableModel

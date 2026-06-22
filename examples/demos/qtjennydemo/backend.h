@@ -3,14 +3,14 @@
 #ifndef BACKEND_H
 #define BACKEND_H
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QJniObject>
-#include <QtCore/QObject>
-#include <QtCore/QOperatingSystemVersion>
-#include <QtCore/QString>
+#include <QCoreApplication>
+#include <QGuiApplication>
+#include <QJniObject>
+#include <QObject>
+#include <QOperatingSystemVersion>
+#include <QString>
 #include <QtCore/private/qandroidextras_p.h>
-#include <QtQml/qqml.h>
-#include <QtGui/qguiapplication.h>
+#include <qqmlregistration.h>
 #include <qtjenny_output/jenny/proxy/android_app_ActivityProxy.h>
 #include <qtjenny_output/jenny/proxy/android_app_BuilderProxy.h>
 #include <qtjenny_output/jenny/proxy/android_app_NotificationChannelProxy.h>
