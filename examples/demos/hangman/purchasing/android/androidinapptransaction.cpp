@@ -5,8 +5,6 @@
 #include "androidinapptransaction.h"
 #include "androidinapppurchasebackend.h"
 
-QT_BEGIN_NAMESPACE
-
 AndroidInAppTransaction::AndroidInAppTransaction(const QString &signature,
                                                    const QString &data,
                                                    const QString &purchaseToken,
@@ -74,4 +72,3 @@ void AndroidInAppTransaction::finalize()
 
     deleteLater();
 }
-QT_END_NAMESPACE

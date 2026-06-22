@@ -7,11 +7,8 @@
 #include "lightningitemdata.h"
 
 #include <QObject>
-
-QT_BEGIN_NAMESPACE
-class QWebSocket;
-class QTimer;
-QT_END_NAMESPACE
+#include <QTimer>
+#include <QWebSocket>
 
 class LightningProvider : public QObject
 {

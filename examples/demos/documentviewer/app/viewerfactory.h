@@ -4,15 +4,12 @@
 #ifndef VIEWERFACTORY_H
 #define VIEWERFACTORY_H
 
-#include <QString>
+#include <QFile>
+#include <QMainWindow>
 #include <QMap>
-
-QT_BEGIN_NAMESPACE
-class QMimeType;
-class QWidget;
-class QMainWindow;
-class QFile;
-QT_END_NAMESPACE
+#include <QMimeType>
+#include <QString>
+#include <QWidget>
 
 class AbstractViewer;
 

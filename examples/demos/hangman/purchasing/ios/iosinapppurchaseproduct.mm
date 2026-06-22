@@ -4,8 +4,6 @@
 #include "iosinapppurchaseproduct.h"
 #include "iosinapppurchasebackend.h"
 
-QT_BEGIN_NAMESPACE
-
 
 static NSString *localizedPrice(SKProduct *product)
 {
@@ -36,7 +34,5 @@ void IosInAppPurchaseProduct::purchase()
     SKPayment *payment = [SKPayment paymentWithProduct:m_nativeProduct];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
-
-QT_END_NAMESPACE
 
 #include "moc_iosinapppurchaseproduct.cpp"

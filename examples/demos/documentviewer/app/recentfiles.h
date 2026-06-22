@@ -4,12 +4,9 @@
 #ifndef RECENTFILES_H
 #define RECENTFILES_H
 
-#include <QMenu>
 #include <QFile>
-
-QT_BEGIN_NAMESPACE
-class QSettings;
-QT_END_NAMESPACE
+#include <QMenu>
+#include <QSettings>
 
 class RecentFiles : public QObject
 {

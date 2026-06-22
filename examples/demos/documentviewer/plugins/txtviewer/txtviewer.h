@@ -5,10 +5,7 @@
 #define TXTVIEWER_H
 
 #include "viewerinterfaces.h"
-
-QT_BEGIN_NAMESPACE
-class QPlainTextEdit;
-QT_END_NAMESPACE
+#include <QPlainTextEdit>
 
 //! [interfacing]
 class TxtViewer : public ViewerInterface

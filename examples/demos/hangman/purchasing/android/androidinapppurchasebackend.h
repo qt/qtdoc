@@ -14,7 +14,6 @@
 #include "../inapp/inappproduct.h"
 #include "../inapp/inapptransaction.h"
 
-QT_BEGIN_NAMESPACE
 class AndroidInAppProduct;
 class AndroidInAppPurchaseBackend : public InAppPurchaseBackend
 {
@@ -93,6 +92,5 @@ private:
     QHash<QString, PurchaseInfo> m_infoForPurchase;
     QHash<int, InAppProduct *> m_activePurchaseRequests;
 };
-QT_END_NAMESPACE
 
 #endif // ANDROIDINAPPPURCHASEBACKEND_H

@@ -13,8 +13,6 @@
 
 @class SKPaymentTransaction;
 
-QT_BEGIN_NAMESPACE
-
 class IosInAppPurchaseBackend;
 
 class IosInAppPurchaseTransaction : public InAppTransaction
@@ -37,8 +35,6 @@ private:
     QString m_errorString;
     FailureReason m_failureReason;
 };
-
-QT_END_NAMESPACE
 
 Q_DECLARE_METATYPE(IosInAppPurchaseTransaction*)
 

@@ -6,8 +6,6 @@
 
 #import <StoreKit/StoreKit.h>
 
-QT_BEGIN_NAMESPACE
-
 IosInAppPurchaseTransaction::IosInAppPurchaseTransaction(SKPaymentTransaction *transaction,
                                            const TransactionStatus status,
                                            InAppProduct *product,
@@ -82,7 +80,5 @@ QDateTime IosInAppPurchaseTransaction::timestamp() const
 {
     return QDateTime::fromNSDate(m_nativeTransaction.transactionDate);
 }
-
-QT_END_NAMESPACE
 
 #include "moc_iosinapppurchasetransaction.cpp"
