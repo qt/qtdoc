@@ -231,10 +231,11 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
 
                     lastVertexDataCount = vertexData.size();
                     lastIndexDataCount = indexData.size();
-                    uint32_t sphereVertexCount = sphereStackCount * (sphereSectorCount + 1);
+                    uint32_t sphereVertexCount = (sphereStackCount + 1) * (sphereSectorCount + 1);
+                    uint32_t indexCount = 2 * (sphereStackCount - 1) * (sphereSectorCount + 1)
+                            + 2 * (sphereSectorCount + 1); // one index only in first/last stack
                     vertexData.resize( lastVertexDataCount + sphereVertexCount * strideVertex );
-                    indexData.resize( lastIndexDataCount + sphereVertexCount * 2 * 3 * sizeof(uint32_t) );
-
+                    indexData.resize( lastIndexDataCount + indexCount * 3 * sizeof(uint32_t) );
                     vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * strideVertexLen];
                     ibPtr = &reinterpret_cast<uint32_t *>(indexData.data())[globalPrimitiveCounter * 3];
 
