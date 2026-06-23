@@ -232,8 +232,8 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                     lastVertexDataCount = vertexData.size();
                     lastIndexDataCount = indexData.size();
                     uint32_t sphereVertexCount = (sphereStackCount + 1) * (sphereSectorCount + 1);
-                    uint32_t indexCount = 2 * (sphereStackCount - 1) * (sphereSectorCount + 1)
-                            + 2 * (sphereSectorCount + 1); // one index only in first/last stack
+                    uint32_t indexCount = 2 * (sphereStackCount - 2) * (sphereSectorCount + 1)
+                            + 2 * (sphereSectorCount + 1); // one index only for stack 0, n-1
                     vertexData.resize( lastVertexDataCount + sphereVertexCount * strideVertex );
                     indexData.resize( lastIndexDataCount + indexCount * 3 * sizeof(uint32_t) );
                     vbPtr = &reinterpret_cast<float *>(vertexData.data())[globalVertexCounter * strideVertexLen];
@@ -248,16 +248,20 @@ void OSMGeometry::loadGeometryFromData(const QList<QVariant> &geoVariantsList)
                         float z = sphereRadius * qSin(sphereStackAngle);
 
                         for (uint32_t sectorIndex = 0; sectorIndex <= sphereSectorCount; ++sectorIndex,  ++k1, ++k2) {
-                            if (stackIndex != 0) {
-                                writeIndex(ibPtr, k1 + globalVertexCounter,
-                                           k2 + globalVertexCounter, k1 + 1 + globalVertexCounter);
-                                ++globalPrimitiveCounter;
-                            }
+                            if (stackIndex != sphereStackCount) {
+                                if (stackIndex != 0) {
+                                    writeIndex(ibPtr, k1 + globalVertexCounter,
+                                               k2 + globalVertexCounter,
+                                               k1 + 1 + globalVertexCounter);
+                                    ++globalPrimitiveCounter;
+                                }
 
-                            if (stackIndex != (sphereStackCount-1)) {
-                                writeIndex(ibPtr, k1 + 1 + globalVertexCounter,
-                                           k2 + globalVertexCounter, k2 + 1 + globalVertexCounter);
-                                ++globalPrimitiveCounter;
+                                if (stackIndex != (sphereStackCount - 1)) {
+                                    writeIndex(ibPtr, k1 + 1 + globalVertexCounter,
+                                               k2 + globalVertexCounter,
+                                               k2 + 1 + globalVertexCounter);
+                                    ++globalPrimitiveCounter;
+                                }
                             }
 
                             const float sphereSectorAngle = sectorIndex * sphereSectorStep;
