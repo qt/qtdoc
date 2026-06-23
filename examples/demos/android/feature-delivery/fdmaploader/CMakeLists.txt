@@ -8,8 +8,6 @@ set(target_uri io.qt.fdmaploader)
 
 project(${target_name} VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(Qt6 6.10 REQUIRED COMPONENTS Quick)
 
 set(featurelib_include_dir "${CMAKE_CURRENT_SOURCE_DIR}/storeloader/")

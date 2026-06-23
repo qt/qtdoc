@@ -7,7 +7,6 @@ cmake_minimum_required(VERSION 3.18)
 
 project(ToyCustomizer VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(QT_WASM_INITIAL_MEMORY "200MB")
 
 find_package(Qt6 REQUIRED COMPONENTS Quick ShaderTools)
