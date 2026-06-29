@@ -1262,11 +1262,16 @@ brew install --cask qt-creator
 brew install --cask qt-design-studio
 \endcode
 
-When you start \QC or \QDS, you need to set the path to the Qt version
+When you start \QC, \QVSC, or \QDS, you need to set the path to the Qt version
 installed by Homebrew. By default, Homebrew installs Qt in
 \c {/opt/homebrew/Cellar/qt/<version>/}.
 
-For more information on setting up a Qt Kit in \QC, see \l{\QC: Add Qt versions}.
+For more information on setting up a Qt Kit:
+
+\list
+    \li For \QC, see \l{\QC: Add Qt versions}.
+    \li For \QVSC, see \l{\QVSC: Register Qt installations}.
+\endlist
 
 \image link-qt-kit.webp {Choose a linked Qt Kit in Qt Creator}
 

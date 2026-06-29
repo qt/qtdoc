@@ -1261,6 +1261,12 @@
         set PATH=C:\Qt\Qt-major.minor.patch\bin;%PATH%
         \endcode
 
-        If you plan to use Qt from an IDE, you need to register the Qt version explicitly
-        there. For \QC, see \l{\QC: Add Qt versions}.
+        If you plan to build your application from an IDE, you need to register
+        the Qt version explicitly there:
+
+        \list
+            \li For \QC, see \l{\QC: Add Qt versions}.
+            \li For \QVSC, see \l{\QVSC: Register Qt installations}.
+        \endlist
+
 */
