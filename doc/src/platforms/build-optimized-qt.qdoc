@@ -174,8 +174,13 @@
         )
         \endcode
 
-    If you plan to build your application from an IDE, you need to register the Qt version explicitly
-    there. For \QC, see \l{\QC: Add Qt versions}.
+    If you plan to build your application from an IDE, you need to register the
+    Qt version explicitly there:
+
+    \list
+        \li For \QC, see \l{\QC: Add Qt versions}.
+        \li For \QVSC, see \l{\QVSC: Register Qt installations}.
+    \endlist
 
     If you're using command line to build your application, follow the platform-specific guide.
 
