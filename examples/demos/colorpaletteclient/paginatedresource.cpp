@@ -53,6 +53,7 @@ void PaginatedResource::refreshCurrentPage()
                        if (const auto json = reply.readJson()) {
                            refreshRequestFinished(*json);
                        } else {
+                           emit errorOccurred(reply.errorString());
                            refreshRequestFailed();
                        }
                 });

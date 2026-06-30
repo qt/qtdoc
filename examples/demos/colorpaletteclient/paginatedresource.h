@@ -43,6 +43,7 @@ signals:
     void pageUpdated();
     void pagesUpdated();
     void pathChanged();
+    void errorOccurred(const QString &error);
 
 private:
     void refreshRequestFinished(const QJsonDocument &json);

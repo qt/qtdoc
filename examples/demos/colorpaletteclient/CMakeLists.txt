@@ -22,7 +22,6 @@ qt_add_qml_module(colorpaletteclient
     URI ColorPalette
     QML_FILES
         ColorPalette/Main.qml
-        ColorPalette/ServerSelection.qml
         ColorPalette/ColorView.qml
         ColorPalette/ColorDialogEditor.qml
         ColorPalette/ColorDialogDelete.qml
@@ -34,7 +33,6 @@ qt_add_qml_module(colorpaletteclient
         paginatedresource.h paginatedresource.cpp
     RESOURCES
         icons/qt.png
-        icons/testserver.png
         icons/userMask.svg
         icons/close.svg
         icons/delete.svg
