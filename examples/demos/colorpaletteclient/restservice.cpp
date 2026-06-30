@@ -9,8 +9,6 @@
 #endif
 #include <QRestAccessManager>
 
-using namespace Qt::StringLiterals;
-
 RestService::RestService(QObject *parent) : QObject(parent)
 {
     m_qnam.setAutoDeleteReplies(true);
@@ -23,11 +21,6 @@ void RestService::setUrl(const QUrl &url)
     if (m_serviceApi->baseUrl() == url)
         return;
     m_serviceApi->setBaseUrl(url);
-    QHttpHeaders authenticationHeaders;
-    // reqres.in requires an API-key, see https://reqres.in/signup
-    if (url.host().startsWith("reqres"_L1))
-        authenticationHeaders.append("x-api-key", "reqres-free-v1");
-    m_serviceApi->setCommonHeaders(authenticationHeaders);
     emit urlChanged();
 }
 

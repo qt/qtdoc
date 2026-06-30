@@ -12,7 +12,7 @@
 
 This example shows how to create a basic QML RESTful API client with an
 imaginary color palette service. The application uses RESTful communication with
-the selected server to request and send data. The REST service is provided as a
+a local server to request and send data. The REST service is provided as a
 QML element whose child elements wrap the individual JSON data APIs provided by
 the server.
 
@@ -22,30 +22,23 @@ the server.
 
 The example provides the following basic functionalities:
 \list
-    \li Select the server to communicate with
     \li List users and colors
     \li Login and logout users
     \li Modify and create new colors
 \endlist
 
-\section2 Server selection
+\section2 Running the server
 
-At startup, the application presents predefined options that the color palette
-server can communicate with:
-\list
-    \li \l {https://reqres.in}{reqres.in}, a publicly available REST API test service
-    \li \l {RESTful API Server} {Qt-based REST API server example} in \l QtHttpServer
-\endlist
-Once selected, the RESTful API client issues a test HTTP GET to the color API to check if the service is
-accessible.
+The client communicates with the \l {RESTful API Server}{Qt-based REST API
+server example} in \l QtHttpServer, which listens on \c http://127.0.0.1:49425.
+Start that server before launching the client.
 
-\image {colorpalette_urlselection.png} {A GUI that shows two servers to choose from}
+The client connects at startup and issues an HTTP GET to the color API. If the
+server cannot be reached, a dialog reports the failed connection and lets you
+retry once the server is running.
 
-One major difference between the two predefined API options is that the \l
-{RESTful API Server}{Qt-based REST API server example} is a stateful application
-that lets you modify the colors, whereas the \c reqres.in is a stateless API
-testing service. In other words, when using the \c reqres.in backend, modifying
-the colors has no lasting impact.
+The Qt-based REST API server is a stateful application that lets you modify the
+colors, and the changes persist for the lifetime of the server process.
 
 \section2 List users and colors
 
