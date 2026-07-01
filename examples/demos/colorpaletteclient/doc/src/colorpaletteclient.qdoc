@@ -8,7 +8,7 @@
 \meta tags {quick, network, http}
 \title Qt Quick Demo - RESTful API client
 \brief Example of how to create a RESTful API QML client.
-\image {colorpalette_listing.png} {A color palette service GUI}
+\image {colorpalette_listing.webp} {A color palette service GUI}
 
 This example shows how to create a basic QML RESTful API client with an
 imaginary color palette service. The application uses RESTful communication with
@@ -58,12 +58,12 @@ Under the hood, the login sends a HTTP POST request. Upon receiving a successful
 response, the authorization token is extracted from the response, which is then used in
 subsequent HTTP requests that require the token.
 
-\image {colorpalette_userlisting.png} {A GUI that lists the users}
+\image {colorpalette_userlisting.webp} {A GUI that lists the users}
 
 \section2 Editing colors
 
 Editing and adding new colors is done in a popup:
-\image {colorpalette_editing.png} {A GUI for editing a color}
+\image {colorpalette_editing.webp} {A GUI for editing a color}
 Note that uploading the color changes to the server requires that a user has logged in.
 
 \section1 REST implementation
