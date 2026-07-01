@@ -96,6 +96,8 @@ Popup {
             Rectangle {
                 Layout.preferredWidth: 30
                 Layout.preferredHeight: 30
+                Layout.minimumWidth: 30
+                Layout.minimumHeight: 30
                 radius: 4
                 border.width: 1
                 border.color: palette.mid
