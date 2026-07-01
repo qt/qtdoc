@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(RESTfulAPIClient LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Network Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Network Gui Qml Quick QuickControls2)
 qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(colorpaletteclient
@@ -15,8 +15,6 @@ set_target_properties(colorpaletteclient PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
-
-add_subdirectory(QtExampleStyle)
 
 qt_add_qml_module(colorpaletteclient
     URI ColorPalette
@@ -62,6 +60,7 @@ target_link_libraries(colorpaletteclient PRIVATE
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::QuickControls2
 )
 
 install(TARGETS colorpaletteclient

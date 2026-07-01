@@ -8,8 +8,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
 
-import QtExampleStyle
-
 Popup {
     id: userMenu
 
@@ -21,10 +19,16 @@ Popup {
 
     background: Item {}
 
+    function iconPath(baseImagePath) {
+        return Application.styleHints.colorScheme === Qt.ColorScheme.Dark
+            ? `qrc:/qt/qml/ColorPalette/icons/${baseImagePath}_dark.svg`
+            : `qrc:/qt/qml/ColorPalette/icons/${baseImagePath}.svg`
+    }
+
     Rectangle {
         radius: 8
         border.width: 0
-        color: UIStyle.background
+        color: palette.window
 
         anchors.fill: parent
 
@@ -83,13 +87,12 @@ Popup {
                     }
                 }
 
-                Text {
+                Label {
                     id: userMailLabel
                     anchors.left: userImageCliped.right
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.margins: 5
                     text: userInfo.modelData.email
-                    color: UIStyle.textColor
                     font.bold: userInfo.logged
                 }
 
@@ -98,7 +101,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.margins: 5
 
-                    icon.source: UIStyle.iconPath(userInfo.logged
+                    icon.source: userMenu.iconPath(userInfo.logged
                                  ? "logout" : "login")
                     enabled: userInfo.logged || !userMenu.userLoginService.loggedIn
 
@@ -147,7 +150,7 @@ Popup {
 
     Rectangle {
         radius: 8
-        border.color: UIStyle.buttonOutline
+        border.color: palette.mid
         border.width: 2
         color: "transparent"
 

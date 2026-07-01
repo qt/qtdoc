@@ -4,7 +4,7 @@
 TEMPLATE = app
 TARGET = colorpaletteclient
 
-QT += core network qml quick
+QT += core network qml quick quickcontrols2
 
 CONFIG += qmltypes
 QML_IMPORT_NAME = ColorPalette

@@ -9,15 +9,19 @@ import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Shapes
 
-import QtExampleStyle
-
 Rectangle {
     id: root
     required property BasicLogin loginService
     required property PaginatedResource colors
     required property PaginatedResource colorViewUsers
 
-    color: UIStyle.background
+    color: root.palette.window
+
+    function iconPath(baseImagePath) {
+        return Application.styleHints.colorScheme === Qt.ColorScheme.Dark
+            ? `qrc:/qt/qml/ColorPalette/icons/${baseImagePath}_dark.svg`
+            : `qrc:/qt/qml/ColorPalette/icons/${baseImagePath}.svg`
+    }
 
     ColorDialogEditor {
         id: colorPopup
@@ -62,51 +66,25 @@ Rectangle {
                 anchors.leftMargin: 5
                 anchors.rightMargin: 5
 
-                AbstractButton {
+                Button {
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
                     Layout.alignment: Qt.AlignVCenter
 
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 4
-                        color: UIStyle.buttonBackground
-                        border.color: UIStyle.buttonOutline
-                        border.width: 1
-                    }
+                    display: AbstractButton.IconOnly
+                    icon.source: root.iconPath("plus")
 
-                    Image {
-                        source: UIStyle.iconPath("plus")
-                        fillMode: Image.PreserveAspectFit
-                        anchors.fill: parent
-                        sourceSize.width: width
-                        sourceSize.height: height
-
-                    }
                     visible: root.loginService.loggedIn
                     onClicked: colorPopup.createNewColor()
                 }
 
-                AbstractButton {
+                Button {
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
                     Layout.alignment: Qt.AlignVCenter
 
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 4
-                        color: UIStyle.buttonBackground
-                        border.color: UIStyle.buttonOutline
-                        border.width: 1
-                    }
-
-                    Image {
-                        source: UIStyle.iconPath("update")
-                        fillMode: Image.PreserveAspectFit
-                        anchors.fill: parent
-                        sourceSize.width: width
-                        sourceSize.height: height
-                    }
+                    display: AbstractButton.IconOnly
+                    icon.source: root.iconPath("update")
 
                     onClicked: {
                         root.colors.refreshCurrentPage()
@@ -125,13 +103,11 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                 }
 
-                Text {
+                Label {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     text: qsTr("Color Palette")
-                    font.pixelSize: UIStyle.fontSizeM
                     font.bold: true
-                    color: UIStyle.titletextColor
                 }
 
                 Item { Layout.fillWidth: true }
@@ -155,7 +131,7 @@ Rectangle {
 
                             function getCurrentUserImage() {
                                 if (!root.loginService.loggedIn)
-                                    return UIStyle.iconPath("user");
+                                    return root.iconPath("user");
                                 let users = root.colorViewUsers
                                 for (let i = 0; i < users.data.length; i++) {
                                     if (users.data[i].email === root.loginService.user)
@@ -200,8 +176,8 @@ Rectangle {
 
                        ShapePath {
                            strokeWidth: 0
-                           fillColor: UIStyle.highlightColor
-                           strokeColor: UIStyle.highlightBorderColor
+                           fillColor: root.palette.highlight
+                           strokeColor: Qt.darker(root.palette.highlight, 1.3)
                            startX: 5; startY: 0
                            PathLine { x: 5 + text.width + 6; y: 0 }
                            PathArc { x: 10 + text.width + 6; y: 5; radiusX: 5; radiusY: 5}
@@ -221,7 +197,7 @@ Rectangle {
                            x: 8
                            y: 8
                            id: text
-                           color: UIStyle.textColor
+                           color: root.palette.highlightedText
                            text: qsTr("Log in to edit")
                            font.bold: true
                            horizontalAlignment: Qt.AlignHCenter
@@ -251,17 +227,14 @@ Rectangle {
             header:  Rectangle {
                 height: 32
                 width: parent.width
-                color: UIStyle.background
+                color: palette.window
 
                 RowLayout {
                     anchors.fill: parent
 
-                    component HeaderText : Text {
+                    component HeaderText : Label {
                         Layout.alignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
-
-                        font.pixelSize: UIStyle.fontSizeS
-                        color: UIStyle.titletextColor
                     }
                     HeaderText {
                         id: headerName
@@ -280,7 +253,6 @@ Rectangle {
                         text: qsTr("Pantone Value")
                         Layout.fillWidth: true
                         Layout.horizontalStretchFactor: 25
-                        font.pixelSize: UIStyle.fontSizeS
                     }
                     HeaderText {
                         id: headerAction
@@ -313,29 +285,23 @@ Rectangle {
                         color: colorInfo.modelData.color
                     }
 
-                    Text {
+                    Label {
                         Layout.preferredWidth: colorInfo.width * 0.3 - colorSample.width
                         horizontalAlignment: Qt.AlignLeft
                         leftPadding: 5
                         text: colorInfo.modelData.name
-                        color: UIStyle.textColor
-                        font.pixelSize: UIStyle.fontSizeS
                     }
 
-                    Text {
+                    Label {
                         Layout.preferredWidth: colorInfo.width * 0.25
                         horizontalAlignment: Qt.AlignHCenter
                         text: colorInfo.modelData.color
-                        color: UIStyle.textColor
-                        font.pixelSize: UIStyle.fontSizeS
                     }
 
-                    Text {
+                    Label {
                         Layout.preferredWidth: colorInfo.width * 0.25
                         horizontalAlignment: Qt.AlignHCenter
                         text: colorInfo.modelData.pantone_value
-                        color: UIStyle.textColor
-                        font.pixelSize: UIStyle.fontSizeS
                     }
 
                     Item {
@@ -347,12 +313,12 @@ Rectangle {
                             id: buttonBox
                             anchors.fill: parent
                             ToolButton {
-                                icon.source: UIStyle.iconPath("delete")
+                                icon.source: root.iconPath("delete")
                                 enabled: root.loginService.loggedIn
                                 onClicked: colorDeletePopup.maybeDelete(colorInfo.modelData)
                             }
                             ToolButton {
-                                icon.source: UIStyle.iconPath("edit")
+                                icon.source: root.iconPath("edit")
                                 enabled: root.loginService.loggedIn
                                 onClicked: colorPopup.updateColor(colorInfo.modelData)
                             }

@@ -4,6 +4,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QGuiApplication>
+#include <QQuickStyle>
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -32,6 +33,8 @@ int main(int argc, char *argv[])
                  qUtf8Printable(url.errorString()));
         return -1;
     }
+
+    QQuickStyle::setStyle("Fusion");
 
     QQmlApplicationEngine engine;
     engine.setInitialProperties({{u"serverUrl"_s, url}});
