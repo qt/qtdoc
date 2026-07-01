@@ -20,7 +20,7 @@ Window {
 
     // The Qt colorpalette REST API server listens here, so the client
     // just connects on startup.
-    readonly property url serverUrl: "http://127.0.0.1:49425/api"
+    required property var serverUrl
 
     ColorView {
         id: colorview

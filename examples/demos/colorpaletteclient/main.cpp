@@ -5,11 +5,37 @@
 #include <QQmlContext>
 #include <QGuiApplication>
 
+#include <QCommandLineOption>
+#include <QCommandLineParser>
+#include <QUrl>
+#include <QVariant>
+
+using namespace Qt::StringLiterals;
+
+static constexpr auto defaultUrl = "http://127.0.0.1:49425/api"_L1;
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    QCommandLineParser parser;
+    parser.setApplicationDescription(u"RESTful API client"_s);
+    parser.addHelpOption();
+    parser.addVersionOption();
+    const QCommandLineOption urlOption(u"url"_s, u"URL to open"_s, u"url"_s, defaultUrl);
+    parser.addOption(urlOption);
+    parser.process(app);
+
+    const QUrl url = QUrl::fromUserInput(parser.value(urlOption));
+    if (!url.isValid()) {
+        qWarning("Invalid url \"%s\": %s", qUtf8Printable(parser.value(urlOption)),
+                 qUtf8Printable(url.errorString()));
+        return -1;
+    }
+
     QQmlApplicationEngine engine;
+    engine.setInitialProperties({{u"serverUrl"_s, url}});
+
 #ifdef Q_OS_MACOS
     engine.addImportPath(app.applicationDirPath() + "/../PlugIns");
 #endif
