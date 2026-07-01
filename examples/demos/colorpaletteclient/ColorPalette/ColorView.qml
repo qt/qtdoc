@@ -69,18 +69,22 @@ Rectangle {
                 Button {
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
+                    Layout.minimumWidth: 25
+                    Layout.minimumHeight: 25
                     Layout.alignment: Qt.AlignVCenter
 
                     display: AbstractButton.IconOnly
                     icon.source: root.iconPath("plus")
 
-                    visible: root.loginService.loggedIn
+                    enabled: root.loginService.loggedIn
                     onClicked: colorPopup.createNewColor()
                 }
 
                 Button {
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
+                    Layout.minimumWidth: 25
+                    Layout.minimumHeight: 25
                     Layout.alignment: Qt.AlignVCenter
 
                     display: AbstractButton.IconOnly
@@ -97,6 +101,8 @@ Rectangle {
                 Image {
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
+                    Layout.minimumWidth: 25
+                    Layout.minimumHeight: 25
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     source: "qrc:/qt/qml/ColorPalette/icons/qt.png"
@@ -116,6 +122,8 @@ Rectangle {
                     id: loginButton
                     Layout.preferredWidth: 25
                     Layout.preferredHeight: 25
+                    Layout.minimumWidth: 25
+                    Layout.minimumHeight: 25
                     Item {
                         id: userImageCliped
                         anchors.left: parent.left
@@ -279,6 +287,8 @@ Rectangle {
                     Rectangle {
                         id: colorSample
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.minimumWidth: 36
+                        Layout.minimumHeight: 36
                         implicitWidth: 36
                         implicitHeight: 36
                         radius: 6
@@ -306,6 +316,8 @@ Rectangle {
 
                     Item {
                         Layout.maximumHeight: 28
+                        Layout.minimumWidth: buttonBox.implicitWidth
+                        Layout.minimumHeight: buttonBox.implicitHeight
                         implicitHeight: buttonBox.implicitHeight
                         implicitWidth: buttonBox.implicitWidth
 
