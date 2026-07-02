@@ -40,6 +40,18 @@ retry once the server is running.
 The Qt-based REST API server is a stateful application that lets you modify the
 colors, and the changes persist for the lifetime of the server process.
 
+\section2 Observing the communication with the server
+
+The client logs the HTTP requests it sends and the responses it receives in
+the \c qt.examples.colorpaletteclient \l {QLoggingCategory}{logging category}.
+This logging is disabled by default. To follow the communication with the
+server, enable the category, for example by setting the \c QT_LOGGING_RULES
+environment variable before launching the client:
+
+\badcode
+QT_LOGGING_RULES="qt.examples.colorpaletteclient.debug=true"
+\endcode
+
 \section2 List users and colors
 
 The users and colors are paginated resources on the server-side. This means that the server

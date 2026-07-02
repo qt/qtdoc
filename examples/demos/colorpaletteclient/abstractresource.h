@@ -4,9 +4,12 @@
 #define ABSTRACTRESOURCE_H
 
 #include <qqmlregistration.h>
+#include <QLoggingCategory>
 #include <QRestAccessManager>
 #include <QNetworkRequestFactory>
 #include <QObject>
+
+Q_DECLARE_LOGGING_CATEGORY(lcExample)
 
 class AbstractResource : public QObject
 {

@@ -9,6 +9,8 @@
 #endif
 #include <QRestAccessManager>
 
+Q_LOGGING_CATEGORY(lcExample, "qt.examples.colorpaletteclient")
+
 RestService::RestService(QObject *parent) : QObject(parent)
 {
     m_qnam.setAutoDeleteReplies(true);
@@ -20,6 +22,7 @@ void RestService::setUrl(const QUrl &url)
 {
     if (m_serviceApi->baseUrl() == url)
         return;
+    qCDebug(lcExample).noquote() << "Using REST service at" << url.toDisplayString();
     m_serviceApi->setBaseUrl(url);
     emit urlChanged();
 }
