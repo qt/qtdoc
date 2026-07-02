@@ -49,14 +49,19 @@ void PaginatedResource::setPage(int page)
 void PaginatedResource::refreshCurrentPage()
 {
     QUrlQuery query{{"page"_L1, QString::number(m_currentPage)}};
-    m_manager->get(m_api->createRequest(m_path, query), this, [this](QRestReply &reply) {
-                       if (const auto json = reply.readJson()) {
-                           refreshRequestFinished(*json);
-                       } else {
-                           emit errorOccurred(reply.errorString());
-                           refreshRequestFailed();
-                       }
-                });
+    const QNetworkRequest request = m_api->createRequest(m_path, query);
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "GET" << requestString << "...";
+    m_manager->get(request, this, [this, requestString](QRestReply &reply) {
+        qCDebug(lcExample).noquote() << "GET" << requestString << "returned:" << reply;
+        if (const auto json = reply.readJson()) {
+            refreshRequestFinished(*json);
+        } else {
+            emit errorOccurred(reply.errorString());
+            refreshRequestFailed();
+        }
+    });
 }
 
 void PaginatedResource::refreshRequestFinished(const QJsonDocument &json)
@@ -67,6 +72,8 @@ void PaginatedResource::refreshRequestFinished(const QJsonDocument &json)
         m_data.append(entry.toObject());
     m_pages = json[totalPagesField].toInt();
     m_currentPage = json[currentPageField].toInt();
+    qCDebug(lcExample) << "Received" << m_data.size() << "items for" << m_path << "- page"
+                       << m_currentPage << "of" << m_pages;
     emit pageUpdated();
     emit pagesUpdated();
     emit dataUpdated();
@@ -91,16 +98,26 @@ void PaginatedResource::refreshRequestFailed()
 
 void PaginatedResource::update(const QVariantMap &data, int id)
 {
-    m_manager->put(m_api->createRequest(m_path + resourceId.arg(QString::number(id))), data,
-                   this, [this](QRestReply &reply) {
-                       if (reply.isSuccess())
-                           refreshCurrentPage();
-                   });
+    const QNetworkRequest request =
+            m_api->createRequest(m_path + resourceId.arg(QString::number(id)));
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "PUT" << requestString << "...";
+    m_manager->put(request, data, this, [this, requestString](QRestReply &reply) {
+        qCDebug(lcExample) << "PUT" << requestString << "returned:" << reply;
+        if (reply.isSuccess())
+            refreshCurrentPage();
+    });
 }
 
 void PaginatedResource::add(const QVariantMap &data)
 {
-    m_manager->post(m_api->createRequest(m_path), data, this, [this](QRestReply &reply) {
+    const QNetworkRequest request = m_api->createRequest(m_path);
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "POST" << requestString << "...";
+    m_manager->post(request, data, this, [this, requestString](QRestReply &reply) {
+        qCDebug(lcExample) << "POST" << requestString << "returned:" << reply;
         if (reply.isSuccess())
             refreshCurrentPage();
     });
@@ -108,9 +125,15 @@ void PaginatedResource::add(const QVariantMap &data)
 
 void PaginatedResource::remove(int id)
 {
-    m_manager->deleteResource(m_api->createRequest(m_path + resourceId.arg(QString::number(id))),
-                              this, [this](QRestReply &reply) {
-                                  if (reply.isSuccess())
-                                      refreshCurrentPage();
-                              });
+    const QNetworkRequest request =
+            m_api->createRequest(m_path + resourceId.arg(QString::number(id)));
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "DELETE" << requestString << "...";
+    m_manager->deleteResource(request, this, [this, requestString](QRestReply &reply) {
+        qCDebug(lcExample) << "DELETE" << requestString << "returned:"
+                           << reply;
+        if (reply.isSuccess())
+            refreshCurrentPage();
+    });
 }

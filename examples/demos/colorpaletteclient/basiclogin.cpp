@@ -33,7 +33,13 @@ bool BasicLogin::loggedIn() const
 
 void BasicLogin::login(const QVariantMap &data)
 {
-    m_manager->post(m_api->createRequest(m_loginPath), data, this, [this,  data] (QRestReply &reply) {
+    const QNetworkRequest request = m_api->createRequest(m_loginPath);
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "POST" << requestString << "...";
+    m_manager->post(request, data, this, [this, data, requestString](QRestReply &reply) {
+        qCDebug(lcExample).noquote() << "POST" << requestString << "returned:" << reply;
+
         m_user.reset();
         if (const auto json = reply.readJson();
             json && json->isObject() && json->object().contains(tokenField)) {
@@ -50,7 +56,12 @@ void BasicLogin::login(const QVariantMap &data)
 
 void BasicLogin::logout()
 {
-    m_manager->post(m_api->createRequest(m_logoutPath), ""_ba, this, [this](QRestReply &reply) {
+    const QNetworkRequest request = m_api->createRequest(m_logoutPath);
+    const QString requestString = request.url().toDisplayString();
+
+    qCDebug(lcExample).noquote() << "POST" << requestString << "...";
+    m_manager->post(request, ""_ba, this, [this, requestString](QRestReply &reply) {
+        qCDebug(lcExample) << "POST" << requestString << "returned:" << reply;
         if (reply.isSuccess()) {
             m_user.reset();
             QHttpHeaders headers = m_api->commonHeaders();
