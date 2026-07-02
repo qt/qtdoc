@@ -251,9 +251,9 @@
       \endlist
       \li Cleaned up CMake API:
       \list
-          \li \l{qt_target_compile_qml_to_cpp}{qt_target_compile_qml_to_cpp()} used to invoke the
+          \li \l qt_target_compile_qml_to_cpp() used to invoke the
               QML type compiler is deprecated. Its functionality has been integrated into
-              \l{qt_add_qml_module}{qt_add_qml_module()}
+              \l qt_add_qml_module()
       \endlist
     \endlist
 

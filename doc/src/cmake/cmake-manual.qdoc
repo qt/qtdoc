@@ -104,7 +104,7 @@
 
     \printuntil qt_standard_project_setup(
 
-    The \l{qt6_standard_project_setup}{qt_standard_project_setup} command sets
+    The \l qt_standard_project_setup() command sets
     project-wide defaults for a typical Qt application.
 
     Among other things, this command sets the \c{CMAKE_AUTOMOC} variable to
@@ -112,12 +112,12 @@
     \l{Using the Meta-Object Compiler (moc)}{Meta-Object Compiler (moc)} is
     called transparently, when required.
 
-    See \l{qt6_standard_project_setup}{qt_standard_project_setup}'s reference
+    See \l qt_standard_project_setup()'s reference
     for details.
 
     \printuntil )
 
-    \l{qt6_add_executable}{qt_add_executable()} tells CMake that we want to
+    \l qt_add_executable() tells CMake that we want to
     build an executable (so not a library) called \c{helloworld} as a target.
     It is a  wrapper around the built-in \c add_executable() command, and
     provides additional logic to automatically handle things like linking of
@@ -131,7 +131,7 @@
     they are processed by the
     \l{Using the Meta-Object Compiler (moc)} {Meta-Object Compiler (moc)}.
 
-    For creating libraries, see \l{qt6_add_library}{qt_add_library}.
+    For creating libraries, see \l qt_add_library().
 
     \printuntil
 
@@ -172,7 +172,7 @@
     \printuntil qt_standard_project_setup(
 
     In addition to \c{CMAKE_AUTOMOC},
-    \l{qt6_standard_project_setup}{qt_standard_project_setup} sets the
+    \l qt_standard_project_setup() sets the
     \c{CMAKE_AUTOUIC} variable to \c{ON}. This will automatically create rules
     to invoke Qt's \l{User Interface Compiler (uic)} on \c{.ui} source files.
 
@@ -182,7 +182,7 @@
     source file (\c{mainwindow.cpp}) to the application target's sources.
 
     \note Another way to add \c{.ui} files to your project is to use the command
-    \l{qt6_add_ui}{qt_add_ui} instead of \c AUTOUIC.
+    \l qt_add_ui() instead of \c AUTOUIC.
 
     \printuntil target_link_libraries
 
@@ -379,7 +379,7 @@
     )
     \endcode
 
-    The \l{qt_add_resources} command automatically creates a Qt resource
+    The \l qt_add_resources() command automatically creates a Qt resource
     containing the referenced images. From the C++ source code, you can access
     the images by prepending the specified resource prefix:
 
@@ -387,7 +387,7 @@
     logoLabel->setPixmap(QPixmap(":/images/logo.png"));
     \endcode
 
-    The \l{qt_add_resources} command takes as the first argument either a
+    The \l qt_add_resources() command takes as the first argument either a
     variable name or a target name. We recommend to use the target-based variant
     of this command as shown in the example above.
 
@@ -403,12 +403,12 @@
     helloworld application.
 
     Specify both languages with
-    \l{qt6_standard_project_setup}{qt_standard_project_setup}:
+    \l qt_standard_project_setup():
     \code
     qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES de fr)
     \endcode
 
-    Then call \l{qt6_add_translations}{qt_add_translations} on the target that
+    Then call \l qt_add_translations() on the target that
     shall load the \c{.qm} files:
     \code
     qt_add_translations(helloworld)
@@ -440,13 +440,13 @@
 
     For more information about how to influence the handling of \c{.ts} files and
     the embedding into a resource, see the
-    \l{qt6_add_translations}{qt_add_translations documentation}.
+    \l{qt_add_translations}{qt_add_translations documentation}.
 
-    The \l{qt6_add_translations}{qt_add_translations} command is a convenience
+    The \l qt_add_translations() command is a convenience
     wrapper. For more fine-grained control of how \c{.ts} files and \c{.qm}
     files are handled, use the underlying commands
-    \l{qt6_add_lupdate}{qt_add_lupdate} and
-    \l{qt6_add_lrelease}{qt_add_lrelease}.
+    \l qt_add_lupdate() and
+    \l qt_add_lrelease().
 
     \section2 Further reading
 
@@ -483,29 +483,29 @@
     In the \c{find_package()} call, we replace \c{Core} with \c{Quick}. CMake
     will therefore load the \c{Qt6Quick} module and provide the \c{Qt6::Quick}
     targets we later link against. CMake will also automatically load packages
-    Quick depends on, like \c Qt6Qml, which defines the \l{qt_add_qml_module}
+    Quick depends on, like \c Qt6Qml, which defines the \l qt_add_qml_module()
     {qt_add_qml_module()} command we use below.
 
     We also require Qt 6.5 or newer.
 
     \printline qt_standard_project_setup
 
-    The \l{qt_standard_project_setup}{qt_standard_project_setup()} command sets
+    The \l qt_standard_project_setup() command sets
     project-wide defaults for a typical Qt application. By adding \c {REQUIRES 6.5},
     we enable the policy \l{QTP0001}, which defines a default resource prefix for QML
-    modules created by \l{qt_add_qml_module}{qt_add_qml_module()}.
+    modules created by \l qt_add_qml_module().
 
     \skipto qt_add_qml_module(
     \dots
     \printuntil /^\)/
 
-    \l{qt_add_qml_module}{qt_add_qml_module()} adds a QML module named \c hello
+    \l qt_add_qml_module() adds a QML module named \c hello
     to the executable, consisting of two QML files and one image. Due to \l{QTP0001},
     the module will be available at \c {qrc:/qt/qml/hello} in the resource file system,
     with \c {qrc:/qt/qml/} being one of the QML engine's default
     \l[QtQml]{QML Import Path}{import paths}.
 
-    \l{qt_add_qml_module}{qt_add_qml_module()} also does optimization steps like
+    \l qt_add_qml_module() also does optimization steps like
     running the \l{QML script compiler}, and defining a \c helloworld_qmllint
     target which you can run to get additional suggestions about the \c .qml files
     from \l qmllint.
@@ -533,7 +533,7 @@
     \endcode
 
     The toplevel \c CMakeLists.txt file does some basic setup using
-    \l{qt6_standard_project_setup}{qt_standard_project_setup}, and then uses
+    \l qt_standard_project_setup(), and then uses
     \c add_subdirectory to include the one in mylib:
 
     \code
@@ -560,7 +560,7 @@
     \l{Registering C++ Types with the QML Type System}{declarative registration macros}
     to expose it to the engine.
 
-    In the subdirectory’s \c CMakeLists.txt we call \l{qt6_add_qml_module}{qt_add_qml_module}.
+    In the subdirectory’s \c CMakeLists.txt we call \l qt_add_qml_module().
     Compared to \l {Building a QML application}, the invocation is slightly
     different:
 
@@ -578,7 +578,7 @@
     The target for \c{mylib} has not been created before. When the target passed
     to \c qt6_add_qml_module does not exist, it automatically creates a library
     target. This avoids a separate
-    call to \l {qt6_add_library}{qt_add_library}.
+    call to \l qt_add_library().
     To register QML types defined in C++, add their header and source files
     as arguments to the SOURCES parameter.
 
@@ -596,7 +596,7 @@
     does not do anything besides registering the types. If it needs to do
     something more advanced like registering an image provider in
     \c initializeEngine, you still need to manually write the plugin.
-    \l{qt6_add_qml_module} has support for this with \c NO_GENERATE_PLUGIN_SOURCE.
+    \l qt_add_qml_module() has support for this with \c NO_GENERATE_PLUGIN_SOURCE.
 
     Also, following the directory layout convention helps tooling. That layout
     is mirrored in the build directory. Which means that you can pass the path to
@@ -725,7 +725,7 @@
 
     Use Qt's CMake deployment API to deploy Qt projects for desktop platforms.
     The API supports various target platforms, which you can find in the
-    \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
+    \l qt_generate_deploy_app_script()
     documentation.
 
     The deployment process depends on whether your project is a Qt Widgets
@@ -747,7 +747,7 @@
 
     \snippet snippets/cmake/deploy_non_qml.cmake installation
 
-    Note that \l{qt_standard_project_setup}{qt_standard_project_setup()} pulls
+    Note that \l qt_standard_project_setup() pulls
     in CMake's \c{GNUInstallDirs.cmake}. This is what defines the
     \c{CMAKE_INSTALL_BINDIR} variable.
 
@@ -758,7 +758,7 @@
 
     \snippet snippets/cmake/deploy_non_qml.cmake deployment script
 
-    The \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}
+    The \l qt_generate_deploy_app_script()
     command generates the deployment script in the build directory. The file
     name of the generated script file is stored in the \c{deploy_script}
     variable. The \c{install(SCRIPT)} call instructs CMake to run the script on
@@ -785,9 +785,9 @@
     \snippet snippets/cmake/deploy_qml.cmake installation
 
     To generate the deployment script, you call
-    \l{qt_generate_deploy_qml_app_script}{qt_generate_deploy_qml_app_script()}
+    \l qt_generate_deploy_qml_app_script()
     instead of
-    \l{qt_generate_deploy_app_script}{qt_generate_deploy_app_script()}.
+    \l qt_generate_deploy_app_script().
 
     \snippet snippets/cmake/deploy_qml.cmake deployment script
 
@@ -855,7 +855,7 @@
     deprecated feature or behavior; followed by a warning message that briefly
     describes the change. To disable a policy's warning, explicitly
     request the \c NEW or non-backward compatible behavior of a policy
-    using the \l{qt_policy}{qt_policy()} command.
+    using the \l qt_policy() command.
 
     \section1 Policies
 
@@ -896,7 +896,7 @@
     \section2 Versionless commands
 
     Since Qt 5.15, the Qt modules also provide versionless variants of their
-    \l{CMake Command Reference}{commands}. You can for instance now use \l{qt_add_translation}
+    \l{CMake Command Reference}{commands}. You can for instance now use \l qt_add_translation()
     to compile translation files, independent of whether you use Qt 5 or Qt 6.
 
     Set \l{QT_NO_CREATE_VERSIONLESS_FUNCTIONS} before the first \c{find_package()} call to
@@ -962,7 +962,7 @@
     against Qt modules. This is in line with the qmake behavior, but it is a change compared to
     the CMake API behavior in Qt 5.
 
-    Call \l{qt6_disable_unicode_defines}{qt_disable_unicode_defines()} on the target to not set the definitions.
+    Call \l qt_disable_unicode_defines() on the target to not set the definitions.
 
     \snippet snippets/cmake/qt5_qt6_compatible.cmake disable_unicode_defines
 */

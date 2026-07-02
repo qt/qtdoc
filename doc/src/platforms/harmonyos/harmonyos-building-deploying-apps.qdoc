@@ -21,7 +21,7 @@ CMake.
 
 HarmonyOS applications ship as HarmonyOS Ability Packages (HAPs).
 When you create a Qt application executable with
-\l{qt6_add_executable}{qt_add_executable()} while targeting HarmonyOS, Qt
+\l qt_add_executable() while targeting HarmonyOS, Qt
 automatically generates a \c {<target>_make_hap} build target. Building that
 target produces the HAP for your application:
 

@@ -330,7 +330,7 @@
             constructor syntax, enabling cleaner initialization of value
             types like \c{color}, \c{rect}, and user-defined types.
         \li Two new \l{qt_policy}{CMake Policies} affecting the behavior of
-            \l qt_add_qml_module have been added: \l{QTP0004} eases the use
+            \l qt_add_qml_module() have been added: \l{QTP0004} eases the use
             of QML modules when nested folder structures are used. \l{QTP0005}
             allows the usage of targets when specifying imports and
             dependencies.
@@ -495,9 +495,9 @@
     \list
         \li Completed support for shaders compatible with multiview rendering.
             Added the \c MULTIVIEW keyword to the
-            \l{qt_add_shaders}{qt_add_shaders()} CMake function.
+            \l qt_add_shaders() CMake function.
         \li Added depfile support for shaders processed at build time via
-            \l{qt_add_shaders}{qt_add_shaders()}.
+            \l qt_add_shaders().
             Touching a file included via the \c{#include} directive in a shader
             will now trigger a recompilation of that shader file when building
             the project the next time.
@@ -698,7 +698,7 @@
             compositor (except when Qt::WA_ShowWithoutActivating is set).
         \li Added support to qtwaylandscanner to send null for null QString.
         \li Added options \c PUBLIC_CODE and \c PRIVATE_CODE to
-            \l qt6_generate_wayland_protocol_client_sources that control the
+            \l qt_generate_wayland_protocol_client_sources() that control the
             options that are passed to \c wayland-scanner.
         \li Implemented the screen capture feature using ScreenCast service via
             XDG Desktop Portal in Qt Multimedia.
