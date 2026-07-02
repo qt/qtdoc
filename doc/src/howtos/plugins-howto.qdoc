@@ -290,7 +290,7 @@
     \section2 Importing Static Plugins in CMake
 
     To statically link plugins in a CMake project, you need to call the
-    \l{qt6_import_plugins}{qt_import_plugins} command.
+    \l qt_import_plugins() command.
 
     For example, the Linux \c libinput plugin is not imported by default. The
     following command imports it:
@@ -312,7 +312,7 @@
     \snippet plugins/doc_src_plugins-howto.cmake no_imageformats_plugins
 
     If you want to turn off the addition of any default plugin, use the \c
-    NO_DEFAULT option of \l{qt6_import_plugins}{qt_import_plugins}.
+    NO_DEFAULT option of \l qt_import_plugins().
 
     \section2 Importing Static Plugins in qmake
 
@@ -342,7 +342,7 @@
     following these steps:
 
     \list 1
-    \li Pass the \c STATIC option to the \l{qt6_add_plugin}{qt_add_plugin}
+    \li Pass the \c STATIC option to the \l qt_add_plugin()
         command in your \c{CMakeLists.txt}. For a qmake project, add \c{CONFIG
         += static} to your plugin's \c .pro file.
     \li Use the Q_IMPORT_PLUGIN() macro in your application.
