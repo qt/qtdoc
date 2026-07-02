@@ -57,6 +57,24 @@ Popup {
                 required property var modelData
                 readonly property bool logged: (modelData.email === userMenu.userLoginService.user)
 
+                function login() {
+                    //! [Login]
+                    userMenu.userLoginService.login({"email" : userInfo.modelData.email,
+                                        "password" : "apassword",
+                                        "id" : userInfo.modelData.id})
+                    //! [Login]
+                    userMenu.close()
+                }
+
+                MouseArea {
+                    anchors.left: parent.left
+                    anchors.right: loginButton.left
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    enabled: !userInfo.logged
+                    onClicked: userInfo.login()
+                }
+
                 Item {
                     id: userImageCliped
                     anchors.left: parent.left
@@ -97,6 +115,7 @@ Popup {
                 }
 
                 ToolButton {
+                    id: loginButton
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.margins: 5
@@ -113,16 +132,10 @@ Popup {
                                     : qsTr("Log in as %1").arg(userInfo.modelData.email)
 
                     onClicked: {
-                        if (userInfo.logged) {
+                        if (userInfo.logged)
                             userMenu.userLoginService.logout()
-                        } else {
-                            //! [Login]
-                            userMenu.userLoginService.login({"email" : userInfo.modelData.email,
-                                                "password" : "apassword",
-                                                "id" : userInfo.modelData.id})
-                            //! [Login]
-                            userMenu.close()
-                        }
+                        else
+                            userInfo.login()
                     }
                 }
 
