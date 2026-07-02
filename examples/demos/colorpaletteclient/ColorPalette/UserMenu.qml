@@ -105,6 +105,12 @@ Popup {
                                  ? "logout" : "login")
                     enabled: userInfo.logged || !userMenu.userLoginService.loggedIn
 
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 500
+                    ToolTip.text: userInfo.logged
+                                  ? qsTr("Log out")
+                                  : qsTr("Log in as %1").arg(userInfo.modelData.email)
+
                     onClicked: {
                         if (userInfo.logged) {
                             userMenu.userLoginService.logout()
@@ -139,6 +145,10 @@ Popup {
 
                             required property int index
                             readonly property int page: (index + 1)
+
+                            ToolTip.visible: hovered
+                            ToolTip.delay: 500
+                            ToolTip.text: qsTr("Go to page %1").arg(page)
 
                             onClicked: userMenu.userMenuUsers.page = page
                         }

@@ -76,6 +76,10 @@ Rectangle {
                     display: AbstractButton.IconOnly
                     icon.source: root.iconPath("plus")
 
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 500
+                    ToolTip.text: qsTr("Add a new color")
+
                     enabled: root.loginService.loggedIn
                     onClicked: colorPopup.createNewColor()
                 }
@@ -89,6 +93,10 @@ Rectangle {
 
                     display: AbstractButton.IconOnly
                     icon.source: root.iconPath("update")
+
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 500
+                    ToolTip.text: qsTr("Refresh colors and users")
 
                     onClicked: {
                         root.colors.refreshCurrentPage()
@@ -124,6 +132,13 @@ Rectangle {
                     Layout.preferredHeight: 25
                     Layout.minimumWidth: 25
                     Layout.minimumHeight: 25
+
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 500
+                    ToolTip.text: root.loginService.loggedIn
+                                  ? qsTr("Logged in as %1").arg(root.loginService.user)
+                                  : qsTr("Log in")
+
                     Item {
                         id: userImageCliped
                         anchors.left: parent.left
@@ -326,11 +341,17 @@ Rectangle {
                             anchors.fill: parent
                             ToolButton {
                                 icon.source: root.iconPath("delete")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: 500
+                                ToolTip.text: qsTr("Delete color")
                                 enabled: root.loginService.loggedIn
                                 onClicked: colorDeletePopup.maybeDelete(colorInfo.modelData)
                             }
                             ToolButton {
                                 icon.source: root.iconPath("edit")
+                                ToolTip.visible: hovered
+                                ToolTip.delay: 500
+                                ToolTip.text: qsTr("Edit color")
                                 enabled: root.loginService.loggedIn
                                 onClicked: colorPopup.updateColor(colorInfo.modelData)
                             }
@@ -358,6 +379,10 @@ Rectangle {
 
                             required property int index
                             readonly property int page: (index + 1)
+
+                            ToolTip.visible: hovered
+                            ToolTip.delay: 500
+                            ToolTip.text: qsTr("Go to page %1").arg(page)
 
                             onClicked: root.colors.page = page
                         }
