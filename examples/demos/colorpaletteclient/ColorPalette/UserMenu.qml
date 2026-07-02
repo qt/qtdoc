@@ -103,13 +103,14 @@ Popup {
 
                     icon.source: userMenu.iconPath(userInfo.logged
                                  ? "logout" : "login")
-                    enabled: userInfo.logged || !userMenu.userLoginService.loggedIn
 
                     ToolTip.visible: hovered
                     ToolTip.delay: 500
                     ToolTip.text: userInfo.logged
                                   ? qsTr("Log out")
-                                  : qsTr("Log in as %1").arg(userInfo.modelData.email)
+                                  : userMenu.userLoginService.loggedIn
+                                    ? qsTr("Switch to %1").arg(userInfo.modelData.email)
+                                    : qsTr("Log in as %1").arg(userInfo.modelData.email)
 
                     onClicked: {
                         if (userInfo.logged) {

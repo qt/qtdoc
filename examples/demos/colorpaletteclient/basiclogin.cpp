@@ -33,6 +33,8 @@ bool BasicLogin::loggedIn() const
 
 void BasicLogin::login(const QVariantMap &data)
 {
+    if (m_user)
+        qCDebug(lcExample) << "Switching user, discarding session of" << m_user->email;
     const QNetworkRequest request = m_api->createRequest(m_loginPath);
     const QString requestString = request.url().toDisplayString();
 
