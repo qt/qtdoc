@@ -302,6 +302,11 @@
         \li Assembles a deployable Android APK or AAB from a compiled Qt
             application, bundling the required Qt libraries and assets.
     \row
+        \li \l{The harmonydeployqt Tool}
+        \li Assembles a deployable HarmonyOS Ability Package (HAP) from a
+            compiled Qt application, bundling the required Qt libraries, plugins,
+            and QML modules.
+    \row
         \li \l{The macOS Deployment Tool}
         \li Automates the process of creating a deployable application bundle
             that contains Qt libraries as private frameworks.
