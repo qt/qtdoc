@@ -423,7 +423,7 @@
     It is important to be aware of these structure as they directly affect the
     deployment of applications.
 
-    Qt provides a deploy tool, \l{macdeploy}{macdeployqt}, to
+    Qt provides a deploy tool, \l macdeployqt, to
     simplify the deployment process. The \l{Qt for \macos - Deployment}
     article covers the deployment process in more detail.
 
@@ -659,8 +659,8 @@
     \l{tools/plugandpaint/app}{Plug & Paint} example application that comes with
     the Qt source package.
 
-    The Qt installers for \macos include a \l
-    {macdeploy}{deployment tool} that automates the procedures described here.
+    The Qt installers for \macos include a \l{macdeployqt}{deployment tool} that
+    automates the procedures described here.
 
     \section1 The Bundle
 
@@ -1071,7 +1071,8 @@
     your application.
 
     \section1 The macOS Deployment Tool
-    \target macdeploy
+    \target macdeployqt
+
     The macOS deployment tool can be found at \c{QTDIR/bin/macdeployqt}. It is
     designed to automate the process of creating a deployable
     application bundle that contains Qt libraries as private frameworks.
