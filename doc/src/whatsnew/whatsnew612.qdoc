@@ -304,6 +304,9 @@
       \li When instantiating a component with missing required properties,
           the engine now reports an error instead of silently constructing
           an incomplete object.
+      \li \l{QQmlProperty} is a named value type called \e{qmlProperty} now.
+          You can use it as property type, function argument, or return type in
+          QML.
       \li \l{QtQml.Models} import: The \l{SortFilterProxyModel}{SortFilterProxyModel}
           gained \l{RangeFilter},
           \l{RegExpFilter}, \l{AllOfFilter}, and \l{AnyOfFilter}
