@@ -31,7 +31,7 @@ cmake --build . --target <target>_make_hap
 
 \section1 How deployment works
 
-The \c {<target>_make_hap} target runs \c harmonydeployqt, the HarmonyOS
+The \c {<target>_make_hap} target runs \l harmonydeployqt, the HarmonyOS
 deployment tool. It follows the same approach as \l{The androiddeployqt
 Tool}{androiddeployqt}: it collects the application's shared library, the
 HarmonyOS platform plugin (\c libqohos.so), the required Qt modules, and, for Qt
