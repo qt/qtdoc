@@ -1,0 +1,134 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page qt-tools-security.html
+    \title Using Qt's Developer Tools Securely
+    \brief Security considerations when running Qt's build-time tools.
+    \ingroup security
+
+    Advice on running the Qt developer tools safely.
+
+    \section1 Overview
+
+    The Qt Framework ships a comprehensive set of tools for developing Qt
+    applications: build system front-ends such as \l{qmake Manual}{qmake} and
+    \l{qt-cmake}; compilers and generators such as
+    \l{moc}{Meta-Object Compiler (moc)}, \l{uic}{User Interface Compiler (uic)},
+    \l{rcc}{Resource Compiler (rcc)}, \l{QSB Manual}{Qt Shader Baker (qsb)}, and
+    the code generators for interface descriptions such as
+    \l{repc}{Qt Remote Objects Compiler (repc)}, or
+    \l{Qt D-Bus XML compiler (qdbusxml2cpp)}; QML tooling such as \l{qmllint}
+    and the \l{QML type compiler}; asset importers; and deployment tools such as
+    \l{windeployqt}, \l{macdeployqt}, and \l{androiddeployqt}. For a full list,
+    see \l{Tools and utilities}.
+
+    Most tools are command line tools that convert input files into output
+    files, and are executed as part of a project build system. Other tools
+    run in the background, for example to provide code completion or syntax
+    checking in an IDE.
+
+    This page explains the security model of the provided developer tools, and
+    how to use them safely. It is part of the \l{Qt Shared Security Model},
+    which describes how security responsibilities are shared between application
+    developers, Qt, and operators or device manufacturers.
+
+    \section1 Security model of the developer tools
+
+    The tools are designed to process complex input files efficiently. They do
+    check input for general validity, but are \e not designed to guard against
+    or handle maliciously crafted input. Input is therefore assumed to be
+    \e trustworthy.
+
+    In terms of the \l{Qt Shared Security Model}, the developer tools and the
+    projects they process sit firmly within the developer's area of
+    responsibility. Qt is responsible for the integrity of the tools it ships;
+    you are responsible for only feeding them input you trust.
+
+    \section1 Why this matters
+
+    Because the tools act on their input without treating it as hostile, a
+    malicious or malformed project can cause harm at development, configure, or
+    build time, before the resulting application is even run.
+
+    In particular, the tools:
+
+    \list
+        \li \b{Read files.} The build system might read files also outside the
+            project's directory, either via absolute or relative paths (path
+            traversal).
+        \li \b{Write files.} Output paths are derived from the input. This can
+            lead to files being written outside the intended output directory,
+            or to existing files being overwritten.
+        \li \b{Invoke external processes.} Build front-ends and some generators
+            launch compilers, scripts, or other executables. Untrusted input can
+            influence which programs run and with which arguments.
+        \li \b{Generate code that is later compiled and executed.} Many tools
+            emit C++, QML, or other sources that become part of your
+            application. Crafted input can influence the generated output, and
+            thus the code that eventually ends up in the Qt application or
+            device.
+    \endlist
+
+    The practical consequence is that building an \e{untrusted project} can lead
+    to arbitrary code execution on your build machine, with your privileges and
+    with access to whatever that environment holds, such as credentials, signing
+    keys, or source code. This can expose your private data, compromise your
+    machine, and finally compromise the application or device you are building,
+    and thus all its users.
+
+    This risk does not exist only due to Qt tools. When you configure a project
+    with CMake, a popular build system for C++, you allow the project to run
+    local programs at arbitrary paths (\c{execute_process()}), or fetch network
+    resources without further checks (\c FetchContent module). This is also why
+    IDEs sometimes warn before configuring projects, see for instance Visual
+    Studio Code's
+    \l{https://code.visualstudio.com/docs/editing/workspaces/workspace-trust}
+    {Workspace Trust}.
+
+
+    \section1 Recommendations
+
+    \list
+        \li \b{Only open and build projects you trust.} Do not configure or
+            build projects from an unknown or untrusted source, in the same way
+            you would not run scripts of unknown origin.
+        \li \b{Isolate untrusted builds.} If you must work with a project you do
+            not fully trust, do so in an isolated environment, such as a
+            container or a virtual machine. Run the build with minimum
+            privileges, and without access to secrets, credentials, or signing
+            keys.
+        \li \b{Limit network access during the build.} Aim for builds to be
+            entirely local. If a project needs access to a remote resource for
+            building, this not only can cause issues due to availability,
+            including your build machine being blocked by the remote server if
+            it hammers it with requests, but is also another attack vector for
+            compromising the build environment and build result.
+        \li \b{Obtain Qt from a trusted source.} Install Qt and its tools only
+            from official channels, and keep them up to date so that you receive
+            security fixes. See \l{Security in Qt}.
+        \li \b{Keep the build environment trustworthy.} Ensure that, for
+            instance, the directories in your \c PATH and the tools they resolve
+            to are trustworthy, so that the developer tools do not invoke
+            unexpected executables.
+    \endlist
+
+    \section1 Scope
+
+    This page covers the build-time developer tools that run on your own
+    machine. The Qt Framework also ships tools with different threat models:
+
+    \list
+        \li \b{User-facing tools} that a user may install and run on an end-user
+            system, such as \l{Qt Linguist Manual}{Qt Linguist},
+            \l{Qt Widgets Designer Manual}{Qt Widgets Designer} and
+            \l{Qt Assistant Manual}{Qt Assistant}. See the respective manual
+            pages for security guidance on those tools.
+        \li \b{Helper tools} that are launched indirectly by libraries or other
+            tools. Because both the tool and its launching mechanism are part of
+            the attack surface, these warrant particular attention.
+    \endlist
+
+    For general guidance on processing data from untrusted sources at run time,
+    see \l{Handling Untrusted Data}.
+*/
