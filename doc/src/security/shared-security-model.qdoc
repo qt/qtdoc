@@ -52,6 +52,11 @@
     timely manner. Follow Qt releases and security announcements, and update Qt
     accordingly. Also, ensure that you obtain Qt from a trusted source.
 
+    The same applies to the projects you build. Qt's developer tools run on your
+    build machine and treat the project they process as trusted input, so only
+    build projects from sources you trust. For more information, see
+    \l{Using Qt's Developer Tools Securely}.
+
     If you ship Qt as part of your application, limit the number of libraries
     and plugins to reduce the attack surface. For example, ship only the image
     plugins for the formats you actually need.
