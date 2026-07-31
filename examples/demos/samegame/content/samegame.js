@@ -272,7 +272,7 @@ function victoryCheck()
         deservesBonus = false;
     // Checks for game over
     if (deservesBonus){
-        if (gameCanvas.curTurn = 1)
+        if (gameCanvas.curTurn == 1)
             gameCanvas.score += 1000;
         else
             gameCanvas.score2 += 1000;
