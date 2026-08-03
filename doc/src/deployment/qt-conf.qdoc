@@ -7,8 +7,8 @@
     \title Using qt.conf
     \target qt.conf
 
-    You can use the \c qt.conf file to override paths or to specify arguments
-    to be passed to the platform plugins.
+    You can use the \c qt.conf file to override QLibraryInfo paths,
+    or to specify arguments to be passed to the platform plugins.
 
     \section1 Format and Location
 
@@ -21,8 +21,8 @@
 
     \li \c :/qt/etc/qt.conf using the resource system
 
-    \li on \macos, in the Resource directory inside the application
-    bundle, for example \c assistant.app/Contents/Resources/qt.conf
+    \li on Apple platforms, in the Resource directory inside the application
+    bundle, for example \c assistant.app/Contents/Resources/qt.conf on \macos.
 
     \li in the directory containing the application executable, i.e.
     QCoreApplication::applicationDirPath() + QDir::separator() + "qt.conf"
@@ -31,21 +31,18 @@
 
     \section1 Overriding Paths
 
-    The \c qt.conf file can be used to override the hard-coded paths that are
-    compiled into the Qt library. These paths are accessible using the
-    QLibraryInfo class. Without \c qt.conf, the functions in
-    QLibraryInfo return these hard-coded paths; otherwise they return
-    the paths as specified in \c qt.conf.
+    The \c qt.conf file can be used to override the default paths used by Qt.
+    These paths are accessible using the QLibraryInfo class.
 
-    Without \c qt.conf, the Qt libraries will use the hard-coded paths
+    Without \c qt.conf, the Qt libraries will use the default paths
     to look for plugins, translations, and so on. These paths may not
     exist on the target system, or they may not be
     accessible. Because of this, you may need \c qt.conf to make the Qt
     libraries look elsewhere.
 
     The file should have
-    a \c Paths group which contains the entries that correspond to
-    each value of the QLibraryInfo::LibraryLocation enum. See the
+    a \c Paths group with one or more entries that correspond to
+    values of the QLibraryInfo::LibraryLocation enum. See the
     QLibraryInfo documentation for details on the meaning of the
     various locations.
 
@@ -75,7 +72,7 @@
     Prefix is relative to the directory containing the application
     executable (QCoreApplication::applicationDirPath()). On \macos,
     the \c Prefix is relative to the \c Contents in the application
-    bundle. For example, \c application.app/Contents/plugins/ is the
+    bundle. For example, \c application.app/Contents/PlugIns/ is the
     default location for loading Qt plugins. Note that the plugins
     need to be placed in specific sub-directories under the
     \c{plugins} directory (see \l{How to Create Qt Plugins} for
