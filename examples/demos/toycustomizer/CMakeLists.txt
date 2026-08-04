@@ -21,7 +21,7 @@ set(qml_singletons
 )
 set_source_files_properties(${qml_singletons} PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
-set(TARGET_NAME toycustomizer)
+set(TARGET_NAME toycustomizerexample)
 qt_add_executable(${TARGET_NAME}
     main.cpp
 )
