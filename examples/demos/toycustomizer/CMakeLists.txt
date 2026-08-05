@@ -83,10 +83,6 @@ qt_add_shaders(${TARGET_NAME} "shaders"
 set_target_properties(${TARGET_NAME} PROPERTIES QT_RESOURCES_ASSETS_FONTS ON)
 
 add_subdirectory(assets)
-add_subdirectory(animations)
-add_subdirectory(fonts)
-add_subdirectory(images)
-add_subdirectory(meshes)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -104,6 +100,10 @@ target_link_libraries(${TARGET_NAME}
         Qt6::Quick
 )
 
+include(animations.cmake)
+include(fonts.cmake)
+include(images.cmake)
+include(meshes.cmake)
 include(GNUInstallDirs)
 install(TARGETS ${TARGET_NAME}
     BUNDLE DESTINATION .
