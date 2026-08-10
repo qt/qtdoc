@@ -1,0 +1,266 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page android-getting-started.html
+\title Getting Started with Qt for Android
+\brief A beginner's guide to install Qt and the Android toolchain and create
+your first Qt for Android app with Qt Creator IDE.
+
+This tutorial describes how to use \QC to develop a Qt Quick application for
+Android devices.
+
+You develop a Qt Quick application that accelerates an SVG (Scalable Vector
+Graphics) image based on changing accelerometer values.
+
+\image {android/android-gettingstarted-project-result.webp}
+        {Accelerate Bubble example}
+
+\section1 Set up the development environment
+
+To get started with Qt for Android:
+
+\list 1
+    \li Download and install Qt. To do this, follow the instructions on the
+        \l{Get and Install Qt} page.
+    \li Install all the necessary tools and configure the development
+        environment as explained in \l {Qt for Android Prerequisites}.
+\endlist
+
+\section1 Create the project
+
+\list 1
+
+    \li Open \QC. Go to \uicontrol File > \uicontrol {New Project} >
+        \uicontrol {Application (Qt)} > \uicontrol {Qt Quick Application}.
+
+        \image {android/android-gettingstarted-create-quick-project.webp}
+               {New Project dialog}
+
+    \li Select \uicontrol {Choose...} to open the \uicontrol {Project Location}
+        dialog.
+
+    \li In \uicontrol Name, enter a name for the application.
+
+        \image {android/android-gettingstarted-project-name-location.webp}
+               {Project Location dialog}
+
+    \li In \uicontrol {Create in}, enter the path for the project files. You can
+        move project folders later without problems.
+
+    \li Select \uicontrol Next (or \uicontrol Continue on \macos) to open the
+        \uicontrol {Define Project Details} dialog.
+
+        \image {android/android-gettingstarted-project-details.webp}
+               {Define Project Details dialog}
+
+    \li Select \uicontrol Next (or \uicontrol Continue on \macos) to open the
+        \uicontrol {Kit Selection} dialog.
+
+    \li Select \l{\QC: Kits}{kits} for the platforms that you want to build
+        the application for.
+
+        \image {android/android-gettingstarted-project-kit-selection.webp}
+            {Selecting kits for the project}
+
+        \note The list shows kits that you specify in \uicontrol {Preferences} >
+        \uicontrol Kits.
+        For more information, see \l {\QC: Add kits}{Add kits} and
+        \l {\QC: Kits}{Managing kits}.
+
+    \li Select \uicontrol Next (or \uicontrol Continue on \macos) to open the
+        \uicontrol {Project Management} dialog.
+
+    \li Review the project settings, and select \uicontrol{Finish}
+        (or \uicontrol Done on \macos) to create the project.
+
+        \image {android/android-gettingstarted-project-management.webp}
+               {Project Management dialog}
+\endlist
+
+\section1 Add images as resources
+
+The main view of the application displays an SVG bubble image that moves around
+the screen when you tilt the device.
+
+For the image to appear when you run the application, you must specify it as a
+resource in the \c RESOURCES argument of the \c qt_add_qml_module() method in
+the \c CMakeLists.txt file that the wizard created for you:
+
+\snippet tutorials/android-app/CMakeLists.txt qml-module
+
+\section1 Create the Accelbubble main view
+
+\list 1
+
+\li In the \uicontrol Projects view, select \c Main.qml. In the \c Main.qml
+    file, replace the content with the following code:
+
+    \snippet tutorials/android-app/Main.qml create-image-0
+    \snippet tutorials/android-app/Main.qml create-image-1
+    \snippet tutorials/android-app/Main.qml create-image-2
+    \snippet tutorials/android-app/Main.qml create-image-4
+    \snippet tutorials/android-app/Main.qml create-image-5
+
+    This code changes the default \l Window properties and adds the recently
+    added image to the view. You can use any other image or component instead.
+
+\li Add custom properties to position the image in respect to the width and
+    height of the main window:
+
+    \snippet tutorials/android-app/Main.qml create-image-0
+    \snippet tutorials/android-app/Main.qml create-image-1
+    \snippet tutorials/android-app/Main.qml create-image-2
+    \snippet tutorials/android-app/Main.qml create-image-3
+    \snippet tutorials/android-app/Main.qml create-image-4
+    \snippet tutorials/android-app/Main.qml create-image-5
+
+\li Add the following import statement:
+
+    \snippet tutorials/android-app/Main.qml import-sensors
+
+    It is required because we want to move the bubble based on
+    Accelerometer sensor values.
+
+\li Add the \l{Accelerometer} component with the necessary properties:
+
+    \snippet tutorials/android-app/Main.qml create-image-0
+    \snippet tutorials/android-app/Main.qml import-sensors
+    \snippet tutorials/android-app/Main.qml accelerometer-1
+    \dots
+    \snippet tutorials/android-app/Main.qml accelerometer-2
+    \snippet tutorials/android-app/Main.qml accelerometer-4
+    \dots
+
+\li Add the following JavaScript functions that calculate the x and y position
+    of the bubble based on the current Accelerometer values:
+
+    \snippet tutorials/android-app/Main.qml create-image-0
+    \snippet tutorials/android-app/Main.qml import-sensors
+    \snippet tutorials/android-app/Main.qml accelerometer-1
+    \dots
+    \snippet tutorials/android-app/Main.qml accelerometer-3
+    \dots
+    \snippet tutorials/android-app/Main.qml accelerometer-4
+    \snippet tutorials/android-app/Main.qml calc-functions
+    \dots
+
+
+\li Add the following JavaScript code for \c onReadingChanged signal of
+    Accelerometer component to make the bubble move when the Accelerometer
+    values change:
+
+    \snippet tutorials/android-app/Main.qml accelerometer-2
+    \snippet tutorials/android-app/Main.qml on-reading-changed
+    \snippet tutorials/android-app/Main.qml accelerometer-4
+
+    You need to ensure that the position of the bubble is always within the
+    bounds of the screen. If the Accelerometer returns \e {not a number} (NaN),
+    the value is ignored and the bubble position is not updated.
+
+\li Add \l SmoothedAnimation behavior on the \c x and \c y properties of the
+    bubble to make its movement look smoother.
+
+    \snippet tutorials/android-app/Main.qml create-image-2
+    \dots
+    \snippet tutorials/android-app/Main.qml smoothed-animation
+    \dots
+\endlist
+
+\section1 Lock device orientation
+
+By default, the display rotates when the device orientation changes between
+portrait and landscape. This application looks better if you lock the screen
+orientation to portrait mode.
+
+On Android, you set the screen orientation in the \c AndroidManifest.xml file,
+which you generate in \QC. To lock the orientation to portrait:
+
+\list 1
+    \li Go to \uicontrol {Tools} > \uicontrol {Android} >
+        \uicontrol {Manifest XML Source}. \QC creates the file in an \e android
+        directory inside your project directory and opens it in the manifest
+        editor.
+
+    \li In the manifest editor, select \uicontrol {XML Source} and set the
+        \c android:screenOrientation attribute of the \c activity element to
+        \c portrait.
+
+        \code{xml}
+        <?xml version='1.0'?>
+        <manifest ...>
+            <supports-screens.../>
+            <!--%%INSERT_PERMISSIONS-->
+            <!--%%INSERT_FEATURES-->
+            <application ...>
+                <activity ... android:screenOrientation="portrait">
+            ...
+        \endcode
+
+        For more information, see
+        \l{\QC: Edit Android manifest files}{Edit Android manifest files}.
+\endlist
+
+\section1 Add dependencies
+
+The application uses the Qt Sensors and Qt SVG modules, so you should add them
+as dependencies in the \c CMakeLists.txt file. To add the dependencies:
+
+\list 1
+    \li Add the \c Sensors and \c Svg components to the \c find_package
+        function. This tells CMake to look up the Qt installation and import the
+        modules:
+
+        \snippet tutorials/android-app/CMakeLists.txt find-package
+
+    \li Add the imported targets to the \c target_link_libraries function:
+
+        \snippet tutorials/android-app/CMakeLists.txt link-libraries
+
+        This tells CMake that the \c accelbubble executable uses the modules.
+        CMake then passes the necessary arguments to the linker, and the
+        appropriate include directories and compiler definitions to the C++
+        compiler.
+
+    \li To apply the configuration changes, go to \uicontrol Build and select
+        \uicontrol {Run CMake}.
+\endlist
+
+For more information about the \c CMakeLists.txt file, see
+\l{Getting started with CMake}.
+
+\note If you have not installed all the Qt modules listed in \c find_package(),
+\QC asks whether you want to install them with \QOI.
+
+\section1 Run the application
+
+You can now deploy the application to a real or virtual Android device.
+
+If you use a real device:
+
+\list 1
+    \li Enable \e{USB Debugging} on the Android device.
+    \li Connect the device to the development PC.
+\endlist
+
+If you have several devices connected, \QC allows you to select the device to
+run the application on.
+
+\image {android/android-gettingstarted-select-device.webp}
+        {Chose the device to run the application on}
+
+To run the application on the device, select \key {Ctrl+R} (\key {Cmd+R}).
+
+Once the application started on the device, you can tilt the device to see the
+bubble move around the screen. The bubble moves in the direction of the tilt,
+and the speed of the movement depends on the tilt angle. The bubble moves
+faster when you tilt the device more.
+
+\image {android/android-getting-started-result-in-action.gif}
+        {Running the application on an Android device}
+
+\sa {Qt Academy - Getting Started with Qt for Android}{Qt Academy: Getting Started with Qt for Android},
+{Design Qt Quick UIs}{How to: Design Qt Quick UIs}, {Qt Quick UI design},
+{Designing Qt Quick UIs}
+
+*/
