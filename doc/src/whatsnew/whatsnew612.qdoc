@@ -649,15 +649,6 @@
           literal \c{#} character in \c{\l} link targets; and
           \l {details-command}{\\details} enforces its documented
           brace-delimited summary argument.
-      \li \b{Technology Preview}: A new template-based generator renders
-          documentation from a structured intermediate representation
-          using Inja templates, and the templates define the output
-          format. QDoc ships with HTML and Markdown templates that work
-          out of the box; you can also supply your own templates and
-          themes, and a single run can produce several template-based
-          formats. Configure QDoc with
-          \c{QT_QDOC_ENABLE_TEMPLATE_GENERATOR} to try out the new
-          generator pipeline.
       \li Added LLVM/Clang 22 compatibility.
     \endlist
 
