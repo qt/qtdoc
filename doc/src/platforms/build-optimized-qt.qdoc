@@ -83,7 +83,7 @@
     {less minimized configurations for other platforms}. These configurations are
     for running Quick applications.
 
-    Qt configure command also supports the - - (double dash) command line parameter which allows
+    Qt configure command also supports the \c{--} (double dash) command line parameter which allows
     user to inject extra CMake arguments such as -DCMAKE_CXX_FLAGS="-march=native".
     In case of cross compilation these parameters can be added via
     -DCMAKE_TOOLCHAIN_FILE=path/to/toolchain.cmake as described in \l {An Example Toolchain File}.
