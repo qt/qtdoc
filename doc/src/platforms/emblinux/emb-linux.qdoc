@@ -42,9 +42,9 @@
   adaptation code. Typically, these adaptations are provided as:
 
   \list
-    \li \e{EGLFS hooks} -- a single source file compiled into the platform
+    \li \e{EGLFS hooks}---a single source file compiled into the platform
         plugin
-    \li \e{EGL device integration} -- dynamically loaded plugins
+    \li \e{EGL device integration}---dynamically loaded plugins
   \endlist
 
   EGLFS is a platform plugin for running Qt applications on top of EGL and
@@ -56,8 +56,8 @@
   contents are rendered using the CPU into images, which are then
   uploaded into textures and composited by the plugin.
 
-  EGLFS forces the first top-level window - either a QWidget or a QQuickView
-  - to become fullscreen. This window is also chosen to be the \e root widget
+  EGLFS forces the first top-level window---either a QWidget or a QQuickView---to
+  become fullscreen. This window is also chosen to be the \e root widget
   window into which all other top-level widgets are composited. For example,
   dialogs, popup menus, or combo boxes. This behavior is necessary because
   with EGLFS there is always exactly one native window and one EGL window
@@ -639,8 +639,9 @@
   However, this feature can only work if the resolutions are the same, there are no
   incompatibilities when it comes to accepted buffer formats, and the application
   doesn't have any output on the QScreen associated with a clone destination. In
-  practice, the latter means that no QWindow associated with the QScreen in question
-  - DP1 in the example - must ever perform a QOpenGLContext::swapBuffers() operation.
+  practice, the latter means that no QWindow associated with the QScreen in
+  question---DP1 in the example---must ever perform a QOpenGLContext::swapBuffers()
+  operation.
   It's up to the configuration and the application to ensure these.
 
   \section3 Headless mode using DRM render
@@ -662,8 +663,8 @@
     }
   \endcode
 
-  Keep in mind that windows are still sized to match the - now virtual -
-  screen size, hence the need for specifying a size in the \c headless
+  Keep in mind that windows are still sized to match the---now virtual---screen
+  size, hence the need for specifying a size in the \c headless
   property. There is also a lack of vsync-based throttling.
 
   Once enabled, applications have two typical choices to perform off-screen
