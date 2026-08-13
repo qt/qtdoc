@@ -54,11 +54,6 @@ qhp.QtDoc.subprojects.manual.title = Qt $QT_VERSION Reference Documentation
 qhp.QtDoc.subprojects.manual.indexTitle = All Topics
 qhp.QtDoc.subprojects.manual.type = manual
 
-qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
-qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
-qhp.QtDoc.subprojects.examples.selectors = example
-qhp.QtDoc.subprojects.examples.sortPages = true
-
 # Add an image used in example manifests to qhp, as well as thumbnails for YouTube links
 {HTML.extraimages,DocBook.extraimages,qhp.QtDoc.extraFiles} += images/qt-codesample.png \
                                                                images/5OiIqFTjUZI.jpg \
