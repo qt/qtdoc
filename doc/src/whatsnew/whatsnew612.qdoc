@@ -754,6 +754,9 @@
           modern Intel hardware.
       \li \l{QWizard} no longer applies the Aero wizard style when the
           system is in dark mode, where it does not render correctly.
+      \li \l{https://learn.microsoft.com/windows/arm/arm64ec}{ARM64EC} is now fully supported with
+          Visual Studio 2026. There are no installer packages. Some modules like Qt WebEngine,
+          Qt WebView, and Qt Quick 3D Physics are not supported.
     \endlist
 
     \section3 Linux
