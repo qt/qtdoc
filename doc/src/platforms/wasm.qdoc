@@ -1087,8 +1087,8 @@ the Qt loader expects to find the Qt libraries and plugins in a directory name "
 file which loads the application.
 
 If you are already copying the application to the web server as a part of deployment, then copying Qt as well
-is a possible option. If you are serving the application directly from its build directory - often the case during
-development phases - then creating a symlink to Qt can work well.
+is a possible option. If you are serving the application directly from its build directory---often the case during
+development phases---then creating a symlink to Qt can work well.
 
 Prepare for the second step by creating preload lists for Qt components such as plugins and Qt Quick imports. Preloading
 ensures that all required Qt components are availabe at application startup. Delayed loading, where components

@@ -30,7 +30,7 @@
 
     The application and its main window is constructed in \c main.cpp.
     The main() function uses QCommandLineParser to process command line
-    arguments -- \e help, \e version, and an optional positional
+    arguments---\e help, \e version, and an optional positional
     argument, \e file. If the user provided a path to a file when
     launching the application, the main window opens it:
 

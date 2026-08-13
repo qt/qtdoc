@@ -12,7 +12,7 @@
 
     \section1 Using Symbols from Shared Libraries
 
-    Symbols - functions, variables or classes - contained in shared libraries
+    Symbols---functions, variables or classes---contained in shared libraries
     intended to be used by \e{clients}, such as applications or other
     libraries, must be marked in a special way. These symbols are called
     \e{public symbols} that are \e{exported} or made publicly visible.
@@ -34,7 +34,7 @@
             when compiling a client that uses the shared library.
     \endlist
 
-    Now, we need to ensure that the right macro is invoked - whether we
+    Now, we need to ensure that the right macro is invoked---whether we
     compile a shared library itself, or just the client using the shared
     library.
     Typically, this can be solved by adding a special header.
