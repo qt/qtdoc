@@ -98,11 +98,15 @@
         \li \c ARM64
         \li MSVC 2022
         \li
+    \row \li Windows on ARM
+        \li \c ARM64EC
+        \li MSVC 2026
+        \li No installer packages.
+
+            Missing support for some Qt modules (Qt WebView, Qt WebEngine, and Qt Quick 3D Physics).
 \endtable
 
 \note Qt 6.12 will be the last version to support Windows 10.
-
-\note Currently Qt does not support ARM64EC on Windows on ARM devices.
 
 //! [windows]
 
