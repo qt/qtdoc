@@ -629,7 +629,7 @@
         build directory, and set VCPKG_MANIFEST_DIR to the build directory to
         use that manifest file. You can turn off the manifest generation with
         -no-generate-vcpkg-manifest. You can turn off setting the manifest
-        directory by passing -- -UVCPKG_MANIFEST_DIR to configure.
+        directory by passing \c{-- -UVCPKG_MANIFEST_DIR} to configure.
     \li Added support for generating \l{Software Bill of Materials}{CycloneDX}
         SBOM documents in addition to the existing SPDX format. To enable
         CycloneDX generation, configure Qt with
