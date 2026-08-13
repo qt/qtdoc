@@ -35,7 +35,7 @@
     The syntax used for Qt's signals and slots has proved very successful in
     practice. The syntax is intuitive, simple to use and easy to read.
     People learning Qt find the syntax helps them understand and utilize the
-    signals and slots concept -- despite its highly abstract and generic
+    signals and slots concept---despite its highly abstract and generic
     nature. This helps programmers get their design right from the very
     beginning, without even having to think about design patterns.
 
@@ -154,8 +154,8 @@
     function, and an advanced property system with introspection and
     extended runtime type information. The property system alone is a
     great advantage: a powerful and generic user interface design tool
-    like \QD would be a lot harder to write - if not impossible -
-    without a powerful and introspective property system. But it does not
+    like \QD would be a lot harder to write---if not impossible---without
+    a powerful and introspective property system. But it does not
     end here. We also provide a dynamic qobject_cast<T>() mechanism
     that does not rely on the system's RTTI and thus does not share its
     limitations. We use it to safely query interfaces from dynamically

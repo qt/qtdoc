@@ -657,7 +657,7 @@
     undesired behavior.
 
     Like other objects, QThread objects live in the thread where the
-    object was created -- \e not in the thread that is created when
+    object was created---\e not in the thread that is created when
     QThread::run() is called. It is generally unsafe to provide slots
     in your QThread subclass, unless you protect the member variables
     with a mutex.
