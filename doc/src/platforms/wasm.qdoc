@@ -185,7 +185,7 @@ headers to values which enables support for \l{https://developer.mozilla.org/en-
 and multi-threading.
 
 The qtwasmserver script starts one server which binds to localhost by default. You may
-add additional addresses using the \e -a command-line argument, or use \e --all to bind
+add additional addresses using the \e -a command-line argument, or use \c --all to bind
 to all available addresses.
 
 The qtwasmserver script lives in the sources at
@@ -628,7 +628,7 @@ The use of a wildcard "*" for Access-Control-Allow-Origin, will result in an err
 if used with Access-Control-Allow-Credentials.
 
 The included utility script qtwasmserver.py will set these headers if the
---cross-origin-isolation option is used.
+\c{--cross-origin-isolation} option is used.
 
 \sa {https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS}
 \sa {https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy}
@@ -843,7 +843,7 @@ directly within \QC is not possible.
 \li Qt debug and logging output is printed on the JavaScript console, which can be
 accessed via browser "Developer Tools" or similar.
 \li Source maps for stepping through code can be created for Qt by re-configuring with
-the --device-option QT_WASM_SOURCE_MAP=1, and building a debug build. Applications
+the \c{--device-option QT_WASM_SOURCE_MAP=1}, and building a debug build. Applications
 can override QT_WASM_SOURCE_MAP, and set(QT_WASM_SOURCE_MAP_BASE "http://localhost:8000/")
 
 \list
@@ -863,7 +863,7 @@ can override QT_WASM_SOURCE_MAP, and set(QT_WASM_SOURCE_MAP_BASE "http://localho
 programmatically, you can add the function emscripten_debugger(); to the application
 source code.
 \li Profiling can be accomplished by using a debug build and the JavaScript console
-profiling features. Qt adds --profiling-funcs to the linker arguments in debug builds,
+profiling features. Qt adds \c{--profiling-funcs} to the linker arguments in debug builds,
 which preserve function names in profiling
 \endlist
 
@@ -1053,7 +1053,7 @@ and evaluation, but is not suitable for production use. Current limitations and 
 Qt applications built with dynamic linking require two additional files to be present alongside the binaries:
 qt_plugins.json and qt_qml_imports.json. These files specify a list of shared libraries that will be loaded
 at application startup. There is a helper tool available to generate them: wasmdeployqt.
-To demonstrate how to use this tool, you can run it with the --help flag to get an overview of
+To demonstrate how to use this tool, you can run it with the \c{--help} flag to get an overview of
 necessary flags needed to run the tool and example usage.
 
 The web server hosting the application must have the Qt shared libraries available.
@@ -1066,12 +1066,12 @@ The build and deployment procedure is slightly different than that from static w
 Consider starting with a small example before progressing to a full application build.
 
 \list 1
-\li Build Qt from source, pass the “-shared” option to the Qt configure script. Use the '-prefix' option to set the install directory.
+\li Build Qt from source, pass the \c{-shared} option to the Qt configure script. Use the '-prefix' option to set the install directory.
 \li Build your application using Qt from step 1.
 \li Create plugin preloading lists by running the deployment tool from your application build directory.
     \list
-    \li <qtpath>/qtbase/bin/wasmdeployqt --qt-wasm-dir=<Path to the Qt for WebAssembly directory>
-    --qml-root-path=<Root directory for QML files> --qt-host-dir=<Path to the Qt host directory>
+    \li \c{<qtpath>/qtbase/bin/wasmdeployqt --qt-wasm-dir=<Path to the Qt for WebAssembly directory>
+    --qml-root-path=<Root directory for QML files> --qt-host-dir=<Path to the Qt host directory>}
     \endlist
 \endlist
 
