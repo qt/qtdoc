@@ -14,7 +14,7 @@
     Qt itself will not throw exceptions. Instead, error codes are used.
     In addition, some classes have user visible error messages, for example
     \l QIODevice::errorString() or \l QSqlQuery::lastError().
-    This has historical and practical reasons - turning on exceptions
+    This has historical and practical reasons---turning on exceptions
     can increase the library size by over 20%.
 
     The following sections describe Qt's behavior if exception support is
