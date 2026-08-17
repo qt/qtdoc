@@ -969,6 +969,104 @@
   cursor and screen blanking settings alone, and linuxfb's
   \c nographicsmodeswitch to skip the graphics mode switch.
 
+  \section1 Security considerations
+
+  The platform plugins described on this page run without a windowing system,
+  and therefore take on responsibilities that a compositor or display server
+  would normally have. This section describes what they trust, and what a device
+  creator is expected to control. See also \l{Qt Shared Security Model}.
+
+  \section2 Configuration is trusted content
+
+  The behavior of the embedded platform plugins - which device nodes are opened,
+  which device integration plugin is loaded into the process, how touch
+  coordinates map to screens - is determined by environment variables, by the
+  KMS/DRM JSON configuration file, and by the optional keymap and cursor atlas
+  files. All of these are trusted content: they are expected to be fixed when
+  the device image is built, and to be controlled by the device creator
+  thereafter. Qt checks that they are well-formed, but performs no further
+  validation, and they are not meant to be exposed to the end user of the
+  device in any form.
+
+  Two entries deserve particular attention:
+
+  \list
+    \li \c QT_QPA_EGLFS_INTEGRATION does not restrict the plugins that may be
+        loaded. The requested backend is only moved to the front of the list of
+        candidates; if it fails to initialize, the remaining backends are still
+        tried in turn. On a system with several device integration plugins
+        present, a backend the deployment did not name can end up being loaded
+        and initializing hardware. Ship only the backends the device needs.
+    \li Touch calibration and rotation, whether set via
+        \c QT_QPA_LIBINPUT_TOUCH_MATRIX, the \c evdev \c rotate, \c invertx and
+        \c inverty parameters, or the \c touchDevice mapping in the JSON
+        configuration file, decide where a press is reported. An incorrect
+        setting means the user activates a different control than the one they
+        touched, which on a human-machine interface is a safety property. Treat
+        these as part of the device's verified configuration rather than as a
+        field-tunable setting.
+  \endlist
+
+  \section2 Input devices are not filtered
+
+  Qt's device discovery opens every \c {/dev/input/event*} node that matches the
+  capability class it is looking for, and, when \c libudev support is available,
+  also opens devices that appear later while the application is running. There
+  is no allow list, no vendor or product filter, and no notion of an expected
+  set of devices. Events from every accepted device are delivered to the
+  application as if they came from the intended one; the application cannot tell
+  them apart.
+
+  Restricting which devices exist, and who may read them, is therefore the
+  device creator's task, and is done at the kernel, \c udev and filesystem
+  permission level rather than in the application. A Qt application that is not
+  permitted to read \c {/dev/input/*} reads no input at all. In addition:
+
+  \list
+    \li Naming the devices explicitly in \c QT_QPA_EVDEV_MOUSE_PARAMETERS,
+        \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS and
+        \c QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS bypasses discovery, pinning the
+        device set the application uses.
+    \li Passing \c{grab=1} gives the application exclusive access to a device,
+        which is worth considering on a device that runs a single application.
+    \li Consider \c{disable-zap}, see \l{Inputs on an Embedded Linux Device}.
+  \endlist
+
+  \section2 Displays are untrusted input
+
+  The EDID block that a display asserts over the connector is supplied by
+  whatever is attached, which may be a monitor, an adapter, a KVM switch, or a
+  capture device, and it is parsed again on every hotplug event. On eglfs with
+  the KMS/DRM backend, the values it contains reach the application through
+  QScreen::manufacturer(), QScreen::model(), QScreen::serialNumber() and the
+  reported physical size. Treat these as externally influenced: do not use them
+  as an identifier, and be aware that they may end up in logs. The physical size
+  can be overridden with \c QT_QPA_EGLFS_PHYSICAL_WIDTH and
+  \c QT_QPA_EGLFS_PHYSICAL_HEIGHT, or per output in the JSON configuration file.
+
+  \section2 Runtime dependencies
+
+  The embedded platform plugins are thin adapters over libraries that are
+  provided by the board support package or the distribution, not by Qt, and that
+  run in the application's process. Depending on the configuration, these are:
+
+  \list
+    \li \b{eglfs}: EGL, and, depending on the backend, GBM, Mesa and the GPU
+        driver, or a vendor EGL implementation; \c libdrm for the KMS/DRM
+        backends.
+    \li \b{vkkhrdisplay}: the Vulkan loader and the installed Vulkan drivers.
+    \li \b{linuxfb}: the kernel \c fbdev interface, or \c libdrm when
+        \c QT_QPA_FB_DRM is set.
+    \li \b{Input}: \c libinput, \c libudev and \c mtdev; \c xkbcommon, which
+        additionally reads keymap data from the system; or \c tslib, whose own
+        configuration file determines which filter modules are loaded, and which
+        Qt can therefore neither select nor enumerate.
+  \endlist
+
+  Include these in the device's software bill of materials and keep them
+  updated, and configure Qt with only the backends the device actually uses. For
+  new devices, prefer \c libinput over the legacy \c tslib.
+
   \section1 Fonts
 
   Qt normally uses \c fontconfig to provide access to system fonts. If
