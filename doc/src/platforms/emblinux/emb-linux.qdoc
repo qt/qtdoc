@@ -932,7 +932,7 @@
 
   Use the \c fb plugin parameter to specify the framebuffer device to use.
 
-  \section1 Unix signal handlers
+  \section1 Unix signal handlers and console state
 
   The console-oriented platform plugins like eglfs and linuxfb install signal
   handlers by default to capture interrupt (\c SIGINT), suspend and continue
@@ -940,11 +940,34 @@
   terminal cursor, and possibly other graphics state can be restored when the
   application terminates or gets suspended due to \c kill, or \c{Ctrl+C} or
   \c{Ctrl+Z}. (although terminating or suspending via the keyboard is only
-  possible when \c{QT_QPA_ENABLE_TERMINAL_KEYBOARD} is set, as outlined above in
-  the Input section). However, in some cases capturing \c SIGINT can be
-  undesirable as it may conflict with remote debugging for instance. Therefore,
-  the environment variable \c{QT_QPA_NO_SIGNAL_HANDLER} is provided to opt-out
-  from all built-in signal handling.
+  possible when \c{QT_QPA_ENABLE_TERMINAL_KEYBOARD} is set, see
+  \l{Inputs on an Embedded Linux Device}). However, in some cases capturing
+  \c SIGINT can be undesirable as it may conflict with remote debugging for
+  instance. Therefore, the environment variable
+  \c{QT_QPA_NO_SIGNAL_HANDLER} is provided to opt-out from all built-in signal
+  handling.
+
+  The handlers are installed when the platform plugin is initialized, replacing
+  any disposition the application set up before that.
+
+  \warning On \c SIGINT and \c SIGTERM the console state is restored and the
+  process then exits via \c{_exit()}. No \c atexit() handlers, static
+  destructors, or Qt shutdown code run, and buffered data is not flushed.
+  \c{systemctl stop} or a plain \c kill therefore terminates the application
+  immediately. An application that needs to persist state on \c SIGTERM must
+  set \c{QT_QPA_NO_SIGNAL_HANDLER} and install its own handler, taking over
+  restoring the console state as well.
+
+  Console state is only restored on these paths and on normal shutdown. It is
+  not restored when the process dies from \c SIGSEGV, \c SIGABRT, or
+  \c{std::terminate()}. With linuxfb, which also switches the virtual terminal
+  to graphics mode, an abnormally terminated application can leave the local
+  console both blank and unresponsive to keyboard input until the device is
+  rebooted. On devices where that console is the only local recovery path,
+  provide an alternative, such as a serial console or a watchdog that reboots
+  the device. Use \c{QT_QPA_PRESERVE_CONSOLE_STATE} to leave the terminal
+  cursor and screen blanking settings alone, and linuxfb's
+  \c nographicsmodeswitch to skip the graphics mode switch.
 
   \section1 Fonts
 
