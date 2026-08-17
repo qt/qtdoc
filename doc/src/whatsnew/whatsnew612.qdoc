@@ -741,7 +741,7 @@
           packaging as a Windows Store appx package.
       \li \l{QOperatingSystemVersion::Windows11_25H2} (10.0.26200) is
           added as a named OS version constant.
-      \li \l{QScreen::colorSpace()} now returns the screen's actual
+      \li \l{QPlatformScreen::colorSpace()} now returns the screen's actual
           color space derived from its ICC profile on Windows, using
           \c{ColorProfileGetDisplayDefault}.
       \li The DirectWrite font backend now reads each font's GASP table
