@@ -196,6 +196,11 @@
   handler generates mouse events and supports single touch only, as opposed to \c evdevtouch which
   generates true multi-touch QTouchEvent events too.
 
+  \note Device selection and filtering are handed over to \c tslib entirely.
+  This means that tslib's own configuration file determines which filter modules
+  are loaded into the application's process; Qt neither selects nor enumerates
+  them. Prefer \c libinput for new devices.
+
   The \c evdev touch handler supports the following extra parameters:
 
   \table
@@ -274,5 +279,15 @@
   Note that the images are expected to be tightly packed in the atlas; the width and height of the
   cursors are determined based on the total image size and the \c cursorsPerRow setting. Atlases
   must also provide an image for all of the supported cursors.
+
+  \note As with other configuration files for \c eglfs, the cursor atlas is
+  considered trusted content that is fully controlled and managed by the device
+  or platform creator. It is not expected to be exposed to the end-users of the
+  device.
+
+  The \c image and \c hotSpots keys and a non-zero \c cursorsPerRow are all
+  mandatory, and \c hotSpots must have one entry for every supported cursor
+  shape. A file that is missing any of these is rejected with a warning and the
+  cursor is disabled.
 
 */
