@@ -102,6 +102,10 @@
       \li \c {grab}
       \li Enables grabbing the input device.
     \row
+      \li \c {disable-zap}
+      \li Disables the zap key chord. See the note on \uicontrol{Ctrl+Alt+Backspace}
+          below.
+    \row
       \li \c {keymap}
       \li Specifies the name of a custom keyboard map file.
     \row
@@ -148,8 +152,15 @@
   end-users of the device, and are not meant to allow the loading of
   user-provided keymap files.
 
-  \note Special system key combinations, such as console switching (\uicontrol{Ctrl+Alt+Fx}) or
-  zap (\uicontrol{Ctrl+Alt+Backspace}) are not currently supported and are ignored.
+  \warning With the built-in keymap, the zap chord (\uicontrol{Ctrl+Alt+Backspace})
+  quits the application. The chord is consumed by the keyboard handler, so the
+  application is never notified about it and cannot veto it. On a device where
+  any keyboard-like input device can therefore shut down the user interface,
+  pass \c{disable-zap} in \c QT_QPA_EVDEV_KEYBOARD_PARAMETERS.
+
+  \note Console switching (\uicontrol{Ctrl+Alt+Fx}) and the reboot chord are
+  recognized by the keyboard handler but not acted upon, and are therefore
+  effectively ignored.
 
   To generate a custom keymap, use the \c kmap2qmap utility, that can be found in the \c qttools
   module. The source files have to be in standard Linux \c kmap format, which is understood by the
