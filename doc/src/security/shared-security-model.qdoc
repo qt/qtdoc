@@ -97,6 +97,43 @@
     in. For instance, all desktop applications expect the directories in the
     \c{PATH} environment variable to be trustworthy.
 
+    \section3 Assumptions
+
+    Qt's security guarantees and the acceptance criteria below rely on the
+    following baseline assumptions about the environment in which a Qt
+    application runs. If any of these assumptions do not hold, the related
+    issues fall outside the intended purpose and supported conditions of use
+    on which Qt's cybersecurity risk assessment is based, and are therefore
+    not treated as vulnerabilities in Qt.
+
+    \list
+    \li \b{The attacker does not already control the device or
+        account}: Qt does not defend against an attacker who already has
+        physical or remote control of the device running the application,
+        or of the user account it runs under (for example, a stolen or
+        unlocked device, an open remote desktop session, or a compromised
+        account), independently of whether they can reach the application
+        process itself. The test is whether the attacker ends up with
+        privilege, access, or trust they did not already have. Where an
+        unprivileged local actor gains the application's privileges, or
+        influences it through data planted in a location the application
+        reads, a security boundary has been crossed and the issue is in
+        scope, even though the attack is local. See also
+        \l{Issues Qt will not accept}.
+    \li \b{The operating system and its environment are configured
+        correctly}: Qt assumes the OS, its configuration, and the process
+        environment (such as the \c{PATH} and \c{QT_PLUGIN_PATH} variables)
+        have not been tampered with or misconfigured. See
+        \l{Responsibilities of operator or device manufacturer}.
+    \li \b{Exposed hardware is genuine}: Qt assumes that hardware the
+        application interacts with (peripherals, sensors, or other attached
+        devices) is genuine and has not been substituted or physically
+        compromised. This does not extend to the data such hardware sends:
+        input received from external devices is untrusted input, and
+        defects reachable through it remain in scope. See
+        \l{Handling Untrusted Data}.
+    \endlist
+
     \section1 Security issue acceptance criteria
 
     Security researchers should use the following guidelines when determining
@@ -154,9 +191,12 @@
 
     Furthermore, reports for cybersecurity issues need a realistic attack scenario that
     \list
-        \li \b{Crosses a security boundary}: For example, issues which require an
+        \li \b{Crosses a security boundary}: an issue crosses a security
+            boundary when it gives the attacker privilege, access, or trust
+            they did not already hold. For example, issues which require an
             attacker already having access to the application process and being able to
-            execute code are not considered security issues.
+            execute code are not considered security issues, because the
+            attacker already holds that access.
         \li \b{Is not based on social engineering}: Issues that primarily rely on social
             engineering or tricking users rather than technical vulnerabilities
             in Qt.
