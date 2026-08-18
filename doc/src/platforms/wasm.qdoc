@@ -690,6 +690,22 @@ which can either fetch a font by URL or using
 The other way to use font is to add it via
 \l{QFontDatabase::addApplicationFontFromData}.
 
+\since 6.13 Fonts can also be deployed into the platform font directory, from where
+Qt loads all \c .ttf, \c .otf, and \c .ttc files at startup. This makes adding a font
+a build system change instead of a code change. The directory is \c QT_QPA_FONTDIR
+when that environment variable is set, and \c{<LibrariesPath>/fonts} otherwise, which is
+\c /qt/lib/fonts for applications deployed with \c wasmdeployqt. Place font files there
+with the wasm preload mechanism, by adding to your \c {CMakeLists.txt}:
+
+\badcode
+qt_add_wasm_preload(myapp
+    DESTINATION /qt/lib/fonts
+    FILES fonts/NotoColorEmoji.ttf)
+\endcode
+
+This is the recommended way to add fonts that the bundled fonts do not cover, such as
+color emoji or non-Latin scripts.
+
 \section2 Accessibility and Screen Readers
 
 Qt for WebAssembly provides basic support for screen readers. Simple UI elements such
