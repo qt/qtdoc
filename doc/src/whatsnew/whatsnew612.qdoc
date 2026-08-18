@@ -106,9 +106,8 @@
           \l{QStandardPaths::standardLocations()}{standardLocations()}.
           On iOS, \l{QStandardPaths::}{PublicShareLocation} returns the correct path and
           \l{QStandardPaths::}{TemplatesLocation} is properly reported as unsupported.
-      \li \l{QEasingCurve} gained
-          \l{QEasingCurve::cubicBezier()}{cubicBezier()}, a convenience
-          helper for creating cubic Bezier easing curves.
+      \li \l{QEasingCurve} gained \l{QEasingCurve::}{fromCubicBezier()}, a
+          convenience helper for creating cubic Bezier easing curves.
       \li \l{QJsonObject} gained \l{QJsonObject::cbegin()}{cbegin()} and
           \l{QJsonObject::cend()}{cend()} STL-style const iterators.
           \l{QJsonDocument} gained rvalue constructors from
