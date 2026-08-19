@@ -656,10 +656,9 @@
     \c Text type represents. \l {Accessible::}{name} is the most important
     property, which is bound to the text of the button. To provide extra
     information about a QML item, use the  \l {Accessible::}{description}
-    property. The signal handler
-    \l{Accessible::pressAction}{Accessible.pressAction}, which can be invoked by
-    accessibility tools to trigger the button, needs to have the same effect as
-    tapping or clicking the text.
+    property. The signal handler, \l{Accessible.pressAction}, which can be
+    invoked by accessibility tools to trigger the button, needs to have the
+    same effect as tapping or clicking the text.
 
     Whereas textual content is inherently accessible, multimedia content is not.
     So it's important to provide necessary accessibility metadata to

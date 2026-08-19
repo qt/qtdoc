@@ -148,25 +148,25 @@
             See \l {QtGraphs::GraphsItem3D::labelMargin}{GraphsItem3D.labelMargin}.
         \li Added support for rendering the grid with a shader and changing the gridline width.
             See \l {QtGraphs::GraphsItem3D::gridLineType}{GraphsItem3D.gridLineType}
-            and \l [QML] {graphsline::mainWidth}{graphsline.mainWidth}.
+            and \l [QML] {QtGraphs::}{graphsline.mainWidth}.
     \endlist
     \section3 Qt Graphs2D
     \list
-        \li Added support for \l {QtGraphs::AreaSeries}{AreaSeries}.
+        \li Added support for \l {QtGraphs::}{AreaSeries}.
         \li Added support for custom bars using QML components.
-            See \l {QtGraphs::BarSeries::barDelegate}{BarSeries.barDelegate}.
+            See \l {QtGraphs::}{BarSeries.barDelegate}.
         \li Added support for Stacked and StackedPercent bars.
-            See \l {QtGraphs::BarSeries::barsType}{BarSeries.barsType}.
+            See \l {QtGraphs::}{BarSeries.barsType}.
         \li Added support for bar graph labels.
-            See \l {QtGraphs::BarSeries::labelsVisible}{BarSeries.labelsVisible}.
+            See \l {QtGraphs::}{BarSeries.labelsVisible}.
         \li Added model mappers support for different series.
             See \l {QtGraphs::XYModelMapper}{XYModelMapper},
-            \l {QtGraphs::BarModelMapper}{BarModelMapper} and
-            \l {QtGraphs::PieModelMapper}{PieModelMapper}.
+            \l {QtGraphs::}{BarModelMapper} and
+            \l {QtGraphs::}{PieModelMapper}.
         \li Added \l {QLegendData}{LegendData} support for all series.
         \li Added support for dynamic splineseries.
         \li Added support for axis titles.
-            See \l {QtGraphs::AbstractAxis::titleText}{AbstractAxis.titleText}.
+            See \l {QtGraphs::}{AbstractAxis.titleText}.
     \endlist
 
     \section2 Qt GRPC Module
@@ -362,7 +362,7 @@
             for specifying 2D transformation matrices.
         \li Added PathRectangle, an optionally rounded rectangle path for
             \l Shape and \l PathView.
-        \li Added the \l {QtQuick::Drag::imageSourceSize}{Drag.imageSourceSize}
+        \li Added the \l {QtQuick::}{Drag.imageSourceSize}
             property to control the size of the image representing the data
             being dragged.
         \li Added \l {QQuickRenderTarget::depthTexture} as a way to set a

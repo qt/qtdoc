@@ -103,12 +103,11 @@
             in QSGMaterialShader::GraphicsPipelineState. (available only when the 3D API
             in use supports this)
 
-        \li \l{QtQuick::ShaderEffectSource::format}{ShaderEffectSource.format} and
-            \l{QtQuick::Item::layer.format}{layer.format} were not useful in previous Qt 6
-            releases, with the legacy values ignored in practice. This is now documented
-            and new, actually useful values are introduced, in particular to enable
-            requesting floating point (FP16 or FP32) textures instead of RGBA8, if
-            desired.
+        \li \l{ShaderEffectSource.format} and \l{QtQuick::Item::}{layer.format} were not
+            useful in previous Qt 6 releases, with the legacy values ignored in practice.
+            This is now documented and new, actually useful values are introduced, in
+            particular to enable requesting floating point (FP16 or FP32) textures instead
+            of RGBA8, if desired.
 
         \li Added QQuickRenderTarget::fromPaintDevice(), enabling redirecting the output
             from a QQuickWindow using the \c software backend as well.
@@ -303,9 +302,8 @@
         \li Added the \l{QtQuick3D::View3D::}{renderFormat} property to View3D
             to allow specifying the backing texture format when the View3D is using its
             (default) Offscreen render mode. The available values are the same as with
-            \l{QtQuick::ShaderEffectSource::format}{ShaderEffectSource.format} (which
-            itself is also revised in 6.4). This enables using floating point textures
-            instead of the default RGBA8.
+            \l{ShaderEffectSource.format} (which itself is also revised in 6.4).
+            This enables using floating point textures instead of the default RGBA8.
 
         \li Support for importing UIP files was removed. The mapping from old Qt 3D Studio
             features to Qt Quick 3D was problematic in previous releases
