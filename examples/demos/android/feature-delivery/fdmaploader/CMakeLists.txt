@@ -14,7 +14,7 @@ set(featurelib_include_dir "${CMAKE_CURRENT_SOURCE_DIR}/storeloader/")
 
 qt_standard_project_setup(REQUIRES 6.10)
 
-set(QT_USE_ANDROID_MODERN_BUNDLE ON)
+set(QT_ANDROID_GRADLE_MULTI_MODULE ON)
 
 qt6_add_executable(${target_name}
     main.cpp

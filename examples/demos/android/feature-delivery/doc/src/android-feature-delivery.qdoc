@@ -104,10 +104,10 @@
 
     CMake function \c{qt6_add_android_dynamic_features} adds the specific
     dynamic library as the dynamic feature for the Android application target.
-    it requires QT_USE_ANDROID_MODERN_BUNDLE feature to be enabled. That can
-    be done either as a compile-time flag or set in CMakeLists. The folder where
-    the Java part of the interface resides is added to the build using
-    \c{qt_add_android_dynamic_feature_java_source_dir}.
+    it requires the QT_ANDROID_GRADLE_MULTI_MODULE feature to be enabled.
+    That can be done either as a compile-time flag or set in CMakeLists.
+    The folder where the Java part of the interface resides is added to the
+    build using \c{qt_add_android_dynamic_feature_java_source_dir}.
 
     On the Example app modules are loaded using \c{storeloader} interface. Qt
     \c{PlayStoreLoader} functions and \c{PlayStoreLoaderHandler} class work as
