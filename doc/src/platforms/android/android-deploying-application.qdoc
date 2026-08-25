@@ -100,6 +100,11 @@
     After that, the directory \c {<build_path>/android-build} acts as the
     packaging directory. The application bundle is created from there using Gradle.
 
+    With \l QT_ANDROID_GRADLE_MULTI_MODULE enabled, the packaging directory holds
+    a Gradle project of multiple modules instead. The application is then packaged
+    from \c {<build_path>/android-build/app}, and each dynamic feature gets a module
+    of its own next to it.
+
     Now, let's go through the different parts that the user can work with after
     extending the default templates.
 
