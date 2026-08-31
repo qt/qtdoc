@@ -32,6 +32,7 @@ public:
     void deleteResource(const QString& api, ResponseCallback callback);
 
 private:
+    bool m_reqresServer = false;
     QUrl m_url;
     QByteArray m_authorizationToken;
 };
