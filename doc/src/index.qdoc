@@ -22,14 +22,18 @@
 
                 \include qtmodules.qdoc essentials
 
-                \section1 Add-ons and Extensions
+                \section1 Add-ons
 
-                Qt add-on and extension modules bring additional value for specific
-                purposes. For more information, see \l {All Modules}.
+                \l {Qt Add-Ons}{Qt Add-On} modules bring additional value for
+                specific purposes.
 
                 \include qtmodules.qdoc addons
 
-                Qt extension modules:
+                \section1 Extensions
+
+                \l {Qt Extension Modules} deviate from other modules in terms
+                of release schedule, supported platforms, or compatibility
+                promises.
 
                 \include qtmodules.qdoc extensions
 
