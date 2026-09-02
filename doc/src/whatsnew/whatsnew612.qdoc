@@ -912,8 +912,8 @@
         \li Added support for \l{Qt::InputMethodHint::ImhNoFullscreen},
             \l{Qt::InputMethodHint::}{ImhDecimalNumbersOnly}, and
             \l{Qt::InputMethodHint::}{ImhNoEditMenu} input method hints.
-        \li Pressing the back key now calls \c moveTaskToBack() instead of
-            exiting the application.
+        \li Pressing the back key now sends the application to the background
+            instead of exiting the application, see \l{Back Key and Back Gesture}.
         \li Accessibility improvements for TalkBack:
           \list
             \li Qt now reacts to the \c ACTION_SHOW_ON_SCREEN action.
