@@ -27,6 +27,52 @@
     Creator only supports Gradle builds and deployments, meaning that command
     line or shell executions are not supported out of the box.
 
+    \section1 Back Key and Back Gesture
+
+    On Android, the back gesture (Android 13+) and the system back key
+    press are a navigation request, not a window close. If there is no
+    item that handles a back press, the back press sends the application
+    to the background. The application keeps its state and resumes where
+    it left off, instead of exiting.
+
+    Since Qt 6.12, a back press sends the application to the background using
+    \c{Activity.moveTaskToBack()} and no longer delivers a close event. That
+    means that \c{QWidget::closeEvent()} and \c{Window.onClosing} signals
+    do not trigger when a user presses the back key. If your application
+    relies on these signals to intercept back button press, the application
+    should adopt the \l Shortcut approach shown below.
+
+    To navigate within the application instead, such as popping a page from a
+    \l StackView, handle the back key and accept the event. Accepting the event
+    stops Qt from sending the application to the background. The recommended way
+    is a window-level Shortcut bound to the \c Back key sequence, which fires no
+    matter which item has active focus:
+
+    \qml
+    Shortcut {
+        sequences: ["Back"]
+        enabled: Qt.platform.os === "android" && stack.depth > 1
+        onActivated: stack.pop()
+    }
+    \endqml
+
+    On Android, use the \c "Back" sequence rather than \c{StandardKey.Back}. The
+    standard key also binds \c Backspace and \c{Alt+Left}, which a hardware
+    keyboard would trigger.
+
+    At the root of the stack, \c enabled becomes \c false, so the back press
+    falls through and Qt sends the application to the background. To warn about
+    unsaved changes first, enable the shortcut while changes are pending and
+    show a prompt from \c onActivated. Once the changes are handled, the
+    shortcut is disabled and the next back press sends the application to the
+    background.
+
+    A focused item can also handle \l{Qt::Key_Back} through
+    \c{Keys.onBackPressed}, but only while it holds active focus. A touch-driven
+    interface often leaves no item focused, so the back press never reaches it.
+    The window-level shortcut matches regardless of focus, so it is the safer
+    choice.
+
     \section1 OpenGL Special Considerations
 
     Modern devices often support OpenGL ES 3.0 or 3.1 in addition to 2.0. To get
