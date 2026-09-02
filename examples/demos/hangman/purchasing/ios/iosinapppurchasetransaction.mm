@@ -34,7 +34,7 @@ IosInAppPurchaseTransaction::IosInAppPurchaseTransaction(SKPaymentTransaction *t
         case SKErrorStoreProductNotAvailable:
             m_errorString = QStringLiteral("Store Product Not Available");
             break;
-#if QT_IOS_PLATFORM_SDK_EQUAL_OR_ABOVE(90300) || QT_TVOS_PLATFORM_SDK_EQUAL_OR_ABOVE(90200)
+#if QT_APPLE_SDK_EQUAL_OR_ABOVE(IOS(9, 3), TVOS(9, 2))
         case SKErrorCloudServicePermissionDenied:
             m_errorString = QStringLiteral("Cloud Service Permission Denied");
             break;
@@ -43,7 +43,7 @@ IosInAppPurchaseTransaction::IosInAppPurchaseTransaction(SKPaymentTransaction *t
             break;
 #endif
                                                // rdar://35589806
-#if QT_IOS_PLATFORM_SDK_EQUAL_OR_ABOVE(100300) // || QT_TVOS_PLATFORM_SDK_EQUAL_OR_ABOVE(100200)
+#if QT_APPLE_SDK_EQUAL_OR_ABOVE(IOS(10, 3)) // , TVOS(10, 2)
         case SKErrorCloudServiceRevoked:
             m_errorString = QStringLiteral("Cloud Service Revoked");
             break;
