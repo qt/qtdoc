@@ -1,0 +1,158 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+\page qt-framework-product-information.html
+\title Product Information
+\brief Overview of Qt as a product, including licensing and versions.
+
+\section1 Functionality
+
+At its core, the Qt Framework (also "Qt" on this page) provides a cross-platform
+API for application and device development. You can install Qt as a framework
+for development on a host machine, or build it from source code and install it
+as a runtime on embedded devices. Qt includes technical documentation and a set
+of essential tools to support efficient development.
+
+This page gives an overview of Qt as a product. If you are new to Qt, see
+\l{Introduction to Qt} in the Qt documentation.
+
+\section1 Functional Composition
+
+Qt consists of modules that provide specific functionality, organized into a
+composite structure. The \l{Qt Essentials} modules form the foundation and are
+always present. \l{Qt Add-Ons} provide additional, more specialized
+functionality. In practice, most users install all add-ons regardless of whether
+they use them later.
+
+Some add-ons are \l{Qt Extension Modules}. These modules provide isolated,
+specific functionality built on top of larger third-party components. As a
+result, they have their own release cadence, which may differ from the Qt
+releases.
+
+Qt is generally available as source code and as installable prebuilt binaries
+for selected target and host platforms.
+
+\section1 Licensing
+
+Qt is dual-licensed. The Community Edition is available under Open-Source
+Software (OSS) licenses. Qt Group also offers Qt under a commercial license
+as a selection of commercial product packages, which can include commercial-only
+functionality.
+
+Licensing also covers the downstream licensing of third-party components used in
+Qt. For more details about third-party licensing and Qt licensing in general,
+see the \l{Qt Licensing} page in the Qt documentation.
+
+Qt Group defines the terms and conditions of commercial licensing on the
+\l{Qt Frame Agreement} page.
+
+Qt is widely used in education. \l{Qt for Education} defines the licensing of Qt
+in this field.
+
+\section1 Versions
+
+Qt has two minor releases per year. Every fourth minor release is a long-term
+support (LTS) release with a longer support period, such as Qt 6.8 and Qt 6.12.
+Each release has a series of maintenance (patch) releases during its life cycle.
+Maintenance releases focus on bug and vulnerability fixes and make no changes to
+the core functionality. Minor releases, including LTS releases, make only minor
+changes to it; only a major release can change it significantly. For more
+details, see the \l{Qt Releases}{Releases} page in the Qt documentation.
+
+Qt has strict, controlled governance over the evolution of its functionality,
+including a defined \l{Versioning} scheme and \l{Compatibility promises}. The
+\l{Qt Releases}{Releases} page in the Qt documentation outlines both for each
+release, but they can change only in a major release.
+
+\section1 Maturity and Validity of the Scope
+
+Qt modules have a defined life cycle.
+
+Qt modules and functionality in Technology Preview status (see
+\l{QUIP 14: Entering Technology Preview} and section 2.5 of the
+\l{Qt Support Terms and Conditions}) are not part of the commercial Qt product
+offering, even though Qt provides them for preview purposes. The same applies to
+deprecated modules.
+
+Qt Group generally provides conformity with global and regional regulations
+for the Qt Framework under a commercial license. All vulnerability fixes still
+apply to the dual-licensed code base and are available regardless of the
+licenses under which you use Qt.
+
+Git tags on the corresponding Git branches track the release scope of a given Qt
+release for each Qt module and other repositories. The date of a Git tag is the
+release date. The release team has ultimate control over these tags.
+
+\section1 Configurations
+
+Qt is a cross-platform framework. You can configure and compile it for many
+target and host platforms.
+
+Every \l{Supported Platforms}{supported platform} has a defined set of supported
+configurations outlined in the Qt documentation. The Qt installation folder for
+a given Qt version contains files that list the configuration options used and a
+configuration summary for each Qt module.
+
+Qt testing and verification use these configurations.
+
+Other configurations, as well as builds of Qt with proprietary patches applied,
+are outside Qt Group's conformity commitments.
+
+\section1 Documentation and Information Structure
+
+The following list outlines the information sources about Qt and orders them by
+authority from highest to lowest.
+
+\list 1
+\li Qt technical documentation
+    \list
+    \li Qt technical documentation is part of the Qt source code.
+    \li The same systems host, develop, and deploy the documentation and the Qt
+        source code.
+    \li Errors in the documentation count as bugs in Qt.
+    \li Qt Group publishes the documentation online at
+        \l{Qt Documentation}{doc.qt.io} and ships it in compiled form as offline
+        help in Qt Creator.
+    \li Qt Group publishes documentation snapshots at
+        \l{Qt Documentation Snapshots}{doc-snapshots.qt.io}. The information in
+        a snapshot becomes valid only when Qt Group releases the given version.
+    \li Each minor release carries its own version of the documentation.
+    \li The documentation covers functionality according to the license of the
+        related code.
+    \endlist
+\li Qt Group commercial product documentation
+    \list
+    \li The commercial product documentation includes the Qt technical
+        documentation and extends it with technical documentation about
+        commercial-only functionality.
+    \li Qt Group publishes its terms and conditions, including the support terms
+        for Qt, at \l{Qt Support Terms and Conditions}{qt.io/terms-conditions}.
+    \li \l{Qt Framework Licensing} explains its licensing.
+    \endlist
+\li Qt Group company website
+    \list
+    \li Qt Group lists Qt in its Development product range.
+    \li \l{Qt Development Products}{qt.io/development} and other linked pages
+        cover Qt.
+    \li The website content focuses on the value of Qt for users and builds on
+        technical and commercial product information.
+    \li Qt Group staff members and, occasionally, partners or community members
+        use the \l{Qt Blog} to announce and describe selected highlights and new
+        features in Qt.
+    \endlist
+\li Qt Project sites
+    \list
+    \li \l{The Qt Project}{qt-project.org} covers the governance of Qt as an
+        open-source project.
+    \li \l{Qt Wiki}{wiki.qt.io} covers the development of Qt in open source and
+        holds relevant technical documentation.
+    \endlist
+\li Qt Forum
+    \list
+    \li \l{Qt Forum}{forum.qt.io} hosts technical discussions for all Qt users.
+    \li A forum topic does not describe Qt functionality unless the Qt technical
+        documentation covers it, even if the topic is technically correct.
+    \endlist
+\endlist
+*/
