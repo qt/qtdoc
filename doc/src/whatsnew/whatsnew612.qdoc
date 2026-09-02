@@ -126,9 +126,9 @@
       \li Added \l[QtGraphs]{QLogValueAxis} (\l{QtGraphs::}{LogValueAxis}
           in QML), a new logarithmic axis type for 2D graphs.
       \li \l[QtGraphs]{QXYSeries} gained
-          \l[QtGraphs]{QXYSeries::declarativePoints}{declarativePoints},
-          \l[QtGraphs]{QXYSeries::declarativePointHint}{declarativePointHint},
-          \l[QtGraphs]{QXYSeries::declarativeMin}{declarativeMin}, and
+          \l[QtGraphs]{QXYSeries::values}{values},
+          \l[QtGraphs]{QXYSeries::valueMapping}{valueMapping},
+          \l[QtGraphs]{QXYSeries::valueMin}{valueMin}, and
           \l[QtGraphs]{QXYSeries::stepSize}{stepSize} properties for
           declarative data input from QML.
       \li \l[QtGraphs]{QPieSeries} gained
@@ -141,8 +141,8 @@
           property for customizing axis label text.
       \li \l[QtGraphs]{Q3DGraphsWidgetItem} gained
           \l[QtGraphs]{Q3DGraphsWidgetItem::panEnabled}{panEnabled} and
-          \l[QtGraphs]{Q3DGraphsWidgetItem::panModeEnabled}{panModeEnabled}
-          properties to enable panning in 3D graphs.
+          \l[QtGraphs]{Q3DGraphsWidgetItem::dragMode}{dragMode}
+          properties to enable and configure panning in 3D graphs.
       \li \l[QtGraphs]{QDateTimeAxis} gained a
           \l[QtGraphs]{QDateTimeAxis::tickCount}{tickCount} property.
     \endlist
@@ -231,10 +231,10 @@
     \section2 Qt Multimedia Module
     \list
       \li \l{QScreenCapture} and \l{QWindowCapture} gained a
-          \l{QScreenCapture::}{frameRate} property to control the
+          \l{QScreenCapture::}{maximumFrameRate} property to cap the
           capture frame rate. The same property is available on the
-          \l{ScreenCapture::frameRate}{ScreenCapture} and
-          \l{WindowCapture::frameRate}{WindowCapture} QML types.
+          \l{ScreenCapture::maximumFrameRate}{ScreenCapture} and
+          \l{WindowCapture::maximumFrameRate}{WindowCapture} QML types.
       \li \l{QAudioSource} and \l{QAudioSink} gained
           \l{QAudioSource::nativePeriodFrameCount}{nativePeriodFrameCount()}
           and
@@ -740,9 +740,10 @@
           packaging as a Windows Store appx package.
       \li \l{QOperatingSystemVersion::Windows11_25H2} (10.0.26200) is
           added as a named OS version constant.
-      \li \l{QPlatformScreen::colorSpace()} now returns the screen's actual
-          color space derived from its ICC profile on Windows, using
-          \c{ColorProfileGetDisplayDefault}.
+      \li On Windows, the platform plugin now derives each screen's
+          color space from its ICC profile through
+          \c{ColorProfileGetDisplayDefault}, rather than always
+          reporting sRGB.
       \li The DirectWrite font backend now reads each font's GASP table
           to select the appropriate antialiasing strategy per font and
           point size, matching the font designer's intent more closely.
@@ -807,12 +808,6 @@
         metadata, and supports embedding HAP signing configuration.
     \li \c{harmonyostestrunner} drives Qt autotests on a connected
         HarmonyOS device or emulator via \c{hdc}, triggered from \c{ctest}.
-    \li \l qt_set_harmonyos_app_metadata()
-        sets app-level metadata (vendor, version, label, icon, and SDK
-        versions) in \c{AppScope/app.json5}.
-    \li \l qt_set_harmonyos_module_metadata()
-        sets module-level metadata, such as the ability orientation
-        and description.
     \li \l qt_add_harmonyos_permission()
         declares the HarmonyOS permissions required by the application.
     \endlist
