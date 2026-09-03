@@ -184,8 +184,6 @@
           returns the image size respecting \l{QImageReader::}{autoTransform()}.
       \li \l{QTextCursor::deletePreviousChar()} (Backspace) now correctly
           handles multi-code-unit emoji sequences.
-      \li On Android, pressing the back key now calls \c moveTaskToBack()
-          instead of exiting the application.
       \li Added \l{Qt::InputMethodHint::ImhNoFullscreen} to request that
           the input method does not occupy the full screen.
       \li Added \l{Qt::InputMethodHint::ImhDecimalNumbersOnly} to restrict
@@ -683,6 +681,8 @@
           link the C++ runtime libraries. On Windows (MSVC) this uses the
           Hybrid CRT method, removing the dependency on the Visual C++
           Redistributable.
+      \li Building Qt for Android now uses Gradle instead of invoking
+          \c javac directly for the Qt JAR targets.
     \endlist
 
     \section3 CMake API
@@ -836,6 +836,43 @@
 
     \section4 Qt for Android
     \list
+        \li Updated Gradle to 9.5.1 and the Android Gradle Plugin to 9.2.1.
+        \li Added support for the predictive back gesture on Android 13 and
+            later. Qt delivers back events through \c{OnBackInvokedCallback},
+            and enables the \c{android:enableOnBackInvokedCallback} manifest
+            attribute by default.
+        \li Added support for Gradle multi-module builds, enabled with
+            \l{QT_ANDROID_GRADLE_MULTI_MODULE}. This is the basis for
+            \l{Using Play Feature Delivery}{Play Feature Delivery}. CMake
+            handles the whole deployment pipeline without \l androiddeployqt
+            or third-party tools, making builds faster and simpler.
+        \li Deprecated the \c{QT_USE_ANDROID_MODERN_BUNDLE} CMake variable
+            in favor of \l{QT_ANDROID_GRADLE_MULTI_MODULE}. The old name is
+            still recognized for backward compatibility.
+        \li Added support for \l{Qt::InputMethodHint::ImhNoFullscreen},
+            \l{Qt::InputMethodHint::}{ImhDecimalNumbersOnly}, and
+            \l{Qt::InputMethodHint::}{ImhNoEditMenu} input method hints.
+        \li Pressing the back key now calls \c moveTaskToBack() instead of
+            exiting the application.
+        \li Accessibility improvements for TalkBack:
+          \list
+            \li Qt now reacts to the \c ACTION_SHOW_ON_SCREEN action.
+            \li Qt now reports the scrolled viewport and scrolling position
+                changes.
+            \li Qt now supports the expandable and expanded states.
+            \li The soft keyboard no longer opens when accessibility focus
+                moves to a text input.
+            \li The \l{QAccessibilityHints::}{motionPreference} hint now
+                reflects the system \uicontrol{Remove animations} setting.
+          \endlist
+        \li \l{The androidtestrunner Tool}{androidtestrunner} now recognizes
+            the \c{--serial} and \c{--output} options, detects device
+            disconnects during a test run, and prints improved crash and
+            Application Not Responding (ANR) diagnostics.
+        \li Qt now deploys the OpenSSL libraries automatically when the
+            bundled FFmpeg build requires them, locating them through
+            \c OPENSSL_ROOT_DIR or vcpkg.
+        \li The Gradle template no longer forces \c{resConfig "en"}.
     \endlist
 
     \section4 Qt Quick for Android
