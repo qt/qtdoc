@@ -188,6 +188,9 @@
           instead of exiting the application.
       \li Added \l{Qt::InputMethodHint::ImhNoFullscreen} to request that
           the input method does not occupy the full screen.
+      \li Added \l{Qt::InputMethodHint::ImhDecimalNumbersOnly} to restrict
+          input to numbers including the decimal point, but not negative
+          numbers.
     \endlist
 
     \section2 Qt HTTP Server Module
