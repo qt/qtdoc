@@ -49,10 +49,29 @@ To learn about developing with Qt for HarmonyOS, see the following topics:
 
 Building and developing with Qt for HarmonyOS is supported on
 Windows(x86_64)/Linux(x86_64)/macOS(x86_64)/macOS(Apple Silicon)
-development hosts. The following target architectures are supported:
+development hosts.
 
-\table
-\header \li Architecture \li Target
-\row \li \c arm64-v8a \li Physical devices
+The following configurations are supported in this Qt release:
+
+\table 60%
+    \header \li Section \li Description
+    \row
+        \li \b Distribution
+        \li HarmonyOS 6.1.0 (API 23) and later
+    \row
+        \li \b Architecture
+        \li arm64-v8a
+    \row
+        \li \b Compiler
+        \li Clang 15.0.4 (SDK 6.1.0)
+            \note It's recommended that Qt apps use the same SDK version
+            used for building the official Qt for HarmonyOS libraries to avoid
+            missing symbol errors.
+    \row
+        \li \b Target
+        \li Huawei HarmonyOS Computers/Tablets/Phones
 \endtable
+
+\note There is a plan to switch to later HarmonyOS releases in the future.
+
 */
