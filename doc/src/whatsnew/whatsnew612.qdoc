@@ -810,8 +810,30 @@
     \endlist
 
     \section3 Linux
-
-    \e{To be updated.}
+    \list
+      \li \l{QDesktopServices::openUrl()} now prefers the
+          \c{org.freedesktop.portal.OpenURI} XDG desktop portal service, if
+          one is available, over \c{xdg-open} and the other fallbacks. The
+          portal may behave differently than the applications used before.
+      \li The fallbacks used when no portal is available were updated:
+          Plasma 6's \c{kde-open} is now recognized, while support for the
+          KDE 3-era \c{kfmclient} was dropped.
+      \li The new \l{QAccessibilityHints}{motionPreference} property is
+          populated from the desktop settings: the \c{reduced-motion} key in
+          the \c{org.freedesktop.appearance} portal namespace, and GNOME's
+          \c{org.gnome.desktop.interface} \c{enable-animations} setting.
+      \li The native GTK3 font dialog now honors the \l{QFontDialog} font
+          filtering options, both for scalable versus non-scalable and for
+          monospaced versus proportional fonts.
+      \li The AT-SPI accessibility bridge now notifies assistive
+          technologies about changes to the expanded and expandable states.
+      \li Fonts added from Qt resources are registered correctly again when
+          running against fontconfig 2.17.1 or later.
+      \li On X11, tooltip windows are no longer recreated every time they
+          are shown.
+      \li \l{QNetworkProxy} now understands the \c{socks5h} scheme in the
+          \c{*_PROXY} environment variables when using the libproxy backend.
+    \endlist
 
     \section3 macOS
     \list
