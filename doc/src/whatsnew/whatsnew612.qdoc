@@ -910,6 +910,23 @@
     \section3 Boot to Qt and Qt Onboard
 
     \list
+      \li Starting with Qt 6.12 LTS, pre-built Boot to Qt images are no longer
+          available for download through \QOI or from your Qt Account.
+
+          Instead of binaries, two container-based deliverables are introduced:
+          \list
+            \li \b {A build container}: A ready-to-use environment with all
+                 necessary build tools pre-installed, enabling a quick way to
+                 build Yocto-based Linux images for your target hardware.
+            \li \b {A demo container}: Containing Qt Demo Launcher with a
+                curated set of pre-selected demos that showcase Qt's
+                capabilities out of the box.
+          \endlist
+
+          The containers are introduced in stages during the Qt 6.12 LTS
+          patch release cycle, with the full container-based delivery in place
+          ahead of the Qt 6.12.4 release.
+
       \li New platforms:
           \list
             \li Orange Pi 2
