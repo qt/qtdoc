@@ -1,0 +1,211 @@
+// Copyright (C) 2026 The Qt Company Ltd
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page cmake-set-variables-and-properties.html
+    \title Setting CMake variables and properties
+    \brief Describes where to set the CMake variables and properties that Qt
+           defines.
+
+    Qt's CMake API is controlled by CMake variables and CMake properties. The
+    \l{CMake Variable Reference} and the \l{CMake Property Reference} list which
+    ones exist and what they do. This page describes where to set them, and what
+    to watch out for when you do.
+
+    \section1 Variables and properties
+
+    A \e{CMake variable} holds a value in the scope of the directory or function
+    where it is set. Variables are set with the
+    \l{https://cmake.org/cmake/help/latest/command/set.html}{set()} command.
+
+    A \e{cache variable} is stored in the \c CMakeCache.txt file of the build
+    directory and persists across CMake runs. Cache variables are the ones you
+    can set from outside the project: on the command line, in a preset, or in an
+    IDE.
+
+    A \e property is attached to an entity: a target, a source file, a directory,
+    or the global scope. Properties are always set from within the project.
+
+    \section1 Setting variables
+
+    \section2 In the project
+
+    Use the \c set() command to set a variable in the project's
+    \c CMakeLists.txt:
+
+    \badcode
+    set(QT_I18N_TRANSLATED_LANGUAGES de fr)
+    \endcode
+
+    The variable is visible in the current directory scope and in every
+    subdirectory that is added afterwards, but not in sibling directories or in
+    the parent directory.
+
+    Set the variable \e before the command that reads it. The documentation of a
+    variable states when it is read. Some variables are read while the Qt package
+    is loaded and have to be set before the first \c{find_package(Qt6)} call.
+    \l{cmake-variable-QT_ENABLE_VERBOSE_DEPLOYMENT}{QT_ENABLE_VERBOSE_DEPLOYMENT}
+    is one of them:
+
+    \badcode
+    cmake_minimum_required(VERSION 3.16)
+    project(MyApp)
+
+    set(QT_ENABLE_VERBOSE_DEPLOYMENT ON)
+
+    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+    qt_standard_project_setup()
+
+    qt_add_executable(MyApp main.cpp)
+    \endcode
+
+    A \c set() call without the \c CACHE keyword creates an ordinary variable
+    that hides a cache variable of the same name in that scope. If a value is
+    meant to be configurable from outside the project, do not overwrite it with
+    an unconditional \c set().
+
+    \section2 From outside the project
+
+    Cache variables are set with \c{-D} when you configure the project:
+
+    \badcode
+    cmake -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON -S <source-dir> -B <build-dir>
+    \endcode
+
+    They can also be set in a \c CMakePresets.json file or in a CMake GUI. None
+    of this is specific to Qt. See the
+    \l{https://cmake.org/cmake/help/latest/guide/user-interaction/index.html}
+    {CMake User Interaction Guide} for the general mechanics, and
+    \l{https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html}
+    {cmake-presets(7)} for the preset file format.
+
+    The \l{Building projects on the command line}{qt-cmake} script forwards all
+    of its arguments to CMake, so \c{-D} works there as well:
+
+    \badcode \QtVersion
+    C:\Qt\\1\msvc2022_64\bin\qt-cmake -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON -S <source-dir> -B <build-dir>
+    \endcode
+
+    \note Changing a cache variable that Qt reads at configure time only takes
+    effect after CMake has run again. Build tools such as Ninja re-run CMake
+    automatically when \c CMakeCache.txt changes.
+
+    \section2 In an IDE
+
+    In \QC, go to \uicontrol Projects > \uicontrol Build to open the build
+    settings of the current kit. The \uicontrol CMake section lists the variables
+    in two groups:
+
+    \list
+        \li \uicontrol {Initial Configuration} holds the variables that \QC
+            passes to CMake when it configures the build directory from scratch,
+            such as \c CMAKE_PREFIX_PATH.
+        \li \uicontrol {Current Configuration} shows the current contents of
+            \c CMakeCache.txt.
+    \endlist
+
+    Both groups have a \uicontrol {Batch Edit} button that lets you enter several
+    \c{-D} arguments at once, in the same syntax you would use on the command
+    line. \QC re-runs CMake when you apply the changes. For details, see
+    \l{\QC: CMake Build Configuration},
+    \l{\QC: Override CMake settings for a project}, and \l{\QC: CMake Presets}.
+
+    In Visual Studio Code, the CMake Tools extension reads presets, and takes
+    individual variables from the \c cmake.configureSettings object in
+    \c{.vscode/settings.json}. See \l{\QVSC Documentation} for how to set up Qt
+    in Visual Studio Code. Visual Studio reads \c CMakePresets.json, or
+    \c CMakeSettings.json if no presets file exists.
+
+    \section1 Setting properties
+
+    Properties cannot be set with \c{-D}. They are always set from the project,
+    with the \l{https://cmake.org/cmake/help/latest/command/set_property.html}
+    {set_property()} command or one of its convenience wrappers.
+
+    \section2 Target properties
+
+    Set target properties after the target has been created, and before the
+    command that reads them:
+
+    \badcode
+    qt_add_executable(MyApp main.cpp)
+
+    set_target_properties(MyApp PROPERTIES
+        QT_RESOURCE_PREFIX "/myapp"
+    )
+
+    qt_add_resources(MyApp "images" FILES logo.png)
+    \endcode
+
+    The \c set_property() command is equivalent and can append to a property that
+    holds a list:
+
+    \badcode
+    set_property(TARGET MyApp PROPERTY QT_ANDROID_EXTRA_LIBS "${extra_lib}")
+    set_property(TARGET MyApp APPEND PROPERTY QT_ANDROID_EXTRA_LIBS "${another_lib}")
+    \endcode
+
+    Properties that Qt reads during target finalization, such as the Android
+    packaging properties, must be set before \l qt_finalize_target() runs. If you
+    do not call \l qt_finalize_target() yourself, finalization happens at the end
+    of the directory scope, so setting the property anywhere in the same
+    \c CMakeLists.txt is sufficient.
+
+    \section2 Source file properties
+
+    Use \c set_source_files_properties():
+
+    \badcode
+    set_source_files_properties(images/logo.png PROPERTIES
+        QT_RESOURCE_ALIAS "logo.png"
+    )
+
+    qt_add_resources(MyApp "images" FILES images/logo.png)
+    \endcode
+
+    \note Source file properties are only visible in the directory scope in which
+    they are set. If the file is added to a target in a different directory, pass
+    \c TARGET_DIRECTORY or \c DIRECTORY to \c set_source_files_properties() to
+    also set the property in that scope. Both options require CMake 3.18 or
+    newer.
+
+    \section2 Directory properties
+
+    Directory properties apply to the current directory scope and are inherited
+    by subdirectories that are added afterwards:
+
+    \badcode
+    set_directory_properties(PROPERTIES QT_EXCLUDE_FROM_TRANSLATION ON)
+    \endcode
+
+    \section2 Global properties
+
+    Global properties apply to the whole build:
+
+    \badcode
+    set_property(GLOBAL PROPERTY QT_TARGETS_FOLDER "MyQtTargets")
+    \endcode
+
+    \section2 Making a property configurable from outside the project
+
+    To control a property from the command line or an IDE, route it through a
+    cache variable:
+
+    \badcode
+    set(MY_APP_ANDROID_PACKAGE_NAME "org.example.myapp"
+        CACHE STRING "Android package name of MyApp")
+
+    set_target_properties(MyApp PROPERTIES
+        QT_ANDROID_PACKAGE_NAME "${MY_APP_ANDROID_PACKAGE_NAME}"
+    )
+    \endcode
+
+    The property can then be changed with:
+
+    \badcode
+    cmake -DMY_APP_ANDROID_PACKAGE_NAME=org.example.myapp.beta -S <source-dir> -B <build-dir>
+    \endcode
+
+    \sa {CMake Variable Reference}, {CMake Property Reference},
+        {Building projects on the command line}
+*/

@@ -23,6 +23,7 @@
         \li \l {Building a QML application}
         \li \l {Building a reusable QML module}
         \li \l{Building projects on the command line}
+        \li \l{Setting CMake variables and properties}
         \li \l{Deployment}
         \li \l{Supported CMake versions}
         \li \l{Making Qt available in CMake projects}
@@ -972,6 +973,9 @@
     \title CMake Variable Reference
     \brief Provides a complete reference for CMake variables implemented in Qt.
 
+    For how to set these variables, see
+    \l{Setting CMake variables and properties}.
+
     \section1 Qt build variables
 
     When building Qt you can use CMake variables to control the build result.
@@ -1118,6 +1122,9 @@
     \page cmake-property-reference.html
     \title CMake Property Reference
     \brief Provides a complete reference for CMake properties implemented in Qt.
+
+    For how to set these properties, see
+    \l{Setting CMake variables and properties}.
 
     \section1 \tt Qt6::Core
     \target cmake-properties-qtcore
