@@ -19,6 +19,10 @@
 
     \section1 New Features in Qt 6.12
 
+    \section2 ActiveQt Module
+
+    No noteworthy changes.
+
     \section2 Qt Bluetooth Module
     \list
       \li The Android backend now respects the advertising minimum and
@@ -47,6 +51,10 @@
           \l{QCanvasRadialGradient::setOuterCenterPosition()}{setOuterCenterPosition()}
           to support non-symmetric (two-center) radial gradients.
     \endlist
+
+    \section2 Qt CoAP Module
+
+    No noteworthy changes.
 
     \section2 Qt Core Module
     \list
@@ -113,8 +121,8 @@
     \endlist
 
     \section2 Qt D-Bus Module
-    \list
-    \endlist
+
+    No noteworthy changes.
 
     \section2 Qt Graphs Module
     \list
@@ -198,6 +206,10 @@
           to limit connections per IP address.
     \endlist
 
+    \section2 Qt Image Formats Module
+
+    No noteworthy changes.
+
     \section2 Qt Lottie Animation Module
     \list
       \li Added support for the Lottie
@@ -226,6 +238,11 @@
           \l{LottieVectorImageController::pause()}{pause()}, and
           \l{LottieVectorImageController::gotoAndPlay()}{gotoAndPlay()}.
     \endlist
+
+    \section2 Qt MQTT Module
+
+    No noteworthy changes.
+
 
     \section2 Qt Multimedia Module
     \list
@@ -265,6 +282,14 @@
       \li The OpenSSL TLS backend now supports building against OpenSSL 4.
     \endlist
 
+    \section2 Qt Network Authorization Module
+
+    No noteworthy changes.
+
+    \section2 Qt OPC UA Module
+
+    No noteworthy changes.
+
     \section2 Qt OpenAPI Module
     \list
       \li \l qt_add_openapi_client() gained \c GENERATE_DOCUMENTATION,
@@ -283,6 +308,10 @@
       \li \l{QGeoSatelliteInfo::SatelliteSystem} gained entries for the
           IRNSS and SBAS satellite systems.
     \endlist
+
+    \section2 Qt Print Support Module
+
+    No noteworthy changes.
 
     \section2 Qt Protobuf Module
     \list
@@ -374,12 +403,12 @@
     \endlist
 
     \section2 Qt Quick Dialogs Module
-    \list
-    \endlist
+
+    No noteworthy changes.
 
     \section2 Qt Quick Effects Module
-    \list
-    \endlist
+
+    No noteworthy changes.
 
     \section2 Qt Quick Test Module
     \list
@@ -421,18 +450,36 @@
           common base type \l{PhysicsJoint}.
     \endlist
 
-    \section2 Qt Serial Port Module
+    \section2 Qt Remote Objects Module
+
     \list
+      \li The \l{QRemoteObjectNode::}{registryUrl} and \l{QRemoteObjectNode::}{persistedStore}
+          properties now have change notification signals.
     \endlist
+
+    \section2 Qt SCXML Module
+
+    No noteworthy changes.
+
+    \section2 Qt Sensors Module
+
+    No noteworthy changes.
+
+    \section2 Qt Serial Port Module
+
+    No noteworthy changes.
+
+    \section2 Qt Spatial Audio Module
+
+    No noteworthy changes.
 
     \section2 Qt Serial Bus Module
-    \list
-    \endlist
 
-    \section2 Qt Sql Module
-    \list
-    \endlist
+    No noteworthy changes.
 
+    \section2 Qt SQL Module
+
+    No noteworthy changes.
 
     \section2 Qt SVG Module
     \list
@@ -471,9 +518,9 @@
           line alongside valid ones, the valid tests are still executed.
     \endlist
 
-    \section2 Qt VirtualKeyboard Module
-    \list
-    \endlist
+    \section2 Qt Virtual Keyboard Module
+
+    No noteworthy changes.
 
     \section2 Qt WebEngine Module
     \list
@@ -485,6 +532,10 @@
           \l{QWebEngineProfile::}{setCryptoModulePasswordFunction()}
           to provide a callback for unlocking PKCS#11 hardware tokens.
     \endlist
+
+    \section2 Qt WebSockets Module
+
+    No noteworthy changes.
 
     \section2 Qt PDF Module
     \list
@@ -523,12 +574,8 @@
     \endlist
 
     \section2 Qt XML Module
-    \list
-    \endlist
 
-    \section2 Qt MQTT Module
-    \list
-    \endlist
+    No noteworthy changes.
 
     \section1 Tools
 
