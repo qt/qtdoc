@@ -7,7 +7,7 @@ import QtQuick3D
 Item {
     id: root
     required property Node origin
-    required property Camera camera
+    required property PerspectiveCamera camera
 
     property real xSpeed: 0.05
     property real ySpeed: 0.05
