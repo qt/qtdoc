@@ -883,6 +883,7 @@
     \list
         \li Updated Gradle to 9.5.1 and the Android Gradle Plugin to 9.2.1.
         \li Updated default target SDK version to Android 17 API level 37.
+        \li Set the supported Android NDK version to r30 (30.0.16248370).
         \li Added support for the predictive back gesture on Android 13 and
             later. Qt delivers back events through \c{OnBackInvokedCallback},
             and enables the \c{android:enableOnBackInvokedCallback} manifest
