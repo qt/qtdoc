@@ -200,6 +200,16 @@
             treated as vulnerabilities. We nonetheless welcome reports about
             such weaknesses, as they may indicate opportunities to improve the
             robustness of Qt.
+        \li \b{Don't affect Qt's libraries, plugins, or tools}:
+            Qt's autotests, and the infrastructure used to build and
+            release Qt, are not part of the product as deployed. Weaknesses
+            reachable only through them are not treated as vulnerabilities in
+            Qt. Build system files and tools that ship with Qt are in scope;
+            see \l{Using Qt's Developer Tools Securely}.
+        \li \b{Only affect example code}: Qt's examples illustrate API use and
+            are not intended for production use. Weaknesses in them are handled
+            as defects rather than vulnerabilities, but reports are welcome, as
+            examples are often copied into applications.
     \endlist
 
     Furthermore, reports for cybersecurity issues need a realistic attack scenario that
