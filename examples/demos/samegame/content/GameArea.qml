@@ -19,7 +19,6 @@ Item {
     property string blockFile: "Block.qml"
     property int blockSize: Settings.blockSize
     onBlockFileChanged: Logic.changeBlock(blockFile);
-    property alias particlePack: auxLoader.source
     //For multiplayer
     property int score2: 0
     property int curTurn: 1
@@ -179,14 +178,12 @@ Item {
             color: "yellow"
         }
         Loader {
-            id: auxLoader
             anchors.fill: parent
             source: "PrimaryPack.qml"
             onItemChanged: {
-                if (item && "particleSystem" in item)
-                    item.particleSystem = particleSystem
-                if (item && "gameArea" in item)
-                    item.gameArea = gameCanvas
+                let pack = item as PrimaryPack
+                pack.particleSystem = particleSystem
+                pack.gameArea = gameCanvas
             }
         }
     }
