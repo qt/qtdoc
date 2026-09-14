@@ -436,9 +436,14 @@
     It creates an installation tree for Windows desktop applications, which can
     be easily bundled into an installation package.
 
+    Non-Qt libraries are deployed if they are located in the Qt binary directory
+    and the deployed binaries link against them. This is the case for a Qt that
+    was built against shared third-party libraries, for example a Qt from a
+    package manager. Pass \c {--no-third-party-libraries} to turn this off.
+
     \note The application may require additional 3rd-party libraries
-    (for example, database libraries), which are not taken into account by
-    windeployqt.
+    (for example, database libraries) from outside the Qt binary directory,
+    which are not taken into account by windeployqt.
 
     \section2 Setting up the build environment
 
