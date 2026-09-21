@@ -1,0 +1,72 @@
+// Copyright (C) 2026 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
+
+/*!
+    \page android-security.html
+    \title Android Security Considerations
+    \brief Security considerations when writing Qt applications for Android.
+    \ingroup security
+
+    Other applications on the device reach a Qt for Android application through
+    intents, activity results, and the clipboard. Qt passes the data from these
+    channels to your application unchanged, but it does not check whether the
+    data is safe to use. This page describes what each channel exposes and what
+    your application must check.
+
+    Qt for Android treats the Android system as trusted and every other
+    application as untrusted, so everything arriving on these channels is
+    \l{Handling Untrusted Data}{untrusted data}. For how this fits into the
+    wider division of responsibility, see the \l{Qt Shared Security Model}. For
+    the tools that build your application, see
+    \l{Using Qt's Developer Tools Securely}.
+
+    \section1 Incoming intents
+
+    Qt handles intents whose action is \c ACTION_VIEW. It takes the intent's
+    data URI and passes it to QDesktopServices::openUrl(), which dispatches to
+    the handler you registered with QDesktopServices::setUrlHandler(). Qt does
+    not validate that URI, because only your application knows which schemes,
+    hosts, and paths are meaningful to it.
+
+    If you declare a matching intent filter, any application on the device can
+    start your activity with any URI it chooses. A web page can also start your
+    activity through a link. Validate the scheme, the host, and the path before
+    you use them. Never treat a path from a URI as a trusted file system
+    location.
+
+    \section1 Activity results
+
+    When you start another activity for a result, Qt passes the returned intent
+    to your result callback unchanged. Qt does not inspect it. The activity that
+    produced the result might not be the one you expected, because any
+    application can register for the same action.
+
+    Check the request code, check the result code, and validate the intent's
+    contents before using them.
+
+    \section1 Clipboard content
+
+    QClipboard on Android reads the system clipboard, which any application can
+    write. A QMimeData obtained from it can carry any format and any payload
+    those applications chose to put there.
+
+    Treat clipboard content like a downloaded file. Validate it before you
+    render it as markup, pass it to a shell, or build a file path from it.
+
+    \section1 Recommendations
+
+    \list
+        \li \b{Validate at the entry point.} Validate data in the URL handler,
+            in the activity result receiver, and where you read the clipboard.
+            Deeper in the application, the origin of the data is no longer
+            clear.
+        \li \b{Declare only the intent filters you need.} Every filter widens
+            the set of applications that can reach you, and an exported
+            activity is reachable by any application on the device.
+        \li \b{Prefer allowlists.} Accept the schemes, hosts, and MIME types
+            you support and reject everything else. Do not try to list all
+            dangerous values.
+        \li \b{Do not infer trust from the channel.} A URI from an intent does
+            not show who sent it.
+    \endlist
+*/
