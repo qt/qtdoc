@@ -18,6 +18,42 @@
     \list
         \li \l{unicode-cldr}{Unicode Common Locale Data Repository (CLDR)} was updated to
             version v48.2.
+        \li \l{android-gradle-wrapper}{Gradle wrapper} was updated to version 9.3.1.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{VulkanMemoryAllocator}{Vulkan Memory Allocator} was updated to version 3.3.0.
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 14.5.0.
+        \li \l{md4c}{MD4C} was updated to version 0.6.0.
+    \endlist
+
+    \section2 Qt Multimedia Module
+
+    \list
+        \li \l{ffmpeg}{FFmpeg} was updated to version 9.0.1.
+        \li \l{signalsmith-stretch}{Signalsmith Stretch} was updated to version 1.1.0.
+    \endlist
+
+    \section2 Qt OPC UA module
+
+    \list
+        \li \l{open62541}{Open62541} was updated to version v1.5.7.
+    \endlist
+
+    \section2 Qt Quick3D Module
+
+    \list
+        \li \l{meshoptimizer}{meshoptimizer} was updated to version 1.0.
+        \li \l{OpenXR}{OpenXR SDK} was updated to version 1.1.61.
+    \endlist
+
+    \section2 Qt Shadertools module
+
+    \list
+        \li \l{glslang}{glslang} was updated to version 16.3.0.
+        \li \l{SpirvCross}{SPIRV-Cross} was updated to version 1a6169566c73d3da552748fc372fe2bbb856e46e.
     \endlist
 
     \section2 Qt Testlib Module
@@ -25,6 +61,35 @@
     \list
         \li \l{cycle}{Cycle} was updated to version 3.3.11.
         \li \l{linuxperf}{Linux Performance Events} was updated to version 7.0.
+    \endlist
+
+    \section2 Qt Wayland Compositor Module
+
+    \list
+        \li Usage of \l{wayland-linux-dmabuf-v1}{Wayland Linux Dmabuf V1 Protocol},
+            version v1, version 5, is now documented.
+    \endlist
+
+    \section1 Qt 6.11.3
+
+    \section2 Qt Core Module
+
+    \list
+        \li \l{pcre2}{PCRE2} was updated to version 10.48.
+        \li \l{pcre2-sljit}{PCRE2 - Stack-less Just-In-Time Compiler} was updated to version 10.48.
+    \endlist
+
+    \section2 Qt GUI Module
+
+    \list
+        \li \l{harfbuzz-ng}{HarfBuzz-NG} was updated to version 14.4.0.
+    \endlist
+
+    \section2 Qt Multimedia Module
+
+    \list
+        \li \l{dr_libs}{DR Libs} was updated to version 0.14.6-snapshot-ee937527.
+        \li \l{ffmpeg}{FFmpeg} was updated to version 7.1.5.
     \endlist
 
     \section1 Qt 6.11.2
@@ -62,7 +127,7 @@
 
     \list
         \li \l{dr_libs}{DR Libs} was updated to version 0.14.5.
-        \li \l{eigen}{Eigen} was updated to version 5.1.0.
+        \li \l{eigen}{Eigen} was updated to version 5.0.1.
         \li \l{ffmpeg}{FFmpeg} was updated to version 7.1.3.
         \li Usage of \l{ffmpeg-libjpeg}{libjpeg} under Independent JPEG Group
             License is now documented.
