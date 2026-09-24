@@ -23,6 +23,8 @@ target_link_libraries(${appname} PRIVATE
     Qt6::Sensors
 )
 
+qt_add_ios_ffmpeg_libraries(${appname})
+
 if(ANDROID)
     set_target_properties(${appname} PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
