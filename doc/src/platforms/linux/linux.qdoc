@@ -138,7 +138,7 @@
     \li XRender
     \li libXrender
     \li X Rendering Extension; used for anti-aliasing and alpha cursor support
-    \li \tt{-xrender} or auto-detected
+    \li \c{-xrender} or auto-detected
     \li 0.9.0
     \row {id="OptionalColor"}
     \li xcb-render
@@ -223,7 +223,7 @@
     \li xkbcommon
     \li libxkbcommon
     \li Keymap handling
-    \li \tt{-xkbcommon} or auto-detected
+    \li \c{-xkbcommon} or auto-detected
     \li 0.9.0
     \row {id="OptionalColor"}
     \li xkbcommon-x11
@@ -236,7 +236,7 @@
     \li Fontconfig
     \li libfontconfig
     \li Font customization and configuration
-    \li \tt{-fontconfig} or auto-detected
+    \li \c{-fontconfig} or auto-detected
     \li 2.6
     \row {id="OptionalColor"}
     \li FreeType
@@ -273,20 +273,20 @@
     \li SM
     \li libSM
     \li X Session Management
-    \li \tt{-sm} or auto-detected
+    \li \c{-sm} or auto-detected
     \li 6.0.4
     \row {id="SMColor"}
     \li ICE
     \li libICE
     \li Inter-Client Exchange
-    \li \tt{-sm} or auto-detected
+    \li \c{-sm} or auto-detected
     \li 6.3.5
 
     \row {id="GlibColor"}
     \li glib
     \li libglib-2.0
     \li Common event loop handling
-    \li \tt{-glib} or auto-detected
+    \li \c{-glib} or auto-detected
     \li 2.8.3
     \row {id="PthreadColor"}
     \li pthread
