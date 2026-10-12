@@ -7,8 +7,8 @@
     \title Qt for Embedded Linux Fonts
     \ingroup qt-embedded-linux
 
-    Qt normally uses \tt{fontconfig} to provide access to system fonts. If
-    \tt{fontconfig} is not available, for example, in dedicated embedded
+    Qt normally uses \c{fontconfig} to provide access to system fonts. If
+    \c{fontconfig} is not available, for example, in dedicated embedded
     systems where space is at a premium, Qt will fall back to using
     \c QBasicFontDatabase. In this case, Qt applications will look for fonts in
     Qt's \c lib/fonts/ directory. Qt will automatically detect prerendered
