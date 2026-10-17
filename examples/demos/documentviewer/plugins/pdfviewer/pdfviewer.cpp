@@ -111,7 +111,8 @@ void PdfViewer::initPdfViewer()
     auto *actionZoomIn = m_toolBar->addAction(icon, tr("Zoom in"), QKeySequence::ZoomIn);
     connect(actionZoomIn, &QAction::triggered, this, &PdfViewer::onActionZoomInTriggered);
 
-    icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut, QIcon(":/demos/documentviewer/images/zoom-outpng"_L1));
+    icon = QIcon::fromTheme(QIcon::ThemeIcon::ZoomOut,
+                            QIcon(":/demos/documentviewer/images/zoom-out.png"_L1));
     auto *actionZoomOut = m_toolBar->addAction(icon, tr("Zoom out"), QKeySequence::ZoomOut);
     actionZoomOut->setToolTip(tr("Decrease zoom level"));
     connect(actionZoomOut, &QAction::triggered, this, &PdfViewer::onActionZoomOutTriggered);

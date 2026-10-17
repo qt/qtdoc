@@ -1,35 +1,39 @@
-// Copyright (C) 2023 The Qt Company Ltd.
+// Copyright (C) 2025 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GFDL-1.3-no-invariants-only
 
 /*!
-
-    \example demos/coffee
     \title Coffee Machine
     \ingroup qtquickdemos
+    \example demos/coffee
     \brief A Qt Quick application with a state-based custom user interface.
     \meta {tag} {quick,embedded,states,touch}
     \examplecategory {Application Examples}
     \examplecategory {Embedded}
     \examplecategory {Mobile}
 
-    \borderedimage coffee_machine_overview.png
-
-    \section1 Coffee Machine example overview
+    \image coffee_machine_overview.png {Coffee machine UI showing 'Get Started' button}
 
     This app demonstrates a cross platform, multi screen size and responsive way
     of implementing a typical user interface for product ordering.
 
+    \include examples-run.qdocinc
+
+    \section1 UI Walkthrough
+
+    This section guides you through the typical user flow for the application.
+
     \section2 Selecting a recipe
 
     \image coffee_machine_selection.png
-    \caption The coffee selection
+           {List of available coffee types}
 
     The coffee machine application lets you choose a type of coffee and indicates
     how many coffees of that type you have left to order.
 
     \section2 Coffee customization
 
-    \borderedimage coffee_machine_modify.png
+    \image coffee_machine_modify.png
+           {Sliders to customise the ratio of the coffee blend}
 
     Once a recipe is selected, the app displays what ratio the coffee blend
     will contain of:
@@ -43,7 +47,10 @@
 
     \section2 Displaying the brewing status
 
-    Once the user has acknowledged that the cup is in the machine the brew starts.
+    \image coffee_machine_emptycup.png
+           {Prompting user to insert a cup}
+
+    Once the user has acknowledged that the cup is in the machine, the brew starts.
 
     When the brew has been started, the app shows an animated display of the
     brewing process.
@@ -72,6 +79,17 @@
 
     The app uses \l {GridLayout} throughout the application page components to
     easily adapt to changes in screen orientation.
+
+    \image coffee_machine_selection_android_landscape.png
+           {Landscape orientation of coffee machine selection page for Android}
+    \caption {Screen switches to landscape when Android device orientation is
+             landscape}
+
+    \image coffee_machine_selection_windows.png
+           {Landscape orientation of coffee machine selection page for Windows}
+    \caption {Landscape mode is the default orientation on Windows desktop}
+
+    \note On the desktop version, the width must be greater than the height.
 
     \section2 Navigating through the app pages
 
@@ -220,5 +238,8 @@
     When this page is displayed a \l {Timer} starts running and once the interval
     set is reached user is directed back to \c Home.qml.
 
+    \section1 Source files
+
+    \sa {Qt Quick Examples and Tutorials} {All Qt Examples}
 */
 

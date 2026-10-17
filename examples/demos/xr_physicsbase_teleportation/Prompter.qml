@@ -70,8 +70,9 @@ XrItem {
         }
     }
 
-    z: -30
+    z: -40
     x: -50
+    y: 20
     width: 100
     height: 40
     color: "transparent"

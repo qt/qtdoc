@@ -93,6 +93,7 @@ void LightningItemModel::getLatestStrikeInfo(const QGeoCoordinate &searchCenter,
 
 int LightningItemModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_data.size();
 }
 

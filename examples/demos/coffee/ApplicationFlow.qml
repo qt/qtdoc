@@ -30,6 +30,7 @@ ApplicationFlowForm {
         milkAmount = 60
         foamAmount = 60
         brewTime = 5000
+        sugarAmount = 0
         stack.push(settings)
         coffeeText.text = "Cappuccino"
     }
@@ -40,6 +41,7 @@ ApplicationFlowForm {
         milkAmount = 0
         foamAmount = 0
         brewTime = 4000
+        sugarAmount = 0
         stack.push(settings)
         coffeeText.text = "Espresso"
     }
@@ -50,6 +52,7 @@ ApplicationFlowForm {
         milkAmount = 20
         foamAmount = 60
         brewTime = 6000
+        sugarAmount = 0
         stack.push(settings)
         coffeeText.text = "Latte"
     }
@@ -60,6 +63,7 @@ ApplicationFlowForm {
         milkAmount = 5
         foamAmount = 10
         brewTime = 8000
+        sugarAmount = 0
         stack.push(settings)
         coffeeText.text = "Macchiato"
     }

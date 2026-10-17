@@ -312,6 +312,10 @@
 
     \table 50%
     \header \li Device \li OS Version \li Architecture \li Form Factor
+    \row \li \l{Pixel 3a}
+        \li Android 10 (API 29)
+        \li arm64_v8a
+        \li Mobile
     \row \li \l{Pixel 2}
         \li Android 11 (API 30)
         \li arm64_v8a
@@ -364,10 +368,6 @@
        \li Android 14 [UP1A.231005.007] (API 34)
        \li arm64_v8a
        \li Mobile
-    \row \li \l{Motorola Moto G5 Plus}
-       \li Android 8 [UP1A.230519.001] (API 27)
-       \li arm64_v8a
-       \li Mobile
     \row \li \l{Samsung Galaxy Tab A9+}
        \li Android 14 [UP1A.231005.007] (API 34)
        \li arm64_v8a
@@ -377,13 +377,17 @@
         \li arm64_v8a
         \li Mobile
     \row \li \l{Pixel 8}
-        \li Android 15 [AP3A.241105.007] (API 35)
+        \li Android 15 [BP1A.250505.005.B1] (API 35)
         \li arm64_v8a
         \li Mobile
     \row \li \l{Pixel Tablet}
-        \li Android 15 [AP3A.241105.007] (API 35)
+        \li Android 16 [BP22.250325.007] (API 36)
         \li arm64_v8a
         \li Tablet
+    \row \li \l{Samsung Galaxy A26}
+       \li Android 15 (API 35)
+       \li arm64_v8a
+       \li Tablet
     \endtable
 
     \note The above table is accurate at the time of this Qt patch release only.

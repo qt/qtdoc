@@ -76,10 +76,9 @@ types are not part of the connection.
 
 \snippet snippets/signalsandslots/signalslotsyntaxes.cpp typeresolution
 
-
 \section1 Making Connections to Lambda Expressions
 
-The functor-based connection syntax can connect signals to C++11 lambda expressions,
+The functor-based connection syntax can connect signals to lambda expressions,
 which are effectively inline slots. This feature is not available with the
 string-based syntax.
 
@@ -162,8 +161,8 @@ to Lambda Expressions}.
 With the string-based syntax, parameter types are explicitly specified. As a
 result, the desired instance of an overloaded signal or slot is unambiguous.
 
-In contrast, with the functor-based syntax, an overloaded signal or slot must
-be cast to tell the compiler which instance to use.
+In contrast, with the functor-based syntax, you must explicitly specify which
+version of an overloaded signal or slot you want to connect to.
 
 For example, \l QLCDNumber has three versions of the \c display() slot:
 \list 1
@@ -176,6 +175,11 @@ To connect the \c int version to QSlider::valueChanged(), the two syntaxes are:
 
 \snippet snippets/signalsandslots/signalslotsyntaxes.cpp overload
 
+For comprehensive examples of connecting to overloaded signals and slots
+using qOverload(), static_cast, and lambdas,
+see \l{Connecting to Overloaded Signals and Slots}.
+
 \sa qOverload()
 
 */
+

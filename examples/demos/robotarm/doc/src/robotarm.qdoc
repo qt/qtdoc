@@ -6,22 +6,32 @@
     \ingroup qtquickdemos
     \title Robot Arm
     \brief Demonstrates how to add a C++ backend to a 3D project from Qt Design Studio.
-    This example demonstrates adding a C++ backend to a 3D project created in Qt Design Studio. The example itself consists of
-    an interactive industrial robot arm in a Qt Quick 3D scene. The 2D UI to control the robot arm is implement using Qt Quick Controls.
     \examplecategory {Application Examples}
     \meta {tag} {demo,quick}
     \meta {docdependencies} {QtQuick3D}
-    \image robotarm-example.png
+    \image {robotarm-example.png} {A robot arm with GUI controls}
 
-    For Qt Design Studio the Robot Arm Example comes with a simple QML based QML module in backend_moc/Backend/Backend_moc.qml,
-    that serves as a backend for the project when using it with Qt Design Studio.
-    The C++ application implements a compatible backend as a C++ based QML module. Both QML modules implement the same API, which ensures
-    compatibility between the two modules.
-
-    The Qt Quick 3D scene for the Robot Arm is defined in content/RoboticArm.ui.qml. The 2D UI is implemented in content/MainScreen.ui.qml
-    and is repsonsive and also supports a light and dark mode. The example uses the Material style from Qt Quick Controls and the dark and light
-    theme to implement both modes.
+    The Robot Arm example demonstrates adding a C++ backend to a 3D project
+    created in Qt Design Studio. The example consists of an interactive
+    industrial robot arm in a Qt Quick 3D scene. Qt Quick Controls implements
+    the 2D UI to control the robot arm.
 
     \include examples-run.qdocinc
+
+    For Qt Design Studio, the Robot Arm example comes with a QML module in
+    \c {backend_moc/Backend/Backend_moc.qml} that serves as a backend for the
+    project. The C++ application implements a compatible backend QML module.
+    Both QML modules implement the same API, which ensures compatibility between
+    the two modules.
+
+    \c {content/RoboticArm.ui.qml} defines the Qt Quick 3D scene.
+    \c {content/MainScreen.ui.qml} implements the 2D UI and supports a light and
+    dark theme. The example uses the Material style from Qt Quick Controls and
+    the dark and light theme to implement both modes.
+
     \include examples/qtquick3d.qdocinc
+
+    \section1 Source files
+
+    \sa {All Qt Examples}, {Qt Quick Examples and Tutorials}
 */
