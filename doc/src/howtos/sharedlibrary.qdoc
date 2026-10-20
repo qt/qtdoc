@@ -83,6 +83,44 @@
     \l{Qt VS Tools} provide you with a skeleton that sets up these things for
     you.
 
+    \section2 Generating the Export Header with CMake
+
+    Instead of writing \c{mysharedlib_global.h} by hand, you can let CMake
+    generate an equivalent header with the
+    \l{https://cmake.org/cmake/help/latest/module/GenerateExportHeader.html}
+    {GenerateExportHeader} module:
+
+    \code
+    qt_add_library(mysharedlib SHARED mysharedlib.cpp mysharedlib.h)
+    target_link_libraries(mysharedlib PRIVATE Qt6::Core)
+
+    include(GenerateExportHeader)
+    generate_export_header(mysharedlib)
+    target_include_directories(mysharedlib PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+    \endcode
+
+    This creates the header \c{mysharedlib_export.h} in the current build
+    directory. It defines the \c MYSHAREDLIB_EXPORT macro, which you use in the
+    library headers as shown above:
+
+    \code
+        #include "mysharedlib_export.h"
+
+        MYSHAREDLIB_EXPORT void foo();
+        class MYSHAREDLIB_EXPORT MyClass...
+    \endcode
+
+    The generated header does not use \l{Q_DECL_EXPORT} and \l{Q_DECL_IMPORT},
+    but the equivalent compiler-specific attributes. You do not need to define
+    \c MYSHAREDLIB_LIBRARY: the header checks for \c mysharedlib_EXPORTS,
+    which CMake defines automatically when building the shared library
+    \c mysharedlib. To hide all symbols that are not marked for export on
+    platforms where this is not the default, set the
+    \l{https://cmake.org/cmake/help/latest/prop_tgt/CXX_VISIBILITY_PRESET.html}
+    {\c CXX_VISIBILITY_PRESET} target property to \c hidden. See the CMake
+    documentation of GenerateExportHeader for further options, for example for
+    building the same library as a static library.
+
     \section1 Header File Considerations
 
     Typically, clients will include only the public header files of shared
