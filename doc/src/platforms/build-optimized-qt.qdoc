@@ -43,6 +43,10 @@
         drop unnecessary parts of the binary code. This is the most optimal solution for single
         executable deliveries.
     \row
+        \li -optimize-size
+        \li Optimize release builds for size instead of speed. For example, Qt is
+        compiled with \c{-Os} when using GCC, and with \c{-Oz} when using Clang.
+    \row
         \li -ltcg
         \li Link Time Optimization (LTO) is a powerful technique that can significantly
         improve the performance and reduce the size of your executable file by analyzing

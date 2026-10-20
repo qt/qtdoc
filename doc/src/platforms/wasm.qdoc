@@ -936,6 +936,9 @@ application.
 \li Disable unsued features when compiling Qt for WebAssembly from source (see below).
 \endlist
 
+For configure options that reduce the binary size on all platforms, see
+\l{Building Optimized Qt}.
+
 \section4 Opting out of features
 
 A WebAssembly application by default links statically to the Qt libraries,
