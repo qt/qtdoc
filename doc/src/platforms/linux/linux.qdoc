@@ -430,7 +430,17 @@
     \row
         \li Python
         \li Version 3
+    \row
+        \li \c pkg-config
+        \li -
     \endtable
+
+    \c configure uses \c pkg-config to find several system libraries, for
+    example \c libxkbcommon-x11. Without \c pkg-config, \c configure does not
+    find these libraries and disables dependent features, such as the \c xcb
+    platform plugin. On Debian-based systems, therefore install the
+    \c pkg-config package. Other distributions may provide it as
+    \c pkgconf.
 
     \include use-ninja-note.qdocinc ninja-note
 
