@@ -277,8 +277,40 @@
 
     configure in Qt 6 relies on CMake to locate third-party libraries.
     It does so by checking various system paths. If you installed libraries
-    somewhere else, you can let CMake know this by setting or extending the
-    \c CMAKE_PREFIX_PATH variable.
+    somewhere else, tell CMake where to find them:
+
+    \list
+    \li In most cases, set or extend the \c CMAKE_PREFIX_PATH variable with
+        the installation prefixes of your libraries, for example
+        \c{-- -DCMAKE_PREFIX_PATH=/opt/libs}. CMake searches all libraries
+        below these prefixes, and also passes them to pkg-config.
+    \li To select the installation of one specific library, set the
+        \l{https://cmake.org/cmake/help/latest/variable/PackageName_ROOT.html}
+        {\c{<PackageName>_ROOT}} CMake or environment variable, where
+        \c{<PackageName>} is the name passed to \c find_package for that
+        library. CMake searches this location before \c CMAKE_PREFIX_PATH,
+        so it takes precedence over other installations of that library.
+    \endlist
+
+    Some libraries also use their own variables:
+
+    \list
+    \li OpenSSL: Set the \c OPENSSL_ROOT_DIR CMake variable, for example
+        \c{-- -DOPENSSL_ROOT_DIR=/opt/openssl}.
+    \li FFmpeg, used by Qt Multimedia: Pass \c{-ffmpeg-dir /opt/ffmpeg} to
+        configure, which sets the \c FFMPEG_DIR CMake variable.
+    \li libclang, used by QDoc in Qt Tools: Set the \c LLVM_INSTALL_DIR
+        CMake or environment variable to the LLVM installation, for example
+        \c{-- -DLLVM_INSTALL_DIR=/opt/llvm}.
+    \li Libraries that configure finds through pkg-config: Set the
+        \c PKG_CONFIG_PATH environment variable.
+    \endlist
+
+    The documentation of the find modules that CMake provides in the
+    \l{https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html}
+    {CMake modules manual} lists further variables that affect the search.
+    Qt provides its own find modules for other libraries in the
+    \c{qtbase/cmake} directory, in files named \c{Find<PackageName>.cmake}.
 
     For a full list of options, consult the help with \c{configure -help}.
 
