@@ -308,6 +308,7 @@
     apt install \
         libfontconfig1-dev \
         libfreetype-dev \
+        libgl-dev \
         libgtk-3-dev \
         libx11-dev \
         libx11-xcb-dev \
@@ -355,6 +356,11 @@
     regular desktop OpenGL. You can disable OpenGL support by using the
     \c -no-opengl option.
 
+    Desktop OpenGL support requires the OpenGL development package, for
+    example \c libgl-dev on Debian-based systems. If \c configure finds
+    neither desktop OpenGL nor OpenGL ES 2.0, it fails unless you pass
+    \c -no-opengl.
+
     \note The Qt OpenGL module (which contains classes that start with \e QGL)
     has been deprecated in favor of the \l{Qt GUI} module (which contains
     classes that start with \e QOpenGL).
@@ -371,6 +377,12 @@
     \li speech-dispatcher
     \endlist
     \endomit
+
+    \section1 Qt WebEngine Dependencies
+
+    \l{Qt WebEngine} has additional build requirements, such as
+    \c libdrm, \c libxcomposite, \c libxcursor, \c libxrandr, and
+    \c libxshmfence. See \l{Qt WebEngine Platform Notes} for details.
 
     \section1 QDoc Dependencies
     \l{QDoc Manual}{QDoc} uses Clang to parse C++ code.
