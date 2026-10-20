@@ -74,8 +74,9 @@ ApplicationWindow {
 //! [on-reading-changed]
 
         onReadingChanged: {
-            var newX = (bubble.x + calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * .1)
-            var newY = (bubble.y - calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .1)
+            let reading = accel.reading as AccelerometerReading
+            var newX = (bubble.x + mainWindow.calcRoll(reading.x, reading.y, reading.z) * .1)
+            var newY = (bubble.y - mainWindow.calcPitch(reading.x, reading.y, reading.z) * .1)
 
             if (isNaN(newX) || isNaN(newY))
                 return;
