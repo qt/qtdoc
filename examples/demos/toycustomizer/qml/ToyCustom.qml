@@ -8,12 +8,12 @@ Node {
     id: root
 
     property var currentElement
-    property alias accessoryModel: matLib.accessoryModel
+    property alias accessoryModel: materialLibrary.accessoryModel
 
     scale: Qt.vector3d(125, 125, 125)
 
     Skin {
-        id: skin
+        id: toySkin
         joints: [
             universalRigged,
             universalRiggedPelvis,
@@ -79,7 +79,7 @@ Node {
         rotation: Qt.quaternion(0.707107, 0.707107, 0, 0)
 
         AccessoryMaterialLibrary {
-            id: matLib
+            id: materialLibrary
         }
 
         Node {
@@ -90,7 +90,7 @@ Node {
             Model {
                 id: toyNodeModel
                 source: root.currentElement.customMesh
-                skin: skin
+                skin: toySkin
                 materials: animationMaterial
             }
             Node {
@@ -174,7 +174,7 @@ Node {
                                                         rotation: Qt.quaternion(0.707972, 0.0986974, 0.0879475, 0.693758)
                                                         visible: AccessoryState.metalBracelet_LeftVisible
                                                         source: "meshes/cylinder_009_mesh.mesh"
-                                                        materials: matLib.items_generic
+                                                        materials: materialLibrary.items_generic
                                                     }
                                                 }
                                             }
@@ -208,7 +208,7 @@ Node {
                                                         rotation: Qt.quaternion(-0.0889828, 0.909527, -0.323377, 0.2455)
                                                         visible: AccessoryState.metalBracelet_RightVisible
                                                         source: "meshes/cylinder_009_mesh.mesh"
-                                                        materials: matLib.items_generic
+                                                        materials: materialLibrary.items_generic
                                                     }
                                                 }
                                             }
@@ -236,30 +236,30 @@ Node {
 
                                         EyesAccessories {
                                             id: eyesAccessories
-                                            matLib: matLib
+                                            matLib: materialLibrary
                                         }
 
                                         MouthAccessories {
                                             id: mouthAccessories
                                             currentElement: root.currentElement
-                                            matLib: matLib
+                                            matLib: materialLibrary
                                         }
 
                                         EyewearAccessories {
                                             id: eyewearAccessories
-                                            matLib: matLib
+                                            matLib: materialLibrary
                                         }
 
                                         HeadwearAccessories {
                                             id: headwearAccessories
-                                            matLib: matLib
+                                            matLib: materialLibrary
                                         }
                                     }
                                 }
                             }
                             BodyAccessories {
                                 id: bodyAccessories
-                                matLib: matLib
+                                matLib: materialLibrary
                             }
                         }
                     }

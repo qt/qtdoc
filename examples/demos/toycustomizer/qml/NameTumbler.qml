@@ -15,7 +15,7 @@ Rectangle {
     radius: ApplicationConfig.responsiveSize(16)
 
     property int rowHeight: adjectiveTumbler.height / adjectiveTumbler.visibleItemCount
-    property var sourceModel
+    property AccessoryModel sourceModel
 
     SortFilterProxyModel {
         id: adjectivesProxy
@@ -30,8 +30,8 @@ Rectangle {
         ]
         function setSelected(index_) {
             let proxyIndex = -1
-            for (let i = 0; i < model.count; ++i) {
-                const it = model.get(i)
+            for (let i = 0; i < nameTumbler.sourceModel.count; ++i) {
+                const it = nameTumbler.sourceModel.get(i)
                 if (it.group === "adjectives") {
                     ++proxyIndex
                     if (proxyIndex === index_)
@@ -56,8 +56,8 @@ Rectangle {
         ]
         function setSelected(index_) {
             let proxyIndex = -1
-            for (let i = 0; i < model.count; ++i) {
-                const it = model.get(i)
+            for (let i = 0; i < nameTumbler.sourceModel.count; ++i) {
+                const it = nameTumbler.sourceModel.get(i)
                 if (it.group === "noun") {
                     ++proxyIndex
                     if (proxyIndex === index_)
@@ -118,17 +118,18 @@ Rectangle {
             Layout.fillHeight: true
 
             delegate: Item {
+                id: adjectiveDelegate
                 required property var name
                 required property int index
                 opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
 
                 ToyLabel {
                     anchors.centerIn: parent
-                    text: name
-                    color: index === adjectiveTumbler.currentIndex ? "#2269EE" : "#6A6A8D"
+                    text: adjectiveDelegate.name
+                    color: adjectiveDelegate.index === adjectiveTumbler.currentIndex ? "#2269EE" : "#6A6A8D"
                     font {
-                        styleName: index === adjectiveTumbler.currentIndex ? "Bold" : "Regular"
-                        pixelSize: index === adjectiveTumbler.currentIndex ? 18 : 12
+                        styleName: adjectiveDelegate.index === adjectiveTumbler.currentIndex ? "Bold" : "Regular"
+                        pixelSize: adjectiveDelegate.index === adjectiveTumbler.currentIndex ? 18 : 12
                         family: "DynaPuff"
                     }
                 }
@@ -151,17 +152,18 @@ Rectangle {
             Layout.fillHeight: true
 
             delegate: Item {
+                id: nounDelegate
                 required property var name
                 required property int index
                 opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
 
                 ToyLabel {
                     anchors.centerIn: parent
-                    text: name
-                    color: index === nounTumbler.currentIndex ? "#2269EE" : "#6A6A8D"
+                    text: nounDelegate.name
+                    color: nounDelegate.index === nounTumbler.currentIndex ? "#2269EE" : "#6A6A8D"
                     font {
-                        styleName: index === nounTumbler.currentIndex ? "Bold" : "Regular"
-                        pixelSize: index === nounTumbler.currentIndex ? 18 : 12
+                        styleName: nounDelegate.index === nounTumbler.currentIndex ? "Bold" : "Regular"
+                        pixelSize: nounDelegate.index === nounTumbler.currentIndex ? 18 : 12
                         family: "DynaPuff"
                     }
                 }

@@ -115,7 +115,7 @@ Item {
             if (group !== OrderGrid.ModelGroup.Toy)
                 return __modelData.oldPrice
             else
-                return __model.originalPrice
+                return selection.__model.originalPrice
         }
         newPrice: {
             if (group === OrderGrid.ModelGroup.Name)

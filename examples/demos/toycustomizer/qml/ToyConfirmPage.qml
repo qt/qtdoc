@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 Item {
@@ -49,8 +48,7 @@ Item {
                 }
             }
             PropertyChanges {
-                target: contentItem
-                anchors.leftMargin: 0
+                contentItem.anchors.leftMargin: 0
             }
         }
 

@@ -23,12 +23,12 @@ Item {
         {
             if (root.color.a > 0) {
                 if (item instanceof Shape) {
-                    for (var j = 0; j < item.data.length; ++j) {
+                    for (let j = 0; j < item.data.length; ++j) {
                         if (item.data[j].hasOwnProperty("fillColor"))
                             item.data[j].fillColor = root.color
                     }
                 }
-                for (var i = 0; i < item.children.length; ++i)
+                for (let i = 0; i < item.children.length; ++i)
                     colorize(item.children[i])
             }
         }

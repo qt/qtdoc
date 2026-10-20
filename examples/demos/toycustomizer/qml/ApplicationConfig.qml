@@ -8,10 +8,10 @@ import QtQuick
 QtObject {
     id: root
 
-    readonly property real appMinimumWidth: responsiveSize(__design.minimumWidth())
-    readonly property real appMinimumHeight: responsiveSize(__design.minimumHeight())
-    property real appWidth: responsiveSize(__design.width(__isScreenPortrait()))
-    property real appHeight: responsiveSize(__design.height(__isScreenPortrait()))
+    readonly property real appMinimumWidth: responsiveSize(root.__design.minimumWidth())
+    readonly property real appMinimumHeight: responsiveSize(root.__design.minimumHeight())
+    property real appWidth: responsiveSize(root.__design.width(__isScreenPortrait()))
+    property real appHeight: responsiveSize(root.__design.height(__isScreenPortrait()))
 
     function updateApplicationSize(width: real, height: real) {
         if (Math.abs(appWidth - width) >= 1)
@@ -34,7 +34,7 @@ QtObject {
     readonly property bool isPortrait: {
         if (__isScreenPortrait())
             return true
-        return appWidth < responsiveSize(__design.responsiveBreakpoint())
+        return appWidth < responsiveSize(root.__design.responsiveBreakpoint())
     }
 
     function fontFamily() {
@@ -66,7 +66,7 @@ QtObject {
     function responsiveFontSize(style) {
         // The font sizes are based on Dongle font family.
         // For other font families we multiply them by '0.9'.
-        const designFontSize = __design.fontSize(style) * 0.9
+        const designFontSize = root.__design.fontSize(style) * 0.9
         return Math.round(responsiveSize(designFontSize))
     }
 
@@ -84,8 +84,7 @@ QtObject {
                (style === ApplicationConfig.TextStyle.Price_M)
     }
 
-    property QtObject __design: QtObject {
-        id: __design
+    component Design: QtObject {
 
         function minimumWidth(): int { return 2160 }
         function minimumHeight(): int { return 3386 }
@@ -127,4 +126,6 @@ QtObject {
             }
         }
     }
+
+    readonly property Design __design: Design {}
 }

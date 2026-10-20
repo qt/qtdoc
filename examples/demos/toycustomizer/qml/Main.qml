@@ -10,6 +10,8 @@ pragma ComponentBehavior: Bound
 ApplicationWindow {
     id: main
 
+    readonly property var currentPage: stackView.currentItem
+
     property int lastToyIndex: -1
 
     minimumWidth: 608
@@ -69,9 +71,9 @@ ApplicationWindow {
             Layout.topMargin: ApplicationConfig.responsiveSize(150)
 
             visible: currentPageStep !== Main.Step.None
-            currentPageStep: stackView.currentItem.pageStep ?? Main.Step.None
-            headingText: stackView.currentItem.headingText ?? ""
-            bodyText: stackView.currentItem.headerBodyText ?? ""
+            currentPageStep: main.currentPage.pageStep ?? Main.Step.None
+            headingText: main.currentPage.headingText ?? ""
+            bodyText: main.currentPage.headerBodyText ?? ""
             pageModel: stepModel
             Layout.fillWidth: true
             onExitRequested: stackView.popToIndex(0)
@@ -86,7 +88,7 @@ ApplicationWindow {
 
     ToyBusyIndicator {
         id: busyIndicator
-        visible: !(stackView.currentItem.ready ?? true)
+        visible: !(main.currentPage.ready ?? true)
         anchors.fill: parent
     }
 

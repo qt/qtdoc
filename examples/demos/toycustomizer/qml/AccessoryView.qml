@@ -10,7 +10,7 @@ import QtQuick.Controls.impl
 Rectangle {
     id: accessoryView
 
-    property alias model: groupFilterProxyModel.model
+    property AccessoryModel model
     property var target: null
     property real horizontalPaddings: ApplicationConfig.responsiveSize(120)
     property real verticalPaddings: ApplicationConfig.responsiveSize(100)
@@ -131,6 +131,7 @@ Rectangle {
 
     SortFilterProxyModel {
         id: groupFilterProxyModel
+        model: accessoryView.model
         property string groupFilter: accessoryView.model.groups()[tabBar.currentIndex] ?? ""
         onGroupFilterChanged: {
             invalidate()
@@ -205,8 +206,8 @@ Rectangle {
                 accessoryView.model.updateTotalSelectedAccessory()
             }
 
-            implicitWidth: ListView.view.delegateWidth
-            implicitHeight: ListView.view.delegateHeight
+            implicitWidth: listView.delegateWidth
+            implicitHeight: listView.delegateHeight
             anchors.verticalCenter: ListView.view.contentItem.verticalCenter
 
             cardName: name
@@ -215,7 +216,7 @@ Rectangle {
             isExclusive: tabBar.currentItem === eyesTabButton
 
             onChooseRequested: {
-                ListView.view.resetAll(group)
+                listView.resetAll(group)
                 setSelected(true)
             }
 

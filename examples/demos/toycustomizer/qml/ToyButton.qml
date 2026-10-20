@@ -36,7 +36,7 @@ RoundButton {
 
     background: Rectangle {
         visible: !control.flat
-        implicitHeight: control.contentItem.implicitHeight + topPadding + bottomPadding
+        implicitHeight: control.contentItem.implicitHeight + control.topPadding + control.bottomPadding
         radius: control.radius
         color: "transparent"
         border {

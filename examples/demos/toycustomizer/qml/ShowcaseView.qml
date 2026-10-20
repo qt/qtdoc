@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick3D
-import QtQuick3D.Effects
-import QtQuick3D.Helpers
 
 View3D {
     id: view3D

@@ -15,7 +15,7 @@ Node {
     scale.z: 110
 
     Skin {
-        id: skin
+        id: toySkin
         joints: [
             universalRigged,
             universalRiggedPelvis,
@@ -103,7 +103,7 @@ Node {
                 id: toyModel
                 objectName: node.currentElement.name
                 source: node.currentElement.meshSource
-                skin: skin
+                skin: toySkin
                 materials: [animationMaterial]
             }
             Node {
