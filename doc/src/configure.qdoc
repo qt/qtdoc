@@ -42,6 +42,33 @@
     and information about the environment in a file called CMakeCache.txt.
     Delete this file when you want to start over without cached information.
 
+    \section1 Configure Options and CMake Arguments
+
+    configure accepts two kinds of arguments: configure options, such as
+    \c{-prefix} or \c{-no-feature-accessibility}, and arguments for CMake.
+    configure translates its own options into CMake variables and then runs
+    CMake. For example, \c{-no-feature-accessibility} becomes
+    \c{-DFEATURE_accessibility=OFF}.
+
+    To pass arguments to CMake directly, put them after a \c{--} (double dash)
+    argument. Everything after \c{--} is passed to CMake unchanged, so all
+    configure options must come before it:
+
+    \badcode
+    ~/qt-source/configure -prefix /opt/Qt6 -- -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+    \endcode
+
+    You can also set a CMake variable by passing \e{VAR}\c{=}\e{value} as a
+    configure argument. This is equivalent to passing
+    \c{-D}\e{VAR}\c{=}\e{value} after \c{--}:
+
+    \badcode
+    ~/qt-source/configure -prefix /opt/Qt6 QT_BUILD_EXAMPLES_BY_DEFAULT=OFF
+    \endcode
+
+    To see the CMake command that configure would run, without running it,
+    add the \c{-dry-run} option.
+
     \section1 Source, Build, and Install Directories
 
     The \e source directory contains the source code that is obtained from
