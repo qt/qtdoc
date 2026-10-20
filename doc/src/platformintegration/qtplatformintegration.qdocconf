@@ -21,7 +21,10 @@ qhp.QtPlatformIntegration.virtualFolder       = qtplatformintegration
 qhp.QtPlatformIntegration.indexTitle          = "Platform Integration"
 qhp.QtPlatformIntegration.filterAttributes    = qt $QT_VERSION
 
-qhp.QtPlatformIntegration.subprojects = qpa typeconversions nativeinterfaces
+qhp.QtPlatformIntegration.subprojects = qpa typeconversions nativeinterfaces integration namespaces
+
+qhp.QtPlatformIntegration.subprojects.namespaces.title = Namespaces
+qhp.QtPlatformIntegration.subprojects.namespaces.selectors = namespace
 
 qhp.QtPlatformIntegration.subprojects.qpa.title = "Qt Platform Abstraction"
 qhp.QtPlatformIntegration.subprojects.qpa.indexTitle = "Qt Platform Abstraction"
@@ -34,3 +37,7 @@ qhp.QtPlatformIntegration.subprojects.typeconversions.selectors = none
 qhp.QtPlatformIntegration.subprojects.nativeinterfaces.title = "Native Interfaces"
 qhp.QtPlatformIntegration.subprojects.nativeinterfaces.indexTitle = "Native Interfaces"
 qhp.QtPlatformIntegration.subprojects.nativeinterfaces.selectors = none
+
+qhp.QtPlatformIntegration.subprojects.integration.title = "Other UI toolkits"
+qhp.QtPlatformIntegration.subprojects.integration.indexTitle = "Mixing Qt with other UI toolkits"
+qhp.QtPlatformIntegration.subprojects.integration.selectors = none
