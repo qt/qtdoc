@@ -306,6 +306,17 @@
         \c PKG_CONFIG_PATH environment variable.
     \endlist
 
+    On Apple platforms, configure does not search the prefixes of package
+    managers such as Homebrew or MacPorts, for example \c{/usr/local},
+    \c{/opt/homebrew}, or \c{/opt/local}. Libraries installed there are
+    usually built for the latest macOS version and would raise the minimum
+    deployment target of Qt. To use libraries from these locations, pass
+    \c{-pkg-config} to configure, which also enables searching these
+    prefixes. Alternatively, point CMake to a single library, for example
+    with \c{-- -DProtobuf_ROOT=/opt/homebrew}. For Qt modules that you
+    configure separately with \c{qt-configure-module}, this depends on
+    whether Qt Base was configured with \c{-pkg-config}.
+
     The documentation of the find modules that CMake provides in the
     \l{https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html}
     {CMake modules manual} lists further variables that affect the search.

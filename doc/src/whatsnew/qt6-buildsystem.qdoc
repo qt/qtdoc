@@ -94,6 +94,11 @@ Some dependencies like OpenSSL are also detected by logic within CMake:
 If OpenSSL is not picked up, you might need to set the \c{OPENSSL_ROOT_DIR}
 CMake variable so that it points to the installation directory.
 
+On Apple platforms, libraries from package managers such as Homebrew are only
+found if you pass \c{-pkg-config} to configure, or point CMake to them. See
+\l{Qt Configure Options#Third-Party Libraries}{Third-Party Libraries} for
+details.
+
 \section2 Selecting the Toolchain
 
 In Qt 5, configure used so-called mkspecs to specify both the build and
