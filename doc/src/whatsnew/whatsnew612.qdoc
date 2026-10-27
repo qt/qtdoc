@@ -875,42 +875,6 @@
           used under the name "linux-dmabuf-unstable-v1" for compatibility.
     \endlist
 
-    \section3 HarmonyOS
-
-    Qt 6.12 introduces support for
-    \l{https://consumer.huawei.com/en/harmonyos/}{HarmonyOS}
-    (OpenHarmony API level 23, HarmonyOS 6.1.0) as a Technology Preview.
-    Vulkan is supported, while accessibility and \c{EmbeddedUIExtensionAbility}
-    are not yet available.
-
-    The following tools and CMake functions are provided to help build
-    and deploy Qt applications on HarmonyOS:
-    \list
-    \li \l{harmonydeployqt} packages a Qt application as a HarmonyOS
-        Application Package (HAP), copies the required Qt libraries and plugins,
-        generates the \c{build-profile.json5} and \c{module.json5}
-        metadata, and supports embedding HAP signing configuration.
-    \li \c{harmonyostestrunner} drives Qt autotests on a connected
-        HarmonyOS device or emulator via \c{hdc}, triggered from \c{ctest}.
-    \li \l qt_add_harmonyos_permission()
-        declares the HarmonyOS permissions required by the application.
-    \endlist
-
-    Key CMake target properties for HarmonyOS deployment include:
-    \list
-    \li \l{QT_HARMONYOS_EXTRA_LIBS} — additional shared libraries to
-        bundle in the HAP.
-    \li \l{QT_HARMONYOS_EXTRA_PLUGINS} — additional Qt plugins to
-        deploy.
-    \li \l{QT_HARMONYOS_PACKAGE_SOURCE_DIR} — a directory whose
-        contents are merged into the generated HarmonyOS project
-        template before the HAP is built.
-    \endlist
-
-    For a full list of known platform limitations, see the
-    \l{https://wiki.qt.io/Qt_for_HarmonyOS/platform_limitations}
-    {Qt for HarmonyOS platform limitations} wiki page.
-
     \section2 Mobile Platforms
 
     \section3 Android
@@ -974,6 +938,42 @@
           reported as not supported on iOS, matching the existing
           documentation.
     \endlist
+
+    \section3 HarmonyOS
+
+    Qt 6.12 introduces support for
+    \l{https://consumer.huawei.com/en/harmonyos/}{HarmonyOS}
+    (OpenHarmony API level 23, HarmonyOS 6.1.0) as a Technology Preview.
+    Vulkan is supported, while accessibility and \c{EmbeddedUIExtensionAbility}
+    are not yet available.
+
+    The following tools and CMake functions are provided to help build
+    and deploy Qt applications on HarmonyOS:
+    \list
+    \li \l{harmonydeployqt} packages a Qt application as a HarmonyOS
+        Application Package (HAP), copies the required Qt libraries and plugins,
+        generates the \c{build-profile.json5} and \c{module.json5}
+        metadata, and supports embedding HAP signing configuration.
+    \li \c{harmonyostestrunner} drives Qt autotests on a connected
+        HarmonyOS device or emulator via \c{hdc}, triggered from \c{ctest}.
+    \li \l qt_add_harmonyos_permission()
+        declares the HarmonyOS permissions required by the application.
+    \endlist
+
+    Key CMake target properties for HarmonyOS deployment include:
+    \list
+    \li \l{QT_HARMONYOS_EXTRA_LIBS} — additional shared libraries to
+        bundle in the HAP.
+    \li \l{QT_HARMONYOS_EXTRA_PLUGINS} — additional Qt plugins to
+        deploy.
+    \li \l{QT_HARMONYOS_PACKAGE_SOURCE_DIR} — a directory whose
+        contents are merged into the generated HarmonyOS project
+        template before the HAP is built.
+    \endlist
+
+    For a full list of known platform limitations, see the
+    \l{https://wiki.qt.io/Qt_for_HarmonyOS/platform_limitations}
+    {Qt for HarmonyOS platform limitations} wiki page.
 
     \section2 Embedded Platforms
 
