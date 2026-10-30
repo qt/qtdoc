@@ -946,10 +946,10 @@
     ...
     \endcode
 
-    Applications reload translations when the \l QJSEngine::uiLanguage or
-    \l {Qt.uiLanguage} property value changes. The following
-    code snippet changes the language dynamically when the user clicks
-    the button:
+    QQmlApplicationEngine also reloads translations when the
+    \l QJSEngine::uiLanguage or \l {Qt.uiLanguage} property value changes.
+    The following code snippet changes the language dynamically when the
+    user clicks the button:
 
     \qml
     Button {
@@ -960,6 +960,13 @@
         }
     }
     \endqml
+
+    If you use QQuickView or a plain QQmlEngine instead, translations aren't
+    loaded or reloaded automatically. Load a QTranslator and install it with
+    QCoreApplication::installTranslator() yourself, as described in
+    \l {C++: Use QTranslator}. To change the language at runtime, replace the
+    installed translator with one for the new language, and then call
+    QQmlEngine::retranslate().
 
     \section2 C++: Use QTranslator
 
