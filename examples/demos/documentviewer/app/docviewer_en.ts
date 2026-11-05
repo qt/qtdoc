@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message numerus="yes">
-        <location filename="../../../app/mainwindow.cpp" line="35"/>
+        <location filename="mainwindow.cpp" line="39"/>
         <source>%n recent files</source>
         <translation>
             <numerusform>Recent file</numerusform>
