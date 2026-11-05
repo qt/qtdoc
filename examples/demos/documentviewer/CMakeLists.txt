@@ -14,5 +14,6 @@ qt_standard_project_setup(REQUIRES 6.8
 
 add_compile_definitions(QT_NO_CAST_FROM_ASCII)
 
+add_subdirectory(abstractviewer)
 add_subdirectory(plugins)
 add_subdirectory(app)

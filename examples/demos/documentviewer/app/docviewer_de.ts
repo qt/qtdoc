@@ -4,52 +4,51 @@
 <context>
     <name>AbstractViewer</name>
     <message>
-        <location filename="abstractviewer.cpp" line="212"/>
         <source>&amp;File</source>
-        <translation>&amp;Datei</translation>
+        <translation type="vanished">&amp;Datei</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="220"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="221"/>
         <source>Printing</source>
         <translation>Drucken</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="222"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="223"/>
         <source>No content to print.</source>
         <translation>Kein Inhalt zum Drucken vorhanden.</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="228"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="229"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="232"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="233"/>
         <source>Printing canceled!</source>
         <translation>Druckvorgang abgebrochen!</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="240"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="241"/>
         <source>Printing aborted.</source>
         <translation>Druckvorgang abgebrochen.</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="243"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="244"/>
         <source>Printing active.</source>
         <translation>Druckvorgang läuft.</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="246"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="247"/>
         <source>Printing completed.</source>
         <translation>Druckvorgang abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="249"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="250"/>
         <source>Printing error.</source>
         <translation>Druckfehler.</translation>
     </message>
     <message>
-        <location filename="abstractviewer.cpp" line="254"/>
+        <location filename="../abstractviewer/abstractviewer.cpp" line="255"/>
         <source>Printing not supported!</source>
         <translation>Drucken wird nicht unterstützt!</translation>
     </message>
@@ -98,53 +97,53 @@
         <translation>&amp;Öffnen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="149"/>
+        <location filename="mainwindow.ui" line="148"/>
         <source>Ctrl+O</source>
         <translation>Strg+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="158"/>
+        <location filename="mainwindow.ui" line="156"/>
         <source>About Document Viewer</source>
         <translation>Über Dokumentenanzeige</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="161"/>
+        <location filename="mainwindow.ui" line="159"/>
         <source>Show information about the Document Viewer deomo.</source>
         <translation>Informationen über die Dokumentenanzeige-Demo anzeigen.</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="164"/>
+        <location filename="mainwindow.ui" line="162"/>
         <source>Ctrl+H</source>
         <translation>Strg+H</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="173"/>
+        <location filename="mainwindow.ui" line="170"/>
         <source>Forward</source>
         <oldsource>actionForward</oldsource>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="176"/>
+        <location filename="mainwindow.ui" line="173"/>
         <source>One step forward</source>
         <translation>Einen Schritt vorwärts</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="176"/>
         <source>Right</source>
         <translation>Rechts</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="188"/>
+        <location filename="mainwindow.ui" line="184"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="191"/>
+        <location filename="mainwindow.ui" line="187"/>
         <source>One step back</source>
         <translation>Einen Schritt zurück</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="194"/>
+        <location filename="mainwindow.ui" line="190"/>
         <source>Left</source>
         <translation>Links</translation>
     </message>
@@ -159,6 +158,7 @@
         <translation>&amp;Zuletzt geöffnet...</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="242"/>
         <location filename="mainwindow.ui" line="245"/>
         <source>E&amp;xit</source>
         <translation>&amp;Beenden</translation>
@@ -174,22 +174,22 @@
         <translation>Aktuelle Datei drucken</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="212"/>
+        <location filename="mainwindow.ui" line="207"/>
         <source>Ctrl+P</source>
         <translation>Strg+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="222"/>
+        <location filename="mainwindow.ui" line="217"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="225"/>
+        <location filename="mainwindow.ui" line="220"/>
         <source>Show Qt license information</source>
         <translation>Qt-Lizenzinformationen anzeigen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="228"/>
+        <location filename="mainwindow.ui" line="223"/>
         <source>Ctrl+I</source>
         <translation>Strg+I</translation>
     </message>
@@ -216,7 +216,7 @@
         <translation>&amp;Deutsch</translation>
     </message>
     <message numerus="yes">
-        <location filename="mainwindow.cpp" line="35"/>
+        <location filename="mainwindow.cpp" line="39"/>
         <source>%n recent files</source>
         <translation>
             <numerusform>letzte Datei</numerusform>
@@ -224,27 +224,27 @@
         </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="42"/>
+        <location filename="mainwindow.cpp" line="48"/>
         <source>Available viewers: %1</source>
         <translation>Verfügbare Viewer: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="75"/>
+        <location filename="mainwindow.cpp" line="79"/>
         <source>Open Document</source>
         <translation>Dokument öffnen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="90"/>
         <source>File %1 could not be opened</source>
         <translation>Datei %1 konnte nicht geöffnet werden</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="100"/>
+        <location filename="mainwindow.cpp" line="104"/>
         <source>File %1 can&apos;t be opened.</source>
         <translation>Datei %1 kann nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="247"/>
         <source>A Widgets application to display and print JSON, text and PDF files. Demonstrates various features to use in widget applications: Using QSettings, query and save user preferences, manage file histories and control cursor behavior when hovering over widgets.
 
 This version has loaded the following plugins:
@@ -262,7 +262,7 @@ Unterstützte MIME-Typen:
 %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="143"/>
+        <location filename="mainwindow.cpp" line="257"/>
         <source>
 
 Other mime types will be displayed with %1.</source>
@@ -271,7 +271,7 @@ Other mime types will be displayed with %1.</source>
 Andere MIME-Typen werden mit %1 angezeigt.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="145"/>
+        <location filename="mainwindow.cpp" line="259"/>
         <source>About Document Viewer Demo</source>
         <translation>Über Dokumentenanzeige-Demo</translation>
     </message>
@@ -287,17 +287,17 @@ Andere MIME-Typen werden mit %1 angezeigt.</translation>
 <context>
     <name>ViewerFactory</name>
     <message>
-        <location filename="viewerfactory.cpp" line="180"/>
+        <location filename="viewerfactory.cpp" line="218"/>
         <source>No viewers for the chosen file format.</source>
         <translation>Das gewählte Dateiformat wird nicht unterstützt.</translation>
     </message>
     <message>
-        <location filename="viewerfactory.cpp" line="190"/>
+        <location filename="viewerfactory.cpp" line="228"/>
         <source>Mime type %1 not supported. Falling back to %2.</source>
         <translation>MIME-Typ %1 wird nicht unterstützt. Es wird auf %2 zurückgegriffen.</translation>
     </message>
     <message>
-        <location filename="viewerfactory.cpp" line="235"/>
+        <location filename="viewerfactory.cpp" line="273"/>
         <source>Plus extensions: %1</source>
         <translation>Zusätzliche Erweiterungen: %1</translation>
     </message>
@@ -305,22 +305,22 @@ Andere MIME-Typen werden mit %1 angezeigt.</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="29"/>
+        <location filename="main.cpp" line="32"/>
         <source>A viewer for JSON, PDF and text files</source>
         <translation>Ein Viewer für JSON-, PDF- und Textdateien</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="32"/>
+        <location filename="main.cpp" line="35"/>
         <source>JSON, PDF or text file to open</source>
         <translation>Zu öffnende JSON-, PDF- oder Textdatei</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="44"/>
+        <location filename="main.cpp" line="47"/>
         <source>No viewer plugins found</source>
         <translation>Keine Viewer-Plugins gefunden</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="45"/>
+        <location filename="main.cpp" line="48"/>
         <source>Unable to load viewer plugins. Exiting application.</source>
         <translation>Viewer-Plugins können nicht geladen werden. Anwendung wird beendet.</translation>
     </message>
