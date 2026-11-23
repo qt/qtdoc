@@ -163,6 +163,8 @@ bool JsonViewer::openJsonFile()
 
     JsonItemModel *model = new JsonItemModel(m_root, this);
     m_tree->setModel(model);
+    m_tree->expandAll();
+    resizeToContents(m_tree);
 
     return true;
 }
