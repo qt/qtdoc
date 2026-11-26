@@ -87,6 +87,17 @@
     {Workspace Trust}.
 
 
+    \section1 Tools that start builds automatically
+
+    Some tools that run in the background of an IDE start builds on their own.
+    One example is the \l{QML Language Server}{QML Language Server (qmlls)},
+    which can run CMake builds when you open a file. Such a build can run code
+    from the project, so opening files from an untrusted location in an editor
+    that uses such a tool can have the same consequences as building the
+    project yourself. See
+    \l{QML Language Server#Configuring Automatic CMake Builds}
+    {Configuring Automatic CMake Builds} for how to disable this in qmlls.
+
     \section1 Recommendations
 
     \list
